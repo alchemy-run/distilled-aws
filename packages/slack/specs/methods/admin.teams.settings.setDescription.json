@@ -1,0 +1,57 @@
+{
+  "desc": "Set the description of a given workspace.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.teams:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "team_id",
+      "description"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "ID for the workspace to set the description for.",
+        "schema": "workspace_id"
+      },
+      "description": {
+        "type": "string",
+        "desc": "The new description for the workspace."
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "failed_to_set_description": {
+      "desc": "There was an error setting the description."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "team_not_found": {
+      "desc": "The requested `team_id` can't be found."
+    }
+  }
+}

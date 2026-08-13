@@ -1,0 +1,97 @@
+{
+  "desc": "Lists requests to add external users to channels with ability to filter.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "conversations.connect:manage"
+    ]
+  },
+  "rate_limits": "t2",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "user_id": {
+        "desc": "Optional filter to return invitation requests for the inviting user.",
+        "schema": "enterprise_user_id"
+      },
+      "include_expired": {
+        "type": "boolean",
+        "default": false,
+        "desc": "When true expired invitation requests will be returned, otherwise they will be excluded"
+      },
+      "include_approved": {
+        "type": "boolean",
+        "default": false,
+        "desc": "When true approved invitation requests will be returned, otherwise they will be excluded"
+      },
+      "include_denied": {
+        "type": "boolean",
+        "default": false,
+        "desc": "When true denied invitation requests will be returned, otherwise they will be excluded"
+      },
+      "invite_ids": {
+        "type": "array",
+        "desc": "An optional list of invitation ids to look up",
+        "minItems": 1,
+        "maxItems": 1000,
+        "items": {
+          "schema": "invite_id"
+        }
+      },
+      "limit": {
+        "type": "integer",
+        "desc": "The number of items to return. Must be between 1 - 1000 (inclusive).",
+        "default": 200,
+        "minimum": 1,
+        "maximum": 1000
+      },
+      "cursor": {
+        "desc": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. See [pagination](/apis/web-api/pagination) for more detail.",
+        "example": "bG9nX2lkOjc5NjQ1NA==",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "invite_requests"
+    ],
+    "properties": {
+      "invite_requests": {
+        "type": "array",
+        "items": {
+          "schema": "requested-shared-invite"
+        }
+      },
+      "response_metadata": {
+        "desc": "Contains cursor to next page. Present only when next page exists.",
+        "schema": "response_metadata_new"
+      }
+    }
+  },
+  "errors": {
+    "restricted_action": {
+      "desc": "A team preference prevents the user from listing invitation requests."
+    },
+    "invalid_cursor": {
+      "desc": "The provided cursor is not valid."
+    },
+    "internal_error": {
+      "desc": "Something unexpected went wrong."
+    },
+    "not_implemented": {
+      "desc": "its not implemented!  TODO: remove me"
+    }
+  }
+}

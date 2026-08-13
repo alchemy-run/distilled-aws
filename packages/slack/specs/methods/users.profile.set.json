@@ -1,0 +1,119 @@
+{
+  "desc": "Set a user's profile information, including custom status.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "users.profile:write"
+    ]
+  },
+  "json_input_supported": true,
+  "user_scope_only": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "name": {
+        "desc": "Name of a single key to set. Usable only if `profile` is not passed.",
+        "example": "first_name",
+        "type": "string"
+      },
+      "profile": {
+        "desc": "Collection of key:value pairs presented as a URL-encoded JSON hash. At most 50 fields may be set. Each field name is limited to 255 characters.",
+        "example": "{ first_name: \"John\", ... }",
+        "type": "string",
+        "subtype": "user_profile"
+      },
+      "user": {
+        "desc": "ID of user to change. This argument may only be specified by admins on paid teams.",
+        "type": "string",
+        "subtype": "user"
+      },
+      "value": {
+        "desc": "Value to set a single key to. Usable only if `profile` is not passed.",
+        "example": "John",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "username",
+      "profile"
+    ],
+    "properties": {
+      "username": {
+        "type": "string"
+      },
+      "profile": {
+        "schema": "user_profile"
+      },
+      "email_pending": {
+        "type": "string",
+        "format": "email"
+      }
+    }
+  },
+  "errors": {
+    "cannot_update_admin_user": {
+      "desc": "Only a primary owner can update the profile of an admin."
+    },
+    "email_taken": {
+      "desc": "email taken"
+    },
+    "invalid_profile": {
+      "desc": "Profile object passed in is not valid JSON (make sure it is URL encoded!)."
+    },
+    "must_clear_both_status_text_and_status_emoji": {
+      "desc": "Clearing the status requires setting both `status_text` and `status_emoji` to ''."
+    },
+    "name_not_allowed": {
+      "desc": "name cannot contain URL."
+    },
+    "not_admin": {
+      "desc": "Only admins can update the profile of another user. Some fields, like `email` may only be updated by an admin."
+    },
+    "not_app_admin": {
+      "desc": "Only team owners and selected members can update the profile of a bot user."
+    },
+    "partial_profile_set_failed": {
+      "desc": "Failed to set user profile."
+    },
+    "profile_set_failed": {
+      "desc": "Failed to set user profile."
+    },
+    "reserved_name": {
+      "desc": "First or last name are reserved."
+    },
+    "sudo_required": {
+      "desc": "Request requires sudo session."
+    },
+    "too_long": {
+      "desc": "You attempted to set a custom status but it was longer than the maximum allowed, 100."
+    },
+    "permission_denied": {
+      "desc": "Permission denied."
+    },
+    "username_same": {
+      "desc": "Username is the same as the current username."
+    },
+    "invalid_emoji_not_allowed": {
+      "desc": "Invalid emoji not allowed."
+    },
+    "invalid_ooo_message": {
+      "desc": "Invalid Out of Office message."
+    },
+    "invalid_starts_with_at": {
+      "desc": "Name cannot start with @."
+    }
+  }
+}

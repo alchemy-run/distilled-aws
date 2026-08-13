@@ -1,0 +1,131 @@
+{
+  "desc": "Invite a user to a workspace.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.users:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "email",
+      "team_id",
+      "channel_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "The ID (`T1234`) of the workspace.",
+        "schema": "workspace_id"
+      },
+      "email": {
+        "desc": "The email address of the person to invite.",
+        "type": "string",
+        "example": "joe@email.com"
+      },
+      "channel_ids": {
+        "desc": "A comma-separated list of `channel_id`s for this user to join. At least one channel is required.",
+        "type": "string",
+        "example": "C1A2B3C4D,C26Z25Y24"
+      },
+      "custom_message": {
+        "desc": "An optional message to send to the user in the invite email.",
+        "type": "string",
+        "example": "Come and join our team!"
+      },
+      "real_name": {
+        "desc": "Full name of the user.",
+        "type": "string",
+        "example": "{\"full_name\":\"Joe Smith\"}"
+      },
+      "resend": {
+        "desc": "Allow this invite to be resent in the future if a user has not signed up yet. Resending can only be done via the UI and has no expiration. (default: false)",
+        "type": "boolean",
+        "example": "true"
+      },
+      "is_restricted": {
+        "desc": "Is this user a multi-channel guest user? (default: false)",
+        "type": "boolean"
+      },
+      "is_ultra_restricted": {
+        "desc": "Is this user a single channel guest user? (default: false)",
+        "type": "boolean"
+      },
+      "guest_expiration_ts": {
+        "desc": "Timestamp when guest account should be disabled. Only include this timestamp if you are inviting a guest user and you want their account to expire on a certain date.",
+        "type": "string",
+        "example": "0123456789.012345",
+        "schema": "ts"
+      },
+      "email_password_policy_enabled": {
+        "desc": "Allow invited user to sign in via email and password. Only available for Enterprise org teams via admin invite.",
+        "example": "true",
+        "type": "boolean"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "already_in_team": {
+      "desc": "The user is already on the team."
+    },
+    "already_in_team_invited_user": {
+      "desc": "The user has already been invited to the team."
+    },
+    "failed_looking_up_user": {
+      "desc": "We couldn't find the requested user."
+    },
+    "failed_to_send_invite": {
+      "desc": "The invite failed to send."
+    },
+    "failed_to_validate_caller": {
+      "desc": "The token calling this method doesn't have permission to invite a user."
+    },
+    "failed_to_validate_channels": {
+      "desc": "`channel_ids` was invalid."
+    },
+    "failed_to_validate_custom_message": {
+      "desc": "`extra_message` was invalid."
+    },
+    "failed_to_validate_expiration": {
+      "desc": "`expiration_ts` was invalid."
+    },
+    "failed_to_validate_team": {
+      "desc": "The team calling this method was invalid."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "invalid_email": {
+      "desc": "Email address was not valid."
+    },
+    "not_an_admin": {
+      "desc": "The user token does not have admin privileges."
+    },
+    "team_not_found": {
+      "desc": "`team_id` was not found."
+    },
+    "user_disabled": {
+      "desc": "The user is disabled."
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "desc": "Registers a new Call.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "calls:write"
+    ],
+    "user": [
+      "calls:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "external_unique_id",
+      "join_url"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "external_unique_id": {
+        "type": "string",
+        "desc": "An ID supplied by the 3rd-party Call provider. It must be unique across all Calls from that service.",
+        "example": "025169F6-E37A-4E62-BB54-7F93A0FC4C1F"
+      },
+      "external_display_id": {
+        "type": "string",
+        "desc": "An optional, human-readable ID supplied by the 3rd-party Call provider. If supplied, this ID will be displayed in the Call object.",
+        "example": "705-292-868"
+      },
+      "join_url": {
+        "type": "string",
+        "desc": "The URL required for a client to join the Call.",
+        "example": "https://example.com/calls/1234567890"
+      },
+      "desktop_app_join_url": {
+        "type": "string",
+        "desc": "When supplied, available Slack clients will attempt to directly launch the 3rd-party Call with this URL.",
+        "example": "callapp://join/1234567890"
+      },
+      "date_start": {
+        "type": "integer",
+        "desc": "Unix timestamp of the call start time",
+        "example": "1562002086"
+      },
+      "title": {
+        "type": "string",
+        "desc": "The name of the Call.",
+        "example": "Kimpossible sync up"
+      },
+      "created_by": {
+        "type": "string",
+        "desc": "The valid Slack user ID of the user who created this Call. When this method is called with a user token, the `created_by` field is optional and defaults to the authed user of the token. Otherwise, the field is required.",
+        "example": "U1H77"
+      },
+      "users": {
+        "type": "array",
+        "items": {
+          "schema": "user"
+        },
+        "desc": "The list of users to register as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users).",
+        "example": "[{\"slack_id\": \"U1H77\"}, {\"external_id\": \"54321678\", \"display_name\": \"External User\", \"avatar_url\": \"https://example.com/users/avatar1234.jpg\"}]"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "call"
+    ],
+    "properties": {
+      "call": {
+        "schema": "info"
+      }
+    }
+  },
+  "errors": {
+    "internal_error": {
+      "desc": "An unexpected error has occurred while trying to register the Call."
+    },
+    "invalid_created_by": {
+      "desc": "The `created_by` user ID is invalid."
+    },
+    "invalid_start_time": {
+      "desc": "The start time is invalid."
+    },
+    "not_authorized": {
+      "desc": "The specified user is not authorized to create a Call in this channel."
+    },
+    "not_implemented": {
+      "desc": "This method is not available."
+    },
+    "user_not_found": {
+      "desc": "A specified user wasn't found."
+    }
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "desc": "Retrieves metadata for a list of messages from a given channel.",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.analytics:read"
+    ]
+  },
+  "rate_limits": "1200 requests per minute with a burst allowance of 2000.",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "type": "string",
+        "subtype": "channel",
+        "desc": "Channel ID for channel containing the messages to query."
+      },
+      "oldest_ts": {
+        "type": "string",
+        "subtype": "timestamp",
+        "desc": "Oldest timestamp to include in the results"
+      },
+      "latest_ts": {
+        "type": "string",
+        "subtype": "timestamp",
+        "desc": "Most recent timestamp to include in the results. If not passed, defaults to current time."
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first \"page\" of the collection. See [pagination](#pagination) for more details.",
+        "example": "abcd..."
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "messages"
+    ],
+    "properties": {
+      "response_metadata": {
+        "type": "object",
+        "required": [
+          "next_cursor"
+        ],
+        "properties": {
+          "next_cursor": {
+            "type": "string",
+            "desc": "More items exist, use next_cursor as the value of cursor for next call"
+          }
+        }
+      },
+      "messages": {
+        "type": "array",
+        "desc": "An array of message metadata",
+        "items": {
+          "type": "object",
+          "required": [
+            "type",
+            "ts"
+          ],
+          "properties": {
+            "user_id": {
+              "type": "string",
+              "desc": "Encoded ID of user who authored message"
+            },
+            "type": {
+              "type": "string"
+            },
+            "subtype": {
+              "type": "string"
+            },
+            "ts": {
+              "type": "string",
+              "desc": "Timestamp of the message"
+            },
+            "thread_ts": {
+              "type": "string",
+              "desc": "Timestamp of message at the root of the thread"
+            },
+            "display_as_bot": {
+              "type": "boolean"
+            },
+            "client_msg_id": {
+              "type": "string"
+            },
+            "text_character_count": {
+              "type": "integer",
+              "desc": "Number of characters in the message text"
+            },
+            "reactions": {
+              "type": "array",
+              "desc": "An array of reaction counts",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "count"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "desc": "Name of the reaction emoji"
+                  },
+                  "count": {
+                    "type": "integer",
+                    "desc": "Number of times this reaction was used"
+                  }
+                }
+              }
+            },
+            "files": {
+              "type": "array",
+              "desc": "An array of files attached to the message",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "created",
+                  "timestamp"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "desc": "Encoded file ID"
+                  },
+                  "created": {
+                    "type": "integer",
+                    "desc": "Unix timestamp when file was created"
+                  },
+                  "timestamp": {
+                    "type": "integer",
+                    "desc": "Unix timestamp of the file"
+                  },
+                  "mimetype": {
+                    "type": "string",
+                    "desc": "MIME type of the file"
+                  },
+                  "filetype": {
+                    "type": "string",
+                    "desc": "File type"
+                  },
+                  "subtype": {
+                    "type": "string",
+                    "desc": "File subtype"
+                  },
+                  "pretty_type": {
+                    "type": "string",
+                    "desc": "Human-readable file type"
+                  },
+                  "is_external": {
+                    "type": "boolean",
+                    "desc": "Whether the file is external"
+                  },
+                  "external_type": {
+                    "type": "string",
+                    "desc": "Type of external file"
+                  },
+                  "is_public": {
+                    "type": "boolean",
+                    "desc": "Whether the file is public"
+                  },
+                  "public_url_shared": {
+                    "type": "boolean",
+                    "desc": "Whether the public URL is shared"
+                  },
+                  "display_as_bot": {
+                    "type": "boolean",
+                    "desc": "Whether to display as bot"
+                  },
+                  "duration_ms": {
+                    "type": "integer",
+                    "desc": "Duration in milliseconds for media files"
+                  },
+                  "media_display_type": {
+                    "type": "string",
+                    "desc": "Display type for media files"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "The specified channel was not found"
+    },
+    "invalid_arguments": {
+      "desc": "Required arguments either were not provided or contain invalid values."
+    },
+    "not_an_enterprise": {
+      "desc": "The user token does not belong to an enterprise."
+    },
+    "analytics_unavailable": {
+      "desc": "We were unable to find analytics for you."
+    },
+    "admin_analytics_disabled": {
+      "desc": "We're having issues returning your analytics. Please wait and try again."
+    },
+    "restricted_plan_level": {
+      "desc": "This feature is not available for your current product plan."
+    },
+    "different_team_owns_message_metadata_for_channel": {
+      "desc": "Message metadata must be accessed by an actor from the same team that owns the channel. This may be the org or a specific enterprise workspace."
+    }
+  }
+}

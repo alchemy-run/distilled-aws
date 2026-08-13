@@ -1,0 +1,44 @@
+{
+  "desc": "Unpublish workflows within the team or enterprise",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.workflows:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "workflow_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "workflow_ids": {
+        "type": "array",
+        "desc": "Array of workflow IDs to unpublish",
+        "items": {
+          "schema": "workflow_id"
+        },
+        "minItems": 1,
+        "maxItems": 50
+      }
+    }
+  },
+  "output": {},
+  "errors": {
+    "not_allowed": {
+      "desc": "The user is not allowed to access this API method"
+    },
+    "error_unpublishing_workflows": {
+      "desc": "There were one or more errors unpublishing workflows"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "desc": "Checks API calling code.",
+  "http_method": "POST",
+  "scope": {},
+  "json_input_supported": true,
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "properties": {
+      "error": {
+        "type": "string",
+        "desc": "Error response to return",
+        "example": "my_error"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "args": {
+        "type": "object"
+      }
+    }
+  }
+}

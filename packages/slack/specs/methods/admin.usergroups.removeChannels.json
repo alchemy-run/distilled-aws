@@ -1,0 +1,82 @@
+{
+  "desc": "Remove one or more default channels from an org-level IDP group (user group).",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.usergroups:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "usergroup_id",
+      "channel_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "usergroup_id": {
+        "desc": "ID of the IDP Group",
+        "type": "string",
+        "example": "S00000000"
+      },
+      "channel_ids": {
+        "desc": "Comma-separated string of channel IDs",
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": "C00000000,C00000001"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "error": {
+        "type": "string",
+        "desc": "A string representation of the error type"
+      },
+      "invalid_channels": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "desc": "List of channel IDs that are not valid for this action"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "At least one of the provided channel IDs could not be found, or one of those channels has a type that is not supported."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this workspace."
+    },
+    "invalid_auth": {
+      "desc": "The workspace specified is not part of this Enterprise organization."
+    },
+    "invalid_channels_limit": {
+      "desc": "The number of channel IDs passed in is larger than 100."
+    },
+    "not_an_admin": {
+      "desc": "The calling user cannot update the specified usergroup."
+    },
+    "not_an_enterprise": {
+      "desc": "The token passed in does not belong to an Enterprise organization."
+    },
+    "usergroup_not_found": {
+      "desc": "The IDP group provided was not found."
+    },
+    "internal_error": {
+      "desc": "There was an internal error processing this request—please retry."
+    }
+  }
+}

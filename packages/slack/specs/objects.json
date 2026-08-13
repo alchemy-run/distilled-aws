@@ -1,0 +1,38 @@
+[
+  {
+    "name": "channel",
+    "description": "A public channel"
+  },
+  {
+    "name": "conversation",
+    "description": "A channel-like container for a conversation used by the Conversations API"
+  },
+  {
+    "name": "event",
+    "description": "A wrapper for event types delivered in Events API subscriptions"
+  },
+  {
+    "name": "file",
+    "description": "A file, snippet or post uploaded to Slack"
+  },
+  {
+    "name": "group",
+    "description": "A private group"
+  },
+  {
+    "name": "im",
+    "description": "A direct message channel with a user"
+  },
+  {
+    "name": "mpim",
+    "description": "A multiparty direct message"
+  },
+  {
+    "name": "user",
+    "description": "A member in your workspace"
+  },
+  {
+    "name": "usergroup",
+    "description": "A group of users, such as @marketing-team or @finance"
+  }
+]

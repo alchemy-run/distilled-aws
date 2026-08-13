@@ -1,0 +1,117 @@
+{
+  "desc": "Allows users to run a trigger that has its permission type set to named_entities",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "triggers:write"
+    ]
+  },
+  "no_scope_required": false,
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "trigger_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "trigger_id": {
+        "type": "string",
+        "desc": "Encoded ID of the trigger",
+        "example": "Ft0000000001"
+      },
+      "user_ids": {
+        "type": "array",
+        "desc": "List of encoded user IDs",
+        "items": {
+          "schema": "user_id"
+        },
+        "example": "U0000000001,U0000000002"
+      },
+      "channel_ids": {
+        "type": "array",
+        "desc": "List of encoded channel IDs",
+        "items": {
+          "schema": "channel"
+        },
+        "example": "C0000000001,C0000000002"
+      },
+      "team_ids": {
+        "type": "array",
+        "desc": "List of encoded workspace IDs",
+        "items": {
+          "schema": "workspace_id"
+        },
+        "example": "T0000000001,T0000000002"
+      },
+      "org_ids": {
+        "type": "array",
+        "desc": "List of encoded organization IDs",
+        "example": "E00000001,E00000002",
+        "items": {
+          "schema": "enterprise_id"
+        }
+      }
+    }
+  },
+  "output": {
+    "schema": "trigger-run-acl"
+  },
+  "errors": {
+    "access_denied": {
+      "desc": "This actor does not have access to the permissions on this resource."
+    },
+    "channel_not_found": {
+      "desc": "One or more of the listed channels could not be found."
+    },
+    "connected_org_denied": {
+      "desc": "The workspace admin does not allow connected organizations to be named_entities."
+    },
+    "connected_team_denied": {
+      "desc": "The workspace admin does not allow connected teams to be named_entities."
+    },
+    "connected_user_denied": {
+      "desc": "The workspace admin does not allow connected users to be named_entities."
+    },
+    "invalid_permission_type": {
+      "desc": "This trigger requires permission_type to be set as named_entities before adding users."
+    },
+    "no_valid_named_entities": {
+      "desc": "None of the provided named entities were valid"
+    },
+    "org_not_connected": {
+      "desc": "One of more of the listed organizations were not connected."
+    },
+    "org_not_found": {
+      "desc": "One or more of the listed organizations could not be found."
+    },
+    "shared_channel_denied": {
+      "desc": "The workspace admin does not allow shared channels to be named_entities."
+    },
+    "team_not_connected": {
+      "desc": "One of more of the listed teams were not connected by org."
+    },
+    "team_not_found": {
+      "desc": "One or more of the listed teams could not be found."
+    },
+    "too_many_named_entities": {
+      "desc": "Too many named entities passed into the trigger permissions setting."
+    },
+    "trigger_not_found": {
+      "desc": "This trigger does not exist."
+    },
+    "unknown_method": {
+      "desc": "This method does not exist."
+    },
+    "user_not_found": {
+      "desc": "One or more of the listed users could not be found."
+    }
+  }
+}

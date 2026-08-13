@@ -1,0 +1,787 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.slack.search#AllRequestSortDir": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.search#AllRequest": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "count"
+          }
+        },
+        "highlight": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "highlight",
+            "smithy.api#documentation": "Pass a value of `true` to enable query highlight markers (see below)."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "query",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Search query. May contains booleans, etc."
+          }
+        },
+        "sort": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Return matches sorted by either `score` or `timestamp`."
+          }
+        },
+        "sort_dir": {
+          "target": "com.slack.search#AllRequestSortDir",
+          "traits": {
+            "smithy.api#httpQuery": "sort_dir",
+            "smithy.api#documentation": "Change sort direction to ascending (`asc`) or descending (`desc`)."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "encoded team id to search in, required if org token is used"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.search#AllResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "files": {
+          "target": "smithy.api#Document"
+        },
+        "callstack": {
+          "target": "smithy.api#String"
+        },
+        "messages": {
+          "target": "smithy.api#Document"
+        },
+        "posts": {
+          "target": "smithy.api#Document"
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Search query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.search#All": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.search#AllRequest"
+      },
+      "output": {
+        "target": "com.slack.search#AllResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/search.all",
+          "code": 200
+        },
+        "smithy.api#documentation": "Searches for messages and files matching a query.\n\nRequired scopes — user: `search:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `no_query` — No query was provided.\n\nSee https://docs.slack.dev/reference/methods/search.all"
+      }
+    },
+    "com.slack.search#FilesRequestSortDir": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.search#FilesRequest": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "count"
+          }
+        },
+        "highlight": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "highlight",
+            "smithy.api#documentation": "Pass a value of `true` to enable query highlight markers (see below)."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "query",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Search query."
+          }
+        },
+        "sort": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Return matches sorted by either `score` or `timestamp`."
+          }
+        },
+        "sort_dir": {
+          "target": "com.slack.search#FilesRequestSortDir",
+          "traits": {
+            "smithy.api#httpQuery": "sort_dir",
+            "smithy.api#documentation": "Change sort direction to ascending (`asc`) or descending (`desc`)."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "encoded team id to search in, required if org token is used"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.search#FilesResponseFilesPaginationWarningsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.search#FilesResponseFilesPagination": {
+      "type": "structure",
+      "members": {
+        "last": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Last result id"
+          }
+        },
+        "warnings": {
+          "target": "com.slack.search#FilesResponseFilesPaginationWarningsList"
+        },
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total count of results"
+          }
+        },
+        "page_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of pages"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of results per page"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current page"
+          }
+        },
+        "first": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "First result id"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.search#FilesResponseFilesMatchesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.search#FilesResponseFilesPagingWarningsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.search#FilesResponseFilesPaging": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of results per page"
+          }
+        },
+        "pages": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of pages"
+          }
+        },
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of results"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current page"
+          }
+        },
+        "warnings": {
+          "target": "com.slack.search#FilesResponseFilesPagingWarningsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.search#FilesResponseFiles": {
+      "type": "structure",
+      "members": {
+        "pagination": {
+          "target": "com.slack.search#FilesResponseFilesPagination"
+        },
+        "matches": {
+          "target": "com.slack.search#FilesResponseFilesMatchesList"
+        },
+        "paging": {
+          "target": "com.slack.search#FilesResponseFilesPaging"
+        },
+        "all_stop_words": {
+          "target": "smithy.api#Boolean"
+        },
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of file search results."
+          }
+        },
+        "query_too_long": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.search#FilesResponseUsersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.search#FilesResponseTeamsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.search#FilesResponseChannelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.search#FilesResponseImsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.search#FilesResponseGroupsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.search#FilesResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "files": {
+          "target": "com.slack.search#FilesResponseFiles"
+        },
+        "callstack": {
+          "target": "smithy.api#String"
+        },
+        "users": {
+          "target": "com.slack.search#FilesResponseUsersMap"
+        },
+        "teams": {
+          "target": "com.slack.search#FilesResponseTeamsMap"
+        },
+        "channels": {
+          "target": "com.slack.search#FilesResponseChannelsMap"
+        },
+        "ims": {
+          "target": "com.slack.search#FilesResponseImsMap"
+        },
+        "groups": {
+          "target": "com.slack.search#FilesResponseGroupsMap"
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Search query."
+          }
+        },
+        "ignored_exclude_bots_pref": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.search#Files": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.search#FilesRequest"
+      },
+      "output": {
+        "target": "com.slack.search#FilesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/search.files",
+          "code": 200
+        },
+        "smithy.api#documentation": "Searches for files matching a query.\n\nRequired scopes — user: `search:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `no_query` — No query was provided.\n\nSee https://docs.slack.dev/reference/methods/search.files"
+      }
+    },
+    "com.slack.search#MessagesRequestSortDir": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        },
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.search#MessagesRequest": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "count",
+            "smithy.api#documentation": "Pass the number of results you want per \"page\". Maximum of `100`."
+          }
+        },
+        "highlight": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "highlight",
+            "smithy.api#documentation": "Pass a value of `true` to enable query highlight markers (see below)."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Use this when getting results with cursormark pagination. For first call send `*` for subsequent calls, send the value of `next_cursor` returned in the previous call's results"
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "query",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Search query."
+          }
+        },
+        "sort": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Return matches sorted by either `score` or `timestamp`."
+          }
+        },
+        "sort_dir": {
+          "target": "com.slack.search#MessagesRequestSortDir",
+          "traits": {
+            "smithy.api#httpQuery": "sort_dir",
+            "smithy.api#documentation": "Change sort direction to ascending (`asc`) or descending (`desc`)."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "encoded team id to search in, required if org token is used"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.search#MessagesResponseUsersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.search#MessagesResponseMessagesMatchesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.search#MessagesResponseMessagesPaginationWarningsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.search#MessagesResponseMessagesPagination": {
+      "type": "structure",
+      "members": {
+        "last": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Last result id"
+          }
+        },
+        "warnings": {
+          "target": "com.slack.search#MessagesResponseMessagesPaginationWarningsList"
+        },
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total count of results"
+          }
+        },
+        "page_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of pages"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of results per page"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current page"
+          }
+        },
+        "first": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "First result id"
+          }
+        },
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "value of next cursor to be passed when using cursormark pagination"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.search#MessagesResponseMessagesPagingWarningsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.search#MessagesResponseMessagesPaging": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of results per page"
+          }
+        },
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of results"
+          }
+        },
+        "pages": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of pages"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current page"
+          }
+        },
+        "warnings": {
+          "target": "com.slack.search#MessagesResponseMessagesPagingWarningsList"
+        },
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "next cursor to be passed to the method for next set of results using cursor pagination"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.search#MessagesResponseMessages": {
+      "type": "structure",
+      "members": {
+        "matches": {
+          "target": "com.slack.search#MessagesResponseMessagesMatchesList"
+        },
+        "pagination": {
+          "target": "com.slack.search#MessagesResponseMessagesPagination"
+        },
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of message search results."
+          }
+        },
+        "all_stop_words": {
+          "target": "smithy.api#Boolean"
+        },
+        "paging": {
+          "target": "com.slack.search#MessagesResponseMessagesPaging"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.search#MessagesResponseTeamsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.search#MessagesResponseBotsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.search#MessagesResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "callstack": {
+          "target": "smithy.api#String"
+        },
+        "users": {
+          "target": "com.slack.search#MessagesResponseUsersMap"
+        },
+        "messages": {
+          "target": "com.slack.search#MessagesResponseMessages"
+        },
+        "show_feedback": {
+          "target": "smithy.api#Boolean"
+        },
+        "teams": {
+          "target": "com.slack.search#MessagesResponseTeamsMap"
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Search query."
+          }
+        },
+        "bots": {
+          "target": "com.slack.search#MessagesResponseBotsMap"
+        },
+        "ignored_exclude_bots_pref": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.search#Messages": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.search#MessagesRequest"
+      },
+      "output": {
+        "target": "com.slack.search#MessagesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/search.messages",
+          "code": 200
+        },
+        "smithy.api#documentation": "Searches for messages matching a query.\n\nRequired scopes — user: `search:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `no_query` — No query was provided.\n\nSee https://docs.slack.dev/reference/methods/search.messages"
+      }
+    },
+    "com.slack.search#Search": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.search#All"
+        },
+        {
+          "target": "com.slack.search#Files"
+        },
+        {
+          "target": "com.slack.search#Messages"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — search"
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "desc": "Set an expiration for a guest user",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.users:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "user_id",
+      "expiration_ts"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "The ID (`T1234`) of the workspace.",
+        "schema": "workspace_id"
+      },
+      "user_id": {
+        "desc": "The ID of the user to set an expiration for.",
+        "type": "string",
+        "example": "W12345678",
+        "schema": "user_id"
+      },
+      "expiration_ts": {
+        "desc": "Epoch timestamp in seconds when guest account should be disabled.",
+        "type": "integer",
+        "example": "1234567890"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "failed_looking_up_user": {
+      "desc": "We couldn't find the requested user."
+    },
+    "failed_to_set_expiration": {
+      "desc": "The expiration could not be set for the user."
+    },
+    "failed_to_validate_caller": {
+      "desc": "The token calling this method doesn't have permission to invite a user."
+    },
+    "failed_to_validate_expiration": {
+      "desc": "`expiration_ts` was invalid."
+    },
+    "failed_to_validate_team": {
+      "desc": "The team calling this method was invalid."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "invalid_arguments": {
+      "desc": "The passed arguments were invalid."
+    },
+    "invalid_auth": {
+      "desc": "This action could not be authorized."
+    },
+    "team_id_required_for_enterprise": {
+      "desc": "Team ID required."
+    },
+    "team_not_found": {
+      "desc": "`team_id` was not found."
+    },
+    "user_is_already_deleted": {
+      "desc": "The user has already been deleted and disabled."
+    },
+    "user_is_deactivated": {
+      "desc": "User has been deactivated."
+    },
+    "user_is_not_a_guest": {
+      "desc": "The passed user_id does not belong to a guest user."
+    },
+    "user_not_found": {
+      "desc": "The user could not be found."
+    }
+  }
+}

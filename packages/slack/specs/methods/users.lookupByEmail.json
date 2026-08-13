@@ -1,0 +1,52 @@
+{
+  "desc": "Find a user with an email address.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "users:read.email"
+    ],
+    "user": [
+      "users:read.email"
+    ]
+  },
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "email"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "email": {
+        "desc": "An email address belonging to a user in the workspace",
+        "example": "spengler@ghostbusters.example.com",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "user"
+    ],
+    "properties": {
+      "user": {
+        "schema": "user"
+      }
+    }
+  },
+  "errors": {
+    "enterprise_is_restricted": {
+      "desc": "This method was called with an inappropriate enterprise-level token."
+    },
+    "users_not_found": {
+      "desc": "Value passed for `user` was invalid."
+    }
+  }
+}

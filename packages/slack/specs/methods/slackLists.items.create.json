@@ -1,0 +1,100 @@
+{
+  "desc": "Add a new item to an existing List.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "lists:write"
+    ],
+    "user": [
+      "lists:write"
+    ]
+  },
+  "familyName": "lists",
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "list_id"
+    ],
+    "properties": {
+      "token": {
+        "desc": "Token with which to authenticate the session.",
+        "type": "string",
+        "subtype": "auth"
+      },
+      "list_id": {
+        "desc": "ID of the List to add the item to.",
+        "subtype": "list",
+        "schema": "file_id"
+      },
+      "duplicated_item_id": {
+        "desc": "ID of the record to make a copy of.",
+        "schema": "list_record_id"
+      },
+      "parent_item_id": {
+        "desc": "ID of the parent record for this subtask.",
+        "schema": "list_record_id"
+      },
+      "initial_fields": {
+        "desc": "Initial item data.",
+        "type": "array",
+        "items": {
+          "schema": "list_field"
+        }
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "item"
+    ],
+    "type": "object",
+    "properties": {
+      "item": {
+        "schema": "list_item"
+      }
+    }
+  },
+  "errors": {
+    "list_not_found": {
+      "desc": "The List was not found."
+    },
+    "over_row_maximum": {
+      "desc": "Cannot create more items over the maximum."
+    },
+    "team_not_found": {
+      "desc": "The team cannot be found."
+    },
+    "user_not_found": {
+      "desc": "The user cannot be found."
+    },
+    "duplicated_item_not_found": {
+      "desc": "The item to duplicate cannot be found."
+    },
+    "invalid_option_id": {
+      "desc": "Option ID provided does not match column definition."
+    },
+    "invalid_args": {
+      "desc": "The provided arguments are invalid."
+    },
+    "uneditable_column": {
+      "desc": "Initial values provided for an uneditable column."
+    },
+    "invalid_input_type": {
+      "desc": "The field value type does not match the column type."
+    },
+    "invalid_column_id": {
+      "desc": "The column ID provided does not exist in the List."
+    },
+    "over_cell_fields_limit": {
+      "desc": "Too many values provided for a single field."
+    },
+    "file_not_found": {
+      "desc": "The attachment file could not be found."
+    },
+    "invalid_vote_value": {
+      "desc": "Invalid value provided for a vote column."
+    }
+  }
+}

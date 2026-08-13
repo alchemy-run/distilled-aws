@@ -1,0 +1,1939 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.slack.chat#AppendStreamRequestChunksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of streaming chunks."
+      }
+    },
+    "com.slack.chat#AppendStreamRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An encoded ID that represents a channel, private group, or DM",
+            "smithy.api#required": {}
+          }
+        },
+        "chunks": {
+          "target": "com.slack.chat#AppendStreamRequestChunksList",
+          "traits": {
+            "smithy.api#documentation": "Array of streaming chunks."
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of the streaming message.",
+            "smithy.api#required": {}
+          }
+        },
+        "markdown_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Accepts message text formatted in markdown. Limit this field to 12,000 characters. This text is what will be appended to the message received so far.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.chat#AppendStreamResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.chat#AppendStream": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.chat#AppendStreamRequest"
+      },
+      "output": {
+        "target": "com.slack.chat#AppendStreamResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/chat.appendStream",
+          "code": 200
+        },
+        "smithy.api#documentation": "Appends text to an existing streaming conversation.\n\nRequired scopes — bot: `chat:write`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `message_not_in_streaming_state` — The message is not in the streaming state.\n  - `messaging_processing_failed` — Failed to process the message.\n  - `as_user_not_supported` — The `as_user` parameter does not function with workspace apps.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `duplicate_channel_not_found` — Channel associated with `client_msg_id` was invalid.\n  - `duplicate_message_not_found` — No duplicate message exists associated with `client_msg_id`.\n  - `ekm_access_denied` — Your message couldn’t be sent because your admins have disabled sending messages to this channel.\n  - `invalid_blocks` — Blocks submitted with this message are not valid.\n  - `invalid_chunks` — Chunks submitted with this message are not valid.\n  - `invalid_metadata_format` — Invalid metadata format provided\n  - `invalid_metadata_schema` — Invalid metadata schema provided\n  - `is_archived` — Channel has been archived.\n  - `message_limit_exceeded` — Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces\n  - `messages_tab_disabled` — Messages tab for the app is disabled.\n  - `metadata_must_be_sent_from_app` — Message metadata can only be posted or updated using an app-level token\n  - `msg_blocks_too_long` — Blocks submitted with this message are too long.\n  - `msg_blocks_too_many` — Max blocks exceeded, blocks are limited to 50 per message.\n  - `metadata_too_large` — Metadata exceeds size limit\n  - `no_text` — No message text provided\n  - `not_in_channel` — Cannot post user messages to a channel they are not in.\n  - `rate_limited` — Application has posted too many messages, [read the Rate Limit documentation](/apis/web-api/rate-limits) for more information\n  - `restricted_action` — A workspace preference prevents the authenticated user from posting.\n  - `restricted_action_non_threadable_channel` — Cannot post thread replies into a non_threadable channel.\n  - `restricted_action_read_only_channel` — Cannot post any message into a read-only channel.\n  - `restricted_action_thread_locked` — Cannot post replies to a thread that has been locked by admins.\n  - `restricted_action_thread_only_channel` — Cannot post top-level messages into a thread-only channel.\n  - `slack_connect_canvas_sharing_blocked` — Admin has disabled Canvas File sharing in all Slack Connect communications\n  - `slack_connect_file_link_sharing_blocked` — Admin has disabled Slack File sharing in all Slack Connect communications\n  - `slack_connect_lists_sharing_blocked` — Admin has disabled Lists sharing in all Slack Connect communications\n  - `team_not_found` — This error occurs if, when using an org-wide token, the `channel_name` is passed instead of the `channel_id`.\n  - `too_many_attachments` — Too many attachments were provided with this message. A maximum of 100 attachments are allowed on a message.\n  - `too_many_contact_cards` — Too many contact_cards were provided with this message. A maximum of 10 contact cards are allowed on a message.\n  - `message_not_found` — Message not found\n  - `channel_type_not_supported` — Channel type not supported\n  - `stopped_by_user` — The streaming message was stopped by the user and no further appends are accepted.\n  - `message_not_owned_by_app` — The message is not owned by the app.\n\nSee https://docs.slack.dev/reference/methods/chat.appendStream"
+      }
+    },
+    "com.slack.chat#DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "as_user": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "(Legacy) Pass true to delete the message as the authed user with `chat:write:user` scope. Bot users in this context are considered authed users. See [legacy `as_user` parameter](#legacy_as_user) below."
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel containing the message to be deleted.",
+            "smithy.api#required": {}
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the message to be deleted.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.chat#DeleteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.chat#Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.chat#DeleteRequest"
+      },
+      "output": {
+        "target": "com.slack.chat#DeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/chat.delete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes a message.\n\nRequired scopes — bot: `chat:write`; user: `chat:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `cant_delete_message` — Authenticated user does not have permission to delete this message.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `message_not_found` — No message exists with the requested timestamp.\n\nSee https://docs.slack.dev/reference/methods/chat.delete"
+      }
+    },
+    "com.slack.chat#DeleteScheduledMessageRequest": {
+      "type": "structure",
+      "members": {
+        "as_user": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Pass true to delete the message as the authed user with `chat:write:user` scope. Bot users in this context are considered authed users. If unused or false, the message will be deleted with `chat:write:bot` scope."
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The channel the scheduled_message is posting to",
+            "smithy.api#required": {}
+          }
+        },
+        "scheduled_message_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`scheduled_message_id` returned from call to chat.scheduleMessage",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.chat#DeleteScheduledMessageResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.chat#DeleteScheduledMessage": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.chat#DeleteScheduledMessageRequest"
+      },
+      "output": {
+        "target": "com.slack.chat#DeleteScheduledMessageResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/chat.deleteScheduledMessage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes a pending scheduled message from the queue.\n\nRequired scopes — bot: `chat:write`; user: `chat:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_token` — The provided `token` was invalid.\n  - `channel_not_found` — The `channel` passed is either an invalid ID or does not exist.\n  - `invalid_scheduled_message_id` — The `scheduled_message_id` passed is either an invalid ID, or the scheduled message it's referencing has already been sent or deleted.\n\nSee https://docs.slack.dev/reference/methods/chat.deleteScheduledMessage"
+      }
+    },
+    "com.slack.chat#GetPermalinkRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "channel",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the conversation or channel containing the message"
+          }
+        },
+        "message_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "message_ts",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A message's `ts` value, uniquely identifying it within a channel"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.chat#GetPermalinkResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "permalink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.chat#GetPermalink": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.chat#GetPermalinkRequest"
+      },
+      "output": {
+        "target": "com.slack.chat#GetPermalinkResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/chat.getPermalink",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve a permalink URL for a specific extant message\n\nRate limit tier: 5\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `message_not_found` — The message identified by `message_ts` could not be found.\n\nSee https://docs.slack.dev/reference/methods/chat.getPermalink"
+      }
+    },
+    "com.slack.chat#MeMessageRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel to send message to. Can be a public channel, private group or IM channel. Can be an encoded ID, or a name.",
+            "smithy.api#required": {}
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text of the message to send.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.chat#MeMessageResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String"
+        },
+        "channel": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.chat#MeMessage": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.chat#MeMessageRequest"
+      },
+      "output": {
+        "target": "com.slack.chat#MeMessageResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/chat.meMessage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Share a me message into a channel.\n\nRequired scopes — bot: `chat:write`; user: `chat:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `is_archived` — Channel has been archived.\n  - `msg_too_long` — Message text is too long\n  - `no_text` — No message text provided\n  - `not_in_channel` — Cannot post user messages to a channel they are not in.\n  - `rate_limited` — Application has posted too many messages, [read the Rate Limit documentation](/apis/web-api/rate-limits) for more information\n\nSee https://docs.slack.dev/reference/methods/chat.meMessage"
+      }
+    },
+    "com.slack.chat#PostEphemeralRequestAttachmentsCase1ItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#PostEphemeralRequestAttachmentsCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.chat#PostEphemeralRequestAttachmentsCase1ItemMap"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#PostEphemeralRequestAttachments": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.slack.chat#PostEphemeralRequestAttachmentsCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A JSON-based array of structured attachments, presented as a URL-encoded string."
+      }
+    },
+    "com.slack.chat#PostEphemeralRequestBlocksCase1ItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#PostEphemeralRequestBlocksCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.chat#PostEphemeralRequestBlocksCase1ItemMap"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#PostEphemeralRequestBlocks": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.slack.chat#PostEphemeralRequestBlocksCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A JSON-based array of structured blocks, presented as a URL-encoded string."
+      }
+    },
+    "com.slack.chat#PostEphemeralRequestParse": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "full"
+          }
+        },
+        "MRKDWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mrkdwn"
+          }
+        },
+        "FALSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "false"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.chat#PostEphemeralRequest": {
+      "type": "structure",
+      "members": {
+        "as_user": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "(Legacy) Pass true to post the message as the authed user. Defaults to true if the chat:write:bot scope is not included. Otherwise, defaults to false."
+          }
+        },
+        "attachments": {
+          "target": "com.slack.chat#PostEphemeralRequestAttachments",
+          "traits": {
+            "smithy.api#documentation": "A JSON-based array of structured attachments, presented as a URL-encoded string."
+          }
+        },
+        "blocks": {
+          "target": "com.slack.chat#PostEphemeralRequestBlocks",
+          "traits": {
+            "smithy.api#documentation": "A JSON-based array of structured blocks, presented as a URL-encoded string."
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name.",
+            "smithy.api#required": {}
+          }
+        },
+        "icon_emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Emoji to use as the icon for this message. Overrides `icon_url`."
+          }
+        },
+        "icon_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to an image to use as the icon for this message."
+          }
+        },
+        "link_names": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Find and link channel names and usernames."
+          }
+        },
+        "markdown_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Accepts message text formatted in markdown. This argument should not be used in conjunction with `blocks` or `text`. Limit this field to 12,000 characters."
+          }
+        },
+        "metadata": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "JSON object with an `entities` array of work object entity metadata, presented as a URL-encoded string. Only entity metadata is supported: ephemeral messages are not persisted and never dispatch `message_metadata_*` events, so `event_type`/`event_payload` message metadata is ignored here. Each entity requires `entity_type`, `entity_payload`, `external_ref`, and `url`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "parse": {
+          "target": "com.slack.chat#PostEphemeralRequestParse",
+          "traits": {
+            "smithy.api#documentation": "Change how messages are treated. Defaults to `none`. See [below](#formatting).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "How this field works and whether it is required depends on other fields you use in your API call. [See below](#text_usage) for more detail.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "thread_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provide another message's `ts` value to post this message in a thread. Avoid using a reply's `ts` value; use its parent's value instead. Ephemeral messages in threads are only shown if there is already an active thread.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`id` of the user who will receive the ephemeral message. The user should be in the channel specified by the `channel` argument.",
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Set your bot's user name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.chat#PostEphemeralResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "message_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.chat#PostEphemeral": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.chat#PostEphemeralRequest"
+      },
+      "output": {
+        "target": "com.slack.chat#PostEphemeralResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/chat.postEphemeral",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sends an ephemeral message to a user in a channel.\n\nRequired scopes — bot: `chat:write`; user: `chat:write`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `invalid_blocks` — Blocks submitted with this message are not valid\n  - `invalid_blocks_format` — The `blocks` is not a valid JSON object or doesn't match the Block Kit syntax.\n  - `is_archived` — Channel has been archived.\n  - `markdown_text_conflict` — Markdown text cannot be used in conjunction with `blocks` or `text` argument.\n  - `message_limit_exceeded` — Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces\n  - `messages_tab_disabled` — Messages tab for the app is disabled.\n  - `msg_too_long` — Message text is too long\n  - `no_text` — No message text provided\n  - `restricted_action` — A workspace preference prevents the authenticated user from posting.\n  - `too_many_attachments` — Too many attachments were provided with this message. A maximum of 100 attachments are allowed on a message.\n  - `user_not_in_channel` — Intended recipient is not in the specified channel.\n  - `not_in_channel` — Cannot post user messages to a channel they are not in.\n  - `invalid_attachments` — Attachments that contain blocks are not valid\n  - `cannot_reply_to_message` — This message type cannot have thread replies.\n\nSee https://docs.slack.dev/reference/methods/chat.postEphemeral"
+      }
+    },
+    "com.slack.chat#PostMessageRequestAttachmentsCase1ItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#PostMessageRequestAttachmentsCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.chat#PostMessageRequestAttachmentsCase1ItemMap"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#PostMessageRequestAttachments": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.slack.chat#PostMessageRequestAttachmentsCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A JSON-based array of structured attachments, presented as a URL-encoded string."
+      }
+    },
+    "com.slack.chat#PostMessageRequestBlocksCase1ItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#PostMessageRequestBlocksCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.chat#PostMessageRequestBlocksCase1ItemMap"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#PostMessageRequestBlocks": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.slack.chat#PostMessageRequestBlocksCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A JSON-based array of structured blocks, presented as a URL-encoded string."
+      }
+    },
+    "com.slack.chat#PostMessageRequest": {
+      "type": "structure",
+      "members": {
+        "as_user": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "(Legacy) Pass true to post the message as the authed user instead of as a bot. Defaults to false. Can only be used by classic apps. See [legacy `as_user` parameter](#legacy_as_user) below."
+          }
+        },
+        "attachments": {
+          "target": "com.slack.chat#PostMessageRequestAttachments",
+          "traits": {
+            "smithy.api#documentation": "A JSON-based array of structured attachments, presented as a URL-encoded string."
+          }
+        },
+        "blocks": {
+          "target": "com.slack.chat#PostMessageRequestBlocks",
+          "traits": {
+            "smithy.api#documentation": "A JSON-based array of structured blocks, presented as a URL-encoded string."
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An encoded ID or channel name that represents a channel, private group, or IM channel to send the message to. See [below](#channels) for more details.",
+            "smithy.api#required": {}
+          }
+        },
+        "current_draft_last_updated_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This field represents the timestamp of the draft's last update at the time this API is called. If the current message is a draft, this field can be provided to ensure synchronization with the server."
+          }
+        },
+        "icon_emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Emoji to use as the icon for this message. Overrides `icon_url`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "icon_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to an image to use as the icon for this message.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "link_names": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Find and link user groups. No longer supports linking individual users; use syntax shown in [Mentioning Users](/messaging/formatting-message-text#mentioning-users) instead."
+          }
+        },
+        "markdown_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Accepts message text formatted in markdown. This argument should not be used in conjunction with `blocks` or `text`. Limit this field to 12,000 characters."
+          }
+        },
+        "metadata": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "JSON object with event_type and event_payload fields, presented as a URL-encoded string. You can also provide Work Object entity metadata using this parameter. Metadata you post to Slack is accessible to any app or user who is a member of that workspace.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "mrkdwn": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Disable Slack markup parsing by setting to `false`. Enabled by default."
+          }
+        },
+        "parse": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Change how messages are treated. See [below](#formatting).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "reply_broadcast": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Used in conjunction with `thread_ts` and indicates whether reply should be made visible to everyone in the channel or conversation. Defaults to `false`."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "How this field works and whether it is required depends on other fields you use in your API call. [See below](#text_usage) for more detail.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "thread_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provide another message's `ts` value to make this message a reply. Avoid using a reply's `ts` value; use its parent instead.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "unfurl_links": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Pass true to enable unfurling of primarily text-based content."
+          }
+        },
+        "unfurl_media": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Pass false to disable unfurling of media content."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Set your bot's user name.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.chat#PostMessageResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#Document"
+        },
+        "is_duplicate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Pass true if duplicate message is attempted to be sent."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.chat#PostMessage": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.chat#PostMessageRequest"
+      },
+      "output": {
+        "target": "com.slack.chat#PostMessageResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/chat.postMessage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sends a message to a channel.\n\nRequired scopes — bot: `chat:write`; user: `chat:write`\n\nRate limit tier: 5\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `app_access_restricted` — The user does not have permission to use this app.\n  - `as_user_not_supported` — The `as_user` parameter does not function with workspace apps.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `draft_already_deleted` — The draft has already been deleted.\n  - `draft_already_sent` — The draft has already been sent.\n  - `draft_has_conflict` — The client draft version is out of sync with the server draft version.\n  - `draft_not_found` — The draft was not found.\n  - `duplicate_channel_not_found` — Channel associated with `client_msg_id` was invalid.\n  - `duplicate_message_not_found` — No duplicate message exists associated with `client_msg_id`.\n  - `ekm_access_denied` — Your message couldn’t be sent because your admins have disabled sending messages to this channel.\n  - `invalid_blocks` — Blocks submitted with this message are not valid.\n  - `invalid_blocks_format` — The `blocks` is not a valid JSON object or doesn't match the Block Kit syntax.\n  - `invalid_metadata_format` — Invalid metadata format provided.\n  - `invalid_metadata_schema` — Invalid metadata schema provided.\n  - `is_archived` — Channel has been archived.\n  - `markdown_text_conflict` — Markdown text cannot be used in conjunction with `blocks` or `text` argument.\n  - `message_limit_exceeded` — Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces.\n  - `messages_tab_disabled` — Messages tab for the app is disabled.\n  - `metadata_must_be_sent_from_app` — Message metadata can only be posted or updated using an app-level token.\n  - `metadata_too_large` — Metadata exceeds size limit.\n  - `msg_blocks_too_long` — Blocks submitted with this message are too long.\n  - `no_text` — No message text provided.\n  - `not_in_channel` — Cannot post user messages to a channel they are not in.\n  - `rate_limited` — Application has posted too many messages, [read the Rate Limit documentation](/apis/web-api/rate-limits) for more information.\n  - `restricted_action` — A workspace preference prevents the authenticated user from posting.\n  - `restricted_action_non_threadable_channel` — Cannot post thread replies into a non_threadable channel.\n  - `restricted_action_read_only_channel` — Cannot post any message into a read-only channel.\n  - `restricted_action_thread_locked` — Cannot post replies to a thread that has been locked by admins.\n  - `restricted_action_thread_only_channel` — Cannot post top-level messages into a thread-only channel.\n  - `send_on_behalf_not_allowed` — Cannot send on behalf of the provided user.\n  - `slack_connect_canvas_sharing_blocked` — Admin has disabled Canvas File sharing in all Slack Connect communications.\n  - `slack_connect_file_link_sharing_blocked` — Admin has disabled Slack File sharing in all Slack Connect communications.\n  - `slack_connect_lists_sharing_blocked` — Admin has disabled Lists sharing in all Slack Connect communications.\n  - `team_not_found` — This error occurs if, when using an org-wide token, the `channel_name` is passed instead of the `channel_id`.\n  - `too_many_attachments` — Too many attachments were provided with this message. A maximum of 100 attachments are allowed on a message.\n  - `too_many_contact_cards` — Too many contact_cards were provided with this message. A maximum of 10 contact cards are allowed on a message.\n  - `cannot_reply_to_message` — This message type cannot have thread replies.\n  - `missing_file_data` — Attempted to share a file but some required data was missing.\n  - `attachment_payload_limit_exceeded` — Attachment payload size is too long.\n\nSee https://docs.slack.dev/reference/methods/chat.postMessage"
+      }
+    },
+    "com.slack.chat#ScheduledMessagesListRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The channel of the scheduled messages"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For pagination purposes, this is the `cursor` value returned from a previous call to `chat.scheduledmessages.list` indicating where you want to start this call from."
+          }
+        },
+        "latest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Unix timestamp of the latest value in the time range"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of original entries to return."
+          }
+        },
+        "oldest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Unix timestamp of the oldest value in the time range"
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "encoded team id to list channels in, required if org token is used"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.chat#ScheduledMessagesListResponseScheduledMessagesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "post_at": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "date_created": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "text": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.chat#ScheduledMessagesListResponseScheduledMessagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.chat#ScheduledMessagesListResponseScheduledMessagesItem"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#ScheduledMessagesListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.chat#ScheduledMessagesListResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "scheduled_messages": {
+          "target": "com.slack.chat#ScheduledMessagesListResponseScheduledMessagesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.chat#ScheduledMessagesListResponseResponseMetadata"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.chat#ScheduledMessagesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.chat#ScheduledMessagesListRequest"
+      },
+      "output": {
+        "target": "com.slack.chat#ScheduledMessagesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/chat.scheduledMessages.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns a list of scheduled messages.\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_channel` — The channel passed is invalid\n  - `invalid_cursor` — Provided cursor is invalid\n  - `invalid_token` — Token is invalid\n\nSee https://docs.slack.dev/reference/methods/chat.scheduledMessages.list"
+      }
+    },
+    "com.slack.chat#ScheduleMessageRequestAttachmentsCase1ItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#ScheduleMessageRequestAttachmentsCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.chat#ScheduleMessageRequestAttachmentsCase1ItemMap"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#ScheduleMessageRequestAttachments": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.slack.chat#ScheduleMessageRequestAttachmentsCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A JSON-based array of structured attachments, presented as a URL-encoded string."
+      }
+    },
+    "com.slack.chat#ScheduleMessageRequestBlocksCase1ItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#ScheduleMessageRequestBlocksCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.chat#ScheduleMessageRequestBlocksCase1ItemMap"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#ScheduleMessageRequestBlocks": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.slack.chat#ScheduleMessageRequestBlocksCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A JSON-based array of structured blocks, presented as a URL-encoded string."
+      }
+    },
+    "com.slack.chat#ScheduleMessageRequestParse": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "full"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Change how messages are treated. See [chat.postMessage](chat.postMessage#formatting)."
+      }
+    },
+    "com.slack.chat#ScheduleMessageRequest": {
+      "type": "structure",
+      "members": {
+        "as_user": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` to post the message as the authed user, instead of as a bot. Defaults to false. Cannot be used by [new Slack apps](/quickstart). See [chat.postMessage](chat.postMessage#authorship)."
+          }
+        },
+        "attachments": {
+          "target": "com.slack.chat#ScheduleMessageRequestAttachments",
+          "traits": {
+            "smithy.api#documentation": "A JSON-based array of structured attachments, presented as a URL-encoded string."
+          }
+        },
+        "blocks": {
+          "target": "com.slack.chat#ScheduleMessageRequestBlocks",
+          "traits": {
+            "smithy.api#documentation": "A JSON-based array of structured blocks, presented as a URL-encoded string."
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel, private group, or DM channel to send message to. Can be an encoded ID, or a name. See [below](#channels) for more details.",
+            "smithy.api#required": {}
+          }
+        },
+        "link_names": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Find and link user groups. No longer supports linking individual users; use syntax shown in [Mentioning Users](/messaging/formatting-message-text#mentioning-users) instead."
+          }
+        },
+        "markdown_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Accepts message text formatted in markdown. This argument should not be used in conjunction with `blocks` or `text`. Limit this field to 12,000 characters."
+          }
+        },
+        "parse": {
+          "target": "com.slack.chat#ScheduleMessageRequestParse",
+          "traits": {
+            "smithy.api#documentation": "Change how messages are treated. See [chat.postMessage](chat.postMessage#formatting)."
+          }
+        },
+        "post_at": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unix timestamp representing the future time the message should post to Slack.",
+            "smithy.api#required": {}
+          }
+        },
+        "reply_broadcast": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Used in conjunction with `thread_ts` and indicates whether reply should be made visible to everyone in the channel or conversation. Defaults to `false`."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "How this field works and whether it is required depends on other fields you use in your API call. [See below](#text_usage) for more detail."
+          }
+        },
+        "thread_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provide another message's `ts` value to make this message a reply. Avoid using a reply's `ts` value; use its parent instead."
+          }
+        },
+        "unfurl_links": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Pass true to enable unfurling of primarily text-based content."
+          }
+        },
+        "unfurl_media": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Pass false to disable unfurling of media content."
+          }
+        },
+        "metadata": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "JSON object with event_type and event_payload fields, presented as a URL-encoded string. Metadata you post to Slack is accessible to any app or user who is a member of that workspace.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.chat#ScheduleMessageResponseMessageMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#ScheduleMessageResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "post_at": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scheduled_message_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "com.slack.chat#ScheduleMessageResponseMessageMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.chat#ScheduleMessage": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.chat#ScheduleMessageRequest"
+      },
+      "output": {
+        "target": "com.slack.chat#ScheduleMessageResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/chat.scheduleMessage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Schedules a message to be sent to a channel.\n\nRequired scopes — bot: `chat:write`; user: `chat:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `is_archived` — Channel has been archived.\n  - `invalid_blocks` — Blocks submitted with this message are not valid\n  - `invalid_blocks_format` — The `blocks` is not a valid JSON object or doesn't match the Block Kit syntax.\n  - `invalid_metadata_format` — Invalid metadata format provided\n  - `invalid_metadata_schema` — Invalid metadata schema provided\n  - `invalid_time` — value passed for `post_time` was invalid.\n  - `markdown_text_conflict` — Markdown text cannot be used in conjunction with `blocks` or `text` argument.\n  - `message_limit_exceeded` — Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces\n  - `metadata_must_be_sent_from_app` — Message metadata can only be posted or updated using an app-level token\n  - `metadata_too_large` — Metadata exceeds size limit\n  - `msg_too_long` — Message text is too long\n  - `no_text` — No message text provided\n  - `not_in_channel` — Cannot post user messages to a channel they are not in.\n  - `rate_limited` — Application has posted too many messages, [read the Rate Limit documentation](/apis/web-api/rate-limits) for more information\n  - `restricted_action` — A workspace preference prevents the authenticated user from posting.\n  - `restricted_action_non_threadable_channel` — Cannot post thread replies into a non_threadable channel.\n  - `restricted_action_read_only_channel` — Cannot post any message into a read-only channel.\n  - `restricted_action_thread_only_channel` — Cannot post top-level messages into a thread-only channel.\n  - `restricted_too_many` — Too many messages were scheduled in the channel for a given period. See [usage info](/reference/methods/chat.scheduleMessage#restrictions) for additional details\n  - `slack_connect_file_link_sharing_blocked` — Admin has disabled Slack File sharing in all Slack Connect communications\n  - `time_in_past` — value passed for `post_time` was in the past.\n  - `time_too_far` — value passed for `post_time` was too far into the future.\n  - `too_many_attachments` — Too many attachments were provided with this message. A maximum of 100 attachments are allowed on a message.\n  - `invalid_token` — The passed token is invalid or not supported by this method.\n\nSee https://docs.slack.dev/reference/methods/chat.scheduleMessage"
+      }
+    },
+    "com.slack.chat#StartStreamRequestChunksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of streaming chunks."
+      }
+    },
+    "com.slack.chat#StartStreamRequestTaskDisplayMode": {
+      "type": "enum",
+      "members": {
+        "TIMELINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "timeline"
+          }
+        },
+        "PLAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plan"
+          }
+        },
+        "DENSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dense"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies how tasks are displayed in the message. A `timeline` displays individual tasks with text in sequential order, `plan` displays all tasks together, with the first tasks's placement determining the placement of the rest of the tasks, and `dense` collapses consecutive tool calls into a single summarized task card."
+      }
+    },
+    "com.slack.chat#StartStreamRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An encoded ID that represents a channel thread or DM.",
+            "smithy.api#required": {}
+          }
+        },
+        "chunks": {
+          "target": "com.slack.chat#StartStreamRequestChunksList",
+          "traits": {
+            "smithy.api#documentation": "Array of streaming chunks."
+          }
+        },
+        "markdown_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Accepts message text formatted in markdown. Limit this field to 12,000 characters."
+          }
+        },
+        "thread_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provide another message's `ts` value to reply to. Streamed messages should always be replies to a user request.",
+            "smithy.api#required": {}
+          }
+        },
+        "recipient_user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encoded ID of the user to receive the streaming text. Required when streaming to channels."
+          }
+        },
+        "recipient_team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encoded ID of the team the user receiving the streaming text belongs to. Required when streaming to channels."
+          }
+        },
+        "task_display_mode": {
+          "target": "com.slack.chat#StartStreamRequestTaskDisplayMode",
+          "traits": {
+            "smithy.api#documentation": "Specifies how tasks are displayed in the message. A `timeline` displays individual tasks with text in sequential order, `plan` displays all tasks together, with the first tasks's placement determining the placement of the rest of the tasks, and `dense` collapses consecutive tool calls into a single summarized task card."
+          }
+        },
+        "icon_emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Emoji to use as the icon for this message. Overrides `icon_url`."
+          }
+        },
+        "icon_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image URL to use as the icon for this message."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The bot's username to display."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.chat#StartStreamResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of the streaming message.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.chat#StartStream": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.chat#StartStreamRequest"
+      },
+      "output": {
+        "target": "com.slack.chat#StartStreamResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/chat.startStream",
+          "code": 200
+        },
+        "smithy.api#documentation": "Starts a new streaming conversation.\n\nRequired scopes — bot: `chat:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `messaging_processing_failed` — Failed to process the message.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `duplicate_channel_not_found` — Channel associated with `client_msg_id` was invalid.\n  - `duplicate_message_not_found` — No duplicate message exists associated with `client_msg_id`.\n  - `ekm_access_denied` — Your message couldn’t be sent because your admins have disabled sending messages to this channel.\n  - `invalid_blocks` — Blocks submitted with this message are not valid\n  - `invalid_chunks` — Chunks submitted with this message are not valid.\n  - `invalid_blocks_format` — The `blocks` is not a valid JSON object or doesn't match the Block Kit syntax.\n  - `invalid_metadata_format` — Invalid metadata format provided\n  - `invalid_metadata_schema` — Invalid metadata schema provided\n  - `is_archived` — Channel has been archived.\n  - `message_limit_exceeded` — Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces\n  - `messages_tab_disabled` — Messages tab for the app is disabled.\n  - `metadata_must_be_sent_from_app` — Message metadata can only be posted or updated using an app-level token\n  - `metadata_too_large` — Metadata exceeds size limit\n  - `msg_blocks_too_long` — Blocks submitted with this message are too long.\n  - `msg_blocks_too_many` — Max blocks exceeded, blocks are limited to 50 per message.\n  - `no_text` — No message text provided\n  - `not_in_channel` — Cannot post user messages to a channel they are not in.\n  - `rate_limited` — Application has posted too many messages, [read the Rate Limit documentation](/apis/web-api/rate-limits) for more information\n  - `restricted_action` — A workspace preference prevents the authenticated user from posting.\n  - `restricted_action_non_threadable_channel` — Cannot post thread replies into a non_threadable channel.\n  - `restricted_action_read_only_channel` — Cannot post any message into a read-only channel.\n  - `restricted_action_thread_locked` — Cannot post replies to a thread that has been locked by admins.\n  - `restricted_action_thread_only_channel` — Cannot post top-level messages into a thread-only channel.\n  - `slack_connect_canvas_sharing_blocked` — Admin has disabled Canvas File sharing in all Slack Connect communications\n  - `slack_connect_file_link_sharing_blocked` — Admin has disabled Slack File sharing in all Slack Connect communications\n  - `slack_connect_lists_sharing_blocked` — Admin has disabled Lists sharing in all Slack Connect communications\n  - `team_not_found` — This error occurs if, when using an org-wide token, the `channel_name` is passed instead of the `channel_id`.\n  - `channel_type_not_supported` — Channel type not supported\n  - `user_not_found` — User not found.\n  - `missing_recipient_team_id` — Missing recipient team ID.\n  - `missing_recipient_user_id` — Missing recipient user ID.\n  - `not_subscribed_to_message_stream_stopped` — The app must be subscribed to the `message_stream_stopped` event to use `is_stoppable`.\n\nSee https://docs.slack.dev/reference/methods/chat.startStream"
+      }
+    },
+    "com.slack.chat#StopStreamRequestChunksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of streaming chunks."
+      }
+    },
+    "com.slack.chat#StopStreamRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An encoded ID that represents a channel, private group, or DM",
+            "smithy.api#required": {}
+          }
+        },
+        "chunks": {
+          "target": "com.slack.chat#StopStreamRequestChunksList",
+          "traits": {
+            "smithy.api#documentation": "Array of streaming chunks."
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of the streaming message.",
+            "smithy.api#required": {}
+          }
+        },
+        "markdown_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Accepts message text formatted in markdown. Limit this field to 12,000 characters."
+          }
+        },
+        "blocks": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "A list of blocks that will be rendered at the bottom of the finalized message."
+          }
+        },
+        "metadata": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "JSON object with event_type and event_payload fields, presented as a URL-encoded string. Metadata you post to Slack is accessible to any app or user who is a member of that workspace.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.chat#StopStreamResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.chat#StopStream": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.chat#StopStreamRequest"
+      },
+      "output": {
+        "target": "com.slack.chat#StopStreamResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/chat.stopStream",
+          "code": 200
+        },
+        "smithy.api#documentation": "Stops a streaming conversation.\n\nRequired scopes — bot: `chat:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `message_not_found` — The message was not found.\n  - `message_not_in_streaming_state` — The message is not in a streaming state.\n  - `as_user_not_supported` — The `as_user` parameter does not function with workspace apps.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `channel_type_not_supported` — Channel type not supported.\n  - `duplicate_channel_not_found` — Channel associated with `client_msg_id` was invalid.\n  - `duplicate_message_not_found` — No duplicate message exists associated with `client_msg_id`.\n  - `ekm_access_denied` — Your message couldn’t be sent because your admins have disabled sending messages to this channel.\n  - `invalid_blocks` — Blocks submitted with this message are not valid.\n  - `invalid_chunks` — Chunks submitted with this message are not valid.\n  - `invalid_metadata_format` — Invalid metadata format provided\n  - `invalid_metadata_schema` — Invalid metadata schema provided\n  - `is_archived` — Channel has been archived.\n  - `message_limit_exceeded` — Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces\n  - `message_not_owned_by_app` — The message is not owned by the app.\n  - `messages_tab_disabled` — Messages tab for the app is disabled.\n  - `metadata_must_be_sent_from_app` — Message metadata can only be posted or updated using an app-level token\n  - `metadata_too_large` — Metadata exceeds size limit\n  - `msg_blocks_too_long` — Blocks submitted with this message are too long.\n  - `msg_blocks_too_many` — Max blocks exceeded, blocks are limited to 50 per message.\n  - `no_text` — No message text provided\n  - `not_in_channel` — Cannot post user messages to a channel they are not in.\n  - `rate_limited` — Application has posted too many messages, [read the Rate Limit documentation](/apis/web-api/rate-limits) for more information\n  - `restricted_action` — A workspace preference prevents the authenticated user from posting.\n  - `restricted_action_non_threadable_channel` — Cannot post thread replies into a non_threadable channel.\n  - `restricted_action_read_only_channel` — Cannot post any message into a read-only channel.\n  - `restricted_action_thread_locked` — Cannot post replies to a thread that has been locked by admins.\n  - `restricted_action_thread_only_channel` — Cannot post top-level messages into a thread-only channel.\n  - `slack_connect_canvas_sharing_blocked` — Admin has disabled Canvas File sharing in all Slack Connect communications\n  - `slack_connect_file_link_sharing_blocked` — Admin has disabled Slack File sharing in all Slack Connect communications\n  - `slack_connect_lists_sharing_blocked` — Admin has disabled Lists sharing in all Slack Connect communications\n  - `team_not_found` — This error occurs if, when using an org-wide token, the `channel_name` is passed instead of the `channel_id`.\n  - `too_many_attachments` — Too many attachments were provided with this message. A maximum of 100 attachments are allowed on a message.\n  - `too_many_contact_cards` — Too many contact_cards were provided with this message. A maximum of 10 contact cards are allowed on a message.\n  - `cannot_reply_to_message` — This message type cannot have thread replies.\n  - `missing_file_data` — Attempted to share a file but some required data was missing.\n  - `attachment_payload_limit_exceeded` — Attachment payload size is too long.\n\nSee https://docs.slack.dev/reference/methods/chat.stopStream"
+      }
+    },
+    "com.slack.chat#UnfurlRequestSource": {
+      "type": "enum",
+      "members": {
+        "COMPOSER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "composer"
+          }
+        },
+        "CONVERSATIONS_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "conversations_history"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The source of the link to unfurl. The source may either be `composer`, when the link is inside the message composer, or `conversations_history`, when the link has been posted to a conversation."
+      }
+    },
+    "com.slack.chat#UnfurlRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel ID of the message. Both `channel` and `ts` must be provided together, *or* `unfurl_id` and `source` must be provided together. Required for public channels."
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the message to add unfurl behavior to. Required for public channels."
+          }
+        },
+        "unfurls": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL-encoded JSON map with keys set to URLs featured in the the message, pointing to their unfurl blocks or message attachments. Required for public channels."
+          }
+        },
+        "user_auth_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provide a simply-formatted string to send as an ephemeral message to the user as invitation to authenticate further and enable full unfurling behavior. Provides two buttons, `Not now` or `Never ask me again`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "user_auth_required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` or `1` to indicate the user must install your Slack app to trigger unfurls for this domain"
+          }
+        },
+        "user_auth_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Send users to this custom URL where they will complete authentication in your app to fully trigger unfurling. Value should be properly URL-encoded.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "user_auth_blocks": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Provide a JSON based array of structured blocks presented as URL-encoded string to send as an ephemeral message to the user as invitation to authenticate further and enable full unfurling behavior"
+          }
+        },
+        "unfurl_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the link to unfurl. Both `unfurl_id` and `source` must be provided together, *or* `channel` and `ts` must be provided together."
+          }
+        },
+        "source": {
+          "target": "com.slack.chat#UnfurlRequestSource",
+          "traits": {
+            "smithy.api#documentation": "The source of the link to unfurl. The source may either be `composer`, when the link is inside the message composer, or `conversations_history`, when the link has been posted to a conversation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.chat#UnfurlResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.chat#Unfurl": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.chat#UnfurlRequest"
+      },
+      "output": {
+        "target": "com.slack.chat#UnfurlResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/chat.unfurl",
+          "code": 200
+        },
+        "smithy.api#documentation": "Provide custom unfurl behavior for user-posted URLs\n\nRequired scopes — bot: `links:write`; user: `links:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `cannot_auth_user` — The current user cannot be authenticated.\n  - `cannot_find_channel` — The specified channel could not be located for this token.\n  - `cannot_find_message` — The `ts` value in the request does not match a message.\n  - `cannot_find_service` — A record of your app being allowed to unfurl for this workspace could not be found.\n  - `cannot_parse_attachment` — The provided `unfurls` argument could not be parsed or understood.\n  - `cannot_prompt` — The current user has already interacted with and dismissed a prompt for this application.\n  - `cannot_unfurl_message` — The URL cannot be unfurled because the URL provided does not appear in the message.\n  - `cannot_unfurl_url` — The URL cannot be unfurled. This error may be returned if you haven't acknowledged a `link_shared` event tied to the same URL. It is also returned when the domain appears in a workspace's administrative blocklists.\n  - `invalid_unfurl_id` — The unfurl ID is invalid.\n  - `invalid_unfurls_format` — The `unfurls` parameter cannot be JSON-decoded into a map of URLs to attachments.\n  - `invalid_metadata_format` — The `metadata` parameter cannot be JSON-decoded into the expected format.\n  - `invalid_source` — The unfurl source is invalid.\n  - `missing_channel` — The request is missing the `channel` parameter\n  - `missing_source` — The request is missing the `source` parameter.\n  - `missing_ts` — The request is missing the `ts` parameter\n  - `missing_unfurl_id` — The request is missing the `unfurl_id` parameter.\n  - `missing_unfurls` — The request is missing the `unfurls` parameter.\n\nSee https://docs.slack.dev/reference/methods/chat.unfurl"
+      }
+    },
+    "com.slack.chat#UpdateRequestAsUser": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Boolean"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pass true to update the message as the authed user. Bot users in this context are considered authed users."
+      }
+    },
+    "com.slack.chat#UpdateRequestAttachmentsCase1ItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#UpdateRequestAttachmentsCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.chat#UpdateRequestAttachmentsCase1ItemMap"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#UpdateRequestAttachments": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.slack.chat#UpdateRequestAttachmentsCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A JSON-based array of structured attachments, presented as a URL-encoded string."
+      }
+    },
+    "com.slack.chat#UpdateRequestBlocksCase1ItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#UpdateRequestBlocksCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.chat#UpdateRequestBlocksCase1ItemMap"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#UpdateRequestBlocks": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.slack.chat#UpdateRequestBlocksCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A JSON-based array of structured blocks, presented as a URL-encoded string."
+      }
+    },
+    "com.slack.chat#UpdateRequestLinkNames": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Boolean"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Find and link channel names and usernames. Defaults to `none`. If you do not specify a value for this field, the original value set for the message will be overwritten with the default, `none`."
+      }
+    },
+    "com.slack.chat#UpdateRequestFileIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of new file ids that will be sent with this message."
+      }
+    },
+    "com.slack.chat#UpdateRequest": {
+      "type": "structure",
+      "members": {
+        "as_user": {
+          "target": "com.slack.chat#UpdateRequestAsUser",
+          "traits": {
+            "smithy.api#documentation": "Pass true to update the message as the authed user. Bot users in this context are considered authed users.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attachments": {
+          "target": "com.slack.chat#UpdateRequestAttachments",
+          "traits": {
+            "smithy.api#documentation": "A JSON-based array of structured attachments, presented as a URL-encoded string."
+          }
+        },
+        "unfurled_attachments": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A JSON-based array of structured attachments, presented as a URL-encoded string.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "blocks": {
+          "target": "com.slack.chat#UpdateRequestBlocks",
+          "traits": {
+            "smithy.api#documentation": "A JSON-based array of structured blocks, presented as a URL-encoded string."
+          }
+        },
+        "markdown_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Accepts message text formatted in markdown. This argument should not be used in conjunction with `blocks` or `text`. Limit this field to 12,000 characters."
+          }
+        },
+        "metadata": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "JSON object with event_type and event_payload fields, presented as a URL-encoded string. If you don't include this field, the message's previous `metadata` will be retained. To remove previous `metadata`, include an empty object for this field. Metadata you post to Slack is accessible to any app or user who is a member of that workspace.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel containing the message to be updated. For direct messages, ensure that this value is a DM ID (starts with `D`) instead of a User ID (starts with either `U` or `W`).",
+            "smithy.api#required": {}
+          }
+        },
+        "link_names": {
+          "target": "com.slack.chat#UpdateRequestLinkNames",
+          "traits": {
+            "smithy.api#documentation": "Find and link channel names and usernames. Defaults to `none`. If you do not specify a value for this field, the original value set for the message will be overwritten with the default, `none`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "parse": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Change how messages are treated. Defaults to `client`, unlike `chat.postMessage`. Accepts either `none` or `full`. If you do not specify a value for this field, the original value set for the message will be overwritten with the default, `client`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "How this field works and whether it is required depends on other fields you use in your API call. [See below](#text_usage) for more detail.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the message to be updated.",
+            "smithy.api#required": {}
+          }
+        },
+        "reply_broadcast": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Broadcast an existing thread reply to make it visible to everyone in the channel or conversation."
+          }
+        },
+        "file_ids": {
+          "target": "com.slack.chat#UpdateRequestFileIdsList",
+          "traits": {
+            "smithy.api#documentation": "Array of new file ids that will be sent with this message."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.chat#UpdateResponseMessageAttachmentsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#UpdateResponseMessageAttachmentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.chat#UpdateResponseMessageAttachmentsItemMap"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#UpdateResponseMessageMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.chat#UpdateResponseMessage": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blocks": {
+          "target": "smithy.api#Document"
+        },
+        "attachments": {
+          "target": "com.slack.chat#UpdateResponseMessageAttachmentsList"
+        },
+        "metadata": {
+          "target": "com.slack.chat#UpdateResponseMessageMetadataMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.chat#UpdateResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "com.slack.chat#UpdateResponseMessage",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.chat#Update": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.chat#UpdateRequest"
+      },
+      "output": {
+        "target": "com.slack.chat#UpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/chat.update",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates a message.\n\nRequired scopes — bot: `chat:write`; user: `chat:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `as_user_not_supported` — The `as_user` parameter does not function with workspace apps.\n  - `blocked_file_type` — Admin has disabled uploading this type of file.\n  - `block_mismatch` — Rich-text blocks cannot be replaced with non-rich-text blocks\n  - `cant_broadcast_message` — Unable to broadcast this message.\n  - `cant_update_message` — Authenticated user does not have permission to update this message.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `edit_window_closed` — The message cannot be edited due to the team message edit settings\n  - `external_channel_migrating` — The channel is in the process of migrating and so the message cannot be updated at this time.\n  - `file_deleted` — File to share deleted.\n  - `file_is_deleted` — The file is deleted.\n  - `file_not_found` — One or more of the provided file IDs could not be found.\n  - `file_share_limit_reached` — The file has reached the share limit.\n  - `invalid_attachments` — The attachments were invalid.\n  - `invalid_blocks` — The blocks were invalid for the requesting user.\n  - `invalid_blocks_format` — The `blocks` array is not a valid JSON object or doesn't match the Block Kit syntax.\n  - `invalid_metadata_format` — Invalid metadata format provided\n  - `invalid_metadata_schema` — Invalid metadata schema provided\n  - `is_inactive` — The message cannot be edited within a frozen, archived or deleted channel.\n  - `markdown_text_conflict` — Markdown text cannot be used in conjunction with `blocks` or `text` argument.\n  - `max_file_sharing_exceeded` — Exceeded max allowed files shared.\n  - `message_limit_exceeded` — Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces.\n  - `message_not_found` — No message exists with the requested timestamp.\n  - `metadata_must_be_sent_from_app` — Message metadata can only be posted or updated using an app-level token\n  - `metadata_too_large` — Metadata exceeds size limit\n  - `msg_too_long` — Message text is too long. The `text` field cannot exceed 4,000 characters.\n  - `no_dual_broadcast_content_update` — Can't broadcast an old reply and update the content at the same time.\n  - `no_text` — No message text provided\n  - `posting_to_channel_denied` — The user does not have permission to share files in this channel.\n  - `slack_connect_blocked_file_type` — Files with certain extensions are blocked from being uploaded in all Slack Connect messages.\n  - `slack_connect_canvas_sharing_blocked` — Admin has disabled sharing of canvas links in all Slack Connect messages.\n  - `slack_connect_clip_sharing_blocked` — Admin has disabled Clip uploads in Slack Connect channels.\n  - `slack_connect_file_link_sharing_blocked` — Admin has disabled Slack file sharing in all Slack Connect messages.\n  - `slack_connect_file_upload_sharing_blocked` — Admin has disabled file uploads in all Slack Connect messages.\n  - `streaming_state_conflict` — The message is currently streaming text and cannot be edited.\n  - `team_not_found` — Team associated with the message and channel could not be found.\n  - `too_many_attachments` — Too many attachments were provided with this message. A maximum of 100 attachments are allowed on a message.\n  - `unable_to_share_files` — Sharing the files failed.\n  - `update_failed` — Internal update failure.\n\nSee https://docs.slack.dev/reference/methods/chat.update"
+      }
+    },
+    "com.slack.chat#Chat": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.chat#AppendStream"
+        },
+        {
+          "target": "com.slack.chat#Delete"
+        },
+        {
+          "target": "com.slack.chat#DeleteScheduledMessage"
+        },
+        {
+          "target": "com.slack.chat#GetPermalink"
+        },
+        {
+          "target": "com.slack.chat#MeMessage"
+        },
+        {
+          "target": "com.slack.chat#PostEphemeral"
+        },
+        {
+          "target": "com.slack.chat#PostMessage"
+        },
+        {
+          "target": "com.slack.chat#ScheduledMessagesList"
+        },
+        {
+          "target": "com.slack.chat#ScheduleMessage"
+        },
+        {
+          "target": "com.slack.chat#StartStream"
+        },
+        {
+          "target": "com.slack.chat#StopStream"
+        },
+        {
+          "target": "com.slack.chat#Unfurl"
+        },
+        {
+          "target": "com.slack.chat#Update"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — chat"
+      }
+    }
+  }
+}

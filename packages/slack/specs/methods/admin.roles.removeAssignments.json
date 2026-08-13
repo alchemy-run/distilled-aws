@@ -1,0 +1,94 @@
+{
+  "desc": "Removes a set of users from a role for the given scopes and entities",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.roles:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "role_id",
+      "entity_ids",
+      "user_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "role_id": {
+        "type": "string",
+        "desc": "ID of the role to which users will be assigned",
+        "example": "R0001",
+        "schema": "role_id"
+      },
+      "entity_ids": {
+        "type": "array",
+        "desc": "List of the entity IDs for which roles will be revoked. These can be Org IDs, Team IDs or Channel IDs",
+        "example": "['T00000001', 'E00000002']",
+        "items": {
+          "type": "string"
+        }
+      },
+      "user_ids": {
+        "type": "array",
+        "desc": "List of IDs of the users whose roles will be revoked",
+        "example": "['U00000001', 'U00000002', 'U00000003']",
+        "items": {
+          "schema": "user_id"
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "error": {
+        "type": "string",
+        "desc": "A string representation of the error type"
+      }
+    }
+  },
+  "errors": {
+    "failed_for_some_entities": {
+      "desc": "At least one role scope ID was invalid"
+    },
+    "failed_for_some_users": {
+      "desc": "At least one user ID was invalid"
+    },
+    "failed_for_some_users_and_entities": {
+      "desc": "At least one role scope ID was invalid"
+    },
+    "feature_not_enabled": {
+      "desc": "This API is currently not enabled."
+    },
+    "invalid_actor": {
+      "desc": "This API is only enabled for the Admins/Owners."
+    },
+    "invalid_role_id": {
+      "desc": "The role type passed does not exist."
+    },
+    "no_valid_entities": {
+      "desc": "None of the entities passed were valid."
+    },
+    "no_valid_users": {
+      "desc": "None of the users passed were valid."
+    },
+    "too_many_entities": {
+      "desc": "More than 10 role scopes were passed."
+    },
+    "too_many_users": {
+      "desc": "More than 10 users were passed."
+    },
+    "cannot_modify_role_admin": {
+      "desc": "Cannot modify role admin."
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "desc": "Retrieve information about a conversation.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "groups:read",
+      "im:read",
+      "mpim:read",
+      "channels:read"
+    ],
+    "user": [
+      "groups:read",
+      "im:read",
+      "mpim:read",
+      "channels:read"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "Conversation ID to learn more about",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "include_locale": {
+        "desc": "Set this to `true` to receive the locale for this conversation. Defaults to `false`",
+        "type": "boolean"
+      },
+      "include_num_members": {
+        "default": "false",
+        "desc": "Set to `true` to include the member count for the specified conversation. Defaults to `false`",
+        "example": "true",
+        "type": "boolean"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "channel"
+    ],
+    "properties": {
+      "app_home": {
+        "schema": "home"
+      },
+      "channel": {
+        "schema": "conversation"
+      },
+      "home_view": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "schema": "view"
+          }
+        ]
+      }
+    }
+  },
+  "errors": {
+    "channel_is_limited_access": {
+      "desc": "The user has no access to the channel. Only applicable to Salesforce limited access channels."
+    },
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "missing_scope": {
+      "desc": "The calling token is not granted the necessary scopes to complete this operation."
+    }
+  }
+}

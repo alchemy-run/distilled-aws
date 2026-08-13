@@ -1,0 +1,64 @@
+{
+  "desc": "Acknowledge a comment mutation (edit, delete, or post) on a work object entity. Apps call this endpoint to confirm they have processed a comment action, and the backend emits a dedicated RTM event to the user.",
+  "http_method": "POST",
+  "scope": "none",
+  "rate_limits": "t3",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "trigger_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "org_app": {
+          "allowed": true,
+          "derive_team_context_from": "token"
+        },
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "trigger_id": {
+        "type": "string",
+        "desc": "A reference to the original user action that initiated the comment mutation"
+      },
+      "comment": {
+        "type": "object",
+        "desc": "The full comment data. Required for edit and post actions. See the [comment schema](/messaging/work-objects-comments#entity-present-comments-method) for the full list of properties."
+      },
+      "error": {
+        "type": "string",
+        "desc": "Error message if the action failed in the app. When present, signals that the mutation could not be completed."
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "method_not_found": {
+      "desc": "when the API isn't available to the caller"
+    },
+    "invalid_trigger_id": {
+      "desc": "Trigger id is not valid"
+    },
+    "invalid_app_id": {
+      "desc": "App ID is not a valid format"
+    },
+    "invalid_auth": {
+      "desc": "Invalid token provided"
+    },
+    "invalid_action": {
+      "desc": "The comment data does not match the original trigger context (e.g., comment_id or thread_root_id mismatch)"
+    },
+    "missing_comment_data": {
+      "desc": "Required comment fields are missing for the given action type"
+    },
+    "not_allowed": {
+      "desc": "User is not enrolled in comment syncing"
+    },
+    "invalid_sender_schema": {
+      "desc": "The sender field could not be transformed to a valid user schema"
+    }
+  }
+}

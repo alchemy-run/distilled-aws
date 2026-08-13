@@ -1,0 +1,140 @@
+{
+  "desc": "Create a User Group.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "usergroups:write"
+    ],
+    "user": [
+      "usergroups:write"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "name"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channels": {
+        "desc": "A comma separated string of encoded channel IDs for which the User Group uses as a default.",
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "schema": "channel"
+            },
+            {
+              "type": "string",
+              "maxLength": 0
+            }
+          ]
+        }
+      },
+      "additional_channels": {
+        "desc": "A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too.",
+        "type": "array",
+        "items": {
+          "schema": "channel"
+        }
+      },
+      "description": {
+        "desc": "A short description of the User Group.",
+        "type": "string"
+      },
+      "handle": {
+        "desc": "A mention handle. Must be unique among channels, users and User Groups.",
+        "type": "string",
+        "subtype": "user_group_name"
+      },
+      "include_count": {
+        "desc": "Include the number of users in each User Group.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "name": {
+        "desc": "A name for the User Group. Must be unique among User Groups.",
+        "example": "My Test Team",
+        "type": "string"
+      },
+      "team_id": {
+        "desc": "Encoded team id where the user group has to be created, required if org token is used.",
+        "type": "string",
+        "subtype": "team",
+        "schema": "workspace_id"
+      },
+      "enable_section": {
+        "desc": "Configure this user group to show as a sidebar section for all group members. Note: Only relevant if group has 1 or more default channels added.",
+        "example": "true",
+        "type": "boolean"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "usergroup"
+    ],
+    "type": "object",
+    "properties": {
+      "usergroup": {
+        "schema": "subteam"
+      }
+    }
+  },
+  "errors": {
+    "bad_handle": {
+      "desc": "Handle is invalid"
+    },
+    "description_too_long": {
+      "desc": "Given usergroup description is too long"
+    },
+    "forbidden_handle": {
+      "desc": "Handle is invalid"
+    },
+    "handle_already_exists": {
+      "desc": "Handle is already in use on this workspace"
+    },
+    "invalid_channel_provided": {
+      "desc": "An invalid channel ID was provided"
+    },
+    "invalid_group_provided": {
+      "desc": "An invalid group ID was provided"
+    },
+    "missing_argument": {
+      "desc": "A required argument is missing."
+    },
+    "missing_subteam_name": {
+      "desc": "Subteam name is required"
+    },
+    "name_already_exists": {
+      "desc": "Name is already in use on this workspace"
+    },
+    "name_too_long": {
+      "desc": "Name too long."
+    },
+    "paid_teams_only": {
+      "desc": "Usergroups can only be used on paid Slack teams"
+    },
+    "permission_denied": {
+      "desc": "The user does not have permission to create a User Group."
+    },
+    "plan_upgrade_required": {
+      "desc": "This workspace does not have access to User Groups, as that feature is only available on Standard and above plans."
+    },
+    "target_team_not_on_org": {
+      "desc": "Target team specified is not on the org in context"
+    },
+    "target_team_must_be_specified_in_org_context": {
+      "desc": "No target team was specified but the team in context is an org"
+    }
+  }
+}

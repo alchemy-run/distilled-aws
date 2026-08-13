@@ -1,0 +1,59 @@
+{
+  "desc": "Deletes a pending scheduled message from the queue.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "chat:write"
+    ],
+    "user": [
+      "chat:write"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "scheduled_message_id",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "as_user": {
+        "desc": "Pass true to delete the message as the authed user with `chat:write:user` scope. Bot users in this context are considered authed users. If unused or false, the message will be deleted with `chat:write:bot` scope.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "channel": {
+        "desc": "The channel the scheduled_message is posting to",
+        "example": "C123456789",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "scheduled_message_id": {
+        "desc": "`scheduled_message_id` returned from call to chat.scheduleMessage",
+        "example": "Q1234ABCD",
+        "type": "string"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "bad_token": {
+      "desc": "The provided `token` was invalid."
+    },
+    "channel_not_found": {
+      "desc": "The `channel` passed is either an invalid ID or does not exist."
+    },
+    "invalid_scheduled_message_id": {
+      "desc": "The `scheduled_message_id` passed is either an invalid ID, or the scheduled message it's referencing has already been sent or deleted."
+    }
+  }
+}

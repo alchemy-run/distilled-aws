@@ -1,0 +1,63 @@
+{
+  "desc": "Gets information about a user.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "users:read"
+    ],
+    "user": [
+      "users:read"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "user"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "include_locale": {
+        "desc": "Set this to `true` to receive the locale for this user. Defaults to `false`",
+        "type": "boolean"
+      },
+      "user": {
+        "desc": "User to get info on",
+        "type": "string",
+        "subtype": "user"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "user": {
+        "schema": "user"
+      },
+      "users": {
+        "items": {
+          "schema": "user"
+        },
+        "type": "array"
+      }
+    }
+  },
+  "errors": {
+    "too_many_users": {
+      "desc": "Too many users."
+    },
+    "user_not_found": {
+      "desc": "Value passed for `user` was invalid."
+    },
+    "user_not_visible": {
+      "desc": "The requested user is not visible to the calling user"
+    }
+  }
+}

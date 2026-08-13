@@ -1,0 +1,140 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.slack.migration#ExchangeRequestUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.migration#ExchangeRequest": {
+      "type": "structure",
+      "members": {
+        "users": {
+          "target": "com.slack.migration#ExchangeRequestUsersList",
+          "traits": {
+            "smithy.api#httpQuery": "users",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A comma-separated list of user ids, up to 400 per request"
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "Specify team_id starts with `T` in case of Org Token"
+          }
+        },
+        "to_old": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "to_old",
+            "smithy.api#documentation": "Specify `true` to convert `W` global user IDs to workspace-specific `U` IDs. Defaults to `false`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.migration#ExchangeResponseUserIdMapMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.migration#ExchangeResponseInvalidUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.migration#ExchangeResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "enterprise_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user_id_map": {
+          "target": "com.slack.migration#ExchangeResponseUserIdMapMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "invalid_user_ids": {
+          "target": "com.slack.migration#ExchangeResponseInvalidUserIdsList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.migration#Exchange": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.migration#ExchangeRequest"
+      },
+      "output": {
+        "target": "com.slack.migration#ExchangeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/migration.exchange",
+          "code": 200
+        },
+        "smithy.api#documentation": "For Enterprise organization workspaces, map local user IDs to global user IDs\n\nRequired scopes — bot: `tokens.basic`; user: `tokens.basic`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `not_enterprise_team` — The workspace associated with the token is not part of an Enterprise organization. User IDs have not changed and there is nothing to map.\n  - `too_many_users` — Too many user IDs provided in `users`. Up to 400 user IDs are allowed per request.\n\nSee https://docs.slack.dev/reference/methods/migration.exchange"
+      }
+    },
+    "com.slack.migration#Migration": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.migration#Exchange"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — migration"
+      }
+    }
+  }
+}

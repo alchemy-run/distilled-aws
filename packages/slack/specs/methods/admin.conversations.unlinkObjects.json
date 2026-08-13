@@ -1,0 +1,51 @@
+{
+  "desc": "Unlink a Salesforce record from a channel",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:manage_objects"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel",
+      "new_name"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "Channel ID for Slack channel that will be unlinked from the Salesforce record.",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "new_name": {
+        "type": "string",
+        "desc": "Channel name you would like to give to the channel that is being unlinked from the Salesforce record."
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "channel_not_found": {
+      "desc": "Value passed for `channel` is invalid."
+    },
+    "restricted_action": {
+      "desc": "User does not have access to perform this action."
+    },
+    "invalid_name_specials": {
+      "desc": "Value passed for `name` contained unallowed special characters or upper case characters."
+    },
+    "name_taken": {
+      "desc": "A channel cannot be created with the given name."
+    }
+  }
+}

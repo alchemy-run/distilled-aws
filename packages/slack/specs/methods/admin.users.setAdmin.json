@@ -1,0 +1,68 @@
+{
+  "desc": "Set an existing regular user or owner to be a workspace or org admin.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.users:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "team_id",
+      "user_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "The ID of the workspace or organization.",
+        "example": "T12345678",
+        "schema": "team_id"
+      },
+      "user_id": {
+        "desc": "The ID of the user to designate as an admin.",
+        "type": "string",
+        "example": "W12345678",
+        "schema": "user_id"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "cannot_modify_primary_owner": {
+      "desc": "The primary owner cannot be modified."
+    },
+    "failed_to_set_user_to_admin": {
+      "desc": "Designating this user as an admin failed."
+    },
+    "failed_to_set_admin_on_workspaces": {
+      "desc": "Failed to set the user as an admin on all workspaces."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "invalid_permissions": {
+      "desc": "This method is only accessible by org owners and admins."
+    },
+    "invalid_role_for_user": {
+      "desc": "The user cannot be made into an admin."
+    },
+    "not_an_admin": {
+      "desc": "This method can only be accessed by org owners and admins."
+    },
+    "team_not_found": {
+      "desc": "`team_id` was not found."
+    },
+    "user_not_found": {
+      "desc": "The user was not found."
+    }
+  }
+}

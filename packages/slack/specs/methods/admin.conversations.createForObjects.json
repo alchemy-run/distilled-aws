@@ -1,0 +1,75 @@
+{
+  "desc": "Create a Salesforce channel for the corresponding object provided.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:manage_objects"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "object_id",
+      "salesforce_org_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth"
+      },
+      "object_id": {
+        "type": "string",
+        "desc": "Object / Record ID (15 or 18 digit accepted). See [here](https://help.salesforce.com/s/articleView?id=000385008&type=1) for how to look up an ID.",
+        "example": "0019000000DmehKAAR"
+      },
+      "salesforce_org_id": {
+        "type": "string",
+        "desc": "Salesforce org ID (15 or 18 digit accepted). See [here](https://help.salesforce.com/s/articleView?id=000385215&type=1) for how to look up Salesforce org ID.",
+        "example": "00DGC00000024hsuWY"
+      },
+      "invite_object_team": {
+        "desc": "Optional flag to add all team members related to the object to the newly created Salesforce channel. When true, adds a maximum of 100 team members to the channel.",
+        "type": "boolean",
+        "default": "false",
+        "example": "true"
+      }
+    }
+  },
+  "output": {
+    "desc": "Returns the created Salesforce channel's id",
+    "type": "object",
+    "required": [
+      "channel_id"
+    ],
+    "properties": {
+      "channel_id": {
+        "type": "string",
+        "desc": "Slack Channel ID, in the format of an alphanumeric string starting with C",
+        "example": "C1234AB78"
+      }
+    }
+  },
+  "errors": {
+    "restricted_action": {
+      "desc": "User does not have access to perform this action."
+    },
+    "record_not_found": {
+      "desc": "Value passed for `object_id` is invalid."
+    },
+    "invalid_org_id": {
+      "desc": "Value passed for `salesforce_org_id` is invalid."
+    },
+    "feature_not_enabled": {
+      "desc": "Feature not enabled."
+    },
+    "channel_already_exists": {
+      "desc": "Object is linked to a different channel."
+    },
+    "missing_record_channel_config": {
+      "desc": "Record Channels are not enabled for the given object type."
+    }
+  }
+}

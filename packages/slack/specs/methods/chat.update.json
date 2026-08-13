@@ -1,0 +1,334 @@
+{
+  "desc": "Updates a message.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "chat:write"
+    ],
+    "user": [
+      "chat:write"
+    ]
+  },
+  "rate_limits": "t3",
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "ts",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "as_user": {
+        "desc": "Pass true to update the message as the authed user. Bot users in this context are considered authed users.",
+        "example": "true",
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "attachments": {
+        "desc": "A JSON-based array of structured attachments, presented as a URL-encoded string.",
+        "example": "[{\"pretext\": \"pre-hello\", \"text\": \"text-world\"}]",
+        "anyOf": [
+          {
+            "type": "string",
+            "subtype": "attachments"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "unfurled_attachments": {
+        "desc": "A JSON-based array of structured attachments, presented as a URL-encoded string.",
+        "example": "[{\"pretext\": \"pre-hello\", \"text\": \"text-world\"}]",
+        "anyOf": [
+          {
+            "type": "string",
+            "subtype": "attachments"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "blocks": {
+        "desc": "A JSON-based array of structured blocks, presented as a URL-encoded string.",
+        "example": "[{\"type\": \"section\", \"text\": {\"type\": \"plain_text\", \"text\": \"Hello world\"}}]",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "markdown_text": {
+        "desc": "Accepts message text formatted in markdown. This argument should not be used in conjunction with `blocks` or `text`. Limit this field to 12,000 characters.",
+        "type": "string",
+        "example": "**This is bold text**"
+      },
+      "metadata": {
+        "desc": "JSON object with event_type and event_payload fields, presented as a URL-encoded string. If you don't include this field, the message's previous `metadata` will be retained. To remove previous `metadata`, include an empty object for this field. Metadata you post to Slack is accessible to any app or user who is a member of that workspace.",
+        "example": "{\"event_type\": \"task_created\", \"event_payload\": { \"id\": \"11223\", \"title\": \"Redesign Homepage\"}}",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "channel": {
+        "desc": "Channel containing the message to be updated. For direct messages, ensure that this value is a DM ID (starts with `D`) instead of a User ID (starts with either `U` or `W`).",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "link_names": {
+        "desc": "Find and link channel names and usernames. Defaults to `none`. If you do not specify a value for this field, the original value set for the message will be overwritten with the default, `none`.",
+        "example": "true",
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "parse": {
+        "desc": "Change how messages are treated. Defaults to `client`, unlike `chat.postMessage`. Accepts either `none` or `full`. If you do not specify a value for this field, the original value set for the message will be overwritten with the default, `client`.",
+        "example": "none",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "text": {
+        "desc": "How this field works and whether it is required depends on other fields you use in your API call. [See below](#text_usage) for more detail.",
+        "example": "Hello world",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "ts": {
+        "desc": "Timestamp of the message to be updated.",
+        "example": "\"1405894322.002768\"",
+        "type": "string",
+        "subtype": "timestamp"
+      },
+      "reply_broadcast": {
+        "desc": "Broadcast an existing thread reply to make it visible to everyone in the channel or conversation.",
+        "type": "boolean",
+        "example": "true",
+        "default": "false"
+      },
+      "file_ids": {
+        "desc": "Array of new file ids that will be sent with this message.",
+        "example": "F013GKY52QK,F013GL22D0T or [\"F013GKY52QK\",\"F013GL22D0T\"]",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "channel",
+      "ts",
+      "text",
+      "message"
+    ],
+    "properties": {
+      "channel": {
+        "type": "string"
+      },
+      "ts": {
+        "type": "string"
+      },
+      "text": {
+        "type": "string"
+      },
+      "message": {
+        "title": "Message object",
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "blocks": {
+            "schema": "blocks"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "metadata": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "type": "object"
+  },
+  "errors": {
+    "as_user_not_supported": {
+      "desc": "The `as_user` parameter does not function with workspace apps."
+    },
+    "blocked_file_type": {
+      "desc": "Admin has disabled uploading this type of file."
+    },
+    "block_mismatch": {
+      "desc": "Rich-text blocks cannot be replaced with non-rich-text blocks"
+    },
+    "cant_broadcast_message": {
+      "desc": "Unable to broadcast this message."
+    },
+    "cant_update_message": {
+      "desc": "Authenticated user does not have permission to update this message."
+    },
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "edit_window_closed": {
+      "desc": "The message cannot be edited due to the team message edit settings"
+    },
+    "external_channel_migrating": {
+      "desc": "The channel is in the process of migrating and so the message cannot be updated at this time."
+    },
+    "file_deleted": {
+      "desc": "File to share deleted."
+    },
+    "file_is_deleted": {
+      "desc": "The file is deleted."
+    },
+    "file_not_found": {
+      "desc": "One or more of the provided file IDs could not be found."
+    },
+    "file_share_limit_reached": {
+      "desc": "The file has reached the share limit."
+    },
+    "invalid_attachments": {
+      "desc": "The attachments were invalid."
+    },
+    "invalid_blocks": {
+      "desc": "The blocks were invalid for the requesting user."
+    },
+    "invalid_blocks_format": {
+      "desc": "The `blocks` array is not a valid JSON object or doesn't match the Block Kit syntax."
+    },
+    "invalid_metadata_format": {
+      "desc": "Invalid metadata format provided"
+    },
+    "invalid_metadata_schema": {
+      "desc": "Invalid metadata schema provided"
+    },
+    "is_inactive": {
+      "desc": "The message cannot be edited within a frozen, archived or deleted channel."
+    },
+    "markdown_text_conflict": {
+      "desc": "Markdown text cannot be used in conjunction with `blocks` or `text` argument.",
+      "hidden": true
+    },
+    "max_file_sharing_exceeded": {
+      "desc": "Exceeded max allowed files shared."
+    },
+    "message_limit_exceeded": {
+      "desc": "Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces."
+    },
+    "message_not_found": {
+      "desc": "No message exists with the requested timestamp."
+    },
+    "metadata_must_be_sent_from_app": {
+      "desc": "Message metadata can only be posted or updated using an app-level token"
+    },
+    "metadata_too_large": {
+      "desc": "Metadata exceeds size limit"
+    },
+    "msg_too_long": {
+      "desc": "Message text is too long. The `text` field cannot exceed 4,000 characters."
+    },
+    "no_dual_broadcast_content_update": {
+      "desc": "Can't broadcast an old reply and update the content at the same time."
+    },
+    "no_text": {
+      "desc": "No message text provided"
+    },
+    "posting_to_channel_denied": {
+      "desc": "The user does not have permission to share files in this channel."
+    },
+    "slack_connect_blocked_file_type": {
+      "desc": "Files with certain extensions are blocked from being uploaded in all Slack Connect messages."
+    },
+    "slack_connect_canvas_sharing_blocked": {
+      "desc": "Admin has disabled sharing of canvas links in all Slack Connect messages."
+    },
+    "slack_connect_clip_sharing_blocked": {
+      "desc": "Admin has disabled Clip uploads in Slack Connect channels."
+    },
+    "slack_connect_file_link_sharing_blocked": {
+      "desc": "Admin has disabled Slack file sharing in all Slack Connect messages."
+    },
+    "slack_connect_file_upload_sharing_blocked": {
+      "desc": "Admin has disabled file uploads in all Slack Connect messages."
+    },
+    "streaming_state_conflict": {
+      "desc": "The message is currently streaming text and cannot be edited."
+    },
+    "team_not_found": {
+      "desc": "Team associated with the message and channel could not be found."
+    },
+    "too_many_attachments": {
+      "desc": "Too many attachments were provided with this message. A maximum of 100 attachments are allowed on a message."
+    },
+    "unable_to_share_files": {
+      "desc": "Sharing the files failed."
+    },
+    "update_failed": {
+      "desc": "Internal update failure."
+    }
+  },
+  "warnings": {
+    "message_truncated": {
+      "desc": "The `text` field of a message should have no more than 40,000 characters. We [truncate really long messages](/changelog/2018-04-truncating-really-long-messages)."
+    },
+    "some_files_not_deleted": {
+      "desc": "Some files could not be deleted because the user does not have permission. These files remain attached to the message."
+    }
+  }
+}

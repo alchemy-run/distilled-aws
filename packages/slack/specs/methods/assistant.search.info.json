@@ -1,0 +1,40 @@
+{
+  "desc": "Returns search capabilities on a given team.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "search:read.public"
+    ],
+    "bot": [
+      "search:read.public"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "desc": "Auth token to authenticate the session",
+        "type": "string",
+        "subtype": "auth"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "is_ai_search_enabled"
+    ],
+    "properties": {
+      "is_ai_search_enabled": {
+        "type": "boolean",
+        "desc": "Whether AI search is enabled for the team"
+      }
+    }
+  },
+  "errors": {}
+}

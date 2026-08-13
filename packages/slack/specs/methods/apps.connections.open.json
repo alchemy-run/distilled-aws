@@ -1,0 +1,51 @@
+{
+  "desc": "Generate a temporary Socket Mode WebSocket URL that your app can connect to in order to receive events and interactive payloads over.",
+  "http_method": "POST",
+  "scope": {},
+  "rate_limits": "t3",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "url"
+    ],
+    "properties": {
+      "url": {
+        "desc": "The URL to connect to.",
+        "type": "string",
+        "subtype": "auth"
+      }
+    }
+  },
+  "errors": {
+    "forbidden_team": {
+      "desc": "The authenticated team cannot use this API"
+    },
+    "insecure_request": {
+      "desc": "The method was not called via a `POST` request."
+    },
+    "internal_error": {
+      "desc": "An unexpected exception with the service has occurred."
+    },
+    "invalid_auth": {
+      "desc": "The provided [app-level token](/authentication/tokens#app) wasn't valid."
+    },
+    "missing_args": {
+      "desc": "An [app-level token](/authentication/tokens#app) wasn't provided."
+    }
+  }
+}

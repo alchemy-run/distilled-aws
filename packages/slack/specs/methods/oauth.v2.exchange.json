@@ -1,0 +1,128 @@
+{
+  "desc": "Exchanges a legacy access token for a new expiring access token and refresh token",
+  "http_method": "POST",
+  "scope": {},
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "client_id",
+      "client_secret",
+      "token"
+    ],
+    "properties": {
+      "client_id": {
+        "desc": "Issued when you created your application.",
+        "example": "4123121235.9872358710",
+        "type": "string"
+      },
+      "client_secret": {
+        "desc": "Issued when you created your application.",
+        "example": "e1b9e11dfcd19c1982d5de12921e17e8c",
+        "type": "string"
+      },
+      "token": {
+        "desc": "The legacy xoxb or xoxp token being migrated to use token rotation.",
+        "example": "xoxp-12345-67890-1928471-abcdefg",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "desc": "Credentials and other app installation information",
+    "type": "object",
+    "required": [
+      "app_id",
+      "scope",
+      "token_type",
+      "access_token",
+      "expires_in",
+      "refresh_token"
+    ],
+    "properties": {
+      "app_id": {
+        "schema": "app_id"
+      },
+      "token_type": {
+        "type": "string",
+        "desc": "The type of access token.",
+        "enum": [
+          "bot",
+          "user"
+        ]
+      },
+      "scope": {
+        "type": "string",
+        "desc": "Comma-separated list of scopes granted to the token."
+      },
+      "bot_user_id": {
+        "title": "Bot User ID",
+        "subtype": "user",
+        "desc": "The user ID of the bot user corresponding to the token. Only present if a legacy bot access token is being exchanged.",
+        "schema": "user_id"
+      },
+      "user_id": {
+        "subtype": "user",
+        "desc": "The user ID of the user corresponding to the token. Only present if a legacy user access token is being exchanged.",
+        "schema": "user_id"
+      },
+      "access_token": {
+        "desc": "A new xoxe.xox(b|p) expiring access token to replace the legacy token.",
+        "schema": "xoxe_access_token"
+      },
+      "expires_in": {
+        "type": "integer",
+        "desc": "Duration (in seconds) until the new access token expires."
+      },
+      "refresh_token": {
+        "desc": "The xoxe refresh token to obtain a new access token after the one returned expires.",
+        "schema": "xoxe_refresh_token"
+      },
+      "team": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "desc": "Details about the team attached to the legacy token being exchanged.",
+            "schema": "team_lean"
+          }
+        ]
+      },
+      "enterprise": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "desc": "Details about the enterprise attached to the token being exchanged.",
+            "schema": "enterprise_lean"
+          }
+        ]
+      }
+    }
+  },
+  "errors": {
+    "authorization_not_found": {
+      "desc": "The underlying authorization for this token was revoked or is invalid."
+    },
+    "bad_client_secret": {
+      "desc": "Value passed for `client_secret` was invalid."
+    },
+    "internal_error": {
+      "desc": "A server-side error occurred."
+    },
+    "invalid_client_id": {
+      "desc": "Value passed for `client_id` was invalid."
+    },
+    "invalid_token": {
+      "desc": "The legacy token provided cannot be exchanged for a new pair of token credentials."
+    },
+    "token_already_exchanged": {
+      "desc": "This token has already been exchanged for a pair of token credentials."
+    },
+    "token_rotation_not_enabled": {
+      "desc": "The app does not have token rotation enabled."
+    }
+  }
+}

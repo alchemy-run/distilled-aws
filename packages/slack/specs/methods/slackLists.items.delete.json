@@ -1,0 +1,68 @@
+{
+  "desc": "Deletes an item from an existing List.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "lists:write"
+    ],
+    "user": [
+      "lists:write"
+    ]
+  },
+  "familyName": "lists",
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "list_id",
+      "id"
+    ],
+    "properties": {
+      "token": {
+        "desc": "Token with which to authenticate the session.",
+        "type": "string",
+        "subtype": "auth"
+      },
+      "list_id": {
+        "desc": "ID of the List containing the item.",
+        "example": "F12345678",
+        "type": "string",
+        "subtype": "list"
+      },
+      "id": {
+        "desc": "ID of item to delete.",
+        "example": "Rec1234567",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "ok"
+    ],
+    "type": "object",
+    "properties": {
+      "ok": {
+        "type": "boolean",
+        "enum": [
+          true
+        ]
+      }
+    }
+  },
+  "errors": {
+    "list_not_found": {
+      "desc": "The List was not found."
+    },
+    "record_not_found": {
+      "desc": "The record was not found in the List."
+    },
+    "team_not_found": {
+      "desc": "The team cannot be found."
+    },
+    "user_not_found": {
+      "desc": "The user cannot be found."
+    }
+  }
+}

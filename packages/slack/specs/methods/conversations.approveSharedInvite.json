@@ -1,0 +1,80 @@
+{
+  "desc": "Approves an invitation to a Slack Connect channel",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "conversations.connect:manage"
+    ]
+  },
+  "rate_limits": "t3",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "invite_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "invite_id": {
+        "desc": "ID of the shared channel invite to approve",
+        "schema": "invite_id"
+      },
+      "target_team": {
+        "desc": "The team or enterprise ID of the receiving party involved in the invitation you are approving",
+        "schema": "team_id"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "already_approved": {
+      "desc": "This invite was already approved by this team."
+    },
+    "approval_inactive": {
+      "desc": "The approval associated with the invite ID is not active."
+    },
+    "approval_not_found": {
+      "desc": "We could not find an approval associated with the invite ID provided."
+    },
+    "channel_conversion_in_progress": {
+      "desc": "A channel conversion is in progress"
+    },
+    "channel_not_found": {
+      "desc": "The channel associated with this invite wasn't found."
+    },
+    "invalid_action": {
+      "desc": "This action is no longer valid, e.g., trying to approve an invite that has already been approved."
+    },
+    "invalid_link": {
+      "desc": "The link provided was invalid."
+    },
+    "invite_not_found": {
+      "desc": "The invite specified wasn't found."
+    },
+    "missing_target_team": {
+      "desc": "The `target_team` parameter is required for this request. The inviting team must provide this argument."
+    },
+    "not_paid": {
+      "desc": "The team attempting to approve this invite is not paid and therefore not eligible."
+    },
+    "restricted_action": {
+      "desc": "A team preference prevents the authenticated user from creating private channels."
+    }
+  }
+}

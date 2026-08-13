@@ -1,0 +1,73 @@
+{
+  "desc": "Leaves a conversation.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "groups:write",
+      "im:write",
+      "mpim:write",
+      "channels:write",
+      "channels:manage"
+    ],
+    "user": [
+      "groups:write",
+      "im:write",
+      "mpim:write",
+      "channels:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "slack_connect_workspaces_allowed": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "Conversation to leave",
+        "subtype": "channel",
+        "schema": "channel"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "not_in_channel": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "cant_leave_general": {
+      "desc": "Authenticated user cannot leave the general channel"
+    },
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "is_archived": {
+      "desc": "Channel has been archived."
+    },
+    "last_member": {
+      "desc": "The last member party to a channel cannot leave the channel. Someone else must join the channel before this user is permitted to exit."
+    },
+    "method_not_supported_for_channel_type": {
+      "desc": "This type of conversation cannot be used with this method."
+    },
+    "missing_scope": {
+      "desc": "The calling token is not granted the necessary scopes to complete this operation."
+    },
+    "user_is_restricted": {
+      "desc": "Restricted and guest users cannot leave channel"
+    }
+  }
+}

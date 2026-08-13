@@ -1,0 +1,60 @@
+{
+  "desc": "Look up an email address to see if someone is discoverable on Slack",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "conversations.connect:manage",
+      "team:read"
+    ]
+  },
+  "rate_limits": "t2",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "email"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "email": {
+        "type": "string",
+        "maxLength": 100,
+        "example": "scott.slacksalot@example.com"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "is_discoverable"
+    ],
+    "properties": {
+      "is_discoverable": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "not_allowed": {
+      "desc": "user is not allowed to call this API"
+    },
+    "ratelimited": {
+      "desc": "too many attempts"
+    },
+    "invalid_arguments": {
+      "desc": "Invalid arguments (including exceeding character count)"
+    },
+    "restricted_action": {
+      "desc": "user is restricted from calling this API"
+    },
+    "not_an_enterprise": {
+      "desc": "The token does not belong to an enterprise."
+    }
+  }
+}

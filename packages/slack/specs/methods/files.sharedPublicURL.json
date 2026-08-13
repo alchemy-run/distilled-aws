@@ -1,0 +1,76 @@
+{
+  "desc": "Enables a file for public/external sharing.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "files:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "file"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "file": {
+        "desc": "File to share",
+        "type": "string",
+        "subtype": "file"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "file"
+    ],
+    "properties": {
+      "file": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "created": {
+            "type": "integer"
+          },
+          "user": {
+            "type": "string"
+          }
+        }
+      },
+      "comment": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "paging": {
+        "type": "object"
+      }
+    }
+  },
+  "errors": {
+    "file_not_found": {
+      "desc": "Value passed for `file` was invalid"
+    },
+    "not_allowed": {
+      "desc": "Public sharing has been disabled for this team. You may see this error if you are creating an external link from a free or trial workspace. You can either upgrade to a [Paid Plan](https://app.slack.com/plans) or use `file.list` to get a `url_private_download` link, download the file with an application, and re-upload it somewhere it can be shared with users who are not members of your workspace. Be sure to pass the Slack [Bot token](/authentication/tokens#bot) to the request on the headers file when calling `url_private_download`."
+    },
+    "public_video_not_allowed": {
+      "desc": "Public sharing of videos is not available. A `Free` instance of Slack may encounter this error because free teams don't have the ability to share video files publicly."
+    },
+    "public_file_type_not_allowed": {
+      "desc": "Public sharing has been restricted for this file type."
+    }
+  }
+}

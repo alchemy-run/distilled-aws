@@ -1,0 +1,85 @@
+{
+  "desc": "Lists reactions made by a user.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "reactions:read"
+    ],
+    "user": [
+      "reactions:read"
+    ]
+  },
+  "rate_limits": "t2",
+  "slack_connect_workspaces_allowed": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "user": {
+        "desc": "Show reactions made by this user. Defaults to the authed user.",
+        "type": "string",
+        "subtype": "user"
+      },
+      "full": {
+        "desc": "If true always return the complete reaction list.",
+        "type": "boolean"
+      },
+      "count": {
+        "default": 100,
+        "type": "integer",
+        "subtype": "paging"
+      },
+      "page": {
+        "default": 1,
+        "type": "integer",
+        "subtype": "paging"
+      },
+      "cursor": {
+        "desc": "Parameter for pagination. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more details.",
+        "example": "dXNlcjpVMDYxTkZUVDI=",
+        "type": "string"
+      },
+      "limit": {
+        "default": 0,
+        "desc": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached.",
+        "example": "20",
+        "type": "integer"
+      },
+      "team_id": {
+        "desc": "encoded team id to list reactions in, required if org token is used",
+        "type": "string",
+        "subtype": "team"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "items"
+    ],
+    "properties": {
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "paging": {
+        "schema": "paging"
+      }
+    }
+  },
+  "errors": {
+    "user_not_found": {
+      "desc": "Value passed for `user` was invalid."
+    }
+  }
+}

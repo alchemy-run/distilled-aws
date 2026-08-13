@@ -1,0 +1,70 @@
+{
+  "desc": "List emoji for an Enterprise organization.",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.teams:read"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page",
+        "example": "5c3e53d5"
+      },
+      "limit": {
+        "type": "integer",
+        "desc": "The maximum number of items to return. Must be between 1 - 1000 both inclusive.",
+        "example": "100",
+        "default": 100,
+        "minimum": 1,
+        "maximum": 1000
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "emoji"
+    ],
+    "properties": {
+      "emoji": {
+        "type": "object"
+      },
+      "response_metadata": {
+        "type": "object",
+        "required": [
+          "next_cursor"
+        ],
+        "properties": {
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "invalid_cursor": {
+      "desc": "Value passed for `cursor` was not valid or is no longer valid."
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by org owners and Admins."
+    }
+  }
+}

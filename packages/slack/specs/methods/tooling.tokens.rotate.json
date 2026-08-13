@@ -1,0 +1,70 @@
+{
+  "desc": "Exchanges a refresh token for a new app configuration token.",
+  "http_method": "POST",
+  "scope": {},
+  "rate_limits": "t5",
+  "args": {
+    "type": "object",
+    "required": [
+      "refresh_token"
+    ],
+    "properties": {
+      "refresh_token": {
+        "desc": "The `xoxe` refresh token that was issued along with the old app configuration token.",
+        "example": "xoxe-1-abcdefg",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "desc": "Credentials information",
+    "type": "object",
+    "required": [
+      "token",
+      "refresh_token",
+      "team_id",
+      "user_id",
+      "exp",
+      "iat"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "desc": "The app configuration token used to access App Manifest APIs"
+      },
+      "refresh_token": {
+        "type": "string",
+        "desc": "Refresh token for this credential"
+      },
+      "team_id": {
+        "type": "string",
+        "subtype": "team",
+        "desc": "ID of the team associated with the access token."
+      },
+      "user_id": {
+        "type": "string",
+        "subtype": "user",
+        "desc": "The ID of the user associated with the token."
+      },
+      "exp": {
+        "type": "integer",
+        "desc": "Expiration time (exp) identifies the expiration time on or after which the token must not be accepted for processing."
+      },
+      "iat": {
+        "type": "integer",
+        "desc": "Issued at (iat) identifies the time at which the token was issued."
+      }
+    }
+  },
+  "errors": {
+    "internal_error": {
+      "desc": "Internal error"
+    },
+    "invalid_refresh_token": {
+      "desc": "The given refresh token is invalid."
+    },
+    "unknown_error": {
+      "desc": "Temporary error for dev only restriction"
+    }
+  }
+}

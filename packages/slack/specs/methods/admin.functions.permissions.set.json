@@ -1,0 +1,116 @@
+{
+  "desc": "Set the visibility of a Slack function and define the users or workspaces if it is set to named_entities.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.workflows:read"
+    ]
+  },
+  "rate_limits": "t3",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "function_id"
+    ],
+    "discardAdditionalProperties": true,
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "function_id": {
+        "type": "string",
+        "desc": "The function ID to set permissions for."
+      },
+      "visibility": {
+        "type": "string",
+        "desc": "The function visibility.",
+        "enum": [
+          "everyone",
+          "app_collaborators",
+          "named_entities",
+          "no_one"
+        ]
+      },
+      "user_ids": {
+        "type": "array",
+        "desc": "List of user IDs to allow for `named_entities` visibility.",
+        "example": "['U00000001', 'U00000002', 'U00000003']",
+        "items": {
+          "$schema": "user_id"
+        },
+        "maxItems": 200,
+        "uniqueItems": true
+      },
+      "permissions": {
+        "type": "array",
+        "desc": "Array of permissions for the function.",
+        "items": {
+          "type": "object",
+          "required": [
+            "visibility",
+            "permission_type"
+          ],
+          "properties": {
+            "visibility": {
+              "type": "string",
+              "enum": [
+                "everyone",
+                "named_entities",
+                "no_one"
+              ]
+            },
+            "permission_type": {
+              "type": "string",
+              "enum": [
+                "slack_function",
+                "private_channel_access"
+              ]
+            },
+            "user_ids": {
+              "type": "array",
+              "desc": "List of user IDs to allow for `named_entities` visibility.",
+              "example": "['U00000001', 'U00000002', 'U00000003']",
+              "items": {
+                "$schema": "user_id"
+              },
+              "maxItems": 200,
+              "uniqueItems": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "access_denied": {
+      "desc": "This actor does not have access to the permissions on this resource."
+    },
+    "function_not_found": {
+      "desc": "The referenced function does not exist."
+    },
+    "invalid_visibility": {
+      "desc": "Invalid value for visibility."
+    },
+    "invalid_permission_type": {
+      "desc": "Invalid value for permission type."
+    },
+    "invalid_permission": {
+      "desc": "Invalid value for permission"
+    },
+    "unknown_method": {
+      "desc": "This method does not exist."
+    },
+    "invalid_setting": {
+      "desc": "The `app_collaborators` setting is not allowed for apps not owned by your team/org."
+    },
+    "restricted_action": {
+      "desc": "This actor does not have access to the permissions on this resource."
+    }
+  }
+}

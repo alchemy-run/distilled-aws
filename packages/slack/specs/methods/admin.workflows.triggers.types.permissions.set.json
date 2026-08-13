@@ -1,0 +1,117 @@
+{
+  "desc": "Set the permissions for using a trigger type",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "client"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "id": {
+        "desc": "The trigger type ID for which to set the permissions",
+        "example": "['FTT01', 'FTT02', 'FTT03']",
+        "schema": "function_trigger_type_id"
+      },
+      "visibility": {
+        "type": "string",
+        "desc": "The function visibility",
+        "enum": [
+          "everyone",
+          "named_entities",
+          "no_one"
+        ]
+      },
+      "user_ids": {
+        "type": "array",
+        "desc": "List of user IDs to allow for named_entities visibility",
+        "example": "['U00000001', 'U00000002', 'U00000003']",
+        "items": {
+          "schema": "user_id"
+        },
+        "maxItems": 50
+      },
+      "permissions": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "permissions": {
+            "desc": "Dict of permissions keyed by permission type ID.",
+            "type": "object",
+            "patternProperties": {
+              "trigger_type|private_channel_access|private_channel_message": {
+                "type": "object",
+                "required": [
+                  "visibility"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "visibility": {
+                    "type": "string",
+                    "enum": [
+                      "everyone",
+                      "named_entities",
+                      "no_one"
+                    ]
+                  },
+                  "user_ids": {
+                    "type": "array",
+                    "desc": "List of user IDs to allow for named_entities visibility",
+                    "example": "['U00000001', 'U00000002', 'U00000003']",
+                    "items": {
+                      "schema": "user_id"
+                    },
+                    "resource": {
+                      "user_fetch_options": {
+                        "top_level": true
+                      }
+                    },
+                    "maxItems": 50,
+                    "uniqueItems": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "invalid_named_entities": {
+      "desc": "Named entities visibility requires a valid set of named entities to be specified"
+    },
+    "invalid_permission_type": {
+      "desc": "This permission type is invalid."
+    },
+    "invalid_permission_set": {
+      "desc": "This permission set is invalid."
+    },
+    "required_visibility": {
+      "desc": "Visibility is required on this resource."
+    },
+    "restricted_action": {
+      "desc": "This actor does not have access to the permissions on this resource."
+    },
+    "trigger_type_id_not_found": {
+      "desc": "The referenced trigger type ID does not exist."
+    },
+    "visibility_is_not_named_entities": {
+      "desc": "The visibility should be named entities when the user_ids, team_ids, or org_ids args are set"
+    }
+  }
+}

@@ -1,0 +1,1700 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.slack.files#CommentsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File to delete a comment from.",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The comment to delete.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#CommentsDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#CommentsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#CommentsDeleteRequest"
+      },
+      "output": {
+        "target": "com.slack.files#CommentsDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/files.comments.delete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes an existing comment on a file.\n\nRequired scopes — bot: `files:write`; user: `files:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `cant_delete` — The requested comment could not be deleted.\n  - `file_deleted` — The requested file was previously deleted.\n  - `file_not_found` — The requested file could not be found.\n\nSee https://docs.slack.dev/reference/methods/files.comments.delete"
+      }
+    },
+    "com.slack.files#CompleteUploadExternalRequestFilesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File ID returned from files.getUploadURL.",
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of file."
+          }
+        },
+        "highlight_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional highlight type hint for the file. The upload processing job may overwrite this value."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#CompleteUploadExternalRequestFilesList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.files#CompleteUploadExternalRequestFilesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of file ids and their corresponding (optional) titles."
+      }
+    },
+    "com.slack.files#CompleteUploadExternalRequestBlocksCase1ItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.files#CompleteUploadExternalRequestBlocksCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.files#CompleteUploadExternalRequestBlocksCase1ItemMap"
+      },
+      "traits": {}
+    },
+    "com.slack.files#CompleteUploadExternalRequestBlocks": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.slack.files#CompleteUploadExternalRequestBlocksCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A JSON-based array of structured rich text blocks, presented as a URL-encoded string. If the `initial_comment` field is provided, the `blocks` field is ignored"
+      }
+    },
+    "com.slack.files#CompleteUploadExternalRequest": {
+      "type": "structure",
+      "members": {
+        "files": {
+          "target": "com.slack.files#CompleteUploadExternalRequestFilesList",
+          "traits": {
+            "smithy.api#documentation": "Array of file ids and their corresponding (optional) titles.",
+            "smithy.api#required": {}
+          }
+        },
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel ID where the file will be shared. If not specified the file will be private."
+          }
+        },
+        "thread_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provide another message's `ts` value to upload this file as a reply. Never use a reply's `ts` value; use its parent instead. Also make sure to provide only one channel when using 'thread_ts'"
+          }
+        },
+        "channels": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Comma-separated string of channel IDs or user IDs where the file will be shared."
+          }
+        },
+        "initial_comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The message text introducing the file in specified channels."
+          }
+        },
+        "blocks": {
+          "target": "com.slack.files#CompleteUploadExternalRequestBlocks",
+          "traits": {
+            "smithy.api#documentation": "A JSON-based array of structured rich text blocks, presented as a URL-encoded string. If the `initial_comment` field is provided, the `blocks` field is ignored"
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Set your bot's user name for the file share message. Requires the [`chat:write.customize`](/reference/scopes/chat.write.customize) scope.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "icon_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to an image to use as the icon for the file share message. Requires the [`chat:write.customize`](/reference/scopes/chat.write.customize) scope."
+          }
+        },
+        "icon_emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Emoji to use as the icon for the file share message. Overrides `icon_url`. Requires the [`chat:write.customize`](/reference/scopes/chat.write.customize) scope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#CompleteUploadExternalResponseFilesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File ID returned from files.getUploadURLExternal.",
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Title of file."
+          }
+        },
+        "created": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "file created timestamp"
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "file owner"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#CompleteUploadExternalResponseFilesList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.files#CompleteUploadExternalResponseFilesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of files uploaded."
+      }
+    },
+    "com.slack.files#CompleteUploadExternalResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "files": {
+          "target": "com.slack.files#CompleteUploadExternalResponseFilesList",
+          "traits": {
+            "smithy.api#documentation": "Array of files uploaded.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#CompleteUploadExternal": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#CompleteUploadExternalRequest"
+      },
+      "output": {
+        "target": "com.slack.files#CompleteUploadExternalResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/files.completeUploadExternal",
+          "code": 200
+        },
+        "smithy.api#documentation": "Finishes an upload started with files.getUploadURLExternal\n\nRequired scopes — bot: `files:write`; user: `files:write`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `access_denied` — User is not the owner of the file.\n  - `channel_not_found` — Value passed for `channel_id` was invalid.\n  - `file_not_found` — Could not find the file from the upload ticket.\n  - `file_update_failed` — Failure occurred when attempting to update the file.\n  - `invalid_blocks` — Provided blocks are in the incorrect format.\n  - `invalid_channel` — Channel could not be found or channel specified is invalid.\n  - `not_in_channel` — User/bot membership is required for the specified channel.\n  - `posting_to_channel_denied` — User is not authorized to post to channel.\n  - `channels_limit_exceeded` — Exceeded the channel limit. A maximum of 100 channels is allowed per request.\n  - `file_type_not_allowed` — The file type is not permitted based on the team's allowed_file_upload_types preference.\n  - `file_uploads_except_images_disabled` — Only image file uploads are permitted for this team.\n\nSee https://docs.slack.dev/reference/methods/files.completeUploadExternal"
+      }
+    },
+    "com.slack.files#DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of file to delete.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#DeleteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#DeleteRequest"
+      },
+      "output": {
+        "target": "com.slack.files#DeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/files.delete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes a file.\n\nRequired scopes — bot: `files:write`; user: `files:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `cant_delete_file` — Authenticated user does not have permission to delete this file.\n  - `delete_not_allowed` — Error returned when the requested file does not support deletion; for example, when attempting to delete a canvas template.\n  - `file_deleted` — The file has already been deleted.\n  - `file_deleting_disabled` — This functionality is disabled.\n  - `file_not_found` — The file does not exist, or is not visible to the calling user.\n\nSee https://docs.slack.dev/reference/methods/files.delete"
+      }
+    },
+    "com.slack.files#GetUploadURLExternalRequest": {
+      "type": "structure",
+      "members": {
+        "length": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size in bytes of the file being uploaded.",
+            "smithy.api#required": {}
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the file being uploaded.",
+            "smithy.api#required": {}
+          }
+        },
+        "snippet_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Syntax type of the snippet being uploaded."
+          }
+        },
+        "alt_txt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of image for screen-reader."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#GetUploadURLExternalResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "file_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "upload_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#GetUploadURLExternal": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#GetUploadURLExternalRequest"
+      },
+      "output": {
+        "target": "com.slack.files#GetUploadURLExternalResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/files.getUploadURLExternal",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets a URL for an edge external file upload\n\nRequired scopes — bot: `files:write`; user: `files:write`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `alt_txt_too_large` — Description for the image is longer than the limit of 1000 character\n  - `file_upload_size_restricted` — The size of provided file is too large, as the team has restricted uploads of large files.\n  - `file_uploads_disabled` — Team has disabled all file uploads.\n  - `missing_argument` — A required argument was not provided. Typically only occurs when the `length` provided is 0.\n  - `snippet_too_large` — The provided `length` is too large to create a snippet, which are limited to 1MB.\n  - `storage_limit_reached` — File storage limit has been reached. This occurs when free teams have uploaded 5GB of files.\n  - `unknown_snippet_type` — The provided `snippet_type` is not a supported type.\n  - `unknown_subtype` — The provided `subtype` is not a supported type.\n  - `file_type_not_allowed` — The file type is not allowed.\n  - `file_uploads_except_images_disabled` — File uploads except images are disabled.\n\nSee https://docs.slack.dev/reference/methods/files.getUploadURLExternal",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.files#InfoRequest": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "count"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Parameter for pagination. File comments are paginated for a single file. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first \"page\" of the collection of comments. See [pagination](/apis/web-api/pagination) for more details."
+          }
+        },
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "file",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Specify a file by providing its ID."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#InfoResponseFile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#InfoResponseCommentsItem": {
+      "type": "structure",
+      "members": {
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_intro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#InfoResponseCommentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.files#InfoResponseCommentsItem"
+      },
+      "traits": {}
+    },
+    "com.slack.files#InfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "file": {
+          "target": "com.slack.files#InfoResponseFile",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comments": {
+          "target": "com.slack.files#InfoResponseCommentsList"
+        },
+        "content": {
+          "target": "smithy.api#String"
+        },
+        "content_html": {
+          "target": "smithy.api#Document"
+        },
+        "content_highlight_html": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#Info": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#InfoRequest"
+      },
+      "output": {
+        "target": "com.slack.files#InfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/files.info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets information about a file.\n\nRequired scopes — bot: `files:read`; user: `files:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `access_denied` — Unable to access the file (slack connect)\n  - `file_deleted` — The requested file has been deleted\n  - `file_not_found` — Value passed for `file` was invalid\n  - `canvas_globally_disabled` — Canvas is disabled for this team\n  - `canvas_disabled_user_team` — Canvas is disabled on user's team for connected Channels\n  - `canvas_disabled_file_team` — Canvas is disabled on file's team\n  - `not_visible` — Do not have permission to view the file\n  - `template_not_visible` — Do not have permissions to view this template\n  - `slack_connect_canvas_sharing_blocked` — Admin has disabled sharing of Canvas links in all Slack Connect communications\n\nSee https://docs.slack.dev/reference/methods/files.info"
+      }
+    },
+    "com.slack.files#ListRequestCount": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Integer"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#ListRequestPage": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Integer"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#ListRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "channel",
+            "smithy.api#documentation": "Filter files appearing in a specific channel, indicated by its ID."
+          }
+        },
+        "count": {
+          "target": "com.slack.files#ListRequestCount",
+          "traits": {
+            "smithy.api#httpQuery": "count"
+          }
+        },
+        "page": {
+          "target": "com.slack.files#ListRequestPage",
+          "traits": {
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "show_files_hidden_by_limit": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "show_files_hidden_by_limit",
+            "smithy.api#documentation": "Show truncated file info for files hidden due to being too old, and the team who owns the file being over the file limit."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "encoded team id to list files in, required if org token is used"
+          }
+        },
+        "ts_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "ts_from",
+            "smithy.api#documentation": "Filter files created after this timestamp (inclusive)."
+          }
+        },
+        "ts_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "ts_to",
+            "smithy.api#documentation": "Filter files created before this timestamp (inclusive)."
+          }
+        },
+        "types": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "types",
+            "smithy.api#documentation": "Filter files by type ([see below](#file_types)). You can pass multiple values in the types argument, like `types=spaces,snippets`.The default value is `all`, which does not filter the list."
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user",
+            "smithy.api#documentation": "Filter files created by a single user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#ListResponseFilesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#Integer"
+        },
+        "user": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#ListResponseFilesList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.files#ListResponseFilesItem"
+      },
+      "traits": {}
+    },
+    "com.slack.files#ListResponsePaging": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pages": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#ListResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "files": {
+          "target": "com.slack.files#ListResponseFilesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "paging": {
+          "target": "com.slack.files#ListResponsePaging"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#ListRequest"
+      },
+      "output": {
+        "target": "com.slack.files#ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/files.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "List files for a team, in a channel, or from a user with applied filters.\n\nRequired scopes — bot: `files:read`; user: `files:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — A required argument is missing.\n  - `slack_connect_canvas_sharing_blocked` — Admin has disabled sharing of Canvas links in all Slack Connect communications\n  - `user_not_found` — Value passed for `user` was invalid\n  - `unknown_type` — Value passed for `types` was invalid\n\nSee https://docs.slack.dev/reference/methods/files.list"
+      }
+    },
+    "com.slack.files#RemoteAddRequest": {
+      "type": "structure",
+      "members": {
+        "external_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creator defined GUID for the file.",
+            "smithy.api#required": {}
+          }
+        },
+        "external_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of the remote file.",
+            "smithy.api#required": {}
+          }
+        },
+        "filetype": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "type of file"
+          }
+        },
+        "indexable_file_contents": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "A text file (txt, pdf, doc, etc.) containing textual search terms that are used to improve discovery of the remote file."
+          }
+        },
+        "preview_image": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Preview of the document via `multipart/form-data`."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the file being shared.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#RemoteAddResponseFileSharesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.files#RemoteAddResponseFileChannelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.files#RemoteAddResponseFileGroupsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.files#RemoteAddResponseFileImsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.files#RemoteAddResponseFile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "created": {
+          "target": "smithy.api#Integer"
+        },
+        "timestamp": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "title": {
+          "target": "smithy.api#String"
+        },
+        "mimetype": {
+          "target": "smithy.api#String"
+        },
+        "filetype": {
+          "target": "smithy.api#String"
+        },
+        "pretty_type": {
+          "target": "smithy.api#String"
+        },
+        "user": {
+          "target": "smithy.api#String"
+        },
+        "editable": {
+          "target": "smithy.api#Boolean"
+        },
+        "size": {
+          "target": "smithy.api#Integer"
+        },
+        "mode": {
+          "target": "smithy.api#String"
+        },
+        "is_external": {
+          "target": "smithy.api#Boolean"
+        },
+        "external_type": {
+          "target": "smithy.api#String"
+        },
+        "is_public": {
+          "target": "smithy.api#Boolean"
+        },
+        "public_url_shared": {
+          "target": "smithy.api#Boolean"
+        },
+        "display_as_bot": {
+          "target": "smithy.api#Boolean"
+        },
+        "username": {
+          "target": "smithy.api#String"
+        },
+        "url_private": {
+          "target": "smithy.api#String"
+        },
+        "permalink": {
+          "target": "smithy.api#String"
+        },
+        "comments_count": {
+          "target": "smithy.api#Integer"
+        },
+        "is_starred": {
+          "target": "smithy.api#Boolean"
+        },
+        "shares": {
+          "target": "com.slack.files#RemoteAddResponseFileSharesMap"
+        },
+        "channels": {
+          "target": "com.slack.files#RemoteAddResponseFileChannelsList"
+        },
+        "groups": {
+          "target": "com.slack.files#RemoteAddResponseFileGroupsList"
+        },
+        "ims": {
+          "target": "com.slack.files#RemoteAddResponseFileImsList"
+        },
+        "external_id": {
+          "target": "smithy.api#String"
+        },
+        "external_url": {
+          "target": "smithy.api#String"
+        },
+        "has_rich_preview": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#RemoteAddResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "file": {
+          "target": "com.slack.files#RemoteAddResponseFile",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#RemoteAdd": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#RemoteAddRequest"
+      },
+      "output": {
+        "target": "com.slack.files#RemoteAddResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/files.remote.add",
+          "code": 200
+        },
+        "smithy.api#documentation": "Adds a file from a remote service\n\nRequired scopes — bot: `remote_files:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_image` — The uploaded image could not be processed - try passing a JPG or PNG\n  - `bad_title` — The title provided is too long.\n  - `bot_user_required` — bot user token is required\n  - `invalid_external_id` — The external_id provided is too long.\n  - `too_large` — The uploaded image had excessive dimensions\n\nSee https://docs.slack.dev/reference/methods/files.remote.add",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.files#RemoteInfoRequest": {
+      "type": "structure",
+      "members": {
+        "external_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "external_id",
+            "smithy.api#documentation": "Creator defined GUID for the file."
+          }
+        },
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "file",
+            "smithy.api#documentation": "Specify a file by providing its ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#RemoteInfoResponseFile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#Integer"
+        },
+        "user": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#RemoteInfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "file": {
+          "target": "com.slack.files#RemoteInfoResponseFile",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#RemoteInfo": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#RemoteInfoRequest"
+      },
+      "output": {
+        "target": "com.slack.files#RemoteInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/files.remote.info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve information about a remote file added to Slack\n\nRequired scopes — bot: `remote_files:read`; user: `remote_files:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `file_not_found` — Value passed for `file` or `external_id` was invalid\n  - `invalid_args` — Invalid arguments passed to endpoint\n  - `no_bot_user_for_app` — Cannot call the Remote Files endpoints unless app has associated bot user\n  - `too_many_ids` — The request specified both an external_id and a file, only one may be specified\n\nSee https://docs.slack.dev/reference/methods/files.remote.info"
+      }
+    },
+    "com.slack.files#RemoteListRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "channel",
+            "smithy.api#documentation": "Filter files appearing in a specific channel, indicated by its ID."
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more detail."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The maximum number of items to return."
+          }
+        },
+        "ts_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "ts_from",
+            "smithy.api#documentation": "Filter files created after this timestamp (inclusive)."
+          }
+        },
+        "ts_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "ts_to",
+            "smithy.api#documentation": "Filter files created before this timestamp (inclusive)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#RemoteListResponseFilesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#RemoteListResponseFilesList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.files#RemoteListResponseFilesItem"
+      },
+      "traits": {}
+    },
+    "com.slack.files#RemoteListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#RemoteListResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "files": {
+          "target": "com.slack.files#RemoteListResponseFilesList"
+        },
+        "response_metadata": {
+          "target": "com.slack.files#RemoteListResponseResponseMetadata"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#RemoteList": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#RemoteListRequest"
+      },
+      "output": {
+        "target": "com.slack.files#RemoteListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/files.remote.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve information about a remote file added to Slack\n\nRequired scopes — bot: `remote_files:read`; user: `remote_files:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `no_bot_user_for_app` — Cannot call the Remote Files endpoints unless app has associated bot user\n\nSee https://docs.slack.dev/reference/methods/files.remote.list"
+      }
+    },
+    "com.slack.files#RemoteRemoveRequest": {
+      "type": "structure",
+      "members": {
+        "external_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creator defined GUID for the file."
+          }
+        },
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specify a file by providing its ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#RemoteRemoveResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#RemoteRemove": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#RemoteRemoveRequest"
+      },
+      "output": {
+        "target": "com.slack.files#RemoteRemoveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/files.remote.remove",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a remote file.\n\nRequired scopes — bot: `remote_files:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bot_user_required` — bot user token is required\n  - `file_not_found` — Value passed for `file` or `external_id` was invalid\n  - `file_under_review` — File passed is tombstoned for DLP review\n  - `invalid_args` — Invalid arguments passed to endpoint\n  - `too_many_ids` — The request specified both an external_id and a file, only one may be specified\n\nSee https://docs.slack.dev/reference/methods/files.remote.remove",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.files#RemoteShareRequest": {
+      "type": "structure",
+      "members": {
+        "channels": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "channels",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Comma-separated list of channel IDs where the file will be shared."
+          }
+        },
+        "external_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "external_id",
+            "smithy.api#documentation": "The globally unique identifier (GUID) for the file, as set by the app registering the file with Slack.  Either this field or `file` or both are required."
+          }
+        },
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "file",
+            "smithy.api#documentation": "Specify a file registered with Slack by providing its ID. Either this field or `external_id` or both are required."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#RemoteShareResponseFile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#RemoteShareResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "file": {
+          "target": "com.slack.files#RemoteShareResponseFile"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#RemoteShare": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#RemoteShareRequest"
+      },
+      "output": {
+        "target": "com.slack.files#RemoteShareResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/files.remote.share",
+          "code": 200
+        },
+        "smithy.api#documentation": "Share a remote file into a channel.\n\nRequired scopes — bot: `remote_files:share`; user: `remote_files:share`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — At least one of the values passed for `channels` was invalid.\n  - `file_not_found` — No file with the requested ID found.\n  - `invalid_args` — Invalid arguments passed to endpoint\n  - `no_bot_user_for_app` — Cannot call the Remote Files endpoints unless app has associated bot user\n  - `not_in_channel` — Authenticated user is not in at least one of the the provided channels.\n\nSee https://docs.slack.dev/reference/methods/files.remote.share"
+      }
+    },
+    "com.slack.files#RemoteUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "external_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creator defined GUID for the file."
+          }
+        },
+        "external_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of the remote file."
+          }
+        },
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specify a file by providing its ID."
+          }
+        },
+        "filetype": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "type of file"
+          }
+        },
+        "indexable_file_contents": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "File containing contents that can be used to improve searchability for the remote file."
+          }
+        },
+        "preview_image": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Preview of the document via `multipart/form-data`."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the file being shared."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#RemoteUpdateResponseFile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#RemoteUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "file": {
+          "target": "com.slack.files#RemoteUpdateResponseFile"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#RemoteUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#RemoteUpdateRequest"
+      },
+      "output": {
+        "target": "com.slack.files#RemoteUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/files.remote.update",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates an existing remote file.\n\nRequired scopes — bot: `remote_files:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_image` — The uploaded image could not be processed - try passing a JPG or PNG\n  - `bot_user_required` — bot user token is required\n  - `failed_to_unshare` — The file was either not found or it has been unshared already.\n  - `file_not_found` — Could not find the file to update.\n  - `invalid_title` — invalid title provided\n  - `invalid_type` — invalid type provided\n  - `invalid_url` — invalid url provided\n  - `too_large` — The uploaded image had excessive dimensions\n\nSee https://docs.slack.dev/reference/methods/files.remote.update",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.files#RevokePublicURLRequest": {
+      "type": "structure",
+      "members": {
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File to revoke",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#RevokePublicURLResponseFile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "created": {
+          "target": "smithy.api#Integer"
+        },
+        "user": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#RevokePublicURLResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "file": {
+          "target": "com.slack.files#RevokePublicURLResponseFile",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#RevokePublicURL": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#RevokePublicURLRequest"
+      },
+      "output": {
+        "target": "com.slack.files#RevokePublicURLResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/files.revokePublicURL",
+          "code": 200
+        },
+        "smithy.api#documentation": "Revokes public/external sharing access for a file\n\nRequired scopes — bot: `files:write`; user: `files:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `file_not_found` — Value passed for `file` was invalid\n\nSee https://docs.slack.dev/reference/methods/files.revokePublicURL"
+      }
+    },
+    "com.slack.files#SharedPublicURLRequest": {
+      "type": "structure",
+      "members": {
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File to share",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#SharedPublicURLResponseFile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "created": {
+          "target": "smithy.api#Integer"
+        },
+        "user": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#SharedPublicURLResponseCommentItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.files#SharedPublicURLResponseCommentList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.files#SharedPublicURLResponseCommentItemMap"
+      },
+      "traits": {}
+    },
+    "com.slack.files#SharedPublicURLResponsePagingMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.files#SharedPublicURLResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "file": {
+          "target": "com.slack.files#SharedPublicURLResponseFile",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "com.slack.files#SharedPublicURLResponseCommentList"
+        },
+        "paging": {
+          "target": "com.slack.files#SharedPublicURLResponsePagingMap"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#SharedPublicURL": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#SharedPublicURLRequest"
+      },
+      "output": {
+        "target": "com.slack.files#SharedPublicURLResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/files.sharedPublicURL",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enables a file for public/external sharing.\n\nRequired scopes — user: `files:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `file_not_found` — Value passed for `file` was invalid\n  - `not_allowed` — Public sharing has been disabled for this team. You may see this error if you are creating an external link from a free or trial workspace. You can either upgrade to a [Paid Plan](https://app.slack.com/plans) or use `file.list` to get a `url_private_download` link, download the file with an application, and re-upload it somewhere it can be shared with users who are not members of your workspace. Be sure to pass the Slack [Bot token](/authentication/tokens#bot) to the request on the headers file when calling `url_private_download`.\n  - `public_video_not_allowed` — Public sharing of videos is not available. A `Free` instance of Slack may encounter this error because free teams don't have the ability to share video files publicly.\n  - `public_file_type_not_allowed` — Public sharing has been restricted for this file type.\n\nSee https://docs.slack.dev/reference/methods/files.sharedPublicURL"
+      }
+    },
+    "com.slack.files#UploadRequest": {
+      "type": "structure",
+      "members": {
+        "channels": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Comma-separated list of channel names or IDs where the file will be shared."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File contents via a POST variable. If omitting this parameter, you must provide a `file`."
+          }
+        },
+        "file": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "File contents via `multipart/form-data`. If omitting this parameter, you must submit `content`."
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filename of file."
+          }
+        },
+        "filetype": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A [file type](/reference/objects/file-object#file_types) identifier."
+          }
+        },
+        "initial_comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The message text introducing the file in specified `channels`."
+          }
+        },
+        "thread_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provide another message's `ts` value to upload this file as a reply. Never use a reply's `ts` value; use its parent instead."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.files#UploadResponseFile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "created": {
+          "target": "smithy.api#Integer"
+        },
+        "user": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.files#UploadResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "file": {
+          "target": "com.slack.files#UploadResponseFile",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.files#Upload": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.files#UploadRequest"
+      },
+      "output": {
+        "target": "com.slack.files#UploadResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/files.upload",
+          "code": 200
+        },
+        "smithy.api#documentation": "Uploads or creates a file.\n\nRequired scopes — bot: `files:write`; user: `files:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `blocked_file_type` — Admin has disabled uploading this type of file\n  - `channel_not_found` — At least one of the values passed for `channels` was invalid.\n  - `invalid_channel` — One or more channels supplied are invalid\n  - `malware_detected` — This file may contain a virus or other malware and can't be uploaded to Slack\n  - `not_in_channel` — Authenticated user is not in the channel.\n  - `post_contents_too_large` — File content is larger than 130kb.\n  - `posting_to_general_channel_denied` — An admin has restricted posting to the #general channel.\n  - `slack_connect_blocked_file_type` — File uploads with certain types are blocked in all Slack Connect communications\n  - `slack_connect_clip_sharing_blocked` — Admin has disabled Clip sharing in Slack Connect channels\n  - `slack_connect_file_upload_sharing_blocked` — Admin has disabled File uploads in all Slack Connect communications\n  - `invalid_thread_ts` — Value passed to thread_ts was invalid\n  - `method_deprecated` — This API is deprecated. Please refer to https://docs.slack.dev/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay\n\nSee https://docs.slack.dev/reference/methods/files.upload",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.files#Files": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.files#CommentsDelete"
+        },
+        {
+          "target": "com.slack.files#CompleteUploadExternal"
+        },
+        {
+          "target": "com.slack.files#Delete"
+        },
+        {
+          "target": "com.slack.files#GetUploadURLExternal"
+        },
+        {
+          "target": "com.slack.files#Info"
+        },
+        {
+          "target": "com.slack.files#List"
+        },
+        {
+          "target": "com.slack.files#RemoteAdd"
+        },
+        {
+          "target": "com.slack.files#RemoteInfo"
+        },
+        {
+          "target": "com.slack.files#RemoteList"
+        },
+        {
+          "target": "com.slack.files#RemoteRemove"
+        },
+        {
+          "target": "com.slack.files#RemoteShare"
+        },
+        {
+          "target": "com.slack.files#RemoteUpdate"
+        },
+        {
+          "target": "com.slack.files#RevokePublicURL"
+        },
+        {
+          "target": "com.slack.files#SharedPublicURL"
+        },
+        {
+          "target": "com.slack.files#Upload"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — files"
+      }
+    }
+  }
+}

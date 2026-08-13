@@ -1,0 +1,95 @@
+{
+  "desc": "Creates a reminder.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "reminders:write"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "json_input_supported": true,
+  "user_scope_only": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "text": {
+        "type": "string",
+        "desc": "The content of the reminder",
+        "example": "eat a banana",
+        "minLength": 1
+      },
+      "time": {
+        "type": "string",
+        "desc": "Can also take a type of integer. When this reminder should happen: the Unix timestamp (up to five years from now), the number of seconds until the reminder (if within 24 hours), or a natural language description (Ex. \"in 15 minutes,\" or \"every Thursday\")",
+        "example": "1602288000",
+        "minLength": 1
+      },
+      "user": {
+        "type": "string",
+        "subtype": "user",
+        "desc": "No longer supported - reminders cannot be set for other users. Previously, was the user who would receive the reminder.",
+        "example": "U18888888"
+      },
+      "team_id": {
+        "type": "string",
+        "subtype": "team",
+        "desc": "Encoded team id, required if org token is used"
+      },
+      "recurrence": {
+        "type": "object",
+        "desc": "Specify the repeating behavior of a reminder. Available options: `daily`, `weekly`, `monthly`, or `yearly`. If `weekly`, may further specify the days of the week.",
+        "example": "{ \"frequency\": \"weekly\", \"weekdays\": [\"monday\", \"wednesday\", \"friday\"] }",
+        "schema": ""
+      }
+    },
+    "required": [
+      "token",
+      "text",
+      "time"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "reminder"
+    ],
+    "properties": {
+      "reminder": {
+        "schema": "reminder"
+      }
+    }
+  },
+  "errors": {
+    "cannot_add_bot": {
+      "desc": "Reminders can't be sent to bots."
+    },
+    "cannot_add_others": {
+      "desc": "Guests can't set reminders for other team members."
+    },
+    "cannot_add_others_recurring": {
+      "desc": "Recurring reminders can't be set for other team members."
+    },
+    "cannot_add_profile_only_user": {
+      "desc": "Reminders can't be sent to profile only users."
+    },
+    "cannot_add_slackbot": {
+      "desc": "Reminders can't be sent to Slackbot."
+    },
+    "cannot_parse": {
+      "desc": "The phrasing of the timing for this reminder is unclear. You must include a complete time description. Some examples that work: `1458678068`, `20`, `in 5 minutes`, `tomorrow`, `at 3:30pm`, `on Tuesday`, or `next week`."
+    },
+    "missing_argument": {
+      "desc": "An argument is missing."
+    },
+    "user_not_found": {
+      "desc": "That user can't be found."
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "desc": "Deny a workspace invite request.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.invites:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "invite_request_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "ID for the workspace where the invite request was made.",
+        "type": "string"
+      },
+      "invite_request_id": {
+        "desc": "ID of the request to invite.",
+        "type": "string",
+        "example": "Ir1234"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "already_processed": {
+      "desc": "The `invite_request_id` passed has already been approved or denied."
+    },
+    "feature_not_enabled": {
+      "desc": "The Invite Request Admin APIs feature is not enabled"
+    },
+    "invalid_request": {
+      "desc": "The `invite_request_id` passed is invalid."
+    },
+    "missing_scope": {
+      "desc": "This token doesn't have the scope required."
+    },
+    "not_an_admin": {
+      "desc": "This token doesn't have admin privileges."
+    },
+    "team_not_found": {
+      "desc": "The `team_id` specified wasn't found."
+    }
+  }
+}

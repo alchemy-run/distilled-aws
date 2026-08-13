@@ -1,0 +1,311 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.slack.rtm#ConnectRequest": {
+      "type": "structure",
+      "members": {
+        "batch_presence_aware": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "batch_presence_aware",
+            "smithy.api#documentation": "Batch presence deliveries via subscription. Enabling changes the shape of `presence_change` events. See [batch presence](/apis/web-api/user-presence-and-status#batching)."
+          }
+        },
+        "presence_sub": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "presence_sub",
+            "smithy.api#documentation": "Only deliver presence events when requested by subscription. See [presence subscriptions](/apis/web-api/user-presence-and-status#subscriptions)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.rtm#ConnectResponseSelf": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.rtm#ConnectResponseTeam": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "enterprise_id": {
+          "target": "smithy.api#String"
+        },
+        "enterprise_name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.rtm#ConnectResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "self": {
+          "target": "com.slack.rtm#ConnectResponseSelf",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "team": {
+          "target": "com.slack.rtm#ConnectResponseTeam",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.rtm#Connect": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.rtm#ConnectRequest"
+      },
+      "output": {
+        "target": "com.slack.rtm#ConnectResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/rtm.connect",
+          "code": 200
+        },
+        "smithy.api#documentation": "Starts a Real Time Messaging session.\n\nRate limit tier: 1\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `migration_in_progress` — Team is being migrated between servers. See [the `team_migration_started` event documentation](/reference/events/team_migration_started) for details.\n\nSee https://docs.slack.dev/reference/methods/rtm.connect"
+      }
+    },
+    "com.slack.rtm#StartRequest": {
+      "type": "structure",
+      "members": {
+        "simple_latest": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "simple_latest",
+            "smithy.api#documentation": "Return timestamp only for latest message object of each channel (improves performance)."
+          }
+        },
+        "no_unreads": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "no_unreads",
+            "smithy.api#documentation": "Skip unread counts for each channel (improves performance)."
+          }
+        },
+        "mpim_aware": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "mpim_aware",
+            "smithy.api#documentation": "Returns MPIMs to the client in the API response."
+          }
+        },
+        "presence_sub": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "presence_sub",
+            "smithy.api#documentation": "Only deliver presence events when requested by subscription. See [presence subscriptions](/apis/web-api/user-presence-and-status#subscriptions)."
+          }
+        },
+        "batch_presence_aware": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "batch_presence_aware",
+            "smithy.api#documentation": "Batch presence deliveries via subscription. Enabling changes the shape of `presence_change` events. See [batch presence](/apis/web-api/user-presence-and-status#batching)."
+          }
+        },
+        "no_latest": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "no_latest",
+            "smithy.api#documentation": "Exclude latest timestamps for channels, groups, mpims, and ims. Automatically sets `no_unreads` to `1`"
+          }
+        },
+        "include_locale": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_locale",
+            "smithy.api#documentation": "Set this to `true` to receive the locale for users and channels. Defaults to `false`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.rtm#StartResponseSelf": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.rtm#StartResponseTeam": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "enterprise_id": {
+          "target": "smithy.api#String"
+        },
+        "enterprise_name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.rtm#StartResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "self": {
+          "target": "com.slack.rtm#StartResponseSelf",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "team": {
+          "target": "com.slack.rtm#StartResponseTeam",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.rtm#Start": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.rtm#StartRequest"
+      },
+      "output": {
+        "target": "com.slack.rtm#StartResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/rtm.start",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deprecated: Starts a Real Time Messaging session. Use rtm.connect instead.\n\nRate limit tier: 1\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `method_deprecated` — `rtm.start` is deprecated. Please use `rtm.connect` instead of `rtm.start`. Read https://docs.slack.dev/changelog/2021-10-rtm-start-to-stop for more info.\n  - `migration_in_progress` — Workspace is being migrated between servers. See [the `team_migration_started` event documentation](/reference/events/team_migration_started) for details.\n  - `rtm_connect_required` — `rtm.start` is deprecated. Please use `rtm.connect` instead of `rtm.start`. Read https://docs.slack.dev/changelog/2021-10-rtm-start-to-stop for more info.\n\nSee https://docs.slack.dev/reference/methods/rtm.start"
+      }
+    },
+    "com.slack.rtm#Rtm": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.rtm#Connect"
+        },
+        {
+          "target": "com.slack.rtm#Start"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — rtm"
+      }
+    }
+  }
+}

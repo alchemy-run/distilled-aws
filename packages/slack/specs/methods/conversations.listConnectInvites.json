@@ -1,0 +1,69 @@
+{
+  "desc": "Lists shared channel invites that have been generated or received but have not been approved by all parties",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "conversations.connect:manage"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t1",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "type": "string",
+        "subtype": "team",
+        "desc": "Encoded team id for the workspace to retrieve invites for, required if org token is used"
+      },
+      "count": {
+        "default": 100,
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 500,
+        "desc": "Maximum number of invites to return"
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "Set to `next_cursor` returned by previous call to list items in subsequent page",
+        "example": "5c3e53d5"
+      }
+    }
+  },
+  "errors": {
+    "invalid_arguments": {
+      "desc": "An invalid argument was supplied to the method."
+    },
+    "restricted_action": {
+      "desc": "A team preference prevents the authenticated user from viewing shared channel invites."
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "invites"
+    ],
+    "properties": {
+      "invites": {
+        "type": "array",
+        "minItems": 0,
+        "items": {
+          "schema": "connect-invite"
+        }
+      },
+      "response_metadata": {
+        "schema": "response_metadata"
+      }
+    }
+  }
+}

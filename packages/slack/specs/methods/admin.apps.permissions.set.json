@@ -1,0 +1,103 @@
+{
+  "desc": "Set the permission type for who can access an app",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.apps:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "app_id",
+      "permission_type"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "app_id": {
+        "type": "string",
+        "desc": "Encoded ID of the app",
+        "example": "A0000000001"
+      },
+      "permission_type": {
+        "desc": "The type of permission that defines who can access the app",
+        "type": "string",
+        "enum": [
+          "everyone",
+          "named_entities",
+          "no_one"
+        ]
+      },
+      "user_ids": {
+        "type": "array",
+        "desc": "List of user IDs to allow for named_entities visibility",
+        "example": "['U00000001', 'U00000002', 'U00000003']",
+        "items": {
+          "schema": "user_id"
+        },
+        "maxItems": 200,
+        "uniqueItems": true
+      },
+      "usergroup_ids": {
+        "type": "array",
+        "desc": "List of encoded usergroup IDs",
+        "example": "S00000001,S00000002",
+        "items": {
+          "schema": "subteam_id"
+        }
+      }
+    }
+  },
+  "output": {
+    "schema": "app_acl"
+  },
+  "errors": {
+    "invalid_auth": {
+      "desc": "Invalid authorization token"
+    },
+    "access_denied": {
+      "desc": "This actor does not have access to the permissions on this resource."
+    },
+    "invalid_permission_type": {
+      "desc": "This app requires permission_type to be set as named_entities before adding users."
+    },
+    "named_entities_cannot_be_empty": {
+      "desc": "Must pass at least one valid named entity."
+    },
+    "no_valid_named_entities": {
+      "desc": "None of the provided named entities were valid"
+    },
+    "too_many_named_entities": {
+      "desc": "Too many named_entities passed into the app permissions setting."
+    },
+    "app_not_found": {
+      "desc": "This app does not exist."
+    },
+    "not_an_enterprise": {
+      "desc": "This feature is only available on Enterprise Grid plans."
+    },
+    "user_not_found": {
+      "desc": "This actor does not have access to at least one valid named entity."
+    },
+    "usergroup_not_found": {
+      "desc": "The usergroup is not valid."
+    },
+    "invalid_channel_restriction_mode": {
+      "desc": "The channel_restriction_mode value is not valid."
+    },
+    "channel_ids_required": {
+      "desc": "channel_ids is required when channel_restriction_mode is specific_channels or all_channels_except."
+    },
+    "channel_not_found": {
+      "desc": "One or more channel IDs are not valid."
+    }
+  }
+}

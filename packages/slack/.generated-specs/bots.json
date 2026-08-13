@@ -1,0 +1,232 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.slack.bots#InfoRequest": {
+      "type": "structure",
+      "members": {
+        "bot": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "bot",
+            "smithy.api#documentation": "Bot user to get info on"
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "encoded team id or enterprise id where the bot exists, required if org token is used"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.bots#InfoResponseBotsItemIcons": {
+      "type": "structure",
+      "members": {
+        "emoji": {
+          "target": "smithy.api#String"
+        },
+        "image_36": {
+          "target": "smithy.api#String"
+        },
+        "image_48": {
+          "target": "smithy.api#String"
+        },
+        "image_64": {
+          "target": "smithy.api#String"
+        },
+        "image_72": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.bots#InfoResponseBotsItem": {
+      "type": "structure",
+      "members": {
+        "updated": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "icons": {
+          "target": "com.slack.bots#InfoResponseBotsItemIcons"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_workflow_bot": {
+          "target": "smithy.api#Boolean"
+        },
+        "is_connector_bot": {
+          "target": "smithy.api#Boolean"
+        },
+        "is_legacy_workflow_bot": {
+          "target": "smithy.api#Boolean"
+        },
+        "user_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.bots#InfoResponseBotsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.bots#InfoResponseBotsItem"
+      },
+      "traits": {}
+    },
+    "com.slack.bots#InfoResponseBotIcons": {
+      "type": "structure",
+      "members": {
+        "emoji": {
+          "target": "smithy.api#String"
+        },
+        "image_36": {
+          "target": "smithy.api#String"
+        },
+        "image_48": {
+          "target": "smithy.api#String"
+        },
+        "image_64": {
+          "target": "smithy.api#String"
+        },
+        "image_72": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.bots#InfoResponseBot": {
+      "type": "structure",
+      "members": {
+        "updated": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user_id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "icons": {
+          "target": "com.slack.bots#InfoResponseBotIcons"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_workflow_bot": {
+          "target": "smithy.api#Boolean"
+        },
+        "is_connector_bot": {
+          "target": "smithy.api#Boolean"
+        },
+        "is_legacy_workflow_bot": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.bots#InfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "bots": {
+          "target": "com.slack.bots#InfoResponseBotsList"
+        },
+        "bot": {
+          "target": "com.slack.bots#InfoResponseBot"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.bots#Info": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.bots#InfoRequest"
+      },
+      "output": {
+        "target": "com.slack.bots#InfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/bots.info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets information about a bot user.\n\nRequired scopes — bot: `users:read`; user: `users:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bot_not_found` — Value passed for `bot` was invalid.\n  - `bots_not_found` — At least one value passed for `bots` was invalid.\n  - `missing_argument` — A required argument is missing.\n  - `team_not_found` — Value passed for `team_id` was invalid.\n\nSee https://docs.slack.dev/reference/methods/bots.info"
+      }
+    },
+    "com.slack.bots#Bots": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.bots#Info"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — bots"
+      }
+    }
+  }
+}

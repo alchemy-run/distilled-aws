@@ -1,0 +1,70 @@
+{
+  "desc": "List all IDP Groups linked to a channel",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.conversations:read"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "schema": "channel"
+      },
+      "team_id": {
+        "desc": "The workspace where the channel exists. This argument is required for channels only tied to one workspace, and optional for channels that are shared across an organization.",
+        "schema": "workspace_id"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok",
+      "group_ids"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      },
+      "group_ids": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "`channel_id` wasn't found."
+    },
+    "feature_not_enabled": {
+      "desc": "Feature not enabled"
+    },
+    "invalid_auth": {
+      "desc": "Token does not belong to enterprise or team id passed in not part of this enterprise"
+    },
+    "invalid_channel": {
+      "desc": "The requested channel couldn’t be linked to an IDP group. It might be a public channel or an externally-shared channel."
+    },
+    "not_an_admin": {
+      "desc": "This token doesn't belong to an Org Admin or Owner."
+    },
+    "team_not_found": {
+      "desc": "`team_id` wasn't found."
+    }
+  }
+}

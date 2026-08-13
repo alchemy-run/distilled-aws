@@ -1,0 +1,68 @@
+{
+  "desc": "Remove bookmark from the channel.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "bookmarks:write"
+    ],
+    "user": [
+      "bookmarks:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "Channel to remove bookmark. Required for public channels.",
+        "type": "string",
+        "subtype": "channel",
+        "required_for_public": true
+      },
+      "bookmark_id": {
+        "desc": "Bookmark to remove. Required for public channels.",
+        "type": "string",
+        "required_for_public": true
+      },
+      "quip_section_id": {
+        "desc": "Quip section ID to unbookmark",
+        "type": "string"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "access_denied": {
+      "desc": "Actor lacks access to the requested resource."
+    },
+    "channel_not_found": {
+      "desc": "Channel cannot be found."
+    },
+    "user_not_found": {
+      "desc": "User cannot be found."
+    },
+    "invalid_bookmark_type": {
+      "desc": "Bookmark type is not valid."
+    },
+    "not_found": {
+      "desc": "Bookmark cannot be found."
+    },
+    "not_implemented": {
+      "desc": "bookmarking not available for the user."
+    },
+    "permission_denied": {
+      "desc": "No permission to perform this operation."
+    }
+  }
+}

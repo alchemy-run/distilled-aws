@@ -1,0 +1,77 @@
+{
+  "desc": "Convert a private channel to a public channel.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "The channel to convert to public.",
+        "example": "C12345",
+        "schema": "channel"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "feature_not_enabled": {
+      "desc": "The feature has not been enabled for this Organization"
+    },
+    "channel_not_found": {
+      "desc": "The channel requested for conversion to public could not be found."
+    },
+    "not_supported": {
+      "desc": "Conversion to public channel is not supported for this channel."
+    },
+    "restricted_action": {
+      "desc": "This user is not able to convert this channel to public."
+    },
+    "missing_scope": {
+      "desc": "This user is either not an owner or the app does not have the correct scope."
+    },
+    "could_not_convert_channel": {
+      "desc": "This channel could not be converted to public."
+    },
+    "not_an_enterprise": {
+      "desc": "Only enterprises can convert channel to public."
+    },
+    "invalid_user": {
+      "desc": "Value passed for `user_id` was not valid"
+    },
+    "external_limited_restriction": {
+      "desc": "away-side SC conversion fails due to being under Limited Access (“external_limited” aka “can only post”)"
+    },
+    "channel_owner_restriction": {
+      "desc": "away-side SC conversion fails due to home-side being private"
+    },
+    "is_idp_managed": {
+      "desc": "The channel cannot be converted because it is IDP Managed"
+    }
+  }
+}

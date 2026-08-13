@@ -1,0 +1,50 @@
+{
+  "desc": "Set the title for the given assistant thread",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "assistant:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id",
+      "thread_ts",
+      "title"
+    ],
+    "properties": {
+      "token": {
+        "desc": "Auth token with which to authenticate the session",
+        "type": "string",
+        "subtype": "auth",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "Channel ID containing the assistant thread.",
+        "subtype": "channel",
+        "schema": "channel"
+      },
+      "thread_ts": {
+        "desc": "Message timestamp of the thread to set suggested prompts for.",
+        "type": "string"
+      },
+      "title": {
+        "desc": "The title to use for the thread.",
+        "type": "string"
+      }
+    }
+  },
+  "output": {},
+  "errors": {
+    "invalid_thread_ts": {
+      "desc": "Thread not found"
+    },
+    "channel_not_found": {
+      "desc": "Error returned when given an invalid channel_id"
+    }
+  }
+}

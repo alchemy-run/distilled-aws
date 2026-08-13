@@ -1,0 +1,86 @@
+{
+  "desc": "Edits an existing item's attributes, or adds a new item if it does not already exist.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "datastore:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "datastore",
+      "item"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "datastore": {
+        "desc": "name of the datastore",
+        "type": "string"
+      },
+      "item": {
+        "desc": "attribute names and values to be updated",
+        "type": "object"
+      },
+      "app_id": {
+        "schema": "app_id"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "datastore": {
+        "desc": "name of the datastore",
+        "type": "string"
+      },
+      "item": {
+        "desc": "attribute names and values of the item, including those updated",
+        "type": "object"
+      }
+    }
+  },
+  "errors": {
+    "invalid_arguments": {
+      "desc": "The request is missing required arguments."
+    },
+    "invalid_datastore": {
+      "desc": "The provided datastore is invalid."
+    },
+    "invalid_auth": {
+      "desc": "Not authorized to create datastore items."
+    },
+    "app_not_hosted": {
+      "desc": "The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps."
+    },
+    "datastore_error": {
+      "desc": "Datastore error"
+    },
+    "access_denied": {
+      "desc": "Not authorized to access the datastore."
+    },
+    "invalid_app_id": {
+      "desc": "The app_id provided is not valid for team and user."
+    },
+    "free_team_not_allowed": {
+      "desc": "Datastore put not allowed on a free team."
+    },
+    "team_quota_exceeded": {
+      "desc": "Total number of requests exceeded team quota."
+    },
+    "datastore_migration_in_progress": {
+      "desc": "The datastore is currently unavailable due to an in progress Enterprise org migration."
+    },
+    "restricted_plan_level": {
+      "desc": "Feature is not available on this team"
+    }
+  }
+}

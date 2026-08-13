@@ -1,0 +1,47 @@
+{
+  "desc": "Remove an emoji across an Enterprise organization",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.teams:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "name"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "name": {
+        "type": "string",
+        "desc": "The name of the emoji to be removed. Colons (`:myemoji:`) around the value are not required, although they may be included."
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "emoji_not_found": {
+      "desc": "Value passed for `name` was invalid."
+    },
+    "failed_to_remove_emoji": {
+      "desc": "Failed to remove the specified emoji."
+    },
+    "failure_removing_emoji": {
+      "desc": "This emoji could not be removed. It might be part of the standard Unicode set or the default Slack package."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by org owners and Admins."
+    }
+  }
+}

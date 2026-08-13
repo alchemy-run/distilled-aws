@@ -1,0 +1,77 @@
+{
+  "desc": "Retrieve information about a remote file added to Slack",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "remote_files:read"
+    ],
+    "user": [
+      "remote_files:read"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "external_id": {
+        "desc": "Creator defined GUID for the file.",
+        "example": "123456",
+        "type": "string"
+      },
+      "file": {
+        "desc": "Specify a file by providing its ID.",
+        "example": "F2147483862",
+        "type": "string",
+        "subtype": "file"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "file"
+    ],
+    "properties": {
+      "file": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "created": {
+            "type": "integer"
+          },
+          "user": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "file_not_found": {
+      "desc": "Value passed for `file` or `external_id` was invalid"
+    },
+    "invalid_args": {
+      "desc": "Invalid arguments passed to endpoint"
+    },
+    "no_bot_user_for_app": {
+      "desc": "Cannot call the Remote Files endpoints unless app has associated bot user"
+    },
+    "too_many_ids": {
+      "desc": "The request specified both an external_id and a file, only one may be specified"
+    }
+  }
+}

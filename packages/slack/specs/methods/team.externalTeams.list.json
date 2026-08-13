@@ -1,0 +1,278 @@
+{
+  "desc": "Returns a list of all the external teams connected and details about the connection.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "conversations.connect:manage",
+      "team:read"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "limit": {
+        "desc": "The maximum number of items to return per page",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 25,
+        "default": 20
+      },
+      "cursor": {
+        "desc": "Paginate through collections of data by setting parameter to the `team_id` attribute returned by a previous request's `response_metadata`. If not provided, the first page of the collection is returned. See [pagination](/apis/web-api/pagination#cursors) for more detail.",
+        "type": "string",
+        "example": "T123ABC456"
+      },
+      "sort_field": {
+        "desc": "Name of the parameter that we are sorting by",
+        "type": "string",
+        "enum": [
+          "team_name",
+          "last_active_timestamp",
+          "connection_status"
+        ],
+        "default": "team_name"
+      },
+      "sort_direction": {
+        "desc": "Direction to sort in asc or desc",
+        "type": "string",
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "default": "asc"
+      },
+      "slack_connect_pref_filter": {
+        "desc": "Filters connected orgs by Slack Connect pref override(s). Value can be: `approved_orgs_only` `allow_sc_file_uploads` `profile_visibility` `away_team_sc_invite_permissions` `accept_sc_invites` `sc_mpdm_to_private` `require_sc_channel_for_sc_dm` `external_awareness_context_bar`",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "approved_orgs_only",
+            "allow_sc_file_uploads",
+            "profile_visibility",
+            "away_team_sc_invite_permissions",
+            "accept_sc_invites",
+            "sc_mpdm_to_private",
+            "require_sc_channel_for_sc_dm",
+            "external_awareness_context_bar",
+            "interact_with_externally_owned_workflows",
+            "external_teams_interact_with_locally_owned_workflows"
+          ]
+        }
+      },
+      "workspace_filter": {
+        "desc": "Shows connected orgs which are connected on a specified encoded workspace ID",
+        "type": "array",
+        "items": {
+          "example": "T013LQM9GM9",
+          "schema": "workspace_id"
+        }
+      },
+      "connection_status_filter": {
+        "type": "string",
+        "desc": "Status of the connected team.",
+        "enum": [
+          "CONNECTED",
+          "DISCONNECTED",
+          "BLOCKED",
+          "IN_REVIEW"
+        ]
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "organizations",
+      "total_count"
+    ],
+    "properties": {
+      "organizations": {
+        "type": "array",
+        "items": {
+          "required": [
+            "team_id",
+            "team_name",
+            "team_domain",
+            "public_channel_count",
+            "private_channel_count",
+            "im_channel_count",
+            "mpim_channel_count",
+            "connected_workspaces",
+            "slack_connect_prefs",
+            "connection_status",
+            "last_active_timestamp",
+            "is_sponsored"
+          ],
+          "type": "object",
+          "properties": {
+            "team_id": {
+              "schema": "workspace_id"
+            },
+            "team_name": {
+              "type": "string",
+              "desc": "Name of the team that is connected"
+            },
+            "team_domain": {
+              "type": "string",
+              "desc": "Domain of the team that is connected"
+            },
+            "public_channel_count": {
+              "type": "integer",
+              "desc": "The number of public channels connected on this team"
+            },
+            "private_channel_count": {
+              "type": "integer",
+              "desc": "The number of private channels connected on this team"
+            },
+            "im_channel_count": {
+              "type": "integer",
+              "desc": "The number of direct messages connected on this team"
+            },
+            "mpim_channel_count": {
+              "type": "integer",
+              "desc": "The number of multi person direct messages connected on this team"
+            },
+            "connected_workspaces": {
+              "type": "array",
+              "items": {
+                "required": [
+                  "workspace_name",
+                  "workspace_id"
+                ],
+                "type": "object",
+                "properties": {
+                  "workspace_id": {
+                    "schema": "workspace_id"
+                  },
+                  "workspace_name": {
+                    "type": "string",
+                    "desc": "Name of the workspace."
+                  }
+                }
+              }
+            },
+            "slack_connect_prefs": {
+              "schema": "pref-details"
+            },
+            "connection_status": {
+              "type": "string",
+              "desc": "Status of the connected team. (CONNECTED / DISCONNECTED / BLOCKED  / IN_REVIEW / DISCONNECTiNG)",
+              "enum": [
+                "CONNECTED",
+                "DISCONNECTED",
+                "BLOCKED",
+                "IN_REVIEW",
+                "DISCONNECTING"
+              ]
+            },
+            "last_active_timestamp": {
+              "type": "integer",
+              "desc": "timestamp of the last time a connected team was active in SC channel"
+            },
+            "is_sponsored": {
+              "type": "boolean",
+              "desc": "True when team is on a free plan. False otherwise."
+            },
+            "canvas": {
+              "type": "object",
+              "required": [
+                "total_count",
+                "ownership_details"
+              ],
+              "properties": {
+                "total_count": {
+                  "type": "integer"
+                },
+                "ownership_details": {
+                  "type": "array",
+                  "items": {
+                    "required": [
+                      "team_id",
+                      "count"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "team_id": {
+                        "type": "string"
+                      },
+                      "count": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "lists": {
+              "type": "object",
+              "required": [
+                "total_count",
+                "ownership_details"
+              ],
+              "properties": {
+                "total_count": {
+                  "type": "integer"
+                },
+                "ownership_details": {
+                  "type": "array",
+                  "items": {
+                    "required": [
+                      "team_id",
+                      "count"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "team_id": {
+                        "type": "string"
+                      },
+                      "count": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "total_count": {
+        "type": "integer"
+      },
+      "response_metadata": {
+        "schema": "response_metadata_new"
+      }
+    }
+  },
+  "errors": {
+    "invalid_arguments": {
+      "desc": "One or more of the API arguments are invalid."
+    },
+    "not_allowed": {
+      "desc": "The user is not allowed to perform the action."
+    },
+    "restricted_action": {
+      "desc": "The user does not have permission to perform the action."
+    },
+    "internal_error": {
+      "desc": "There was an internal error processing this request."
+    },
+    "invalid_workspace_filter": {
+      "desc": "The specified workspace is not valid."
+    },
+    "user_cannot_manage_workspace": {
+      "desc": "The calling user cannot manage the workspace passed in the workspace filter."
+    }
+  }
+}

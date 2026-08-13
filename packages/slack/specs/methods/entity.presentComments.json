@@ -1,0 +1,84 @@
+{
+  "desc": "Provide comments for work objects. Apps call this endpoint to send per-user flexpane comment data to the client.",
+  "http_method": "POST",
+  "scope": "none",
+  "rate_limits": "t3",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "trigger_id",
+      "comments"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "org_app": {
+          "allowed": true,
+          "derive_team_context_from": "token"
+        },
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "comments": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "maxItems": 100,
+        "desc": "Array of comments to present to the user. See the [comment schema](/messaging/work-objects-comments#entity-present-comments-method) for the full list of properties."
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "App supplied cursor used for pagination, will be sent in the next request for comments"
+      },
+      "can_post_comment": {
+        "type": "boolean",
+        "desc": "Indicates whether the user has permissions to post comments"
+      },
+      "trigger_id": {
+        "type": "string",
+        "desc": "A reference to the original user action that initiated the request"
+      },
+      "delete_action_id": {
+        "type": "string",
+        "desc": "The block action id that will be sent when a delete request is initiated for a comment."
+      },
+      "user_auth_required": {
+        "default": "0",
+        "desc": "Set to true (or 1) to indicate that the user must authenticate to see the comments data.",
+        "type": "boolean"
+      },
+      "user_auth_url": {
+        "desc": "A custom URL to which users are directed for authentication if required.",
+        "example": "https://example.com/onboarding?user_id=xxx",
+        "type": "string"
+      },
+      "error": {
+        "schema": "error"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "method_not_found": {
+      "desc": "when the API isn't available to the caller"
+    },
+    "invalid_trigger_id": {
+      "desc": "Trigger id is not valid"
+    },
+    "invalid_app_id": {
+      "desc": "App ID is not a valid format"
+    },
+    "invalid_auth": {
+      "desc": "Invalid token provided"
+    },
+    "user_auth_url_missing": {
+      "desc": "User auth url is required if user_auth_required is true"
+    },
+    "missing_delete_action_id": {
+      "desc": "delete_action_id is required when any comment is marked can_delete"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "desc": "List all User Groups for a team.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "usergroups:read"
+    ],
+    "user": [
+      "usergroups:read"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "include_count": {
+        "desc": "Include the number of users in each User Group.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "include_disabled": {
+        "desc": "Include results for disabled User Groups.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "include_users": {
+        "desc": "Include the list of users for each User Group.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "team_id": {
+        "desc": "The user group's encoded team ID. Required if org token is used.",
+        "subtype": "team",
+        "type": "string",
+        "maxLength": 0,
+        "schema": "workspace_id"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "usergroups"
+    ],
+    "type": "object",
+    "properties": {
+      "usergroups": {
+        "type": "array",
+        "items": {
+          "schema": "subteam"
+        }
+      }
+    }
+  },
+  "errors": {
+    "missing_argument": {
+      "desc": "A required argument is missing."
+    },
+    "plan_upgrade_required": {
+      "desc": "This workspace does not have access to User Groups, as that feature is only available on Standard and above plans."
+    },
+    "invalid_cursor": {
+      "desc": "Value passed for `cursor` was not valid or is no longer valid."
+    },
+    "users_not_found": {
+      "desc": "Cannot find users on subteam."
+    },
+    "invalid_team": {
+      "desc": "Cannot find subteam team."
+    }
+  }
+}

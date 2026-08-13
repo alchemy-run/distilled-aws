@@ -1,0 +1,101 @@
+{
+  "desc": "Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is visible to.",
+  "http_method": "POST",
+  "json_input_supported": true,
+  "scope": {},
+  "rate_limits": "t5",
+  "args": {
+    "type": "object",
+    "required": [
+      "event_context",
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "event_context": {
+        "type": "string"
+      },
+      "cursor": {
+        "type": "string"
+      },
+      "limit": {
+        "type": "integer"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "authorizations"
+    ],
+    "properties": {
+      "cursor_next": {
+        "desc": "The next cursor for use in [pagination](/apis/web-api/pagination). If present, pass this in subsequent calls to get additional results",
+        "type": "string"
+      },
+      "authorizations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "enterprise_id",
+            "team_id",
+            "user_id",
+            "is_bot",
+            "is_enterprise_install"
+          ],
+          "properties": {
+            "enterprise_id": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "team_id": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "user_id": {
+              "type": "string"
+            },
+            "is_bot": {
+              "type": "boolean"
+            },
+            "is_enterprise_install": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "auth_mismatch": {
+      "desc": "The given authorization token is not associated with the app that sent this event."
+    },
+    "internal_error": {
+      "desc": "An unexpected error occurred while finding authorizations for this event."
+    },
+    "invalid_cursor": {
+      "desc": "The `cursor` argument was invalid."
+    },
+    "invalid_event_context": {
+      "desc": "The given `event_context` didn't match an event."
+    }
+  }
+}

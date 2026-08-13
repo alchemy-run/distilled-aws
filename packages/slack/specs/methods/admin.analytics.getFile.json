@@ -1,0 +1,89 @@
+{
+  "desc": "Retrieve analytics data for a given date, presented as a compressed JSON file",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.analytics:read"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "type"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "subtype": "auth",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "date": {
+        "desc": "Date to retrieve the analytics data for, expressed as `YYYY-MM-DD` in UTC. Required unless `metadata_only` is set to true.",
+        "example": "2020-09-01",
+        "schema": "date"
+      },
+      "type": {
+        "desc": "The type of analytics to retrieve. The options are currently limited to `member` (for Enterprise org member analytics) and `public_channel` (for public channel analytics).",
+        "type": "string",
+        "example": "member"
+      },
+      "metadata_only": {
+        "desc": "Retrieve metadata for the `type` of analytics indicated. Can be used only with `type` set to `public_channel` analytics. See [detail below](#metadata_only). Omit the `date` parameter when using this argument.",
+        "type": "boolean",
+        "example": "true",
+        "default": "false"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "data_not_available": {
+      "desc": "The `date` was before the API became available."
+    },
+    "feature_not_available": {
+      "desc": "The user token does not belong to an Enterprise or Business+ team."
+    },
+    "feature_not_enabled": {
+      "desc": "This feature is not enabled on your workspace."
+    },
+    "file_not_found": {
+      "desc": "The analytics data for the `date` specified weren't found."
+    },
+    "file_not_yet_available": {
+      "desc": "The analytics data for the `date` isn't available yet."
+    },
+    "invalid_arguments": {
+      "desc": "Arguments weren't fully provided. For example, the `date` argument wasn't passed."
+    },
+    "invalid_date": {
+      "desc": "The `date` argument was invalid."
+    },
+    "invalid_type": {
+      "desc": "The analytics data for the `type` specified weren't found."
+    },
+    "member_analytics_disabled": {
+      "desc": "Member analytics are disabled for your organization."
+    },
+    "metadata_not_available": {
+      "desc": "Metadata not available for the analytics `type` you provided."
+    },
+    "metadata_only_does_not_support_date": {
+      "desc": "The `metadata_only` field gets the latest metadata file. The `date` field is not supported."
+    },
+    "missing_scope": {
+      "desc": "This token doesn't have the scope required."
+    },
+    "not_an_admin": {
+      "desc": "The user token does not have admin privileges."
+    },
+    "org_level_email_display_disabled": {
+      "desc": "This API is unavailable for organizations with a _'Hide email addresses'_ policy."
+    },
+    "user_cannot_manage_public_channels": {
+      "desc": "The user must have permissions to manage public channels at the Enterprise level."
+    }
+  }
+}

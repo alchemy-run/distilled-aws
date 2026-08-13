@@ -1,0 +1,61 @@
+{
+  "desc": "Revokes public/external sharing access for a file",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "files:write"
+    ],
+    "user": [
+      "files:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "file"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "file": {
+        "desc": "File to revoke",
+        "type": "string",
+        "subtype": "file"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "file"
+    ],
+    "properties": {
+      "file": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "created": {
+            "type": "integer"
+          },
+          "user": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "file_not_found": {
+      "desc": "Value passed for `file` was invalid"
+    }
+  }
+}

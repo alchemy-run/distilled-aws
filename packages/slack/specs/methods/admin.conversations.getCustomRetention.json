@@ -1,0 +1,76 @@
+{
+  "desc": "This API endpoint can be used by any admin to get a conversation's retention policy.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:read"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "The conversation to get the retention policy for.",
+        "example": "C12345678",
+        "type": "string",
+        "schema": "channel"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "is_policy_enabled",
+      "duration_days"
+    ],
+    "properties": {
+      "is_policy_enabled": {
+        "desc": "Is there a policy set on this conversation that overrides the default retention policy.",
+        "type": "boolean"
+      },
+      "duration_days": {
+        "desc": "The message retention duration in days to set for this conversation",
+        "example": "500",
+        "type": "integer"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "Value given for `channel_id` was invalid."
+    },
+    "channel_type_not_supported": {
+      "desc": "Value given for `channel_id` was a #general channel."
+    },
+    "could_not_get_retention": {
+      "desc": "The retention policy could not be retrieved."
+    },
+    "default_org_wide_channel": {
+      "desc": "The channel given is a default org-wide channel."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "not_an_admin": {
+      "desc": "The token provided is not associated with an org admin."
+    },
+    "restricted_action": {
+      "desc": "A team preference prevents the authenticated user from modifying the retention policy of this channel."
+    },
+    "retention_override_not_allowed": {
+      "desc": "The current org retention policy disallows modifying the retention policy of this channel."
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "desc": "Declines a Slack Connect channel invite.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "conversations.connect:manage"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "invite_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "invite_id": {
+        "desc": "ID of the Slack Connect invite to decline. Subscribe to the [`shared_channel_invite_accepted`](/reference/events/shared_channel_invite_accepted) event to receive IDs of Slack Connect channel invites that have been accepted and are awaiting approval.",
+        "schema": "invite_id"
+      },
+      "target_team": {
+        "desc": "The team or enterprise id of the other party involved in the invitation you are declining",
+        "schema": "team_id"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "approval_inactive": {
+      "desc": "This approval is no longer active, it may have expired or been declined."
+    },
+    "approval_not_found": {
+      "desc": "We could not find a Slack Connect approval for the invite provided."
+    },
+    "inactive_invite": {
+      "desc": "This invitation is no longer active, it may have expired or been revoked."
+    },
+    "invite_not_found": {
+      "desc": "We could not find a Slack Connect invite associated with the ID provided."
+    },
+    "missing_target_team": {
+      "desc": "The `target_team` parameter is required for this request."
+    },
+    "not_paid": {
+      "desc": "The workspace is not eligible to use Slack Connect."
+    },
+    "restricted_action": {
+      "desc": "A team preference prevents the authenticated user from declining Slack Connect invites.."
+    }
+  }
+}

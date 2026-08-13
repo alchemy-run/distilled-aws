@@ -1,0 +1,95 @@
+{
+  "desc": "Create a public or private channel-based conversation.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "name",
+      "is_private"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "name": {
+        "desc": "Name of the public or private channel to create.",
+        "example": "mychannel",
+        "type": "string"
+      },
+      "description": {
+        "desc": "Description of the public or private channel to create.",
+        "example": "It's a good channel, Bront.",
+        "type": "string"
+      },
+      "is_private": {
+        "desc": "When `true`, creates a private channel instead of a public channel",
+        "example": "true",
+        "type": "boolean"
+      },
+      "org_wide": {
+        "desc": "When `true`, the channel will be available org-wide. Note: if the channel is not `org_wide=true`, you must specify a `team_id` for this channel",
+        "example": "true",
+        "type": "boolean",
+        "default": "false"
+      },
+      "team_id": {
+        "desc": "The workspace to create the channel in. Note: this argument is required unless you set `org_wide=true`.",
+        "schema": "workspace_id"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      },
+      "channel_id": {
+        "schema": "channel"
+      }
+    }
+  },
+  "errors": {
+    "could_not_create_channel": {
+      "desc": "The channel could not be created."
+    },
+    "feature_not_enabled": {
+      "desc": "The token provided doesn't have access to this method."
+    },
+    "invalid_name": {
+      "desc": "The value passed for `name` was invalid."
+    },
+    "invalid_team": {
+      "desc": "The provided workspace is invalid."
+    },
+    "name_taken": {
+      "desc": "A channel cannot be created with the given name."
+    },
+    "no_local_user_on_team": {
+      "desc": "The workspace provided had no users."
+    },
+    "restricted_action": {
+      "desc": "A workspace preference prevents the authenticated user from creating channels."
+    },
+    "team_id_or_org_required": {
+      "desc": "You must provide a `team_id` or set `org_wide` to `true`."
+    },
+    "team_not_found": {
+      "desc": "No workspace was found for the `team_id` provided."
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "desc": "Returns channels on the given team using the filters.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:read"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "team_ids",
+      "last_message_activity_before"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_ids": {
+        "desc": "Array of team IDs to filter by",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "subtype": "team",
+          "schema": "workspace_id"
+        }
+      },
+      "max_member_count": {
+        "desc": "Filter by *public* channels with member count *equal to or less than* the specified number",
+        "type": "integer",
+        "default": 1,
+        "minimum": 0
+      },
+      "last_message_activity_before": {
+        "desc": "Filter by *public* channels where the most recent message was sent *before* last_message_activity",
+        "type": "integer"
+      },
+      "cursor": {
+        "desc": "Set `cursor` to `next_cursor` returned in the previous call, to fetch the next page.",
+        "type": "string",
+        "default": "*"
+      },
+      "limit": {
+        "desc": "Maximum number of results",
+        "type": "integer",
+        "default": 1000,
+        "minimum": 1,
+        "maximum": 1000
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "channel_ids"
+    ],
+    "properties": {
+      "channel_ids": {
+        "type": "array",
+        "items": {
+          "schema": "channel"
+        }
+      },
+      "response_metadata": {
+        "type": "object",
+        "required": [
+          "next_cursor"
+        ],
+        "properties": {
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "internal_error": {
+      "desc": "Something unexpected happened, try again in a little bit. Sorry for that!"
+    },
+    "feature_not_enabled": {
+      "desc": "The feature is not enabled"
+    },
+    "no_valid_teams": {
+      "desc": "The team_ids argument doesn't contain any valid teams"
+    },
+    "invalid_cursor": {
+      "desc": "Value passed for `cursor` was not valid or is no longer valid."
+    }
+  }
+}

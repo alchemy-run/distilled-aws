@@ -1,0 +1,380 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.slack.openid#ConnectTokenRequestGrantType": {
+      "type": "enum",
+      "members": {
+        "AUTHORIZATION_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "authorization_code"
+          }
+        },
+        "REFRESH_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "refresh_token"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `grant_type` param as described in the OAuth spec."
+      }
+    },
+    "com.slack.openid#ConnectTokenRequest": {
+      "type": "structure",
+      "members": {
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Issued when you created your application."
+          }
+        },
+        "client_secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Issued when you created your application.",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `code` param returned via the OAuth callback."
+          }
+        },
+        "redirect_uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This must match the originally submitted URI (if one was sent)."
+          }
+        },
+        "grant_type": {
+          "target": "com.slack.openid#ConnectTokenRequestGrantType",
+          "traits": {
+            "smithy.api#documentation": "The `grant_type` param as described in the OAuth spec."
+          }
+        },
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `refresh_token` param as described in the OAuth spec.",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "code_verifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "PKCE code verifier (RFC 7636). Required when the authorization request included a `code_challenge`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.openid#ConnectTokenResponseTokenType": {
+      "type": "enum",
+      "members": {
+        "BEARER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Bearer"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.openid#ConnectTokenResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "access_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "token_type": {
+          "target": "com.slack.openid#ConnectTokenResponseTokenType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id_token": {
+          "target": "smithy.api#String"
+        },
+        "state": {
+          "target": "smithy.api#String"
+        },
+        "expires_in": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time until this credential expires, if it expires at all"
+          }
+        },
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Refresh token for this credential",
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.openid#ConnectToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.openid#ConnectTokenRequest"
+      },
+      "output": {
+        "target": "com.slack.openid#ConnectTokenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/openid.connect.token",
+          "code": 200
+        },
+        "smithy.api#documentation": "Exchanges a temporary OAuth verifier code for an access token for Sign in with Slack.\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_client_secret` — The value passed for `client_secret` was invalid.\n  - `bad_redirect_uri` — The value passed for `redirect_uri` did not match the `redirect_uri` in the original request.\n  - `cannot_install_an_org_installed_app` — An org-installed app cannot be installed on a workspace.\n  - `invalid_client` — Client authentication failed (unknown `client_id` or bad `client_secret`).\n  - `invalid_client_id` — The value passed for `client_id` was invalid.\n  - `invalid_code` — The value passed for `code` was invalid.\n  - `invalid_grant` — The authorization code is invalid, expired, revoked, or the PKCE `code_verifier` does not match.\n  - `invalid_grant_type` — The value passed for `grant_type` was invalid.\n  - `invalid_refresh_token` — The given refresh token is invalid.\n  - `invalid_request` — The request is missing a required parameter or includes an invalid parameter value.\n  - `oauth_authorization_url_mismatch` — The OAuth flow was initiated on an incorrect version of the authorization URL. The flow must be initiated via /openid/connect/authorize .\n  - `preview_feature_not_available` — The API method is not yet available on the team.\n  - `unsupported_grant_type` — The `grant_type` is not supported by this endpoint.\n\nSee https://docs.slack.dev/reference/methods/openid.connect.token",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.openid#ConnectUserInfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "sub": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "https___slack_com_user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#jsonName": "https://slack.com/user_id"
+          }
+        },
+        "https___slack_com_team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/team_id"
+          }
+        },
+        "https___slack_com_enterprise_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/enterprise_id"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "email_verified": {
+          "target": "smithy.api#Boolean"
+        },
+        "date_email_verified": {
+          "target": "smithy.api#Integer"
+        },
+        "locale": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "given_name": {
+          "target": "smithy.api#String"
+        },
+        "family_name": {
+          "target": "smithy.api#String"
+        },
+        "picture": {
+          "target": "smithy.api#String"
+        },
+        "https___slack_com_user_image_24": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/user_image_24"
+          }
+        },
+        "https___slack_com_user_image_32": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/user_image_32"
+          }
+        },
+        "https___slack_com_user_image_48": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/user_image_48"
+          }
+        },
+        "https___slack_com_user_image_72": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/user_image_72"
+          }
+        },
+        "https___slack_com_user_image_192": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/user_image_192"
+          }
+        },
+        "https___slack_com_user_image_512": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/user_image_512"
+          }
+        },
+        "https___slack_com_user_image_1024": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/user_image_1024"
+          }
+        },
+        "https___slack_com_team_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/team_name"
+          }
+        },
+        "https___slack_com_team_domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/team_domain"
+          }
+        },
+        "https___slack_com_enterprise_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/enterprise_name"
+          }
+        },
+        "https___slack_com_enterprise_domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/enterprise_domain"
+          }
+        },
+        "https___slack_com_team_image_34": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/team_image_34"
+          }
+        },
+        "https___slack_com_team_image_44": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/team_image_44"
+          }
+        },
+        "https___slack_com_team_image_68": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/team_image_68"
+          }
+        },
+        "https___slack_com_team_image_88": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/team_image_88"
+          }
+        },
+        "https___slack_com_team_image_102": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/team_image_102"
+          }
+        },
+        "https___slack_com_team_image_132": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/team_image_132"
+          }
+        },
+        "https___slack_com_team_image_230": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/team_image_230"
+          }
+        },
+        "https___slack_com_team_image_default": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#jsonName": "https://slack.com/team_image_default"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.openid#ConnectUserInfo": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.slack.openid#ConnectUserInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/openid.connect.userInfo",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the identity of a user who has authorized Sign in with Slack.\n\nRequired scopes — user: `openid`\n\nRate limit tier: 3\n\nSee https://docs.slack.dev/reference/methods/openid.connect.userInfo"
+      }
+    },
+    "com.slack.openid#Openid": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.openid#ConnectToken"
+        },
+        {
+          "target": "com.slack.openid#ConnectUserInfo"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — openid"
+      }
+    }
+  }
+}

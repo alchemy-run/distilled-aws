@@ -1,0 +1,63 @@
+{
+  "desc": "Turns on Do Not Disturb mode for the current user, or changes its duration.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "dnd:write"
+    ]
+  },
+  "json_input_supported": true,
+  "user_scope_only": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "num_minutes"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "num_minutes": {
+        "desc": "This argument is required. Number of minutes, from now, to snooze until.",
+        "example": "60",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "snooze_enabled"
+    ],
+    "type": "object",
+    "properties": {
+      "snooze_endtime": {
+        "type": "integer"
+      },
+      "snooze_enabled": {
+        "type": "boolean"
+      },
+      "snooze_remaining": {
+        "type": "integer"
+      },
+      "snooze_is_indefinite": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "missing_duration": {
+      "desc": "No value provided for `num_minutes`"
+    },
+    "snooze_failed": {
+      "desc": "There was a problem setting the user's Do Not Disturb status"
+    },
+    "too_long": {
+      "desc": "The value for `num_minutes` was too large"
+    }
+  }
+}

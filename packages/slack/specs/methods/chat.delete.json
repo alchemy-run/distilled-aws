@@ -1,0 +1,74 @@
+{
+  "desc": "Deletes a message.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "chat:write"
+    ],
+    "user": [
+      "chat:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "ts",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "as_user": {
+        "desc": "(Legacy) Pass true to delete the message as the authed user with `chat:write:user` scope. Bot users in this context are considered authed users. See [legacy `as_user` parameter](#legacy_as_user) below.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "channel": {
+        "desc": "Channel containing the message to be deleted.",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "ts": {
+        "desc": "Timestamp of the message to be deleted.",
+        "example": "\"1405894322.002768\"",
+        "type": "string",
+        "subtype": "timestamp"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "channel",
+      "ts"
+    ],
+    "properties": {
+      "channel": {
+        "type": "string",
+        "subtype": "channel"
+      },
+      "ts": {
+        "schema": "ts"
+      }
+    }
+  },
+  "errors": {
+    "cant_delete_message": {
+      "desc": "Authenticated user does not have permission to delete this message."
+    },
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "message_not_found": {
+      "desc": "No message exists with the requested timestamp."
+    }
+  }
+}

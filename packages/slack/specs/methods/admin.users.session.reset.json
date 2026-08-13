@@ -1,0 +1,69 @@
+{
+  "desc": "Wipes all valid sessions on all devices for a given user",
+  "http_method": "POST",
+  "json_input_supported": true,
+  "scope": {
+    "user": [
+      "admin.users:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "user_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "user_id": {
+        "desc": "The ID of the user to wipe sessions for",
+        "type": "string",
+        "example": "W12345678"
+      },
+      "mobile_only": {
+        "desc": "Only expire mobile sessions (default: false)",
+        "type": "boolean"
+      },
+      "web_only": {
+        "desc": "Only expire web sessions (default: false)",
+        "type": "boolean"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "cannot_reset_bot": {
+      "desc": "Cannot reset bot users"
+    },
+    "cannot_reset_primary_owner": {
+      "desc": "Only primary owner can reset primary owner's sessions"
+    },
+    "feature_not_enabled": {
+      "desc": "This method is not available for this product level"
+    },
+    "internal_error": {
+      "desc": "There was an internal error processing this request! Please try again."
+    },
+    "invalid_auth": {
+      "desc": "The token doesn't have access to this endpoint"
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by org/compliance team owners and admins"
+    },
+    "unknown_method": {
+      "desc": "This method is currently not available"
+    },
+    "user_not_found": {
+      "desc": "Error fetching user"
+    },
+    "user_session_reset_failed": {
+      "desc": "There was an error starting the session reset. Try again."
+    }
+  }
+}

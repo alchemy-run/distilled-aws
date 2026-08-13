@@ -1,0 +1,80 @@
+{
+  "desc": "Set the posting permissions for a public or private channel.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "prefs",
+      "channel_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "The channel to set the prefs for",
+        "example": "C1234",
+        "type": "string"
+      },
+      "prefs": {
+        "desc": "The prefs for this channel in a stringified JSON format.",
+        "example": "{'who_can_post':'type:admin,user:U1234'}",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "channel_mention_sync_required": {
+      "desc": "If setting channel mention restriction prefs, both mention prefs must be passed and they must be the same value."
+    },
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "channel_type_not_supported": {
+      "desc": "Value given for `channel_id` was a #general channel."
+    },
+    "could_not_set_channel_pref": {
+      "desc": "Setting the preference or permission failed."
+    },
+    "default_org_wide_channel": {
+      "desc": "Returned when you try to modify a default org wide channel."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "invalid_value": {
+      "desc": "Value passed for the preferences are invalid"
+    },
+    "missing_scope": {
+      "desc": "The calling token is not granted the necessary scopes to complete this operation."
+    },
+    "not_an_admin": {
+      "desc": "The token provided is not associated with an org admin."
+    },
+    "restricted_action": {
+      "desc": "A workspace preference prevents the authenticated user from archiving."
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "desc": "Exclude channels from Slack AI in bulk",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.conversations:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_ids",
+      "exclude"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "subtype": "auth",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_ids": {
+        "desc": "An array of channel IDs to exclude from Slack AI.",
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 100,
+        "items": {
+          "schema": "channel"
+        },
+        "example": "[\"C12345\", \"C98765\"]"
+      },
+      "exclude": {
+        "desc": "Whether the channels should be excluded from Slack AI.",
+        "type": "boolean",
+        "example": "true"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "bulk_action_id",
+      "not_added"
+    ],
+    "properties": {
+      "bulk_action_id": {
+        "type": "string"
+      },
+      "not_added": {
+        "desc": "The channel ID and reason it could not be excluded from Slack AI",
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 100,
+        "items": {
+          "type": "object",
+          "required": [
+            "channel_id",
+            "errors"
+          ],
+          "properties": {
+            "channel_id": {
+              "schema": "workspace_id"
+            },
+            "errors": {
+              "desc": "The reason the channel was not added",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "action_already_in_progress": {
+      "desc": "Another bulk action request is currently in progress"
+    },
+    "internal_error": {
+      "desc": "Something unexpected happened, try again in a little bit. Sorry for that!"
+    },
+    "no_valid_channels": {
+      "desc": "All input channels are invalid"
+    },
+    "restricted_action": {
+      "desc": "User does not have permission to perform this action"
+    },
+    "feature_not_enabled": {
+      "desc": "The feature is not enabled"
+    }
+  }
+}

@@ -1,0 +1,1981 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.slack.apps#ActivitiesListRequestSortDirection": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The direction you want the data sorted by (always by timestamp)"
+      }
+    },
+    "com.slack.apps#ActivitiesListRequest": {
+      "type": "structure",
+      "members": {
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the app to get activities from.",
+            "smithy.api#required": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The team who owns this log."
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. See [pagination](/apis/web-api/pagination) for more detail."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of items to return."
+          }
+        },
+        "min_log_level": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The minimum log level of the log events to be returned. Defaults to 'info'. Acceptable values (in order of relative importance from smallest to largest) are ('trace', 'debug', 'info', 'warn', 'error', 'fatal')."
+          }
+        },
+        "log_event_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The event type of log events to be returned."
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The source of log events to be returned. Acceptable values are ('slack', 'developer')."
+          }
+        },
+        "component_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The component type of log events to be returned. Acceptable values are ('events_api', 'workflows', 'functions', 'tables')."
+          }
+        },
+        "component_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The component id of log events to be returned. Will be 'FnXXXXXX' for functions, and 'WfXXXXXX' for workflows"
+          }
+        },
+        "trace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The trace id of log events to be returned."
+          }
+        },
+        "min_date_created": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The earliest timestamp of the log to retrieve (epoch microseconds)."
+          }
+        },
+        "max_date_created": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The latest timestamp of the log to retrieve (epoch microseconds)."
+          }
+        },
+        "sort_direction": {
+          "target": "com.slack.apps#ActivitiesListRequestSortDirection",
+          "traits": {
+            "smithy.api#documentation": "The direction you want the data sorted by (always by timestamp)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#ActivitiesListResponseActivitiesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.apps#ActivitiesListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.apps#ActivitiesListResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "activities": {
+          "target": "com.slack.apps#ActivitiesListResponseActivitiesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.apps#ActivitiesListResponseResponseMetadata"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#ActivitiesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#ActivitiesListRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#ActivitiesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.activities.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get logs for a specified app\n\nRequired scopes — user: `hosting:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — Something went wrong on our end, please try again.\n  - `invalid_app_id` — App ID provided is not valid.\n  - `invalid_app` — App ID provided is not valid for team and user.\n  - `invalid_args` — Required arguments either were not provided or contain invalid values.\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `free_team_not_allowed` — Feature is only available on a paid team.\n  - `restricted_plan_level` — Feature is not available on this team\n\nSee https://docs.slack.dev/reference/methods/apps.activities.list",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.apps#AuthExternalDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the app whose tokens you want to delete"
+          }
+        },
+        "provider_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provider key of the provider whose tokens you want to delete"
+          }
+        },
+        "external_token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the token that you want to delete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#AuthExternalDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#AuthExternalDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#AuthExternalDeleteRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#AuthExternalDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.auth.external.delete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete external auth tokens only on the Slack side\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `unable_to_delete` — There was an error deleting tokens\n  - `providers_not_found` — The provided `provider_key` is invalid\n  - `no_tokens_found` — No tokens found to delete\n  - `method_not_supported` — This API method is not supported\n  - `app_not_found` — The provided `app_id` was not found\n  - `token_not_found` — The token pointed to by the external_token_id input is not found\n  - `invalid_auth` — The token used to invoke this API doesn't have permission to delete the token pointed to by the external_token_id input\n  - `invalid_args` — The arguments provided to this API are invalid\n\nSee https://docs.slack.dev/reference/methods/apps.auth.external.delete"
+      }
+    },
+    "com.slack.apps#AuthExternalGetRequest": {
+      "type": "structure",
+      "members": {
+        "external_token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the token you want to get the token for",
+            "smithy.api#required": {}
+          }
+        },
+        "force_refresh": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always refresh existing token before returning even when the token has not expired"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#AuthExternalGetResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "external_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "token_response_extras": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#AuthExternalGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#AuthExternalGetRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#AuthExternalGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.auth.external.get",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the access token for the provided token ID\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `token_not_found` — No token found for the passed external_token_id\n  - `method_not_supported` — This API method is not supported\n  - `no_refresh_token` — No refresh token found for the passed external_token_id\n  - `access_token_exchange_failed` — There was an error while attempting to exchange or refresh token\n\nSee https://docs.slack.dev/reference/methods/apps.auth.external.get"
+      }
+    },
+    "com.slack.apps#ConnectionsOpenResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to connect to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#ConnectionsOpen": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.slack.apps#ConnectionsOpenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.connections.open",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate a temporary Socket Mode WebSocket URL that your app can connect to in order to receive events and interactive payloads over.\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `forbidden_team` — The authenticated team cannot use this API\n  - `insecure_request` — The method was not called via a `POST` request.\n  - `internal_error` — An unexpected exception with the service has occurred.\n  - `invalid_auth` — The provided [app-level token](/authentication/tokens#app) wasn't valid.\n  - `missing_args` — An [app-level token](/authentication/tokens#app) wasn't provided.\n\nSee https://docs.slack.dev/reference/methods/apps.connections.open"
+      }
+    },
+    "com.slack.apps#DatastoreBulkDeleteRequestIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "IDs of items to be deleted"
+      }
+    },
+    "com.slack.apps#DatastoreBulkDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the datastore",
+            "smithy.api#required": {}
+          }
+        },
+        "ids": {
+          "target": "com.slack.apps#DatastoreBulkDeleteRequestIdsList",
+          "traits": {
+            "smithy.api#documentation": "IDs of items to be deleted",
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#DatastoreBulkDeleteResponseFailedItemsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "attribute names and values of the items that failed to be processed"
+      }
+    },
+    "com.slack.apps#DatastoreBulkDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "failed_items": {
+          "target": "com.slack.apps#DatastoreBulkDeleteResponseFailedItemsList",
+          "traits": {
+            "smithy.api#documentation": "attribute names and values of the items that failed to be processed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#DatastoreBulkDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#DatastoreBulkDeleteRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#DatastoreBulkDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.datastore.bulkDelete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete items from a datastore in bulk\n\nRequired scopes — bot: `datastore:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — The request is missing required arguments.\n  - `invalid_datastore` — The provided datastore is invalid.\n  - `invalid_auth` — Not authorized to create datastore items.\n  - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps.\n  - `datastore_error` — Datastore error\n  - `access_denied` — Not authorized to access the datastore.\n  - `invalid_app_id` — The app_id provided is not valid for team and user.\n  - `free_team_not_allowed` — Datastore put not allowed on a free team.\n  - `team_quota_exceeded` — Total number of requests exceeded team quota.\n  - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration.\n  - `unknown_method` — This method does not exist\n  - `partial_failure` — some items failed to be deleted\n  - `restricted_plan_level` — Feature is not available on this team\n\nSee https://docs.slack.dev/reference/methods/apps.datastore.bulkDelete"
+      }
+    },
+    "com.slack.apps#DatastoreBulkGetRequestIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "items' ids"
+      }
+    },
+    "com.slack.apps#DatastoreBulkGetRequest": {
+      "type": "structure",
+      "members": {
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the datastore",
+            "smithy.api#required": {}
+          }
+        },
+        "ids": {
+          "target": "com.slack.apps#DatastoreBulkGetRequestIdsList",
+          "traits": {
+            "smithy.api#documentation": "items' ids",
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#DatastoreBulkGetResponseItemsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.apps#DatastoreBulkGetResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.apps#DatastoreBulkGetResponseItemsItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "array of attribute names and values of each item"
+      }
+    },
+    "com.slack.apps#DatastoreBulkGetResponseFailedItemsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "attribute names and values of the items that failed to be processed"
+      }
+    },
+    "com.slack.apps#DatastoreBulkGetResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.slack.apps#DatastoreBulkGetResponseItemsList",
+          "traits": {
+            "smithy.api#documentation": "array of attribute names and values of each item"
+          }
+        },
+        "failed_items": {
+          "target": "com.slack.apps#DatastoreBulkGetResponseFailedItemsList",
+          "traits": {
+            "smithy.api#documentation": "attribute names and values of the items that failed to be processed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#DatastoreBulkGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#DatastoreBulkGetRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#DatastoreBulkGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.datastore.bulkGet",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get items from a datastore in bulk\n\nRequired scopes — bot: `datastore:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — The request is missing required arguments.\n  - `invalid_datastore` — The provided datastore is invalid.\n  - `invalid_auth` — Not authorized to create datastore items.\n  - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps.\n  - `datastore_error` — Datastore error\n  - `access_denied` — Not authorized to access the datastore.\n  - `invalid_app_id` — The app_id provided is not valid for team and user.\n  - `free_team_not_allowed` — Datastore put not allowed on a free team.\n  - `team_quota_exceeded` — Total number of requests exceeded team quota.\n  - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration.\n  - `unknown_method` — This method does not exist\n  - `partial_failure` — some items failed to be retrieved\n  - `restricted_plan_level` — Feature is not available on this team\n\nSee https://docs.slack.dev/reference/methods/apps.datastore.bulkGet"
+      }
+    },
+    "com.slack.apps#DatastoreBulkPutRequestItemsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.apps#DatastoreBulkPutRequestItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.apps#DatastoreBulkPutRequestItemsItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "attribute names and values of the items; limit of 25"
+      }
+    },
+    "com.slack.apps#DatastoreBulkPutRequest": {
+      "type": "structure",
+      "members": {
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the datastore",
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.slack.apps#DatastoreBulkPutRequestItemsList",
+          "traits": {
+            "smithy.api#documentation": "attribute names and values of the items; limit of 25",
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#DatastoreBulkPutResponseFailedItemsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.apps#DatastoreBulkPutResponseFailedItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.apps#DatastoreBulkPutResponseFailedItemsItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "attribute names and values of the items that failed to be processed"
+      }
+    },
+    "com.slack.apps#DatastoreBulkPutResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the datastore"
+          }
+        },
+        "failed_items": {
+          "target": "com.slack.apps#DatastoreBulkPutResponseFailedItemsList",
+          "traits": {
+            "smithy.api#documentation": "attribute names and values of the items that failed to be processed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#DatastoreBulkPut": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#DatastoreBulkPutRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#DatastoreBulkPutResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.datastore.bulkPut",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates or replaces existing items in bulk\n\nRequired scopes — bot: `datastore:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — The request is missing required arguments.\n  - `invalid_datastore` — The provided datastore is invalid.\n  - `invalid_auth` — Not authorized to create datastore items.\n  - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps.\n  - `datastore_error` — Datastore error\n  - `access_denied` — Not authorized to access the datastore.\n  - `invalid_app_id` — The app_id provided is not valid for team and user.\n  - `free_team_not_allowed` — Datastore put not allowed on a free team.\n  - `team_quota_exceeded` — Total number of requests exceeded team quota.\n  - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration.\n  - `unknown_method` — This method does not exist\n  - `partial_failure` — some items failed to be updated\n  - `restricted_plan_level` — Feature is not available on this team\n\nSee https://docs.slack.dev/reference/methods/apps.datastore.bulkPut"
+      }
+    },
+    "com.slack.apps#DatastoreCountRequestExpressionAttributesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "A map of attributes referenced in expression"
+      }
+    },
+    "com.slack.apps#DatastoreCountRequestExpressionValuesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "A map of values referenced in expression"
+      }
+    },
+    "com.slack.apps#DatastoreCountRequest": {
+      "type": "structure",
+      "members": {
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the datastore",
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A query filter expression"
+          }
+        },
+        "expression_attributes": {
+          "target": "com.slack.apps#DatastoreCountRequestExpressionAttributesMap",
+          "traits": {
+            "smithy.api#documentation": "A map of attributes referenced in expression"
+          }
+        },
+        "expression_values": {
+          "target": "com.slack.apps#DatastoreCountRequestExpressionValuesMap",
+          "traits": {
+            "smithy.api#documentation": "A map of values referenced in expression"
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required if calling with user token"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#DatastoreCountResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the datastore"
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "number of matching items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#DatastoreCount": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#DatastoreCountRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#DatastoreCountResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.datastore.count",
+          "code": 200
+        },
+        "smithy.api#documentation": "Count the number of items in a datastore that match a query\n\nRequired scopes — bot: `datastore:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — The request is missing required arguments.\n  - `invalid_datastore` — The provided datastore is invalid.\n  - `invalid_auth` — Not authorized to access datastore items.\n  - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps.\n  - `datastore_error` — Datastore error\n  - `access_denied` — Not authorized to access the datastore.\n  - `invalid_app_id` — The app_id provided is not valid for team and user.\n  - `free_team_not_allowed` — Datastore query not allowed on a free team.\n  - `team_quota_exceeded` — Total number of requests exceeded team quota.\n  - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration.\n  - `restricted_plan_level` — Feature is not available on this team\n\nSee https://docs.slack.dev/reference/methods/apps.datastore.count"
+      }
+    },
+    "com.slack.apps#DatastoreDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the datastore",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "item id",
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#DatastoreDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#DatastoreDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#DatastoreDeleteRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#DatastoreDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.datastore.delete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an item from a datastore\n\nRequired scopes — bot: `datastore:write`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — The request is missing required arguments.\n  - `invalid_datastore` — The provided datastore is invalid.\n  - `invalid_auth` — Not authorized to delete datastore items.\n  - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps.\n  - `datastore_error` — Datastore error\n  - `access_denied` — Not authorized to access the datastore.\n  - `invalid_app_id` — The app_id provided is not valid for team and user.\n  - `free_team_not_allowed` — Datastore delete not allowed on a free team.\n  - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration.\n  - `restricted_plan_level` — Feature is not available on this team\n\nSee https://docs.slack.dev/reference/methods/apps.datastore.delete"
+      }
+    },
+    "com.slack.apps#DatastoreGetRequest": {
+      "type": "structure",
+      "members": {
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the datastore",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "item id",
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#DatastoreGetResponseItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "attribute names and values of the item"
+      }
+    },
+    "com.slack.apps#DatastoreGetResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the datastore"
+          }
+        },
+        "item": {
+          "target": "com.slack.apps#DatastoreGetResponseItemMap",
+          "traits": {
+            "smithy.api#documentation": "attribute names and values of the item"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#DatastoreGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#DatastoreGetRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#DatastoreGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.datastore.get",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an item from a datastore\n\nRequired scopes — bot: `datastore:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — The request is missing required arguments.\n  - `invalid_datastore` — The provided datastore is invalid.\n  - `invalid_auth` — Not authorized to get datastore items.\n  - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps.\n  - `datastore_error` — Datastore error.\n  - `access_denied` — Not authorized to access to the datastore.\n  - `invalid_app_id` — The app_id provided is not valid for team and user.\n  - `free_team_not_allowed` — Datastore get not allowed on a free team.\n  - `team_quota_exceeded` — Total number of requests exceeded team quota.\n  - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration.\n  - `restricted_plan_level` — Feature is not available on this team\n\nSee https://docs.slack.dev/reference/methods/apps.datastore.get"
+      }
+    },
+    "com.slack.apps#DatastorePutRequestItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "attribute names and values of the item"
+      }
+    },
+    "com.slack.apps#DatastorePutRequest": {
+      "type": "structure",
+      "members": {
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the datastore",
+            "smithy.api#required": {}
+          }
+        },
+        "item": {
+          "target": "com.slack.apps#DatastorePutRequestItemMap",
+          "traits": {
+            "smithy.api#documentation": "attribute names and values of the item",
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#DatastorePutResponseItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "attribute names and values of the item"
+      }
+    },
+    "com.slack.apps#DatastorePutResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the datastore"
+          }
+        },
+        "item": {
+          "target": "com.slack.apps#DatastorePutResponseItemMap",
+          "traits": {
+            "smithy.api#documentation": "attribute names and values of the item"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#DatastorePut": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#DatastorePutRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#DatastorePutResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.datastore.put",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new item, or replaces an old item with a new item.\n\nRequired scopes — bot: `datastore:write`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — The request is missing required arguments.\n  - `invalid_datastore` — The provided datastore is invalid.\n  - `invalid_auth` — Not authorized to create datastore items.\n  - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps.\n  - `datastore_error` — Datastore error\n  - `access_denied` — Not authorized to access the datastore.\n  - `invalid_app_id` — The app_id provided is not valid for team and user.\n  - `free_team_not_allowed` — Datastore put not allowed on a free team.\n  - `team_quota_exceeded` — Total number of requests exceeded team quota.\n  - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration.\n  - `restricted_plan_level` — Feature is not available on this team\n\nSee https://docs.slack.dev/reference/methods/apps.datastore.put"
+      }
+    },
+    "com.slack.apps#DatastoreQueryRequestExpressionAttributesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "A map of attributes referenced in expression"
+      }
+    },
+    "com.slack.apps#DatastoreQueryRequestExpressionValuesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "A map of values referenced in expression"
+      }
+    },
+    "com.slack.apps#DatastoreQueryRequest": {
+      "type": "structure",
+      "members": {
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the datastore",
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A query filter expression"
+          }
+        },
+        "expression_attributes": {
+          "target": "com.slack.apps#DatastoreQueryRequestExpressionAttributesMap",
+          "traits": {
+            "smithy.api#documentation": "A map of attributes referenced in expression"
+          }
+        },
+        "expression_values": {
+          "target": "com.slack.apps#DatastoreQueryRequestExpressionValuesMap",
+          "traits": {
+            "smithy.api#documentation": "A map of values referenced in expression"
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required if calling with user token"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of items to evaluate for a given request (not necessarily the number of matching items). If the given request dataset size exceeds 1 MB before reaching the limit, the returned item count will likely be less than the limit. In any case where there are more items available beyond an imposed limit, a `next_cursor` value will be provided for use in subsequent requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#DatastoreQueryResponseItemsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.apps#DatastoreQueryResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.apps#DatastoreQueryResponseItemsItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "attribute names and values of the items"
+      }
+    },
+    "com.slack.apps#DatastoreQueryResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.apps#DatastoreQueryResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the datastore"
+          }
+        },
+        "items": {
+          "target": "com.slack.apps#DatastoreQueryResponseItemsList",
+          "traits": {
+            "smithy.api#documentation": "attribute names and values of the items"
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.apps#DatastoreQueryResponseResponseMetadata"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#DatastoreQuery": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#DatastoreQueryRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#DatastoreQueryResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.datastore.query",
+          "code": 200
+        },
+        "smithy.api#documentation": "Query a datastore for items\n\nRequired scopes — bot: `datastore:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — The request is missing required arguments.\n  - `invalid_datastore` — The provided datastore is invalid.\n  - `invalid_auth` — Not authorized to access datastore items.\n  - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps.\n  - `datastore_error` — Datastore error\n  - `access_denied` — Not authorized to access the datastore.\n  - `invalid_app_id` — The app_id provided is not valid for team and user.\n  - `free_team_not_allowed` — Datastore query not allowed on a free team.\n  - `team_quota_exceeded` — Total number of requests exceeded team quota.\n  - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration.\n  - `restricted_plan_level` — Feature is not available on this team\n\nSee https://docs.slack.dev/reference/methods/apps.datastore.query"
+      }
+    },
+    "com.slack.apps#DatastoreUpdateRequestItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "attribute names and values to be updated"
+      }
+    },
+    "com.slack.apps#DatastoreUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the datastore",
+            "smithy.api#required": {}
+          }
+        },
+        "item": {
+          "target": "com.slack.apps#DatastoreUpdateRequestItemMap",
+          "traits": {
+            "smithy.api#documentation": "attribute names and values to be updated",
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#DatastoreUpdateResponseItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "attribute names and values of the item, including those updated"
+      }
+    },
+    "com.slack.apps#DatastoreUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "datastore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the datastore"
+          }
+        },
+        "item": {
+          "target": "com.slack.apps#DatastoreUpdateResponseItemMap",
+          "traits": {
+            "smithy.api#documentation": "attribute names and values of the item, including those updated"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#DatastoreUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#DatastoreUpdateRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#DatastoreUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.datastore.update",
+          "code": 200
+        },
+        "smithy.api#documentation": "Edits an existing item's attributes, or adds a new item if it does not already exist.\n\nRequired scopes — bot: `datastore:write`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — The request is missing required arguments.\n  - `invalid_datastore` — The provided datastore is invalid.\n  - `invalid_auth` — Not authorized to create datastore items.\n  - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps.\n  - `datastore_error` — Datastore error\n  - `access_denied` — Not authorized to access the datastore.\n  - `invalid_app_id` — The app_id provided is not valid for team and user.\n  - `free_team_not_allowed` — Datastore put not allowed on a free team.\n  - `team_quota_exceeded` — Total number of requests exceeded team quota.\n  - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration.\n  - `restricted_plan_level` — Feature is not available on this team\n\nSee https://docs.slack.dev/reference/methods/apps.datastore.update"
+      }
+    },
+    "com.slack.apps#EventAuthorizationsListRequest": {
+      "type": "structure",
+      "members": {
+        "event_context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String"
+        },
+        "limit": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#EventAuthorizationsListResponseAuthorizationsItem": {
+      "type": "structure",
+      "members": {
+        "enterprise_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_bot": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_enterprise_install": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.apps#EventAuthorizationsListResponseAuthorizationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.apps#EventAuthorizationsListResponseAuthorizationsItem"
+      },
+      "traits": {}
+    },
+    "com.slack.apps#EventAuthorizationsListResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "cursor_next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next cursor for use in [pagination](/apis/web-api/pagination). If present, pass this in subsequent calls to get additional results"
+          }
+        },
+        "authorizations": {
+          "target": "com.slack.apps#EventAuthorizationsListResponseAuthorizationsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#EventAuthorizationsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#EventAuthorizationsListRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#EventAuthorizationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.event.authorizations.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is visible to.\n\nRate limit tier: 5\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `auth_mismatch` — The given authorization token is not associated with the app that sent this event.\n  - `internal_error` — An unexpected error occurred while finding authorizations for this event.\n  - `invalid_cursor` — The `cursor` argument was invalid.\n  - `invalid_event_context` — The given `event_context` didn't match an event.\n\nSee https://docs.slack.dev/reference/methods/apps.event.authorizations.list"
+      }
+    },
+    "com.slack.apps#IconSetRequest": {
+      "type": "structure",
+      "members": {
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the app whose icon you want to set.",
+            "smithy.api#required": {}
+          }
+        },
+        "file": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "File contents via `multipart/form-data`"
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of a publicly hosted image"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#IconSetResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#IconSet": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#IconSetRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#IconSetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.icon.set",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sets the app icon\n\nRequired scopes — user: `app_configurations:write`\n\nRate limit tier: 1\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `error_bad_format` — Icon must be a valid image file.\n  - `icon_not_accessible` — The icon URL is not accessible or returned an error (e.g. 404 Not Found). Please verify the URL is publicly reachable and returns a valid image.\n  - `invalid_app` — App does not exist.\n  - `invalid_app_id` — App ID is not valid.\n  - `invalid_icon_size` — Icon dimensions must be between 512x512px and 2000x2000px.\n  - `invalid_parameters` — Only one of `URL` or `file` can be defined.\n  - `missing_arguments` — One of `URL` or `file` must be provided.\n  - `no_permission` — User does not have required permissions for app.\n  - `unable_to_open_file` — Error with file upload.\n\nSee https://docs.slack.dev/reference/methods/apps.icon.set"
+      }
+    },
+    "com.slack.apps#ManifestCreateRequest": {
+      "type": "structure",
+      "members": {
+        "manifest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A JSON app manifest encoded as a string. This manifest **must** use a valid [app manifest schema - read our guide to creating one](/app-manifests/configuring-apps-with-app-manifests#fields).",
+            "smithy.api#required": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When called with an org token, which specific team to create app on"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#ManifestCreateResponseCredentials": {
+      "type": "structure",
+      "members": {
+        "client_id": {
+          "target": "smithy.api#String"
+        },
+        "client_secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "verification_token": {
+          "target": "smithy.api#String"
+        },
+        "signing_secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.apps#ManifestCreateResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "credentials": {
+          "target": "com.slack.apps#ManifestCreateResponseCredentials",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "oauth_authorize_url": {
+          "target": "smithy.api#String"
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The team ID where the app was created on"
+          }
+        },
+        "team_domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The team domain where the app was created on"
+          }
+        },
+        "app_token": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#ManifestCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#ManifestCreateRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#ManifestCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.manifest.create",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an app from an app manifest.\n\nRequired scopes — configuration: `app_configurations:write`\n\nRate limit tier: 1\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_app` — An app created from the provided manifest would not be valid.\n  - `invalid_arguments` — Invalid API arguments provided.\n  - `invalid_manager_app` — The calling app is not enrolled as a manager app. Ensure the app has `app_configurations:write` in its configured scopes and its home team has manager app support enabled.\n  - `invalid_manifest` — The provided manifest file does not validate against schema. Consult the additional errors field to locate specific issues.\n  - `invalid_team_id` — The provided team ID is not valid\n  - `not_in_team` — Cannot create an app in a team that user is not a member of\n  - `failed_adding_collaborator` — Failed writing a collaborator record for this new app\n  - `failed_creating_app` — Failed to create the app model\n  - `failed_datastore_operation` — Failed while managing datastore infrastructure\n  - `failed_generating_app_token` — App level token failed to generate.\n  - `feature_not_enabled` — The required feature is not enabled for this workspace.\n  - `managed_app_limit_reached` — The manager app has reached the maximum number of managed apps it can create.\n  - `ratelimited` — Too many calls in succession to create endpoint during a short period of time.\n  - `socket_mode_not_enabled` — Socket mode is not enabled in manifest.\n  - `enterprise_is_restricted` — Org-level tokens are not allowed.\n  - `unknown_method` — Unknown method\n  - `dynamic_client_registration_invalid_redirect_uri` — The remote server rejected Slack's redirect URI during Dynamic Client Registration. The server must allowlist https://oauth2.slack.com/external/auth/callback as a valid redirect URI.\n  - `dynamic_client_registration_failed` — Dynamic client registration failed for an MCP server that requires OAuth authentication.\n  - `oauth_metadata_not_found` — Could not discover OAuth metadata for the MCP server. Ensure the server exposes a .well-known/oauth-authorization-server or .well-known/openid-configuration endpoint.\n  - `dynamic_client_registration_not_supported` — The MCP server's OAuth metadata does not include a registration endpoint. The server may not support Dynamic Client Registration.\n  - `dynamic_client_registration_missing_oauth_endpoints` — The MCP server's OAuth metadata is missing a required authorization or token endpoint.\n  - `dynamic_client_registration_rejected` — The MCP server rejected the Dynamic Client Registration request.\n  - `dynamic_client_registration_invalid_response` — The MCP server returned an invalid response during Dynamic Client Registration.\n\nSee https://docs.slack.dev/reference/methods/apps.manifest.create"
+      }
+    },
+    "com.slack.apps#ManifestDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the app you want to delete.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#ManifestDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#ManifestDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#ManifestDeleteRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#ManifestDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.manifest.delete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Permanently deletes an app created through app manifests. When called with a manager app token, this method can only delete apps that were created by that manager app.\n\nRequired scopes — configuration: `app_configurations:write`\n\nRate limit tier: 1\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `app_not_eligible` — The specified app is not eligible for this API.\n  - `app_not_found` — The specified app was not found.\n  - `internal_error` — Internal error.\n  - `invalid_app_id` — The app ID passed in was invalid.\n  - `no_permission` — User described by the used token does not have proper permissions to take this action.\n  - `published_app_only` — This action is only permitted for published app IDs.\n  - `app_not_owned_by_manager_app` — The specified app is not managed by the calling manager app. A manager app can only delete apps that it originally created via apps.manifest.create.\n\nSee https://docs.slack.dev/reference/methods/apps.manifest.delete"
+      }
+    },
+    "com.slack.apps#ManifestExportRequest": {
+      "type": "structure",
+      "members": {
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the app whose configuration you want to export as a manifest.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#ManifestExportResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "manifest": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#ManifestExport": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#ManifestExportRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#ManifestExportResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.manifest.export",
+          "code": 200
+        },
+        "smithy.api#documentation": "Export an app manifest from an existing app. When called with a manager app token, this method can only export apps that were created by that manager app.\n\nRequired scopes — configuration: `app_configurations:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `app_not_eligible` — The specified app is not eligible for this API.\n  - `app_not_found` — The specified app was not found or has been deleted.\n  - `failed_export` — Failed to export manifest for given app ID\n  - `internal_error` — Internal error.\n  - `invalid_app_id` — The app ID passed is invalid.\n  - `no_permission` — User does not have proper permissions.\n  - `unknown_method` — This method does not exist.\n  - `app_not_owned_by_manager_app` — The specified app is not managed by the calling manager app. A manager app can only access apps that it originally created via apps.manifest.create.\n\nSee https://docs.slack.dev/reference/methods/apps.manifest.export"
+      }
+    },
+    "com.slack.apps#ManifestUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "manifest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A JSON app manifest encoded as a string. This manifest **must** use a valid [app manifest schema - read our guide to creating one](/app-manifests/configuring-apps-with-app-manifests#fields). As this method entirely _replaces_ any previous configuration, manifest must contain both unmodified and modified fields.",
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the app whose configuration you want to update.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#ManifestUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "permissions_updated": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#ManifestUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#ManifestUpdateRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#ManifestUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.manifest.update",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an app from an app manifest. When called with a manager app token, this method can only update apps that were created by that manager app.\n\nRequired scopes — configuration: `app_configurations:write`\n\nRate limit tier: 1\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `app_not_eligible` — The specified app is not eligible for this API.\n  - `app_not_found` — The specified app was not found or has been deleted.\n  - `failed_adding_collaborator` — Failed writing a collaborator record for this new app\n  - `failed_creating_app` — Failed to create the app model\n  - `failed_datastore_operation` — Failed while managing datastore infrastructure\n  - `internal_error` — Internal error.\n  - `invalid_app` — An app created from the provided manifest would not be valid.\n  - `invalid_app_id` — The app id passed is invalid.\n  - `invalid_manifest` — The provided manifest file does not validate against schema.\n  - `no_permission` — User does not have permission to update app\n  - `unknown_method` — Unknown method\n  - `dynamic_client_registration_invalid_redirect_uri` — The remote server rejected Slack's redirect URI during Dynamic Client Registration. The server must allowlist https://oauth2.slack.com/external/auth/callback as a valid redirect URI.\n  - `app_not_owned_by_manager_app` — The specified app is not managed by the calling manager app. A manager app can only update apps that it originally created via apps.manifest.create. It cannot modify apps created by other manager apps or apps created manually, even if the same user owns both.\n  - `ratelimited` — Too many calls in succession to update endpoint during a short period of time.\n  - `dynamic_client_registration_failed` — Dynamic client registration failed for an MCP server that requires OAuth authentication.\n  - `oauth_metadata_not_found` — Could not discover OAuth metadata for the MCP server. Ensure the server exposes a .well-known/oauth-authorization-server or .well-known/openid-configuration endpoint.\n  - `dynamic_client_registration_not_supported` — The MCP server's OAuth metadata does not include a registration endpoint. The server may not support Dynamic Client Registration.\n  - `dynamic_client_registration_missing_oauth_endpoints` — The MCP server's OAuth metadata is missing a required authorization or token endpoint.\n  - `dynamic_client_registration_rejected` — The MCP server rejected the Dynamic Client Registration request.\n  - `dynamic_client_registration_invalid_response` — The MCP server returned an invalid response during Dynamic Client Registration.\n\nSee https://docs.slack.dev/reference/methods/apps.manifest.update"
+      }
+    },
+    "com.slack.apps#ManifestValidateRequest": {
+      "type": "structure",
+      "members": {
+        "manifest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The manifest to be validated. Will be validated against the [app manifest schema - read our guide](/app-manifests/configuring-apps-with-app-manifests#fields).",
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the app whose configuration you want to validate."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#ManifestValidateResponseErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.apps#ManifestValidateResponseWarningsItem": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pointer": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.apps#ManifestValidateResponseWarningsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.apps#ManifestValidateResponseWarningsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Non-blocking warnings from app manifest validation."
+      }
+    },
+    "com.slack.apps#ManifestValidateResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "errors": {
+          "target": "com.slack.apps#ManifestValidateResponseErrorsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "warnings": {
+          "target": "com.slack.apps#ManifestValidateResponseWarningsList",
+          "traits": {
+            "smithy.api#documentation": "Non-blocking warnings from app manifest validation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#ManifestValidate": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#ManifestValidateRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#ManifestValidateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.manifest.validate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Validate an app manifest\n\nRequired scopes — configuration: `app_configurations:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `app_not_eligible` — The specified app is not eligible for this API.\n  - `invalid_app` — An app created from the provided manifest would not be valid.\n  - `invalid_app_id` — The app id passed is invalid.\n  - `invalid_manifest` — The provided manifest file does not validate against schema.\n  - `failed_adding_collaborator` — Failed writing a collaborator record for this new app\n  - `failed_creating_app` — Failed to create the app model\n  - `unknown_method` — Unknown method\n  - `no_permission` — User described by the used token does not have proper permissions to take this action.\n  - `app_not_owned_by_manager_app` — The specified app is not managed by the calling manager app. A manager app can only validate apps that it originally created via apps.manifest.create.\n\nSee https://docs.slack.dev/reference/methods/apps.manifest.validate"
+      }
+    },
+    "com.slack.apps#UninstallRequest": {
+      "type": "structure",
+      "members": {
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Issued when you created your application.",
+            "smithy.api#required": {}
+          }
+        },
+        "client_secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Issued when you created your application.",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#UninstallResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "uninstalled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#Uninstall": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#UninstallRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#UninstallResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.uninstall",
+          "code": 200
+        },
+        "smithy.api#documentation": "Uninstalls your app from a workspace.\n\nRate limit tier: 1\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_client_secret` — Value passed for `client_secret` was invalid.\n  - `client_id_token_mismatch` — The provided client ID and token do not belong to the same app.\n  - `internal_error` — Internal error uninstall\n  - `invalid_client_id` — Value passed for `client_id` was invalid.\n  - `no_permission` — Granular bot not allowed to uninstall\n\nSee https://docs.slack.dev/reference/methods/apps.uninstall",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.apps#UserConnectionUpdateRequestStatus": {
+      "type": "enum",
+      "members": {
+        "CONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connected"
+          }
+        },
+        "DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disconnected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status that should be set for the user."
+      }
+    },
+    "com.slack.apps#UserConnectionUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the user for the status update.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.slack.apps#UserConnectionUpdateRequestStatus",
+          "traits": {
+            "smithy.api#documentation": "The status that should be set for the user.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.apps#UserConnectionUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.apps#UserConnectionUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.apps#UserConnectionUpdateRequest"
+      },
+      "output": {
+        "target": "com.slack.apps#UserConnectionUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps.user.connection.update",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates the connection status between a user and an app.\n\nRequired scopes — user: `users:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `app_not_found` — The app was not found.\n  - `invalid_auth` — The token doesn't have access to this endpoint.\n  - `app_not_subscribed` — The app is not subscribed to the required events.\n  - `user_not_found` — Value passed for `user_id` was invalid.\n\nSee https://docs.slack.dev/reference/methods/apps.user.connection.update",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.apps#Apps": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.apps#ActivitiesList"
+        },
+        {
+          "target": "com.slack.apps#AuthExternalDelete"
+        },
+        {
+          "target": "com.slack.apps#AuthExternalGet"
+        },
+        {
+          "target": "com.slack.apps#ConnectionsOpen"
+        },
+        {
+          "target": "com.slack.apps#DatastoreBulkDelete"
+        },
+        {
+          "target": "com.slack.apps#DatastoreBulkGet"
+        },
+        {
+          "target": "com.slack.apps#DatastoreBulkPut"
+        },
+        {
+          "target": "com.slack.apps#DatastoreCount"
+        },
+        {
+          "target": "com.slack.apps#DatastoreDelete"
+        },
+        {
+          "target": "com.slack.apps#DatastoreGet"
+        },
+        {
+          "target": "com.slack.apps#DatastorePut"
+        },
+        {
+          "target": "com.slack.apps#DatastoreQuery"
+        },
+        {
+          "target": "com.slack.apps#DatastoreUpdate"
+        },
+        {
+          "target": "com.slack.apps#EventAuthorizationsList"
+        },
+        {
+          "target": "com.slack.apps#IconSet"
+        },
+        {
+          "target": "com.slack.apps#ManifestCreate"
+        },
+        {
+          "target": "com.slack.apps#ManifestDelete"
+        },
+        {
+          "target": "com.slack.apps#ManifestExport"
+        },
+        {
+          "target": "com.slack.apps#ManifestUpdate"
+        },
+        {
+          "target": "com.slack.apps#ManifestValidate"
+        },
+        {
+          "target": "com.slack.apps#Uninstall"
+        },
+        {
+          "target": "com.slack.apps#UserConnectionUpdate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — apps"
+      }
+    }
+  }
+}

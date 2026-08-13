@@ -1,0 +1,94 @@
+{
+  "desc": "Add an emoji.",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.teams:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "name"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "name": {
+        "type": "string",
+        "desc": "The name of the emoji to be added (using lower-case letters only). Colons (`:myemoji:`) around the value are not required, although they may be included."
+      },
+      "url": {
+        "type": "string",
+        "desc": "The URL of a file to use as an image for the emoji. Square images under 128KB and with transparent backgrounds work best.",
+        "required_for_public": true
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "emoji_limit_reached": {
+      "desc": "Unable to add emoji due to limit reached."
+    },
+    "error_bad_format": {
+      "desc": "Invalid image data was provided."
+    },
+    "error_bad_name_i18n": {
+      "desc": "Value passed for `name` was invalid."
+    },
+    "error_bad_upload": {
+      "desc": "There was an error uploading the image."
+    },
+    "error_bad_wide": {
+      "desc": "The image width or height is too large."
+    },
+    "error_missing_name": {
+      "desc": "Value passed for `name` is missing or empty."
+    },
+    "error_name_taken": {
+      "desc": "Value passed for `name` already exists."
+    },
+    "error_name_taken_i18n": {
+      "desc": "Value passed for `name` already exists."
+    },
+    "error_no_image": {
+      "desc": "Empty image data was provided."
+    },
+    "error_too_big": {
+      "desc": "The image file size is too large."
+    },
+    "error_lower_case_names_only": {
+      "desc": "Capital letters are not allowed in emoji names."
+    },
+    "failed_to_add_emoji": {
+      "desc": "Failed to add the specified emoji."
+    },
+    "failed_to_fetch_active_team": {
+      "desc": "There are no active teams on the org and we need at least one."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "no_image_uploaded": {
+      "desc": "No image data was provided."
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by org owners and Admins."
+    },
+    "ratelimited": {
+      "desc": "Too many api calls in a time period."
+    },
+    "resized_but_still_too_large": {
+      "desc": "The image is still too large after resizing."
+    },
+    "too_many_frames": {
+      "desc": "The image has too many frames."
+    }
+  }
+}

@@ -1,0 +1,474 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.slack.calls#AddRequestUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of users to register as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users)."
+      }
+    },
+    "com.slack.calls#AddRequest": {
+      "type": "structure",
+      "members": {
+        "external_unique_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An ID supplied by the 3rd-party Call provider. It must be unique across all Calls from that service.",
+            "smithy.api#required": {}
+          }
+        },
+        "external_display_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional, human-readable ID supplied by the 3rd-party Call provider. If supplied, this ID will be displayed in the Call object."
+          }
+        },
+        "join_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL required for a client to join the Call.",
+            "smithy.api#required": {}
+          }
+        },
+        "desktop_app_join_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When supplied, available Slack clients will attempt to directly launch the 3rd-party Call with this URL."
+          }
+        },
+        "date_start": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unix timestamp of the call start time"
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Call."
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The valid Slack user ID of the user who created this Call. When this method is called with a user token, the `created_by` field is optional and defaults to the authed user of the token. Otherwise, the field is required."
+          }
+        },
+        "users": {
+          "target": "com.slack.calls#AddRequestUsersList",
+          "traits": {
+            "smithy.api#documentation": "The list of users to register as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.calls#AddResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "call": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.calls#Add": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.calls#AddRequest"
+      },
+      "output": {
+        "target": "com.slack.calls#AddResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/calls.add",
+          "code": 200
+        },
+        "smithy.api#documentation": "Registers a new Call.\n\nRequired scopes — bot: `calls:write`; user: `calls:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — An unexpected error has occurred while trying to register the Call.\n  - `invalid_created_by` — The `created_by` user ID is invalid.\n  - `invalid_start_time` — The start time is invalid.\n  - `not_authorized` — The specified user is not authorized to create a Call in this channel.\n  - `not_implemented` — This method is not available.\n  - `user_not_found` — A specified user wasn't found.\n\nSee https://docs.slack.dev/reference/methods/calls.add"
+      }
+    },
+    "com.slack.calls#EndRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`id` returned when registering the call using the [`calls.add`](/reference/methods/calls.add) method.",
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Call duration in seconds"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.calls#EndResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "call": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.calls#End": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.calls#EndRequest"
+      },
+      "output": {
+        "target": "com.slack.calls#EndResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/calls.end",
+          "code": 200
+        },
+        "smithy.api#documentation": "Ends a Call.\n\nRequired scopes — bot: `calls:write`; user: `calls:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `inactive_call` — The Call has been already stopped.\n  - `internal_error` — An unexpected error has occurred while ending the Call.\n  - `invalid_call_id` — Invalid Call ID.\n  - `not_implemented` — This method is not publicly available yet.\n\nSee https://docs.slack.dev/reference/methods/calls.end"
+      }
+    },
+    "com.slack.calls#InfoRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`id` of the Call returned by the [`calls.add`](/reference/methods/calls.add) method.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.calls#InfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "call": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.calls#Info": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.calls#InfoRequest"
+      },
+      "output": {
+        "target": "com.slack.calls#InfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/calls.info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns information about a Call.\n\nRequired scopes — bot: `calls:read`; user: `calls:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — An unexpected error occurred while finding information about this Call.\n  - `not_implemented` — This method is not available.\n\nSee https://docs.slack.dev/reference/methods/calls.info"
+      }
+    },
+    "com.slack.calls#ParticipantsAddRequestUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of users to add as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users)."
+      }
+    },
+    "com.slack.calls#ParticipantsAddRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`id` returned by the [`calls.add`](/reference/methods/calls.add) method.",
+            "smithy.api#required": {}
+          }
+        },
+        "users": {
+          "target": "com.slack.calls#ParticipantsAddRequestUsersList",
+          "traits": {
+            "smithy.api#documentation": "The list of users to add as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.calls#ParticipantsAddResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "call": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.calls#ParticipantsAdd": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.calls#ParticipantsAddRequest"
+      },
+      "output": {
+        "target": "com.slack.calls#ParticipantsAddResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/calls.participants.add",
+          "code": 200
+        },
+        "smithy.api#documentation": "Registers new participants added to a Call.\n\nRequired scopes — bot: `calls:write`; user: `calls:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_users` — At least one specified user is already part of the Call.\n  - `inactive_call` — The Call has been already ended.\n  - `internal_error` — An unexpected exception occurred while adding a Call participant.\n  - `invalid_call_id` — The specified Call wasn't found.\n  - `missing_argument` — A required argument is missing.\n  - `not_implemented` — This method is not available.\n  - `user_not_found` — At least one specified user wasn't found.\n\nSee https://docs.slack.dev/reference/methods/calls.participants.add"
+      }
+    },
+    "com.slack.calls#ParticipantsRemoveRequestUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of users to remove as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users)."
+      }
+    },
+    "com.slack.calls#ParticipantsRemoveRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`id` returned by the [`calls.add`](/reference/methods/calls.add) method.",
+            "smithy.api#required": {}
+          }
+        },
+        "users": {
+          "target": "com.slack.calls#ParticipantsRemoveRequestUsersList",
+          "traits": {
+            "smithy.api#documentation": "The list of users to remove as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.calls#ParticipantsRemoveResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "call": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.calls#ParticipantsRemove": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.calls#ParticipantsRemoveRequest"
+      },
+      "output": {
+        "target": "com.slack.calls#ParticipantsRemoveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/calls.participants.remove",
+          "code": 200
+        },
+        "smithy.api#documentation": "Registers participants removed from a Call.\n\nRequired scopes — bot: `calls:write`; user: `calls:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_users` — At least one specified user is not part of the Call.\n  - `inactive_call` — The Call has been already ended.\n  - `internal_error` — An unexpected exception occurred while removing participants from the Call.\n  - `invalid_call_id` — The specified Call wasn't found.\n  - `missing_argument` — A required argument is missing.\n  - `not_implemented` — This method is not available.\n  - `user_not_found` — At least one specified user wasn't found.\n\nSee https://docs.slack.dev/reference/methods/calls.participants.remove"
+      }
+    },
+    "com.slack.calls#UpdateRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`id` returned by the [`calls.add`](/reference/methods/calls.add) method.",
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Call."
+          }
+        },
+        "join_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL required for a client to join the Call."
+          }
+        },
+        "desktop_app_join_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When supplied, available Slack clients will attempt to directly launch the 3rd-party Call with this URL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.calls#UpdateResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "call": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.calls#Update": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.calls#UpdateRequest"
+      },
+      "output": {
+        "target": "com.slack.calls#UpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/calls.update",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates information about a Call.\n\nRequired scopes — bot: `calls:write`; user: `calls:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — An unexpected exception occurred while updating the Call info.\n  - `invalid_call_id` — The Call's `id` was invalid.\n  - `not_implemented` — This method is not available.\n\nSee https://docs.slack.dev/reference/methods/calls.update"
+      }
+    },
+    "com.slack.calls#Calls": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.calls#Add"
+        },
+        {
+          "target": "com.slack.calls#End"
+        },
+        {
+          "target": "com.slack.calls#Info"
+        },
+        {
+          "target": "com.slack.calls#ParticipantsAdd"
+        },
+        {
+          "target": "com.slack.calls#ParticipantsRemove"
+        },
+        {
+          "target": "com.slack.calls#Update"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — calls"
+      }
+    }
+  }
+}

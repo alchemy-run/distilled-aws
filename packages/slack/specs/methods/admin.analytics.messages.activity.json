@@ -1,0 +1,92 @@
+{
+  "desc": "Retrieves activity metrics for messages from a given channel.",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.analytics:read"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "type": "string",
+        "subtype": "channel",
+        "desc": "Channel ID for channel of the message activity to query."
+      },
+      "oldest_ts": {
+        "type": "string",
+        "subtype": "timestamp",
+        "desc": "Oldest timestamp to include in the results. Defaults to 7 days before current time. If not passed while still passing the `latest_ts` parameter, defaults to 7 days before `latest_ts`."
+      },
+      "latest_ts": {
+        "type": "string",
+        "subtype": "timestamp",
+        "desc": "Most recent timestamp to include in results. Defaults to current time. If not passed while still passing the `oldest_ts` parameter, defaults to 7 days after `oldest_ts`."
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first \"page\" of the collection.",
+        "example": "abcd..."
+      },
+      "limit": {
+        "type": "integer",
+        "desc": "Maximum number of entries to return. The maximum limit is 100.",
+        "hidden": false,
+        "minimum": 1,
+        "maximum": 100,
+        "default": 50
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "message_activities"
+    ],
+    "properties": {
+      "response_metadata": {
+        "type": "object",
+        "required": [
+          "next_cursor"
+        ],
+        "properties": {
+          "next_cursor": {
+            "type": "string",
+            "desc": "More items exist, use next_cursor as the value of cursor for next call"
+          }
+        }
+      },
+      "message_activities": {
+        "schema": "message_activity"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "The specified channel was not found."
+    },
+    "invalid_arguments": {
+      "desc": "Required arguments either were not provided or contain invalid values."
+    },
+    "restricted_action": {
+      "desc": "The token does not have permission to access this resource."
+    },
+    "not_an_enterprise": {
+      "desc": "The user token does not belong to an enterprise."
+    },
+    "restricted_plan_level": {
+      "desc": "The enterprise plan level does not have access to this feature."
+    }
+  }
+}

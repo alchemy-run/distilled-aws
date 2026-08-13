@@ -1,0 +1,91 @@
+{
+  "desc": "Retrieves the Do Not Disturb status for up to 50 users on a team.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "dnd:read"
+    ],
+    "user": [
+      "dnd:read"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "users"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "users": {
+        "desc": "Comma-separated list of users to fetch Do Not Disturb status for",
+        "example": "U1234,W4567",
+        "type": "string"
+      },
+      "team_id": {
+        "type": "string",
+        "subtype": "team",
+        "desc": "Encoded team id where passed in users belong, required if org token is used"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "users"
+    ],
+    "properties": {
+      "users": {
+        "type": "object",
+        "patternProperties": {
+          "^[UW][A-Z0-9]{8,}$": {
+            "type": "object",
+            "required": [
+              "dnd_enabled",
+              "next_dnd_start_ts",
+              "next_dnd_end_ts"
+            ],
+            "properties": {
+              "dnd_enabled": {
+                "type": "boolean"
+              },
+              "next_dnd_start_ts": {
+                "type": "integer"
+              },
+              "next_dnd_end_ts": {
+                "type": "integer"
+              },
+              "snooze_enabled": {
+                "type": "boolean"
+              },
+              "snooze_endtime": {
+                "type": "integer"
+              },
+              "snooze_remaining": {
+                "type": "integer"
+              },
+              "dnd_profile_status": {
+                "schema": "dnd_profile_status"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "no_users_provided": {
+      "desc": "Must provide more than one user."
+    },
+    "user_not_visible": {
+      "desc": "User is not visible for this request."
+    }
+  }
+}

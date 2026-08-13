@@ -1,0 +1,65 @@
+{
+  "desc": "Get the access token for the provided token ID",
+  "http_method": "POST",
+  "scope": {},
+  "no_scope_required": true,
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "external_token_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "external_token_id": {
+        "desc": "The id of the token you want to get the token for",
+        "example": "Et12345ABCDE",
+        "type": "string"
+      },
+      "force_refresh": {
+        "desc": "Always refresh existing token before returning even when the token has not expired",
+        "example": "true",
+        "type": "boolean"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "external_token",
+      "token_response_extras"
+    ],
+    "type": "object",
+    "properties": {
+      "external_token": {
+        "type": "string"
+      },
+      "token_response_extras": {
+        "type": [
+          "object",
+          "null"
+        ]
+      }
+    }
+  },
+  "errors": {
+    "token_not_found": {
+      "desc": "No token found for the passed external_token_id"
+    },
+    "method_not_supported": {
+      "desc": "This API method is not supported"
+    },
+    "no_refresh_token": {
+      "desc": "No refresh token found for the passed external_token_id"
+    },
+    "access_token_exchange_failed": {
+      "desc": "There was an error while attempting to exchange or refresh token"
+    }
+  }
+}

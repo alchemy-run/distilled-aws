@@ -1,0 +1,76 @@
+{
+  "desc": "Invite a user to a public or private channel.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id",
+      "user_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "user_ids": {
+        "type": "array",
+        "items": {
+          "schema": "user_id"
+        },
+        "example": "U1234,U2345,U3456",
+        "minItems": 1,
+        "maxItems": 1000,
+        "desc": "The users to invite."
+      },
+      "channel_id": {
+        "example": "C12345",
+        "desc": "The channel that the users will be invited to.",
+        "schema": "channel"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "The value passed for `channel_id` was invalid."
+    },
+    "channel_type_not_supported": {
+      "desc": "The provided `channel_id` was a DM, MPDM, or the 'general' channel."
+    },
+    "default_org_wide_channel": {
+      "desc": "Users may not be invited to the default org-wide channel."
+    },
+    "failed_for_some_users": {
+      "desc": "The method failed for a subset of the users passed."
+    },
+    "feature_not_enabled": {
+      "desc": "The token provided doesn't have access to this method."
+    },
+    "restricted_action": {
+      "desc": "A workspace preference prevents the authenticated user from inviting."
+    },
+    "user_must_be_admin": {
+      "desc": "The token provided must be associated with an Org Admin or Owner."
+    }
+  }
+}

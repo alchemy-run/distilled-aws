@@ -1,0 +1,111 @@
+{
+  "desc": "Update an existing User Group.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "usergroups:write"
+    ],
+    "user": [
+      "usergroups:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "usergroup"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channels": {
+        "desc": "A comma separated string of encoded channel IDs for which the User Group uses as a default.",
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "schema": "channel"
+            },
+            {
+              "type": "string",
+              "maxLength": 0
+            }
+          ]
+        }
+      },
+      "additional_channels": {
+        "desc": "A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too.",
+        "type": "array",
+        "items": {
+          "schema": "channel"
+        }
+      },
+      "description": {
+        "desc": "A short description of the User Group.",
+        "type": "string"
+      },
+      "handle": {
+        "desc": "A mention handle. Must be unique among channels, users and User Groups.",
+        "type": "string",
+        "subtype": "user_group_name"
+      },
+      "include_count": {
+        "desc": "Include the number of users in the User Group.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "name": {
+        "desc": "A name for the User Group. Must be unique among User Groups.",
+        "example": "My Test Team",
+        "type": "string"
+      },
+      "team_id": {
+        "desc": "encoded team id where the user group exists, required if org token is used",
+        "subtype": "team",
+        "schema": "workspace_id"
+      },
+      "usergroup": {
+        "desc": "The encoded ID of the User Group to update.",
+        "example": "S0604QSJC",
+        "schema": "subteam_id"
+      },
+      "enable_section": {
+        "desc": "Configure this user group to show as a sidebar section for all group members. Note: Only relevant if group has 1 or more default channels added.",
+        "example": "true",
+        "type": "boolean"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "usergroup"
+    ],
+    "type": "object",
+    "properties": {
+      "usergroup": {
+        "schema": "subteam"
+      }
+    }
+  },
+  "errors": {
+    "missing_argument": {
+      "desc": "A required argument is missing."
+    },
+    "paid_teams_only": {
+      "desc": "This workspace does not have access to User Groups, as that feature is only available on Standard and above plans."
+    },
+    "permission_denied": {
+      "desc": "The user does not have permission to update the User Group."
+    },
+    "too_many_linked_channels": {
+      "desc": "This request exceeds the number of channels we supporting linking to a single usergroup."
+    }
+  }
+}

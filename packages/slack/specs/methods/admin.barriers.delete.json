@@ -1,0 +1,51 @@
+{
+  "desc": "Delete an existing Information Barrier",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.barriers:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "barrier_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "barrier_id": {
+        "desc": "The ID of the barrier you're trying to delete",
+        "schema": "barrier_id"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "barrier_not_found": {
+      "desc": "The barrier you're trying to delete cannot be found."
+    },
+    "feature_not_enabled": {
+      "desc": "The information barrier feature is not enabled, please reach out to your CSM."
+    },
+    "not_an_admin": {
+      "desc": "The token provided is not associated with an org admin."
+    }
+  }
+}

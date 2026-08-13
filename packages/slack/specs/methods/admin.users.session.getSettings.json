@@ -1,0 +1,121 @@
+{
+  "desc": "Get user-specific session settings—the session duration and what happens when the client closes—given a list of users.",
+  "http_method": "POST",
+  "json_input_supported": true,
+  "scope": {
+    "user": [
+      "admin.users:read"
+    ]
+  },
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "user_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "user_ids": {
+        "desc": "The IDs of users you'd like to fetch session settings for. Note: if a user does not have any active sessions, they will not be returned in the response.",
+        "example": "['U1234']",
+        "items": {
+          "type": "string",
+          "schema": "user_id"
+        },
+        "type": "array"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "session_settings": {
+        "type": "array",
+        "desc": "User specific session settings",
+        "items": {
+          "type": "object",
+          "required": [
+            "user_id",
+            "desktop_app_browser_quit",
+            "duration"
+          ],
+          "properties": {
+            "user_id": {
+              "type": "string",
+              "desc": "Encoded ID of the user"
+            },
+            "desktop_app_browser_quit": {
+              "oneOf": [
+                {
+                  "type": "boolean",
+                  "desc": "Session expiry on browser or app quit"
+                },
+                {
+                  "type": "null",
+                  "desc": "Session expiry on browser or app quit"
+                }
+              ]
+            },
+            "duration": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "desc": "User's session duration"
+                },
+                {
+                  "type": "null",
+                  "desc": "User's session duration"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "no_settings_applied": {
+        "type": "array",
+        "desc": "The IDs of users requested that do not have any user session settings applied.",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "errors": {
+    "admin_unauthorized": {
+      "desc": "The owner of this token isn't authorized to list sessions."
+    },
+    "bots_not_allowed": {
+      "desc": "Bot sessions are not listed by this method."
+    },
+    "feature_not_enabled": {
+      "desc": "This method is only available to Enterprise customers."
+    },
+    "internal_error": {
+      "desc": "There was an internal error processing this request—please retry."
+    },
+    "invalid_arguments": {
+      "desc": "Required arguments either were not provided or contain invalid values."
+    },
+    "invalid_auth": {
+      "desc": "The provided token doesn't have access to this endpoint."
+    },
+    "restricted_action": {
+      "desc": "The owner of this token isn't an Org Owner or Admin."
+    },
+    "not_an_admin": {
+      "desc": "The owner of this token isn't an Org Owner or Admin."
+    },
+    "unknown_method": {
+      "desc": "This method is currently not available."
+    },
+    "user_not_found": {
+      "desc": "There was an error finding the requested user."
+    }
+  }
+}

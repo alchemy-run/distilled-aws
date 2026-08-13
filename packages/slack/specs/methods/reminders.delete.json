@@ -1,0 +1,48 @@
+{
+  "desc": "Deletes a reminder.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "reminders:write"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "json_input_supported": true,
+  "user_scope_only": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "reminder"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "reminder": {
+        "desc": "The ID of the reminder",
+        "example": "Rm12345678",
+        "type": "string",
+        "subtype": "reminder"
+      },
+      "team_id": {
+        "desc": "Encoded team id, required if org token is used",
+        "type": "string",
+        "subtype": "team"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "missing_argument": {
+      "desc": "An argument is missing."
+    },
+    "not_found": {
+      "desc": "That reminder can't be found."
+    }
+  }
+}

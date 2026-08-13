@@ -1,0 +1,125 @@
+{
+  "desc": "Lists assignments for all roles across entities. Options to scope results by any combination of roles or entities",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.roles:read"
+    ]
+  },
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page",
+        "example": "5c3e53d5"
+      },
+      "limit": {
+        "type": "integer",
+        "desc": "The maximum number of items to return. Must be between 1 - 200 both inclusive.",
+        "example": "50",
+        "default": 200,
+        "minimum": 1,
+        "maximum": 200
+      },
+      "role_ids": {
+        "type": "array",
+        "desc": "collection of role ids to scope results by",
+        "example": "['Rl01', 'Rl0A']",
+        "items": {
+          "type": "string",
+          "schema": "role_id"
+        }
+      },
+      "entity_ids": {
+        "desc": "The entities for which the roles apply",
+        "type": "array",
+        "example": "['T12345', 'C12345']",
+        "items": {
+          "type": "string",
+          "schema": "entity_id"
+        }
+      },
+      "sort_dir": {
+        "desc": "Sort direction. Default is descending on date_create, can be either ASC or DESC",
+        "type": "string",
+        "example": "DESC"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "role_assignments",
+      "next_cursor"
+    ],
+    "properties": {
+      "error": {
+        "type": "string",
+        "desc": "A string representation of the error type"
+      },
+      "role_assignments": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "role_id",
+            "entity_id",
+            "user_id",
+            "date_create"
+          ],
+          "properties": {
+            "role_id": {
+              "type": "string",
+              "desc": "ID of the role that is assigned",
+              "schema": "role_id"
+            },
+            "entity_id": {
+              "type": "string",
+              "desc": "ID of entity for which the role is assigned"
+            },
+            "user_id": {
+              "type": "string",
+              "desc": "ID of the user for which the role is assigned",
+              "schema": "user_id"
+            },
+            "date_create": {
+              "type": "integer",
+              "desc": "Timestamp of when the membership was created."
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "feature_not_enabled": {
+      "desc": "This API is currently not enabled."
+    },
+    "invalid_actor": {
+      "desc": "This API is only enabled for the Admins/Owners."
+    },
+    "invalid_arguments": {
+      "desc": "Required arguments either were not provided or contain invalid values."
+    },
+    "invalid_cursor": {
+      "desc": "The passed cursor was invalid."
+    },
+    "invalid_sort": {
+      "desc": "Sort parameters are invalid."
+    },
+    "invalid_role_id": {
+      "desc": "One or more role IDs could not be validated."
+    }
+  }
+}

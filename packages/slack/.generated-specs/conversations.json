@@ -1,0 +1,2298 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.slack.conversations#AcceptSharedInviteRequest": {
+      "type": "structure",
+      "members": {
+        "channel_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the channel. If the channel does not exist already in your workspace, this name is the one that the channel will take.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the channel should be private."
+          }
+        },
+        "free_trial_accepted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether you'd like to use your workspace's free trial to begin using Slack Connect."
+          }
+        },
+        "invite_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the invite that you’d like to accept. Must provide either `invite_id` or `channel_id`. See the [`shared_channel_invite_received`](/reference/events/shared_channel_invite_received) event payload for more details on how to retrieve the ID of the invitation."
+          }
+        },
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the channel that you'd like to accept. Must provide either `invite_id` or `channel_id`."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the workspace to accept the channel in. If an org-level token is used to call this method, the `team_id` argument is required."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#AcceptSharedInviteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "implicit_approval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the shared channel invite was implicitly approved by the away team.",
+            "smithy.api#required": {}
+          }
+        },
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "invite_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "can_open_scdm": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the acceptor can SCDM the inviter",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#AcceptSharedInvite": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#AcceptSharedInviteRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#AcceptSharedInviteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.acceptSharedInvite",
+          "code": 200
+        },
+        "smithy.api#documentation": "Accepts an invitation to a Slack Connect channel.\n\nRequired scopes — bot: `conversations.connect:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_conversion_in_progress` — Unable to create a channel connection while a channel conversion is in progress\n  - `connection_limit_exceeded` — This channel has hit the limit of external connections.\n  - `email_does_not_match` — User's email does not match the email in the invite.\n  - `failed_to_start_trial` — Unable to initiate a trial on shared invite acceptance\n  - `has_already_connected_to_org` — A team on the workspace of the org is already in the channel.\n  - `invalid_arguments` — Invalid API arguments were provided. Either `sig` or `invite_id` must be specified.\n  - `invalid_emoji_not_allowed` — The desired name contains emoji.\n  - `invalid_host_team` — The host workspace is invalid.\n  - `invalid_link` — We couldn't find an invite associated with the ID provided.\n  - `invalid_name` — The value passed for `channel_name` was invalid.\n  - `invalid_name_maxlength` — The value passed for `channel_name` exceeded the maximum length.\n  - `invalid_name_punctuation` — The value passed for `channel_name` contained only punctuation.\n  - `invalid_name_required` — The value passed for `channel_name` was empty.\n  - `invalid_name_specials` — The value passed for `channel_name` contained unallowed special characters or upper case characters.\n  - `invite_from_same_org` — You can't accept an invite from the same org or workspace.\n  - `invite_not_found` — We couldn't find a Slack Connect channel invite with the ID provided.\n  - `invalid_privacy` — An invalid channel privacy was provided.\n  - `invalid_recipient_team` — The accepting team does not match the expected recipient team.\n  - `invalid_target_team` — The target workspace is invalid.\n  - `invite_used` — This invite has already been accepted.\n  - `is_pending_connected_to_org` — A team pending to join the channel is on the org of the team trying to accept.\n  - `legacy_connection_invalid_org` — Teams not previously connected to this legacy channel can't connect.\n  - `legacy_connection_limit_exceeded` — You cannot share a legacy ESC channel with a third team\n  - `name_taken` — The desired channel name is already taken in your workspace.\n  - `not_allowed_for_grid_workspace` — Acceptance is not allowed for this workspace.\n  - `not_paid` — This workspace doesn't have access to this feature.\n  - `restricted_action` — A team preference prevents the authenticated user from creating private channels.\n  - `team_not_found` — The team provided in the `team_id` argument does not exits.\n  - `user_cannot_create_channel` — This user is not allowed to create a channel.\n  - `user_is_restricted` — This user is restricted and cannot accept the invite.\n  - `user_not_found` — The user accepting the invite is not a member of the team provided in the `team_id` argument.\n  - `user_required_to_accept_as_private_but_cannot` — This uer cannot accept a private channel invitation.\n\nSee https://docs.slack.dev/reference/methods/conversations.acceptSharedInvite"
+      }
+    },
+    "com.slack.conversations#ApproveSharedInviteRequest": {
+      "type": "structure",
+      "members": {
+        "invite_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the shared channel invite to approve",
+            "smithy.api#required": {}
+          }
+        },
+        "target_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The team or enterprise ID of the receiving party involved in the invitation you are approving"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#ApproveSharedInviteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#ApproveSharedInvite": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#ApproveSharedInviteRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#ApproveSharedInviteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.approveSharedInvite",
+          "code": 200
+        },
+        "smithy.api#documentation": "Approves an invitation to a Slack Connect channel\n\nRequired scopes — bot: `conversations.connect:manage`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `already_approved` — This invite was already approved by this team.\n  - `approval_inactive` — The approval associated with the invite ID is not active.\n  - `approval_not_found` — We could not find an approval associated with the invite ID provided.\n  - `channel_conversion_in_progress` — A channel conversion is in progress\n  - `channel_not_found` — The channel associated with this invite wasn't found.\n  - `invalid_action` — This action is no longer valid, e.g., trying to approve an invite that has already been approved.\n  - `invalid_link` — The link provided was invalid.\n  - `invite_not_found` — The invite specified wasn't found.\n  - `missing_target_team` — The `target_team` parameter is required for this request. The inviting team must provide this argument.\n  - `not_paid` — The team attempting to approve this invite is not paid and therefore not eligible.\n  - `restricted_action` — A team preference prevents the authenticated user from creating private channels.\n\nSee https://docs.slack.dev/reference/methods/conversations.approveSharedInvite"
+      }
+    },
+    "com.slack.conversations#ArchiveRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of conversation to archive",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#ArchiveResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#Archive": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#ArchiveRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#ArchiveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.archive",
+          "code": 200
+        },
+        "smithy.api#documentation": "Archives a conversation.\n\nRequired scopes — bot: `groups:write`, `im:write`, `mpim:write`, `channels:write`, `channels:manage`; user: `groups:write`, `im:write`, `mpim:write`, `channels:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `already_archived` — Channel has already been archived.\n  - `cant_archive_general` — You cannot archive the general channel\n  - `cant_archive_required` — You cannot archive a required channel\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n  - `not_in_channel` — The token can not be found in channel.\n  - `restricted_action` — A team preference prevents the authenticated user from archiving.\n\nSee https://docs.slack.dev/reference/methods/conversations.archive"
+      }
+    },
+    "com.slack.conversations#CanvasesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel ID of the channel the canvas will be tabbed in.",
+            "smithy.api#required": {}
+          }
+        },
+        "document_content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Structure describing the type and value of the content to create. The markdown content is limited to 1 MiB (1,048,576 characters)."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the newly created canvas"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#CanvasesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "canvas_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded ID of the canvas",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#CanvasesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#CanvasesCreateRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#CanvasesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.canvases.create",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a channel canvas for a channel\n\nRequired scopes — bot: `canvases:write`; user: `canvases:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `canvas_disabled_user_team` — Canvas is disabled on user's team\n  - `restricted_action` — User does not have permission to perform this action.\n  - `channel_canvas_creation_failed` — Channel canvas was unable to be created.\n  - `channel_canvas_already_exists` — Channel canvas for the specified channel already exists.\n  - `team_tier_cannot_create_channel_canvases` — Team tier cannot create channel canvases\n  - `canvas_creation_failed` — Canvas was unable to be created.\n  - `canvas_tab_creation_failed` — Canvas tab was unable to be created.\n  - `free_team_canvas_tab_already_exists` — Canvas tab for specified channel and team tier already exists.\n\nSee https://docs.slack.dev/reference/methods/conversations.canvases.create"
+      }
+    },
+    "com.slack.conversations#CloseRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Conversation to close.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#CloseResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "already_closed": {
+          "target": "smithy.api#Boolean"
+        },
+        "no_op": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#Close": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#CloseRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#CloseResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.close",
+          "code": 200
+        },
+        "smithy.api#documentation": "Closes a direct message or multi-person direct message.\n\nRequired scopes — bot: `groups:write`, `im:write`, `mpim:write`, `channels:write`, `channels:manage`; user: `groups:write`, `im:write`, `mpim:write`, `channels:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n  - `user_does_not_own_channel` — Calling user does not own this DM channel.\n  - `not_permitted` — Not permitted.\n  - `external_channel_migrating` — External channel migrating.\n\nSee https://docs.slack.dev/reference/methods/conversations.close"
+      }
+    },
+    "com.slack.conversations#CreateRequest": {
+      "type": "structure",
+      "members": {
+        "is_private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Create a private channel instead of a public one"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the public or private channel to create",
+            "smithy.api#required": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "encoded team id to create the channel in, required if org token is used",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#CreateResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#Create": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#CreateRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#CreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.create",
+          "code": 200
+        },
+        "smithy.api#documentation": "Initiates a public or private channel-based conversation\n\nRequired scopes — bot: `groups:write`, `im:write`, `mpim:write`, `channels:write`, `channels:manage`; user: `groups:write`, `im:write`, `mpim:write`, `channels:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `cannot_create_channel` — This channel is unable to be created.\n  - `invalid_name` — Value passed for `name` was invalid.\n  - `invalid_name_maxlength` — Value passed for `name` exceeded max length.\n  - `invalid_name_punctuation` — Value passed for `name` contained only punctuation.\n  - `invalid_name_required` — Value passed for `name` was empty.\n  - `invalid_name_specials` — Value passed for `name` contained unallowed special characters or upper case characters.\n  - `missing_argument` — A required argument is missing.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n  - `name_taken` — A channel cannot be created with the given name.\n  - `no_channel` — Value passed for `name` was empty.\n  - `restricted_action` — A team (workspace) preference prevents the authenticated user from creating channels.\n  - `canvas_disabled_user_team` — Canvas is disabled on user's team\n\nSee https://docs.slack.dev/reference/methods/conversations.create"
+      }
+    },
+    "com.slack.conversations#DeclineSharedInviteRequest": {
+      "type": "structure",
+      "members": {
+        "invite_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "invite_id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Slack Connect invite to decline. Subscribe to the [`shared_channel_invite_accepted`](/reference/events/shared_channel_invite_accepted) event to receive IDs of Slack Connect channel invites that have been accepted and are awaiting approval."
+          }
+        },
+        "target_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "target_team",
+            "smithy.api#documentation": "The team or enterprise id of the other party involved in the invitation you are declining"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#DeclineSharedInviteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#DeclineSharedInvite": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#DeclineSharedInviteRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#DeclineSharedInviteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/conversations.declineSharedInvite",
+          "code": 200
+        },
+        "smithy.api#documentation": "Declines a Slack Connect channel invite.\n\nRequired scopes — bot: `conversations.connect:manage`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `approval_inactive` — This approval is no longer active, it may have expired or been declined.\n  - `approval_not_found` — We could not find a Slack Connect approval for the invite provided.\n  - `inactive_invite` — This invitation is no longer active, it may have expired or been revoked.\n  - `invite_not_found` — We could not find a Slack Connect invite associated with the ID provided.\n  - `missing_target_team` — The `target_team` parameter is required for this request.\n  - `not_paid` — The workspace is not eligible to use Slack Connect.\n  - `restricted_action` — A team preference prevents the authenticated user from declining Slack Connect invites..\n\nSee https://docs.slack.dev/reference/methods/conversations.declineSharedInvite"
+      }
+    },
+    "com.slack.conversations#ExternalInvitePermissionsSetRequestAction": {
+      "type": "enum",
+      "members": {
+        "UPGRADE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "upgrade"
+          }
+        },
+        "DOWNGRADE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "downgrade"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of action to be taken: upgrade or downgrade"
+      }
+    },
+    "com.slack.conversations#ExternalInvitePermissionsSetRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The channel ID to change external invite permissions for",
+            "smithy.api#required": {}
+          }
+        },
+        "target_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encoded team ID of the target team.  Must be in the specified channel.",
+            "smithy.api#required": {}
+          }
+        },
+        "action": {
+          "target": "com.slack.conversations#ExternalInvitePermissionsSetRequestAction",
+          "traits": {
+            "smithy.api#documentation": "Type of action to be taken: upgrade or downgrade",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#ExternalInvitePermissionsSetResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#ExternalInvitePermissionsSet": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#ExternalInvitePermissionsSetRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#ExternalInvitePermissionsSetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.externalInvitePermissions.set",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upgrade or downgrade Slack Connect channel permissions between 'can post only' and 'can post and invite'.\n\nRequired scopes — bot: `conversations.connect:manage`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Cannot find channel\n  - `not_supported` — Attempting to upgrade a channel that cannot be upgraded\n  - `restricted_action` — A team preference prevents the user from taking this action.\n  - `invalid_target_team` — The target team provided is not valid for the channel.\n  - `invalid_action` — The user did not provid a valid action. Valid actions are 'upgrade' or 'downgrade'.\n\nSee https://docs.slack.dev/reference/methods/conversations.externalInvitePermissions.set",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.conversations#HistoryRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "channel",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Conversation ID to fetch history for."
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more detail."
+          }
+        },
+        "include_all_metadata": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_all_metadata",
+            "smithy.api#documentation": "Return all metadata associated with this message."
+          }
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "inclusive",
+            "smithy.api#documentation": "Include messages with `oldest` or `latest` timestamps in results. Ignored unless either timestamp is specified."
+          }
+        },
+        "latest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "latest",
+            "smithy.api#documentation": "Only messages before this Unix timestamp will be included in results. Default is the current time."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the conversation history hasn't been reached. Maximum of 999."
+          }
+        },
+        "oldest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "oldest",
+            "smithy.api#documentation": "Only messages after this Unix timestamp will be included in results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#HistoryResponseMessagesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#HistoryResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#HistoryResponseUsersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#HistoryResponseDeletedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#HistoryResponseMutationTimestamps": {
+      "type": "structure",
+      "members": {
+        "latest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "history_invalid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#HistoryResponseWarningsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#HistoryResponseLatestUpdatesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#HistoryResponseUnchangedMessagesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#HistoryResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "messages": {
+          "target": "com.slack.conversations#HistoryResponseMessagesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "has_more": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pin_count": {
+          "target": "smithy.api#Integer"
+        },
+        "channel_actions_ts": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "channel_actions_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.conversations#HistoryResponseResponseMetadata"
+        },
+        "oldest": {
+          "target": "smithy.api#String"
+        },
+        "is_limited": {
+          "target": "smithy.api#Boolean"
+        },
+        "latest": {
+          "target": "smithy.api#String"
+        },
+        "unread_count_display": {
+          "target": "smithy.api#Integer"
+        },
+        "users": {
+          "target": "com.slack.conversations#HistoryResponseUsersMap"
+        },
+        "deleted": {
+          "target": "com.slack.conversations#HistoryResponseDeletedList"
+        },
+        "mutation_timestamps": {
+          "target": "com.slack.conversations#HistoryResponseMutationTimestamps"
+        },
+        "deleted_overflow": {
+          "target": "smithy.api#Boolean"
+        },
+        "warnings": {
+          "target": "com.slack.conversations#HistoryResponseWarningsList"
+        },
+        "next_ts": {
+          "target": "smithy.api#Integer"
+        },
+        "latest_updates": {
+          "target": "com.slack.conversations#HistoryResponseLatestUpdatesMap"
+        },
+        "unchanged_messages": {
+          "target": "com.slack.conversations#HistoryResponseUnchangedMessagesList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#History": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#HistoryRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#HistoryResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/conversations.history",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches a conversation's history of messages and events.\n\nRequired scopes — bot: `groups:history`, `im:history`, `mpim:history`, `channels:history`; user: `groups:history`, `im:history`, `mpim:history`, `channels:history`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_is_limited_access` — The user has no access to the channel. This is only applicable to private Salesforce record channels.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_metadata_filter_keys` — Value passed for `metadata_keys_to_include` was invalid. Must be valid json array of strings.\n  - `invalid_ts_latest` — Value passed for `latest` was invalid\n  - `invalid_ts_oldest` — Value passed for `oldest` was invalid\n  - `not_in_channel` — The token used does not have access to the proper channel. Only user tokens can access public channels they are not in.\n\nSee https://docs.slack.dev/reference/methods/conversations.history"
+      }
+    },
+    "com.slack.conversations#InfoRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "channel",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Conversation ID to learn more about"
+          }
+        },
+        "include_locale": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_locale",
+            "smithy.api#documentation": "Set this to `true` to receive the locale for this conversation. Defaults to `false`"
+          }
+        },
+        "include_num_members": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_num_members",
+            "smithy.api#documentation": "Set to `true` to include the member count for the specified conversation. Defaults to `false`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#InfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "app_home": {
+          "target": "smithy.api#Document"
+        },
+        "channel": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "home_view": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#Info": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#InfoRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#InfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/conversations.info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve information about a conversation.\n\nRequired scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_is_limited_access` — The user has no access to the channel. Only applicable to Salesforce limited access channels.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n\nSee https://docs.slack.dev/reference/methods/conversations.info"
+      }
+    },
+    "com.slack.conversations#InviteRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the public or private channel to invite user(s) to.",
+            "smithy.api#required": {}
+          }
+        },
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true` and multiple user IDs are provided, continue inviting the valid ones while disregarding invalid IDs. Defaults to `false`."
+          }
+        },
+        "users": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comma separated list of user IDs. Up to 100 users may be listed.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#InviteResponseErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#InviteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#Document"
+        },
+        "group": {
+          "target": "smithy.api#Document"
+        },
+        "errors": {
+          "target": "com.slack.conversations#InviteResponseErrorsList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#Invite": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#InviteRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#InviteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.invite",
+          "code": 200
+        },
+        "smithy.api#documentation": "Invites users to a channel.\n\nRequired scopes — bot: `channels:write.invites`, `groups:write.invites`, `channels:manage`, `groups:write`, `im:write`, `mpim:write`; user: `channels:write.invites`, `groups:write.invites`, `channels:write`, `groups:write`, `im:write`, `mpim:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `already_in_channel` — Invited user is already in the channel.\n  - `app_cannot_join_channel` — This app cannot be invited to this channel.\n  - `cant_invite` — User cannot be invited to this channel.\n  - `cant_invite_self` — Authenticated user cannot invite themselves to a channel.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `invitee_cant_see_channel` — The Enterprise org multi-workspace channel you are inviting a user to is not shared with any workspaces the user is currently a member of.\n  - `is_archived` — Channel has been archived.\n  - `org_user_not_in_team` — One or more members invited are part of the Enterprise organization but not the specific workspace you're interfacing with.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n  - `no_permission` — User does not have permission to invite that specific user to the channel\n  - `no_external_invite_permission` — User does not have permission to invite that external user to the channel\n  - `no_user` — No value was passed for `users`.\n  - `not_in_channel` — Authenticated user is not in the channel.\n  - `ura_max_channels` — An invited user is a single-channel guest user ('ultra restricted access') that is already in the maximum number of conversations.\n  - `user_is_restricted` — An invited user is a guest user that is restricted from accessing this conversation.\n  - `user_not_found` — Value passed for `users` was invalid.\n  - `external_channel_migrating` — External channel migrating.\n\nSee https://docs.slack.dev/reference/methods/conversations.invite"
+      }
+    },
+    "com.slack.conversations#InviteSharedRequestEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional email to receive this invite. Either `emails` or `user_ids` must be provided. Only one email or one user ID may be invited at a time."
+      }
+    },
+    "com.slack.conversations#InviteSharedRequestUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional user_id to receive this invite. Either `emails` or `user_ids` must be provided. Only one email or one user ID may be invited at a time."
+      }
+    },
+    "com.slack.conversations#InviteSharedRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the channel on your team that you'd like to share",
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.slack.conversations#InviteSharedRequestEmailsList",
+          "traits": {
+            "smithy.api#documentation": "Optional email to receive this invite. Either `emails` or `user_ids` must be provided. Only one email or one user ID may be invited at a time."
+          }
+        },
+        "user_ids": {
+          "target": "com.slack.conversations#InviteSharedRequestUserIdsList",
+          "traits": {
+            "smithy.api#documentation": "Optional user_id to receive this invite. Either `emails` or `user_ids` must be provided. Only one email or one user ID may be invited at a time."
+          }
+        },
+        "external_limited": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional boolean on whether invite is to an external limited member. Defaults to `true`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#InviteSharedResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "invite_id": {
+          "target": "smithy.api#String"
+        },
+        "conf_code": {
+          "target": "smithy.api#String"
+        },
+        "is_legacy_shared_channel": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#InviteShared": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#InviteSharedRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#InviteSharedResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.inviteShared",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sends an invitation to a Slack Connect channel\n\nRequired scopes — bot: `conversations.connect:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `already_in_channel` — User is already in the channel.\n  - `cannot_share_cross_workspace_channel` — You cannot share a cross-workspace or org-wide channel.\n  - `cannot_share_mandatory_channel` — You cannot share #general or mandatory channels.\n  - `channel_archived` — You cannot share an archived channel.\n  - `channel_not_found` — The channel provided was not found.\n  - `connection_limit_exceeded` — This channel has hit the limit of external connections.\n  - `connection_limit_exceeded_pending` — This channel already has a pending invite.\n  - `invalid_channel_type` — You cannot share MPDMs or DMs.\n  - `invalid_email` — At least one email address provided is invalid.\n  - `invite_lookup_error` — An error occurred while attempting to look for existing invites.\n  - `invite_not_found` — An error occurred while inviting users.\n  - `legacy_connection_limit_exceeded` — You cannot share a legacy ESC channel with a third team\n  - `member_limit_exceeded` — This channel that has hit the limit of members\n  - `message_too_long` — The provided message was longer than 560 characters.\n  - `not_allowed_for_grid_workspace` — This workspace does not have Slack Connect enabled.\n  - `not_in_channel` — The app is not a member of the channel to invite.\n  - `not_owner` — Only the host organization for a channel can request to share it.\n  - `not_paid` — This feature is only available to paid teams.\n  - `not_supported` — This channel cannot be shared.\n  - `ratelimit` — The rate-limit for this method has been reached. The ratelimit is applied on a per-user basis when you pass the `emails` parameter.\n  - `recipients_not_specified` — Bots are required to specify which users to invite.\n  - `restricted_action` — A team preference does not allow this authorization to send invites.\n  - `too_many_emails` — Too many email recipients were passed in the `emails` parameter.\n  - `url_in_message` — The message contained a URL.\n  - `user_not_found` — User lookup failed.\n  - `no_external_invite_permission` — User does not have permission to invite an external user.\n\nSee https://docs.slack.dev/reference/methods/conversations.inviteShared"
+      }
+    },
+    "com.slack.conversations#JoinRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of conversation to join",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#JoinResponseResponseMetadataWarningsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#JoinResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "warnings": {
+          "target": "com.slack.conversations#JoinResponseResponseMetadataWarningsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#JoinResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.conversations#JoinResponseResponseMetadata"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#Join": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#JoinRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#JoinResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.join",
+          "code": 200
+        },
+        "smithy.api#documentation": "Joins an existing conversation.\n\nRequired scopes — user: `channels:write`; bot: `channels:join`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_is_limited_access` — The user has no access to the channel. This is only applicable to private Salesforce record channels.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `is_archived` — Channel has been archived.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n  - `too_many_members` — The membership in the channel has exceeded our maximum member limit. No more users can join the channel.\n\nSee https://docs.slack.dev/reference/methods/conversations.join"
+      }
+    },
+    "com.slack.conversations#KickRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of conversation to remove user from.",
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User ID to be removed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#KickResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#Kick": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#KickRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#KickResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.kick",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes a user from a conversation.\n\nRequired scopes — bot: `groups:write`, `channels:manage`; user: `groups:write`, `channels:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `cant_kick_from_general` — User cannot be removed from #general.\n  - `cant_kick_self` — Authenticated user can't kick themselves from a channel.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n  - `not_in_channel` — User was not in the channel.\n  - `not_supported` — This is not supported for this channel and user combination.\n  - `restricted_action` — A team preference prevents the authenticated user from kicking.\n  - `user_not_found` — Value passed for `user` was invalid.\n\nSee https://docs.slack.dev/reference/methods/conversations.kick"
+      }
+    },
+    "com.slack.conversations#LeaveRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Conversation to leave",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#LeaveResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "not_in_channel": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#Leave": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#LeaveRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#LeaveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.leave",
+          "code": 200
+        },
+        "smithy.api#documentation": "Leaves a conversation.\n\nRequired scopes — bot: `groups:write`, `im:write`, `mpim:write`, `channels:write`, `channels:manage`; user: `groups:write`, `im:write`, `mpim:write`, `channels:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `cant_leave_general` — Authenticated user cannot leave the general channel\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `is_archived` — Channel has been archived.\n  - `last_member` — The last member party to a channel cannot leave the channel. Someone else must join the channel before this user is permitted to exit.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n  - `user_is_restricted` — Restricted and guest users cannot leave channel\n\nSee https://docs.slack.dev/reference/methods/conversations.leave"
+      }
+    },
+    "com.slack.conversations#ListRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more detail."
+          }
+        },
+        "exclude_archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "exclude_archived",
+            "smithy.api#documentation": "Set to `true` to exclude archived channels from the list."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. Must be an integer under 1000."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "encoded team id to list channels in, required if token belongs to org-wide app"
+          }
+        },
+        "types": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "types",
+            "smithy.api#documentation": "Mix and match channel types by providing a comma-separated list of any combination of `public_channel`, `private_channel`, `mpim`, `im`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#ListResponseChannelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#ListResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channels": {
+          "target": "com.slack.conversations#ListResponseChannelsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#ListRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/conversations.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all channels in a Slack team.\n\nRequired scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_limit` — Value passed for `limit` is not understood.\n  - `invalid_types` — Value passed for `type` could not be used based on the method's capabilities or the permission scopes granted to the used token.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_argument` — A required argument is missing.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n\nSee https://docs.slack.dev/reference/methods/conversations.list"
+      }
+    },
+    "com.slack.conversations#ListConnectInvitesRequest": {
+      "type": "structure",
+      "members": {
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded team id for the workspace to retrieve invites for, required if org token is used"
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of invites to return"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Set to `next_cursor` returned by previous call to list items in subsequent page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#ListConnectInvitesResponseInvitesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#ListConnectInvitesResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "invites": {
+          "target": "com.slack.conversations#ListConnectInvitesResponseInvitesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#ListConnectInvites": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#ListConnectInvitesRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#ListConnectInvitesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.listConnectInvites",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists shared channel invites that have been generated or received but have not been approved by all parties\n\nRequired scopes — bot: `conversations.connect:manage`\n\nRate limit tier: 1\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — An invalid argument was supplied to the method.\n  - `restricted_action` — A team preference prevents the authenticated user from viewing shared channel invites.\n\nSee https://docs.slack.dev/reference/methods/conversations.listConnectInvites"
+      }
+    },
+    "com.slack.conversations#MarkRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel or conversation to set the read cursor for.",
+            "smithy.api#required": {}
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of message you want marked as most recently seen in this conversation.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#MarkResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#Mark": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#MarkRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#MarkResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.mark",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sets the read cursor in a channel.\n\nRequired scopes — bot: `groups:write`, `im:write`, `mpim:write`, `channels:write`, `channels:manage`; user: `groups:write`, `im:write`, `mpim:write`, `channels:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `invalid_timestamp` — Value passed for `timestamp` was invalid.\n  - `not_in_channel` — Caller is not a member of the channel.\n\nSee https://docs.slack.dev/reference/methods/conversations.mark"
+      }
+    },
+    "com.slack.conversations#MembersRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "channel",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the conversation to retrieve members for"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more detail."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#MembersResponseMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#MembersResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "members": {
+          "target": "com.slack.conversations#MembersResponseMembersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#Members": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#MembersRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#MembersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/conversations.members",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve members of a conversation.\n\nRequired scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `fetch_members_failed` — Failed to fetch members for the conversation.\n  - `invalid_cursor` — Value passed for `cursor` was invalid.\n  - `invalid_limit` — Value passed for `limit` was invalid.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n\nSee https://docs.slack.dev/reference/methods/conversations.members"
+      }
+    },
+    "com.slack.conversations#OpenRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resume a conversation by supplying an `im` or `mpim`'s ID. Or provide the `users` field instead.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "return_im": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Boolean, indicates you want the full IM channel definition in the response."
+          }
+        },
+        "users": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Comma separated lists of users. If only one user is included, this creates a 1:1 DM.  The ordering of the users is preserved whenever a multi-person direct message is returned. Supply a `channel` when not supplying `users`."
+          }
+        },
+        "prevent_creation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not create a direct message or multi-person direct message. This is used to see if there is an existing dm or mpdm."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#OpenResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "already_open": {
+          "target": "smithy.api#Boolean"
+        },
+        "no_op": {
+          "target": "smithy.api#Boolean"
+        },
+        "channel": {
+          "target": "smithy.api#Document"
+        },
+        "app_home": {
+          "target": "smithy.api#Document"
+        },
+        "home_view": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#Open": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#OpenRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#OpenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.open",
+          "code": 200
+        },
+        "smithy.api#documentation": "Opens or resumes a direct message or multi-person direct message.\n\nRequired scopes — bot: `channels:manage`, `groups:write`, `im:write`, `mpim:write`; user: `channels:write`, `groups:write`, `im:write`, `mpim:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `invalid_user_combination` — All external people must already be in at least one channel together to send a message.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n  - `not_enough_users` — Needs at least 2 users to open\n  - `too_many_users` — Needs at most 8 users to open\n  - `user_disabled` — A specified `user` has been disabled.\n  - `user_not_found` — Value(s) passed for `users` was invalid.\n  - `user_not_visible` — The calling user is restricted from seeing the requested user.\n  - `users_list_not_supplied` — Missing `users` in request\n\nSee https://docs.slack.dev/reference/methods/conversations.open"
+      }
+    },
+    "com.slack.conversations#RenameRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of conversation to rename",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New name for conversation.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#RenameResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#Rename": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#RenameRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#RenameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.rename",
+          "code": 200
+        },
+        "smithy.api#documentation": "Renames a conversation.\n\nRequired scopes — bot: `groups:write`, `im:write`, `mpim:write`, `channels:write`, `channels:manage`; user: `groups:write`, `im:write`, `mpim:write`, `channels:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `invalid_name` — Value passed for `name` was invalid.\n  - `invalid_name_maxlength` — Value passed for `name` exceeded max length.\n  - `invalid_name_punctuation` — Value passed for `name` contained only punctuation.\n  - `invalid_name_required` — Value passed for `name` was empty.\n  - `invalid_name_specials` — Value passed for `name` contained unallowed special characters or upper case characters.\n  - `is_archived` — Cannot rename archived channel.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n  - `name_taken` — New channel name is taken.\n  - `not_authorized` — Caller cannot rename this channel.\n  - `not_in_channel` — Caller is not a member of the channel.\n\nSee https://docs.slack.dev/reference/methods/conversations.rename"
+      }
+    },
+    "com.slack.conversations#RepliesRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "channel",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Conversation ID to fetch thread from."
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more detail."
+          }
+        },
+        "include_all_metadata": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_all_metadata",
+            "smithy.api#documentation": "Return all metadata associated with this message."
+          }
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "inclusive",
+            "smithy.api#documentation": "Include messages with `oldest` or `latest` timestamps in results. Ignored unless either timestamp is specified."
+          }
+        },
+        "latest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "latest",
+            "smithy.api#documentation": "Only messages before this Unix timestamp will be included in results."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached."
+          }
+        },
+        "oldest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "oldest",
+            "smithy.api#documentation": "Only messages after this Unix timestamp will be included in results."
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "ts",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique identifier of either a thread’s parent message or a message in the thread. `ts` must be the timestamp of an existing message with 0 or more replies. If there are no replies then just the single message referenced by `ts` will return - it is just an ordinary, unthreaded message."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#RepliesResponseMessagesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#RepliesResponseLatestUpdatesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#RepliesResponseUnchangedMessagesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#RepliesResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "has_more": {
+          "target": "smithy.api#Boolean"
+        },
+        "messages": {
+          "target": "com.slack.conversations#RepliesResponseMessagesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "latest_updates": {
+          "target": "com.slack.conversations#RepliesResponseLatestUpdatesMap"
+        },
+        "unchanged_messages": {
+          "target": "com.slack.conversations#RepliesResponseUnchangedMessagesList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#Replies": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#RepliesRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#RepliesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/conversations.replies",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve a thread of messages posted to a conversation\n\nRequired scopes — bot: `groups:history`, `im:history`, `mpim:history`, `channels:history`; user: `groups:history`, `im:history`, `mpim:history`, `channels:history`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value for `channel` was missing or invalid.\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_metadata_filter_keys` — Value passed for `metadata_keys_to_include` was invalid. Must be valid json array of strings.\n  - `invalid_ts_latest` — Value passed for `latest` was invalid\n  - `invalid_ts_oldest` — Value passed for `oldest` was invalid\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n  - `thread_not_found` — Value for `ts` was missing or invalid.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `list_record_comment_fetch_failed` — Failed to fetch list record comments.\n\nSee https://docs.slack.dev/reference/methods/conversations.replies"
+      }
+    },
+    "com.slack.conversations#RequestSharedInviteApproveRequestMessage": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "text to include along with email invite",
+            "smithy.api#required": {}
+          }
+        },
+        "is_override": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true will override the user specified message. Otherwise text will be appended to the user specified message on the invite request.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Object describing the text to send along with the invite. If this object is specified, both `text` and `is_override` are required properties. If `is_override` is set to `true`, `text` will override the original invitation message. Otherwise, `text` will be appended to the original invitation message. The total length of the message cannot exceed 560 characters. If `is_override` is set to `false`, the length of `text` and the user specified message on the invite request in total must be less than 560 characters."
+      }
+    },
+    "com.slack.conversations#RequestSharedInviteApproveRequest": {
+      "type": "structure",
+      "members": {
+        "invite_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the requested shared channel invite to approve.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_external_limited": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional boolean on whether the invited team will have post-only permissions in the channel. Will override the value on the requested invite."
+          }
+        },
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional channel_id to which external user will be invited to. Will override the value on the requested invite."
+          }
+        },
+        "message": {
+          "target": "com.slack.conversations#RequestSharedInviteApproveRequestMessage",
+          "traits": {
+            "smithy.api#documentation": "Object describing the text to send along with the invite. If this object is specified, both `text` and `is_override` are required properties. If `is_override` is set to `true`, `text` will override the original invitation message. Otherwise, `text` will be appended to the original invitation message. The total length of the message cannot exceed 560 characters. If `is_override` is set to `false`, the length of `text` and the user specified message on the invite request in total must be less than 560 characters."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#RequestSharedInviteApproveResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "invite_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "confirmation_code": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#RequestSharedInviteApprove": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#RequestSharedInviteApproveRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#RequestSharedInviteApproveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.requestSharedInvite.approve",
+          "code": 200
+        },
+        "smithy.api#documentation": "Approves a request to add an external user to a channel and sends them a Slack Connect invite\n\nRequired scopes — bot: `conversations.connect:manage`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invite_not_found` — We couldn't find a Slack Connect channel invite with the ID provided.\n  - `invite_already_approved` — This invite was already approved.\n  - `invite_already_denied` — This invite was already denied.\n  - `invite_expired` — This invite is expired.\n  - `channel_not_found` — The provided channel was not found or the channel is no longer visible to the user who requested the invite.\n  - `user_not_found` — Can not find the user who requested the invite.\n  - `team_not_found` — Can not find the team who requested the invite.\n  - `restricted_action` — A team preference prevents the invite from being approved.\n  - `no_external_invite_permission` — Channel manager has restricted external invites for a given channel.\n  - `internal_error` — Something unexpected went wrong.\n  - `message_too_long` — If the passed in approve message is greater than 560 characters.\n\nSee https://docs.slack.dev/reference/methods/conversations.requestSharedInvite.approve"
+      }
+    },
+    "com.slack.conversations#RequestSharedInviteDenyRequest": {
+      "type": "structure",
+      "members": {
+        "invite_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the requested shared channel invite to deny.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional message explaining why the request to invite was denied."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#RequestSharedInviteDenyResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#RequestSharedInviteDeny": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#RequestSharedInviteDenyRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#RequestSharedInviteDenyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.requestSharedInvite.deny",
+          "code": 200
+        },
+        "smithy.api#documentation": "Denies a request to invite an external user to a channel\n\nRequired scopes — bot: `conversations.connect:manage`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invite_not_found` — We couldn't find a Slack Connect channel invite with the ID provided.\n  - `user_not_found` — We could not find the user who made the invite request.\n  - `team_not_found` — We could not find the team which made the invite request.\n  - `channel_not_found` — We could not find the channel where the request was made.\n  - `invite_already_approved` — This invite was already approved.\n  - `invite_already_denied` — This invite was already denied.\n  - `invite_expired` — This invite is expired.\n  - `restricted_action` — A team preference prevents the invite from being denied.\n  - `internal_error` — Something unexpected went wrong.\n  - `message_too_long` — If the passed in deny message is greater than 560 characters.\n\nSee https://docs.slack.dev/reference/methods/conversations.requestSharedInvite.deny"
+      }
+    },
+    "com.slack.conversations#RequestSharedInviteListRequestInviteIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "An optional list of invitation ids to look up"
+      }
+    },
+    "com.slack.conversations#RequestSharedInviteListRequest": {
+      "type": "structure",
+      "members": {
+        "user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional filter to return invitation requests for the inviting user."
+          }
+        },
+        "include_expired": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true expired invitation requests will be returned, otherwise they will be excluded"
+          }
+        },
+        "include_approved": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true approved invitation requests will be returned, otherwise they will be excluded"
+          }
+        },
+        "include_denied": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true denied invitation requests will be returned, otherwise they will be excluded"
+          }
+        },
+        "invite_ids": {
+          "target": "com.slack.conversations#RequestSharedInviteListRequestInviteIdsList",
+          "traits": {
+            "smithy.api#documentation": "An optional list of invitation ids to look up"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of items to return. Must be between 1 - 1000 (inclusive)."
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. See [pagination](/apis/web-api/pagination) for more detail."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#RequestSharedInviteListResponseInviteRequestsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.conversations#RequestSharedInviteListResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "invite_requests": {
+          "target": "com.slack.conversations#RequestSharedInviteListResponseInviteRequestsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Contains cursor to next page. Present only when next page exists."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#RequestSharedInviteList": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#RequestSharedInviteListRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#RequestSharedInviteListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.requestSharedInvite.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists requests to add external users to channels with ability to filter.\n\nRequired scopes — bot: `conversations.connect:manage`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `restricted_action` — A team preference prevents the user from listing invitation requests.\n  - `invalid_cursor` — The provided cursor is not valid.\n  - `internal_error` — Something unexpected went wrong.\n  - `not_implemented` — its not implemented!  TODO: remove me\n\nSee https://docs.slack.dev/reference/methods/conversations.requestSharedInvite.list"
+      }
+    },
+    "com.slack.conversations#SetPurposeRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel to set the description of",
+            "smithy.api#required": {}
+          }
+        },
+        "purpose": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#SetPurposeResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#SetPurpose": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#SetPurposeRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#SetPurposeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.setPurpose",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sets the channel description.\n\nRequired scopes — bot: `channels:write.topic`, `groups:write.topic`, `mpim:write.topic`, `im:write.topic`, `channels:manage`, `groups:write`, `im:write`, `mpim:write`; user: `channels:write.topic`, `groups:write.topic`, `mpim:write.topic`, `im:write.topic`, `channels:write`, `groups:write`, `im:write`, `mpim:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `is_archived` — Channel has been archived.\n  - `method_not_supported_for_channel_type` — This conversation type cannot be used with this method.\n  - `missing_scope` — The calling token has not been granted the necessary scopes to complete this operation.\n  - `not_in_channel` — Authenticated user is not in the channel.\n  - `too_long` — Description was longer than 250 characters.\n  - `user_is_restricted` — Setting the channel description is a restricted action.\n\nSee https://docs.slack.dev/reference/methods/conversations.setPurpose"
+      }
+    },
+    "com.slack.conversations#SetTopicRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Conversation to set the topic of",
+            "smithy.api#required": {}
+          }
+        },
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new topic string. Does not support formatting or linkification.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#SetTopicResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#SetTopic": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#SetTopicRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#SetTopicResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.setTopic",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sets the topic for a conversation.\n\nRequired scopes — bot: `channels:write.topic`, `groups:write.topic`, `mpim:write.topic`, `im:write.topic`, `channels:manage`, `groups:write`, `im:write`, `mpim:write`; user: `channels:write.topic`, `groups:write.topic`, `mpim:write.topic`, `im:write.topic`, `channels:write`, `groups:write`, `im:write`, `mpim:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `is_archived` — Channel has been archived.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n  - `not_in_channel` — Authenticated user is not in the channel.\n  - `too_long` — Topic was longer than 250 characters.\n  - `user_is_restricted` — Setting the topic is a restricted action.\n\nSee https://docs.slack.dev/reference/methods/conversations.setTopic"
+      }
+    },
+    "com.slack.conversations#UnarchiveRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of conversation to unarchive",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.conversations#UnarchiveResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.conversations#Unarchive": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.conversations#UnarchiveRequest"
+      },
+      "output": {
+        "target": "com.slack.conversations#UnarchiveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/conversations.unarchive",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reverses conversation archival.\n\nRequired scopes — bot: `groups:write`, `im:write`, `mpim:write`, `channels:write`, `channels:manage`; user: `groups:write`, `im:write`, `mpim:write`, `channels:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n  - `not_archived` — Channel is not archived.\n\nSee https://docs.slack.dev/reference/methods/conversations.unarchive"
+      }
+    },
+    "com.slack.conversations#Conversations": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.conversations#AcceptSharedInvite"
+        },
+        {
+          "target": "com.slack.conversations#ApproveSharedInvite"
+        },
+        {
+          "target": "com.slack.conversations#Archive"
+        },
+        {
+          "target": "com.slack.conversations#CanvasesCreate"
+        },
+        {
+          "target": "com.slack.conversations#Close"
+        },
+        {
+          "target": "com.slack.conversations#Create"
+        },
+        {
+          "target": "com.slack.conversations#DeclineSharedInvite"
+        },
+        {
+          "target": "com.slack.conversations#ExternalInvitePermissionsSet"
+        },
+        {
+          "target": "com.slack.conversations#History"
+        },
+        {
+          "target": "com.slack.conversations#Info"
+        },
+        {
+          "target": "com.slack.conversations#Invite"
+        },
+        {
+          "target": "com.slack.conversations#InviteShared"
+        },
+        {
+          "target": "com.slack.conversations#Join"
+        },
+        {
+          "target": "com.slack.conversations#Kick"
+        },
+        {
+          "target": "com.slack.conversations#Leave"
+        },
+        {
+          "target": "com.slack.conversations#List"
+        },
+        {
+          "target": "com.slack.conversations#ListConnectInvites"
+        },
+        {
+          "target": "com.slack.conversations#Mark"
+        },
+        {
+          "target": "com.slack.conversations#Members"
+        },
+        {
+          "target": "com.slack.conversations#Open"
+        },
+        {
+          "target": "com.slack.conversations#Rename"
+        },
+        {
+          "target": "com.slack.conversations#Replies"
+        },
+        {
+          "target": "com.slack.conversations#RequestSharedInviteApprove"
+        },
+        {
+          "target": "com.slack.conversations#RequestSharedInviteDeny"
+        },
+        {
+          "target": "com.slack.conversations#RequestSharedInviteList"
+        },
+        {
+          "target": "com.slack.conversations#SetPurpose"
+        },
+        {
+          "target": "com.slack.conversations#SetTopic"
+        },
+        {
+          "target": "com.slack.conversations#Unarchive"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — conversations"
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+[
+  {
+    "name": "array",
+    "description": "An array of items (based on a type that you specify)."
+  },
+  {
+    "name": "blocks",
+    "description": "An array of objects that contain layout and style information about your message."
+  },
+  {
+    "name": "boolean",
+    "description": "A logical value, must be either `true` or `false`."
+  },
+  {
+    "name": "canvas_id",
+    "description": "A Slack canvas ID, such as `F123456AB`."
+  },
+  {
+    "name": "canvas_template_id",
+    "description": "A Slack canvas template ID, such as `T5678ABC`."
+  },
+  {
+    "name": "channel_id",
+    "description": "A Slack channel ID, such as `C123ABC456` or `D123ABC456`."
+  },
+  {
+    "name": "date",
+    "description": "A string containing a date, format is displayed as `YYYY-MM-DD`."
+  },
+  {
+    "name": "expanded_rich_text",
+    "description": "A way to nicely format messages in your app. This type cannot convert other message types, e.g. blocks or strings, and is explicitly for use with canvases."
+  },
+  {
+    "name": "file_id",
+    "description": "A file ID, such as `F123ABC456`."
+  },
+  {
+    "name": "integer",
+    "description": "A whole number, such as `-1`, `0`, or `31415926535`."
+  },
+  {
+    "name": "interactivity",
+    "description": "An object that contains context about the interactive event that led to opening of the form."
+  },
+  {
+    "name": "list_id",
+    "description": "A Slack list ID, such as `F123456ABC`."
+  },
+  {
+    "name": "message_context",
+    "description": "An individual instance of a message."
+  },
+  {
+    "name": "message_ts",
+    "description": "A Slack-specific hash/timestamp necessary for referencing events like messages in Slack."
+  },
+  {
+    "name": "number",
+    "description": "A number that allows decimal points such as `13557523.0005`."
+  },
+  {
+    "name": "oauth2",
+    "description": "The OAuth2 context created after authenticating with external auth."
+  },
+  {
+    "name": "object",
+    "description": "A custom JavaScript object, like `{\"site\": \"slack.com\"}`."
+  },
+  {
+    "name": "options_field",
+    "description": "A type of `Options` parameter used in custom steps dynamic options for Workflow Builder."
+  },
+  {
+    "name": "options_select",
+    "description": "A type of `Options` parameter used in custom steps dynamic options for Workflow Builder."
+  },
+  {
+    "name": "rich_text",
+    "description": "A way to nicely format messages in your app. This type cannot convert other message types e.g. blocks, strings."
+  },
+  {
+    "name": "string",
+    "description": "UTF-8 encoded string, up to 4000 bytes."
+  },
+  {
+    "name": "team_id",
+    "description": "A Slack team ID, such as `T1234567890`."
+  },
+  {
+    "name": "timestamp",
+    "description": "A Unix timestamp in seconds. Not compatible with Slack message timestamps, use `string` instead."
+  },
+  {
+    "name": "user_context",
+    "description": "Represents a user who interacted with a workflow at runtime."
+  },
+  {
+    "name": "user_id",
+    "description": "A Slack user ID, such as `U123ABC456` or `W123ABC456`."
+  },
+  {
+    "name": "usergroup_id",
+    "description": "A Slack usergroup ID, such as `S123ABC456`."
+  }
+]

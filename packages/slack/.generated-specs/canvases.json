@@ -1,0 +1,541 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.slack.canvases#AccessDeleteRequestChannelIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of channels you wish to update access for"
+      }
+    },
+    "com.slack.canvases#AccessDeleteRequestUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of users you wish to update access for"
+      }
+    },
+    "com.slack.canvases#AccessDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "canvas_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded ID of the canvas",
+            "smithy.api#required": {}
+          }
+        },
+        "channel_ids": {
+          "target": "com.slack.canvases#AccessDeleteRequestChannelIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of channels you wish to update access for"
+          }
+        },
+        "user_ids": {
+          "target": "com.slack.canvases#AccessDeleteRequestUserIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of users you wish to update access for"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.canvases#AccessDeleteResponseFailedToUpdateChannelIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The channel IDs that could not be updated"
+      }
+    },
+    "com.slack.canvases#AccessDeleteResponseFailedToUpdateUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The user IDs that could not be updated"
+      }
+    },
+    "com.slack.canvases#AccessDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "failed_to_update_channel_ids": {
+          "target": "com.slack.canvases#AccessDeleteResponseFailedToUpdateChannelIdsList",
+          "traits": {
+            "smithy.api#documentation": "The channel IDs that could not be updated"
+          }
+        },
+        "failed_to_update_user_ids": {
+          "target": "com.slack.canvases#AccessDeleteResponseFailedToUpdateUserIdsList",
+          "traits": {
+            "smithy.api#documentation": "The user IDs that could not be updated"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.canvases#AccessDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.canvases#AccessDeleteRequest"
+      },
+      "output": {
+        "target": "com.slack.canvases#AccessDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/canvases.access.delete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove access to a canvas for specified entities\n\nRequired scopes — bot: `canvases:write`; user: `canvases:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `canvas_not_found` — The canvas you wish to revoke permissions for is not available.\n  - `restricted_action` — User does not have permission to perform this action.\n  - `canvas_disabled_user_team` — Canvas is disabled on user's team.\n  - `invalid_parameters` — One of user_ids and channel_ids must be defined.\n  - `channel_not_found` — A channel could not be found.\n  - `user_not_found` — A user could not be found.\n\nSee https://docs.slack.dev/reference/methods/canvases.access.delete"
+      }
+    },
+    "com.slack.canvases#AccessSetRequestChannelIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of channels you wish to update access for. Can only be used if user_ids is not provided."
+      }
+    },
+    "com.slack.canvases#AccessSetRequestUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of users you wish to update access for. Can only be used if channel_ids is not provided."
+      }
+    },
+    "com.slack.canvases#AccessSetRequest": {
+      "type": "structure",
+      "members": {
+        "canvas_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded ID of the canvas",
+            "smithy.api#required": {}
+          }
+        },
+        "access_level": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Desired level of access",
+            "smithy.api#required": {}
+          }
+        },
+        "channel_ids": {
+          "target": "com.slack.canvases#AccessSetRequestChannelIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of channels you wish to update access for. Can only be used if user_ids is not provided."
+          }
+        },
+        "user_ids": {
+          "target": "com.slack.canvases#AccessSetRequestUserIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of users you wish to update access for. Can only be used if channel_ids is not provided."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.canvases#AccessSetResponseFailedToUpdateChannelIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The channel IDs that could not be updated"
+      }
+    },
+    "com.slack.canvases#AccessSetResponseFailedToUpdateUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The user IDs that could not be updated"
+      }
+    },
+    "com.slack.canvases#AccessSetResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "failed_to_update_channel_ids": {
+          "target": "com.slack.canvases#AccessSetResponseFailedToUpdateChannelIdsList",
+          "traits": {
+            "smithy.api#documentation": "The channel IDs that could not be updated"
+          }
+        },
+        "failed_to_update_user_ids": {
+          "target": "com.slack.canvases#AccessSetResponseFailedToUpdateUserIdsList",
+          "traits": {
+            "smithy.api#documentation": "The user IDs that could not be updated"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.canvases#AccessSet": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.canvases#AccessSetRequest"
+      },
+      "output": {
+        "target": "com.slack.canvases#AccessSetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/canvases.access.set",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sets the access level to a canvas for specified entities\n\nRequired scopes — bot: `canvases:write`; user: `canvases:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `canvas_disabled_user_team` — Canvas is disabled on user's team\n  - `canvas_not_found` — The canvas you wish to update permissions for is not available.\n  - `channel_not_found` — A channel could not be found.\n  - `failed_to_update_user_ids` — Failed to update the specified user_ids.\n  - `invalid_parameters` — One of user_ids or channel_ids must be defined, but not both.\n  - `restricted_action` — User does not have permission to perform this action.\n  - `user_not_found` — A user could not be found.\n\nSee https://docs.slack.dev/reference/methods/canvases.access.set"
+      }
+    },
+    "com.slack.canvases#CreateRequest": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the newly created canvas"
+          }
+        },
+        "document_content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Structure describing the type and value of the content to create. The markdown content is limited to 1 MiB (1,048,576 characters)."
+          }
+        },
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel ID of the channel the canvas will be tabbed in. This is a required field for free teams."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.canvases#CreateResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "canvas_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded ID of the canvas",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.canvases#Create": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.canvases#CreateRequest"
+      },
+      "output": {
+        "target": "com.slack.canvases#CreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/canvases.create",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create canvas for a user\n\nRequired scopes — bot: `canvases:write`; user: `canvases:write`; seamless_user: `seamless.user`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `canvas_disabled_user_team` — Canvas is disabled on user's team\n  - `restricted_action` — User does not have permission to perform this action.\n  - `canvas_creation_failed` — Canvas was unable to be created.\n  - `free_teams_cannot_create_non_tabbed_canvases` — Free teams cannot create non-tabbed standalone canvases\n  - `free_team_canvas_tab_already_exists` — Free teams are limited to one canvas tab per channel\n  - `free_teams_cannot_create_standalone_canvases` — Free teams cannot create standalone canvases\n\nSee https://docs.slack.dev/reference/methods/canvases.create"
+      }
+    },
+    "com.slack.canvases#DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "canvas_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded ID of the canvas",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.canvases#DeleteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.canvases#Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.canvases#DeleteRequest"
+      },
+      "output": {
+        "target": "com.slack.canvases#DeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/canvases.delete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes a canvas\n\nRequired scopes — bot: `canvases:write`; user: `canvases:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `canvas_deleting_disabled` — This functionality is disabled.\n  - `canvas_not_found` — The canvas does not exist, or is not visible to the calling user.\n  - `restricted_action` — User does not have permission to perform this action.\n\nSee https://docs.slack.dev/reference/methods/canvases.delete"
+      }
+    },
+    "com.slack.canvases#EditRequestChangesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of changes to apply on the specified canvas. The markdown content of each change is limited to 1 MiB (1,048,576 characters)."
+      }
+    },
+    "com.slack.canvases#EditRequest": {
+      "type": "structure",
+      "members": {
+        "canvas_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded ID of the canvas",
+            "smithy.api#required": {}
+          }
+        },
+        "changes": {
+          "target": "com.slack.canvases#EditRequestChangesList",
+          "traits": {
+            "smithy.api#documentation": "List of changes to apply on the specified canvas. The markdown content of each change is limited to 1 MiB (1,048,576 characters).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.canvases#EditResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.canvases#Edit": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.canvases#EditRequest"
+      },
+      "output": {
+        "target": "com.slack.canvases#EditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/canvases.edit",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an existing canvas\n\nRequired scopes — bot: `canvases:write`; user: `canvases:write`; seamless_user: `seamless.user`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `canvas_not_found` — The canvas you wish to apply changes to is not available.\n  - `canvas_disabled_user_team` — Canvas is disabled on user's team\n  - `free_teams_cannot_edit_standalone_canvases` — Free teams cannot edit standalone canvases\n  - `restricted_action` — User does not have permission to perform this action.\n  - `canvas_editing_failed` — The changes to the canvas failed to be applied.\n  - `canvas_editing_locked` — Another edit to this canvas is currently in progress. Please retry after a short delay.\n  - `canvas_too_large` — The canvas is too large to apply the requested changes. Reduce the size of the canvas or the edit and try again.\n\nSee https://docs.slack.dev/reference/methods/canvases.edit"
+      }
+    },
+    "com.slack.canvases#SectionsLookupRequest": {
+      "type": "structure",
+      "members": {
+        "canvas_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded ID of the canvas",
+            "smithy.api#required": {}
+          }
+        },
+        "criteria": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Filtering criteria",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.canvases#SectionsLookupResponseSectionsItemChildSectionIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "IDs of child sections within a layout container (blockquote, callout, flexbox, or table)."
+      }
+    },
+    "com.slack.canvases#SectionsLookupResponseSectionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "child_section_ids": {
+          "target": "com.slack.canvases#SectionsLookupResponseSectionsItemChildSectionIdsList",
+          "traits": {
+            "smithy.api#documentation": "IDs of child sections within a layout container (blockquote, callout, flexbox, or table)."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.canvases#SectionsLookupResponseSectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.canvases#SectionsLookupResponseSectionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Sections in the canvas that match the provided criteria"
+      }
+    },
+    "com.slack.canvases#SectionsLookupResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "sections": {
+          "target": "com.slack.canvases#SectionsLookupResponseSectionsList",
+          "traits": {
+            "smithy.api#documentation": "Sections in the canvas that match the provided criteria",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.canvases#SectionsLookup": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.canvases#SectionsLookupRequest"
+      },
+      "output": {
+        "target": "com.slack.canvases#SectionsLookupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/canvases.sections.lookup",
+          "code": 200
+        },
+        "smithy.api#documentation": "Find sections matching the provided criteria\n\nRequired scopes — bot: `canvases:read`; user: `canvases:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `canvas_deleted` — The canvas you wish to search is not available.\n  - `canvas_disabled_user_team` — Canvas is disabled on user's team.\n  - `canvas_not_found` — The canvas you wish to search for is not available.\n  - `internal_error` — Something went wrong on our end, please try again.\n\nSee https://docs.slack.dev/reference/methods/canvases.sections.lookup"
+      }
+    },
+    "com.slack.canvases#Canvases": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.canvases#AccessDelete"
+        },
+        {
+          "target": "com.slack.canvases#AccessSet"
+        },
+        {
+          "target": "com.slack.canvases#Create"
+        },
+        {
+          "target": "com.slack.canvases#Delete"
+        },
+        {
+          "target": "com.slack.canvases#Edit"
+        },
+        {
+          "target": "com.slack.canvases#SectionsLookup"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — canvases"
+      }
+    }
+  }
+}

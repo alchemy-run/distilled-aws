@@ -1,0 +1,54 @@
+{
+  "desc": "Returns the permission type of an app and if applicable, includes the entities that have been granted access",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.apps:read"
+    ]
+  },
+  "rate_limits": "t3",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "app_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "app_id": {
+        "type": "string",
+        "desc": "Encoded ID of the app",
+        "example": "A0000000001"
+      }
+    }
+  },
+  "output": {
+    "schema": "app_acl"
+  },
+  "errors": {
+    "restricted_action": {
+      "desc": "User does not have permission to perform this action."
+    },
+    "invalid_auth": {
+      "desc": "Invalid authorization token"
+    },
+    "access_denied": {
+      "desc": "This actor does not have access to the permissions on this resource."
+    },
+    "app_not_found": {
+      "desc": "This app does not exist."
+    },
+    "not_an_enterprise": {
+      "desc": "This feature is only available on Enterprise Grid plans."
+    },
+    "invalid_permission_type": {
+      "desc": "The ACL has an invalid permission type."
+    }
+  }
+}

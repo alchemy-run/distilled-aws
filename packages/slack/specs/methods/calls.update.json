@@ -1,0 +1,71 @@
+{
+  "desc": "Updates information about a Call.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "calls:write"
+    ],
+    "user": [
+      "calls:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "id": {
+        "type": "string",
+        "desc": "`id` returned by the [`calls.add`](/reference/methods/calls.add) method.",
+        "example": "R0E69JAIF"
+      },
+      "title": {
+        "type": "string",
+        "desc": "The name of the Call.",
+        "example": "Kimpossible sync up call"
+      },
+      "join_url": {
+        "type": "string",
+        "desc": "The URL required for a client to join the Call.",
+        "example": "https://example.com/calls/0987654321"
+      },
+      "desktop_app_join_url": {
+        "type": "string",
+        "desc": "When supplied, available Slack clients will attempt to directly launch the 3rd-party Call with this URL.",
+        "example": "callapp://join/0987654321"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "call"
+    ],
+    "properties": {
+      "call": {
+        "schema": "info"
+      }
+    }
+  },
+  "errors": {
+    "internal_error": {
+      "desc": "An unexpected exception occurred while updating the Call info."
+    },
+    "invalid_call_id": {
+      "desc": "The Call's `id` was invalid."
+    },
+    "not_implemented": {
+      "desc": "This method is not available."
+    }
+  }
+}

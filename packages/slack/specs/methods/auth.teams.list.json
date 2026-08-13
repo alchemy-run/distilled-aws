@@ -1,0 +1,113 @@
+{
+  "desc": "Obtain a full list of workspaces your org-wide app has been approved for.",
+  "http_method": "POST",
+  "scope": {},
+  "no_scope_required": true,
+  "json_input_supported": false,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "limit": {
+        "type": "integer",
+        "desc": "The maximum number of workspaces to return. Must be a positive integer no larger than 1000.",
+        "example": "50",
+        "default": 100,
+        "minimum": 1,
+        "maximum": 1000
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.",
+        "example": "5c3e53d5"
+      },
+      "include_icon": {
+        "type": "boolean",
+        "default": "false",
+        "desc": "Whether to return icon paths for each workspace. An icon path represents a URI pointing to the image signifying the workspace.",
+        "example": "false"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "team"
+    ],
+    "properties": {
+      "teams": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "team_id",
+            "name"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "desc": "ID of the workspace"
+            },
+            "name": {
+              "type": "string",
+              "desc": "Name of the workspace"
+            },
+            "icon": {
+              "type": "object",
+              "desc": "Paths to icons",
+              "properties": {
+                "image_34": {
+                  "type": "string"
+                },
+                "image_44": {
+                  "type": "string"
+                },
+                "image_68": {
+                  "type": "string"
+                },
+                "image_88": {
+                  "type": "string"
+                },
+                "image_102": {
+                  "type": "string"
+                },
+                "image_132": {
+                  "type": "string"
+                },
+                "image_230": {
+                  "type": "string"
+                },
+                "image_default": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "invalid_cursor": {
+      "desc": "Invalid cursor."
+    },
+    "invalid_limit": {
+      "desc": "The value passed for `limit` was not valid."
+    },
+    "invalid_auth": {
+      "desc": "The token doesn't have access to this endpoint."
+    },
+    "internal_error": {
+      "desc": "There was an internal error."
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "desc": "Remove a linked IDP group linked from a private channel",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.conversations:write"
+    ]
+  },
+  "rate_limits": "t1",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "team_id",
+      "group_id",
+      "channel_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "The workspace where the channel exists. This argument is required for channels only tied to one workspace, and optional for channels that are shared across an organization.",
+        "schema": "workspace_id"
+      },
+      "group_id": {
+        "desc": "The [IDP Group](https://slack.com/help/articles/115001435788-Connect-identity-provider-groups-to-your-Enterprise-organization) ID to remove from the private channel.",
+        "schema": "subteam_id"
+      },
+      "channel_id": {
+        "desc": "The channel to remove the linked group from.",
+        "schema": "channel"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "`channel_id` can’t be found."
+    },
+    "failed_to_remove_group_users": {
+      "desc": "Returned when could not remove the users in the channel of the group being removed"
+    },
+    "failed_to_unlink_channel": {
+      "desc": "Removing the link in the database failed. Please retry."
+    },
+    "feature_not_enabled": {
+      "desc": "Feature not enabled"
+    },
+    "group_not_found": {
+      "desc": "`group_id` can’t be found."
+    },
+    "invalid_auth": {
+      "desc": "Token does not belong to enterprise or team id passed in not part of this enterprise"
+    },
+    "invalid_channel": {
+      "desc": "The channel could not be linked to an IDP group (i.e., it's a public channel or external shared channel)."
+    },
+    "link_not_found": {
+      "desc": "There was no link found between the specified channel and the IDP group."
+    },
+    "not_an_admin": {
+      "desc": "This token does not belong to an Org Admin or Owner."
+    },
+    "team_not_found": {
+      "desc": "`team_id` can’t be found."
+    },
+    "unable_to_unlink_idp_group_and_channel": {
+      "desc": "The IDP group and channel cannot be unlinked."
+    }
+  }
+}

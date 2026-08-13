@@ -1,0 +1,148 @@
+{
+  "desc": "Sends an invitation to a Slack Connect channel",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "conversations.connect:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "type": "string",
+        "desc": "ID of the channel on your team that you'd like to share",
+        "subtype": "channel"
+      },
+      "emails": {
+        "type": "array",
+        "desc": "Optional email to receive this invite. Either `emails` or `user_ids` must be provided. Only one email or one user ID may be invited at a time.",
+        "items": {
+          "type": "string",
+          "example": "foo@example.com"
+        }
+      },
+      "user_ids": {
+        "type": "array",
+        "desc": "Optional user_id to receive this invite. Either `emails` or `user_ids` must be provided. Only one email or one user ID may be invited at a time.",
+        "items": {
+          "schema": "user_id"
+        }
+      },
+      "external_limited": {
+        "type": "boolean",
+        "desc": "Optional boolean on whether invite is to an external limited member. Defaults to `true`."
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "url": {
+        "type": "string",
+        "format": "uri"
+      },
+      "invite_id": {
+        "schema": "invite_id"
+      },
+      "conf_code": {
+        "type": "string"
+      },
+      "is_legacy_shared_channel": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "already_in_channel": {
+      "desc": "User is already in the channel."
+    },
+    "cannot_share_cross_workspace_channel": {
+      "desc": "You cannot share a cross-workspace or org-wide channel."
+    },
+    "cannot_share_mandatory_channel": {
+      "desc": "You cannot share #general or mandatory channels."
+    },
+    "channel_archived": {
+      "desc": "You cannot share an archived channel."
+    },
+    "channel_not_found": {
+      "desc": "The channel provided was not found."
+    },
+    "connection_limit_exceeded": {
+      "desc": "This channel has hit the limit of external connections."
+    },
+    "connection_limit_exceeded_pending": {
+      "desc": "This channel already has a pending invite."
+    },
+    "invalid_channel_type": {
+      "desc": "You cannot share MPDMs or DMs."
+    },
+    "invalid_email": {
+      "desc": "At least one email address provided is invalid."
+    },
+    "invite_lookup_error": {
+      "desc": "An error occurred while attempting to look for existing invites."
+    },
+    "invite_not_found": {
+      "desc": "An error occurred while inviting users."
+    },
+    "legacy_connection_limit_exceeded": {
+      "desc": "You cannot share a legacy ESC channel with a third team"
+    },
+    "member_limit_exceeded": {
+      "desc": "This channel that has hit the limit of members"
+    },
+    "message_too_long": {
+      "desc": "The provided message was longer than 560 characters."
+    },
+    "not_allowed_for_grid_workspace": {
+      "desc": "This workspace does not have Slack Connect enabled."
+    },
+    "not_in_channel": {
+      "desc": "The app is not a member of the channel to invite."
+    },
+    "not_owner": {
+      "desc": "Only the host organization for a channel can request to share it."
+    },
+    "not_paid": {
+      "desc": "This feature is only available to paid teams."
+    },
+    "not_supported": {
+      "desc": "This channel cannot be shared."
+    },
+    "ratelimit": {
+      "desc": "The rate-limit for this method has been reached. The ratelimit is applied on a per-user basis when you pass the `emails` parameter."
+    },
+    "recipients_not_specified": {
+      "desc": "Bots are required to specify which users to invite."
+    },
+    "restricted_action": {
+      "desc": "A team preference does not allow this authorization to send invites."
+    },
+    "too_many_emails": {
+      "desc": "Too many email recipients were passed in the `emails` parameter."
+    },
+    "url_in_message": {
+      "desc": "The message contained a URL."
+    },
+    "user_not_found": {
+      "desc": "User lookup failed."
+    },
+    "no_external_invite_permission": {
+      "desc": "User does not have permission to invite an external user."
+    }
+  }
+}

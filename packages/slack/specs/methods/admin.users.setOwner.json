@@ -1,0 +1,73 @@
+{
+  "desc": "Set an existing regular user or admin to be a workspace or org owner.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.users:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "team_id",
+      "user_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "The ID of the workspace or organization.",
+        "example": "T12345678",
+        "schema": "team_id"
+      },
+      "user_id": {
+        "desc": "ID of the user to promote to owner.",
+        "example": "W12345678",
+        "schema": "user_id"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "cannot_modify_primary_owner": {
+      "desc": "The primary owner cannot be modified."
+    },
+    "failed_to_set_user_to_owner": {
+      "desc": "The change to the user's role failed."
+    },
+    "failed_to_set_owner_on_workspaces": {
+      "desc": "Failed to set the user as an owner on all workspaces."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "invalid_role_for_user": {
+      "desc": "The user cannot be made into an owner."
+    },
+    "not_an_admin": {
+      "desc": "This method can only be accessed by org owners and admins."
+    },
+    "not_an_owner": {
+      "desc": "This method can only be accessed by org owners. The app's installing user must retain org owner status for this method to function."
+    },
+    "not_supported": {
+      "desc": "This is not a supported action."
+    },
+    "team_not_found": {
+      "desc": "`team_id` was not found."
+    },
+    "user_must_be_in_workspace": {
+      "desc": "This user must be a member of at least one workspace."
+    },
+    "user_not_found": {
+      "desc": "The requested user was not found."
+    }
+  }
+}

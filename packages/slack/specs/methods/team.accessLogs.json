@@ -1,0 +1,211 @@
+{
+  "desc": "Gets the access logs for the current team.",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin"
+    ]
+  },
+  "team_type": "all",
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "before": {
+        "default": "now",
+        "desc": "End of time range of logs to include in results (inclusive).",
+        "example": "1457989166",
+        "anyOf": [
+          {
+            "enum": [
+              "now"
+            ],
+            "type": "string"
+          },
+          {
+            "coerce": true,
+            "type": "string"
+          }
+        ]
+      },
+      "count": {
+        "default": "100",
+        "type": "string",
+        "subtype": "paging"
+      },
+      "page": {
+        "default": "1",
+        "type": "string",
+        "subtype": "paging"
+      },
+      "cursor": {
+        "desc": "Parameter for pagination. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more details.",
+        "example": "dXNlcjpVMDYxTkZUVDI=",
+        "type": "string"
+      },
+      "limit": {
+        "default": 0,
+        "desc": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. If specified, result is returned using a cursor-based approach instead of a classic one.",
+        "example": "20",
+        "type": "integer"
+      },
+      "team_id": {
+        "desc": "encoded team id to get logs from, required if org token is used",
+        "type": "string",
+        "subtype": "team"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "logins"
+    ],
+    "type": "object",
+    "properties": {
+      "logins": {
+        "items": {
+          "required": [
+            "username",
+            "count",
+            "user_id",
+            "ip",
+            "region",
+            "isp",
+            "user_agent",
+            "country",
+            "date_first",
+            "date_last"
+          ],
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "count": {
+              "type": "integer"
+            },
+            "user_id": {
+              "schema": "user_id"
+            },
+            "ip": {
+              "type": "string"
+            },
+            "region": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "isp": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "user_agent": {
+              "type": "string"
+            },
+            "country": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "date_first": {
+              "type": "integer"
+            },
+            "date_last": {
+              "type": "integer"
+            }
+          }
+        },
+        "type": "array"
+      },
+      "paging": {
+        "required": [
+          "count",
+          "total",
+          "page",
+          "pages"
+        ],
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "integer"
+          },
+          "page": {
+            "type": "integer"
+          },
+          "pages": {
+            "type": "integer"
+          }
+        }
+      },
+      "response_metadata": {
+        "type": "object",
+        "required": [
+          "next_cursor"
+        ],
+        "properties": {
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "missing_argument": {
+      "desc": "A required argument is missing."
+    },
+    "missing_scope": {
+      "desc": "The provided token hasn't obtained the necessary scopes to use this method."
+    },
+    "not_allowed_token_type": {
+      "desc": "Method was called with an invalid token type"
+    },
+    "over_pagination_limit": {
+      "desc": "It is not possible to request more than 1000 items per page or more than 100 pages."
+    },
+    "paid_only": {
+      "desc": "This is only available to paid teams."
+    },
+    "token_revoked": {
+      "desc": "token revoked (generated)"
+    },
+    "invalid_cursor": {
+      "desc": "Value passed for `cursor` was not valid or is no longer valid."
+    },
+    "invalid_limit": {
+      "desc": "The value passed for `limit` was not valid."
+    },
+    "invalid_team_id": {
+      "desc": "The value passed for `team_id` is not valid given the token context."
+    }
+  }
+}

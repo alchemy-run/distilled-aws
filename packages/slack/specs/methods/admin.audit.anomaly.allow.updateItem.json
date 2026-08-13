@@ -1,0 +1,51 @@
+{
+  "desc": "API to allow Enterprise org admins to write/overwrite the allow list of IP blocks and ASNs from the enterprise configuration.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "trusted_cidr": {
+        "desc": "allow list of IPv4 addresses using cidr notation in the Enterprise organization configuration",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "trusted_asns": {
+        "desc": "allow list of Autonomous System Numbers (ASN) in the Enterprise organization configuration",
+        "type": "array",
+        "items": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "endpoint_unavailable": {
+      "desc": "The requested endpoint is currently unavailable."
+    },
+    "invalid_field_or_data": {
+      "desc": "user attempted to write and invalid field or data to the team config"
+    },
+    "unable_to_process_post_request": {
+      "desc": "The user sent a malformed post request"
+    },
+    "unsupported_action_describe": {
+      "desc": "The user specified describe action is unsupported"
+    },
+    "unsupported_action_put": {
+      "desc": "The user specified put action is unsupported"
+    }
+  }
+}

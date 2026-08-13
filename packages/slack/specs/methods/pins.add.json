@@ -1,0 +1,79 @@
+{
+  "desc": "Pins an item to a channel.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "pins:write"
+    ],
+    "user": [
+      "pins:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "Channel to pin the messsage to. You must also include a `timestamp` when pinning messages.",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "timestamp": {
+        "desc": "Timestamp of the message to pin. You must also include the `channel`.",
+        "type": "string",
+        "subtype": "timestamp"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "already_pinned": {
+      "desc": "The specified item is already pinned to the channel."
+    },
+    "bad_timestamp": {
+      "desc": "Value passed for `timestamp` was invalid."
+    },
+    "channel_not_found": {
+      "desc": "The `channel` argument was not specified or was invalid"
+    },
+    "external_channel_migrating": {
+      "desc": "Channel is undergoing an active migration."
+    },
+    "file_not_found": {
+      "desc": "File not found."
+    },
+    "file_not_shared": {
+      "desc": "File specified by `file` is not public nor shared to the channel."
+    },
+    "message_not_found": {
+      "desc": "Message specified by `channel` and `timestamp` does not exist."
+    },
+    "no_item_specified": {
+      "desc": "One of `file`, `file_comment`, or `timestamp` was not specified."
+    },
+    "not_in_channel": {
+      "desc": "Item is not in channel."
+    },
+    "not_pinnable": {
+      "desc": "This message type is not pinnable."
+    },
+    "restricted_action": {
+      "desc": "The user does not have permission to add pins to the channel."
+    },
+    "too_many_pins": {
+      "desc": "Too many pins in channel."
+    }
+  }
+}

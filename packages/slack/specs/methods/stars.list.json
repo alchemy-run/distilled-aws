@@ -1,0 +1,235 @@
+{
+  "desc": "Listed a user's saved items, formerly known as stars.",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "stars:read"
+    ]
+  },
+  "rate_limits": "t3",
+  "deprecated": true,
+  "slack_connect_workspaces_allowed": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "count": {
+        "type": "integer",
+        "subtype": "paging",
+        "default": 100
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "Parameter for pagination. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more details.",
+        "example": "dXNlcjpVMDYxTkZUVDI="
+      },
+      "limit": {
+        "type": "integer",
+        "default": 0,
+        "desc": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached.",
+        "example": "20"
+      },
+      "page": {
+        "type": "integer",
+        "subtype": "paging",
+        "default": 1
+      },
+      "team_id": {
+        "desc": "encoded team id to list stars in, required if org token is used",
+        "type": "string",
+        "subtype": "team"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "items"
+    ],
+    "properties": {
+      "items": {
+        "type": "array",
+        "title": "starred_items",
+        "items": {
+          "title": "starred_item",
+          "anyOf": [
+            {
+              "type": "object",
+              "title": "starred_message",
+              "required": [
+                "type",
+                "channel",
+                "message",
+                "date_create"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "message"
+                  ]
+                },
+                "channel": {
+                  "schema": "channel"
+                },
+                "message": {
+                  "schema": "message"
+                },
+                "date_create": {
+                  "type": "integer"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "title": "starred_file",
+              "required": [
+                "type",
+                "file",
+                "date_create"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "file"
+                  ]
+                },
+                "file": {
+                  "schema": "file"
+                },
+                "date_create": {
+                  "type": "integer"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "title": "starred_file_comment",
+              "required": [
+                "type",
+                "file",
+                "comment",
+                "date_create"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "file_comment"
+                  ]
+                },
+                "file": {
+                  "schema": "file"
+                },
+                "comment": {
+                  "schema": "comment"
+                },
+                "date_create": {
+                  "type": "integer"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "title": "starred_channel",
+              "required": [
+                "type",
+                "channel",
+                "date_create"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "channel"
+                  ]
+                },
+                "channel": {
+                  "schema": "channel"
+                },
+                "date_create": {
+                  "type": "integer"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "title": "starred_im",
+              "required": [
+                "type",
+                "channel",
+                "date_create"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "im"
+                  ]
+                },
+                "channel": {
+                  "schema": "dm_id"
+                },
+                "date_create": {
+                  "type": "integer"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "title": "starred_group",
+              "required": [
+                "type",
+                "channel",
+                "date_create"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "group"
+                  ]
+                },
+                "channel": {
+                  "schema": "group_id"
+                },
+                "date_create": {
+                  "type": "integer"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "paging": {
+        "schema": "paging"
+      },
+      "response_metadata": {
+        "type": "object",
+        "title": "response_metadata",
+        "required": [
+          "next_cursor"
+        ],
+        "properties": {
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "missing_argument": {
+      "desc": "A required argument is missing."
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "desc": "Get records from a List.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "lists:read"
+    ],
+    "user": [
+      "lists:read"
+    ]
+  },
+  "familyName": "lists",
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "list_id"
+    ],
+    "properties": {
+      "token": {
+        "desc": "Token with which to authenticate the session.",
+        "type": "string",
+        "subtype": "auth"
+      },
+      "list_id": {
+        "desc": "ID of the List.",
+        "example": "F12345678",
+        "type": "string",
+        "subtype": "list"
+      },
+      "limit": {
+        "type": "integer",
+        "desc": "The maximum number of records to return.",
+        "minimum": 1,
+        "maximum": 1000,
+        "example": "100"
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "Next cursor for pagination.",
+        "example": "bGlzdF9pZDoxMjIxNzk3NzMyNDgzO2lkOjEyNzAxMjMxNTEzOTQ7ZGF0ZV9jcmVhdGVkOjE3NTE1NTkyMTU="
+      },
+      "archived": {
+        "desc": "Boolean indicating whether archived items or normal items should be returned.",
+        "type": "boolean",
+        "default": false,
+        "example": "true"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "items",
+      "next_cursor"
+    ],
+    "type": "object",
+    "properties": {
+      "items": {
+        "type": "array",
+        "items": {
+          "schema": "list_item"
+        }
+      },
+      "response_metadata": {
+        "schema": "response_metadata_new"
+      }
+    }
+  },
+  "errors": {
+    "list_not_found": {
+      "desc": "The List was not found."
+    },
+    "team_not_found": {
+      "desc": "The team cannot be found."
+    },
+    "user_not_found": {
+      "desc": "The user cannot be found."
+    },
+    "invalid_cursor": {
+      "desc": "Value passed for `cursor` was not valid or is no longer valid."
+    },
+    "archive_not_supported": {
+      "desc": "Archiving is not supported."
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "desc": "Signal that a function failed to complete",
+  "http_method": "POST",
+  "scope": {},
+  "no_scope_required": true,
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "function_execution_id",
+      "error"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "function_execution_id": {
+        "type": "string",
+        "desc": "Context identifier that maps to the executed function",
+        "example": "Fx12345ABCDE"
+      },
+      "error": {
+        "type": "string",
+        "desc": "A human-readable error message that contains information about why the function failed to complete"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "unknown_method": {
+      "desc": "This method does not exist."
+    },
+    "function_execution_not_found": {
+      "desc": "The specified function execution cannot be found."
+    },
+    "access_denied": {
+      "desc": "This actor does not have access to this function execution."
+    },
+    "execution_not_in_running_state": {
+      "desc": "The function execution is no longer in a state to be completed."
+    }
+  }
+}

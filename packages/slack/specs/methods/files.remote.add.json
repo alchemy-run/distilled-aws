@@ -1,0 +1,183 @@
+{
+  "desc": "Adds a file from a remote service",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "remote_files:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "external_id",
+      "title",
+      "external_url"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "external_id": {
+        "desc": "Creator defined GUID for the file.",
+        "example": "123456",
+        "type": "string"
+      },
+      "external_url": {
+        "desc": "URL of the remote file.",
+        "example": "http://example.com/my_cloud_service_file/abc123",
+        "type": "string"
+      },
+      "filetype": {
+        "desc": "type of file",
+        "example": "doc",
+        "type": "string"
+      },
+      "indexable_file_contents": {
+        "desc": "A text file (txt, pdf, doc, etc.) containing textual search terms that are used to improve discovery of the remote file.",
+        "example": "...",
+        "schema": "post_file"
+      },
+      "preview_image": {
+        "desc": "Preview of the document via `multipart/form-data`.",
+        "example": "...",
+        "schema": "post_file"
+      },
+      "title": {
+        "desc": "Title of the file being shared.",
+        "example": "Danger, High Voltage!",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "file"
+    ],
+    "properties": {
+      "file": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "created": {
+            "type": "integer"
+          },
+          "timestamp": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "mimetype": {
+            "type": "string"
+          },
+          "filetype": {
+            "type": "string"
+          },
+          "pretty_type": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string"
+          },
+          "editable": {
+            "type": "boolean"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "mode": {
+            "type": "string"
+          },
+          "is_external": {
+            "type": "boolean"
+          },
+          "external_type": {
+            "type": "string"
+          },
+          "is_public": {
+            "type": "boolean"
+          },
+          "public_url_shared": {
+            "type": "boolean"
+          },
+          "display_as_bot": {
+            "type": "boolean"
+          },
+          "username": {
+            "type": "string"
+          },
+          "url_private": {
+            "type": "string"
+          },
+          "permalink": {
+            "type": "string"
+          },
+          "comments_count": {
+            "type": "integer"
+          },
+          "is_starred": {
+            "type": "boolean"
+          },
+          "shares": {
+            "type": "object"
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ims": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "external_id": {
+            "type": "string"
+          },
+          "external_url": {
+            "type": "string"
+          },
+          "has_rich_preview": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "bad_image": {
+      "desc": "The uploaded image could not be processed - try passing a JPG or PNG"
+    },
+    "bad_title": {
+      "desc": "The title provided is too long."
+    },
+    "bot_user_required": {
+      "desc": "bot user token is required"
+    },
+    "invalid_external_id": {
+      "desc": "The external_id provided is too long."
+    },
+    "too_large": {
+      "desc": "The uploaded image had excessive dimensions"
+    }
+  }
+}

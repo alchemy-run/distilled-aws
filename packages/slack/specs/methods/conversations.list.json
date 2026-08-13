@@ -1,0 +1,96 @@
+{
+  "desc": "Lists all channels in a Slack team.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "groups:read",
+      "im:read",
+      "mpim:read",
+      "channels:read"
+    ],
+    "user": [
+      "groups:read",
+      "im:read",
+      "mpim:read",
+      "channels:read"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "cursor": {
+        "desc": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more detail.",
+        "example": "dXNlcjpVMDYxTkZUVDI=",
+        "type": "string"
+      },
+      "exclude_archived": {
+        "default": "false",
+        "desc": "Set to `true` to exclude archived channels from the list.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "limit": {
+        "default": 100,
+        "desc": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. Must be an integer under 1000.",
+        "example": "20",
+        "type": "number"
+      },
+      "team_id": {
+        "desc": "encoded team id to list channels in, required if token belongs to org-wide app",
+        "type": "string",
+        "subtype": "team"
+      },
+      "types": {
+        "default": "public_channel",
+        "desc": "Mix and match channel types by providing a comma-separated list of any combination of `public_channel`, `private_channel`, `mpim`, `im`",
+        "example": "public_channel,private_channel",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "channels"
+    ],
+    "properties": {
+      "channels": {
+        "type": "array",
+        "items": {
+          "schema": "conversation"
+        }
+      }
+    }
+  },
+  "errors": {
+    "invalid_cursor": {
+      "desc": "Value passed for `cursor` was not valid or is no longer valid."
+    },
+    "invalid_limit": {
+      "desc": "Value passed for `limit` is not understood."
+    },
+    "invalid_types": {
+      "desc": "Value passed for `type` could not be used based on the method's capabilities or the permission scopes granted to the used token."
+    },
+    "method_not_supported_for_channel_type": {
+      "desc": "This type of conversation cannot be used with this method."
+    },
+    "missing_argument": {
+      "desc": "A required argument is missing."
+    },
+    "missing_scope": {
+      "desc": "The calling token is not granted the necessary scopes to complete this operation."
+    }
+  }
+}

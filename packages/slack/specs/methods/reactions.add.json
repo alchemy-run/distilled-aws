@@ -1,0 +1,89 @@
+{
+  "desc": "Adds a reaction to an item.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "reactions:write"
+    ],
+    "user": [
+      "reactions:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "name",
+      "timestamp",
+      "channel"
+    ],
+    "properties": {
+      "channel": {
+        "desc": "Channel where the message to add reaction to was posted.",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "name": {
+        "desc": "Reaction (emoji) name",
+        "example": "thumbsup",
+        "type": "string"
+      },
+      "timestamp": {
+        "desc": "Timestamp of the message to add reaction to.",
+        "type": "string",
+        "subtype": "timestamp"
+      },
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "already_reacted": {
+      "desc": "The specified item already has the user/reaction combination."
+    },
+    "bad_timestamp": {
+      "desc": "Value passed for `timestamp` was invalid."
+    },
+    "channel_not_found": {
+      "desc": "Value passed for `channel` is invalid."
+    },
+    "external_channel_migrating": {
+      "desc": "The channel is in the process of being migrated."
+    },
+    "invalid_name": {
+      "desc": "Value passed for `name` was invalid."
+    },
+    "is_archived": {
+      "desc": "Channel specified has been archived."
+    },
+    "message_not_found": {
+      "desc": "Message specified by `channel` and `timestamp` does not exist."
+    },
+    "no_item_specified": {
+      "desc": "combination of `channel` and `timestamp` was not specified."
+    },
+    "not_reactable": {
+      "desc": "Whatever you passed in, like a `file` or `file_comment`, can't be reacted to anymore. Your app can react to messages though."
+    },
+    "thread_locked": {
+      "desc": "Reactions are disabled as the specified message is part of a locked thread."
+    },
+    "too_many_emoji": {
+      "desc": "The limit for distinct reactions (i.e emoji) on the item has been reached."
+    },
+    "too_many_reactions": {
+      "desc": "The limit for reactions a person may add to the item has been reached."
+    },
+    "no_access": {
+      "desc": "User does not have access to react to this canvas."
+    }
+  }
+}

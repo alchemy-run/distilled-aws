@@ -1,0 +1,72 @@
+{
+  "desc": "Removes a user from a conversation.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "groups:write",
+      "channels:manage"
+    ],
+    "user": [
+      "groups:write",
+      "channels:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "ID of conversation to remove user from.",
+        "subtype": "channel",
+        "schema": "channel"
+      },
+      "user": {
+        "desc": "User ID to be removed.",
+        "subtype": "user",
+        "schema": "user_id"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "cant_kick_from_general": {
+      "desc": "User cannot be removed from #general."
+    },
+    "cant_kick_self": {
+      "desc": "Authenticated user can't kick themselves from a channel."
+    },
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "method_not_supported_for_channel_type": {
+      "desc": "This type of conversation cannot be used with this method."
+    },
+    "missing_scope": {
+      "desc": "The calling token is not granted the necessary scopes to complete this operation."
+    },
+    "not_in_channel": {
+      "desc": "User was not in the channel."
+    },
+    "not_supported": {
+      "desc": "This is not supported for this channel and user combination."
+    },
+    "restricted_action": {
+      "desc": "A team preference prevents the authenticated user from kicking."
+    },
+    "user_not_found": {
+      "desc": "Value passed for `user` was invalid."
+    }
+  }
+}

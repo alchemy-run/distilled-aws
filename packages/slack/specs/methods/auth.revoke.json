@@ -1,0 +1,45 @@
+{
+  "desc": "Revokes a token.",
+  "http_method": "GET",
+  "scope": {},
+  "no_scope_required": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "test": {
+        "desc": "Setting this parameter to `1` triggers a _testing mode_ where the specified token will not actually be revoked.",
+        "example": "true",
+        "type": "boolean"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "revoked"
+    ],
+    "type": "object",
+    "properties": {
+      "revoked": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "internal_error": {
+      "desc": "Internal system error"
+    },
+    "not_bearer_token": {
+      "desc": "Incompatible token type provided"
+    }
+  }
+}

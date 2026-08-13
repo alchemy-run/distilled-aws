@@ -1,0 +1,80 @@
+{
+  "desc": "Update a List.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "lists:write"
+    ],
+    "user": [
+      "lists:write"
+    ]
+  },
+  "familyName": "lists",
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth"
+      },
+      "id": {
+        "desc": "The ID of the List to update.",
+        "subtype": "list",
+        "schema": "file_id"
+      },
+      "name": {
+        "desc": "The updated name of the List.",
+        "example": "My List",
+        "type": "string"
+      },
+      "description_blocks": {
+        "desc": "A rich text description of the List.",
+        "example": "[{\"type\":\"rich_text\",\"elements\":[{\"type\":\"rich_text_section\",\"elements\":[{\"type\":\"text\",\"text\":\"My list description!\"}]}]}]",
+        "type": "array",
+        "items": {
+          "schema": "rich_text"
+        }
+      },
+      "todo_mode": {
+        "type": "boolean",
+        "desc": "Boolean indicating whether the List should be in todo mode.",
+        "example": "true"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "list_not_found": {
+      "desc": "The List was not found."
+    },
+    "team_not_found": {
+      "desc": "The team cannot be found."
+    },
+    "user_not_found": {
+      "desc": "The user cannot be found."
+    },
+    "list_edits_update_error": {
+      "desc": "Failed to update List metadata."
+    },
+    "list_editor_upsert_error": {
+      "desc": "Failed to upsert List editor."
+    },
+    "over_title_length_maximum": {
+      "desc": "Title can not exceed defined length."
+    },
+    "file_channel_rename_error": {
+      "desc": "Failed to rename file channel based on file title."
+    },
+    "unexpected_description_blocks_arg": {
+      "desc": "Unexpected description blocks argument."
+    },
+    "missing_arguments": {
+      "desc": "No arguments were provided to update the List."
+    }
+  }
+}

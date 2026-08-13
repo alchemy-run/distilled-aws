@@ -1,0 +1,1353 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.slack.team#AccessLogsRequestBeforeCase0": {
+      "type": "enum",
+      "members": {
+        "NOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "now"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#AccessLogsRequestBefore": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.slack.team#AccessLogsRequestBeforeCase0"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#AccessLogsRequest": {
+      "type": "structure",
+      "members": {
+        "before": {
+          "target": "com.slack.team#AccessLogsRequestBefore",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "End of time range of logs to include in results (inclusive)."
+          }
+        },
+        "count": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "count"
+          }
+        },
+        "page": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Parameter for pagination. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more details."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. If specified, result is returned using a cursor-based approach instead of a classic one."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "encoded team id to get logs from, required if org token is used"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.team#AccessLogsResponseLoginsItem": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "isp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "user_agent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "date_first": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "date_last": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#AccessLogsResponseLoginsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.team#AccessLogsResponseLoginsItem"
+      },
+      "traits": {}
+    },
+    "com.slack.team#AccessLogsResponsePaging": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pages": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#AccessLogsResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#AccessLogsResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "logins": {
+          "target": "com.slack.team#AccessLogsResponseLoginsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "paging": {
+          "target": "com.slack.team#AccessLogsResponsePaging"
+        },
+        "response_metadata": {
+          "target": "com.slack.team#AccessLogsResponseResponseMetadata"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.team#AccessLogs": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.team#AccessLogsRequest"
+      },
+      "output": {
+        "target": "com.slack.team#AccessLogsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/team.accessLogs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets the access logs for the current team.\n\nRequired scopes — user: `admin`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — A required argument is missing.\n  - `missing_scope` — The provided token hasn't obtained the necessary scopes to use this method.\n  - `not_allowed_token_type` — Method was called with an invalid token type\n  - `over_pagination_limit` — It is not possible to request more than 1000 items per page or more than 100 pages.\n  - `paid_only` — This is only available to paid teams.\n  - `token_revoked` — token revoked (generated)\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_limit` — The value passed for `limit` was not valid.\n  - `invalid_team_id` — The value passed for `team_id` is not valid given the token context.\n\nSee https://docs.slack.dev/reference/methods/team.accessLogs"
+      }
+    },
+    "com.slack.team#BillableInfoRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Set `cursor` to `next_cursor` returned by previous call, to indicate from where you want to list next page of users list. Default value fetches the first page."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The maximum number of items to return."
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user",
+            "smithy.api#documentation": "A user to retrieve the billable information for. Defaults to all users."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "encoded team id to get the billable information from, required if org token is used"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.team#BillableInfoResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#BillableInfoResponseBillableInfoMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.team#BillableInfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.team#BillableInfoResponseResponseMetadata"
+        },
+        "billable_info": {
+          "target": "com.slack.team#BillableInfoResponseBillableInfoMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.team#BillableInfo": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.team#BillableInfoRequest"
+      },
+      "output": {
+        "target": "com.slack.team#BillableInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/team.billableInfo",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets billable users information for the current team.\n\nRequired scopes — user: `admin`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `fatal_error` — The server could not complete your operation(s) without encountering a catastrophic error.\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `user_not_found` — Unable to find the requested user.\n\nSee https://docs.slack.dev/reference/methods/team.billableInfo"
+      }
+    },
+    "com.slack.team#BillingInfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "plan": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.team#BillingInfo": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.slack.team#BillingInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/team.billing.info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reads a workspace's billing plan information.\n\nRequired scopes — bot: `team.billing:read`; user: `team.billing:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_auth` — Invalid token provided.\n  - `invalid_team` — Cannot find a team associated with the authed token.\n\nSee https://docs.slack.dev/reference/methods/team.billing.info"
+      }
+    },
+    "com.slack.team#ExternalTeamsDisconnectRequest": {
+      "type": "structure",
+      "members": {
+        "target_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The team ID of the target team.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.team#ExternalTeamsDisconnectResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "job_enqueued": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.team#ExternalTeamsDisconnect": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.team#ExternalTeamsDisconnectRequest"
+      },
+      "output": {
+        "target": "com.slack.team#ExternalTeamsDisconnectResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/team.externalTeams.disconnect",
+          "code": 200
+        },
+        "smithy.api#documentation": "Disconnect an external organization.\n\nRequired scopes — bot: `conversations.connect:manage`\n\nRate limit tier: 1\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — A required argument is missing.\n  - `restricted_action` — The actor is restricted from archiving or disconnecting.\n  - `invalid_target_team` — target team is invalid\n\nSee https://docs.slack.dev/reference/methods/team.externalTeams.disconnect",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.team#ExternalTeamsListRequestSortField": {
+      "type": "enum",
+      "members": {
+        "TEAM_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team_name"
+          }
+        },
+        "LAST_ACTIVE_TIMESTAMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "last_active_timestamp"
+          }
+        },
+        "CONNECTION_STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connection_status"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListRequestSortDirection": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListRequestSlackConnectPrefFilterItem": {
+      "type": "enum",
+      "members": {
+        "APPROVED_ORGS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "approved_orgs_only"
+          }
+        },
+        "ALLOW_SC_FILE_UPLOADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "allow_sc_file_uploads"
+          }
+        },
+        "PROFILE_VISIBILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "profile_visibility"
+          }
+        },
+        "AWAY_TEAM_SC_INVITE_PERMISSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "away_team_sc_invite_permissions"
+          }
+        },
+        "ACCEPT_SC_INVITES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "accept_sc_invites"
+          }
+        },
+        "SC_MPDM_TO_PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sc_mpdm_to_private"
+          }
+        },
+        "REQUIRE_SC_CHANNEL_FOR_SC_DM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "require_sc_channel_for_sc_dm"
+          }
+        },
+        "EXTERNAL_AWARENESS_CONTEXT_BAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "external_awareness_context_bar"
+          }
+        },
+        "INTERACT_WITH_EXTERNALLY_OWNED_WORKFLOWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "interact_with_externally_owned_workflows"
+          }
+        },
+        "EXTERNAL_TEAMS_INTERACT_WITH_LOCALLY_OWNED_WORKFLOWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "external_teams_interact_with_locally_owned_workflows"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListRequestSlackConnectPrefFilterList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.team#ExternalTeamsListRequestSlackConnectPrefFilterItem"
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListRequestWorkspaceFilterList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListRequestConnectionStatusFilter": {
+      "type": "enum",
+      "members": {
+        "CONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECTED"
+          }
+        },
+        "DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCONNECTED"
+          }
+        },
+        "BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED"
+          }
+        },
+        "IN_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_REVIEW"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListRequest": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The maximum number of items to return per page"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Paginate through collections of data by setting parameter to the `team_id` attribute returned by a previous request's `response_metadata`. If not provided, the first page of the collection is returned. See [pagination](/apis/web-api/pagination#cursors) for more detail."
+          }
+        },
+        "sort_field": {
+          "target": "com.slack.team#ExternalTeamsListRequestSortField",
+          "traits": {
+            "smithy.api#httpQuery": "sort_field",
+            "smithy.api#documentation": "Name of the parameter that we are sorting by"
+          }
+        },
+        "sort_direction": {
+          "target": "com.slack.team#ExternalTeamsListRequestSortDirection",
+          "traits": {
+            "smithy.api#httpQuery": "sort_direction",
+            "smithy.api#documentation": "Direction to sort in asc or desc"
+          }
+        },
+        "slack_connect_pref_filter": {
+          "target": "com.slack.team#ExternalTeamsListRequestSlackConnectPrefFilterList",
+          "traits": {
+            "smithy.api#httpQuery": "slack_connect_pref_filter",
+            "smithy.api#documentation": "Filters connected orgs by Slack Connect pref override(s). Value can be: `approved_orgs_only` `allow_sc_file_uploads` `profile_visibility` `away_team_sc_invite_permissions` `accept_sc_invites` `sc_mpdm_to_private` `require_sc_channel_for_sc_dm` `external_awareness_context_bar`"
+          }
+        },
+        "workspace_filter": {
+          "target": "com.slack.team#ExternalTeamsListRequestWorkspaceFilterList",
+          "traits": {
+            "smithy.api#httpQuery": "workspace_filter",
+            "smithy.api#documentation": "Shows connected orgs which are connected on a specified encoded workspace ID"
+          }
+        },
+        "connection_status_filter": {
+          "target": "com.slack.team#ExternalTeamsListRequestConnectionStatusFilter",
+          "traits": {
+            "smithy.api#httpQuery": "connection_status_filter",
+            "smithy.api#documentation": "Status of the connected team."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.team#ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesItem": {
+      "type": "structure",
+      "members": {
+        "workspace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "workspace_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the workspace.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesItem"
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListResponseOrganizationsItemConnectionStatus": {
+      "type": "enum",
+      "members": {
+        "CONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECTED"
+          }
+        },
+        "DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCONNECTED"
+          }
+        },
+        "BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED"
+          }
+        },
+        "IN_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_REVIEW"
+          }
+        },
+        "DISCONNECTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCONNECTING"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the connected team. (CONNECTED / DISCONNECTED / BLOCKED  / IN_REVIEW / DISCONNECTiNG)"
+      }
+    },
+    "com.slack.team#ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsItem": {
+      "type": "structure",
+      "members": {
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsItem"
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListResponseOrganizationsItemCanvas": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ownership_details": {
+          "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsItem": {
+      "type": "structure",
+      "members": {
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsItem"
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListResponseOrganizationsItemLists": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ownership_details": {
+          "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListResponseOrganizationsItem": {
+      "type": "structure",
+      "members": {
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "team_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the team that is connected",
+            "smithy.api#required": {}
+          }
+        },
+        "team_domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain of the team that is connected",
+            "smithy.api#required": {}
+          }
+        },
+        "public_channel_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of public channels connected on this team",
+            "smithy.api#required": {}
+          }
+        },
+        "private_channel_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of private channels connected on this team",
+            "smithy.api#required": {}
+          }
+        },
+        "im_channel_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of direct messages connected on this team",
+            "smithy.api#required": {}
+          }
+        },
+        "mpim_channel_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of multi person direct messages connected on this team",
+            "smithy.api#required": {}
+          }
+        },
+        "connected_workspaces": {
+          "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slack_connect_prefs": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "connection_status": {
+          "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the connected team. (CONNECTED / DISCONNECTED / BLOCKED  / IN_REVIEW / DISCONNECTiNG)",
+            "smithy.api#required": {}
+          }
+        },
+        "last_active_timestamp": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "timestamp of the last time a connected team was active in SC channel",
+            "smithy.api#required": {}
+          }
+        },
+        "is_sponsored": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when team is on a free plan. False otherwise.",
+            "smithy.api#required": {}
+          }
+        },
+        "canvas": {
+          "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemCanvas"
+        },
+        "lists": {
+          "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemLists"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListResponseOrganizationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItem"
+      },
+      "traits": {}
+    },
+    "com.slack.team#ExternalTeamsListResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "organizations": {
+          "target": "com.slack.team#ExternalTeamsListResponseOrganizationsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.team#ExternalTeamsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.team#ExternalTeamsListRequest"
+      },
+      "output": {
+        "target": "com.slack.team#ExternalTeamsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/team.externalTeams.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns a list of all the external teams connected and details about the connection.\n\nRequired scopes — bot: `conversations.connect:manage`, `team:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — One or more of the API arguments are invalid.\n  - `not_allowed` — The user is not allowed to perform the action.\n  - `restricted_action` — The user does not have permission to perform the action.\n  - `internal_error` — There was an internal error processing this request.\n  - `invalid_workspace_filter` — The specified workspace is not valid.\n  - `user_cannot_manage_workspace` — The calling user cannot manage the workspace passed in the workspace filter.\n\nSee https://docs.slack.dev/reference/methods/team.externalTeams.list"
+      }
+    },
+    "com.slack.team#InfoRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "domain",
+            "smithy.api#documentation": "Query by domain instead of team (only when team is null). This only works for domains in the same enterprise as the querying team token. This also expects the domain to belong to a team and not the enterprise itself. This is the value set up for the 'Joining This Workspace' workspace setting. If it contains more than one domain, the field will contain multiple comma-separated domain values. If no domain is set, the field is empty."
+          }
+        },
+        "team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team",
+            "smithy.api#documentation": "Team to get info about; if omitted, will return information about the current team."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.team#InfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.team#Info": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.team#InfoRequest"
+      },
+      "output": {
+        "target": "com.slack.team#InfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/team.info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets information about the current team.\n\nRequired scopes — bot: `team:read`; user: `team:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `enterprise_not_found` — The `enterprise` was not found.\n  - `fail_to_get_teams_for_restricted_user` — Failed to get teams for restricted user.\n  - `missing_user` — The `user` was not found.\n  - `org_not_found` — The `org` was not found.\n  - `team_not_found` — The `team` was not found.\n  - `team_not_on_enterprise` — Cannot query team by domain because team is not on an enterprise.\n  - `user_not_found` — The `user` was not found.\n\nSee https://docs.slack.dev/reference/methods/team.info"
+      }
+    },
+    "com.slack.team#IntegrationLogsRequestChangeType": {
+      "type": "enum",
+      "members": {
+        "ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "added"
+          }
+        },
+        "REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "removed"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#IntegrationLogsRequest": {
+      "type": "structure",
+      "members": {
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "app_id",
+            "smithy.api#documentation": "Filter logs to this Slack app. Defaults to all logs."
+          }
+        },
+        "change_type": {
+          "target": "com.slack.team#IntegrationLogsRequestChangeType",
+          "traits": {
+            "smithy.api#httpQuery": "change_type",
+            "smithy.api#documentation": "Filter logs with this change type. Possible values are `added`, `removed`, `enabled`, `disabled`, and `updated`. Defaults to all logs."
+          }
+        },
+        "count": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "count"
+          }
+        },
+        "page": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "service_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "service_id",
+            "smithy.api#documentation": "Filter logs to this service. Defaults to all logs."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "encoded team id to get logs from, required if org token is used"
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user",
+            "smithy.api#documentation": "Filter logs generated by this user’s actions. Defaults to all logs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.team#IntegrationLogsResponseLogsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.team#IntegrationLogsResponseLogsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.team#IntegrationLogsResponseLogsItemMap"
+      },
+      "traits": {}
+    },
+    "com.slack.team#IntegrationLogsResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "paging": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "logs": {
+          "target": "com.slack.team#IntegrationLogsResponseLogsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.team#IntegrationLogs": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.team#IntegrationLogsRequest"
+      },
+      "output": {
+        "target": "com.slack.team#IntegrationLogsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/team.integrationLogs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets the integration logs for the current team.\n\nRequired scopes — user: `admin`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — Internal Error\n  - `missing_argument` — A required argument is missing.\n\nSee https://docs.slack.dev/reference/methods/team.integrationLogs"
+      }
+    },
+    "com.slack.team#PreferencesListResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "display_real_names": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "disable_file_uploads": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "msg_edit_window_mins": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "who_can_post_general": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.team#PreferencesList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.slack.team#PreferencesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/team.preferences.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve a list of a workspace's team preferences.\n\nRequired scopes — bot: `team.preferences:read`; user: `team.preferences:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_auth` — Invalid token provided.\n  - `invalid_team` — Cannot find a workspace associated with the presented token.\n\nSee https://docs.slack.dev/reference/methods/team.preferences.list"
+      }
+    },
+    "com.slack.team#ProfileGetRequestVisibility": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "VISIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "visible"
+          }
+        },
+        "HIDDEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hidden"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#ProfileGetRequest": {
+      "type": "structure",
+      "members": {
+        "visibility": {
+          "target": "com.slack.team#ProfileGetRequestVisibility",
+          "traits": {
+            "smithy.api#httpQuery": "visibility",
+            "smithy.api#documentation": "Filter by visibility."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.team#ProfileGetResponseProfileFieldsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.team#ProfileGetResponseProfileSectionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.team#ProfileGetResponseProfile": {
+      "type": "structure",
+      "members": {
+        "fields": {
+          "target": "com.slack.team#ProfileGetResponseProfileFieldsList"
+        },
+        "sections": {
+          "target": "com.slack.team#ProfileGetResponseProfileSectionsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.team#ProfileGetResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "profile": {
+          "target": "com.slack.team#ProfileGetResponseProfile",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.team#ProfileGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.team#ProfileGetRequest"
+      },
+      "output": {
+        "target": "com.slack.team#ProfileGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/team.profile.get",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve a team's profile.\n\nRequired scopes — bot: `users.profile:read`; user: `users.profile:read`\n\nRate limit tier: 3\n\nSee https://docs.slack.dev/reference/methods/team.profile.get"
+      }
+    },
+    "com.slack.team#Team": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.team#AccessLogs"
+        },
+        {
+          "target": "com.slack.team#BillableInfo"
+        },
+        {
+          "target": "com.slack.team#BillingInfo"
+        },
+        {
+          "target": "com.slack.team#ExternalTeamsDisconnect"
+        },
+        {
+          "target": "com.slack.team#ExternalTeamsList"
+        },
+        {
+          "target": "com.slack.team#Info"
+        },
+        {
+          "target": "com.slack.team#IntegrationLogs"
+        },
+        {
+          "target": "com.slack.team#PreferencesList"
+        },
+        {
+          "target": "com.slack.team#ProfileGet"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — team"
+      }
+    }
+  }
+}

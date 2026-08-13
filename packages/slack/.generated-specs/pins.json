@@ -1,0 +1,266 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.slack.pins#AddRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel to pin the messsage to. You must also include a `timestamp` when pinning messages.",
+            "smithy.api#required": {}
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the message to pin. You must also include the `channel`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.pins#AddResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.pins#Add": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.pins#AddRequest"
+      },
+      "output": {
+        "target": "com.slack.pins#AddResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/pins.add",
+          "code": 200
+        },
+        "smithy.api#documentation": "Pins an item to a channel.\n\nRequired scopes — bot: `pins:write`; user: `pins:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `already_pinned` — The specified item is already pinned to the channel.\n  - `bad_timestamp` — Value passed for `timestamp` was invalid.\n  - `channel_not_found` — The `channel` argument was not specified or was invalid\n  - `external_channel_migrating` — Channel is undergoing an active migration.\n  - `file_not_found` — File not found.\n  - `file_not_shared` — File specified by `file` is not public nor shared to the channel.\n  - `message_not_found` — Message specified by `channel` and `timestamp` does not exist.\n  - `no_item_specified` — One of `file`, `file_comment`, or `timestamp` was not specified.\n  - `not_in_channel` — Item is not in channel.\n  - `not_pinnable` — This message type is not pinnable.\n  - `restricted_action` — The user does not have permission to add pins to the channel.\n  - `too_many_pins` — Too many pins in channel.\n\nSee https://docs.slack.dev/reference/methods/pins.add"
+      }
+    },
+    "com.slack.pins#ListRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "channel",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Channel to get pinned items for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.pins#ListResponseItemsItemType": {
+      "type": "enum",
+      "members": {
+        "FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "file"
+          }
+        },
+        "MESSAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message"
+          }
+        },
+        "FILE_COMMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "file_comment"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.pins#ListResponseItemsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.slack.pins#ListResponseItemsItemType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String"
+        },
+        "message": {
+          "target": "smithy.api#Document"
+        },
+        "file": {
+          "target": "smithy.api#Document"
+        },
+        "comment": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.pins#ListResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.pins#ListResponseItemsItem"
+      },
+      "traits": {}
+    },
+    "com.slack.pins#ListResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.slack.pins#ListResponseItemsList"
+        },
+        "count": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.pins#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.pins#ListRequest"
+      },
+      "output": {
+        "target": "com.slack.pins#ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/pins.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists items pinned to a channel.\n\nRequired scopes — bot: `pins:read`; user: `pins:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `restricted_action` — The user does not have permission to view the channel.\n\nSee https://docs.slack.dev/reference/methods/pins.list"
+      }
+    },
+    "com.slack.pins#RemoveRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel where the item is pinned to.",
+            "smithy.api#required": {}
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the message to un-pin."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.pins#RemoveResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.pins#Remove": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.pins#RemoveRequest"
+      },
+      "output": {
+        "target": "com.slack.pins#RemoveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/pins.remove",
+          "code": 200
+        },
+        "smithy.api#documentation": "Un-pins an item from a channel.\n\nRequired scopes — bot: `pins:write`; user: `pins:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_timestamp` — Value passed for `timestamp` was invalid.\n  - `channel_not_found` — The `channel` argument was not specified or was invalid\n  - `external_channel_migrating` — Channel is undergoing an active migration.\n  - `file_comment_not_found` — File comment specified by `file_comment` does not exist.\n  - `file_not_found` — File specified by `file` does not exist.\n  - `message_not_found` — Message specified by `channel` and `timestamp` does not exist.\n  - `no_item_specified` — One of `file`, `file_comment`, or `timestamp` was not specified.\n  - `no_pin` — The pin could not be found.\n  - `not_pinned` — The specified item is not pinned to the channel.\n  - `restricted_action` — The user does not have permission to remove pins from the channel.\n\nSee https://docs.slack.dev/reference/methods/pins.remove"
+      }
+    },
+    "com.slack.pins#Pins": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.pins#Add"
+        },
+        {
+          "target": "com.slack.pins#List"
+        },
+        {
+          "target": "com.slack.pins#Remove"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — pins"
+      }
+    }
+  }
+}

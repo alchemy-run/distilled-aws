@@ -1,0 +1,68 @@
+{
+  "desc": "This API endpoint can be used by any admin to set a conversation's retention policy.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id",
+      "duration_days"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "The conversation to set the retention policy for.",
+        "example": "C12345678",
+        "type": "string",
+        "schema": "channel"
+      },
+      "duration_days": {
+        "desc": "The message retention duration in days to set for this conversation",
+        "example": "500",
+        "type": "integer"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "channel_not_found": {
+      "desc": "Value given for `channel_id` was invalid."
+    },
+    "channel_type_not_supported": {
+      "desc": "Value given for `channel_id` was a group dm, direct message, or #general channel."
+    },
+    "could_not_set_retention": {
+      "desc": "The retention policy could not be set."
+    },
+    "default_org_wide_channel": {
+      "desc": "The channel given is a default org-wide channel."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "invalid_duration": {
+      "desc": "Retention `duration_days` must be an integer greater than 0 days and less than 36500 days (100 years)."
+    },
+    "not_an_admin": {
+      "desc": "The token provided is not associated with an admin."
+    },
+    "restricted_action": {
+      "desc": "A team preference prevents the authenticated user from modifying the retention policy of this channel."
+    },
+    "retention_override_not_allowed": {
+      "desc": "The current retention policy disallows modifying the retention policy of this channel."
+    }
+  }
+}

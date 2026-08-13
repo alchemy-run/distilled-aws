@@ -1,0 +1,47 @@
+{
+  "desc": "Lists all reminders created by or for a given user.",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "reminders:read"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "user_scope_only": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "Encoded team id, required if org token is passed",
+        "type": "string",
+        "subtype": "team"
+      }
+    }
+  },
+  "output": {
+    "properties": {
+      "reminders": {
+        "type": "array",
+        "items": {
+          "schema": "reminder"
+        }
+      }
+    },
+    "type": "object"
+  },
+  "errors": {
+    "missing_argument": {
+      "desc": "An argument is missing."
+    }
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.slack.reminders#AddRequest": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content of the reminder",
+            "smithy.api#required": {}
+          }
+        },
+        "time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Can also take a type of integer. When this reminder should happen: the Unix timestamp (up to five years from now), the number of seconds until the reminder (if within 24 hours), or a natural language description (Ex. \"in 15 minutes,\" or \"every Thursday\")",
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "No longer supported - reminders cannot be set for other users. Previously, was the user who would receive the reminder."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded team id, required if org token is used"
+          }
+        },
+        "recurrence": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Specify the repeating behavior of a reminder. Available options: `daily`, `weekly`, `monthly`, or `yearly`. If `weekly`, may further specify the days of the week."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.reminders#AddResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "reminder": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.reminders#Add": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.reminders#AddRequest"
+      },
+      "output": {
+        "target": "com.slack.reminders#AddResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/reminders.add",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a reminder.\n\nRequired scopes — user: `reminders:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `cannot_add_bot` — Reminders can't be sent to bots.\n  - `cannot_add_others` — Guests can't set reminders for other team members.\n  - `cannot_add_others_recurring` — Recurring reminders can't be set for other team members.\n  - `cannot_add_profile_only_user` — Reminders can't be sent to profile only users.\n  - `cannot_add_slackbot` — Reminders can't be sent to Slackbot.\n  - `cannot_parse` — The phrasing of the timing for this reminder is unclear. You must include a complete time description. Some examples that work: `1458678068`, `20`, `in 5 minutes`, `tomorrow`, `at 3:30pm`, `on Tuesday`, or `next week`.\n  - `missing_argument` — An argument is missing.\n  - `user_not_found` — That user can't be found.\n\nSee https://docs.slack.dev/reference/methods/reminders.add"
+      }
+    },
+    "com.slack.reminders#CompleteRequest": {
+      "type": "structure",
+      "members": {
+        "reminder": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the reminder to be marked as complete",
+            "smithy.api#required": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded team id, required if org token is used"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.reminders#CompleteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.reminders#Complete": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.reminders#CompleteRequest"
+      },
+      "output": {
+        "target": "com.slack.reminders#CompleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/reminders.complete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Marks a reminder as complete.\n\nRequired scopes — user: `reminders:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `cannot_complete_others` — Reminders for other team members can't be marked complete.\n  - `cannot_complete_recurring` — Recurring reminders can't be marked complete.\n  - `missing_argument` — An argument is missing.\n  - `not_found` — That reminder can't be found.\n\nSee https://docs.slack.dev/reference/methods/reminders.complete"
+      }
+    },
+    "com.slack.reminders#DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "reminder": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the reminder",
+            "smithy.api#required": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded team id, required if org token is used"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.reminders#DeleteResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.reminders#Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.reminders#DeleteRequest"
+      },
+      "output": {
+        "target": "com.slack.reminders#DeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/reminders.delete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes a reminder.\n\nRequired scopes — user: `reminders:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — An argument is missing.\n  - `not_found` — That reminder can't be found.\n\nSee https://docs.slack.dev/reference/methods/reminders.delete"
+      }
+    },
+    "com.slack.reminders#InfoRequest": {
+      "type": "structure",
+      "members": {
+        "reminder": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "reminder",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the reminder"
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "Encoded team id, required if org token is passed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.reminders#InfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "reminder": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.reminders#Info": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.reminders#InfoRequest"
+      },
+      "output": {
+        "target": "com.slack.reminders#InfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/reminders.info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets information about a reminder.\n\nRequired scopes — user: `reminders:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — An argument is missing.\n  - `not_found` — That reminder can't be found.\n\nSee https://docs.slack.dev/reference/methods/reminders.info"
+      }
+    },
+    "com.slack.reminders#ListRequest": {
+      "type": "structure",
+      "members": {
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "Encoded team id, required if org token is passed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.reminders#ListResponseRemindersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.reminders#ListResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "reminders": {
+          "target": "com.slack.reminders#ListResponseRemindersList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.reminders#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.reminders#ListRequest"
+      },
+      "output": {
+        "target": "com.slack.reminders#ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/reminders.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all reminders created by or for a given user.\n\nRequired scopes — user: `reminders:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — An argument is missing.\n\nSee https://docs.slack.dev/reference/methods/reminders.list"
+      }
+    },
+    "com.slack.reminders#Reminders": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.reminders#Add"
+        },
+        {
+          "target": "com.slack.reminders#Complete"
+        },
+        {
+          "target": "com.slack.reminders#Delete"
+        },
+        {
+          "target": "com.slack.reminders#Info"
+        },
+        {
+          "target": "com.slack.reminders#List"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — reminders"
+      }
+    }
+  }
+}

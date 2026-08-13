@@ -1,0 +1,97 @@
+{
+  "desc": "List the featured workflows for specified channels.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "bookmarks:read"
+    ],
+    "user": [
+      "bookmarks:read"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth"
+      },
+      "channel_ids": {
+        "desc": "Comma-separated array of channel IDs to list featured workflows for.",
+        "type": "array",
+        "example": "[\"C012345678\", \"C987654321\"]",
+        "items": {
+          "type": "string",
+          "subtype": "channel"
+        },
+        "minItems": 1,
+        "maxItems": 100
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "featured_workflows"
+    ],
+    "properties": {
+      "featured_workflows": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "channel_id",
+            "triggers"
+          ],
+          "properties": {
+            "channel_id": {
+              "desc": "Channel where workflows are featured",
+              "type": "string",
+              "subtype": "channel"
+            },
+            "triggers": {
+              "desc": "Array of triggers associated with channel",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "title"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "method_not_supported": {
+      "desc": "Method not yet supported"
+    },
+    "restricted_action": {
+      "desc": "User does not have access to this method."
+    },
+    "channel_not_found": {
+      "desc": "Channel not found."
+    },
+    "error_invalid_channels": {
+      "desc": "Invalid channels provided."
+    }
+  }
+}

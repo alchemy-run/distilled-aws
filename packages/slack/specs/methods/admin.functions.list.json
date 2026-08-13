@@ -1,0 +1,87 @@
+{
+  "desc": "Look up functions by a set of apps.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.workflows:read"
+    ]
+  },
+  "rate_limits": "t2",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "app_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "schema": "workspace_id",
+        "desc": "The team context to retrieve functions from.",
+        "example": "T00000001"
+      },
+      "app_ids": {
+        "type": "array",
+        "desc": "Comma-separated array of app IDs to get functions for; max 50.",
+        "example": "A02,A1234",
+        "items": {
+          "schema": "app_id"
+        },
+        "maxItems": 50,
+        "uniqueItems": true
+      },
+      "include_non_distributed_functions": {
+        "type": "boolean",
+        "default": false,
+        "desc": "Whether to also include functions that are not yet distributed to any users in the function count. This is needed for admins that are approving an app request and will only work if the team owns the app."
+      },
+      "cursor": {
+        "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.",
+        "example": "dXNlcjpVMDYxTkZUVDI=",
+        "type": "string"
+      },
+      "limit": {
+        "desc": "The number of results that will be returned by the API on each invocation. Must be between 1 and 1000, both inclusive.",
+        "example": "20",
+        "type": "integer",
+        "default": 100,
+        "minimum": 1,
+        "maximum": 1000
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "functions"
+    ],
+    "properties": {
+      "functions": {
+        "type": "array",
+        "items": {
+          "schema": "function"
+        }
+      },
+      "response_metadata": {
+        "schema": "response_metadata_new"
+      }
+    }
+  },
+  "errors": {
+    "invalid_cursor": {
+      "desc": "Value passed for `cursor` was not valid or is no longer valid."
+    },
+    "not_allowed": {
+      "desc": "The user is not allowed to access this API method."
+    },
+    "restricted_action": {
+      "desc": "The user is not allowed to access this API method."
+    }
+  }
+}

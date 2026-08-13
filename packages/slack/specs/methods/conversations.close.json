@@ -1,0 +1,73 @@
+{
+  "desc": "Closes a direct message or multi-person direct message.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "groups:write",
+      "im:write",
+      "mpim:write",
+      "channels:write",
+      "channels:manage"
+    ],
+    "user": [
+      "groups:write",
+      "im:write",
+      "mpim:write",
+      "channels:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "Conversation to close.",
+        "subtype": "channel_group",
+        "schema": "channel"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "already_closed": {
+        "type": "boolean"
+      },
+      "no_op": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "method_not_supported_for_channel_type": {
+      "desc": "This type of conversation cannot be used with this method."
+    },
+    "missing_scope": {
+      "desc": "The calling token is not granted the necessary scopes to complete this operation."
+    },
+    "user_does_not_own_channel": {
+      "desc": "Calling user does not own this DM channel."
+    },
+    "not_permitted": {
+      "desc": "Not permitted."
+    },
+    "external_channel_migrating": {
+      "desc": "External channel migrating."
+    }
+  }
+}

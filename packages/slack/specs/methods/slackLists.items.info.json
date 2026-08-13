@@ -1,0 +1,87 @@
+{
+  "desc": "Get a row from a List.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "lists:read"
+    ],
+    "user": [
+      "lists:read"
+    ]
+  },
+  "familyName": "lists",
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "list_id",
+      "id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth"
+      },
+      "list_id": {
+        "desc": "ID of the List.",
+        "example": "F1234567",
+        "type": "string",
+        "subtype": "list",
+        "schema": "file_id"
+      },
+      "id": {
+        "desc": "ID of the row to get.",
+        "example": "Rec014K005UQJ",
+        "type": "string",
+        "schema": "list_record_id"
+      },
+      "include_is_subscribed": {
+        "default": "false",
+        "desc": "Set to `true` to include `is_subscribed` data for the returned List row.",
+        "type": "boolean"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "list",
+      "record"
+    ],
+    "properties": {
+      "list": {
+        "schema": "file"
+      },
+      "record": {
+        "schema": "list_item"
+      },
+      "parent_task": {
+        "schema": "list_item"
+      },
+      "subtasks": {
+        "type": "array",
+        "items": {
+          "schema": "list_item"
+        }
+      }
+    }
+  },
+  "errors": {
+    "list_not_found": {
+      "desc": "The List was not found."
+    },
+    "record_not_found": {
+      "desc": "The record was not found in the List."
+    },
+    "record_deleted": {
+      "desc": "The record has been deleted."
+    },
+    "team_not_found": {
+      "desc": "The team cannot be found."
+    },
+    "user_not_found": {
+      "desc": "The user cannot be found."
+    }
+  }
+}

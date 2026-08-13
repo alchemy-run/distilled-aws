@@ -1,0 +1,96 @@
+{
+  "desc": "Renames a conversation.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "groups:write",
+      "im:write",
+      "mpim:write",
+      "channels:write",
+      "channels:manage"
+    ],
+    "user": [
+      "groups:write",
+      "im:write",
+      "mpim:write",
+      "channels:write"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel",
+      "name"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "ID of conversation to rename",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "name": {
+        "desc": "New name for conversation.",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "channel"
+    ],
+    "properties": {
+      "channel": {
+        "schema": "conversation"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "invalid_name": {
+      "desc": "Value passed for `name` was invalid."
+    },
+    "invalid_name_maxlength": {
+      "desc": "Value passed for `name` exceeded max length."
+    },
+    "invalid_name_punctuation": {
+      "desc": "Value passed for `name` contained only punctuation."
+    },
+    "invalid_name_required": {
+      "desc": "Value passed for `name` was empty."
+    },
+    "invalid_name_specials": {
+      "desc": "Value passed for `name` contained unallowed special characters or upper case characters."
+    },
+    "is_archived": {
+      "desc": "Cannot rename archived channel."
+    },
+    "method_not_supported_for_channel_type": {
+      "desc": "This type of conversation cannot be used with this method."
+    },
+    "missing_scope": {
+      "desc": "The calling token is not granted the necessary scopes to complete this operation."
+    },
+    "name_taken": {
+      "desc": "New channel name is taken."
+    },
+    "not_authorized": {
+      "desc": "Caller cannot rename this channel."
+    },
+    "not_in_channel": {
+      "desc": "Caller is not a member of the channel."
+    }
+  }
+}

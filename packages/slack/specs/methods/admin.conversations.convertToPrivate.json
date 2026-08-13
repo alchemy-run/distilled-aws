@@ -1,0 +1,76 @@
+{
+  "desc": "Convert a public channel to a private channel.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "The channel to convert to private.",
+        "example": "C12345",
+        "schema": "channel"
+      },
+      "name": {
+        "desc": "Name of private channel to create. Only respected when converting an MPIM.",
+        "example": "new_private_channel_name",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "The value passed for `channel` was invalid."
+    },
+    "channel_type_not_supported": {
+      "desc": "The value passed for `channel` was a DM, MPDM, private, or the 'general' channel."
+    },
+    "could_not_convert_channel": {
+      "desc": "This channel could not be converted to private."
+    },
+    "default_org_wide_channel": {
+      "desc": "The default org-wide channel cannot be converted to private."
+    },
+    "external_channel_migrating": {
+      "desc": "This external channel is migrating, so it can't be converted to private."
+    },
+    "feature_not_enabled": {
+      "desc": "The provided token doesn't have access to this method."
+    },
+    "method_not_supported_for_channel_type": {
+      "desc": "This type of conversation cannot be used with this method."
+    },
+    "name_taken": {
+      "desc": "A private channel cannot be created with the given name."
+    },
+    "restricted_action": {
+      "desc": "A workspace preference prevents the authenticated user from creating private channels."
+    }
+  }
+}

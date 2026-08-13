@@ -471,6 +471,12 @@
     },
     {
       "path": "./packages/forgejo/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/slack/tsconfig.json"
+    },
+    {
+      "path": "./packages/slack/tsconfig.scripts.json"
     }
   ]
 }
