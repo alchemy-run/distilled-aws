@@ -201,11 +201,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.team#AccessLogsResponse": {
       "type": "structure",
@@ -227,7 +229,10 @@
           "target": "com.slack.team#AccessLogsResponsePaging"
         },
         "response_metadata": {
-          "target": "com.slack.team#AccessLogsResponseResponseMetadata"
+          "target": "com.slack.team#AccessLogsResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -248,7 +253,14 @@
           "uri": "/team.accessLogs",
           "code": 200
         },
-        "smithy.api#documentation": "Gets the access logs for the current team.\n\nRequired scopes — user: `admin`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — A required argument is missing.\n  - `missing_scope` — The provided token hasn't obtained the necessary scopes to use this method.\n  - `not_allowed_token_type` — Method was called with an invalid token type\n  - `over_pagination_limit` — It is not possible to request more than 1000 items per page or more than 100 pages.\n  - `paid_only` — This is only available to paid teams.\n  - `token_revoked` — token revoked (generated)\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_limit` — The value passed for `limit` was not valid.\n  - `invalid_team_id` — The value passed for `team_id` is not valid given the token context.\n\nSee https://docs.slack.dev/reference/methods/team.accessLogs"
+        "smithy.api#documentation": "Gets the access logs for the current team.\n\nRequired scopes — user: `admin`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — A required argument is missing.\n  - `missing_scope` — The provided token hasn't obtained the necessary scopes to use this method.\n  - `not_allowed_token_type` — Method was called with an invalid token type\n  - `over_pagination_limit` — It is not possible to request more than 1000 items per page or more than 100 pages.\n  - `paid_only` — This is only available to paid teams.\n  - `token_revoked` — token revoked (generated)\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_limit` — The value passed for `limit` was not valid.\n  - `invalid_team_id` — The value passed for `team_id` is not valid given the token context.\n\nSee https://docs.slack.dev/reference/methods/team.accessLogs",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "logins",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.team#BillableInfoRequest": {
@@ -293,11 +305,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.team#BillableInfoResponseBillableInfoMap": {
       "type": "map",
@@ -320,7 +334,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.team#BillableInfoResponseResponseMetadata"
+          "target": "com.slack.team#BillableInfoResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         },
         "billable_info": {
           "target": "com.slack.team#BillableInfoResponseBillableInfoMap",
@@ -901,6 +918,20 @@
       },
       "traits": {}
     },
+    "com.slack.team#ExternalTeamsListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.team#ExternalTeamsListResponse": {
       "type": "structure",
       "members": {
@@ -924,7 +955,10 @@
           }
         },
         "response_metadata": {
-          "target": "smithy.api#Document"
+          "target": "com.slack.team#ExternalTeamsListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -945,7 +979,14 @@
           "uri": "/team.externalTeams.list",
           "code": 200
         },
-        "smithy.api#documentation": "Returns a list of all the external teams connected and details about the connection.\n\nRequired scopes — bot: `conversations.connect:manage`, `team:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — One or more of the API arguments are invalid.\n  - `not_allowed` — The user is not allowed to perform the action.\n  - `restricted_action` — The user does not have permission to perform the action.\n  - `internal_error` — There was an internal error processing this request.\n  - `invalid_workspace_filter` — The specified workspace is not valid.\n  - `user_cannot_manage_workspace` — The calling user cannot manage the workspace passed in the workspace filter.\n\nSee https://docs.slack.dev/reference/methods/team.externalTeams.list"
+        "smithy.api#documentation": "Returns a list of all the external teams connected and details about the connection.\n\nRequired scopes — bot: `conversations.connect:manage`, `team:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — One or more of the API arguments are invalid.\n  - `not_allowed` — The user is not allowed to perform the action.\n  - `restricted_action` — The user does not have permission to perform the action.\n  - `internal_error` — There was an internal error processing this request.\n  - `invalid_workspace_filter` — The specified workspace is not valid.\n  - `user_cannot_manage_workspace` — The calling user cannot manage the workspace passed in the workspace filter.\n\nSee https://docs.slack.dev/reference/methods/team.externalTeams.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "organizations",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.team#InfoRequest": {

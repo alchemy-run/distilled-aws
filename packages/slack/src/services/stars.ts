@@ -7,6 +7,7 @@ import {
   type SlackOpError,
   type SlackOpContext,
 } from "../protocol.ts";
+import { slackPaginate } from "../pagination.ts";
 import { SlackError, SlackRateLimited } from "../errors.ts";
 import * as Retry from "../retry.ts";
 
@@ -196,12 +197,14 @@ export const ListResponseItemsList = /*@__PURE__*/ S.Array(
   ListResponseItemsItem,
 ) as any as S.Schema<ListResponseItemsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export interface ListResponseResponseMetadata {
-  next_cursor: string;
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
 }
 export const ListResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    next_cursor: S.String,
+    next_cursor: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListResponseResponseMetadata",
@@ -212,6 +215,7 @@ export interface ListResponse {
   ok: boolean;
   items: ListResponseItemsList;
   paging?: unknown;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
   response_metadata?: ListResponseResponseMetadata;
 }
 export const ListResponse = /*@__PURE__*/ S.suspend(() =>
@@ -269,18 +273,29 @@ export const add: API.OperationMethod<
 
 export type ListError = SlackOpError;
 /** (Deprecated) Listed a user's saved items, formerly known as stars. Required scopes — user: `stars:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — A required argument is missing. See https://docs.slack.dev/reference/methods/stars.list */
-export const list: API.OperationMethod<
+export const list: API.PaginatedOperationMethod<
   ListRequest,
   ListResponse,
   ListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListRequest,
-  output: ListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  ListResponseItemsItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListRequest,
+    output: ListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "items",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type RemoveError = SlackOpError;
 /** Removes a saved item (star) from an item. Required scopes — user: `stars:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `bad_timestamp` — Value passed for `timestamp` was invalid. - `channel_not_found` — Channel, private group, or DM specified by `channel` does not exist - `file_comment_not_found` — File comment specified by `file_comment` does not exist. - `file_not_found` — File specified by `file` does not exist. - `message_not_found` — Message specified by `channel` and `timestamp` does not exist. - `no_item_specified` — `file`, `file_comment`, `channel` and `timestamp` was not specified. - `not_starred` — The specified item is not currently starred by the authenticated user. See https://docs.slack.dev/reference/methods/stars.remove */

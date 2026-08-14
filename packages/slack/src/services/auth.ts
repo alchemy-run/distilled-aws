@@ -7,6 +7,7 @@ import {
   type SlackOpError,
   type SlackOpContext,
 } from "../protocol.ts";
+import { slackPaginate } from "../pagination.ts";
 import { SlackError, SlackRateLimited } from "../errors.ts";
 import * as Retry from "../retry.ts";
 
@@ -108,15 +109,31 @@ export const TeamsListResponseTeamsList = /*@__PURE__*/ S.Array(
   TeamsListResponseTeamsItem,
 ) as any as S.Schema<TeamsListResponseTeamsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export interface TeamsListResponseResponseMetadata {
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
+}
+export const TeamsListResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    next_cursor: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TeamsListResponseResponseMetadata",
+}) as any as S.Schema<TeamsListResponseResponseMetadata>;
+
 export interface TeamsListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  teams?: TeamsListResponseTeamsList;
+  teams: TeamsListResponseTeamsList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: TeamsListResponseResponseMetadata;
 }
 export const TeamsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    teams: S.optional(TeamsListResponseTeamsList),
+    teams: TeamsListResponseTeamsList,
+    response_metadata: S.optional(TeamsListResponseResponseMetadata),
   }),
 ).annotate({
   identifier: "TeamsListResponse",
@@ -176,18 +193,29 @@ export const revoke: API.OperationMethod<
 
 export type TeamsListError = SlackOpError;
 /** Obtain a full list of workspaces your org-wide app has been approved for. Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_cursor` — Invalid cursor. - `invalid_limit` — The value passed for `limit` was not valid. - `invalid_auth` — The token doesn't have access to this endpoint. - `internal_error` — There was an internal error. See https://docs.slack.dev/reference/methods/auth.teams.list */
-export const teamsList: API.OperationMethod<
+export const teamsList: API.PaginatedOperationMethod<
   TeamsListRequest,
   TeamsListResponse,
   TeamsListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TeamsListRequest,
-  output: TeamsListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  TeamsListResponseTeamsItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: TeamsListRequest,
+    output: TeamsListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "teams",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type TestError = SlackOpError;
 /** Checks authentication & identity. Rate limit tier: 5 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — An internal error has been found. - `invalid_auth` — Method was called with invalid credentials See https://docs.slack.dev/reference/methods/auth.test */

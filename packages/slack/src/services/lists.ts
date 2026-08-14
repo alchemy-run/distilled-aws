@@ -7,6 +7,7 @@ import {
   type SlackOpError,
   type SlackOpContext,
 } from "../protocol.ts";
+import { slackPaginate } from "../pagination.ts";
 import { SlackError, SlackRateLimited } from "../errors.ts";
 import * as Retry from "../retry.ts";
 
@@ -517,17 +518,31 @@ export const ItemsListResponseItemsList = /*@__PURE__*/ S.Array(
   S.Unknown,
 ) as any as S.Schema<ItemsListResponseItemsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export interface ItemsListResponseResponseMetadata {
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
+}
+export const ItemsListResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    next_cursor: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ItemsListResponseResponseMetadata",
+}) as any as S.Schema<ItemsListResponseResponseMetadata>;
+
 export interface ItemsListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   items: ItemsListResponseItemsList;
-  response_metadata?: unknown;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: ItemsListResponseResponseMetadata;
 }
 export const ItemsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     items: ItemsListResponseItemsList,
-    response_metadata: S.optional(S.Unknown),
+    response_metadata: S.optional(ItemsListResponseResponseMetadata),
   }),
 ).annotate({
   identifier: "ItemsListResponse",
@@ -752,18 +767,29 @@ export const itemsInfo: API.OperationMethod<
 
 export type ItemsListError = SlackOpError;
 /** Get records from a List. Required scopes — bot: `lists:read`; user: `lists:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `list_not_found` — The List was not found. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `archive_not_supported` — Archiving is not supported. See https://docs.slack.dev/reference/methods/slackLists.items.list */
-export const itemsList: API.OperationMethod<
+export const itemsList: API.PaginatedOperationMethod<
   ItemsListRequest,
   ItemsListResponse,
   ItemsListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ItemsListRequest,
-  output: ItemsListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ItemsListRequest,
+    output: ItemsListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "items",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type ItemsUpdateError = SlackOpError;
 /** Updates cells in a List. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `list_not_found` — The List was not found. - `row_not_found` — The row was not found. - `column_not_found` — The column was not found. - `file_not_found` — Invalid file ID for this List. - `invalid_input_type` — Supplied value key or value type is invalid for the given column type. - `invalid_row_id` — Invalid row ID for this List. - `invalid_column_id` — Invalid column ID for this List. - `permission_denied` — The user does not have permission to perform this action. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. - `channel_not_found` — The channel cannot be found. - `uneditable_column` — The column cannot be updated. - `invalid_blocks` — Rich text payload supplied is invalid. - `invalid_text_block` — Rich text payload supplied is invalid. - `invalid_email` — Email supplied is invalid. - `invalid_link` — Message archive link supplied is invalid. - `invalid_date` — Date supplied is invalid. - `invalid_option_id` — Option supplied is invalid. - `row_id_not_provided` — The `row_id` or `row_id_to_create` field must be provided. - `column_id_not_provided` — The `column_id` or `column_id_to_create` field must be provided. - `over_cell_fields_limit` — The supplied cell fields are over the cell field maximum. - `invalid_message` — Invalid message provided. - `invalid_attachment` — Invalid attachment provided. - `invalid_phone_number` — Invalid phone number provided. - `invalid_vote_value` — Invalid vote value is supplied. See https://docs.slack.dev/reference/methods/slackLists.items.update */

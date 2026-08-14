@@ -508,6 +508,20 @@
       },
       "traits": {}
     },
+    "com.slack.files#InfoResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.files#InfoResponse": {
       "type": "structure",
       "members": {
@@ -535,6 +549,12 @@
         },
         "content_highlight_html": {
           "target": "smithy.api#Document"
+        },
+        "response_metadata": {
+          "target": "com.slack.files#InfoResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -555,7 +575,14 @@
           "uri": "/files.info",
           "code": 200
         },
-        "smithy.api#documentation": "Gets information about a file.\n\nRequired scopes — bot: `files:read`; user: `files:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `access_denied` — Unable to access the file (slack connect)\n  - `file_deleted` — The requested file has been deleted\n  - `file_not_found` — Value passed for `file` was invalid\n  - `canvas_globally_disabled` — Canvas is disabled for this team\n  - `canvas_disabled_user_team` — Canvas is disabled on user's team for connected Channels\n  - `canvas_disabled_file_team` — Canvas is disabled on file's team\n  - `not_visible` — Do not have permission to view the file\n  - `template_not_visible` — Do not have permissions to view this template\n  - `slack_connect_canvas_sharing_blocked` — Admin has disabled sharing of Canvas links in all Slack Connect communications\n\nSee https://docs.slack.dev/reference/methods/files.info"
+        "smithy.api#documentation": "Gets information about a file.\n\nRequired scopes — bot: `files:read`; user: `files:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `access_denied` — Unable to access the file (slack connect)\n  - `file_deleted` — The requested file has been deleted\n  - `file_not_found` — Value passed for `file` was invalid\n  - `canvas_globally_disabled` — Canvas is disabled for this team\n  - `canvas_disabled_user_team` — Canvas is disabled on user's team for connected Channels\n  - `canvas_disabled_file_team` — Canvas is disabled on file's team\n  - `not_visible` — Do not have permission to view the file\n  - `template_not_visible` — Do not have permissions to view this template\n  - `slack_connect_canvas_sharing_blocked` — Admin has disabled sharing of Canvas links in all Slack Connect communications\n\nSee https://docs.slack.dev/reference/methods/files.info",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "comments",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.files#ListRequestCount": {
@@ -1097,11 +1124,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.files#RemoteListResponse": {
       "type": "structure",
@@ -1117,7 +1146,10 @@
           "target": "com.slack.files#RemoteListResponseFilesList"
         },
         "response_metadata": {
-          "target": "com.slack.files#RemoteListResponseResponseMetadata"
+          "target": "com.slack.files#RemoteListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -1138,7 +1170,14 @@
           "uri": "/files.remote.list",
           "code": 200
         },
-        "smithy.api#documentation": "Retrieve information about a remote file added to Slack\n\nRequired scopes — bot: `remote_files:read`; user: `remote_files:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `no_bot_user_for_app` — Cannot call the Remote Files endpoints unless app has associated bot user\n\nSee https://docs.slack.dev/reference/methods/files.remote.list"
+        "smithy.api#documentation": "Retrieve information about a remote file added to Slack\n\nRequired scopes — bot: `remote_files:read`; user: `remote_files:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `no_bot_user_for_app` — Cannot call the Remote Files endpoints unless app has associated bot user\n\nSee https://docs.slack.dev/reference/methods/files.remote.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "files",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.files#RemoteRemoveRequest": {

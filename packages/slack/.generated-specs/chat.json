@@ -928,11 +928,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.chat#ScheduledMessagesListResponse": {
       "type": "structure",
@@ -951,7 +953,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.chat#ScheduledMessagesListResponseResponseMetadata"
+          "target": "com.slack.chat#ScheduledMessagesListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -972,7 +977,14 @@
           "uri": "/chat.scheduledMessages.list",
           "code": 200
         },
-        "smithy.api#documentation": "Returns a list of scheduled messages.\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_channel` — The channel passed is invalid\n  - `invalid_cursor` — Provided cursor is invalid\n  - `invalid_token` — Token is invalid\n\nSee https://docs.slack.dev/reference/methods/chat.scheduledMessages.list"
+        "smithy.api#documentation": "Returns a list of scheduled messages.\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_channel` — The channel passed is invalid\n  - `invalid_cursor` — Provided cursor is invalid\n  - `invalid_token` — Token is invalid\n\nSee https://docs.slack.dev/reference/methods/chat.scheduledMessages.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "scheduled_messages",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.chat#ScheduleMessageRequestAttachmentsCase1ItemMap": {

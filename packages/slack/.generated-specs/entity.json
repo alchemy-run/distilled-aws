@@ -162,6 +162,20 @@
         "smithy.api#input": {}
       }
     },
+    "com.slack.entity#PresentCommentsResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.entity#PresentCommentsResponse": {
       "type": "structure",
       "members": {
@@ -170,6 +184,12 @@
           "traits": {
             "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
             "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.entity#PresentCommentsResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
         }
       },

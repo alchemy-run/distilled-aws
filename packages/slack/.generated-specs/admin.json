@@ -129,12 +129,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "More items exist, use next_cursor as the value of cursor for next call",
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#AnalyticsMessagesActivityResponse": {
       "type": "structure",
@@ -147,7 +148,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#AnalyticsMessagesActivityResponseResponseMetadata"
+          "target": "com.slack.admin#AnalyticsMessagesActivityResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         },
         "message_activities": {
           "target": "smithy.api#Document",
@@ -220,12 +224,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "More items exist, use next_cursor as the value of cursor for next call",
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#AnalyticsMessagesMetadataResponseMessagesItemReactionsItem": {
       "type": "structure",
@@ -436,7 +441,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#AnalyticsMessagesMetadataResponseResponseMetadata"
+          "target": "com.slack.admin#AnalyticsMessagesMetadataResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         },
         "messages": {
           "target": "com.slack.admin#AnalyticsMessagesMetadataResponseMessagesList",
@@ -464,7 +472,13 @@
           "uri": "/admin.analytics.messages.metadata",
           "code": 200
         },
-        "smithy.api#documentation": "Retrieves metadata for a list of messages from a given channel.\n\nRequired scopes — user: `admin.analytics:read`\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — The specified channel was not found\n  - `invalid_arguments` — Required arguments either were not provided or contain invalid values.\n  - `not_an_enterprise` — The user token does not belong to an enterprise.\n  - `analytics_unavailable` — We were unable to find analytics for you.\n  - `admin_analytics_disabled` — We're having issues returning your analytics. Please wait and try again.\n  - `restricted_plan_level` — This feature is not available for your current product plan.\n  - `different_team_owns_message_metadata_for_channel` — Message metadata must be accessed by an actor from the same team that owns the channel. This may be the org or a specific enterprise workspace.\n\nSee https://docs.slack.dev/reference/methods/admin.analytics.messages.metadata"
+        "smithy.api#documentation": "Retrieves metadata for a list of messages from a given channel.\n\nRequired scopes — user: `admin.analytics:read`\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — The specified channel was not found\n  - `invalid_arguments` — Required arguments either were not provided or contain invalid values.\n  - `not_an_enterprise` — The user token does not belong to an enterprise.\n  - `analytics_unavailable` — We were unable to find analytics for you.\n  - `admin_analytics_disabled` — We're having issues returning your analytics. Please wait and try again.\n  - `restricted_plan_level` — This feature is not available for your current product plan.\n  - `different_team_owns_message_metadata_for_channel` — Message metadata must be accessed by an actor from the same team that owns the channel. This may be the org or a specific enterprise workspace.\n\nSee https://docs.slack.dev/reference/methods/admin.analytics.messages.metadata",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "messages"
+        }
       }
     },
     "com.slack.admin#AppsActivitiesListRequestSortDirection": {
@@ -586,11 +600,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#AppsActivitiesListResponse": {
       "type": "structure",
@@ -609,7 +625,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#AppsActivitiesListResponseResponseMetadata"
+          "target": "com.slack.admin#AppsActivitiesListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -631,7 +650,14 @@
           "code": 200
         },
         "smithy.api#documentation": "Get logs for a specified team/org\n\nRequired scopes — user: `admin.app_activities:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — Something went wrong on our end, please try again.\n  - `invalid_app_id` — App ID provided is not valid.\n  - `invalid_app` — App ID provided is not valid for team and user.\n  - `invalid_args` — Required arguments either were not provided or contain invalid values.\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_team` — Team ID provided is not valid\n\nSee https://docs.slack.dev/reference/methods/admin.apps.activities.list",
-        "com.distilled.openapi#contentType": "form-urlencoded"
+        "com.distilled.openapi#contentType": "form-urlencoded",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "activities",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#AppsApproveRequest": {
@@ -770,11 +796,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#AppsApprovedListResponse": {
       "type": "structure",
@@ -793,7 +821,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#AppsApprovedListResponseResponseMetadata"
+          "target": "com.slack.admin#AppsApprovedListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -814,7 +845,14 @@
           "uri": "/admin.apps.approved.list",
           "code": 200
         },
-        "smithy.api#documentation": "List approved apps for an org or workspace.\n\nRequired scopes — user: `admin.apps:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `app_management_app_not_installed_on_org` — The app management app must be installed on the org.\n  - `feature_not_enabled` — Returned when the Admin APIs feature is not enabled for this team\n  - `invalid_actor` — The provided actor_id is not a valid user or application\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `not_allowed` — The user is not allowed to access this API method\n  - `not_an_admin` — This method is only accessible by org/workspace owners and admins\n  - `team_not_found` — Returned when team id is not found.\n  - `too_many_teams_provided` — Please provide only `team_id` OR `enterprise_id`.\n  - `restricted_action` — User does not have permission to access method\n\nSee https://docs.slack.dev/reference/methods/admin.apps.approved.list"
+        "smithy.api#documentation": "List approved apps for an org or workspace.\n\nRequired scopes — user: `admin.apps:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `app_management_app_not_installed_on_org` — The app management app must be installed on the org.\n  - `feature_not_enabled` — Returned when the Admin APIs feature is not enabled for this team\n  - `invalid_actor` — The provided actor_id is not a valid user or application\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `not_allowed` — The user is not allowed to access this API method\n  - `not_an_admin` — This method is only accessible by org/workspace owners and admins\n  - `team_not_found` — Returned when team id is not found.\n  - `too_many_teams_provided` — Please provide only `team_id` OR `enterprise_id`.\n  - `restricted_action` — User does not have permission to access method\n\nSee https://docs.slack.dev/reference/methods/admin.apps.approved.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "approved_apps",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#AppsClearResolutionRequest": {
@@ -1267,11 +1305,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#AppsMcpServersListResponse": {
       "type": "structure",
@@ -1290,7 +1330,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#AppsMcpServersListResponseResponseMetadata"
+          "target": "com.slack.admin#AppsMcpServersListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -1311,7 +1354,14 @@
           "uri": "/admin.apps.mcp.servers.list",
           "code": 200
         },
-        "smithy.api#documentation": "List third-party app MCP servers approved for an organization, derived from the org's MCP server allowlist. Entries reflect allowlist state, not install/scope liveness: servers of apps that are uninstalled (but not deleted) are still listed.\n\nRequired scopes — user: `admin.apps:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `restricted_action` — User does not have permission to perform this action.\n  - `invalid_auth` — Invalid authorization token\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `not_an_enterprise` — This feature is only available on Enterprise Grid plans.\n  - `internal_error` — Internal error\n  - `feature_not_enabled` — The MCP server admin API feature is not enabled for this team.\n\nSee https://docs.slack.dev/reference/methods/admin.apps.mcp.servers.list"
+        "smithy.api#documentation": "List third-party app MCP servers approved for an organization, derived from the org's MCP server allowlist. Entries reflect allowlist state, not install/scope liveness: servers of apps that are uninstalled (but not deleted) are still listed.\n\nRequired scopes — user: `admin.apps:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `restricted_action` — User does not have permission to perform this action.\n  - `invalid_auth` — Invalid authorization token\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `not_an_enterprise` — This feature is only available on Enterprise Grid plans.\n  - `internal_error` — Internal error\n  - `feature_not_enabled` — The MCP server admin API feature is not enabled for this team.\n\nSee https://docs.slack.dev/reference/methods/admin.apps.mcp.servers.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "servers",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#AppsMcpServersPermissionsListRequest": {
@@ -1921,11 +1971,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#AppsRequestsListResponse": {
       "type": "structure",
@@ -1944,7 +1996,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#AppsRequestsListResponseResponseMetadata"
+          "target": "com.slack.admin#AppsRequestsListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -1965,7 +2020,14 @@
           "uri": "/admin.apps.requests.list",
           "code": 200
         },
-        "smithy.api#documentation": "List app requests for a team/workspace.\n\nRequired scopes — user: `admin.apps:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `app_management_app_not_installed_on_org` — The app management app must be installed on the org.\n  - `enterprise_not_found` — Returned when enterprise id is not found.\n  - `feature_not_enabled` — Returned when the Admin APIs feature is not enabled for this team\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_auth` — invalid token or actor does not have access\n  - `not_allowed` — The user is not allowed to access this API method\n  - `not_an_admin` — This method is only accessible by org owners and admins\n  - `restricted_action` — The action is restricted for this team\n  - `user_is_restricted` — This method is only accessible by org owners, admins, and integration managers\n  - `no_team_or_enterprise_provided` — Must provide team ID or enterprise ID\n  - `team_not_found` — Returned when team id is not found.\n  - `too_many_teams_provided` — Please provide only `team_id` OR `enterprise_id`\n\nSee https://docs.slack.dev/reference/methods/admin.apps.requests.list"
+        "smithy.api#documentation": "List app requests for a team/workspace.\n\nRequired scopes — user: `admin.apps:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `app_management_app_not_installed_on_org` — The app management app must be installed on the org.\n  - `enterprise_not_found` — Returned when enterprise id is not found.\n  - `feature_not_enabled` — Returned when the Admin APIs feature is not enabled for this team\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_auth` — invalid token or actor does not have access\n  - `not_allowed` — The user is not allowed to access this API method\n  - `not_an_admin` — This method is only accessible by org owners and admins\n  - `restricted_action` — The action is restricted for this team\n  - `user_is_restricted` — This method is only accessible by org owners, admins, and integration managers\n  - `no_team_or_enterprise_provided` — Must provide team ID or enterprise ID\n  - `team_not_found` — Returned when team id is not found.\n  - `too_many_teams_provided` — Please provide only `team_id` OR `enterprise_id`\n\nSee https://docs.slack.dev/reference/methods/admin.apps.requests.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "app_requests",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#AppsRestrictRequest": {
@@ -2086,11 +2148,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#AppsRestrictedListResponse": {
       "type": "structure",
@@ -2109,7 +2173,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#AppsRestrictedListResponseResponseMetadata"
+          "target": "com.slack.admin#AppsRestrictedListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -2130,7 +2197,14 @@
           "uri": "/admin.apps.restricted.list",
           "code": 200
         },
-        "smithy.api#documentation": "List restricted apps for an org or workspace.\n\nRequired scopes — user: `admin.apps:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `app_management_app_not_installed_on_org` — The app management app must be installed on the org.\n  - `feature_not_enabled` — Returned when the Admin APIs feature is not enabled for this team\n  - `invalid_actor` — The provided actor_id is not a valid user or application\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `not_allowed` — The user is not allowed to access this API method\n  - `not_an_admin` — This method is only accessible by org/workspace owners and admins\n  - `team_not_found` — Returned when team id is not found.\n  - `too_many_teams_provided` — Please provide only `team_id` OR `enterprise_id`.\n  - `restricted_action` — User does not have permission to access method\n\nSee https://docs.slack.dev/reference/methods/admin.apps.restricted.list"
+        "smithy.api#documentation": "List restricted apps for an org or workspace.\n\nRequired scopes — user: `admin.apps:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `app_management_app_not_installed_on_org` — The app management app must be installed on the org.\n  - `feature_not_enabled` — Returned when the Admin APIs feature is not enabled for this team\n  - `invalid_actor` — The provided actor_id is not a valid user or application\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `not_allowed` — The user is not allowed to access this API method\n  - `not_an_admin` — This method is only accessible by org/workspace owners and admins\n  - `team_not_found` — Returned when team id is not found.\n  - `too_many_teams_provided` — Please provide only `team_id` OR `enterprise_id`.\n  - `restricted_action` — User does not have permission to access method\n\nSee https://docs.slack.dev/reference/methods/admin.apps.restricted.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "restricted_apps",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#AppsUninstallRequest": {
@@ -2440,11 +2514,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#AuthPolicyGetEntitiesResponseEntitiesItem": {
       "type": "structure",
@@ -2493,7 +2569,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#AuthPolicyGetEntitiesResponseResponseMetadata"
+          "target": "com.slack.admin#AuthPolicyGetEntitiesResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         },
         "entities": {
           "target": "com.slack.admin#AuthPolicyGetEntitiesResponseEntitiesList",
@@ -2528,7 +2607,14 @@
           "uri": "/admin.auth.policy.getEntities",
           "code": 200
         },
-        "smithy.api#documentation": "Fetch all the entities assigned to a particular authentication policy by name.\n\nRequired scopes — user: `admin.users:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — This method is only available for Enterprise organizations.\n  - `internal_error` — There was an internal error processing this request—please retry.\n  - `invalid_arguments` — Required arguments either were not provided or contain invalid values.\n  - `invalid_auth` — The token doesn't have access to this endpoint.\n  - `invalid_cursor` — The cursor passed was invalid.\n  - `not_an_admin` — This method is only accessible by Org Owners and Admins.\n  - `policy_not_found` — The `policy_name` could not be found.\n  - `ratelimited` — The rate limit for this endpoint has been reached.\n\nSee https://docs.slack.dev/reference/methods/admin.auth.policy.getEntities"
+        "smithy.api#documentation": "Fetch all the entities assigned to a particular authentication policy by name.\n\nRequired scopes — user: `admin.users:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — This method is only available for Enterprise organizations.\n  - `internal_error` — There was an internal error processing this request—please retry.\n  - `invalid_arguments` — Required arguments either were not provided or contain invalid values.\n  - `invalid_auth` — The token doesn't have access to this endpoint.\n  - `invalid_cursor` — The cursor passed was invalid.\n  - `not_an_admin` — This method is only accessible by Org Owners and Admins.\n  - `policy_not_found` — The `policy_name` could not be found.\n  - `ratelimited` — The rate limit for this endpoint has been reached.\n\nSee https://docs.slack.dev/reference/methods/admin.auth.policy.getEntities",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "entities",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#AuthPolicyRemoveEntitiesRequestEntityIdsList": {
@@ -2799,11 +2885,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#BarriersListResponse": {
       "type": "structure",
@@ -2821,7 +2909,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#BarriersListResponseResponseMetadata"
+          "target": "com.slack.admin#BarriersListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -2842,7 +2933,14 @@
           "uri": "/admin.barriers.list",
           "code": 200
         },
-        "smithy.api#documentation": "Get all Information Barriers for your organization\n\nRequired scopes — user: `admin.barriers:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — Feature not enabled\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `not_an_admin` — The token provided is not associated with an org admin\n\nSee https://docs.slack.dev/reference/methods/admin.barriers.list"
+        "smithy.api#documentation": "Get all Information Barriers for your organization\n\nRequired scopes — user: `admin.barriers:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — Feature not enabled\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `not_an_admin` — The token provided is not associated with an org admin\n\nSee https://docs.slack.dev/reference/methods/admin.barriers.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "barriers",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#BarriersUpdateRequestBarrieredFromUsergroupIdsList": {
@@ -3832,11 +3930,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#ConversationsEkmListOriginalConnectedChannelInfoResponseChannelsItemInternalTeamIdsList": {
       "type": "list",
@@ -3893,7 +3993,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#ConversationsEkmListOriginalConnectedChannelInfoResponseResponseMetadata"
+          "target": "com.slack.admin#ConversationsEkmListOriginalConnectedChannelInfoResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         },
         "channels": {
           "target": "com.slack.admin#ConversationsEkmListOriginalConnectedChannelInfoResponseChannelsList",
@@ -3921,7 +4024,14 @@
           "code": 200
         },
         "smithy.api#documentation": "List all disconnected channels—i.e., channels that were once connected to other workspaces and then disconnected—and the corresponding original channel IDs for key revocation with EKM.\n\nRequired scopes — user: `admin.conversations:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Invalid cursor.\n  - `invalid_limit` — The value passed for `limit` was not valid.\n  - `not_an_admin` — This method is only accessible by Org owners and Admins.\n  - `not_enabled` — The API endpoint is not enabled for your team.\n  - `restricted_action` — The caller of this API is not allowed to perform this operation.\n  - `unsupported_arguments` — The provided method arguments are not supported.\n\nSee https://docs.slack.dev/reference/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo",
-        "com.distilled.openapi#contentType": "form-urlencoded"
+        "com.distilled.openapi#contentType": "form-urlencoded",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "channels",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#ConversationsGetConversationPrefsRequest": {
@@ -4211,11 +4321,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#ConversationsGetTeamsResponse": {
       "type": "structure",
@@ -4227,7 +4339,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#ConversationsGetTeamsResponseResponseMetadata"
+          "target": "com.slack.admin#ConversationsGetTeamsResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -4436,11 +4551,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#ConversationsLookupResponse": {
       "type": "structure",
@@ -4459,7 +4576,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#ConversationsLookupResponseResponseMetadata"
+          "target": "com.slack.admin#ConversationsLookupResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -4481,7 +4601,14 @@
           "code": 200
         },
         "smithy.api#documentation": "Returns channels on the given team using the filters.\n\nRequired scopes — user: `admin.conversations:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — Something unexpected happened, try again in a little bit. Sorry for that!\n  - `feature_not_enabled` — The feature is not enabled\n  - `no_valid_teams` — The team_ids argument doesn't contain any valid teams\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n\nSee https://docs.slack.dev/reference/methods/admin.conversations.lookup",
-        "com.distilled.openapi#contentType": "form-urlencoded"
+        "com.distilled.openapi#contentType": "form-urlencoded",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "channel_ids",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#ConversationsRemoveCustomRetentionRequest": {
@@ -4870,6 +4997,20 @@
       },
       "traits": {}
     },
+    "com.slack.admin#ConversationsSearchResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.admin#ConversationsSearchResponse": {
       "type": "structure",
       "members": {
@@ -4905,6 +5046,12 @@
           "traits": {
             "smithy.api#documentation": "A string representation of the error type"
           }
+        },
+        "response_metadata": {
+          "target": "com.slack.admin#ConversationsSearchResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -4925,7 +5072,14 @@
           "uri": "/admin.conversations.search",
           "code": 200
         },
-        "smithy.api#documentation": "Search for public or private channels in an Enterprise organization.\n\nRequired scopes — user: `admin.conversations:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `connected_team_passed_in_is_not_top_level_team` — One of the orgs provided in the external connected teams filter is not a top level team.\n  - `external_team_not_connected_to_this_org` — One of the teams provided in the external connected teams filter is not connected to the org.\n  - `feature_not_enabled` — The token provided doesn't have access to this method.\n  - `invalid_auth` — The token provided does not belong to an Enterprise organization, or a specified workspace wasn't part of this Enterprise.\n  - `invalid_cursor` — The provided cursor is not valid, often due to not urlencoding query parameters.\n  - `invalid_search_channel_type` — An invalid `search_channel_types` arg was passed. Make sure there are no spaces between your args and that each is one of the enumerated options listed above.\n  - `invalid_sort` — The provided `sort` argument wasn't valid.\n  - `invalid_sort_dir` — The provided `sort_dir` argument wasn't valid.\n  - `not_allowed` — The authenticated user does not have the permission to call this method.\n  - `not_an_admin` — The token provided is not associated with an Org Admin or Owner.\n  - `not_an_enterprise` — This endpoint can only be called by an Enterprise organization.\n  - `team_not_found` — One of the workspaces provided in the list wasn't found.\n\nSee https://docs.slack.dev/reference/methods/admin.conversations.search"
+        "smithy.api#documentation": "Search for public or private channels in an Enterprise organization.\n\nRequired scopes — user: `admin.conversations:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `connected_team_passed_in_is_not_top_level_team` — One of the orgs provided in the external connected teams filter is not a top level team.\n  - `external_team_not_connected_to_this_org` — One of the teams provided in the external connected teams filter is not connected to the org.\n  - `feature_not_enabled` — The token provided doesn't have access to this method.\n  - `invalid_auth` — The token provided does not belong to an Enterprise organization, or a specified workspace wasn't part of this Enterprise.\n  - `invalid_cursor` — The provided cursor is not valid, often due to not urlencoding query parameters.\n  - `invalid_search_channel_type` — An invalid `search_channel_types` arg was passed. Make sure there are no spaces between your args and that each is one of the enumerated options listed above.\n  - `invalid_sort` — The provided `sort` argument wasn't valid.\n  - `invalid_sort_dir` — The provided `sort_dir` argument wasn't valid.\n  - `not_allowed` — The authenticated user does not have the permission to call this method.\n  - `not_an_admin` — The token provided is not associated with an Org Admin or Owner.\n  - `not_an_enterprise` — This endpoint can only be called by an Enterprise organization.\n  - `team_not_found` — One of the workspaces provided in the list wasn't found.\n\nSee https://docs.slack.dev/reference/methods/admin.conversations.search",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "conversations",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#ConversationsSetConversationPrefsRequest": {
@@ -5364,11 +5518,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#EmojiListResponse": {
       "type": "structure",
@@ -5387,7 +5543,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#EmojiListResponseResponseMetadata"
+          "target": "com.slack.admin#EmojiListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -5570,6 +5729,20 @@
       },
       "traits": {}
     },
+    "com.slack.admin#FunctionsListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.admin#FunctionsListResponse": {
       "type": "structure",
       "members": {
@@ -5587,7 +5760,10 @@
           }
         },
         "response_metadata": {
-          "target": "smithy.api#Document"
+          "target": "com.slack.admin#FunctionsListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -5608,7 +5784,14 @@
           "uri": "/admin.functions.list",
           "code": 200
         },
-        "smithy.api#documentation": "Look up functions by a set of apps.\n\nRequired scopes — user: `admin.workflows:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `not_allowed` — The user is not allowed to access this API method.\n  - `restricted_action` — The user is not allowed to access this API method.\n\nSee https://docs.slack.dev/reference/methods/admin.functions.list"
+        "smithy.api#documentation": "Look up functions by a set of apps.\n\nRequired scopes — user: `admin.workflows:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `not_allowed` — The user is not allowed to access this API method.\n  - `restricted_action` — The user is not allowed to access this API method.\n\nSee https://docs.slack.dev/reference/methods/admin.functions.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "functions",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#FunctionsPermissionsLookupRequestFunctionIdsList": {
@@ -5990,11 +6173,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#InviteRequestsApprovedListResponseApprovedRequestsList": {
       "type": "list",
@@ -6014,7 +6199,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#InviteRequestsApprovedListResponseResponseMetadata"
+          "target": "com.slack.admin#InviteRequestsApprovedListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         },
         "approved_requests": {
           "target": "com.slack.admin#InviteRequestsApprovedListResponseApprovedRequestsList",
@@ -6041,7 +6229,14 @@
           "uri": "/admin.inviteRequests.approved.list",
           "code": 200
         },
-        "smithy.api#documentation": "List all approved workspace invite requests.\n\nRequired scopes — user: `admin.invites:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — The Invite Requests admin APIs feature is not enabled\n  - `missing_scope` — This token doesn't have the scope required.\n  - `not_an_admin` — This token doesn't have admin privileges.\n  - `team_not_found` — The `team_id` specified wasn't found.\n\nSee https://docs.slack.dev/reference/methods/admin.inviteRequests.approved.list"
+        "smithy.api#documentation": "List all approved workspace invite requests.\n\nRequired scopes — user: `admin.invites:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — The Invite Requests admin APIs feature is not enabled\n  - `missing_scope` — This token doesn't have the scope required.\n  - `not_an_admin` — This token doesn't have admin privileges.\n  - `team_not_found` — The `team_id` specified wasn't found.\n\nSee https://docs.slack.dev/reference/methods/admin.inviteRequests.approved.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "approved_requests",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#InviteRequestsDeniedListRequest": {
@@ -6076,11 +6271,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#InviteRequestsDeniedListResponseDeniedRequestsList": {
       "type": "list",
@@ -6100,7 +6297,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#InviteRequestsDeniedListResponseResponseMetadata"
+          "target": "com.slack.admin#InviteRequestsDeniedListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         },
         "denied_requests": {
           "target": "com.slack.admin#InviteRequestsDeniedListResponseDeniedRequestsList",
@@ -6127,7 +6327,14 @@
           "uri": "/admin.inviteRequests.denied.list",
           "code": 200
         },
-        "smithy.api#documentation": "List all denied workspace invite requests.\n\nRequired scopes — user: `admin.invites:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — The Invite Request admin APIs feature is not enabled\n  - `missing_scope` — This token doesn't have the scope required.\n  - `not_an_admin` — This token doesn't have admin privileges.\n  - `team_not_found` — The `team_id` specified wasn't found.\n\nSee https://docs.slack.dev/reference/methods/admin.inviteRequests.denied.list"
+        "smithy.api#documentation": "List all denied workspace invite requests.\n\nRequired scopes — user: `admin.invites:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — The Invite Request admin APIs feature is not enabled\n  - `missing_scope` — This token doesn't have the scope required.\n  - `not_an_admin` — This token doesn't have admin privileges.\n  - `team_not_found` — The `team_id` specified wasn't found.\n\nSee https://docs.slack.dev/reference/methods/admin.inviteRequests.denied.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "denied_requests",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#InviteRequestsDenyRequest": {
@@ -6215,11 +6422,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#InviteRequestsListResponseInviteRequestsList": {
       "type": "list",
@@ -6239,7 +6448,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#InviteRequestsListResponseResponseMetadata"
+          "target": "com.slack.admin#InviteRequestsListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         },
         "invite_requests": {
           "target": "com.slack.admin#InviteRequestsListResponseInviteRequestsList",
@@ -6266,7 +6478,14 @@
           "uri": "/admin.inviteRequests.list",
           "code": 200
         },
-        "smithy.api#documentation": "List all pending workspace invite requests.\n\nRequired scopes — user: `admin.invites:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — The Invite Request Admin APIs feature is not enabled\n  - `missing_scope` — This token doesn't have the scope required.\n  - `not_an_admin` — This token doesn't have admin privileges.\n  - `team_not_found` — The `team_id` specified wasn't found.\n\nSee https://docs.slack.dev/reference/methods/admin.inviteRequests.list"
+        "smithy.api#documentation": "List all pending workspace invite requests.\n\nRequired scopes — user: `admin.invites:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — The Invite Request Admin APIs feature is not enabled\n  - `missing_scope` — This token doesn't have the scope required.\n  - `not_an_admin` — This token doesn't have admin privileges.\n  - `team_not_found` — The `team_id` specified wasn't found.\n\nSee https://docs.slack.dev/reference/methods/admin.inviteRequests.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "invite_requests",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#RolesAddAssignmentsRequestEntityIdsList": {
@@ -6452,6 +6671,20 @@
       },
       "traits": {}
     },
+    "com.slack.admin#RolesListAssignmentsResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.admin#RolesListAssignmentsResponse": {
       "type": "structure",
       "members": {
@@ -6473,6 +6706,12 @@
           "traits": {
             "smithy.api#required": {}
           }
+        },
+        "response_metadata": {
+          "target": "com.slack.admin#RolesListAssignmentsResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -6493,7 +6732,14 @@
           "uri": "/admin.roles.listAssignments",
           "code": 200
         },
-        "smithy.api#documentation": "Lists assignments for all roles across entities. Options to scope results by any combination of roles or entities\n\nRequired scopes — user: `admin.roles:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — This API is currently not enabled.\n  - `invalid_actor` — This API is only enabled for the Admins/Owners.\n  - `invalid_arguments` — Required arguments either were not provided or contain invalid values.\n  - `invalid_cursor` — The passed cursor was invalid.\n  - `invalid_sort` — Sort parameters are invalid.\n  - `invalid_role_id` — One or more role IDs could not be validated.\n\nSee https://docs.slack.dev/reference/methods/admin.roles.listAssignments"
+        "smithy.api#documentation": "Lists assignments for all roles across entities. Options to scope results by any combination of roles or entities\n\nRequired scopes — user: `admin.roles:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — This API is currently not enabled.\n  - `invalid_actor` — This API is only enabled for the Admins/Owners.\n  - `invalid_arguments` — Required arguments either were not provided or contain invalid values.\n  - `invalid_cursor` — The passed cursor was invalid.\n  - `invalid_sort` — Sort parameters are invalid.\n  - `invalid_role_id` — One or more role IDs could not be validated.\n\nSee https://docs.slack.dev/reference/methods/admin.roles.listAssignments",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "role_assignments",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#RolesRemoveAssignmentsRequestEntityIdsList": {
@@ -6617,6 +6863,20 @@
       },
       "traits": {}
     },
+    "com.slack.admin#TeamsAdminsListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.admin#TeamsAdminsListResponse": {
       "type": "structure",
       "members": {
@@ -6631,6 +6891,12 @@
           "target": "com.slack.admin#TeamsAdminsListResponseAdminIdsList",
           "traits": {
             "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.admin#TeamsAdminsListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
         }
       },
@@ -6652,7 +6918,14 @@
           "uri": "/admin.teams.admins.list",
           "code": 200
         },
-        "smithy.api#documentation": "List all of the admins on a given workspace.\n\nRequired scopes — user: `admin.teams:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — The Admin APIs feature is not enabled for this team.\n  - `invalid_auth` — The given token is not authorized for the requested `team_id`.\n  - `invalid_cursor` — Invalid cursor.\n  - `invalid_limit` — Limit must be between 1 and 1000 inclusive.\n  - `not_an_admin` — This method is only accessible by org owners and admins.\n  - `team_not_found` — `team_id` was not found.\n\nSee https://docs.slack.dev/reference/methods/admin.teams.admins.list"
+        "smithy.api#documentation": "List all of the admins on a given workspace.\n\nRequired scopes — user: `admin.teams:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — The Admin APIs feature is not enabled for this team.\n  - `invalid_auth` — The given token is not authorized for the requested `team_id`.\n  - `invalid_cursor` — Invalid cursor.\n  - `invalid_limit` — Limit must be between 1 and 1000 inclusive.\n  - `not_an_admin` — This method is only accessible by org owners and admins.\n  - `team_not_found` — `team_id` was not found.\n\nSee https://docs.slack.dev/reference/methods/admin.teams.admins.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "admin_ids",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#TeamsCreateRequest": {
@@ -6813,6 +7086,20 @@
       },
       "traits": {}
     },
+    "com.slack.admin#TeamsListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.admin#TeamsListResponse": {
       "type": "structure",
       "members": {
@@ -6825,6 +7112,12 @@
         },
         "teams": {
           "target": "com.slack.admin#TeamsListResponseTeamsList"
+        },
+        "response_metadata": {
+          "target": "com.slack.admin#TeamsListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -6845,7 +7138,14 @@
           "uri": "/admin.teams.list",
           "code": 200
         },
-        "smithy.api#documentation": "List all teams in an Enterprise organization\n\nRequired scopes — user: `admin.teams:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — The Admin APIs feature is not enabled for this team.\n  - `invalid_cursor` — Invalid cursor.\n  - `invalid_limit` — Value passed for `limit` was not valid.\n  - `not_an_admin` — This method is only accessible by org owners and admins.\n\nSee https://docs.slack.dev/reference/methods/admin.teams.list"
+        "smithy.api#documentation": "List all teams in an Enterprise organization\n\nRequired scopes — user: `admin.teams:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — The Admin APIs feature is not enabled for this team.\n  - `invalid_cursor` — Invalid cursor.\n  - `invalid_limit` — Value passed for `limit` was not valid.\n  - `not_an_admin` — This method is only accessible by org owners and admins.\n\nSee https://docs.slack.dev/reference/methods/admin.teams.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "teams",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#TeamsOwnersListRequest": {
@@ -6884,6 +7184,20 @@
       },
       "traits": {}
     },
+    "com.slack.admin#TeamsOwnersListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.admin#TeamsOwnersListResponse": {
       "type": "structure",
       "members": {
@@ -6898,6 +7212,12 @@
           "target": "com.slack.admin#TeamsOwnersListResponseOwnerIdsList",
           "traits": {
             "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.admin#TeamsOwnersListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
         }
       },
@@ -6919,7 +7239,14 @@
           "uri": "/admin.teams.owners.list",
           "code": 200
         },
-        "smithy.api#documentation": "List all of the owners on a given workspace.\n\nRequired scopes — user: `admin.teams:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — The Admin APIs feature is not enabled for this team.\n  - `invalid_auth` — The given token is not authorized for the requested team.\n  - `invalid_cursor` — Invalid cursor.\n  - `not_an_admin` — This method is only accessible by org owners and admins.\n  - `team_not_found` — `team_id was not found.\n\nSee https://docs.slack.dev/reference/methods/admin.teams.owners.list"
+        "smithy.api#documentation": "List all of the owners on a given workspace.\n\nRequired scopes — user: `admin.teams:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — The Admin APIs feature is not enabled for this team.\n  - `invalid_auth` — The given token is not authorized for the requested team.\n  - `invalid_cursor` — Invalid cursor.\n  - `not_an_admin` — This method is only accessible by org owners and admins.\n  - `team_not_found` — `team_id was not found.\n\nSee https://docs.slack.dev/reference/methods/admin.teams.owners.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "owner_ids",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#TeamsSettingsInfoRequest": {
@@ -8068,6 +8395,20 @@
       },
       "traits": {}
     },
+    "com.slack.admin#UsersListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.admin#UsersListResponse": {
       "type": "structure",
       "members": {
@@ -8082,6 +8423,12 @@
           "target": "com.slack.admin#UsersListResponseUsersList",
           "traits": {
             "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.admin#UsersListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
         }
       },
@@ -8103,7 +8450,14 @@
           "uri": "/admin.users.list",
           "code": 200
         },
-        "smithy.api#documentation": "List users on a workspace\n\nRequired scopes — user: `admin.users:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — The Admin APIs feature is not enabled for this team.\n  - `invalid_arguments` — The passed arguments were invalid.\n  - `invalid_auth` — This request could not be authorized.\n  - `invalid_cursor` — The passed cursor could not be validated.\n  - `team_not_found` — `team_id` was not found.\n  - `include_deactivated_user_workspaces_invalid` — `include_deactivated_user_workspaces` only applies with org token and no team_id.\n\nSee https://docs.slack.dev/reference/methods/admin.users.list"
+        "smithy.api#documentation": "List users on a workspace\n\nRequired scopes — user: `admin.users:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `feature_not_enabled` — The Admin APIs feature is not enabled for this team.\n  - `invalid_arguments` — The passed arguments were invalid.\n  - `invalid_auth` — This request could not be authorized.\n  - `invalid_cursor` — The passed cursor could not be validated.\n  - `team_not_found` — `team_id` was not found.\n  - `include_deactivated_user_workspaces_invalid` — `include_deactivated_user_workspaces` only applies with org token and no team_id.\n\nSee https://docs.slack.dev/reference/methods/admin.users.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "users",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#UsersRemoveRequest": {
@@ -8424,11 +8778,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.admin#UsersSessionListResponseActiveSessionsItemRecent": {
       "type": "structure",
@@ -8558,7 +8914,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.admin#UsersSessionListResponseResponseMetadata"
+          "target": "com.slack.admin#UsersSessionListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         },
         "active_sessions": {
           "target": "com.slack.admin#UsersSessionListResponseActiveSessionsList",
@@ -8586,7 +8945,14 @@
           "uri": "/admin.users.session.list",
           "code": 200
         },
-        "smithy.api#documentation": "List active user sessions for an organization\n\nRequired scopes — user: `admin.users:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `admin_unauthorized` — The owner of this token isn't authorized to list sessions.\n  - `bots_not_allowed` — Bot sessions are not listed by this method.\n  - `feature_not_enabled` — This method is only available to Enterprise customers.\n  - `invalid_auth` — The provided token doesn't have access to this endpoint.\n  - `invalid_cursor` — The cursor passed was invalid.\n  - `no_active_sessions` — No active sessions were found.\n  - `not_an_admin` — The owner of this token isn't an Org Owner or Admin.\n  - `missing_team` — A `team_id` must be provided with a `user_id`.\n  - `missing_user` — A `user_id` must be provided with a `team_id`.\n  - `team_not_found` — There was an error finding the requested workspace.\n  - `unknown_method` — This method is currently not available.\n  - `user_not_found` — There was an error finding the requested user.\n\nSee https://docs.slack.dev/reference/methods/admin.users.session.list"
+        "smithy.api#documentation": "List active user sessions for an organization\n\nRequired scopes — user: `admin.users:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `admin_unauthorized` — The owner of this token isn't authorized to list sessions.\n  - `bots_not_allowed` — Bot sessions are not listed by this method.\n  - `feature_not_enabled` — This method is only available to Enterprise customers.\n  - `invalid_auth` — The provided token doesn't have access to this endpoint.\n  - `invalid_cursor` — The cursor passed was invalid.\n  - `no_active_sessions` — No active sessions were found.\n  - `not_an_admin` — The owner of this token isn't an Org Owner or Admin.\n  - `missing_team` — A `team_id` must be provided with a `user_id`.\n  - `missing_user` — A `user_id` must be provided with a `team_id`.\n  - `team_not_found` — There was an error finding the requested workspace.\n  - `unknown_method` — This method is currently not available.\n  - `user_not_found` — There was an error finding the requested user.\n\nSee https://docs.slack.dev/reference/methods/admin.users.session.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "active_sessions",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#UsersSessionResetRequest": {
@@ -9472,6 +9838,20 @@
       },
       "traits": {}
     },
+    "com.slack.admin#WorkflowsSearchResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.admin#WorkflowsSearchResponse": {
       "type": "structure",
       "members": {
@@ -9489,7 +9869,10 @@
           }
         },
         "response_metadata": {
-          "target": "smithy.api#Document"
+          "target": "com.slack.admin#WorkflowsSearchResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         },
         "total_found": {
           "target": "smithy.api#Integer",
@@ -9517,7 +9900,14 @@
           "uri": "/admin.workflows.search",
           "code": 200
         },
-        "smithy.api#documentation": "Search workflows within the team or enterprise\n\nRequired scopes — user: `admin.workflows:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `not_allowed` — The user is not allowed to access this API method.\n\nSee https://docs.slack.dev/reference/methods/admin.workflows.search"
+        "smithy.api#documentation": "Search workflows within the team or enterprise\n\nRequired scopes — user: `admin.workflows:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `not_allowed` — The user is not allowed to access this API method.\n\nSee https://docs.slack.dev/reference/methods/admin.workflows.search",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "workflows",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.admin#WorkflowsTriggersTypesPermissionsLookupRequestTriggerTypeIdsList": {

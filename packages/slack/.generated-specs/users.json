@@ -87,11 +87,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.users#ConversationsResponse": {
       "type": "structure",
@@ -110,7 +112,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.users#ConversationsResponseResponseMetadata"
+          "target": "com.slack.users#ConversationsResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -131,7 +136,14 @@
           "uri": "/users.conversations",
           "code": 200
         },
-        "smithy.api#documentation": "List conversations the calling user is a member of.\n\nRequired scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_limit` — Value passed for `limit` is not understood.\n  - `invalid_types` — Value passed for `type` could not be used based on the method's capabilities or the permission scopes granted to the used token.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_argument` — A required argument is missing.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n\nSee https://docs.slack.dev/reference/methods/users.conversations"
+        "smithy.api#documentation": "List conversations the calling user is a member of.\n\nRequired scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_limit` — Value passed for `limit` is not understood.\n  - `invalid_types` — Value passed for `type` could not be used based on the method's capabilities or the permission scopes granted to the used token.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_argument` — A required argument is missing.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n\nSee https://docs.slack.dev/reference/methods/users.conversations",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "channels",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.users#DeletePhotoResponse": {
@@ -429,6 +441,20 @@
       },
       "traits": {}
     },
+    "com.slack.users#ListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.users#ListResponse": {
       "type": "structure",
       "members": {
@@ -452,7 +478,10 @@
           }
         },
         "response_metadata": {
-          "target": "smithy.api#Document"
+          "target": "com.slack.users#ListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         },
         "offset": {
           "target": "smithy.api#String"
@@ -476,7 +505,14 @@
           "uri": "/users.list",
           "code": 200
         },
-        "smithy.api#documentation": "Lists all users in a Slack team.\n\nRequired scopes — bot: `users:read`; user: `users:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `limit_required` — For large teams a limit is required.\n  - `missing_argument` — A required argument is missing.\n\nSee https://docs.slack.dev/reference/methods/users.list"
+        "smithy.api#documentation": "Lists all users in a Slack team.\n\nRequired scopes — bot: `users:read`; user: `users:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `limit_required` — For large teams a limit is required.\n  - `missing_argument` — A required argument is missing.\n\nSee https://docs.slack.dev/reference/methods/users.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "members",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.users#LookupByEmailRequest": {

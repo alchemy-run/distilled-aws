@@ -50,6 +50,12 @@
       "worker": "./src/retry.ts",
       "default": "./lib/retry.js"
     },
+    "./Pagination": {
+      "types": "./lib/pagination.d.ts",
+      "bun": "./src/pagination.ts",
+      "worker": "./src/pagination.ts",
+      "default": "./lib/pagination.js"
+    },
     "./*": {
       "types": "./lib/services/*.d.ts",
       "bun": "./src/services/*.ts",

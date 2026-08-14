@@ -137,11 +137,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.apps#ActivitiesListResponse": {
       "type": "structure",
@@ -160,7 +162,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.apps#ActivitiesListResponseResponseMetadata"
+          "target": "com.slack.apps#ActivitiesListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -182,7 +187,14 @@
           "code": 200
         },
         "smithy.api#documentation": "Get logs for a specified app\n\nRequired scopes — user: `hosting:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — Something went wrong on our end, please try again.\n  - `invalid_app_id` — App ID provided is not valid.\n  - `invalid_app` — App ID provided is not valid for team and user.\n  - `invalid_args` — Required arguments either were not provided or contain invalid values.\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `free_team_not_allowed` — Feature is only available on a paid team.\n  - `restricted_plan_level` — Feature is not available on this team\n\nSee https://docs.slack.dev/reference/methods/apps.activities.list",
-        "com.distilled.openapi#contentType": "form-urlencoded"
+        "com.distilled.openapi#contentType": "form-urlencoded",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "activities",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.apps#AuthExternalDeleteRequest": {
@@ -1079,11 +1091,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.apps#DatastoreQueryResponse": {
       "type": "structure",
@@ -1108,7 +1122,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.apps#DatastoreQueryResponseResponseMetadata"
+          "target": "com.slack.apps#DatastoreQueryResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -1129,7 +1146,14 @@
           "uri": "/apps.datastore.query",
           "code": 200
         },
-        "smithy.api#documentation": "Query a datastore for items\n\nRequired scopes — bot: `datastore:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — The request is missing required arguments.\n  - `invalid_datastore` — The provided datastore is invalid.\n  - `invalid_auth` — Not authorized to access datastore items.\n  - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps.\n  - `datastore_error` — Datastore error\n  - `access_denied` — Not authorized to access the datastore.\n  - `invalid_app_id` — The app_id provided is not valid for team and user.\n  - `free_team_not_allowed` — Datastore query not allowed on a free team.\n  - `team_quota_exceeded` — Total number of requests exceeded team quota.\n  - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration.\n  - `restricted_plan_level` — Feature is not available on this team\n\nSee https://docs.slack.dev/reference/methods/apps.datastore.query"
+        "smithy.api#documentation": "Query a datastore for items\n\nRequired scopes — bot: `datastore:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — The request is missing required arguments.\n  - `invalid_datastore` — The provided datastore is invalid.\n  - `invalid_auth` — Not authorized to access datastore items.\n  - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps.\n  - `datastore_error` — Datastore error\n  - `access_denied` — Not authorized to access the datastore.\n  - `invalid_app_id` — The app_id provided is not valid for team and user.\n  - `free_team_not_allowed` — Datastore query not allowed on a free team.\n  - `team_quota_exceeded` — Total number of requests exceeded team quota.\n  - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration.\n  - `restricted_plan_level` — Feature is not available on this team\n\nSee https://docs.slack.dev/reference/methods/apps.datastore.query",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "items",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.apps#DatastoreUpdateRequestItemMap": {
@@ -1290,6 +1314,20 @@
       },
       "traits": {}
     },
+    "com.slack.apps#EventAuthorizationsListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.apps#EventAuthorizationsListResponse": {
       "type": "structure",
       "members": {
@@ -1311,6 +1349,12 @@
           "traits": {
             "smithy.api#required": {}
           }
+        },
+        "response_metadata": {
+          "target": "com.slack.apps#EventAuthorizationsListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -1331,7 +1375,14 @@
           "uri": "/apps.event.authorizations.list",
           "code": 200
         },
-        "smithy.api#documentation": "Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is visible to.\n\nRate limit tier: 5\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `auth_mismatch` — The given authorization token is not associated with the app that sent this event.\n  - `internal_error` — An unexpected error occurred while finding authorizations for this event.\n  - `invalid_cursor` — The `cursor` argument was invalid.\n  - `invalid_event_context` — The given `event_context` didn't match an event.\n\nSee https://docs.slack.dev/reference/methods/apps.event.authorizations.list"
+        "smithy.api#documentation": "Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is visible to.\n\nRate limit tier: 5\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `auth_mismatch` — The given authorization token is not associated with the app that sent this event.\n  - `internal_error` — An unexpected error occurred while finding authorizations for this event.\n  - `invalid_cursor` — The `cursor` argument was invalid.\n  - `invalid_event_context` — The given `event_context` didn't match an event.\n\nSee https://docs.slack.dev/reference/methods/apps.event.authorizations.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "authorizations",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.apps#IconSetRequest": {

@@ -386,6 +386,19 @@ export const MessagesResponseBotsMap = /*@__PURE__*/ S.Record(
   S.Unknown,
 ) as any as S.Schema<MessagesResponseBotsMap>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export interface MessagesResponseResponseMetadata {
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
+}
+export const MessagesResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    next_cursor: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MessagesResponseResponseMetadata",
+}) as any as S.Schema<MessagesResponseResponseMetadata>;
+
 export interface MessagesResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
@@ -398,6 +411,8 @@ export interface MessagesResponse {
   query?: string;
   bots?: MessagesResponseBotsMap;
   ignored_exclude_bots_pref?: boolean;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: MessagesResponseResponseMetadata;
 }
 export const MessagesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -410,6 +425,7 @@ export const MessagesResponse = /*@__PURE__*/ S.suspend(() =>
     query: S.optional(S.String),
     bots: S.optional(MessagesResponseBotsMap),
     ignored_exclude_bots_pref: S.optional(S.Boolean),
+    response_metadata: S.optional(MessagesResponseResponseMetadata),
   }),
 ).annotate({
   identifier: "MessagesResponse",

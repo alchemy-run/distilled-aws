@@ -7,6 +7,7 @@ import {
   type SlackOpError,
   type SlackOpContext,
 } from "../protocol.ts";
+import { slackPaginate } from "../pagination.ts";
 import { SlackError, SlackRateLimited } from "../errors.ts";
 import * as Retry from "../retry.ts";
 
@@ -117,17 +118,33 @@ export const ListResponseItemsList = /*@__PURE__*/ S.Array(
   ListResponseItemsItemMap,
 ) as any as S.Schema<ListResponseItemsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export interface ListResponseResponseMetadata {
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
+}
+export const ListResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    next_cursor: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListResponseResponseMetadata",
+}) as any as S.Schema<ListResponseResponseMetadata>;
+
 export interface ListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   items: ListResponseItemsList;
   paging?: unknown;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: ListResponseResponseMetadata;
 }
 export const ListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     items: ListResponseItemsList,
     paging: S.optional(S.Unknown),
+    response_metadata: S.optional(ListResponseResponseMetadata),
   }),
 ).annotate({ identifier: "ListResponse" }) as any as S.Schema<ListResponse>;
 
@@ -195,18 +212,29 @@ export const get: API.OperationMethod<
 
 export type ListError = SlackOpError;
 /** Lists reactions made by a user. Required scopes — bot: `reactions:read`; user: `reactions:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `user_not_found` — Value passed for `user` was invalid. See https://docs.slack.dev/reference/methods/reactions.list */
-export const list: API.OperationMethod<
+export const list: API.PaginatedOperationMethod<
   ListRequest,
   ListResponse,
   ListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListRequest,
-  output: ListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  ListResponseItemsItemMap
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListRequest,
+    output: ListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "items",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type RemoveError = SlackOpError;
 /** Removes a reaction from an item. Required scopes — bot: `reactions:write`; user: `reactions:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `bad_timestamp` — Value passed for `timestamp` was invalid. - `channel_not_found` — The specified channel was not found. - `external_channel_migrating` — The reaction is in a channel that is being migrated - `file_not_found` — File specified by `file` does not exist. - `file_comment_not_found` — File comment specified by `file_comment` does not exist. - `invalid_name` — Value passed for `name` was invalid. - `message_not_found` — Message specified by `channel` and `timestamp` does not exist. - `no_item_specified` — `file`, `file_comment`, or combination of `channel` and `timestamp` was not specified. - `no_access` — The requestor does not have permission to perform this action on the specified item. - `no_reaction` — The specified reaction does not exist, or the requestor is not the original reaction author. - `thread_locked` — Reactions are disabled as the specified message is part of a locked thread. See https://docs.slack.dev/reference/methods/reactions.remove */

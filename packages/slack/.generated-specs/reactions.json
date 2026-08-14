@@ -243,6 +243,20 @@
       },
       "traits": {}
     },
+    "com.slack.reactions#ListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.reactions#ListResponse": {
       "type": "structure",
       "members": {
@@ -261,6 +275,12 @@
         },
         "paging": {
           "target": "smithy.api#Document"
+        },
+        "response_metadata": {
+          "target": "com.slack.reactions#ListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -281,7 +301,14 @@
           "uri": "/reactions.list",
           "code": 200
         },
-        "smithy.api#documentation": "Lists reactions made by a user.\n\nRequired scopes — bot: `reactions:read`; user: `reactions:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `user_not_found` — Value passed for `user` was invalid.\n\nSee https://docs.slack.dev/reference/methods/reactions.list"
+        "smithy.api#documentation": "Lists reactions made by a user.\n\nRequired scopes — bot: `reactions:read`; user: `reactions:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `user_not_found` — Value passed for `user` was invalid.\n\nSee https://docs.slack.dev/reference/methods/reactions.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "items",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.reactions#RemoveRequest": {

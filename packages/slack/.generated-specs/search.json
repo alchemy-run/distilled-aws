@@ -706,6 +706,20 @@
       },
       "traits": {}
     },
+    "com.slack.search#MessagesResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.search#MessagesResponse": {
       "type": "structure",
       "members": {
@@ -742,6 +756,12 @@
         },
         "ignored_exclude_bots_pref": {
           "target": "smithy.api#Boolean"
+        },
+        "response_metadata": {
+          "target": "com.slack.search#MessagesResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {

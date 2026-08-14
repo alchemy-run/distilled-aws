@@ -7,6 +7,7 @@ import {
   type SlackOpError,
   type SlackOpContext,
 } from "../protocol.ts";
+import { slackPaginate } from "../pagination.ts";
 import { SlackError, SlackRateLimited } from "../errors.ts";
 import * as Retry from "../retry.ts";
 
@@ -99,12 +100,14 @@ export const AccessLogsResponsePaging = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccessLogsResponsePaging",
 }) as any as S.Schema<AccessLogsResponsePaging>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export interface AccessLogsResponseResponseMetadata {
-  next_cursor: string;
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
 }
 export const AccessLogsResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    next_cursor: S.String,
+    next_cursor: S.optional(S.String),
   }),
 ).annotate({
   identifier: "AccessLogsResponseResponseMetadata",
@@ -115,6 +118,7 @@ export interface AccessLogsResponse {
   ok: boolean;
   logins: AccessLogsResponseLoginsList;
   paging?: AccessLogsResponsePaging;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
   response_metadata?: AccessLogsResponseResponseMetadata;
 }
 export const AccessLogsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -149,6 +153,7 @@ export const BillableInfoRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "BillableInfoRequest",
 }) as any as S.Schema<BillableInfoRequest>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type BillableInfoResponseResponseMetadata =
   AccessLogsResponseResponseMetadata;
 export const BillableInfoResponseResponseMetadata =
@@ -165,6 +170,7 @@ export const BillableInfoResponseBillableInfoMap = /*@__PURE__*/ S.Record(
 export interface BillableInfoResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
   response_metadata?: AccessLogsResponseResponseMetadata;
   billable_info: BillableInfoResponseBillableInfoMap;
 }
@@ -473,19 +479,26 @@ export const ExternalTeamsListResponseOrganizationsList = /*@__PURE__*/ S.Array(
   ExternalTeamsListResponseOrganizationsItem,
 ) as any as S.Schema<ExternalTeamsListResponseOrganizationsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type ExternalTeamsListResponseResponseMetadata =
+  AccessLogsResponseResponseMetadata;
+export const ExternalTeamsListResponseResponseMetadata =
+  AccessLogsResponseResponseMetadata;
+
 export interface ExternalTeamsListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   organizations: ExternalTeamsListResponseOrganizationsList;
   total_count: number;
-  response_metadata?: unknown;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AccessLogsResponseResponseMetadata;
 }
 export const ExternalTeamsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     organizations: ExternalTeamsListResponseOrganizationsList,
     total_count: S.Number,
-    response_metadata: S.optional(S.Unknown),
+    response_metadata: S.optional(AccessLogsResponseResponseMetadata),
   }),
 ).annotate({
   identifier: "ExternalTeamsListResponse",
@@ -663,18 +676,29 @@ export const ProfileGetResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type AccessLogsError = SlackOpError;
 /** Gets the access logs for the current team. Required scopes — user: `admin` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — A required argument is missing. - `missing_scope` — The provided token hasn't obtained the necessary scopes to use this method. - `not_allowed_token_type` — Method was called with an invalid token type - `over_pagination_limit` — It is not possible to request more than 1000 items per page or more than 100 pages. - `paid_only` — This is only available to paid teams. - `token_revoked` — token revoked (generated) - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `invalid_limit` — The value passed for `limit` was not valid. - `invalid_team_id` — The value passed for `team_id` is not valid given the token context. See https://docs.slack.dev/reference/methods/team.accessLogs */
-export const accessLogs: API.OperationMethod<
+export const accessLogs: API.PaginatedOperationMethod<
   AccessLogsRequest,
   AccessLogsResponse,
   AccessLogsError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessLogsRequest,
-  output: AccessLogsResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  AccessLogsResponseLoginsItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: AccessLogsRequest,
+    output: AccessLogsResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "logins",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type BillableInfoError = SlackOpError;
 /** Gets billable users information for the current team. Required scopes — user: `admin` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `fatal_error` — The server could not complete your operation(s) without encountering a catastrophic error. - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `user_not_found` — Unable to find the requested user. See https://docs.slack.dev/reference/methods/team.billableInfo */
@@ -723,18 +747,29 @@ export const externalTeamsDisconnect: API.OperationMethod<
 
 export type ExternalTeamsListError = SlackOpError;
 /** Returns a list of all the external teams connected and details about the connection. Required scopes — bot: `conversations.connect:manage`, `team:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — One or more of the API arguments are invalid. - `not_allowed` — The user is not allowed to perform the action. - `restricted_action` — The user does not have permission to perform the action. - `internal_error` — There was an internal error processing this request. - `invalid_workspace_filter` — The specified workspace is not valid. - `user_cannot_manage_workspace` — The calling user cannot manage the workspace passed in the workspace filter. See https://docs.slack.dev/reference/methods/team.externalTeams.list */
-export const externalTeamsList: API.OperationMethod<
+export const externalTeamsList: API.PaginatedOperationMethod<
   ExternalTeamsListRequest,
   ExternalTeamsListResponse,
   ExternalTeamsListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExternalTeamsListRequest,
-  output: ExternalTeamsListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  ExternalTeamsListResponseOrganizationsItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ExternalTeamsListRequest,
+    output: ExternalTeamsListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "organizations",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type InfoError = SlackOpError;
 /** Gets information about the current team. Required scopes — bot: `team:read`; user: `team:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `enterprise_not_found` — The `enterprise` was not found. - `fail_to_get_teams_for_restricted_user` — Failed to get teams for restricted user. - `missing_user` — The `user` was not found. - `org_not_found` — The `org` was not found. - `team_not_found` — The `team` was not found. - `team_not_on_enterprise` — Cannot query team by domain because team is not on an enterprise. - `user_not_found` — The `user` was not found. See https://docs.slack.dev/reference/methods/team.info */

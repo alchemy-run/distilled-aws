@@ -7,6 +7,7 @@ import {
   type SlackOpError,
   type SlackOpContext,
 } from "../protocol.ts";
+import { slackPaginate } from "../pagination.ts";
 import { SlackError, SlackRateLimited } from "../errors.ts";
 import * as Retry from "../retry.ts";
 
@@ -318,12 +319,14 @@ export const HistoryResponseMessagesList = /*@__PURE__*/ S.Array(
   S.Unknown,
 ) as any as S.Schema<HistoryResponseMessagesList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export interface HistoryResponseResponseMetadata {
-  next_cursor: string;
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
 }
 export const HistoryResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    next_cursor: S.String,
+    next_cursor: S.optional(S.String),
   }),
 ).annotate({
   identifier: "HistoryResponseResponseMetadata",
@@ -381,6 +384,7 @@ export interface HistoryResponse {
   pin_count?: number;
   channel_actions_ts: unknown;
   channel_actions_count: number;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
   response_metadata?: HistoryResponseResponseMetadata;
   oldest?: string;
   is_limited?: boolean;
@@ -657,15 +661,22 @@ export const ListResponseChannelsList = /*@__PURE__*/ S.Array(
   S.Unknown,
 ) as any as S.Schema<ListResponseChannelsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type ListResponseResponseMetadata = HistoryResponseResponseMetadata;
+export const ListResponseResponseMetadata = HistoryResponseResponseMetadata;
+
 export interface ListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   channels: ListResponseChannelsList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: HistoryResponseResponseMetadata;
 }
 export const ListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     channels: ListResponseChannelsList,
+    response_metadata: S.optional(HistoryResponseResponseMetadata),
   }),
 ).annotate({ identifier: "ListResponse" }) as any as S.Schema<ListResponse>;
 
@@ -698,17 +709,24 @@ export const ListConnectInvitesResponseInvitesList = /*@__PURE__*/ S.Array(
   S.Unknown,
 ) as any as S.Schema<ListConnectInvitesResponseInvitesList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type ListConnectInvitesResponseResponseMetadata =
+  HistoryResponseResponseMetadata;
+export const ListConnectInvitesResponseResponseMetadata =
+  HistoryResponseResponseMetadata;
+
 export interface ListConnectInvitesResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   invites: ListConnectInvitesResponseInvitesList;
-  response_metadata?: unknown;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: HistoryResponseResponseMetadata;
 }
 export const ListConnectInvitesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     invites: ListConnectInvitesResponseInvitesList,
-    response_metadata: S.optional(S.Unknown),
+    response_metadata: S.optional(HistoryResponseResponseMetadata),
   }),
 ).annotate({
   identifier: "ListConnectInvitesResponse",
@@ -758,15 +776,22 @@ export const MembersResponseMembersList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<MembersResponseMembersList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type MembersResponseResponseMetadata = HistoryResponseResponseMetadata;
+export const MembersResponseResponseMetadata = HistoryResponseResponseMetadata;
+
 export interface MembersResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   members: MembersResponseMembersList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: HistoryResponseResponseMetadata;
 }
 export const MembersResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     members: MembersResponseMembersList,
+    response_metadata: S.optional(HistoryResponseResponseMetadata),
   }),
 ).annotate({
   identifier: "MembersResponse",
@@ -885,6 +910,10 @@ export const RepliesResponseUnchangedMessagesList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<RepliesResponseUnchangedMessagesList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type RepliesResponseResponseMetadata = HistoryResponseResponseMetadata;
+export const RepliesResponseResponseMetadata = HistoryResponseResponseMetadata;
+
 export interface RepliesResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
@@ -892,6 +921,8 @@ export interface RepliesResponse {
   messages: RepliesResponseMessagesList;
   latest_updates?: RepliesResponseLatestUpdatesMap;
   unchanged_messages?: RepliesResponseUnchangedMessagesList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: HistoryResponseResponseMetadata;
 }
 export const RepliesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -900,6 +931,7 @@ export const RepliesResponse = /*@__PURE__*/ S.suspend(() =>
     messages: RepliesResponseMessagesList,
     latest_updates: S.optional(RepliesResponseLatestUpdatesMap),
     unchanged_messages: S.optional(RepliesResponseUnchangedMessagesList),
+    response_metadata: S.optional(HistoryResponseResponseMetadata),
   }),
 ).annotate({
   identifier: "RepliesResponse",
@@ -1048,18 +1080,24 @@ export const RequestSharedInviteListResponseInviteRequestsList =
     S.Unknown,
   ) as any as S.Schema<RequestSharedInviteListResponseInviteRequestsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type RequestSharedInviteListResponseResponseMetadata =
+  HistoryResponseResponseMetadata;
+export const RequestSharedInviteListResponseResponseMetadata =
+  HistoryResponseResponseMetadata;
+
 export interface RequestSharedInviteListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   invite_requests: RequestSharedInviteListResponseInviteRequestsList;
-  /** Contains cursor to next page. Present only when next page exists. */
-  response_metadata?: unknown;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: HistoryResponseResponseMetadata;
 }
 export const RequestSharedInviteListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     invite_requests: RequestSharedInviteListResponseInviteRequestsList,
-    response_metadata: S.optional(S.Unknown),
+    response_metadata: S.optional(HistoryResponseResponseMetadata),
   }),
 ).annotate({
   identifier: "RequestSharedInviteListResponse",
@@ -1275,18 +1313,29 @@ export const externalInvitePermissionsSet: API.OperationMethod<
 
 export type HistoryError = SlackOpError;
 /** Fetches a conversation's history of messages and events. Required scopes — bot: `groups:history`, `im:history`, `mpim:history`, `channels:history`; user: `groups:history`, `im:history`, `mpim:history`, `channels:history` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `channel_is_limited_access` — The user has no access to the channel. This is only applicable to private Salesforce record channels. - `channel_not_found` — Value passed for `channel` was invalid. - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `invalid_metadata_filter_keys` — Value passed for `metadata_keys_to_include` was invalid. Must be valid json array of strings. - `invalid_ts_latest` — Value passed for `latest` was invalid - `invalid_ts_oldest` — Value passed for `oldest` was invalid - `not_in_channel` — The token used does not have access to the proper channel. Only user tokens can access public channels they are not in. See https://docs.slack.dev/reference/methods/conversations.history */
-export const history: API.OperationMethod<
+export const history: API.PaginatedOperationMethod<
   HistoryRequest,
   HistoryResponse,
   HistoryError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HistoryRequest,
-  output: HistoryResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: HistoryRequest,
+    output: HistoryResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "messages",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type InfoError = SlackOpError;
 /** Retrieve information about a conversation. Required scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `channel_is_limited_access` — The user has no access to the channel. Only applicable to Salesforce limited access channels. - `channel_not_found` — Value passed for `channel` was invalid. - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation. See https://docs.slack.dev/reference/methods/conversations.info */
@@ -1380,33 +1429,54 @@ export const leave: API.OperationMethod<
 
 export type ListError = SlackOpError;
 /** Lists all channels in a Slack team. Required scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `invalid_limit` — Value passed for `limit` is not understood. - `invalid_types` — Value passed for `type` could not be used based on the method's capabilities or the permission scopes granted to the used token. - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method. - `missing_argument` — A required argument is missing. - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation. See https://docs.slack.dev/reference/methods/conversations.list */
-export const list: API.OperationMethod<
+export const list: API.PaginatedOperationMethod<
   ListRequest,
   ListResponse,
   ListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListRequest,
-  output: ListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListRequest,
+    output: ListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "channels",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type ListConnectInvitesError = SlackOpError;
 /** Lists shared channel invites that have been generated or received but have not been approved by all parties Required scopes — bot: `conversations.connect:manage` Rate limit tier: 1 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — An invalid argument was supplied to the method. - `restricted_action` — A team preference prevents the authenticated user from viewing shared channel invites. See https://docs.slack.dev/reference/methods/conversations.listConnectInvites */
-export const listConnectInvites: API.OperationMethod<
+export const listConnectInvites: API.PaginatedOperationMethod<
   ListConnectInvitesRequest,
   ListConnectInvitesResponse,
   ListConnectInvitesError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListConnectInvitesRequest,
-  output: ListConnectInvitesResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListConnectInvitesRequest,
+    output: ListConnectInvitesResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "invites",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type MarkError = SlackOpError;
 /** Sets the read cursor in a channel. Required scopes — bot: `groups:write`, `im:write`, `mpim:write`, `channels:write`, `channels:manage`; user: `groups:write`, `im:write`, `mpim:write`, `channels:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `channel_not_found` — Value passed for `channel` was invalid. - `invalid_timestamp` — Value passed for `timestamp` was invalid. - `not_in_channel` — Caller is not a member of the channel. See https://docs.slack.dev/reference/methods/conversations.mark */
@@ -1425,18 +1495,29 @@ export const mark: API.OperationMethod<
 
 export type MembersError = SlackOpError;
 /** Retrieve members of a conversation. Required scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `channel_not_found` — Value passed for `channel` was invalid. - `fetch_members_failed` — Failed to fetch members for the conversation. - `invalid_cursor` — Value passed for `cursor` was invalid. - `invalid_limit` — Value passed for `limit` was invalid. - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method. - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation. See https://docs.slack.dev/reference/methods/conversations.members */
-export const members: API.OperationMethod<
+export const members: API.PaginatedOperationMethod<
   MembersRequest,
   MembersResponse,
   MembersError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MembersRequest,
-  output: MembersResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  string
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: MembersRequest,
+    output: MembersResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "members",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type OpenError = SlackOpError;
 /** Opens or resumes a direct message or multi-person direct message. Required scopes — bot: `channels:manage`, `groups:write`, `im:write`, `mpim:write`; user: `channels:write`, `groups:write`, `im:write`, `mpim:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `channel_not_found` — Value passed for `channel` was invalid. - `invalid_user_combination` — All external people must already be in at least one channel together to send a message. - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method. - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation. - `not_enough_users` — Needs at least 2 users to open - `too_many_users` — Needs at most 8 users to open - `user_disabled` — A specified `user` has been disabled. - `user_not_found` — Value(s) passed for `users` was invalid. - `user_not_visible` — The calling user is restricted from seeing the requested user. - `users_list_not_supplied` — Missing `users` in request See https://docs.slack.dev/reference/methods/conversations.open */
@@ -1470,18 +1551,29 @@ export const rename: API.OperationMethod<
 
 export type RepliesError = SlackOpError;
 /** Retrieve a thread of messages posted to a conversation Required scopes — bot: `groups:history`, `im:history`, `mpim:history`, `channels:history`; user: `groups:history`, `im:history`, `mpim:history`, `channels:history` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `channel_not_found` — Value for `channel` was missing or invalid. - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `invalid_metadata_filter_keys` — Value passed for `metadata_keys_to_include` was invalid. Must be valid json array of strings. - `invalid_ts_latest` — Value passed for `latest` was invalid - `invalid_ts_oldest` — Value passed for `oldest` was invalid - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation. - `thread_not_found` — Value for `ts` was missing or invalid. - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method. - `list_record_comment_fetch_failed` — Failed to fetch list record comments. See https://docs.slack.dev/reference/methods/conversations.replies */
-export const replies: API.OperationMethod<
+export const replies: API.PaginatedOperationMethod<
   RepliesRequest,
   RepliesResponse,
   RepliesError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepliesRequest,
-  output: RepliesResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: RepliesRequest,
+    output: RepliesResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "messages",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type RequestSharedInviteApproveError = SlackOpError;
 /** Approves a request to add an external user to a channel and sends them a Slack Connect invite Required scopes — bot: `conversations.connect:manage` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invite_not_found` — We couldn't find a Slack Connect channel invite with the ID provided. - `invite_already_approved` — This invite was already approved. - `invite_already_denied` — This invite was already denied. - `invite_expired` — This invite is expired. - `channel_not_found` — The provided channel was not found or the channel is no longer visible to the user who requested the invite. - `user_not_found` — Can not find the user who requested the invite. - `team_not_found` — Can not find the team who requested the invite. - `restricted_action` — A team preference prevents the invite from being approved. - `no_external_invite_permission` — Channel manager has restricted external invites for a given channel. - `internal_error` — Something unexpected went wrong. - `message_too_long` — If the passed in approve message is greater than 560 characters. See https://docs.slack.dev/reference/methods/conversations.requestSharedInvite.approve */
@@ -1515,18 +1607,29 @@ export const requestSharedInviteDeny: API.OperationMethod<
 
 export type RequestSharedInviteListError = SlackOpError;
 /** Lists requests to add external users to channels with ability to filter. Required scopes — bot: `conversations.connect:manage` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `restricted_action` — A team preference prevents the user from listing invitation requests. - `invalid_cursor` — The provided cursor is not valid. - `internal_error` — Something unexpected went wrong. - `not_implemented` — its not implemented! TODO: remove me See https://docs.slack.dev/reference/methods/conversations.requestSharedInvite.list */
-export const requestSharedInviteList: API.OperationMethod<
+export const requestSharedInviteList: API.PaginatedOperationMethod<
   RequestSharedInviteListRequest,
   RequestSharedInviteListResponse,
   RequestSharedInviteListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RequestSharedInviteListRequest,
-  output: RequestSharedInviteListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: RequestSharedInviteListRequest,
+    output: RequestSharedInviteListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "invite_requests",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type SetPurposeError = SlackOpError;
 /** Sets the channel description. Required scopes — bot: `channels:write.topic`, `groups:write.topic`, `mpim:write.topic`, `im:write.topic`, `channels:manage`, `groups:write`, `im:write`, `mpim:write`; user: `channels:write.topic`, `groups:write.topic`, `mpim:write.topic`, `im:write.topic`, `channels:write`, `groups:write`, `im:write`, `mpim:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `channel_not_found` — Value passed for `channel` was invalid. - `is_archived` — Channel has been archived. - `method_not_supported_for_channel_type` — This conversation type cannot be used with this method. - `missing_scope` — The calling token has not been granted the necessary scopes to complete this operation. - `not_in_channel` — Authenticated user is not in the channel. - `too_long` — Description was longer than 250 characters. - `user_is_restricted` — Setting the channel description is a restricted action. See https://docs.slack.dev/reference/methods/conversations.setPurpose */

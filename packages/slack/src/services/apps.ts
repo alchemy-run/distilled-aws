@@ -8,6 +8,7 @@ import {
   type SlackOpError,
   type SlackOpContext,
 } from "../protocol.ts";
+import { slackPaginate } from "../pagination.ts";
 import { SlackError, SlackRateLimited } from "../errors.ts";
 import * as Retry from "../retry.ts";
 
@@ -77,13 +78,15 @@ export const ActivitiesListResponseActivitiesList = /*@__PURE__*/ S.Array(
   S.Unknown,
 ) as any as S.Schema<ActivitiesListResponseActivitiesList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export interface ActivitiesListResponseResponseMetadata {
-  next_cursor: string;
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
 }
 export const ActivitiesListResponseResponseMetadata = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      next_cursor: S.String,
+      next_cursor: S.optional(S.String),
     }),
 ).annotate({
   identifier: "ActivitiesListResponseResponseMetadata",
@@ -93,6 +96,7 @@ export interface ActivitiesListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   activities: ActivitiesListResponseActivitiesList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
   response_metadata?: ActivitiesListResponseResponseMetadata;
 }
 export const ActivitiesListResponse = /*@__PURE__*/ S.suspend(() =>
@@ -625,6 +629,7 @@ export const DatastoreQueryResponseItemsList = /*@__PURE__*/ S.Array(
   DatastoreQueryResponseItemsItemMap,
 ) as any as S.Schema<DatastoreQueryResponseItemsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type DatastoreQueryResponseResponseMetadata =
   ActivitiesListResponseResponseMetadata;
 export const DatastoreQueryResponseResponseMetadata =
@@ -636,14 +641,15 @@ export interface DatastoreQueryResponse {
   /** name of the datastore */
   datastore?: string;
   /** attribute names and values of the items */
-  items?: DatastoreQueryResponseItemsList;
+  items: DatastoreQueryResponseItemsList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
   response_metadata?: ActivitiesListResponseResponseMetadata;
 }
 export const DatastoreQueryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     datastore: S.optional(S.String),
-    items: S.optional(DatastoreQueryResponseItemsList),
+    items: DatastoreQueryResponseItemsList,
     response_metadata: S.optional(ActivitiesListResponseResponseMetadata),
   }),
 ).annotate({
@@ -751,18 +757,27 @@ export const EventAuthorizationsListResponseAuthorizationsList =
     EventAuthorizationsListResponseAuthorizationsItem,
   ) as any as S.Schema<EventAuthorizationsListResponseAuthorizationsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type EventAuthorizationsListResponseResponseMetadata =
+  ActivitiesListResponseResponseMetadata;
+export const EventAuthorizationsListResponseResponseMetadata =
+  ActivitiesListResponseResponseMetadata;
+
 export interface EventAuthorizationsListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   /** The next cursor for use in [pagination](/apis/web-api/pagination). If present, pass this in subsequent calls to get additional results */
   cursor_next?: string;
   authorizations: EventAuthorizationsListResponseAuthorizationsList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: ActivitiesListResponseResponseMetadata;
 }
 export const EventAuthorizationsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     cursor_next: S.optional(S.String),
     authorizations: EventAuthorizationsListResponseAuthorizationsList,
+    response_metadata: S.optional(ActivitiesListResponseResponseMetadata),
   }),
 ).annotate({
   identifier: "EventAuthorizationsListResponse",
@@ -1073,18 +1088,29 @@ export const UserConnectionUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type ActivitiesListError = SlackOpError;
 /** Get logs for a specified app Required scopes — user: `hosting:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — Something went wrong on our end, please try again. - `invalid_app_id` — App ID provided is not valid. - `invalid_app` — App ID provided is not valid for team and user. - `invalid_args` — Required arguments either were not provided or contain invalid values. - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `free_team_not_allowed` — Feature is only available on a paid team. - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.activities.list */
-export const activitiesList: API.OperationMethod<
+export const activitiesList: API.PaginatedOperationMethod<
   ActivitiesListRequest,
   ActivitiesListResponse,
   ActivitiesListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ActivitiesListRequest,
-  output: ActivitiesListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ActivitiesListRequest,
+    output: ActivitiesListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "activities",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type AuthExternalDeleteError = SlackOpError;
 /** Delete external auth tokens only on the Slack side Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `unable_to_delete` — There was an error deleting tokens - `providers_not_found` — The provided `provider_key` is invalid - `no_tokens_found` — No tokens found to delete - `method_not_supported` — This API method is not supported - `app_not_found` — The provided `app_id` was not found - `token_not_found` — The token pointed to by the external_token_id input is not found - `invalid_auth` — The token used to invoke this API doesn't have permission to delete the token pointed to by the external_token_id input - `invalid_args` — The arguments provided to this API are invalid See https://docs.slack.dev/reference/methods/apps.auth.external.delete */
@@ -1238,18 +1264,29 @@ export const datastorePut: API.OperationMethod<
 
 export type DatastoreQueryError = SlackOpError;
 /** Query a datastore for items Required scopes — bot: `datastore:read` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to access datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error - `access_denied` — Not authorized to access the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore query not allowed on a free team. - `team_quota_exceeded` — Total number of requests exceeded team quota. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.query */
-export const datastoreQuery: API.OperationMethod<
+export const datastoreQuery: API.PaginatedOperationMethod<
   DatastoreQueryRequest,
   DatastoreQueryResponse,
   DatastoreQueryError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatastoreQueryRequest,
-  output: DatastoreQueryResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  DatastoreQueryResponseItemsItemMap
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: DatastoreQueryRequest,
+    output: DatastoreQueryResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "items",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type DatastoreUpdateError = SlackOpError;
 /** Edits an existing item's attributes, or adds a new item if it does not already exist. Required scopes — bot: `datastore:write` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to create datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error - `access_denied` — Not authorized to access the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore put not allowed on a free team. - `team_quota_exceeded` — Total number of requests exceeded team quota. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.update */
@@ -1268,18 +1305,29 @@ export const datastoreUpdate: API.OperationMethod<
 
 export type EventAuthorizationsListError = SlackOpError;
 /** Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is visible to. Rate limit tier: 5 Method-specific errors (the `error` slug on the SlackError): - `auth_mismatch` — The given authorization token is not associated with the app that sent this event. - `internal_error` — An unexpected error occurred while finding authorizations for this event. - `invalid_cursor` — The `cursor` argument was invalid. - `invalid_event_context` — The given `event_context` didn't match an event. See https://docs.slack.dev/reference/methods/apps.event.authorizations.list */
-export const eventAuthorizationsList: API.OperationMethod<
+export const eventAuthorizationsList: API.PaginatedOperationMethod<
   EventAuthorizationsListRequest,
   EventAuthorizationsListResponse,
   EventAuthorizationsListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EventAuthorizationsListRequest,
-  output: EventAuthorizationsListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  EventAuthorizationsListResponseAuthorizationsItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: EventAuthorizationsListRequest,
+    output: EventAuthorizationsListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "authorizations",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type IconSetError = SlackOpError;
 /** Sets the app icon Required scopes — user: `app_configurations:write` Rate limit tier: 1 Method-specific errors (the `error` slug on the SlackError): - `error_bad_format` — Icon must be a valid image file. - `icon_not_accessible` — The icon URL is not accessible or returned an error (e.g. 404 Not Found). Please verify the URL is publicly reachable and returns a valid image. - `invalid_app` — App does not exist. - `invalid_app_id` — App ID is not valid. - `invalid_icon_size` — Icon dimensions must be between 512x512px and 2000x2000px. - `invalid_parameters` — Only one of `URL` or `file` can be defined. - `missing_arguments` — One of `URL` or `file` must be provided. - `no_permission` — User does not have required permissions for app. - `unable_to_open_file` — Error with file upload. See https://docs.slack.dev/reference/methods/apps.icon.set */

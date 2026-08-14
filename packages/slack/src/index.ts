@@ -16,4 +16,5 @@ export {
   type SlackOpContext,
 } from "./protocol.ts";
 export * as Retry from "./retry.ts";
+export * as Pagination from "./pagination.ts";
 export * as Services from "./services/index.ts";

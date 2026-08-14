@@ -179,6 +179,56 @@ const toOpenApiSchema = (node: DocsSchema | undefined): Record<string, any> => {
 };
 
 // ============================================================================
+// Cursor pagination
+// ============================================================================
+
+/**
+ * Items path for the two cursor methods whose outputs carry SEVERAL array
+ * members (`messages` plus bookkeeping lists like `deleted` /
+ * `unchanged_messages`) — the sole-array rule below can't pick for them.
+ */
+const ITEMS_OVERRIDE: Readonly<Record<string, string>> = {
+  "conversations.history": "messages",
+  "conversations.replies": "messages",
+};
+
+/**
+ * The `smithy.api#paginated` trait for a cursor method, or undefined for a
+ * plain operation.
+ *
+ * Slack's cursor convention: pass `cursor` (from the previous response's
+ * `response_metadata.next_cursor`), an empty next_cursor means done. A
+ * method paginates when it takes a `cursor` arg AND its documented output
+ * has an identifiable items list (exactly one top-level array member, or an
+ * {@link ITEMS_OVERRIDE} entry). Cursor methods whose docs model no list
+ * (`admin.emoji.list`'s map, `admin.conversations.getTeams`'s missing
+ * member) stay plain rather than guessing — enriching them is patch
+ * territory.
+ */
+const buildPagination = (
+  name: string,
+  page: MethodPage,
+): Record<string, string> | undefined => {
+  const args = page.args?.properties ?? {};
+  if (!("cursor" in args)) return undefined;
+  const props = page.output?.properties ?? {};
+  const arrays = Object.entries(props).filter(
+    ([k, p]) =>
+      (p as DocsSchema)?.type === "array" && k !== "response_metadata",
+  );
+  const items =
+    ITEMS_OVERRIDE[name] ?? (arrays.length === 1 ? arrays[0]![0] : undefined);
+  if (items === undefined) return undefined;
+  return {
+    mode: "cursor",
+    inputToken: "cursor",
+    outputToken: "response_metadata.next_cursor",
+    items,
+    ...("limit" in args ? { pageSize: "limit" } : {}),
+  };
+};
+
+// ============================================================================
 // Method page → OpenAPI operation
 // ============================================================================
 
@@ -365,6 +415,29 @@ const buildOutputSchema = (
 
   const props = page.output?.properties ?? {};
   const required = (page.output?.required ?? []).filter((r) => r in props);
+  const converted = Object.fromEntries(
+    Object.entries(props).map(([k, v]) => [k, toOpenApiSchema(v)]),
+  );
+
+  // Every cursor method answers with `response_metadata.next_cursor` on the
+  // wire (empty string = no more pages), but the docs model it on only ~⅔ of
+  // them — and a few of those as an opaque named ref. Model the typed struct
+  // uniformly so `.pages()` can follow the cursor and callers can read it.
+  if ("cursor" in (page.args?.properties ?? {})) {
+    converted.response_metadata = {
+      type: "object",
+      description:
+        "Pagination metadata. An empty `next_cursor` means the last page.",
+      properties: {
+        next_cursor: {
+          type: "string",
+          description:
+            "Cursor for the next page — pass as `cursor` on the next call.",
+        },
+      },
+    };
+  }
+
   return {
     type: "object",
     properties: {
@@ -373,11 +446,9 @@ const buildOutputSchema = (
         description:
           "Always `true` (a failed call raises a typed error instead).",
       },
-      ...Object.fromEntries(
-        Object.entries(props).map(([k, v]) => [k, toOpenApiSchema(v)]),
-      ),
+      ...converted,
     },
-    required: ["ok", ...required],
+    required: ["ok", ...required.filter((r) => r !== "response_metadata")],
   };
 };
 
@@ -427,11 +498,13 @@ fs.mkdirSync(outDir, { recursive: true });
 
 let written = 0;
 let totalOps = 0;
+let totalPaginated = 0;
 for (const family of [...families.keys()].sort()) {
   const methods = families.get(family)!;
 
   const paths: Record<string, Record<string, unknown>> = {};
   const seenOpIds = new Map<string, string>();
+  const paginationByUri = new Map<string, Record<string, string>>();
   for (const { name, page } of methods) {
     const { method, operation } = buildOperation(name, page);
     const prior = seenOpIds.get(operation.operationId as string);
@@ -442,6 +515,8 @@ for (const family of [...families.keys()].sort()) {
     }
     seenOpIds.set(operation.operationId as string, name);
     paths[`/${name}`] = { [method]: operation };
+    const pagination = buildPagination(name, page);
+    if (pagination) paginationByUri.set(`/${name}`, pagination);
   }
 
   const doc = {
@@ -460,6 +535,27 @@ for (const family of [...families.keys()].sort()) {
     // comment carries the notice instead of the operation disappearing.
     skipDeprecated: false,
   });
+  // Stamp `smithy.api#paginated` on the cursor operations (matched by URI —
+  // the one thing the converter carries through verbatim). The generator
+  // validates the trait against the emitted shapes and compiles these ops
+  // with the paginated surface (`.pages()` / `.items()`).
+  let paginatedCount = 0;
+  for (const shape of Object.values<any>(model.shapes)) {
+    if (shape?.type !== "operation") continue;
+    const uri = shape.traits?.["smithy.api#http"]?.uri;
+    const pagination = uri && paginationByUri.get(uri);
+    if (pagination) {
+      shape.traits["smithy.api#paginated"] = pagination;
+      paginatedCount++;
+    }
+  }
+  if (paginatedCount !== paginationByUri.size) {
+    throw new Error(
+      `family "${family}": stamped ${paginatedCount} paginated traits but expected ${paginationByUri.size}`,
+    );
+  }
+  totalPaginated += paginatedCount;
+
   const opCount = Object.values(model.shapes).filter(
     (s: any) => s.type === "operation",
   ).length;
@@ -472,4 +568,6 @@ for (const family of [...families.keys()].sort()) {
   totalOps += opCount;
 }
 
-console.log(`✅ ${written} Smithy models (${totalOps} operations) → ${outDir}`);
+console.log(
+  `✅ ${written} Smithy models (${totalOps} operations, ${totalPaginated} cursor-paginated) → ${outDir}`,
+);

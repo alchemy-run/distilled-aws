@@ -7,6 +7,7 @@ import {
   type SlackOpError,
   type SlackOpContext,
 } from "../protocol.ts";
+import { slackPaginate } from "../pagination.ts";
 import { SlackError, SlackRateLimited } from "../errors.ts";
 import * as Retry from "../retry.ts";
 
@@ -69,14 +70,15 @@ export const AnalyticsMessagesActivityRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AnalyticsMessagesActivityRequest",
 }) as any as S.Schema<AnalyticsMessagesActivityRequest>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export interface AnalyticsMessagesActivityResponseResponseMetadata {
-  /** More items exist, use next_cursor as the value of cursor for next call */
-  next_cursor: string;
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
 }
 export const AnalyticsMessagesActivityResponseResponseMetadata =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      next_cursor: S.String,
+      next_cursor: S.optional(S.String),
     }),
   ).annotate({
     identifier: "AnalyticsMessagesActivityResponseResponseMetadata",
@@ -85,6 +87,7 @@ export const AnalyticsMessagesActivityResponseResponseMetadata =
 export interface AnalyticsMessagesActivityResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
   response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
   message_activities: unknown;
 }
@@ -127,6 +130,7 @@ export const AnalyticsMessagesMetadataRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AnalyticsMessagesMetadataRequest",
 }) as any as S.Schema<AnalyticsMessagesMetadataRequest>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type AnalyticsMessagesMetadataResponseResponseMetadata =
   AnalyticsMessagesActivityResponseResponseMetadata;
 export const AnalyticsMessagesMetadataResponseResponseMetadata =
@@ -265,6 +269,7 @@ export const AnalyticsMessagesMetadataResponseMessagesList =
 export interface AnalyticsMessagesMetadataResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
   response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
   /** An array of message metadata */
   messages: AnalyticsMessagesMetadataResponseMessagesList;
@@ -345,29 +350,26 @@ export const AppsActivitiesListResponseActivitiesList = /*@__PURE__*/ S.Array(
   S.Unknown,
 ) as any as S.Schema<AppsActivitiesListResponseActivitiesList>;
 
-export interface AppsActivitiesListResponseResponseMetadata {
-  next_cursor: string;
-}
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type AppsActivitiesListResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const AppsActivitiesListResponseResponseMetadata =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      next_cursor: S.String,
-    }),
-  ).annotate({
-    identifier: "AppsActivitiesListResponseResponseMetadata",
-  }) as any as S.Schema<AppsActivitiesListResponseResponseMetadata>;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export interface AppsActivitiesListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   activities: AppsActivitiesListResponseActivitiesList;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const AppsActivitiesListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     activities: AppsActivitiesListResponseActivitiesList,
-    response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "AppsActivitiesListResponse",
@@ -444,22 +446,26 @@ export const AppsApprovedListResponseApprovedAppsList = /*@__PURE__*/ S.Array(
   S.Unknown,
 ) as any as S.Schema<AppsApprovedListResponseApprovedAppsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type AppsApprovedListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const AppsApprovedListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export interface AppsApprovedListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   approved_apps: AppsApprovedListResponseApprovedAppsList;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const AppsApprovedListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     approved_apps: AppsApprovedListResponseApprovedAppsList,
-    response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "AppsApprovedListResponse",
@@ -716,22 +722,26 @@ export const AppsMcpServersListResponseServersList = /*@__PURE__*/ S.Array(
   AppsMcpServersListResponseServersItem,
 ) as any as S.Schema<AppsMcpServersListResponseServersList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type AppsMcpServersListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const AppsMcpServersListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export interface AppsMcpServersListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   servers: AppsMcpServersListResponseServersList;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const AppsMcpServersListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     servers: AppsMcpServersListResponseServersList,
-    response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "AppsMcpServersListResponse",
@@ -1081,22 +1091,26 @@ export const AppsRequestsListResponseAppRequestsList = /*@__PURE__*/ S.Array(
   S.Unknown,
 ) as any as S.Schema<AppsRequestsListResponseAppRequestsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type AppsRequestsListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const AppsRequestsListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export interface AppsRequestsListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   app_requests: AppsRequestsListResponseAppRequestsList;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const AppsRequestsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     app_requests: AppsRequestsListResponseAppRequestsList,
-    response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "AppsRequestsListResponse",
@@ -1165,22 +1179,26 @@ export const AppsRestrictedListResponseRestrictedAppsList =
     S.Unknown,
   ) as any as S.Schema<AppsRestrictedListResponseRestrictedAppsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type AppsRestrictedListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const AppsRestrictedListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export interface AppsRestrictedListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   restricted_apps: AppsRestrictedListResponseRestrictedAppsList;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const AppsRestrictedListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     restricted_apps: AppsRestrictedListResponseRestrictedAppsList,
-    response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "AppsRestrictedListResponse",
@@ -1381,10 +1399,11 @@ export const AuthPolicyGetEntitiesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AuthPolicyGetEntitiesRequest",
 }) as any as S.Schema<AuthPolicyGetEntitiesRequest>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type AuthPolicyGetEntitiesResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const AuthPolicyGetEntitiesResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export interface AuthPolicyGetEntitiesResponseEntitiesItem {
   /** The type of entity assigned to the policy. Informs the meaning of the entity_id. */
@@ -1415,7 +1434,8 @@ export const AuthPolicyGetEntitiesResponseEntitiesList = /*@__PURE__*/ S.Array(
 export interface AuthPolicyGetEntitiesResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
   /** Entities assigned to the policy */
   entities: AuthPolicyGetEntitiesResponseEntitiesList;
   /** Count of entities under the policy and provided filter conditions */
@@ -1424,7 +1444,9 @@ export interface AuthPolicyGetEntitiesResponse {
 export const AuthPolicyGetEntitiesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
     entities: AuthPolicyGetEntitiesResponseEntitiesList,
     entity_total_count: S.Number,
   }),
@@ -1590,21 +1612,25 @@ export const BarriersListResponseBarriersList = /*@__PURE__*/ S.Array(
   S.Unknown,
 ) as any as S.Schema<BarriersListResponseBarriersList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type BarriersListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const BarriersListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export interface BarriersListResponse {
   ok: boolean;
   barriers: BarriersListResponseBarriersList;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const BarriersListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     barriers: BarriersListResponseBarriersList,
-    response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "BarriersListResponse",
@@ -2246,10 +2272,11 @@ export const ConversationsEkmListOriginalConnectedChannelInfoRequest =
     identifier: "ConversationsEkmListOriginalConnectedChannelInfoRequest",
   }) as any as S.Schema<ConversationsEkmListOriginalConnectedChannelInfoRequest>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type ConversationsEkmListOriginalConnectedChannelInfoResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const ConversationsEkmListOriginalConnectedChannelInfoResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export type ConversationsEkmListOriginalConnectedChannelInfoResponseChannelsItemInternalTeamIdsList =
   Array<string>;
@@ -2288,14 +2315,17 @@ export const ConversationsEkmListOriginalConnectedChannelInfoResponseChannelsLis
 export interface ConversationsEkmListOriginalConnectedChannelInfoResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
   channels: ConversationsEkmListOriginalConnectedChannelInfoResponseChannelsList;
 }
 export const ConversationsEkmListOriginalConnectedChannelInfoResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       ok: S.Boolean,
-      response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+      response_metadata: S.optional(
+        AnalyticsMessagesActivityResponseResponseMetadata,
+      ),
       channels:
         ConversationsEkmListOriginalConnectedChannelInfoResponseChannelsList,
     }),
@@ -2552,19 +2582,23 @@ export const ConversationsGetTeamsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConversationsGetTeamsRequest",
 }) as any as S.Schema<ConversationsGetTeamsRequest>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type ConversationsGetTeamsResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const ConversationsGetTeamsResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export interface ConversationsGetTeamsResponse {
   ok: boolean;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const ConversationsGetTeamsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "ConversationsGetTeamsResponse",
@@ -2682,22 +2716,26 @@ export const ConversationsLookupResponseChannelIdsList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<ConversationsLookupResponseChannelIdsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type ConversationsLookupResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const ConversationsLookupResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export interface ConversationsLookupResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   channel_ids: ConversationsLookupResponseChannelIdsList;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const ConversationsLookupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     channel_ids: ConversationsLookupResponseChannelIdsList,
-    response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "ConversationsLookupResponse",
@@ -2946,6 +2984,12 @@ export const ConversationsSearchResponseConversationsList =
     S.String,
   ) as any as S.Schema<ConversationsSearchResponseConversationsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type ConversationsSearchResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+export const ConversationsSearchResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+
 export interface ConversationsSearchResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
@@ -2956,6 +3000,8 @@ export interface ConversationsSearchResponse {
   total_count: number;
   /** A string representation of the error type */
   error?: string;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const ConversationsSearchResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2964,6 +3010,9 @@ export const ConversationsSearchResponse = /*@__PURE__*/ S.suspend(() =>
     next_cursor: S.String,
     total_count: S.Number,
     error: S.optional(S.String),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "ConversationsSearchResponse",
@@ -3219,22 +3268,26 @@ export const EmojiListResponseEmojiMap = /*@__PURE__*/ S.Record(
   S.Unknown,
 ) as any as S.Schema<EmojiListResponseEmojiMap>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type EmojiListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const EmojiListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export interface EmojiListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   emoji: EmojiListResponseEmojiMap;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const EmojiListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     emoji: EmojiListResponseEmojiMap,
-    response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "EmojiListResponse",
@@ -3326,17 +3379,26 @@ export const FunctionsListResponseFunctionsList = /*@__PURE__*/ S.Array(
   S.Unknown,
 ) as any as S.Schema<FunctionsListResponseFunctionsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type FunctionsListResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+export const FunctionsListResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+
 export interface FunctionsListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   functions: FunctionsListResponseFunctionsList;
-  response_metadata?: unknown;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const FunctionsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     functions: FunctionsListResponseFunctionsList,
-    response_metadata: S.optional(S.Unknown),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "FunctionsListResponse",
@@ -3571,10 +3633,11 @@ export const InviteRequestsApprovedListRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "InviteRequestsApprovedListRequest",
 }) as any as S.Schema<InviteRequestsApprovedListRequest>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type InviteRequestsApprovedListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const InviteRequestsApprovedListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export type InviteRequestsApprovedListResponseApprovedRequestsList =
   Array<unknown>;
@@ -3586,13 +3649,16 @@ export const InviteRequestsApprovedListResponseApprovedRequestsList =
 export interface InviteRequestsApprovedListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
   approved_requests: InviteRequestsApprovedListResponseApprovedRequestsList;
 }
 export const InviteRequestsApprovedListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
     approved_requests: InviteRequestsApprovedListResponseApprovedRequestsList,
   }),
 ).annotate({
@@ -3623,10 +3689,11 @@ export const InviteRequestsDeniedListRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "InviteRequestsDeniedListRequest",
 }) as any as S.Schema<InviteRequestsDeniedListRequest>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type InviteRequestsDeniedListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const InviteRequestsDeniedListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export type InviteRequestsDeniedListResponseDeniedRequestsList = Array<unknown>;
 export const InviteRequestsDeniedListResponseDeniedRequestsList =
@@ -3637,13 +3704,16 @@ export const InviteRequestsDeniedListResponseDeniedRequestsList =
 export interface InviteRequestsDeniedListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
   denied_requests: InviteRequestsDeniedListResponseDeniedRequestsList;
 }
 export const InviteRequestsDeniedListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
     denied_requests: InviteRequestsDeniedListResponseDeniedRequestsList,
   }),
 ).annotate({
@@ -3699,10 +3769,11 @@ export const InviteRequestsListRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "InviteRequestsListRequest",
 }) as any as S.Schema<InviteRequestsListRequest>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type InviteRequestsListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const InviteRequestsListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export type InviteRequestsListResponseInviteRequestsList = Array<unknown>;
 export const InviteRequestsListResponseInviteRequestsList =
@@ -3713,13 +3784,16 @@ export const InviteRequestsListResponseInviteRequestsList =
 export interface InviteRequestsListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
   invite_requests: InviteRequestsListResponseInviteRequestsList;
 }
 export const InviteRequestsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
     invite_requests: InviteRequestsListResponseInviteRequestsList,
   }),
 ).annotate({
@@ -3842,18 +3916,29 @@ export const RolesListAssignmentsResponseRoleAssignmentsList =
     RolesListAssignmentsResponseRoleAssignmentsItem,
   ) as any as S.Schema<RolesListAssignmentsResponseRoleAssignmentsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type RolesListAssignmentsResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+export const RolesListAssignmentsResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+
 export interface RolesListAssignmentsResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   /** A string representation of the error type */
   error?: string;
   role_assignments: RolesListAssignmentsResponseRoleAssignmentsList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const RolesListAssignmentsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     error: S.optional(S.String),
     role_assignments: RolesListAssignmentsResponseRoleAssignmentsList,
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "RolesListAssignmentsResponse",
@@ -3934,15 +4019,26 @@ export const TeamsAdminsListResponseAdminIdsList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<TeamsAdminsListResponseAdminIdsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type TeamsAdminsListResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+export const TeamsAdminsListResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+
 export interface TeamsAdminsListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   admin_ids: TeamsAdminsListResponseAdminIdsList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const TeamsAdminsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     admin_ids: TeamsAdminsListResponseAdminIdsList,
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "TeamsAdminsListResponse",
@@ -4042,15 +4138,26 @@ export const TeamsListResponseTeamsList = /*@__PURE__*/ S.Array(
   TeamsListResponseTeamsItem,
 ) as any as S.Schema<TeamsListResponseTeamsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type TeamsListResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+export const TeamsListResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+
 export interface TeamsListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  teams?: TeamsListResponseTeamsList;
+  teams: TeamsListResponseTeamsList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const TeamsListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    teams: S.optional(TeamsListResponseTeamsList),
+    teams: TeamsListResponseTeamsList,
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "TeamsListResponse",
@@ -4080,15 +4187,26 @@ export const TeamsOwnersListResponseOwnerIdsList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<TeamsOwnersListResponseOwnerIdsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type TeamsOwnersListResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+export const TeamsOwnersListResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+
 export interface TeamsOwnersListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   owner_ids: TeamsOwnersListResponseOwnerIdsList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const TeamsOwnersListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     owner_ids: TeamsOwnersListResponseOwnerIdsList,
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "TeamsOwnersListResponse",
@@ -4763,15 +4881,26 @@ export const UsersListResponseUsersList = /*@__PURE__*/ S.Array(
   UsersListResponseUsersItem,
 ) as any as S.Schema<UsersListResponseUsersList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type UsersListResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+export const UsersListResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+
 export interface UsersListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   users: UsersListResponseUsersList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
 }
 export const UsersListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     users: UsersListResponseUsersList,
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
   }),
 ).annotate({
   identifier: "UsersListResponse",
@@ -4978,10 +5107,11 @@ export const UsersSessionListRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UsersSessionListRequest",
 }) as any as S.Schema<UsersSessionListRequest>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export type UsersSessionListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 export const UsersSessionListResponseResponseMetadata =
-  AppsActivitiesListResponseResponseMetadata;
+  AnalyticsMessagesActivityResponseResponseMetadata;
 
 export interface UsersSessionListResponseActiveSessionsItemRecent {
   /** Type of device */
@@ -5066,14 +5196,17 @@ export const UsersSessionListResponseActiveSessionsList = /*@__PURE__*/ S.Array(
 export interface UsersSessionListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  response_metadata?: AppsActivitiesListResponseResponseMetadata;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
   /** Active user session data */
   active_sessions: UsersSessionListResponseActiveSessionsList;
 }
 export const UsersSessionListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    response_metadata: S.optional(AppsActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
     active_sessions: UsersSessionListResponseActiveSessionsList,
   }),
 ).annotate({
@@ -5574,11 +5707,18 @@ export const WorkflowsSearchResponseWorkflowsList = /*@__PURE__*/ S.Array(
   S.Unknown,
 ) as any as S.Schema<WorkflowsSearchResponseWorkflowsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type WorkflowsSearchResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+export const WorkflowsSearchResponseResponseMetadata =
+  AnalyticsMessagesActivityResponseResponseMetadata;
+
 export interface WorkflowsSearchResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   workflows: WorkflowsSearchResponseWorkflowsList;
-  response_metadata?: unknown;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AnalyticsMessagesActivityResponseResponseMetadata;
   /** The total number of workflows that match this search criteria */
   total_found: number;
 }
@@ -5586,7 +5726,9 @@ export const WorkflowsSearchResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     workflows: WorkflowsSearchResponseWorkflowsList,
-    response_metadata: S.optional(S.Unknown),
+    response_metadata: S.optional(
+      AnalyticsMessagesActivityResponseResponseMetadata,
+    ),
     total_found: S.Number,
   }),
 ).annotate({
@@ -5809,33 +5951,54 @@ export const analyticsMessagesActivity: API.OperationMethod<
 
 export type AnalyticsMessagesMetadataError = SlackOpError;
 /** Retrieves metadata for a list of messages from a given channel. Required scopes — user: `admin.analytics:read` Method-specific errors (the `error` slug on the SlackError): - `channel_not_found` — The specified channel was not found - `invalid_arguments` — Required arguments either were not provided or contain invalid values. - `not_an_enterprise` — The user token does not belong to an enterprise. - `analytics_unavailable` — We were unable to find analytics for you. - `admin_analytics_disabled` — We're having issues returning your analytics. Please wait and try again. - `restricted_plan_level` — This feature is not available for your current product plan. - `different_team_owns_message_metadata_for_channel` — Message metadata must be accessed by an actor from the same team that owns the channel. This may be the org or a specific enterprise workspace. See https://docs.slack.dev/reference/methods/admin.analytics.messages.metadata */
-export const analyticsMessagesMetadata: API.OperationMethod<
+export const analyticsMessagesMetadata: API.PaginatedOperationMethod<
   AnalyticsMessagesMetadataRequest,
   AnalyticsMessagesMetadataResponse,
   AnalyticsMessagesMetadataError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AnalyticsMessagesMetadataRequest,
-  output: AnalyticsMessagesMetadataResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  AnalyticsMessagesMetadataResponseMessagesItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: AnalyticsMessagesMetadataRequest,
+    output: AnalyticsMessagesMetadataResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "messages",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type AppsActivitiesListError = SlackOpError;
 /** Get logs for a specified team/org Required scopes — user: `admin.app_activities:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — Something went wrong on our end, please try again. - `invalid_app_id` — App ID provided is not valid. - `invalid_app` — App ID provided is not valid for team and user. - `invalid_args` — Required arguments either were not provided or contain invalid values. - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `invalid_team` — Team ID provided is not valid See https://docs.slack.dev/reference/methods/admin.apps.activities.list */
-export const appsActivitiesList: API.OperationMethod<
+export const appsActivitiesList: API.PaginatedOperationMethod<
   AppsActivitiesListRequest,
   AppsActivitiesListResponse,
   AppsActivitiesListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppsActivitiesListRequest,
-  output: AppsActivitiesListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: AppsActivitiesListRequest,
+    output: AppsActivitiesListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "activities",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type AppsApproveError = SlackOpError;
 /** Approve an app for installation on a workspace. Required scopes — user: `admin.apps:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `app_management_app_not_installed_on_org` — The app management app must be installed on the org. - `app_not_eligible_for_auto_install` — The app does not have the required scope to be eligible for auto-install rule creation. - `app_restricted_org_wide` — The app is already restricted org wide. - `auto_install_rule_creation_failed` — The app was approved successfully, but the auto-install AAA rule could not be created. Please create the rule manually. - `custom_integration_not_allowed_at_enterprise` — Returned when the install request is for custom integration app. - `feature_not_enabled` — Returned when the Admin APIs feature is not enabled for this team. - `invalid_request_id` — The `request_id` passed is invalid. - `invalid_app_id` — The `app_id` passed is invalid. - `org_resolution_required` — The `team_id` is in an Enterprise org while `app_id` is certified. - `invalid_scopes` — Some of the provided scopes do not exist. - `not_allowed_to_create_automation_rule` — The actor does not have permission to create AAA automation rules. The app was approved but the auto-install rule was not created. - `not_an_admin` — This method is only accessible by org owners and admins. - `request_already_resolved` — The app request has already been resolved. - `request_id_or_app_id_is_required` — Must include a `request_id` or `app_id`. - `request_id_required_for_custom_integrations` — A `request_id` is required for custom integrations. - `team_not_found` — Returned when team id is not found. - `too_many_ids_provided` — Please provide only `app_id` OR `request_id`. - `too_many_teams_provided` — Please provide only `team_id` OR `enterprise_id`. See https://docs.slack.dev/reference/methods/admin.apps.approve */
@@ -5854,18 +6017,29 @@ export const appsApprove: API.OperationMethod<
 
 export type AppsApprovedListError = SlackOpError;
 /** List approved apps for an org or workspace. Required scopes — user: `admin.apps:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `app_management_app_not_installed_on_org` — The app management app must be installed on the org. - `feature_not_enabled` — Returned when the Admin APIs feature is not enabled for this team - `invalid_actor` — The provided actor_id is not a valid user or application - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `not_allowed` — The user is not allowed to access this API method - `not_an_admin` — This method is only accessible by org/workspace owners and admins - `team_not_found` — Returned when team id is not found. - `too_many_teams_provided` — Please provide only `team_id` OR `enterprise_id`. - `restricted_action` — User does not have permission to access method See https://docs.slack.dev/reference/methods/admin.apps.approved.list */
-export const appsApprovedList: API.OperationMethod<
+export const appsApprovedList: API.PaginatedOperationMethod<
   AppsApprovedListRequest,
   AppsApprovedListResponse,
   AppsApprovedListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppsApprovedListRequest,
-  output: AppsApprovedListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: AppsApprovedListRequest,
+    output: AppsApprovedListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "approved_apps",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type AppsClearResolutionError = SlackOpError;
 /** Clear an app resolution Required scopes — user: `admin.apps:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `app_management_app_not_installed_on_org` — The app management app must be installed on the org. - `feature_not_enabled` — Returned when the Admin APIs feature is not enabled for this team - `invalid_app_id` — The `app_id` passed is invalid. - `no_resolution_found` — No existing resolutions were found for the given `team` and `app_id`. - `not_an_admin` — This method is only accessible by org owners and admins - `access_denied` — This actor does not have access to the permissions on this resource. - `team_not_found` — Returned when team id is not found. - `too_many_teams_provided` — Please provide only `team_id` OR `enterprise_id` - `restricted_action` — This actor does not have access to the permissions on this resource. See https://docs.slack.dev/reference/methods/admin.apps.clearResolution */
@@ -5914,18 +6088,29 @@ export const appsConfigSet: API.OperationMethod<
 
 export type AppsMcpServersListError = SlackOpError;
 /** List third-party app MCP servers approved for an organization, derived from the org's MCP server allowlist. Entries reflect allowlist state, not install/scope liveness: servers of apps that are uninstalled (but not deleted) are still listed. Required scopes — user: `admin.apps:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `restricted_action` — User does not have permission to perform this action. - `invalid_auth` — Invalid authorization token - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `not_an_enterprise` — This feature is only available on Enterprise Grid plans. - `internal_error` — Internal error - `feature_not_enabled` — The MCP server admin API feature is not enabled for this team. See https://docs.slack.dev/reference/methods/admin.apps.mcp.servers.list */
-export const appsMcpServersList: API.OperationMethod<
+export const appsMcpServersList: API.PaginatedOperationMethod<
   AppsMcpServersListRequest,
   AppsMcpServersListResponse,
   AppsMcpServersListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppsMcpServersListRequest,
-  output: AppsMcpServersListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  AppsMcpServersListResponseServersItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: AppsMcpServersListRequest,
+    output: AppsMcpServersListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "servers",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type AppsMcpServersPermissionsListError = SlackOpError;
 /** List MCP servers for an app with their access control permissions Required scopes — user: `admin.apps:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `restricted_action` — User does not have permission to perform this action. - `invalid_auth` — Invalid authorization token - `app_not_found` — This app does not exist. - `not_an_enterprise` — This feature is only available on Enterprise Grid plans. - `feature_not_enabled` — The MCP server ACL feature is not enabled for this team. - `internal_error` — An internal error occurred while resolving the app's approved domains or ACLs. Retry the request. See https://docs.slack.dev/reference/methods/admin.apps.mcp.servers.permissions.list */
@@ -6034,18 +6219,29 @@ export const appsRequestsCancel: API.OperationMethod<
 
 export type AppsRequestsListError = SlackOpError;
 /** List app requests for a team/workspace. Required scopes — user: `admin.apps:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `app_management_app_not_installed_on_org` — The app management app must be installed on the org. - `enterprise_not_found` — Returned when enterprise id is not found. - `feature_not_enabled` — Returned when the Admin APIs feature is not enabled for this team - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `invalid_auth` — invalid token or actor does not have access - `not_allowed` — The user is not allowed to access this API method - `not_an_admin` — This method is only accessible by org owners and admins - `restricted_action` — The action is restricted for this team - `user_is_restricted` — This method is only accessible by org owners, admins, and integration managers - `no_team_or_enterprise_provided` — Must provide team ID or enterprise ID - `team_not_found` — Returned when team id is not found. - `too_many_teams_provided` — Please provide only `team_id` OR `enterprise_id` See https://docs.slack.dev/reference/methods/admin.apps.requests.list */
-export const appsRequestsList: API.OperationMethod<
+export const appsRequestsList: API.PaginatedOperationMethod<
   AppsRequestsListRequest,
   AppsRequestsListResponse,
   AppsRequestsListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppsRequestsListRequest,
-  output: AppsRequestsListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: AppsRequestsListRequest,
+    output: AppsRequestsListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "app_requests",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type AppsRestrictError = SlackOpError;
 /** Restrict an app for installation on a workspace. Required scopes — user: `admin.apps:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `app_management_app_not_installed_on_org` — The app management app must be installed on the org. - `custom_integration_not_allowed_at_enterprise` — Returned when the install request is for custom integration app. - `feature_not_enabled` — Returned when the Admin APIs feature is not enabled for this team - `invalid_request_id` — The `request_id` passed is invalid. - `invalid_app_id` — The `app_id` passed is invalid. - `invalid_scopes` — Some of the provided scopes do not exist - `not_an_admin` — This method is only accessible by org owners and admins - `request_already_resolved` — The app request has already been resolved - `request_id_or_app_id_is_required` — Must include a `request_id` or `app_id` - `request_id_required_for_custom_integrations` — A `request_id` is required for custom integrations - `team_not_found` — Returned when team id is not found. - `too_many_ids_provided` — Please provide only `app_id` OR `request_id` - `too_many_teams_provided` — Please provide only `team_id` OR `enterprise_id` See https://docs.slack.dev/reference/methods/admin.apps.restrict */
@@ -6064,18 +6260,29 @@ export const appsRestrict: API.OperationMethod<
 
 export type AppsRestrictedListError = SlackOpError;
 /** List restricted apps for an org or workspace. Required scopes — user: `admin.apps:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `app_management_app_not_installed_on_org` — The app management app must be installed on the org. - `feature_not_enabled` — Returned when the Admin APIs feature is not enabled for this team - `invalid_actor` — The provided actor_id is not a valid user or application - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `not_allowed` — The user is not allowed to access this API method - `not_an_admin` — This method is only accessible by org/workspace owners and admins - `team_not_found` — Returned when team id is not found. - `too_many_teams_provided` — Please provide only `team_id` OR `enterprise_id`. - `restricted_action` — User does not have permission to access method See https://docs.slack.dev/reference/methods/admin.apps.restricted.list */
-export const appsRestrictedList: API.OperationMethod<
+export const appsRestrictedList: API.PaginatedOperationMethod<
   AppsRestrictedListRequest,
   AppsRestrictedListResponse,
   AppsRestrictedListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppsRestrictedListRequest,
-  output: AppsRestrictedListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: AppsRestrictedListRequest,
+    output: AppsRestrictedListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "restricted_apps",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type AppsUninstallError = SlackOpError;
 /** Uninstall an app from one or many workspaces, or an entire enterprise organization. Required scopes — user: `admin.apps:write` Rate limit tier: 1 Method-specific errors (the `error` slug on the SlackError): - `app_not_found` — The provided `app_id` was not found. - `can_not_uninstall` — This application can not be uninstalled via the API. - `enterprise_not_found` — The provided `enterprise_id` was not found. - `feature_not_enabled` — The Admin APIs feature is not enabled for this team. - `must_revoke_access` — Organization-deployed apps cannot be uninstalled from specific workspaces using this API. - `permission_denied` — You do not have permission to uninstall applications from the reqeusted org or workspaces. - `specify_enterprise_or_teams` — Provide exactly one of `enterprise_id` or `team_ids`. - `teams_not_found` — One or more of the provided `team_ids` were not found. - `too_many_teams` — Too many IDs are present in `team_ids`. - `restricted_action` — the user is not authorized to perform this action See https://docs.slack.dev/reference/methods/admin.apps.uninstall */
@@ -6139,18 +6346,29 @@ export const authPolicyAssignEntities: API.OperationMethod<
 
 export type AuthPolicyGetEntitiesError = SlackOpError;
 /** Fetch all the entities assigned to a particular authentication policy by name. Required scopes — user: `admin.users:read` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `feature_not_enabled` — This method is only available for Enterprise organizations. - `internal_error` — There was an internal error processing this request—please retry. - `invalid_arguments` — Required arguments either were not provided or contain invalid values. - `invalid_auth` — The token doesn't have access to this endpoint. - `invalid_cursor` — The cursor passed was invalid. - `not_an_admin` — This method is only accessible by Org Owners and Admins. - `policy_not_found` — The `policy_name` could not be found. - `ratelimited` — The rate limit for this endpoint has been reached. See https://docs.slack.dev/reference/methods/admin.auth.policy.getEntities */
-export const authPolicyGetEntities: API.OperationMethod<
+export const authPolicyGetEntities: API.PaginatedOperationMethod<
   AuthPolicyGetEntitiesRequest,
   AuthPolicyGetEntitiesResponse,
   AuthPolicyGetEntitiesError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AuthPolicyGetEntitiesRequest,
-  output: AuthPolicyGetEntitiesResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  AuthPolicyGetEntitiesResponseEntitiesItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: AuthPolicyGetEntitiesRequest,
+    output: AuthPolicyGetEntitiesResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "entities",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type AuthPolicyRemoveEntitiesError = SlackOpError;
 /** Remove specified entities from a specified authentication policy. Required scopes — user: `admin.users:write` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `entity_not_found` — At least one `entity_id` was not found - `feature_not_enabled` — This method is only available to Enterprise customers. - `internal_error` — There was an internal error processing this request—please retry. - `invalid_arguments` — Required arguments either were not provided or contain invalid values. - `invalid_auth` — The provided token doesn't have access to this endpoint. - `not_an_admin` — This method is only accessible by Org Owners and Admins. - `policy_not_found` — The `policy_name` could not be found. - `ratelimited` — The rate limit for this endpoint has been reached. See https://docs.slack.dev/reference/methods/admin.auth.policy.removeEntities */
@@ -6199,18 +6417,29 @@ export const barriersDelete: API.OperationMethod<
 
 export type BarriersListError = SlackOpError;
 /** Get all Information Barriers for your organization Required scopes — user: `admin.barriers:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `feature_not_enabled` — Feature not enabled - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `not_an_admin` — The token provided is not associated with an org admin See https://docs.slack.dev/reference/methods/admin.barriers.list */
-export const barriersList: API.OperationMethod<
+export const barriersList: API.PaginatedOperationMethod<
   BarriersListRequest,
   BarriersListResponse,
   BarriersListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BarriersListRequest,
-  output: BarriersListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: BarriersListRequest,
+    output: BarriersListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "barriers",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type BarriersUpdateError = SlackOpError;
 /** Update an existing Information Barrier Required scopes — user: `admin.barriers:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `barrier_already_exists` — There already exists another barrier restricting activity between two or more of your requested usergroups. - `barrier_not_found` — The barrier you're trying to update cannot be found. - `barriered_from_usergroups_not_found` — One or more of the ids passed in for barriered_from_usergroup_ids can’t be found. - `feature_not_enabled` — The information barrier feature is not enabled, please reach out to your CSM. - `invalid_restricted_subjects` — The restricted subjects provided are invalid or not currently supported. - `not_an_admin` — The token provided is not associated with an org admin. - `primary_usergroup_not_found` — The id passed in for primary_usergroup_id can’t be found. See https://docs.slack.dev/reference/methods/admin.barriers.update */
@@ -6395,18 +6624,29 @@ export const conversationsDisconnectShared: API.OperationMethod<
 export type ConversationsEkmListOriginalConnectedChannelInfoError =
   SlackOpError;
 /** List all disconnected channels—i.e., channels that were once connected to other workspaces and then disconnected—and the corresponding original channel IDs for key revocation with EKM. Required scopes — user: `admin.conversations:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_cursor` — Invalid cursor. - `invalid_limit` — The value passed for `limit` was not valid. - `not_an_admin` — This method is only accessible by Org owners and Admins. - `not_enabled` — The API endpoint is not enabled for your team. - `restricted_action` — The caller of this API is not allowed to perform this operation. - `unsupported_arguments` — The provided method arguments are not supported. See https://docs.slack.dev/reference/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo */
-export const conversationsEkmListOriginalConnectedChannelInfo: API.OperationMethod<
+export const conversationsEkmListOriginalConnectedChannelInfo: API.PaginatedOperationMethod<
   ConversationsEkmListOriginalConnectedChannelInfoRequest,
   ConversationsEkmListOriginalConnectedChannelInfoResponse,
   ConversationsEkmListOriginalConnectedChannelInfoError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConversationsEkmListOriginalConnectedChannelInfoRequest,
-  output: ConversationsEkmListOriginalConnectedChannelInfoResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  ConversationsEkmListOriginalConnectedChannelInfoResponseChannelsItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ConversationsEkmListOriginalConnectedChannelInfoRequest,
+    output: ConversationsEkmListOriginalConnectedChannelInfoResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "channels",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type ConversationsGetConversationPrefsError = SlackOpError;
 /** Get conversation preferences for a public or private channel. Required scopes — user: `admin.conversations:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `channel_not_found` — The value passed for `channel_id` was invalid. - `channel_type_not_supported` — The provided `channel_id` was a DM, MPDM, or the 'general' channel. - `could_not_get_conversation_prefs` — There was an error getting the conversation preferences for this channel. - `feature_not_enabled` — The token provided does not have access to this method. - `missing_scope` — The token provided doesn't have the required scopes. - `not_an_admin` — The token provided is not associated with an Org Admin or Owner. - `not_an_enterprise` — This endpoint can only be called by an Enterprise organization. - `restricted_action` — A workspace preference prevents the authenticated user from listing preferences. See https://docs.slack.dev/reference/methods/admin.conversations.getConversationPrefs */
@@ -6485,18 +6725,29 @@ export const conversationsLinkObjects: API.OperationMethod<
 
 export type ConversationsLookupError = SlackOpError;
 /** Returns channels on the given team using the filters. Required scopes — user: `admin.conversations:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — Something unexpected happened, try again in a little bit. Sorry for that! - `feature_not_enabled` — The feature is not enabled - `no_valid_teams` — The team_ids argument doesn't contain any valid teams - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. See https://docs.slack.dev/reference/methods/admin.conversations.lookup */
-export const conversationsLookup: API.OperationMethod<
+export const conversationsLookup: API.PaginatedOperationMethod<
   ConversationsLookupRequest,
   ConversationsLookupResponse,
   ConversationsLookupError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConversationsLookupRequest,
-  output: ConversationsLookupResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  string
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ConversationsLookupRequest,
+    output: ConversationsLookupResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "channel_ids",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type ConversationsRemoveCustomRetentionError = SlackOpError;
 /** This API endpoint can be used by any admin to remove a conversation's retention policy. Required scopes — user: `admin.conversations:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `channel_not_found` — Value given for `channel_id` was invalid. - `channel_type_not_supported` — Value given for `channel_id` was a #general channel. - `could_not_remove_retention` — The retention policy could not be removed. - `default_org_wide_channel` — The channel given is a default org-wide channel. - `feature_not_enabled` — The Admin APIs feature is not enabled for this team. - `not_an_admin` — The token provided is not associated with an admin. - `restricted_action` — A team preference prevents the authenticated user from modifying the retention policy of this channel. - `retention_override_not_allowed` — The current retention policy disallows modifying the retention policy of this channel. See https://docs.slack.dev/reference/methods/admin.conversations.removeCustomRetention */
@@ -6575,18 +6826,29 @@ export const conversationsRestrictAccessRemoveGroup: API.OperationMethod<
 
 export type ConversationsSearchError = SlackOpError;
 /** Search for public or private channels in an Enterprise organization. Required scopes — user: `admin.conversations:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `connected_team_passed_in_is_not_top_level_team` — One of the orgs provided in the external connected teams filter is not a top level team. - `external_team_not_connected_to_this_org` — One of the teams provided in the external connected teams filter is not connected to the org. - `feature_not_enabled` — The token provided doesn't have access to this method. - `invalid_auth` — The token provided does not belong to an Enterprise organization, or a specified workspace wasn't part of this Enterprise. - `invalid_cursor` — The provided cursor is not valid, often due to not urlencoding query parameters. - `invalid_search_channel_type` — An invalid `search_channel_types` arg was passed. Make sure there are no spaces between your args and that each is one of the enumerated options listed above. - `invalid_sort` — The provided `sort` argument wasn't valid. - `invalid_sort_dir` — The provided `sort_dir` argument wasn't valid. - `not_allowed` — The authenticated user does not have the permission to call this method. - `not_an_admin` — The token provided is not associated with an Org Admin or Owner. - `not_an_enterprise` — This endpoint can only be called by an Enterprise organization. - `team_not_found` — One of the workspaces provided in the list wasn't found. See https://docs.slack.dev/reference/methods/admin.conversations.search */
-export const conversationsSearch: API.OperationMethod<
+export const conversationsSearch: API.PaginatedOperationMethod<
   ConversationsSearchRequest,
   ConversationsSearchResponse,
   ConversationsSearchError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConversationsSearchRequest,
-  output: ConversationsSearchResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  string
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ConversationsSearchRequest,
+    output: ConversationsSearchResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "conversations",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type ConversationsSetConversationPrefsError = SlackOpError;
 /** Set the posting permissions for a public or private channel. Required scopes — user: `admin.conversations:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `channel_mention_sync_required` — If setting channel mention restriction prefs, both mention prefs must be passed and they must be the same value. - `channel_not_found` — Value passed for `channel` was invalid. - `channel_type_not_supported` — Value given for `channel_id` was a #general channel. - `could_not_set_channel_pref` — Setting the preference or permission failed. - `default_org_wide_channel` — Returned when you try to modify a default org wide channel. - `feature_not_enabled` — The Admin APIs feature is not enabled for this team. - `invalid_value` — Value passed for the preferences are invalid - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation. - `not_an_admin` — The token provided is not associated with an org admin. - `restricted_action` — A workspace preference prevents the authenticated user from archiving. See https://docs.slack.dev/reference/methods/admin.conversations.setConversationPrefs */
@@ -6740,18 +7002,29 @@ export const emojiRename: API.OperationMethod<
 
 export type FunctionsListError = SlackOpError;
 /** Look up functions by a set of apps. Required scopes — user: `admin.workflows:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `not_allowed` — The user is not allowed to access this API method. - `restricted_action` — The user is not allowed to access this API method. See https://docs.slack.dev/reference/methods/admin.functions.list */
-export const functionsList: API.OperationMethod<
+export const functionsList: API.PaginatedOperationMethod<
   FunctionsListRequest,
   FunctionsListResponse,
   FunctionsListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FunctionsListRequest,
-  output: FunctionsListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: FunctionsListRequest,
+    output: FunctionsListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "functions",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type FunctionsPermissionsLookupError = SlackOpError;
 /** Lookup the visibility of multiple Slack functions and include the users if it is limited to particular named entities. Required scopes — user: `admin.workflows:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `access_denied` — This actor does not have access to the permissions on this resource. - `restricted_action` — User does not have access to this API. See https://docs.slack.dev/reference/methods/admin.functions.permissions.lookup */
@@ -6800,33 +7073,55 @@ export const inviteRequestsApprove: API.OperationMethod<
 
 export type InviteRequestsApprovedListError = SlackOpError;
 /** List all approved workspace invite requests. Required scopes — user: `admin.invites:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `feature_not_enabled` — The Invite Requests admin APIs feature is not enabled - `missing_scope` — This token doesn't have the scope required. - `not_an_admin` — This token doesn't have admin privileges. - `team_not_found` — The `team_id` specified wasn't found. See https://docs.slack.dev/reference/methods/admin.inviteRequests.approved.list */
-export const inviteRequestsApprovedList: API.OperationMethod<
+export const inviteRequestsApprovedList: API.PaginatedOperationMethod<
   InviteRequestsApprovedListRequest,
   InviteRequestsApprovedListResponse,
   InviteRequestsApprovedListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InviteRequestsApprovedListRequest,
-  output: InviteRequestsApprovedListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: InviteRequestsApprovedListRequest,
+    output: InviteRequestsApprovedListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "approved_requests",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type InviteRequestsDeniedListError = SlackOpError;
 /** List all denied workspace invite requests. Required scopes — user: `admin.invites:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `feature_not_enabled` — The Invite Request admin APIs feature is not enabled - `missing_scope` — This token doesn't have the scope required. - `not_an_admin` — This token doesn't have admin privileges. - `team_not_found` — The `team_id` specified wasn't found. See https://docs.slack.dev/reference/methods/admin.inviteRequests.denied.list */
-export const inviteRequestsDeniedList: API.OperationMethod<
+export const inviteRequestsDeniedList: API.PaginatedOperationMethod<
   InviteRequestsDeniedListRequest,
   InviteRequestsDeniedListResponse,
   InviteRequestsDeniedListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InviteRequestsDeniedListRequest,
-  output: InviteRequestsDeniedListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: InviteRequestsDeniedListRequest,
+    output: InviteRequestsDeniedListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "denied_requests",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type InviteRequestsDenyError = SlackOpError;
 /** Deny a workspace invite request. Required scopes — user: `admin.invites:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `already_processed` — The `invite_request_id` passed has already been approved or denied. - `feature_not_enabled` — The Invite Request Admin APIs feature is not enabled - `invalid_request` — The `invite_request_id` passed is invalid. - `missing_scope` — This token doesn't have the scope required. - `not_an_admin` — This token doesn't have admin privileges. - `team_not_found` — The `team_id` specified wasn't found. See https://docs.slack.dev/reference/methods/admin.inviteRequests.deny */
@@ -6845,18 +7140,29 @@ export const inviteRequestsDeny: API.OperationMethod<
 
 export type InviteRequestsListError = SlackOpError;
 /** List all pending workspace invite requests. Required scopes — user: `admin.invites:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `feature_not_enabled` — The Invite Request Admin APIs feature is not enabled - `missing_scope` — This token doesn't have the scope required. - `not_an_admin` — This token doesn't have admin privileges. - `team_not_found` — The `team_id` specified wasn't found. See https://docs.slack.dev/reference/methods/admin.inviteRequests.list */
-export const inviteRequestsList: API.OperationMethod<
+export const inviteRequestsList: API.PaginatedOperationMethod<
   InviteRequestsListRequest,
   InviteRequestsListResponse,
   InviteRequestsListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InviteRequestsListRequest,
-  output: InviteRequestsListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: InviteRequestsListRequest,
+    output: InviteRequestsListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "invite_requests",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type RolesAddAssignmentsError = SlackOpError;
 /** Adds members to the specified role with the specified scopes Required scopes — user: `admin.roles:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `cannot_modify_role_admin` — The user does not have permission to modify the admin role. - `failed_for_some_entities` — At least one role scope ID was invalid - `failed_for_some_users` — At least one user ID was invalid - `failed_for_some_users_and_entities` — At least one role scope ID was invalid - `feature_not_enabled` — This API is currently not enabled. - `invalid_actor` — This API is only enabled for the Admins/Owners. - `invalid_role_id` — The role type passed does not exist. - `no_valid_entities` — None of the entities passed were valid. - `no_valid_users` — None of the users passed were valid. - `too_many_entities` — More than 10 role scopes were passed. - `too_many_users` — More than 10 users were passed. See https://docs.slack.dev/reference/methods/admin.roles.addAssignments */
@@ -6875,18 +7181,29 @@ export const rolesAddAssignments: API.OperationMethod<
 
 export type RolesListAssignmentsError = SlackOpError;
 /** Lists assignments for all roles across entities. Options to scope results by any combination of roles or entities Required scopes — user: `admin.roles:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `feature_not_enabled` — This API is currently not enabled. - `invalid_actor` — This API is only enabled for the Admins/Owners. - `invalid_arguments` — Required arguments either were not provided or contain invalid values. - `invalid_cursor` — The passed cursor was invalid. - `invalid_sort` — Sort parameters are invalid. - `invalid_role_id` — One or more role IDs could not be validated. See https://docs.slack.dev/reference/methods/admin.roles.listAssignments */
-export const rolesListAssignments: API.OperationMethod<
+export const rolesListAssignments: API.PaginatedOperationMethod<
   RolesListAssignmentsRequest,
   RolesListAssignmentsResponse,
   RolesListAssignmentsError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RolesListAssignmentsRequest,
-  output: RolesListAssignmentsResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  RolesListAssignmentsResponseRoleAssignmentsItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: RolesListAssignmentsRequest,
+    output: RolesListAssignmentsResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "role_assignments",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type RolesRemoveAssignmentsError = SlackOpError;
 /** Removes a set of users from a role for the given scopes and entities Required scopes — user: `admin.roles:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `failed_for_some_entities` — At least one role scope ID was invalid - `failed_for_some_users` — At least one user ID was invalid - `failed_for_some_users_and_entities` — At least one role scope ID was invalid - `feature_not_enabled` — This API is currently not enabled. - `invalid_actor` — This API is only enabled for the Admins/Owners. - `invalid_role_id` — The role type passed does not exist. - `no_valid_entities` — None of the entities passed were valid. - `no_valid_users` — None of the users passed were valid. - `too_many_entities` — More than 10 role scopes were passed. - `too_many_users` — More than 10 users were passed. - `cannot_modify_role_admin` — Cannot modify role admin. See https://docs.slack.dev/reference/methods/admin.roles.removeAssignments */
@@ -6905,18 +7222,29 @@ export const rolesRemoveAssignments: API.OperationMethod<
 
 export type TeamsAdminsListError = SlackOpError;
 /** List all of the admins on a given workspace. Required scopes — user: `admin.teams:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `feature_not_enabled` — The Admin APIs feature is not enabled for this team. - `invalid_auth` — The given token is not authorized for the requested `team_id`. - `invalid_cursor` — Invalid cursor. - `invalid_limit` — Limit must be between 1 and 1000 inclusive. - `not_an_admin` — This method is only accessible by org owners and admins. - `team_not_found` — `team_id` was not found. See https://docs.slack.dev/reference/methods/admin.teams.admins.list */
-export const teamsAdminsList: API.OperationMethod<
+export const teamsAdminsList: API.PaginatedOperationMethod<
   TeamsAdminsListRequest,
   TeamsAdminsListResponse,
   TeamsAdminsListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TeamsAdminsListRequest,
-  output: TeamsAdminsListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  string
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: TeamsAdminsListRequest,
+    output: TeamsAdminsListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "admin_ids",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type TeamsCreateError = SlackOpError;
 /** Create an Enterprise team. Required scopes — user: `admin.teams:write` Rate limit tier: 1 Method-specific errors (the `error` slug on the SlackError): - `bad_url` — Invalid URL. Note that domains can be at most 21 characters. - `could_not_create_workspace` — The workspace could not be created. - `discoverability_setting_invalid` — The given discoverability setting is invalid. - `domain_taken` — The requested domain is taken. - `feature_not_enabled` — The Admin APIs feature is not enabled for this team. - `must_provide_team_domain` — No team domain has been provided. - `must_provide_team_name` — No team name has been provided. - `name_taken_in_org` — The team with the specified name already exists in the org. - `not_an_admin` — This method is only accessible by org owners and admins. See https://docs.slack.dev/reference/methods/admin.teams.create */
@@ -6935,33 +7263,55 @@ export const teamsCreate: API.OperationMethod<
 
 export type TeamsListError = SlackOpError;
 /** List all teams in an Enterprise organization Required scopes — user: `admin.teams:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `feature_not_enabled` — The Admin APIs feature is not enabled for this team. - `invalid_cursor` — Invalid cursor. - `invalid_limit` — Value passed for `limit` was not valid. - `not_an_admin` — This method is only accessible by org owners and admins. See https://docs.slack.dev/reference/methods/admin.teams.list */
-export const teamsList: API.OperationMethod<
+export const teamsList: API.PaginatedOperationMethod<
   TeamsListRequest,
   TeamsListResponse,
   TeamsListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TeamsListRequest,
-  output: TeamsListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  TeamsListResponseTeamsItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: TeamsListRequest,
+    output: TeamsListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "teams",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type TeamsOwnersListError = SlackOpError;
 /** List all of the owners on a given workspace. Required scopes — user: `admin.teams:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `feature_not_enabled` — The Admin APIs feature is not enabled for this team. - `invalid_auth` — The given token is not authorized for the requested team. - `invalid_cursor` — Invalid cursor. - `not_an_admin` — This method is only accessible by org owners and admins. - `team_not_found` — `team_id was not found. See https://docs.slack.dev/reference/methods/admin.teams.owners.list */
-export const teamsOwnersList: API.OperationMethod<
+export const teamsOwnersList: API.PaginatedOperationMethod<
   TeamsOwnersListRequest,
   TeamsOwnersListResponse,
   TeamsOwnersListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TeamsOwnersListRequest,
-  output: TeamsOwnersListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  string
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: TeamsOwnersListRequest,
+    output: TeamsOwnersListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "owner_ids",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type TeamsSettingsInfoError = SlackOpError;
 /** Fetch information about settings in a workspace Required scopes — user: `admin.teams:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `failed_to_fetch_info` — There was an error fetching info for this workspace. - `feature_not_enabled` — The Admin APIs feature is not enabled for this team. - `team_not_found` — The `team_id` was not found. See https://docs.slack.dev/reference/methods/admin.teams.settings.info */
@@ -7160,18 +7510,29 @@ export const usersInvite: API.OperationMethod<
 
 export type UsersListError = SlackOpError;
 /** List users on a workspace Required scopes — user: `admin.users:read` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `feature_not_enabled` — The Admin APIs feature is not enabled for this team. - `invalid_arguments` — The passed arguments were invalid. - `invalid_auth` — This request could not be authorized. - `invalid_cursor` — The passed cursor could not be validated. - `team_not_found` — `team_id` was not found. - `include_deactivated_user_workspaces_invalid` — `include_deactivated_user_workspaces` only applies with org token and no team_id. See https://docs.slack.dev/reference/methods/admin.users.list */
-export const usersList: API.OperationMethod<
+export const usersList: API.PaginatedOperationMethod<
   UsersListRequest,
   UsersListResponse,
   UsersListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsersListRequest,
-  output: UsersListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  UsersListResponseUsersItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: UsersListRequest,
+    output: UsersListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "users",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type UsersRemoveError = SlackOpError;
 /** Remove a user from a workspace. Required scopes — user: `admin.users:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `cannot_modify_primary_owner` — The primary owner cannot be modified. - `failed_to_remove_user_from_workspace` — Removing this user from the workspace failed. - `feature_not_enabled` — The Admin APIs feature is not enabled for this team. - `invalid_auth` — The request could not be authorized - `invalid_permissions` — This method is only accessible by org owners and admins. - `team_not_found` — `team_id` was not found. - `user_already_deleted` — The requested user has already been marked as deleted. - `user_not_found` — The user was not found. See https://docs.slack.dev/reference/methods/admin.users.remove */
@@ -7235,18 +7596,29 @@ export const usersSessionInvalidate: API.OperationMethod<
 
 export type UsersSessionListError = SlackOpError;
 /** List active user sessions for an organization Required scopes — user: `admin.users:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `admin_unauthorized` — The owner of this token isn't authorized to list sessions. - `bots_not_allowed` — Bot sessions are not listed by this method. - `feature_not_enabled` — This method is only available to Enterprise customers. - `invalid_auth` — The provided token doesn't have access to this endpoint. - `invalid_cursor` — The cursor passed was invalid. - `no_active_sessions` — No active sessions were found. - `not_an_admin` — The owner of this token isn't an Org Owner or Admin. - `missing_team` — A `team_id` must be provided with a `user_id`. - `missing_user` — A `user_id` must be provided with a `team_id`. - `team_not_found` — There was an error finding the requested workspace. - `unknown_method` — This method is currently not available. - `user_not_found` — There was an error finding the requested user. See https://docs.slack.dev/reference/methods/admin.users.session.list */
-export const usersSessionList: API.OperationMethod<
+export const usersSessionList: API.PaginatedOperationMethod<
   UsersSessionListRequest,
   UsersSessionListResponse,
   UsersSessionListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsersSessionListRequest,
-  output: UsersSessionListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  UsersSessionListResponseActiveSessionsItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: UsersSessionListRequest,
+    output: UsersSessionListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "active_sessions",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type UsersSessionResetError = SlackOpError;
 /** Wipes all valid sessions on all devices for a given user Required scopes — user: `admin.users:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `cannot_reset_bot` — Cannot reset bot users - `cannot_reset_primary_owner` — Only primary owner can reset primary owner's sessions - `feature_not_enabled` — This method is not available for this product level - `internal_error` — There was an internal error processing this request! Please try again. - `invalid_auth` — The token doesn't have access to this endpoint - `not_an_admin` — This method is only accessible by org/compliance team owners and admins - `unknown_method` — This method is currently not available - `user_not_found` — Error fetching user - `user_session_reset_failed` — There was an error starting the session reset. Try again. See https://docs.slack.dev/reference/methods/admin.users.session.reset */
@@ -7415,18 +7787,29 @@ export const workflowsPermissionsLookup: API.OperationMethod<
 
 export type WorkflowsSearchError = SlackOpError;
 /** Search workflows within the team or enterprise Required scopes — user: `admin.workflows:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `not_allowed` — The user is not allowed to access this API method. See https://docs.slack.dev/reference/methods/admin.workflows.search */
-export const workflowsSearch: API.OperationMethod<
+export const workflowsSearch: API.PaginatedOperationMethod<
   WorkflowsSearchRequest,
   WorkflowsSearchResponse,
   WorkflowsSearchError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowsSearchRequest,
-  output: WorkflowsSearchResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: WorkflowsSearchRequest,
+    output: WorkflowsSearchResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "workflows",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type WorkflowsTriggersTypesPermissionsLookupError = SlackOpError;
 /** List the permissions for using each trigger type. Required scopes — user: `client` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `restricted_action` — This actor does not have access to view the permissions on this resource - `trigger_type_id_not_found` — The given trigger type ID(s) do not map to valid trigger types See https://docs.slack.dev/reference/methods/admin.workflows.triggers.types.permissions.lookup */

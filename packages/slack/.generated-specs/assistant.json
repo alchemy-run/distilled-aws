@@ -694,12 +694,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The cursor you can use to fetch the next set of results. When there are no more results, `next_cursor` will be an empty string.",
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.assistant#SearchContextResponse": {
       "type": "structure",
@@ -718,7 +719,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.assistant#SearchContextResponseResponseMetadata"
+          "target": "com.slack.assistant#SearchContextResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {

@@ -7,6 +7,7 @@ import {
   type SlackOpError,
   type SlackOpContext,
 } from "../protocol.ts";
+import { slackPaginate } from "../pagination.ts";
 import { SlackError, SlackRateLimited } from "../errors.ts";
 import * as Retry from "../retry.ts";
 
@@ -292,23 +293,39 @@ export const InfoResponseCommentsList = /*@__PURE__*/ S.Array(
   InfoResponseCommentsItem,
 ) as any as S.Schema<InfoResponseCommentsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export interface InfoResponseResponseMetadata {
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
+}
+export const InfoResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    next_cursor: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "InfoResponseResponseMetadata",
+}) as any as S.Schema<InfoResponseResponseMetadata>;
+
 export interface InfoResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   file: InfoResponseFile;
-  comments?: InfoResponseCommentsList;
+  comments: InfoResponseCommentsList;
   content?: string;
   content_html?: unknown;
   content_highlight_html?: unknown;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: InfoResponseResponseMetadata;
 }
 export const InfoResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     file: InfoResponseFile,
-    comments: S.optional(InfoResponseCommentsList),
+    comments: InfoResponseCommentsList,
     content: S.optional(S.String),
     content_html: S.optional(S.Unknown),
     content_highlight_html: S.optional(S.Unknown),
+    response_metadata: S.optional(InfoResponseResponseMetadata),
   }),
 ).annotate({ identifier: "InfoResponse" }) as any as S.Schema<InfoResponse>;
 
@@ -615,28 +632,22 @@ export const RemoteListResponseFilesList = /*@__PURE__*/ S.Array(
   RemoteListResponseFilesItem,
 ) as any as S.Schema<RemoteListResponseFilesList>;
 
-export interface RemoteListResponseResponseMetadata {
-  next_cursor: string;
-}
-export const RemoteListResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    next_cursor: S.String,
-  }),
-).annotate({
-  identifier: "RemoteListResponseResponseMetadata",
-}) as any as S.Schema<RemoteListResponseResponseMetadata>;
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type RemoteListResponseResponseMetadata = InfoResponseResponseMetadata;
+export const RemoteListResponseResponseMetadata = InfoResponseResponseMetadata;
 
 export interface RemoteListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  files?: RemoteListResponseFilesList;
-  response_metadata?: RemoteListResponseResponseMetadata;
+  files: RemoteListResponseFilesList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: InfoResponseResponseMetadata;
 }
 export const RemoteListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    files: S.optional(RemoteListResponseFilesList),
-    response_metadata: S.optional(RemoteListResponseResponseMetadata),
+    files: RemoteListResponseFilesList,
+    response_metadata: S.optional(InfoResponseResponseMetadata),
   }),
 ).annotate({
   identifier: "RemoteListResponse",
@@ -976,18 +987,29 @@ export const getUploadURLExternal: API.OperationMethod<
 
 export type InfoError = SlackOpError;
 /** Gets information about a file. Required scopes — bot: `files:read`; user: `files:read` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `access_denied` — Unable to access the file (slack connect) - `file_deleted` — The requested file has been deleted - `file_not_found` — Value passed for `file` was invalid - `canvas_globally_disabled` — Canvas is disabled for this team - `canvas_disabled_user_team` — Canvas is disabled on user's team for connected Channels - `canvas_disabled_file_team` — Canvas is disabled on file's team - `not_visible` — Do not have permission to view the file - `template_not_visible` — Do not have permissions to view this template - `slack_connect_canvas_sharing_blocked` — Admin has disabled sharing of Canvas links in all Slack Connect communications See https://docs.slack.dev/reference/methods/files.info */
-export const info: API.OperationMethod<
+export const info: API.PaginatedOperationMethod<
   InfoRequest,
   InfoResponse,
   InfoError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InfoRequest,
-  output: InfoResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  InfoResponseCommentsItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: InfoRequest,
+    output: InfoResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "comments",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type ListError = SlackOpError;
 /** List files for a team, in a channel, or from a user with applied filters. Required scopes — bot: `files:read`; user: `files:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — A required argument is missing. - `slack_connect_canvas_sharing_blocked` — Admin has disabled sharing of Canvas links in all Slack Connect communications - `user_not_found` — Value passed for `user` was invalid - `unknown_type` — Value passed for `types` was invalid See https://docs.slack.dev/reference/methods/files.list */
@@ -1036,18 +1058,29 @@ export const remoteInfo: API.OperationMethod<
 
 export type RemoteListError = SlackOpError;
 /** Retrieve information about a remote file added to Slack Required scopes — bot: `remote_files:read`; user: `remote_files:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `no_bot_user_for_app` — Cannot call the Remote Files endpoints unless app has associated bot user See https://docs.slack.dev/reference/methods/files.remote.list */
-export const remoteList: API.OperationMethod<
+export const remoteList: API.PaginatedOperationMethod<
   RemoteListRequest,
   RemoteListResponse,
   RemoteListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RemoteListRequest,
-  output: RemoteListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  RemoteListResponseFilesItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: RemoteListRequest,
+    output: RemoteListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "files",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type RemoteRemoveError = SlackOpError;
 /** Remove a remote file. Required scopes — bot: `remote_files:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `bot_user_required` — bot user token is required - `file_not_found` — Value passed for `file` or `external_id` was invalid - `file_under_review` — File passed is tombstoned for DLP review - `invalid_args` — Invalid arguments passed to endpoint - `too_many_ids` — The request specified both an external_id and a file, only one may be specified See https://docs.slack.dev/reference/methods/files.remote.remove */

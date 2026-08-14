@@ -7,6 +7,7 @@ import {
   type SlackOpError,
   type SlackOpContext,
 } from "../protocol.ts";
+import { slackPaginate } from "../pagination.ts";
 import { SlackError, SlackRateLimited } from "../errors.ts";
 import * as Retry from "../retry.ts";
 
@@ -47,13 +48,15 @@ export const ConversationsResponseChannelsList = /*@__PURE__*/ S.Array(
   S.Unknown,
 ) as any as S.Schema<ConversationsResponseChannelsList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export interface ConversationsResponseResponseMetadata {
-  next_cursor: string;
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
 }
 export const ConversationsResponseResponseMetadata = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      next_cursor: S.String,
+      next_cursor: S.optional(S.String),
     }),
 ).annotate({
   identifier: "ConversationsResponseResponseMetadata",
@@ -63,6 +66,7 @@ export interface ConversationsResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   channels: ConversationsResponseChannelsList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
   response_metadata?: ConversationsResponseResponseMetadata;
 }
 export const ConversationsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -240,12 +244,19 @@ export const ListResponseMembersList = /*@__PURE__*/ S.Array(
   S.Unknown,
 ) as any as S.Schema<ListResponseMembersList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type ListResponseResponseMetadata =
+  ConversationsResponseResponseMetadata;
+export const ListResponseResponseMetadata =
+  ConversationsResponseResponseMetadata;
+
 export interface ListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   members: ListResponseMembersList;
   cache_ts: number;
-  response_metadata?: unknown;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: ConversationsResponseResponseMetadata;
   offset?: string;
 }
 export const ListResponse = /*@__PURE__*/ S.suspend(() =>
@@ -253,7 +264,7 @@ export const ListResponse = /*@__PURE__*/ S.suspend(() =>
     ok: S.Boolean,
     members: ListResponseMembersList,
     cache_ts: S.Number,
-    response_metadata: S.optional(S.Unknown),
+    response_metadata: S.optional(ConversationsResponseResponseMetadata),
     offset: S.optional(S.String),
   }),
 ).annotate({ identifier: "ListResponse" }) as any as S.Schema<ListResponse>;
@@ -451,18 +462,29 @@ export const SetPresenceResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type ConversationsError = SlackOpError;
 /** List conversations the calling user is a member of. Required scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `invalid_limit` — Value passed for `limit` is not understood. - `invalid_types` — Value passed for `type` could not be used based on the method's capabilities or the permission scopes granted to the used token. - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method. - `missing_argument` — A required argument is missing. - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation. See https://docs.slack.dev/reference/methods/users.conversations */
-export const conversations: API.OperationMethod<
+export const conversations: API.PaginatedOperationMethod<
   ConversationsRequest,
   ConversationsResponse,
   ConversationsError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConversationsRequest,
-  output: ConversationsResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ConversationsRequest,
+    output: ConversationsResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "channels",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type DeletePhotoError = SlackOpError;
 /** Delete the user profile photo Required scopes — user: `users.profile:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — An unexpected error occurred. See https://docs.slack.dev/reference/methods/users.deletePhoto */
@@ -541,18 +563,29 @@ export const info: API.OperationMethod<
 
 export type ListError = SlackOpError;
 /** Lists all users in a Slack team. Required scopes — bot: `users:read`; user: `users:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `limit_required` — For large teams a limit is required. - `missing_argument` — A required argument is missing. See https://docs.slack.dev/reference/methods/users.list */
-export const list: API.OperationMethod<
+export const list: API.PaginatedOperationMethod<
   ListRequest,
   ListResponse,
   ListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListRequest,
-  output: ListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListRequest,
+    output: ListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "members",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type LookupByEmailError = SlackOpError;
 /** Find a user with an email address. Required scopes — bot: `users:read.email`; user: `users:read.email` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `enterprise_is_restricted` — This method was called with an inappropriate enterprise-level token. - `users_not_found` — Value passed for `user` was invalid. See https://docs.slack.dev/reference/methods/users.lookupByEmail */

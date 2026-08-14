@@ -106,13 +106,30 @@ export const PresentCommentsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PresentCommentsRequest",
 }) as any as S.Schema<PresentCommentsRequest>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export interface PresentCommentsResponseResponseMetadata {
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
+}
+export const PresentCommentsResponseResponseMetadata = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      next_cursor: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "PresentCommentsResponseResponseMetadata",
+}) as any as S.Schema<PresentCommentsResponseResponseMetadata>;
+
 export interface PresentCommentsResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: PresentCommentsResponseResponseMetadata;
 }
 export const PresentCommentsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
+    response_metadata: S.optional(PresentCommentsResponseResponseMetadata),
   }),
 ).annotate({
   identifier: "PresentCommentsResponse",

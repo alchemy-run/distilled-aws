@@ -835,6 +835,20 @@
       },
       "traits": {}
     },
+    "com.slack.lists#ItemsListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.lists#ItemsListResponse": {
       "type": "structure",
       "members": {
@@ -852,7 +866,10 @@
           }
         },
         "response_metadata": {
-          "target": "smithy.api#Document"
+          "target": "com.slack.lists#ItemsListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -874,7 +891,14 @@
           "code": 200
         },
         "smithy.api#documentation": "Get records from a List.\n\nRequired scopes — bot: `lists:read`; user: `lists:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `list_not_found` — The List was not found.\n  - `team_not_found` — The team cannot be found.\n  - `user_not_found` — The user cannot be found.\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `archive_not_supported` — Archiving is not supported.\n\nSee https://docs.slack.dev/reference/methods/slackLists.items.list",
-        "com.distilled.openapi#contentType": "form-urlencoded"
+        "com.distilled.openapi#contentType": "form-urlencoded",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "items",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.lists#ItemsUpdateRequestCellsList": {

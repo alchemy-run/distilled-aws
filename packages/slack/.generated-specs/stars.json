@@ -387,11 +387,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.stars#ListResponse": {
       "type": "structure",
@@ -413,7 +415,10 @@
           "target": "smithy.api#Document"
         },
         "response_metadata": {
-          "target": "com.slack.stars#ListResponseResponseMetadata"
+          "target": "com.slack.stars#ListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -434,7 +439,14 @@
           "uri": "/stars.list",
           "code": 200
         },
-        "smithy.api#documentation": "(Deprecated) Listed a user's saved items, formerly known as stars.\n\nRequired scopes — user: `stars:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — A required argument is missing.\n\nSee https://docs.slack.dev/reference/methods/stars.list"
+        "smithy.api#documentation": "(Deprecated) Listed a user's saved items, formerly known as stars.\n\nRequired scopes — user: `stars:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — A required argument is missing.\n\nSee https://docs.slack.dev/reference/methods/stars.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "items",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.stars#RemoveRequest": {

@@ -7,6 +7,7 @@ import {
   type SlackOpError,
   type SlackOpContext,
 } from "../protocol.ts";
+import { slackPaginate } from "../pagination.ts";
 import { SlackError, SlackRateLimited } from "../errors.ts";
 import * as Retry from "../retry.ts";
 
@@ -481,13 +482,15 @@ export const ScheduledMessagesListResponseScheduledMessagesList =
     ScheduledMessagesListResponseScheduledMessagesItem,
   ) as any as S.Schema<ScheduledMessagesListResponseScheduledMessagesList>;
 
+/** Pagination metadata. An empty `next_cursor` means the last page. */
 export interface ScheduledMessagesListResponseResponseMetadata {
-  next_cursor: string;
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
 }
 export const ScheduledMessagesListResponseResponseMetadata =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      next_cursor: S.String,
+      next_cursor: S.optional(S.String),
     }),
   ).annotate({
     identifier: "ScheduledMessagesListResponseResponseMetadata",
@@ -497,6 +500,7 @@ export interface ScheduledMessagesListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   scheduled_messages: ScheduledMessagesListResponseScheduledMessagesList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
   response_metadata?: ScheduledMessagesListResponseResponseMetadata;
 }
 export const ScheduledMessagesListResponse = /*@__PURE__*/ S.suspend(() =>
@@ -1074,18 +1078,29 @@ export const postMessage: API.OperationMethod<
 
 export type ScheduledMessagesListError = SlackOpError;
 /** Returns a list of scheduled messages. Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `invalid_channel` — The channel passed is invalid - `invalid_cursor` — Provided cursor is invalid - `invalid_token` — Token is invalid See https://docs.slack.dev/reference/methods/chat.scheduledMessages.list */
-export const scheduledMessagesList: API.OperationMethod<
+export const scheduledMessagesList: API.PaginatedOperationMethod<
   ScheduledMessagesListRequest,
   ScheduledMessagesListResponse,
   ScheduledMessagesListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScheduledMessagesListRequest,
-  output: ScheduledMessagesListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+  SlackOpContext,
+  ScheduledMessagesListResponseScheduledMessagesItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ScheduledMessagesListRequest,
+    output: ScheduledMessagesListResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "scheduled_messages",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type ScheduleMessageError = SlackOpError;
 /** Schedules a message to be sent to a channel. Required scopes — bot: `chat:write`; user: `chat:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `channel_not_found` — Value passed for `channel` was invalid. - `is_archived` — Channel has been archived. - `invalid_blocks` — Blocks submitted with this message are not valid - `invalid_blocks_format` — The `blocks` is not a valid JSON object or doesn't match the Block Kit syntax. - `invalid_metadata_format` — Invalid metadata format provided - `invalid_metadata_schema` — Invalid metadata schema provided - `invalid_time` — value passed for `post_time` was invalid. - `markdown_text_conflict` — Markdown text cannot be used in conjunction with `blocks` or `text` argument. - `message_limit_exceeded` — Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces - `metadata_must_be_sent_from_app` — Message metadata can only be posted or updated using an app-level token - `metadata_too_large` — Metadata exceeds size limit - `msg_too_long` — Message text is too long - `no_text` — No message text provided - `not_in_channel` — Cannot post user messages to a channel they are not in. - `rate_limited` — Application has posted too many messages, [read the Rate Limit documentation](/apis/web-api/rate-limits) for more information - `restricted_action` — A workspace preference prevents the authenticated user from posting. - `restricted_action_non_threadable_channel` — Cannot post thread replies into a non_threadable channel. - `restricted_action_read_only_channel` — Cannot post any message into a read-only channel. - `restricted_action_thread_only_channel` — Cannot post top-level messages into a thread-only channel. - `restricted_too_many` — Too many messages were scheduled in the channel for a given period. See [usage info](/reference/methods/chat.scheduleMessage#restrictions) for additional details - `slack_connect_file_link_sharing_blocked` — Admin has disabled Slack File sharing in all Slack Connect communications - `time_in_past` — value passed for `post_time` was in the past. - `time_too_far` — value passed for `post_time` was too far into the future. - `too_many_attachments` — Too many attachments were provided with this message. A maximum of 100 attachments are allowed on a message. - `invalid_token` — The passed token is invalid or not supported by this method. See https://docs.slack.dev/reference/methods/chat.scheduleMessage */

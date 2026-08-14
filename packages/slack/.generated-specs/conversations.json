@@ -610,11 +610,13 @@
         "next_cursor": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
     },
     "com.slack.conversations#HistoryResponseUsersMap": {
       "type": "map",
@@ -719,7 +721,10 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.conversations#HistoryResponseResponseMetadata"
+          "target": "com.slack.conversations#HistoryResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         },
         "oldest": {
           "target": "smithy.api#String"
@@ -776,7 +781,14 @@
           "uri": "/conversations.history",
           "code": 200
         },
-        "smithy.api#documentation": "Fetches a conversation's history of messages and events.\n\nRequired scopes — bot: `groups:history`, `im:history`, `mpim:history`, `channels:history`; user: `groups:history`, `im:history`, `mpim:history`, `channels:history`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_is_limited_access` — The user has no access to the channel. This is only applicable to private Salesforce record channels.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_metadata_filter_keys` — Value passed for `metadata_keys_to_include` was invalid. Must be valid json array of strings.\n  - `invalid_ts_latest` — Value passed for `latest` was invalid\n  - `invalid_ts_oldest` — Value passed for `oldest` was invalid\n  - `not_in_channel` — The token used does not have access to the proper channel. Only user tokens can access public channels they are not in.\n\nSee https://docs.slack.dev/reference/methods/conversations.history"
+        "smithy.api#documentation": "Fetches a conversation's history of messages and events.\n\nRequired scopes — bot: `groups:history`, `im:history`, `mpim:history`, `channels:history`; user: `groups:history`, `im:history`, `mpim:history`, `channels:history`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_is_limited_access` — The user has no access to the channel. This is only applicable to private Salesforce record channels.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_metadata_filter_keys` — Value passed for `metadata_keys_to_include` was invalid. Must be valid json array of strings.\n  - `invalid_ts_latest` — Value passed for `latest` was invalid\n  - `invalid_ts_oldest` — Value passed for `oldest` was invalid\n  - `not_in_channel` — The token used does not have access to the proper channel. Only user tokens can access public channels they are not in.\n\nSee https://docs.slack.dev/reference/methods/conversations.history",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "messages",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.conversations#InfoRequest": {
@@ -1252,6 +1264,20 @@
       },
       "traits": {}
     },
+    "com.slack.conversations#ListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.conversations#ListResponse": {
       "type": "structure",
       "members": {
@@ -1266,6 +1292,12 @@
           "target": "com.slack.conversations#ListResponseChannelsList",
           "traits": {
             "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.conversations#ListResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
         }
       },
@@ -1287,7 +1319,14 @@
           "uri": "/conversations.list",
           "code": 200
         },
-        "smithy.api#documentation": "Lists all channels in a Slack team.\n\nRequired scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_limit` — Value passed for `limit` is not understood.\n  - `invalid_types` — Value passed for `type` could not be used based on the method's capabilities or the permission scopes granted to the used token.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_argument` — A required argument is missing.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n\nSee https://docs.slack.dev/reference/methods/conversations.list"
+        "smithy.api#documentation": "Lists all channels in a Slack team.\n\nRequired scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_limit` — Value passed for `limit` is not understood.\n  - `invalid_types` — Value passed for `type` could not be used based on the method's capabilities or the permission scopes granted to the used token.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_argument` — A required argument is missing.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n\nSee https://docs.slack.dev/reference/methods/conversations.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "channels",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.conversations#ListConnectInvitesRequest": {
@@ -1323,6 +1362,20 @@
       },
       "traits": {}
     },
+    "com.slack.conversations#ListConnectInvitesResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.conversations#ListConnectInvitesResponse": {
       "type": "structure",
       "members": {
@@ -1340,7 +1393,10 @@
           }
         },
         "response_metadata": {
-          "target": "smithy.api#Document"
+          "target": "com.slack.conversations#ListConnectInvitesResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -1361,7 +1417,13 @@
           "uri": "/conversations.listConnectInvites",
           "code": 200
         },
-        "smithy.api#documentation": "Lists shared channel invites that have been generated or received but have not been approved by all parties\n\nRequired scopes — bot: `conversations.connect:manage`\n\nRate limit tier: 1\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — An invalid argument was supplied to the method.\n  - `restricted_action` — A team preference prevents the authenticated user from viewing shared channel invites.\n\nSee https://docs.slack.dev/reference/methods/conversations.listConnectInvites"
+        "smithy.api#documentation": "Lists shared channel invites that have been generated or received but have not been approved by all parties\n\nRequired scopes — bot: `conversations.connect:manage`\n\nRate limit tier: 1\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — An invalid argument was supplied to the method.\n  - `restricted_action` — A team preference prevents the authenticated user from viewing shared channel invites.\n\nSee https://docs.slack.dev/reference/methods/conversations.listConnectInvites",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "invites"
+        }
       }
     },
     "com.slack.conversations#MarkRequest": {
@@ -1455,6 +1517,20 @@
       },
       "traits": {}
     },
+    "com.slack.conversations#MembersResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.conversations#MembersResponse": {
       "type": "structure",
       "members": {
@@ -1469,6 +1545,12 @@
           "target": "com.slack.conversations#MembersResponseMembersList",
           "traits": {
             "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.conversations#MembersResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
         }
       },
@@ -1490,7 +1572,14 @@
           "uri": "/conversations.members",
           "code": 200
         },
-        "smithy.api#documentation": "Retrieve members of a conversation.\n\nRequired scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `fetch_members_failed` — Failed to fetch members for the conversation.\n  - `invalid_cursor` — Value passed for `cursor` was invalid.\n  - `invalid_limit` — Value passed for `limit` was invalid.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n\nSee https://docs.slack.dev/reference/methods/conversations.members"
+        "smithy.api#documentation": "Retrieve members of a conversation.\n\nRequired scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `fetch_members_failed` — Failed to fetch members for the conversation.\n  - `invalid_cursor` — Value passed for `cursor` was invalid.\n  - `invalid_limit` — Value passed for `limit` was invalid.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n\nSee https://docs.slack.dev/reference/methods/conversations.members",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "members",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.conversations#OpenRequest": {
@@ -1726,6 +1815,20 @@
       },
       "traits": {}
     },
+    "com.slack.conversations#RepliesResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.conversations#RepliesResponse": {
       "type": "structure",
       "members": {
@@ -1750,6 +1853,12 @@
         },
         "unchanged_messages": {
           "target": "com.slack.conversations#RepliesResponseUnchangedMessagesList"
+        },
+        "response_metadata": {
+          "target": "com.slack.conversations#RepliesResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
         }
       },
       "traits": {
@@ -1770,7 +1879,14 @@
           "uri": "/conversations.replies",
           "code": 200
         },
-        "smithy.api#documentation": "Retrieve a thread of messages posted to a conversation\n\nRequired scopes — bot: `groups:history`, `im:history`, `mpim:history`, `channels:history`; user: `groups:history`, `im:history`, `mpim:history`, `channels:history`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value for `channel` was missing or invalid.\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_metadata_filter_keys` — Value passed for `metadata_keys_to_include` was invalid. Must be valid json array of strings.\n  - `invalid_ts_latest` — Value passed for `latest` was invalid\n  - `invalid_ts_oldest` — Value passed for `oldest` was invalid\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n  - `thread_not_found` — Value for `ts` was missing or invalid.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `list_record_comment_fetch_failed` — Failed to fetch list record comments.\n\nSee https://docs.slack.dev/reference/methods/conversations.replies"
+        "smithy.api#documentation": "Retrieve a thread of messages posted to a conversation\n\nRequired scopes — bot: `groups:history`, `im:history`, `mpim:history`, `channels:history`; user: `groups:history`, `im:history`, `mpim:history`, `channels:history`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value for `channel` was missing or invalid.\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_metadata_filter_keys` — Value passed for `metadata_keys_to_include` was invalid. Must be valid json array of strings.\n  - `invalid_ts_latest` — Value passed for `latest` was invalid\n  - `invalid_ts_oldest` — Value passed for `oldest` was invalid\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n  - `thread_not_found` — Value for `ts` was missing or invalid.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `list_record_comment_fetch_failed` — Failed to fetch list record comments.\n\nSee https://docs.slack.dev/reference/methods/conversations.replies",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "messages",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.conversations#RequestSharedInviteApproveRequestMessage": {
@@ -1990,6 +2106,20 @@
       },
       "traits": {}
     },
+    "com.slack.conversations#RequestSharedInviteListResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
     "com.slack.conversations#RequestSharedInviteListResponse": {
       "type": "structure",
       "members": {
@@ -2007,9 +2137,9 @@
           }
         },
         "response_metadata": {
-          "target": "smithy.api#Document",
+          "target": "com.slack.conversations#RequestSharedInviteListResponseResponseMetadata",
           "traits": {
-            "smithy.api#documentation": "Contains cursor to next page. Present only when next page exists."
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
         }
       },
@@ -2031,7 +2161,14 @@
           "uri": "/conversations.requestSharedInvite.list",
           "code": 200
         },
-        "smithy.api#documentation": "Lists requests to add external users to channels with ability to filter.\n\nRequired scopes — bot: `conversations.connect:manage`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `restricted_action` — A team preference prevents the user from listing invitation requests.\n  - `invalid_cursor` — The provided cursor is not valid.\n  - `internal_error` — Something unexpected went wrong.\n  - `not_implemented` — its not implemented!  TODO: remove me\n\nSee https://docs.slack.dev/reference/methods/conversations.requestSharedInvite.list"
+        "smithy.api#documentation": "Lists requests to add external users to channels with ability to filter.\n\nRequired scopes — bot: `conversations.connect:manage`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `restricted_action` — A team preference prevents the user from listing invitation requests.\n  - `invalid_cursor` — The provided cursor is not valid.\n  - `internal_error` — Something unexpected went wrong.\n  - `not_implemented` — its not implemented!  TODO: remove me\n\nSee https://docs.slack.dev/reference/methods/conversations.requestSharedInvite.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "invite_requests",
+          "pageSize": "limit"
+        }
       }
     },
     "com.slack.conversations#SetPurposeRequest": {

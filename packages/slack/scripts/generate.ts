@@ -63,6 +63,21 @@ const spec: SdkSpec = {
       ? `string | Redacted.Redacted<string>${m.nullable ? " | null" : ""}`
       : undefined,
 
+  // One pagination profile: Slack's cursor convention. The converter models
+  // `response_metadata.next_cursor` on every cursor op's output and stamps
+  // the `smithy.api#paginated` trait; the plain SlackProtocol already keeps
+  // `response_metadata` on the response (it is a modeled member), so no
+  // separate paginated protocol is needed — only the traversal strategy.
+  paginationProfiles: {
+    cursor: {
+      strategy: "slackPaginate",
+      // Every stamped trait carries its own `items`; there is no fallback
+      // path (a cursor op whose items list the docs don't model degrades to
+      // a plain operation instead).
+      itemsFallback: "",
+    },
+  },
+
   // The response carries only the active case's keys (`views.open`'s modal
   // vs workflow-step view), so the TS type is the case union and the schema
   // discriminates by key set at decode time — wire names equal the TS names
