@@ -236,10 +236,11 @@ const decode = ({
         (json === undefined && text.trim() ? text.trim() : `HTTP ${status}`);
 
       // 1. Per-operation typed error (matcher metadata on the class — none
-      //    are generated today, but model patches can add them).
-      const typed = matchTypedError(errorClasses, status, [
-        { code: slug, message },
-      ]);
+      //    are generated today, but model patches can add them). Slack's
+      //    error codes are string slugs, and matcher `code`s are numeric —
+      //    a patch-declared class matches on `status`/`message` instead
+      //    (`message` is the slug when the envelope carries no detail).
+      const typed = matchTypedError(errorClasses, status, [{ message }]);
       if (typed !== undefined) return yield* fail(typed);
 
       // 2. Throttling — the 429 or its envelope spellings.
