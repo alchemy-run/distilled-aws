@@ -1,0 +1,2037 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.vanta.webhooks#V1QuestionnaireCreatedRequestQuestionnaire": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The questionnaire ID.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1QuestionnaireCreatedRequest": {
+      "type": "structure",
+      "members": {
+        "questionnaire": {
+          "target": "com.vanta.webhooks#V1QuestionnaireCreatedRequestQuestionnaire",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1QuestionnaireCreated": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1QuestionnaireCreatedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.questionnaire.created",
+          "code": 200
+        },
+        "smithy.api#documentation": "Questionnaire created\n\nA questionnaire was created."
+      }
+    },
+    "com.vanta.webhooks#V1QuestionnaireDeletedRequestQuestionnaire": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The questionnaire ID.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1QuestionnaireDeletedRequest": {
+      "type": "structure",
+      "members": {
+        "questionnaire": {
+          "target": "com.vanta.webhooks#V1QuestionnaireDeletedRequestQuestionnaire",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1QuestionnaireDeleted": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1QuestionnaireDeletedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.questionnaire.deleted",
+          "code": 200
+        },
+        "smithy.api#documentation": "Questionnaire deleted\n\nA questionnaire was deleted."
+      }
+    },
+    "com.vanta.webhooks#V1QuestionnaireStatusChangedRequestQuestionnaireStatus": {
+      "type": "enum",
+      "members": {
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPROVED"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_PROGRESS"
+          }
+        },
+        "IN_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_REVIEW"
+          }
+        },
+        "EXTRACTING_QUESTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXTRACTING_QUESTIONS"
+          }
+        },
+        "QUEUED_FOR_EXTRACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED_FOR_EXTRACTION"
+          }
+        },
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROCESSING"
+          }
+        },
+        "QUEUED_FOR_PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED_FOR_PROCESSING"
+          }
+        },
+        "READY_FOR_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY_FOR_REVIEW"
+          }
+        },
+        "WAITING_ON_ANSWERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WAITING_ON_ANSWERS"
+          }
+        },
+        "WAITING_ON_COLUMN_SELECTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WAITING_ON_COLUMN_SELECTION"
+          }
+        },
+        "WAITING_ON_COLUMN_APPROVAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WAITING_ON_COLUMN_APPROVAL"
+          }
+        },
+        "QUEUED_FOR_COLUMN_DETECTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED_FOR_COLUMN_DETECTION"
+          }
+        },
+        "DETECTING_COLUMNS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DETECTING_COLUMNS"
+          }
+        },
+        "ON_HOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ON_HOLD"
+          }
+        },
+        "NO_LONGER_NEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_LONGER_NEEDED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The new questionnaire status."
+      }
+    },
+    "com.vanta.webhooks#V1QuestionnaireStatusChangedRequestQuestionnaire": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The questionnaire ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.vanta.webhooks#V1QuestionnaireStatusChangedRequestQuestionnaireStatus",
+          "traits": {
+            "smithy.api#documentation": "The new questionnaire status.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1QuestionnaireStatusChangedRequest": {
+      "type": "structure",
+      "members": {
+        "questionnaire": {
+          "target": "com.vanta.webhooks#V1QuestionnaireStatusChangedRequestQuestionnaire",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1QuestionnaireStatusChanged": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1QuestionnaireStatusChangedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.questionnaire.status-changed",
+          "code": 200
+        },
+        "smithy.api#documentation": "Questionnaire status changed\n\nA questionnaire status was changed."
+      }
+    },
+    "com.vanta.webhooks#V1QuestionnaireExportCompletedRequestQuestionnaire": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the questionnaire.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1QuestionnaireExportCompletedRequestExportFormat": {
+      "type": "enum",
+      "members": {
+        "ORIGINAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "original"
+          }
+        },
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The export format."
+      }
+    },
+    "com.vanta.webhooks#V1QuestionnaireExportCompletedRequestExport": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the export job.",
+            "smithy.api#required": {}
+          }
+        },
+        "format": {
+          "target": "com.vanta.webhooks#V1QuestionnaireExportCompletedRequestExportFormat",
+          "traits": {
+            "smithy.api#documentation": "The export format.",
+            "smithy.api#required": {}
+          }
+        },
+        "requestedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the export was initiated (ISO 8601).",
+            "smithy.api#required": {}
+          }
+        },
+        "completedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the export finished (ISO 8601).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1QuestionnaireExportCompletedRequest": {
+      "type": "structure",
+      "members": {
+        "questionnaire": {
+          "target": "com.vanta.webhooks#V1QuestionnaireExportCompletedRequestQuestionnaire",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "export": {
+          "target": "com.vanta.webhooks#V1QuestionnaireExportCompletedRequestExport",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1QuestionnaireExportCompleted": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1QuestionnaireExportCompletedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.questionnaire.export-completed",
+          "code": 200
+        },
+        "smithy.api#documentation": "Questionnaire export completed\n\nA questionnaire export has completed successfully."
+      }
+    },
+    "com.vanta.webhooks#V1QuestionnaireExportFailedRequestQuestionnaire": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the questionnaire.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1QuestionnaireExportFailedRequestExportFormat": {
+      "type": "enum",
+      "members": {
+        "ORIGINAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "original"
+          }
+        },
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The export format."
+      }
+    },
+    "com.vanta.webhooks#V1QuestionnaireExportFailedRequestExport": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the export job.",
+            "smithy.api#required": {}
+          }
+        },
+        "format": {
+          "target": "com.vanta.webhooks#V1QuestionnaireExportFailedRequestExportFormat",
+          "traits": {
+            "smithy.api#documentation": "The export format.",
+            "smithy.api#required": {}
+          }
+        },
+        "requestedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the export was initiated (ISO 8601).",
+            "smithy.api#required": {}
+          }
+        },
+        "failedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the export failed (ISO 8601).",
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for the export failure.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1QuestionnaireExportFailedRequest": {
+      "type": "structure",
+      "members": {
+        "questionnaire": {
+          "target": "com.vanta.webhooks#V1QuestionnaireExportFailedRequestQuestionnaire",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "export": {
+          "target": "com.vanta.webhooks#V1QuestionnaireExportFailedRequestExport",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1QuestionnaireExportFailed": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1QuestionnaireExportFailedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.questionnaire.export-failed",
+          "code": 200
+        },
+        "smithy.api#documentation": "Questionnaire export failed\n\nA questionnaire export has failed."
+      }
+    },
+    "com.vanta.webhooks#V1TrustCenterAccessRequestReceivedRequestTrustCenter": {
+      "type": "structure",
+      "members": {
+        "slugId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Trust Center slug ID.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1TrustCenterAccessRequestReceivedRequestAccessRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The access request ID.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1TrustCenterAccessRequestReceivedRequest": {
+      "type": "structure",
+      "members": {
+        "trustCenter": {
+          "target": "com.vanta.webhooks#V1TrustCenterAccessRequestReceivedRequestTrustCenter",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "accessRequest": {
+          "target": "com.vanta.webhooks#V1TrustCenterAccessRequestReceivedRequestAccessRequest",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1TrustCenterAccessRequestReceived": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1TrustCenterAccessRequestReceivedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.trust-center.access-request.received",
+          "code": 200
+        },
+        "smithy.api#documentation": "Trust Center access request received\n\nA Trust Center access request was received."
+      }
+    },
+    "com.vanta.webhooks#V1TrustCenterAccessRequestDeniedRequestTrustCenter": {
+      "type": "structure",
+      "members": {
+        "slugId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Trust Center slug ID.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1TrustCenterAccessRequestDeniedRequestAccessRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The access request ID.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1TrustCenterAccessRequestDeniedRequest": {
+      "type": "structure",
+      "members": {
+        "trustCenter": {
+          "target": "com.vanta.webhooks#V1TrustCenterAccessRequestDeniedRequestTrustCenter",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "accessRequest": {
+          "target": "com.vanta.webhooks#V1TrustCenterAccessRequestDeniedRequestAccessRequest",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1TrustCenterAccessRequestDenied": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1TrustCenterAccessRequestDeniedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.trust-center.access-request.denied",
+          "code": 200
+        },
+        "smithy.api#documentation": "Trust Center access request denied\n\nA Trust Center access request was denied."
+      }
+    },
+    "com.vanta.webhooks#V1TrustCenterAccessRequestApprovedRequestTrustCenter": {
+      "type": "structure",
+      "members": {
+        "slugId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Trust Center slug ID.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1TrustCenterAccessRequestApprovedRequestAccessRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The access request ID.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1TrustCenterAccessRequestApprovedRequestViewer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The viewer ID granted access.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1TrustCenterAccessRequestApprovedRequest": {
+      "type": "structure",
+      "members": {
+        "trustCenter": {
+          "target": "com.vanta.webhooks#V1TrustCenterAccessRequestApprovedRequestTrustCenter",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "accessRequest": {
+          "target": "com.vanta.webhooks#V1TrustCenterAccessRequestApprovedRequestAccessRequest",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "viewer": {
+          "target": "com.vanta.webhooks#V1TrustCenterAccessRequestApprovedRequestViewer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1TrustCenterAccessRequestApproved": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1TrustCenterAccessRequestApprovedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.trust-center.access-request.approved",
+          "code": 200
+        },
+        "smithy.api#documentation": "Trust Center access request approved\n\nA Trust Center access request was approved."
+      }
+    },
+    "com.vanta.webhooks#V1VendorDecisionCreatedRequestVendorDecisionStatus": {
+      "type": "enum",
+      "members": {
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPROVED"
+          }
+        },
+        "CONDITIONALLY_APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONDITIONALLY_APPROVED"
+          }
+        },
+        "NOT_APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_APPROVED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The vendor decision status."
+      }
+    },
+    "com.vanta.webhooks#V1VendorDecisionCreatedRequestVendorDecision": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.vanta.webhooks#V1VendorDecisionCreatedRequestVendorDecisionStatus",
+          "traits": {
+            "smithy.api#documentation": "The vendor decision status.",
+            "smithy.api#required": {}
+          }
+        },
+        "lastUpdatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the decision was last updated (ISO 8601).",
+            "smithy.api#required": {}
+          }
+        },
+        "comments": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional comments on the decision."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1VendorDecisionCreatedRequestVendor": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The vendor ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "decision": {
+          "target": "com.vanta.webhooks#V1VendorDecisionCreatedRequestVendorDecision",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1VendorDecisionCreatedRequest": {
+      "type": "structure",
+      "members": {
+        "vendor": {
+          "target": "com.vanta.webhooks#V1VendorDecisionCreatedRequestVendor",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1VendorDecisionCreated": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1VendorDecisionCreatedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.vendor.decision.created",
+          "code": 200
+        },
+        "smithy.api#documentation": "Vendor decision created\n\nA new vendor decision has been created."
+      }
+    },
+    "com.vanta.webhooks#V1InformationRequestStatusChangedRequestInformationRequestOldStatus": {
+      "type": "enum",
+      "members": {
+        "NEEDS_EVIDENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEEDS_EVIDENCE"
+          }
+        },
+        "READY_FOR_AUDIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY_FOR_AUDIT"
+          }
+        },
+        "AUDITOR_APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUDITOR_APPROVED"
+          }
+        },
+        "AUDITOR_FLAGGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUDITOR_FLAGGED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status the information request was in before the change."
+      }
+    },
+    "com.vanta.webhooks#V1InformationRequestStatusChangedRequestInformationRequestNewStatus": {
+      "type": "enum",
+      "members": {
+        "NEEDS_EVIDENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEEDS_EVIDENCE"
+          }
+        },
+        "READY_FOR_AUDIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY_FOR_AUDIT"
+          }
+        },
+        "AUDITOR_APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUDITOR_APPROVED"
+          }
+        },
+        "AUDITOR_FLAGGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUDITOR_FLAGGED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status the information request is in after the change. A value of `READY_FOR_AUDIT` means the customer has submitted the request and it is ready for the auditor to review."
+      }
+    },
+    "com.vanta.webhooks#V1InformationRequestStatusChangedRequestInformationRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the information request.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the information request belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "oldStatus": {
+          "target": "com.vanta.webhooks#V1InformationRequestStatusChangedRequestInformationRequestOldStatus",
+          "traits": {
+            "smithy.api#documentation": "The status the information request was in before the change.",
+            "smithy.api#required": {}
+          }
+        },
+        "newStatus": {
+          "target": "com.vanta.webhooks#V1InformationRequestStatusChangedRequestInformationRequestNewStatus",
+          "traits": {
+            "smithy.api#documentation": "The status the information request is in after the change. A value of `READY_FOR_AUDIT` means the customer has submitted the request and it is ready for the auditor to review.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1InformationRequestStatusChangedRequest": {
+      "type": "structure",
+      "members": {
+        "informationRequest": {
+          "target": "com.vanta.webhooks#V1InformationRequestStatusChangedRequestInformationRequest",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1InformationRequestStatusChanged": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1InformationRequestStatusChangedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.information-request.status-changed",
+          "code": 200
+        },
+        "smithy.api#documentation": "Information request status changed\n\nFires when an information request's approval status changes. This is a status-change event.\n\n**Ready-to-review signal:** a `newStatus` of `READY_FOR_AUDIT` means the customer has submitted the information request and it is ready for the auditor to review.\n\n**When it fires:** once per information request, each time its status changes between the values below. Not every status transition emits an event.\n\n**Status values:**\n- `NEEDS_EVIDENCE` — the request still needs work from the customer; it is not yet ready for the auditor.\n- `READY_FOR_AUDIT` — the customer has submitted the request and it is ready for the auditor to review.\n- `AUDITOR_APPROVED` — the auditor reviewed the request and approved it.\n- `AUDITOR_FLAGGED` — the auditor flagged the request for the customer to address.\n\nA typical lifecycle is `NEEDS_EVIDENCE → READY_FOR_AUDIT → AUDITOR_APPROVED` (or `→ AUDITOR_FLAGGED`). A request can also move from `READY_FOR_AUDIT` back to `NEEDS_EVIDENCE` when the customer takes it back to continue working on it."
+      }
+    },
+    "com.vanta.webhooks#V1InformationRequestCommentCreatedRequestInformationRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the information request.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the information request belongs to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1InformationRequestCommentCreatedRequestComment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the comment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1InformationRequestCommentCreatedRequest": {
+      "type": "structure",
+      "members": {
+        "informationRequest": {
+          "target": "com.vanta.webhooks#V1InformationRequestCommentCreatedRequestInformationRequest",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "com.vanta.webhooks#V1InformationRequestCommentCreatedRequestComment",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1InformationRequestCommentCreated": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1InformationRequestCommentCreatedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.information-request.comment.created",
+          "code": 200
+        },
+        "smithy.api#documentation": "Information request comment created\n\nFires when a comment is created on an information request. Fires once per comment.\n\nThe payload contains only identifiers; fetch the comment body from the information request comments endpoint (`GET /v1/audits/{auditId}/information-requests/{requestId}/comments`)."
+      }
+    },
+    "com.vanta.webhooks#V1InformationRequestCommentUpdatedRequestInformationRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the information request.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the information request belongs to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1InformationRequestCommentUpdatedRequestComment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the comment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1InformationRequestCommentUpdatedRequest": {
+      "type": "structure",
+      "members": {
+        "informationRequest": {
+          "target": "com.vanta.webhooks#V1InformationRequestCommentUpdatedRequestInformationRequest",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "com.vanta.webhooks#V1InformationRequestCommentUpdatedRequestComment",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1InformationRequestCommentUpdated": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1InformationRequestCommentUpdatedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.information-request.comment.updated",
+          "code": 200
+        },
+        "smithy.api#documentation": "Information request comment updated\n\nFires when a comment on an information request is updated. Fires once per comment update.\n\nThe payload contains only identifiers; fetch the current comment body from the information request comments endpoint (`GET /v1/audits/{auditId}/information-requests/{requestId}/comments`)."
+      }
+    },
+    "com.vanta.webhooks#V1InformationRequestCommentDeletedRequestInformationRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the information request.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the information request belongs to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1InformationRequestCommentDeletedRequestComment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the comment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1InformationRequestCommentDeletedRequest": {
+      "type": "structure",
+      "members": {
+        "informationRequest": {
+          "target": "com.vanta.webhooks#V1InformationRequestCommentDeletedRequestInformationRequest",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "com.vanta.webhooks#V1InformationRequestCommentDeletedRequestComment",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1InformationRequestCommentDeleted": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1InformationRequestCommentDeletedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.information-request.comment.deleted",
+          "code": 200
+        },
+        "smithy.api#documentation": "Information request comment deleted\n\nFires when a comment is deleted from an information request. Fires once per comment deletion.\n\nThe payload contains only identifiers; the deleted comment is still returned by the information request comments endpoint (`GET /v1/audits/{auditId}/information-requests/{requestId}/comments`) as a soft-deleted record with a non-null `deletionDate`."
+      }
+    },
+    "com.vanta.webhooks#V1InformationRequestEvidenceCreatedRequestInformationRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the information request.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the information request belongs to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1InformationRequestEvidenceCreatedRequestEvidence": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the evidence.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1InformationRequestEvidenceCreatedRequest": {
+      "type": "structure",
+      "members": {
+        "informationRequest": {
+          "target": "com.vanta.webhooks#V1InformationRequestEvidenceCreatedRequestInformationRequest",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "evidence": {
+          "target": "com.vanta.webhooks#V1InformationRequestEvidenceCreatedRequestEvidence",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1InformationRequestEvidenceCreated": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1InformationRequestEvidenceCreatedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.information-request.evidence.created",
+          "code": 200
+        },
+        "smithy.api#documentation": "Information request evidence created\n\nFires when a piece of evidence is added to an information request. Fires once per piece of evidence — if several pieces are added in a single action, you receive one event per piece.\n\nThese `v1.information-request.evidence.*` events belong to the Information Request experience and are unrelated to the `v1.evidence.*` classic audit evidence events."
+      }
+    },
+    "com.vanta.webhooks#V1InformationRequestEvidenceDeletedRequestInformationRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the information request.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the information request belongs to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1InformationRequestEvidenceDeletedRequestEvidence": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the evidence.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1InformationRequestEvidenceDeletedRequest": {
+      "type": "structure",
+      "members": {
+        "informationRequest": {
+          "target": "com.vanta.webhooks#V1InformationRequestEvidenceDeletedRequestInformationRequest",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "evidence": {
+          "target": "com.vanta.webhooks#V1InformationRequestEvidenceDeletedRequestEvidence",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1InformationRequestEvidenceDeleted": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1InformationRequestEvidenceDeletedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.information-request.evidence.deleted",
+          "code": 200
+        },
+        "smithy.api#documentation": "Information request evidence deleted\n\nFires when a piece of evidence is removed from an information request. Fires once per piece of evidence removed.\n\nThese `v1.information-request.evidence.*` events belong to the Information Request experience and are unrelated to the `v1.evidence.*` classic audit evidence events."
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceStatusChangedRequestEvidenceOldStatus": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCEPTED"
+          }
+        },
+        "FLAGGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FLAGGED"
+          }
+        },
+        "INITIALIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZED"
+          }
+        },
+        "NA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NA"
+          }
+        },
+        "NOT_READY_FOR_AUDIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_READY_FOR_AUDIT"
+          }
+        },
+        "READY_FOR_AUDIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY_FOR_AUDIT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status the evidence item was in before the change. `INITIALIZED` is an internal status and is never delivered."
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceStatusChangedRequestEvidenceNewStatus": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCEPTED"
+          }
+        },
+        "FLAGGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FLAGGED"
+          }
+        },
+        "INITIALIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZED"
+          }
+        },
+        "NA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NA"
+          }
+        },
+        "NOT_READY_FOR_AUDIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_READY_FOR_AUDIT"
+          }
+        },
+        "READY_FOR_AUDIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY_FOR_AUDIT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status the evidence item is in after the change. A value of `READY_FOR_AUDIT` means the customer has provided evidence for the item and it is ready for the auditor to review. `INITIALIZED` is an internal status and is never delivered."
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceStatusChangedRequestEvidence": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the evidence.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the evidence belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "oldStatus": {
+          "target": "com.vanta.webhooks#V1EvidenceStatusChangedRequestEvidenceOldStatus",
+          "traits": {
+            "smithy.api#documentation": "The status the evidence item was in before the change. `INITIALIZED` is an internal status and is never delivered.",
+            "smithy.api#required": {}
+          }
+        },
+        "newStatus": {
+          "target": "com.vanta.webhooks#V1EvidenceStatusChangedRequestEvidenceNewStatus",
+          "traits": {
+            "smithy.api#documentation": "The status the evidence item is in after the change. A value of `READY_FOR_AUDIT` means the customer has provided evidence for the item and it is ready for the auditor to review. `INITIALIZED` is an internal status and is never delivered.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1EvidenceStatusChangedRequest": {
+      "type": "structure",
+      "members": {
+        "evidence": {
+          "target": "com.vanta.webhooks#V1EvidenceStatusChangedRequestEvidence",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceStatusChanged": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1EvidenceStatusChangedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.evidence.status-changed",
+          "code": 200
+        },
+        "smithy.api#documentation": "Evidence status changed\n\nFires when an existing audit evidence item changes status. `oldStatus` and `newStatus` always describe a transition of an item that already exists. See [`v1.evidence.created`](/reference/webhooks/v1-evidence-created) for the event that fires when an item first comes into scope for an audit.\n\n**Ready-to-review signal:** a `newStatus` of `READY_FOR_AUDIT` means the customer has provided evidence for the item and it is ready for the auditor to review.\n\n**When it fires:** once per evidence item, each time its status changes. Status can also change on its own as the customer's compliance posture changes, so an item may move from `READY_FOR_AUDIT` back to `NOT_READY_FOR_AUDIT` without an explicit auditor action.\n\n`oldStatus` and `newStatus` can be equal. A newly detected document re-fires this event with both fields set to the item's current status (for example, `READY_FOR_AUDIT`, `ACCEPTED`, or `FLAGGED`). Treat that as a signal that the item's files may have changed and re-fetch its URLs. Do not discard events where the status is unchanged.\n\n**Status values:**\n- `NOT_READY_FOR_AUDIT` — the item is not yet ready for the auditor; required evidence is missing or does not meet the requirement.\n- `READY_FOR_AUDIT` — the customer has provided the evidence and it is ready for the auditor to review.\n- `ACCEPTED` — the auditor reviewed the item and accepted it.\n- `FLAGGED` — the auditor reviewed the item and flagged an issue for the customer to address; once the customer addresses it the item returns to `READY_FOR_AUDIT`.\n- `NA` — the item is not applicable to this audit.\n\nA typical lifecycle is `NOT_READY_FOR_AUDIT → READY_FOR_AUDIT → ACCEPTED` (or `→ FLAGGED`, which returns to `READY_FOR_AUDIT` once the customer addresses the issue). `INITIALIZED` is an internal status and is never delivered — `oldStatus` and `newStatus` are always one of the values above."
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceCommentCreatedRequestEvidence": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the evidence.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the evidence belongs to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1EvidenceCommentCreatedRequestComment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the comment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1EvidenceCommentCreatedRequest": {
+      "type": "structure",
+      "members": {
+        "evidence": {
+          "target": "com.vanta.webhooks#V1EvidenceCommentCreatedRequestEvidence",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "com.vanta.webhooks#V1EvidenceCommentCreatedRequestComment",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceCommentCreated": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1EvidenceCommentCreatedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.evidence.comment.created",
+          "code": 200
+        },
+        "smithy.api#documentation": "Evidence comment created\n\nFires when a comment is created on an audit evidence item. Fires once per comment."
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceCommentUpdatedRequestEvidence": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the evidence.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the evidence belongs to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1EvidenceCommentUpdatedRequestComment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the comment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1EvidenceCommentUpdatedRequest": {
+      "type": "structure",
+      "members": {
+        "evidence": {
+          "target": "com.vanta.webhooks#V1EvidenceCommentUpdatedRequestEvidence",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "com.vanta.webhooks#V1EvidenceCommentUpdatedRequestComment",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceCommentUpdated": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1EvidenceCommentUpdatedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.evidence.comment.updated",
+          "code": 200
+        },
+        "smithy.api#documentation": "Evidence comment updated\n\nFires when a comment on an audit evidence item is updated. Fires once per comment update."
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceCommentDeletedRequestEvidence": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the evidence.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the evidence belongs to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1EvidenceCommentDeletedRequestComment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the comment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1EvidenceCommentDeletedRequest": {
+      "type": "structure",
+      "members": {
+        "evidence": {
+          "target": "com.vanta.webhooks#V1EvidenceCommentDeletedRequestEvidence",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "com.vanta.webhooks#V1EvidenceCommentDeletedRequestComment",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceCommentDeleted": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1EvidenceCommentDeletedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.evidence.comment.deleted",
+          "code": 200
+        },
+        "smithy.api#documentation": "Evidence comment deleted\n\nFires when a comment is deleted from an audit evidence item. Fires once per comment deletion."
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceCreatedRequestEvidence": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the evidence.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the evidence belongs to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The evidence item that came into scope for the audit."
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceCreatedRequest": {
+      "type": "structure",
+      "members": {
+        "evidence": {
+          "target": "com.vanta.webhooks#V1EvidenceCreatedRequestEvidence",
+          "traits": {
+            "smithy.api#documentation": "The evidence item that came into scope for the audit.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceCreated": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1EvidenceCreatedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.evidence.created",
+          "code": 200
+        },
+        "smithy.api#documentation": "Evidence created\n\nFires when an audit evidence item comes into scope for an audit, including when a previously removed item re-enters scope after soft-delete.\n\nEvidence items are derived from the customer's compliance program, so this event means \"a new item is now in scope for this audit\", not \"a customer uploaded a file\". A brand-new item starts in `NOT_READY_FOR_AUDIT` with no files; wait for [`v1.evidence.status-changed`](/reference/webhooks/v1-evidence-status-changed) before requesting URLs. A re-scoped item retains its previous status and files. It may already be in `READY_FOR_AUDIT` or another state, and no follow-up status-change event is guaranteed.\n\n**This event does not replace the initial sync.** Items can come into scope from the moment the audit exists, which is normally before your access to the audit begins, and events from before that point are not delivered or replayed. Always perform a full traversal of `GET /audits/{auditId}/evidence` when you first pick up an audit, then rely on this event for items that come into scope afterwards."
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceDeletedRequestEvidence": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the evidence.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the evidence belongs to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The evidence item that left scope for the audit."
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceDeletedRequest": {
+      "type": "structure",
+      "members": {
+        "evidence": {
+          "target": "com.vanta.webhooks#V1EvidenceDeletedRequestEvidence",
+          "traits": {
+            "smithy.api#documentation": "The evidence item that left scope for the audit.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1EvidenceDeleted": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1EvidenceDeletedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.evidence.deleted",
+          "code": 200
+        },
+        "smithy.api#documentation": "Evidence deleted\n\nFires when an audit evidence item leaves scope for an audit. Fires once per item.\n\nThe item is soft-deleted rather than removed: `GET /audits/{auditId}/evidence` still returns it, with a non-null `deletionDate`. Stop requesting URLs for the item. If the item later returns to scope, Vanta emits a fresh [`v1.evidence.created`](/reference/webhooks/v1-evidence-created) event and clears `deletionDate`."
+      }
+    },
+    "com.vanta.webhooks#V1ControlCommentCreatedRequestControl": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the control the comment was added to.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the control belongs to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1ControlCommentCreatedRequestComment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the comment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1ControlCommentCreatedRequest": {
+      "type": "structure",
+      "members": {
+        "control": {
+          "target": "com.vanta.webhooks#V1ControlCommentCreatedRequestControl",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "com.vanta.webhooks#V1ControlCommentCreatedRequestComment",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1ControlCommentCreated": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1ControlCommentCreatedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.control.comment.created",
+          "code": 200
+        },
+        "smithy.api#documentation": "Control comment created\n\nAn external comment was created on an audit control. Fires once per comment.\n\nThis event is delivered only to [Audit Partner](/reference/audits/overview) accounts and is gated by the early-access `audit_control_comment_webhook` feature — reach out to your Vanta contact to enable it.\n\nThe payload contains only identifiers. Fetch the comment body from `GET /v1/audits/{auditId}/controls/{controlId}/comments`."
+      }
+    },
+    "com.vanta.webhooks#V1ControlCommentUpdatedRequestControl": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the control the comment belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the control belongs to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1ControlCommentUpdatedRequestComment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the comment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1ControlCommentUpdatedRequest": {
+      "type": "structure",
+      "members": {
+        "control": {
+          "target": "com.vanta.webhooks#V1ControlCommentUpdatedRequestControl",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "com.vanta.webhooks#V1ControlCommentUpdatedRequestComment",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1ControlCommentUpdated": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1ControlCommentUpdatedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.control.comment.updated",
+          "code": 200
+        },
+        "smithy.api#documentation": "Control comment updated\n\nAn external comment on an audit control was updated. Fires once per comment update.\n\nThis event is delivered only to [Audit Partner](/reference/audits/overview) accounts and is gated by the early-access `audit_control_comment_webhook` feature — reach out to your Vanta contact to enable it.\n\nThe payload contains only identifiers. Fetch the current comment body from `GET /v1/audits/{auditId}/controls/{controlId}/comments`."
+      }
+    },
+    "com.vanta.webhooks#V1ControlCommentDeletedRequestControl": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the control the comment was deleted from.",
+            "smithy.api#required": {}
+          }
+        },
+        "auditId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the audit the control belongs to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1ControlCommentDeletedRequestComment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the comment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vanta.webhooks#V1ControlCommentDeletedRequest": {
+      "type": "structure",
+      "members": {
+        "control": {
+          "target": "com.vanta.webhooks#V1ControlCommentDeletedRequestControl",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "com.vanta.webhooks#V1ControlCommentDeletedRequestComment",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vanta.webhooks#V1ControlCommentDeleted": {
+      "type": "operation",
+      "input": {
+        "target": "com.vanta.webhooks#V1ControlCommentDeletedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1.control.comment.deleted",
+          "code": 200
+        },
+        "smithy.api#documentation": "Control comment deleted\n\nAn external comment was deleted from an audit control. Fires once per comment deletion.\n\nThis event is delivered only to [Audit Partner](/reference/audits/overview) accounts and is gated by the early-access `audit_control_comment_webhook` feature — reach out to your Vanta contact to enable it.\n\nThe payload contains only identifiers. The deleted comment no longer appears in `GET /v1/audits/{auditId}/controls/{controlId}/comments`."
+      }
+    },
+    "com.vanta.webhooks#Webhooks": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.vanta.webhooks#V1QuestionnaireCreated"
+        },
+        {
+          "target": "com.vanta.webhooks#V1QuestionnaireDeleted"
+        },
+        {
+          "target": "com.vanta.webhooks#V1QuestionnaireStatusChanged"
+        },
+        {
+          "target": "com.vanta.webhooks#V1QuestionnaireExportCompleted"
+        },
+        {
+          "target": "com.vanta.webhooks#V1QuestionnaireExportFailed"
+        },
+        {
+          "target": "com.vanta.webhooks#V1TrustCenterAccessRequestReceived"
+        },
+        {
+          "target": "com.vanta.webhooks#V1TrustCenterAccessRequestDenied"
+        },
+        {
+          "target": "com.vanta.webhooks#V1TrustCenterAccessRequestApproved"
+        },
+        {
+          "target": "com.vanta.webhooks#V1VendorDecisionCreated"
+        },
+        {
+          "target": "com.vanta.webhooks#V1InformationRequestStatusChanged"
+        },
+        {
+          "target": "com.vanta.webhooks#V1InformationRequestCommentCreated"
+        },
+        {
+          "target": "com.vanta.webhooks#V1InformationRequestCommentUpdated"
+        },
+        {
+          "target": "com.vanta.webhooks#V1InformationRequestCommentDeleted"
+        },
+        {
+          "target": "com.vanta.webhooks#V1InformationRequestEvidenceCreated"
+        },
+        {
+          "target": "com.vanta.webhooks#V1InformationRequestEvidenceDeleted"
+        },
+        {
+          "target": "com.vanta.webhooks#V1EvidenceStatusChanged"
+        },
+        {
+          "target": "com.vanta.webhooks#V1EvidenceCommentCreated"
+        },
+        {
+          "target": "com.vanta.webhooks#V1EvidenceCommentUpdated"
+        },
+        {
+          "target": "com.vanta.webhooks#V1EvidenceCommentDeleted"
+        },
+        {
+          "target": "com.vanta.webhooks#V1EvidenceCreated"
+        },
+        {
+          "target": "com.vanta.webhooks#V1EvidenceDeleted"
+        },
+        {
+          "target": "com.vanta.webhooks#V1ControlCommentCreated"
+        },
+        {
+          "target": "com.vanta.webhooks#V1ControlCommentUpdated"
+        },
+        {
+          "target": "com.vanta.webhooks#V1ControlCommentDeleted"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vanta Webhook Events",
+        "smithy.api#documentation": "Reference for the events Vanta delivers to your registered webhook endpoints. Each operation documents a single event type, its payload schema, and an example body.\n\nThese operations describe **events Vanta sends to you** — they are not endpoints you call. The documented schema is the event `payload`. Every delivery also includes signature headers and is wrapped in a delivery envelope. See the [Webhooks guide](/docs/webhooks) for setup, signature verification, and retries."
+      }
+    }
+  }
+}
