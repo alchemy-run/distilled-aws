@@ -358,3 +358,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-spacetimedb.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/digitalocean/specs/spec-mirror-digitalocean"]
+	path = packages/digitalocean/specs/spec-mirror-digitalocean
+	url = https://github.com/distilled-mirror/spec-mirror-digitalocean.git
+	ignore = dirty
+	shallow = true
