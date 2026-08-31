@@ -348,3 +348,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-zendesk.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/modrinth/specs/spec-mirror-modrinth"]
+	path = packages/modrinth/specs/spec-mirror-modrinth
+	url = https://github.com/distilled-mirror/spec-mirror-modrinth.git
+	ignore = dirty
+	shallow = true

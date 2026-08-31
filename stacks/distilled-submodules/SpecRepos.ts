@@ -87,6 +87,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "metabase" },
   { package: "mongodb-atlas" },
   { package: "modal" },
+  { package: "modrinth" },
   { package: "neon" },
   { package: "okta" },
   { package: "onepassword" },
