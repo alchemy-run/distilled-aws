@@ -368,3 +368,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-opencode.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/growthbook/specs/spec-mirror-growthbook"]
+	path = packages/growthbook/specs/spec-mirror-growthbook
+	url = https://github.com/distilled-mirror/spec-mirror-growthbook.git
+	ignore = dirty
+	shallow = true

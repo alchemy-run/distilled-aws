@@ -453,6 +453,12 @@
     },
     {
       "path": "./packages/opencode/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/growthbook/tsconfig.json"
+    },
+    {
+      "path": "./packages/growthbook/tsconfig.scripts.json"
     }
   ]
 }
