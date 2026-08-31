@@ -429,6 +429,12 @@
     },
     {
       "path": "./packages/zendesk/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/modrinth/tsconfig.json"
+    },
+    {
+      "path": "./packages/modrinth/tsconfig.scripts.json"
     }
   ]
 }
