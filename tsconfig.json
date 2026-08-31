@@ -195,6 +195,12 @@
     },
     {
       "path": "./packages/plaid/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/redis-cloud/tsconfig.json"
+    },
+    {
+      "path": "./packages/redis-cloud/tsconfig.scripts.json"
     }
   ]
 }

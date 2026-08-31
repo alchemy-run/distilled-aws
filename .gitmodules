@@ -153,3 +153,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-plaid.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/redis-cloud/specs/spec-mirror-redis-cloud"]
+	path = packages/redis-cloud/specs/spec-mirror-redis-cloud
+	url = https://github.com/distilled-mirror/spec-mirror-redis-cloud.git
+	ignore = dirty
+	shallow = true
