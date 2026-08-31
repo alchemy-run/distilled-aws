@@ -405,6 +405,12 @@
     },
     {
       "path": "./packages/trigger-dev/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/turbopuffer/tsconfig.json"
+    },
+    {
+      "path": "./packages/turbopuffer/tsconfig.scripts.json"
     }
   ]
 }

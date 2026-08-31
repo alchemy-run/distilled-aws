@@ -110,6 +110,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "surrealdb" },
   { package: "temporal" },
   { package: "trigger-dev" },
+  { package: "turbopuffer" },
   { package: "turso" },
   { package: "typesense" },
   { package: "vercel" },
