@@ -38,6 +38,7 @@ export const repositoryName = (specRepo: SpecRepo) =>
   `spec-mirror-${specRepo.package}`;
 
 export const SPEC_REPOS: readonly SpecRepo[] = [
+  { package: "adyen" },
   { package: "aws" },
   { package: "axiom" },
   { package: "azure" },

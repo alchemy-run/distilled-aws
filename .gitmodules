@@ -133,3 +133,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-polar.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/adyen/specs/spec-mirror-adyen"]
+	path = packages/adyen/specs/spec-mirror-adyen
+	url = https://github.com/distilled-mirror/spec-mirror-adyen.git
+	ignore = dirty
+	shallow = true
