@@ -273,6 +273,12 @@
     },
     {
       "path": "./packages/chronosphere/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/customerio/tsconfig.json"
+    },
+    {
+      "path": "./packages/customerio/tsconfig.scripts.json"
     }
   ]
 }
