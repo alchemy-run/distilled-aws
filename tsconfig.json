@@ -351,6 +351,12 @@
     },
     {
       "path": "./packages/mercury/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/metabase/tsconfig.json"
+    },
+    {
+      "path": "./packages/metabase/tsconfig.scripts.json"
     }
   ]
 }
