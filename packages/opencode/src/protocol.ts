@@ -48,12 +48,13 @@ export const OpencodeProtocol: Layer.Layer<API.Protocol> =
       return yield* resolve;
     }),
     baseUrl: (creds) => creds.apiBaseUrl,
-    headers: (creds) =>
-      creds.password
-        ? {
-            Authorization: `Basic ${btoa(`${creds.username}:${Redacted.value(creds.password)}`)}`,
-          }
-        : {},
+    headers: (creds): Record<string, string> => {
+      const headers: Record<string, string> = {};
+      if (creds.password !== undefined) {
+        headers.Authorization = `Basic ${btoa(`${creds.username}:${Redacted.value(creds.password)}`)}`;
+      }
+      return headers;
+    },
     // OpenCode's error body is `{ name?, message }` — the factory's default
     // lenient envelope covers it.
     unknownError: ({ code, message, body }) =>

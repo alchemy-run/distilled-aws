@@ -12,7 +12,14 @@
  * const health = yield* Opencode.Services.opencode.globalHealth({});
  * ```
  */
-export * from "./credentials.ts";
+export {
+  Credentials,
+  CredentialsFromEnv,
+  DEFAULT_API_BASE_URL,
+  DEFAULT_USERNAME,
+  fromPassword,
+} from "./credentials.ts";
+export type { Config as OpencodeClientConfig } from "./credentials.ts";
 export * from "./errors.ts";
 export * as T from "./traits.ts";
 export {
