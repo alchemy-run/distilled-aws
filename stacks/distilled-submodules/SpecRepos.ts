@@ -75,6 +75,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "grafana" },
   { package: "gusto" },
   { package: "hetzner" },
+  { package: "hostinger" },
   { package: "huggingface" },
   { package: "kubernetes" },
   { package: "mongodb-atlas" },

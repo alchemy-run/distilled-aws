@@ -248,3 +248,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-gusto.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/hostinger/specs/spec-mirror-hostinger"]
+	path = packages/hostinger/specs/spec-mirror-hostinger
+	url = https://github.com/distilled-mirror/spec-mirror-hostinger.git
+	ignore = dirty
+	shallow = true
