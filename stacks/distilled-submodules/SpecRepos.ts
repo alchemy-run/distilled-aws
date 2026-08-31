@@ -103,6 +103,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "remote" },
   { package: "render" },
   { package: "resend" },
+  { package: "sentry" },
   { package: "stripe" },
   { package: "supabase" },
   { package: "surrealdb" },

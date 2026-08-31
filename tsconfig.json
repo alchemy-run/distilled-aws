@@ -381,6 +381,12 @@
     },
     {
       "path": "./packages/render/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/sentry/tsconfig.json"
+    },
+    {
+      "path": "./packages/sentry/tsconfig.scripts.json"
     }
   ]
 }
