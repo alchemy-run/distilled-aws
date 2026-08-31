@@ -1,0 +1,3408 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.paypal.customer_partner_referrals_v2#IndividualOwnerListInput": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#IndividualOwnerInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of owners in the account. There should be only one primary account owner which is mentioned in their role_type."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#IndividualOwnerInput": {
+      "type": "structure",
+      "members": {
+        "names": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonNameList"
+        },
+        "citizenship": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The citizenship country code of the person."
+          }
+        },
+        "addresses": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonAddressDetailList"
+        },
+        "phones": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonPhoneDetailList"
+        },
+        "birth_details": {
+          "target": "com.paypal.customer_partner_referrals_v2#BirthDetails",
+          "traits": {
+            "smithy.api#documentation": "The person's birth details."
+          }
+        },
+        "documents": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonDocumentListInput"
+        },
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#IndividualOwnerType",
+          "traits": {
+            "smithy.api#documentation": "The actual role of this user on the account, PRIMARY/SECONDARY."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#PersonNameList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#PersonName"
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the person."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PersonName": {
+      "type": "structure",
+      "members": {
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The prefix, or title, to the party's name."
+          }
+        },
+        "given_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's given, or first, name."
+          }
+        },
+        "surname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's surname or family name. Also known as the last name. Required when the party is a person. Use also to store multiple surnames including the matronymic, or mother's, surname."
+          }
+        },
+        "middle_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's middle name. Use also to store multiple middle names including the patronymic, or father's, middle name."
+          }
+        },
+        "suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The suffix for the party's name."
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's full name."
+          }
+        },
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonNameType",
+          "traits": {
+            "smithy.api#documentation": "The type of name. Currently supported values are: `LEGAL`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#PersonNameType": {
+      "type": "enum",
+      "members": {
+        "LEGAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEGAL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The person's name type."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PersonAddressDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#PersonAddressDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of addresses associated with the person."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PersonAddressDetail": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address. For example, number or street. For example, `173 Drury Lane`. Required for data entry and compliance and risk checks. Must contain the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address. For example, suite or apartment number."
+          }
+        },
+        "address_line_3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The third line of the address, if needed. For example, a street complement for Brazil, direction text, such as `next to Walmart`, or a landmark in an Indian address."
+          }
+        },
+        "admin_area_4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The neighborhood, ward, or district. Smaller than `admin_area_level_3` or `sub_locality`. Value is:<ul><li>The postal sorting code for Guernsey and many French territories, such as French Guiana.</li><li>The fine-grained administrative levels in China.</li></ul>"
+          }
+        },
+        "admin_area_3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A sub-locality, suburb, neighborhood, or district. Smaller than `admin_area_level_2`. Value is:<ul><li>Brazil. Suburb, bairro, or neighborhood.</li><li>India. Sub-locality or district. Street name information is not always available but a sub-locality or district can be a very small area.</li></ul>"
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. Format for postal delivery. For example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A kanton.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the zip code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "address_details": {
+          "target": "com.paypal.customer_partner_referrals_v2#AddressDetails"
+        },
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonAddressType",
+          "traits": {
+            "smithy.api#documentation": "The address type under which this is classified.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#AddressDetails": {
+      "type": "structure",
+      "members": {
+        "street_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The street number."
+          }
+        },
+        "street_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The street name. Just `Drury` in `Drury Lane`."
+          }
+        },
+        "street_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The street type. For example, avenue, boulevard, road, or expressway."
+          }
+        },
+        "delivery_service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The delivery service. Post office box, bag number, or post office name."
+          }
+        },
+        "building_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A named locations that represents the premise. Usually a building name or number or collection of buildings with a common name or number. For example, <code>Craven House</code>."
+          }
+        },
+        "sub_building": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first-order entity below a named building or location that represents the sub-premise. Usually a single building within a collection of buildings with a common name. Can be a flat, story, floor, room, or apartment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The non-portable additional address details that are sometimes needed for compliance, risk, or other scenarios where fine-grain address information might be needed. Not portable with common third party and open source. Redundant with core fields.<br/>For example, `address_portable.address_line_1` is usually a combination of `address_details.street_number`, `street_name`, and `street_type`."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PersonAddressType": {
+      "type": "enum",
+      "members": {
+        "HOME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOME"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The address type under which the provided address is tagged."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PersonPhoneDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#PersonPhoneDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of phone numbers associated with the person."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PersonPhoneDetail": {
+      "type": "structure",
+      "members": {
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country calling code (CC), in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the CC and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "national_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The national number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the country calling code (CC) and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "extension_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The extension number."
+          }
+        },
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#PhoneType",
+          "traits": {
+            "smithy.api#documentation": "The type of phone number provided. For example, home, work, or mobile.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#PhoneType": {
+      "type": "enum",
+      "members": {
+        "FAX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAX"
+          }
+        },
+        "HOME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOME"
+          }
+        },
+        "MOBILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "PAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone type."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BirthDetails": {
+      "type": "structure",
+      "members": {
+        "date_of_birth": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "date of birth, fomrat [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Date of birth data provided by the user"
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PersonDocumentListInput": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#PersonDocumentInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's or party's related document data collected from the customer. For example SSN, ITIN, or business registration number collected from the user. <blockquote><strong>Note:</strong> This field is not applicable for POST [/v2/customer/partner-referrals](/docs/api/partner-referrals/v2/#partner-referrals_create) API calls.</blockquote>"
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PersonDocumentInput": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.paypal.customer_partner_referrals_v2#LabelsList"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The file name."
+          }
+        },
+        "identification_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number for the document. It is the ID number if the document is `ID CARD`, the passport number if the document is `PASSPORT`, etc."
+          }
+        },
+        "issue_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The issue date of the document."
+          }
+        },
+        "expiry_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expire data of the document."
+          }
+        },
+        "issuing_country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country code of the document."
+          }
+        },
+        "files": {
+          "target": "com.paypal.customer_partner_referrals_v2#FileReferenceList"
+        },
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonDocumentType",
+          "traits": {
+            "smithy.api#documentation": "The actual type of the document. It could be `ID_CARD`, `PASSPORT`, etc."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#LabelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The document labels. A document could be classfied to multiple categories. For example, a bill document can be classfified as `BILL DOCUMENT` and `UTILITY DOCUMENT`."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#FileReferenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#FileReference"
+      },
+      "traits": {
+        "smithy.api#documentation": "The files contained in the document. For example, a document could be represented by a front page file and a back page file, etc."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#FileReference": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the referenced file."
+          }
+        },
+        "reference_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reference URL for the file."
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [Internet Assigned Numbers Authority (IANA) media type of the file](https://www.iana.org/assignments/media-types/media-types.xhtml)."
+          }
+        },
+        "create_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the file was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The size of the file, in bytes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The file reference. Can be a file in PayPal MediaServ, PayPal DMS, or another custom store."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PersonDocumentType": {
+      "type": "enum",
+      "members": {
+        "SOCIAL_SECURITY_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOCIAL_SECURITY_NUMBER"
+          }
+        },
+        "EMPLOYMENT_IDENTIFICATION_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EMPLOYMENT_IDENTIFICATION_NUMBER"
+          }
+        },
+        "TAX_IDENTIFICATION_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAX_IDENTIFICATION_NUMBER"
+          }
+        },
+        "PASSPORT_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSPORT_NUMBER"
+          }
+        },
+        "PENSION_FUND_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENSION_FUND_ID"
+          }
+        },
+        "MEDICAL_INSURANCE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDICAL_INSURANCE_ID"
+          }
+        },
+        "CNPJ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNPJ"
+          }
+        },
+        "CPF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CPF"
+          }
+        },
+        "PAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAN"
+          }
+        },
+        "NATIONAL_ID_CARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NATIONAL_ID_CARD"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of documents."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#IndividualOwnerType": {
+      "type": "enum",
+      "members": {
+        "PRIMARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIMARY"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Role of the person party played in the account."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessEntityInput": {
+      "type": "structure",
+      "members": {
+        "business_type": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessTypeInfo",
+          "traits": {
+            "smithy.api#documentation": "Information related to the business like the nature of business, started date etc."
+          }
+        },
+        "business_industry": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessIndustry",
+          "traits": {
+            "smithy.api#documentation": "Information related to the business like the nature of business, started date etc."
+          }
+        },
+        "business_incorporation": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessEntityInputBusinessIncorporation",
+          "traits": {
+            "smithy.api#documentation": "Business incorporation information."
+          }
+        },
+        "names": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessNameDetailList"
+        },
+        "emails": {
+          "target": "com.paypal.customer_partner_referrals_v2#EmailList"
+        },
+        "website": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Website of the business."
+          }
+        },
+        "addresses": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessAddressDetailList"
+        },
+        "phones": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessPhoneDetailList"
+        },
+        "documents": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessDocumentListInput"
+        },
+        "beneficial_owners": {
+          "target": "com.paypal.customer_partner_referrals_v2#BeneficialOwnersInput",
+          "traits": {
+            "smithy.api#documentation": "List of beneficial owners part of the entity. They can be either a Person or a business entity."
+          }
+        },
+        "annual_sales_volume_range": {
+          "target": "com.paypal.customer_partner_referrals_v2#CurrencyRange",
+          "traits": {
+            "smithy.api#documentation": "The range for the total annual sales volume of the business."
+          }
+        },
+        "average_monthly_volume_range": {
+          "target": "com.paypal.customer_partner_referrals_v2#CurrencyRange",
+          "traits": {
+            "smithy.api#documentation": "The range for the average monthly volume of the business."
+          }
+        },
+        "purpose_code": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The account's purpose code."
+          }
+        },
+        "business_description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The business goals description. For example, a mission statement."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessTypeInfo": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessType",
+          "traits": {
+            "smithy.api#documentation": "Type of business entity like corporation, sole prop, governmental."
+          }
+        },
+        "subtype": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessSubType",
+          "traits": {
+            "smithy.api#documentation": "The sub classification of the business type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type and subtype of the business."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessType": {
+      "type": "enum",
+      "members": {
+        "ANY_OTHER_BUSINESS_ENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANY_OTHER_BUSINESS_ENTITY"
+          }
+        },
+        "ASSOCIATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASSOCIATION"
+          }
+        },
+        "CORPORATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CORPORATION"
+          }
+        },
+        "GENERAL_PARTNERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GENERAL_PARTNERSHIP"
+          }
+        },
+        "GOVERNMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOVERNMENT"
+          }
+        },
+        "INDIVIDUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIVIDUAL"
+          }
+        },
+        "LIMITED_LIABILITY_PARTNERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIMITED_LIABILITY_PARTNERSHIP"
+          }
+        },
+        "LIMITED_LIABILITY_PROPRIETORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIMITED_LIABILITY_PROPRIETORS"
+          }
+        },
+        "LIMITED_LIABILITY_PRIVATE_CORPORATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIMITED_LIABILITY_PRIVATE_CORPORATION"
+          }
+        },
+        "LIMITED_PARTNERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIMITED_PARTNERSHIP"
+          }
+        },
+        "LIMITED_PARTNERSHIP_PRIVATE_CORPORATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIMITED_PARTNERSHIP_PRIVATE_CORPORATION"
+          }
+        },
+        "NONPROFIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONPROFIT"
+          }
+        },
+        "ONLY_BUY_OR_SEND_MONEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONLY_BUY_OR_SEND_MONEY"
+          }
+        },
+        "OTHER_CORPORATE_BODY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER_CORPORATE_BODY"
+          }
+        },
+        "PARTNERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTNERSHIP"
+          }
+        },
+        "PRIVATE_PARTNERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVATE_PARTNERSHIP"
+          }
+        },
+        "PROPRIETORSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROPRIETORSHIP"
+          }
+        },
+        "PROPRIETORSHIP_CRAFTSMAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROPRIETORSHIP_CRAFTSMAN"
+          }
+        },
+        "PROPRIETORY_COMPANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROPRIETORY_COMPANY"
+          }
+        },
+        "PRIVATE_CORPORATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVATE_CORPORATION"
+          }
+        },
+        "PUBLIC_COMPANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLIC_COMPANY"
+          }
+        },
+        "PUBLIC_CORPORATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLIC_CORPORATION"
+          }
+        },
+        "PUBLIC_PARTNERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLIC_PARTNERSHIP"
+          }
+        },
+        "REGISTERED_COOPERATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGISTERED_COOPERATIVE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The business types classified"
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessSubType": {
+      "type": "enum",
+      "members": {
+        "ASSO_TYPE_INCORPORATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASSO_TYPE_INCORPORATED"
+          }
+        },
+        "ASSO_TYPE_NON_INCORPORATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASSO_TYPE_NON_INCORPORATED"
+          }
+        },
+        "GOVT_TYPE_ENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOVT_TYPE_ENTITY"
+          }
+        },
+        "GOVT_TYPE_EMANATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOVT_TYPE_EMANATION"
+          }
+        },
+        "GOVT_TYPE_ESTD_COMM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOVT_TYPE_ESTD_COMM"
+          }
+        },
+        "GOVT_TYPE_ESTD_FC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOVT_TYPE_ESTD_FC"
+          }
+        },
+        "GOVT_TYPE_ESTD_ST_TR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOVT_TYPE_ESTD_ST_TR"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sub classification of the business type"
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessIndustry": {
+      "type": "structure",
+      "members": {
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The customer's business category code. PayPal uses industry standard seller category codes.",
+            "smithy.api#required": {}
+          }
+        },
+        "mcc_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The customer's business seller category code. PayPal uses industry standard seller category codes.",
+            "smithy.api#required": {}
+          }
+        },
+        "subcategory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The customer's business subcategory code. PayPal uses industry standard seller subcategory codes.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The category, subcategory and MCC code of the business."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessEntityInputBusinessIncorporation": {
+      "type": "structure",
+      "members": {
+        "incorporation_country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The incorporation country code."
+          }
+        },
+        "incorporation_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "date of incorporation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Business incorporation information."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessNameDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#BusinessNameDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "Name of the business."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessNameDetail": {
+      "type": "structure",
+      "members": {
+        "business_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The business name of the party."
+          }
+        },
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessNameType",
+          "traits": {
+            "smithy.api#documentation": "The type of business name. For example, trading name.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessNameType": {
+      "type": "enum",
+      "members": {
+        "DOING_BUSINESS_AS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOING_BUSINESS_AS"
+          }
+        },
+        "LEGAL_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEGAL_NAME"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Business name type"
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#EmailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#Email"
+      },
+      "traits": {
+        "smithy.api#documentation": "Email addresses of the business."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#Email": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#EmailType",
+          "traits": {
+            "smithy.api#documentation": "The role of the email address.",
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An email address at which the person or business can be contacted."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#EmailType": {
+      "type": "enum",
+      "members": {
+        "CUSTOMER_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOMER_SERVICE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The role of the email address."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessAddressDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#BusinessAddressDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of addresses associated with the business entity."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessAddressDetail": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address. For example, number or street. For example, `173 Drury Lane`. Required for data entry and compliance and risk checks. Must contain the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address. For example, suite or apartment number."
+          }
+        },
+        "address_line_3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The third line of the address, if needed. For example, a street complement for Brazil, direction text, such as `next to Walmart`, or a landmark in an Indian address."
+          }
+        },
+        "admin_area_4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The neighborhood, ward, or district. Smaller than `admin_area_level_3` or `sub_locality`. Value is:<ul><li>The postal sorting code for Guernsey and many French territories, such as French Guiana.</li><li>The fine-grained administrative levels in China.</li></ul>"
+          }
+        },
+        "admin_area_3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A sub-locality, suburb, neighborhood, or district. Smaller than `admin_area_level_2`. Value is:<ul><li>Brazil. Suburb, bairro, or neighborhood.</li><li>India. Sub-locality or district. Street name information is not always available but a sub-locality or district can be a very small area.</li></ul>"
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. Format for postal delivery. For example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A kanton.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the zip code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "address_details": {
+          "target": "com.paypal.customer_partner_referrals_v2#AddressDetails"
+        },
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessAddressType",
+          "traits": {
+            "smithy.api#documentation": "The address type under which this is classified. For example, shipping or dropoff.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessAddressType": {
+      "type": "enum",
+      "members": {
+        "WORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORK"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Address type under which the provided address is tagged"
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessPhoneDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#BusinessPhoneDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of phone number associated with the business."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessPhoneDetail": {
+      "type": "structure",
+      "members": {
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country calling code (CC), in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the CC and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "national_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The national number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the country calling code (CC) and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "extension_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The extension number."
+          }
+        },
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessPhoneType",
+          "traits": {
+            "smithy.api#documentation": "The type of phone number provided. For example, home, work, or mobile.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessPhoneType": {
+      "type": "enum",
+      "members": {
+        "CUSTOMER_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOMER_SERVICE"
+          }
+        },
+        "BUSINESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUSINESS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of phone number provided. For example, home, work, or mobile."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessDocumentListInput": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#BusinessDocumentInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Business Party related Document data collected from the customer.. For example SSN, ITIN, Business registration number that were collected from the user."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessDocumentInput": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.paypal.customer_partner_referrals_v2#LabelsList"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The file name."
+          }
+        },
+        "identification_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number for the document. It is the ID number if the document is `ID CARD`, the passport number if the document is `PASSPORT`, etc."
+          }
+        },
+        "issue_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The issue date of the document."
+          }
+        },
+        "expiry_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expire data of the document."
+          }
+        },
+        "issuing_country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country code of the document."
+          }
+        },
+        "files": {
+          "target": "com.paypal.customer_partner_referrals_v2#FileReferenceList"
+        },
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessDocumentType",
+          "traits": {
+            "smithy.api#documentation": "The actual type of the document."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessDocumentType": {
+      "type": "enum",
+      "members": {
+        "SOCIAL_SECURITY_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOCIAL_SECURITY_NUMBER"
+          }
+        },
+        "EMPLOYMENT_IDENTIFICATION_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EMPLOYMENT_IDENTIFICATION_NUMBER"
+          }
+        },
+        "TAX_IDENTIFICATION_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAX_IDENTIFICATION_NUMBER"
+          }
+        },
+        "PASSPORT_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSPORT_NUMBER"
+          }
+        },
+        "PENSION_FUND_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENSION_FUND_ID"
+          }
+        },
+        "MEDICAL_INSURANCE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDICAL_INSURANCE_ID"
+          }
+        },
+        "CNPJ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNPJ"
+          }
+        },
+        "CPF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CPF"
+          }
+        },
+        "PAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAN"
+          }
+        },
+        "BUSINESS_REGISTRATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUSINESS_REGISTRATION"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of documents."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BeneficialOwnersInput": {
+      "type": "structure",
+      "members": {
+        "individual_beneficial_owners": {
+          "target": "com.paypal.customer_partner_referrals_v2#IndividualBeneficialOwnerListInput"
+        },
+        "business_beneficial_owners": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessBeneficialOwnerListInput"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Beneficial owners of the entity."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#IndividualBeneficialOwnerListInput": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#IndividualBeneficialOwnerInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Individual beneficial owners."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#IndividualBeneficialOwnerInput": {
+      "type": "structure",
+      "members": {
+        "names": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonNameList"
+        },
+        "citizenship": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The citizenship country code of the person."
+          }
+        },
+        "addresses": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonAddressDetailList"
+        },
+        "phones": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonPhoneDetailList"
+        },
+        "birth_details": {
+          "target": "com.paypal.customer_partner_referrals_v2#BirthDetails",
+          "traits": {
+            "smithy.api#documentation": "The person's birth details."
+          }
+        },
+        "documents": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonDocumentListInput"
+        },
+        "percentage_of_ownership": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The percentage of shares this person owns in the company."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessBeneficialOwnerListInput": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#BusinessBeneficialOwnerInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Business beneficial owners."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessBeneficialOwnerInput": {
+      "type": "structure",
+      "members": {
+        "business_type": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessTypeInfo",
+          "traits": {
+            "smithy.api#documentation": "Information related to the business like the nature of business, started date etc."
+          }
+        },
+        "business_industry": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessIndustry",
+          "traits": {
+            "smithy.api#documentation": "Information related to the business like the nature of business, started date etc."
+          }
+        },
+        "business_incorporation": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessBeneficialOwnerInputBusinessIncorporation",
+          "traits": {
+            "smithy.api#documentation": "Business incorporation information."
+          }
+        },
+        "names": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessNameDetailList"
+        },
+        "emails": {
+          "target": "com.paypal.customer_partner_referrals_v2#EmailList"
+        },
+        "website": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Website of the business."
+          }
+        },
+        "addresses": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessAddressDetailList"
+        },
+        "phones": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessPhoneDetailList"
+        },
+        "documents": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessDocumentListInput"
+        },
+        "percentage_of_ownership": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The percentage of shares this person owns in the company."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessBeneficialOwnerInputBusinessIncorporation": {
+      "type": "structure",
+      "members": {
+        "incorporation_country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The incorporation country code."
+          }
+        },
+        "incorporation_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "date of incorporation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Business incorporation information."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#CurrencyRange": {
+      "type": "structure",
+      "members": {
+        "minimum_amount": {
+          "target": "com.paypal.customer_partner_referrals_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The minimum inclusive amount for the range."
+          }
+        },
+        "maximum_amount": {
+          "target": "com.paypal.customer_partner_referrals_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The maximum inclusive amount for the range."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The currency range, from the minimum inclusive amount to the maximum inclusive amount."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#Money": {
+      "type": "structure",
+      "members": {
+        "currency_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/docs/integration/direct/rest/currency-codes/).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The currency and amount for a financial transaction, such as a balance or payment due."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PartnerConfigOverride": {
+      "type": "structure",
+      "members": {
+        "return_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to which to redirect the customer upon completion of the onboarding process."
+          }
+        },
+        "return_url_description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the return URL."
+          }
+        },
+        "show_add_credit_card": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to show an add credit card page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The preference to customize the web experience of the customer by overriding that is set at the Partner's Account."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#FinancialInstruments": {
+      "type": "structure",
+      "members": {
+        "banks": {
+          "target": "com.paypal.customer_partner_referrals_v2#BankList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Financial instruments attached to this account."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BankList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#Bank"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of banks attached to this managed account."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#Bank": {
+      "type": "structure",
+      "members": {
+        "nick_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user-provided short name for the user's bank account."
+          }
+        },
+        "account_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The bank account number.",
+            "smithy.api#required": {}
+          }
+        },
+        "account_type": {
+          "target": "com.paypal.customer_partner_referrals_v2#BankAccountType",
+          "traits": {
+            "smithy.api#documentation": "The type of bank account.",
+            "smithy.api#required": {}
+          }
+        },
+        "currency_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The primary currency code of the bank account."
+          }
+        },
+        "identifiers": {
+          "target": "com.paypal.customer_partner_referrals_v2#IdentifierList"
+        },
+        "branch_location": {
+          "target": "com.paypal.customer_partner_referrals_v2#BankBranchLocation",
+          "traits": {
+            "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+          }
+        },
+        "mandate": {
+          "target": "com.paypal.customer_partner_referrals_v2#Mandate",
+          "traits": {
+            "smithy.api#documentation": "Mandate for this bank account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The bank account information."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BankAccountType": {
+      "type": "enum",
+      "members": {
+        "CHECKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHECKING"
+          }
+        },
+        "SAVINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAVINGS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of bank account."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#IdentifierList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#Identifier"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of instrument institute attributes. Used with the account number to uniquely identify the instrument. Value is:<ul><li>For banks with IBAN information, the IBAN number.</li><li>For banks with BBAN information, the BBAN number.</li><li>For banks with both IBAN and BBAN information, the IBAN number.</li></ul>"
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#Identifier": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#IdentifierType",
+          "traits": {
+            "smithy.api#documentation": "The bank account ID type."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of account identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The bank account ID. An ID with `ROUTING_NUMBER_1` is required."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#IdentifierType": {
+      "type": "enum",
+      "members": {
+        "BANK_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BANK_CODE"
+          }
+        },
+        "BI_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BI_CODE"
+          }
+        },
+        "BRANCH_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BRANCH_CODE"
+          }
+        },
+        "ROUTING_NUMBER_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROUTING_NUMBER_1"
+          }
+        },
+        "ROUTING_NUMBER_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROUTING_NUMBER_2"
+          }
+        },
+        "ROUTING_NUMBER_3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROUTING_NUMBER_3"
+          }
+        },
+        "SWIFT_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SWIFT_CODE"
+          }
+        },
+        "BRANCH_CODE_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BRANCH_CODE"
+          }
+        },
+        "INTERMEDIARY_SWIFT_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERMEDIARY_SWIFT_CODE"
+          }
+        },
+        "BBAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BBAN"
+          }
+        },
+        "BBAN_ENCRYPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BBAN_ENCRYPTED"
+          }
+        },
+        "BBAN_HMAC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BBAN_HMAC"
+          }
+        },
+        "AGGREGATOR_YODLEE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGGREGATOR_YODLEE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The bank account ID type."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BankBranchLocation": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address. For example, number or street. For example, `173 Drury Lane`. Required for data entry and compliance and risk checks. Must contain the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address. For example, suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. Format for postal delivery. For example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A kanton.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the zip code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#Mandate": {
+      "type": "structure",
+      "members": {
+        "accepted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether mandate was accepted or not.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Seller’s consent to operate on this financial instrument."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of operations to perform for the customer while they share their data."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#Operation": {
+      "type": "structure",
+      "members": {
+        "operation": {
+          "target": "com.paypal.customer_partner_referrals_v2#OperationOperation",
+          "traits": {
+            "smithy.api#documentation": "The operation to enable for the customer. To enable the collection of the API permissions that you require to integrate with the customer, specify `API_INTEGRATION`. `BANK_ADDITION` is supported only for the US.",
+            "smithy.api#required": {}
+          }
+        },
+        "api_integration_preference": {
+          "target": "com.paypal.customer_partner_referrals_v2#IntegrationDetails"
+        },
+        "offline_onboarding_preference": {
+          "target": "smithy.api#Document"
+        },
+        "billing_agreement": {
+          "target": "com.paypal.customer_partner_referrals_v2#BillingAgreement"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The required operation to share data."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#OperationOperation": {
+      "type": "enum",
+      "members": {
+        "API_INTEGRATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "API_INTEGRATION"
+          }
+        },
+        "BANK_ADDITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BANK_ADDITION"
+          }
+        },
+        "BILLING_AGREEMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BILLING_AGREEMENT"
+          }
+        },
+        "CONTEXTUAL_MARKETING_CONSENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTEXTUAL_MARKETING_CONSENT"
+          }
+        },
+        "OFFLINE_ONBOARDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OFFLINE_ONBOARDING"
+          }
+        },
+        "SALESFORCE_REFERRAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SALESFORCE_REFERRAL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operation to enable for the customer. To enable the collection of the API permissions that you require to integrate with the customer, specify `API_INTEGRATION`. `BANK_ADDITION` is supported only for the US."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#IntegrationDetails": {
+      "type": "structure",
+      "members": {
+        "classic_api_integration": {
+          "target": "smithy.api#Document"
+        },
+        "rest_api_integration": {
+          "target": "com.paypal.customer_partner_referrals_v2#RestApiIntegration"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The integration details for the partner and customer relationship. Required if `operation` is `API_INTEGRATION`."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#RestApiIntegration": {
+      "type": "structure",
+      "members": {
+        "integration_method": {
+          "target": "com.paypal.customer_partner_referrals_v2#RestApiIntegrationIntegrationMethod",
+          "traits": {
+            "smithy.api#documentation": "The REST-credential integration method."
+          }
+        },
+        "integration_type": {
+          "target": "com.paypal.customer_partner_referrals_v2#RestApiIntegrationIntegrationType",
+          "traits": {
+            "smithy.api#documentation": "The type of REST-endpoint integration. To integrate with Braintree v.zero for PayPal REST endpoints, specify `third_party_details`.",
+            "smithy.api#required": {}
+          }
+        },
+        "first_party_details": {
+          "target": "com.paypal.customer_partner_referrals_v2#FirstPartyDetails"
+        },
+        "third_party_details": {
+          "target": "com.paypal.customer_partner_referrals_v2#ThirdPartyDetails"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The integration details for PayPal REST endpoints."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#RestApiIntegrationIntegrationMethod": {
+      "type": "enum",
+      "members": {
+        "BRAINTREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BRAINTREE"
+          }
+        },
+        "PAYPAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYPAL"
+          }
+        },
+        "SDK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SDK"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The REST-credential integration method."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#RestApiIntegrationIntegrationType": {
+      "type": "enum",
+      "members": {
+        "FIRST_PARTY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIRST_PARTY"
+          }
+        },
+        "THIRD_PARTY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THIRD_PARTY"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of REST-endpoint integration. To integrate with Braintree v.zero for PayPal REST endpoints, specify `third_party_details`."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#FirstPartyDetails": {
+      "type": "structure",
+      "members": {
+        "features": {
+          "target": "com.paypal.customer_partner_referrals_v2#RestEndpointFeaturesEnumList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "seller_nonce": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "S256 - The code verifier must be high-entropy cryptographic random string with a byte length of 43-128 range.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The integration details for PayPal first party REST endpoints."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#RestEndpointFeaturesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#RestEndpointFeaturesEnum"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of features that partner can access, or use, in PayPal on behalf of the seller. The seller grants permission for these features to the partner."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#RestEndpointFeaturesEnum": {
+      "type": "enum",
+      "members": {
+        "PAYOUTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYOUTS"
+          }
+        },
+        "PAYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYMENT"
+          }
+        },
+        "REFUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REFUND"
+          }
+        },
+        "FUTURE_PAYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FUTURE_PAYMENT"
+          }
+        },
+        "DIRECT_PAYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECT_PAYMENT"
+          }
+        },
+        "PARTNER_FEE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTNER_FEE"
+          }
+        },
+        "DELAY_FUNDS_DISBURSEMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELAY_FUNDS_DISBURSEMENT"
+          }
+        },
+        "READ_SELLER_DISPUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SELLER_DISPUTE"
+          }
+        },
+        "UPDATE_SELLER_DISPUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATE_SELLER_DISPUTE"
+          }
+        },
+        "ADVANCED_TRANSACTIONS_SEARCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADVANCED_TRANSACTIONS_SEARCH"
+          }
+        },
+        "SWEEP_FUNDS_EXTERNAL_SINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SWEEP_FUNDS_EXTERNAL_SINK"
+          }
+        },
+        "ACCESS_MERCHANT_INFORMATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCESS_MERCHANT_INFORMATION"
+          }
+        },
+        "TRACKING_SHIPMENT_READWRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRACKING_SHIPMENT_READWRITE"
+          }
+        },
+        "INVOICE_READ_WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVOICE_READ_WRITE"
+          }
+        },
+        "DISPUTE_READ_BUYER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPUTE_READ_BUYER"
+          }
+        },
+        "UPDATE_CUSTOMER_DISPUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATE_CUSTOMER_DISPUTES"
+          }
+        },
+        "VAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VAULT"
+          }
+        },
+        "BILLING_AGREEMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BILLING_AGREEMENT"
+          }
+        },
+        "WITHDRAWALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WITHDRAWALS"
+          }
+        },
+        "LINKED_FINANCIAL_INSTRUMENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINKED_FINANCIAL_INSTRUMENTS"
+          }
+        },
+        "USER_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_PROFILE"
+          }
+        },
+        "TRANSACTION_RISK_DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSACTION_RISK_DATA"
+          }
+        },
+        "PAYPAL_BALANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYPAL_BALANCE"
+          }
+        },
+        "EXCHANGE_CURRENCY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXCHANGE_CURRENCY"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The REST endpoint."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#ThirdPartyDetails": {
+      "type": "structure",
+      "members": {
+        "features": {
+          "target": "com.paypal.customer_partner_referrals_v2#RestApiIntegrationRestEndpointFeaturesEnumList"
+        },
+        "signup_mode": {
+          "target": "com.paypal.customer_partner_referrals_v2#SignupMode"
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The organization to which the account will belong in the partner’s hierarchy, as a path."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The integration details for PayPal REST endpoints."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#RestApiIntegrationRestEndpointFeaturesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#RestEndpointFeaturesEnum"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of features that partner can access, or use, in PayPal on behalf of the seller. The seller grants permission for these features to the partner."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#SignupMode": {
+      "type": "enum",
+      "members": {
+        "VERIFY_WITH_PAYPAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERIFY_WITH_PAYPAL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Signup Mode to be used for sellers for third party integration."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BillingAgreement": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The billing agreement description."
+          }
+        },
+        "billing_experience_preference": {
+          "target": "com.paypal.customer_partner_referrals_v2#BillingExperiencePreference"
+        },
+        "merchant_custom_data": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom data for the billing agreement."
+          }
+        },
+        "approval_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to which to redirect seller to accept the billing agreement."
+          }
+        },
+        "ec_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The billing agreement token for the agreement."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of the billing agreement between the partner and a seller."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BillingExperiencePreference": {
+      "type": "structure",
+      "members": {
+        "experience_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the payment web experience profile."
+          }
+        },
+        "billing_context_set": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the partner has already displayed the billing context to the seller."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The preference that customizes the billing experience of the customer."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#ProductList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#Product"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of PayPal products to which the partner wants to onboard the customer."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#Product": {
+      "type": "enum",
+      "members": {
+        "ALIPAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALIPAY"
+          }
+        },
+        "BANCONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BANCONTACT"
+          }
+        },
+        "BLIK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLIK"
+          }
+        },
+        "EPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EPS"
+          }
+        },
+        "PPCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PPCP"
+          }
+        },
+        "EXPRESS_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPRESS_CHECKOUT"
+          }
+        },
+        "PAYMENT_METHODS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYMENT_METHODS"
+          }
+        },
+        "ADVANCED_VAULTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADVANCED_VAULTING"
+          }
+        },
+        "IDEAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IDEAL"
+          }
+        },
+        "MB_WAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MB_WAY"
+          }
+        },
+        "MULTIBANCO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTIBANCO"
+          }
+        },
+        "PAYPAL_COMMERCE_PLATFORM_BUSINESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYPAL_COMMERCE_PLATFORM_BUSINESS"
+          }
+        },
+        "PPPLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PPPLUS"
+          }
+        },
+        "PRZELEWY24": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRZELEWY24"
+          }
+        },
+        "SATISPAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SATISPAY"
+          }
+        },
+        "TRUSTLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRUSTLY"
+          }
+        },
+        "WECHAT_PAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WECHAT_PAY"
+          }
+        },
+        "WEBSITE_PAYMENT_PRO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEBSITE_PAYMENT_PRO"
+          }
+        },
+        "ZETTLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZETTLE"
+          }
+        },
+        "PAYPAL_COMMERCE_PLATFORM_BUSINESS_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYPAL_COMMERCE_PLATFORM_BUSINESS"
+          }
+        },
+        "HYPERWALLET_PAYOUTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HYPERWALLET_PAYOUTS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The PayPal product for which the customer is onboarded."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#CapabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#Capabilities"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of capabilities which the partner wants to enable for the selected products. Supported only when products are specified."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#Capabilities": {
+      "type": "enum",
+      "members": {
+        "PAYPAL_WALLET_VAULTING_ADVANCED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYPAL_WALLET_VAULTING_ADVANCED"
+          }
+        },
+        "PAY_UPON_INVOICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAY_UPON_INVOICE"
+          }
+        },
+        "APPLE_PAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPLE_PAY"
+          }
+        },
+        "GOOGLE_PAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_PAY"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional capabilities of the selected PayPal product for which the customer is being onboarded."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#DependentProcessList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of dependent processes."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#LegalConsentList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#LegalConsent"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of all consents that the partner has received from this seller. If `SHARE_DATA_CONSENT` is not granted, PayPal does not store customer data."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#LegalConsent": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#LegalConsentType",
+          "traits": {
+            "smithy.api#documentation": "The type of consent. `SHARE_DATA_CONSENT` gives consent to you to share your customer's data with PayPal.",
+            "smithy.api#required": {}
+          }
+        },
+        "granted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the customer agreed to share this type of data. To give consent, specify `true`. To withhold consent, specify `false`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The customer-provided consent."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#LegalConsentType": {
+      "type": "enum",
+      "members": {
+        "SHARE_DATA_CONSENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHARE_DATA_CONSENT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of consent. `SHARE_DATA_CONSENT` gives consent to you to share your customer's data with PayPal."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PayoutAttributes": {
+      "type": "structure",
+      "members": {
+        "marketplace": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If `true`, specifies that the merchant or platform is offering goods or services on behalf of 3rd party sellers."
+          }
+        },
+        "kyc_required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If `true`, specifies that the Kyc is required for the merchant."
+          }
+        },
+        "country_transfer_method_currency_selection": {
+          "target": "com.paypal.customer_partner_referrals_v2#CountryTransferMethodCurrencySelectionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Payout specific attributes."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#CountryTransferMethodCurrencySelectionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#CountryTransferMethodCurrencySelection"
+      },
+      "traits": {
+        "smithy.api#documentation": "Requested country, transfer method and currency."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#CountryTransferMethodCurrencySelection": {
+      "type": "structure",
+      "members": {
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country."
+          }
+        },
+        "transfer_methods": {
+          "target": "com.paypal.customer_partner_referrals_v2#TransferMethodList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Requested country, transfer method and currency."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#TransferMethodList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#TransferMethod"
+      },
+      "traits": {
+        "smithy.api#documentation": "Requested transfer method and currency for a country."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#TransferMethod": {
+      "type": "structure",
+      "members": {
+        "transfer_method_type": {
+          "target": "com.paypal.customer_partner_referrals_v2#TransferMethodTransferMethodType",
+          "traits": {
+            "smithy.api#documentation": "Transfer Method type."
+          }
+        },
+        "currencies": {
+          "target": "com.paypal.customer_partner_referrals_v2#CurrencyCodeList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Requested transfer method and currency for a country."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#TransferMethodTransferMethodType": {
+      "type": "enum",
+      "members": {
+        "BANK_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BANK_ACCOUNT"
+          }
+        },
+        "PAYPAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYPAL"
+          }
+        },
+        "VENMO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VENMO"
+          }
+        },
+        "WIRE_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WIRE_ACCOUNT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Transfer Method type."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#CurrencyCodeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Requested Currencies for a Transfer Method."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PartnerReferralsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "individual_owners": {
+          "target": "com.paypal.customer_partner_referrals_v2#IndividualOwnerListInput"
+        },
+        "business_entity": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessEntityInput",
+          "traits": {
+            "smithy.api#documentation": "Business entity of the account."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address of the customer used to create the account."
+          }
+        },
+        "preferred_language_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred [locale code](/docs/api/reference/locale-codes/) to use in the onboarding flow for the customer."
+          }
+        },
+        "tracking_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The partner's unique identifier for this customer in their system which can be used to track user in PayPal."
+          }
+        },
+        "partner_config_override": {
+          "target": "com.paypal.customer_partner_referrals_v2#PartnerConfigOverride",
+          "traits": {
+            "smithy.api#documentation": "The configuration property that the partner intends to override for this onboarding request."
+          }
+        },
+        "financial_instruments": {
+          "target": "com.paypal.customer_partner_referrals_v2#FinancialInstruments",
+          "traits": {
+            "smithy.api#documentation": "Array of financial instruments attached to the customer's account."
+          }
+        },
+        "operations": {
+          "target": "com.paypal.customer_partner_referrals_v2#OperationList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "products": {
+          "target": "com.paypal.customer_partner_referrals_v2#ProductList"
+        },
+        "capabilities": {
+          "target": "com.paypal.customer_partner_referrals_v2#CapabilitiesList"
+        },
+        "outside_process_dependencies": {
+          "target": "com.paypal.customer_partner_referrals_v2#DependentProcessList"
+        },
+        "legal_consents": {
+          "target": "com.paypal.customer_partner_referrals_v2#LegalConsentList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "payout_attributes": {
+          "target": "com.paypal.customer_partner_referrals_v2#PayoutAttributes",
+          "traits": {
+            "smithy.api#documentation": "Payout specific attributes."
+          }
+        },
+        "legal_country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Legal Country Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#CreateReferralDataResponse": {
+      "type": "structure",
+      "members": {
+        "links": {
+          "target": "com.paypal.customer_partner_referrals_v2#DefinitionsLinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The shared referral data."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#DefinitionsLinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/overview/#hateoas-links)."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#LinkDescription": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.",
+            "smithy.api#required": {}
+          }
+        },
+        "rel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).",
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "com.paypal.customer_partner_referrals_v2#LinkDescriptionMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method required to make the related call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#LinkDescriptionMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "CONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECT"
+          }
+        },
+        "OPTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTIONS"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The HTTP method required to make the related call."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PartnerReferralsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.customer_partner_referrals_v2#PartnerReferralsCreateRequest"
+      },
+      "output": {
+        "target": "com.paypal.customer_partner_referrals_v2#CreateReferralDataResponse"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.customer_partner_referrals_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.customer_partner_referrals_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.customer_partner_referrals_v2#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/customer/partner-referrals",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create partner referral\n\nCreates a partner referral that is shared by the partner or API caller. The partner referral is used to onboard the seller, and contains the seller's personal, business, financial and operations."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PartnerReferralsReadRequest": {
+      "type": "structure",
+      "members": {
+        "partner_referral_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the partner-referrals data for which to show details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#ReferralDataResponse": {
+      "type": "structure",
+      "members": {
+        "partner_referral_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID to access the customer's data shared by the partner with PayPal."
+          }
+        },
+        "submitter_payer_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The payer ID of the partner who shared the referral data."
+          }
+        },
+        "submitter_client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the partner who shared the referral data. This cliend ID will be returned only when the caller is determined as an internal partner, which means the scope of the caller's security context only have \"https://uri.paypal.com/services/customer/partner-referrals\", For more information, see <a href=\"https://github.paypal.com/Customers-R/partnselleronbnodeserv/blob/b0a631c43e80a4dd43d34c01f479c272b3287796/src/helpers/securityContextHelpers.js#L143\">Api Actor type in Typhoon service</a>."
+          }
+        },
+        "referral_data": {
+          "target": "com.paypal.customer_partner_referrals_v2#ReferralData"
+        },
+        "links": {
+          "target": "com.paypal.customer_partner_referrals_v2#ReferralDataResponseDefinitionsLinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The share referral data response."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#ReferralData": {
+      "type": "structure",
+      "members": {
+        "individual_owners": {
+          "target": "com.paypal.customer_partner_referrals_v2#IndividualOwnerList"
+        },
+        "business_entity": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessEntity",
+          "traits": {
+            "smithy.api#documentation": "Business entity of the account."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address of the customer used to create the account."
+          }
+        },
+        "preferred_language_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred [locale code](/docs/api/reference/locale-codes/) to use in the onboarding flow for the customer."
+          }
+        },
+        "tracking_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The partner's unique identifier for this customer in their system which can be used to track user in PayPal."
+          }
+        },
+        "partner_config_override": {
+          "target": "com.paypal.customer_partner_referrals_v2#PartnerConfigOverride",
+          "traits": {
+            "smithy.api#documentation": "The configuration property that the partner intends to override for this onboarding request."
+          }
+        },
+        "financial_instruments": {
+          "target": "com.paypal.customer_partner_referrals_v2#FinancialInstruments",
+          "traits": {
+            "smithy.api#documentation": "Array of financial instruments attached to the customer's account."
+          }
+        },
+        "operations": {
+          "target": "com.paypal.customer_partner_referrals_v2#OperationList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "products": {
+          "target": "com.paypal.customer_partner_referrals_v2#ProductList"
+        },
+        "capabilities": {
+          "target": "com.paypal.customer_partner_referrals_v2#CapabilitiesList"
+        },
+        "outside_process_dependencies": {
+          "target": "com.paypal.customer_partner_referrals_v2#DependentProcessList"
+        },
+        "legal_consents": {
+          "target": "com.paypal.customer_partner_referrals_v2#LegalConsentList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "payout_attributes": {
+          "target": "com.paypal.customer_partner_referrals_v2#PayoutAttributes",
+          "traits": {
+            "smithy.api#documentation": "Payout specific attributes."
+          }
+        },
+        "legal_country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Legal Country Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The customer's referral data that partners share with PayPal."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#IndividualOwnerList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#IndividualOwner"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of owners in the account. There should be only one primary account owner which is mentioned in their role_type."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#IndividualOwner": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encrypted party ID."
+          }
+        },
+        "names": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonNameList"
+        },
+        "citizenship": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The citizenship country code of the person."
+          }
+        },
+        "addresses": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonAddressDetailList"
+        },
+        "phones": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonPhoneDetailList"
+        },
+        "birth_details": {
+          "target": "com.paypal.customer_partner_referrals_v2#BirthDetails",
+          "traits": {
+            "smithy.api#documentation": "The person's birth details."
+          }
+        },
+        "documents": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonDocumentList"
+        },
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#IndividualOwnerType",
+          "traits": {
+            "smithy.api#documentation": "The actual role of this user on the account, PRIMARY/SECONDARY."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#PersonDocumentList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#PersonDocument"
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's or party's related document data collected from the customer. For example SSN, ITIN, or business registration number collected from the user. <blockquote><strong>Note:</strong> This field is not applicable for POST [/v2/customer/partner-referrals](/docs/api/partner-referrals/v2/#partner-referrals_create) API calls.</blockquote>"
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PersonDocument": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encrypted identifier for the document."
+          }
+        },
+        "labels": {
+          "target": "com.paypal.customer_partner_referrals_v2#LabelsList"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The file name."
+          }
+        },
+        "identification_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number for the document. It is the ID number if the document is `ID CARD`, the passport number if the document is `PASSPORT`, etc."
+          }
+        },
+        "issue_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The issue date of the document."
+          }
+        },
+        "expiry_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expire data of the document."
+          }
+        },
+        "issuing_country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country code of the document."
+          }
+        },
+        "files": {
+          "target": "com.paypal.customer_partner_referrals_v2#FileReferenceList"
+        },
+        "links": {
+          "target": "com.paypal.customer_partner_referrals_v2#LinkDescriptionList"
+        },
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonDocumentType",
+          "traits": {
+            "smithy.api#documentation": "The actual type of the document. It could be `ID_CARD`, `PASSPORT`, etc."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#LinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "The HATEOAS links."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessEntity": {
+      "type": "structure",
+      "members": {
+        "business_type": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessTypeInfo",
+          "traits": {
+            "smithy.api#documentation": "Information related to the business like the nature of business, started date etc."
+          }
+        },
+        "business_industry": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessIndustry",
+          "traits": {
+            "smithy.api#documentation": "Information related to the business like the nature of business, started date etc."
+          }
+        },
+        "business_incorporation": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessEntityBusinessIncorporation",
+          "traits": {
+            "smithy.api#documentation": "Business incorporation information."
+          }
+        },
+        "names": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessNameDetailList"
+        },
+        "emails": {
+          "target": "com.paypal.customer_partner_referrals_v2#EmailList"
+        },
+        "website": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Website of the business."
+          }
+        },
+        "addresses": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessAddressDetailList"
+        },
+        "phones": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessPhoneDetailList"
+        },
+        "documents": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessDocumentList"
+        },
+        "beneficial_owners": {
+          "target": "com.paypal.customer_partner_referrals_v2#BeneficialOwners",
+          "traits": {
+            "smithy.api#documentation": "List of beneficial owners part of the entity. They can be either a Person or a business entity."
+          }
+        },
+        "annual_sales_volume_range": {
+          "target": "com.paypal.customer_partner_referrals_v2#CurrencyRange",
+          "traits": {
+            "smithy.api#documentation": "The range for the total annual sales volume of the business."
+          }
+        },
+        "average_monthly_volume_range": {
+          "target": "com.paypal.customer_partner_referrals_v2#CurrencyRange",
+          "traits": {
+            "smithy.api#documentation": "The range for the average monthly volume of the business."
+          }
+        },
+        "purpose_code": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The account's purpose code."
+          }
+        },
+        "business_description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The business goals description. For example, a mission statement."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessEntityBusinessIncorporation": {
+      "type": "structure",
+      "members": {
+        "incorporation_country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The incorporation country code."
+          }
+        },
+        "incorporation_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "date of incorporation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Business incorporation information."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessDocumentList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#BusinessDocument"
+      },
+      "traits": {
+        "smithy.api#documentation": "Business Party related Document data collected from the customer.. For example SSN, ITIN, Business registration number that were collected from the user."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessDocument": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encrypted identifier for the document."
+          }
+        },
+        "labels": {
+          "target": "com.paypal.customer_partner_referrals_v2#LabelsList"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The file name."
+          }
+        },
+        "identification_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number for the document. It is the ID number if the document is `ID CARD`, the passport number if the document is `PASSPORT`, etc."
+          }
+        },
+        "issue_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The issue date of the document."
+          }
+        },
+        "expiry_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expire data of the document."
+          }
+        },
+        "issuing_country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country code of the document."
+          }
+        },
+        "files": {
+          "target": "com.paypal.customer_partner_referrals_v2#FileReferenceList"
+        },
+        "links": {
+          "target": "com.paypal.customer_partner_referrals_v2#LinkDescriptionList"
+        },
+        "type": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessDocumentType",
+          "traits": {
+            "smithy.api#documentation": "The actual type of the document."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#BeneficialOwners": {
+      "type": "structure",
+      "members": {
+        "individual_beneficial_owners": {
+          "target": "com.paypal.customer_partner_referrals_v2#IndividualBeneficialOwnerList"
+        },
+        "business_beneficial_owners": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessBeneficialOwnerList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Beneficial owners of the entity."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#IndividualBeneficialOwnerList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#IndividualBeneficialOwner"
+      },
+      "traits": {
+        "smithy.api#documentation": "Individual beneficial owners."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#IndividualBeneficialOwner": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encrypted party ID."
+          }
+        },
+        "names": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonNameList"
+        },
+        "citizenship": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The citizenship country code of the person."
+          }
+        },
+        "addresses": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonAddressDetailList"
+        },
+        "phones": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonPhoneDetailList"
+        },
+        "birth_details": {
+          "target": "com.paypal.customer_partner_referrals_v2#BirthDetails",
+          "traits": {
+            "smithy.api#documentation": "The person's birth details."
+          }
+        },
+        "documents": {
+          "target": "com.paypal.customer_partner_referrals_v2#PersonDocumentList"
+        },
+        "percentage_of_ownership": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The percentage of shares this person owns in the company."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessBeneficialOwnerList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#BusinessBeneficialOwner"
+      },
+      "traits": {
+        "smithy.api#documentation": "Business beneficial owners."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessBeneficialOwner": {
+      "type": "structure",
+      "members": {
+        "business_type": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessTypeInfo",
+          "traits": {
+            "smithy.api#documentation": "Information related to the business like the nature of business, started date etc."
+          }
+        },
+        "business_industry": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessIndustry",
+          "traits": {
+            "smithy.api#documentation": "Information related to the business like the nature of business, started date etc."
+          }
+        },
+        "business_incorporation": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessBeneficialOwnerBusinessIncorporation",
+          "traits": {
+            "smithy.api#documentation": "Business incorporation information."
+          }
+        },
+        "names": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessNameDetailList"
+        },
+        "emails": {
+          "target": "com.paypal.customer_partner_referrals_v2#EmailList"
+        },
+        "website": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Website of the business."
+          }
+        },
+        "addresses": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessAddressDetailList"
+        },
+        "phones": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessPhoneDetailList"
+        },
+        "documents": {
+          "target": "com.paypal.customer_partner_referrals_v2#BusinessDocumentList"
+        },
+        "percentage_of_ownership": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The percentage of shares this person owns in the company."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.customer_partner_referrals_v2#BusinessBeneficialOwnerBusinessIncorporation": {
+      "type": "structure",
+      "members": {
+        "incorporation_country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The incorporation country code."
+          }
+        },
+        "incorporation_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "date of incorporation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Business incorporation information."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#ReferralDataResponseDefinitionsLinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.customer_partner_referrals_v2#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/overview/#hateoas-links)."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#PartnerReferralsRead": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.customer_partner_referrals_v2#PartnerReferralsReadRequest"
+      },
+      "output": {
+        "target": "com.paypal.customer_partner_referrals_v2#ReferralDataResponse"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.customer_partner_referrals_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/customer/partner-referrals/{partner_referral_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show referral data\n\nShows details by ID for referral data that was shared by the partner or API caller."
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.paypal.customer_partner_referrals_v2#CustomerPartnerReferralsV2": {
+      "type": "service",
+      "version": "2.5",
+      "operations": [
+        {
+          "target": "com.paypal.customer_partner_referrals_v2#PartnerReferralsCreate"
+        },
+        {
+          "target": "com.paypal.customer_partner_referrals_v2#PartnerReferralsRead"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Partner Referrals",
+        "smithy.api#documentation": "Use the Partner Referrals API to add PayPal seller accounts to PayPal Complete Payments Platform for Marketplaces and Platforms. <blockquote><strong>Important:</strong> This endpoint is available to approved partners only. <a href=\"/docs/multiparty/#link-tellusaboutyourplatform\">Fill out this form</a> to get approved and a PayPal representative will reach out to you shortly.</blockquote> For more information about partner integrations and onboarding sellers, see <a href=\"/docs/multiparty\">PayPal Complete Payments Platform for Marketplaces and Platforms."
+      }
+    }
+  }
+}

@@ -1,0 +1,1299 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.paypal.reporting_transactions_v1#SearchGetRequest": {
+      "type": "structure",
+      "members": {
+        "transaction_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "transaction_id",
+            "smithy.api#documentation": "Filters the transactions in the response by a PayPal transaction ID. A valid transaction ID is 17 characters long, except for an <a href=\"/docs/api/payments/v1/#definition-order\">order ID</a>, which is 19 characters long.<blockquote><strong>Note:</strong> A transaction ID is not unique in the reporting system. The response can list two transactions with the same ID. One transaction can be balance affecting while the other is non-balance affecting.</blockquote>"
+          }
+        },
+        "transaction_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "transaction_type",
+            "smithy.api#documentation": "Filters the transactions in the response by a PayPal transaction event code. See [Transaction event codes](/docs/integration/direct/transaction-search/transaction-event-codes/)."
+          }
+        },
+        "transaction_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "transaction_status",
+            "smithy.api#documentation": "Filters the transactions in the response by a PayPal transaction status code. Value is:<table><thead><tr><th>Status&nbsp;code</th><th>Description</th></tr></thead><tbody><tr><td><code>D</code></td><td>PayPal or merchant rules denied the transaction.</td></tr><tr><td><code>P</code></td><td>The transaction is pending. The transaction was created but waits for another payment process to complete, such as an ACH transaction, before the status changes to <code>S</code>.</td></tr><tr><td><code>S</code></td><td>The transaction successfully completed without a denial and after any pending statuses.</td></tr><tr><td><code>V</code></td><td>A successful transaction was reversed and funds were refunded to the original sender.</td></tr></tbody></table>"
+          }
+        },
+        "transaction_amount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "transaction_amount",
+            "smithy.api#documentation": "Filters the transactions in the response by a gross transaction amount range. Specify the range as `<start-range> TO <end-range>`, where `<start-range>` is the lower limit of the gross PayPal transaction amount and `<end-range>` is the upper limit of the gross transaction amount. Specify the amounts in lower denominations. For example, to search for transactions from $5.00 to $10.05, specify `[500 TO 1005]`.<blockquote><strong>Note:</strong>The values must be URL encoded.</blockquote>"
+          }
+        },
+        "transaction_currency": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "transaction_currency",
+            "smithy.api#documentation": "Filters the transactions in the response by a [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) for the PayPal transaction currency."
+          }
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "start_date",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Filters the transactions in the response by a start date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required. Fractional seconds are optional."
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "end_date",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Filters the transactions in the response by an end date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required. Fractional seconds are optional. The maximum supported range is 31 days."
+          }
+        },
+        "payment_instrument_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "payment_instrument_type",
+            "smithy.api#documentation": "Filters the transactions in the response by a payment instrument type. Value is either:<ul><li><code>CREDITCARD</code>. Returns a direct credit card transaction with a corresponding value.</li><li><code>DEBITCARD</code>. Returns a debit card transaction with a corresponding value.</li></ul>If you omit this parameter, the API does not apply this filter."
+          }
+        },
+        "store_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "store_id",
+            "smithy.api#documentation": "Filters the transactions in the response by a store ID."
+          }
+        },
+        "terminal_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "terminal_id",
+            "smithy.api#documentation": "Filters the transactions in the response by a terminal ID."
+          }
+        },
+        "fields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fields",
+            "smithy.api#documentation": "Indicates which fields appear in the response. Value is a single field or a comma-separated list of fields. The <code>transaction_info</code> value returns only the transaction details in the response. To include all fields in the response, specify <code>fields=all</code>. Valid fields are:<ul><li><a href=\"/docs/api/transaction-search/v1/#definition-transaction_info\"><code>transaction_info</code></a>. The transaction information. Includes the ID of the PayPal account of the payee, the PayPal-generated transaction ID, the PayPal-generated base ID, the PayPal reference ID type, the transaction event code, the date and time when the transaction was initiated and was last updated, the transaction amounts including the PayPal fee, any discounts, insurance, the transaction status, and other information about the transaction.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-payer_info\"><code>payer_info</code></a>. The payer information. Includes the PayPal customer account ID and the payer's email address, primary phone number, name, country code, address, and whether the payer is verified or unverified.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-shipping_info\"><code>shipping_info</code></a>. The shipping information. Includes the recipient's name, the shipping method for this order, the shipping address for this order, and the secondary address associated with this order.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-auction_info\"><code>auction_info</code></a>. The auction information. Includes the name of the auction site, the auction site URL, the ID of the customer who makes the purchase in the auction, and the date and time when the auction closes.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-cart_info\"><code>cart_info</code></a>. The cart information. Includes an array of item details, whether the item amount or the shipping amount already includes tax, and the ID of the invoice for PayPal-generated invoices.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-incentive_info\"><code>incentive_info</code></a>. An array of incentive detail objects. Each object includes the incentive, such as a special offer or coupon, the incentive amount, and the incentive program code that identifies a merchant loyalty or incentive program.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-store_info\"><code>store_info</code></a>. The store information. Includes the ID of the merchant store and the terminal ID for the checkout stand in the merchant store.</li></ul>"
+          }
+        },
+        "balance_affecting_records_only": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "balance_affecting_records_only",
+            "smithy.api#documentation": "Indicates whether the response includes only balance-impacting transactions or all transactions. Value is either:<ul><li><code>Y</code>. The default. The response includes only balance transactions.</li><li><code>N</code>. The response includes all transactions.</li></ul>"
+          }
+        },
+        "page_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page_size",
+            "smithy.api#documentation": "The number of items to return in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The zero-relative start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.reporting_transactions_v1#SearchResponse": {
+      "type": "structure",
+      "members": {
+        "transaction_details": {
+          "target": "com.paypal.reporting_transactions_v1#TransactionDetailList"
+        },
+        "account_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The merchant account number."
+          }
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end date and time or the last date when the data can be served, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "last_refreshed_datetime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the data was last refreshed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "A zero-relative index of transactions."
+          }
+        },
+        "total_items": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of transactions as an integer beginning with the specified `page` in the full result and not just in this response."
+          }
+        },
+        "total_pages": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of pages, as an `integer`, when the `total_items` is divided into pages of the specified `page_size`."
+          }
+        },
+        "links": {
+          "target": "com.paypal.reporting_transactions_v1#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The search response information."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#TransactionDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.reporting_transactions_v1#TransactionDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of transaction detail objects."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#TransactionDetail": {
+      "type": "structure",
+      "members": {
+        "transaction_info": {
+          "target": "com.paypal.reporting_transactions_v1#TransactionInfo",
+          "traits": {
+            "smithy.api#documentation": "The transaction information."
+          }
+        },
+        "payer_info": {
+          "target": "com.paypal.reporting_transactions_v1#PayerInfo",
+          "traits": {
+            "smithy.api#documentation": "The payer information."
+          }
+        },
+        "shipping_info": {
+          "target": "com.paypal.reporting_transactions_v1#ShippingInfo",
+          "traits": {
+            "smithy.api#documentation": "The shipping information."
+          }
+        },
+        "cart_info": {
+          "target": "com.paypal.reporting_transactions_v1#CartInfo",
+          "traits": {
+            "smithy.api#documentation": "The cart information."
+          }
+        },
+        "store_info": {
+          "target": "com.paypal.reporting_transactions_v1#StoreInfo",
+          "traits": {
+            "smithy.api#documentation": "The store information."
+          }
+        },
+        "auction_info": {
+          "target": "com.paypal.reporting_transactions_v1#AuctionInfo",
+          "traits": {
+            "smithy.api#documentation": "The auction information."
+          }
+        },
+        "incentive_info": {
+          "target": "com.paypal.reporting_transactions_v1#IncentiveInfo",
+          "traits": {
+            "smithy.api#documentation": "The incentive information."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The transaction details."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#TransactionInfo": {
+      "type": "structure",
+      "members": {
+        "paypal_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the PayPal account of the counterparty."
+          }
+        },
+        "transaction_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated transaction ID."
+          }
+        },
+        "paypal_reference_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated base ID. PayPal exclusive. Cannot be altered. Defined as a related, pre-existing transaction or event."
+          }
+        },
+        "paypal_reference_id_type": {
+          "target": "com.paypal.reporting_transactions_v1#TransactionInfoPaypalReferenceIdType",
+          "traits": {
+            "smithy.api#documentation": "The PayPal reference ID type."
+          }
+        },
+        "transaction_event_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A five-digit transaction event code that classifies the transaction type based on money movement and debit or credit. For example, <code>T0001</code>. See [Transaction event codes](/docs/integration/direct/transaction-search/transaction-event-codes/)."
+          }
+        },
+        "transaction_initiation_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when work on a transaction began in the PayPal system, as expressed in the time zone of the account on this side of the payment. Specify the value in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "transaction_updated_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the transaction was last changed, as expressed in the time zone of the account on this side of the payment. Specify the value in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "transaction_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The all-inclusive gross transaction amount that was transferred between the sender and receiver through PayPal."
+          }
+        },
+        "fee_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The PayPal fee amount. All transaction fees are included in this amount, which is the record of fee associated with the transaction.<blockquote><strong>Note:</strong> This field contains a value only when a transaction fee is applied and processed for this transaction.</blockquote>"
+          }
+        },
+        "discount_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The reduction in price offered for goods or services purchased.<blockquote><strong>Note:</strong> This discount is for a price reduction that is offered for other than that at a individual item level.</blockquote>"
+          }
+        },
+        "insurance_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "An insurance charge. Guarantees the quality or delivery of a product."
+          }
+        },
+        "sales_tax_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The PayPal- or merchant-reported sales tax amount for the transaction."
+          }
+        },
+        "shipping_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The PayPal- or merchant-reported shipping amount for the transaction."
+          }
+        },
+        "shipping_discount_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The discount on the shipping amount."
+          }
+        },
+        "shipping_tax_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The tax on the shipping service."
+          }
+        },
+        "other_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The special amount that is added to the transaction."
+          }
+        },
+        "tip_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The tip."
+          }
+        },
+        "transaction_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A code that indicates the transaction status. Value is:<table><thead><tr><th>Status&nbsp;code</th><th>Description</th></tr></thead><tbody><tr><td><code>D</code></td><td>PayPal or merchant rules denied the transaction.</td></tr><tr><td><code>P</code></td><td>The transaction is pending. The transaction was created but waits for another payment process to complete, such as an ACH transaction, before the status changes to <code>S</code>.</td></tr><tr><td><code>S</code></td><td>The transaction successfully completed without a denial and after any pending statuses.</td></tr><tr><td><code>V</code></td><td>A successful transaction was fully reversed and funds were refunded to the original sender.</td></tr></tbody></table>"
+          }
+        },
+        "transaction_subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subject of payment. The payer passes this value to the payee. The payer controls this data through the interface through which he or she sends the data."
+          }
+        },
+        "transaction_note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A special note that the payer passes to the payee. Might contain special customer requests, such as shipping instructions."
+          }
+        },
+        "payment_tracking_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The payment tracking ID, which is a unique ID that partners specify to either get information about a payment or request a refund."
+          }
+        },
+        "bank_reference_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The bank reference ID. The bank provides this value for an ACH transaction."
+          }
+        },
+        "ending_balance": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The ending balance.<blockquote><strong>Note:</strong> If you specify one or more optional query parameters, the <code>ending_balance</code> response field is empty.</blockquote>"
+          }
+        },
+        "available_balance": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The available amount of transaction currency during the completion of this transaction."
+          }
+        },
+        "invoice_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The invoice ID that is sent by the merchant with the transaction.<blockquote><strong>Note:</strong> If an invoice ID was sent with the capture request, the value is reported. Otherwise, the invoice ID of the authorizing transaction is reported.</blockquote>"
+          }
+        },
+        "custom_field": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The merchant-provided custom text.<blockquote><strong>Note:</strong> Usually, this field includes the unique ID for payments made with MassPay type transaction.</blockquote>"
+          }
+        },
+        "protection_eligibility": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the transaction is eligible for protection. Value is:<ul><li><code>01</code>. Eligible.</li><li><code>02</code>. Not eligible</li><li><code>03</code>. Partially eligible.</li></ul>"
+          }
+        },
+        "credit_term": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The credit term. The time span covered by the installment payments as expressed in the term length plus the length time unit code."
+          }
+        },
+        "credit_transactional_fee": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The overall amount of the credit transaction fee."
+          }
+        },
+        "credit_promotional_fee": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The overall amount of the credit promotional fee."
+          }
+        },
+        "annual_percentage_rate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The annual percentage rate (APR). Determines the amount of interest a consumer pays to finance a purchase at a merchant."
+          }
+        },
+        "payment_method_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The payment method that was used for a transaction. Value is <code>PUI</code>, <code>installment</code>, or <code>mEFT</code>.<blockquote><strong>Note:</strong> Appears only for pay upon invoice (PUI), installment, and mEFT transactions. Merchants and partners in the EMEA region can use this attribute to note transactions that attract turn-over tax.</blockquote>"
+          }
+        },
+        "instrument_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A high-level classification of the type of financial instrument that was used to fund a payment. The pattern is not provided because the value is defined by an external party. E.g. PAYPAL, CREDIT_CARD, DEBIT_CARD, APPLE_PAY, BANK , VENMO ,Pay Upon Invoice, Pay Later  or <a href=\"https://developer.paypal.com/docs/checkout/integration-features/alternative-payment-methods/\" title=\"Link to available APM list\">Alternative Payment Methods (APM)</a>."
+          }
+        },
+        "instrument_sub_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A finer-grained classification of the financial instrument that was used to fund a payment. For example, `Visa card` or a `Mastercard` for a credit card, BANKCARD ,DISCOVER etc. The pattern is not provided because the value is defined by an external party."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The transaction information."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#TransactionInfoPaypalReferenceIdType": {
+      "type": "enum",
+      "members": {
+        "ODR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ODR"
+          }
+        },
+        "TXN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TXN"
+          }
+        },
+        "SUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUB"
+          }
+        },
+        "PAP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAP"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The PayPal reference ID type."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#Money": {
+      "type": "structure",
+      "members": {
+        "currency_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/docs/integration/direct/rest/currency-codes/).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The currency and amount for a financial transaction, such as a balance or payment due."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#PayerInfo": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal` customer account ID."
+          }
+        },
+        "email_address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the payer."
+          }
+        },
+        "phone_number": {
+          "target": "com.paypal.reporting_transactions_v1#Phone",
+          "traits": {
+            "smithy.api#documentation": "The primary phone number of the payer."
+          }
+        },
+        "address_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The address status of the payer. Value is either:<ul><li><code>Y</code>. Verified.</li><li><code>N</code>. Not verified.</li></ul>"
+          }
+        },
+        "payer_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The status of the payer. Value is `Y` or `N`."
+          }
+        },
+        "payer_name": {
+          "target": "com.paypal.reporting_transactions_v1#Name",
+          "traits": {
+            "smithy.api#documentation": "The payer name."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [two-character ISO 3166-1 code](/api/rest/reference/country-codes/) that identifies the country or region of the payer.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not <code>UK</code> as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.</blockquote>"
+          }
+        },
+        "address": {
+          "target": "com.paypal.reporting_transactions_v1#Address",
+          "traits": {
+            "smithy.api#documentation": "The payer address."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payer information."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#Phone": {
+      "type": "structure",
+      "members": {
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country calling code (CC), in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the CC and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "national_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The national number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the country calling code (CC) and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "extension_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The extension number."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en)."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#Name": {
+      "type": "structure",
+      "members": {
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The prefix, or title, to the party's name."
+          }
+        },
+        "given_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's given, or first, name."
+          }
+        },
+        "surname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's surname or family name. Also known as the last name. Required when the party is a person. Use also to store multiple surnames including the matronymic, or mother's, surname."
+          }
+        },
+        "middle_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's middle name. Use also to store multiple middle names including the patronymic, or father's, middle name."
+          }
+        },
+        "suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The suffix for the party's name."
+          }
+        },
+        "alternate_full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED. The party's alternate name. Can be a business name, nickname, or any other name that cannot be split into first, last name. Required when the party is a business."
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's full name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the party."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#Address": {
+      "type": "structure",
+      "members": {
+        "line1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address. For example, number or street.",
+            "smithy.api#required": {}
+          }
+        },
+        "line2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address. For example, suite or apartment number."
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The city name.",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [code](/docs/api/reference/state-codes/) for a US state or the equivalent for other countries. Required for transactions if the address is in one of these countries: [Argentina](/docs/api/reference/state-codes/#argentina), [Brazil](/docs/api/reference/state-codes/#brazil), [Canada](/docs/api/reference/state-codes/#canada), [China](/docs/api/reference/state-codes/#china), [India](/docs/api/reference/state-codes/#india), [Italy](/docs/api/reference/state-codes/#italy), [Japan](/docs/api/reference/state-codes/#japan), [Mexico](/docs/api/reference/state-codes/#mexico), [Thailand](/docs/api/reference/state-codes/#thailand), or [United States](/docs/api/reference/state-codes/#usa). Maximum length is 40 single-byte characters."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the zip code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A simple postal address with coarse-grained fields. Do not use for an international address. Use for backward compatibility only. Does not contain phone."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#ShippingInfo": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The recipient's name."
+          }
+        },
+        "method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The shipping method that is associated with this order."
+          }
+        },
+        "address": {
+          "target": "com.paypal.reporting_transactions_v1#Address",
+          "traits": {
+            "smithy.api#documentation": "The shipping address that is associated with this order."
+          }
+        },
+        "secondary_shipping_address": {
+          "target": "com.paypal.reporting_transactions_v1#Address",
+          "traits": {
+            "smithy.api#documentation": "The secondary shipping address that is associated with this order."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The shipping information."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#CartInfo": {
+      "type": "structure",
+      "members": {
+        "item_details": {
+          "target": "com.paypal.reporting_transactions_v1#ItemDetailList"
+        },
+        "tax_inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the item amount or the shipping amount already includes tax."
+          }
+        },
+        "paypal_invoice_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the invoice. Appears for only PayPal-generated invoices."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The cart information."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#ItemDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.reporting_transactions_v1#ItemDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of item details."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#ItemDetail": {
+      "type": "structure",
+      "members": {
+        "item_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An item code that identifies a merchant's goods or service."
+          }
+        },
+        "item_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The item name."
+          }
+        },
+        "item_description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The item description."
+          }
+        },
+        "item_options": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The item options. Describes option choices on the purchase of the item in some detail."
+          }
+        },
+        "item_quantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of purchased units of goods or a service."
+          }
+        },
+        "item_unit_price": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The cost for each instance of goods or a service."
+          }
+        },
+        "item_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The amount of the payment for the item."
+          }
+        },
+        "discount_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The reduction in price associated with goods or a service."
+          }
+        },
+        "adjustment_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "An increment or decrement to a purchase amount."
+          }
+        },
+        "gift_wrap_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The amount of money charged for gift wrapping an item."
+          }
+        },
+        "tax_percentage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A rate, expressed in hundreds, that is used to calculate a levy for the purchase of goods or services."
+          }
+        },
+        "tax_amounts": {
+          "target": "com.paypal.reporting_transactions_v1#ItemDetailTaxAmountList"
+        },
+        "basic_shipping_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The delivery cost."
+          }
+        },
+        "extra_shipping_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The cost for expedited delivery of the goods."
+          }
+        },
+        "handling_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "A charge for processing the purchase of goods or services."
+          }
+        },
+        "insurance_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "A charge for guaranteeing the quality of a product or delivery of a product."
+          }
+        },
+        "total_item_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The sum of all factors, item cost, discounts, tax, shipping, and so on, that goes into the cost of an item."
+          }
+        },
+        "invoice_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The invoice number. An alphanumeric string that identifies a billing for a merchant."
+          }
+        },
+        "checkout_options": {
+          "target": "com.paypal.reporting_transactions_v1#CheckoutOptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The item details."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#ItemDetailTaxAmountList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.reporting_transactions_v1#ItemDetailTaxAmount"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of tax amounts levied by a government on the purchase of goods or services."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#ItemDetailTaxAmount": {
+      "type": "structure",
+      "members": {
+        "tax_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The tax levied by a government on the purchase of goods or services."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The tax levied by a government on the purchase of goods or services."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#CheckoutOptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.reporting_transactions_v1#CheckoutOption"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of checkout options. Each option has a name and value."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#CheckoutOption": {
+      "type": "structure",
+      "members": {
+        "checkout_option_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The checkout option name, such as `color` or `texture`."
+          }
+        },
+        "checkout_option_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The checkout option value. For example, the checkout option `color` might be `blue` or `red` while the checkout option `texture` might be `smooth` or `rippled`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A checkout option as a name-and-value pair."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#StoreInfo": {
+      "type": "structure",
+      "members": {
+        "store_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of a store for a merchant in the system of record."
+          }
+        },
+        "terminal_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The terminal ID for the checkout stand in a merchant store."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The store information."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#AuctionInfo": {
+      "type": "structure",
+      "members": {
+        "auction_site": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the auction site."
+          }
+        },
+        "auction_item_site": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The auction site URL."
+          }
+        },
+        "auction_buyer_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the buyer who makes the purchase in the auction. This ID might be different from the payer ID provided for the payment."
+          }
+        },
+        "auction_closing_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the auction closes, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The auction information."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#IncentiveInfo": {
+      "type": "structure",
+      "members": {
+        "incentive_details": {
+          "target": "com.paypal.reporting_transactions_v1#IncentiveDetailList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The incentive details."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#IncentiveDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.reporting_transactions_v1#IncentiveDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of incentive details."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#IncentiveDetail": {
+      "type": "structure",
+      "members": {
+        "incentive_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of incentive, such as a special offer or coupon."
+          }
+        },
+        "incentive_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The code that identifies an incentive, such as a coupon."
+          }
+        },
+        "incentive_amount": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The incentive amount."
+          }
+        },
+        "incentive_program_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The incentive program code that identifies a merchant loyalty or incentive program."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The incentive details."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#LinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.reporting_transactions_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#LinkDescription": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.",
+            "smithy.api#required": {}
+          }
+        },
+        "rel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).",
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "com.paypal.reporting_transactions_v1#LinkDescriptionMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method required to make the related call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#LinkDescriptionMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "CONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECT"
+          }
+        },
+        "OPTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTIONS"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The HTTP method required to make the related call."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#SearchGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.reporting_transactions_v1#SearchGetRequest"
+      },
+      "output": {
+        "target": "com.paypal.reporting_transactions_v1#SearchResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/reporting/transactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List transactions\n\nLists transactions. Specify one or more query parameters to filter the transaction that appear in the response.<blockquote><strong>Notes:</strong> <ul><li>If you specify one or more optional query parameters, the <code>ending_balance</code> response field is empty.</li><li>It takes a maximum of three hours for executed transactions to appear in the list transactions call.</li><li>This call lists transaction for the previous three years.</li></ul></blockquote>"
+      }
+    },
+    "com.paypal.reporting_transactions_v1#BalancesGetRequest": {
+      "type": "structure",
+      "members": {
+        "as_of_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "as_of_time",
+            "smithy.api#documentation": "List balances in the response at the date time provided, will return the last refreshed balance in the system when not provided."
+          }
+        },
+        "currency_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "currency_code",
+            "smithy.api#documentation": "Filters the transactions in the response by a [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) for the PayPal transaction currency."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.reporting_transactions_v1#BalancesResponse": {
+      "type": "structure",
+      "members": {
+        "balances": {
+          "target": "com.paypal.reporting_transactions_v1#BalanceDetailList"
+        },
+        "account_id": {
+          "target": "smithy.api#String"
+        },
+        "as_of_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The requested date and time or the last date and time when the balances can be served, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "last_refresh_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the balances was last refreshed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The balances response information."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#BalanceDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.reporting_transactions_v1#BalanceDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of balance detail objects."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#BalanceDetail": {
+      "type": "structure",
+      "members": {
+        "currency": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Currency Code of the balances listed.",
+            "smithy.api#required": {}
+          }
+        },
+        "primary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional field representing if the currency is primary currency or not."
+          }
+        },
+        "total_balance": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The total amount in PayPal account. It is the sum of all the other balances.",
+            "smithy.api#required": {}
+          }
+        },
+        "available_balance": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The amount of cash in an Account which is at the customer's disposal. This amount is captured at settlement cutoff time in the user's time zone as defined for the user."
+          }
+        },
+        "withheld_balance": {
+          "target": "com.paypal.reporting_transactions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "Balance withheld in the account. The portion of funds that PayPal holds for the customer that is not currently at the customer's disposal."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Balance information."
+      }
+    },
+    "com.paypal.reporting_transactions_v1#BalancesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.reporting_transactions_v1#BalancesGetRequest"
+      },
+      "output": {
+        "target": "com.paypal.reporting_transactions_v1#BalancesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.reporting_transactions_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.reporting_transactions_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/reporting/balances",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all balances\n\nList all balances. Specify date time to list balances for that time that appear in the response.<blockquote><strong>Notes:</strong> <ul><li>It takes a maximum of three hours for balances to appear in the list balances call.</li><li>This call lists balances upto the previous three years.</li></ul></blockquote>"
+      }
+    },
+    "com.paypal.reporting_transactions_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.paypal.reporting_transactions_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.paypal.reporting_transactions_v1#ReportingTransactionsV1": {
+      "type": "service",
+      "version": "1.9",
+      "operations": [
+        {
+          "target": "com.paypal.reporting_transactions_v1#SearchGet"
+        },
+        {
+          "target": "com.paypal.reporting_transactions_v1#BalancesGet"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Transaction Search",
+        "smithy.api#documentation": "Use the Transaction Search API to get the history of transactions for a PayPal account. To use the API on behalf of third parties, you must be part of the PayPal partner network. Reach out to your partner manager for the next steps. To enroll in the partner program, see <a href=\"https://www.paypal.com/my/webapps/mpp/partner-program/global-programs\">Partner with PayPal</a>. For more information about the API, see the <a href=\"/docs/transaction-search/\">Transaction Search API Integration Guide</a>.<blockquote><strong>Note:</strong> To use the API on behalf of third parties, you must be part of the PayPal partner network. Reach out to your partner manager for the next steps. To enroll in the partner program, see <a href=\"https://www.paypal.com/my/webapps/mpp/partner-program/global-programs\">Partner with PayPal</a>.</blockquote>"
+      }
+    }
+  }
+}

@@ -143,3 +143,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-coolify.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/paypal/specs/spec-mirror-paypal"]
+	path = packages/paypal/specs/spec-mirror-paypal
+	url = https://github.com/distilled-mirror/spec-mirror-paypal.git
+	ignore = dirty
+	shallow = true

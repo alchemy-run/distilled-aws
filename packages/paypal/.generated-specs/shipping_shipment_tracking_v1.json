@@ -1,0 +1,6029 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.paypal.shipping_shipment_tracking_v1#TrackerListInput": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#TrackerInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of tracking information for shipments."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackerInput": {
+      "type": "structure",
+      "members": {
+        "transaction_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal transaction ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "tracking_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tracking number for the shipment. Carrier information, `carrier` is required if tracking_number is provided."
+          }
+        },
+        "tracking_number_type": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackingNumberType",
+          "traits": {
+            "smithy.api#documentation": "The type of tracking number."
+          }
+        },
+        "status": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackingStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "shipment_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the shipment occurred, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "carrier": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#Carrier"
+        },
+        "carrier_name_other": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the carrier for the shipment. Provide this value only if the carrier parameter is OTHER."
+          }
+        },
+        "notify_buyer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true , sends an email notification to the buyer of the PayPal transaction. The email contains the tracking information that was uploaded through the API."
+          }
+        },
+        "last_updated_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the tracking information was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "shipment_direction": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackerInputShipmentDirection",
+          "traits": {
+            "smithy.api#documentation": "To denote whether the shipment is sent forward to the receiver or returned back."
+          }
+        },
+        "tracking_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tracking Link of the shipment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The tracking information for a shipment."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackingNumberType": {
+      "type": "enum",
+      "members": {
+        "CARRIER_PROVIDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CARRIER_PROVIDED"
+          }
+        },
+        "E2E_PARTNER_PROVIDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "E2E_PARTNER_PROVIDED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The tracking number type."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackingStatus": {
+      "type": "enum",
+      "members": {
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        },
+        "DELIVERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELIVERED"
+          }
+        },
+        "LOCAL_PICKUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_PICKUP"
+          }
+        },
+        "ON_HOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ON_HOLD"
+          }
+        },
+        "SHIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPPED"
+          }
+        },
+        "SHIPMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPMENT_CREATED"
+          }
+        },
+        "DROPPED_OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DROPPED_OFF"
+          }
+        },
+        "IN_TRANSIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_TRANSIT"
+          }
+        },
+        "RETURNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETURNED"
+          }
+        },
+        "LABEL_PRINTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_PRINTED"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "UNCONFIRMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNCONFIRMED"
+          }
+        },
+        "PICKUP_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_FAILED"
+          }
+        },
+        "DELIVERY_DELAYED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELIVERY_DELAYED"
+          }
+        },
+        "DELIVERY_SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELIVERY_SCHEDULED"
+          }
+        },
+        "DELIVERY_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELIVERY_FAILED"
+          }
+        },
+        "INRETURN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INRETURN"
+          }
+        },
+        "IN_PROCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_PROCESS"
+          }
+        },
+        "NEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEW"
+          }
+        },
+        "VOID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VOID"
+          }
+        },
+        "PROCESSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROCESSED"
+          }
+        },
+        "NOT_SHIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_SHIPPED"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the item shipment. For allowed values, see <a href=\"/docs/tracking/reference/shipping-status/\">Shipping Statuses</a>."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#Carrier": {
+      "type": "enum",
+      "members": {
+        "_2EBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "2EBOX"
+          }
+        },
+        "_360LION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "360LION"
+          }
+        },
+        "_3JMSLOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "3JMSLOGISTICS"
+          }
+        },
+        "_4_72": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "4_72"
+          }
+        },
+        "_6LS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "6LS"
+          }
+        },
+        "A1POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "A1POST"
+          }
+        },
+        "AAA_COOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAA_COOPER"
+          }
+        },
+        "ABCUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABCUSTOM"
+          }
+        },
+        "ABXEXPRESS_MY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABXEXPRESS_MY"
+          }
+        },
+        "ACOMMMERCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACOMMMERCE"
+          }
+        },
+        "ACSWORLDWIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACSWORLDWIDE"
+          }
+        },
+        "ACS_GR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACS_GR"
+          }
+        },
+        "ADERONLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADERONLINE"
+          }
+        },
+        "ADICIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADICIONAL"
+          }
+        },
+        "ADSONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADSONE"
+          }
+        },
+        "ADUIEPYLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADUIEPYLE"
+          }
+        },
+        "AERONET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AERONET"
+          }
+        },
+        "AEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AEX"
+          }
+        },
+        "AFLLOG_FTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AFLLOG_FTP"
+          }
+        },
+        "AGILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGILITY"
+          }
+        },
+        "AIRMEE_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AIRMEE_WEBHOOK"
+          }
+        },
+        "AIR_CANADA_GLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AIR_CANADA_GLOBAL"
+          }
+        },
+        "ALFATREX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALFATREX"
+          }
+        },
+        "ALLIEDEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALLIEDEXPRESS"
+          }
+        },
+        "ALLJOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALLJOY"
+          }
+        },
+        "ALPHAFAST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALPHAFAST"
+          }
+        },
+        "ALWAYS_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALWAYS_EXPRESS"
+          }
+        },
+        "AMAZON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMAZON"
+          }
+        },
+        "AMAZON_FBA_SWISHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMAZON_FBA_SWISHIP"
+          }
+        },
+        "AMAZON_SHIP_MCF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMAZON_SHIP_MCF"
+          }
+        },
+        "AMSTAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMSTAN"
+          }
+        },
+        "AMS_GRP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMS_GRP"
+          }
+        },
+        "ANDREANI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANDREANI"
+          }
+        },
+        "ANICAM_BOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANICAM_BOX"
+          }
+        },
+        "ANJUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANJUN"
+          }
+        },
+        "ANSERX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANSERX"
+          }
+        },
+        "AN_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AN_POST"
+          }
+        },
+        "AO_COURIER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AO_COURIER"
+          }
+        },
+        "AO_DEUTSCHLAND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AO_DEUTSCHLAND"
+          }
+        },
+        "APC_OVERNIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APC_OVERNIGHT"
+          }
+        },
+        "APC_OVERNIGHT_CONNUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APC_OVERNIGHT_CONNUM"
+          }
+        },
+        "APG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APG"
+          }
+        },
+        "APRISAEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APRISAEXPRESS"
+          }
+        },
+        "AQUILINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AQUILINE"
+          }
+        },
+        "ARAMEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARAMEX"
+          }
+        },
+        "ARAMEX_AU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARAMEX_AU"
+          }
+        },
+        "ARCO_SPEDIZIONI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARCO_SPEDIZIONI"
+          }
+        },
+        "ARE_EMIRATES_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARE_EMIRATES_POST"
+          }
+        },
+        "ARG_OCA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARG_OCA"
+          }
+        },
+        "ARK_LOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARK_LOGISTICS"
+          }
+        },
+        "ASE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASE"
+          }
+        },
+        "ASENDIA_HK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASENDIA_HK"
+          }
+        },
+        "ASENDIA_UK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASENDIA_UK"
+          }
+        },
+        "ASENDIA_USA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASENDIA_USA"
+          }
+        },
+        "ASIGNA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASIGNA"
+          }
+        },
+        "AUPOST_CN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUPOST_CN"
+          }
+        },
+        "AUSTRIAN_POST_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUSTRIAN_POST_EXPRESS"
+          }
+        },
+        "AUS_STARTRACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUS_STARTRACK"
+          }
+        },
+        "AUS_TOLL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUS_TOLL"
+          }
+        },
+        "AU_AUSTRIAN_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AU_AUSTRIAN_POST"
+          }
+        },
+        "AU_AU_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AU_AU_POST"
+          }
+        },
+        "AU_TNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AU_TNT"
+          }
+        },
+        "AVERITT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AVERITT"
+          }
+        },
+        "BEL_DHL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BEL_DHL"
+          }
+        },
+        "BEL_RS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BEL_RS"
+          }
+        },
+        "BESTWAYPARCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BESTWAYPARCEL"
+          }
+        },
+        "BE_BPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BE_BPOST"
+          }
+        },
+        "BE_KIALA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BE_KIALA"
+          }
+        },
+        "BG_BULGARIAN_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BG_BULGARIAN_POST"
+          }
+        },
+        "BH_POSTA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BH_POSTA"
+          }
+        },
+        "BH_WORLDWIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BH_WORLDWIDE"
+          }
+        },
+        "BIRDSYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BIRDSYSTEM"
+          }
+        },
+        "BJSHOMEDELIVERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BJSHOMEDELIVERY"
+          }
+        },
+        "BLINKLASTMILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLINKLASTMILE"
+          }
+        },
+        "BLR_BELPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLR_BELPOST"
+          }
+        },
+        "BLUECARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLUECARE"
+          }
+        },
+        "BLUESTAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLUESTAR"
+          }
+        },
+        "BLUEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLUEX"
+          }
+        },
+        "BNEED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BNEED"
+          }
+        },
+        "BOMBINOEXP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOMBINOEXP"
+          }
+        },
+        "BOND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOND"
+          }
+        },
+        "BONDSCOURIERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BONDSCOURIERS"
+          }
+        },
+        "BORDEREXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BORDEREXPRESS"
+          }
+        },
+        "BOX_BERRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOX_BERRY"
+          }
+        },
+        "BPOST_INT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BPOST_INT"
+          }
+        },
+        "BRA_CORREIOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BRA_CORREIOS"
+          }
+        },
+        "BRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BRING"
+          }
+        },
+        "BROUWER_TRANSPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BROUWER_TRANSPORT"
+          }
+        },
+        "BRT_IT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BRT_IT"
+          }
+        },
+        "BRT_IT_PARCELID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BRT_IT_PARCELID"
+          }
+        },
+        "BRT_IT_SENDER_REF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BRT_IT_SENDER_REF"
+          }
+        },
+        "BUDBEE_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUDBEE_WEBHOOK"
+          }
+        },
+        "BUYLOGIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUYLOGIC"
+          }
+        },
+        "B_TWO_C_EUROPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "B_TWO_C_EUROPE"
+          }
+        },
+        "CAE_DELIVERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAE_DELIVERS"
+          }
+        },
+        "CAINIAO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAINIAO"
+          }
+        },
+        "CARIBOU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CARIBOU"
+          }
+        },
+        "CARRIERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CARRIERS"
+          }
+        },
+        "CARRY_FLAP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CARRY_FLAP"
+          }
+        },
+        "CA_CANADA_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CA_CANADA_POST"
+          }
+        },
+        "CA_CANPAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CA_CANPAR"
+          }
+        },
+        "CA_GREYHOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CA_GREYHOUND"
+          }
+        },
+        "CA_PUROLATOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CA_PUROLATOR"
+          }
+        },
+        "CBL_LOGISTICA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CBL_LOGISTICA"
+          }
+        },
+        "CDEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CDEK"
+          }
+        },
+        "CDEK_TR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CDEK_TR"
+          }
+        },
+        "CELERITAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CELERITAS"
+          }
+        },
+        "CELLO_SQUARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CELLO_SQUARE"
+          }
+        },
+        "CESKA_CZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CESKA_CZ"
+          }
+        },
+        "CEVA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CEVA"
+          }
+        },
+        "CFL_LOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CFL_LOGISTICS"
+          }
+        },
+        "CGS_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CGS_EXPRESS"
+          }
+        },
+        "CHAMPION_LOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHAMPION_LOGISTICS"
+          }
+        },
+        "CHITCHATS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHITCHATS"
+          }
+        },
+        "CHOIR_EXP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHOIR_EXP"
+          }
+        },
+        "CHROBINSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROBINSON"
+          }
+        },
+        "CHRONOPOST_FR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHRONOPOST_FR"
+          }
+        },
+        "CHUKOU1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHUKOU1"
+          }
+        },
+        "CH_SWISS_POST_PRIORITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CH_SWISS_POST_PRIORITY"
+          }
+        },
+        "CITYLINK_MY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CITYLINK_MY"
+          }
+        },
+        "CJPACKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CJPACKET"
+          }
+        },
+        "CJ_CENTURY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CJ_CENTURY"
+          }
+        },
+        "CJ_GLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CJ_GLS"
+          }
+        },
+        "CJ_HK_INTERNATIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CJ_HK_INTERNATIONAL"
+          }
+        },
+        "CJ_INT_MY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CJ_INT_MY"
+          }
+        },
+        "CJ_KR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CJ_KR"
+          }
+        },
+        "CJ_LOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CJ_LOGISTICS"
+          }
+        },
+        "CJ_TH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CJ_TH"
+          }
+        },
+        "CLEVY_LINKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLEVY_LINKS"
+          }
+        },
+        "CLE_LOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLE_LOGISTICS"
+          }
+        },
+        "CLOUDWISH_ASIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUDWISH_ASIA"
+          }
+        },
+        "CNDEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNDEXPRESS"
+          }
+        },
+        "CNEXPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNEXPS"
+          }
+        },
+        "CNWANGTONG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNWANGTONG"
+          }
+        },
+        "CN_17POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_17POST"
+          }
+        },
+        "CN_BESTEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_BESTEXPRESS"
+          }
+        },
+        "CN_BOXC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_BOXC"
+          }
+        },
+        "CN_CHINA_POST_EMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_CHINA_POST_EMS"
+          }
+        },
+        "CN_DPEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_DPEX"
+          }
+        },
+        "CN_EMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_EMS"
+          }
+        },
+        "CN_EQUICK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_EQUICK"
+          }
+        },
+        "CN_JCEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_JCEX"
+          }
+        },
+        "CN_PAYPAL_PACKAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_PAYPAL_PACKAGE"
+          }
+        },
+        "CN_POST56": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_POST56"
+          }
+        },
+        "CN_SF_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_SF_EXPRESS"
+          }
+        },
+        "CN_STO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_STO"
+          }
+        },
+        "CN_WEDO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_WEDO"
+          }
+        },
+        "CN_WISHPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_WISHPOST"
+          }
+        },
+        "CN_YUNDA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN_YUNDA"
+          }
+        },
+        "COLIS_PRIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLIS_PRIVE"
+          }
+        },
+        "COLLECTCO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLLECTCO"
+          }
+        },
+        "COLLIVERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLLIVERY"
+          }
+        },
+        "COMET_TECH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMET_TECH"
+          }
+        },
+        "CONTINENTAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTINENTAL"
+          }
+        },
+        "CON_WAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CON_WAY"
+          }
+        },
+        "COORDINADORA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COORDINADORA"
+          }
+        },
+        "COPA_COURIER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COPA_COURIER"
+          }
+        },
+        "COPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COPE"
+          }
+        },
+        "CORPORATECOURIERS_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CORPORATECOURIERS_WEBHOOK"
+          }
+        },
+        "CORREOS_DE_MEXICO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CORREOS_DE_MEXICO"
+          }
+        },
+        "CORREOS_ES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CORREOS_ES"
+          }
+        },
+        "CORREOS_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CORREOS_EXPRESS"
+          }
+        },
+        "CORREO_UY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CORREO_UY"
+          }
+        },
+        "COSTMETICSNOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COSTMETICSNOW"
+          }
+        },
+        "COURANT_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COURANT_PLUS"
+          }
+        },
+        "COUREX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUREX"
+          }
+        },
+        "COURIERS_PLEASE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COURIERS_PLEASE"
+          }
+        },
+        "CPACKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CPACKET"
+          }
+        },
+        "CPEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CPEX"
+          }
+        },
+        "CROSHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CROSHOT"
+          }
+        },
+        "CSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CSE"
+          }
+        },
+        "CTC_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CTC_EXPRESS"
+          }
+        },
+        "CUBYN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUBYN"
+          }
+        },
+        "CUCKOOEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUCKOOEXPRESS"
+          }
+        },
+        "CYPRUS_POST_CYP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CYPRUS_POST_CYP"
+          }
+        },
+        "DAIGLOBALTRACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAIGLOBALTRACK"
+          }
+        },
+        "DAJIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAJIN"
+          }
+        },
+        "DANSKE_FRAGT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DANSKE_FRAGT"
+          }
+        },
+        "DAWN_WING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAWN_WING"
+          }
+        },
+        "DAYTON_FREIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAYTON_FREIGHT"
+          }
+        },
+        "DBSCHENKER_B2B": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DBSCHENKER_B2B"
+          }
+        },
+        "DBSCHENKER_SE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DBSCHENKER_SE"
+          }
+        },
+        "DBSCHENKER_SV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DBSCHENKER_SV"
+          }
+        },
+        "DDEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DDEXPRESS"
+          }
+        },
+        "DEALERSEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEALERSEND"
+          }
+        },
+        "DELIVERYONTIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELIVERYONTIME"
+          }
+        },
+        "DELNEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELNEXT"
+          }
+        },
+        "DELTEC_UK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELTEC_UK"
+          }
+        },
+        "DEMANDSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMANDSHIP"
+          }
+        },
+        "DESCARTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESCARTES"
+          }
+        },
+        "DESIGNERTRANSPORT_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESIGNERTRANSPORT_WEBHOOK"
+          }
+        },
+        "DESTINY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESTINY"
+          }
+        },
+        "DEX_I": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEX_I"
+          }
+        },
+        "DE_ASENDIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DE_ASENDIA"
+          }
+        },
+        "DE_DEUTSCHE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DE_DEUTSCHE"
+          }
+        },
+        "DE_DEUTSCHE_POST_DHL_WITHIN_EUROPE_TRACKNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DE_DEUTSCHE_POST_DHL_WITHIN_EUROPE_TRACKNET"
+          }
+        },
+        "DE_DHL_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DE_DHL_EXPRESS"
+          }
+        },
+        "DE_DPD_DELISTRACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DE_DPD_DELISTRACK"
+          }
+        },
+        "DE_GLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DE_GLS"
+          }
+        },
+        "DHL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL"
+          }
+        },
+        "DHL_ACTIVE_TRACING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_ACTIVE_TRACING"
+          }
+        },
+        "DHL_AU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_AU"
+          }
+        },
+        "DHL_BENELUX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_BENELUX"
+          }
+        },
+        "DHL_ECOMERCE_ASA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_ECOMERCE_ASA"
+          }
+        },
+        "DHL_ES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_ES"
+          }
+        },
+        "DHL_FR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_FR"
+          }
+        },
+        "DHL_FREIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_FREIGHT"
+          }
+        },
+        "DHL_GLOBAL_MAIL_ASIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_GLOBAL_MAIL_ASIA"
+          }
+        },
+        "DHL_HK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_HK"
+          }
+        },
+        "DHL_JP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_JP"
+          }
+        },
+        "DHL_PARCEL_ES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_PARCEL_ES"
+          }
+        },
+        "DHL_PARCEL_NL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_PARCEL_NL"
+          }
+        },
+        "DHL_PARCEL_RU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_PARCEL_RU"
+          }
+        },
+        "DHL_PL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_PL"
+          }
+        },
+        "DHL_REFR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_REFR"
+          }
+        },
+        "DHL_SG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_SG"
+          }
+        },
+        "DHL_SUPPLY_CHAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_SUPPLY_CHAIN"
+          }
+        },
+        "DHL_UK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHL_UK"
+          }
+        },
+        "DIAMOND_EUROGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIAMOND_EUROGISTICS"
+          }
+        },
+        "DICOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DICOM"
+          }
+        },
+        "DIDADI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIDADI"
+          }
+        },
+        "DIMERCO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIMERCO"
+          }
+        },
+        "DIRECTCOURIERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTCOURIERS"
+          }
+        },
+        "DIRECTLOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTLOG"
+          }
+        },
+        "DIRECTPARCELS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTPARCELS"
+          }
+        },
+        "DMM_NETWORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DMM_NETWORK"
+          }
+        },
+        "DMS_MATRIX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DMS_MATRIX"
+          }
+        },
+        "DOBROPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOBROPOST"
+          }
+        },
+        "DOORA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOORA"
+          }
+        },
+        "DOORDASH_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOORDASH_WEBHOOK"
+          }
+        },
+        "DPD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DPD"
+          }
+        },
+        "DPD_DELISTRACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DPD_DELISTRACK"
+          }
+        },
+        "DPD_FR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DPD_FR"
+          }
+        },
+        "DPD_HGRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DPD_HGRY"
+          }
+        },
+        "DPD_HK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DPD_HK"
+          }
+        },
+        "DPD_IR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DPD_IR"
+          }
+        },
+        "DPD_LOCAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DPD_LOCAL"
+          }
+        },
+        "DPD_LOCAL_REF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DPD_LOCAL_REF"
+          }
+        },
+        "DPD_POLAND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DPD_POLAND"
+          }
+        },
+        "DPD_RO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DPD_RO"
+          }
+        },
+        "DPD_RU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DPD_RU"
+          }
+        },
+        "DPEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DPEX"
+          }
+        },
+        "DPE_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DPE_EXPRESS"
+          }
+        },
+        "DPE_SOUTH_AFRC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DPE_SOUTH_AFRC"
+          }
+        },
+        "DSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DSV"
+          }
+        },
+        "DTDC_AU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DTDC_AU"
+          }
+        },
+        "DTDC_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DTDC_EXPRESS"
+          }
+        },
+        "DTDC_IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DTDC_IN"
+          }
+        },
+        "DTD_EXPR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DTD_EXPR"
+          }
+        },
+        "DX_SFTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DX_SFTP"
+          }
+        },
+        "DYLT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DYLT"
+          }
+        },
+        "DYNALOGIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DYNALOGIC"
+          }
+        },
+        "EASY_MAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EASY_MAIL"
+          }
+        },
+        "ECEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ECEXPRESS"
+          }
+        },
+        "ECHO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ECHO"
+          }
+        },
+        "ECMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ECMS"
+          }
+        },
+        "ECOSCOOTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ECOSCOOTING"
+          }
+        },
+        "EFEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EFEX"
+          }
+        },
+        "EFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EFS"
+          }
+        },
+        "EKART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EKART"
+          }
+        },
+        "ELIAN_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ELIAN_POST"
+          }
+        },
+        "EMPS_CN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EMPS_CN"
+          }
+        },
+        "ENDEAVOUR_DELIVERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENDEAVOUR_DELIVERY"
+          }
+        },
+        "ENVIALIA_REFERENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENVIALIA_REFERENCE"
+          }
+        },
+        "EPARCEL_KR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EPARCEL_KR"
+          }
+        },
+        "EPST_GLBL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EPST_GLBL"
+          }
+        },
+        "EP_BOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EP_BOX"
+          }
+        },
+        "ESHIPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ESHIPPING"
+          }
+        },
+        "ESP_ASM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ESP_ASM"
+          }
+        },
+        "ESP_ENVIALIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ESP_ENVIALIA"
+          }
+        },
+        "ESP_MRW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ESP_MRW"
+          }
+        },
+        "ESP_NACEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ESP_NACEX"
+          }
+        },
+        "ESP_PACKLINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ESP_PACKLINK"
+          }
+        },
+        "ESP_REDUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ESP_REDUR"
+          }
+        },
+        "ETOMARS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ETOMARS"
+          }
+        },
+        "ETOTAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ETOTAL"
+          }
+        },
+        "ETS_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ETS_EXPRESS"
+          }
+        },
+        "EU_FLEET_SOLUTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EU_FLEET_SOLUTIONS"
+          }
+        },
+        "EU_IMX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EU_IMX"
+          }
+        },
+        "EXPRESSSALE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPRESSSALE"
+          }
+        },
+        "FARGOOD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FARGOOD"
+          }
+        },
+        "FAR_INTERNATIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAR_INTERNATIONAL"
+          }
+        },
+        "FASTRACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FASTRACK"
+          }
+        },
+        "FASTRK_SERV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FASTRK_SERV"
+          }
+        },
+        "FASTWAY_IR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FASTWAY_IR"
+          }
+        },
+        "FASTWAY_NZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FASTWAY_NZ"
+          }
+        },
+        "FDSEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FDSEXPRESS"
+          }
+        },
+        "FEDEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEDEX"
+          }
+        },
+        "FEDEX_CROSSBORDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEDEX_CROSSBORDER"
+          }
+        },
+        "FEDEX_FR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEDEX_FR"
+          }
+        },
+        "FEDEX_INTL_MLSERV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEDEX_INTL_MLSERV"
+          }
+        },
+        "FEDEX_POLAND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEDEX_POLAND"
+          }
+        },
+        "FEDEX_UK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEDEX_UK"
+          }
+        },
+        "FETCHR_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FETCHR_WEBHOOK"
+          }
+        },
+        "FIEGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIEGE"
+          }
+        },
+        "FIEGE_NL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIEGE_NL"
+          }
+        },
+        "FIRSTMILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIRSTMILE"
+          }
+        },
+        "FLASHEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FLASHEXPRESS"
+          }
+        },
+        "FMX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FMX"
+          }
+        },
+        "FONSEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FONSEN"
+          }
+        },
+        "FORRUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FORRUN"
+          }
+        },
+        "FREIGHTQUOTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREIGHTQUOTE"
+          }
+        },
+        "FRETERAPIDO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRETERAPIDO"
+          }
+        },
+        "FR_BERT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FR_BERT"
+          }
+        },
+        "FR_COLIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FR_COLIS"
+          }
+        },
+        "FR_EXAPAQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FR_EXAPAQ"
+          }
+        },
+        "FR_GEODIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FR_GEODIS"
+          }
+        },
+        "FR_GLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FR_GLS"
+          }
+        },
+        "FULFILLA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULFILLA"
+          }
+        },
+        "FULFILLME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULFILLME"
+          }
+        },
+        "FURDECO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FURDECO"
+          }
+        },
+        "GAC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GAC"
+          }
+        },
+        "GANGBAO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GANGBAO"
+          }
+        },
+        "GBA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GBA"
+          }
+        },
+        "GBS_BROKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GBS_BROKER"
+          }
+        },
+        "GB_APC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GB_APC"
+          }
+        },
+        "GB_ARROW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GB_ARROW"
+          }
+        },
+        "GB_NORSK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GB_NORSK"
+          }
+        },
+        "GB_PANTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GB_PANTHER"
+          }
+        },
+        "GB_TUFFNELLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GB_TUFFNELLS"
+          }
+        },
+        "GEIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GEIS"
+          }
+        },
+        "GEL_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GEL_EXPRESS"
+          }
+        },
+        "GEMWORLDWIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GEMWORLDWIDE"
+          }
+        },
+        "GENERAL_OVERNIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GENERAL_OVERNIGHT"
+          }
+        },
+        "GENIKI_GR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GENIKI_GR"
+          }
+        },
+        "GEODIS_ESPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GEODIS_ESPACE"
+          }
+        },
+        "GESWL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GESWL"
+          }
+        },
+        "GIAO_HANG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GIAO_HANG"
+          }
+        },
+        "GIO_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GIO_EXPRESS"
+          }
+        },
+        "GLOBALTRANZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLOBALTRANZ"
+          }
+        },
+        "GLOBAL_ABF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLOBAL_ABF"
+          }
+        },
+        "GLOBAL_ESTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLOBAL_ESTES"
+          }
+        },
+        "GLOBAL_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLOBAL_EXPRESS"
+          }
+        },
+        "GLOBAL_IPARCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLOBAL_IPARCEL"
+          }
+        },
+        "GLOBAL_TNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLOBAL_TNT"
+          }
+        },
+        "GLOBAVEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLOBAVEND"
+          }
+        },
+        "GLS_CROTIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLS_CROTIA"
+          }
+        },
+        "GLS_CZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLS_CZ"
+          }
+        },
+        "GLS_IT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLS_IT"
+          }
+        },
+        "GLS_ITALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLS_ITALY"
+          }
+        },
+        "GLS_SLOV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLS_SLOV"
+          }
+        },
+        "GLS_SLOVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLS_SLOVEN"
+          }
+        },
+        "GOGLOBALPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOGLOBALPOST"
+          }
+        },
+        "GOJEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOJEK"
+          }
+        },
+        "GRAB_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GRAB_WEBHOOK"
+          }
+        },
+        "GRUPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GRUPO"
+          }
+        },
+        "GR_ELTA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GR_ELTA"
+          }
+        },
+        "GSI_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GSI_EXPRESS"
+          }
+        },
+        "GSO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GSO"
+          }
+        },
+        "HAPPY2POINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HAPPY2POINT"
+          }
+        },
+        "HCT_LOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HCT_LOGISTICS"
+          }
+        },
+        "HDB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HDB"
+          }
+        },
+        "HDB_BOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HDB_BOX"
+          }
+        },
+        "HELLMANN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HELLMANN"
+          }
+        },
+        "HELTHJEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HELTHJEM"
+          }
+        },
+        "HEPPNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEPPNER"
+          }
+        },
+        "HEPPNER_FR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEPPNER_FR"
+          }
+        },
+        "HERMES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HERMES"
+          }
+        },
+        "HERMES_2MANN_HANDLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HERMES_2MANN_HANDLING"
+          }
+        },
+        "HERMES_DE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HERMES_DE"
+          }
+        },
+        "HH_EXP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HH_EXP"
+          }
+        },
+        "HIPSHIPPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIPSHIPPER"
+          }
+        },
+        "HKD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HKD"
+          }
+        },
+        "HK_FLYT_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HK_FLYT_EXPRESS"
+          }
+        },
+        "HK_FOUR_PX_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HK_FOUR_PX_EXPRESS"
+          }
+        },
+        "HK_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HK_POST"
+          }
+        },
+        "HK_TGX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HK_TGX"
+          }
+        },
+        "HOLISOL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOLISOL"
+          }
+        },
+        "HOME_DELIVERY_SOLUTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOME_DELIVERY_SOLUTIONS"
+          }
+        },
+        "HOUNDEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOUNDEXPRESS"
+          }
+        },
+        "HRPARCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HRPARCEL"
+          }
+        },
+        "HRV_HRVATSKA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HRV_HRVATSKA"
+          }
+        },
+        "HUAHAN_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HUAHAN_EXPRESS"
+          }
+        },
+        "HUNTER_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HUNTER_EXPRESS"
+          }
+        },
+        "HUODULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HUODULL"
+          }
+        },
+        "HX_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HX_EXPRESS"
+          }
+        },
+        "IBEONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IBEONE"
+          }
+        },
+        "ICUMULUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ICUMULUS"
+          }
+        },
+        "IDEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IDEXPRESS"
+          }
+        },
+        "IDN_JNE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IDN_JNE"
+          }
+        },
+        "IDN_LION_PARCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IDN_LION_PARCEL"
+          }
+        },
+        "IDN_PANDU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IDN_PANDU"
+          }
+        },
+        "IML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IML"
+          }
+        },
+        "INDOPAKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDOPAKET"
+          }
+        },
+        "IND_BLUEDART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IND_BLUEDART"
+          }
+        },
+        "IND_DELHIVERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IND_DELHIVERY"
+          }
+        },
+        "IND_DELIVREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IND_DELIVREE"
+          }
+        },
+        "IND_DOTZOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IND_DOTZOT"
+          }
+        },
+        "IND_ECOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IND_ECOM"
+          }
+        },
+        "IND_FIRSTFLIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IND_FIRSTFLIGHT"
+          }
+        },
+        "IND_GATI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IND_GATI"
+          }
+        },
+        "IND_GOJAVAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IND_GOJAVAS"
+          }
+        },
+        "IND_PROFESSIONAL_COURIERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IND_PROFESSIONAL_COURIERS"
+          }
+        },
+        "IND_SAFEEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IND_SAFEEXPRESS"
+          }
+        },
+        "IND_XPRESSBEES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IND_XPRESSBEES"
+          }
+        },
+        "INPOST_PACZKOMATY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INPOST_PACZKOMATY"
+          }
+        },
+        "INTEGRA2_FTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTEGRA2_FTP"
+          }
+        },
+        "INTELIPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTELIPOST"
+          }
+        },
+        "INTEL_VALLEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTEL_VALLEY"
+          }
+        },
+        "INTERPARCEL_AU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERPARCEL_AU"
+          }
+        },
+        "INTERPARCEL_NZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERPARCEL_NZ"
+          }
+        },
+        "INTERPARCEL_UK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERPARCEL_UK"
+          }
+        },
+        "INTEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTEXPRESS"
+          }
+        },
+        "ISRAEL_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ISRAEL_POST"
+          }
+        },
+        "ISR_POST_DOMESTIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ISR_POST_DOMESTIC"
+          }
+        },
+        "IT_DHL_ECOMMERCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IT_DHL_ECOMMERCE"
+          }
+        },
+        "IT_FERCAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IT_FERCAM"
+          }
+        },
+        "IT_NEXIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IT_NEXIVE"
+          }
+        },
+        "IT_POSTE_ITALIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IT_POSTE_ITALIA"
+          }
+        },
+        "IT_TNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IT_TNT"
+          }
+        },
+        "IVOY_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IVOY_WEBHOOK"
+          }
+        },
+        "I_DIKA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "I_DIKA"
+          }
+        },
+        "JANCO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JANCO"
+          }
+        },
+        "JANIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JANIO"
+          }
+        },
+        "JERSEY_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JERSEY_POST"
+          }
+        },
+        "JET_SHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JET_SHIP"
+          }
+        },
+        "JINDOUYUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JINDOUYUN"
+          }
+        },
+        "JINSUNG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JINSUNG"
+          }
+        },
+        "JOCOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JOCOM"
+          }
+        },
+        "JOOM_LOGIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JOOM_LOGIS"
+          }
+        },
+        "JOYING_BOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JOYING_BOX"
+          }
+        },
+        "JPN_JAPAN_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JPN_JAPAN_POST"
+          }
+        },
+        "JPN_SAGAWA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JPN_SAGAWA"
+          }
+        },
+        "JP_KURO_NEKO_YAMATO_UNYUU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JP_KURO_NEKO_YAMATO_UNYUU"
+          }
+        },
+        "JS_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JS_EXPRESS"
+          }
+        },
+        "JTEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JTEXPRESS"
+          }
+        },
+        "JTEXPRESS_VN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JTEXPRESS_VN"
+          }
+        },
+        "JX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JX"
+          }
+        },
+        "J_NET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "J_NET"
+          }
+        },
+        "K1_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "K1_EXPRESS"
+          }
+        },
+        "KANGAROO_MY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KANGAROO_MY"
+          }
+        },
+        "KEC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KEC"
+          }
+        },
+        "KERRYTJ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KERRYTJ"
+          }
+        },
+        "KERRYTTC_VN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KERRYTTC_VN"
+          }
+        },
+        "KERRY_ECOMMERCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KERRY_ECOMMERCE"
+          }
+        },
+        "KGMHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KGMHUB"
+          }
+        },
+        "KHM_CAMBODIA_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KHM_CAMBODIA_POST"
+          }
+        },
+        "KOR_ECARGO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KOR_ECARGO"
+          }
+        },
+        "KPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KPOST"
+          }
+        },
+        "KR_KOREA_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KR_KOREA_POST"
+          }
+        },
+        "KUEHNE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KUEHNE"
+          }
+        },
+        "KURASI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KURASI"
+          }
+        },
+        "KWE_GLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KWE_GLOBAL"
+          }
+        },
+        "KWT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KWT"
+          }
+        },
+        "KYUNGDONG_PARCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KYUNGDONG_PARCEL"
+          }
+        },
+        "KY_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KY_EXPRESS"
+          }
+        },
+        "LALAMOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LALAMOVE"
+          }
+        },
+        "LANDMARK_GLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LANDMARK_GLOBAL"
+          }
+        },
+        "LANDMARK_GLOBAL_REFERENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LANDMARK_GLOBAL_REFERENCE"
+          }
+        },
+        "LATVIJAS_PASTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LATVIJAS_PASTS"
+          }
+        },
+        "LA_POSTE_SUIVI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LA_POSTE_SUIVI"
+          }
+        },
+        "LBCEXPRESS_FTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LBCEXPRESS_FTP"
+          }
+        },
+        "LEADER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEADER"
+          }
+        },
+        "LEGION_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEGION_EXPRESS"
+          }
+        },
+        "LEXSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEXSHIP"
+          }
+        },
+        "LHT_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LHT_EXPRESS"
+          }
+        },
+        "LICCARDI_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LICCARDI_EXPRESS"
+          }
+        },
+        "LIEFERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIEFERY"
+          }
+        },
+        "LINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINE"
+          }
+        },
+        "LINKBRIDGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINKBRIDGE"
+          }
+        },
+        "LOCUS_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCUS_WEBHOOK"
+          }
+        },
+        "LOGISTERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOGISTERS"
+          }
+        },
+        "LOGISTICSWORLDWIDE_HK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOGISTICSWORLDWIDE_HK"
+          }
+        },
+        "LOGISTIKA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOGISTIKA"
+          }
+        },
+        "LOGISTYX_TRANSGROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOGISTYX_TRANSGROUP"
+          }
+        },
+        "LONESTAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LONESTAR"
+          }
+        },
+        "LOOMIS_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOMIS_EXPRESS"
+          }
+        },
+        "LOTTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOTTE"
+          }
+        },
+        "LTIANEXP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LTIANEXP"
+          }
+        },
+        "LTL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LTL"
+          }
+        },
+        "LTU_LIETUVOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LTU_LIETUVOS"
+          }
+        },
+        "MAGYAR_HU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAGYAR_HU"
+          }
+        },
+        "MAILAMERICAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAILAMERICAS"
+          }
+        },
+        "MAILPLUS_JPN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAILPLUS_JPN"
+          }
+        },
+        "MAIL_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAIL_PLUS"
+          }
+        },
+        "MAINFREIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAINFREIGHT"
+          }
+        },
+        "MAINWAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAINWAY"
+          }
+        },
+        "MATDESPATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATDESPATCH"
+          }
+        },
+        "MATKAHUOLTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATKAHUOLTO"
+          }
+        },
+        "MBW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MBW"
+          }
+        },
+        "MEX_AEROFLASH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEX_AEROFLASH"
+          }
+        },
+        "MEX_ESTAFETA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEX_ESTAFETA"
+          }
+        },
+        "MEX_REDPACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEX_REDPACK"
+          }
+        },
+        "MEX_SENDA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEX_SENDA"
+          }
+        },
+        "MGLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MGLOBAL"
+          }
+        },
+        "MIKROPAKKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIKROPAKKET"
+          }
+        },
+        "MIKROPAKKET_BE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIKROPAKKET_BE"
+          }
+        },
+        "MILKMAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MILKMAN"
+          }
+        },
+        "MORE_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MORE_LINK"
+          }
+        },
+        "MORNING_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MORNING_EXPRESS"
+          }
+        },
+        "MRW_FTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MRW_FTP"
+          }
+        },
+        "MXE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MXE"
+          }
+        },
+        "MX_CARGO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MX_CARGO"
+          }
+        },
+        "MYHERMES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MYHERMES"
+          }
+        },
+        "MYS_AIRPAK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MYS_AIRPAK"
+          }
+        },
+        "MYS_EMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MYS_EMS"
+          }
+        },
+        "MYS_GDEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MYS_GDEX"
+          }
+        },
+        "MYS_MYPOST_ONLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MYS_MYPOST_ONLINE"
+          }
+        },
+        "MYS_MYS_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MYS_MYS_POST"
+          }
+        },
+        "MYS_SKYNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MYS_SKYNET"
+          }
+        },
+        "M_XPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "M_XPRESS"
+          }
+        },
+        "NACEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NACEX"
+          }
+        },
+        "NACEX_ES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NACEX_ES"
+          }
+        },
+        "NANJINGWOYUAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NANJINGWOYUAN"
+          }
+        },
+        "NATIONAL_SAMEDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NATIONAL_SAMEDAY"
+          }
+        },
+        "NATIONEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NATIONEX"
+          }
+        },
+        "NATIONWIDE_MY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NATIONWIDE_MY"
+          }
+        },
+        "NEWAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEWAY"
+          }
+        },
+        "NEWEGGEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEWEGGEXPRESS"
+          }
+        },
+        "NEWGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEWGISTICS"
+          }
+        },
+        "NEWZEALAND_COURIERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEWZEALAND_COURIERS"
+          }
+        },
+        "NG_COURIERPLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NG_COURIERPLUS"
+          }
+        },
+        "NHANS_SOLUTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NHANS_SOLUTIONS"
+          }
+        },
+        "NIM_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NIM_EXPRESS"
+          }
+        },
+        "NINJAVAN_MY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NINJAVAN_MY"
+          }
+        },
+        "NINJAVAN_SG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NINJAVAN_SG"
+          }
+        },
+        "NINJAVAN_THAI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NINJAVAN_THAI"
+          }
+        },
+        "NINJAVAN_WB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NINJAVAN_WB"
+          }
+        },
+        "NIPOST_NG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NIPOST_NG"
+          }
+        },
+        "NLD_DHL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NLD_DHL"
+          }
+        },
+        "NLD_GLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NLD_GLS"
+          }
+        },
+        "NLD_POSTNL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NLD_POSTNL"
+          }
+        },
+        "NLD_TRANSMISSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NLD_TRANSMISSION"
+          }
+        },
+        "NOVA_POSHTA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOVA_POSHTA"
+          }
+        },
+        "NOVA_POSHTA_INT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOVA_POSHTA_INT"
+          }
+        },
+        "NOX_NACHTEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOX_NACHTEXPRESS"
+          }
+        },
+        "NOX_NIGHT_TIME_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOX_NIGHT_TIME_EXPRESS"
+          }
+        },
+        "NTLOGISTICS_VN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NTLOGISTICS_VN"
+          }
+        },
+        "NZ_COURIER_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NZ_COURIER_POST"
+          }
+        },
+        "NZ_NZ_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NZ_NZ_POST"
+          }
+        },
+        "OCS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OCS"
+          }
+        },
+        "OCS_WORLDWIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OCS_WORLDWIDE"
+          }
+        },
+        "OKAYPARCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OKAYPARCEL"
+          }
+        },
+        "OMNIPARCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OMNIPARCEL"
+          }
+        },
+        "OMNIVA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OMNIVA"
+          }
+        },
+        "ONECLICK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONECLICK"
+          }
+        },
+        "ONEWORLDEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONEWORLDEXPRESS"
+          }
+        },
+        "ORANGE_DS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORANGE_DS"
+          }
+        },
+        "OSM_WORLDWIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OSM_WORLDWIDE"
+          }
+        },
+        "OVERSE_EXP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OVERSE_EXP"
+          }
+        },
+        "P2P_TRC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P2P_TRC"
+          }
+        },
+        "PAACK_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAACK_WEBHOOK"
+          }
+        },
+        "PADTF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PADTF"
+          }
+        },
+        "PAGO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGO"
+          }
+        },
+        "PALEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PALEXPRESS"
+          }
+        },
+        "PALLETWAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PALLETWAYS"
+          }
+        },
+        "PALLET_NETWORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PALLET_NETWORK"
+          }
+        },
+        "PANTHER_REFERENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PANTHER_REFERENCE"
+          }
+        },
+        "PAN_ASIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAN_ASIA"
+          }
+        },
+        "PAPERFLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAPERFLY"
+          }
+        },
+        "PAPER_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAPER_EXPRESS"
+          }
+        },
+        "PAQUETEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAQUETEXPRESS"
+          }
+        },
+        "PARCEL2GO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARCEL2GO"
+          }
+        },
+        "PARCELINKLOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARCELINKLOGISTICS"
+          }
+        },
+        "PARCELLED_IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARCELLED_IN"
+          }
+        },
+        "PARCELONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARCELONE"
+          }
+        },
+        "PARCELPAL_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARCELPAL_WEBHOOK"
+          }
+        },
+        "PARCELPOINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARCELPOINT"
+          }
+        },
+        "PARCELPOST_SG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARCELPOST_SG"
+          }
+        },
+        "PARCEL_2_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARCEL_2_POST"
+          }
+        },
+        "PARKNPARCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARKNPARCEL"
+          }
+        },
+        "PCFCORP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PCFCORP"
+          }
+        },
+        "PFCEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PFCEXPRESS"
+          }
+        },
+        "PFLOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PFLOGISTICS"
+          }
+        },
+        "PHL_AIR21": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHL_AIR21"
+          }
+        },
+        "PHL_AIRSPEED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHL_AIRSPEED"
+          }
+        },
+        "PHL_JAMEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHL_JAMEXPRESS"
+          }
+        },
+        "PICKRR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKRR"
+          }
+        },
+        "PICKUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP"
+          }
+        },
+        "PICKUPP_MYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUPP_MYS"
+          }
+        },
+        "PICKUPP_SGP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUPP_SGP"
+          }
+        },
+        "PILOT_FREIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PILOT_FREIGHT"
+          }
+        },
+        "PIL_LOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PIL_LOGISTICS"
+          }
+        },
+        "PITNEY_BOWES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PITNEY_BOWES"
+          }
+        },
+        "PITTOHIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PITTOHIO"
+          }
+        },
+        "PIXSELL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PIXSELL"
+          }
+        },
+        "PLANZER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLANZER"
+          }
+        },
+        "PLUS_LOG_UK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLUS_LOG_UK"
+          }
+        },
+        "PL_POCZTA_POLSKA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PL_POCZTA_POLSKA"
+          }
+        },
+        "POL_SIODEMKA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POL_SIODEMKA"
+          }
+        },
+        "PONY_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PONY_EXPRESS"
+          }
+        },
+        "POSTA_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSTA_PLUS"
+          }
+        },
+        "POSTA_RO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSTA_RO"
+          }
+        },
+        "POSTA_UKR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSTA_UKR"
+          }
+        },
+        "POSTEN_NORGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSTEN_NORGE"
+          }
+        },
+        "POSTI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSTI"
+          }
+        },
+        "POSTNL_INTL_3S": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSTNL_INTL_3S"
+          }
+        },
+        "POSTNL_INT_3_S": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSTNL_INT_3_S"
+          }
+        },
+        "POSTNORD_LOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSTNORD_LOGISTICS"
+          }
+        },
+        "POSTNORD_LOGISTICS_DK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSTNORD_LOGISTICS_DK"
+          }
+        },
+        "POSTUR_IS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSTUR_IS"
+          }
+        },
+        "POST_SERBIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST_SERBIA"
+          }
+        },
+        "POST_SLOVENIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST_SLOVENIA"
+          }
+        },
+        "PRESIDENT_TRANS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRESIDENT_TRANS"
+          }
+        },
+        "PRESSIODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRESSIODE"
+          }
+        },
+        "PRIMAMULTICIPTA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIMAMULTICIPTA"
+          }
+        },
+        "PROMEDDELIVERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROMEDDELIVERY"
+          }
+        },
+        "PRT_CHRONOPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRT_CHRONOPOST"
+          }
+        },
+        "PRT_CTT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRT_CTT"
+          }
+        },
+        "PRT_INT_SEUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRT_INT_SEUR"
+          }
+        },
+        "PRT_SEUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRT_SEUR"
+          }
+        },
+        "PTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PTS"
+          }
+        },
+        "PTT_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PTT_POST"
+          }
+        },
+        "QUANTIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUANTIUM"
+          }
+        },
+        "QWINTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QWINTRY"
+          }
+        },
+        "RABEN_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RABEN_GROUP"
+          }
+        },
+        "RAF_PH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RAF_PH"
+          }
+        },
+        "RAIDEREX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RAIDEREX"
+          }
+        },
+        "RAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RAM"
+          }
+        },
+        "RCL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RCL"
+          }
+        },
+        "RINCOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RINCOS"
+          }
+        },
+        "RL_US": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RL_US"
+          }
+        },
+        "ROADBULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROADBULL"
+          }
+        },
+        "ROADRUNNER_FREIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROADRUNNER_FREIGHT"
+          }
+        },
+        "ROCKET_PARCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROCKET_PARCEL"
+          }
+        },
+        "ROUTIFIC_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROUTIFIC_WEBHOOK"
+          }
+        },
+        "ROYAL_MAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROYAL_MAIL"
+          }
+        },
+        "RPD2MAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RPD2MAN"
+          }
+        },
+        "RPX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RPX"
+          }
+        },
+        "RPXLOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RPXLOGISTICS"
+          }
+        },
+        "RPX_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RPX_ID"
+          }
+        },
+        "RUSSIAN_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUSSIAN_POST"
+          }
+        },
+        "RUSTON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUSTON"
+          }
+        },
+        "RZYEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RZYEXPRESS"
+          }
+        },
+        "SAIA_FREIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAIA_FREIGHT"
+          }
+        },
+        "SAILPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAILPOST"
+          }
+        },
+        "SAP_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAP_EXPRESS"
+          }
+        },
+        "SAU_SAUDI_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAU_SAUDI_POST"
+          }
+        },
+        "SCUDEX_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCUDEX_EXPRESS"
+          }
+        },
+        "SDA_IT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SDA_IT"
+          }
+        },
+        "SDH_SCM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SDH_SCM"
+          }
+        },
+        "SEFL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEFL"
+          }
+        },
+        "SEINO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEINO"
+          }
+        },
+        "SEKOLOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEKOLOGISTICS"
+          }
+        },
+        "SEKO_SFTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEKO_SFTP"
+          }
+        },
+        "SENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SENDING"
+          }
+        },
+        "SENDIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SENDIT"
+          }
+        },
+        "SENDLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SENDLE"
+          }
+        },
+        "SEUR_ES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEUR_ES"
+          }
+        },
+        "SEUR_SP_API": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEUR_SP_API"
+          }
+        },
+        "SFB2C": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SFB2C"
+          }
+        },
+        "SFCSERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SFCSERVICE"
+          }
+        },
+        "SFC_LOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SFC_LOGISTICS"
+          }
+        },
+        "SFPLUS_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SFPLUS_WEBHOOK"
+          }
+        },
+        "SF_EX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SF_EX"
+          }
+        },
+        "SG_DETRACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SG_DETRACK"
+          }
+        },
+        "SG_QXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SG_QXPRESS"
+          }
+        },
+        "SG_SG_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SG_SG_POST"
+          }
+        },
+        "SG_SPEEDPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SG_SPEEDPOST"
+          }
+        },
+        "SG_TAQBIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SG_TAQBIN"
+          }
+        },
+        "SHENZHEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHENZHEN"
+          }
+        },
+        "SHIPENTEGRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPENTEGRA"
+          }
+        },
+        "SHIPPIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPPIT"
+          }
+        },
+        "SHIPTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPTER"
+          }
+        },
+        "SHIPTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPTOR"
+          }
+        },
+        "SHIP_GATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIP_GATE"
+          }
+        },
+        "SHIP_IT_ASIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIP_IT_ASIA"
+          }
+        },
+        "SHOPFANS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOPFANS"
+          }
+        },
+        "SHREENANDANCOURIER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHREENANDANCOURIER"
+          }
+        },
+        "SHREETIRUPATI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHREETIRUPATI"
+          }
+        },
+        "SHREE_ANJANI_COURIER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHREE_ANJANI_COURIER"
+          }
+        },
+        "SHREE_MARUTI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHREE_MARUTI"
+          }
+        },
+        "SIMPLYPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SIMPLYPOST"
+          }
+        },
+        "SINOTRANS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SINOTRANS"
+          }
+        },
+        "SIN_GLBL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SIN_GLBL"
+          }
+        },
+        "SKYBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SKYBOX"
+          }
+        },
+        "SKYNET_UAE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SKYNET_UAE"
+          }
+        },
+        "SKYNET_UK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SKYNET_UK"
+          }
+        },
+        "SKYNET_WORLDWIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SKYNET_WORLDWIDE"
+          }
+        },
+        "SKYNET_ZA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SKYNET_ZA"
+          }
+        },
+        "SKY_POSTAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SKY_POSTAL"
+          }
+        },
+        "SK_POSTA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SK_POSTA"
+          }
+        },
+        "SMG_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SMG_EXPRESS"
+          }
+        },
+        "SMOOTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SMOOTH"
+          }
+        },
+        "SMSA_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SMSA_EXPRESS"
+          }
+        },
+        "SONICTL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SONICTL"
+          }
+        },
+        "SOUTH_AFRICAN_POST_OFFICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOUTH_AFRICAN_POST_OFFICE"
+          }
+        },
+        "SPEEDCOURIERS_GR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPEEDCOURIERS_GR"
+          }
+        },
+        "SPEEDEE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPEEDEE"
+          }
+        },
+        "SPEEDEXCOURIER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPEEDEXCOURIER"
+          }
+        },
+        "SPOTON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPOTON"
+          }
+        },
+        "SPRING_GDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPRING_GDS"
+          }
+        },
+        "SRE_KOREA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SRE_KOREA"
+          }
+        },
+        "STALLIONEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STALLIONEXPRESS"
+          }
+        },
+        "STARKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STARKEN"
+          }
+        },
+        "STAR_TRACK_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STAR_TRACK_EXPRESS"
+          }
+        },
+        "STAR_TRACK_NEXT_FLIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STAR_TRACK_NEXT_FLIGHT"
+          }
+        },
+        "STEPFORWARDFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STEPFORWARDFS"
+          }
+        },
+        "STONE3PL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STONE3PL"
+          }
+        },
+        "STRECK_TRANSPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STRECK_TRANSPORT"
+          }
+        },
+        "SUTTON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUTTON"
+          }
+        },
+        "SWE_POSTNORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SWE_POSTNORD"
+          }
+        },
+        "SWISHIP_DE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SWISHIP_DE"
+          }
+        },
+        "SWISS_POST_FTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SWISS_POST_FTP"
+          }
+        },
+        "SYPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYPOST"
+          }
+        },
+        "SZENDEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SZENDEX"
+          }
+        },
+        "TAQBIN_HK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAQBIN_HK"
+          }
+        },
+        "TAQBIN_MY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAQBIN_MY"
+          }
+        },
+        "TARRIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TARRIVE"
+          }
+        },
+        "TAZMANIAN_FREIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAZMANIAN_FREIGHT"
+          }
+        },
+        "TCK_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TCK_EXPRESS"
+          }
+        },
+        "TCS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TCS"
+          }
+        },
+        "TFM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TFM"
+          }
+        },
+        "TFORCE_FINALMILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TFORCE_FINALMILE"
+          }
+        },
+        "THABIT_LOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THABIT_LOGISTICS"
+          }
+        },
+        "THA_DYNAMIC_LOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THA_DYNAMIC_LOGISTICS"
+          }
+        },
+        "THA_KERRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THA_KERRY"
+          }
+        },
+        "THA_THAILAND_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THA_THAILAND_POST"
+          }
+        },
+        "THECOURIERGUY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THECOURIERGUY"
+          }
+        },
+        "THEDELIVERYGROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THEDELIVERYGROUP"
+          }
+        },
+        "THENILE_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THENILE_WEBHOOK"
+          }
+        },
+        "TIGFREIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIGFREIGHT"
+          }
+        },
+        "TIKI_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIKI_ID"
+          }
+        },
+        "TIPSA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIPSA"
+          }
+        },
+        "TNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TNT"
+          }
+        },
+        "TNT_CLICK_IT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TNT_CLICK_IT"
+          }
+        },
+        "TNT_FR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TNT_FR"
+          }
+        },
+        "TNT_NL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TNT_NL"
+          }
+        },
+        "TNT_REFR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TNT_REFR"
+          }
+        },
+        "TNT_UK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TNT_UK"
+          }
+        },
+        "TNT_UK_REFR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TNT_UK_REFR"
+          }
+        },
+        "TOLL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOLL"
+          }
+        },
+        "TOLL_NZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOLL_NZ"
+          }
+        },
+        "TOLOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOLOS"
+          }
+        },
+        "TOPHATTEREXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOPHATTEREXPRESS"
+          }
+        },
+        "TOPYOU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOPYOU"
+          }
+        },
+        "TOTAL_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOTAL_EXPRESS"
+          }
+        },
+        "TOURLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOURLINE"
+          }
+        },
+        "TRACKON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRACKON"
+          }
+        },
+        "TRANS_KARGO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANS_KARGO"
+          }
+        },
+        "TRUMPCARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRUMPCARD"
+          }
+        },
+        "TRUNKRS_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRUNKRS_WEBHOOK"
+          }
+        },
+        "TUFFNELLS_REFERENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TUFFNELLS_REFERENCE"
+          }
+        },
+        "TWO_GO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TWO_GO"
+          }
+        },
+        "TW_TAIWAN_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TW_TAIWAN_POST"
+          }
+        },
+        "UBI_LOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UBI_LOGISTICS"
+          }
+        },
+        "UC_EXPRE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UC_EXPRE"
+          }
+        },
+        "UDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UDS"
+          }
+        },
+        "UK_COLLECTPLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UK_COLLECTPLUS"
+          }
+        },
+        "UK_DPD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UK_DPD"
+          }
+        },
+        "UK_NIGHTLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UK_NIGHTLINE"
+          }
+        },
+        "UK_PARCELFORCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UK_PARCELFORCE"
+          }
+        },
+        "UK_UK_MAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UK_UK_MAIL"
+          }
+        },
+        "UK_XDP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UK_XDP"
+          }
+        },
+        "UK_YODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UK_YODEL"
+          }
+        },
+        "UPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPS"
+          }
+        },
+        "UPS_FREIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPS_FREIGHT"
+          }
+        },
+        "UPS_MAIL_INNOVATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPS_MAIL_INNOVATIONS"
+          }
+        },
+        "UPS_REFERENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPS_REFERENCE"
+          }
+        },
+        "USF_REDDAWAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USF_REDDAWAY"
+          }
+        },
+        "USHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USHIP"
+          }
+        },
+        "USPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USPS"
+          }
+        },
+        "US_GLOBEGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_GLOBEGISTICS"
+          }
+        },
+        "US_LASERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_LASERSHIP"
+          }
+        },
+        "US_OLD_DOMINION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_OLD_DOMINION"
+          }
+        },
+        "US_ONTRAC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_ONTRAC"
+          }
+        },
+        "US_YRC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_YRC"
+          }
+        },
+        "VAMOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VAMOX"
+          }
+        },
+        "VENIPAK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VENIPAK"
+          }
+        },
+        "VIAEUROPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIAEUROPE"
+          }
+        },
+        "VIA_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIA_EXPRESS"
+          }
+        },
+        "VIRTRANSPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIRTRANSPORT"
+          }
+        },
+        "VIWO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIWO"
+          }
+        },
+        "VNM_VIETNAM_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VNM_VIETNAM_POST"
+          }
+        },
+        "VNM_VIETTELPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VNM_VIETTELPOST"
+          }
+        },
+        "WAHANA_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WAHANA_ID"
+          }
+        },
+        "WANBEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WANBEXPRESS"
+          }
+        },
+        "WEASHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEASHIP"
+          }
+        },
+        "WEPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEPOST"
+          }
+        },
+        "WESTBANK_COURIER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WESTBANK_COURIER"
+          }
+        },
+        "WESTGATE_GL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WESTGATE_GL"
+          }
+        },
+        "WHISTL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WHISTL"
+          }
+        },
+        "WINIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WINIT"
+          }
+        },
+        "WISELOADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WISELOADS"
+          }
+        },
+        "WISE_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WISE_EXPRESS"
+          }
+        },
+        "WIZMO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WIZMO"
+          }
+        },
+        "WMG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WMG"
+          }
+        },
+        "WNDIRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WNDIRECT"
+          }
+        },
+        "WYNGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WYNGS"
+          }
+        },
+        "XDE_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XDE_WEBHOOK"
+          }
+        },
+        "XDP_UK_REFERENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XDP_UK_REFERENCE"
+          }
+        },
+        "XL_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XL_EXPRESS"
+          }
+        },
+        "XPERT_DELIVERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XPERT_DELIVERY"
+          }
+        },
+        "XPOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XPOST"
+          }
+        },
+        "XPO_LOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XPO_LOGISTICS"
+          }
+        },
+        "XPRESSEN_DK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XPRESSEN_DK"
+          }
+        },
+        "XQ_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XQ_EXPRESS"
+          }
+        },
+        "YAKIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YAKIT"
+          }
+        },
+        "YANWEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YANWEN"
+          }
+        },
+        "YDH_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YDH_EXPRESS"
+          }
+        },
+        "YINGNUO_LOGISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YINGNUO_LOGISTICS"
+          }
+        },
+        "YODEL_DIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YODEL_DIR"
+          }
+        },
+        "YODEL_INTNL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YODEL_INTNL"
+          }
+        },
+        "YTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YTO"
+          }
+        },
+        "YUNEXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YUNEXPRESS"
+          }
+        },
+        "YURTICI_KARGO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YURTICI_KARGO"
+          }
+        },
+        "YUSEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YUSEN"
+          }
+        },
+        "ZAJIL_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZAJIL_EXPRESS"
+          }
+        },
+        "ZA_COURIERIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZA_COURIERIT"
+          }
+        },
+        "ZA_FASTWAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZA_FASTWAY"
+          }
+        },
+        "ZA_SPECIALISED_FREIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZA_SPECIALISED_FREIGHT"
+          }
+        },
+        "ZEEK_2_DOOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZEEK_2_DOOR"
+          }
+        },
+        "ZELERIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZELERIS"
+          }
+        },
+        "ZEPTO_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZEPTO_EXPRESS"
+          }
+        },
+        "ZES_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZES_EXPRESS"
+          }
+        },
+        "ZIINGFINALMILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZIINGFINALMILE"
+          }
+        },
+        "ZINC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZINC"
+          }
+        },
+        "ZJS_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZJS_EXPRESS"
+          }
+        },
+        "ZTO_EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZTO_EXPRESS"
+          }
+        },
+        "ZYLLEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZYLLEM"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The carrier for the shipment. Carrier information is required when tracking_number is provided. Some carriers have a global version as well as local subsidiaries. The subsidiaries are repeated over many countries and might also have an entry in the global list. Choose the carrier for your country. If the carrier is not available for your country, choose the global version of the carrier. If your carrier name is not in the list, set `carrier` to `OTHER` and set carrier name in `carrier_name_other`. For allowed values, see <a href=\"/docs/tracking/reference/carriers/\">Carriers</a>."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackerInputShipmentDirection": {
+      "type": "enum",
+      "members": {
+        "FORWARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FORWARD"
+          }
+        },
+        "RETURN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETURN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "To denote whether the shipment is sent forward to the receiver or returned back."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackersBatchPostRequest": {
+      "type": "structure",
+      "members": {
+        "trackers": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackerListInput"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#BatchTrackerCollection": {
+      "type": "structure",
+      "members": {
+        "tracker_identifiers": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackerIdentifierList"
+        },
+        "errors": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#ErrorList"
+        },
+        "links": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#BatchTrackerCollectionDefinitionsLinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The add tracking information for multiple PayPal transactions response details."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackerIdentifierList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#TrackerIdentifier"
+      },
+      "traits": {
+        "smithy.api#documentation": "The batch header."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackerIdentifier": {
+      "type": "structure",
+      "members": {
+        "transaction_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal transaction ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "tracking_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tracking number for the shipment."
+          }
+        },
+        "links": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The tracking identifiers for a shipment."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#LinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#LinkDescription": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The complete target URL. To make the related call, combine the method with this link, in [URI template format](https://tools.ietf.org/html/rfc6570). Include the `$`, `(`, and `)` characters for pre-processing. The `href` is the key HATEOAS component that links a completed call with a subsequent call.",
+            "smithy.api#required": {}
+          }
+        },
+        "rel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).",
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#LinkDescriptionMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method required to make the related call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request-related [HATEOAS link](/api/rest/responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#LinkDescriptionMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "CONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECT"
+          }
+        },
+        "OPTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTIONS"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The HTTP method required to make the related call."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#ErrorList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#Error"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of error responses."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#Error": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable, unique name of the error.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The message that describes the error.",
+            "smithy.api#required": {}
+          }
+        },
+        "debug_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal internal ID. Used for correlation purposes.",
+            "smithy.api#required": {}
+          }
+        },
+        "information_link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The information link, or URI, that shows detailed information about this error for the developer."
+          }
+        },
+        "details": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#ErrorDetailsList"
+        },
+        "links": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#ErrorDefinitionsLinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The error details."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#ErrorDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#ErrorDetails2"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of additional details about the error."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#ErrorDetails2": {
+      "type": "structure",
+      "members": {
+        "field": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the field that caused the error."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the field that caused the error. Value is `body`, `path`, or `query`."
+          }
+        },
+        "issue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique, fine-grained application-level error code.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value."
+          }
+        },
+        "links": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#DefinitionsLinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The error details. Required for client-side `4XX` errors."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#DefinitionsLinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#LinkDescription2"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links) that are either relevant to the issue by providing additional information or offering potential resolutions."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#LinkDescription2": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.",
+            "smithy.api#required": {}
+          }
+        },
+        "rel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).",
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#LinkDescription2Method",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method required to make the related call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#LinkDescription2Method": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "CONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECT"
+          }
+        },
+        "OPTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTIONS"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The HTTP method required to make the related call."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#ErrorDefinitionsLinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#LinkDescription2"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#BatchTrackerCollectionDefinitionsLinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackersBatchPost": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#TrackersBatchPostRequest"
+      },
+      "output": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#BatchTrackerCollection"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.shipping_shipment_tracking_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.shipping_shipment_tracking_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.shipping_shipment_tracking_v1#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/shipping/trackers-batch",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add tracking information for multiple PayPal transactions\n\n<blockquote><strong>Deprecation notice:</strong> Adding tracking details for an order through <code>/v1/shipping/trackers-batch</code> is deprecated as its a legacy way of integration. Use the new <a href=\"/docs/tracking/orders-api/integrate/\">Orders v2 API</a> to share tracking details with PayPal.</blockquote>Adds tracking information, with or without tracking numbers, for multiple PayPal transactions. Accepts up to 20 tracking IDs. For more information, see <a href=\"/docs/tracking/tracking-api/integrate/#link-addtrackinginformationwithtrackingnumbers\">Add tracking information with tracking numbers</a> and <a href=\"/docs/tracking/tracking-api/integrate/#link-addtrackinginformationwithouttrackingnumbers\">Add tracking information without tracking numbers</a>."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackersBatchGetRequest": {
+      "type": "structure",
+      "members": {
+        "transaction_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "transaction_id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Filters the tracking information that appears in the response by a PayPal transaction ID."
+          }
+        },
+        "tracking_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tracking_number",
+            "smithy.api#documentation": "Filters the tracking information that appears in the response by a tracking number."
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "account_id",
+            "smithy.api#documentation": "Encrypted PayPal Account ID of the buyer or seller."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#Tracker": {
+      "type": "structure",
+      "members": {
+        "transaction_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal transaction ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "tracking_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tracking number for the shipment. Carrier information, `carrier` is required if tracking_number is provided."
+          }
+        },
+        "tracking_number_type": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackingNumberType",
+          "traits": {
+            "smithy.api#documentation": "The type of tracking number."
+          }
+        },
+        "status": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackingStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "shipment_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the shipment occurred, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "carrier": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#Carrier"
+        },
+        "carrier_name_other": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the carrier for the shipment. Provide this value only if the carrier parameter is OTHER."
+          }
+        },
+        "postage_payment_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postage payment ID."
+          }
+        },
+        "notify_buyer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true , sends an email notification to the buyer of the PayPal transaction. The email contains the tracking information that was uploaded through the API."
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The quantity of items shipped."
+          }
+        },
+        "tracking_number_validated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the carrier validated the tracking number."
+          }
+        },
+        "last_updated_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the tracking information was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "shipment_direction": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackerShipmentDirection",
+          "traits": {
+            "smithy.api#documentation": "To denote whether the shipment is sent forward to the receiver or returned back."
+          }
+        },
+        "shipment_uploader": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackerShipmentUploader",
+          "traits": {
+            "smithy.api#documentation": "To denote which party uploaded the shipment tracking info."
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encrypted PayPal Account ID of the buyer or seller."
+          }
+        },
+        "tracking_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tracking Link of the shipment."
+          }
+        },
+        "links": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The tracking information for a shipment."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackerShipmentDirection": {
+      "type": "enum",
+      "members": {
+        "FORWARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FORWARD"
+          }
+        },
+        "RETURN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETURN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "To denote whether the shipment is sent forward to the receiver or returned back."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackerShipmentUploader": {
+      "type": "enum",
+      "members": {
+        "MERCHANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT"
+          }
+        },
+        "CONSUMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSUMER"
+          }
+        },
+        "PARTNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTNER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "To denote which party uploaded the shipment tracking info."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackersBatchGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#TrackersBatchGetRequest"
+      },
+      "output": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#Tracker"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/shipping/trackers",
+          "code": 200
+        },
+        "smithy.api#documentation": "List tracking information\n\nLists tracking information that meet search criteria. The tracking ID is required but the tracking number is optional."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackersPostRequest": {
+      "type": "structure",
+      "members": {
+        "trackers": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackerListInput"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackerIdentifierCollection": {
+      "type": "structure",
+      "members": {
+        "tracker_identifiers": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#DefinitionsTrackerIdentifierList"
+        },
+        "links": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackerIdentifierCollectionDefinitionsLinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The add tracking information for a PayPal transaction response details."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#DefinitionsTrackerIdentifierList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#TrackerIdentifier"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of tracking IDs."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackerIdentifierCollectionDefinitionsLinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackersPost": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#TrackersPostRequest"
+      },
+      "output": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#TrackerIdentifierCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/shipping/trackers",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add tracking information for PayPal transaction\n\nAdds tracking information for a PayPal transaction."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackersGetRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the tracker in the <code><var>transaction_id</var>-<var>tracking_number</var></code> format."
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "account_id",
+            "smithy.api#documentation": "Encrypted PayPal Account ID of the buyer or seller."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackersGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#TrackersGetRequest"
+      },
+      "output": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#Tracker"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/shipping/trackers/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show tracking information\n\nShows tracking information, by tracker ID, for a PayPal transaction."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackersPutRequestShipmentDirection": {
+      "type": "enum",
+      "members": {
+        "FORWARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FORWARD"
+          }
+        },
+        "RETURN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETURN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "To denote whether the shipment is sent forward to the receiver or returned back."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackersPutRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the tracker in the <code><var>transaction_id</var>-<var>tracking_number</var></code> format."
+          }
+        },
+        "transaction_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal transaction ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "tracking_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tracking number for the shipment. Carrier information, `carrier` is required if tracking_number is provided."
+          }
+        },
+        "tracking_number_type": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackingNumberType",
+          "traits": {
+            "smithy.api#documentation": "The type of tracking number."
+          }
+        },
+        "status": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackingStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "shipment_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the shipment occurred, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "carrier": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#Carrier"
+        },
+        "carrier_name_other": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the carrier for the shipment. Provide this value only if the carrier parameter is OTHER."
+          }
+        },
+        "notify_buyer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true , sends an email notification to the buyer of the PayPal transaction. The email contains the tracking information that was uploaded through the API."
+          }
+        },
+        "last_updated_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the tracking information was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "shipment_direction": {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackersPutRequestShipmentDirection",
+          "traits": {
+            "smithy.api#documentation": "To denote whether the shipment is sent forward to the receiver or returned back."
+          }
+        },
+        "tracking_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tracking Link of the shipment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#TrackersPut": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.shipping_shipment_tracking_v1#TrackersPutRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/v1/shipping/trackers/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update or cancel tracking information for PayPal transaction\n\nUpdates or cancels the tracking information for a PayPal transaction, by ID. To cancel tracking information, call this method and set the status to CANCELLED. For more information, see <a href=\"/docs/tracking/tracking-api/integrate/#link-updateorcanceltrackinginformation\">Update or cancel tracking information</a>."
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.paypal.shipping_shipment_tracking_v1#ShippingShipmentTrackingV1": {
+      "type": "service",
+      "version": "1.9",
+      "operations": [
+        {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackersBatchPost"
+        },
+        {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackersBatchGet"
+        },
+        {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackersPost"
+        },
+        {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackersGet"
+        },
+        {
+          "target": "com.paypal.shipping_shipment_tracking_v1#TrackersPut"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Shipment Tracking",
+        "smithy.api#documentation": "Merchants can use the PayPal Add Tracking API to manage tracking information. Merchants can add tracking numbers and associated information to PayPal. There are 2 ways in which tracking details can be shared to PayPal.\nIf you have a legacy integration that doesn't use the Orders v2 API, share tracking details through the <a href=\"/docs/tracking/tracking-api/\">Add Shipping Tracking API</a>. If you are using the Orders v2 API, share tracking details through the <a href=\"/docs/tracking/orders-api/integrate/\">Orders v2 API</a>.After adding these details to PayPal, merchants can:<ul><li>Update tracking details.</li><li>Show tracking details.</li><li>Cancel tracking numbers.</li></ul>For more information, see the <a href=\"/docs/tracking/tracking-api/\">Add Tracking API Overview</a> and <a href=\"/docs/tracking/tracking-api/integrate/\">Add Tracking API Integration Guide</a>."
+      }
+    }
+  }
+}

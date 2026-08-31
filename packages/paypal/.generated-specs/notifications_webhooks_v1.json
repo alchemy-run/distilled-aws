@@ -1,0 +1,1197 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.paypal.notifications_webhooks_v1#WebhooksListRequestAnchorType": {
+      "type": "enum",
+      "members": {
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPLICATION"
+          }
+        },
+        "ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksListRequest": {
+      "type": "structure",
+      "members": {
+        "anchor_type": {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksListRequestAnchorType",
+          "traits": {
+            "smithy.api#httpQuery": "anchor_type",
+            "smithy.api#documentation": "Filters the webhooks in the response by an `anchor_id` entity type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhookList": {
+      "type": "structure",
+      "members": {
+        "webhooks": {
+          "target": "com.paypal.notifications_webhooks_v1#WebhookList2"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of webhooks."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhookList2": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.notifications_webhooks_v1#Webhook"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of webhooks."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#Webhook": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the webhook."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL that is configured to listen on `localhost` for incoming `POST` notification messages that contain event information.",
+            "smithy.api#required": {}
+          }
+        },
+        "event_types": {
+          "target": "com.paypal.notifications_webhooks_v1#DefinitionsEventTypeList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "links": {
+          "target": "com.paypal.notifications_webhooks_v1#DefinitionsLinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "One or more webhook objects."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#DefinitionsEventTypeList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.notifications_webhooks_v1#EventType"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of events to which to subscribe your webhook. To subscribe to all events, including events as they are added, specify the asterisk wild card. To replace the `event_types` array, specify the asterisk wild card. To list all supported events, <a href=\"#event-type_list\">list available events</a>."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#EventType": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique event name.<blockquote><strong>Note:</strong> To subscribe to all events, including events as they are added, specify an `*` as the value to represent a wildcard.</blockquote>",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the event."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The status of a webhook event."
+          }
+        },
+        "resource_versions": {
+          "target": "com.paypal.notifications_webhooks_v1#ResourceVersionsList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An event type."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#ResourceVersionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifier for the event type example: 1.0/2.0 etc."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#DefinitionsLinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.notifications_webhooks_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/)."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#LinkDescription": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.",
+            "smithy.api#required": {}
+          }
+        },
+        "rel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).",
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "com.paypal.notifications_webhooks_v1#LinkDescriptionMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method required to make the related call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#LinkDescriptionMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "CONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECT"
+          }
+        },
+        "OPTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTIONS"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The HTTP method required to make the related call."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksList": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhooksListRequest"
+      },
+      "output": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhookList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/notifications/webhooks",
+          "code": 200
+        },
+        "smithy.api#documentation": "List webhooks\n\nLists webhooks for an app."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#DefinitionsEventTypeListInput": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.notifications_webhooks_v1#EventTypeInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of events to which to subscribe your webhook. To subscribe to all events, including events as they are added, specify the asterisk wild card. To replace the `event_types` array, specify the asterisk wild card. To list all supported events, <a href=\"#event-type_list\">list available events</a>."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#EventTypeInput": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique event name.<blockquote><strong>Note:</strong> To subscribe to all events, including events as they are added, specify an `*` as the value to represent a wildcard.</blockquote>",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An event type."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksPostRequest": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL that is configured to listen on `localhost` for incoming `POST` notification messages that contain event information.",
+            "smithy.api#required": {}
+          }
+        },
+        "event_types": {
+          "target": "com.paypal.notifications_webhooks_v1#DefinitionsEventTypeListInput",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksPost": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhooksPostRequest"
+      },
+      "output": {
+        "target": "com.paypal.notifications_webhooks_v1#Webhook"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/notifications/webhooks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create webhook\n\nSubscribes your webhook listener to events."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksGetRequest": {
+      "type": "structure",
+      "members": {
+        "webhook_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the webhook for which to list subscriptions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhooksGetRequest"
+      },
+      "output": {
+        "target": "com.paypal.notifications_webhooks_v1#Webhook"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/notifications/webhooks/{webhook_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show webhook details\n\nShows details for a webhook, by ID."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#PatchRequest": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.notifications_webhooks_v1#Patch"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of JSON patch objects to apply partial updates to resources."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#Patch": {
+      "type": "structure",
+      "members": {
+        "op": {
+          "target": "com.paypal.notifications_webhooks_v1#PatchOp",
+          "traits": {
+            "smithy.api#documentation": "The operation.",
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The <a href=\"https://tools.ietf.org/html/rfc6901\">JSON Pointer</a> to the target document location at which to complete the operation."
+          }
+        },
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The value to apply. The <code>remove</code> operation does not require a value.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The <a href=\"https://tools.ietf.org/html/rfc6901\">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The JSON patch object to apply partial updates to resources."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#PatchOp": {
+      "type": "enum",
+      "members": {
+        "ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "add"
+          }
+        },
+        "REMOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "remove"
+          }
+        },
+        "REPLACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "replace"
+          }
+        },
+        "MOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "move"
+          }
+        },
+        "COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "copy"
+          }
+        },
+        "TEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "test"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operation."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "webhook_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the webhook for which to list subscriptions."
+          }
+        },
+        "body": {
+          "target": "com.paypal.notifications_webhooks_v1#PatchRequest",
+          "traits": {
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhooksUpdateRequest"
+      },
+      "output": {
+        "target": "com.paypal.notifications_webhooks_v1#Webhook"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/notifications/webhooks/{webhook_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update webhook\n\nUpdates a webhook to replace webhook fields with new values. Supports only the `replace` operation. Pass a `json_patch` object with `replace` operation and `path`, which is `/url` for a URL or `/event_types` for events. The `value` is either the URL or a list of events."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "webhook_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the webhook for which to list subscriptions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhooksDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/notifications/webhooks/{webhook_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete webhook\n\nDeletes a webhook, by ID."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#EventTypesListRequest": {
+      "type": "structure",
+      "members": {
+        "webhook_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the webhook for which to list subscriptions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#EventTypeList": {
+      "type": "structure",
+      "members": {
+        "event_types": {
+          "target": "com.paypal.notifications_webhooks_v1#EventTypeList2"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of webhook events."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#EventTypeList2": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.notifications_webhooks_v1#EventType"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of webhook events."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#EventTypesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.notifications_webhooks_v1#EventTypesListRequest"
+      },
+      "output": {
+        "target": "com.paypal.notifications_webhooks_v1#EventTypeList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/notifications/webhooks/{webhook_id}/event-types",
+          "code": 200
+        },
+        "smithy.api#documentation": "List event subscriptions for webhook\n\nLists event subscriptions for a webhook, by ID."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhookLookupList": {
+      "type": "structure",
+      "members": {
+        "webhooks_lookups": {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksLookupList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of webhook lookups."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksLookupList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhooksLookup"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of webhook lookups."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksLookup": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the webhook lookup."
+          }
+        },
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The application client ID."
+          }
+        },
+        "links": {
+          "target": "com.paypal.notifications_webhooks_v1#DefinitionsLinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The webhook lookup details."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksLookupList2": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhookLookupList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/notifications/webhooks-lookup",
+          "code": 200
+        },
+        "smithy.api#documentation": "List webhook lookups\n\nLists webhook lookups."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksLookupPost": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhooksLookup"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/notifications/webhooks-lookup",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create webhook lookup\n\nCreates a webhook lookup. A webhook lookup ties the API caller's REST API app to the subject account (or, if no subject is specified, to the API caller's account). If a webhook event is generated for an event that is tied to the account but not to a particular REST API app (for example, payments initiated with the NVP/SOAP APIs or through the user interface on PayPal.com), those webhook events will treated as if they were intended for the REST API app registered in the webhook lookup instead. Webhook events will then be delivered to any webhooks registered to that REST API app."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksLookupGetRequest": {
+      "type": "structure",
+      "members": {
+        "webhook_lookup_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the webhook lookup to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksLookupGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhooksLookupGetRequest"
+      },
+      "output": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhooksLookup"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/notifications/webhooks-lookup/{webhook_lookup_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show webhook lookup details\n\nShows details for a webhook lookup, by ID."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksLookupDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "webhook_lookup_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the webhook lookup to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksLookupDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhooksLookupDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/notifications/webhooks-lookup/{webhook_lookup_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete webhook lookup\n\nDeletes a webhook lookup, by ID."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#EventInput": {
+      "type": "structure",
+      "members": {
+        "event_version": {
+          "target": "smithy.api#String"
+        },
+        "resource_version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A webhook event notification."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#VerifyWebhookSignaturePostRequest": {
+      "type": "structure",
+      "members": {
+        "auth_algo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The algorithm that PayPal uses to generate the signature and that you can use to verify the signature. Extract this value from the `PAYPAL-AUTH-ALGO` response header, which is received with the webhook notification.",
+            "smithy.api#required": {}
+          }
+        },
+        "cert_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The X.509 public key certificate. Download the certificate from this URL and use it to verify the signature. Extract this value from the `PAYPAL-CERT-URL` response header, which is received with the webhook notification.",
+            "smithy.api#required": {}
+          }
+        },
+        "transmission_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the HTTP transmission. Contained in the `PAYPAL-TRANSMISSION-ID` header of the notification message.",
+            "smithy.api#required": {}
+          }
+        },
+        "transmission_sig": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated asymmetric signature. Appears in the `PAYPAL-TRANSMISSION-SIG` header of the notification message.",
+            "smithy.api#required": {}
+          }
+        },
+        "transmission_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time of the HTTP transmission, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Appears in the `PAYPAL-TRANSMISSION-TIME` header of the notification message.",
+            "smithy.api#required": {}
+          }
+        },
+        "webhook_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the webhook as configured in your Developer Portal account.",
+            "smithy.api#required": {}
+          }
+        },
+        "webhook_event": {
+          "target": "com.paypal.notifications_webhooks_v1#EventInput",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#VerifyWebhookSignatureResponse": {
+      "type": "structure",
+      "members": {
+        "verification_status": {
+          "target": "com.paypal.notifications_webhooks_v1#VerifyWebhookSignatureResponseVerificationStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of the signature verification.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The verify webhook signature response."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#VerifyWebhookSignatureResponseVerificationStatus": {
+      "type": "enum",
+      "members": {
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESS"
+          }
+        },
+        "FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILURE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the signature verification."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#VerifyWebhookSignaturePost": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.notifications_webhooks_v1#VerifyWebhookSignaturePostRequest"
+      },
+      "output": {
+        "target": "com.paypal.notifications_webhooks_v1#VerifyWebhookSignatureResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/notifications/verify-webhook-signature",
+          "code": 200
+        },
+        "smithy.api#documentation": "Verify webhook signature\n\nVerifies a webhook signature."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksEventTypesList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.paypal.notifications_webhooks_v1#EventTypeList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/notifications/webhooks-event-types",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available events\n\nLists available events to which any webhook can subscribe. For a list of supported events, see [Webhook event names](/docs/api/notifications/webhooks/event-names/)."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksEventsListRequest": {
+      "type": "structure",
+      "members": {
+        "page_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page_size",
+            "smithy.api#documentation": "The number of webhook event notifications to return in the response."
+          }
+        },
+        "start_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "start_time",
+            "smithy.api#documentation": "Filters the webhook event notifications in the response to those created on or after this date and time and on or before the `end_time` value. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `start_time=2013-03-06T11:00:00Z`."
+          }
+        },
+        "end_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "end_time",
+            "smithy.api#documentation": "Filters the webhook event notifications in the response to those created on or after the `start_time` and on or before this date and time. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `end_time=2013-03-06T11:00:00Z`."
+          }
+        },
+        "transaction_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "transaction_id",
+            "smithy.api#documentation": "Filters the response to a single transaction, by ID."
+          }
+        },
+        "event_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "event_type",
+            "smithy.api#documentation": "Filters the response to a single event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#EventList": {
+      "type": "structure",
+      "members": {
+        "events": {
+          "target": "com.paypal.notifications_webhooks_v1#EventList2"
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of items in each range of results. Note that the response might have fewer items than the requested `page_size` value."
+          }
+        },
+        "links": {
+          "target": "com.paypal.notifications_webhooks_v1#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of webhooks events."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#EventList2": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.notifications_webhooks_v1#Event"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of webhooks events."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#Event": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the webhook event notification."
+          }
+        },
+        "create_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the webhook event notification was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "resource_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource related to the webhook notification event."
+          }
+        },
+        "event_version": {
+          "target": "smithy.api#String"
+        },
+        "event_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The event that triggered the webhook event notification."
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A summary description for the event notification."
+          }
+        },
+        "resource_version": {
+          "target": "smithy.api#String"
+        },
+        "resource": {
+          "target": "com.paypal.notifications_webhooks_v1#Resource"
+        },
+        "links": {
+          "target": "com.paypal.notifications_webhooks_v1#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A webhook event notification."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#Resource": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource that triggered the webhook event notification."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#LinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.notifications_webhooks_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksEventsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhooksEventsListRequest"
+      },
+      "output": {
+        "target": "com.paypal.notifications_webhooks_v1#EventList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/notifications/webhooks-events",
+          "code": 200
+        },
+        "smithy.api#documentation": "List event notifications\n\nLists webhooks event notifications. Use query parameters to filter the response."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksEventsGetRequest": {
+      "type": "structure",
+      "members": {
+        "event_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the webhook event notification to resend."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksEventsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhooksEventsGetRequest"
+      },
+      "output": {
+        "target": "com.paypal.notifications_webhooks_v1#Event"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/notifications/webhooks-events/{event_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show event notification details\n\nShows details for a webhooks event notification, by ID."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhookIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of webhook account IDs."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksEventsResendRequest": {
+      "type": "structure",
+      "members": {
+        "event_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the webhook event notification to resend."
+          }
+        },
+        "webhook_ids": {
+          "target": "com.paypal.notifications_webhooks_v1#WebhookIdsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#WebhooksEventsResend": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.notifications_webhooks_v1#WebhooksEventsResendRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/notifications/webhooks-events/{event_id}/resend",
+          "code": 200
+        },
+        "smithy.api#documentation": "Resend event notification\n\nResends a webhook event notification, by ID. Any pending notifications are not resent."
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#SimulateEventPostRequest": {
+      "type": "structure",
+      "members": {
+        "webhook_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the webhook. If omitted, the URL is required."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL for the webhook endpoint. If omitted, the webhook ID is required."
+          }
+        },
+        "event_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The event name. Specify one of the subscribed events. For each request, provide only one event.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier for event type ex: 1.0/2.0 etc."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#SimulateEventPost": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.notifications_webhooks_v1#SimulateEventPostRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/notifications/simulate-event",
+          "code": 200
+        },
+        "smithy.api#documentation": "Simulate webhook event\n\nSimulates a webhook event. In the JSON request body, specify a sample payload.<br>You need to subscribe to the following webhook events for Pay upon Invoice:<br><table><thead><tr><th>Event</th><th>Trigger</th></tr></thead><tbody><tr><td><code>PAYMENT.CAPTURE.COMPLETED</code></td><td>A payment capture completes.</td></tr><tr><td><code>PAYMENT.CAPTURE.DENIED</code></td><td>A payment capture is denied.</td></tr><tr><td><code>CHECKOUT.PAYMENT-APPROVAL.REVERSED</code></td><td>PayPal reverses a payment capture.</td></tr></tbody></table>"
+      }
+    },
+    "com.paypal.notifications_webhooks_v1#NotificationsWebhooksV1": {
+      "type": "service",
+      "version": "1.11",
+      "operations": [
+        {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksList"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksPost"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksGet"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksUpdate"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksDelete"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#EventTypesList"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksLookupList2"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksLookupPost"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksLookupGet"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksLookupDelete"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#VerifyWebhookSignaturePost"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksEventTypesList"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksEventsList"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksEventsGet"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#WebhooksEventsResend"
+        },
+        {
+          "target": "com.paypal.notifications_webhooks_v1#SimulateEventPost"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Webhooks Management",
+        "smithy.api#documentation": "The PayPal REST APIs use <a href=\"/docs/api/notifications/webhooks/\"/>webhooks</a> for event notification. Webhooks are HTTP callbacks that receive notification messages for events. After you configure a webhook listener for your app, you can <a href=\"#webhooks_create\">create a webhook</a>, which subscribes the webhook listener for your app to events. The <code>notifications</code> namespace contains resource collections for webhooks."
+      }
+    }
+  }
+}

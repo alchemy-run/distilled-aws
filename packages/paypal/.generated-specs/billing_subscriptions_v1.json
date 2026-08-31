@@ -1,0 +1,4369 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.paypal.billing_subscriptions_v1#PlansListRequest": {
+      "type": "structure",
+      "members": {
+        "product_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "product_id",
+            "smithy.api#documentation": "Filters the response by a Product ID."
+          }
+        },
+        "page_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page_size",
+            "smithy.api#documentation": "The number of items to return in the response."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "A non-zero integer which is the start index of the entire list of items to return in the response. The combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items."
+          }
+        },
+        "total_required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "total_required",
+            "smithy.api#documentation": "Indicates whether to show the total count in the response."
+          }
+        },
+        "prefer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "Prefer",
+            "smithy.api#documentation": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlanCollection": {
+      "type": "structure",
+      "members": {
+        "plans": {
+          "target": "com.paypal.billing_subscriptions_v1#PlanList"
+        },
+        "total_items": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of items."
+          }
+        },
+        "total_pages": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of pages."
+          }
+        },
+        "links": {
+          "target": "com.paypal.billing_subscriptions_v1#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of plans with details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlanList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#Plan"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of plans."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#Plan": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique PayPal-generated ID for the plan."
+          }
+        },
+        "product_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID for the product."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The plan name."
+          }
+        },
+        "status": {
+          "target": "com.paypal.billing_subscriptions_v1#PlanStatus",
+          "traits": {
+            "smithy.api#documentation": "The plan status."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detailed description of the plan."
+          }
+        },
+        "billing_cycles": {
+          "target": "com.paypal.billing_subscriptions_v1#BillingCycleList"
+        },
+        "payment_preferences": {
+          "target": "com.paypal.billing_subscriptions_v1#PaymentPreferences"
+        },
+        "taxes": {
+          "target": "com.paypal.billing_subscriptions_v1#Taxes"
+        },
+        "quantity_supported": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether you can subscribe to this plan by providing a quantity for the goods or service."
+          }
+        },
+        "create_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the plan was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "update_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the plan was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "links": {
+          "target": "com.paypal.billing_subscriptions_v1#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The plan details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlanStatus": {
+      "type": "enum",
+      "members": {
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATED"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INACTIVE"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The plan status."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#BillingCycleList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#BillingCycle"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of billing cycles for trial billing and regular billing. A plan can have at most two trial cycles and only one regular cycle."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#BillingCycle": {
+      "type": "structure",
+      "members": {
+        "pricing_scheme": {
+          "target": "com.paypal.billing_subscriptions_v1#PricingScheme",
+          "traits": {
+            "smithy.api#documentation": "The active pricing scheme for this billing cycle. A free trial billing cycle does not require a pricing scheme."
+          }
+        },
+        "frequency": {
+          "target": "com.paypal.billing_subscriptions_v1#Frequency",
+          "traits": {
+            "smithy.api#documentation": "The frequency details for this billing cycle.",
+            "smithy.api#required": {}
+          }
+        },
+        "tenure_type": {
+          "target": "com.paypal.billing_subscriptions_v1#BillingCycleTenureType",
+          "traits": {
+            "smithy.api#documentation": "The tenure type of the billing cycle. In case of a plan having trial cycle, only 2 trial cycles are allowed per plan.",
+            "smithy.api#required": {}
+          }
+        },
+        "sequence": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The order in which this cycle is to run among other billing cycles. For example, a trial billing cycle has a `sequence` of `1` while a regular billing cycle has a `sequence` of `2`, so that trial cycle runs before the regular cycle.",
+            "smithy.api#required": {}
+          }
+        },
+        "total_cycles": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of times this billing cycle gets executed. Trial billing cycles can only be executed a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>). Regular billing cycles can be executed infinite times (value of <code>0</code> for <code>total_cycles</code>) or a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The billing cycle details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PricingScheme": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The version of the pricing scheme."
+          }
+        },
+        "fixed_price": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The fixed amount to charge for the subscription. The changes to fixed amount are applicable to both existing and future subscriptions. For existing subscriptions, payments within 10 days of price change are not affected."
+          }
+        },
+        "pricing_model": {
+          "target": "com.paypal.billing_subscriptions_v1#PricingSchemePricingModel",
+          "traits": {
+            "smithy.api#documentation": "The pricing model for tiered plan. The `tiers` parameter is required."
+          }
+        },
+        "tiers": {
+          "target": "com.paypal.billing_subscriptions_v1#PricingTierList"
+        },
+        "create_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when this pricing scheme was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "update_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when this pricing scheme was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The pricing scheme details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#Money": {
+      "type": "structure",
+      "members": {
+        "currency_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/api/rest/reference/currency-codes/).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The currency and amount for a financial transaction, such as a balance or payment due."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PricingSchemePricingModel": {
+      "type": "enum",
+      "members": {
+        "VOLUME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VOLUME"
+          }
+        },
+        "TIERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIERED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The pricing model for tiered plan. The `tiers` parameter is required."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PricingTierList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#PricingTier"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of pricing tiers which are used for billing volume/tiered plans. pricing_model field has to be specified."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PricingTier": {
+      "type": "structure",
+      "members": {
+        "starting_quantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The starting quantity for the tier.",
+            "smithy.api#required": {}
+          }
+        },
+        "ending_quantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ending quantity for the tier. Optional for the last tier."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The pricing amount for the tier.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The pricing tier details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#Frequency": {
+      "type": "structure",
+      "members": {
+        "interval_unit": {
+          "target": "com.paypal.billing_subscriptions_v1#FrequencyIntervalUnit",
+          "traits": {
+            "smithy.api#documentation": "The interval at which the subscription is charged or billed.",
+            "smithy.api#required": {}
+          }
+        },
+        "interval_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of intervals after which a subscriber is billed. For example, if the `interval_unit` is `DAY` with an `interval_count` of  `2`, the subscription is billed once every two days. The following table lists the maximum allowed values for the `interval_count` for each `interval_unit`:<table><thead><tr><th><code>Interval unit</code></th><th>Maximum interval count</th></tr></thead><tbody><tr><td><code>DAY</code></td><td align=\"right\">365</td></tr><tr><td><code>WEEK</code></td><td align=\"right\">52</td></tr><tr><td><code>MONTH</code></td><td align=\"right\">12</td></tr><tr><td><code>YEAR</code></td><td align=\"right\">1</td></tr></tbody></table>"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The frequency of the billing cycle."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#FrequencyIntervalUnit": {
+      "type": "enum",
+      "members": {
+        "DAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAY"
+          }
+        },
+        "WEEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEK"
+          }
+        },
+        "MONTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONTH"
+          }
+        },
+        "YEAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YEAR"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The interval at which the subscription is charged or billed."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#BillingCycleTenureType": {
+      "type": "enum",
+      "members": {
+        "REGULAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGULAR"
+          }
+        },
+        "TRIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRIAL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The tenure type of the billing cycle. In case of a plan having trial cycle, only 2 trial cycles are allowed per plan."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PaymentPreferences": {
+      "type": "structure",
+      "members": {
+        "auto_bill_outstanding": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to automatically bill the outstanding amount in the next billing cycle."
+          }
+        },
+        "setup_fee": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The initial set-up fee for the service."
+          }
+        },
+        "setup_fee_failure_action": {
+          "target": "com.paypal.billing_subscriptions_v1#PaymentPreferencesSetupFeeFailureAction",
+          "traits": {
+            "smithy.api#documentation": "The action to take on the subscription if the initial payment for the setup fails."
+          }
+        },
+        "payment_failure_threshold": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of payment failures before a subscription is suspended. For example, if `payment_failure_threshold` is `2`, the subscription automatically updates to the `SUSPEND` state if two consecutive payments fail."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payment preferences for a subscription."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PaymentPreferencesSetupFeeFailureAction": {
+      "type": "enum",
+      "members": {
+        "CONTINUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTINUE"
+          }
+        },
+        "CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCEL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The action to take on the subscription if the initial payment for the setup fails."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#Taxes": {
+      "type": "structure",
+      "members": {
+        "percentage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tax percentage on the billing amount.",
+            "smithy.api#required": {}
+          }
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the tax was already included in the billing amount."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The tax details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#LinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#LinkDescription": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.",
+            "smithy.api#required": {}
+          }
+        },
+        "rel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).",
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "com.paypal.billing_subscriptions_v1#LinkDescriptionMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method required to make the related call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#LinkDescriptionMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "CONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECT"
+          }
+        },
+        "OPTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTIONS"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The HTTP method required to make the related call."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlansList": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#PlansListRequest"
+      },
+      "output": {
+        "target": "com.paypal.billing_subscriptions_v1#PlanCollection"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/billing/plans",
+          "code": 200
+        },
+        "smithy.api#documentation": "List plans\n\nLists billing plans."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlansCreateRequestStatus": {
+      "type": "enum",
+      "members": {
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATED"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INACTIVE"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The initial state of the plan. Allowed input values are CREATED and ACTIVE."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#BillingCycleListInput": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#BillingCycleInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of billing cycles for trial billing and regular billing. A plan can have at most two trial cycles and only one regular cycle."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#BillingCycleInput": {
+      "type": "structure",
+      "members": {
+        "pricing_scheme": {
+          "target": "com.paypal.billing_subscriptions_v1#PricingSchemeInput",
+          "traits": {
+            "smithy.api#documentation": "The active pricing scheme for this billing cycle. A free trial billing cycle does not require a pricing scheme."
+          }
+        },
+        "frequency": {
+          "target": "com.paypal.billing_subscriptions_v1#Frequency",
+          "traits": {
+            "smithy.api#documentation": "The frequency details for this billing cycle.",
+            "smithy.api#required": {}
+          }
+        },
+        "tenure_type": {
+          "target": "com.paypal.billing_subscriptions_v1#BillingCycleInputTenureType",
+          "traits": {
+            "smithy.api#documentation": "The tenure type of the billing cycle. In case of a plan having trial cycle, only 2 trial cycles are allowed per plan.",
+            "smithy.api#required": {}
+          }
+        },
+        "sequence": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The order in which this cycle is to run among other billing cycles. For example, a trial billing cycle has a `sequence` of `1` while a regular billing cycle has a `sequence` of `2`, so that trial cycle runs before the regular cycle.",
+            "smithy.api#required": {}
+          }
+        },
+        "total_cycles": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of times this billing cycle gets executed. Trial billing cycles can only be executed a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>). Regular billing cycles can be executed infinite times (value of <code>0</code> for <code>total_cycles</code>) or a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The billing cycle details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PricingSchemeInput": {
+      "type": "structure",
+      "members": {
+        "fixed_price": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The fixed amount to charge for the subscription. The changes to fixed amount are applicable to both existing and future subscriptions. For existing subscriptions, payments within 10 days of price change are not affected."
+          }
+        },
+        "pricing_model": {
+          "target": "com.paypal.billing_subscriptions_v1#PricingSchemeInputPricingModel",
+          "traits": {
+            "smithy.api#documentation": "The pricing model for tiered plan. The `tiers` parameter is required."
+          }
+        },
+        "tiers": {
+          "target": "com.paypal.billing_subscriptions_v1#PricingTierList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The pricing scheme details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PricingSchemeInputPricingModel": {
+      "type": "enum",
+      "members": {
+        "VOLUME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VOLUME"
+          }
+        },
+        "TIERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIERED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The pricing model for tiered plan. The `tiers` parameter is required."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#BillingCycleInputTenureType": {
+      "type": "enum",
+      "members": {
+        "REGULAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGULAR"
+          }
+        },
+        "TRIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRIAL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The tenure type of the billing cycle. In case of a plan having trial cycle, only 2 trial cycles are allowed per plan."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlansCreateRequest": {
+      "type": "structure",
+      "members": {
+        "prefer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "Prefer",
+            "smithy.api#documentation": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
+          }
+        },
+        "payPalRequestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "PayPal-Request-Id",
+            "smithy.api#documentation": "The server stores keys for 72 hours."
+          }
+        },
+        "product_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the product created through Catalog Products API.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The plan name.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.paypal.billing_subscriptions_v1#PlansCreateRequestStatus",
+          "traits": {
+            "smithy.api#documentation": "The initial state of the plan. Allowed input values are CREATED and ACTIVE."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detailed description of the plan."
+          }
+        },
+        "billing_cycles": {
+          "target": "com.paypal.billing_subscriptions_v1#BillingCycleListInput",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "payment_preferences": {
+          "target": "com.paypal.billing_subscriptions_v1#PaymentPreferences",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "taxes": {
+          "target": "com.paypal.billing_subscriptions_v1#Taxes"
+        },
+        "quantity_supported": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether you can subscribe to this plan by providing a quantity for the goods or service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlansCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#PlansCreateRequest"
+      },
+      "output": {
+        "target": "com.paypal.billing_subscriptions_v1#Plan"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/billing/plans",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create plan\n\nCreates a plan that defines pricing and billing cycle details for subscriptions."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlansGetRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlansGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#PlansGetRequest"
+      },
+      "output": {
+        "target": "com.paypal.billing_subscriptions_v1#Plan"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/billing/plans/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show plan details\n\nShows details for a plan, by ID."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PatchRequest": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#Patch"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of JSON patch objects to apply partial updates to resources."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#Patch": {
+      "type": "structure",
+      "members": {
+        "op": {
+          "target": "com.paypal.billing_subscriptions_v1#PatchOp",
+          "traits": {
+            "smithy.api#documentation": "The operation.",
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The <a href=\"https://tools.ietf.org/html/rfc6901\">JSON Pointer</a> to the target document location at which to complete the operation."
+          }
+        },
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The value to apply. The <code>remove</code>, <code>copy</code>, and <code>move</code> operations do not require a value. Since <a href=\"https://www.rfc-editor.org/rfc/rfc69021\">JSON Patch</a> allows any type for <code>value</code>, the <code>type</code> property is not specified."
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The <a href=\"https://tools.ietf.org/html/rfc6901\">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The JSON patch object to apply partial updates to resources."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PatchOp": {
+      "type": "enum",
+      "members": {
+        "ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "add"
+          }
+        },
+        "REMOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "remove"
+          }
+        },
+        "REPLACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "replace"
+          }
+        },
+        "MOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "move"
+          }
+        },
+        "COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "copy"
+          }
+        },
+        "TEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "test"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operation."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlansPatchRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the subscription."
+          }
+        },
+        "body": {
+          "target": "com.paypal.billing_subscriptions_v1#PatchRequest",
+          "traits": {
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlansPatch": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#PlansPatchRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#NotFound"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/billing/plans/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update plan\n\nUpdates a plan with the `CREATED` or `ACTIVE` status. For an `INACTIVE` plan, you can make only status updates.<br/>You can patch these attributes and objects:<table><thead><tr><th>Attribute or object</th><th>Operations</th></tr></thead><tbody><tr><td><code>description</code></td><td>replace</td></tr><tr><td><code>payment_preferences.auto_bill_outstanding</code></td><td>replace</td></tr><tr><td><code>taxes.percentage</code></td><td>replace</td></tr><tr><td><code>payment_preferences.payment_failure_threshold</code></td><td>replace</td></tr><tr><td><code>payment_preferences.setup_fee</code></td><td>replace</td></tr><tr><td><code>payment_preferences.setup_fee_failure_action</code></td><td>replace</td></tr><tr><td><code>name</code></td><td>replace</td></tr></tbody></table>"
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlansActivateRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlansActivate": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#PlansActivateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#NotFound"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/billing/plans/{id}/activate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Activate plan\n\nActivates a plan, by ID."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlansDeactivateRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlansDeactivate": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#PlansDeactivateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#NotFound"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/billing/plans/{id}/deactivate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deactivate plan\n\nDeactivates a plan, by ID."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#UpdatePricingSchemeRequestListInput": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#UpdatePricingSchemeRequestInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of pricing schemes."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#UpdatePricingSchemeRequestInput": {
+      "type": "structure",
+      "members": {
+        "billing_cycle_sequence": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The billing cycle sequence.",
+            "smithy.api#required": {}
+          }
+        },
+        "pricing_scheme": {
+          "target": "com.paypal.billing_subscriptions_v1#PricingSchemeInput",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The update pricing scheme request details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlansUpdatePricingSchemesRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the subscription."
+          }
+        },
+        "pricing_schemes": {
+          "target": "com.paypal.billing_subscriptions_v1#UpdatePricingSchemeRequestListInput",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlansUpdatePricingSchemes": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#PlansUpdatePricingSchemesRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#NotFound"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/billing/plans/{id}/update-pricing-schemes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update pricing\n\nUpdates pricing for a plan. For example, you can update a regular billing cycle from $5 per month to $7 per month."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriberRequest": {
+      "type": "structure",
+      "members": {
+        "email_address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the payer."
+          }
+        },
+        "name": {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriberRequestName",
+          "traits": {
+            "smithy.api#documentation": "The name of the party."
+          }
+        },
+        "phone": {
+          "target": "com.paypal.billing_subscriptions_v1#PhoneWithType",
+          "traits": {
+            "smithy.api#documentation": "The phone number of the customer. Available only when you enable the **Contact Telephone Number** option in the <a href=\"https://www.paypal.com/cgi-bin/customerprofileweb?cmd=_profile-website-payments\">**Profile & Settings**</a> for the merchant's PayPal account. The `phone.phone_number` supports only `national_number`."
+          }
+        },
+        "shipping_address": {
+          "target": "com.paypal.billing_subscriptions_v1#ShippingDetail"
+        },
+        "payment_source": {
+          "target": "com.paypal.billing_subscriptions_v1#PaymentSource"
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriberRequestName": {
+      "type": "structure",
+      "members": {
+        "given_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's given, or first, name."
+          }
+        },
+        "surname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's surname or family name. Also known as the last name. Required when the party is a person. Use also to store multiple surnames including the matronymic, or mother's, surname."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the party."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PhoneWithType": {
+      "type": "structure",
+      "members": {
+        "phone_type": {
+          "target": "com.paypal.billing_subscriptions_v1#PhoneType"
+        },
+        "phone_number": {
+          "target": "com.paypal.billing_subscriptions_v1#PhoneWithTypePhoneNumber",
+          "traits": {
+            "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone information."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PhoneType": {
+      "type": "enum",
+      "members": {
+        "FAX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAX"
+          }
+        },
+        "HOME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOME"
+          }
+        },
+        "MOBILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "PAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone type."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PhoneWithTypePhoneNumber": {
+      "type": "structure",
+      "members": {
+        "national_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The national number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the country calling code (CC) and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en)."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#ShippingDetail": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.paypal.billing_subscriptions_v1#ShippingDetailName",
+          "traits": {
+            "smithy.api#documentation": "The name of the party."
+          }
+        },
+        "type": {
+          "target": "com.paypal.billing_subscriptions_v1#ShippingDetailType",
+          "traits": {
+            "smithy.api#documentation": "A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc). Either `type` or `options` may be present, but not both."
+          }
+        },
+        "options": {
+          "target": "com.paypal.billing_subscriptions_v1#ShippingOptionList"
+        },
+        "address": {
+          "target": "com.paypal.billing_subscriptions_v1#ShippingDetailAddress",
+          "traits": {
+            "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The shipping details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#ShippingDetailName": {
+      "type": "structure",
+      "members": {
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's full name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the party."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#ShippingDetailType": {
+      "type": "enum",
+      "members": {
+        "SHIPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPPING"
+          }
+        },
+        "PICKUP_IN_PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_IN_PERSON"
+          }
+        },
+        "PICKUP_IN_STORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_IN_STORE"
+          }
+        },
+        "PICKUP_FROM_PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_FROM_PERSON"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc). Either `type` or `options` may be present, but not both."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#ShippingOptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#ShippingOption"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of shipping options that the payee or merchant offers to the payer to ship or pick up their items."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#ShippingOption": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique ID that identifies a payer-selected shipping option.",
+            "smithy.api#required": {}
+          }
+        },
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description that the payer sees, which helps them choose an appropriate shipping option. For example, `Free Shipping`, `USPS Priority Shipping`, `Expédition prioritaire USPS`, or `USPS yōuxiān fā huò`. Localize this description to the payer's locale.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.paypal.billing_subscriptions_v1#ShippingType",
+          "traits": {
+            "smithy.api#documentation": "A classification for the method of purchase fulfillment."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The shipping cost for the selected option."
+          }
+        },
+        "selected": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the API request sets `selected = true`, it represents the shipping option that the payee or merchant expects to be pre-selected for the payer when they first view the `shipping.options` in the PayPal Checkout experience. As part of the response if a `shipping.option` contains `selected=true`, it represents the shipping option that the payer selected during the course of checkout with PayPal. Only one `shipping.option` can be set to `selected=true`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The options that the payee or merchant offers to the payer to ship or pick up their items."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#ShippingType": {
+      "type": "enum",
+      "members": {
+        "SHIPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPPING"
+          }
+        },
+        "PICKUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP"
+          }
+        },
+        "PICKUP_IN_STORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_IN_STORE"
+          }
+        },
+        "PICKUP_FROM_PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_FROM_PERSON"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A classification for the method of purchase fulfillment."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#ShippingDetailAddress": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address, such as number and street, for example, `173 Drury Lane`. Needed for data entry, and Compliance and Risk checks. This field needs to pass the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address, for example, a suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest-level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A *kanton*.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the ZIP code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PaymentSource": {
+      "type": "structure",
+      "members": {
+        "card": {
+          "target": "com.paypal.billing_subscriptions_v1#PaymentSourceCard",
+          "traits": {
+            "smithy.api#documentation": "The payment card to use to fund a payment. Can be a credit or debit card."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payment source definition. To be eligible to create subscription using debit or credit card, you will need to sign up here (https://www.paypal.com/bizsignup/entry/product/ppcp). Please note, its available only for non-3DS cards and for merchants in US and AU regions."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#CardType": {
+      "type": "enum",
+      "members": {
+        "CREDIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREDIT"
+          }
+        },
+        "DEBIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEBIT"
+          }
+        },
+        "PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PREPAID"
+          }
+        },
+        "STORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STORE"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of card. i.e Credit, Debit and so on."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#CardBrand": {
+      "type": "enum",
+      "members": {
+        "VISA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VISA"
+          }
+        },
+        "MASTERCARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MASTERCARD"
+          }
+        },
+        "DISCOVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVER"
+          }
+        },
+        "AMEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMEX"
+          }
+        },
+        "SOLO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOLO"
+          }
+        },
+        "JCB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JCB"
+          }
+        },
+        "STAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STAR"
+          }
+        },
+        "DELTA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELTA"
+          }
+        },
+        "SWITCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SWITCH"
+          }
+        },
+        "MAESTRO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAESTRO"
+          }
+        },
+        "CB_NATIONALE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CB_NATIONALE"
+          }
+        },
+        "CONFIGOGA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIGOGA"
+          }
+        },
+        "CONFIDIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDIS"
+          }
+        },
+        "ELECTRON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ELECTRON"
+          }
+        },
+        "CETELEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CETELEM"
+          }
+        },
+        "CHINA_UNION_PAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHINA_UNION_PAY"
+          }
+        },
+        "DINERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DINERS"
+          }
+        },
+        "ELO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ELO"
+          }
+        },
+        "HIPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIPER"
+          }
+        },
+        "HIPERCARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIPERCARD"
+          }
+        },
+        "RUPAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUPAY"
+          }
+        },
+        "GE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GE"
+          }
+        },
+        "SYNCHRONY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYNCHRONY"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The card network or brand. Applies to credit, debit, gift, and payment cards."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PaymentSourceCardBillingAddress": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address, such as number and street, for example, `173 Drury Lane`. Needed for data entry, and Compliance and Risk checks. This field needs to pass the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address, for example, a suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest-level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A *kanton*.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the ZIP code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#CardAttributes": {
+      "type": "structure",
+      "members": {
+        "customer": {
+          "target": "com.paypal.billing_subscriptions_v1#Customer"
+        },
+        "vault": {
+          "target": "com.paypal.billing_subscriptions_v1#VaultInstructionBase",
+          "traits": {
+            "smithy.api#documentation": "Instruction to vault the card based on the specified strategy."
+          }
+        },
+        "verification": {
+          "target": "com.paypal.billing_subscriptions_v1#CardVerification",
+          "traits": {
+            "smithy.api#documentation": "Instruction to optionally verify the card based on the specified strategy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional attributes associated with the use of this card."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#Customer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "email_address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address of the buyer as provided to the merchant or on file with the merchant. Email Address is required if you are processing the transaction using PayPal Guest Processing which is offered to select partners and merchants. For all other use cases we do not expect partners/merchant to send email_address of their customer."
+          }
+        },
+        "phone": {
+          "target": "com.paypal.billing_subscriptions_v1#PhoneWithType",
+          "traits": {
+            "smithy.api#documentation": "The phone number of the buyer as provided to the merchant or on file with the merchant. The `phone.phone_number` supports only `national_number`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details about a customer in PayPal's system of record."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#VaultInstructionBase": {
+      "type": "structure",
+      "members": {
+        "store_in_vault": {
+          "target": "com.paypal.billing_subscriptions_v1#StoreInVaultInstruction"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Basic vault instruction specification that can be extended by specific payment sources that supports vaulting."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#StoreInVaultInstruction": {
+      "type": "enum",
+      "members": {
+        "ON_SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ON_SUCCESS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines how and when the payment source gets vaulted."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#CardVerification": {
+      "type": "structure",
+      "members": {
+        "method": {
+          "target": "com.paypal.billing_subscriptions_v1#CardVerificationMethod",
+          "traits": {
+            "smithy.api#documentation": "The method used for card verification."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The API caller can opt in to verify the card through PayPal offered verification services (e.g. Smart Dollar Auth, 3DS)."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#CardVerificationMethod": {
+      "type": "enum",
+      "members": {
+        "SCA_ALWAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCA_ALWAYS"
+          }
+        },
+        "SCA_WHEN_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCA_WHEN_REQUIRED"
+          }
+        },
+        "_3D_SECURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "3D_SECURE"
+          }
+        },
+        "AVS_CVV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AVS_CVV"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The method used for card verification."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PaymentSourceCard": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The card holder's name as it appears on the card."
+          }
+        },
+        "number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The primary account number (PAN) for the payment card."
+          }
+        },
+        "expiry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The card expiration year and month, in [Internet date format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "security_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The three- or four-digit security code of the card. Also known as the CVV, CVC, CVN, CVE, or CID. This parameter cannot be present in the request when `payment_initiator=MERCHANT`."
+          }
+        },
+        "type": {
+          "target": "com.paypal.billing_subscriptions_v1#CardType",
+          "traits": {
+            "smithy.api#documentation": "The payment card type."
+          }
+        },
+        "brand": {
+          "target": "com.paypal.billing_subscriptions_v1#CardBrand",
+          "traits": {
+            "smithy.api#documentation": "The card brand or network. Typically used in the response."
+          }
+        },
+        "billing_address": {
+          "target": "com.paypal.billing_subscriptions_v1#PaymentSourceCardBillingAddress",
+          "traits": {
+            "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+          }
+        },
+        "attributes": {
+          "target": "com.paypal.billing_subscriptions_v1#CardAttributes",
+          "traits": {
+            "smithy.api#documentation": "Additional attributes associated with the use of this card."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payment card to use to fund a payment. Can be a credit or debit card."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#ApplicationContext": {
+      "type": "structure",
+      "members": {
+        "brand_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label that overrides the business name in the PayPal account on the PayPal site."
+          }
+        },
+        "locale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP 47-formatted locale of pages that the PayPal payment experience shows. PayPal supports a five-character code. For example, `da-DK`, `he-IL`, `id-ID`, `ja-JP`, `no-NO`, `pt-BR`, `ru-RU`, `sv-SE`, `th-TH`, `zh-CN`, `zh-HK`, or `zh-TW`."
+          }
+        },
+        "shipping_preference": {
+          "target": "com.paypal.billing_subscriptions_v1#ApplicationContextShippingPreference",
+          "traits": {
+            "smithy.api#documentation": "The location from which the shipping address is derived."
+          }
+        },
+        "user_action": {
+          "target": "com.paypal.billing_subscriptions_v1#ApplicationContextUserAction",
+          "traits": {
+            "smithy.api#documentation": "Configures the label name to `Continue` or `Subscribe Now` for subscription consent experience."
+          }
+        },
+        "payment_method": {
+          "target": "com.paypal.billing_subscriptions_v1#ApplicationContextPaymentMethod",
+          "traits": {
+            "smithy.api#documentation": "The customer and merchant payment preferences."
+          }
+        },
+        "return_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the customer is redirected after the customer approves the payment.",
+            "smithy.api#required": {}
+          }
+        },
+        "cancel_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the customer is redirected after the customer cancels the payment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The application context, which customizes the payer experience during the subscription approval process with PayPal."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#ApplicationContextShippingPreference": {
+      "type": "enum",
+      "members": {
+        "GET_FROM_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET_FROM_FILE"
+          }
+        },
+        "NO_SHIPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_SHIPPING"
+          }
+        },
+        "SET_PROVIDED_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SET_PROVIDED_ADDRESS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The location from which the shipping address is derived."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#ApplicationContextUserAction": {
+      "type": "enum",
+      "members": {
+        "CONTINUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTINUE"
+          }
+        },
+        "SUBSCRIBE_NOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_NOW"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configures the label name to `Continue` or `Subscribe Now` for subscription consent experience."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PayeePaymentMethodPreference": {
+      "type": "enum",
+      "members": {
+        "UNRESTRICTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNRESTRICTED"
+          }
+        },
+        "IMMEDIATE_PAYMENT_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMMEDIATE_PAYMENT_REQUIRED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The merchant-preferred payment methods."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#ApplicationContextPaymentMethod": {
+      "type": "structure",
+      "members": {
+        "payee_preferred": {
+          "target": "com.paypal.billing_subscriptions_v1#PayeePaymentMethodPreference"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The customer and merchant payment preferences."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlanOverrideInput": {
+      "type": "structure",
+      "members": {
+        "billing_cycles": {
+          "target": "com.paypal.billing_subscriptions_v1#BillingCycleOverrideListInput"
+        },
+        "payment_preferences": {
+          "target": "com.paypal.billing_subscriptions_v1#PaymentPreferencesOverride"
+        },
+        "taxes": {
+          "target": "com.paypal.billing_subscriptions_v1#TaxesOverride"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An inline plan object to customise the subscription. You can override plan level default attributes by providing customised values for the subscription in this object."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#BillingCycleOverrideListInput": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#BillingCycleOverrideInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of billing cycles for trial billing and regular billing. The subscription billing cycle definition has to adhere to the plan billing cycle definition."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#BillingCycleOverrideInput": {
+      "type": "structure",
+      "members": {
+        "pricing_scheme": {
+          "target": "com.paypal.billing_subscriptions_v1#PricingSchemeInput",
+          "traits": {
+            "smithy.api#documentation": "The active pricing scheme for this billing cycle. A free trial billing cycle does not require a pricing scheme."
+          }
+        },
+        "sequence": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The order in which this cycle is to run among other billing cycles. For example, a trial billing cycle has a `sequence` of `1` while a regular billing cycle has a `sequence` of `2`, so that trial cycle runs before the regular cycle.",
+            "smithy.api#required": {}
+          }
+        },
+        "total_cycles": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of times this billing cycle gets executed. Trial billing cycles can only be executed a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>). Regular billing cycles can be executed infinite times (value of <code>0</code> for <code>total_cycles</code>) or a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The billing cycle details to override at subscription level. The subscription billing cycle definition has to adhere to the plan billing cycle definition."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PaymentPreferencesOverride": {
+      "type": "structure",
+      "members": {
+        "auto_bill_outstanding": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to automatically bill the outstanding amount in the next billing cycle."
+          }
+        },
+        "setup_fee": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The initial set-up fee for the service."
+          }
+        },
+        "setup_fee_failure_action": {
+          "target": "com.paypal.billing_subscriptions_v1#PaymentPreferencesOverrideSetupFeeFailureAction",
+          "traits": {
+            "smithy.api#documentation": "The action to take on the subscription if the initial payment for the setup fails."
+          }
+        },
+        "payment_failure_threshold": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of payment failures before a subscription is suspended. For example, if `payment_failure_threshold` is `2`, the subscription automatically updates to the `SUSPEND` state if two consecutive payments fail."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payment preferences to override at subscription level."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PaymentPreferencesOverrideSetupFeeFailureAction": {
+      "type": "enum",
+      "members": {
+        "CONTINUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTINUE"
+          }
+        },
+        "CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCEL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The action to take on the subscription if the initial payment for the setup fails."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#TaxesOverride": {
+      "type": "structure",
+      "members": {
+        "percentage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tax percentage on the billing amount."
+          }
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the tax was already included in the billing amount."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The tax details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "prefer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "Prefer",
+            "smithy.api#documentation": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
+          }
+        },
+        "payPalRequestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "PayPal-Request-Id",
+            "smithy.api#documentation": "The server stores keys for 72 hours."
+          }
+        },
+        "plan_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the plan.",
+            "smithy.api#required": {}
+          }
+        },
+        "start_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the subscription started, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The quantity of the product in the subscription."
+          }
+        },
+        "shipping_amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The shipping charges."
+          }
+        },
+        "subscriber": {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriberRequest"
+        },
+        "auto_renewal": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED. Indicates whether the subscription auto-renews after the billing cycles complete."
+          }
+        },
+        "application_context": {
+          "target": "com.paypal.billing_subscriptions_v1#ApplicationContext"
+        },
+        "custom_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom id for the subscription. Can be invoice id."
+          }
+        },
+        "plan": {
+          "target": "com.paypal.billing_subscriptions_v1#PlanOverrideInput",
+          "traits": {
+            "smithy.api#documentation": "An inline plan object to customise the subscription. You can override plan level default attributes by providing customised values for the subscription in this object."
+          }
+        },
+        "merchant_inventory": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Merchant's inventory identifier details for the WPS hosted button."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsCreateResponseStatus": {
+      "type": "enum",
+      "members": {
+        "APPROVAL_PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPROVAL_PENDING"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPROVED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENDED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPIRED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the subscription."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#Subscriber": {
+      "type": "structure",
+      "members": {
+        "email_address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the payer."
+          }
+        },
+        "payer_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-assigned ID for the payer."
+          }
+        },
+        "name": {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriberName",
+          "traits": {
+            "smithy.api#documentation": "The name of the party."
+          }
+        },
+        "phone": {
+          "target": "com.paypal.billing_subscriptions_v1#PhoneWithType",
+          "traits": {
+            "smithy.api#documentation": "The phone number of the customer. Available only when you enable the **Contact Telephone Number** option in the <a href=\"https://www.paypal.com/cgi-bin/customerprofileweb?cmd=_profile-website-payments\">**Profile & Settings**</a> for the merchant's PayPal account. The `phone.phone_number` supports only `national_number`."
+          }
+        },
+        "shipping_address": {
+          "target": "com.paypal.billing_subscriptions_v1#ShippingDetail"
+        },
+        "payment_source": {
+          "target": "com.paypal.billing_subscriptions_v1#PaymentSourceResponse"
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriberName": {
+      "type": "structure",
+      "members": {
+        "given_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's given, or first, name."
+          }
+        },
+        "surname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's surname or family name. Also known as the last name. Required when the party is a person. Use also to store multiple surnames including the matronymic, or mother's, surname."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the party."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PaymentSourceResponse": {
+      "type": "structure",
+      "members": {
+        "card": {
+          "target": "com.paypal.billing_subscriptions_v1#CardResponseWithBillingAddress"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payment source used to fund the payment."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#CardResponseWithBillingAddress": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The card holder's name as it appears on the card."
+          }
+        },
+        "last_digits": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last digits of the payment card."
+          }
+        },
+        "brand": {
+          "target": "com.paypal.billing_subscriptions_v1#CardBrand",
+          "traits": {
+            "smithy.api#documentation": "The card brand or network. Typically used in the response."
+          }
+        },
+        "available_networks": {
+          "target": "com.paypal.billing_subscriptions_v1#CardBrandList"
+        },
+        "type": {
+          "target": "com.paypal.billing_subscriptions_v1#CardType",
+          "traits": {
+            "smithy.api#documentation": "The payment card type."
+          }
+        },
+        "authentication_result": {
+          "target": "com.paypal.billing_subscriptions_v1#AuthenticationResponse"
+        },
+        "attributes": {
+          "target": "com.paypal.billing_subscriptions_v1#CardAttributesResponse"
+        },
+        "from_request": {
+          "target": "com.paypal.billing_subscriptions_v1#CardFromRequest"
+        },
+        "expiry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The card expiration year and month, in [Internet date format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "bin_details": {
+          "target": "com.paypal.billing_subscriptions_v1#BinDetails",
+          "traits": {
+            "smithy.api#documentation": "Bank Identification Number (BIN) details used to fund a payment."
+          }
+        },
+        "billing_address": {
+          "target": "com.paypal.billing_subscriptions_v1#CardResponseWithBillingAddressBillingAddress",
+          "traits": {
+            "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+          }
+        },
+        "currency_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Currency code of the given instrument"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.billing_subscriptions_v1#CardBrandList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#CardBrand"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of brands or networks associated with the card."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#AuthenticationResponse": {
+      "type": "structure",
+      "members": {
+        "liability_shift": {
+          "target": "com.paypal.billing_subscriptions_v1#LiabilityShift"
+        },
+        "three_d_secure": {
+          "target": "com.paypal.billing_subscriptions_v1#ThreeDSecureAuthenticationResponse"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Results of Authentication such as 3D Secure."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#LiabilityShift": {
+      "type": "enum",
+      "members": {
+        "NO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO"
+          }
+        },
+        "POSSIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSSIBLE"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Liability shift indicator. The outcome of the issuer's authentication."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#ThreeDSecureAuthenticationResponse": {
+      "type": "structure",
+      "members": {
+        "authentication_status": {
+          "target": "com.paypal.billing_subscriptions_v1#ParesStatus",
+          "traits": {
+            "smithy.api#documentation": "The outcome of the issuer's authentication."
+          }
+        },
+        "enrollment_status": {
+          "target": "com.paypal.billing_subscriptions_v1#Enrolled",
+          "traits": {
+            "smithy.api#documentation": "Status of authentication eligibility."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Results of 3D Secure Authentication."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#ParesStatus": {
+      "type": "enum",
+      "members": {
+        "Y": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Y"
+          }
+        },
+        "N": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "N"
+          }
+        },
+        "U": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "U"
+          }
+        },
+        "A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "A"
+          }
+        },
+        "C": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "C"
+          }
+        },
+        "R": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "R"
+          }
+        },
+        "D": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "D"
+          }
+        },
+        "I": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "I"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Transactions status result identifier. The outcome of the issuer's authentication."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#Enrolled": {
+      "type": "enum",
+      "members": {
+        "Y": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Y"
+          }
+        },
+        "N": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "N"
+          }
+        },
+        "U": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "U"
+          }
+        },
+        "B": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "B"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of Authentication eligibility."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#CardAttributesResponse": {
+      "type": "structure",
+      "members": {
+        "vault": {
+          "target": "com.paypal.billing_subscriptions_v1#VaultResponse"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional attributes associated with the use of this card."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#VaultResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated ID for the saved payment source."
+          }
+        },
+        "status": {
+          "target": "com.paypal.billing_subscriptions_v1#VaultResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "The vault status."
+          }
+        },
+        "customer": {
+          "target": "com.paypal.billing_subscriptions_v1#VaultResponseCustomer",
+          "traits": {
+            "smithy.api#documentation": "The details about a customer in PayPal's system of record."
+          }
+        },
+        "links": {
+          "target": "com.paypal.billing_subscriptions_v1#DefinitionsLinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details about a saved payment source."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#VaultResponseStatus": {
+      "type": "enum",
+      "members": {
+        "VAULTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VAULTED"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATED"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPROVED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The vault status."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#VaultResponseCustomer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details about a customer in PayPal's system of record."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#DefinitionsLinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related HATEOAS links."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#CardFromRequest": {
+      "type": "structure",
+      "members": {
+        "expiry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The card expiration year and month, in [Internet date format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "last_digits": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last digits of the payment card."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of card details as received in the request."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#BinDetails": {
+      "type": "structure",
+      "members": {
+        "bin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Bank Identification Number (BIN) signifies the number that is being used to identify the granular level details (except the PII information) of the card."
+          }
+        },
+        "issuing_bank": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The issuer of the card instrument."
+          }
+        },
+        "bin_country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [two-character ISO-3166-1 country code](/docs/integration/direct/rest/country-codes/) of the bank."
+          }
+        },
+        "products": {
+          "target": "com.paypal.billing_subscriptions_v1#ProductsList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Bank Identification Number (BIN) details used to fund a payment."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#ProductsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of card product assigned to the BIN by the issuer. These values are defined by the issuer and may change over time. Some examples include: PREPAID_GIFT, CONSUMER, CORPORATE."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#CardResponseWithBillingAddressBillingAddress": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address, such as number and street, for example, `173 Drury Lane`. Needed for data entry, and Compliance and Risk checks. This field needs to pass the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address, for example, a suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest-level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A *kanton*.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the ZIP code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionBillingInfo": {
+      "type": "structure",
+      "members": {
+        "outstanding_balance": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The total pending bill amount, to be paid by the subscriber.",
+            "smithy.api#required": {}
+          }
+        },
+        "cycle_executions": {
+          "target": "com.paypal.billing_subscriptions_v1#CycleExecutionList"
+        },
+        "last_payment": {
+          "target": "com.paypal.billing_subscriptions_v1#LastPaymentDetails",
+          "traits": {
+            "smithy.api#documentation": "The details for the last payment of the subscription."
+          }
+        },
+        "next_billing_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next date and time for billing this subscription, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "final_payment_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the final billing cycle occurs, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "failed_payments_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive payment failures. Resets to `0` after a successful payment. If this reaches the `payment_failure_threshold` value, the subscription updates to the `SUSPENDED` state.",
+            "smithy.api#required": {}
+          }
+        },
+        "last_failed_payment": {
+          "target": "com.paypal.billing_subscriptions_v1#FailedPaymentDetails",
+          "traits": {
+            "smithy.api#documentation": "The details for the last failed payment of the subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The billing details for the subscription. If the subscription was or is active, these fields are populated."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#CycleExecutionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#CycleExecution"
+      },
+      "traits": {
+        "smithy.api#documentation": "The trial and regular billing executions."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#CycleExecution": {
+      "type": "structure",
+      "members": {
+        "tenure_type": {
+          "target": "com.paypal.billing_subscriptions_v1#CycleExecutionTenureType",
+          "traits": {
+            "smithy.api#documentation": "The type of the billing cycle.",
+            "smithy.api#required": {}
+          }
+        },
+        "sequence": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The order in which to run this cycle among other billing cycles.",
+            "smithy.api#required": {}
+          }
+        },
+        "cycles_completed": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of billing cycles that have completed.",
+            "smithy.api#required": {}
+          }
+        },
+        "cycles_remaining": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "For a finite billing cycle, cycles_remaining is the number of remaining cycles. For an infinite billing cycle, cycles_remaining is set as 0."
+          }
+        },
+        "current_pricing_scheme_version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The active pricing scheme version for the billing cycle."
+          }
+        },
+        "total_cycles": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of times this billing cycle gets executed. Trial billing cycles can only be executed a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>). Regular billing cycles can be executed infinite times (value of <code>0</code> for <code>total_cycles</code>) or a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The regular and trial execution details for a billing cycle."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#CycleExecutionTenureType": {
+      "type": "enum",
+      "members": {
+        "REGULAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGULAR"
+          }
+        },
+        "TRIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRIAL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of the billing cycle."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#LastPaymentDetails": {
+      "type": "structure",
+      "members": {
+        "amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The last payment amount."
+          }
+        },
+        "time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the last payment was made, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.billing_subscriptions_v1#FailedPaymentDetails": {
+      "type": "structure",
+      "members": {
+        "amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The failed payment amount.",
+            "smithy.api#required": {}
+          }
+        },
+        "time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the failed payment was made, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+            "smithy.api#required": {}
+          }
+        },
+        "reason_code": {
+          "target": "com.paypal.billing_subscriptions_v1#FailedPaymentDetailsReasonCode",
+          "traits": {
+            "smithy.api#documentation": "The reason code for the payment failure."
+          }
+        },
+        "next_payment_retry_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time when the retry attempt for the failed payment occurs, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details for the failed payment of the subscription."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#FailedPaymentDetailsReasonCode": {
+      "type": "enum",
+      "members": {
+        "PAYMENT_DENIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYMENT_DENIED"
+          }
+        },
+        "INTERNAL_SERVER_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERNAL_SERVER_ERROR"
+          }
+        },
+        "PAYEE_ACCOUNT_RESTRICTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYEE_ACCOUNT_RESTRICTED"
+          }
+        },
+        "PAYER_ACCOUNT_RESTRICTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYER_ACCOUNT_RESTRICTED"
+          }
+        },
+        "PAYER_CANNOT_PAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYER_CANNOT_PAY"
+          }
+        },
+        "SENDING_LIMIT_EXCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SENDING_LIMIT_EXCEEDED"
+          }
+        },
+        "TRANSACTION_RECEIVING_LIMIT_EXCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSACTION_RECEIVING_LIMIT_EXCEEDED"
+          }
+        },
+        "CURRENCY_MISMATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CURRENCY_MISMATCH"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reason code for the payment failure."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsCreateResponsePlan": {
+      "type": "structure",
+      "members": {
+        "product_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID for the product."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The plan name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detailed description of the plan."
+          }
+        },
+        "billing_cycles": {
+          "target": "com.paypal.billing_subscriptions_v1#BillingCycleList"
+        },
+        "payment_preferences": {
+          "target": "com.paypal.billing_subscriptions_v1#PaymentPreferences"
+        },
+        "taxes": {
+          "target": "com.paypal.billing_subscriptions_v1#Taxes"
+        },
+        "quantity_supported": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether you can subscribe to this plan by providing a quantity for the goods or service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The plan details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCreateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of the subscription."
+          }
+        },
+        "status_change_note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason or notes for the status of the subscription."
+          }
+        },
+        "status_update_time": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated ID for the subscription."
+          }
+        },
+        "plan_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the plan."
+          }
+        },
+        "start_time": {
+          "target": "smithy.api#String"
+        },
+        "quantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The quantity of the product in the subscription."
+          }
+        },
+        "shipping_amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money"
+        },
+        "subscriber": {
+          "target": "com.paypal.billing_subscriptions_v1#Subscriber"
+        },
+        "billing_info": {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionBillingInfo"
+        },
+        "create_time": {
+          "target": "smithy.api#String"
+        },
+        "update_time": {
+          "target": "smithy.api#String"
+        },
+        "custom_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom id for the subscription. Can be invoice id."
+          }
+        },
+        "plan_overridden": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the subscription has overridden any plan attributes."
+          }
+        },
+        "plan": {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCreateResponsePlan",
+          "traits": {
+            "smithy.api#documentation": "The plan details."
+          }
+        },
+        "links": {
+          "target": "com.paypal.billing_subscriptions_v1#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCreateRequest"
+      },
+      "output": {
+        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCreateResponse"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/billing/subscriptions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create subscription\n\nCreates a subscription."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsGetRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the subscription."
+          }
+        },
+        "fields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fields",
+            "smithy.api#documentation": "List of fields that are to be returned in the response. Possible value for fields are last_failed_payment and plan."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsGetResponseStatus": {
+      "type": "enum",
+      "members": {
+        "APPROVAL_PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPROVAL_PENDING"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPROVED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENDED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPIRED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the subscription."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsGetResponsePlan": {
+      "type": "structure",
+      "members": {
+        "product_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID for the product."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The plan name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detailed description of the plan."
+          }
+        },
+        "billing_cycles": {
+          "target": "com.paypal.billing_subscriptions_v1#BillingCycleList"
+        },
+        "payment_preferences": {
+          "target": "com.paypal.billing_subscriptions_v1#PaymentPreferences"
+        },
+        "taxes": {
+          "target": "com.paypal.billing_subscriptions_v1#Taxes"
+        },
+        "quantity_supported": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether you can subscribe to this plan by providing a quantity for the goods or service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The plan details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsGetResponse": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsGetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of the subscription."
+          }
+        },
+        "status_change_note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason or notes for the status of the subscription."
+          }
+        },
+        "status_update_time": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated ID for the subscription."
+          }
+        },
+        "plan_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the plan."
+          }
+        },
+        "start_time": {
+          "target": "smithy.api#String"
+        },
+        "quantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The quantity of the product in the subscription."
+          }
+        },
+        "shipping_amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money"
+        },
+        "subscriber": {
+          "target": "com.paypal.billing_subscriptions_v1#Subscriber"
+        },
+        "billing_info": {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionBillingInfo"
+        },
+        "create_time": {
+          "target": "smithy.api#String"
+        },
+        "update_time": {
+          "target": "smithy.api#String"
+        },
+        "custom_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom id for the subscription. Can be invoice id."
+          }
+        },
+        "plan_overridden": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the subscription has overridden any plan attributes."
+          }
+        },
+        "plan": {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsGetResponsePlan",
+          "traits": {
+            "smithy.api#documentation": "The plan details."
+          }
+        },
+        "links": {
+          "target": "com.paypal.billing_subscriptions_v1#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsGetRequest"
+      },
+      "output": {
+        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsGetResponse"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/billing/subscriptions/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show subscription details\n\nShows details for a subscription, by ID."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsPatchRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the subscription."
+          }
+        },
+        "body": {
+          "target": "com.paypal.billing_subscriptions_v1#PatchRequest",
+          "traits": {
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsPatch": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsPatchRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#NotFound"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/billing/subscriptions/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update subscription\n\nUpdates a subscription which could be in <code>ACTIVE</code> or <code>SUSPENDED</code> status. You can override plan level default attributes by providing customised values for plan path in the patch request.<br /> <ul> <li>You cannot update attributes that have already completed (Example - trial cycles can’t be updated if completed).</li> <li>Once overridden, changes to plan resource will not impact subscription.</li> <li>Any price update will not impact billing cycles within next 10 days (Applicable only for subscriptions funded by PayPal account).</li> </ul> Following are the fields eligible for patch.<table><thead><tr><th>Attribute or object</th><th>Operations</th></tr></thead><tbody><tr><td><code>billing_info.outstanding_balance</code></td><td>replace</td></tr><tr><td><code>custom_id</code></td><td>add,replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>pricing_scheme.fixed_price</code></td><td>add,replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>pricing_scheme.tiers</code></td><td>replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>total_cycles</code></td><td>replace</td></tr><tr><td><code>plan.payment_preferences.<br/>auto_bill_outstanding</code></td><td>replace</td></tr><tr><td><code>plan.payment_preferences.<br/>payment_failure_threshold</code></td><td>replace</td></tr><tr><td><code>plan.taxes.inclusive</code></td><td>add,replace</td></tr><tr><td><code>plan.taxes.percentage</code></td><td>add,replace</td></tr><tr><td><code>shipping_amount</code></td><td>add,replace</td></tr><tr><td><code>start_time</code></td><td>replace</td></tr><tr><td><code>subscriber.shipping_address</code></td><td>add,replace</td></tr><tr><td><code>subscriber.payment_source (for subscriptions funded<br/>by card payments)</code></td><td>replace</td></tr></tbody></table>"
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsReviseRequestApplicationContextShippingPreference": {
+      "type": "enum",
+      "members": {
+        "GET_FROM_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET_FROM_FILE"
+          }
+        },
+        "NO_SHIPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_SHIPPING"
+          }
+        },
+        "SET_PROVIDED_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SET_PROVIDED_ADDRESS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The location from which the shipping address is derived."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsReviseRequestApplicationContextPaymentMethod": {
+      "type": "structure",
+      "members": {
+        "payee_preferred": {
+          "target": "com.paypal.billing_subscriptions_v1#PayeePaymentMethodPreference"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The customer and merchant payment preferences."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsReviseRequestApplicationContext": {
+      "type": "structure",
+      "members": {
+        "brand_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label that overrides the business name in the PayPal account on the PayPal site."
+          }
+        },
+        "locale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP 47-formatted locale of pages that the PayPal payment experience shows. PayPal supports a five-character code. For example, `da-DK`, `he-IL`, `id-ID`, `ja-JP`, `no-NO`, `pt-BR`, `ru-RU`, `sv-SE`, `th-TH`, `zh-CN`, `zh-HK`, or `zh-TW`."
+          }
+        },
+        "shipping_preference": {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsReviseRequestApplicationContextShippingPreference",
+          "traits": {
+            "smithy.api#documentation": "The location from which the shipping address is derived."
+          }
+        },
+        "payment_method": {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsReviseRequestApplicationContextPaymentMethod",
+          "traits": {
+            "smithy.api#documentation": "The customer and merchant payment preferences."
+          }
+        },
+        "return_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the customer is redirected after the customer approves the payment.",
+            "smithy.api#required": {}
+          }
+        },
+        "cancel_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the customer is redirected after the customer cancels the payment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The application context, which customizes the payer experience during the subscription approval process with PayPal."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsReviseRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the subscription."
+          }
+        },
+        "plan_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique PayPal-generated ID for the plan."
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The quantity of the product or service in the subscription."
+          }
+        },
+        "shipping_amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The shipping charges."
+          }
+        },
+        "shipping_address": {
+          "target": "com.paypal.billing_subscriptions_v1#ShippingDetail",
+          "traits": {
+            "smithy.api#documentation": "The shipping address of the subscriber."
+          }
+        },
+        "application_context": {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsReviseRequestApplicationContext",
+          "traits": {
+            "smithy.api#documentation": "The application context, which customizes the payer experience during the subscription approval process with PayPal."
+          }
+        },
+        "plan": {
+          "target": "com.paypal.billing_subscriptions_v1#PlanOverrideInput",
+          "traits": {
+            "smithy.api#documentation": "An inline plan object to customise the subscription. You can override plan level default attributes by providing customised values for the subscription in this object. Any existing overrides will not be carried forward during subscription revise."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionReviseResponse": {
+      "type": "structure",
+      "members": {
+        "plan_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique PayPal-generated ID for the plan."
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The quantity of the product or service in the subscription."
+          }
+        },
+        "shipping_amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The shipping charges."
+          }
+        },
+        "shipping_address": {
+          "target": "com.paypal.billing_subscriptions_v1#ShippingDetail",
+          "traits": {
+            "smithy.api#documentation": "The shipping address of the subscriber."
+          }
+        },
+        "plan": {
+          "target": "com.paypal.billing_subscriptions_v1#PlanOverride",
+          "traits": {
+            "smithy.api#documentation": "An inline plan object to customise the subscription. You can override plan level default attributes by providing customised values for the subscription in this object. Any existing overrides will not be carried forward during subscription revise."
+          }
+        },
+        "plan_overridden": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the subscription has overridden any plan attributes."
+          }
+        },
+        "links": {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionReviseResponseDefinitionsLinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response to a request to update the quantity of the product or service in a subscription. You can also use this method to switch the plan and update the `shipping_amount` and `shipping_address` values for the subscription. This type of update requires the buyer's consent."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#PlanOverride": {
+      "type": "structure",
+      "members": {
+        "billing_cycles": {
+          "target": "com.paypal.billing_subscriptions_v1#BillingCycleOverrideList"
+        },
+        "payment_preferences": {
+          "target": "com.paypal.billing_subscriptions_v1#PaymentPreferencesOverride"
+        },
+        "taxes": {
+          "target": "com.paypal.billing_subscriptions_v1#TaxesOverride"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An inline plan object to customise the subscription. You can override plan level default attributes by providing customised values for the subscription in this object."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#BillingCycleOverrideList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#BillingCycleOverride"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of billing cycles for trial billing and regular billing. The subscription billing cycle definition has to adhere to the plan billing cycle definition."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#BillingCycleOverride": {
+      "type": "structure",
+      "members": {
+        "pricing_scheme": {
+          "target": "com.paypal.billing_subscriptions_v1#PricingScheme",
+          "traits": {
+            "smithy.api#documentation": "The active pricing scheme for this billing cycle. A free trial billing cycle does not require a pricing scheme."
+          }
+        },
+        "sequence": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The order in which this cycle is to run among other billing cycles. For example, a trial billing cycle has a `sequence` of `1` while a regular billing cycle has a `sequence` of `2`, so that trial cycle runs before the regular cycle.",
+            "smithy.api#required": {}
+          }
+        },
+        "total_cycles": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of times this billing cycle gets executed. Trial billing cycles can only be executed a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>). Regular billing cycles can be executed infinite times (value of <code>0</code> for <code>total_cycles</code>) or a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The billing cycle details to override at subscription level. The subscription billing cycle definition has to adhere to the plan billing cycle definition."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionReviseResponseDefinitionsLinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsRevise": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsReviseRequest"
+      },
+      "output": {
+        "target": "com.paypal.billing_subscriptions_v1#SubscriptionReviseResponse"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#NotFound"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/billing/subscriptions/{id}/revise",
+          "code": 200
+        },
+        "smithy.api#documentation": "Revise plan or quantity of subscription\n\nUpdates the quantity of the product or service in a subscription. You can also use this method to switch the plan and update the `shipping_amount`, `shipping_address` values for the subscription. This type of update requires the buyer's consent."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsSuspendRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the subscription."
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for suspension of the Subscription.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsSuspend": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsSuspendRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#NotFound"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/billing/subscriptions/{id}/suspend",
+          "code": 200
+        },
+        "smithy.api#documentation": "Suspend subscription\n\nSuspends the subscription."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsCancelRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the subscription."
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for the cancellation of a subscription.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsCancel": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCancelRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#NotFound"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/billing/subscriptions/{id}/cancel",
+          "code": 200
+        },
+        "smithy.api#documentation": "Cancel subscription\n\nCancels the subscription."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsActivateRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the subscription."
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for activation of a subscription. Required to reactivate the subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsActivate": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsActivateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#NotFound"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/billing/subscriptions/{id}/activate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Activate subscription\n\nActivates the subscription."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsCaptureRequestCaptureType": {
+      "type": "enum",
+      "members": {
+        "OUTSTANDING_BALANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUTSTANDING_BALANCE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of capture."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsCaptureRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the subscription."
+          }
+        },
+        "payPalRequestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "PayPal-Request-Id",
+            "smithy.api#documentation": "The server stores keys for 72 hours."
+          }
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason or note for the subscription charge.",
+            "smithy.api#required": {}
+          }
+        },
+        "capture_type": {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCaptureRequestCaptureType",
+          "traits": {
+            "smithy.api#documentation": "The type of capture.",
+            "smithy.api#required": {}
+          }
+        },
+        "amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The amount of the outstanding balance. This value cannot be greater than the current outstanding balance amount.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#Transaction": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.paypal.billing_subscriptions_v1#TransactionStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of the captured payment."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated transaction ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "amount_with_breakdown": {
+          "target": "com.paypal.billing_subscriptions_v1#AmountWithBreakdown",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "payer_name": {
+          "target": "com.paypal.billing_subscriptions_v1#Name",
+          "traits": {
+            "smithy.api#documentation": "The name of the customer."
+          }
+        },
+        "payer_email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email ID of the customer."
+          }
+        },
+        "time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the transaction was processed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The transaction details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#TransactionStatus": {
+      "type": "enum",
+      "members": {
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETED"
+          }
+        },
+        "DECLINED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DECLINED"
+          }
+        },
+        "PARTIALLY_REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTIALLY_REFUNDED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REFUNDED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the captured payment."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#AmountWithBreakdown": {
+      "type": "structure",
+      "members": {
+        "gross_amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The amount for this transaction.",
+            "smithy.api#required": {}
+          }
+        },
+        "total_item_amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The item total for the transaction."
+          }
+        },
+        "fee_amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The fee details for the transaction."
+          }
+        },
+        "shipping_amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The shipping amount for the transaction."
+          }
+        },
+        "tax_amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The tax amount for the transaction."
+          }
+        },
+        "net_amount": {
+          "target": "com.paypal.billing_subscriptions_v1#Money",
+          "traits": {
+            "smithy.api#documentation": "The net amount that the payee receives for this transaction in their PayPal account. The net amount is computed as <code>gross_amount</code> minus the <code>paypal_fee</code>."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The breakdown details for the amount. Includes the gross, tax, fee, and shipping amounts."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#Name": {
+      "type": "structure",
+      "members": {
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The prefix, or title, to the party's name."
+          }
+        },
+        "given_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's given, or first, name."
+          }
+        },
+        "surname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's surname or family name. Also known as the last name. Required when the party is a person. Use also to store multiple surnames including the matronymic, or mother's, surname."
+          }
+        },
+        "middle_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's middle name. Use also to store multiple middle names including the patronymic, or father's, middle name."
+          }
+        },
+        "suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The suffix for the party's name."
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's full name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the party."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsCapture": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCaptureRequest"
+      },
+      "output": {
+        "target": "com.paypal.billing_subscriptions_v1#Transaction"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#NotFound"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/billing/subscriptions/{id}/capture",
+          "code": 200
+        },
+        "smithy.api#documentation": "Capture authorized payment on subscription\n\nCaptures an authorized payment from the subscriber on the subscription."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsTransactionsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the subscription."
+          }
+        },
+        "start_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "start_time",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The start time of the range of transactions to list."
+          }
+        },
+        "end_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "end_time",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The end time of the range of transactions to list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#TransactionsList": {
+      "type": "structure",
+      "members": {
+        "transactions": {
+          "target": "com.paypal.billing_subscriptions_v1#TransactionList"
+        },
+        "total_items": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of items."
+          }
+        },
+        "total_pages": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of pages."
+          }
+        },
+        "links": {
+          "target": "com.paypal.billing_subscriptions_v1#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list transactions for a subscription request details."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#TransactionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.billing_subscriptions_v1#Transaction"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of transactions."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#SubscriptionsTransactions": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsTransactionsRequest"
+      },
+      "output": {
+        "target": "com.paypal.billing_subscriptions_v1#TransactionsList"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/billing/subscriptions/{id}/transactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List transactions for subscription\n\nLists transactions for a subscription."
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.paypal.billing_subscriptions_v1#BillingSubscriptionsV1": {
+      "type": "service",
+      "version": "1.8",
+      "operations": [
+        {
+          "target": "com.paypal.billing_subscriptions_v1#PlansList"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#PlansCreate"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#PlansGet"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#PlansPatch"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#PlansActivate"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#PlansDeactivate"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#PlansUpdatePricingSchemes"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCreate"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsGet"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsPatch"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsRevise"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsSuspend"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCancel"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsActivate"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCapture"
+        },
+        {
+          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsTransactions"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Subscriptions",
+        "smithy.api#documentation": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>."
+      }
+    }
+  }
+}

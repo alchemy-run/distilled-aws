@@ -1,0 +1,560 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfile"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of web profiles."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the web experience profile."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The web experience profile name. Must be unique for a set of profiles for a merchant.",
+            "smithy.api#required": {}
+          }
+        },
+        "temporary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the profile persists for three hours or permanently. To persist the profile permanently, set to `false`. To persist the profile for three hours, set to `true`."
+          }
+        },
+        "flow_config": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#FlowConfig"
+        },
+        "input_fields": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#InputFields"
+        },
+        "presentation": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#Presentation"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A payment web experience profile."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#FlowConfig": {
+      "type": "structure",
+      "members": {
+        "landing_page_type": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#FlowConfigLandingPageType",
+          "traits": {
+            "smithy.api#documentation": "The type of landing page to display on the PayPal site for user checkout. To use the non-PayPal account landing page, set to `Billing`. To use the PayPal account login landing page, set to `Login`."
+          }
+        },
+        "bank_txn_pending_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The merchant site URL to display after a bank transfer payment. In Germany, valid only for the Giropay payment method or bank transfer payment method."
+          }
+        },
+        "user_action": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#FlowConfigUserAction",
+          "traits": {
+            "smithy.api#documentation": "Presents either the **Continue** or **Pay Now** checkout flow to the customer.<br/><br/>Default is **Continue**, or `user_action=continue`. When you do not know the final payment amount, accept this default flow, which redirects the customer to the PayPal payment page with the **Continue** button. When the customer clicks **Continue**, the customer can change the payment amount.<br/><br/> When you know the final payment amount, set `user_action=commit` to choose the **Pay Now** flow, which redirects the customer to the PayPal payment page with the **Pay Now** button. When the customer clicks **Pay Now**, the payment is processed immediately."
+          }
+        },
+        "return_uri_http_method": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#FlowConfigReturnUriHttpMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method to use to redirect the customer to a return URL. Value is `GET` or `POST`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The flow configuration parameters."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#FlowConfigLandingPageType": {
+      "type": "enum",
+      "members": {
+        "LOGIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "login"
+          }
+        },
+        "BILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of landing page to display on the PayPal site for user checkout. To use the non-PayPal account landing page, set to `Billing`. To use the PayPal account login landing page, set to `Login`."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#FlowConfigUserAction": {
+      "type": "enum",
+      "members": {
+        "COMMIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMMIT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Presents either the **Continue** or **Pay Now** checkout flow to the customer.<br/><br/>Default is **Continue**, or `user_action=continue`. When you do not know the final payment amount, accept this default flow, which redirects the customer to the PayPal payment page with the **Continue** button. When the customer clicks **Continue**, the customer can change the payment amount.<br/><br/> When you know the final payment amount, set `user_action=commit` to choose the **Pay Now** flow, which redirects the customer to the PayPal payment page with the **Pay Now** button. When the customer clicks **Pay Now**, the payment is processed immediately."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#FlowConfigReturnUriHttpMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The HTTP method to use to redirect the customer to a return URL. Value is `GET` or `POST`."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#InputFields": {
+      "type": "structure",
+      "members": {
+        "no_shipping": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether PayPal displays shipping address fields on the experience pages. Value is:<ul><li><code>0</code>. Displays the shipping address on the PayPal pages.</li><li><code>1</code>. Redacts shipping address fields from the PayPal pages. For digital goods, this field is required and must be <code>1</code>.</li><li><code>2</code>. Gets the shipping address from the customer's account profile.</li></ul>"
+          }
+        },
+        "address_override": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to display the shipping address that is passed to this call rather than the one on file for this buyer on the PayPal experience pages. Value is:<ul><li><code>0</code>. Displays the shipping address on file.</li><li><code>1</code>. Displays the shipping address specified in this call. the customer cannot edit this shipping address.</li></ul>"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The input field customization parameters."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#Presentation": {
+      "type": "structure",
+      "members": {
+        "brand_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A label that overrides the business name in the PayPal account on the PayPal pages. Character length and limitations: 127 single-byte alphanumeric characters."
+          }
+        },
+        "logo_image": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL to the logo image. A valid media type is `.gif`, `.jpg`, or `.png`. The image's maximum width is 190 pixels and maximum height is 60 pixels. PayPal crops images that are larger. PayPal places your logo image at the top of the cart review area. PayPal recommends that you store the image on a secure (HTTPS) server. Otherwise, web browsers display a message that checkout pages contain non-secure items. Character length and limitations: 127 single-byte alphanumeric characters."
+          }
+        },
+        "locale_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The locale of pages that the PayPal payment experience displays. A valid value is `AU`, `AT`, `BE`, `BR`, `CA`, `CH`, `CN`, `DE`, `ES`, `GB`, `FR`, `IT`, `NL`, `PL`, `PT`, `RU`, or `US`. A 5-character code is also valid for languages in these countries: `da_DK`, `he_IL`, `id_ID`, `ja_JP`, `no_NO`, `pt_BR`, `ru_RU`, `sv_SE`, `th_TH`, `zh_CN`, `zh_HK`, or `zh_TW`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The style and presentation parameters."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileGetListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileGetList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileGetListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/payment-experience/web-profiles",
+          "code": 200
+        },
+        "smithy.api#documentation": "List web experience profiles\n\nLists the latest 20 web experience profiles for a merchant or subject. To show details for these or additional profiles, you can show web experience profile details by ID."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileCreateRequest": {
+      "type": "structure",
+      "members": {
+        "payPalRequestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "PayPal-Request-Id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The server stores keys for three hours."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The web experience profile name. Must be unique for a set of profiles for a merchant.",
+            "smithy.api#required": {}
+          }
+        },
+        "temporary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the profile persists for three hours or permanently. To persist the profile permanently, set to `false`. To persist the profile for three hours, set to `true`."
+          }
+        },
+        "flow_config": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#FlowConfig"
+        },
+        "input_fields": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#InputFields"
+        },
+        "presentation": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#Presentation"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileCreateRequest"
+      },
+      "output": {
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfile"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/payment-experience/web-profiles",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create web experience profile\n\nCreates a web experience profile. In the JSON request body, specify the profile name and details."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileGetRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the profile to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileGetRequest"
+      },
+      "output": {
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfile"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/payment-experience/web-profiles/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show web experience profile details by ID\n\nShows details for a web experience profile, by ID."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the profile to delete."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The web experience profile name. Must be unique for a set of profiles for a merchant.",
+            "smithy.api#required": {}
+          }
+        },
+        "temporary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the profile persists for three hours or permanently. To persist the profile permanently, set to `false`. To persist the profile for three hours, set to `true`."
+          }
+        },
+        "flow_config": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#FlowConfig"
+        },
+        "input_fields": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#InputFields"
+        },
+        "presentation": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#Presentation"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileUpdateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/v1/payment-experience/web-profiles/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update web experience profile\n\nUpdates a web experience profile, by ID. In the JSON request body, specify the profile details. If your request omits any profile parameters, any previously set values for those parameters are removed."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#PatchRequest": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#Patch"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of JSON patch objects to apply partial updates to resources."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#Patch": {
+      "type": "structure",
+      "members": {
+        "op": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#PatchOp",
+          "traits": {
+            "smithy.api#documentation": "The operation.",
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The <a href=\"https://tools.ietf.org/html/rfc6901\">JSON Pointer</a> to the target document location at which to complete the operation."
+          }
+        },
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The value to apply. The <code>remove</code> operation does not require a value.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The <a href=\"https://tools.ietf.org/html/rfc6901\">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The JSON patch object to apply partial updates to resources."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#PatchOp": {
+      "type": "enum",
+      "members": {
+        "ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "add"
+          }
+        },
+        "REMOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "remove"
+          }
+        },
+        "REPLACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "replace"
+          }
+        },
+        "MOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "move"
+          }
+        },
+        "COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "copy"
+          }
+        },
+        "TEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "test"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operation."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfilePartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the profile to delete."
+          }
+        },
+        "body": {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#PatchRequest",
+          "traits": {
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfilePartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfilePartialUpdateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/payment-experience/web-profiles/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Partially update web experience profile\n\nPartially-updates a web experience profile, by ID. In the JSON request body, specify a patch object, the path of the profile location to update, and a new value."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the profile to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/payment-experience/web-profiles/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete web experience profile\n\nDeletes a web experience profile, by ID."
+      }
+    },
+    "com.paypal.payment_experience_web_experience_profiles_v1#PaymentExperienceWebExperienceProfilesV1": {
+      "type": "service",
+      "version": "1.3",
+      "operations": [
+        {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileGetList"
+        },
+        {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileCreate"
+        },
+        {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileGet"
+        },
+        {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileUpdate"
+        },
+        {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfilePartialUpdate"
+        },
+        {
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileDelete"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Payment Experience Web Profiles",
+        "smithy.api#documentation": "Use the Payment Experience API to create seamless payment experience profiles. For information about how to create a PayPal payment with a web experience profile, see <a href=\"/docs/integration/direct/payment-experience/\">Web experience profiles</a>."
+      }
+    }
+  }
+}
