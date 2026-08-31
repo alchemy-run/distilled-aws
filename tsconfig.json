@@ -387,6 +387,12 @@
     },
     {
       "path": "./packages/sentry/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/squarespace/tsconfig.json"
+    },
+    {
+      "path": "./packages/squarespace/tsconfig.scripts.json"
     }
   ]
 }
