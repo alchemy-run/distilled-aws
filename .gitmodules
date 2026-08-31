@@ -168,3 +168,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-auth0.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/clerk/specs/spec-mirror-clerk"]
+	path = packages/clerk/specs/spec-mirror-clerk
+	url = https://github.com/distilled-mirror/spec-mirror-clerk.git
+	ignore = dirty
+	shallow = true

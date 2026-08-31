@@ -43,6 +43,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "aws" },
   { package: "axiom" },
   { package: "azure" },
+  { package: "clerk" },
   {
     package: "cloudflare",
     // developers.cloudflare.com migrated to Astro/Starlight and now serves the
