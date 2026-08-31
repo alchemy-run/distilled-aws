@@ -278,3 +278,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-meilisearch.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/mercury/specs/spec-mirror-mercury"]
+	path = packages/mercury/specs/spec-mirror-mercury
+	url = https://github.com/distilled-mirror/spec-mirror-mercury.git
+	ignore = dirty
+	shallow = true

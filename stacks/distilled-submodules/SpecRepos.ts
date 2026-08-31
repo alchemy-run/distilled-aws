@@ -83,6 +83,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "kubernetes" },
   { package: "launchdarkly" },
   { package: "meilisearch" },
+  { package: "mercury" },
   { package: "mongodb-atlas" },
   { package: "modal" },
   { package: "neon" },
