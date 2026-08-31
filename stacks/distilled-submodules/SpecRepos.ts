@@ -89,6 +89,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "modal" },
   { package: "neon" },
   { package: "okta" },
+  { package: "onepassword" },
   { package: "paypal" },
   { package: "plaid" },
   { package: "planetscale" },
