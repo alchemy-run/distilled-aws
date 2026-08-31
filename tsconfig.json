@@ -447,6 +447,12 @@
     },
     {
       "path": "./packages/digitalocean/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/opencode/tsconfig.json"
+    },
+    {
+      "path": "./packages/opencode/tsconfig.scripts.json"
     }
   ]
 }
