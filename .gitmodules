@@ -163,3 +163,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-xata.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/auth0/specs/spec-mirror-auth0"]
+	path = packages/auth0/specs/spec-mirror-auth0
+	url = https://github.com/distilled-mirror/spec-mirror-auth0.git
+	ignore = dirty
+	shallow = true

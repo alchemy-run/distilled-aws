@@ -207,6 +207,12 @@
     },
     {
       "path": "./packages/xata/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/auth0/tsconfig.json"
+    },
+    {
+      "path": "./packages/auth0/tsconfig.scripts.json"
     }
   ]
 }
