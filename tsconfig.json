@@ -231,6 +231,12 @@
     },
     {
       "path": "./packages/okta/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/porkbun/tsconfig.json"
+    },
+    {
+      "path": "./packages/porkbun/tsconfig.scripts.json"
     }
   ]
 }

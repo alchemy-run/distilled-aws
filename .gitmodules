@@ -183,3 +183,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-okta.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/porkbun/specs/spec-mirror-porkbun"]
+	path = packages/porkbun/specs/spec-mirror-porkbun
+	url = https://github.com/distilled-mirror/spec-mirror-porkbun.git
+	ignore = dirty
+	shallow = true
