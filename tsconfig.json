@@ -303,6 +303,12 @@
     },
     {
       "path": "./packages/elasticsearch/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/gusto/tsconfig.json"
+    },
+    {
+      "path": "./packages/gusto/tsconfig.scripts.json"
     }
   ]
 }
