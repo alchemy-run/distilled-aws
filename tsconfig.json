@@ -315,6 +315,12 @@
     },
     {
       "path": "./packages/hostinger/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/infisical/tsconfig.json"
+    },
+    {
+      "path": "./packages/infisical/tsconfig.scripts.json"
     }
   ]
 }
