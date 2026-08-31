@@ -158,3 +158,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-redis-cloud.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/xata/specs/spec-mirror-xata"]
+	path = packages/xata/specs/spec-mirror-xata
+	url = https://github.com/distilled-mirror/spec-mirror-xata.git
+	ignore = dirty
+	shallow = true
