@@ -399,6 +399,12 @@
     },
     {
       "path": "./packages/temporal/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/trigger-dev/tsconfig.json"
+    },
+    {
+      "path": "./packages/trigger-dev/tsconfig.scripts.json"
     }
   ]
 }
