@@ -70,6 +70,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "mongodb-atlas" },
   { package: "modal" },
   { package: "neon" },
+  { package: "okta" },
   { package: "paypal" },
   { package: "plaid" },
   { package: "planetscale" },

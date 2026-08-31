@@ -178,3 +178,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-grafana.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/okta/specs/spec-mirror-okta"]
+	path = packages/okta/specs/spec-mirror-okta
+	url = https://github.com/distilled-mirror/spec-mirror-okta.git
+	ignore = dirty
+	shallow = true

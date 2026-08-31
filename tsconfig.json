@@ -225,6 +225,12 @@
     },
     {
       "path": "./packages/grafana/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/okta/tsconfig.json"
+    },
+    {
+      "path": "./packages/okta/tsconfig.scripts.json"
     }
   ]
 }
