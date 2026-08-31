@@ -1,0 +1,2264 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.ovh.sslgateway#IamResourceTagFilterInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Resource tag filter"
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayRequestIamTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.sslgateway#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.sslgateway#GetSslGatewayRequestIamTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.sslgateway#GetSslGatewayRequestIamTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.sslgateway#GetSslGatewayRequest": {
+      "type": "structure",
+      "members": {
+        "iamTags": {
+          "target": "com.ovh.sslgateway#GetSslGatewayRequestIamTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "iamTags",
+            "smithy.api#documentation": "Filter resources on IAM tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.sslgateway#GetSslGatewayResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.sslgateway#GetSslGatewayResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.sslgateway#GetSslGateway": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#GetSslGatewayRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#GetSslGatewayResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sslGateway",
+          "code": 200
+        },
+        "smithy.api#documentation": "List of your SSL Gateways"
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayAvailableZonesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.sslgateway#GetSslGatewayAvailableZonesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.sslgateway#GetSslGatewayAvailableZonesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayAvailableZones": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#GetSslGatewayAvailableZonesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sslGateway/availableZones",
+          "code": 200
+        },
+        "smithy.api#documentation": "List of zone available for an SSL Gateway"
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayEligibilityRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "domain",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "domain to check eligibility for SSL Gateway offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#SslGatewayEligibilityStatus": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer domain name"
+          }
+        },
+        "ip6s": {
+          "target": "com.ovh.sslgateway#SslGatewayEligibilityStatusIp6sList",
+          "traits": {
+            "smithy.api#documentation": "Eligible IP(s) v6 for this domain"
+          }
+        },
+        "ips": {
+          "target": "com.ovh.sslgateway#SslGatewayEligibilityStatusIpsList",
+          "traits": {
+            "smithy.api#documentation": "Eligible IP(s) for this domain"
+          }
+        },
+        "isHostedByOvh": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this domain is hosted by Ovh or not"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A structure describing the eligibility status of a domain"
+      }
+    },
+    "com.ovh.sslgateway#SslGatewayEligibilityStatusIp6sList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Eligible IP(s) v6 for this domain"
+      }
+    },
+    "com.ovh.sslgateway#SslGatewayEligibilityStatusIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Eligible IP(s) for this domain"
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayEligibility": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#GetSslGatewayEligibilityRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#SslGatewayEligibilityStatus"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sslGateway/eligibility",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check domain eligibility. Return list of eligible IP(s) for this domain."
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#SslGatewaySslGatewayWithIAM": {
+      "type": "structure",
+      "members": {
+        "allowedSource": {
+          "target": "com.ovh.sslgateway#SslGatewaySslGatewayWithIAMAllowedSourceList",
+          "traits": {
+            "smithy.api#documentation": "Restrict SSL Gateway access to these ip block. No restriction if null",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom name of your SSL Gateway",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hsts": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to enable Strict-Transport-Security HTTP header"
+          }
+        },
+        "httpsRedirect": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to enable https redirect"
+          }
+        },
+        "iam": {
+          "target": "com.ovh.sslgateway#IamResourceMetadata",
+          "traits": {
+            "smithy.api#documentation": "IAM resource metadata",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ipv4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The IPv4 you need to put in the A field of your domain name"
+          }
+        },
+        "ipv6": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The IPv6 you need to put in the AAAA field of your domain name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "metricsToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The metrics token associated with your SSL Gateway",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "offer": {
+          "target": "com.ovh.sslgateway#SslGatewayOfferEnum",
+          "traits": {
+            "smithy.api#documentation": "Current offer for your SSL Gateway"
+          }
+        },
+        "reverse": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom reverse for your SSL Gateway",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "serverHttps": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to contact backend servers over HTTPS"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        },
+        "sslConfiguration": {
+          "target": "com.ovh.sslgateway#SslGatewaySslConfigurationEnum",
+          "traits": {
+            "smithy.api#documentation": "Modern oldest compatible clients : Firefox 27, Chrome 30, IE 11 on Windows 7, Edge, Opera 17, Safari 9, Android 5.0, and Java 8. Intermediate oldest compatible clients : Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7. Intermediate if null.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "com.ovh.sslgateway#SslGatewayStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Current state of your SSL Gateway"
+          }
+        },
+        "zones": {
+          "target": "com.ovh.sslgateway#SslGatewaySslGatewayWithIAMZonesList",
+          "traits": {
+            "smithy.api#documentation": "Zones of your SSL Gateway"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Your SSL Gateway"
+      }
+    },
+    "com.ovh.sslgateway#SslGatewaySslGatewayWithIAMAllowedSourceList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Restrict SSL Gateway access to these ip block. No restriction if null"
+      }
+    },
+    "com.ovh.sslgateway#IamResourceMetadata": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.sslgateway#IamResourceMetadataTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IAM resource metadata embedded in services models"
+      }
+    },
+    "com.ovh.sslgateway#IamResourceMetadataTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.sslgateway#SslGatewayOfferEnum": {
+      "type": "enum",
+      "members": {
+        "ADVANCED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "free"
+          }
+        },
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of SSL Gateway offers"
+      }
+    },
+    "com.ovh.sslgateway#SslGatewaySslConfigurationEnum": {
+      "type": "enum",
+      "members": {
+        "INTERMEDIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "intermediate"
+          }
+        },
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "internal"
+          }
+        },
+        "MODERN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "modern"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Possible values for ssl ciphers"
+      }
+    },
+    "com.ovh.sslgateway#SslGatewayStateEnum": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "HTTP_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http-only"
+          }
+        },
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "internal"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        },
+        "UPGRADING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "upgrading"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Possible values for SSL Gateway state"
+      }
+    },
+    "com.ovh.sslgateway#SslGatewaySslGatewayWithIAMZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Zones of your SSL Gateway"
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#SslGatewaySslGatewayWithIAM"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sslGateway/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.sslgateway#PutSslGatewayServiceNameRequestAllowedSourceList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Restrict SSL Gateway access to these ip block. No restriction if null"
+      }
+    },
+    "com.ovh.sslgateway#PutSslGatewayServiceNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        },
+        "allowedSource": {
+          "target": "com.ovh.sslgateway#PutSslGatewayServiceNameRequestAllowedSourceList",
+          "traits": {
+            "smithy.api#documentation": "Restrict SSL Gateway access to these ip block. No restriction if null",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom name of your SSL Gateway",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hsts": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to enable Strict-Transport-Security HTTP header"
+          }
+        },
+        "httpsRedirect": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to enable https redirect"
+          }
+        },
+        "reverse": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom reverse for your SSL Gateway",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "serverHttps": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to contact backend servers over HTTPS"
+          }
+        },
+        "sslConfiguration": {
+          "target": "com.ovh.sslgateway#SslGatewaySslConfigurationEnum",
+          "traits": {
+            "smithy.api#documentation": "Modern oldest compatible clients : Firefox 27, Chrome 30, IE 11 on Windows 7, Edge, Opera 17, Safari 9, Android 5.0, and Java 8. Intermediate oldest compatible clients : Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7. Intermediate if null.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#PutSslGatewayServiceName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#PutSslGatewayServiceNameRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/sslGateway/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContactRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as admin contact"
+          }
+        },
+        "contactBilling": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as billing contact"
+          }
+        },
+        "contactTech": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as tech contact"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContactResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContactResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContactResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContactResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sslGateway/{serviceName}/changeContact",
+          "code": 200
+        },
+        "smithy.api#documentation": "Launch a contact change procedure"
+      }
+    },
+    "com.ovh.sslgateway#ServiceTerminationFutureUseEnum": {
+      "type": "enum",
+      "members": {
+        "NOT_REPLACING_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_REPLACING_SERVICE"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "SUBSCRIBE_AN_OTHER_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_AN_OTHER_SERVICE"
+          }
+        },
+        "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
+          }
+        },
+        "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All future uses you can provide for a service termination"
+      }
+    },
+    "com.ovh.sslgateway#ServiceTerminationReasonEnum": {
+      "type": "enum",
+      "members": {
+        "FEATURES_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEATURES_DONT_SUIT_ME"
+          }
+        },
+        "LACK_OF_PERFORMANCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LACK_OF_PERFORMANCES"
+          }
+        },
+        "MIGRATED_TO_ANOTHER_OVH_PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIGRATED_TO_ANOTHER_OVH_PRODUCT"
+          }
+        },
+        "MIGRATED_TO_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIGRATED_TO_COMPETITOR"
+          }
+        },
+        "NOT_ENOUGH_RECOGNITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_ENOUGH_RECOGNITION"
+          }
+        },
+        "NOT_NEEDED_ANYMORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_NEEDED_ANYMORE"
+          }
+        },
+        "NOT_RELIABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_RELIABLE"
+          }
+        },
+        "NO_ANSWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_ANSWER"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "PRODUCT_DIMENSION_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_DIMENSION_DONT_SUIT_ME"
+          }
+        },
+        "PRODUCT_TOOLS_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_TOOLS_DONT_SUIT_ME"
+          }
+        },
+        "TOO_EXPENSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_EXPENSIVE"
+          }
+        },
+        "TOO_HARD_TO_USE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_HARD_TO_USE"
+          }
+        },
+        "UNSATIFIED_BY_CUSTOMER_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All reasons you can provide for a service termination"
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameConfirmTerminationRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        },
+        "commentary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Commentary about your termination request"
+          }
+        },
+        "futureUse": {
+          "target": "com.ovh.sslgateway#ServiceTerminationFutureUseEnum",
+          "traits": {
+            "smithy.api#documentation": "What next after your termination request"
+          }
+        },
+        "reason": {
+          "target": "com.ovh.sslgateway#ServiceTerminationReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Reason of your termination request"
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The termination token sent by email to the admin contact",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameConfirmTerminationResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameConfirmTermination": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameConfirmTerminationRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameConfirmTerminationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sslGateway/{serviceName}/confirmTermination",
+          "code": 200
+        },
+        "smithy.api#documentation": "Confirm service termination"
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameDomainRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameDomainResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameDomainResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameDomainResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameDomainRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameDomainResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sslGateway/{serviceName}/domain",
+          "code": 200
+        },
+        "smithy.api#documentation": "Domains attached to your SSL Gateway"
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameDomainRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain to attach",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#SslGatewayDomain": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain name attached to your SSL Gateway"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Id of your domain"
+          }
+        },
+        "state": {
+          "target": "com.ovh.sslgateway#SslGatewayDomainStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Domain state"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain attached to an SSL Gateway"
+      }
+    },
+    "com.ovh.sslgateway#SslGatewayDomainStateEnum": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "HTTP_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http-only"
+          }
+        },
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "internal"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Possible values for SSL Gateway domain state"
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameDomainRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#SslGatewayDomain"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sslGateway/{serviceName}/domain",
+          "code": 200
+        },
+        "smithy.api#documentation": "Attach a new domain to your SSL Gateway"
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameDomainIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of your domain"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameDomainId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameDomainIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#SslGatewayDomain"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sslGateway/{serviceName}/domain/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.sslgateway#DeleteSslGatewayServiceNameDomainIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of your domain"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#DeleteSslGatewayServiceNameDomainId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#DeleteSslGatewayServiceNameDomainIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/sslGateway/{serviceName}/domain/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Detach a domain from your SSL Gateway"
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameNatIpRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#SslGatewayNatIps": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "com.ovh.sslgateway#SslGatewayNatIpsIpList"
+        },
+        "zone": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "a list of {zone, nat Ip}"
+      }
+    },
+    "com.ovh.sslgateway#SslGatewayNatIpsIpList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameNatIpResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.sslgateway#SslGatewayNatIps"
+      },
+      "traits": {}
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameNatIpResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameNatIpResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameNatIp": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameNatIpRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameNatIpResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sslGateway/{serviceName}/natIp",
+          "code": 200
+        },
+        "smithy.api#documentation": "Ip subnet used by OVH to nat requests to your SSL Gateway backends."
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain on which you want to renew certificate"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificateResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificateResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificateRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sslGateway/{serviceName}/renewCertificate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Renew your SSL certificates"
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameServerRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameServerResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameServerResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServerResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameServer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServerRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServerResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sslGateway/{serviceName}/server",
+          "code": 200
+        },
+        "smithy.api#documentation": "Servers attached to your SSL Gateway"
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameServerRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IPv4 address of your server",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port of your server",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#SslGatewayServer": {
+      "type": "structure",
+      "members": {
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address of the server attached to your SSL Gateway"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Id of your server"
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port of your server attached to your SSL Gateway"
+          }
+        },
+        "state": {
+          "target": "com.ovh.sslgateway#SslGatewayServerStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Server state"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Server attached to an SSL Gateway"
+      }
+    },
+    "com.ovh.sslgateway#SslGatewayServerStateEnum": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "internal"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Possible values for SSL Gateway server state"
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameServer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameServerRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#SslGatewayServer"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sslGateway/{serviceName}/server",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a new server to your SSL Gateway"
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameServerIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of your server"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameServerId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServerIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#SslGatewayServer"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sslGateway/{serviceName}/server/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.sslgateway#PutSslGatewayServiceNameServerIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of your server"
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address of the server attached to your SSL Gateway"
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port of your server attached to your SSL Gateway"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#PutSslGatewayServiceNameServerId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#PutSslGatewayServiceNameServerIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/sslGateway/{serviceName}/server/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.sslgateway#DeleteSslGatewayServiceNameServerIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of your server"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#DeleteSslGatewayServiceNameServerId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#DeleteSslGatewayServiceNameServerIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/sslGateway/{serviceName}/server/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a server"
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#ServicesService": {
+      "type": "structure",
+      "members": {
+        "canDeleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that the service can be set up to be deleted at expiration"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String"
+        },
+        "contactBilling": {
+          "target": "smithy.api#String"
+        },
+        "contactTech": {
+          "target": "smithy.api#String"
+        },
+        "creation": {
+          "target": "smithy.api#String"
+        },
+        "domain": {
+          "target": "smithy.api#String"
+        },
+        "engagedUpTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expiration": {
+          "target": "smithy.api#String"
+        },
+        "possibleRenewPeriod": {
+          "target": "com.ovh.sslgateway#ServicesServicePossibleRenewPeriodList",
+          "traits": {
+            "smithy.api#documentation": "All the possible renew period of your service in month",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "renew": {
+          "target": "com.ovh.sslgateway#ServiceRenewType",
+          "traits": {
+            "smithy.api#documentation": "Way of handling the renew",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "renewalType": {
+          "target": "com.ovh.sslgateway#ServiceRenewalTypeEnum"
+        },
+        "serviceId": {
+          "target": "smithy.api#Integer"
+        },
+        "status": {
+          "target": "com.ovh.sslgateway#ServiceStateEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about a Service"
+      }
+    },
+    "com.ovh.sslgateway#ServicesServicePossibleRenewPeriodList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "All the possible renew period of your service in month"
+      }
+    },
+    "com.ovh.sslgateway#ServiceRenewType": {
+      "type": "structure",
+      "members": {
+        "automatic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service is automatically renewed"
+          }
+        },
+        "deleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service will be deleted at expiration"
+          }
+        },
+        "forced": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service forced to be renewed"
+          }
+        },
+        "manualPayment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service needs to be manually renewed and paid",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "period": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "period of renew in month",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Map a possible renew for a specific service"
+      }
+    },
+    "com.ovh.sslgateway#ServiceRenewalTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTOMATICFORCEDPRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticForcedProduct"
+          }
+        },
+        "AUTOMATICV2012": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2012"
+          }
+        },
+        "AUTOMATICV2014": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2014"
+          }
+        },
+        "AUTOMATICV2016": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2016"
+          }
+        },
+        "AUTOMATICV2024": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2024"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "ONESHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oneShot"
+          }
+        },
+        "OPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "option"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed renewal type of a service"
+      }
+    },
+    "com.ovh.sslgateway#ServiceStateEnum": {
+      "type": "enum",
+      "members": {
+        "AUTORENEWINPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "autorenewInProgress"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "INCREATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inCreation"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "PENDINGDEBT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pendingDebt"
+          }
+        },
+        "UNPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unPaid"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServiceInfosRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#ServicesService"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sslGateway/{serviceName}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get service information"
+      }
+    },
+    "com.ovh.sslgateway#PutSslGatewayServiceNameServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        },
+        "renew": {
+          "target": "com.ovh.sslgateway#ServiceRenewType",
+          "traits": {
+            "smithy.api#documentation": "Way of handling the renew",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#PutSslGatewayServiceNameServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#PutSslGatewayServiceNameServiceInfosRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/sslGateway/{serviceName}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update service information"
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameTaskRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameTaskResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameTaskResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameTaskResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameTaskResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sslGateway/{serviceName}/task",
+          "code": 200
+        },
+        "smithy.api#documentation": "Task for this SSL Gateway"
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameTaskIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of the task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#SslGatewayTask": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.ovh.sslgateway#SslGatewayTaskActionEnum",
+          "traits": {
+            "smithy.api#documentation": "The action made"
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date of your task"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Id of the task"
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Task progress percentage"
+          }
+        },
+        "status": {
+          "target": "com.ovh.sslgateway#SslGatewayTaskStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Current status of your task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SSL Gateway tasks"
+      }
+    },
+    "com.ovh.sslgateway#SslGatewayTaskActionEnum": {
+      "type": "enum",
+      "members": {
+        "ADDDOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addDomain"
+          }
+        },
+        "ADDPAIDCERTIFICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addPaidCertificate"
+          }
+        },
+        "ADDSERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addServer"
+          }
+        },
+        "CREATESERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "createService"
+          }
+        },
+        "DELETEDOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteDomain"
+          }
+        },
+        "DELETESERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteServer"
+          }
+        },
+        "DELETESERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteService"
+          }
+        },
+        "INTERNALTASK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "internalTask"
+          }
+        },
+        "UPDATESERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updateServer"
+          }
+        },
+        "UPDATESERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updateService"
+          }
+        },
+        "UPGRADE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "upgrade"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Possible task action"
+      }
+    },
+    "com.ovh.sslgateway#SslGatewayTaskStatusEnum": {
+      "type": "enum",
+      "members": {
+        "BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "blocked"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "DOING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "doing"
+          }
+        },
+        "DONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "done"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "paused"
+          }
+        },
+        "TODO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "todo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Possible task status"
+      }
+    },
+    "com.ovh.sslgateway#GetSslGatewayServiceNameTaskId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameTaskIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#SslGatewayTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sslGateway/{serviceName}/task/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameTerminateRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your SSL Gateway"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameTerminateResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.sslgateway#PostSslGatewayServiceNameTerminate": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameTerminateRequest"
+      },
+      "output": {
+        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameTerminateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sslGateway/{serviceName}/terminate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Ask for the termination of your service\n\nAsk for the termination of your service. Admin contact of this service will receive a termination token by email in order to confirm its termination with /confirmTermination endpoint."
+      }
+    },
+    "com.ovh.sslgateway#Sslgateway": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.ovh.sslgateway#GetSslGateway"
+        },
+        {
+          "target": "com.ovh.sslgateway#GetSslGatewayAvailableZones"
+        },
+        {
+          "target": "com.ovh.sslgateway#GetSslGatewayEligibility"
+        },
+        {
+          "target": "com.ovh.sslgateway#GetSslGatewayServiceName"
+        },
+        {
+          "target": "com.ovh.sslgateway#PutSslGatewayServiceName"
+        },
+        {
+          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContact"
+        },
+        {
+          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameConfirmTermination"
+        },
+        {
+          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameDomain"
+        },
+        {
+          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameDomain"
+        },
+        {
+          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameDomainId"
+        },
+        {
+          "target": "com.ovh.sslgateway#DeleteSslGatewayServiceNameDomainId"
+        },
+        {
+          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameNatIp"
+        },
+        {
+          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificate"
+        },
+        {
+          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServer"
+        },
+        {
+          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameServer"
+        },
+        {
+          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServerId"
+        },
+        {
+          "target": "com.ovh.sslgateway#PutSslGatewayServiceNameServerId"
+        },
+        {
+          "target": "com.ovh.sslgateway#DeleteSslGatewayServiceNameServerId"
+        },
+        {
+          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServiceInfos"
+        },
+        {
+          "target": "com.ovh.sslgateway#PutSslGatewayServiceNameServiceInfos"
+        },
+        {
+          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameTask"
+        },
+        {
+          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameTaskId"
+        },
+        {
+          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameTerminate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "OVHcloud API specification",
+        "smithy.api#documentation": "Specification for OVHcloud API"
+      }
+    }
+  }
+}

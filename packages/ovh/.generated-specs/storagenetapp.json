@@ -1,0 +1,3773 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.ovh.storagenetapp#IamResourceTagFilterInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Resource tag filter"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappRequestIamTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.storagenetapp#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.storagenetapp#GetStorageNetappRequestIamTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappRequestIamTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.storagenetapp#GetStorageNetappRequest": {
+      "type": "structure",
+      "members": {
+        "iamTags": {
+          "target": "com.ovh.storagenetapp#GetStorageNetappRequestIamTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "iamTags",
+            "smithy.api#documentation": "Filter resources on IAM tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppServiceWithIAM": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service creation date"
+          }
+        },
+        "iam": {
+          "target": "com.ovh.storagenetapp#IamResourceMetadata",
+          "traits": {
+            "smithy.api#documentation": "IAM resource metadata",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service ID"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "performanceLevel": {
+          "target": "com.ovh.storagenetapp#StorageNetAppServicePerformanceLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "Service performance level"
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product name"
+          }
+        },
+        "quota": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Service quota"
+          }
+        },
+        "region": {
+          "target": "com.ovh.storagenetapp#StorageRegionEnum",
+          "traits": {
+            "smithy.api#documentation": "Service region"
+          }
+        },
+        "status": {
+          "target": "com.ovh.storagenetapp#StorageNetAppServiceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Service status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A service"
+      }
+    },
+    "com.ovh.storagenetapp#IamResourceMetadata": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.storagenetapp#IamResourceMetadataTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IAM resource metadata embedded in services models"
+      }
+    },
+    "com.ovh.storagenetapp#IamResourceMetadataTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppServicePerformanceLevelEnum": {
+      "type": "enum",
+      "members": {
+        "PREMIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "premium"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service performance level"
+      }
+    },
+    "com.ovh.storagenetapp#StorageRegionEnum": {
+      "type": "enum",
+      "members": {
+        "CA_EAST_BHS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ca-east-bhs"
+          }
+        },
+        "EU_WEST_GRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-gra"
+          }
+        },
+        "EU_WEST_LIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-lim"
+          }
+        },
+        "EU_WEST_RBX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-rbx"
+          }
+        },
+        "EU_WEST_SBG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-sbg"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Region of customer's service"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppServiceStatusEnum": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "REOPENING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reopening"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        },
+        "SUSPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspending"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service status"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.storagenetapp#StorageNetAppServiceWithIAM"
+      },
+      "traits": {}
+    },
+    "com.ovh.storagenetapp#GetStorageNetappResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.storagenetapp#GetStorageNetappResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetapp": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available services"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppServiceWithIAM"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get service details"
+      }
+    },
+    "com.ovh.storagenetapp#PutStorageNetappServiceNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New service name",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppService": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service creation date"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service ID"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "performanceLevel": {
+          "target": "com.ovh.storagenetapp#StorageNetAppServicePerformanceLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "Service performance level"
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product name"
+          }
+        },
+        "quota": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Service quota"
+          }
+        },
+        "region": {
+          "target": "com.ovh.storagenetapp#StorageRegionEnum",
+          "traits": {
+            "smithy.api#documentation": "Service region"
+          }
+        },
+        "status": {
+          "target": "com.ovh.storagenetapp#StorageNetAppServiceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Service status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A service"
+      }
+    },
+    "com.ovh.storagenetapp#PutStorageNetappServiceName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppService"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/storage/netapp/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update service"
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContactRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as admin contact"
+          }
+        },
+        "contactBilling": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as billing contact"
+          }
+        },
+        "contactTech": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as tech contact"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContactResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContactResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContactResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContactResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/storage/netapp/{serviceName}/changeContact",
+          "code": 200
+        },
+        "smithy.api#documentation": "Launch a contact change procedure"
+      }
+    },
+    "com.ovh.storagenetapp#ServiceTerminationFutureUseEnum": {
+      "type": "enum",
+      "members": {
+        "NOT_REPLACING_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_REPLACING_SERVICE"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "SUBSCRIBE_AN_OTHER_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_AN_OTHER_SERVICE"
+          }
+        },
+        "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
+          }
+        },
+        "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All future uses you can provide for a service termination"
+      }
+    },
+    "com.ovh.storagenetapp#ServiceTerminationReasonEnum": {
+      "type": "enum",
+      "members": {
+        "FEATURES_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEATURES_DONT_SUIT_ME"
+          }
+        },
+        "LACK_OF_PERFORMANCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LACK_OF_PERFORMANCES"
+          }
+        },
+        "MIGRATED_TO_ANOTHER_OVH_PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIGRATED_TO_ANOTHER_OVH_PRODUCT"
+          }
+        },
+        "MIGRATED_TO_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIGRATED_TO_COMPETITOR"
+          }
+        },
+        "NOT_ENOUGH_RECOGNITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_ENOUGH_RECOGNITION"
+          }
+        },
+        "NOT_NEEDED_ANYMORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_NEEDED_ANYMORE"
+          }
+        },
+        "NOT_RELIABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_RELIABLE"
+          }
+        },
+        "NO_ANSWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_ANSWER"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "PRODUCT_DIMENSION_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_DIMENSION_DONT_SUIT_ME"
+          }
+        },
+        "PRODUCT_TOOLS_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_TOOLS_DONT_SUIT_ME"
+          }
+        },
+        "TOO_EXPENSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_EXPENSIVE"
+          }
+        },
+        "TOO_HARD_TO_USE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_HARD_TO_USE"
+          }
+        },
+        "UNSATIFIED_BY_CUSTOMER_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All reasons you can provide for a service termination"
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameConfirmTerminationRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "commentary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Commentary about your termination request"
+          }
+        },
+        "futureUse": {
+          "target": "com.ovh.storagenetapp#ServiceTerminationFutureUseEnum",
+          "traits": {
+            "smithy.api#documentation": "All future uses you can provide for a service termination"
+          }
+        },
+        "reason": {
+          "target": "com.ovh.storagenetapp#ServiceTerminationReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "All reasons you can provide for a service termination"
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The termination token sent by email to the admin contact",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameConfirmTerminationResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameConfirmTermination": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameConfirmTerminationRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameConfirmTerminationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/storage/netapp/{serviceName}/confirmTermination",
+          "code": 200
+        },
+        "smithy.api#documentation": "Confirm service termination"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameMetricsTokenRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#StorageMetricsToken": {
+      "type": "structure",
+      "members": {
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Backend url"
+          }
+        },
+        "expiry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token expiration date"
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Generated token"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metrics token"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameMetricsToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameMetricsTokenRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageMetricsToken"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/metricsToken",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get metrics token"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "detail": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "detail",
+            "smithy.api#documentation": "Get detailed information about each network"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppNetwork": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Network ID"
+          }
+        },
+        "status": {
+          "target": "com.ovh.storagenetapp#StorageNetAppNetworkStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Network status",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vRackServicesURN": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vRack Services URN the network is attached to",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A network"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppNetworkStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ASSOCIATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "associated"
+          }
+        },
+        "ASSOCIATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "associating"
+          }
+        },
+        "DISSOCIATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dissociating"
+          }
+        },
+        "TO_CONFIGURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "to_configure"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Network status"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.storagenetapp#StorageNetAppNetwork"
+      },
+      "traits": {}
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameNetwork": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/network",
+          "code": 200
+        },
+        "smithy.api#documentation": "List networks"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkNetworkIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "networkId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Network ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkNetworkId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkNetworkIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppNetwork"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/network/{networkId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get network details"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#ServicesService": {
+      "type": "structure",
+      "members": {
+        "canDeleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that the service can be set up to be deleted at expiration"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String"
+        },
+        "contactBilling": {
+          "target": "smithy.api#String"
+        },
+        "contactTech": {
+          "target": "smithy.api#String"
+        },
+        "creation": {
+          "target": "smithy.api#String"
+        },
+        "domain": {
+          "target": "smithy.api#String"
+        },
+        "engagedUpTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expiration": {
+          "target": "smithy.api#String"
+        },
+        "possibleRenewPeriod": {
+          "target": "com.ovh.storagenetapp#ServicesServicePossibleRenewPeriodList",
+          "traits": {
+            "smithy.api#documentation": "All the possible renew period of your service in month",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "renew": {
+          "target": "com.ovh.storagenetapp#ServiceRenewType",
+          "traits": {
+            "smithy.api#documentation": "Way of handling the renew",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "renewalType": {
+          "target": "com.ovh.storagenetapp#ServiceRenewalTypeEnum"
+        },
+        "serviceId": {
+          "target": "smithy.api#Integer"
+        },
+        "status": {
+          "target": "com.ovh.storagenetapp#ServiceStateEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about a Service"
+      }
+    },
+    "com.ovh.storagenetapp#ServicesServicePossibleRenewPeriodList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "All the possible renew period of your service in month"
+      }
+    },
+    "com.ovh.storagenetapp#ServiceRenewType": {
+      "type": "structure",
+      "members": {
+        "automatic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service is automatically renewed"
+          }
+        },
+        "deleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service will be deleted at expiration"
+          }
+        },
+        "forced": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service forced to be renewed"
+          }
+        },
+        "manualPayment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service needs to be manually renewed and paid",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "period": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "period of renew in month",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Map a possible renew for a specific service"
+      }
+    },
+    "com.ovh.storagenetapp#ServiceRenewalTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTOMATICFORCEDPRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticForcedProduct"
+          }
+        },
+        "AUTOMATICV2012": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2012"
+          }
+        },
+        "AUTOMATICV2014": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2014"
+          }
+        },
+        "AUTOMATICV2016": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2016"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "ONESHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oneShot"
+          }
+        },
+        "OPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "option"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed renewal type of a service"
+      }
+    },
+    "com.ovh.storagenetapp#ServiceStateEnum": {
+      "type": "enum",
+      "members": {
+        "AUTORENEWINPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "autorenewInProgress"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "INCREATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inCreation"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "PENDINGDEBT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pendingDebt"
+          }
+        },
+        "UNPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unPaid"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "service.StateEnum"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameServiceInfosRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#ServicesService"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get service information"
+      }
+    },
+    "com.ovh.storagenetapp#PutStorageNetappServiceNameServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "renew": {
+          "target": "com.ovh.storagenetapp#ServiceRenewType",
+          "traits": {
+            "smithy.api#documentation": "Way of handling the renew",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PutStorageNetappServiceNameServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameServiceInfosRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/storage/netapp/{serviceName}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update service information"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "detail": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "detail",
+            "smithy.api#documentation": "Get detailed information about each share"
+          }
+        },
+        "mountPointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "mountPointName",
+            "smithy.api#documentation": "If specified, returns only shares with given mount point name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppShare": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share creation date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share description",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "mountPointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User-defined name used to generate human readable access path for the share",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "protocol": {
+          "target": "com.ovh.storagenetapp#StorageProtocolEnum",
+          "traits": {
+            "smithy.api#documentation": "Share protocol",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Share size in Gigabytes",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "snapshotID": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot ID used to create the share",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.ovh.storagenetapp#StorageNetAppShareStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Share status",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A share"
+      }
+    },
+    "com.ovh.storagenetapp#StorageProtocolEnum": {
+      "type": "enum",
+      "members": {
+        "NFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NFS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Storage protocol"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppShareStatusEnum": {
+      "type": "enum",
+      "members": {
+        "AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "available"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "CREATING_FROM_SNAPSHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating_from_snapshot"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "ERROR_DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error_deleting"
+          }
+        },
+        "EXTENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "extending"
+          }
+        },
+        "EXTENDING_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "extending_error"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inactive"
+          }
+        },
+        "MANAGE_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manage_error"
+          }
+        },
+        "MANAGE_STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manage_starting"
+          }
+        },
+        "MIGRATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "migrating"
+          }
+        },
+        "MIGRATING_TO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "migrating_to"
+          }
+        },
+        "REPLICATION_CHANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "replication_change"
+          }
+        },
+        "REVERTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reverting"
+          }
+        },
+        "REVERTING_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reverting_error"
+          }
+        },
+        "SHRINKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "shrinking"
+          }
+        },
+        "SHRINKING_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "shrinking_error"
+          }
+        },
+        "SHRINKING_POSSIBLE_DATA_LOSS_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "shrinking_possible_data_loss_error"
+          }
+        },
+        "UNMANAGE_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unmanage_error"
+          }
+        },
+        "UNMANAGE_STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unmanage_starting"
+          }
+        },
+        "UNMANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unmanaged"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Share status"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShare"
+      },
+      "traits": {}
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShare": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/share",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available shares"
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share description",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "mountPointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User-defined name used to generate human readable access path for the share",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "protocol": {
+          "target": "com.ovh.storagenetapp#StorageProtocolEnum",
+          "traits": {
+            "smithy.api#documentation": "Share protocol",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Share size in Gigabytes",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "snapshotID": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot ID used to create the share",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameShare": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShare"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/storage/netapp/{serviceName}/share",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a share"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShare"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get share details"
+      }
+    },
+    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New share description",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New share name",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShare"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a share"
+      }
+    },
+    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a share"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppShareAccessPath": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Access path ID"
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Access path"
+          }
+        },
+        "preferred": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is this the preferred access path?"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A share access path"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShareAccessPath"
+      },
+      "traits": {}
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPath": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/accessPath",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available access paths"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathAccessPathIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "accessPathId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Access path ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathAccessPathId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathAccessPathIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShareAccessPath"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/accessPath/{accessPathId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get access path details"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppShareACLRule": {
+      "type": "structure",
+      "members": {
+        "accessLevel": {
+          "target": "com.ovh.storagenetapp#StorageNetAppShareACLPermissionEnum",
+          "traits": {
+            "smithy.api#documentation": "Rule access level",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "accessTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rule destination",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "accessType": {
+          "target": "com.ovh.storagenetapp#StorageNetAppShareACLTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Rule access type",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rule creation date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rule ID"
+          }
+        },
+        "status": {
+          "target": "com.ovh.storagenetapp#StorageNetAppShareACLStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Rule status",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A share ACL rule"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppShareACLPermissionEnum": {
+      "type": "enum",
+      "members": {
+        "RO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ro"
+          }
+        },
+        "RW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rw"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ACL permission"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppShareACLTypeEnum": {
+      "type": "enum",
+      "members": {
+        "IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ip"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ACL type"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppShareACLStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "APPLYING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "applying"
+          }
+        },
+        "DENYING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "denying"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "QUEUED_TO_APPLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued_to_apply"
+          }
+        },
+        "QUEUED_TO_DENY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued_to_deny"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ACL status"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShareACLRule"
+      },
+      "traits": {}
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAcl": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/acl",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available ACLs"
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdAclRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "accessLevel": {
+          "target": "com.ovh.storagenetapp#StorageNetAppShareACLPermissionEnum",
+          "traits": {
+            "smithy.api#documentation": "Rule access level",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "accessTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rule destination",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdAcl": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdAclRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShareACLRule"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/acl",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an ACL"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclAclRuleIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "aclRuleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Acl rule ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclAclRuleId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclAclRuleIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShareACLRule"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/acl/{aclRuleId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get ACL details"
+      }
+    },
+    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "aclRuleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Acl rule ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdAclAclRuleId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/acl/{aclRuleId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an ACL"
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdExtendRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Share size in Gigabytes",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdExtend": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdExtendRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/extend",
+          "code": 200
+        },
+        "smithy.api#documentation": "Extend share size"
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdRevertRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "snapshotID": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Latest share snapshot",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdRevert": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdRevertRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/revert",
+          "code": 200
+        },
+        "smithy.api#documentation": "Revert a share to it's latest snapshot"
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdShrinkRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Share size in Gigabytes",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdShrink": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdShrinkRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/shrink",
+          "code": 200
+        },
+        "smithy.api#documentation": "Shrink share size"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "detail": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "detail",
+            "smithy.api#documentation": "Get detailed information about each snapshot"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppShareSnapshot": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot creation date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot description",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot ID"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot path",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.ovh.storagenetapp#StorageNetAppSnapshotStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Snapshot status",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.ovh.storagenetapp#StorageNetAppSnapshotTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Snapshot type",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A share snapshot"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppSnapshotStatusEnum": {
+      "type": "enum",
+      "members": {
+        "AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "available"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "ERROR_DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error_deleting"
+          }
+        },
+        "MANAGE_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manage_error"
+          }
+        },
+        "MANAGE_STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manage_starting"
+          }
+        },
+        "RESTORING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "restoring"
+          }
+        },
+        "UNMANAGE_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unmanage_error"
+          }
+        },
+        "UNMANAGE_STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unmanage_starting"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Snapshot status"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppSnapshotTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTOMATIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automatic"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Snapshot type"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshot"
+      },
+      "traits": {}
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshot": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/snapshot",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available snapshots"
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshotRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot description",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot name",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshot": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshotRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshot"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/snapshot",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a snapshot"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "snapshotId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Snapshot ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotSnapshotId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshot"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/snapshot/{snapshotId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get snapshot details"
+      }
+    },
+    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "snapshotId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Snapshot ID"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New snapshot description",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New snapshot name",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotSnapshotId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshot"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/snapshot/{snapshotId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a snapshot"
+      }
+    },
+    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "snapshotId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Snapshot ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/snapshot/{snapshotId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a snapshot"
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHoldRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "snapshotId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Snapshot ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHold": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHoldRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshot"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/snapshot/{snapshotId}/hold",
+          "code": 200
+        },
+        "smithy.api#documentation": "Hold an automatic share snapshot"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppShareSnapshotPolicy": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot policy ID"
+          }
+        },
+        "status": {
+          "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshotPolicyStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Association status between the share and the snapshot policy"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A snapshot policy"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppShareSnapshotPolicyStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Association status between the share and the snapshot policy"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotPolicyRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshotPolicy"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/snapshotPolicy",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get snapshot policy used by a share"
+      }
+    },
+    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "snapshotPolicyID": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot policy ID",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotPolicyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/snapshotPolicy",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update snapshot policy used by a share"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotReserveRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppShareSnapshotReserve": {
+      "type": "structure",
+      "members": {
+        "percent": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Share space percentage reserved for snapshots"
+          }
+        },
+        "status": {
+          "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshotReserveStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Snapshot reserve properties"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppShareSnapshotReserveStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Snapshot reserve properties status"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotReserve": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotReserveRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshotReserve"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/snapshotReserve",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get snapshot reserve properties of a share"
+      }
+    },
+    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotReserveRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "shareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Share ID"
+          }
+        },
+        "percent": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Share space percentage reserved for snapshots",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotReserve": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotReserveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/storage/netapp/{serviceName}/share/{shareId}/snapshotReserve",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update snapshot reserve properties of a share"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppSnapshotPolicy": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot policy creation date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot policy description",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot policy ID"
+          }
+        },
+        "isDefault": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is this the default snapshot policy?",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot policy name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "rules": {
+          "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyRulesList",
+          "traits": {
+            "smithy.api#documentation": "Snapshot policy rules",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Snapshot policy status",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A snapshot policy"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyRule": {
+      "type": "structure",
+      "members": {
+        "copies": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of snapshot copies to keep",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prefix to use for snapshots",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "schedule": {
+          "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicySchedule",
+          "traits": {
+            "smithy.api#documentation": "Snapshot policy schedule",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A snapshot policy rule"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppSnapshotPolicySchedule": {
+      "type": "structure",
+      "members": {
+        "days": {
+          "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyScheduleDaysList",
+          "traits": {
+            "smithy.api#documentation": "The days of the month the schedule runs (1 through 31). Empty for all.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hours": {
+          "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyScheduleHoursList",
+          "traits": {
+            "smithy.api#documentation": "The hours of the day the schedule runs (0 through 23). Empty for all.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "minutes": {
+          "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyScheduleMinutesList",
+          "traits": {
+            "smithy.api#documentation": "The minutes the schedule runs (0 through 59). Required to have at least one value.",
+            "smithy.api#required": {}
+          }
+        },
+        "months": {
+          "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyScheduleMonthsList",
+          "traits": {
+            "smithy.api#documentation": "The months of the year the schedule runs (1 through 12). Empty for all.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "weekdays": {
+          "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyScheduleWeekdaysList",
+          "traits": {
+            "smithy.api#documentation": "The days of the week the schedule runs (0 through 6, where 0 is Sunday and 6 is Saturday). Empty for all.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A snapshot policy schedule"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyScheduleDaysList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "The days of the month the schedule runs (1 through 31). Empty for all."
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyScheduleHoursList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "The hours of the day the schedule runs (0 through 23). Empty for all."
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyScheduleMinutesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "The minutes the schedule runs (0 through 59). Required to have at least one value."
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyScheduleMonthsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "The months of the year the schedule runs (1 through 12). Empty for all."
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyScheduleWeekdaysList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "The days of the week the schedule runs (0 through 6, where 0 is Sunday and 6 is Saturday). Empty for all."
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyRule"
+      },
+      "traits": {
+        "smithy.api#documentation": "Snapshot policy rules"
+      }
+    },
+    "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyStatusEnum": {
+      "type": "enum",
+      "members": {
+        "AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "available"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Snapshot policy status"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicyResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicy"
+      },
+      "traits": {}
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicyResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicyResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicyRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/snapshotPolicy",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a list of snapshot policies"
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameSnapshotPolicyRequestRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyRule"
+      },
+      "traits": {
+        "smithy.api#documentation": "Snapshot policy rules"
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameSnapshotPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot policy description",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot policy name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "rules": {
+          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameSnapshotPolicyRequestRulesList",
+          "traits": {
+            "smithy.api#documentation": "Snapshot policy rules",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameSnapshotPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameSnapshotPolicyRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicy"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/storage/netapp/{serviceName}/snapshotPolicy",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a snapshot policy"
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "snapshotPolicyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Snapshot policy ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicy"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/storage/netapp/{serviceName}/snapshotPolicy/{snapshotPolicyId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get snapshot policy details"
+      }
+    },
+    "com.ovh.storagenetapp#PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "snapshotPolicyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Snapshot policy ID"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New snapshot policy description",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New snapshot policy name",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/storage/netapp/{serviceName}/snapshotPolicy/{snapshotPolicyId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a snapshot policy"
+      }
+    },
+    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "snapshotPolicyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Snapshot policy ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/storage/netapp/{serviceName}/snapshotPolicy/{snapshotPolicyId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a snapshot policy"
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameTerminateRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameTerminateResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.storagenetapp#PostStorageNetappServiceNameTerminate": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameTerminateRequest"
+      },
+      "output": {
+        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameTerminateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/storage/netapp/{serviceName}/terminate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Ask for the termination of your service"
+      }
+    },
+    "com.ovh.storagenetapp#Storagenetapp": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetapp"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceName"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PutStorageNetappServiceName"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContact"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameConfirmTermination"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameMetricsToken"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameNetwork"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkNetworkId"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameServiceInfos"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameServiceInfos"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShare"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShare"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareId"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareId"
+        },
+        {
+          "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareId"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPath"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathAccessPathId"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAcl"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdAcl"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclAclRuleId"
+        },
+        {
+          "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdAclAclRuleId"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdExtend"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdRevert"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdShrink"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshot"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshot"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotSnapshotId"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotSnapshotId"
+        },
+        {
+          "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotId"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHold"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotPolicy"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotPolicy"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotReserve"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotReserve"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicy"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameSnapshotPolicy"
+        },
+        {
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyId"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyId"
+        },
+        {
+          "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyId"
+        },
+        {
+          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameTerminate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "OVHcloud API specification",
+        "smithy.api#documentation": "Specification for OVHcloud API"
+      }
+    }
+  }
+}

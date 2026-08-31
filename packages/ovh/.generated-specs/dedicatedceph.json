@@ -1,0 +1,3372 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.ovh.dedicatedceph#IamResourceTagFilterInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Resource tag filter"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephRequestIamTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.dedicatedceph#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephRequestIamTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephRequestIamTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephRequest": {
+      "type": "structure",
+      "members": {
+        "iamTags": {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephRequestIamTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "iamTags",
+            "smithy.api#documentation": "Filter resources on IAM tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCeph": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available services"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephClusterGetResponseWithIAM": {
+      "type": "structure",
+      "members": {
+        "cephMons": {
+          "target": "com.ovh.dedicatedceph#DedicatedCephClusterGetResponseWithIAMCephMonsList",
+          "traits": {
+            "smithy.api#documentation": "List of CEPH monitor IPs"
+          }
+        },
+        "cephVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Used version of ceph"
+          }
+        },
+        "createDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        },
+        "crushTunables": {
+          "target": "com.ovh.dedicatedceph#DedicatedCephClusterGetResponseCrushTunablesEnum",
+          "traits": {
+            "smithy.api#documentation": "Tunables of cluster"
+          }
+        },
+        "iam": {
+          "target": "com.ovh.dedicatedceph#IamResourceMetadata",
+          "traits": {
+            "smithy.api#documentation": "IAM resource metadata",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of cluster"
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of region where cluster is located"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of cluster"
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of cluster in TB"
+          }
+        },
+        "state": {
+          "target": "com.ovh.dedicatedceph#DedicatedCephClusterGetResponseStateEnum",
+          "traits": {
+            "smithy.api#documentation": "State of cluster"
+          }
+        },
+        "status": {
+          "target": "com.ovh.dedicatedceph#DedicatedCephClusterGetResponseStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of cluster"
+          }
+        },
+        "updateDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update date"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about ceph cluster"
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephClusterGetResponseWithIAMCephMonsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of CEPH monitor IPs"
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephClusterGetResponseCrushTunablesEnum": {
+      "type": "enum",
+      "members": {
+        "ARGONAUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARGONAUT"
+          }
+        },
+        "BOBTAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOBTAIL"
+          }
+        },
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEFAULT"
+          }
+        },
+        "FIREFLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIREFLY"
+          }
+        },
+        "HAMMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HAMMER"
+          }
+        },
+        "JEWEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JEWEL"
+          }
+        },
+        "LEGACY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEGACY"
+          }
+        },
+        "OPTIMAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTIMAL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Tunables of cluster"
+      }
+    },
+    "com.ovh.dedicatedceph#IamResourceMetadata": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.dedicatedceph#IamResourceMetadataTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IAM resource metadata embedded in services models"
+      }
+    },
+    "com.ovh.dedicatedceph#IamResourceMetadataTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephClusterGetResponseStateEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENDED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "State of cluster"
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephClusterGetResponseStatusEnum": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETING"
+          }
+        },
+        "INSTALLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSTALLED"
+          }
+        },
+        "TASK_IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TASK_IN_PROGRESS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of cluster"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephClusterGetResponseWithIAM"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get cluster details"
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephClusterUpdateCrushTunablesEnum": {
+      "type": "enum",
+      "members": {
+        "ARGONAUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARGONAUT"
+          }
+        },
+        "BOBTAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOBTAIL"
+          }
+        },
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEFAULT"
+          }
+        },
+        "FIREFLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIREFLY"
+          }
+        },
+        "HAMMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HAMMER"
+          }
+        },
+        "JEWEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JEWEL"
+          }
+        },
+        "LEGACY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEGACY"
+          }
+        },
+        "OPTIMAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTIMAL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Tunables of cluster"
+      }
+    },
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "crushTunables": {
+          "target": "com.ovh.dedicatedceph#DedicatedCephClusterUpdateCrushTunablesEnum",
+          "traits": {
+            "smithy.api#documentation": "Tunables of cluster",
+            "smithy.api#required": {}
+          }
+        },
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the cluster",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/dedicated/ceph/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update cluster details"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephAclGetResponse": {
+      "type": "structure",
+      "members": {
+        "family": {
+          "target": "com.ovh.dedicatedceph#DedicatedCephAclGetResponseFamilyEnum",
+          "traits": {
+            "smithy.api#documentation": "Family of IP ACL"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of IP ACL"
+          }
+        },
+        "netmask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address (e.g., 192.0.2.0)"
+          }
+        },
+        "network": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address (e.g., 192.0.2.0)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP ACL"
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephAclGetResponseFamilyEnum": {
+      "type": "enum",
+      "members": {
+        "IPV4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IPV4"
+          }
+        },
+        "IPV6": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IPV6"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Family of IP ACL"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephAclGetResponse"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAcl": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/acl",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get list of all IP ACLs in a cluster"
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAclRequestAclListList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of new ACLs"
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAclRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "aclList": {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAclRequestAclListList",
+          "traits": {
+            "smithy.api#documentation": "List of new ACLs",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAclResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAcl": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAclRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAclResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/ceph/{serviceName}/acl",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create one or more new IP ACLs"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclAclIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "aclId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Acl ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclAclId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclAclIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephAclGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/acl/{aclId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get details about IP ACL"
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameAclAclIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "aclId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Acl ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameAclAclIdResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameAclAclId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameAclAclIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameAclAclIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/dedicated/ceph/{serviceName}/acl/{aclId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete single IP ACL"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephCephfsGetResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Filesystem state"
+          }
+        },
+        "fsName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filesystem name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "CephFS filesystem data"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephCephfsGetResponse"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfs": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/cephfs",
+          "code": 200
+        },
+        "smithy.api#documentation": "List CephFS filesystems"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsFsNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "fsName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Fs name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsFsName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsFsNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephCephfsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/cephfs/{fsName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get CephFS filesystem information"
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameCephfsFsNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "fsName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Fs name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameCephfsFsNameResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameCephfsFsName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameCephfsFsNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameCephfsFsNameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/dedicated/ceph/{serviceName}/cephfs/{fsName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Purge CephFS filesystem"
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameDisableRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "fsName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Fs name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameDisableResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameDisable": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameDisableRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameDisableResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/ceph/{serviceName}/cephfs/{fsName}/disable",
+          "code": 200
+        },
+        "smithy.api#documentation": "Disable CephFS filesystem"
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameEnableRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "fsName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Fs name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameEnableResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameEnable": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameEnableRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameEnableResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/ceph/{serviceName}/cephfs/{fsName}/enable",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable CephFS filesystem"
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContactRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as admin contact"
+          }
+        },
+        "contactBilling": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as billing contact"
+          }
+        },
+        "contactTech": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as tech contact"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContactResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContactResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContactResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContactResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/ceph/{serviceName}/changeContact",
+          "code": 200
+        },
+        "smithy.api#documentation": "Launch a contact change procedure"
+      }
+    },
+    "com.ovh.dedicatedceph#ServiceTerminationFutureUseEnum": {
+      "type": "enum",
+      "members": {
+        "NOT_REPLACING_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_REPLACING_SERVICE"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "SUBSCRIBE_AN_OTHER_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_AN_OTHER_SERVICE"
+          }
+        },
+        "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
+          }
+        },
+        "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All future uses you can provide for a service termination"
+      }
+    },
+    "com.ovh.dedicatedceph#ServiceTerminationReasonEnum": {
+      "type": "enum",
+      "members": {
+        "FEATURES_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEATURES_DONT_SUIT_ME"
+          }
+        },
+        "LACK_OF_PERFORMANCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LACK_OF_PERFORMANCES"
+          }
+        },
+        "MIGRATED_TO_ANOTHER_OVH_PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIGRATED_TO_ANOTHER_OVH_PRODUCT"
+          }
+        },
+        "MIGRATED_TO_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIGRATED_TO_COMPETITOR"
+          }
+        },
+        "NOT_ENOUGH_RECOGNITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_ENOUGH_RECOGNITION"
+          }
+        },
+        "NOT_NEEDED_ANYMORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_NEEDED_ANYMORE"
+          }
+        },
+        "NOT_RELIABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_RELIABLE"
+          }
+        },
+        "NO_ANSWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_ANSWER"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "PRODUCT_DIMENSION_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_DIMENSION_DONT_SUIT_ME"
+          }
+        },
+        "PRODUCT_TOOLS_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_TOOLS_DONT_SUIT_ME"
+          }
+        },
+        "TOO_EXPENSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_EXPENSIVE"
+          }
+        },
+        "TOO_HARD_TO_USE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_HARD_TO_USE"
+          }
+        },
+        "UNSATIFIED_BY_CUSTOMER_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All reasons you can provide for a service termination"
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameConfirmTerminationRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "commentary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Commentary about your termination request"
+          }
+        },
+        "futureUse": {
+          "target": "com.ovh.dedicatedceph#ServiceTerminationFutureUseEnum",
+          "traits": {
+            "smithy.api#documentation": "All future uses you can provide for a service termination"
+          }
+        },
+        "reason": {
+          "target": "com.ovh.dedicatedceph#ServiceTerminationReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "All reasons you can provide for a service termination"
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The termination token sent by email to the admin contact",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameConfirmTerminationResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameConfirmTermination": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameConfirmTerminationRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameConfirmTerminationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/ceph/{serviceName}/confirmTermination",
+          "code": 200
+        },
+        "smithy.api#documentation": "Confirm service termination"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameHealthRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephClusterHealthResponse": {
+      "type": "structure",
+      "members": {
+        "availableBytes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "All available space in bytes"
+          }
+        },
+        "healthy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True or False"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of cluster"
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status of ceph cluster"
+          }
+        },
+        "totalBytes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total cluster space in bytes"
+          }
+        },
+        "usedBytes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Used cluster space in bytes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Health of ceph cluster"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameHealth": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameHealthRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephClusterHealthResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/health",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get cluster health"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephPoolGetResponse": {
+      "type": "structure",
+      "members": {
+        "backup": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determine if pool should be backuped"
+          }
+        },
+        "minActiveReplicas": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minimum active replicas"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the pool"
+          }
+        },
+        "poolType": {
+          "target": "com.ovh.dedicatedceph#DedicatedCephPoolGetResponsePoolTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of pool"
+          }
+        },
+        "replicaCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of replica"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of cluster"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ceph pool"
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephPoolGetResponsePoolTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ERASURE_CODED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERASURE_CODED"
+          }
+        },
+        "REPLICATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPLICATED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of pool"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephPoolGetResponse"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePool": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/pool",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get list of all pools in a cluster"
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the new pool",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePool": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/ceph/{serviceName}/pool",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new ceph pool"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolPoolNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pool name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolPoolName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolPoolNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephPoolGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/pool/{poolName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get details about an existing ceph pool"
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNamePoolPoolNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pool name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNamePoolPoolNameResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNamePoolPoolName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNamePoolPoolNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNamePoolPoolNameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/dedicated/ceph/{serviceName}/pool/{poolName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a single ceph pool"
+      }
+    },
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceNamePoolPoolNameAllowDeletionRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pool name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceNamePoolPoolNameAllowDeletionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceNamePoolPoolNameAllowDeletion": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNamePoolPoolNameAllowDeletionRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNamePoolPoolNameAllowDeletionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/dedicated/ceph/{serviceName}/pool/{poolName}/allowDeletion",
+          "code": 200
+        },
+        "smithy.api#documentation": "Open 5 minutes window for deleting single ceph pool"
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolErasureRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the new pool erasure",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolErasureResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolErasure": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolErasureRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolErasureResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/ceph/{serviceName}/poolErasure",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new ceph erasure pool"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephRgwResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines whether RGW instance is enabled or disabled. Only disabled instance can be deleted"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of RGW instance"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ceph Rados Gateway data"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephRgwResponse"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGateway": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/radosGateway",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Ceph RGW instances"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephRgwResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/radosGateway/{name}",
+          "code": 200
+        }
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayNameAclRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephRgwAcl": {
+      "type": "structure",
+      "members": {
+        "networks": {
+          "target": "com.ovh.dedicatedceph#DedicatedCephRgwAclNetworksList",
+          "traits": {
+            "smithy.api#documentation": "List of IP networks",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Rados Gateway IP ACL entries"
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephRgwAclNetworksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of IP networks"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayNameAcl": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayNameAclRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephRgwAcl"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/radosGateway/{name}/acl",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all Rados Gateway ACL entries"
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameRadosGatewayNameAclRequestNetworksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of IP networks"
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameRadosGatewayNameAclRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name"
+          }
+        },
+        "networks": {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameRadosGatewayNameAclRequestNetworksList",
+          "traits": {
+            "smithy.api#documentation": "List of IP networks",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameRadosGatewayNameAcl": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameRadosGatewayNameAclRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephRgwAcl"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/ceph/{serviceName}/radosGateway/{name}/acl",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add Rados Gateway ACL entries, any given network must be unique"
+      }
+    },
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRadosGatewayNameAclRequestNetworksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of IP networks"
+      }
+    },
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRadosGatewayNameAclRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name"
+          }
+        },
+        "networks": {
+          "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRadosGatewayNameAclRequestNetworksList",
+          "traits": {
+            "smithy.api#documentation": "List of IP networks",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRadosGatewayNameAcl": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRadosGatewayNameAclRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephRgwAcl"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/dedicated/ceph/{serviceName}/radosGateway/{name}/acl",
+          "code": 200
+        },
+        "smithy.api#documentation": "Completely replaces Rados Gateway ACL entries"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#ServicesService": {
+      "type": "structure",
+      "members": {
+        "canDeleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that the service can be set up to be deleted at expiration"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String"
+        },
+        "contactBilling": {
+          "target": "smithy.api#String"
+        },
+        "contactTech": {
+          "target": "smithy.api#String"
+        },
+        "creation": {
+          "target": "smithy.api#String"
+        },
+        "domain": {
+          "target": "smithy.api#String"
+        },
+        "engagedUpTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expiration": {
+          "target": "smithy.api#String"
+        },
+        "possibleRenewPeriod": {
+          "target": "com.ovh.dedicatedceph#ServicesServicePossibleRenewPeriodList",
+          "traits": {
+            "smithy.api#documentation": "All the possible renew period of your service in month",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "renew": {
+          "target": "com.ovh.dedicatedceph#ServiceRenewType",
+          "traits": {
+            "smithy.api#documentation": "Way of handling the renew",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "renewalType": {
+          "target": "com.ovh.dedicatedceph#ServiceRenewalTypeEnum"
+        },
+        "serviceId": {
+          "target": "smithy.api#Integer"
+        },
+        "status": {
+          "target": "com.ovh.dedicatedceph#ServiceStateEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about a Service"
+      }
+    },
+    "com.ovh.dedicatedceph#ServicesServicePossibleRenewPeriodList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "All the possible renew period of your service in month"
+      }
+    },
+    "com.ovh.dedicatedceph#ServiceRenewType": {
+      "type": "structure",
+      "members": {
+        "automatic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service is automatically renewed"
+          }
+        },
+        "deleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service will be deleted at expiration"
+          }
+        },
+        "forced": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service forced to be renewed"
+          }
+        },
+        "manualPayment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service needs to be manually renewed and paid",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "period": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "period of renew in month",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Map a possible renew for a specific service"
+      }
+    },
+    "com.ovh.dedicatedceph#ServiceRenewalTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTOMATICFORCEDPRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticForcedProduct"
+          }
+        },
+        "AUTOMATICV2012": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2012"
+          }
+        },
+        "AUTOMATICV2014": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2014"
+          }
+        },
+        "AUTOMATICV2016": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2016"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "ONESHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oneShot"
+          }
+        },
+        "OPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "option"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed renewal type of a service"
+      }
+    },
+    "com.ovh.dedicatedceph#ServiceStateEnum": {
+      "type": "enum",
+      "members": {
+        "AUTORENEWINPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "autorenewInProgress"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "INCREATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inCreation"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "PENDINGDEBT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pendingDebt"
+          }
+        },
+        "UNPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unPaid"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "service.StateEnum"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameServiceInfosRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#ServicesService"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get service information"
+      }
+    },
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "renew": {
+          "target": "com.ovh.dedicatedceph#ServiceRenewType",
+          "traits": {
+            "smithy.api#documentation": "Way of handling the renew",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameServiceInfosRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/dedicated/ceph/{serviceName}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update service information"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephTaskListResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of task"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of active tasks"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephTaskListResponse"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/task",
+          "code": 200
+        },
+        "smithy.api#documentation": "List tasks in progress"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "taskId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Task ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephTaskGetResponse": {
+      "type": "structure",
+      "members": {
+        "createDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date of the task"
+          }
+        },
+        "finishDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Finish date of the task",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the task"
+          }
+        },
+        "state": {
+          "target": "com.ovh.dedicatedceph#DedicatedCephTaskGetResponseStateEnum",
+          "traits": {
+            "smithy.api#documentation": "State of the task"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of task subtasks"
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephTaskGetResponseStateEnum": {
+      "type": "enum",
+      "members": {
+        "DONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DONE"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN PROGRESS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "State of task"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskIdResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephTaskGetResponse"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskIdResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskIdResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/task/{taskId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get task details"
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameTerminateRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameTerminateResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameTerminate": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameTerminateRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameTerminateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/ceph/{serviceName}/terminate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Ask for the termination of your service"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephUserGetResponse": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key of user to connect into cluster"
+          }
+        },
+        "mdsCaps": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Capabilities of user on MDS",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "monCaps": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Capabilities of user on MON"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of ceph user"
+          }
+        },
+        "osdCaps": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Capabilities of user on OSD"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of cluster"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ceph user"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephUserGetResponse"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/user",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get list of all users in a cluster"
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the new user",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/ceph/{serviceName}/user",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new ceph user"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "User name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephUserGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/user/{userName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get details about a ceph user"
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "User name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNameResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/dedicated/ceph/{serviceName}/user/{userName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an existing single ceph user"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePoolRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "User name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephUserPoolPermListResponse": {
+      "type": "structure",
+      "members": {
+        "classRead": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Class read permission"
+          }
+        },
+        "classWrite": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Class write permission"
+          }
+        },
+        "execute": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Execute permission"
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of Ceph pool"
+          }
+        },
+        "read": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Read permission"
+          }
+        },
+        "write": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Write permission"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of permissions"
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePoolResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephUserPoolPermListResponse"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePoolResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePoolResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePool": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePoolRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePoolResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/ceph/{serviceName}/user/{userName}/pool",
+          "code": 200
+        },
+        "smithy.api#documentation": "List user-pool permissions"
+      }
+    },
+    "com.ovh.dedicatedceph#DedicatedCephUserPoolPermSetAllPermissions": {
+      "type": "structure",
+      "members": {
+        "classRead": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Class read permission"
+          }
+        },
+        "classWrite": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Class write permission"
+          }
+        },
+        "execute": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Execute permission"
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of Ceph pool"
+          }
+        },
+        "read": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Read permission"
+          }
+        },
+        "write": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Write permission"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of permissions"
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePoolRequestPermissionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.dedicatedceph#DedicatedCephUserPoolPermSetAllPermissions"
+      },
+      "traits": {
+        "smithy.api#documentation": "Permissions"
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePoolRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "User name"
+          }
+        },
+        "permissions": {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePoolRequestPermissionsList",
+          "traits": {
+            "smithy.api#documentation": "Permissions"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePoolResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePool": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePoolRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePoolResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/ceph/{serviceName}/user/{userName}/pool",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create new user-pool permissions. All old permissions will be cleared"
+      }
+    },
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameUserUserNamePoolRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "User name"
+          }
+        },
+        "classRead": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Class read permission",
+            "smithy.api#required": {}
+          }
+        },
+        "classWrite": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Class write permission",
+            "smithy.api#required": {}
+          }
+        },
+        "execute": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Execute permission",
+            "smithy.api#required": {}
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of Ceph pool",
+            "smithy.api#required": {}
+          }
+        },
+        "read": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Read permission",
+            "smithy.api#required": {}
+          }
+        },
+        "write": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Write permission",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameUserUserNamePoolResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameUserUserNamePool": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameUserUserNamePoolRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameUserUserNamePoolResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/dedicated/ceph/{serviceName}/user/{userName}/pool",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update user-pool permission for single pool"
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNamePoolPoolNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "User name"
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pool name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNamePoolPoolNameResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNamePoolPoolName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNamePoolPoolNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNamePoolPoolNameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/dedicated/ceph/{serviceName}/user/{userName}/pool/{poolName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Clear user-pool permission for single pool"
+      }
+    },
+    "com.ovh.dedicatedceph#Dedicatedceph": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCeph"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceName"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceName"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAcl"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAcl"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclAclId"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameAclAclId"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfs"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsFsName"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameCephfsFsName"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameDisable"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameEnable"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContact"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameConfirmTermination"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameHealth"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePool"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePool"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolPoolName"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNamePoolPoolName"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNamePoolPoolNameAllowDeletion"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolErasure"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGateway"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayName"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayNameAcl"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameRadosGatewayNameAcl"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRadosGatewayNameAcl"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameServiceInfos"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameServiceInfos"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTask"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskId"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameTerminate"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUser"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUser"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserName"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserName"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePool"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePool"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameUserUserNamePool"
+        },
+        {
+          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNamePoolPoolName"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "OVHcloud API specification",
+        "smithy.api#documentation": "Specification for OVHcloud API"
+      }
+    }
+  }
+}

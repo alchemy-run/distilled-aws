@@ -1,0 +1,3088 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.ovh.vmwareclouddirectorbackup#IamResourceTagFilterInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Resource tag filter"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupRequestIamTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupRequestIamTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupRequestIamTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupRequest": {
+      "type": "structure",
+      "members": {
+        "iamTags": {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupRequestIamTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "iamTags",
+            "smithy.api#documentation": "Filter resources on IAM tags"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupBackupDetailsWithIAM": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Datetime when backup was enabled"
+          }
+        },
+        "currentState": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupCurrentState"
+        },
+        "currentTasks": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupBackupDetailsWithIAMCurrentTasksList",
+          "traits": {
+            "smithy.api#documentation": "Asynchronous operations ongoing on the VMware Cloud Director organization backup service",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "iam": {
+          "target": "com.ovh.vmwareclouddirectorbackup#IamResourceMetadata",
+          "traits": {
+            "smithy.api#documentation": "IAM resource metadata",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the VMware Cloud Director backup"
+          }
+        },
+        "resourceStatus": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupResourceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Reflects the readiness of the VMware Cloud Director organization backup service. A new target specification request will be accepted only in `READY` status"
+          }
+        },
+        "targetSpec": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupTargetSpec"
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Datetime when backup is modified"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "VMware Cloud Director Backup service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupCurrentState": {
+      "type": "structure",
+      "members": {
+        "azName": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorAZNameEnum",
+          "traits": {
+            "smithy.api#documentation": "Availability zone of VMware Cloud Director organization backup"
+          }
+        },
+        "offers": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupCurrentStateOffersList",
+          "traits": {
+            "smithy.api#documentation": "List of your VMware Cloud Director organization backup offers"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "VMware Cloud Director Backup service current state"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorAZNameEnum": {
+      "type": "enum",
+      "members": {
+        "CA_EAST_BHS_A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ca-east-bhs-a"
+          }
+        },
+        "EU_CENTRAL_WAW_A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-central-waw-a"
+          }
+        },
+        "EU_WEST_ERI_A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-eri-a"
+          }
+        },
+        "EU_WEST_LIM_A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-lim-a"
+          }
+        },
+        "EU_WEST_RBX_A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-rbx-a"
+          }
+        },
+        "EU_WEST_SBG_A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-sbg-a"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The AZ Name of your VMware Cloud Director project"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupCurrentStateOffer": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupOfferNameEnum",
+          "traits": {
+            "smithy.api#documentation": "Backup service offer type (BRONZE|SILVER|GOLD)"
+          }
+        },
+        "protectionPrimaryRegion": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorRegionNameEnum",
+          "traits": {
+            "smithy.api#documentation": "Backup repository primary region"
+          }
+        },
+        "protectionReplicatedRegion": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorRegionNameEnum",
+          "traits": {
+            "smithy.api#documentation": "Backup repository replicated region",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "quotaInTB": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Backup repository quota in TB"
+          }
+        },
+        "status": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupResourceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Backup offer status"
+          }
+        },
+        "usedSpaceInGB": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Backup repository used space in GB"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "VMware Cloud Director Backup current state"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupOfferNameEnum": {
+      "type": "enum",
+      "members": {
+        "BRONZE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BRONZE"
+          }
+        },
+        "GOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOLD"
+          }
+        },
+        "SILVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SILVER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The backup offer type of your VMware Cloud Director project"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorRegionNameEnum": {
+      "type": "enum",
+      "members": {
+        "AP_SOUTH_MUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ap-south-mum"
+          }
+        },
+        "AP_SOUTHEAST_SGP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ap-southeast-sgp"
+          }
+        },
+        "AP_SOUTHEAST_SYD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ap-southeast-syd"
+          }
+        },
+        "CA_EAST_BHS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ca-east-bhs"
+          }
+        },
+        "EU_CENTRAL_WAW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-central-waw"
+          }
+        },
+        "EU_WEST_ERI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-eri"
+          }
+        },
+        "EU_WEST_GRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-gra"
+          }
+        },
+        "EU_WEST_LIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-lim"
+          }
+        },
+        "EU_WEST_PAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-par"
+          }
+        },
+        "EU_WEST_RBX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-rbx"
+          }
+        },
+        "EU_WEST_SBG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-sbg"
+          }
+        },
+        "US_EAST_VIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east-vin"
+          }
+        },
+        "US_WEST_HIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west-hil"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The region of your VMware Cloud Director project"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupResourceStatusEnum": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISABLED"
+          }
+        },
+        "DISABLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISABLING"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        },
+        "REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMOVED"
+          }
+        },
+        "REMOVING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMOVING"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATING"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of VMware Cloud Director backup service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupCurrentStateOffersList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupCurrentStateOffer"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of your VMware Cloud Director organization backup offers"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#CommonCurrentTask": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the current task"
+          }
+        },
+        "link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the task details"
+          }
+        },
+        "status": {
+          "target": "com.ovh.vmwareclouddirectorbackup#CommonCurrentTaskStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Current global status of the current task",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the current task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operation currently running"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#CommonCurrentTaskStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCHEDULED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current status of a task. A task in ERROR cannot be retried without your inputs. PENDING tasks will be executed as soon as possible. A RUNNING task is currently executing your original request. SCHEDULED is used for tasks that will be executed in the future"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupBackupDetailsWithIAMCurrentTasksList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonCurrentTask"
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operations ongoing on the VMware Cloud Director organization backup service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#IamResourceMetadata": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.vmwareclouddirectorbackup#IamResourceMetadataTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IAM resource metadata embedded in services models"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#IamResourceMetadataTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupTargetSpec": {
+      "type": "structure",
+      "members": {
+        "offers": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupTargetSpecOffersList",
+          "traits": {
+            "smithy.api#documentation": "List of your VMware Cloud Director backup offers",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "VMware Cloud Director Backup target spec"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupTargetOffer": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupOfferNameEnum",
+          "traits": {
+            "smithy.api#documentation": "Backup service offer type (BRONZE|SILVER|GOLD)",
+            "smithy.api#required": {}
+          }
+        },
+        "quotaInTB": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Backup repository quota in TB",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "VMware Cloud Director Backup target"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupTargetSpecOffersList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupTargetOffer"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of your VMware Cloud Director backup offers"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupBackupDetailsWithIAM"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/backup",
+          "code": 200
+        },
+        "smithy.api#documentation": "List VMware Cloud Director Backup services"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdRequest": {
+      "type": "structure",
+      "members": {
+        "backupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Backup ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupBackupDetailsWithIAM"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/backup/{backupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get VMware Cloud Director Backup service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#PutVmwareCloudDirectorBackupBackupIdRequest": {
+      "type": "structure",
+      "members": {
+        "backupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Backup ID"
+          }
+        },
+        "targetSpec": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupTargetSpec",
+          "traits": {
+            "smithy.api#documentation": "New target specification for the VMware Cloud Director organization backup service and offers",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupBackupDetails": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Datetime when backup was enabled"
+          }
+        },
+        "currentState": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupCurrentState"
+        },
+        "currentTasks": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupBackupDetailsCurrentTasksList",
+          "traits": {
+            "smithy.api#documentation": "Asynchronous operations ongoing on the VMware Cloud Director organization backup service",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the VMware Cloud Director backup"
+          }
+        },
+        "resourceStatus": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupResourceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Reflects the readiness of the VMware Cloud Director organization backup service. A new target specification request will be accepted only in `READY` status"
+          }
+        },
+        "targetSpec": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupTargetSpec"
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Datetime when backup is modified"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "VMware Cloud Director Backup service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupBackupDetailsCurrentTasksList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonCurrentTask"
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operations ongoing on the VMware Cloud Director organization backup service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#PutVmwareCloudDirectorBackupBackupId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#PutVmwareCloudDirectorBackupBackupIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBackupBackupDetails"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/vmwareCloudDirector/backup/{backupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update VMware Cloud Director Backup service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdEventRequest": {
+      "type": "structure",
+      "members": {
+        "backupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Backup ID"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#CommonEvent": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date of the event"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Nature of the event"
+          }
+        },
+        "link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the event related resource",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of what happened on the event"
+          }
+        },
+        "type": {
+          "target": "com.ovh.vmwareclouddirectorbackup#CommonEventTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of the event"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an event for an async envelope"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#CommonEventTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TARGET_SPEC_UPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TARGET_SPEC_UPDATE"
+          }
+        },
+        "TASK_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TASK_ERROR"
+          }
+        },
+        "TASK_START": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TASK_START"
+          }
+        },
+        "TASK_SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TASK_SUCCESS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List all defined values for an event type field"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdEventResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonEvent"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdEventResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdEventResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdEvent": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdEventRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdEventResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/backup/{backupId}/event",
+          "code": 200
+        },
+        "smithy.api#documentation": "List VMware Cloud Director Backup task"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdTaskRequest": {
+      "type": "structure",
+      "members": {
+        "backupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Backup ID"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#CommonTask": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date of the task"
+          }
+        },
+        "errors": {
+          "target": "com.ovh.vmwareclouddirectorbackup#CommonTaskErrorsList",
+          "traits": {
+            "smithy.api#documentation": "Errors that occured on the task",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "finishedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ending date of the task",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the task"
+          }
+        },
+        "link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the related resource"
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the task"
+          }
+        },
+        "progress": {
+          "target": "com.ovh.vmwareclouddirectorbackup#CommonTaskProgressList",
+          "traits": {
+            "smithy.api#documentation": "Progress steps of the asynchronous operation"
+          }
+        },
+        "startedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Starting date of the task",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.ovh.vmwareclouddirectorbackup#CommonTaskStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Current global status of the task"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the task"
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update of the task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operation"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#CommonTaskError": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error description"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Errors that occured on the task"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#CommonTaskErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonTaskError"
+      },
+      "traits": {
+        "smithy.api#documentation": "Errors that occured on the task"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#CommonTaskProgress": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Progress step name"
+          }
+        },
+        "status": {
+          "target": "com.ovh.vmwareclouddirectorbackup#CommonTaskStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Current status of the progress step"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed information about an asynchronous operation progress steps"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#CommonTaskStatusEnum": {
+      "type": "enum",
+      "members": {
+        "DONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DONE"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCHEDULED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "TaskStatusEnum"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#CommonTaskProgressList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonTaskProgress"
+      },
+      "traits": {
+        "smithy.api#documentation": "Progress steps of the asynchronous operation"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdTaskResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonTask"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdTaskResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdTaskResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdTaskResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/backup/{backupId}/task",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all asynchronous operations related to the VMware Cloud Director backup service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdTaskTaskIdRequest": {
+      "type": "structure",
+      "members": {
+        "backupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Backup ID"
+          }
+        },
+        "taskId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Task ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdTaskTaskId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdTaskTaskIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/backup/{backupId}/task/{taskId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a specific task related to the VMware Cloud Director backup service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationRequestIamTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationRequestIamTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationRequestIamTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "iamTags": {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationRequestIamTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "iamTags",
+            "smithy.api#documentation": "Filter resources on IAM tags"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganizationWithIAM": {
+      "type": "structure",
+      "members": {
+        "currentState": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganizationCurrentState"
+        },
+        "currentTasks": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganizationWithIAMCurrentTasksList",
+          "traits": {
+            "smithy.api#documentation": "Asynchronous operations ongoing on the VMware Cloud Director organization",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "iam": {
+          "target": "com.ovh.vmwareclouddirectorbackup#IamResourceMetadata",
+          "traits": {
+            "smithy.api#documentation": "IAM resource metadata",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier"
+          }
+        },
+        "resourceStatus": {
+          "target": "com.ovh.vmwareclouddirectorbackup#CommonResourceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Reflects the readiness of the VMware Cloud Director organization. A new target specification request will be accepted only in `READY` status"
+          }
+        },
+        "targetSpec": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganizationTargetSpec"
+        },
+        "updatedAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "VMware Cloud Director organization service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganizationCurrentState": {
+      "type": "structure",
+      "members": {
+        "apiUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API URL to interact with your VMware Cloud Director organization on OVHcloud"
+          }
+        },
+        "billingType": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBillingTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Billing type of your VMware Cloud Director project"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of your VMware Cloud Director organization on OVHcloud"
+          }
+        },
+        "fullName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable full name of your VMware Cloud Director organization"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of your VMware Cloud Director organization"
+          }
+        },
+        "region": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorRegionNameEnum",
+          "traits": {
+            "smithy.api#documentation": "Datacenter where your VMware Cloud Director organization is physically located"
+          }
+        },
+        "spla": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "SPLA licensing state"
+          }
+        },
+        "webInterfaceUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to administrate your VMware Cloud Director organization on OVHcloud"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current status of VMware Cloud Director organization service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBillingTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DEMO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMO"
+          }
+        },
+        "MONTHLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONTHLY"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The billing type of your VMware Cloud Director project"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganizationWithIAMCurrentTasksList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonCurrentTask"
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operations ongoing on the VMware Cloud Director organization"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#CommonResourceStatusEnum": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETING"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENDED"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATING"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ResourceStatusEnum"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganizationTargetSpec": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of your VMware Cloud Director organization on OVHcloud"
+          }
+        },
+        "fullName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable full name of your VMware Cloud Director organization",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Target specification of VMware Cloud Director organization service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganizationWithIAM"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/organization",
+          "code": 200
+        },
+        "smithy.api#documentation": "List VMware Cloud Director organizations"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganizationWithIAM"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get VMware Cloud Director organization details"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#PutVmwareCloudDirectorOrganizationOrganizationIdRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        },
+        "targetSpec": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganizationTargetSpec",
+          "traits": {
+            "smithy.api#documentation": "New target specification for the VMware Cloud Director organization",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganization": {
+      "type": "structure",
+      "members": {
+        "currentState": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganizationCurrentState"
+        },
+        "currentTasks": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganizationCurrentTasksList",
+          "traits": {
+            "smithy.api#documentation": "Asynchronous operations ongoing on the VMware Cloud Director organization",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier"
+          }
+        },
+        "resourceStatus": {
+          "target": "com.ovh.vmwareclouddirectorbackup#CommonResourceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Reflects the readiness of the VMware Cloud Director organization. A new target specification request will be accepted only in `READY` status"
+          }
+        },
+        "targetSpec": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganizationTargetSpec"
+        },
+        "updatedAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "VMware Cloud Director organization service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganizationCurrentTasksList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonCurrentTask"
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operations ongoing on the VMware Cloud Director organization"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#PutVmwareCloudDirectorOrganizationOrganizationId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#PutVmwareCloudDirectorOrganizationOrganizationIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrganization"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update VMware Cloud Director organization details"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdEventRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdEventResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonEvent"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdEventResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdEventResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdEvent": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdEventRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdEventResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}/event",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all events related to the VMware Cloud Director resources"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#PostVmwareCloudDirectorOrganizationOrganizationIdPasswordRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#PostVmwareCloudDirectorOrganizationOrganizationIdPassword": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#PostVmwareCloudDirectorOrganizationOrganizationIdPasswordRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}/password",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reset the VMware Cloud Director organization administrator password"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdTaskRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonTask"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}/task",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all asynchronous operations related to the VMware Cloud Director resources"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdTaskTaskIdRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        },
+        "taskId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Task ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdTaskTaskId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdTaskTaskIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}/task/{taskId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a specific task related to the VMware Cloud Director resources"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequestIamTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequestIamTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequestIamTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        },
+        "iamTags": {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequestIamTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "iamTags",
+            "smithy.api#documentation": "Filter resources on IAM tags"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenterWithIAM": {
+      "type": "structure",
+      "members": {
+        "currentState": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenterCurrentState"
+        },
+        "currentTasks": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenterWithIAMCurrentTasksList",
+          "traits": {
+            "smithy.api#documentation": "Asynchronous operations ongoing on the organization Virtual DataCenter",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "iam": {
+          "target": "com.ovh.vmwareclouddirectorbackup#IamResourceMetadata",
+          "traits": {
+            "smithy.api#documentation": "IAM resource metadata",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier"
+          }
+        },
+        "resourceStatus": {
+          "target": "com.ovh.vmwareclouddirectorbackup#CommonResourceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Reflects the readiness of the organization Virtual DataCenter. A new target specification request will be accepted only in `READY` status"
+          }
+        },
+        "targetSpec": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenterTargetSpec"
+        },
+        "updatedAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization Virtual DataCenter service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenterCurrentState": {
+      "type": "structure",
+      "members": {
+        "commercialRange": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorCommercialRangeEnum",
+          "traits": {
+            "smithy.api#documentation": "Commercial range of your VMware Cloud Director project"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of your organization Virtual DataCenter"
+          }
+        },
+        "ipQuota": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "IP address quota assigned to your organization Virtual DataCenter"
+          }
+        },
+        "memoryQuota": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Memory quota (GB) assigned to your organization Virtual DataCenter"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of your organization Virtual DataCenter"
+          }
+        },
+        "region": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorRegionNameEnum",
+          "traits": {
+            "smithy.api#documentation": "Datacenter where your VMware Cloud Director organization is physically located"
+          }
+        },
+        "storageQuota": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Storage quota (GB) assigned to your organization Virtual DataCenter"
+          }
+        },
+        "vCPUCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "vCPU core count allocated to your organization Virtual DataCenter"
+          }
+        },
+        "vCPUSpeed": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Effective vCPU speed (GHz) for VMs in your organization Virtual DataCenter"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current status of organization Virtual DataCenter service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorCommercialRangeEnum": {
+      "type": "enum",
+      "members": {
+        "NSX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NSX"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD"
+          }
+        },
+        "VSAN_NSX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VSAN-NSX"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The commercial range of your VMware Cloud Director project"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenterWithIAMCurrentTasksList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonCurrentTask"
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operations ongoing on the organization Virtual DataCenter"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenterTargetSpec": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of your VMware Cloud Director organization Virtual DataCenter",
+            "smithy.api#required": {}
+          }
+        },
+        "vCPUSpeed": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Effective vCPU speed (GHz) for VMs in your organization Virtual DataCenter",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Target specification of organization Virtual DataCenter service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenterWithIAM"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenter": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all organization Virtual DataCenters"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        },
+        "virtualDataCenterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Virtual data center ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenterWithIAM"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get organization Virtual DataCenter details"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#PutVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        },
+        "virtualDataCenterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Virtual data center ID"
+          }
+        },
+        "targetSpec": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenterTargetSpec",
+          "traits": {
+            "smithy.api#documentation": "New target specification for the organization Virtual DataCenter",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenter": {
+      "type": "structure",
+      "members": {
+        "currentState": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenterCurrentState"
+        },
+        "currentTasks": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenterCurrentTasksList",
+          "traits": {
+            "smithy.api#documentation": "Asynchronous operations ongoing on the organization Virtual DataCenter",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier"
+          }
+        },
+        "resourceStatus": {
+          "target": "com.ovh.vmwareclouddirectorbackup#CommonResourceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Reflects the readiness of the organization Virtual DataCenter. A new target specification request will be accepted only in `READY` status"
+          }
+        },
+        "targetSpec": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenterTargetSpec"
+        },
+        "updatedAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization Virtual DataCenter service"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenterCurrentTasksList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonCurrentTask"
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operations ongoing on the organization Virtual DataCenter"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#PutVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#PutVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorVirtualDataCenter"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update organization Virtual DataCenter details"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        },
+        "virtualDataCenterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Virtual data center ID"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorCompute": {
+      "type": "structure",
+      "members": {
+        "currentState": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorComputeCurrentState"
+        },
+        "currentTasks": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorComputeCurrentTasksList",
+          "traits": {
+            "smithy.api#documentation": "Asynchronous operations ongoing on the organization Virtual DataCenter compute resource",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier"
+          }
+        },
+        "resourceStatus": {
+          "target": "com.ovh.vmwareclouddirectorbackup#CommonResourceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Reflects the readiness of the organization Virtual DataCenter compute resource. A new target specification request will be accepted only in `READY` status"
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization Virtual DataCenter compute resource"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorComputeCurrentState": {
+      "type": "structure",
+      "members": {
+        "billingType": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBillingTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Billing type of your organization Virtual DataCenter compute resource"
+          }
+        },
+        "memoryQuota": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Memory quota (GB) assigned to your organization Virtual DataCenter compute resource"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of your organization Virtual DataCenter compute resource"
+          }
+        },
+        "profile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Profile of your organization Virtual DataCenter compute resource"
+          }
+        },
+        "vCPUCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "vCPU core count allocated to your organization Virtual DataCenter compute resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current status of organization Virtual DataCenter compute resource"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorComputeCurrentTasksList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonCurrentTask"
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operations ongoing on the organization Virtual DataCenter compute resource"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorCompute"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdCompute": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/compute",
+          "code": 200
+        },
+        "smithy.api#documentation": "List organization Virtual DataCenter associated compute resources"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeComputeIdRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        },
+        "virtualDataCenterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Virtual data center ID"
+          }
+        },
+        "computeId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Compute ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeComputeId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeComputeIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorCompute"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/compute/{computeId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get organization Virtual DataCenter associated compute resources"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdOrderableResourceRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        },
+        "virtualDataCenterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Virtual data center ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrderableResource": {
+      "type": "structure",
+      "members": {
+        "compute": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrderableResourceComputeList",
+          "traits": {
+            "smithy.api#documentation": "Available orderable compute resources to your organization Virtual DataCenter"
+          }
+        },
+        "storage": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrderableResourceStorageList",
+          "traits": {
+            "smithy.api#documentation": "Available orderable storage resources to your organization Virtual DataCenter"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Available orderable resources"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrderableResourceCompute": {
+      "type": "structure",
+      "members": {
+        "memoryQuota": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Memory quota (GB) assigned to your organization Virtual DataCenter compute profile"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of your organization Virtual DataCenter compute profile"
+          }
+        },
+        "profile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Profile (plan code) of your organization Virtual DataCenter compute profile"
+          }
+        },
+        "vCPUCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "vCPU core count allocated to your organization Virtual DataCenter compute profile"
+          }
+        },
+        "vCPUSpeed": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Effective vCPU speed (GHz) for VMs in your organization Virtual DataCenter compute profile"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Possible Virtual Host"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrderableResourceComputeList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrderableResourceCompute"
+      },
+      "traits": {
+        "smithy.api#documentation": "Available orderable compute resources to your organization Virtual DataCenter"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrderableResourceStorage": {
+      "type": "structure",
+      "members": {
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Capacity available (GB) for the given resource in your organization Virtual DataCenter storage resource"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of your organization Virtual DataCenter storage resource"
+          }
+        },
+        "performanceClass": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minimum ratio of input/output Operations (IOPS) per TB"
+          }
+        },
+        "profile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Profile (plan code) of your organization Virtual DataCenter storage resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of your organization Virtual DataCenter storage resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Possible Storage"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrderableResourceStorageList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrderableResourceStorage"
+      },
+      "traits": {
+        "smithy.api#documentation": "Available orderable storage resources to your organization Virtual DataCenter"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdOrderableResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdOrderableResourceRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorOrderableResource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/orderableResource",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all orderable resources related to the organization Virtual DataCenter"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        },
+        "virtualDataCenterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Virtual data center ID"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorStorage": {
+      "type": "structure",
+      "members": {
+        "currentState": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorStorageCurrentState"
+        },
+        "currentTasks": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorStorageCurrentTasksList",
+          "traits": {
+            "smithy.api#documentation": "Asynchronous operations ongoing on the organization Virtual DataCenter storage resource",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier"
+          }
+        },
+        "resourceStatus": {
+          "target": "com.ovh.vmwareclouddirectorbackup#CommonResourceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Reflects the readiness of the organization Virtual DataCenter storage resource. A new target specification request will be accepted only in `READY` status"
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization Virtual DataCenter storage resource"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorStorageCurrentState": {
+      "type": "structure",
+      "members": {
+        "billingType": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorBillingTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Billing type of your organization Virtual DataCenter storage resource"
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Capacity available (GB) for the given resource in your organization Virtual DataCenter storage resource"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of your organization Virtual DataCenter storage resource"
+          }
+        },
+        "profile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Profile of your organization Virtual DataCenter storage resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of your organization Virtual DataCenter storage resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current status of organization Virtual DataCenter storage resource"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorStorageCurrentTasksList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonCurrentTask"
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operations ongoing on the organization Virtual DataCenter storage resource"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorStorage"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorage": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/storage",
+          "code": 200
+        },
+        "smithy.api#documentation": "List organization Virtual DataCenter associated storage resources"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageStorageIdRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        },
+        "virtualDataCenterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Virtual data center ID"
+          }
+        },
+        "storageId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Storage ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageStorageId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageStorageIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorStorage"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/storage/{storageId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get organization Virtual DataCenter associated storage resources"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        },
+        "virtualDataCenterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Virtual data center ID"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonTask"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/task",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all asynchronous operations related to the organization Virtual DataCenter resource"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskTaskIdRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Organization ID"
+          }
+        },
+        "virtualDataCenterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Virtual data center ID"
+          }
+        },
+        "taskId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Task ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskTaskId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskTaskIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#CommonTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/task/{taskId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a specific task related to the organization Virtual DataCenter resource"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorReferenceRegionRequest": {
+      "type": "structure",
+      "members": {
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorRegion": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorRegionLocationEnum",
+          "traits": {
+            "smithy.api#documentation": "Location"
+          }
+        },
+        "region": {
+          "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorRegionNameEnum",
+          "traits": {
+            "smithy.api#documentation": "Region"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Hosting location"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorRegionLocationEnum": {
+      "type": "enum",
+      "members": {
+        "ASIA_PACIFIC_AUSTRALIA_SYDNEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Asia Pacific (Australia - Sydney)"
+          }
+        },
+        "ASIA_PACIFIC_SINGAPORE_SINGAPORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Asia Pacific (Singapore -Singapore)"
+          }
+        },
+        "EUROPE_FRANCE_GRAVELINES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Europe (France - Gravelines)"
+          }
+        },
+        "EUROPE_FRANCE_PARIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Europe (France - Paris)"
+          }
+        },
+        "EUROPE_FRANCE_ROUBAIX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Europe (France - Roubaix)"
+          }
+        },
+        "EUROPE_FRANCE_STRASBOURG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Europe (France - Strasbourg)"
+          }
+        },
+        "EUROPE_GERMANY_LIMBURG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Europe (Germany - Limburg)"
+          }
+        },
+        "EUROPE_POLAND_WARSAW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Europe (Poland - Warsaw)"
+          }
+        },
+        "EUROPE_UNITED_KINGDOM_ERITH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Europe (United Kingdom - Erith)"
+          }
+        },
+        "NORTH_AMERICA_CANADA_EAST_BEAUHARNOIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "North America (Canada - East - Beauharnois)"
+          }
+        },
+        "NORTH_AMERICA_US_EAST_VINTHILL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "North America (US - East - Vinthill)"
+          }
+        },
+        "NORTH_AMERICA_US_WEST_HILLSBORO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "North America (US - West - Hillsboro)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The region of your VMware Cloud Director project"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorReferenceRegionResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vmwareclouddirectorbackup#VmwareCloudDirectorRegion"
+      },
+      "traits": {}
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorReferenceRegionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorReferenceRegionResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorReferenceRegion": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorReferenceRegionRequest"
+      },
+      "output": {
+        "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorReferenceRegionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vmwareCloudDirector/reference/region",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get region details"
+      }
+    },
+    "com.ovh.vmwareclouddirectorbackup#Vmwareclouddirectorbackup": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackup"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupId"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#PutVmwareCloudDirectorBackupBackupId"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdEvent"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdTask"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorBackupBackupIdTaskTaskId"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganization"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationId"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#PutVmwareCloudDirectorOrganizationOrganizationId"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdEvent"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#PostVmwareCloudDirectorOrganizationOrganizationIdPassword"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdTask"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdTaskTaskId"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenter"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterId"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#PutVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterId"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdCompute"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeComputeId"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdOrderableResource"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorage"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageStorageId"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTask"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskTaskId"
+        },
+        {
+          "target": "com.ovh.vmwareclouddirectorbackup#GetVmwareCloudDirectorReferenceRegion"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "OVHcloud API specification",
+        "smithy.api#documentation": "Specification for OVHcloud API"
+      }
+    }
+  }
+}

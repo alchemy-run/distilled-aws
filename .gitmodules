@@ -293,3 +293,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-onepassword.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/ovh/specs/spec-mirror-ovh"]
+	path = packages/ovh/specs/spec-mirror-ovh
+	url = https://github.com/distilled-mirror/spec-mirror-ovh.git
+	ignore = dirty
+	shallow = true

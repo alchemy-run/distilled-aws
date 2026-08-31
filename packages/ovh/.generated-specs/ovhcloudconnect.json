@@ -1,0 +1,5128 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.ovh.ovhcloudconnect#IamResourceTagFilterInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Resource tag filter"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectRequestIamTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.ovhcloudconnect#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectRequestIamTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectRequestIamTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectRequest": {
+      "type": "structure",
+      "members": {
+        "iamTags": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectRequestIamTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "iamTags",
+            "smithy.api#documentation": "Filter resources on IAM tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnect": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available services"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectServiceWithIAM": {
+      "type": "structure",
+      "members": {
+        "bandwidth": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectServiceBandwidthEnum",
+          "traits": {
+            "smithy.api#documentation": "Service bandwidth"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service description"
+          }
+        },
+        "iam": {
+          "target": "com.ovh.ovhcloudconnect#IamResourceMetadata",
+          "traits": {
+            "smithy.api#documentation": "IAM resource metadata",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "interfaceList": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectServiceWithIAMInterfaceListList",
+          "traits": {
+            "smithy.api#documentation": "List of interfaces linked to a service"
+          }
+        },
+        "pop": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pop reference where the service is delivered"
+          }
+        },
+        "portQuantity": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectServicePortEnum",
+          "traits": {
+            "smithy.api#documentation": "Port quantity"
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product name of the service"
+          }
+        },
+        "provider": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectServiceProviderEnum",
+          "traits": {
+            "smithy.api#documentation": "Service provider"
+          }
+        },
+        "status": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectServiceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Service status"
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service UUID"
+          }
+        },
+        "vrack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vrack linked to the service",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectServiceBandwidthEnum": {
+      "type": "enum",
+      "members": {
+        "_100G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "100g"
+          }
+        },
+        "_100M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "100m"
+          }
+        },
+        "_10G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10g"
+          }
+        },
+        "_1G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1g"
+          }
+        },
+        "_200M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "200m"
+          }
+        },
+        "_20G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "20g"
+          }
+        },
+        "_2G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "2g"
+          }
+        },
+        "_500M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "500m"
+          }
+        },
+        "_5G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5g"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for bandwidth"
+      }
+    },
+    "com.ovh.ovhcloudconnect#IamResourceMetadata": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.ovhcloudconnect#IamResourceMetadataTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IAM resource metadata embedded in services models"
+      }
+    },
+    "com.ovh.ovhcloudconnect#IamResourceMetadataTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectServiceWithIAMInterfaceListList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of interfaces linked to a service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectServicePortEnum": {
+      "type": "enum",
+      "members": {
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1"
+          }
+        },
+        "_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for port quantity"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectServiceProviderEnum": {
+      "type": "enum",
+      "members": {
+        "OVHCLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OVHcloud"
+          }
+        },
+        "RISQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RISQ"
+          }
+        },
+        "CONSOLECONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "consoleconnect"
+          }
+        },
+        "DIGITALREALTY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "digitalrealty"
+          }
+        },
+        "EQUINIX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "equinix"
+          }
+        },
+        "FIBRENOIRE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fibrenoire"
+          }
+        },
+        "INTERCLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "intercloud"
+          }
+        },
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "internal"
+          }
+        },
+        "INTERXION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "interxion"
+          }
+        },
+        "MEGAPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "megaport"
+          }
+        },
+        "ORANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "orange"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for service provider"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectServiceStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "closed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for the Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectServiceWithIAM"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PutOvhCloudConnectServiceNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New description for your service",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PutOvhCloudConnectServiceName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PutOvhCloudConnectServiceNameRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/ovhCloudConnect/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Modify service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameChangeContactRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as admin contact"
+          }
+        },
+        "contactBilling": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as billing contact"
+          }
+        },
+        "contactTech": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as tech contact"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameChangeContactResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameChangeContactResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameChangeContactResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameChangeContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameChangeContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameChangeContactResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/changeContact",
+          "code": 200
+        },
+        "smithy.api#documentation": "Launch a contact change procedure"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPop": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/config/pop",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Pop Configuration linked to of a OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectPopConfigTypeEnum": {
+      "type": "enum",
+      "members": {
+        "L2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "l2"
+          }
+        },
+        "L3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "l3"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for Pop Configuration Type"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfigPopRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "customerBgpArea": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Customer Private AS",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "interfaceId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the interface",
+            "smithy.api#required": {}
+          }
+        },
+        "ovhBgpArea": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "OVH Private AS",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "subnet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subnet should be a /30, first IP for OVH, second IP for customer",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectPopConfigTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of the pop configuration",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectTask": {
+      "type": "structure",
+      "members": {
+        "function": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectTaskFunctionEnum",
+          "traits": {
+            "smithy.api#documentation": "Task function"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Task id"
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Reference of the created resource"
+          }
+        },
+        "status": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectTaskStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Task status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Task"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectTaskFunctionEnum": {
+      "type": "enum",
+      "members": {
+        "ADDDATACENTERCONFIGURATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addDatacenterConfiguration"
+          }
+        },
+        "ADDDATACENTEREXTRACONFIGURATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addDatacenterExtraConfiguration"
+          }
+        },
+        "ADDPOPCONFIGURATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addPopConfiguration"
+          }
+        },
+        "ADDVRACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addVrack"
+          }
+        },
+        "DELDATACENTERCONFIGURATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "delDatacenterConfiguration"
+          }
+        },
+        "DELDATACENTEREXTRACONFIGURATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "delDatacenterExtraConfiguration"
+          }
+        },
+        "DELPOPCONFIGURATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "delPopConfiguration"
+          }
+        },
+        "LOCKINTERFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lockInterface"
+          }
+        },
+        "REMOVEVRACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "removeVrack"
+          }
+        },
+        "UNLOCKINTERFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unlockInterface"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for Task function"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectTaskStatusEnum": {
+      "type": "enum",
+      "members": {
+        "DENIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "denied"
+          }
+        },
+        "DOING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "doing"
+          }
+        },
+        "DONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "done"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "PAUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pause"
+          }
+        },
+        "TODO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "todo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for Task status"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfigPop": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfigPopRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/config/pop",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a Pop Configuration"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "popId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pop ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectPopConfig": {
+      "type": "structure",
+      "members": {
+        "customerBgpArea": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Customer Private AS",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Pop Configuration"
+          }
+        },
+        "interfaceId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the interface",
+            "smithy.api#required": {}
+          }
+        },
+        "ovhBgpArea": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "OVH Private AS",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectPopConfigStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of the pop configuration"
+          }
+        },
+        "subnet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subnet should be a /30, first IP for OVH, second IP for customer",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectPopConfigTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of the pop configuration",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Service Pop Configuration"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectPopConfigStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "INIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "init"
+          }
+        },
+        "TODELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "toDelete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for Pop Configuration Status"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectPopConfig"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/config/pop/{popId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Pop Configuration of a OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameConfigPopPopIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "popId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pop ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameConfigPopPopId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameConfigPopPopIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/ovhCloudConnect/{serviceName}/config/pop/{popId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a Pop Configuration"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "popId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pop ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenter": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Datacenter Configuration linked to of a OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "popId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pop ID"
+          }
+        },
+        "datacenterId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the datacenter linked",
+            "smithy.api#required": {}
+          }
+        },
+        "ovhBgpArea": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "OVH Private AS",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "subnet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subnet should be a /28 min",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfigPopPopIdDatacenter": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a Datacenter Configuration"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "popId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pop ID"
+          }
+        },
+        "datacenterId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Datacenter ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectDatacenterConfig": {
+      "type": "structure",
+      "members": {
+        "datacenterId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the datacenter linked",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Datacenter configuration"
+          }
+        },
+        "ovhBgpArea": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "OVH Private AS",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectPopConfigStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of the pop configuration"
+          }
+        },
+        "subnet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subnet should be a /28 min",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Service Datacenter Configuration"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectDatacenterConfig"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Datacenter Configuration of a OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "popId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pop ID"
+          }
+        },
+        "datacenterId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Datacenter ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a Datacenter Configuration"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "popId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pop ID"
+          }
+        },
+        "datacenterId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Datacenter ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtra": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}/extra",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Datacenter Extra Configuration linked to of a OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectDatacenterExtraConfigTypeEnum": {
+      "type": "enum",
+      "members": {
+        "BGP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bgp"
+          }
+        },
+        "NETWORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "network"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for Datacenter Extra Configuration Type"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "popId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pop ID"
+          }
+        },
+        "datacenterId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Datacenter ID"
+          }
+        },
+        "bgpNeighborArea": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "BGP AS number",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bgpNeighborIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Router IP for BGP",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nextHop": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Static route next hop",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "subnet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Static route ip",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectDatacenterExtraConfigTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of the configuration",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtra": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}/extra",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a Datacenter Extra Configuration"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "popId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pop ID"
+          }
+        },
+        "datacenterId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Datacenter ID"
+          }
+        },
+        "extraId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Extra ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectDatacenterExtraConfig": {
+      "type": "structure",
+      "members": {
+        "bgpNeighborArea": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "BGP AS number",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bgpNeighborIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Router IP for BGP",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the extra configuration "
+          }
+        },
+        "nextHop": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Static route next hop",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectPopConfigStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of the pop configuration"
+          }
+        },
+        "subnet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Static route ip",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectDatacenterExtraConfigTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of the configuration",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Service Datacenter Extra Configuration"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectDatacenterExtraConfig"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}/extra/{extraId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Datacenter Extra Configuration of a OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "popId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pop ID"
+          }
+        },
+        "datacenterId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Datacenter ID"
+          }
+        },
+        "extraId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Extra ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}/extra/{extraId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a Datacenter Extra Configuration"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceMetricsPeriodEnum": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "daily"
+          }
+        },
+        "HOURLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hourly"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "weekly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for the period of the statistics"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectPopConfigMetricsTypeEnum": {
+      "type": "enum",
+      "members": {
+        "PREFIX_ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "prefix:accepted"
+          }
+        },
+        "PREFIX_LIMIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "prefix:limit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for the type of the statistics"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "popId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pop ID"
+          }
+        },
+        "period": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceMetricsPeriodEnum",
+          "traits": {
+            "smithy.api#httpQuery": "period",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The period the statistics are fetched for"
+          }
+        },
+        "type": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectPopConfigMetricsTypeEnum",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of statistic to be fetched"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectMetrics": {
+      "type": "structure",
+      "members": {
+        "timestamp": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "timestamp corresponding to the value"
+          }
+        },
+        "value": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectMetricsValue"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Metrics"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectMetricsValue": {
+      "type": "structure",
+      "members": {
+        "unit": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceMetricsUnitEnum",
+          "traits": {
+            "smithy.api#documentation": "Unit in which the value is expressed"
+          }
+        },
+        "value": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Metrics value"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceMetricsUnitEnum": {
+      "type": "enum",
+      "members": {
+        "BYTES_S": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bytes/s"
+          }
+        },
+        "DBM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dbm"
+          }
+        },
+        "ERROR_S": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error/s"
+          }
+        },
+        "PREFIX_ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "prefix_accepted"
+          }
+        },
+        "PREFIX_LIMIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "prefix_limit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for the unit of the statistics"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectMetrics"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdStatistics": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/config/pop/{popId}/statistics",
+          "code": 200
+        },
+        "smithy.api#documentation": "Statistics related to a POP"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdStatusRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "popId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pop ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectPopConfStatus": {
+      "type": "structure",
+      "members": {
+        "flapCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of flap since last UP",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastChange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the interface changed status",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastDown": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the interface status went from up to down",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastUp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the interface status went from down to up",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastUpdate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the status was updated"
+          }
+        },
+        "status": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectStatusStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of the peering"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect L3 peering current status"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectStatusStatusEnum": {
+      "type": "enum",
+      "members": {
+        "DOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "down"
+          }
+        },
+        "UP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "up"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for status"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdStatusRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectPopConfStatus"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/config/pop/{popId}/status",
+          "code": 200
+        },
+        "smithy.api#documentation": "Current status of the L3 Pop config."
+      }
+    },
+    "com.ovh.ovhcloudconnect#ServiceTerminationFutureUseEnum": {
+      "type": "enum",
+      "members": {
+        "NOT_REPLACING_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_REPLACING_SERVICE"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "SUBSCRIBE_AN_OTHER_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_AN_OTHER_SERVICE"
+          }
+        },
+        "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
+          }
+        },
+        "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All future uses you can provide for a service termination"
+      }
+    },
+    "com.ovh.ovhcloudconnect#ServiceTerminationReasonEnum": {
+      "type": "enum",
+      "members": {
+        "FEATURES_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEATURES_DONT_SUIT_ME"
+          }
+        },
+        "LACK_OF_PERFORMANCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LACK_OF_PERFORMANCES"
+          }
+        },
+        "MIGRATED_TO_ANOTHER_OVH_PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIGRATED_TO_ANOTHER_OVH_PRODUCT"
+          }
+        },
+        "MIGRATED_TO_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIGRATED_TO_COMPETITOR"
+          }
+        },
+        "NOT_ENOUGH_RECOGNITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_ENOUGH_RECOGNITION"
+          }
+        },
+        "NOT_NEEDED_ANYMORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_NEEDED_ANYMORE"
+          }
+        },
+        "NOT_RELIABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_RELIABLE"
+          }
+        },
+        "NO_ANSWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_ANSWER"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "PRODUCT_DIMENSION_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_DIMENSION_DONT_SUIT_ME"
+          }
+        },
+        "PRODUCT_TOOLS_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_TOOLS_DONT_SUIT_ME"
+          }
+        },
+        "TOO_EXPENSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_EXPENSIVE"
+          }
+        },
+        "TOO_HARD_TO_USE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_HARD_TO_USE"
+          }
+        },
+        "UNSATIFIED_BY_CUSTOMER_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All reasons you can provide for a service termination"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfirmTerminationRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "commentary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Commentary about your termination request"
+          }
+        },
+        "futureUse": {
+          "target": "com.ovh.ovhcloudconnect#ServiceTerminationFutureUseEnum",
+          "traits": {
+            "smithy.api#documentation": "All future uses you can provide for a service termination"
+          }
+        },
+        "reason": {
+          "target": "com.ovh.ovhcloudconnect#ServiceTerminationReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "All reasons you can provide for a service termination"
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The termination token sent by email to the admin contact",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfirmTerminationResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfirmTermination": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfirmTerminationRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfirmTerminationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/confirmTermination",
+          "code": 200
+        },
+        "smithy.api#documentation": "Confirm service termination"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDatacenterRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDatacenterResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDatacenterResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDatacenterResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDatacenter": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDatacenterRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDatacenterResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/datacenter",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available Datacenter"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDatacenterIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectDatacenter": {
+      "type": "structure",
+      "members": {
+        "available": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Get availability to add new configuration on it"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the datacenter"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the datacenter"
+          }
+        },
+        "region": {
+          "target": "com.ovh.ovhcloudconnect#CommonRegionEnum",
+          "traits": {
+            "smithy.api#documentation": "region of the datacenter"
+          }
+        },
+        "regionType": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectDatacenterRegionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "region type of the datacenter"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Datacenter"
+      }
+    },
+    "com.ovh.ovhcloudconnect#CommonRegionEnum": {
+      "type": "enum",
+      "members": {
+        "AF_NORTH_LZ_RBA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "af-north-lz-rba"
+          }
+        },
+        "AP_SOUTH_MUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ap-south-mum"
+          }
+        },
+        "AP_SOUTHEAST_SGP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ap-southeast-sgp"
+          }
+        },
+        "AP_SOUTHEAST_SYD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ap-southeast-syd"
+          }
+        },
+        "CA_EAST_BHS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ca-east-bhs"
+          }
+        },
+        "CA_EAST_TOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ca-east-tor"
+          }
+        },
+        "EU_CENTRAL_LZ_PRG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-central-lz-prg"
+          }
+        },
+        "EU_CENTRAL_WAW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-central-waw"
+          }
+        },
+        "EU_NORTH_LZ_STO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-north-lz-sto"
+          }
+        },
+        "EU_SOUTH_LZ_MAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-south-lz-mad"
+          }
+        },
+        "EU_SOUTH_LZ_MIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-south-lz-mil"
+          }
+        },
+        "EU_WEST_ERI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-eri"
+          }
+        },
+        "EU_WEST_GRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-gra"
+          }
+        },
+        "EU_WEST_GRA_SNC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-gra-snc"
+          }
+        },
+        "EU_WEST_LIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-lim"
+          }
+        },
+        "EU_WEST_LZ_AMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-lz-ams"
+          }
+        },
+        "EU_WEST_LZ_BRU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-lz-bru"
+          }
+        },
+        "EU_WEST_LZ_DLN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-lz-dln"
+          }
+        },
+        "EU_WEST_LZ_LUX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-lz-lux"
+          }
+        },
+        "EU_WEST_LZ_MRS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-lz-mrs"
+          }
+        },
+        "EU_WEST_LZ_VIE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-lz-vie"
+          }
+        },
+        "EU_WEST_LZ_ZRH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-lz-zrh"
+          }
+        },
+        "EU_WEST_PAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-par"
+          }
+        },
+        "EU_WEST_RBX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-rbx"
+          }
+        },
+        "EU_WEST_RBX_SNC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-rbx-snc"
+          }
+        },
+        "EU_WEST_SBG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-sbg"
+          }
+        },
+        "EU_WEST_SBG_SNC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu-west-sbg-snc"
+          }
+        },
+        "US_EAST_LZ_ATL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east-lz-atl"
+          }
+        },
+        "US_EAST_LZ_CHI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east-lz-chi"
+          }
+        },
+        "US_EAST_LZ_DAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east-lz-dal"
+          }
+        },
+        "US_EAST_LZ_MIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east-lz-mia"
+          }
+        },
+        "US_EAST_LZ_NYC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east-lz-nyc"
+          }
+        },
+        "US_EAST_VIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east-vin"
+          }
+        },
+        "US_WEST_HIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west-hil"
+          }
+        },
+        "US_WEST_LZ_DEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west-lz-den"
+          }
+        },
+        "US_WEST_LZ_LAX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west-lz-lax"
+          }
+        },
+        "US_WEST_LZ_PAO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west-lz-pao"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "RegionEnum"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectDatacenterRegionTypeEnum": {
+      "type": "enum",
+      "members": {
+        "_1_AZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1-AZ"
+          }
+        },
+        "_3_AZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "3-AZ"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for datacenter region type"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDatacenterId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDatacenterIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectDatacenter"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/datacenter/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Datacenter"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDiagnosticRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDiagnosticResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDiagnosticResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDiagnosticResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDiagnostic": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDiagnosticRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDiagnosticResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/diagnostic",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Diagnostics linked to a OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectDiagnosticFunctionEnum": {
+      "type": "enum",
+      "members": {
+        "DIAGMACS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "diagMacs"
+          }
+        },
+        "DIAGPEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "diagPeering"
+          }
+        },
+        "DIAGPEERINGEXTRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "diagPeeringExtra"
+          }
+        },
+        "DIAGROUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "diagRoutes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for Diagnostic function"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectDiagnosticTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ADVERTISED_ROUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advertised-routes"
+          }
+        },
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "default"
+          }
+        },
+        "ROUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "routes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for Diagnostic type"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameDiagnosticRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "dcConfigId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Datacenter configuration"
+          }
+        },
+        "diagnosticName": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectDiagnosticFunctionEnum",
+          "traits": {
+            "smithy.api#documentation": "Name of the diagnostic",
+            "smithy.api#required": {}
+          }
+        },
+        "diagnosticType": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectDiagnosticTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of the diagnostic"
+          }
+        },
+        "extraConfigId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the extra configuration "
+          }
+        },
+        "popConfigId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Pop Configuration",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectDiagnostic": {
+      "type": "structure",
+      "members": {
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the diagnostic",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the diagnostic",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "function": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectDiagnosticFunctionEnum",
+          "traits": {
+            "smithy.api#documentation": "Diagnostic function"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Diagnostic id"
+          }
+        },
+        "result": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectDiagnosticResultList",
+          "traits": {
+            "smithy.api#documentation": "Diagnostic result",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source where the diagnostic was run",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectTaskStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Diagnostic status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Diagnostic"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectDiagnosticResult": {
+      "type": "structure",
+      "members": {
+        "aspath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "As-path for routes",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cmd": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command sent to equipment",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "localprefix": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Local prefix used for routes",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "mac": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mac address",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "med": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "BGP Med (Metric)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "output": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output of command sent to equipment",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prefix for routes",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "routermac": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "eVPN router mac",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Local date when route/mac was declared",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Diagnostic Result"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectDiagnosticResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectDiagnosticResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "Diagnostic result"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameDiagnostic": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameDiagnosticRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectDiagnostic"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/diagnostic",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a Diagnostic linked to a OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDiagnosticIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDiagnosticId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDiagnosticIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectDiagnostic"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/diagnostic/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Diagnostic linked to a OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameIncidentRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameIncidentResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameIncidentResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameIncidentResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameIncident": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameIncidentRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameIncidentResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/incident",
+          "code": 200
+        },
+        "smithy.api#documentation": "List incidents linked to the Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameIncidentIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectIncident": {
+      "type": "structure",
+      "members": {
+        "endDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ending date of the incident",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Incident reference"
+          }
+        },
+        "startDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Starting date of the incident"
+          }
+        },
+        "type": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectIncidentTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of incident"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Incident"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectIncidentTypeEnum": {
+      "type": "enum",
+      "members": {
+        "INCIDENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "incident"
+          }
+        },
+        "MAINTENANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maintenance"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for incident type status"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameIncidentId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameIncidentIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectIncident"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/incident/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the incident information"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterface": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/interface",
+          "code": 200
+        },
+        "smithy.api#documentation": "List interfaces linked to the Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectInterface": {
+      "type": "structure",
+      "members": {
+        "deviceDisplayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Patch panel name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deviceRackDisplayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Equipment name in the rack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Interface reference"
+          }
+        },
+        "incomingLightStatus": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceLightStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of the light received on the port (checked every 5 min)"
+          }
+        },
+        "incomingLightValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Value of the light received on the port (checked every 5 min)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "interfaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Port location",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "interfaceStatus": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceLightStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of the interface"
+          }
+        },
+        "interfaceStatusLastUpdate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the last interface status change detected"
+          }
+        },
+        "interfaceTerminationType": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceTerminationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Fiber termination type",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lightLastUpdate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the last light change detected"
+          }
+        },
+        "outgoingLightStatus": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceLightStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of the light emitted on the port (checked every 5 min)"
+          }
+        },
+        "outgoingLightValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Value of the light emitted on the port (checked every 5 min)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of the port"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Interface"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceLightStatusEnum": {
+      "type": "enum",
+      "members": {
+        "DOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "down"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "UP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "up"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for the light status"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceTerminationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "LC_PC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LC/PC"
+          }
+        },
+        "SC_PC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SC/PC"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for the termination type"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceStatusEnum": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "RESERVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reserved"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for interface status"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectInterface"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/interface/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the Interface information"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameInterfaceIdLockRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameInterfaceIdLock": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameInterfaceIdLockRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/interface/{id}/lock",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lock the port"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceMetricsTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ERROR_DOWNLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error:download"
+          }
+        },
+        "ERROR_UPLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error:upload"
+          }
+        },
+        "LIGHT_IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "light:in"
+          }
+        },
+        "LIGHT_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "light:out"
+          }
+        },
+        "TRAFFIC_DOWNLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic:download"
+          }
+        },
+        "TRAFFIC_UPLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic:upload"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for the type of the statistics"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceIdStatisticsRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id"
+          }
+        },
+        "period": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceMetricsPeriodEnum",
+          "traits": {
+            "smithy.api#httpQuery": "period",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The period the statistics are fetched for"
+          }
+        },
+        "type": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceMetricsTypeEnum",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of statistic to be fetched"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectMetrics"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceIdStatistics": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceIdStatisticsRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/interface/{id}/statistics",
+          "code": 200
+        },
+        "smithy.api#documentation": "Statistics for an OCC interface for a given type"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceIdStatusRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceStatus": {
+      "type": "structure",
+      "members": {
+        "lastChange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the interface changed status",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastDown": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the interface status went from up to down",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastUp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the interface status went from down to up",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastUpdate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the status was updated"
+          }
+        },
+        "status": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectStatusStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of the interface"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Interface status"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceIdStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceIdStatusRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectInterfaceStatus"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/interface/{id}/status",
+          "code": 200
+        },
+        "smithy.api#documentation": "Current status of the interface."
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameInterfaceIdUnlockRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameInterfaceIdUnlock": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameInterfaceIdUnlockRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/interface/{id}/unlock",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unlock the port"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameLoaRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameLoaResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameLoa": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameLoaRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameLoaResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/loa",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate a loa for a service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogKindRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogKindResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogKindResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogKindResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogKind": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogKindRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogKindResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/log/kind",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available log kinds"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogKindNameRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#DbaasLogsLogKind": {
+      "type": "structure",
+      "members": {
+        "additionalReturnedFields": {
+          "target": "com.ovh.ovhcloudconnect#DbaasLogsLogKindAdditionalReturnedFieldsList",
+          "traits": {
+            "smithy.api#documentation": "List of additional log fields managed in this log kind"
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date of the log kind"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log kind display name"
+          }
+        },
+        "kindId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log kind ID"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log kind name"
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update date of the log kind"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Log kind"
+      }
+    },
+    "com.ovh.ovhcloudconnect#DbaasLogsLogKindAdditionalReturnedFieldsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of additional log fields managed in this log kind"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogKindName": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogKindNameRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#DbaasLogsLogKind"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/log/kind/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a log kind"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "kind",
+            "smithy.api#documentation": "Filter on a specific kind (e.g., audit)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogSubscriptionResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogSubscriptionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogSubscriptionResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogSubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogSubscriptionRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogSubscriptionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/log/subscription",
+          "code": 200
+        },
+        "smithy.api#documentation": "List subscription IDs for a cluster"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameLogSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log kind name to subscribe to",
+            "smithy.api#required": {}
+          }
+        },
+        "streamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer log stream ID",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#DbaasLogsLogSubscriptionResponse": {
+      "type": "structure",
+      "members": {
+        "operationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the operation"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation owner's service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operation after subscribing or unsubscribing to a resource logs"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameLogSubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameLogSubscriptionRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#DbaasLogsLogSubscriptionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/log/subscription",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a subscription from logs to a pre-existing LDP stream"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#DbaasLogsLogSubscription": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date of the subscription"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log kind name of this subscription"
+          }
+        },
+        "resource": {
+          "target": "com.ovh.ovhcloudconnect#DbaasLogsLogSubscriptionResource",
+          "traits": {
+            "smithy.api#documentation": "Subscribed resource, where the logs come from"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the destination log service"
+          }
+        },
+        "streamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the destination log stream"
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subscription ID"
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update date of the subscription"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Log subscription"
+      }
+    },
+    "com.ovh.ovhcloudconnect#DbaasLogsLogSubscriptionResource": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of subscribed resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of subscribed resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Log subscription resource"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogSubscriptionSubscriptionId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#DbaasLogsLogSubscription"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/log/subscription/{subscriptionId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get subscription details"
+      }
+    },
+    "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameLogSubscriptionSubscriptionId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#DbaasLogsLogSubscriptionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/ovhCloudConnect/{serviceName}/log/subscription/{subscriptionId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a subscription"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameLogUrlRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log kind name",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#DbaasLogsTemporaryLogsLink": {
+      "type": "structure",
+      "members": {
+        "expirationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Temporary url expiration date"
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Temporary url"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Temporary url information"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameLogUrl": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameLogUrlRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#DbaasLogsTemporaryLogsLink"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/log/url",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate a temporary URL to retrieve logs"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameMonitoringRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectMonitoring": {
+      "type": "structure",
+      "members": {
+        "activated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether alert is activated"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the monitoring alert"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the monitoring alert"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the monitoring alert"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Monitoring"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameMonitoringResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectMonitoring"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameMonitoringResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameMonitoringResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameMonitoring": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameMonitoringRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameMonitoringResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/monitoring",
+          "code": 200
+        },
+        "smithy.api#documentation": "List monitoring alerts"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameMonitoringRequestSubscriptionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of subscriptions alerts."
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameMonitoringRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "subscriptions": {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameMonitoringRequestSubscriptionsList",
+          "traits": {
+            "smithy.api#documentation": "List of subscriptions alerts."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameMonitoring": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameMonitoringRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/monitoring",
+          "code": 200
+        },
+        "smithy.api#documentation": "Monitor the Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameMonitoringRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameMonitoring": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameMonitoringRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/ovhCloudConnect/{serviceName}/monitoring",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete monitoring"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#ServicesService": {
+      "type": "structure",
+      "members": {
+        "canDeleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that the service can be set up to be deleted at expiration"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String"
+        },
+        "contactBilling": {
+          "target": "smithy.api#String"
+        },
+        "contactTech": {
+          "target": "smithy.api#String"
+        },
+        "creation": {
+          "target": "smithy.api#String"
+        },
+        "domain": {
+          "target": "smithy.api#String"
+        },
+        "engagedUpTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expiration": {
+          "target": "smithy.api#String"
+        },
+        "possibleRenewPeriod": {
+          "target": "com.ovh.ovhcloudconnect#ServicesServicePossibleRenewPeriodList",
+          "traits": {
+            "smithy.api#documentation": "All the possible renew period of your service in month",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "renew": {
+          "target": "com.ovh.ovhcloudconnect#ServiceRenewType",
+          "traits": {
+            "smithy.api#documentation": "Way of handling the renew",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "renewalType": {
+          "target": "com.ovh.ovhcloudconnect#ServiceRenewalTypeEnum"
+        },
+        "serviceId": {
+          "target": "smithy.api#Integer"
+        },
+        "status": {
+          "target": "com.ovh.ovhcloudconnect#ServiceStateEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about a Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#ServicesServicePossibleRenewPeriodList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "All the possible renew period of your service in month"
+      }
+    },
+    "com.ovh.ovhcloudconnect#ServiceRenewType": {
+      "type": "structure",
+      "members": {
+        "automatic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service is automatically renewed"
+          }
+        },
+        "deleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service will be deleted at expiration"
+          }
+        },
+        "forced": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service forced to be renewed"
+          }
+        },
+        "manualPayment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service needs to be manually renewed and paid",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "period": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "period of renew in month",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Map a possible renew for a specific service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#ServiceRenewalTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTOMATICFORCEDPRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticForcedProduct"
+          }
+        },
+        "AUTOMATICV2012": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2012"
+          }
+        },
+        "AUTOMATICV2014": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2014"
+          }
+        },
+        "AUTOMATICV2016": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2016"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "ONESHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oneShot"
+          }
+        },
+        "OPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "option"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed renewal type of a service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#ServiceStateEnum": {
+      "type": "enum",
+      "members": {
+        "AUTORENEWINPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "autorenewInProgress"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "INCREATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inCreation"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "PENDINGDEBT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pendingDebt"
+          }
+        },
+        "UNPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unPaid"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "service.StateEnum"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceInfosRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#ServicesService"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get service information"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PutOvhCloudConnectServiceNameServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "renew": {
+          "target": "com.ovh.ovhcloudconnect#ServiceRenewType",
+          "traits": {
+            "smithy.api#documentation": "Way of handling the renew",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PutOvhCloudConnectServiceNameServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PutOvhCloudConnectServiceNameServiceInfosRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/ovhCloudConnect/{serviceName}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update service information"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceKeyRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceKeyResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceKeyResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceKeyResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceKey": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceKeyRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceKeyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/serviceKey",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Keys linked to a OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceKeyServiceKeyIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "serviceKeyId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service key ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectKey": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Service Key id"
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reference of the service"
+          }
+        },
+        "provider": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectServiceProviderEnum",
+          "traits": {
+            "smithy.api#documentation": "Service Key provider"
+          }
+        },
+        "status": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectKeyStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Service Key status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect Service Key"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectKeyStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "DOING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "doing"
+          }
+        },
+        "TERMINATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "terminated"
+          }
+        },
+        "TOCHECK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "toCheck"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for service key status"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceKeyServiceKeyId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceKeyServiceKeyIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectKey"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/serviceKey/{serviceKeyId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Key linked to a OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdRegenerateRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "serviceKeyId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service key ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdRegenerate": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdRegenerateRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectKey"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/serviceKey/{serviceKeyId}/regenerate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Regenerate Service Key linked to a OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdSendRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "serviceKeyId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service key ID"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address to send the key",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectSendKeyAnswer": {
+      "type": "structure",
+      "members": {
+        "messageCode": {
+          "target": "com.ovh.ovhcloudconnect#OvhcloudconnectMessageCodeEnum",
+          "traits": {
+            "smithy.api#documentation": "message code for UX to display appropriate text"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OVHcloud Connect send key answer"
+      }
+    },
+    "com.ovh.ovhcloudconnect#OvhcloudconnectMessageCodeEnum": {
+      "type": "enum",
+      "members": {
+        "MAILSENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mailSent"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum values for messageCode"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdSend": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdSendRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectSendKeyAnswer"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/serviceKey/{serviceKeyId}/send",
+          "code": 200
+        },
+        "smithy.api#documentation": "Send key value to customer"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameTaskRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameTaskResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameTaskResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameTaskResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameTaskResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/task",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Task linked to a OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameTaskIdRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameTaskId": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameTaskIdRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#OvhcloudconnectTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ovhCloudConnect/{serviceName}/task/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Tasks linked to a OVHcloud Connect Service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameTerminateRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameTerminateResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameTerminate": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameTerminateRequest"
+      },
+      "output": {
+        "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameTerminateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/ovhCloudConnect/{serviceName}/terminate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Ask for the termination of your service"
+      }
+    },
+    "com.ovh.ovhcloudconnect#Ovhcloudconnect": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnect"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceName"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PutOvhCloudConnectServiceName"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameChangeContact"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPop"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfigPop"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopId"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameConfigPopPopId"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenter"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfigPopPopIdDatacenter"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterId"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterId"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtra"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtra"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraId"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraId"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdStatistics"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameConfigPopPopIdStatus"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameConfirmTermination"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDatacenter"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDatacenterId"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDiagnostic"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameDiagnostic"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameDiagnosticId"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameIncident"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameIncidentId"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterface"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceId"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameInterfaceIdLock"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceIdStatistics"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameInterfaceIdStatus"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameInterfaceIdUnlock"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameLoa"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogKind"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogKindName"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogSubscription"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameLogSubscription"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameLogSubscriptionSubscriptionId"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameLogSubscriptionSubscriptionId"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameLogUrl"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameMonitoring"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameMonitoring"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#DeleteOvhCloudConnectServiceNameMonitoring"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceInfos"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PutOvhCloudConnectServiceNameServiceInfos"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceKey"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameServiceKeyServiceKeyId"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdRegenerate"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdSend"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameTask"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#GetOvhCloudConnectServiceNameTaskId"
+        },
+        {
+          "target": "com.ovh.ovhcloudconnect#PostOvhCloudConnectServiceNameTerminate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "OVHcloud API specification",
+        "smithy.api#documentation": "Specification for OVHcloud API"
+      }
+    }
+  }
+}
