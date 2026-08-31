@@ -100,6 +100,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "prisma-postgres" },
   { package: "railway" },
   { package: "redis-cloud" },
+  { package: "remote" },
   { package: "resend" },
   { package: "stripe" },
   { package: "supabase" },
