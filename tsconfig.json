@@ -321,6 +321,12 @@
     },
     {
       "path": "./packages/infisical/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/inngest/tsconfig.json"
+    },
+    {
+      "path": "./packages/inngest/tsconfig.scripts.json"
     }
   ]
 }

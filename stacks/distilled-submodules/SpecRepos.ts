@@ -78,6 +78,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "hostinger" },
   { package: "huggingface" },
   { package: "infisical" },
+  { package: "inngest" },
   { package: "kubernetes" },
   { package: "mongodb-atlas" },
   { package: "modal" },
