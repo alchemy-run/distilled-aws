@@ -49,9 +49,13 @@ export const SpacetimeDBProtocol: Layer.Layer<API.Protocol> =
       return yield* resolve;
     }),
     baseUrl: (creds) => creds.apiBaseUrl,
-    headers: (creds) => {
+    headers: (creds): Record<string, string> => {
+      const headers: Record<string, string> = {};
       const token = Redacted.value(creds.apiKey);
-      return token === "" ? {} : { Authorization: `Bearer ${token}` };
+      if (token !== "") {
+        headers.Authorization = `Bearer ${token}`;
+      }
+      return headers;
     },
     unknownError: ({ code, message, body }) =>
       new UnknownSpacetimeDBError({
