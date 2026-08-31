@@ -297,6 +297,12 @@
     },
     {
       "path": "./packages/doppler/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/elasticsearch/tsconfig.json"
+    },
+    {
+      "path": "./packages/elasticsearch/tsconfig.scripts.json"
     }
   ]
 }
