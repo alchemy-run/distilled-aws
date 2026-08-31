@@ -198,3 +198,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-surrealdb.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/apache-superset/specs/spec-mirror-apache-superset"]
+	path = packages/apache-superset/specs/spec-mirror-apache-superset
+	url = https://github.com/distilled-mirror/spec-mirror-apache-superset.git
+	ignore = dirty
+	shallow = true

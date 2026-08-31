@@ -249,6 +249,12 @@
     },
     {
       "path": "./packages/surrealdb/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/apache-superset/tsconfig.json"
+    },
+    {
+      "path": "./packages/apache-superset/tsconfig.scripts.json"
     }
   ]
 }
