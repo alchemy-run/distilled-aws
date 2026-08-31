@@ -1,0 +1,2089 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "driveactivity",
+    "version": "v2",
+    "title": "Drive Activity API",
+    "baseUrl": "https://driveactivity.googleapis.com/"
+  },
+  "shapes": {
+    "com.googleworkspace.driveactivity_v2#Drive": {
+      "type": "structure",
+      "members": {
+        "root": {
+          "target": "com.googleworkspace.driveactivity_v2#DriveItem",
+          "traits": {
+            "smithy.api#documentation": "The root of this shared drive."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The title of the shared drive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the shared drive. The format is `COLLECTION_ID/DRIVE_ID`. Clients should not assume a specific collection ID for this resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a shared drive."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#UserList": {
+      "type": "structure",
+      "members": {
+        "values": {
+          "target": "com.googleworkspace.driveactivity_v2#SingleUserList",
+          "traits": {
+            "smithy.api#documentation": "User values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Wrapper for UserList Field value."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#SingleUserList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.driveactivity_v2#SingleUser"
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Domain": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the domain, e.g. `google.com`."
+          }
+        },
+        "legacyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An opaque string used to identify this domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a domain."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Restore": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.googleworkspace.driveactivity_v2#RestoreTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of restore action taken."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A deleted object was restored."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#RestoreTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "UNTRASH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNTRASH"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Anyone": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Represents any user (including a logged out user)."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Permission": {
+      "type": "structure",
+      "members": {
+        "role": {
+          "target": "com.googleworkspace.driveactivity_v2#PermissionRoleEnum",
+          "traits": {
+            "smithy.api#documentation": "Indicates the [Google Drive permissions role](https://developers.google.com/workspace/drive/web/manage-sharing#roles). The role determines a user's ability to read, write, and comment on items."
+          }
+        },
+        "user": {
+          "target": "com.googleworkspace.driveactivity_v2#User",
+          "traits": {
+            "smithy.api#documentation": "The user to whom this permission applies."
+          }
+        },
+        "allowDiscovery": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the item can be discovered (e.g. in the user's \"Shared with me\" collection) without needing a link to the item."
+          }
+        },
+        "domain": {
+          "target": "com.googleworkspace.driveactivity_v2#Domain",
+          "traits": {
+            "smithy.api#documentation": "The domain to whom this permission applies."
+          }
+        },
+        "anyone": {
+          "target": "com.googleworkspace.driveactivity_v2#Anyone",
+          "traits": {
+            "smithy.api#documentation": "If set, this permission applies to anyone, even logged out users."
+          }
+        },
+        "group": {
+          "target": "com.googleworkspace.driveactivity_v2#Group",
+          "traits": {
+            "smithy.api#documentation": "The group to whom this permission applies."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The permission setting of an object."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#PermissionRoleEnum": {
+      "type": "enum",
+      "members": {
+        "ROLE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROLE_UNSPECIFIED"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER"
+          }
+        },
+        "ORGANIZER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORGANIZER"
+          }
+        },
+        "FILE_ORGANIZER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FILE_ORGANIZER"
+          }
+        },
+        "EDITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EDITOR"
+          }
+        },
+        "COMMENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMMENTER"
+          }
+        },
+        "VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIEWER"
+          }
+        },
+        "PUBLISHED_VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLISHED_VIEWER"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#SelectionList": {
+      "type": "structure",
+      "members": {
+        "values": {
+          "target": "com.googleworkspace.driveactivity_v2#SelectionList_",
+          "traits": {
+            "smithy.api#documentation": "Selection values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Wrapper for SelectionList Field value."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#SelectionList_": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.driveactivity_v2#Selection"
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Assignment": {
+      "type": "structure",
+      "members": {
+        "assignedUser": {
+          "target": "com.googleworkspace.driveactivity_v2#User",
+          "traits": {
+            "smithy.api#documentation": "The user to whom the comment was assigned."
+          }
+        },
+        "subtype": {
+          "target": "com.googleworkspace.driveactivity_v2#AssignmentSubtypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The sub-type of this event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A comment with an assignment."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#AssignmentSubtypeEnum": {
+      "type": "enum",
+      "members": {
+        "SUBTYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBTYPE_UNSPECIFIED"
+          }
+        },
+        "ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADDED"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        },
+        "REPLY_ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPLY_ADDED"
+          }
+        },
+        "REPLY_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPLY_DELETED"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOLVED"
+          }
+        },
+        "REOPENED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REOPENED"
+          }
+        },
+        "REASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REASSIGNED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#UnknownUser": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A user about whom nothing is currently known."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Post": {
+      "type": "structure",
+      "members": {
+        "subtype": {
+          "target": "com.googleworkspace.driveactivity_v2#PostSubtypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The sub-type of this event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A regular posted comment."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#PostSubtypeEnum": {
+      "type": "enum",
+      "members": {
+        "SUBTYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBTYPE_UNSPECIFIED"
+          }
+        },
+        "ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADDED"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        },
+        "REPLY_ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPLY_ADDED"
+          }
+        },
+        "REPLY_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPLY_DELETED"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOLVED"
+          }
+        },
+        "REOPENED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REOPENED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Driveactivity_Date": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Wrapper for Date Field value."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#DriveReference": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the shared drive. The format is `COLLECTION_ID/DRIVE_ID`. Clients should not assume a specific collection ID for this resource name."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The title of the shared drive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A lightweight reference to a shared drive."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Selection": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Selection value as human-readable display string."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Selection value as Field Choice ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Wrapper for Selection Field value as combined value/display_name pair for selected choice."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Impersonation": {
+      "type": "structure",
+      "members": {
+        "impersonatedUser": {
+          "target": "com.googleworkspace.driveactivity_v2#User",
+          "traits": {
+            "smithy.api#documentation": "The impersonated user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about an impersonation, where an admin acts on behalf of an end user. Information about the acting admin is not currently available."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Text": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of Text Field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Wrapper for Text Field value."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#TimeRange": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end of the time range."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start of the time range."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about time ranges."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Actor": {
+      "type": "structure",
+      "members": {
+        "system": {
+          "target": "com.googleworkspace.driveactivity_v2#SystemEvent",
+          "traits": {
+            "smithy.api#documentation": "A non-user actor (i.e. system triggered)."
+          }
+        },
+        "administrator": {
+          "target": "com.googleworkspace.driveactivity_v2#Administrator",
+          "traits": {
+            "smithy.api#documentation": "An administrator."
+          }
+        },
+        "impersonation": {
+          "target": "com.googleworkspace.driveactivity_v2#Impersonation",
+          "traits": {
+            "smithy.api#documentation": "An account acting on behalf of another."
+          }
+        },
+        "user": {
+          "target": "com.googleworkspace.driveactivity_v2#User",
+          "traits": {
+            "smithy.api#documentation": "An end user."
+          }
+        },
+        "anonymous": {
+          "target": "com.googleworkspace.driveactivity_v2#AnonymousUser",
+          "traits": {
+            "smithy.api#documentation": "An anonymous user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The actor of a Drive activity."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#DeletedUser": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A user whose account has since been deleted."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#DataLeakPreventionChange": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.googleworkspace.driveactivity_v2#DataLeakPreventionChangeTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of Data Leak Prevention (DLP) change."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A change in the object's data leak prevention status."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#DataLeakPreventionChangeTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "FLAGGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FLAGGED"
+          }
+        },
+        "CLEARED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLEARED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#FileComment": {
+      "type": "structure",
+      "members": {
+        "legacyDiscussionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The discussion thread to which the comment was added. This identifier is an opaque string compatible with the Drive API and references the first comment in a discussion; see https://developers.google.com/workspace/drive/v3/reference/comments/get"
+          }
+        },
+        "linkToDiscussion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the discussion thread containing this comment, for example, `https://docs.google.com/DOCUMENT_ID/edit?disco=THREAD_ID`."
+          }
+        },
+        "parent": {
+          "target": "com.googleworkspace.driveactivity_v2#DriveItem",
+          "traits": {
+            "smithy.api#documentation": "The Drive item containing this comment."
+          }
+        },
+        "legacyCommentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The comment in the discussion thread. This identifier is an opaque string compatible with the Drive API; see https://developers.google.com/workspace/drive/v3/reference/comments/get"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A comment on a file."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Create": {
+      "type": "structure",
+      "members": {
+        "copy": {
+          "target": "com.googleworkspace.driveactivity_v2#Copy",
+          "traits": {
+            "smithy.api#documentation": "If present, indicates the object was created by copying an existing Drive object."
+          }
+        },
+        "new": {
+          "target": "com.googleworkspace.driveactivity_v2#New",
+          "traits": {
+            "smithy.api#documentation": "If present, indicates the object was newly created (e.g. as a blank document), not derived from a Drive object or external object."
+          }
+        },
+        "upload": {
+          "target": "com.googleworkspace.driveactivity_v2#Upload",
+          "traits": {
+            "smithy.api#documentation": "If present, indicates the object originated externally and was uploaded to Drive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object was created."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Copy": {
+      "type": "structure",
+      "members": {
+        "originalObject": {
+          "target": "com.googleworkspace.driveactivity_v2#TargetReference",
+          "traits": {
+            "smithy.api#documentation": "The original object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object was created by copying an existing object."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#NoConsolidation": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A strategy that does no consolidation of individual activities."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#AnonymousUser": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Empty message representing an anonymous user or indicating the authenticated user should be anonymized."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#FieldValueChange": {
+      "type": "structure",
+      "members": {
+        "oldValue": {
+          "target": "com.googleworkspace.driveactivity_v2#FieldValue",
+          "traits": {
+            "smithy.api#documentation": "The value that was previously set on the field. If not present, the field was newly set. At least one of {old_value|new_value} is always set."
+          }
+        },
+        "fieldId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of this field. Field IDs are unique within a Label."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable display name for this field."
+          }
+        },
+        "newValue": {
+          "target": "com.googleworkspace.driveactivity_v2#FieldValue",
+          "traits": {
+            "smithy.api#documentation": "The value that is now set on the field. If not present, the field was cleared. At least one of {old_value|new_value} is always set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Change to a Field value."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Suggestion": {
+      "type": "structure",
+      "members": {
+        "subtype": {
+          "target": "com.googleworkspace.driveactivity_v2#SuggestionSubtypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The sub-type of this event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A suggestion."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#SuggestionSubtypeEnum": {
+      "type": "enum",
+      "members": {
+        "SUBTYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBTYPE_UNSPECIFIED"
+          }
+        },
+        "ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADDED"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        },
+        "REPLY_ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPLY_ADDED"
+          }
+        },
+        "REPLY_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPLY_DELETED"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCEPTED"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REJECTED"
+          }
+        },
+        "ACCEPT_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCEPT_DELETED"
+          }
+        },
+        "REJECT_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REJECT_DELETED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#TargetReference": {
+      "type": "structure",
+      "members": {
+        "driveItem": {
+          "target": "com.googleworkspace.driveactivity_v2#DriveItemReference",
+          "traits": {
+            "smithy.api#documentation": "The target is a Drive item."
+          }
+        },
+        "drive": {
+          "target": "com.googleworkspace.driveactivity_v2#DriveReference",
+          "traits": {
+            "smithy.api#documentation": "The target is a shared drive."
+          }
+        },
+        "teamDrive": {
+          "target": "com.googleworkspace.driveactivity_v2#TeamDriveReference",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated; please use the `drive` field instead."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A lightweight reference to the target of activity."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Delete": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.googleworkspace.driveactivity_v2#DeleteTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of delete action taken."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object was deleted."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#DeleteTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "TRASH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRASH"
+          }
+        },
+        "PERMANENT_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMANENT_DELETE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#DriveFolder": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.googleworkspace.driveactivity_v2#DriveFolderTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of Drive folder."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Drive item which is a folder."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#DriveFolderTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "MY_DRIVE_ROOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MY_DRIVE_ROOT"
+          }
+        },
+        "SHARED_DRIVE_ROOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHARED_DRIVE_ROOT"
+          }
+        },
+        "STANDARD_FOLDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_FOLDER"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#PermissionChange": {
+      "type": "structure",
+      "members": {
+        "removedPermissions": {
+          "target": "com.googleworkspace.driveactivity_v2#PermissionList",
+          "traits": {
+            "smithy.api#documentation": "The set of permissions removed by this change."
+          }
+        },
+        "addedPermissions": {
+          "target": "com.googleworkspace.driveactivity_v2#PermissionList",
+          "traits": {
+            "smithy.api#documentation": "The set of permissions added by this change."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A change of the permission setting on an item."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#PermissionList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.driveactivity_v2#Permission"
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Target": {
+      "type": "structure",
+      "members": {
+        "teamDrive": {
+          "target": "com.googleworkspace.driveactivity_v2#TeamDrive",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated; please use the `drive` field instead."
+          }
+        },
+        "drive": {
+          "target": "com.googleworkspace.driveactivity_v2#Drive",
+          "traits": {
+            "smithy.api#documentation": "The target is a shared drive."
+          }
+        },
+        "driveItem": {
+          "target": "com.googleworkspace.driveactivity_v2#DriveItem",
+          "traits": {
+            "smithy.api#documentation": "The target is a Drive item."
+          }
+        },
+        "fileComment": {
+          "target": "com.googleworkspace.driveactivity_v2#FileComment",
+          "traits": {
+            "smithy.api#documentation": "The target is a comment on a Drive file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the target of activity. For more information on how activity history is shared with users, see [Activity history visibility](https://developers.google.com/workspace/drive/activity/v2#activityhistory)."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Owner": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "com.googleworkspace.driveactivity_v2#Domain",
+          "traits": {
+            "smithy.api#documentation": "The domain of the Drive item owner."
+          }
+        },
+        "teamDrive": {
+          "target": "com.googleworkspace.driveactivity_v2#TeamDriveReference",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated; please use the `drive` field instead."
+          }
+        },
+        "user": {
+          "target": "com.googleworkspace.driveactivity_v2#User",
+          "traits": {
+            "smithy.api#documentation": "The user that owns the Drive item."
+          }
+        },
+        "drive": {
+          "target": "com.googleworkspace.driveactivity_v2#DriveReference",
+          "traits": {
+            "smithy.api#documentation": "The drive that owns the item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the owner of a Drive item."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#FieldValue": {
+      "type": "structure",
+      "members": {
+        "userList": {
+          "target": "com.googleworkspace.driveactivity_v2#UserList",
+          "traits": {
+            "smithy.api#documentation": "User List Field value."
+          }
+        },
+        "selectionList": {
+          "target": "com.googleworkspace.driveactivity_v2#SelectionList",
+          "traits": {
+            "smithy.api#documentation": "Selection List Field value."
+          }
+        },
+        "text": {
+          "target": "com.googleworkspace.driveactivity_v2#Text",
+          "traits": {
+            "smithy.api#documentation": "Text Field value."
+          }
+        },
+        "date": {
+          "target": "com.googleworkspace.driveactivity_v2#Driveactivity_Date",
+          "traits": {
+            "smithy.api#documentation": "Date Field value."
+          }
+        },
+        "selection": {
+          "target": "com.googleworkspace.driveactivity_v2#Selection",
+          "traits": {
+            "smithy.api#documentation": "Selection Field value."
+          }
+        },
+        "textList": {
+          "target": "com.googleworkspace.driveactivity_v2#TextList",
+          "traits": {
+            "smithy.api#documentation": "Text List Field value."
+          }
+        },
+        "user": {
+          "target": "com.googleworkspace.driveactivity_v2#SingleUser",
+          "traits": {
+            "smithy.api#documentation": "User Field value."
+          }
+        },
+        "integer": {
+          "target": "com.googleworkspace.driveactivity_v2#Integer",
+          "traits": {
+            "smithy.api#documentation": "Integer Field value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains a value of a Field."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#SettingsChange": {
+      "type": "structure",
+      "members": {
+        "restrictionChanges": {
+          "target": "com.googleworkspace.driveactivity_v2#RestrictionChangeList",
+          "traits": {
+            "smithy.api#documentation": "The set of changes made to restrictions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about settings changes."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#RestrictionChangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.driveactivity_v2#RestrictionChange"
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#SingleUser": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User value as email."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Wrapper for User Field value."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#TextList": {
+      "type": "structure",
+      "members": {
+        "values": {
+          "target": "com.googleworkspace.driveactivity_v2#TextList_",
+          "traits": {
+            "smithy.api#documentation": "Text values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Wrapper for Text List Field value."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#TextList_": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.driveactivity_v2#Text"
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#QueryDriveActivityResponse": {
+      "type": "structure",
+      "members": {
+        "activities": {
+          "target": "com.googleworkspace.driveactivity_v2#DriveActivityList",
+          "traits": {
+            "smithy.api#documentation": "List of activity requested."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for querying Drive activity."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#DriveActivityList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.driveactivity_v2#DriveActivity"
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#DriveFile": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A Drive item which is a file."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#AppliedLabelChange": {
+      "type": "structure",
+      "members": {
+        "changes": {
+          "target": "com.googleworkspace.driveactivity_v2#AppliedLabelChangeDetailList",
+          "traits": {
+            "smithy.api#documentation": "Changes that were made to the Label on the Target."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Label changes that were made on the Target."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#AppliedLabelChangeDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.driveactivity_v2#AppliedLabelChangeDetail"
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Action": {
+      "type": "structure",
+      "members": {
+        "timeRange": {
+          "target": "com.googleworkspace.driveactivity_v2#TimeRange",
+          "traits": {
+            "smithy.api#documentation": "The action occurred over this time range."
+          }
+        },
+        "detail": {
+          "target": "com.googleworkspace.driveactivity_v2#ActionDetail",
+          "traits": {
+            "smithy.api#documentation": "The type and detailed information about the action."
+          }
+        },
+        "actor": {
+          "target": "com.googleworkspace.driveactivity_v2#Actor",
+          "traits": {
+            "smithy.api#documentation": "The actor responsible for this action (or empty if all actors are responsible)."
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The action occurred at this specific time."
+          }
+        },
+        "target": {
+          "target": "com.googleworkspace.driveactivity_v2#Target",
+          "traits": {
+            "smithy.api#documentation": "The target this action affects (or empty if affecting all targets). This represents the state of the target immediately after this action occurred."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the action."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#KnownUser": {
+      "type": "structure",
+      "members": {
+        "isCurrentUser": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if this is the user making the request."
+          }
+        },
+        "personName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier for this user that can be used with the People API to get more information. The format is `people/ACCOUNT_ID`. See https://developers.google.com/people/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A known user."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#File": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "This item is deprecated; please see `DriveFile` instead."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#TeamDrive": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated; please see `Drive.name` instead."
+          }
+        },
+        "root": {
+          "target": "com.googleworkspace.driveactivity_v2#DriveItem",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated; please see `Drive.root` instead."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated; please see `Drive.title` instead."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This item is deprecated; please see `Drive` instead."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#ConsolidationStrategy": {
+      "type": "structure",
+      "members": {
+        "none": {
+          "target": "com.googleworkspace.driveactivity_v2#NoConsolidation",
+          "traits": {
+            "smithy.api#documentation": "The individual activities are not consolidated."
+          }
+        },
+        "legacy": {
+          "target": "com.googleworkspace.driveactivity_v2#Legacy",
+          "traits": {
+            "smithy.api#documentation": "The individual activities are consolidated using the legacy strategy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "How the individual activities are consolidated. If a set of activities is related they can be consolidated into one combined activity, such as one actor performing the same action on multiple targets, or multiple actors performing the same action on a single target. The strategy defines the rules for which activities are related."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#QueryDriveActivityRequest": {
+      "type": "structure",
+      "members": {
+        "itemName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Return activities for this Drive item. The format is `items/ITEM_ID`."
+          }
+        },
+        "ancestorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Return activities for this Drive folder, plus all children and descendants. The format is `items/ITEM_ID`."
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filtering for items returned from this query request. The format of the filter string is a sequence of expressions, joined by an optional \"AND\", where each expression is of the form \"field operator value\". Supported fields: - `time`: Uses numerical operators on date values either in terms of milliseconds since Jan 1, 1970 or in RFC 3339 format. Examples: - `time > 1452409200000 AND time <= 1492812924310` - `time >= \"2016-01-10T01:02:03-05:00\"` - `detail.action_detail_case`: Uses the \"has\" operator (:) and either a singular value or a list of allowed action types enclosed in parentheses, separated by a space. To exclude a result from the response, prepend a hyphen (`-`) to the beginning of the filter string. Examples: - `detail.action_detail_case:RENAME` - `detail.action_detail_case:(CREATE RESTORE)` - `-detail.action_detail_case:MOVE` "
+          }
+        },
+        "consolidationStrategy": {
+          "target": "com.googleworkspace.driveactivity_v2#ConsolidationStrategy",
+          "traits": {
+            "smithy.api#documentation": "Details on how to consolidate related actions that make up the activity. If not set, then related actions aren't consolidated."
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The minimum number of activities desired in the response; the server attempts to return at least this quantity. The server may also return fewer activities if it has a partial response ready before the request times out. If not set, a default value is used."
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token identifies which page of results to return. Set this to the next_page_token value returned from a previous query to obtain the following page of results. If not set, the first page of results is returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message for querying Drive activity."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#ActionDetail": {
+      "type": "structure",
+      "members": {
+        "delete": {
+          "target": "com.googleworkspace.driveactivity_v2#Delete",
+          "traits": {
+            "smithy.api#documentation": "An object was deleted."
+          }
+        },
+        "dlpChange": {
+          "target": "com.googleworkspace.driveactivity_v2#DataLeakPreventionChange",
+          "traits": {
+            "smithy.api#documentation": "A change happened in data leak prevention status."
+          }
+        },
+        "edit": {
+          "target": "com.googleworkspace.driveactivity_v2#Edit",
+          "traits": {
+            "smithy.api#documentation": "An object was edited."
+          }
+        },
+        "create": {
+          "target": "com.googleworkspace.driveactivity_v2#Create",
+          "traits": {
+            "smithy.api#documentation": "An object was created."
+          }
+        },
+        "move": {
+          "target": "com.googleworkspace.driveactivity_v2#Move",
+          "traits": {
+            "smithy.api#documentation": "An object was moved."
+          }
+        },
+        "rename": {
+          "target": "com.googleworkspace.driveactivity_v2#Rename",
+          "traits": {
+            "smithy.api#documentation": "An object was renamed."
+          }
+        },
+        "comment": {
+          "target": "com.googleworkspace.driveactivity_v2#Comment",
+          "traits": {
+            "smithy.api#documentation": "A change about comments was made."
+          }
+        },
+        "appliedLabelChange": {
+          "target": "com.googleworkspace.driveactivity_v2#AppliedLabelChange",
+          "traits": {
+            "smithy.api#documentation": "Label was changed."
+          }
+        },
+        "reference": {
+          "target": "com.googleworkspace.driveactivity_v2#ApplicationReference",
+          "traits": {
+            "smithy.api#documentation": "An object was referenced in an application outside of Drive/Docs."
+          }
+        },
+        "restore": {
+          "target": "com.googleworkspace.driveactivity_v2#Restore",
+          "traits": {
+            "smithy.api#documentation": "A deleted object was restored."
+          }
+        },
+        "settingsChange": {
+          "target": "com.googleworkspace.driveactivity_v2#SettingsChange",
+          "traits": {
+            "smithy.api#documentation": "Settings were changed."
+          }
+        },
+        "permissionChange": {
+          "target": "com.googleworkspace.driveactivity_v2#PermissionChange",
+          "traits": {
+            "smithy.api#documentation": "The permission on an object was changed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data describing the type and additional information of an action."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Rename": {
+      "type": "structure",
+      "members": {
+        "oldTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The previous title of the drive object."
+          }
+        },
+        "newTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new title of the drive object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object was renamed."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#DriveItemReference": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target Drive item. The format is `items/ITEM_ID`."
+          }
+        },
+        "driveFile": {
+          "target": "com.googleworkspace.driveactivity_v2#DriveFile",
+          "traits": {
+            "smithy.api#documentation": "The Drive item is a file."
+          }
+        },
+        "folder": {
+          "target": "com.googleworkspace.driveactivity_v2#Folder",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated; please use the `driveFolder` field instead."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The title of the Drive item."
+          }
+        },
+        "file": {
+          "target": "com.googleworkspace.driveactivity_v2#File",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated; please use the `driveFile` field instead."
+          }
+        },
+        "driveFolder": {
+          "target": "com.googleworkspace.driveactivity_v2#DriveFolder",
+          "traits": {
+            "smithy.api#documentation": "The Drive item is a folder. Includes information about the type of folder."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A lightweight reference to a Drive item, such as a file or folder."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#AppliedLabelChangeDetail": {
+      "type": "structure",
+      "members": {
+        "fieldChanges": {
+          "target": "com.googleworkspace.driveactivity_v2#FieldValueChangeList",
+          "traits": {
+            "smithy.api#documentation": "Field Changes. Only present if `types` contains `LABEL_FIELD_VALUE_CHANGED`."
+          }
+        },
+        "types": {
+          "target": "com.googleworkspace.driveactivity_v2#AppliedLabelChangeDetailTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "The types of changes made to the Label on the Target."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable title of the label that changed."
+          }
+        },
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Label name representing the Label that changed. This name always contains the revision of the Label that was used when this Action occurred. The format is `labels/id@revision`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A change made to a Label on the Target."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#FieldValueChangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.driveactivity_v2#FieldValueChange"
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#AppliedLabelChangeDetailTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "LABEL_ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_ADDED"
+          }
+        },
+        "LABEL_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_REMOVED"
+          }
+        },
+        "LABEL_FIELD_VALUE_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_FIELD_VALUE_CHANGED"
+          }
+        },
+        "LABEL_APPLIED_BY_ITEM_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_APPLIED_BY_ITEM_CREATE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#AppliedLabelChangeDetailTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.driveactivity_v2#AppliedLabelChangeDetailTypesItemEnum"
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Edit": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "An empty message indicating an object was edited."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#DriveItem": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The title of the Drive item."
+          }
+        },
+        "mimeType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The MIME type of the Drive item. See https://developers.google.com/workspace/drive/v3/web/mime-types."
+          }
+        },
+        "owner": {
+          "target": "com.googleworkspace.driveactivity_v2#Owner",
+          "traits": {
+            "smithy.api#documentation": "Information about the owner of this Drive item."
+          }
+        },
+        "folder": {
+          "target": "com.googleworkspace.driveactivity_v2#Folder",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated; please use the `driveFolder` field instead."
+          }
+        },
+        "file": {
+          "target": "com.googleworkspace.driveactivity_v2#File",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated; please use the `driveFile` field instead."
+          }
+        },
+        "driveFolder": {
+          "target": "com.googleworkspace.driveactivity_v2#DriveFolder",
+          "traits": {
+            "smithy.api#documentation": "The Drive item is a folder. Includes information about the type of folder."
+          }
+        },
+        "driveFile": {
+          "target": "com.googleworkspace.driveactivity_v2#DriveFile",
+          "traits": {
+            "smithy.api#documentation": "The Drive item is a file."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target Drive item. The format is `items/ITEM_ID`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Drive item, such as a file or folder."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Integer": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Integer value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Wrapper for Integer Field value."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#New": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "An object was created from scratch."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Folder": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.googleworkspace.driveactivity_v2#FolderTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated; please see `DriveFolder.type` instead."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This item is deprecated; please see `DriveFolder` instead."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#FolderTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "MY_DRIVE_ROOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MY_DRIVE_ROOT"
+          }
+        },
+        "TEAM_DRIVE_ROOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEAM_DRIVE_ROOT"
+          }
+        },
+        "STANDARD_FOLDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_FOLDER"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#RestrictionChange": {
+      "type": "structure",
+      "members": {
+        "feature": {
+          "target": "com.googleworkspace.driveactivity_v2#RestrictionChangeFeatureEnum",
+          "traits": {
+            "smithy.api#documentation": "The feature which had a change in restriction policy."
+          }
+        },
+        "newRestriction": {
+          "target": "com.googleworkspace.driveactivity_v2#RestrictionChangeNewRestrictionEnum",
+          "traits": {
+            "smithy.api#documentation": "The restriction in place after the change."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about restriction policy changes to a feature."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#RestrictionChangeFeatureEnum": {
+      "type": "enum",
+      "members": {
+        "FEATURE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEATURE_UNSPECIFIED"
+          }
+        },
+        "SHARING_OUTSIDE_DOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHARING_OUTSIDE_DOMAIN"
+          }
+        },
+        "DIRECT_SHARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECT_SHARING"
+          }
+        },
+        "ITEM_DUPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ITEM_DUPLICATION"
+          }
+        },
+        "DRIVE_FILE_STREAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_FILE_STREAM"
+          }
+        },
+        "FILE_ORGANIZER_CAN_SHARE_FOLDERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FILE_ORGANIZER_CAN_SHARE_FOLDERS"
+          }
+        },
+        "READERS_CAN_DOWNLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READERS_CAN_DOWNLOAD"
+          }
+        },
+        "WRITERS_CAN_DOWNLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WRITERS_CAN_DOWNLOAD"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#RestrictionChangeNewRestrictionEnum": {
+      "type": "enum",
+      "members": {
+        "RESTRICTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESTRICTION_UNSPECIFIED"
+          }
+        },
+        "UNRESTRICTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNRESTRICTED"
+          }
+        },
+        "FULLY_RESTRICTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULLY_RESTRICTED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#TeamDriveReference": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated; please see `DriveReference.name` instead."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated; please see `DriveReference.title` instead."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This item is deprecated; please see `DriveReference` instead."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Group": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the group."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The title of the group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a group."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#DriveActivity": {
+      "type": "structure",
+      "members": {
+        "timeRange": {
+          "target": "com.googleworkspace.driveactivity_v2#TimeRange",
+          "traits": {
+            "smithy.api#documentation": "The activity occurred over this time range."
+          }
+        },
+        "actors": {
+          "target": "com.googleworkspace.driveactivity_v2#ActorList",
+          "traits": {
+            "smithy.api#documentation": "All actor(s) responsible for the activity."
+          }
+        },
+        "primaryActionDetail": {
+          "target": "com.googleworkspace.driveactivity_v2#ActionDetail",
+          "traits": {
+            "smithy.api#documentation": "Key information about the primary action for this activity. This is either representative, or the most important, of all actions in the activity, according to the ConsolidationStrategy in the request."
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The activity occurred at this specific time."
+          }
+        },
+        "actions": {
+          "target": "com.googleworkspace.driveactivity_v2#ActionList",
+          "traits": {
+            "smithy.api#documentation": "Details on all actions in this activity."
+          }
+        },
+        "targets": {
+          "target": "com.googleworkspace.driveactivity_v2#TargetList",
+          "traits": {
+            "smithy.api#documentation": "All Google Drive objects this activity is about (e.g. file, folder, drive). This represents the state of the target immediately after the actions occurred."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single Drive activity comprising one or more Actions by one or more Actors on one or more Targets. Some Action groupings occur spontaneously, such as moving an item into a shared folder triggering a permission change. Other groupings of related Actions, such as multiple Actors editing one item or moving multiple files into a new folder, are controlled by the selection of a ConsolidationStrategy in the QueryDriveActivityRequest."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#ActorList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.driveactivity_v2#Actor"
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#ActionList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.driveactivity_v2#Action"
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#TargetList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.driveactivity_v2#Target"
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Upload": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "An object was uploaded into Drive."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#ApplicationReference": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.googleworkspace.driveactivity_v2#ApplicationReferenceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The reference type corresponding to this event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Activity in applications other than Drive."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#ApplicationReferenceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED_REFERENCE_TYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED_REFERENCE_TYPE"
+          }
+        },
+        "LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINK"
+          }
+        },
+        "DISCUSS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCUSS"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Legacy": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A strategy that consolidates activities using the grouping rules from the legacy V1 Activity API. Similar actions occurring within a window of time can be grouped across multiple targets (such as moving a set of files at once) or multiple actors (such as several users editing the same item). Grouping rules for this strategy are specific to each type of action."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#User": {
+      "type": "structure",
+      "members": {
+        "knownUser": {
+          "target": "com.googleworkspace.driveactivity_v2#KnownUser",
+          "traits": {
+            "smithy.api#documentation": "A known user."
+          }
+        },
+        "deletedUser": {
+          "target": "com.googleworkspace.driveactivity_v2#DeletedUser",
+          "traits": {
+            "smithy.api#documentation": "A user whose account has since been deleted."
+          }
+        },
+        "unknownUser": {
+          "target": "com.googleworkspace.driveactivity_v2#UnknownUser",
+          "traits": {
+            "smithy.api#documentation": "A user about whom nothing is currently known."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about an end user."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#SystemEvent": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.googleworkspace.driveactivity_v2#SystemEventTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of the system event that may triggered activity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Event triggered by system operations instead of end users."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#SystemEventTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "USER_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_DELETION"
+          }
+        },
+        "TRASH_AUTO_PURGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRASH_AUTO_PURGE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Administrator": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Empty message representing an administrator."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Comment": {
+      "type": "structure",
+      "members": {
+        "suggestion": {
+          "target": "com.googleworkspace.driveactivity_v2#Suggestion",
+          "traits": {
+            "smithy.api#documentation": "A change on a suggestion."
+          }
+        },
+        "mentionedUsers": {
+          "target": "com.googleworkspace.driveactivity_v2#UserList_",
+          "traits": {
+            "smithy.api#documentation": "Users who are mentioned in this comment."
+          }
+        },
+        "assignment": {
+          "target": "com.googleworkspace.driveactivity_v2#Assignment",
+          "traits": {
+            "smithy.api#documentation": "A change on an assignment."
+          }
+        },
+        "post": {
+          "target": "com.googleworkspace.driveactivity_v2#Post",
+          "traits": {
+            "smithy.api#documentation": "A change on a regular posted comment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A change about comments on an object."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#UserList_": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.driveactivity_v2#User"
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Move": {
+      "type": "structure",
+      "members": {
+        "addedParents": {
+          "target": "com.googleworkspace.driveactivity_v2#TargetReferenceList",
+          "traits": {
+            "smithy.api#documentation": "The added parent object(s)."
+          }
+        },
+        "removedParents": {
+          "target": "com.googleworkspace.driveactivity_v2#TargetReferenceList",
+          "traits": {
+            "smithy.api#documentation": "The removed parent object(s)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object was moved."
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#TargetReferenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.driveactivity_v2#TargetReference"
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#QueryActivityRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.googleworkspace.driveactivity_v2#QueryDriveActivityRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.driveactivity_v2#QueryActivity": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.driveactivity_v2#QueryActivityRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.driveactivity_v2#QueryDriveActivityResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.driveactivity_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.driveactivity_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.driveactivity_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.driveactivity_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/activity:query"
+        },
+        "smithy.api#documentation": "Query past activity in Google Drive."
+      }
+    }
+  }
+}

@@ -1,0 +1,4083 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "alertcenter",
+    "version": "v1beta1",
+    "title": "Google Workspace Alert Center API",
+    "baseUrl": "https://alertcenter.googleapis.com/"
+  },
+  "shapes": {
+    "com.googleworkspace.alertcenter_v1beta1#IdentityProviderError": {
+      "type": "structure",
+      "members": {
+        "errorCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Number of similar errors encountered."
+          }
+        },
+        "authorizationBaseUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Authorization base url of the identity provider."
+          }
+        },
+        "errorInfo": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#IdentityProviderErrorErrorInfoEnum",
+          "traits": {
+            "smithy.api#documentation": "Info on the identity provider error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error related to an identity provider."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#IdentityProviderErrorErrorInfoEnum": {
+      "type": "enum",
+      "members": {
+        "IDENTITY_PROVIDER_ERROR_INFO_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IDENTITY_PROVIDER_ERROR_INFO_UNSPECIFIED"
+          }
+        },
+        "EMAIL_MISMATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EMAIL_MISMATCH"
+          }
+        },
+        "UNAVAILABLE_DISCOVERY_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNAVAILABLE_DISCOVERY_CONTENT"
+          }
+        },
+        "INVALID_DISCOVERY_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_DISCOVERY_CONTENT"
+          }
+        },
+        "UNAVAILABLE_CSE_CONFIGURATION_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNAVAILABLE_CSE_CONFIGURATION_CONTENT"
+          }
+        },
+        "INVALID_CSE_CONFIGURATION_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_CSE_CONFIGURATION_CONTENT"
+          }
+        },
+        "INVALID_ID_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_ID_TOKEN"
+          }
+        },
+        "INVALID_OIDC_SETUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_OIDC_SETUP"
+          }
+        },
+        "UNAVAILABLE_IDP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNAVAILABLE_IDP"
+          }
+        },
+        "AUTH_CODE_EXCHANGE_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTH_CODE_EXCHANGE_ERROR"
+          }
+        },
+        "AUTHENTICATION_TOKEN_MISSING_CLAIM_EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTHENTICATION_TOKEN_MISSING_CLAIM_EMAIL"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#UserDefinedDetectorInfo": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the detector."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name that uniquely identifies the detector."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detector defined by administrators."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#UserChanges": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rule name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alerts from UserChanges bucket Rules for predefined rules which contain the following rules: - Suspended user made active - New user added - User suspended (by admin) - User granted admin privileges - User admin privileges revoked - User deleted - Users password changed"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#Settings": {
+      "type": "structure",
+      "members": {
+        "notifications": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#NotificationList",
+          "traits": {
+            "smithy.api#documentation": "The list of notifications."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Customer-level settings."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#NotificationList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#Notification"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#Attachment": {
+      "type": "structure",
+      "members": {
+        "csv": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Csv",
+          "traits": {
+            "smithy.api#documentation": "A CSV file attachment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Attachment with application-specific information about an alert."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#DomainWideTakeoutInitiated": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the admin who initiated the takeout."
+          }
+        },
+        "takeoutRequestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The takeout request ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A takeout operation for the entire domain was initiated by an admin. Derived from audit logs."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#PhishingSpike": {
+      "type": "structure",
+      "members": {
+        "messages": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#GmailMessageInfoList",
+          "traits": {
+            "smithy.api#documentation": "The list of messages contained by this alert."
+          }
+        },
+        "isInternal": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If `true`, the email originated from within the organization."
+          }
+        },
+        "domainId": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#DomainId",
+          "traits": {
+            "smithy.api#documentation": "The domain ID."
+          }
+        },
+        "maliciousEntity": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#MaliciousEntity",
+          "traits": {
+            "smithy.api#documentation": "The entity whose actions triggered a Gmail phishing alert."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alert for a spike in user reported phishing. *Warning*: This type has been deprecated. Use [MailPhishing](https://developers.google.com/workspace/admin/alertcenter/reference/rest/v1beta1/MailPhishing) instead."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#GmailMessageInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#GmailMessageInfo"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#SSOProfileUpdatedEvent": {
+      "type": "structure",
+      "members": {
+        "inboundSsoProfileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "sso profile name which got updated"
+          }
+        },
+        "inboundSsoProfileChanges": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "changes made to sso profile"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Event occurred when SSO Profile updated in customer's account. The event are being received from insight forwarder"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AppMakerSqlSetupNotification": {
+      "type": "structure",
+      "members": {
+        "requestInfo": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#RequestInfoList",
+          "traits": {
+            "smithy.api#documentation": "List of applications with requests for default SQL set up."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alerts from App Maker to notify admins to set up default SQL instance."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#RequestInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#RequestInfo"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#DeviceCompromisedSecurityDetail": {
+      "type": "structure",
+      "members": {
+        "deviceModel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The model of the device."
+          }
+        },
+        "iosVendorId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required for iOS, empty for others."
+          }
+        },
+        "deviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The device ID."
+          }
+        },
+        "serialNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The serial number of the device."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The device resource ID."
+          }
+        },
+        "deviceCompromisedState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The device compromised state. Possible values are \"`Compromised`\" or \"`Not Compromised`\"."
+          }
+        },
+        "deviceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the device."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed information of a single MDM device compromised event."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#VoiceMisconfiguration": {
+      "type": "structure",
+      "members": {
+        "membersMisconfiguration": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#TransferMisconfiguration",
+          "traits": {
+            "smithy.api#documentation": "Issue(s) with members of a ring group."
+          }
+        },
+        "fixUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link that the admin can follow to fix the issue."
+          }
+        },
+        "voicemailMisconfiguration": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#VoicemailMisconfiguration",
+          "traits": {
+            "smithy.api#documentation": "Issue(s) with sending to voicemail."
+          }
+        },
+        "entityType": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#VoiceMisconfigurationEntityTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of the entity whose configuration is now invalid."
+          }
+        },
+        "entityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the entity whose configuration is now invalid."
+          }
+        },
+        "transferMisconfiguration": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#TransferMisconfiguration",
+          "traits": {
+            "smithy.api#documentation": "Issue(s) with transferring or forwarding to an external entity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An alert triggered when Google Voice configuration becomes invalid, generally due to an external entity being modified or deleted."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#VoiceMisconfigurationEntityTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ENTITY_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTITY_TYPE_UNSPECIFIED"
+          }
+        },
+        "AUTO_ATTENDANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTO_ATTENDANT"
+          }
+        },
+        "RING_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RING_GROUP"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#ReportingRule": {
+      "type": "structure",
+      "members": {
+        "alertDetails": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Any other associated alert details, for example, AlertConfiguration."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rule name"
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Alert Rule query Sample Query query { condition { filter { expected_application_id: 777491262838 expected_event_name: \"indexable_content_change\" filter_op: IN } } conjunction_operator: OR }"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alerts from Reporting Rules configured by Admin."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#DriveSyncStateChanged": {
+      "type": "structure",
+      "members": {
+        "syncState": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#DriveSyncStateChangedSyncStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The current sync state."
+          }
+        },
+        "syncStateChangeReason": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#DriveSyncStateChangedSyncStateChangeReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "The reason for the sync state change."
+          }
+        },
+        "syncPauseStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time at which sync was paused."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email of the user affected."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alerts for when a user is restricted from syncing content from clients such as Drive for Desktop."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#DriveSyncStateChangedSyncStateEnum": {
+      "type": "enum",
+      "members": {
+        "SYNC_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYNC_STATE_UNSPECIFIED"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAUSED"
+          }
+        },
+        "RESUMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESUMED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#DriveSyncStateChangedSyncStateChangeReasonEnum": {
+      "type": "enum",
+      "members": {
+        "SYNC_STATE_CHANGE_REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYNC_STATE_CHANGE_REASON_UNSPECIFIED"
+          }
+        },
+        "UNUSUAL_ACTIVITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNUSUAL_ACTIVITY"
+          }
+        },
+        "USER_FEEDBACK_TRUE_POSITIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_FEEDBACK_TRUE_POSITIVE"
+          }
+        },
+        "USER_FEEDBACK_FALSE_POSITIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_FEEDBACK_FALSE_POSITIVE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#BadWhitelist": {
+      "type": "structure",
+      "members": {
+        "domainId": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#DomainId",
+          "traits": {
+            "smithy.api#documentation": "The domain ID."
+          }
+        },
+        "messages": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#GmailMessageInfoList",
+          "traits": {
+            "smithy.api#documentation": "The list of messages contained by this alert."
+          }
+        },
+        "maliciousEntity": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#MaliciousEntity",
+          "traits": {
+            "smithy.api#documentation": "The entity whose actions triggered a Gmail phishing alert."
+          }
+        },
+        "sourceIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The source IP address of the malicious email, for example, `127.0.0.1`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alert for setting the domain or IP that malicious email comes from as whitelisted domain or IP in Gmail advanced settings."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AlertMetadata": {
+      "type": "structure",
+      "members": {
+        "assignee": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the user assigned to the alert."
+          }
+        },
+        "alertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The alert identifier."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current status of the alert. The supported values are the following: * NOT_STARTED * IN_PROGRESS * CLOSED"
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this metadata was last updated."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of an alert metadata from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform metadata updates in order to avoid race conditions: An `etag` is returned in the response which contains alert metadata, and systems are expected to put that etag in the request to update alert metadata to ensure that their change will be applied to the same version of the alert metadata. If no `etag` is provided in the call to update alert metadata, then the existing alert metadata is overwritten blindly."
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The unique identifier of the Google Workspace account of the customer."
+          }
+        },
+        "severity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The severity value of the alert. Alert Center will set this field at alert creation time, default's to an empty string when it could not be determined. The supported values for update actions on this field are the following: * HIGH * MEDIUM * LOW"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An alert metadata."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#ActivityRule": {
+      "type": "structure",
+      "members": {
+        "triggerSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The trigger sources for this rule. * GMAIL_EVENTS * DEVICE_EVENTS * USER_EVENTS"
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Alert threshold is for example “COUNT > 5”."
+          }
+        },
+        "supersedingAlert": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Alert ID superseding this alert. It is used to indicate that superseding alert is essentially extension of this alert and we found the relationship after creating both alerts."
+          }
+        },
+        "windowSize": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rule window size. Possible values are 1 hour or 24 hours."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Alert display name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the rule."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rule create timestamp."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of the last update to the rule."
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Query that is used to get the data from the associated source."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rule name."
+          }
+        },
+        "actionNames": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of action names associated with the rule threshold."
+          }
+        },
+        "supersededAlerts": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of alert IDs superseded by this alert. It is used to indicate that this alert is essentially extension of superseded alerts and we found the relationship after creating these alerts."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alerts from Google Workspace Security Center rules service configured by an admin."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#DeviceManagementRule": {
+      "type": "structure",
+      "members": {
+        "deviceModel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The model of the device."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The device resource ID."
+          }
+        },
+        "ownerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Obfuscated ID of the owner of the device"
+          }
+        },
+        "serialNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The serial number of the device."
+          }
+        },
+        "deviceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the device."
+          }
+        },
+        "iosVendorId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required for iOS, empty for others."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the user this alert was created for."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the rule that triggered the alert"
+          }
+        },
+        "ruleAction": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Action taken as result of the rule"
+          }
+        },
+        "deviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The device ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alerts from Device Management Rules configured by Admin."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#VoicemailRecipientError": {
+      "type": "structure",
+      "members": {
+        "invalidReason": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#VoicemailRecipientErrorInvalidReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Reason for the error."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address of the invalid recipient. This may be unavailable if the recipient was deleted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Issue(s) with a voicemail recipient."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#VoicemailRecipientErrorInvalidReasonEnum": {
+      "type": "enum",
+      "members": {
+        "EMAIL_INVALID_REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EMAIL_INVALID_REASON_UNSPECIFIED"
+          }
+        },
+        "OUT_OF_QUOTA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUT_OF_QUOTA"
+          }
+        },
+        "RECIPIENT_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECIPIENT_DELETED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#GmailMessageInfo": {
+      "type": "structure",
+      "members": {
+        "subjectText": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email subject text (only available for reported emails)."
+          }
+        },
+        "md5HashMessageBody": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hash of the message body text."
+          }
+        },
+        "messageBodySnippet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The snippet of the message body text (only available for reported emails)."
+          }
+        },
+        "sentTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The sent time of the email."
+          }
+        },
+        "messageId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The message ID."
+          }
+        },
+        "recipient": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The recipient of this email."
+          }
+        },
+        "attachmentsSha256Hash": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The `SHA256` hash of email's attachment and all MIME parts."
+          }
+        },
+        "md5HashSubject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The MD5 Hash of email's subject (only available for reported emails)."
+          }
+        },
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date of the event related to this email."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a message in phishing spike alert."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#VoicemailMisconfiguration": {
+      "type": "structure",
+      "members": {
+        "errors": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#VoicemailRecipientErrorList",
+          "traits": {
+            "smithy.api#documentation": "Issue(s) with voicemail recipients."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Issue(s) with sending to voicemail."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#VoicemailRecipientErrorList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#VoicemailRecipientError"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#Notification": {
+      "type": "structure",
+      "members": {
+        "cloudPubsubTopic": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#CloudPubsubTopic",
+          "traits": {
+            "smithy.api#documentation": "A Google Cloud Pub/sub topic destination."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings for callback notifications. For more details see [Google Workspace Alert Notification](https://developers.google.com/workspace/admin/alertcenter/guides/notifications)."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#DlpRuleViolation": {
+      "type": "structure",
+      "members": {
+        "ruleViolationInfo": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfo",
+          "traits": {
+            "smithy.api#documentation": "Details about the violated DLP rule. Admins can use the predefined detectors provided by Google Cloud DLP https://cloud.google.com/dlp/ when setting up a DLP rule. Matched Cloud DLP detectors in this violation if any will be captured in the MatchInfo.predefined_detector."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alerts that get triggered on violations of Data Loss Prevention (DLP) rules."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#SSOProfileCreatedEvent": {
+      "type": "structure",
+      "members": {
+        "inboundSsoProfileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "sso profile name which got created"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Event occurred when SSO Profile created in customer's account. The event are being received from insight forwarder"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#SensitiveAdminAction": {
+      "type": "structure",
+      "members": {
+        "primaryAdminChangedEvent": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#PrimaryAdminChangedEvent",
+          "traits": {
+            "smithy.api#documentation": "Event occurred when primary admin changed in customer's account"
+          }
+        },
+        "eventTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which event occurred"
+          }
+        },
+        "ssoProfileDeletedEvent": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#SSOProfileDeletedEvent",
+          "traits": {
+            "smithy.api#documentation": "Event occurred when SSO Profile deleted in customer's account"
+          }
+        },
+        "ssoProfileUpdatedEvent": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#SSOProfileUpdatedEvent",
+          "traits": {
+            "smithy.api#documentation": "Event occurred when SSO Profile updated in customer's account"
+          }
+        },
+        "actorEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email of person who performed the action"
+          }
+        },
+        "superAdminPasswordResetEvent": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#SuperAdminPasswordResetEvent",
+          "traits": {
+            "smithy.api#documentation": "Event occurred when password was reset for super admin in customer's account"
+          }
+        },
+        "ssoProfileCreatedEvent": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#SSOProfileCreatedEvent",
+          "traits": {
+            "smithy.api#documentation": "Event occurred when SSO Profile created in customer's account"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alert that is triggered when Sensitive Admin Action occur in customer account."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#MatchInfo": {
+      "type": "structure",
+      "members": {
+        "predefinedDetector": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#PredefinedDetectorInfo",
+          "traits": {
+            "smithy.api#documentation": "For matched detector predefined by Google."
+          }
+        },
+        "userDefinedDetector": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#UserDefinedDetectorInfo",
+          "traits": {
+            "smithy.api#documentation": "For matched detector defined by administrators."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Proto that contains match information from the condition part of the rule."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#UndeleteAlertRequest": {
+      "type": "structure",
+      "members": {
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial \"C\" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to undelete a specific alert that was marked for deletion."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AppSettingsChanged": {
+      "type": "structure",
+      "members": {
+        "alertDetails": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Any other associated alert details, for example, AlertConfiguration."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rule name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alerts from AppSettingsChanged bucket Rules configured by Admin which contain the following rules: - Calendar settings changed - Drive settings changed - Email settings changed - Mobile settings changed"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#Status": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "details": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#DocumentMap"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#GoogleOperations": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer domain for email template personalization."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A detailed, freeform incident description."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A one-line incident description."
+          }
+        },
+        "header": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A header to display above the incident message. Typically used to attach a localized notice on the timeline for followup comms translations."
+          }
+        },
+        "affectedUserEmails": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The list of emails which correspond to the users directly affected by the incident."
+          }
+        },
+        "attachmentData": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Attachment",
+          "traits": {
+            "smithy.api#documentation": "Optional. Application-specific data for an incident, provided when the Google Workspace application which reported the incident cannot be completely restored to a valid state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An incident reported by Google Operations for a Google Workspace application."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#RequestInfo": {
+      "type": "structure",
+      "members": {
+        "numberOfRequests": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Number of requests sent for this application to set up default SQL instance."
+          }
+        },
+        "appKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The application that requires the SQL setup."
+          }
+        },
+        "appDeveloperEmail": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of app developers who triggered notifications for above application."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Requests for one application that needs default SQL setup."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#TransferError": {
+      "type": "structure",
+      "members": {
+        "invalidReason": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#TransferErrorInvalidReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Reason for the error."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ring group or auto attendant ID. Not set for users."
+          }
+        },
+        "entityType": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#TransferErrorEntityTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of entity being transferred to. For ring group members, this should always be USER."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's full name, or the ring group / auto attendant name. This may be unavailable if the entity was deleted."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's email address. This may be unavailable if the entity was deleted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details for an invalid transfer or forward."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#TransferErrorInvalidReasonEnum": {
+      "type": "enum",
+      "members": {
+        "TRANSFER_INVALID_REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_INVALID_REASON_UNSPECIFIED"
+          }
+        },
+        "TRANSFER_TARGET_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_TARGET_DELETED"
+          }
+        },
+        "UNLICENSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNLICENSED"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENDED"
+          }
+        },
+        "NO_PHONE_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_PHONE_NUMBER"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#TransferErrorEntityTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TRANSFER_ENTITY_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_ENTITY_TYPE_UNSPECIFIED"
+          }
+        },
+        "TRANSFER_AUTO_ATTENDANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_AUTO_ATTENDANT"
+          }
+        },
+        "TRANSFER_RING_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_RING_GROUP"
+          }
+        },
+        "TRANSFER_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_USER"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#MaliciousEntity": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The header from display name."
+          }
+        },
+        "entity": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#User",
+          "traits": {
+            "smithy.api#documentation": "The actor who triggered a gmail phishing alert."
+          }
+        },
+        "fromHeader": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The sender email address."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Entity whose actions triggered a Gmail phishing alert."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#MergeInfo": {
+      "type": "structure",
+      "members": {
+        "newAlertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. New alert ID. Reference the [google.apps.alertcenter.Alert] with this ID for the current state."
+          }
+        },
+        "newIncidentTrackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new tracking ID from the parent incident."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "New alert tracking numbers."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#ClientSideEncryptionServiceUnavailable": {
+      "type": "structure",
+      "members": {
+        "keyServiceError": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#KeyServiceErrorList",
+          "traits": {
+            "smithy.api#documentation": "External key services impacted by an outage or misconfiguration."
+          }
+        },
+        "idpError": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#IdentityProviderErrorList",
+          "traits": {
+            "smithy.api#documentation": "Identity providers impacted by an outage or misconfiguration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alerts for client-side encryption outages."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#KeyServiceErrorList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#KeyServiceError"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#IdentityProviderErrorList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#IdentityProviderError"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AbuseDetected": {
+      "type": "structure",
+      "members": {
+        "variationType": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#AbuseDetectedVariationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Variation of AbuseDetected alerts. The variation_type determines the texts displayed the alert details. This differs from sub_alert_id because each sub alert can have multiple variation_types, representing different stages of the alert."
+          }
+        },
+        "additionalDetails": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#EntityList",
+          "traits": {
+            "smithy.api#documentation": "List of abusive users/entities to be displayed in a table in the alert."
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product that the abuse is originating from."
+          }
+        },
+        "subAlertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of each sub alert that is onboarded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A generic alert for abusive user activity occurring with a customer."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AbuseDetectedVariationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ABUSE_DETECTED_VARIATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABUSE_DETECTED_VARIATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "DRIVE_ABUSIVE_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_ABUSIVE_CONTENT"
+          }
+        },
+        "LIMITED_DISABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIMITED_DISABLE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#DeviceCompromised": {
+      "type": "structure",
+      "members": {
+        "events": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#DeviceCompromisedSecurityDetailList",
+          "traits": {
+            "smithy.api#documentation": "Required. The list of security events."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the user this alert was created for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A mobile device compromised alert. Derived from audit logs."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#DeviceCompromisedSecurityDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#DeviceCompromisedSecurityDetail"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#StateSponsoredAttack": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the user this incident was created for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A state-sponsored attack alert. Derived from audit logs."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#Alert": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#AlertMetadata",
+          "traits": {
+            "smithy.api#documentation": "Output only. The metadata associated with this alert."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [Google Workspace Alert types](https://developers.google.com/workspace/admin/alertcenter/reference/alert-types)."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this alert was created."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this alert was last updated."
+          }
+        },
+        "alertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The unique identifier for the alert."
+          }
+        },
+        "data": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The data associated with this alert, for example google.apps.alertcenter.type.DeviceCompromised."
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A unique identifier for the system that reported the alert. This is output only after alert is created. Supported sources are any of the following: * Google Operations * Mobile device management * Gmail phishing * Data Loss Prevention * Domain wide takeout * State sponsored attack * Google identity * Apps outage"
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. `True` if this alert is marked for deletion."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of an alert from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform alert updates in order to avoid race conditions: An `etag` is returned in the response which contains alerts, and systems are expected to put that etag in the request to update alert to ensure that their change will be applied to the same version of the alert. If no `etag` is provided in the call to update alert, then the existing alert is overwritten blindly."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The time the event that caused this alert was started or detected."
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The unique identifier of the Google Workspace account of the customer."
+          }
+        },
+        "securityInvestigationToolLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. An optional [Security Investigation Tool](https://support.google.com/a/answer/7575955) query for this alert."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The time the event that caused this alert ceased being active. If provided, the end time must not be earlier than the start time. If not provided, it indicates an ongoing alert."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An alert affecting a customer."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#EntityList": {
+      "type": "structure",
+      "members": {
+        "headers": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Headers of the values in entities. If no value is defined in Entity, this field should be empty."
+          }
+        },
+        "entities": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#EntityList_",
+          "traits": {
+            "smithy.api#documentation": "List of entities affected by the alert."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the key detail used to display this entity list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "EntityList stores entities in a format that can be translated to a table in the Alert Center UI."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#EntityList_": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#Entity"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#PrimaryAdminChangedEvent": {
+      "type": "structure",
+      "members": {
+        "previousAdminEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email of person who was the primary admin before the action"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "domain in which actioned occurred"
+          }
+        },
+        "updatedAdminEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email of person who is the primary admin after the action"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Event occurred when primary admin changed in customer's account. The event are being received from insight forwarder"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#BatchUndeleteAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "alertId": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The list of alert IDs to undelete."
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique identifier of the Google Workspace account of the customer the alerts are associated with. The `customer_id` must have the initial \"C\" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to perform batch undelete on alerts."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#ListAlertsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token for the next page. If not empty, indicates that there may be more alerts that match the listing request; this value can be used in a subsequent ListAlertsRequest to get alerts continuing from last result of the current list call."
+          }
+        },
+        "alerts": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#AlertList",
+          "traits": {
+            "smithy.api#documentation": "The list of alerts."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for an alert listing request."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AlertList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#Alert"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#Csv": {
+      "type": "structure",
+      "members": {
+        "dataRows": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#CsvRowList",
+          "traits": {
+            "smithy.api#documentation": "The list of data rows in a CSV file, as string arrays rather than as a single comma-separated string."
+          }
+        },
+        "headers": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The list of headers for data columns in a CSV file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A representation of a CSV file attachment, as a list of column headers and a list of data rows."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#CsvRowList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#CsvRow"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#MailPhishing": {
+      "type": "structure",
+      "members": {
+        "maliciousEntity": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#MaliciousEntity",
+          "traits": {
+            "smithy.api#documentation": "The entity whose actions triggered a Gmail phishing alert."
+          }
+        },
+        "isInternal": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If `true`, the email originated from within the organization."
+          }
+        },
+        "messages": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#GmailMessageInfoList",
+          "traits": {
+            "smithy.api#documentation": "The list of messages contained by this alert."
+          }
+        },
+        "systemActionType": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#MailPhishingSystemActionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "System actions on the messages."
+          }
+        },
+        "domainId": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#DomainId",
+          "traits": {
+            "smithy.api#documentation": "The domain ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Proto for all phishing alerts with common payload. Supported types are any of the following: * User reported phishing * User reported spam spike * Suspicious message reported * Phishing reclassification * Malware reclassification * Gmail potential employee spoofing"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#MailPhishingSystemActionTypeEnum": {
+      "type": "enum",
+      "members": {
+        "SYSTEM_ACTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYSTEM_ACTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "NO_OPERATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_OPERATION"
+          }
+        },
+        "REMOVED_FROM_INBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMOVED_FROM_INBOX"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#ResourceInfo": {
+      "type": "structure",
+      "members": {
+        "documentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Drive file ID."
+          }
+        },
+        "resourceTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the resource, for example email subject, or document title."
+          }
+        },
+        "messageId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "RFC2822 message ID."
+          }
+        },
+        "deviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id to identify a device. For example, for Android devices, this is the \"Android Device Id\" and for Chrome OS devices, it's the \"Device Virtual Id\"."
+          }
+        },
+        "chatAttachmentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Chat attachment ID."
+          }
+        },
+        "chatMessageId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Chat message ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Proto that contains resource information."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#RuleInfo": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name that uniquely identifies the rule."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User provided name of the rule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Proto that contains rule information."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AlertFeedback": {
+      "type": "structure",
+      "members": {
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The unique identifier of the Google Workspace account of the customer."
+          }
+        },
+        "feedbackId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The unique identifier for the feedback."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this feedback was created."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The email of the user that provided the feedback."
+          }
+        },
+        "alertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The alert identifier."
+          }
+        },
+        "type": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#AlertFeedbackTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of the feedback."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A customer feedback about an alert."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AlertFeedbackTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ALERT_FEEDBACK_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALERT_FEEDBACK_TYPE_UNSPECIFIED"
+          }
+        },
+        "NOT_USEFUL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_USEFUL"
+          }
+        },
+        "SOMEWHAT_USEFUL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOMEWHAT_USEFUL"
+          }
+        },
+        "VERY_USEFUL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERY_USEFUL"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AccessApproval": {
+      "type": "structure",
+      "members": {
+        "justificationReason": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#AccessApprovalJustificationReasonItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Justification for data access based on justification enums."
+          }
+        },
+        "products": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Products within scope of the Access Approvals request."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the Access Approvals request. This is a helpful field when requesting support from Google."
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scope of access, also known as a resource. This is further narrowed down by the product field."
+          }
+        },
+        "tickets": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#SupportTicketList",
+          "traits": {
+            "smithy.api#documentation": "Support tickets related to this Access Approvals request. Populated if there is an associated case number."
+          }
+        },
+        "officeLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Office location of Google staff requesting access such as \"US\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alert that is triggered when Google support requests to access customer data."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AccessApprovalJustificationReasonItemEnum": {
+      "type": "enum",
+      "members": {
+        "JUSTIFICATION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JUSTIFICATION_UNSPECIFIED"
+          }
+        },
+        "CUSTOMER_INITIATED_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOMER_INITIATED_SUPPORT"
+          }
+        },
+        "GOOGLE_INITIATED_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_INITIATED_REVIEW"
+          }
+        },
+        "GOOGLE_INITIATED_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_INITIATED_SERVICE"
+          }
+        },
+        "THIRD_PARTY_DATA_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THIRD_PARTY_DATA_REQUEST"
+          }
+        },
+        "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AccessApprovalJustificationReasonItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#AccessApprovalJustificationReasonItemEnum"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#SupportTicketList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#SupportTicket"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#Entity": {
+      "type": "structure",
+      "members": {
+        "values": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Extra values beyond name. The order of values should align with headers in EntityList."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of this entity, such as an email address, file ID, or device name."
+          }
+        },
+        "link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to a Security Investigation Tool search based on this entity, if available."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Individual entity affected by, or related to, an alert."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#BatchUndeleteAlertsResponse": {
+      "type": "structure",
+      "members": {
+        "failedAlertStatus": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StatusMap",
+          "traits": {
+            "smithy.api#documentation": "The status details for each failed `alert_id`."
+          }
+        },
+        "successAlertIds": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The successful list of alert IDs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to batch undelete operation on alerts."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#StatusMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#Status"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#SuspiciousActivitySecurityDetail": {
+      "type": "structure",
+      "members": {
+        "deviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The device ID."
+          }
+        },
+        "newValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new value of the device property after the change."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The device resource ID."
+          }
+        },
+        "iosVendorId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required for iOS, empty for others."
+          }
+        },
+        "oldValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The old value of the device property before the change."
+          }
+        },
+        "deviceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the device."
+          }
+        },
+        "deviceModel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The model of the device."
+          }
+        },
+        "deviceProperty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The device property which was changed."
+          }
+        },
+        "serialNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The serial number of the device."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed information of a single MDM suspicious activity event."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#CloudPubsubTopic": {
+      "type": "structure",
+      "members": {
+        "topicName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `name` field of a Cloud Pubsub [Topic] (https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic)."
+          }
+        },
+        "payloadFormat": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#CloudPubsubTopicPayloadFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The format of the payload that would be sent. If not specified the format will be JSON."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A reference to a Cloud Pubsub topic. To register for notifications, the owner of the topic must grant `alerts-api-push-notifications@system.gserviceaccount.com` the `projects.topics.publish` permission."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#CloudPubsubTopicPayloadFormatEnum": {
+      "type": "enum",
+      "members": {
+        "PAYLOAD_FORMAT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYLOAD_FORMAT_UNSPECIFIED"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JSON"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#ActionInfo": {
+      "type": "structure",
+      "members": {
+        "evidenceLockerFilePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google Cloud Storage location of the content that violated the rule. This field has format: \"/\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata related to the action."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#BatchDeleteAlertsResponse": {
+      "type": "structure",
+      "members": {
+        "successAlertIds": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The successful list of alert IDs."
+          }
+        },
+        "failedAlertStatus": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StatusMap",
+          "traits": {
+            "smithy.api#documentation": "The status details for each failed `alert_id`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to batch delete operation on alerts."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#TransferMisconfiguration": {
+      "type": "structure",
+      "members": {
+        "errors": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#TransferErrorList",
+          "traits": {
+            "smithy.api#documentation": "Details for each invalid transfer or forward."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error related to transferring or forwarding a phone call."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#TransferErrorList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#TransferError"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#SupportTicket": {
+      "type": "structure",
+      "members": {
+        "ticketId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Support ticket ID"
+          }
+        },
+        "ticketUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to support ticket"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Support ticket related to Access Approvals request"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#SSOProfileDeletedEvent": {
+      "type": "structure",
+      "members": {
+        "inboundSsoProfileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "sso profile name which got deleted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Event occurred when SSO Profile deleted in customer's account. The event are being received from insight forwarder"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#ApnsCertificateExpirationInfo": {
+      "type": "structure",
+      "members": {
+        "appleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Apple ID used to create the certificate. It may be blank if admins didn't enter it."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The UID of the certificate."
+          }
+        },
+        "expirationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expiration date of the APNS certificate."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The explanation message associated with \"APNS certificate is expiring soon\" and \"APNS certificate has expired\" alerts."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#LoginDetails": {
+      "type": "structure",
+      "members": {
+        "ipAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The human-readable IP address (for example, `11.22.33.44`) that is associated with the warning event."
+          }
+        },
+        "loginTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The successful login time that is associated with the warning event. This isn't present for blocked login attempts."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of the login action."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AccountSuspensionWarning": {
+      "type": "structure",
+      "members": {
+        "appealWindow": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The amount of time remaining to appeal an imminent suspension. After this window has elapsed, the account will be suspended. Only populated if the account suspension is in WARNING state."
+          }
+        },
+        "suspensionDetails": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#AccountSuspensionDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Details about why an account is being suspended."
+          }
+        },
+        "state": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#AccountSuspensionWarningStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Account suspension warning state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A warning that the customer's account is about to be suspended."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AccountSuspensionDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#AccountSuspensionDetails"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AccountSuspensionWarningStateEnum": {
+      "type": "enum",
+      "members": {
+        "ACCOUNT_SUSPENSION_WARNING_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_SUSPENSION_WARNING_STATE_UNSPECIFIED"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENDED"
+          }
+        },
+        "APPEAL_APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPEAL_APPROVED"
+          }
+        },
+        "APPEAL_SUBMITTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPEAL_SUBMITTED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AppsOutage": {
+      "type": "structure",
+      "members": {
+        "nextUpdateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp by which the next update is expected to arrive."
+          }
+        },
+        "status": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#AppsOutageStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Current outage status."
+          }
+        },
+        "resolutionTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the outage is expected to be resolved, or has confirmed resolution. Provided only when known."
+          }
+        },
+        "incidentTrackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Incident tracking ID."
+          }
+        },
+        "products": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of products impacted by the outage."
+          }
+        },
+        "dashboardUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the outage event in Google Workspace Status Dashboard"
+          }
+        },
+        "mergeInfo": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#MergeInfo",
+          "traits": {
+            "smithy.api#documentation": "Indicates new alert details under which the outage is communicated. Only populated when Status is MERGED."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An outage incident reported for a Google Workspace service."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AppsOutageStatusEnum": {
+      "type": "enum",
+      "members": {
+        "STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATUS_UNSPECIFIED"
+          }
+        },
+        "NEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEW"
+          }
+        },
+        "ONGOING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONGOING"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOLVED"
+          }
+        },
+        "FALSE_POSITIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FALSE_POSITIVE"
+          }
+        },
+        "PARTIALLY_RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTIALLY_RESOLVED"
+          }
+        },
+        "MERGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERGED"
+          }
+        },
+        "DOWNGRADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOWNGRADED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#ListAlertFeedbackResponse": {
+      "type": "structure",
+      "members": {
+        "feedback": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#AlertFeedbackList",
+          "traits": {
+            "smithy.api#documentation": "The list of alert feedback. Feedback entries for each alert are ordered by creation time descending."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for an alert feedback listing request."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AlertFeedbackList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#AlertFeedback"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#BatchDeleteAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique identifier of the Google Workspace account of the customer the alerts are associated with. The `customer_id` must have the initial \"C\" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793)."
+          }
+        },
+        "alertId": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The list of alert IDs to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to perform batch delete on alerts."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#DomainId": {
+      "type": "structure",
+      "members": {
+        "customerPrimaryDomain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The primary domain for the customer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain ID of Gmail phishing alerts."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AccountWarning": {
+      "type": "structure",
+      "members": {
+        "loginDetails": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#LoginDetails",
+          "traits": {
+            "smithy.api#documentation": "Optional. Details of the login action associated with the warning event. This is only available for: * Suspicious login * Suspicious login (less secure app) * Suspicious programmatic login * User suspended (suspicious activity)"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The email of the user that this event belongs to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alerts for user account warning events."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfo": {
+      "type": "structure",
+      "members": {
+        "suppressedActionTypes": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoSuppressedActionTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Actions suppressed due to other actions with higher priority."
+          }
+        },
+        "eventType": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoEventTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Event associated with this alert after applying the rule."
+          }
+        },
+        "trigger": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoTriggerEnum",
+          "traits": {
+            "smithy.api#documentation": "Trigger of the rule."
+          }
+        },
+        "triggeredActionTypes": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoTriggeredActionTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Actions applied as a consequence of the rule being triggered."
+          }
+        },
+        "ruleInfo": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#RuleInfo",
+          "traits": {
+            "smithy.api#documentation": "Details of the violated rule."
+          }
+        },
+        "agentType": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoAgentTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Agent type that triggered the rule."
+          }
+        },
+        "triggeredActionInfo": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#ActionInfoList",
+          "traits": {
+            "smithy.api#documentation": "Metadata related to the triggered actions."
+          }
+        },
+        "dataSource": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoDataSourceEnum",
+          "traits": {
+            "smithy.api#documentation": "Source of the data."
+          }
+        },
+        "resourceInfo": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#ResourceInfo",
+          "traits": {
+            "smithy.api#documentation": "Details of the resource which violated the rule."
+          }
+        },
+        "matchInfo": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#MatchInfoList",
+          "traits": {
+            "smithy.api#documentation": "List of matches that were found in the resource content."
+          }
+        },
+        "recipients": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Resource recipients. For Drive, they are grantees that the Drive file was shared with at the time of rule triggering. Valid values include user emails, group emails, domains, or 'anyone' if the file was publicly accessible. If the file was private the recipients list will be empty. For Gmail, they are emails of the users or groups that the Gmail message was sent to."
+          }
+        },
+        "triggeringUserEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email of the user who caused the violation. Value could be empty if not applicable, for example, a violation found by drive continuous scan."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Common alert information about violated rules that are configured by Google Workspace administrators."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoSuppressedActionTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "ACTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "DRIVE_BLOCK_EXTERNAL_SHARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_BLOCK_EXTERNAL_SHARING"
+          }
+        },
+        "DRIVE_WARN_ON_EXTERNAL_SHARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_WARN_ON_EXTERNAL_SHARING"
+          }
+        },
+        "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY"
+          }
+        },
+        "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY_FOR_ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY_FOR_ALL"
+          }
+        },
+        "DRIVE_APPLY_DRIVE_LABELS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_APPLY_DRIVE_LABELS"
+          }
+        },
+        "GMAIL_QUARANTINE_MESSAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GMAIL_QUARANTINE_MESSAGE"
+          }
+        },
+        "GMAIL_BLOCK_MESSAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GMAIL_BLOCK_MESSAGE"
+          }
+        },
+        "GMAIL_WARN_USERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GMAIL_WARN_USERS"
+          }
+        },
+        "GMAIL_APPLY_CLASSIFICATION_LABELS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GMAIL_APPLY_CLASSIFICATION_LABELS"
+          }
+        },
+        "CHROME_BLOCK_FILE_DOWNLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_FILE_DOWNLOAD"
+          }
+        },
+        "CHROME_WARN_FILE_DOWNLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WARN_FILE_DOWNLOAD"
+          }
+        },
+        "CHROME_BLOCK_FILE_UPLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_FILE_UPLOAD"
+          }
+        },
+        "CHROME_WARN_FILE_UPLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WARN_FILE_UPLOAD"
+          }
+        },
+        "CHROME_BLOCK_WEB_CONTENT_UPLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_WEB_CONTENT_UPLOAD"
+          }
+        },
+        "CHROME_WARN_WEB_CONTENT_UPLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WARN_WEB_CONTENT_UPLOAD"
+          }
+        },
+        "CHROME_BLOCK_PAGE_PRINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_PAGE_PRINT"
+          }
+        },
+        "CHROME_WARN_PAGE_PRINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WARN_PAGE_PRINT"
+          }
+        },
+        "CHROME_BLOCK_FILE_TRANSFER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_FILE_TRANSFER"
+          }
+        },
+        "CHROME_WARN_FILE_TRANSFER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WARN_FILE_TRANSFER"
+          }
+        },
+        "CHROME_BLOCK_URL_VISITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_URL_VISITED"
+          }
+        },
+        "CHROME_WARN_URL_VISITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WARN_URL_VISITED"
+          }
+        },
+        "CHROME_BLOCK_SCREENSHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_SCREENSHOT"
+          }
+        },
+        "CHROME_STORE_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_STORE_CONTENT"
+          }
+        },
+        "CHROME_WATERMARK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WATERMARK"
+          }
+        },
+        "CHROME_FORCE_SAVE_TO_CLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_FORCE_SAVE_TO_CLOUD"
+          }
+        },
+        "CHROME_KEEP_IN_MANAGED_CHROME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_KEEP_IN_MANAGED_CHROME"
+          }
+        },
+        "CHROME_BLOCK_DATA_COPIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_DATA_COPIED"
+          }
+        },
+        "CHROME_WARN_DATA_COPIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WARN_DATA_COPIED"
+          }
+        },
+        "DELETE_WEBPROTECT_EVIDENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE_WEBPROTECT_EVIDENCE"
+          }
+        },
+        "CHAT_BLOCK_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHAT_BLOCK_CONTENT"
+          }
+        },
+        "CHAT_WARN_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHAT_WARN_USER"
+          }
+        },
+        "ALERT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALERT"
+          }
+        },
+        "RULE_ACTIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RULE_ACTIVATE"
+          }
+        },
+        "RULE_DEACTIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RULE_DEACTIVATE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoSuppressedActionTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoSuppressedActionTypesItemEnum"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoEventTypeEnum": {
+      "type": "enum",
+      "members": {
+        "EVENT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EVENT_TYPE_UNSPECIFIED"
+          }
+        },
+        "ACCESS_BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCESS_BLOCKED"
+          }
+        },
+        "SHARING_BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHARING_BLOCKED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoTriggerEnum": {
+      "type": "enum",
+      "members": {
+        "TRIGGER_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRIGGER_UNSPECIFIED"
+          }
+        },
+        "DRIVE_SHARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_SHARE"
+          }
+        },
+        "MAIL_BEING_SENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAIL_BEING_SENT"
+          }
+        },
+        "CHROME_FILE_DOWNLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_FILE_DOWNLOAD"
+          }
+        },
+        "CHROME_FILE_UPLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_FILE_UPLOAD"
+          }
+        },
+        "CHROME_WEB_CONTENT_UPLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WEB_CONTENT_UPLOAD"
+          }
+        },
+        "CHAT_MESSAGE_SENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHAT_MESSAGE_SENT"
+          }
+        },
+        "CHAT_ATTACHMENT_UPLOADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHAT_ATTACHMENT_UPLOADED"
+          }
+        },
+        "CHROME_PAGE_PRINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_PAGE_PRINT"
+          }
+        },
+        "CHROME_URL_VISITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_URL_VISITED"
+          }
+        },
+        "CHROMEOS_FILE_TRANSFER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROMEOS_FILE_TRANSFER"
+          }
+        },
+        "GEMINI_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GEMINI_ACCESS"
+          }
+        },
+        "AGENT_EXECUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGENT_EXECUTION"
+          }
+        },
+        "CHROME_DATA_COPIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_DATA_COPIED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoTriggeredActionTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "ACTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "DRIVE_BLOCK_EXTERNAL_SHARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_BLOCK_EXTERNAL_SHARING"
+          }
+        },
+        "DRIVE_WARN_ON_EXTERNAL_SHARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_WARN_ON_EXTERNAL_SHARING"
+          }
+        },
+        "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY"
+          }
+        },
+        "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY_FOR_ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY_FOR_ALL"
+          }
+        },
+        "DRIVE_APPLY_DRIVE_LABELS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_APPLY_DRIVE_LABELS"
+          }
+        },
+        "GMAIL_QUARANTINE_MESSAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GMAIL_QUARANTINE_MESSAGE"
+          }
+        },
+        "GMAIL_BLOCK_MESSAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GMAIL_BLOCK_MESSAGE"
+          }
+        },
+        "GMAIL_WARN_USERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GMAIL_WARN_USERS"
+          }
+        },
+        "GMAIL_APPLY_CLASSIFICATION_LABELS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GMAIL_APPLY_CLASSIFICATION_LABELS"
+          }
+        },
+        "CHROME_BLOCK_FILE_DOWNLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_FILE_DOWNLOAD"
+          }
+        },
+        "CHROME_WARN_FILE_DOWNLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WARN_FILE_DOWNLOAD"
+          }
+        },
+        "CHROME_BLOCK_FILE_UPLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_FILE_UPLOAD"
+          }
+        },
+        "CHROME_WARN_FILE_UPLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WARN_FILE_UPLOAD"
+          }
+        },
+        "CHROME_BLOCK_WEB_CONTENT_UPLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_WEB_CONTENT_UPLOAD"
+          }
+        },
+        "CHROME_WARN_WEB_CONTENT_UPLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WARN_WEB_CONTENT_UPLOAD"
+          }
+        },
+        "CHROME_BLOCK_PAGE_PRINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_PAGE_PRINT"
+          }
+        },
+        "CHROME_WARN_PAGE_PRINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WARN_PAGE_PRINT"
+          }
+        },
+        "CHROME_BLOCK_FILE_TRANSFER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_FILE_TRANSFER"
+          }
+        },
+        "CHROME_WARN_FILE_TRANSFER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WARN_FILE_TRANSFER"
+          }
+        },
+        "CHROME_BLOCK_URL_VISITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_URL_VISITED"
+          }
+        },
+        "CHROME_WARN_URL_VISITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WARN_URL_VISITED"
+          }
+        },
+        "CHROME_BLOCK_SCREENSHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_SCREENSHOT"
+          }
+        },
+        "CHROME_STORE_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_STORE_CONTENT"
+          }
+        },
+        "CHROME_WATERMARK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WATERMARK"
+          }
+        },
+        "CHROME_FORCE_SAVE_TO_CLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_FORCE_SAVE_TO_CLOUD"
+          }
+        },
+        "CHROME_KEEP_IN_MANAGED_CHROME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_KEEP_IN_MANAGED_CHROME"
+          }
+        },
+        "CHROME_BLOCK_DATA_COPIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_BLOCK_DATA_COPIED"
+          }
+        },
+        "CHROME_WARN_DATA_COPIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_WARN_DATA_COPIED"
+          }
+        },
+        "DELETE_WEBPROTECT_EVIDENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE_WEBPROTECT_EVIDENCE"
+          }
+        },
+        "CHAT_BLOCK_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHAT_BLOCK_CONTENT"
+          }
+        },
+        "CHAT_WARN_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHAT_WARN_USER"
+          }
+        },
+        "ALERT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALERT"
+          }
+        },
+        "RULE_ACTIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RULE_ACTIVATE"
+          }
+        },
+        "RULE_DEACTIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RULE_DEACTIVATE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoTriggeredActionTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoTriggeredActionTypesItemEnum"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoAgentTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AGENT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGENT_TYPE_UNSPECIFIED"
+          }
+        },
+        "STUDIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STUDIO"
+          }
+        },
+        "WORK_AGENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORK_AGENT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#ActionInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#ActionInfo"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#RuleViolationInfoDataSourceEnum": {
+      "type": "enum",
+      "members": {
+        "DATA_SOURCE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_SOURCE_UNSPECIFIED"
+          }
+        },
+        "DRIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE"
+          }
+        },
+        "GMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GMAIL"
+          }
+        },
+        "CHROME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME"
+          }
+        },
+        "CHAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHAT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#MatchInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#MatchInfo"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#PredefinedDetectorInfo": {
+      "type": "structure",
+      "members": {
+        "detectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name that uniquely identifies the detector."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detector provided by Google."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#MandatoryServiceAnnouncement": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed, freeform text describing the announcement"
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "One line summary of the announcement"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alert Created by the MSA team for communications necessary for continued use of Google Workspace Products."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AccountSuspensionDetails": {
+      "type": "structure",
+      "members": {
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the product being abused. This is restricted to only the following values: \"Gmail\" \"Google Workspace\" \"Payments\" \"Voice\" \"YouTube\" \"Other\""
+          }
+        },
+        "abuseReason": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#AccountSuspensionDetailsAbuseReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "The reason why this account is receiving an account suspension warning."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about why an account is receiving an account suspension warning."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#AccountSuspensionDetailsAbuseReasonEnum": {
+      "type": "enum",
+      "members": {
+        "ACCOUNT_SUSPENSION_ABUSE_REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_SUSPENSION_ABUSE_REASON_UNSPECIFIED"
+          }
+        },
+        "TOS_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOS_VIOLATION"
+          }
+        },
+        "SPAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPAM"
+          }
+        },
+        "PHISHING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHISHING"
+          }
+        },
+        "TRAFFIC_PUMPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRAFFIC_PUMPING"
+          }
+        },
+        "FRAUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRAUD"
+          }
+        },
+        "NUMBER_HARVESTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NUMBER_HARVESTING"
+          }
+        },
+        "PAYMENTS_FRAUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYMENTS_FRAUD"
+          }
+        },
+        "UNWANTED_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNWANTED_CONTENT"
+          }
+        },
+        "UNQUALIFIED_EDU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNQUALIFIED_EDU"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#SuperAdminPasswordResetEvent": {
+      "type": "structure",
+      "members": {
+        "userEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "email of person whose password was reset"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Event occurred when password was reset for super admin in customer's account. The event are being received from insight forwarder"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#User": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the user."
+          }
+        },
+        "emailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address of the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A user."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#KeyServiceError": {
+      "type": "structure",
+      "members": {
+        "errorInfo": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#KeyServiceErrorErrorInfoEnum",
+          "traits": {
+            "smithy.api#documentation": "Info on the key service error."
+          }
+        },
+        "errorCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Number of similar errors encountered."
+          }
+        },
+        "httpResponseCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HTTP response status code from the key service."
+          }
+        },
+        "keyServiceUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url of the external key service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error related to an external key service."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#KeyServiceErrorErrorInfoEnum": {
+      "type": "enum",
+      "members": {
+        "KEY_SERVICE_ERROR_INFO_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KEY_SERVICE_ERROR_INFO_UNSPECIFIED"
+          }
+        },
+        "MALFORMED_JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MALFORMED_JSON"
+          }
+        },
+        "MISSING_KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISSING_KEY"
+          }
+        },
+        "MISSING_SIGNATURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISSING_SIGNATURE"
+          }
+        },
+        "MISSING_ALGORITHM_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISSING_ALGORITHM_NAME"
+          }
+        },
+        "UNSUPPORTED_ALGORITHM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSUPPORTED_ALGORITHM"
+          }
+        },
+        "FETCH_REQUEST_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FETCH_REQUEST_ERROR"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#SuspiciousActivity": {
+      "type": "structure",
+      "members": {
+        "events": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#SuspiciousActivitySecurityDetailList",
+          "traits": {
+            "smithy.api#documentation": "Required. The list of security events."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the user this alert was created for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A mobile suspicious activity alert. Derived from audit logs."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#SuspiciousActivitySecurityDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#SuspiciousActivitySecurityDetail"
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#VaultAcceleratedDeletion": {
+      "type": "structure",
+      "members": {
+        "appType": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#VaultAcceleratedDeletionAppTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Currentlty only Gmail is supported as app type"
+          }
+        },
+        "actionType": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#VaultAcceleratedDeletionActionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The action can be one of create and cancel"
+          }
+        },
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Matter ID of the accelerated deletion request intended to be used to construct the Vault UI link to the AD request"
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The UTC timestamp of when the AD request was created"
+          }
+        },
+        "deletionRequestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Accelerated deletion request ID intended to be used to construct the Vault UI link to the AD request"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alert that is triggered when a Vault accelerated deletion request is created or canceled."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#VaultAcceleratedDeletionAppTypeEnum": {
+      "type": "enum",
+      "members": {
+        "VAULT_ACCELERATED_DELETION_APP_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VAULT_ACCELERATED_DELETION_APP_TYPE_UNSPECIFIED"
+          }
+        },
+        "VAULT_ACCELERATED_DELETION_APP_TYPE_GMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VAULT_ACCELERATED_DELETION_APP_TYPE_GMAIL"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#VaultAcceleratedDeletionActionTypeEnum": {
+      "type": "enum",
+      "members": {
+        "VAULT_ACCELERATED_DELETION_ACTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VAULT_ACCELERATED_DELETION_ACTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "VAULT_ACCELERATED_DELETION_ACTION_TYPE_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VAULT_ACCELERATED_DELETION_ACTION_TYPE_CREATE"
+          }
+        },
+        "VAULT_ACCELERATED_DELETION_ACTION_TYPE_CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VAULT_ACCELERATED_DELETION_ACTION_TYPE_CANCEL"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#CsvRow": {
+      "type": "structure",
+      "members": {
+        "entries": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The data entries in a CSV file row, as a string array rather than a single comma-separated string."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A representation of a single data row in a CSV file."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#ListAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A query string for filtering alert results. For more details, see [Query filters](https://developers.google.com/workspace/admin/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/workspace/admin/alertcenter/reference/filter-fields#alerts.list).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The requested page size. Server may return fewer items than requested. If unspecified, server picks an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The sort order of the list results. If not specified results may be returned in arbitrary order. You can sort the results in descending order based on the creation timestamp using `order_by=\"create_time desc\"`. Currently, supported sorting are `create_time asc`, `create_time desc`, `update_time desc`",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return. If empty, a new iteration is started. To continue an iteration, pass in the value from the previous ListAlertsResponse's next_page_token field.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique identifier of the Google Workspace account of the customer the alerts are associated with. The `customer_id` must have the initial \"C\" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).",
+            "smithy.api#httpQuery": "customerId"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#ListAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#ListAlertsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#ListAlertsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/alerts"
+        },
+        "smithy.api#documentation": "Lists the alerts.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#BatchUndeleteAlertsRequest_": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#BatchUndeleteAlertsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#BatchUndeleteAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#BatchUndeleteAlertsRequest_"
+      },
+      "output": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#BatchUndeleteAlertsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/alerts:batchUndelete"
+        },
+        "smithy.api#documentation": "Performs batch undelete operation on alerts."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#UndeleteAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "alertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The identifier of the alert to undelete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#UndeleteAlertRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#UndeleteAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#UndeleteAlertsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/alerts/{alertId}:undelete"
+        },
+        "smithy.api#documentation": "Restores, or \"undeletes\", an alert that was marked for deletion within the past 30 days. Attempting to undelete an alert which was marked for deletion over 30 days ago (which has been removed from the Alert Center database) or a nonexistent alert returns a `NOT_FOUND` error. Attempting to undelete an alert which has not been marked for deletion has no effect."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#GetAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "alertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The identifier of the alert to retrieve.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial \"C\" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).",
+            "smithy.api#httpQuery": "customerId"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#GetAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#GetAlertsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/alerts/{alertId}"
+        },
+        "smithy.api#documentation": "Gets the specified alert. Attempting to get a nonexistent alert returns `NOT_FOUND` error."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#DeleteAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial \"C\" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).",
+            "smithy.api#httpQuery": "customerId"
+          }
+        },
+        "alertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The identifier of the alert to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#DeleteAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#DeleteAlertsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta1/alerts/{alertId}"
+        },
+        "smithy.api#documentation": "Marks the specified alert for deletion. An alert that has been marked for deletion is removed from Alert Center after 30 days. Marking an alert for deletion has no effect on an alert which has already been marked for deletion. Attempting to mark a nonexistent alert for deletion results in a `NOT_FOUND` error."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#GetMetadataAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "alertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The identifier of the alert this metadata belongs to.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique identifier of the Google Workspace account of the customer the alert metadata is associated with. The `customer_id` must have the initial \"C\" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).",
+            "smithy.api#httpQuery": "customerId"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#GetMetadataAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#GetMetadataAlertsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#AlertMetadata"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/alerts/{alertId}/metadata"
+        },
+        "smithy.api#documentation": "Returns the metadata of an alert. Attempting to get metadata for a non-existent alert returns `NOT_FOUND` error."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#BatchDeleteAlertsRequest_": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#BatchDeleteAlertsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#BatchDeleteAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#BatchDeleteAlertsRequest_"
+      },
+      "output": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#BatchDeleteAlertsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/alerts:batchDelete"
+        },
+        "smithy.api#documentation": "Performs batch delete operation on alerts."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#CreateAlertsFeedbackRequest": {
+      "type": "structure",
+      "members": {
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial \"C\" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).",
+            "smithy.api#httpQuery": "customerId"
+          }
+        },
+        "alertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The identifier of the alert this feedback belongs to.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#AlertFeedback",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#CreateAlertsFeedback": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#CreateAlertsFeedbackRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#AlertFeedback"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/alerts/{alertId}/feedback"
+        },
+        "smithy.api#documentation": "Creates new feedback for an alert. Attempting to create a feedback for a non-existent alert returns `NOT_FOUND` error. Attempting to create a feedback for an alert that is marked for deletion returns `FAILED_PRECONDITION' error."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#ListAlertsFeedbackRequest": {
+      "type": "structure",
+      "members": {
+        "alertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The alert identifier. The \"-\" wildcard could be used to represent all alerts.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial \"C\" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).",
+            "smithy.api#httpQuery": "customerId"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A query string for filtering alert feedback results. For more details, see [Query filters](https://developers.google.com/workspace/admin/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/workspace/admin/alertcenter/reference/filter-fields#alerts.feedback.list).",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#ListAlertsFeedback": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#ListAlertsFeedbackRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#ListAlertFeedbackResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/alerts/{alertId}/feedback"
+        },
+        "smithy.api#documentation": "Lists all the feedback for an alert. Attempting to list feedbacks for a non-existent alert returns `NOT_FOUND` error."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#UpdateSettingsV1beta1Request": {
+      "type": "structure",
+      "members": {
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique identifier of the Google Workspace account of the customer the alert settings are associated with. The `customer_id` must have the initial \"C\" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).",
+            "smithy.api#httpQuery": "customerId"
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Settings",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#UpdateSettingsV1beta1": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#UpdateSettingsV1beta1Request"
+      },
+      "output": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#Settings"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta1/settings"
+        },
+        "smithy.api#documentation": "Updates the customer-level settings."
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#GetSettingsV1beta1Request": {
+      "type": "structure",
+      "members": {
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique identifier of the Google Workspace account of the customer the alert settings are associated with. The `customer_id` must/ have the initial \"C\" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).",
+            "smithy.api#httpQuery": "customerId"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.alertcenter_v1beta1#GetSettingsV1beta1": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#GetSettingsV1beta1Request"
+      },
+      "output": {
+        "target": "com.googleworkspace.alertcenter_v1beta1#Settings"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.alertcenter_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/settings"
+        },
+        "smithy.api#documentation": "Returns customer-level settings."
+      }
+    }
+  }
+}

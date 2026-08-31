@@ -1,0 +1,2080 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "meet",
+    "version": "v2",
+    "title": "Google Meet API",
+    "baseUrl": "https://meet.googleapis.com/"
+  },
+  "shapes": {
+    "com.googleworkspace.meet_v2#Recording": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the recording ended."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the recording. Format: `conferenceRecords/{conference_record}/recordings/{recording}` where `{recording}` is a 1:1 mapping to each unique recording session during the conference."
+          }
+        },
+        "driveDestination": {
+          "target": "com.googleworkspace.meet_v2#DriveDestination",
+          "traits": {
+            "smithy.api#documentation": "Output only. Recording is saved to Google Drive as an MP4 file. The `drive_destination` includes the Drive `fileId` that can be used to download the file using the `files.get` method of the Drive API."
+          }
+        },
+        "state": {
+          "target": "com.googleworkspace.meet_v2#RecordingStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Current state."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the recording started."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata about a recording created during a conference."
+      }
+    },
+    "com.googleworkspace.meet_v2#RecordingStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STARTED"
+          }
+        },
+        "ENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENDED"
+          }
+        },
+        "FILE_GENERATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FILE_GENERATED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#TranscriptionConfig": {
+      "type": "structure",
+      "members": {
+        "autoTranscriptionGeneration": {
+          "target": "com.googleworkspace.meet_v2#TranscriptionConfigAutoTranscriptionGenerationEnum",
+          "traits": {
+            "smithy.api#documentation": "Defines whether the content of a meeting is automatically transcribed when someone with the privilege to transcribe joins the meeting."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration related to transcription in a meeting space."
+      }
+    },
+    "com.googleworkspace.meet_v2#TranscriptionConfigAutoTranscriptionGenerationEnum": {
+      "type": "enum",
+      "members": {
+        "AUTO_GENERATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTO_GENERATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ON"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OFF"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#EndActiveConferenceRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request to end an ongoing conference of a space."
+      }
+    },
+    "com.googleworkspace.meet_v2#SmartNote": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the smart notes started."
+          }
+        },
+        "docsDestination": {
+          "target": "com.googleworkspace.meet_v2#DocsDestination",
+          "traits": {
+            "smithy.api#documentation": "Output only. The Google Doc destination where the smart notes are saved."
+          }
+        },
+        "state": {
+          "target": "com.googleworkspace.meet_v2#SmartNoteStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Current state."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifier. Resource name of the smart notes. Format: `conferenceRecords/{conference_record}/smartNotes/{smart_note}`, where `{smart_note}` is a 1:1 mapping to each unique smart notes session of the conference."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the smart notes stopped."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for a smart note generated from a conference. It refers to the notes generated from Take Notes with Gemini during the conference."
+      }
+    },
+    "com.googleworkspace.meet_v2#SmartNoteStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STARTED"
+          }
+        },
+        "ENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENDED"
+          }
+        },
+        "FILE_GENERATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FILE_GENERATED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#PhoneAccess": {
+      "type": "structure",
+      "members": {
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP 47/LDML language code for the language associated with this phone access. To be parsed by the i18n LanguageCode utility. Examples: \"es-419\" for Latin American Spanish, \"fr-CA\" for Canadian French."
+          }
+        },
+        "pin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PIN that users must enter after dialing the given number. The PIN consists of only decimal digits and the length may vary."
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CLDR/ISO 3166 region code for the country associated with this phone access. To be parsed by the i18n RegionCode utility. Example: \"SE\" for Sweden."
+          }
+        },
+        "phoneNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The phone number to dial for this meeting space in E.164 format. Full phone number with a leading '+' character."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Phone access contains information required to dial into a conference using a regional phone number and a PIN that is specific to that phone number."
+      }
+    },
+    "com.googleworkspace.meet_v2#ListSmartNotesResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to be circulated back for further List call if current List doesn't include all the smart notes. Unset if all smart notes are returned."
+          }
+        },
+        "smartNotes": {
+          "target": "com.googleworkspace.meet_v2#SmartNoteList",
+          "traits": {
+            "smithy.api#documentation": "List of smart notes in one page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListSmartNotes method."
+      }
+    },
+    "com.googleworkspace.meet_v2#SmartNoteList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.meet_v2#SmartNote"
+      }
+    },
+    "com.googleworkspace.meet_v2#ConferenceRecord": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the conference started. Always set."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the conference ended. Set for past conferences. Unset if the conference is ongoing."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server enforced expiration time for when this conference record resource is deleted. The resource is deleted 30 days after the conference ends."
+          }
+        },
+        "space": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The space where the conference was held."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Resource name of the conference record. Format: `conferenceRecords/{conference_record}` where `{conference_record}` is a unique ID for each instance of a call within a space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Single instance of a meeting held in a space."
+      }
+    },
+    "com.googleworkspace.meet_v2#SpaceConfig": {
+      "type": "structure",
+      "members": {
+        "entryPointAccess": {
+          "target": "com.googleworkspace.meet_v2#SpaceConfigEntryPointAccessEnum",
+          "traits": {
+            "smithy.api#documentation": "Defines the entry points that can be used to join meetings hosted in this meeting space. Default: EntryPointAccess.ALL"
+          }
+        },
+        "accessType": {
+          "target": "com.googleworkspace.meet_v2#SpaceConfigAccessTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Access type of the meeting space that determines who can join without knocking. Default: The user's default access settings. Controlled by the user's admin for enterprise users or RESTRICTED."
+          }
+        },
+        "moderationRestrictions": {
+          "target": "com.googleworkspace.meet_v2#ModerationRestrictions",
+          "traits": {
+            "smithy.api#documentation": "When moderation.ON, these restrictions go into effect for the meeting. When moderation.OFF, will be reset to default ModerationRestrictions."
+          }
+        },
+        "artifactConfig": {
+          "target": "com.googleworkspace.meet_v2#ArtifactConfig",
+          "traits": {
+            "smithy.api#documentation": "Configuration pertaining to the auto-generated artifacts that the meeting supports."
+          }
+        },
+        "moderation": {
+          "target": "com.googleworkspace.meet_v2#SpaceConfigModerationEnum",
+          "traits": {
+            "smithy.api#documentation": "The pre-configured moderation mode for the Meeting. Default: Controlled by the user's policies."
+          }
+        },
+        "attendanceReportGenerationType": {
+          "target": "com.googleworkspace.meet_v2#SpaceConfigAttendanceReportGenerationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether attendance report is enabled for the meeting space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration pertaining to a meeting space."
+      }
+    },
+    "com.googleworkspace.meet_v2#SpaceConfigEntryPointAccessEnum": {
+      "type": "enum",
+      "members": {
+        "ENTRY_POINT_ACCESS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTRY_POINT_ACCESS_UNSPECIFIED"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        },
+        "CREATOR_APP_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATOR_APP_ONLY"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#SpaceConfigAccessTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ACCESS_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCESS_TYPE_UNSPECIFIED"
+          }
+        },
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPEN"
+          }
+        },
+        "TRUSTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRUSTED"
+          }
+        },
+        "RESTRICTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESTRICTED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#SpaceConfigModerationEnum": {
+      "type": "enum",
+      "members": {
+        "MODERATION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MODERATION_UNSPECIFIED"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OFF"
+          }
+        },
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ON"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#SpaceConfigAttendanceReportGenerationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ATTENDANCE_REPORT_GENERATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTENDANCE_REPORT_GENERATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "GENERATE_REPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GENERATE_REPORT"
+          }
+        },
+        "DO_NOT_GENERATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DO_NOT_GENERATE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#SignedinUser": {
+      "type": "structure",
+      "members": {
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Unique ID for the user. Interoperable with Admin SDK API and People API. Format: `users/{user}`"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. For a personal device, it's the user's first name and last name. For a robot account, it's the administrator-specified device name. For example, \"Altostrat Room\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A signed-in user can be: a) An individual joining from a personal computer, mobile device, or through companion mode. b) A robot account used by conference room devices."
+      }
+    },
+    "com.googleworkspace.meet_v2#AnonymousUser": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. User provided name when they join a conference anonymously."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User who joins anonymously (meaning not signed into a Google Account)."
+      }
+    },
+    "com.googleworkspace.meet_v2#ListParticipantSessionsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to be circulated back for further List call if current List doesn't include all the participants. Unset if all participants are returned."
+          }
+        },
+        "participantSessions": {
+          "target": "com.googleworkspace.meet_v2#ParticipantSessionList",
+          "traits": {
+            "smithy.api#documentation": "List of participants in one page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of ListParticipants method."
+      }
+    },
+    "com.googleworkspace.meet_v2#ParticipantSessionList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.meet_v2#ParticipantSession"
+      }
+    },
+    "com.googleworkspace.meet_v2#RecordingConfig": {
+      "type": "structure",
+      "members": {
+        "autoRecordingGeneration": {
+          "target": "com.googleworkspace.meet_v2#RecordingConfigAutoRecordingGenerationEnum",
+          "traits": {
+            "smithy.api#documentation": "Defines whether a meeting space is automatically recorded when someone with the privilege to record joins the meeting."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration related to recording in a meeting space."
+      }
+    },
+    "com.googleworkspace.meet_v2#RecordingConfigAutoRecordingGenerationEnum": {
+      "type": "enum",
+      "members": {
+        "AUTO_GENERATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTO_GENERATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ON"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OFF"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.googleworkspace.meet_v2#ListParticipantsResponse": {
+      "type": "structure",
+      "members": {
+        "participants": {
+          "target": "com.googleworkspace.meet_v2#ParticipantList",
+          "traits": {
+            "smithy.api#documentation": "List of participants in one page."
+          }
+        },
+        "totalSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total, exact number of `participants`. By default, this field isn't included in the response. Set the field mask in [SystemParameterContext](https://cloud.google.com/apis/docs/system-parameters) to receive this field in the response."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to be circulated back for further List call if current List doesn't include all the participants. Unset if all participants are returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of ListParticipants method."
+      }
+    },
+    "com.googleworkspace.meet_v2#ParticipantList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.meet_v2#Participant"
+      }
+    },
+    "com.googleworkspace.meet_v2#Participant": {
+      "type": "structure",
+      "members": {
+        "signedinUser": {
+          "target": "com.googleworkspace.meet_v2#SignedinUser",
+          "traits": {
+            "smithy.api#documentation": "Signed-in user."
+          }
+        },
+        "anonymousUser": {
+          "target": "com.googleworkspace.meet_v2#AnonymousUser",
+          "traits": {
+            "smithy.api#documentation": "Anonymous user."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the participant. Format: `conferenceRecords/{conference_record}/participants/{participant}`"
+          }
+        },
+        "latestEndTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when the participant left the meeting for the last time. This can be null if it's an active meeting."
+          }
+        },
+        "earliestStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when the participant first joined the meeting."
+          }
+        },
+        "phoneUser": {
+          "target": "com.googleworkspace.meet_v2#PhoneUser",
+          "traits": {
+            "smithy.api#documentation": "User calling from their phone."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User who attended or is attending a conference."
+      }
+    },
+    "com.googleworkspace.meet_v2#ArtifactConfig": {
+      "type": "structure",
+      "members": {
+        "transcriptionConfig": {
+          "target": "com.googleworkspace.meet_v2#TranscriptionConfig",
+          "traits": {
+            "smithy.api#documentation": "Configuration for auto-transcript."
+          }
+        },
+        "smartNotesConfig": {
+          "target": "com.googleworkspace.meet_v2#SmartNotesConfig",
+          "traits": {
+            "smithy.api#documentation": "Configuration for auto-smart-notes."
+          }
+        },
+        "recordingConfig": {
+          "target": "com.googleworkspace.meet_v2#RecordingConfig",
+          "traits": {
+            "smithy.api#documentation": "Configuration for recording."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration related to meeting artifacts potentially generated by this meeting space."
+      }
+    },
+    "com.googleworkspace.meet_v2#TranscriptEntry": {
+      "type": "structure",
+      "members": {
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Language of spoken text, such as \"en-US\". IETF BCP 47 syntax (https://tools.ietf.org/html/bcp47)"
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the transcript entry ended."
+          }
+        },
+        "participant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Refers to the participant who speaks."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the entry. Format: \"conferenceRecords/{conference_record}/transcripts/{transcript}/entries/{entry}\""
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The transcribed text of the participant's voice, at maximum 10K words. Note that the limit is subject to change."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the transcript entry started."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Single entry for one user’s speech during a transcript session."
+      }
+    },
+    "com.googleworkspace.meet_v2#DriveDestination": {
+      "type": "structure",
+      "members": {
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The `fileId` for the underlying MP4 file. For example, \"1kuceFZohVoCh6FulBHxwy6I15Ogpc4hP\". Use `$ GET https://www.googleapis.com/drive/v3/files/{$fileId}?alt=media` to download the blob. For more information, see https://developers.google.com/drive/api/v3/reference/files/get."
+          }
+        },
+        "exportUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Link used to play back the recording file in the browser. For example, `https://drive.google.com/file/d/{$fileId}/view`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Export location where a recording file is saved in Google Drive."
+      }
+    },
+    "com.googleworkspace.meet_v2#ActiveConference": {
+      "type": "structure",
+      "members": {
+        "conferenceRecord": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reference to 'ConferenceRecord' resource. Format: `conferenceRecords/{conference_record}` where `{conference_record}` is a unique ID for each instance of a call within a space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Active conference."
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecordsResponse": {
+      "type": "structure",
+      "members": {
+        "conferenceRecords": {
+          "target": "com.googleworkspace.meet_v2#ConferenceRecordList",
+          "traits": {
+            "smithy.api#documentation": "List of conferences in one page."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to be circulated back for further List call if current List does NOT include all the Conferences. Unset if all conferences have been returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of ListConferenceRecords method."
+      }
+    },
+    "com.googleworkspace.meet_v2#ConferenceRecordList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.meet_v2#ConferenceRecord"
+      }
+    },
+    "com.googleworkspace.meet_v2#SmartNotesConfig": {
+      "type": "structure",
+      "members": {
+        "autoSmartNotesGeneration": {
+          "target": "com.googleworkspace.meet_v2#SmartNotesConfigAutoSmartNotesGenerationEnum",
+          "traits": {
+            "smithy.api#documentation": "Defines whether to automatically generate a summary and recap of the meeting for all invitees in the organization when someone with the privilege to enable smart notes joins the meeting."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration related to smart notes in a meeting space. For more information about smart notes, see [\"Take notes for me\" in Google Meet](https://support.google.com/meet/answer/14754931)."
+      }
+    },
+    "com.googleworkspace.meet_v2#SmartNotesConfigAutoSmartNotesGenerationEnum": {
+      "type": "enum",
+      "members": {
+        "AUTO_GENERATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTO_GENERATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ON"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OFF"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#PhoneUser": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Partially redacted user's phone number when calling."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User dialing in from a phone where the user's identity is unknown because they haven't signed in with a Google Account."
+      }
+    },
+    "com.googleworkspace.meet_v2#ListTranscriptsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to be circulated back for further List call if current List doesn't include all the transcripts. Unset if all transcripts are returned."
+          }
+        },
+        "transcripts": {
+          "target": "com.googleworkspace.meet_v2#TranscriptList",
+          "traits": {
+            "smithy.api#documentation": "List of transcripts in one page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListTranscripts method."
+      }
+    },
+    "com.googleworkspace.meet_v2#TranscriptList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.meet_v2#Transcript"
+      }
+    },
+    "com.googleworkspace.meet_v2#Transcript": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the transcript. Format: `conferenceRecords/{conference_record}/transcripts/{transcript}`, where `{transcript}` is a 1:1 mapping to each unique transcription session of the conference."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the transcript stopped."
+          }
+        },
+        "docsDestination": {
+          "target": "com.googleworkspace.meet_v2#DocsDestination",
+          "traits": {
+            "smithy.api#documentation": "Output only. Where the Google Docs transcript is saved."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the transcript started."
+          }
+        },
+        "state": {
+          "target": "com.googleworkspace.meet_v2#TranscriptStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Current state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for a transcript generated from a conference. It refers to the ASR (Automatic Speech Recognition) result of user's speech during the conference."
+      }
+    },
+    "com.googleworkspace.meet_v2#TranscriptStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STARTED"
+          }
+        },
+        "ENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENDED"
+          }
+        },
+        "FILE_GENERATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FILE_GENERATED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#ParticipantSession": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Session id."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the user session starts."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the user session ends. Unset if the user session hasn’t ended."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Refers to each unique join or leave session when a user joins a conference from a device. Note that any time a user joins the conference a new unique ID is assigned. That means if a user joins a space multiple times from the same device, they're assigned different IDs, and are also be treated as different participant sessions."
+      }
+    },
+    "com.googleworkspace.meet_v2#ListRecordingsResponse": {
+      "type": "structure",
+      "members": {
+        "recordings": {
+          "target": "com.googleworkspace.meet_v2#RecordingList",
+          "traits": {
+            "smithy.api#documentation": "List of recordings in one page."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to be circulated back for further List call if current List doesn't include all the recordings. Unset if all recordings are returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListRecordings method."
+      }
+    },
+    "com.googleworkspace.meet_v2#RecordingList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.meet_v2#Recording"
+      }
+    },
+    "com.googleworkspace.meet_v2#GatewaySipAccess": {
+      "type": "structure",
+      "members": {
+        "sipAccessCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The permanent numeric code for manual entry on specially configured devices."
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Session Initiation Protocol (SIP) URI the conference can be reached through. The string is in one of these formats: * \"sip:USER_ID@GATEWAY_ADDRESS\" * \"sips:USER_ID@GATEWAY_ADDRESS\" where USER_ID is the 13-digit universal pin (with the future option to support using a Meet meeting code as well), and GATEWAY_ADDRESS is a valid address to be resolved using a DNS SRV lookup, or a dotted quad."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details how to join the conference through a SIP gateway."
+      }
+    },
+    "com.googleworkspace.meet_v2#Space": {
+      "type": "structure",
+      "members": {
+        "config": {
+          "target": "com.googleworkspace.meet_v2#SpaceConfig",
+          "traits": {
+            "smithy.api#documentation": "Configuration pertaining to the meeting space."
+          }
+        },
+        "meetingUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. URI used to join meetings consisting of `https://meet.google.com/` followed by the `meeting_code`. For example, `https://meet.google.com/abc-mnop-xyz`."
+          }
+        },
+        "gatewaySipAccess": {
+          "target": "com.googleworkspace.meet_v2#GatewaySipAccessList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The SIP-based access methods that can be used to join the conference. Can be empty."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Resource name of the space. Format: `spaces/{space}`. `{space}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. For more information, see [How Meet identifies a meeting space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space)."
+          }
+        },
+        "phoneAccess": {
+          "target": "com.googleworkspace.meet_v2#PhoneAccessList",
+          "traits": {
+            "smithy.api#documentation": "Output only. All regional phone access methods for this meeting space. Can be empty."
+          }
+        },
+        "activeConference": {
+          "target": "com.googleworkspace.meet_v2#ActiveConference",
+          "traits": {
+            "smithy.api#documentation": "Active conference, if it exists."
+          }
+        },
+        "meetingCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Type friendly unique string used to join the meeting. Format: `[a-z]+-[a-z]+-[a-z]+`. For example, `abc-mnop-xyz`. The maximum length is 128 characters. Can only be used as an alias of the space name to get the space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Virtual place where conferences are held. Only one active conference can be held in one space at any given time."
+      }
+    },
+    "com.googleworkspace.meet_v2#GatewaySipAccessList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.meet_v2#GatewaySipAccess"
+      }
+    },
+    "com.googleworkspace.meet_v2#PhoneAccessList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.meet_v2#PhoneAccess"
+      }
+    },
+    "com.googleworkspace.meet_v2#ModerationRestrictions": {
+      "type": "structure",
+      "members": {
+        "defaultJoinAsViewerType": {
+          "target": "com.googleworkspace.meet_v2#ModerationRestrictionsDefaultJoinAsViewerTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Defines whether to restrict the default role assigned to users as viewer."
+          }
+        },
+        "presentRestriction": {
+          "target": "com.googleworkspace.meet_v2#ModerationRestrictionsPresentRestrictionEnum",
+          "traits": {
+            "smithy.api#documentation": "Defines who has permission to share their screen in the meeting space."
+          }
+        },
+        "reactionRestriction": {
+          "target": "com.googleworkspace.meet_v2#ModerationRestrictionsReactionRestrictionEnum",
+          "traits": {
+            "smithy.api#documentation": "Defines who has permission to send reactions in the meeting space."
+          }
+        },
+        "chatRestriction": {
+          "target": "com.googleworkspace.meet_v2#ModerationRestrictionsChatRestrictionEnum",
+          "traits": {
+            "smithy.api#documentation": "Defines who has permission to send chat messages in the meeting space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines restrictions for features when the meeting is moderated."
+      }
+    },
+    "com.googleworkspace.meet_v2#ModerationRestrictionsDefaultJoinAsViewerTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DEFAULT_JOIN_AS_VIEWER_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEFAULT_JOIN_AS_VIEWER_TYPE_UNSPECIFIED"
+          }
+        },
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ON"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OFF"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#ModerationRestrictionsPresentRestrictionEnum": {
+      "type": "enum",
+      "members": {
+        "RESTRICTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESTRICTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "HOSTS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOSTS_ONLY"
+          }
+        },
+        "NO_RESTRICTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_RESTRICTION"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#ModerationRestrictionsReactionRestrictionEnum": {
+      "type": "enum",
+      "members": {
+        "RESTRICTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESTRICTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "HOSTS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOSTS_ONLY"
+          }
+        },
+        "NO_RESTRICTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_RESTRICTION"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#ModerationRestrictionsChatRestrictionEnum": {
+      "type": "enum",
+      "members": {
+        "RESTRICTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESTRICTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "HOSTS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOSTS_ONLY"
+          }
+        },
+        "NO_RESTRICTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_RESTRICTION"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#DocsDestination": {
+      "type": "structure",
+      "members": {
+        "document": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The document ID for the underlying Google Docs transcript file. For example, \"1kuceFZohVoCh6FulBHxwy6I15Ogpc4hP\". Use the `documents.get` method of the Google Docs API (https://developers.google.com/docs/api/reference/rest/v1/documents/get) to fetch the content."
+          }
+        },
+        "exportUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. URI for the Google Docs transcript file. Use `https://docs.google.com/document/d/{$DocumentId}/view` to browse the transcript in the browser."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Google Docs location where the transcript file is saved."
+      }
+    },
+    "com.googleworkspace.meet_v2#ListTranscriptEntriesResponse": {
+      "type": "structure",
+      "members": {
+        "transcriptEntries": {
+          "target": "com.googleworkspace.meet_v2#TranscriptEntryList",
+          "traits": {
+            "smithy.api#documentation": "List of TranscriptEntries in one page."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to be circulated back for further List call if current List doesn't include all the transcript entries. Unset if all entries are returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListTranscriptEntries method."
+      }
+    },
+    "com.googleworkspace.meet_v2#TranscriptEntryList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.meet_v2#TranscriptEntry"
+      }
+    },
+    "com.googleworkspace.meet_v2#PatchSpacesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Resource name of the space. Format: `spaces/{space}`. `{space}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. For more information, see [How Meet identifies a meeting space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Field mask used to specify the fields to be updated in the space. If update_mask isn't provided(not set, set with empty paths, or only has \"\" as paths), it defaults to update all fields provided with values in the request. Using \"*\" as update_mask will update all fields, including deleting fields not set in the request.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.meet_v2#Space",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.meet_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.meet_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.meet_v2#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.meet_v2#PatchSpaces": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#PatchSpacesRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#Space"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Updates details about a meeting space. For an example, see [Update a meeting space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#update-meeting-space)."
+      }
+    },
+    "com.googleworkspace.meet_v2#GetSpacesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the space. Format: `spaces/{space}` or `spaces/{meetingCode}`. `{space}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. `{meetingCode}` is an alias for the space. It's a typeable, unique character string and is non-case sensitive. For example, `abc-mnop-xyz`. The maximum length is 128 characters. A `meetingCode` shouldn't be stored long term as it can become dissociated from a meeting space and can be reused for different meeting spaces in the future. Generally, a `meetingCode` expires 365 days after last use. For more information, see [Learn about meeting codes in Google Meet](https://support.google.com/meet/answer/10710509). For more information, see [How Meet identifies a meeting space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#GetSpaces": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#GetSpacesRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#Space"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets details about a meeting space. For an example, see [Get a meeting space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#get-meeting-space)."
+      }
+    },
+    "com.googleworkspace.meet_v2#CreateSpacesRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.googleworkspace.meet_v2#Space",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#CreateSpaces": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#CreateSpacesRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#Space"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/spaces"
+        },
+        "smithy.api#documentation": "Creates a space."
+      }
+    },
+    "com.googleworkspace.meet_v2#EndActiveConferenceSpacesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the space. Format: `spaces/{space}`. `{space}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. For more information, see [How Meet identifies a meeting space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.meet_v2#EndActiveConferenceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#EndActiveConferenceSpaces": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#EndActiveConferenceSpacesRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:endActiveConference"
+        },
+        "smithy.api#documentation": "Ends an active conference (if there's one). For an example, see [End active conference](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#end-active-conference)."
+      }
+    },
+    "com.googleworkspace.meet_v2#GetConferenceRecordsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the conference.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#GetConferenceRecords": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#GetConferenceRecordsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#ConferenceRecord"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets a conference record by conference ID."
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecordsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. User specified filtering condition in [EBNF format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form). The following are the filterable fields: * `space.meeting_code` * `space.name` * `start_time` * `end_time` For example, consider the following filters: * `space.name = \"spaces/NAME\"` * `space.meeting_code = \"abc-mnop-xyz\"` * `start_time>=\"2024-01-01T00:00:00.000Z\" AND start_time<=\"2024-01-02T00:00:00.000Z\"` * `end_time IS NULL`",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page token returned from previous List Call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of conference records to return. The service might return fewer than this value. If unspecified, at most 25 conference records are returned. The maximum value is 100; values above 100 are coerced to 100. Maximum might change in the future.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecords": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#ListConferenceRecordsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#ListConferenceRecordsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/conferenceRecords"
+        },
+        "smithy.api#documentation": "Lists the conference records. By default, ordered by start time and in descending order.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecordsRecordingsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token returned from previous List Call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `conferenceRecords/{conference_record}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of recordings to return. The service might return fewer than this value. If unspecified, at most 10 recordings are returned. The maximum value is 100; values above 100 are coerced to 100. Maximum might change in the future.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecordsRecordings": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#ListConferenceRecordsRecordingsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#ListRecordingsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/recordings"
+        },
+        "smithy.api#documentation": "Lists the recording resources from the conference record. By default, ordered by start time and in ascending order.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#GetConferenceRecordsRecordingsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the recording.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#GetConferenceRecordsRecordings": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#GetConferenceRecordsRecordingsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#Recording"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets a recording by recording ID."
+      }
+    },
+    "com.googleworkspace.meet_v2#GetConferenceRecordsParticipantsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the participant.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#GetConferenceRecordsParticipants": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#GetConferenceRecordsParticipantsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#Participant"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets a participant by participant ID."
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecordsParticipantsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `conferenceRecords/{conference_record}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. User specified filtering condition in [EBNF format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form). The following are the filterable fields: * `earliest_start_time` * `latest_end_time` For example, `latest_end_time IS NULL` returns active participants in the conference.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of participants to return. The service might return fewer than this value. If unspecified, at most 100 participants are returned. The maximum value is 250; values above 250 are coerced to 250. Maximum might change in the future.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token returned from previous List Call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecordsParticipants": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#ListConferenceRecordsParticipantsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#ListParticipantsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/participants"
+        },
+        "smithy.api#documentation": "Lists the participants in a conference record. By default, ordered by join time and in descending order. This API supports `fields` as standard parameters like every other API. However, when the `fields` request parameter is omitted, this API defaults to `'participants/*, next_page_token'`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#GetConferenceRecordsParticipantsParticipantSessionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the participant.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#GetConferenceRecordsParticipantsParticipantSessions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#GetConferenceRecordsParticipantsParticipantSessionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#ParticipantSession"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets a participant session by participant session ID."
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecordsParticipantsParticipantSessionsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page token returned from previous List Call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of participant sessions to return. The service might return fewer than this value. If unspecified, at most 100 participants are returned. The maximum value is 250; values above 250 are coerced to 250. Maximum might change in the future.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `conferenceRecords/{conference_record}/participants/{participant}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. User specified filtering condition in [EBNF format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form). The following are the filterable fields: * `start_time` * `end_time` For example, `end_time IS NULL` returns active participant sessions in the conference record.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecordsParticipantsParticipantSessions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#ListConferenceRecordsParticipantsParticipantSessionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#ListParticipantSessionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/participantSessions"
+        },
+        "smithy.api#documentation": "Lists the participant sessions of a participant in a conference record. By default, ordered by join time and in descending order. This API supports `fields` as standard parameters like every other API. However, when the `fields` request parameter is omitted this API defaults to `'participantsessions/*, next_page_token'`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#GetConferenceRecordsTranscriptsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the transcript.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#GetConferenceRecordsTranscripts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#GetConferenceRecordsTranscriptsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#Transcript"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets a transcript by transcript ID."
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecordsTranscriptsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token returned from previous List Call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of transcripts to return. The service might return fewer than this value. If unspecified, at most 10 transcripts are returned. The maximum value is 100; values above 100 are coerced to 100. Maximum might change in the future.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `conferenceRecords/{conference_record}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecordsTranscripts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#ListConferenceRecordsTranscriptsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#ListTranscriptsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/transcripts"
+        },
+        "smithy.api#documentation": "Lists the set of transcripts from the conference record. By default, ordered by start time and in ascending order.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecordsTranscriptsEntriesRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token returned from previous List Call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of entries to return. The service might return fewer than this value. If unspecified, at most 10 entries are returned. The maximum value is 100; values above 100 are coerced to 100. Maximum might change in the future.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `conferenceRecords/{conference_record}/transcripts/{transcript}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecordsTranscriptsEntries": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#ListConferenceRecordsTranscriptsEntriesRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#ListTranscriptEntriesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/entries"
+        },
+        "smithy.api#documentation": "Lists the structured transcript entries per transcript. By default, ordered by start time and in ascending order. Note: The transcript entries returned by the Google Meet API might not match the transcription found in the Google Docs transcript file. This can occur when 1) we have interleaved speakers within milliseconds, or 2) the Google Docs transcript file is modified after generation.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#GetConferenceRecordsTranscriptsEntriesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the `TranscriptEntry`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#GetConferenceRecordsTranscriptsEntries": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#GetConferenceRecordsTranscriptsEntriesRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#TranscriptEntry"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets a `TranscriptEntry` resource by entry ID. Note: The transcript entries returned by the Google Meet API might not match the transcription found in the Google Docs transcript file. This can occur when 1) we have interleaved speakers within milliseconds, or 2) the Google Docs transcript file is modified after generation."
+      }
+    },
+    "com.googleworkspace.meet_v2#GetConferenceRecordsSmartNotesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the smart note. Format: conferenceRecords/{conference_record}/smartNotes/{smart_note}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#GetConferenceRecordsSmartNotes": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#GetConferenceRecordsSmartNotesRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#SmartNote"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets smart notes by smart note ID."
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecordsSmartNotesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of smart notes to return. The service might return fewer than this value. If unspecified, at most 10 smart notes are returned. The maximum value is 100; values above 100 are coerced to 100. Maximum might change in the future.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page token returned from previous List Call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `conferenceRecords/{conference_record}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.meet_v2#ListConferenceRecordsSmartNotes": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.meet_v2#ListConferenceRecordsSmartNotesRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.meet_v2#ListSmartNotesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.meet_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.meet_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/smartNotes"
+        },
+        "smithy.api#documentation": "Lists the set of smart notes from the conference record. By default, ordered by start time and in ascending order.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    }
+  }
+}

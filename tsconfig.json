@@ -459,6 +459,12 @@
     },
     {
       "path": "./packages/growthbook/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/google-workspace/tsconfig.json"
+    },
+    {
+      "path": "./packages/google-workspace/tsconfig.scripts.json"
     }
   ]
 }

@@ -1,0 +1,1980 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "gmailpostmastertools",
+    "version": "v2",
+    "title": "Gmail Postmaster Tools API",
+    "baseUrl": "https://gmailpostmastertools.googleapis.com/"
+  },
+  "shapes": {
+    "com.googleworkspace.gmailpostmastertools_v2#StringList": {
+      "type": "structure",
+      "members": {
+        "values": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#StringList_",
+          "traits": {
+            "smithy.api#documentation": "The string values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a list of strings."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#StringList_": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DomainStat": {
+      "type": "structure",
+      "members": {
+        "metric": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user-defined name from MetricDefinition.name in the request, used to correlate this result with the requested metric."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource name of the DomainStat resource. Format: domains/{domain}/domainStats/{domain_stat} The `{domain_stat}` segment is an opaque, server-generated ID. We recommend using the `metric` field to identify queried metrics instead of parsing the name."
+          }
+        },
+        "date": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Gmailpostmastertools_Date",
+          "traits": {
+            "smithy.api#documentation": "Optional. The specific date for these stats, if granularity is DAILY. This field is populated if the QueryDomainStatsRequest specified a DAILY aggregation granularity."
+          }
+        },
+        "value": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#StatisticValue",
+          "traits": {
+            "smithy.api#documentation": "The value of the corresponding metric."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Email statistics for a domain for a specified time period or date."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#QueryDomainStatsRequest": {
+      "type": "structure",
+      "members": {
+        "aggregationGranularity": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#QueryDomainStatsRequestAggregationGranularityEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The granularity at which to aggregate the statistics. If unspecified, defaults to DAILY."
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of DomainStats resources to return in the response. The server may return fewer than this value. If unspecified, a default value of 10 will be used. The maximum value is 200."
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name where the stats are queried. Format: domains/{domain}"
+          }
+        },
+        "metricDefinitions": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#MetricDefinitionList",
+          "traits": {
+            "smithy.api#documentation": "Required. The specific metrics to query. You can define a custom name for each metric, which will be used in the response."
+          }
+        },
+        "timeQuery": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#TimeQuery",
+          "traits": {
+            "smithy.api#documentation": "Required. The time range or specific dates for which to retrieve the metrics."
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous List request, if any. If the aggregation granularity is DAILY, the page token will be the encoded date + \"/\" + metric name. If the aggregation granularity is OVERALL, the page token will be the encoded metric name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for QueryDomainStats."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#QueryDomainStatsRequestAggregationGranularityEnum": {
+      "type": "enum",
+      "members": {
+        "AGGREGATION_GRANULARITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGGREGATION_GRANULARITY_UNSPECIFIED"
+          }
+        },
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        },
+        "OVERALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OVERALL"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#MetricDefinitionList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#MetricDefinition"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#VerifyDomainRequest": {
+      "type": "structure",
+      "members": {
+        "verificationMethod": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#VerifyDomainRequestVerificationMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The verification method used. Must be specified, i.e. TXT or CNAME."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Request message for VerifyDomain."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#VerifyDomainRequestVerificationMethodEnum": {
+      "type": "enum",
+      "members": {
+        "DOMAIN_VERIFICATION_METHOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMAIN_VERIFICATION_METHOD_UNSPECIFIED"
+          }
+        },
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TXT"
+          }
+        },
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNAME"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#Gmailpostmastertools_Date": {
+      "type": "structure",
+      "members": {
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#QueryDomainStatsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+          }
+        },
+        "domainStats": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#DomainStatList",
+          "traits": {
+            "smithy.api#documentation": "The list of domain statistics. Each DomainStat object contains the value for a metric requested in the QueryDomainStatsRequest."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for QueryDomainStats."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DomainStatList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#DomainStat"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DomainComplianceStatus": {
+      "type": "structure",
+      "members": {
+        "complianceData": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#DomainComplianceData",
+          "traits": {
+            "smithy.api#documentation": "Compliance data for the registrable domain part of the domain in `name`. For example, if `name` is `domains/example.com/complianceStatus`, this field contains compliance data for `example.com`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the domain's compliance status. Format: `domains/{domain_id}/complianceStatus`."
+          }
+        },
+        "subdomainComplianceData": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#DomainComplianceData",
+          "traits": {
+            "smithy.api#documentation": "Compliance data calculated specifically for the subdomain in `name`. This field is only populated if the domain in `name` is a subdomain that differs from its registrable domain (e.g., `sub.example.com`), and if compliance data is available for that specific subdomain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Compliance status for a domain."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DomainComplianceData": {
+      "type": "structure",
+      "members": {
+        "domainId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain that this data is for."
+          }
+        },
+        "deliverabilityStatusVerdict": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#DeliverabilityStatusVerdict",
+          "traits": {
+            "smithy.api#documentation": "Output only. Deliverability status verdict."
+          }
+        },
+        "honorUnsubscribeVerdict": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#HonorUnsubscribeVerdict",
+          "traits": {
+            "smithy.api#documentation": "Unsubscribe honoring compliance verdict."
+          }
+        },
+        "oneClickUnsubscribeVerdict": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#OneClickUnsubscribeVerdict",
+          "traits": {
+            "smithy.api#documentation": "One-click unsubscribe compliance verdict."
+          }
+        },
+        "rowData": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#ComplianceRowDataList",
+          "traits": {
+            "smithy.api#documentation": "Data for each of the rows of the table. Each message contains all the data that backs a single row."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Compliance data for a given domain."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#ComplianceRowDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#ComplianceRowData"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#OneClickUnsubscribeVerdict": {
+      "type": "structure",
+      "members": {
+        "reason": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#OneClickUnsubscribeVerdictReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "The specific reason for the compliance verdict. Must be empty if the status is compliant."
+          }
+        },
+        "status": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#ComplianceStatus",
+          "traits": {
+            "smithy.api#documentation": "The compliance status."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Compliance verdict for whether a sender meets the one-click unsubscribe compliance requirement."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#OneClickUnsubscribeVerdictReasonEnum": {
+      "type": "enum",
+      "members": {
+        "REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REASON_UNSPECIFIED"
+          }
+        },
+        "NO_UNSUB_GENERAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_UNSUB_GENERAL"
+          }
+        },
+        "NO_UNSUB_SPAM_REPORTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_UNSUB_SPAM_REPORTS"
+          }
+        },
+        "NO_UNSUB_PROMO_SPAM_REPORTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_UNSUB_PROMO_SPAM_REPORTS"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#ListUsersResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+          }
+        },
+        "users": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#UserList",
+          "traits": {
+            "smithy.api#documentation": "The users that have access to the domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Response message for ListUsers."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#UserList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#User"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#BatchQueryDomainStatsRequest": {
+      "type": "structure",
+      "members": {
+        "requests": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#QueryDomainStatsRequestList",
+          "traits": {
+            "smithy.api#documentation": "Required. A list of individual query requests. Each request can be for a different domain. A maximum of 100 requests can be included in a single batch."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for BatchQueryDomainStats."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#QueryDomainStatsRequestList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#QueryDomainStatsRequest"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DomainVerificationToken": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The verification token."
+          }
+        },
+        "verificationMethod": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#DomainVerificationTokenVerificationMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "The verification method used."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the domain verification token. Format: domains/{domain}/verificationToken"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): The DNS token a user can use to verify ownership of a domain."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DomainVerificationTokenVerificationMethodEnum": {
+      "type": "enum",
+      "members": {
+        "DOMAIN_VERIFICATION_METHOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMAIN_VERIFICATION_METHOD_UNSPECIFIED"
+          }
+        },
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TXT"
+          }
+        },
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNAME"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#Status": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#DocumentMap"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#BatchQueryDomainStatsResult": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Status",
+          "traits": {
+            "smithy.api#documentation": "The error status if the individual query failed."
+          }
+        },
+        "response": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#QueryDomainStatsResponse",
+          "traits": {
+            "smithy.api#documentation": "The successful response for the individual query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the result of a single QueryDomainStatsRequest within a batch."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#Domain": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the domain. Format: `domains/{domain_name}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com)."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The timestamp at which the domain was added to the user's account."
+          }
+        },
+        "verificationState": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#DomainVerificationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Information about a user's verification history and properties for the domain."
+          }
+        },
+        "lastVerifyTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp at which the domain was last verified by the user."
+          }
+        },
+        "permission": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#DomainPermissionEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. User's permission of this domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a domain registered by the user."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DomainVerificationStateEnum": {
+      "type": "enum",
+      "members": {
+        "VERIFICATION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERIFICATION_STATE_UNSPECIFIED"
+          }
+        },
+        "UNVERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNVERIFIED"
+          }
+        },
+        "VERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERIFIED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DomainPermissionEnum": {
+      "type": "enum",
+      "members": {
+        "PERMISSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMISSION_UNSPECIFIED"
+          }
+        },
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READER"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#ListDomainsResponse": {
+      "type": "structure",
+      "members": {
+        "domains": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#DomainList",
+          "traits": {
+            "smithy.api#documentation": "The domains that have been registered by the user."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListDomains."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DomainList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#Domain"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#BaseMetric": {
+      "type": "structure",
+      "members": {
+        "standardMetric": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#BaseMetricStandardMetricEnum",
+          "traits": {
+            "smithy.api#documentation": "A predefined standard metric."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the base metric to query, which can be a predefined standard metric or a user-defined custom metric (if supported in the future)."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#BaseMetricStandardMetricEnum": {
+      "type": "enum",
+      "members": {
+        "STANDARD_METRIC_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_METRIC_UNSPECIFIED"
+          }
+        },
+        "FEEDBACK_LOOP_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEEDBACK_LOOP_ID"
+          }
+        },
+        "FEEDBACK_LOOP_SPAM_RATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEEDBACK_LOOP_SPAM_RATE"
+          }
+        },
+        "SPAM_RATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPAM_RATE"
+          }
+        },
+        "AUTH_SUCCESS_RATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTH_SUCCESS_RATE"
+          }
+        },
+        "TLS_ENCRYPTION_MESSAGE_COUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TLS_ENCRYPTION_MESSAGE_COUNT"
+          }
+        },
+        "TLS_ENCRYPTION_RATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TLS_ENCRYPTION_RATE"
+          }
+        },
+        "DELIVERY_ERROR_COUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELIVERY_ERROR_COUNT"
+          }
+        },
+        "DELIVERY_ERROR_RATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELIVERY_ERROR_RATE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#CreateDomainRequest": {
+      "type": "structure",
+      "members": {
+        "domainId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The domain to add. e.g., \"example.com\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Request message for CreateDomain."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#VerifyDomainResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Response message for VerifyDomain."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DeliverabilityStatusVerdict": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#ComplianceStatus",
+          "traits": {
+            "smithy.api#documentation": "Output only. The compliance state."
+          }
+        },
+        "reason": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#DeliverabilityStatusVerdictReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The specific reason for the compliance verdict."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Verdict of domain deliverability status."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DeliverabilityStatusVerdictReasonEnum": {
+      "type": "enum",
+      "members": {
+        "REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REASON_UNSPECIFIED"
+          }
+        },
+        "MESSAGE_VOLUME_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MESSAGE_VOLUME_LOW"
+          }
+        },
+        "SMTP_ERRORS_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SMTP_ERRORS_HIGH"
+          }
+        },
+        "SENDER_NOT_COMPLIANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SENDER_NOT_COMPLIANT"
+          }
+        },
+        "SPAM_RATE_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPAM_RATE_HIGH"
+          }
+        },
+        "USER_FEEDBACK_NEGATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_FEEDBACK_NEGATIVE"
+          }
+        },
+        "USER_FEEDBACK_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_FEEDBACK_LOW"
+          }
+        },
+        "USER_FEEDBACK_POSITIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_FEEDBACK_POSITIVE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#BatchQueryDomainStatsResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#BatchQueryDomainStatsResultList",
+          "traits": {
+            "smithy.api#documentation": "A list of responses, one for each query in the BatchQueryDomainStatsRequest. The order of responses will correspond to the order of requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for BatchQueryDomainStats."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#BatchQueryDomainStatsResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#BatchQueryDomainStatsResult"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DateRanges": {
+      "type": "structure",
+      "members": {
+        "dateRanges": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#DateRangeList",
+          "traits": {
+            "smithy.api#documentation": "Required. The list of date ranges for which to retrieve data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of date ranges."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DateRangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#DateRange"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#ComplianceRowData": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#ComplianceStatus",
+          "traits": {
+            "smithy.api#documentation": "The compliance status for the requirement."
+          }
+        },
+        "requirement": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#ComplianceRowDataRequirementEnum",
+          "traits": {
+            "smithy.api#documentation": "The compliance requirement."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data for a single row of the compliance status table."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#ComplianceRowDataRequirementEnum": {
+      "type": "enum",
+      "members": {
+        "COMPLIANCE_REQUIREMENT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLIANCE_REQUIREMENT_UNSPECIFIED"
+          }
+        },
+        "SPF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPF"
+          }
+        },
+        "DKIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DKIM"
+          }
+        },
+        "SPF_AND_DKIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPF_AND_DKIM"
+          }
+        },
+        "DMARC_POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DMARC_POLICY"
+          }
+        },
+        "DMARC_ALIGNMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DMARC_ALIGNMENT"
+          }
+        },
+        "MESSAGE_FORMATTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MESSAGE_FORMATTING"
+          }
+        },
+        "DNS_RECORDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DNS_RECORDS"
+          }
+        },
+        "ENCRYPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENCRYPTION"
+          }
+        },
+        "USER_REPORTED_SPAM_RATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_REPORTED_SPAM_RATE"
+          }
+        },
+        "ONE_CLICK_UNSUBSCRIBE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONE_CLICK_UNSUBSCRIBE"
+          }
+        },
+        "HONOR_UNSUBSCRIBE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HONOR_UNSUBSCRIBE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#StatisticValue": {
+      "type": "structure",
+      "members": {
+        "doubleValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Double value."
+          }
+        },
+        "stringList": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of string values."
+          }
+        },
+        "intValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Integer value."
+          }
+        },
+        "stringValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String value."
+          }
+        },
+        "floatValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Float value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The actual value of a statistic."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#ComplianceStatus": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#ComplianceStatusStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The compliance status."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of a sender compliance requirement."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#ComplianceStatusStatusEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "COMPLIANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLIANT"
+          }
+        },
+        "NEEDS_WORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEEDS_WORK"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DateRange": {
+      "type": "structure",
+      "members": {
+        "start": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Gmailpostmastertools_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. The inclusive start date of the date range."
+          }
+        },
+        "end": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Gmailpostmastertools_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. The inclusive end date of the date range."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single date range defined by a start and end date."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#User": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the user was granted access."
+          }
+        },
+        "accessGranter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user that added the current user."
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's email address."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the user. Format: users/{user} Note: {user} is the user's email address."
+          }
+        },
+        "permission": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#UserPermissionEnum",
+          "traits": {
+            "smithy.api#documentation": "The permission level that the user has for the specified domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Information about a user's access to a domain."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#UserPermissionEnum": {
+      "type": "enum",
+      "members": {
+        "PERMISSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMISSION_UNSPECIFIED"
+          }
+        },
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READER"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#TimeQuery": {
+      "type": "structure",
+      "members": {
+        "dateList": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#DateList",
+          "traits": {
+            "smithy.api#documentation": "A list of specific dates."
+          }
+        },
+        "dateRanges": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#DateRanges",
+          "traits": {
+            "smithy.api#documentation": "A list of date ranges."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The date ranges or specific dates for which you want to retrieve data."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#HonorUnsubscribeVerdict": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#ComplianceStatus",
+          "traits": {
+            "smithy.api#documentation": "The compliance status."
+          }
+        },
+        "reason": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#HonorUnsubscribeVerdictReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "The specific reason for the compliance verdict. Must be empty if the status is compliant."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Compliance verdict for whether a sender meets the unsubscribe honoring compliance requirement."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#HonorUnsubscribeVerdictReasonEnum": {
+      "type": "enum",
+      "members": {
+        "REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REASON_UNSPECIFIED"
+          }
+        },
+        "NOT_HONORING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_HONORING"
+          }
+        },
+        "NOT_HONORING_TOO_FEW_CAMPAIGNS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_HONORING_TOO_FEW_CAMPAIGNS"
+          }
+        },
+        "NOT_HONORING_TOO_MANY_CAMPAIGNS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_HONORING_TOO_MANY_CAMPAIGNS"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DateList": {
+      "type": "structure",
+      "members": {
+        "dates": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Gmailpostmastertools_DateList",
+          "traits": {
+            "smithy.api#documentation": "Required. The list of specific dates for which to retrieve data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of specific dates."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#Gmailpostmastertools_DateList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#Gmailpostmastertools_Date"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#MetricDefinition": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The user-defined name for this metric. This name will be used as the key for this metric's value in the response."
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Optional filters to apply to the metric."
+          }
+        },
+        "baseMetric": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#BaseMetric",
+          "traits": {
+            "smithy.api#documentation": "Required. The underlying metric to query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines a specific metric to query, including a user-defined name, the base metric type, and optional filters."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#CreateUserRequest": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The user to create."
+          }
+        },
+        "permission": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#CreateUserRequestPermissionEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the permission level to give the user for the specified domain. If not specified, the default value for this field is READER."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Request message for CreateUser."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#CreateUserRequestPermissionEnum": {
+      "type": "enum",
+      "members": {
+        "PERMISSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMISSION_UNSPECIFIED"
+          }
+        },
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READER"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#VerifyDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The domain to verify.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#VerifyDomainRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#VerifyDomains": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#VerifyDomainsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#VerifyDomainResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:verify"
+        },
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Verifies a user's ownership of a domain at the DNS level. Note that this is distinct from checking if the user has OWNER status within IRDB."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#GetDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the domain. Format: `domains/{domain_name}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#GetDomains": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#GetDomainsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#Domain"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves detailed information about a domain registered by you. Returns NOT_FOUND if the domain is not registered by you. Domain represents the metadata of a domain that has been registered within the system and linked to a user."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#CreateDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#CreateDomainRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#CreateDomains": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#CreateDomainsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#Domain"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/domains"
+        },
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Adds a domain to the user's account. Returns INVALID_ARGUMENT if a domain is not provided. Returns ALREADY_EXISTS if the domain is already registered by the user."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DeleteDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The domain to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DeleteDomains": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#DeleteDomainsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Deletes a domain from the user's account. Returns NOT_FOUND if the domain is not registered by the user."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#ListDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer domains than requested. If unspecified, the default value for this field is 10. The maximum value for this field is 200.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#ListDomains": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#ListDomainsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#ListDomainsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/domains"
+        },
+        "smithy.api#documentation": "Retrieves a list of all domains registered by you, along with their corresponding metadata. The order of domains in the response is unspecified and non-deterministic. Newly registered domains will not necessarily be added to the end of this list.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#GetComplianceStatusDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the domain's compliance status to retrieve. Format: `domains/{domain_id}/complianceStatus`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#GetComplianceStatusDomains": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#GetComplianceStatusDomainsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#DomainComplianceStatus"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves the compliance status for a given domain. Returns PERMISSION_DENIED if you don't have permission to access compliance status for the domain."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#GetVerificationTokenDomainsVerificationMethodEnum": {
+      "type": "enum",
+      "members": {
+        "DOMAIN_VERIFICATION_METHOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMAIN_VERIFICATION_METHOD_UNSPECIFIED"
+          }
+        },
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TXT"
+          }
+        },
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNAME"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#GetVerificationTokenDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the verification token to retrieve. Format: `domains/{domain}/verificationToken`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "verificationMethod": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#GetVerificationTokenDomainsVerificationMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The verification method used. Must be specified, i.e. TXT or CNAME.",
+            "smithy.api#httpQuery": "verificationMethod"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#GetVerificationTokenDomains": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#GetVerificationTokenDomainsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#DomainVerificationToken"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Gets a verification token used for verifying a user's ownership over a domain."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#PatchDomainsUsersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the user. Format: users/{user} Note: {user} is the user's email address.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The list of fields to update.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#User",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#PatchDomainsUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#PatchDomainsUsersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#User"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Updates a user for a domain. Only Owners and Admins can execute this RPC, only a user's domain permission will be allowed to be updated. Returns NOT_FOUND if the user does not exist. Returns INVALID_ARGUMENT if a permission is not provided or is PERMISSION_UNSPECIFIED, NONE, or OWNER."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DeleteDomainsUsersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the user to delete. Format: domains/{domain}/users/{user}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#DeleteDomainsUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#DeleteDomainsUsersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Deletes a user from a domain. Returns NOT_FOUND if the user does not exist."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#GetDomainsUsersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the user to retrieve. Format: `domains/{domain}/users/{user}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#GetDomainsUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#GetDomainsUsersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#User"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Retrieves detailed information about a user that has access to a domain. Returns NOT_FOUND if the user does not exist."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#ListDomainsUsersRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name for which to list users. Format: `domains/{domain}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer users than requested. If unspecified, the default value for this field is 10. The maximum value for this field is 200.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#ListDomainsUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#ListDomainsUsersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#ListUsersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/users"
+        },
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Lists the users that have access to a domain.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#CreateDomainsUsersRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource where this user will be created. Format: domains/{domain}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#CreateUserRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#CreateDomainsUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#CreateDomainsUsersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#User"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/users"
+        },
+        "smithy.api#documentation": "[Developer Preview](https://developers.google.com/workspace/preview): Creates a user, who has access to a domain. Returns INVALID_ARGUMENT if a user is not provided."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#QueryDomainsDomainStatsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name where the stats are queried. Format: domains/{domain}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#QueryDomainStatsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#QueryDomainsDomainStats": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#QueryDomainsDomainStatsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#QueryDomainStatsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/domainStats:query"
+        },
+        "smithy.api#documentation": "Retrieves a list of domain statistics for a given domain and time period. Returns statistics only for dates where data is available. Returns PERMISSION_DENIED if you don't have permission to access DomainStats for the domain."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#BatchQueryDomainStatsRequest_": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#BatchQueryDomainStatsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v2#BatchQueryDomainStats": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#BatchQueryDomainStatsRequest_"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v2#BatchQueryDomainStatsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/domainStats:batchQuery"
+        },
+        "smithy.api#documentation": "Executes a batch of QueryDomainStats requests for multiple domains. Returns PERMISSION_DENIED if you don't have permission to access DomainStats for any of the requested domains."
+      }
+    }
+  }
+}

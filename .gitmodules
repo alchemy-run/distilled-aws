@@ -373,3 +373,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-growthbook.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/google-workspace/specs/spec-mirror-google-workspace"]
+	path = packages/google-workspace/specs/spec-mirror-google-workspace
+	url = https://github.com/distilled-mirror/spec-mirror-google-workspace.git
+	ignore = dirty
+	shallow = true
