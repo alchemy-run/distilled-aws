@@ -12,7 +12,13 @@
  * const features = yield* GrowthBook.Services.growthbook.listFeaturesV2({});
  * ```
  */
-export * from "./credentials.ts";
+export {
+  Credentials,
+  CredentialsFromEnv,
+  DEFAULT_API_BASE_URL,
+  fromApiKey,
+} from "./credentials.ts";
+export type { Config as GrowthBookClientConfig } from "./credentials.ts";
 export * from "./errors.ts";
 export * as T from "./traits.ts";
 export {
@@ -28,3 +34,9 @@ export * as Services from "./services/index.ts";
 // same-named shared ones from ./errors.ts — the ops actually raise the
 // service-local classes.
 export * from "./services/growthbook.ts";
+export {
+  BadRequest,
+  Conflict,
+  Forbidden,
+  NotFound,
+} from "./services/growthbook.ts";
