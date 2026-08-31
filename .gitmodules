@@ -343,3 +343,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-vanta.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/zendesk/specs/spec-mirror-zendesk"]
+	path = packages/zendesk/specs/spec-mirror-zendesk
+	url = https://github.com/distilled-mirror/spec-mirror-zendesk.git
+	ignore = dirty
+	shallow = true
