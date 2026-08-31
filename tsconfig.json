@@ -375,6 +375,12 @@
     },
     {
       "path": "./packages/remote/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/render/tsconfig.json"
+    },
+    {
+      "path": "./packages/render/tsconfig.scripts.json"
     }
   ]
 }
