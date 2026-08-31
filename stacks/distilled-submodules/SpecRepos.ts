@@ -113,6 +113,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "turbopuffer" },
   { package: "turso" },
   { package: "typesense" },
+  { package: "unkey" },
   { package: "vercel" },
   { package: "whop" },
   { package: "workos" },

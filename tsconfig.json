@@ -411,6 +411,12 @@
     },
     {
       "path": "./packages/turbopuffer/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/unkey/tsconfig.json"
+    },
+    {
+      "path": "./packages/unkey/tsconfig.scripts.json"
     }
   ]
 }
