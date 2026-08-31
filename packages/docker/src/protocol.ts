@@ -48,10 +48,13 @@ export const DockerProtocol: Layer.Layer<API.Protocol> =
       return yield* resolve;
     }),
     baseUrl: (creds) => creds.apiBaseUrl,
-    headers: (creds) =>
-      creds.apiKey
-        ? { Authorization: `Bearer ${Redacted.value(creds.apiKey)}` }
-        : {},
+    headers: (creds): Record<string, string> => {
+      const headers: Record<string, string> = {};
+      if (creds.apiKey !== undefined) {
+        headers.Authorization = `Bearer ${Redacted.value(creds.apiKey)}`;
+      }
+      return headers;
+    },
     // Docker's error body is `{ message: string }` — the factory's default
     // lenient envelope covers it.
     unknownError: ({ code, message, body }) =>

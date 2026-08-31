@@ -12,7 +12,13 @@
  * const containers = yield* Docker.Services.docker.containerList({});
  * ```
  */
-export * from "./credentials.ts";
+export {
+  Credentials,
+  CredentialsFromEnv,
+  DEFAULT_API_BASE_URL,
+  fromApiKey,
+} from "./credentials.ts";
+export type { Config as DockerClientConfig } from "./credentials.ts";
 export * from "./errors.ts";
 export * as T from "./traits.ts";
 export {
