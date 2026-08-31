@@ -417,6 +417,12 @@
     },
     {
       "path": "./packages/unkey/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/vanta/tsconfig.json"
+    },
+    {
+      "path": "./packages/vanta/tsconfig.scripts.json"
     }
   ]
 }
