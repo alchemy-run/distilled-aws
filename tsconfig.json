@@ -243,6 +243,12 @@
     },
     {
       "path": "./packages/resend/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/surrealdb/tsconfig.json"
+    },
+    {
+      "path": "./packages/surrealdb/tsconfig.scripts.json"
     }
   ]
 }
