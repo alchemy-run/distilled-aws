@@ -65,6 +65,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "customerio" },
   { package: "datadog" },
   { package: "discord" },
+  { package: "docker" },
   { package: "expo-eas" },
   { package: "fly-io" },
   { package: "gcp" },
