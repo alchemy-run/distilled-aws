@@ -1,0 +1,1188 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.spacetimedb.api#Ping": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/ping",
+          "code": 200
+        },
+        "smithy.api#documentation": "No-op connectivity probe.\n\nDoes nothing and returns no data. Clients can send requests to this endpoint to determine whether they are able to connect to SpacetimeDB."
+      }
+    },
+    "com.spacetimedb.api#PublishDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.spacetimedb.api#PublishDatabaseResponseSuccessOp": {
+      "type": "enum",
+      "members": {
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created"
+          }
+        },
+        "UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.spacetimedb.api#PublishDatabaseResponseSuccess": {
+      "type": "structure",
+      "members": {
+        "database_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "op": {
+          "target": "com.spacetimedb.api#PublishDatabaseResponseSuccessOp",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.spacetimedb.api#PublishDatabaseResponse": {
+      "type": "structure",
+      "members": {
+        "Success": {
+          "target": "com.spacetimedb.api#PublishDatabaseResponseSuccess",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#PublishDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.spacetimedb.api#PublishDatabaseRequest"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#PublishDatabaseResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/database",
+          "code": 200
+        },
+        "smithy.api#documentation": "Publish a new database given its module code.\n\nPublish a new database with no name. Accessible through the CLI as `spacetime publish`. Request body is a WebAssembly module in the binary format. If no Authorization header is provided, a new anonymous identity owns the database."
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "name_or_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Database name or Spacetime identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseResponseHostType": {
+      "type": "enum",
+      "members": {
+        "WASM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "wasm"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The module host type; currently always \"wasm\"."
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseResponse": {
+      "type": "structure",
+      "members": {
+        "database_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Spacetime identity of the database.",
+            "smithy.api#required": {}
+          }
+        },
+        "owner_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Spacetime identity of the database's owner.",
+            "smithy.api#required": {}
+          }
+        },
+        "host_type": {
+          "target": "com.spacetimedb.api#GetDatabaseResponseHostType",
+          "traits": {
+            "smithy.api#documentation": "The module host type; currently always \"wasm\".",
+            "smithy.api#required": {}
+          }
+        },
+        "initial_program": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hash of the WASM module with which the database was initialized.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#GetDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.spacetimedb.api#GetDatabaseRequest"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#GetDatabaseResponse"
+      },
+      "errors": [
+        {
+          "target": "com.spacetimedb.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/database/{name_or_identity}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a JSON description of a database.\n\nGet a database's identity, owner identity, host type, and a hash of its WASM module."
+      }
+    },
+    "com.spacetimedb.api#UpdateDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "name_or_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Database name or Spacetime identity."
+          }
+        },
+        "clear": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "clear",
+            "smithy.api#documentation": "Whether to clear any existing data when updating an existing database."
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.spacetimedb.api#UpdateDatabaseResponseSuccessOp": {
+      "type": "enum",
+      "members": {
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created"
+          }
+        },
+        "UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.spacetimedb.api#UpdateDatabaseResponseSuccess": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "database_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "op": {
+          "target": "com.spacetimedb.api#UpdateDatabaseResponseSuccessOp",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.spacetimedb.api#UpdateDatabaseResponse": {
+      "type": "structure",
+      "members": {
+        "Success": {
+          "target": "com.spacetimedb.api#UpdateDatabaseResponseSuccess",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#UpdateDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.spacetimedb.api#UpdateDatabaseRequest"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#UpdateDatabaseResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/v1/database/{name_or_identity}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Publish to a database given its module code.\n\nPublish to a database with the specified name or identity. If the name does not exist, creates a new database. Accessible through the CLI as `spacetime publish`."
+      }
+    },
+    "com.spacetimedb.api#DeleteDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "name_or_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Database name or Spacetime identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.spacetimedb.api#DeleteDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.spacetimedb.api#DeleteDatabaseRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.spacetimedb.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/database/{name_or_identity}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a database.\n\nDelete a database. Accessible through the CLI as `spacetime delete`. Deleting a database requires ownership."
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseNamesRequest": {
+      "type": "structure",
+      "members": {
+        "name_or_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Database name or Spacetime identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseNamesResponseNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.spacetimedb.api#GetDatabaseNamesResponse": {
+      "type": "structure",
+      "members": {
+        "names": {
+          "target": "com.spacetimedb.api#GetDatabaseNamesResponseNamesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseNames": {
+      "type": "operation",
+      "input": {
+        "target": "com.spacetimedb.api#GetDatabaseNamesRequest"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#GetDatabaseNamesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.spacetimedb.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/database/{name_or_identity}/names",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the names this database can be identified by."
+      }
+    },
+    "com.spacetimedb.api#AddDatabaseNameRequest": {
+      "type": "structure",
+      "members": {
+        "name_or_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Database name or Spacetime identity."
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.spacetimedb.api#AddDatabaseNameResponseSuccess": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String"
+        },
+        "database_result": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.spacetimedb.api#AddDatabaseNameResponse": {
+      "type": "structure",
+      "members": {
+        "Success": {
+          "target": "com.spacetimedb.api#AddDatabaseNameResponseSuccess",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#AddDatabaseName": {
+      "type": "operation",
+      "input": {
+        "target": "com.spacetimedb.api#AddDatabaseNameRequest"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#AddDatabaseNameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/database/{name_or_identity}/names",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a new name for this database.\n\nTakes as the request body a string containing the new name of the database."
+      }
+    },
+    "com.spacetimedb.api#SetDatabaseNamesRequestBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Names for this database."
+      }
+    },
+    "com.spacetimedb.api#SetDatabaseNamesRequest": {
+      "type": "structure",
+      "members": {
+        "name_or_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Database name or Spacetime identity."
+          }
+        },
+        "body": {
+          "target": "com.spacetimedb.api#SetDatabaseNamesRequestBodyList",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.spacetimedb.api#SetDatabaseNamesResponse": {
+      "type": "structure",
+      "members": {
+        "Success": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#SetDatabaseNames": {
+      "type": "operation",
+      "input": {
+        "target": "com.spacetimedb.api#SetDatabaseNamesRequest"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#SetDatabaseNamesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/v1/database/{name_or_identity}/names",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set the list of names for this database.\n\nSetting names requires ownership of the database."
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseIdentityRequest": {
+      "type": "structure",
+      "members": {
+        "name_or_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Database name or Spacetime identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseIdentityResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseIdentity": {
+      "type": "operation",
+      "input": {
+        "target": "com.spacetimedb.api#GetDatabaseIdentityRequest"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#GetDatabaseIdentityResponse"
+      },
+      "errors": [
+        {
+          "target": "com.spacetimedb.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/database/{name_or_identity}/identity",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the identity of a database.\n\nReturns a hex string of the specified database's identity."
+      }
+    },
+    "com.spacetimedb.api#CallReducerRequestBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "JSON array of arguments to the reducer."
+      }
+    },
+    "com.spacetimedb.api#CallReducerRequest": {
+      "type": "structure",
+      "members": {
+        "name_or_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Database name or Spacetime identity."
+          }
+        },
+        "reducer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the reducer or procedure."
+          }
+        },
+        "body": {
+          "target": "com.spacetimedb.api#CallReducerRequestBodyList",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.spacetimedb.api#CallReducerResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#CallReducer": {
+      "type": "operation",
+      "input": {
+        "target": "com.spacetimedb.api#CallReducerRequest"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#CallReducerResponse"
+      },
+      "errors": [
+        {
+          "target": "com.spacetimedb.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/database/{name_or_identity}/call/{reducer}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Invoke a reducer or procedure in a database.\n\nThe caller's identity is passed to the reducer via its ReducerContext. Request body is a JSON array of arguments."
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseSchemaRequest": {
+      "type": "structure",
+      "members": {
+        "name_or_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Database name or Spacetime identity."
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "version",
+            "smithy.api#documentation": "The version of RawModuleDef to return, e.g. 9."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseSchemaResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.spacetimedb.api#GetDatabaseSchemaResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.spacetimedb.api#GetDatabaseSchemaResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseSchema": {
+      "type": "operation",
+      "input": {
+        "target": "com.spacetimedb.api#GetDatabaseSchemaRequest"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#GetDatabaseSchemaResponse"
+      },
+      "errors": [
+        {
+          "target": "com.spacetimedb.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/database/{name_or_identity}/schema",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the schema for a database.\n\nReturns a RawModuleDef in JSON form. Accessible through the CLI as `spacetime describe`."
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseLogsRequest": {
+      "type": "structure",
+      "members": {
+        "name_or_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Database name or Spacetime identity."
+          }
+        },
+        "num_lines": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "num_lines",
+            "smithy.api#documentation": "Number of most-recent log lines to retrieve."
+          }
+        },
+        "follow": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "follow",
+            "smithy.api#documentation": "Whether to continue receiving new logs via a stream."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseLogsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#GetDatabaseLogs": {
+      "type": "operation",
+      "input": {
+        "target": "com.spacetimedb.api#GetDatabaseLogsRequest"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#GetDatabaseLogsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.spacetimedb.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/database/{name_or_identity}/logs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve logs from a database.\n\nViewing logs requires ownership of the database. Accessible through the CLI as `spacetime logs`. Returns text, or streaming text if follow is supplied."
+      }
+    },
+    "com.spacetimedb.api#ExecuteSqlRequest": {
+      "type": "structure",
+      "members": {
+        "name_or_identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Database name or Spacetime identity."
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.spacetimedb.api#ExecuteSqlResponseBodyItemRowsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "JSON-encoded ProductValues conforming to schema."
+      }
+    },
+    "com.spacetimedb.api#ExecuteSqlResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "schema": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "JSON-encoded ProductType of the returned rows.",
+            "smithy.api#required": {}
+          }
+        },
+        "rows": {
+          "target": "com.spacetimedb.api#ExecuteSqlResponseBodyItemRowsList",
+          "traits": {
+            "smithy.api#documentation": "JSON-encoded ProductValues conforming to schema.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.spacetimedb.api#ExecuteSqlResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.spacetimedb.api#ExecuteSqlResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.spacetimedb.api#ExecuteSqlResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.spacetimedb.api#ExecuteSqlResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#ExecuteSql": {
+      "type": "operation",
+      "input": {
+        "target": "com.spacetimedb.api#ExecuteSqlRequest"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#ExecuteSqlResponse"
+      },
+      "errors": [
+        {
+          "target": "com.spacetimedb.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/database/{name_or_identity}/sql",
+          "code": 200
+        },
+        "smithy.api#documentation": "Run a SQL query against a database.\n\nAccessible through the CLI as `spacetime sql`. Request body is SQL queries, separated by `;`. Anonymous callers only have access to public tables."
+      }
+    },
+    "com.spacetimedb.api#CreateIdentityResponse": {
+      "type": "structure",
+      "members": {
+        "identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#CreateIdentity": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#CreateIdentityResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/identity",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate a new identity and token.\n\nCreate a new identity. The returned token is an OpenID Connect compliant JWT signed by this SpacetimeDB host and is not portable to other clusters."
+      }
+    },
+    "com.spacetimedb.api#CreateWebsocketTokenResponse": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#CreateWebsocketToken": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#CreateWebsocketTokenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/identity/websocket-token",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate a short-lived access token for use in untrusted contexts.\n\nGenerate a short-lived access token which can be used in untrusted contexts, e.g. embedded in URLs. Requires Authorization."
+      }
+    },
+    "com.spacetimedb.api#GetPublicKeyResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#GetPublicKey": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#GetPublicKeyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/identity/public-key",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the public key used for verifying tokens.\n\nFetches the public key used by the database to verify tokens. Content-Type is application/pem-certificate-chain."
+      }
+    },
+    "com.spacetimedb.api#ListIdentityDatabasesRequest": {
+      "type": "structure",
+      "members": {
+        "identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A Spacetime identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.spacetimedb.api#ListIdentityDatabasesResponseIdentitiesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Identities of databases owned by the path identity."
+      }
+    },
+    "com.spacetimedb.api#ListIdentityDatabasesResponse": {
+      "type": "structure",
+      "members": {
+        "identities": {
+          "target": "com.spacetimedb.api#ListIdentityDatabasesResponseIdentitiesList",
+          "traits": {
+            "smithy.api#documentation": "Identities of databases owned by the path identity.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.spacetimedb.api#ListIdentityDatabases": {
+      "type": "operation",
+      "input": {
+        "target": "com.spacetimedb.api#ListIdentityDatabasesRequest"
+      },
+      "output": {
+        "target": "com.spacetimedb.api#ListIdentityDatabasesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/identity/{identity}/databases",
+          "code": 200
+        },
+        "smithy.api#documentation": "List databases owned by an identity."
+      }
+    },
+    "com.spacetimedb.api#VerifyIdentityRequest": {
+      "type": "structure",
+      "members": {
+        "identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A Spacetime identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.spacetimedb.api#VerifyIdentity": {
+      "type": "operation",
+      "input": {
+        "target": "com.spacetimedb.api#VerifyIdentityRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.spacetimedb.api#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/identity/{identity}/verify",
+          "code": 200
+        },
+        "smithy.api#documentation": "Verify an identity and token.\n\nVerify the validity of an identity/token pair. 204 if the token is valid and matches the identity; 400 if the token is valid but does not match; 401 if the token is invalid or missing."
+      }
+    },
+    "com.spacetimedb.api#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.spacetimedb.api#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.spacetimedb.api#SpacetimeDB": {
+      "type": "service",
+      "version": "2.0.0",
+      "operations": [
+        {
+          "target": "com.spacetimedb.api#Ping"
+        },
+        {
+          "target": "com.spacetimedb.api#PublishDatabase"
+        },
+        {
+          "target": "com.spacetimedb.api#GetDatabase"
+        },
+        {
+          "target": "com.spacetimedb.api#UpdateDatabase"
+        },
+        {
+          "target": "com.spacetimedb.api#DeleteDatabase"
+        },
+        {
+          "target": "com.spacetimedb.api#GetDatabaseNames"
+        },
+        {
+          "target": "com.spacetimedb.api#AddDatabaseName"
+        },
+        {
+          "target": "com.spacetimedb.api#SetDatabaseNames"
+        },
+        {
+          "target": "com.spacetimedb.api#GetDatabaseIdentity"
+        },
+        {
+          "target": "com.spacetimedb.api#CallReducer"
+        },
+        {
+          "target": "com.spacetimedb.api#GetDatabaseSchema"
+        },
+        {
+          "target": "com.spacetimedb.api#GetDatabaseLogs"
+        },
+        {
+          "target": "com.spacetimedb.api#ExecuteSql"
+        },
+        {
+          "target": "com.spacetimedb.api#CreateIdentity"
+        },
+        {
+          "target": "com.spacetimedb.api#CreateWebsocketToken"
+        },
+        {
+          "target": "com.spacetimedb.api#GetPublicKey"
+        },
+        {
+          "target": "com.spacetimedb.api#ListIdentityDatabases"
+        },
+        {
+          "target": "com.spacetimedb.api#VerifyIdentity"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "SpacetimeDB HTTP API",
+        "smithy.api#documentation": "HTTP management API for SpacetimeDB (/v1/database, /v1/identity, GET /v1/ping), assembled from https://spacetimedb.com/docs/http and https://spacetimedb.com/llms.txt. SpacetimeDB does not publish a first-party OpenAPI document. WebSocket subscribe and database-defined HTTP handler catch-alls are omitted."
+      }
+    }
+  }
+}
