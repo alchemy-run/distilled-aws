@@ -268,3 +268,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-intercom.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/launchdarkly/specs/spec-mirror-launchdarkly"]
+	path = packages/launchdarkly/specs/spec-mirror-launchdarkly
+	url = https://github.com/distilled-mirror/spec-mirror-launchdarkly.git
+	ignore = dirty
+	shallow = true

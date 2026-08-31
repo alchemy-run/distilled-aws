@@ -81,6 +81,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "inngest" },
   { package: "intercom" },
   { package: "kubernetes" },
+  { package: "launchdarkly" },
   { package: "mongodb-atlas" },
   { package: "modal" },
   { package: "neon" },

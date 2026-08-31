@@ -333,6 +333,12 @@
     },
     {
       "path": "./packages/intercom/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/launchdarkly/tsconfig.json"
+    },
+    {
+      "path": "./packages/launchdarkly/tsconfig.scripts.json"
     }
   ]
 }
