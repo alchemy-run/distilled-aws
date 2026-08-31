@@ -423,6 +423,12 @@
     },
     {
       "path": "./packages/vanta/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/zendesk/tsconfig.json"
+    },
+    {
+      "path": "./packages/zendesk/tsconfig.scripts.json"
     }
   ]
 }
