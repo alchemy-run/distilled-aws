@@ -1,0 +1,10 @@
+{
+  "description": "Declare the 403 issueListLabels answers for a credential that cannot read the repository. The Swagger document declares only 404 on the label list, yet a private repository the token is not a collaborator on is refused with 403 like every other repository-scoped read; undeclared, that surfaces as an out-of-union Forbidden a caller sweeping many repositories cannot skip without loosening types.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1repos~1{owner}~1{repo}~1labels/get/responses/403",
+      "value": { "$ref": "#/responses/forbidden" }
+    }
+  ]
+}

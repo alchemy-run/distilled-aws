@@ -1,0 +1,15 @@
+{
+  "description": "Rename adminCreateOrg's path parameter from `username` to `owner`. The route is `/admin/users/{username}/orgs` and its body, CreateOrgOption, carries a `username` of its own — the login of the organization being created. Two members cannot share a name on one request shape, and the converter resolves the clash in favour of the path label, so the organization login is silently dropped from the body and the generated input has no way to express it at all. `owner` names what the path parameter is (\"username of the user that will own the created organization\", per the spec) and leaves `username` for the body, where the wire name must stay `username`.",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/paths/~1admin~1users~1{username}~1orgs",
+      "path": "/paths/~1admin~1users~1{owner}~1orgs"
+    },
+    {
+      "op": "replace",
+      "path": "/paths/~1admin~1users~1{owner}~1orgs/post/parameters/0/name",
+      "value": "owner"
+    }
+  ]
+}

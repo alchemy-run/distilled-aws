@@ -1,0 +1,30 @@
+{
+  "description": "Declare the failures Forgejo's organization endpoints produce in practice but the Swagger document leaves out. The list endpoints (teams, team members, Actions secrets and variables) answer 403 for a credential that is not a member of the organization, exactly as the sibling repository lists do — undeclared, that surfaces as an out-of-union Forbidden a caller cannot handle without loosening types. createOrgRepo answers 409 for a repository name already taken under the organization, the same conflict createCurrentUserRepo does declare; without it a concurrent-create race cannot be recovered as an adoption.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1orgs~1{org}~1teams/get/responses/403",
+      "value": { "$ref": "#/responses/forbidden" }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1teams~1{id}~1members/get/responses/403",
+      "value": { "$ref": "#/responses/forbidden" }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1orgs~1{org}~1actions~1secrets/get/responses/403",
+      "value": { "$ref": "#/responses/forbidden" }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1orgs~1{org}~1actions~1variables/get/responses/403",
+      "value": { "$ref": "#/responses/forbidden" }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1orgs~1{org}~1repos/post/responses/409",
+      "value": { "$ref": "#/responses/conflict" }
+    }
+  ]
+}

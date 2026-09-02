@@ -1,0 +1,6192 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.forgejo.issue#IssueSearchIssuesRequestState": {
+      "type": "enum",
+      "members": {
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "open"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "closed"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueSearchIssuesRequestType": {
+      "type": "enum",
+      "members": {
+        "ISSUES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "issues"
+          }
+        },
+        "PULLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pulls"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueSearchIssuesRequestSort": {
+      "type": "enum",
+      "members": {
+        "RELEVANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "relevance"
+          }
+        },
+        "LATEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "latest"
+          }
+        },
+        "OLDEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oldest"
+          }
+        },
+        "RECENTUPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "recentupdate"
+          }
+        },
+        "LEASTUPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leastupdate"
+          }
+        },
+        "MOSTCOMMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mostcomment"
+          }
+        },
+        "LEASTCOMMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leastcomment"
+          }
+        },
+        "NEARDUEDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nearduedate"
+          }
+        },
+        "FARDUEDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "farduedate"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueSearchIssuesRequest": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.forgejo.issue#IssueSearchIssuesRequestState",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "State of the issue"
+          }
+        },
+        "labels": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "labels",
+            "smithy.api#documentation": "Comma-separated list of label names. Fetch only issues that have any of these labels. Non existent labels are discarded."
+          }
+        },
+        "milestones": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "milestones",
+            "smithy.api#documentation": "Comma-separated list of milestone names. Fetch only issues that have any of these milestones. Non existent milestones are discarded."
+          }
+        },
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q",
+            "smithy.api#documentation": "Search string"
+          }
+        },
+        "priority_repo_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "priority_repo_id",
+            "smithy.api#documentation": "Repository ID to prioritize in the results"
+          }
+        },
+        "type": {
+          "target": "com.forgejo.issue#IssueSearchIssuesRequestType",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#documentation": "Filter by issue type"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "Only show issues updated after the given time (RFC 3339 format)"
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "Only show issues updated before the given time (RFC 3339 format)"
+          }
+        },
+        "assigned": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "assigned",
+            "smithy.api#documentation": "Filter issues or pulls assigned to the authenticated user"
+          }
+        },
+        "created": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "created",
+            "smithy.api#documentation": "Filter issues or pulls created by the authenticated user"
+          }
+        },
+        "mentioned": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "mentioned",
+            "smithy.api#documentation": "Filter issues or pulls mentioning the authenticated user"
+          }
+        },
+        "review_requested": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "review_requested",
+            "smithy.api#documentation": "Filter pull requests where the authenticated user's review was requested"
+          }
+        },
+        "reviewed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "reviewed",
+            "smithy.api#documentation": "Filter pull requests reviewed by the authenticated user"
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "owner",
+            "smithy.api#documentation": "Filter by repository owner"
+          }
+        },
+        "team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team",
+            "smithy.api#documentation": "Filter by team (requires organization owner parameter)"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "Page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of items per page"
+          }
+        },
+        "sort": {
+          "target": "com.forgejo.issue#IssueSearchIssuesRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Type of sort"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#Issue": {
+      "type": "structure",
+      "members": {
+        "assets": {
+          "target": "com.forgejo.issue#IssueAssetsList"
+        },
+        "assignee": {
+          "target": "com.forgejo.issue#User"
+        },
+        "assignees": {
+          "target": "com.forgejo.issue#IssueAssigneesList"
+        },
+        "body": {
+          "target": "smithy.api#String"
+        },
+        "closed_at": {
+          "target": "smithy.api#String"
+        },
+        "comments": {
+          "target": "smithy.api#Integer"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "due_date": {
+          "target": "smithy.api#String"
+        },
+        "html_url": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "is_locked": {
+          "target": "smithy.api#Boolean"
+        },
+        "labels": {
+          "target": "com.forgejo.issue#IssueLabelsList"
+        },
+        "milestone": {
+          "target": "com.forgejo.issue#Milestone"
+        },
+        "number": {
+          "target": "smithy.api#Integer"
+        },
+        "original_author": {
+          "target": "smithy.api#String"
+        },
+        "original_author_id": {
+          "target": "smithy.api#Integer"
+        },
+        "pin_order": {
+          "target": "smithy.api#Integer"
+        },
+        "pull_request": {
+          "target": "com.forgejo.issue#PullRequestMeta"
+        },
+        "ref": {
+          "target": "smithy.api#String"
+        },
+        "repository": {
+          "target": "com.forgejo.issue#RepositoryMeta"
+        },
+        "state": {
+          "target": "smithy.api#String"
+        },
+        "title": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "user": {
+          "target": "com.forgejo.issue#User"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Issue represents an issue in a repository"
+      }
+    },
+    "com.forgejo.issue#Attachment": {
+      "type": "structure",
+      "members": {
+        "browser_download_url": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "download_count": {
+          "target": "smithy.api#Integer"
+        },
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "size": {
+          "target": "smithy.api#Integer"
+        },
+        "type": {
+          "target": "com.forgejo.issue#AttachmentType"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Attachment a generic attachment"
+      }
+    },
+    "com.forgejo.issue#AttachmentType": {
+      "type": "enum",
+      "members": {
+        "ATTACHMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "attachment"
+          }
+        },
+        "EXTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "external"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueAssetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Attachment"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#User": {
+      "type": "structure",
+      "members": {
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user active"
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the user's avatar"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's description"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "followers_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "user counts"
+          }
+        },
+        "following_count": {
+          "target": "smithy.api#Integer"
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's full name"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the user's profile page"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the user's id",
+            "smithy.api#required": {}
+          }
+        },
+        "is_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is the user an administrator"
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User locale"
+          }
+        },
+        "last_login": {
+          "target": "smithy.api#String"
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's location"
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's username",
+            "smithy.api#required": {}
+          }
+        },
+        "login_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's authentication sign-in name."
+          }
+        },
+        "prohibit_login": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user login prohibited"
+          }
+        },
+        "pronouns": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's pronouns"
+          }
+        },
+        "restricted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user restricted"
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ID of the user's Authentication Source"
+          }
+        },
+        "starred_repos_count": {
+          "target": "smithy.api#Integer"
+        },
+        "visibility": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User visibility level option: public, limited, private"
+          }
+        },
+        "website": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's website"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User represents a user"
+      }
+    },
+    "com.forgejo.issue#IssueAssigneesList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#User"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#Label": {
+      "type": "structure",
+      "members": {
+        "color": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "exclusive": {
+          "target": "smithy.api#Boolean"
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Label a label to an issue or a pr"
+      }
+    },
+    "com.forgejo.issue#IssueLabelsList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Label"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#Milestone": {
+      "type": "structure",
+      "members": {
+        "closed_at": {
+          "target": "smithy.api#String"
+        },
+        "closed_issues": {
+          "target": "smithy.api#Integer"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "due_on": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "open_issues": {
+          "target": "smithy.api#Integer"
+        },
+        "state": {
+          "target": "smithy.api#String"
+        },
+        "title": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Milestone milestone is a collection of issues on one repository"
+      }
+    },
+    "com.forgejo.issue#PullRequestMeta": {
+      "type": "structure",
+      "members": {
+        "draft": {
+          "target": "smithy.api#Boolean"
+        },
+        "html_url": {
+          "target": "smithy.api#String"
+        },
+        "merged": {
+          "target": "smithy.api#Boolean"
+        },
+        "merged_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "PullRequestMeta PR info if an issue is a PR"
+      }
+    },
+    "com.forgejo.issue#RepositoryMeta": {
+      "type": "structure",
+      "members": {
+        "full_name": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "owner": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "RepositoryMeta basic repository information"
+      }
+    },
+    "com.forgejo.issue#IssueSearchIssuesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Issue"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueSearchIssuesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueSearchIssuesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueSearchIssues": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueSearchIssuesRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueSearchIssuesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#BadRequest"
+        },
+        {
+          "target": "com.forgejo.issue#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/issues/search",
+          "code": 200
+        },
+        "smithy.api#documentation": "Search for issues across the repositories that the user has access to"
+      }
+    },
+    "com.forgejo.issue#IssueListIssuesRequestState": {
+      "type": "enum",
+      "members": {
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "closed"
+          }
+        },
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "open"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueListIssuesRequestType": {
+      "type": "enum",
+      "members": {
+        "ISSUES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "issues"
+          }
+        },
+        "PULLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pulls"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueListIssuesRequestSort": {
+      "type": "enum",
+      "members": {
+        "RELEVANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "relevance"
+          }
+        },
+        "LATEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "latest"
+          }
+        },
+        "OLDEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oldest"
+          }
+        },
+        "RECENTUPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "recentupdate"
+          }
+        },
+        "LEASTUPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leastupdate"
+          }
+        },
+        "MOSTCOMMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mostcomment"
+          }
+        },
+        "LEASTCOMMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leastcomment"
+          }
+        },
+        "NEARDUEDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nearduedate"
+          }
+        },
+        "FARDUEDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "farduedate"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueListIssuesRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "state": {
+          "target": "com.forgejo.issue#IssueListIssuesRequestState",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "whether issue is open or closed"
+          }
+        },
+        "labels": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "labels",
+            "smithy.api#documentation": "comma separated list of labels. Fetch only issues that have any of this labels. Non existent labels are discarded"
+          }
+        },
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q",
+            "smithy.api#documentation": "search string"
+          }
+        },
+        "type": {
+          "target": "com.forgejo.issue#IssueListIssuesRequestType",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#documentation": "filter by type (issues / pulls) if set"
+          }
+        },
+        "milestones": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "milestones",
+            "smithy.api#documentation": "comma separated list of milestone names or ids. It uses names and fall back to ids. Fetch only issues that have any of this milestones. Non existent milestones are discarded"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "Only show items updated after the given time. This is a timestamp in RFC 3339 format"
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "Only show items updated before the given time. This is a timestamp in RFC 3339 format"
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "created_by",
+            "smithy.api#documentation": "Only show items which were created by the given user"
+          }
+        },
+        "assigned_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "assigned_by",
+            "smithy.api#documentation": "Only show items for which the given user is assigned"
+          }
+        },
+        "mentioned_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "mentioned_by",
+            "smithy.api#documentation": "Only show items in which the given user was mentioned"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        },
+        "sort": {
+          "target": "com.forgejo.issue#IssueListIssuesRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Type of sort"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueListIssuesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Issue"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueListIssuesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueListIssuesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueListIssues": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueListIssuesRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueListIssuesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues",
+          "code": 200
+        },
+        "smithy.api#documentation": "List a repository's issues"
+      }
+    },
+    "com.forgejo.issue#IssueCreateIssueRequestAssigneesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueCreateIssueRequestLabelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "list of label ids"
+      }
+    },
+    "com.forgejo.issue#IssueCreateIssueRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "assignee": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "deprecated"
+          }
+        },
+        "assignees": {
+          "target": "com.forgejo.issue#IssueCreateIssueRequestAssigneesList"
+        },
+        "body": {
+          "target": "smithy.api#String"
+        },
+        "closed": {
+          "target": "smithy.api#Boolean"
+        },
+        "due_date": {
+          "target": "smithy.api#String"
+        },
+        "labels": {
+          "target": "com.forgejo.issue#IssueCreateIssueRequestLabelsList",
+          "traits": {
+            "smithy.api#documentation": "list of label ids"
+          }
+        },
+        "milestone": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "milestone id"
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String"
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueCreateIssue": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueCreateIssueRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Issue"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#UnprocessableEntity"
+        },
+        {
+          "target": "com.forgejo.issue#Locked"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an issue. If using deadline only the date will be taken into account, and time of day ignored."
+      }
+    },
+    "com.forgejo.issue#IssueGetRepoCommentsRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "if provided, only comments updated since the provided time are returned."
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "if provided, only comments updated before the provided time are returned."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#Comment": {
+      "type": "structure",
+      "members": {
+        "assets": {
+          "target": "com.forgejo.issue#CommentAssetsList",
+          "traits": {
+            "smithy.api#documentation": "The attachments to the comment"
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The body of the comment"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time of the comment's creation"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The HTML URL of the comment"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the comment"
+          }
+        },
+        "issue_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The HTML URL of the issue if the comment is posted on an issue, else empty string"
+          }
+        },
+        "original_author": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The original author that posted the comment if it was not posted locally, else empty string"
+          }
+        },
+        "original_author_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ID of the original author that posted the comment if it was not posted locally, else 0"
+          }
+        },
+        "pull_request_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The HTML URL of the pull request if the comment is posted on a pull request, else empty string"
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time of the comment's update"
+          }
+        },
+        "user": {
+          "target": "com.forgejo.issue#User"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Comment represents a comment on a commit or issue"
+      }
+    },
+    "com.forgejo.issue#CommentAssetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Attachment"
+      },
+      "traits": {
+        "smithy.api#documentation": "The attachments to the comment"
+      }
+    },
+    "com.forgejo.issue#IssueGetRepoCommentsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Comment"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueGetRepoCommentsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueGetRepoCommentsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetRepoComments": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueGetRepoCommentsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueGetRepoCommentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/comments",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all comments in a repository"
+      }
+    },
+    "com.forgejo.issue#IssueGetCommentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the comment"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueGetCommentRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Comment"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/comments/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a comment"
+      }
+    },
+    "com.forgejo.issue#IssueEditCommentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the comment to edit"
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The body of the comment",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time of the comment's update, needs admin or repository owner permission"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueEditComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueEditCommentRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Comment"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#Locked"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/repos/{owner}/{repo}/issues/comments/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Edit a comment"
+      }
+    },
+    "com.forgejo.issue#IssueDeleteCommentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of comment to delete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueDeleteComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueDeleteCommentRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/comments/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a comment"
+      }
+    },
+    "com.forgejo.issue#IssueListIssueCommentAttachmentsRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the comment"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueListIssueCommentAttachmentsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Attachment"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueListIssueCommentAttachmentsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueListIssueCommentAttachmentsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueListIssueCommentAttachments": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueListIssueCommentAttachmentsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueListIssueCommentAttachmentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/comments/{id}/assets",
+          "code": 200
+        },
+        "smithy.api#documentation": "List comment's attachments"
+      }
+    },
+    "com.forgejo.issue#IssueCreateIssueCommentAttachmentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the comment"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#documentation": "name of the attachment"
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "updated_at",
+            "smithy.api#documentation": "time of the attachment's creation. This is a timestamp in RFC 3339 format"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueCreateIssueCommentAttachment": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueCreateIssueCommentAttachmentRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Attachment"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#BadRequest"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#UnprocessableEntity"
+        },
+        {
+          "target": "com.forgejo.issue#Locked"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/comments/{id}/assets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a comment attachment"
+      }
+    },
+    "com.forgejo.issue#IssueGetIssueCommentAttachmentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the comment"
+          }
+        },
+        "attachment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the attachment to get"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetIssueCommentAttachment": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueGetIssueCommentAttachmentRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Attachment"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/comments/{id}/assets/{attachment_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a comment attachment"
+      }
+    },
+    "com.forgejo.issue#IssueEditIssueCommentAttachmentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the comment"
+          }
+        },
+        "attachment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the attachment to edit"
+          }
+        },
+        "browser_download_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "(Can only be set if existing attachment is of external type)"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueEditIssueCommentAttachment": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueEditIssueCommentAttachmentRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Attachment"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#Locked"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/repos/{owner}/{repo}/issues/comments/{id}/assets/{attachment_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Edit a comment attachment"
+      }
+    },
+    "com.forgejo.issue#IssueDeleteIssueCommentAttachmentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the comment"
+          }
+        },
+        "attachment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the attachment to delete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueDeleteIssueCommentAttachment": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueDeleteIssueCommentAttachmentRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#Locked"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/comments/{id}/assets/{attachment_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a comment attachment"
+      }
+    },
+    "com.forgejo.issue#IssueGetCommentReactionsRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the comment to edit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#Reaction": {
+      "type": "structure",
+      "members": {
+        "content": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "user": {
+          "target": "com.forgejo.issue#User"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reaction contain one reaction"
+      }
+    },
+    "com.forgejo.issue#IssueGetCommentReactionsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Reaction"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueGetCommentReactionsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueGetCommentReactionsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetCommentReactions": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueGetCommentReactionsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueGetCommentReactionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/comments/{id}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a list of reactions from a comment of an issue"
+      }
+    },
+    "com.forgejo.issue#IssuePostCommentReactionRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the comment to edit"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssuePostCommentReaction": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssuePostCommentReactionRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Reaction"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/comments/{id}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a reaction to a comment of an issue"
+      }
+    },
+    "com.forgejo.issue#IssueDeleteCommentReactionRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the comment to edit"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueDeleteCommentReaction": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueDeleteCommentReactionRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/comments/{id}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a reaction from a comment of an issue"
+      }
+    },
+    "com.forgejo.issue#IssueGetIssueRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue to get"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetIssue": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueGetIssueRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Issue"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/{index}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an issue"
+      }
+    },
+    "com.forgejo.issue#IssueEditIssueRequestAssigneesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueEditIssueRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue to edit"
+          }
+        },
+        "assignee": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "deprecated"
+          }
+        },
+        "assignees": {
+          "target": "com.forgejo.issue#IssueEditIssueRequestAssigneesList"
+        },
+        "body": {
+          "target": "smithy.api#String"
+        },
+        "due_date": {
+          "target": "smithy.api#String"
+        },
+        "milestone": {
+          "target": "smithy.api#Integer"
+        },
+        "ref": {
+          "target": "smithy.api#String"
+        },
+        "state": {
+          "target": "smithy.api#String"
+        },
+        "title": {
+          "target": "smithy.api#String"
+        },
+        "unset_due_date": {
+          "target": "smithy.api#Boolean"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueEditIssue": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueEditIssueRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Issue"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/repos/{owner}/{repo}/issues/{index}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Edit an issue. If using deadline only the date will be taken into account, and time of day ignored."
+      }
+    },
+    "com.forgejo.issue#IssueDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of issue to delete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/{index}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an issue"
+      }
+    },
+    "com.forgejo.issue#IssueListIssueAttachmentsRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueListIssueAttachmentsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Attachment"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueListIssueAttachmentsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueListIssueAttachmentsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueListIssueAttachments": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueListIssueAttachmentsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueListIssueAttachmentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/assets",
+          "code": 200
+        },
+        "smithy.api#documentation": "List issue's attachments"
+      }
+    },
+    "com.forgejo.issue#IssueCreateIssueAttachmentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#documentation": "name of the attachment"
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "updated_at",
+            "smithy.api#documentation": "time of the attachment's creation. This is a timestamp in RFC 3339 format"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueCreateIssueAttachment": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueCreateIssueAttachmentRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Attachment"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#BadRequest"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#UnprocessableEntity"
+        },
+        {
+          "target": "com.forgejo.issue#Locked"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/assets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an issue attachment"
+      }
+    },
+    "com.forgejo.issue#IssueGetIssueAttachmentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "attachment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the attachment to get"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetIssueAttachment": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueGetIssueAttachmentRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Attachment"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/assets/{attachment_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an issue attachment"
+      }
+    },
+    "com.forgejo.issue#IssueEditIssueAttachmentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "attachment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the attachment to edit"
+          }
+        },
+        "browser_download_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "(Can only be set if existing attachment is of external type)"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueEditIssueAttachment": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueEditIssueAttachmentRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Attachment"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#Locked"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/assets/{attachment_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Edit an issue attachment"
+      }
+    },
+    "com.forgejo.issue#IssueDeleteIssueAttachmentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "attachment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the attachment to delete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueDeleteIssueAttachment": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueDeleteIssueAttachmentRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#Locked"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/assets/{attachment_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an issue attachment"
+      }
+    },
+    "com.forgejo.issue#IssueListBlocksRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueListBlocksResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Issue"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueListBlocksResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueListBlocksResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueListBlocks": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueListBlocksRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueListBlocksResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/blocks",
+          "code": 200
+        },
+        "smithy.api#documentation": "List issues that are blocked by this issue"
+      }
+    },
+    "com.forgejo.issue#IssueCreateIssueBlockingRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueCreateIssueBlocking": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueCreateIssueBlockingRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Issue"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/blocks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Block the issue given in the body by the issue in path"
+      }
+    },
+    "com.forgejo.issue#IssueRemoveIssueBlockingRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueRemoveIssueBlocking": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueRemoveIssueBlockingRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Issue"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/blocks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unblock the issue given in the body by the issue in path"
+      }
+    },
+    "com.forgejo.issue#IssueGetCommentsRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "if provided, only comments updated since the specified time are returned."
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "if provided, only comments updated before the provided time are returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetCommentsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Comment"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueGetCommentsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueGetCommentsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetComments": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueGetCommentsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueGetCommentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/comments",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all comments on an issue"
+      }
+    },
+    "com.forgejo.issue#IssueCreateCommentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The body of the comment",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time of the comment's update, needs admin or repository owner permission"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueCreateComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueCreateCommentRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Comment"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#Locked"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/comments",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a comment to an issue"
+      }
+    },
+    "com.forgejo.issue#IssueEditIssueDeadlineRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue to create or update a deadline on"
+          }
+        },
+        "due_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueDeadline": {
+      "type": "structure",
+      "members": {
+        "due_date": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IssueDeadline represents an issue deadline"
+      }
+    },
+    "com.forgejo.issue#IssueEditIssueDeadline": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueEditIssueDeadlineRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueDeadline"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/deadline",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set an issue deadline. If set to null, the deadline is deleted. If using deadline only the date will be taken into account, and time of day ignored."
+      }
+    },
+    "com.forgejo.issue#IssueListIssueDependenciesRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueListIssueDependenciesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Issue"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueListIssueDependenciesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueListIssueDependenciesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueListIssueDependencies": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueListIssueDependenciesRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueListIssueDependenciesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/dependencies",
+          "code": 200
+        },
+        "smithy.api#documentation": "List an issue's dependencies, i.e all issues that block this issue."
+      }
+    },
+    "com.forgejo.issue#IssueCreateIssueDependenciesRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueCreateIssueDependencies": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueCreateIssueDependenciesRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Issue"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#Locked"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/dependencies",
+          "code": 200
+        },
+        "smithy.api#documentation": "Make the issue in the url depend on the issue in the form."
+      }
+    },
+    "com.forgejo.issue#IssueRemoveIssueDependenciesRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueRemoveIssueDependencies": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueRemoveIssueDependenciesRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Issue"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#Locked"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/dependencies",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove an issue dependency"
+      }
+    },
+    "com.forgejo.issue#IssueGetLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetLabelsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Label"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueGetLabelsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueGetLabelsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueGetLabelsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueGetLabelsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/labels",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an issue's labels"
+      }
+    },
+    "com.forgejo.issue#IssueAddLabelRequestLabelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Labels can be a list of integers representing label IDs\nor a list of strings representing label names"
+      }
+    },
+    "com.forgejo.issue#IssueAddLabelRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "labels": {
+          "target": "com.forgejo.issue#IssueAddLabelRequestLabelsList",
+          "traits": {
+            "smithy.api#documentation": "Labels can be a list of integers representing label IDs\nor a list of strings representing label names"
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueAddLabelResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Label"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueAddLabelResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueAddLabelResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueAddLabel": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueAddLabelRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueAddLabelResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/labels",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a label to an issue"
+      }
+    },
+    "com.forgejo.issue#IssueReplaceLabelsRequestLabelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Labels can be a list of integers representing label IDs\nor a list of strings representing label names"
+      }
+    },
+    "com.forgejo.issue#IssueReplaceLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "labels": {
+          "target": "com.forgejo.issue#IssueReplaceLabelsRequestLabelsList",
+          "traits": {
+            "smithy.api#documentation": "Labels can be a list of integers representing label IDs\nor a list of strings representing label names"
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueReplaceLabelsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Label"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueReplaceLabelsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueReplaceLabelsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueReplaceLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueReplaceLabelsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueReplaceLabelsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/labels",
+          "code": 200
+        },
+        "smithy.api#documentation": "Replace an issue's labels"
+      }
+    },
+    "com.forgejo.issue#IssueClearLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueClearLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueClearLabelsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/labels",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove all labels from an issue"
+      }
+    },
+    "com.forgejo.issue#IssueRemoveLabelRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name or id of the label to remove"
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueRemoveLabel": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueRemoveLabelRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/labels/{identifier}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a label from an issue"
+      }
+    },
+    "com.forgejo.issue#PinIssueRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of issue to pin"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#PinIssue": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#PinIssueRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/pin",
+          "code": 200
+        },
+        "smithy.api#documentation": "Pin an Issue"
+      }
+    },
+    "com.forgejo.issue#UnpinIssueRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of issue to unpin"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#UnpinIssue": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#UnpinIssueRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/pin",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unpin an Issue"
+      }
+    },
+    "com.forgejo.issue#MoveIssuePinRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of issue"
+          }
+        },
+        "position": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the new position"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#MoveIssuePin": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#MoveIssuePinRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/pin/{position}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Moves the Pin to the given Position"
+      }
+    },
+    "com.forgejo.issue#IssueGetIssueReactionsRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetIssueReactionsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Reaction"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueGetIssueReactionsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueGetIssueReactionsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetIssueReactions": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueGetIssueReactionsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueGetIssueReactionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a list reactions of an issue"
+      }
+    },
+    "com.forgejo.issue#IssuePostIssueReactionRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssuePostIssueReaction": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssuePostIssueReactionRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Reaction"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a reaction to an issue"
+      }
+    },
+    "com.forgejo.issue#IssueDeleteIssueReactionRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueDeleteIssueReaction": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueDeleteIssueReactionRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a reaction from an issue"
+      }
+    },
+    "com.forgejo.issue#IssueDeleteStopWatchRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue to stop the stopwatch on"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueDeleteStopWatch": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueDeleteStopWatchRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/stopwatch/delete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an issue's existing stopwatch."
+      }
+    },
+    "com.forgejo.issue#IssueStartStopWatchRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue to create the stopwatch on"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueStartStopWatch": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueStartStopWatchRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/stopwatch/start",
+          "code": 200
+        },
+        "smithy.api#documentation": "Start stopwatch on an issue."
+      }
+    },
+    "com.forgejo.issue#IssueStopStopWatchRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue to stop the stopwatch on"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueStopStopWatch": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueStopStopWatchRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/stopwatch/stop",
+          "code": 200
+        },
+        "smithy.api#documentation": "Stop an issue's existing stopwatch."
+      }
+    },
+    "com.forgejo.issue#IssueSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueSubscriptionsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#User"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueSubscriptionsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueSubscriptionsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueSubscriptionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/subscriptions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get users who subscribed on an issue."
+      }
+    },
+    "com.forgejo.issue#IssueCheckSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#WatchInfo": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "ignored": {
+          "target": "smithy.api#Boolean"
+        },
+        "reason": {
+          "target": "smithy.api#Document"
+        },
+        "repository_url": {
+          "target": "smithy.api#String"
+        },
+        "subscribed": {
+          "target": "smithy.api#Boolean"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "WatchInfo represents an API watch status of one repository"
+      }
+    },
+    "com.forgejo.issue#IssueCheckSubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueCheckSubscriptionRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#WatchInfo"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/subscriptions/check",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check if user is subscribed to an issue"
+      }
+    },
+    "com.forgejo.issue#IssueAddSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "user to subscribe"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueAddSubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueAddSubscriptionRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/subscriptions/{user}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Subscribe user to issue"
+      }
+    },
+    "com.forgejo.issue#IssueDeleteSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "user witch unsubscribe"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueDeleteSubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueDeleteSubscriptionRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/subscriptions/{user}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unsubscribe user from issue"
+      }
+    },
+    "com.forgejo.issue#IssueGetCommentsAndTimelineRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "if provided, only comments updated since the specified time are returned."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "if provided, only comments updated before the provided time are returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#TimelineComment": {
+      "type": "structure",
+      "members": {
+        "assignee": {
+          "target": "com.forgejo.issue#User"
+        },
+        "assignee_team": {
+          "target": "com.forgejo.issue#Team"
+        },
+        "body": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "dependent_issue": {
+          "target": "com.forgejo.issue#Issue"
+        },
+        "html_url": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "issue_url": {
+          "target": "smithy.api#String"
+        },
+        "label": {
+          "target": "com.forgejo.issue#Label"
+        },
+        "milestone": {
+          "target": "com.forgejo.issue#Milestone"
+        },
+        "new_ref": {
+          "target": "smithy.api#String"
+        },
+        "new_title": {
+          "target": "smithy.api#String"
+        },
+        "old_milestone": {
+          "target": "com.forgejo.issue#Milestone"
+        },
+        "old_project_id": {
+          "target": "smithy.api#Integer"
+        },
+        "old_ref": {
+          "target": "smithy.api#String"
+        },
+        "old_title": {
+          "target": "smithy.api#String"
+        },
+        "project_id": {
+          "target": "smithy.api#Integer"
+        },
+        "pull_request_url": {
+          "target": "smithy.api#String"
+        },
+        "ref_action": {
+          "target": "smithy.api#String"
+        },
+        "ref_comment": {
+          "target": "com.forgejo.issue#Comment"
+        },
+        "ref_commit_sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "commit SHA where issue/PR was referenced"
+          }
+        },
+        "ref_issue": {
+          "target": "com.forgejo.issue#Issue"
+        },
+        "removed_assignee": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "whether the assignees were removed or added"
+          }
+        },
+        "resolve_doer": {
+          "target": "com.forgejo.issue#User"
+        },
+        "review_id": {
+          "target": "smithy.api#Integer"
+        },
+        "tracked_time": {
+          "target": "com.forgejo.issue#TrackedTime"
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "user": {
+          "target": "com.forgejo.issue#User"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "TimelineComment represents a timeline comment (comment of any type) on a commit or issue"
+      }
+    },
+    "com.forgejo.issue#Team": {
+      "type": "structure",
+      "members": {
+        "can_create_org_repo": {
+          "target": "smithy.api#Boolean"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "includes_all_repositories": {
+          "target": "smithy.api#Boolean"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organization": {
+          "target": "com.forgejo.issue#Organization"
+        },
+        "permission": {
+          "target": "com.forgejo.issue#TeamPermission"
+        },
+        "units": {
+          "target": "com.forgejo.issue#TeamUnitsList"
+        },
+        "units_map": {
+          "target": "com.forgejo.issue#TeamUnitsMapMap"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Team represents a team in an organization"
+      }
+    },
+    "com.forgejo.issue#Organization": {
+      "type": "structure",
+      "members": {
+        "avatar_url": {
+          "target": "smithy.api#String"
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "full_name": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "repo_admin_change_team_access": {
+          "target": "smithy.api#Boolean"
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "deprecated",
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "smithy.api#String"
+        },
+        "website": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization represents an organization"
+      }
+    },
+    "com.forgejo.issue#TeamPermission": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "owner"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#TeamUnitsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#TeamUnitsMapMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#TrackedTime": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "issue": {
+          "target": "com.forgejo.issue#Issue"
+        },
+        "issue_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "deprecated (only for backwards compatibility)"
+          }
+        },
+        "time": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time in seconds"
+          }
+        },
+        "user_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "deprecated (only for backwards compatibility)"
+          }
+        },
+        "user_name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "TrackedTime worked time for an issue / pr"
+      }
+    },
+    "com.forgejo.issue#IssueGetCommentsAndTimelineResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#TimelineComment"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueGetCommentsAndTimelineResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueGetCommentsAndTimelineResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetCommentsAndTimeline": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueGetCommentsAndTimelineRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueGetCommentsAndTimelineResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/timeline",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all comments and events on an issue"
+      }
+    },
+    "com.forgejo.issue#IssueTrackedTimesRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user",
+            "smithy.api#documentation": "optional filter by user (available for issue managers)"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "Only show times updated after the given time. This is a timestamp in RFC 3339 format"
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "Only show times updated before the given time. This is a timestamp in RFC 3339 format"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueTrackedTimesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#TrackedTime"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueTrackedTimesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueTrackedTimesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueTrackedTimes": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueTrackedTimesRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueTrackedTimesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/times",
+          "code": 200
+        },
+        "smithy.api#documentation": "List an issue's tracked times"
+      }
+    },
+    "com.forgejo.issue#IssueAddTimeRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "time": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "time in seconds",
+            "smithy.api#required": {}
+          }
+        },
+        "user_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User who spent the time (optional)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueAddTime": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueAddTimeRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#TrackedTime"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#BadRequest"
+        },
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/times",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add tracked time to a issue"
+      }
+    },
+    "com.forgejo.issue#IssueResetTimeRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue to add tracked time to"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueResetTime": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueResetTimeRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#BadRequest"
+        },
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/times",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reset a tracked time of an issue"
+      }
+    },
+    "com.forgejo.issue#IssueDeleteTimeRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "index of the issue"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of time to delete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueDeleteTime": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueDeleteTimeRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#BadRequest"
+        },
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/{index}/times/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete specific tracked time"
+      }
+    },
+    "com.forgejo.issue#IssueListLabelsRequestSort": {
+      "type": "enum",
+      "members": {
+        "MOSTISSUES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mostissues"
+          }
+        },
+        "LEASTISSUES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leastissues"
+          }
+        },
+        "REVERSEALPHABETICALLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reversealphabetically"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueListLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "sort": {
+          "target": "com.forgejo.issue#IssueListLabelsRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Specifies the sorting method: mostissues, leastissues, or reversealphabetically."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueListLabelsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Label"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueListLabelsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueListLabelsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueListLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueListLabelsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueListLabelsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#Forbidden"
+        },
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/labels",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all of a repository's labels"
+      }
+    },
+    "com.forgejo.issue#IssueCreateLabelRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "color": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "exclusive": {
+          "target": "smithy.api#Boolean"
+        },
+        "is_archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueCreateLabel": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueCreateLabelRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Label"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/labels",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a label"
+      }
+    },
+    "com.forgejo.issue#IssueGetLabelRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the label to get"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetLabel": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueGetLabelRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Label"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/labels/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a single label"
+      }
+    },
+    "com.forgejo.issue#IssueEditLabelRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the label to edit"
+          }
+        },
+        "color": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "exclusive": {
+          "target": "smithy.api#Boolean"
+        },
+        "is_archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueEditLabel": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueEditLabelRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Label"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        },
+        {
+          "target": "com.forgejo.issue#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/repos/{owner}/{repo}/labels/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a label"
+      }
+    },
+    "com.forgejo.issue#IssueDeleteLabelRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the label to delete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueDeleteLabel": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueDeleteLabelRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/labels/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a label"
+      }
+    },
+    "com.forgejo.issue#IssueGetMilestonesListRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "Milestone state, Recognized values are open, closed and all. Defaults to \"open\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#documentation": "filter by milestone name"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetMilestonesListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.issue#Milestone"
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueGetMilestonesListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.issue#IssueGetMilestonesListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetMilestonesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueGetMilestonesListRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#IssueGetMilestonesListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/milestones",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all of a repository's opened milestones"
+      }
+    },
+    "com.forgejo.issue#IssueCreateMilestoneRequestState": {
+      "type": "enum",
+      "members": {
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "open"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "closed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.issue#IssueCreateMilestoneRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "due_on": {
+          "target": "smithy.api#String"
+        },
+        "state": {
+          "target": "com.forgejo.issue#IssueCreateMilestoneRequestState"
+        },
+        "title": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueCreateMilestone": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueCreateMilestoneRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Milestone"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/milestones",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a milestone"
+      }
+    },
+    "com.forgejo.issue#IssueGetMilestoneRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the milestone to get, identified by ID and if not available by name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueGetMilestone": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueGetMilestoneRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Milestone"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/milestones/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a milestone"
+      }
+    },
+    "com.forgejo.issue#IssueEditMilestoneRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the milestone to edit, identified by ID and if not available by name"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "due_on": {
+          "target": "smithy.api#String"
+        },
+        "state": {
+          "target": "smithy.api#String"
+        },
+        "title": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueEditMilestone": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueEditMilestoneRequest"
+      },
+      "output": {
+        "target": "com.forgejo.issue#Milestone"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/repos/{owner}/{repo}/milestones/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a milestone"
+      }
+    },
+    "com.forgejo.issue#IssueDeleteMilestoneRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the milestone to delete, identified by ID and if not available by name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.issue#IssueDeleteMilestone": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.issue#IssueDeleteMilestoneRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.issue#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/milestones/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a milestone"
+      }
+    },
+    "com.forgejo.issue#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.forgejo.issue#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.forgejo.issue#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.forgejo.issue#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.forgejo.issue#Locked": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 423,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 423
+          }
+        ]
+      }
+    },
+    "com.forgejo.issue#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.forgejo.issue#ForgejoIssue": {
+      "type": "service",
+      "version": "16.0.3",
+      "operations": [
+        {
+          "target": "com.forgejo.issue#IssueSearchIssues"
+        },
+        {
+          "target": "com.forgejo.issue#IssueListIssues"
+        },
+        {
+          "target": "com.forgejo.issue#IssueCreateIssue"
+        },
+        {
+          "target": "com.forgejo.issue#IssueGetRepoComments"
+        },
+        {
+          "target": "com.forgejo.issue#IssueGetComment"
+        },
+        {
+          "target": "com.forgejo.issue#IssueEditComment"
+        },
+        {
+          "target": "com.forgejo.issue#IssueDeleteComment"
+        },
+        {
+          "target": "com.forgejo.issue#IssueListIssueCommentAttachments"
+        },
+        {
+          "target": "com.forgejo.issue#IssueCreateIssueCommentAttachment"
+        },
+        {
+          "target": "com.forgejo.issue#IssueGetIssueCommentAttachment"
+        },
+        {
+          "target": "com.forgejo.issue#IssueEditIssueCommentAttachment"
+        },
+        {
+          "target": "com.forgejo.issue#IssueDeleteIssueCommentAttachment"
+        },
+        {
+          "target": "com.forgejo.issue#IssueGetCommentReactions"
+        },
+        {
+          "target": "com.forgejo.issue#IssuePostCommentReaction"
+        },
+        {
+          "target": "com.forgejo.issue#IssueDeleteCommentReaction"
+        },
+        {
+          "target": "com.forgejo.issue#IssueGetIssue"
+        },
+        {
+          "target": "com.forgejo.issue#IssueEditIssue"
+        },
+        {
+          "target": "com.forgejo.issue#IssueDelete"
+        },
+        {
+          "target": "com.forgejo.issue#IssueListIssueAttachments"
+        },
+        {
+          "target": "com.forgejo.issue#IssueCreateIssueAttachment"
+        },
+        {
+          "target": "com.forgejo.issue#IssueGetIssueAttachment"
+        },
+        {
+          "target": "com.forgejo.issue#IssueEditIssueAttachment"
+        },
+        {
+          "target": "com.forgejo.issue#IssueDeleteIssueAttachment"
+        },
+        {
+          "target": "com.forgejo.issue#IssueListBlocks"
+        },
+        {
+          "target": "com.forgejo.issue#IssueCreateIssueBlocking"
+        },
+        {
+          "target": "com.forgejo.issue#IssueRemoveIssueBlocking"
+        },
+        {
+          "target": "com.forgejo.issue#IssueGetComments"
+        },
+        {
+          "target": "com.forgejo.issue#IssueCreateComment"
+        },
+        {
+          "target": "com.forgejo.issue#IssueEditIssueDeadline"
+        },
+        {
+          "target": "com.forgejo.issue#IssueListIssueDependencies"
+        },
+        {
+          "target": "com.forgejo.issue#IssueCreateIssueDependencies"
+        },
+        {
+          "target": "com.forgejo.issue#IssueRemoveIssueDependencies"
+        },
+        {
+          "target": "com.forgejo.issue#IssueGetLabels"
+        },
+        {
+          "target": "com.forgejo.issue#IssueAddLabel"
+        },
+        {
+          "target": "com.forgejo.issue#IssueReplaceLabels"
+        },
+        {
+          "target": "com.forgejo.issue#IssueClearLabels"
+        },
+        {
+          "target": "com.forgejo.issue#IssueRemoveLabel"
+        },
+        {
+          "target": "com.forgejo.issue#PinIssue"
+        },
+        {
+          "target": "com.forgejo.issue#UnpinIssue"
+        },
+        {
+          "target": "com.forgejo.issue#MoveIssuePin"
+        },
+        {
+          "target": "com.forgejo.issue#IssueGetIssueReactions"
+        },
+        {
+          "target": "com.forgejo.issue#IssuePostIssueReaction"
+        },
+        {
+          "target": "com.forgejo.issue#IssueDeleteIssueReaction"
+        },
+        {
+          "target": "com.forgejo.issue#IssueDeleteStopWatch"
+        },
+        {
+          "target": "com.forgejo.issue#IssueStartStopWatch"
+        },
+        {
+          "target": "com.forgejo.issue#IssueStopStopWatch"
+        },
+        {
+          "target": "com.forgejo.issue#IssueSubscriptions"
+        },
+        {
+          "target": "com.forgejo.issue#IssueCheckSubscription"
+        },
+        {
+          "target": "com.forgejo.issue#IssueAddSubscription"
+        },
+        {
+          "target": "com.forgejo.issue#IssueDeleteSubscription"
+        },
+        {
+          "target": "com.forgejo.issue#IssueGetCommentsAndTimeline"
+        },
+        {
+          "target": "com.forgejo.issue#IssueTrackedTimes"
+        },
+        {
+          "target": "com.forgejo.issue#IssueAddTime"
+        },
+        {
+          "target": "com.forgejo.issue#IssueResetTime"
+        },
+        {
+          "target": "com.forgejo.issue#IssueDeleteTime"
+        },
+        {
+          "target": "com.forgejo.issue#IssueListLabels"
+        },
+        {
+          "target": "com.forgejo.issue#IssueCreateLabel"
+        },
+        {
+          "target": "com.forgejo.issue#IssueGetLabel"
+        },
+        {
+          "target": "com.forgejo.issue#IssueEditLabel"
+        },
+        {
+          "target": "com.forgejo.issue#IssueDeleteLabel"
+        },
+        {
+          "target": "com.forgejo.issue#IssueGetMilestonesList"
+        },
+        {
+          "target": "com.forgejo.issue#IssueCreateMilestone"
+        },
+        {
+          "target": "com.forgejo.issue#IssueGetMilestone"
+        },
+        {
+          "target": "com.forgejo.issue#IssueEditMilestone"
+        },
+        {
+          "target": "com.forgejo.issue#IssueDeleteMilestone"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Forgejo API",
+        "smithy.api#documentation": "This documentation describes the Forgejo API."
+      }
+    }
+  }
+}

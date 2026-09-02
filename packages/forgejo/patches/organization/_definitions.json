@@ -1,0 +1,15 @@
+{
+  "description": "Mark the always-present members of the organization-tag response definitions as required. Forgejo's Swagger is generated from Go structs with no `required` lists at all, so an organization's `id` and `username` and a team's `id` and `name` type as optional even though they are plain struct members serialized on every response. Descriptions, visibility and the permission-unit lists stay optional.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/definitions/Organization/required",
+      "value": ["id", "username"]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Team/required",
+      "value": ["id", "name"]
+    }
+  ]
+}

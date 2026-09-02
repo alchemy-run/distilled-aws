@@ -378,3 +378,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-google-workspace.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/forgejo/specs/spec-mirror-forgejo"]
+	path = packages/forgejo/specs/spec-mirror-forgejo
+	url = https://github.com/distilled-mirror/spec-mirror-forgejo.git
+	ignore = dirty
+	shallow = true
