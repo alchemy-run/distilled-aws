@@ -243,3 +243,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-elasticsearch.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/gusto/specs/spec-mirror-gusto"]
+	path = packages/gusto/specs/spec-mirror-gusto
+	url = https://github.com/distilled-mirror/spec-mirror-gusto.git
+	ignore = dirty
+	shallow = true
