@@ -369,6 +369,12 @@
     },
     {
       "path": "./packages/ovh/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/remote/tsconfig.json"
+    },
+    {
+      "path": "./packages/remote/tsconfig.scripts.json"
     }
   ]
 }

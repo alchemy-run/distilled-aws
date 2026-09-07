@@ -298,3 +298,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-ovh.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/remote/specs/spec-mirror-remote"]
+	path = packages/remote/specs/spec-mirror-remote
+	url = https://github.com/distilled-mirror/spec-mirror-remote.git
+	ignore = dirty
+	shallow = true
