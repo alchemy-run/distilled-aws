@@ -1,0 +1,85 @@
+{
+  "name": "@distilled.cloud/clerk",
+  "version": "1.0.0-rc.8",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alchemy-run/distilled",
+    "directory": "packages/clerk"
+  },
+  "license": "Apache-2.0",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "lib",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "bun": "./src/index.ts",
+      "worker": "./src/index.ts",
+      "default": "./lib/index.js"
+    },
+    "./Credentials": {
+      "types": "./lib/credentials.d.ts",
+      "bun": "./src/credentials.ts",
+      "worker": "./src/credentials.ts",
+      "default": "./lib/credentials.js"
+    },
+    "./Errors": {
+      "types": "./lib/errors.d.ts",
+      "bun": "./src/errors.ts",
+      "worker": "./src/errors.ts",
+      "default": "./lib/errors.js"
+    },
+    "./Traits": {
+      "types": "./lib/traits.d.ts",
+      "bun": "./src/traits.ts",
+      "worker": "./src/traits.ts",
+      "default": "./lib/traits.js"
+    },
+    "./Pagination": {
+      "types": "./lib/pagination.d.ts",
+      "bun": "./src/pagination.ts",
+      "worker": "./src/pagination.ts",
+      "default": "./lib/pagination.js"
+    },
+    "./Protocol": {
+      "types": "./lib/protocol.d.ts",
+      "bun": "./src/protocol.ts",
+      "worker": "./src/protocol.ts",
+      "default": "./lib/protocol.js"
+    },
+    "./Retry": {
+      "types": "./lib/retry.d.ts",
+      "bun": "./src/retry.ts",
+      "worker": "./src/retry.ts",
+      "default": "./lib/retry.js"
+    },
+    "./*": {
+      "types": "./lib/services/*.d.ts",
+      "bun": "./src/services/*.ts",
+      "worker": "./src/services/*.ts",
+      "default": "./lib/services/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "convert": "bun scripts/convert.ts",
+    "generate": "bun scripts/convert.ts && bun scripts/generate.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "specs:fetch": "git submodule update --force --init --depth=1 specs/spec-mirror-clerk",
+    "specs:update": "git submodule update --remote --force --depth=1 specs/spec-mirror-clerk"
+  },
+  "dependencies": {
+    "@distilled.cloud/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bun": "catalog:tooling",
+    "@types/node": "catalog:tooling",
+    "@effect/platform-bun": "catalog:effect"
+  },
+  "peerDependencies": {
+    "effect": "catalog:effect"
+  }
+}

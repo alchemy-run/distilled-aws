@@ -213,6 +213,12 @@
     },
     {
       "path": "./packages/auth0/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/clerk/tsconfig.json"
+    },
+    {
+      "path": "./packages/clerk/tsconfig.scripts.json"
     }
   ]
 }
