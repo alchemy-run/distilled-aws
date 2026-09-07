@@ -147,6 +147,71 @@ export const ActivityLogsRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ActivityLogsRetrieveResponse",
 }) as any as S.Schema<ActivityLogsRetrieveResponse>;
 
+export type AddWebhookRequestAuthenticationType = "None" | "Bearer" | "Basic";
+export const AddWebhookRequestAuthenticationType = /*@__PURE__*/ S.String;
+
+export interface AddWebhookRequestAuthentication {
+  type?: AddWebhookRequestAuthenticationType | (string & {});
+  /** Used when type = Bearer */
+  token?: string;
+  /** Used when type = Basic */
+  username?: string;
+  /** Used when type = Basic */
+  password?: string | Redacted.Redacted<string>;
+}
+export const AddWebhookRequestAuthentication = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(AddWebhookRequestAuthenticationType),
+    token: S.optional(S.String),
+    username: S.optional(S.String),
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }),
+).annotate({
+  identifier: "AddWebhookRequestAuthentication",
+}) as any as S.Schema<AddWebhookRequestAuthentication>;
+
+/** Config slugs that the webhook should be enabled for */
+export type AddWebhookRequestEnableConfigsList = Array<string>;
+export const AddWebhookRequestEnableConfigsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AddWebhookRequestEnableConfigsList>;
+
+export interface AddWebhookRequest {
+  /** The project's name */
+  project?: string;
+  /** The webhook URL. Must be https */
+  url: string;
+  /** See: https://docs.doppler.com/docs/webhooks#verify-webhook-with-request-signing */
+  secret?: string | Redacted.Redacted<string>;
+  authentication?: AddWebhookRequestAuthentication;
+  /** See: https://docs.doppler.com/docs/webhooks#default-payload */
+  payload?: string;
+  /** Config slugs that the webhook should be enabled for */
+  enableConfigs?: AddWebhookRequestEnableConfigsList;
+  /** The name of the webhook. */
+  name?: string;
+}
+export const AddWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.optional(S.String.pipe(T.Query())),
+    url: S.String,
+    secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    authentication: S.optional(AddWebhookRequestAuthentication),
+    payload: S.optional(S.String),
+    enableConfigs: S.optional(AddWebhookRequestEnableConfigsList),
+    name: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/v3/webhooks", code: 200 })),
+).annotate({
+  identifier: "AddWebhookRequest",
+}) as any as S.Schema<AddWebhookRequest>;
+
+export type AddWebhookResponse = unknown;
+export const AddWebhookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "AddWebhookResponse",
+}) as any as S.Schema<AddWebhookResponse>;
+
 export interface AuditGetUserRequest {
   /** The ID of the workplace user */
   workplace_user_id: string;
@@ -304,504 +369,61 @@ export const AuthOidcResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AuthOidcResponse",
 }) as any as S.Schema<AuthOidcResponse>;
 
-export interface AuthRevokeRequest {
-  token: string;
-}
-export const AuthRevokeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    token: S.String,
-  }).pipe(T.Http({ method: "POST", uri: "/v3/auth/revoke", code: 200 })),
-).annotate({
-  identifier: "AuthRevokeRequest",
-}) as any as S.Schema<AuthRevokeRequest>;
-
-export interface AuthRevokeResponse {}
-export const AuthRevokeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AuthRevokeResponse",
-}) as any as S.Schema<AuthRevokeResponse>;
-
-export type ChangeRequestPoliciesCreateRequestRulesItemType =
-  | '"RequiredReviewer"'
-  | '"DisallowSelfReview"';
-export const ChangeRequestPoliciesCreateRequestRulesItemType =
-  /*@__PURE__*/ S.String;
-
-/** The type of the subject. */
-export type ChangeRequestPoliciesCreateRequestRulesItemSubjectsItemType =
-  | '"WorkplaceUser"'
-  | '"Group"';
-export const ChangeRequestPoliciesCreateRequestRulesItemSubjectsItemType =
-  /*@__PURE__*/ S.String;
-
-export interface ChangeRequestPoliciesCreateRequestRulesItemSubjectsItem {
-  /** The type of the subject. */
-  type:
-    | ChangeRequestPoliciesCreateRequestRulesItemSubjectsItemType
-    | (string & {});
-  /** The unique identifier of the subject. */
-  slug: string;
-}
-export const ChangeRequestPoliciesCreateRequestRulesItemSubjectsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: ChangeRequestPoliciesCreateRequestRulesItemSubjectsItemType,
-      slug: S.String,
-    }),
-  ).annotate({
-    identifier: "ChangeRequestPoliciesCreateRequestRulesItemSubjectsItem",
-  }) as any as S.Schema<ChangeRequestPoliciesCreateRequestRulesItemSubjectsItem>;
-
-/** A list of required reviewers. If specified, only reviews from reviewers in this list will satisfy the policy. Only applies to "RequiredReviewer" rules. */
-export type ChangeRequestPoliciesCreateRequestRulesItemSubjectsList =
-  Array<ChangeRequestPoliciesCreateRequestRulesItemSubjectsItem>;
-export const ChangeRequestPoliciesCreateRequestRulesItemSubjectsList =
-  /*@__PURE__*/ S.Array(
-    ChangeRequestPoliciesCreateRequestRulesItemSubjectsItem,
-  ) as any as S.Schema<ChangeRequestPoliciesCreateRequestRulesItemSubjectsList>;
-
-export interface ChangeRequestPoliciesCreateRequestRulesItem {
-  type: ChangeRequestPoliciesCreateRequestRulesItemType | (string & {});
-  /** The number of required reviewers. Only applies to "RequiredReviewer" rules. */
-  count?: number;
-  /** A list of required reviewers. If specified, only reviews from reviewers in this list will satisfy the policy. Only applies to "RequiredReviewer" rules. */
-  subjects?: ChangeRequestPoliciesCreateRequestRulesItemSubjectsList;
-}
-export const ChangeRequestPoliciesCreateRequestRulesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: ChangeRequestPoliciesCreateRequestRulesItemType,
-      count: S.optional(S.Number),
-      subjects: S.optional(
-        ChangeRequestPoliciesCreateRequestRulesItemSubjectsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ChangeRequestPoliciesCreateRequestRulesItem",
-  }) as any as S.Schema<ChangeRequestPoliciesCreateRequestRulesItem>;
-
-/** A list of rules the policy enforces. */
-export type ChangeRequestPoliciesCreateRequestRulesList =
-  Array<ChangeRequestPoliciesCreateRequestRulesItem>;
-export const ChangeRequestPoliciesCreateRequestRulesList =
-  /*@__PURE__*/ S.Array(
-    ChangeRequestPoliciesCreateRequestRulesItem,
-  ) as any as S.Schema<ChangeRequestPoliciesCreateRequestRulesList>;
-
-/** Describes the which projects, environments, and configs the policy applies to. */
-export interface ChangeRequestPoliciesCreateRequestTargets {
-  /** If true, the policy will apply to every config in the workplace. */
-  allProjects?: boolean;
-  /** A dictionary where the key is the project name, and the value contains information about what within the project the policy should apply to. */
-  projects?: string;
-}
-export const ChangeRequestPoliciesCreateRequestTargets =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      allProjects: S.optional(S.Boolean),
-      projects: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ChangeRequestPoliciesCreateRequestTargets",
-  }) as any as S.Schema<ChangeRequestPoliciesCreateRequestTargets>;
-
-export interface ChangeRequestPoliciesCreateRequest {
-  /** The name of the policy. */
+export interface CloneConfigRequest {
+  /** Unique identifier for the project object. */
+  project: string;
+  /** Name of the branch config being cloned. */
+  config: string;
+  /** Name of the new branch config. */
   name: string;
-  /** An optional description of the policy. */
-  description?: string;
-  /** A list of rules the policy enforces. */
-  rules: ChangeRequestPoliciesCreateRequestRulesList;
-  /** Describes the which projects, environments, and configs the policy applies to. */
-  targets: ChangeRequestPoliciesCreateRequestTargets;
 }
-export const ChangeRequestPoliciesCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CloneConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    project: S.String,
+    config: S.String,
     name: S.String,
-    description: S.optional(S.String),
-    rules: ChangeRequestPoliciesCreateRequestRulesList,
-    targets: ChangeRequestPoliciesCreateRequestTargets,
   }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v3/workplace/change_request_policies",
-      code: 200,
-    }),
+    T.Http({ method: "POST", uri: "/v3/configs/config/clone", code: 200 }),
   ),
 ).annotate({
-  identifier: "ChangeRequestPoliciesCreateRequest",
-}) as any as S.Schema<ChangeRequestPoliciesCreateRequest>;
+  identifier: "CloneConfigRequest",
+}) as any as S.Schema<CloneConfigRequest>;
 
-export type ChangeRequestPoliciesCreateResponsePolicyRulesList = Array<unknown>;
-export const ChangeRequestPoliciesCreateResponsePolicyRulesList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<ChangeRequestPoliciesCreateResponsePolicyRulesList>;
-
-export interface ChangeRequestPoliciesCreateResponsePolicyTargets {
-  allProjects?: boolean;
-  projects?: unknown;
-}
-export const ChangeRequestPoliciesCreateResponsePolicyTargets =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      allProjects: S.optional(S.Boolean),
-      projects: S.optional(S.Unknown),
-    }),
-  ).annotate({
-    identifier: "ChangeRequestPoliciesCreateResponsePolicyTargets",
-  }) as any as S.Schema<ChangeRequestPoliciesCreateResponsePolicyTargets>;
-
-export interface ChangeRequestPoliciesCreateResponsePolicy {
-  id?: string;
+export interface CloneConfigResponseConfig {
   name?: string;
-  description?: string;
-  rules?: ChangeRequestPoliciesCreateResponsePolicyRulesList;
-  targets?: ChangeRequestPoliciesCreateResponsePolicyTargets;
+  root?: boolean;
+  locked?: boolean;
+  initial_fetch_at?: string;
+  last_fetch_at?: string;
+  created_at?: string;
+  environment?: string;
+  project?: string;
 }
-export const ChangeRequestPoliciesCreateResponsePolicy =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      description: S.optional(S.String),
-      rules: S.optional(ChangeRequestPoliciesCreateResponsePolicyRulesList),
-      targets: S.optional(ChangeRequestPoliciesCreateResponsePolicyTargets),
-    }),
-  ).annotate({
-    identifier: "ChangeRequestPoliciesCreateResponsePolicy",
-  }) as any as S.Schema<ChangeRequestPoliciesCreateResponsePolicy>;
-
-export interface ChangeRequestPoliciesCreateResponse {
-  policy?: ChangeRequestPoliciesCreateResponsePolicy;
-  success?: boolean;
-}
-export const ChangeRequestPoliciesCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CloneConfigResponseConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    policy: S.optional(ChangeRequestPoliciesCreateResponsePolicy),
-    success: S.optional(S.Boolean),
+    name: S.optional(S.String),
+    root: S.optional(S.Boolean),
+    locked: S.optional(S.Boolean),
+    initial_fetch_at: S.optional(S.String),
+    last_fetch_at: S.optional(S.String),
+    created_at: S.optional(S.String),
+    environment: S.optional(S.String),
+    project: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ChangeRequestPoliciesCreateResponse",
-}) as any as S.Schema<ChangeRequestPoliciesCreateResponse>;
+  identifier: "CloneConfigResponseConfig",
+}) as any as S.Schema<CloneConfigResponseConfig>;
 
-export interface ChangeRequestPoliciesDeleteRequest {
-  /** The unique identifier of the policy. */
-  slug: string;
+export interface CloneConfigResponse {
+  config?: CloneConfigResponseConfig;
 }
-export const ChangeRequestPoliciesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const CloneConfigResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    slug: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/v3/workplace/change_request_policies/change_request_policy/{slug}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ChangeRequestPoliciesDeleteRequest",
-}) as any as S.Schema<ChangeRequestPoliciesDeleteRequest>;
-
-export interface ChangeRequestPoliciesDeleteResponse {
-  success?: boolean;
-}
-export const ChangeRequestPoliciesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    success: S.optional(S.Boolean),
+    config: S.optional(CloneConfigResponseConfig),
   }),
 ).annotate({
-  identifier: "ChangeRequestPoliciesDeleteResponse",
-}) as any as S.Schema<ChangeRequestPoliciesDeleteResponse>;
-
-export interface ChangeRequestPoliciesGetRequest {
-  /** Unique id of the policy */
-  slug: string;
-}
-export const ChangeRequestPoliciesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    slug: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v3/workplace/change_request_policies/change_request_policy/{slug}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ChangeRequestPoliciesGetRequest",
-}) as any as S.Schema<ChangeRequestPoliciesGetRequest>;
-
-export type ChangeRequestPoliciesGetResponsePolicyRulesList = Array<unknown>;
-export const ChangeRequestPoliciesGetResponsePolicyRulesList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<ChangeRequestPoliciesGetResponsePolicyRulesList>;
-
-export type ChangeRequestPoliciesGetResponsePolicyTargets =
-  ChangeRequestPoliciesCreateResponsePolicyTargets;
-export const ChangeRequestPoliciesGetResponsePolicyTargets =
-  ChangeRequestPoliciesCreateResponsePolicyTargets;
-
-export interface ChangeRequestPoliciesGetResponsePolicy {
-  id?: string;
-  name?: string;
-  description?: string;
-  rules?: ChangeRequestPoliciesGetResponsePolicyRulesList;
-  targets?: ChangeRequestPoliciesCreateResponsePolicyTargets;
-}
-export const ChangeRequestPoliciesGetResponsePolicy = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      description: S.optional(S.String),
-      rules: S.optional(ChangeRequestPoliciesGetResponsePolicyRulesList),
-      targets: S.optional(ChangeRequestPoliciesCreateResponsePolicyTargets),
-    }),
-).annotate({
-  identifier: "ChangeRequestPoliciesGetResponsePolicy",
-}) as any as S.Schema<ChangeRequestPoliciesGetResponsePolicy>;
-
-export interface ChangeRequestPoliciesGetResponse {
-  policy?: ChangeRequestPoliciesGetResponsePolicy;
-  success?: boolean;
-}
-export const ChangeRequestPoliciesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    policy: S.optional(ChangeRequestPoliciesGetResponsePolicy),
-    success: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ChangeRequestPoliciesGetResponse",
-}) as any as S.Schema<ChangeRequestPoliciesGetResponse>;
-
-export interface ChangeRequestPoliciesListRequest {}
-export const ChangeRequestPoliciesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v3/workplace/change_request_policies",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ChangeRequestPoliciesListRequest",
-}) as any as S.Schema<ChangeRequestPoliciesListRequest>;
-
-export type ChangeRequestPoliciesListResponsePoliciesItemPolicyRulesList =
-  Array<unknown>;
-export const ChangeRequestPoliciesListResponsePoliciesItemPolicyRulesList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<ChangeRequestPoliciesListResponsePoliciesItemPolicyRulesList>;
-
-export type ChangeRequestPoliciesListResponsePoliciesItemPolicyTargets =
-  ChangeRequestPoliciesCreateResponsePolicyTargets;
-export const ChangeRequestPoliciesListResponsePoliciesItemPolicyTargets =
-  ChangeRequestPoliciesCreateResponsePolicyTargets;
-
-export interface ChangeRequestPoliciesListResponsePoliciesItemPolicy {
-  id?: string;
-  name?: string;
-  description?: string;
-  rules?: ChangeRequestPoliciesListResponsePoliciesItemPolicyRulesList;
-  targets?: ChangeRequestPoliciesCreateResponsePolicyTargets;
-}
-export const ChangeRequestPoliciesListResponsePoliciesItemPolicy =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      description: S.optional(S.String),
-      rules: S.optional(
-        ChangeRequestPoliciesListResponsePoliciesItemPolicyRulesList,
-      ),
-      targets: S.optional(ChangeRequestPoliciesCreateResponsePolicyTargets),
-    }),
-  ).annotate({
-    identifier: "ChangeRequestPoliciesListResponsePoliciesItemPolicy",
-  }) as any as S.Schema<ChangeRequestPoliciesListResponsePoliciesItemPolicy>;
-
-export interface ChangeRequestPoliciesListResponsePoliciesItem {
-  policy?: ChangeRequestPoliciesListResponsePoliciesItemPolicy;
-}
-export const ChangeRequestPoliciesListResponsePoliciesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      policy: S.optional(ChangeRequestPoliciesListResponsePoliciesItemPolicy),
-    }),
-  ).annotate({
-    identifier: "ChangeRequestPoliciesListResponsePoliciesItem",
-  }) as any as S.Schema<ChangeRequestPoliciesListResponsePoliciesItem>;
-
-export type ChangeRequestPoliciesListResponsePoliciesList =
-  Array<ChangeRequestPoliciesListResponsePoliciesItem>;
-export const ChangeRequestPoliciesListResponsePoliciesList =
-  /*@__PURE__*/ S.Array(
-    ChangeRequestPoliciesListResponsePoliciesItem,
-  ) as any as S.Schema<ChangeRequestPoliciesListResponsePoliciesList>;
-
-export interface ChangeRequestPoliciesListResponse {
-  policies?: ChangeRequestPoliciesListResponsePoliciesList;
-  success?: boolean;
-}
-export const ChangeRequestPoliciesListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    policies: S.optional(ChangeRequestPoliciesListResponsePoliciesList),
-    success: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ChangeRequestPoliciesListResponse",
-}) as any as S.Schema<ChangeRequestPoliciesListResponse>;
-
-export type ChangeRequestPoliciesUpdateRequestRulesItemType =
-  | '"RequiredReviewer"'
-  | '"DisallowSelfReview"';
-export const ChangeRequestPoliciesUpdateRequestRulesItemType =
-  /*@__PURE__*/ S.String;
-
-/** The type of the subject. */
-export type ChangeRequestPoliciesUpdateRequestRulesItemSubjectsItemType =
-  | '"WorkplaceUser"'
-  | '"Group"';
-export const ChangeRequestPoliciesUpdateRequestRulesItemSubjectsItemType =
-  /*@__PURE__*/ S.String;
-
-export interface ChangeRequestPoliciesUpdateRequestRulesItemSubjectsItem {
-  /** The type of the subject. */
-  type:
-    | ChangeRequestPoliciesUpdateRequestRulesItemSubjectsItemType
-    | (string & {});
-  /** The unique identifier of the subject. */
-  slug: string;
-}
-export const ChangeRequestPoliciesUpdateRequestRulesItemSubjectsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: ChangeRequestPoliciesUpdateRequestRulesItemSubjectsItemType,
-      slug: S.String,
-    }),
-  ).annotate({
-    identifier: "ChangeRequestPoliciesUpdateRequestRulesItemSubjectsItem",
-  }) as any as S.Schema<ChangeRequestPoliciesUpdateRequestRulesItemSubjectsItem>;
-
-/** A list of required reviewers. If specified, only reviews from reviewers in this list will satisfy the policy. Only applies to "RequiredReviewer" rules. */
-export type ChangeRequestPoliciesUpdateRequestRulesItemSubjectsList =
-  Array<ChangeRequestPoliciesUpdateRequestRulesItemSubjectsItem>;
-export const ChangeRequestPoliciesUpdateRequestRulesItemSubjectsList =
-  /*@__PURE__*/ S.Array(
-    ChangeRequestPoliciesUpdateRequestRulesItemSubjectsItem,
-  ) as any as S.Schema<ChangeRequestPoliciesUpdateRequestRulesItemSubjectsList>;
-
-export interface ChangeRequestPoliciesUpdateRequestRulesItem {
-  type: ChangeRequestPoliciesUpdateRequestRulesItemType | (string & {});
-  /** The number of required reviewers. Only applies to "RequiredReviewer" rules. */
-  count?: number;
-  /** A list of required reviewers. If specified, only reviews from reviewers in this list will satisfy the policy. Only applies to "RequiredReviewer" rules. */
-  subjects?: ChangeRequestPoliciesUpdateRequestRulesItemSubjectsList;
-}
-export const ChangeRequestPoliciesUpdateRequestRulesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: ChangeRequestPoliciesUpdateRequestRulesItemType,
-      count: S.optional(S.Number),
-      subjects: S.optional(
-        ChangeRequestPoliciesUpdateRequestRulesItemSubjectsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ChangeRequestPoliciesUpdateRequestRulesItem",
-  }) as any as S.Schema<ChangeRequestPoliciesUpdateRequestRulesItem>;
-
-/** A list of rules the policy enforces. */
-export type ChangeRequestPoliciesUpdateRequestRulesList =
-  Array<ChangeRequestPoliciesUpdateRequestRulesItem>;
-export const ChangeRequestPoliciesUpdateRequestRulesList =
-  /*@__PURE__*/ S.Array(
-    ChangeRequestPoliciesUpdateRequestRulesItem,
-  ) as any as S.Schema<ChangeRequestPoliciesUpdateRequestRulesList>;
-
-/** Describes the which projects, environments, and configs the policy applies to. */
-export type ChangeRequestPoliciesUpdateRequestTargets =
-  ChangeRequestPoliciesCreateRequestTargets;
-export const ChangeRequestPoliciesUpdateRequestTargets =
-  ChangeRequestPoliciesCreateRequestTargets;
-
-export interface ChangeRequestPoliciesUpdateRequest {
-  /** The unique identifier of the policy. */
-  slug: string;
-  /** The name of the policy. */
-  name: string;
-  /** An optional description of the policy. */
-  description?: string;
-  /** A list of rules the policy enforces. */
-  rules: ChangeRequestPoliciesUpdateRequestRulesList;
-  /** Describes the which projects, environments, and configs the policy applies to. */
-  targets: ChangeRequestPoliciesCreateRequestTargets;
-}
-export const ChangeRequestPoliciesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    slug: S.String.pipe(T.Label()),
-    name: S.String,
-    description: S.optional(S.String),
-    rules: ChangeRequestPoliciesUpdateRequestRulesList,
-    targets: ChangeRequestPoliciesCreateRequestTargets,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v3/workplace/change_request_policies/change_request_policy/{slug}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ChangeRequestPoliciesUpdateRequest",
-}) as any as S.Schema<ChangeRequestPoliciesUpdateRequest>;
-
-export type ChangeRequestPoliciesUpdateResponsePolicyRulesList = Array<unknown>;
-export const ChangeRequestPoliciesUpdateResponsePolicyRulesList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<ChangeRequestPoliciesUpdateResponsePolicyRulesList>;
-
-export type ChangeRequestPoliciesUpdateResponsePolicyTargets =
-  ChangeRequestPoliciesCreateResponsePolicyTargets;
-export const ChangeRequestPoliciesUpdateResponsePolicyTargets =
-  ChangeRequestPoliciesCreateResponsePolicyTargets;
-
-export interface ChangeRequestPoliciesUpdateResponsePolicy {
-  id?: string;
-  name?: string;
-  description?: string;
-  rules?: ChangeRequestPoliciesUpdateResponsePolicyRulesList;
-  targets?: ChangeRequestPoliciesCreateResponsePolicyTargets;
-}
-export const ChangeRequestPoliciesUpdateResponsePolicy =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      description: S.optional(S.String),
-      rules: S.optional(ChangeRequestPoliciesUpdateResponsePolicyRulesList),
-      targets: S.optional(ChangeRequestPoliciesCreateResponsePolicyTargets),
-    }),
-  ).annotate({
-    identifier: "ChangeRequestPoliciesUpdateResponsePolicy",
-  }) as any as S.Schema<ChangeRequestPoliciesUpdateResponsePolicy>;
-
-export interface ChangeRequestPoliciesUpdateResponse {
-  policy?: ChangeRequestPoliciesUpdateResponsePolicy;
-  success?: boolean;
-}
-export const ChangeRequestPoliciesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    policy: S.optional(ChangeRequestPoliciesUpdateResponsePolicy),
-    success: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ChangeRequestPoliciesUpdateResponse",
-}) as any as S.Schema<ChangeRequestPoliciesUpdateResponse>;
+  identifier: "CloneConfigResponse",
+}) as any as S.Schema<CloneConfigResponse>;
 
 export interface ConfigLogsGetRequest {
   /** Unique identifier for the project object. */
@@ -1089,120 +711,6 @@ export const ConfigsAddTrustedIpResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConfigsAddTrustedIpResponse",
 }) as any as S.Schema<ConfigsAddTrustedIpResponse>;
 
-export interface ConfigsCloneRequest {
-  /** Unique identifier for the project object. */
-  project: string;
-  /** Name of the branch config being cloned. */
-  config: string;
-  /** Name of the new branch config. */
-  name: string;
-}
-export const ConfigsCloneRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String,
-    config: S.String,
-    name: S.String,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v3/configs/config/clone", code: 200 }),
-  ),
-).annotate({
-  identifier: "ConfigsCloneRequest",
-}) as any as S.Schema<ConfigsCloneRequest>;
-
-export interface ConfigsCloneResponseConfig {
-  name?: string;
-  root?: boolean;
-  locked?: boolean;
-  initial_fetch_at?: string;
-  last_fetch_at?: string;
-  created_at?: string;
-  environment?: string;
-  project?: string;
-}
-export const ConfigsCloneResponseConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    root: S.optional(S.Boolean),
-    locked: S.optional(S.Boolean),
-    initial_fetch_at: S.optional(S.String),
-    last_fetch_at: S.optional(S.String),
-    created_at: S.optional(S.String),
-    environment: S.optional(S.String),
-    project: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ConfigsCloneResponseConfig",
-}) as any as S.Schema<ConfigsCloneResponseConfig>;
-
-export interface ConfigsCloneResponse {
-  config?: ConfigsCloneResponseConfig;
-}
-export const ConfigsCloneResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    config: S.optional(ConfigsCloneResponseConfig),
-  }),
-).annotate({
-  identifier: "ConfigsCloneResponse",
-}) as any as S.Schema<ConfigsCloneResponse>;
-
-export interface ConfigsCreateRequest {
-  /** Unique identifier for the project object. */
-  project: string;
-  /** Identifier for the environment object. */
-  environment: string;
-  /** Name of the new branch config. */
-  name: string;
-}
-export const ConfigsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String,
-    environment: S.String,
-    name: S.String,
-  }).pipe(T.Http({ method: "POST", uri: "/v3/configs", code: 200 })),
-).annotate({
-  identifier: "ConfigsCreateRequest",
-}) as any as S.Schema<ConfigsCreateRequest>;
-
-export type ConfigsCreateResponseConfig = ConfigsCloneResponseConfig;
-export const ConfigsCreateResponseConfig = ConfigsCloneResponseConfig;
-
-export interface ConfigsCreateResponse {
-  config?: ConfigsCloneResponseConfig;
-}
-export const ConfigsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    config: S.optional(ConfigsCloneResponseConfig),
-  }),
-).annotate({
-  identifier: "ConfigsCreateResponse",
-}) as any as S.Schema<ConfigsCreateResponse>;
-
-export interface ConfigsDeleteRequest {
-  /** Unique identifier for the project. */
-  project: string;
-  /** Name of the config. */
-  config: string;
-}
-export const ConfigsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String.pipe(T.Query()),
-    config: S.String.pipe(T.Query()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/v3/configs/config", code: 200 })),
-).annotate({
-  identifier: "ConfigsDeleteRequest",
-}) as any as S.Schema<ConfigsDeleteRequest>;
-
-export interface ConfigsDeleteResponse {
-  success?: boolean;
-}
-export const ConfigsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    success: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ConfigsDeleteResponse",
-}) as any as S.Schema<ConfigsDeleteResponse>;
-
 export interface ConfigsDeleteTrustedIpRequest {
   project: string;
   config: string;
@@ -1231,35 +739,6 @@ export const ConfigsDeleteTrustedIpResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ConfigsDeleteTrustedIpResponse",
 }) as any as S.Schema<ConfigsDeleteTrustedIpResponse>;
-
-export interface ConfigsGetRequest {
-  /** Unique identifier for the project object. */
-  project: string;
-  /** Name of the config object. */
-  config: string;
-}
-export const ConfigsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String.pipe(T.Query()),
-    config: S.String.pipe(T.Query()),
-  }).pipe(T.Http({ method: "GET", uri: "/v3/configs/config", code: 200 })),
-).annotate({
-  identifier: "ConfigsGetRequest",
-}) as any as S.Schema<ConfigsGetRequest>;
-
-export type ConfigsGetResponseConfig = ConfigsCloneResponseConfig;
-export const ConfigsGetResponseConfig = ConfigsCloneResponseConfig;
-
-export interface ConfigsGetResponse {
-  config?: ConfigsCloneResponseConfig;
-}
-export const ConfigsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    config: S.optional(ConfigsCloneResponseConfig),
-  }),
-).annotate({
-  identifier: "ConfigsGetResponse",
-}) as any as S.Schema<ConfigsGetResponse>;
 
 export interface ConfigsInheritableRequest {
   /** Unique identifier for the project object. */
@@ -1461,48 +940,6 @@ export const ConfigsInheritsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConfigsInheritsResponse",
 }) as any as S.Schema<ConfigsInheritsResponse>;
 
-export interface ConfigsListRequest {
-  /** The project's name */
-  project: string;
-  /** (optional) the environment from which to list configs */
-  environment?: string;
-  /** Page number */
-  page?: number;
-  /** Items per page */
-  per_page?: number;
-}
-export const ConfigsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String.pipe(T.Query()),
-    environment: S.optional(S.String.pipe(T.Query())),
-    page: S.optional(S.Number.pipe(T.Query())),
-    per_page: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v3/configs", code: 200 })),
-).annotate({
-  identifier: "ConfigsListRequest",
-}) as any as S.Schema<ConfigsListRequest>;
-
-export type ConfigsListResponseConfigsItem = ConfigsCloneResponseConfig;
-export const ConfigsListResponseConfigsItem = ConfigsCloneResponseConfig;
-
-export type ConfigsListResponseConfigsList = Array<ConfigsCloneResponseConfig>;
-export const ConfigsListResponseConfigsList = /*@__PURE__*/ S.Array(
-  ConfigsCloneResponseConfig,
-) as any as S.Schema<ConfigsListResponseConfigsList>;
-
-export interface ConfigsListResponse {
-  page?: number;
-  configs?: ConfigsListResponseConfigsList;
-}
-export const ConfigsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    page: S.optional(S.Number),
-    configs: S.optional(ConfigsListResponseConfigsList),
-  }),
-).annotate({
-  identifier: "ConfigsListResponse",
-}) as any as S.Schema<ConfigsListResponse>;
-
 export interface ConfigsListTrustedIpsRequest {
   project: string;
   config: string;
@@ -1534,99 +971,789 @@ export const ConfigsListTrustedIpsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConfigsListTrustedIpsResponse",
 }) as any as S.Schema<ConfigsListTrustedIpsResponse>;
 
-export interface ConfigsLockRequest {
+export type CreateChangeRequestPolicyRequestRulesItemType =
+  | '"RequiredReviewer"'
+  | '"DisallowSelfReview"';
+export const CreateChangeRequestPolicyRequestRulesItemType =
+  /*@__PURE__*/ S.String;
+
+/** The type of the subject. */
+export type CreateChangeRequestPolicyRequestRulesItemSubjectsItemType =
+  | '"WorkplaceUser"'
+  | '"Group"';
+export const CreateChangeRequestPolicyRequestRulesItemSubjectsItemType =
+  /*@__PURE__*/ S.String;
+
+export interface CreateChangeRequestPolicyRequestRulesItemSubjectsItem {
+  /** The type of the subject. */
+  type:
+    | CreateChangeRequestPolicyRequestRulesItemSubjectsItemType
+    | (string & {});
+  /** The unique identifier of the subject. */
+  slug: string;
+}
+export const CreateChangeRequestPolicyRequestRulesItemSubjectsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: CreateChangeRequestPolicyRequestRulesItemSubjectsItemType,
+      slug: S.String,
+    }),
+  ).annotate({
+    identifier: "CreateChangeRequestPolicyRequestRulesItemSubjectsItem",
+  }) as any as S.Schema<CreateChangeRequestPolicyRequestRulesItemSubjectsItem>;
+
+/** A list of required reviewers. If specified, only reviews from reviewers in this list will satisfy the policy. Only applies to "RequiredReviewer" rules. */
+export type CreateChangeRequestPolicyRequestRulesItemSubjectsList =
+  Array<CreateChangeRequestPolicyRequestRulesItemSubjectsItem>;
+export const CreateChangeRequestPolicyRequestRulesItemSubjectsList =
+  /*@__PURE__*/ S.Array(
+    CreateChangeRequestPolicyRequestRulesItemSubjectsItem,
+  ) as any as S.Schema<CreateChangeRequestPolicyRequestRulesItemSubjectsList>;
+
+export interface CreateChangeRequestPolicyRequestRulesItem {
+  type: CreateChangeRequestPolicyRequestRulesItemType | (string & {});
+  /** The number of required reviewers. Only applies to "RequiredReviewer" rules. */
+  count?: number;
+  /** A list of required reviewers. If specified, only reviews from reviewers in this list will satisfy the policy. Only applies to "RequiredReviewer" rules. */
+  subjects?: CreateChangeRequestPolicyRequestRulesItemSubjectsList;
+}
+export const CreateChangeRequestPolicyRequestRulesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: CreateChangeRequestPolicyRequestRulesItemType,
+      count: S.optional(S.Number),
+      subjects: S.optional(
+        CreateChangeRequestPolicyRequestRulesItemSubjectsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "CreateChangeRequestPolicyRequestRulesItem",
+  }) as any as S.Schema<CreateChangeRequestPolicyRequestRulesItem>;
+
+/** A list of rules the policy enforces. */
+export type CreateChangeRequestPolicyRequestRulesList =
+  Array<CreateChangeRequestPolicyRequestRulesItem>;
+export const CreateChangeRequestPolicyRequestRulesList = /*@__PURE__*/ S.Array(
+  CreateChangeRequestPolicyRequestRulesItem,
+) as any as S.Schema<CreateChangeRequestPolicyRequestRulesList>;
+
+/** Describes the which projects, environments, and configs the policy applies to. */
+export interface CreateChangeRequestPolicyRequestTargets {
+  /** If true, the policy will apply to every config in the workplace. */
+  allProjects?: boolean;
+  /** A dictionary where the key is the project name, and the value contains information about what within the project the policy should apply to. */
+  projects?: string;
+}
+export const CreateChangeRequestPolicyRequestTargets = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      allProjects: S.optional(S.Boolean),
+      projects: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "CreateChangeRequestPolicyRequestTargets",
+}) as any as S.Schema<CreateChangeRequestPolicyRequestTargets>;
+
+export interface CreateChangeRequestPolicyRequest {
+  /** The name of the policy. */
+  name: string;
+  /** An optional description of the policy. */
+  description?: string;
+  /** A list of rules the policy enforces. */
+  rules: CreateChangeRequestPolicyRequestRulesList;
+  /** Describes the which projects, environments, and configs the policy applies to. */
+  targets: CreateChangeRequestPolicyRequestTargets;
+}
+export const CreateChangeRequestPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    description: S.optional(S.String),
+    rules: CreateChangeRequestPolicyRequestRulesList,
+    targets: CreateChangeRequestPolicyRequestTargets,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v3/workplace/change_request_policies",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateChangeRequestPolicyRequest",
+}) as any as S.Schema<CreateChangeRequestPolicyRequest>;
+
+export type CreateChangeRequestPolicyResponsePolicyRulesList = Array<unknown>;
+export const CreateChangeRequestPolicyResponsePolicyRulesList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CreateChangeRequestPolicyResponsePolicyRulesList>;
+
+export interface CreateChangeRequestPolicyResponsePolicyTargets {
+  allProjects?: boolean;
+  projects?: unknown;
+}
+export const CreateChangeRequestPolicyResponsePolicyTargets =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      allProjects: S.optional(S.Boolean),
+      projects: S.optional(S.Unknown),
+    }),
+  ).annotate({
+    identifier: "CreateChangeRequestPolicyResponsePolicyTargets",
+  }) as any as S.Schema<CreateChangeRequestPolicyResponsePolicyTargets>;
+
+export interface CreateChangeRequestPolicyResponsePolicy {
+  id?: string;
+  name?: string;
+  description?: string;
+  rules?: CreateChangeRequestPolicyResponsePolicyRulesList;
+  targets?: CreateChangeRequestPolicyResponsePolicyTargets;
+}
+export const CreateChangeRequestPolicyResponsePolicy = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      description: S.optional(S.String),
+      rules: S.optional(CreateChangeRequestPolicyResponsePolicyRulesList),
+      targets: S.optional(CreateChangeRequestPolicyResponsePolicyTargets),
+    }),
+).annotate({
+  identifier: "CreateChangeRequestPolicyResponsePolicy",
+}) as any as S.Schema<CreateChangeRequestPolicyResponsePolicy>;
+
+export interface CreateChangeRequestPolicyResponse {
+  policy?: CreateChangeRequestPolicyResponsePolicy;
+  success?: boolean;
+}
+export const CreateChangeRequestPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    policy: S.optional(CreateChangeRequestPolicyResponsePolicy),
+    success: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "CreateChangeRequestPolicyResponse",
+}) as any as S.Schema<CreateChangeRequestPolicyResponse>;
+
+export interface CreateConfigRequest {
   /** Unique identifier for the project object. */
+  project: string;
+  /** Identifier for the environment object. */
+  environment: string;
+  /** Name of the new branch config. */
+  name: string;
+}
+export const CreateConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String,
+    environment: S.String,
+    name: S.String,
+  }).pipe(T.Http({ method: "POST", uri: "/v3/configs", code: 200 })),
+).annotate({
+  identifier: "CreateConfigRequest",
+}) as any as S.Schema<CreateConfigRequest>;
+
+export type CreateConfigResponseConfig = CloneConfigResponseConfig;
+export const CreateConfigResponseConfig = CloneConfigResponseConfig;
+
+export interface CreateConfigResponse {
+  config?: CloneConfigResponseConfig;
+}
+export const CreateConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    config: S.optional(CloneConfigResponseConfig),
+  }),
+).annotate({
+  identifier: "CreateConfigResponse",
+}) as any as S.Schema<CreateConfigResponse>;
+
+export interface CreateEnvironmentRequest {
+  /** The project's name */
+  project: string;
+  name: string;
+  slug: string;
+  /** Whether or not to enable personal configs for the environment */
+  personal_configs?: boolean;
+}
+export const CreateEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String.pipe(T.Query()),
+    name: S.String,
+    slug: S.String,
+    personal_configs: S.optional(S.Boolean),
+  }).pipe(T.Http({ method: "POST", uri: "/v3/environments", code: 200 })),
+).annotate({
+  identifier: "CreateEnvironmentRequest",
+}) as any as S.Schema<CreateEnvironmentRequest>;
+
+export interface CreateEnvironmentResponseEnvironment {
+  id?: string;
+  name?: string;
+  initial_fetch_at?: string;
+  created_at?: string;
+  project?: string;
+}
+export const CreateEnvironmentResponseEnvironment = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      initial_fetch_at: S.optional(S.String),
+      created_at: S.optional(S.String),
+      project: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "CreateEnvironmentResponseEnvironment",
+}) as any as S.Schema<CreateEnvironmentResponseEnvironment>;
+
+export interface CreateEnvironmentResponse {
+  environment?: CreateEnvironmentResponseEnvironment;
+}
+export const CreateEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    environment: S.optional(CreateEnvironmentResponseEnvironment),
+  }),
+).annotate({
+  identifier: "CreateEnvironmentResponse",
+}) as any as S.Schema<CreateEnvironmentResponse>;
+
+export interface CreateGroupRequest {
+  name: string;
+  /** Identifier of the project role */
+  default_project_role?: string;
+}
+export const CreateGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    default_project_role: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/v3/workplace/groups", code: 200 })),
+).annotate({
+  identifier: "CreateGroupRequest",
+}) as any as S.Schema<CreateGroupRequest>;
+
+export interface CreateGroupResponseGroupDefaultProjectRole {
+  identifier?: string;
+}
+export const CreateGroupResponseGroupDefaultProjectRole =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      identifier: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CreateGroupResponseGroupDefaultProjectRole",
+  }) as any as S.Schema<CreateGroupResponseGroupDefaultProjectRole>;
+
+export type CreateGroupResponseGroupProjectsItemRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+export const CreateGroupResponseGroupProjectsItemRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+
+export interface CreateGroupResponseGroupProjectsItem {
+  name?: string;
+  slug?: string;
+  role?: CreateGroupResponseGroupDefaultProjectRole;
+}
+export const CreateGroupResponseGroupProjectsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.optional(S.String),
+      slug: S.optional(S.String),
+      role: S.optional(CreateGroupResponseGroupDefaultProjectRole),
+    }),
+).annotate({
+  identifier: "CreateGroupResponseGroupProjectsItem",
+}) as any as S.Schema<CreateGroupResponseGroupProjectsItem>;
+
+export type CreateGroupResponseGroupProjectsList =
+  Array<CreateGroupResponseGroupProjectsItem>;
+export const CreateGroupResponseGroupProjectsList = /*@__PURE__*/ S.Array(
+  CreateGroupResponseGroupProjectsItem,
+) as any as S.Schema<CreateGroupResponseGroupProjectsList>;
+
+export type CreateGroupResponseGroupMembersItem = AuthMeResponsePrincipal;
+export const CreateGroupResponseGroupMembersItem = AuthMeResponsePrincipal;
+
+export type CreateGroupResponseGroupMembersList =
+  Array<AuthMeResponsePrincipal>;
+export const CreateGroupResponseGroupMembersList = /*@__PURE__*/ S.Array(
+  AuthMeResponsePrincipal,
+) as any as S.Schema<CreateGroupResponseGroupMembersList>;
+
+export interface CreateGroupResponseGroup {
+  name?: string;
+  slug?: string;
+  created_at?: string;
+  default_project_role?: CreateGroupResponseGroupDefaultProjectRole;
+  projects?: CreateGroupResponseGroupProjectsList;
+  members?: CreateGroupResponseGroupMembersList;
+}
+export const CreateGroupResponseGroup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    slug: S.optional(S.String),
+    created_at: S.optional(S.String),
+    default_project_role: S.optional(
+      CreateGroupResponseGroupDefaultProjectRole,
+    ),
+    projects: S.optional(CreateGroupResponseGroupProjectsList),
+    members: S.optional(CreateGroupResponseGroupMembersList),
+  }),
+).annotate({
+  identifier: "CreateGroupResponseGroup",
+}) as any as S.Schema<CreateGroupResponseGroup>;
+
+export interface CreateGroupResponse {
+  group?: CreateGroupResponseGroup;
+}
+export const CreateGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    group: S.optional(CreateGroupResponseGroup),
+  }),
+).annotate({
+  identifier: "CreateGroupResponse",
+}) as any as S.Schema<CreateGroupResponse>;
+
+export interface CreateIntegrationRequest {
+  /** The integration type */
+  type: string;
+  /** The name of the integration */
+  name: string;
+  /** The authentication data for the integration */
+  data?: unknown;
+}
+export const CreateIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+    name: S.String,
+    data: S.optional(S.Unknown),
+  }).pipe(T.Http({ method: "POST", uri: "/v3/integrations", code: 200 })),
+).annotate({
+  identifier: "CreateIntegrationRequest",
+}) as any as S.Schema<CreateIntegrationRequest>;
+
+export interface CreateIntegrationResponseIntegration {
+  slug?: string;
+  name?: string;
+  type?: string;
+}
+export const CreateIntegrationResponseIntegration = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      slug: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "CreateIntegrationResponseIntegration",
+}) as any as S.Schema<CreateIntegrationResponseIntegration>;
+
+export interface CreateIntegrationResponse {
+  integration?: CreateIntegrationResponseIntegration;
+}
+export const CreateIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    integration: S.optional(CreateIntegrationResponseIntegration),
+  }),
+).annotate({
+  identifier: "CreateIntegrationResponse",
+}) as any as S.Schema<CreateIntegrationResponse>;
+
+export type CreateIntegrationsIntegrationMemberRequestType =
+  | "workplace_user"
+  | "invite"
+  | "group"
+  | "service_account";
+export const CreateIntegrationsIntegrationMemberRequestType =
+  /*@__PURE__*/ S.String;
+
+export interface CreateIntegrationsIntegrationMemberRequest {
+  /** Integration slug */
+  integration: string;
+  type: CreateIntegrationsIntegrationMemberRequestType | (string & {});
+  slug: string;
+  role: string;
+}
+export const CreateIntegrationsIntegrationMemberRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      integration: S.String.pipe(T.Query()),
+      type: CreateIntegrationsIntegrationMemberRequestType,
+      slug: S.String,
+      role: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v3/integrations/integration/members",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateIntegrationsIntegrationMemberRequest",
+  }) as any as S.Schema<CreateIntegrationsIntegrationMemberRequest>;
+
+export type CreateIntegrationsIntegrationMemberResponseMemberType =
+  | "workplace_user"
+  | "invite"
+  | "group"
+  | "service_account";
+export const CreateIntegrationsIntegrationMemberResponseMemberType =
+  /*@__PURE__*/ S.String;
+
+export type CreateIntegrationsIntegrationMemberResponseMemberRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+export const CreateIntegrationsIntegrationMemberResponseMemberRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+
+export interface CreateIntegrationsIntegrationMemberResponseMember {
+  type?: CreateIntegrationsIntegrationMemberResponseMemberType;
+  slug?: string;
+  role?: CreateGroupResponseGroupDefaultProjectRole;
+}
+export const CreateIntegrationsIntegrationMemberResponseMember =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.optional(CreateIntegrationsIntegrationMemberResponseMemberType),
+      slug: S.optional(S.String),
+      role: S.optional(CreateGroupResponseGroupDefaultProjectRole),
+    }),
+  ).annotate({
+    identifier: "CreateIntegrationsIntegrationMemberResponseMember",
+  }) as any as S.Schema<CreateIntegrationsIntegrationMemberResponseMember>;
+
+export interface CreateIntegrationsIntegrationMemberResponse {
+  member?: CreateIntegrationsIntegrationMemberResponseMember;
+}
+export const CreateIntegrationsIntegrationMemberResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      member: S.optional(CreateIntegrationsIntegrationMemberResponseMember),
+    }),
+  ).annotate({
+    identifier: "CreateIntegrationsIntegrationMemberResponse",
+  }) as any as S.Schema<CreateIntegrationsIntegrationMemberResponse>;
+
+export interface CreateProjectRequest {
+  /** Name of project */
+  name: string;
+  /** Description of project */
+  description?: string;
+}
+export const CreateProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    description: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/v3/projects", code: 200 })),
+).annotate({
+  identifier: "CreateProjectRequest",
+}) as any as S.Schema<CreateProjectRequest>;
+
+export interface CreateProjectResponseProject {
+  id?: string;
+  name?: string;
+  description?: string;
+  created_at?: string;
+}
+export const CreateProjectResponseProject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    created_at: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateProjectResponseProject",
+}) as any as S.Schema<CreateProjectResponseProject>;
+
+export interface CreateProjectResponse {
+  project?: CreateProjectResponseProject;
+}
+export const CreateProjectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.optional(CreateProjectResponseProject),
+  }),
+).annotate({
+  identifier: "CreateProjectResponse",
+}) as any as S.Schema<CreateProjectResponse>;
+
+/** An option indicating if and how Doppler should attempt to import secrets from the sync destination */
+export type CreateSyncRequestImportOption =
+  | "none"
+  | "prefer_doppler"
+  | "prefer_integration";
+export const CreateSyncRequestImportOption = /*@__PURE__*/ S.String;
+
+export interface CreateSyncRequest {
+  /** The project slug */
+  project: string;
+  /** The config slug */
+  config: string;
+  /** The integration slug which the sync will use */
+  integration: string;
+  /** Configuration data for the sync */
+  data: unknown;
+  /** An option indicating if and how Doppler should attempt to import secrets from the sync destination */
+  import_option?: CreateSyncRequestImportOption | (string & {});
+  /** Causes sync creation to wait for the initial sync to complete before returning. */
+  await_initial_sync?: boolean;
+}
+export const CreateSyncRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String.pipe(T.Query()),
+    config: S.String.pipe(T.Query()),
+    integration: S.String,
+    data: S.Unknown,
+    import_option: S.optional(CreateSyncRequestImportOption),
+    await_initial_sync: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v3/configs/config/syncs", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateSyncRequest",
+}) as any as S.Schema<CreateSyncRequest>;
+
+export interface CreateSyncResponseSync {
+  slug?: string;
+  integration?: string;
+  project?: string;
+  config?: string;
+  enabled?: boolean;
+  lastSyncedAt?: string;
+}
+export const CreateSyncResponseSync = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    slug: S.optional(S.String),
+    integration: S.optional(S.String),
+    project: S.optional(S.String),
+    config: S.optional(S.String),
+    enabled: S.optional(S.Boolean),
+    lastSyncedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateSyncResponseSync",
+}) as any as S.Schema<CreateSyncResponseSync>;
+
+export interface CreateSyncResponse {
+  sync?: CreateSyncResponseSync;
+}
+export const CreateSyncResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sync: S.optional(CreateSyncResponseSync),
+  }),
+).annotate({
+  identifier: "CreateSyncResponse",
+}) as any as S.Schema<CreateSyncResponse>;
+
+export interface DeleteChangeRequestPolicyRequest {
+  /** The unique identifier of the policy. */
+  slug: string;
+}
+export const DeleteChangeRequestPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    slug: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v3/workplace/change_request_policies/change_request_policy/{slug}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteChangeRequestPolicyRequest",
+}) as any as S.Schema<DeleteChangeRequestPolicyRequest>;
+
+export interface DeleteChangeRequestPolicyResponse {
+  success?: boolean;
+}
+export const DeleteChangeRequestPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    success: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "DeleteChangeRequestPolicyResponse",
+}) as any as S.Schema<DeleteChangeRequestPolicyResponse>;
+
+export interface DeleteConfigRequest {
+  /** Unique identifier for the project. */
   project: string;
   /** Name of the config. */
   config: string;
 }
-export const ConfigsLockRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String,
-    config: S.String,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v3/configs/config/lock", code: 200 }),
-  ),
+    project: S.String.pipe(T.Query()),
+    config: S.String.pipe(T.Query()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/v3/configs/config", code: 200 })),
 ).annotate({
-  identifier: "ConfigsLockRequest",
-}) as any as S.Schema<ConfigsLockRequest>;
+  identifier: "DeleteConfigRequest",
+}) as any as S.Schema<DeleteConfigRequest>;
 
-export type ConfigsLockResponseConfig = ConfigsCloneResponseConfig;
-export const ConfigsLockResponseConfig = ConfigsCloneResponseConfig;
-
-export interface ConfigsLockResponse {
-  config?: ConfigsCloneResponseConfig;
+export interface DeleteConfigResponse {
+  success?: boolean;
 }
-export const ConfigsLockResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteConfigResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    config: S.optional(ConfigsCloneResponseConfig),
+    success: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "ConfigsLockResponse",
-}) as any as S.Schema<ConfigsLockResponse>;
+  identifier: "DeleteConfigResponse",
+}) as any as S.Schema<DeleteConfigResponse>;
 
-export interface ConfigsUnlockRequest {
+export interface DeleteEnvironmentRequest {
+  /** The project's name */
+  project: string;
+  /** The environment's slug */
+  environment: string;
+}
+export const DeleteEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String.pipe(T.Query()),
+    environment: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v3/environments/environment",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEnvironmentRequest",
+}) as any as S.Schema<DeleteEnvironmentRequest>;
+
+export interface DeleteEnvironmentResponse {}
+export const DeleteEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEnvironmentResponse",
+}) as any as S.Schema<DeleteEnvironmentResponse>;
+
+export interface DeleteGroupRequest {
+  /** The group's slug */
+  slug: string;
+}
+export const DeleteGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    slug: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v3/workplace/groups/group/{slug}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteGroupRequest",
+}) as any as S.Schema<DeleteGroupRequest>;
+
+export interface DeleteGroupResponse {}
+export const DeleteGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteGroupResponse",
+}) as any as S.Schema<DeleteGroupResponse>;
+
+export interface DeleteIntegrationRequest {
+  /** The slug of the integration to delete */
+  integration: string;
+}
+export const DeleteIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    integration: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v3/integrations/integration",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteIntegrationRequest",
+}) as any as S.Schema<DeleteIntegrationRequest>;
+
+export type DeleteIntegrationResponse = unknown;
+export const DeleteIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteIntegrationResponse",
+}) as any as S.Schema<DeleteIntegrationResponse>;
+
+export interface DeleteProjectRequest {
   /** Unique identifier for the project object. */
   project: string;
-  /** Name of the config. */
-  config: string;
 }
-export const ConfigsUnlockRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteProjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project: S.String,
-    config: S.String,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v3/configs/config/unlock", code: 200 }),
-  ),
+  }).pipe(T.Http({ method: "DELETE", uri: "/v3/projects/project", code: 200 })),
 ).annotate({
-  identifier: "ConfigsUnlockRequest",
-}) as any as S.Schema<ConfigsUnlockRequest>;
+  identifier: "DeleteProjectRequest",
+}) as any as S.Schema<DeleteProjectRequest>;
 
-export type ConfigsUnlockResponseConfig = ConfigsCloneResponseConfig;
-export const ConfigsUnlockResponseConfig = ConfigsCloneResponseConfig;
-
-export interface ConfigsUnlockResponse {
-  config?: ConfigsCloneResponseConfig;
-}
-export const ConfigsUnlockResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    config: S.optional(ConfigsCloneResponseConfig),
-  }),
+export interface DeleteProjectResponse {}
+export const DeleteProjectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "ConfigsUnlockResponse",
-}) as any as S.Schema<ConfigsUnlockResponse>;
+  identifier: "DeleteProjectResponse",
+}) as any as S.Schema<DeleteProjectResponse>;
 
-export interface ConfigsUpdateRequest {
+export interface DeleteSecretRequest {
   /** Unique identifier for the project object. */
   project: string;
   /** Name of the config object. */
   config: string;
-  /** The new name of config. */
+  /** Name of the secret. */
   name: string;
 }
-export const ConfigsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteSecretRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String,
-    config: S.String,
-    name: S.String,
-  }).pipe(T.Http({ method: "POST", uri: "/v3/configs/config", code: 200 })),
+    project: S.String.pipe(T.Query()),
+    config: S.String.pipe(T.Query()),
+    name: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/v3/configs/config/secret", code: 200 }),
+  ),
 ).annotate({
-  identifier: "ConfigsUpdateRequest",
-}) as any as S.Schema<ConfigsUpdateRequest>;
+  identifier: "DeleteSecretRequest",
+}) as any as S.Schema<DeleteSecretRequest>;
 
-export type ConfigsUpdateResponseConfig = ConfigsCloneResponseConfig;
-export const ConfigsUpdateResponseConfig = ConfigsCloneResponseConfig;
+export interface DeleteSecretResponse {}
+export const DeleteSecretResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSecretResponse",
+}) as any as S.Schema<DeleteSecretResponse>;
 
-export interface ConfigsUpdateResponse {
-  config?: ConfigsCloneResponseConfig;
+export interface DeleteSyncRequest {
+  /** The project slug */
+  project: string;
+  /** The config slug */
+  config: string;
+  /** The sync slug */
+  sync: string;
+  /** Whether or not to delete the synced data from the target integration */
+  delete_from_target: boolean;
 }
-export const ConfigsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteSyncRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    config: S.optional(ConfigsCloneResponseConfig),
-  }),
+    project: S.String.pipe(T.Query()),
+    config: S.String.pipe(T.Query()),
+    sync: S.String.pipe(T.Query()),
+    delete_from_target: S.Boolean.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v3/configs/config/syncs/sync",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "ConfigsUpdateResponse",
-}) as any as S.Schema<ConfigsUpdateResponse>;
+  identifier: "DeleteSyncRequest",
+}) as any as S.Schema<DeleteSyncRequest>;
+
+export type DeleteSyncResponse = unknown;
+export const DeleteSyncResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteSyncResponse",
+}) as any as S.Schema<DeleteSyncResponse>;
 
 export interface DeleteV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdReviewRequest {
   change_request_id: string;
@@ -1688,50 +1815,6 @@ export const DeleteV3workplacechangeRequestschangeRequestChangeRequestIdUnitsuni
       "DeleteV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdReviewResponse",
   }) as any as S.Schema<DeleteV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdReviewResponse>;
 
-export type DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequestType =
-  | "workplace_user"
-  | "invite"
-  | "group"
-  | "service_account";
-export const DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequestType =
-  /*@__PURE__*/ S.String;
-
-export interface DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest {
-  type:
-    | DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequestType
-    | (string & {});
-  /** Member's slug */
-  slug: string;
-  /** Integration slug */
-  integration: string;
-}
-export const DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequestType.pipe(
-        T.Label(),
-      ),
-      slug: S.String.pipe(T.Label()),
-      integration: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v3/workplace/integrations/integration/members/{type}/{slug}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest",
-  }) as any as S.Schema<DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest>;
-
-export interface DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponse {}
-export const DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponse",
-  }) as any as S.Schema<DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponse>;
-
 export interface DeleteV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityRequest {
   service_account: string;
   identity: string;
@@ -1759,6 +1842,171 @@ export const DeleteV3workplaceserviceAccountsserviceAccountServiceAccountIdentit
     identifier:
       "DeleteV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponse",
   }) as any as S.Schema<DeleteV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponse>;
+
+export interface DeleteWebhookRequest {
+  /** Webhook's slug */
+  slug: string;
+  /** The project's name */
+  project?: string;
+}
+export const DeleteWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    slug: S.String.pipe(T.Label()),
+    project: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/v3/webhooks/webhook/{slug}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteWebhookRequest",
+}) as any as S.Schema<DeleteWebhookRequest>;
+
+export type DeleteWebhookResponse = unknown;
+export const DeleteWebhookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteWebhookResponse",
+}) as any as S.Schema<DeleteWebhookResponse>;
+
+export type DeleteWorkplaceIntegrationsIntegrationMemberRequestType =
+  | "workplace_user"
+  | "invite"
+  | "group"
+  | "service_account";
+export const DeleteWorkplaceIntegrationsIntegrationMemberRequestType =
+  /*@__PURE__*/ S.String;
+
+export interface DeleteWorkplaceIntegrationsIntegrationMemberRequest {
+  type: DeleteWorkplaceIntegrationsIntegrationMemberRequestType | (string & {});
+  /** Member's slug */
+  slug: string;
+  /** Integration slug */
+  integration: string;
+}
+export const DeleteWorkplaceIntegrationsIntegrationMemberRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: DeleteWorkplaceIntegrationsIntegrationMemberRequestType.pipe(
+        T.Label(),
+      ),
+      slug: S.String.pipe(T.Label()),
+      integration: S.String.pipe(T.Query()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/v3/workplace/integrations/integration/members/{type}/{slug}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteWorkplaceIntegrationsIntegrationMemberRequest",
+  }) as any as S.Schema<DeleteWorkplaceIntegrationsIntegrationMemberRequest>;
+
+export interface DeleteWorkplaceIntegrationsIntegrationMemberResponse {}
+export const DeleteWorkplaceIntegrationsIntegrationMemberResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteWorkplaceIntegrationsIntegrationMemberResponse",
+  }) as any as S.Schema<DeleteWorkplaceIntegrationsIntegrationMemberResponse>;
+
+export interface DisableWebhookRequest {
+  /** Webhook's slug */
+  slug: string;
+  /** The project's name */
+  project?: string;
+}
+export const DisableWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    slug: S.String.pipe(T.Label()),
+    project: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v3/webhooks/webhook/{slug}/disable",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DisableWebhookRequest",
+}) as any as S.Schema<DisableWebhookRequest>;
+
+export type DisableWebhookResponse = unknown;
+export const DisableWebhookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DisableWebhookResponse",
+}) as any as S.Schema<DisableWebhookResponse>;
+
+export type DownloadSecretRequestFormat =
+  | "json"
+  | "dotnet-json"
+  | "env"
+  | "yaml"
+  | "docker"
+  | "env-no-quotes";
+export const DownloadSecretRequestFormat = /*@__PURE__*/ S.String;
+
+export type DownloadSecretRequestNameTransformer =
+  | "camel"
+  | "upper-camel"
+  | "lower-snake"
+  | "tf-var"
+  | "dotnet"
+  | "dotnet-env"
+  | "lower-kebab";
+export const DownloadSecretRequestNameTransformer = /*@__PURE__*/ S.String;
+
+export interface DownloadSecretRequest {
+  /** Unique identifier for the project object. Not required if using a Service Token. */
+  project: string;
+  /** Name of the config object. Not required if using a Service Token. */
+  config: string;
+  format?: DownloadSecretRequestFormat | (string & {});
+  /** Transform secret names to a different case */
+  name_transformer?: DownloadSecretRequestNameTransformer | (string & {});
+  /** Whether or not to issue leases and include dynamic secret values for the config */
+  include_dynamic_secrets?: boolean;
+  /** The number of seconds until dynamic leases expire. Must be used with `include_dynamic_secrets`. Defaults to 1800 (30 minutes). */
+  dynamic_secrets_ttl_sec?: number;
+  /** Comma-delimited list of secrets to include in the download. Defaults to all secrets if left unspecified. */
+  secrets?: string;
+}
+export const DownloadSecretRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String.pipe(T.Query()),
+    config: S.String.pipe(T.Query()),
+    format: S.optional(DownloadSecretRequestFormat.pipe(T.Query())),
+    name_transformer: S.optional(
+      DownloadSecretRequestNameTransformer.pipe(T.Query()),
+    ),
+    include_dynamic_secrets: S.optional(S.Boolean.pipe(T.Query())),
+    dynamic_secrets_ttl_sec: S.optional(S.Number.pipe(T.Query())),
+    secrets: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v3/configs/config/secrets/download",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DownloadSecretRequest",
+}) as any as S.Schema<DownloadSecretRequest>;
+
+export interface DownloadSecretResponse {
+  STRIPE?: string;
+  ALGOLIA?: string;
+  DATABASE?: string;
+  USER?: string;
+}
+export const DownloadSecretResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    STRIPE: S.optional(S.String),
+    ALGOLIA: S.optional(S.String),
+    DATABASE: S.optional(S.String),
+    USER: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DownloadSecretResponse",
+}) as any as S.Schema<DownloadSecretResponse>;
 
 export interface DynamicSecretsIssueLeaseRequest {
   /** The project where the dynamic secret is located */
@@ -1842,91 +2090,132 @@ export const DynamicSecretsRevokeLeaseResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DynamicSecretsRevokeLeaseResponse",
 }) as any as S.Schema<DynamicSecretsRevokeLeaseResponse>;
 
-export interface EnvironmentsCreateRequest {
-  /** The project's name */
-  project: string;
-  name: string;
+export interface EnableWebhookRequest {
+  /** Webhook's slug */
   slug: string;
-  /** Whether or not to enable personal configs for the environment */
-  personal_configs?: boolean;
-}
-export const EnvironmentsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String.pipe(T.Query()),
-    name: S.String,
-    slug: S.String,
-    personal_configs: S.optional(S.Boolean),
-  }).pipe(T.Http({ method: "POST", uri: "/v3/environments", code: 200 })),
-).annotate({
-  identifier: "EnvironmentsCreateRequest",
-}) as any as S.Schema<EnvironmentsCreateRequest>;
-
-export interface EnvironmentsCreateResponseEnvironment {
-  id?: string;
-  name?: string;
-  initial_fetch_at?: string;
-  created_at?: string;
+  /** The project's name */
   project?: string;
 }
-export const EnvironmentsCreateResponseEnvironment = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      initial_fetch_at: S.optional(S.String),
-      created_at: S.optional(S.String),
-      project: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "EnvironmentsCreateResponseEnvironment",
-}) as any as S.Schema<EnvironmentsCreateResponseEnvironment>;
-
-export interface EnvironmentsCreateResponse {
-  environment?: EnvironmentsCreateResponseEnvironment;
-}
-export const EnvironmentsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const EnableWebhookRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    environment: S.optional(EnvironmentsCreateResponseEnvironment),
-  }),
-).annotate({
-  identifier: "EnvironmentsCreateResponse",
-}) as any as S.Schema<EnvironmentsCreateResponse>;
-
-export interface EnvironmentsDeleteRequest {
-  /** The project's name */
-  project: string;
-  /** The environment's slug */
-  environment: string;
-}
-export const EnvironmentsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String.pipe(T.Query()),
-    environment: S.String.pipe(T.Query()),
+    slug: S.String.pipe(T.Label()),
+    project: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/v3/environments/environment",
+      method: "POST",
+      uri: "/v3/webhooks/webhook/{slug}/enable",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "EnvironmentsDeleteRequest",
-}) as any as S.Schema<EnvironmentsDeleteRequest>;
+  identifier: "EnableWebhookRequest",
+}) as any as S.Schema<EnableWebhookRequest>;
 
-export interface EnvironmentsDeleteResponse {}
-export const EnvironmentsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export type EnableWebhookResponse = unknown;
+export const EnableWebhookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "EnvironmentsDeleteResponse",
-}) as any as S.Schema<EnvironmentsDeleteResponse>;
+  identifier: "EnableWebhookResponse",
+}) as any as S.Schema<EnableWebhookResponse>;
 
-export interface EnvironmentsGetRequest {
+export interface GetChangeRequestPolicyRequest {
+  /** Unique id of the policy */
+  slug: string;
+}
+export const GetChangeRequestPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    slug: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v3/workplace/change_request_policies/change_request_policy/{slug}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetChangeRequestPolicyRequest",
+}) as any as S.Schema<GetChangeRequestPolicyRequest>;
+
+export type GetChangeRequestPolicyResponsePolicyRulesList = Array<unknown>;
+export const GetChangeRequestPolicyResponsePolicyRulesList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GetChangeRequestPolicyResponsePolicyRulesList>;
+
+export type GetChangeRequestPolicyResponsePolicyTargets =
+  CreateChangeRequestPolicyResponsePolicyTargets;
+export const GetChangeRequestPolicyResponsePolicyTargets =
+  CreateChangeRequestPolicyResponsePolicyTargets;
+
+export interface GetChangeRequestPolicyResponsePolicy {
+  id?: string;
+  name?: string;
+  description?: string;
+  rules?: GetChangeRequestPolicyResponsePolicyRulesList;
+  targets?: CreateChangeRequestPolicyResponsePolicyTargets;
+}
+export const GetChangeRequestPolicyResponsePolicy = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      description: S.optional(S.String),
+      rules: S.optional(GetChangeRequestPolicyResponsePolicyRulesList),
+      targets: S.optional(CreateChangeRequestPolicyResponsePolicyTargets),
+    }),
+).annotate({
+  identifier: "GetChangeRequestPolicyResponsePolicy",
+}) as any as S.Schema<GetChangeRequestPolicyResponsePolicy>;
+
+export interface GetChangeRequestPolicyResponse {
+  policy?: GetChangeRequestPolicyResponsePolicy;
+  success?: boolean;
+}
+export const GetChangeRequestPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    policy: S.optional(GetChangeRequestPolicyResponsePolicy),
+    success: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "GetChangeRequestPolicyResponse",
+}) as any as S.Schema<GetChangeRequestPolicyResponse>;
+
+export interface GetConfigRequest {
+  /** Unique identifier for the project object. */
+  project: string;
+  /** Name of the config object. */
+  config: string;
+}
+export const GetConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String.pipe(T.Query()),
+    config: S.String.pipe(T.Query()),
+  }).pipe(T.Http({ method: "GET", uri: "/v3/configs/config", code: 200 })),
+).annotate({
+  identifier: "GetConfigRequest",
+}) as any as S.Schema<GetConfigRequest>;
+
+export type GetConfigResponseConfig = CloneConfigResponseConfig;
+export const GetConfigResponseConfig = CloneConfigResponseConfig;
+
+export interface GetConfigResponse {
+  config?: CloneConfigResponseConfig;
+}
+export const GetConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    config: S.optional(CloneConfigResponseConfig),
+  }),
+).annotate({
+  identifier: "GetConfigResponse",
+}) as any as S.Schema<GetConfigResponse>;
+
+export interface GetEnvironmentRequest {
   /** The project's name */
   project: string;
   /** The environment's slug */
   environment: string;
 }
-export const EnvironmentsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project: S.String.pipe(T.Query()),
     environment: S.String.pipe(T.Query()),
@@ -1934,102 +2223,297 @@ export const EnvironmentsGetRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "GET", uri: "/v3/environments/environment", code: 200 }),
   ),
 ).annotate({
-  identifier: "EnvironmentsGetRequest",
-}) as any as S.Schema<EnvironmentsGetRequest>;
+  identifier: "GetEnvironmentRequest",
+}) as any as S.Schema<GetEnvironmentRequest>;
 
-export type EnvironmentsGetResponseEnvironment =
-  EnvironmentsCreateResponseEnvironment;
-export const EnvironmentsGetResponseEnvironment =
-  EnvironmentsCreateResponseEnvironment;
+export type GetEnvironmentResponseEnvironment =
+  CreateEnvironmentResponseEnvironment;
+export const GetEnvironmentResponseEnvironment =
+  CreateEnvironmentResponseEnvironment;
 
-export interface EnvironmentsGetResponse {
-  environment?: EnvironmentsCreateResponseEnvironment;
+export interface GetEnvironmentResponse {
+  environment?: CreateEnvironmentResponseEnvironment;
 }
-export const EnvironmentsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    environment: S.optional(EnvironmentsCreateResponseEnvironment),
+    environment: S.optional(CreateEnvironmentResponseEnvironment),
   }),
 ).annotate({
-  identifier: "EnvironmentsGetResponse",
-}) as any as S.Schema<EnvironmentsGetResponse>;
+  identifier: "GetEnvironmentResponse",
+}) as any as S.Schema<GetEnvironmentResponse>;
 
-export interface EnvironmentsListRequest {
-  /** The project's name */
-  project: string;
+export interface GetGroupRequest {
+  /** The group's slug */
+  slug: string;
 }
-export const EnvironmentsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Query()),
-  }).pipe(T.Http({ method: "GET", uri: "/v3/environments", code: 200 })),
-).annotate({
-  identifier: "EnvironmentsListRequest",
-}) as any as S.Schema<EnvironmentsListRequest>;
-
-export type EnvironmentsListResponseEnvironmentsItem =
-  EnvironmentsCreateResponseEnvironment;
-export const EnvironmentsListResponseEnvironmentsItem =
-  EnvironmentsCreateResponseEnvironment;
-
-export type EnvironmentsListResponseEnvironmentsList =
-  Array<EnvironmentsCreateResponseEnvironment>;
-export const EnvironmentsListResponseEnvironmentsList = /*@__PURE__*/ S.Array(
-  EnvironmentsCreateResponseEnvironment,
-) as any as S.Schema<EnvironmentsListResponseEnvironmentsList>;
-
-export interface EnvironmentsListResponse {
-  environments?: EnvironmentsListResponseEnvironmentsList;
-  page?: number;
-}
-export const EnvironmentsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    environments: S.optional(EnvironmentsListResponseEnvironmentsList),
-    page: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "EnvironmentsListResponse",
-}) as any as S.Schema<EnvironmentsListResponse>;
-
-export interface EnvironmentsRenameRequest {
-  /** The project's name */
-  project: string;
-  /** The environment's slug */
-  environment: string;
-  /** Desired name */
-  name?: string;
-  /** Desired slug */
-  slug?: string;
-  /** Whether or not to enable personal configs for the environment */
-  personal_configs?: boolean;
-}
-export const EnvironmentsRenameRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String.pipe(T.Query()),
-    environment: S.String.pipe(T.Query()),
-    name: S.optional(S.String),
-    slug: S.optional(S.String),
-    personal_configs: S.optional(S.Boolean),
+    slug: S.String.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "PUT", uri: "/v3/environments/environment", code: 200 }),
+    T.Http({
+      method: "GET",
+      uri: "/v3/workplace/groups/group/{slug}",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "EnvironmentsRenameRequest",
-}) as any as S.Schema<EnvironmentsRenameRequest>;
+  identifier: "GetGroupRequest",
+}) as any as S.Schema<GetGroupRequest>;
 
-export type EnvironmentsRenameResponseEnvironment =
-  EnvironmentsCreateResponseEnvironment;
-export const EnvironmentsRenameResponseEnvironment =
-  EnvironmentsCreateResponseEnvironment;
+export type GetGroupResponseGroupDefaultProjectRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+export const GetGroupResponseGroupDefaultProjectRole =
+  CreateGroupResponseGroupDefaultProjectRole;
 
-export interface EnvironmentsRenameResponse {
-  environment?: EnvironmentsCreateResponseEnvironment;
+export type GetGroupResponseGroupProjectsItemRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+export const GetGroupResponseGroupProjectsItemRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+
+export type GetGroupResponseGroupProjectsItem =
+  CreateGroupResponseGroupProjectsItem;
+export const GetGroupResponseGroupProjectsItem =
+  CreateGroupResponseGroupProjectsItem;
+
+export type GetGroupResponseGroupProjectsList =
+  Array<CreateGroupResponseGroupProjectsItem>;
+export const GetGroupResponseGroupProjectsList = /*@__PURE__*/ S.Array(
+  CreateGroupResponseGroupProjectsItem,
+) as any as S.Schema<GetGroupResponseGroupProjectsList>;
+
+export type GetGroupResponseGroupMembersItem = AuthMeResponsePrincipal;
+export const GetGroupResponseGroupMembersItem = AuthMeResponsePrincipal;
+
+export type GetGroupResponseGroupMembersList = Array<AuthMeResponsePrincipal>;
+export const GetGroupResponseGroupMembersList = /*@__PURE__*/ S.Array(
+  AuthMeResponsePrincipal,
+) as any as S.Schema<GetGroupResponseGroupMembersList>;
+
+export interface GetGroupResponseGroup {
+  name?: string;
+  slug?: string;
+  created_at?: string;
+  default_project_role?: CreateGroupResponseGroupDefaultProjectRole;
+  projects?: GetGroupResponseGroupProjectsList;
+  members?: GetGroupResponseGroupMembersList;
 }
-export const EnvironmentsRenameResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetGroupResponseGroup = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    environment: S.optional(EnvironmentsCreateResponseEnvironment),
+    name: S.optional(S.String),
+    slug: S.optional(S.String),
+    created_at: S.optional(S.String),
+    default_project_role: S.optional(
+      CreateGroupResponseGroupDefaultProjectRole,
+    ),
+    projects: S.optional(GetGroupResponseGroupProjectsList),
+    members: S.optional(GetGroupResponseGroupMembersList),
   }),
 ).annotate({
-  identifier: "EnvironmentsRenameResponse",
-}) as any as S.Schema<EnvironmentsRenameResponse>;
+  identifier: "GetGroupResponseGroup",
+}) as any as S.Schema<GetGroupResponseGroup>;
+
+export interface GetGroupResponse {
+  group?: GetGroupResponseGroup;
+}
+export const GetGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    group: S.optional(GetGroupResponseGroup),
+  }),
+).annotate({
+  identifier: "GetGroupResponse",
+}) as any as S.Schema<GetGroupResponse>;
+
+export interface GetIntegrationRequest {
+  /** The integration slug */
+  integration: string;
+}
+export const GetIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    integration: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v3/integrations/integration", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetIntegrationRequest",
+}) as any as S.Schema<GetIntegrationRequest>;
+
+export type GetIntegrationResponseIntegration =
+  CreateIntegrationResponseIntegration;
+export const GetIntegrationResponseIntegration =
+  CreateIntegrationResponseIntegration;
+
+export interface GetIntegrationResponse {
+  integration?: CreateIntegrationResponseIntegration;
+}
+export const GetIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    integration: S.optional(CreateIntegrationResponseIntegration),
+  }),
+).annotate({
+  identifier: "GetIntegrationResponse",
+}) as any as S.Schema<GetIntegrationResponse>;
+
+export interface GetIntegrationsIntegrationMembersRequest {
+  /** Integration slug */
+  integration: string;
+  page?: number;
+  per_page?: number;
+}
+export const GetIntegrationsIntegrationMembersRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      integration: S.String.pipe(T.Query()),
+      page: S.optional(S.Number.pipe(T.Query())),
+      per_page: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v3/integrations/integration/members",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetIntegrationsIntegrationMembersRequest",
+}) as any as S.Schema<GetIntegrationsIntegrationMembersRequest>;
+
+export type GetIntegrationsIntegrationMembersResponseMembersItemType =
+  | "workplace_user"
+  | "invite"
+  | "group"
+  | "service_account";
+export const GetIntegrationsIntegrationMembersResponseMembersItemType =
+  /*@__PURE__*/ S.String;
+
+export type GetIntegrationsIntegrationMembersResponseMembersItemRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+export const GetIntegrationsIntegrationMembersResponseMembersItemRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+
+export interface GetIntegrationsIntegrationMembersResponseMembersItem {
+  type?: GetIntegrationsIntegrationMembersResponseMembersItemType;
+  slug?: string;
+  role?: CreateGroupResponseGroupDefaultProjectRole;
+}
+export const GetIntegrationsIntegrationMembersResponseMembersItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.optional(
+        GetIntegrationsIntegrationMembersResponseMembersItemType,
+      ),
+      slug: S.optional(S.String),
+      role: S.optional(CreateGroupResponseGroupDefaultProjectRole),
+    }),
+  ).annotate({
+    identifier: "GetIntegrationsIntegrationMembersResponseMembersItem",
+  }) as any as S.Schema<GetIntegrationsIntegrationMembersResponseMembersItem>;
+
+export type GetIntegrationsIntegrationMembersResponseMembersList =
+  Array<GetIntegrationsIntegrationMembersResponseMembersItem>;
+export const GetIntegrationsIntegrationMembersResponseMembersList =
+  /*@__PURE__*/ S.Array(
+    GetIntegrationsIntegrationMembersResponseMembersItem,
+  ) as any as S.Schema<GetIntegrationsIntegrationMembersResponseMembersList>;
+
+export interface GetIntegrationsIntegrationMembersResponse {
+  members?: GetIntegrationsIntegrationMembersResponseMembersList;
+}
+export const GetIntegrationsIntegrationMembersResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      members: S.optional(GetIntegrationsIntegrationMembersResponseMembersList),
+    }),
+  ).annotate({
+    identifier: "GetIntegrationsIntegrationMembersResponse",
+  }) as any as S.Schema<GetIntegrationsIntegrationMembersResponse>;
+
+export type GetMemberRequestMemberType = "workplace_user";
+export const GetMemberRequestMemberType = /*@__PURE__*/ S.String;
+
+export interface GetMemberRequest {
+  /** The group's slug */
+  group_slug: string;
+  member_type: GetMemberRequestMemberType | (string & {});
+  /** The member's slug */
+  member_slug: string;
+}
+export const GetMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    group_slug: S.String.pipe(T.Label()),
+    member_type: GetMemberRequestMemberType.pipe(T.Label()),
+    member_slug: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v3/workplace/groups/group/{group_slug}/members/{member_type}/{member_slug}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetMemberRequest",
+}) as any as S.Schema<GetMemberRequest>;
+
+export type GetMemberResponseGroupDefaultProjectRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+export const GetMemberResponseGroupDefaultProjectRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+
+export type GetMemberResponseGroupProjectsItemRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+export const GetMemberResponseGroupProjectsItemRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+
+export type GetMemberResponseGroupProjectsItem =
+  CreateGroupResponseGroupProjectsItem;
+export const GetMemberResponseGroupProjectsItem =
+  CreateGroupResponseGroupProjectsItem;
+
+export type GetMemberResponseGroupProjectsList =
+  Array<CreateGroupResponseGroupProjectsItem>;
+export const GetMemberResponseGroupProjectsList = /*@__PURE__*/ S.Array(
+  CreateGroupResponseGroupProjectsItem,
+) as any as S.Schema<GetMemberResponseGroupProjectsList>;
+
+export type GetMemberResponseGroupMembersItem = AuthMeResponsePrincipal;
+export const GetMemberResponseGroupMembersItem = AuthMeResponsePrincipal;
+
+export type GetMemberResponseGroupMembersList = Array<AuthMeResponsePrincipal>;
+export const GetMemberResponseGroupMembersList = /*@__PURE__*/ S.Array(
+  AuthMeResponsePrincipal,
+) as any as S.Schema<GetMemberResponseGroupMembersList>;
+
+export interface GetMemberResponseGroup {
+  name?: string;
+  slug?: string;
+  created_at?: string;
+  default_project_role?: CreateGroupResponseGroupDefaultProjectRole;
+  projects?: GetMemberResponseGroupProjectsList;
+  members?: GetMemberResponseGroupMembersList;
+}
+export const GetMemberResponseGroup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    slug: S.optional(S.String),
+    created_at: S.optional(S.String),
+    default_project_role: S.optional(
+      CreateGroupResponseGroupDefaultProjectRole,
+    ),
+    projects: S.optional(GetMemberResponseGroupProjectsList),
+    members: S.optional(GetMemberResponseGroupMembersList),
+  }),
+).annotate({
+  identifier: "GetMemberResponseGroup",
+}) as any as S.Schema<GetMemberResponseGroup>;
+
+export interface GetMemberResponse {
+  group?: GetMemberResponseGroup;
+}
+export const GetMemberResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    group: S.optional(GetMemberResponseGroup),
+  }),
+).annotate({
+  identifier: "GetMemberResponse",
+}) as any as S.Schema<GetMemberResponse>;
 
 export interface GetOptionsRequest {
   /** The integration slug */
@@ -2056,89 +2540,156 @@ export const GetOptionsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetOptionsResponse",
 }) as any as S.Schema<GetOptionsResponse>;
 
-export interface GetV3IntegrationsIntegrationMembersRequest {
-  /** Integration slug */
-  integration: string;
-  page?: number;
-  per_page?: number;
+export interface GetProjectRequest {
+  /** Unique identifier for the project object. */
+  project: string;
 }
-export const GetV3IntegrationsIntegrationMembersRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      integration: S.String.pipe(T.Query()),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per_page: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v3/integrations/integration/members",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV3IntegrationsIntegrationMembersRequest",
-  }) as any as S.Schema<GetV3IntegrationsIntegrationMembersRequest>;
+export const GetProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String.pipe(T.Query()),
+  }).pipe(T.Http({ method: "GET", uri: "/v3/projects/project", code: 200 })),
+).annotate({
+  identifier: "GetProjectRequest",
+}) as any as S.Schema<GetProjectRequest>;
 
-export type GetV3IntegrationsIntegrationMembersResponseMembersItemType =
-  | "workplace_user"
-  | "invite"
-  | "group"
-  | "service_account";
-export const GetV3IntegrationsIntegrationMembersResponseMembersItemType =
-  /*@__PURE__*/ S.String;
+export type GetProjectResponseProject = CreateProjectResponseProject;
+export const GetProjectResponseProject = CreateProjectResponseProject;
 
-export interface GetV3IntegrationsIntegrationMembersResponseMembersItemRole {
-  identifier?: string;
+export interface GetProjectResponse {
+  project?: CreateProjectResponseProject;
 }
-export const GetV3IntegrationsIntegrationMembersResponseMembersItemRole =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      identifier: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "GetV3IntegrationsIntegrationMembersResponseMembersItemRole",
-  }) as any as S.Schema<GetV3IntegrationsIntegrationMembersResponseMembersItemRole>;
+export const GetProjectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.optional(CreateProjectResponseProject),
+  }),
+).annotate({
+  identifier: "GetProjectResponse",
+}) as any as S.Schema<GetProjectResponse>;
 
-export interface GetV3IntegrationsIntegrationMembersResponseMembersItem {
-  type?: GetV3IntegrationsIntegrationMembersResponseMembersItemType;
-  slug?: string;
-  role?: GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+export interface GetSecretRequest {
+  /** Unique identifier for the project object. */
+  project: string;
+  /** Name of the config object. */
+  config: string;
+  /** Name of the secret. */
+  name: string;
 }
-export const GetV3IntegrationsIntegrationMembersResponseMembersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(
-        GetV3IntegrationsIntegrationMembersResponseMembersItemType,
-      ),
-      slug: S.optional(S.String),
-      role: S.optional(
-        GetV3IntegrationsIntegrationMembersResponseMembersItemRole,
-      ),
-    }),
-  ).annotate({
-    identifier: "GetV3IntegrationsIntegrationMembersResponseMembersItem",
-  }) as any as S.Schema<GetV3IntegrationsIntegrationMembersResponseMembersItem>;
+export const GetSecretRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String.pipe(T.Query()),
+    config: S.String.pipe(T.Query()),
+    name: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v3/configs/config/secret", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetSecretRequest",
+}) as any as S.Schema<GetSecretRequest>;
 
-export type GetV3IntegrationsIntegrationMembersResponseMembersList =
-  Array<GetV3IntegrationsIntegrationMembersResponseMembersItem>;
-export const GetV3IntegrationsIntegrationMembersResponseMembersList =
-  /*@__PURE__*/ S.Array(
-    GetV3IntegrationsIntegrationMembersResponseMembersItem,
-  ) as any as S.Schema<GetV3IntegrationsIntegrationMembersResponseMembersList>;
-
-export interface GetV3IntegrationsIntegrationMembersResponse {
-  members?: GetV3IntegrationsIntegrationMembersResponseMembersList;
+export interface GetSecretResponseValue {
+  raw?: string;
+  computed?: string;
+  note?: string;
 }
-export const GetV3IntegrationsIntegrationMembersResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      members: S.optional(
-        GetV3IntegrationsIntegrationMembersResponseMembersList,
-      ),
-    }),
-  ).annotate({
-    identifier: "GetV3IntegrationsIntegrationMembersResponse",
-  }) as any as S.Schema<GetV3IntegrationsIntegrationMembersResponse>;
+export const GetSecretResponseValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    raw: S.optional(S.String),
+    computed: S.optional(S.String),
+    note: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetSecretResponseValue",
+}) as any as S.Schema<GetSecretResponseValue>;
+
+export interface GetSecretResponse {
+  name?: string;
+  value?: GetSecretResponseValue;
+}
+export const GetSecretResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    value: S.optional(GetSecretResponseValue),
+  }),
+).annotate({
+  identifier: "GetSecretResponse",
+}) as any as S.Schema<GetSecretResponse>;
+
+export interface GetSyncRequest {
+  /** The project slug */
+  project: string;
+  /** The config slug */
+  config: string;
+  /** The sync slug */
+  sync: string;
+}
+export const GetSyncRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String.pipe(T.Query()),
+    config: S.String.pipe(T.Query()),
+    sync: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v3/configs/config/syncs/sync", code: 200 }),
+  ),
+).annotate({ identifier: "GetSyncRequest" }) as any as S.Schema<GetSyncRequest>;
+
+export type GetSyncResponseSync = CreateSyncResponseSync;
+export const GetSyncResponseSync = CreateSyncResponseSync;
+
+export interface GetSyncResponse {
+  sync?: CreateSyncResponseSync;
+}
+export const GetSyncResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sync: S.optional(CreateSyncResponseSync),
+  }),
+).annotate({
+  identifier: "GetSyncResponse",
+}) as any as S.Schema<GetSyncResponse>;
+
+export interface GetUserRequest {
+  /** The slug of the workplace user */
+  slug: string;
+}
+export const GetUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    slug: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v3/workplace/users/{slug}", code: 200 }),
+  ),
+).annotate({ identifier: "GetUserRequest" }) as any as S.Schema<GetUserRequest>;
+
+export type GetUserResponseWorkplaceUserUser = ConfigLogsGetResponseLogUser;
+export const GetUserResponseWorkplaceUserUser = ConfigLogsGetResponseLogUser;
+
+export interface GetUserResponseWorkplaceUser {
+  id?: string;
+  access?: string;
+  created_at?: string;
+  user?: ConfigLogsGetResponseLogUser;
+}
+export const GetUserResponseWorkplaceUser = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    access: S.optional(S.String),
+    created_at: S.optional(S.String),
+    user: S.optional(ConfigLogsGetResponseLogUser),
+  }),
+).annotate({
+  identifier: "GetUserResponseWorkplaceUser",
+}) as any as S.Schema<GetUserResponseWorkplaceUser>;
+
+export interface GetUserResponse {
+  workplace_user?: GetUserResponseWorkplaceUser;
+  success?: boolean;
+}
+export const GetUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workplace_user: S.optional(GetUserResponseWorkplaceUser),
+    success: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "GetUserResponse",
+}) as any as S.Schema<GetUserResponse>;
 
 export type GetV3workplacechangeRequestsRequestStatusList = Array<string>;
 export const GetV3workplacechangeRequestsRequestStatusList =
@@ -2874,90 +3425,6 @@ export const GetV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUn
       "GetV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdResponse",
   }) as any as S.Schema<GetV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdResponse>;
 
-export type GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequestType =
-  | "workplace_user"
-  | "invite"
-  | "group"
-  | "service_account";
-export const GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequestType =
-  /*@__PURE__*/ S.String;
-
-export interface GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest {
-  type:
-    | GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequestType
-    | (string & {});
-  /** Member's slug */
-  slug: string;
-  /** Integration slug */
-  integration: string;
-}
-export const GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequestType.pipe(
-        T.Label(),
-      ),
-      slug: S.String.pipe(T.Label()),
-      integration: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v3/workplace/integrations/integration/members/{type}/{slug}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest",
-  }) as any as S.Schema<GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest>;
-
-export type GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMemberType =
-  | "workplace_user"
-  | "invite"
-  | "group"
-  | "service_account";
-export const GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMemberType =
-  /*@__PURE__*/ S.String;
-
-export type GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMemberRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-export const GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMemberRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-
-export interface GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMember {
-  type?: GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMemberType;
-  slug?: string;
-  role?: GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-}
-export const GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMember =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(
-        GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMemberType,
-      ),
-      slug: S.optional(S.String),
-      role: S.optional(
-        GetV3IntegrationsIntegrationMembersResponseMembersItemRole,
-      ),
-    }),
-  ).annotate({
-    identifier:
-      "GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMember",
-  }) as any as S.Schema<GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMember>;
-
-export interface GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponse {
-  member?: GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMember;
-}
-export const GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      member: S.optional(
-        GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMember,
-      ),
-    }),
-  ).annotate({
-    identifier: "GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponse",
-  }) as any as S.Schema<GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponse>;
-
 export interface GetV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesRequest {
   service_account: string;
   page?: number;
@@ -3222,6 +3689,144 @@ export const GetV3workplaceserviceAccountsserviceAccountServiceAccountIdentities
       "GetV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponse",
   }) as any as S.Schema<GetV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponse>;
 
+export interface GetWebhookRequest {
+  /** Webhook's slug */
+  slug: string;
+  /** The project's name */
+  project?: string;
+}
+export const GetWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    slug: S.String.pipe(T.Label()),
+    project: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v3/webhooks/webhook/{slug}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetWebhookRequest",
+}) as any as S.Schema<GetWebhookRequest>;
+
+export type GetWebhookResponse = unknown;
+export const GetWebhookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetWebhookResponse",
+}) as any as S.Schema<GetWebhookResponse>;
+
+export interface GetWorkplaceRequest {}
+export const GetWorkplaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/v3/workplace", code: 200 })),
+).annotate({
+  identifier: "GetWorkplaceRequest",
+}) as any as S.Schema<GetWorkplaceRequest>;
+
+export interface GetWorkplaceResponseWorkplace {
+  id?: string;
+  name?: string;
+  billing_email?: string;
+  security_email?: string;
+}
+export const GetWorkplaceResponseWorkplace = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    billing_email: S.optional(S.String),
+    security_email: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetWorkplaceResponseWorkplace",
+}) as any as S.Schema<GetWorkplaceResponseWorkplace>;
+
+export interface GetWorkplaceResponse {
+  workplace?: GetWorkplaceResponseWorkplace;
+}
+export const GetWorkplaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workplace: S.optional(GetWorkplaceResponseWorkplace),
+  }),
+).annotate({
+  identifier: "GetWorkplaceResponse",
+}) as any as S.Schema<GetWorkplaceResponse>;
+
+export type GetWorkplaceIntegrationsIntegrationMemberRequestType =
+  | "workplace_user"
+  | "invite"
+  | "group"
+  | "service_account";
+export const GetWorkplaceIntegrationsIntegrationMemberRequestType =
+  /*@__PURE__*/ S.String;
+
+export interface GetWorkplaceIntegrationsIntegrationMemberRequest {
+  type: GetWorkplaceIntegrationsIntegrationMemberRequestType | (string & {});
+  /** Member's slug */
+  slug: string;
+  /** Integration slug */
+  integration: string;
+}
+export const GetWorkplaceIntegrationsIntegrationMemberRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: GetWorkplaceIntegrationsIntegrationMemberRequestType.pipe(
+        T.Label(),
+      ),
+      slug: S.String.pipe(T.Label()),
+      integration: S.String.pipe(T.Query()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v3/workplace/integrations/integration/members/{type}/{slug}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetWorkplaceIntegrationsIntegrationMemberRequest",
+  }) as any as S.Schema<GetWorkplaceIntegrationsIntegrationMemberRequest>;
+
+export type GetWorkplaceIntegrationsIntegrationMemberResponseMemberType =
+  | "workplace_user"
+  | "invite"
+  | "group"
+  | "service_account";
+export const GetWorkplaceIntegrationsIntegrationMemberResponseMemberType =
+  /*@__PURE__*/ S.String;
+
+export type GetWorkplaceIntegrationsIntegrationMemberResponseMemberRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+export const GetWorkplaceIntegrationsIntegrationMemberResponseMemberRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+
+export interface GetWorkplaceIntegrationsIntegrationMemberResponseMember {
+  type?: GetWorkplaceIntegrationsIntegrationMemberResponseMemberType;
+  slug?: string;
+  role?: CreateGroupResponseGroupDefaultProjectRole;
+}
+export const GetWorkplaceIntegrationsIntegrationMemberResponseMember =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.optional(
+        GetWorkplaceIntegrationsIntegrationMemberResponseMemberType,
+      ),
+      slug: S.optional(S.String),
+      role: S.optional(CreateGroupResponseGroupDefaultProjectRole),
+    }),
+  ).annotate({
+    identifier: "GetWorkplaceIntegrationsIntegrationMemberResponseMember",
+  }) as any as S.Schema<GetWorkplaceIntegrationsIntegrationMemberResponseMember>;
+
+export interface GetWorkplaceIntegrationsIntegrationMemberResponse {
+  member?: GetWorkplaceIntegrationsIntegrationMemberResponseMember;
+}
+export const GetWorkplaceIntegrationsIntegrationMemberResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      member: S.optional(
+        GetWorkplaceIntegrationsIntegrationMemberResponseMember,
+      ),
+    }),
+  ).annotate({
+    identifier: "GetWorkplaceIntegrationsIntegrationMemberResponse",
+  }) as any as S.Schema<GetWorkplaceIntegrationsIntegrationMemberResponse>;
+
 export type GroupsAddMemberRequestType = "workplace_user";
 export const GroupsAddMemberRequestType = /*@__PURE__*/ S.String;
 
@@ -3251,122 +3856,6 @@ export const GroupsAddMemberResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GroupsAddMemberResponse",
 }) as any as S.Schema<GroupsAddMemberResponse>;
-
-export interface GroupsCreateRequest {
-  name: string;
-  /** Identifier of the project role */
-  default_project_role?: string;
-}
-export const GroupsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    default_project_role: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/v3/workplace/groups", code: 200 })),
-).annotate({
-  identifier: "GroupsCreateRequest",
-}) as any as S.Schema<GroupsCreateRequest>;
-
-export type GroupsCreateResponseGroupDefaultProjectRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-export const GroupsCreateResponseGroupDefaultProjectRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-
-export type GroupsCreateResponseGroupProjectsItemRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-export const GroupsCreateResponseGroupProjectsItemRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-
-export interface GroupsCreateResponseGroupProjectsItem {
-  name?: string;
-  slug?: string;
-  role?: GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-}
-export const GroupsCreateResponseGroupProjectsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.optional(S.String),
-      slug: S.optional(S.String),
-      role: S.optional(
-        GetV3IntegrationsIntegrationMembersResponseMembersItemRole,
-      ),
-    }),
-).annotate({
-  identifier: "GroupsCreateResponseGroupProjectsItem",
-}) as any as S.Schema<GroupsCreateResponseGroupProjectsItem>;
-
-export type GroupsCreateResponseGroupProjectsList =
-  Array<GroupsCreateResponseGroupProjectsItem>;
-export const GroupsCreateResponseGroupProjectsList = /*@__PURE__*/ S.Array(
-  GroupsCreateResponseGroupProjectsItem,
-) as any as S.Schema<GroupsCreateResponseGroupProjectsList>;
-
-export type GroupsCreateResponseGroupMembersItem = AuthMeResponsePrincipal;
-export const GroupsCreateResponseGroupMembersItem = AuthMeResponsePrincipal;
-
-export type GroupsCreateResponseGroupMembersList =
-  Array<AuthMeResponsePrincipal>;
-export const GroupsCreateResponseGroupMembersList = /*@__PURE__*/ S.Array(
-  AuthMeResponsePrincipal,
-) as any as S.Schema<GroupsCreateResponseGroupMembersList>;
-
-export interface GroupsCreateResponseGroup {
-  name?: string;
-  slug?: string;
-  created_at?: string;
-  default_project_role?: GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-  projects?: GroupsCreateResponseGroupProjectsList;
-  members?: GroupsCreateResponseGroupMembersList;
-}
-export const GroupsCreateResponseGroup = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    slug: S.optional(S.String),
-    created_at: S.optional(S.String),
-    default_project_role: S.optional(
-      GetV3IntegrationsIntegrationMembersResponseMembersItemRole,
-    ),
-    projects: S.optional(GroupsCreateResponseGroupProjectsList),
-    members: S.optional(GroupsCreateResponseGroupMembersList),
-  }),
-).annotate({
-  identifier: "GroupsCreateResponseGroup",
-}) as any as S.Schema<GroupsCreateResponseGroup>;
-
-export interface GroupsCreateResponse {
-  group?: GroupsCreateResponseGroup;
-}
-export const GroupsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    group: S.optional(GroupsCreateResponseGroup),
-  }),
-).annotate({
-  identifier: "GroupsCreateResponse",
-}) as any as S.Schema<GroupsCreateResponse>;
-
-export interface GroupsDeleteRequest {
-  /** The group's slug */
-  slug: string;
-}
-export const GroupsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    slug: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/v3/workplace/groups/group/{slug}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GroupsDeleteRequest",
-}) as any as S.Schema<GroupsDeleteRequest>;
-
-export interface GroupsDeleteResponse {}
-export const GroupsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "GroupsDeleteResponse",
-}) as any as S.Schema<GroupsDeleteResponse>;
 
 export type GroupsDeleteMemberRequestType = "workplace_user";
 export const GroupsDeleteMemberRequestType = /*@__PURE__*/ S.String;
@@ -3401,344 +3890,233 @@ export const GroupsDeleteMemberResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GroupsDeleteMemberResponse",
 }) as any as S.Schema<GroupsDeleteMemberResponse>;
 
-export interface GroupsGetRequest {
-  /** The group's slug */
-  slug: string;
-}
-export const GroupsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    slug: S.String.pipe(T.Label()),
-  }).pipe(
+export interface ListChangeRequestPoliciesRequest {}
+export const ListChangeRequestPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
     T.Http({
       method: "GET",
-      uri: "/v3/workplace/groups/group/{slug}",
+      uri: "/v3/workplace/change_request_policies",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "GroupsGetRequest",
-}) as any as S.Schema<GroupsGetRequest>;
+  identifier: "ListChangeRequestPoliciesRequest",
+}) as any as S.Schema<ListChangeRequestPoliciesRequest>;
 
-export type GroupsGetResponseGroupDefaultProjectRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-export const GroupsGetResponseGroupDefaultProjectRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+export type ListChangeRequestPoliciesResponsePoliciesItemPolicyRulesList =
+  Array<unknown>;
+export const ListChangeRequestPoliciesResponsePoliciesItemPolicyRulesList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<ListChangeRequestPoliciesResponsePoliciesItemPolicyRulesList>;
 
-export type GroupsGetResponseGroupProjectsItemRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-export const GroupsGetResponseGroupProjectsItemRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+export type ListChangeRequestPoliciesResponsePoliciesItemPolicyTargets =
+  CreateChangeRequestPolicyResponsePolicyTargets;
+export const ListChangeRequestPoliciesResponsePoliciesItemPolicyTargets =
+  CreateChangeRequestPolicyResponsePolicyTargets;
 
-export type GroupsGetResponseGroupProjectsItem =
-  GroupsCreateResponseGroupProjectsItem;
-export const GroupsGetResponseGroupProjectsItem =
-  GroupsCreateResponseGroupProjectsItem;
-
-export type GroupsGetResponseGroupProjectsList =
-  Array<GroupsCreateResponseGroupProjectsItem>;
-export const GroupsGetResponseGroupProjectsList = /*@__PURE__*/ S.Array(
-  GroupsCreateResponseGroupProjectsItem,
-) as any as S.Schema<GroupsGetResponseGroupProjectsList>;
-
-export type GroupsGetResponseGroupMembersItem = AuthMeResponsePrincipal;
-export const GroupsGetResponseGroupMembersItem = AuthMeResponsePrincipal;
-
-export type GroupsGetResponseGroupMembersList = Array<AuthMeResponsePrincipal>;
-export const GroupsGetResponseGroupMembersList = /*@__PURE__*/ S.Array(
-  AuthMeResponsePrincipal,
-) as any as S.Schema<GroupsGetResponseGroupMembersList>;
-
-export interface GroupsGetResponseGroup {
+export interface ListChangeRequestPoliciesResponsePoliciesItemPolicy {
+  id?: string;
   name?: string;
-  slug?: string;
-  created_at?: string;
-  default_project_role?: GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-  projects?: GroupsGetResponseGroupProjectsList;
-  members?: GroupsGetResponseGroupMembersList;
+  description?: string;
+  rules?: ListChangeRequestPoliciesResponsePoliciesItemPolicyRulesList;
+  targets?: CreateChangeRequestPolicyResponsePolicyTargets;
 }
-export const GroupsGetResponseGroup = /*@__PURE__*/ S.suspend(() =>
+export const ListChangeRequestPoliciesResponsePoliciesItemPolicy =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      description: S.optional(S.String),
+      rules: S.optional(
+        ListChangeRequestPoliciesResponsePoliciesItemPolicyRulesList,
+      ),
+      targets: S.optional(CreateChangeRequestPolicyResponsePolicyTargets),
+    }),
+  ).annotate({
+    identifier: "ListChangeRequestPoliciesResponsePoliciesItemPolicy",
+  }) as any as S.Schema<ListChangeRequestPoliciesResponsePoliciesItemPolicy>;
+
+export interface ListChangeRequestPoliciesResponsePoliciesItem {
+  policy?: ListChangeRequestPoliciesResponsePoliciesItemPolicy;
+}
+export const ListChangeRequestPoliciesResponsePoliciesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      policy: S.optional(ListChangeRequestPoliciesResponsePoliciesItemPolicy),
+    }),
+  ).annotate({
+    identifier: "ListChangeRequestPoliciesResponsePoliciesItem",
+  }) as any as S.Schema<ListChangeRequestPoliciesResponsePoliciesItem>;
+
+export type ListChangeRequestPoliciesResponsePoliciesList =
+  Array<ListChangeRequestPoliciesResponsePoliciesItem>;
+export const ListChangeRequestPoliciesResponsePoliciesList =
+  /*@__PURE__*/ S.Array(
+    ListChangeRequestPoliciesResponsePoliciesItem,
+  ) as any as S.Schema<ListChangeRequestPoliciesResponsePoliciesList>;
+
+export interface ListChangeRequestPoliciesResponse {
+  policies?: ListChangeRequestPoliciesResponsePoliciesList;
+  success?: boolean;
+}
+export const ListChangeRequestPoliciesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
-    slug: S.optional(S.String),
-    created_at: S.optional(S.String),
-    default_project_role: S.optional(
-      GetV3IntegrationsIntegrationMembersResponseMembersItemRole,
-    ),
-    projects: S.optional(GroupsGetResponseGroupProjectsList),
-    members: S.optional(GroupsGetResponseGroupMembersList),
+    policies: S.optional(ListChangeRequestPoliciesResponsePoliciesList),
+    success: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "GroupsGetResponseGroup",
-}) as any as S.Schema<GroupsGetResponseGroup>;
+  identifier: "ListChangeRequestPoliciesResponse",
+}) as any as S.Schema<ListChangeRequestPoliciesResponse>;
 
-export interface GroupsGetResponse {
-  group?: GroupsGetResponseGroup;
+export interface ListConfigsRequest {
+  /** The project's name */
+  project: string;
+  /** (optional) the environment from which to list configs */
+  environment?: string;
+  /** Page number */
+  page?: number;
+  /** Items per page */
+  per_page?: number;
 }
-export const GroupsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListConfigsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    group: S.optional(GroupsGetResponseGroup),
+    project: S.String.pipe(T.Query()),
+    environment: S.optional(S.String.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per_page: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v3/configs", code: 200 })),
+).annotate({
+  identifier: "ListConfigsRequest",
+}) as any as S.Schema<ListConfigsRequest>;
+
+export type ListConfigsResponseConfigsItem = CloneConfigResponseConfig;
+export const ListConfigsResponseConfigsItem = CloneConfigResponseConfig;
+
+export type ListConfigsResponseConfigsList = Array<CloneConfigResponseConfig>;
+export const ListConfigsResponseConfigsList = /*@__PURE__*/ S.Array(
+  CloneConfigResponseConfig,
+) as any as S.Schema<ListConfigsResponseConfigsList>;
+
+export interface ListConfigsResponse {
+  page?: number;
+  configs?: ListConfigsResponseConfigsList;
+}
+export const ListConfigsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    page: S.optional(S.Number),
+    configs: S.optional(ListConfigsResponseConfigsList),
   }),
 ).annotate({
-  identifier: "GroupsGetResponse",
-}) as any as S.Schema<GroupsGetResponse>;
+  identifier: "ListConfigsResponse",
+}) as any as S.Schema<ListConfigsResponse>;
 
-export interface GroupsListRequest {
+export interface ListEnvironmentsRequest {
+  /** The project's name */
+  project: string;
+}
+export const ListEnvironmentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String.pipe(T.Query()),
+  }).pipe(T.Http({ method: "GET", uri: "/v3/environments", code: 200 })),
+).annotate({
+  identifier: "ListEnvironmentsRequest",
+}) as any as S.Schema<ListEnvironmentsRequest>;
+
+export type ListEnvironmentsResponseEnvironmentsItem =
+  CreateEnvironmentResponseEnvironment;
+export const ListEnvironmentsResponseEnvironmentsItem =
+  CreateEnvironmentResponseEnvironment;
+
+export type ListEnvironmentsResponseEnvironmentsList =
+  Array<CreateEnvironmentResponseEnvironment>;
+export const ListEnvironmentsResponseEnvironmentsList = /*@__PURE__*/ S.Array(
+  CreateEnvironmentResponseEnvironment,
+) as any as S.Schema<ListEnvironmentsResponseEnvironmentsList>;
+
+export interface ListEnvironmentsResponse {
+  environments?: ListEnvironmentsResponseEnvironmentsList;
+  page?: number;
+}
+export const ListEnvironmentsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    environments: S.optional(ListEnvironmentsResponseEnvironmentsList),
+    page: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ListEnvironmentsResponse",
+}) as any as S.Schema<ListEnvironmentsResponse>;
+
+export interface ListGroupsRequest {
   page?: number;
   per_page?: number;
 }
-export const GroupsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListGroupsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     page: S.optional(S.Number.pipe(T.Query())),
     per_page: S.optional(S.Number.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/v3/workplace/groups", code: 200 })),
 ).annotate({
-  identifier: "GroupsListRequest",
-}) as any as S.Schema<GroupsListRequest>;
+  identifier: "ListGroupsRequest",
+}) as any as S.Schema<ListGroupsRequest>;
 
-export type GroupsListResponseGroupsItemDefaultProjectRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-export const GroupsListResponseGroupsItemDefaultProjectRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+export type ListGroupsResponseGroupsItemDefaultProjectRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+export const ListGroupsResponseGroupsItemDefaultProjectRole =
+  CreateGroupResponseGroupDefaultProjectRole;
 
-export interface GroupsListResponseGroupsItem {
+export interface ListGroupsResponseGroupsItem {
   name?: string;
   slug?: string;
   created_at?: string;
-  default_project_role?: GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+  default_project_role?: CreateGroupResponseGroupDefaultProjectRole;
 }
-export const GroupsListResponseGroupsItem = /*@__PURE__*/ S.suspend(() =>
+export const ListGroupsResponseGroupsItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
     slug: S.optional(S.String),
     created_at: S.optional(S.String),
     default_project_role: S.optional(
-      GetV3IntegrationsIntegrationMembersResponseMembersItemRole,
+      CreateGroupResponseGroupDefaultProjectRole,
     ),
   }),
 ).annotate({
-  identifier: "GroupsListResponseGroupsItem",
-}) as any as S.Schema<GroupsListResponseGroupsItem>;
+  identifier: "ListGroupsResponseGroupsItem",
+}) as any as S.Schema<ListGroupsResponseGroupsItem>;
 
-export type GroupsListResponseGroupsList = Array<GroupsListResponseGroupsItem>;
-export const GroupsListResponseGroupsList = /*@__PURE__*/ S.Array(
-  GroupsListResponseGroupsItem,
-) as any as S.Schema<GroupsListResponseGroupsList>;
+export type ListGroupsResponseGroupsList = Array<ListGroupsResponseGroupsItem>;
+export const ListGroupsResponseGroupsList = /*@__PURE__*/ S.Array(
+  ListGroupsResponseGroupsItem,
+) as any as S.Schema<ListGroupsResponseGroupsList>;
 
-export interface GroupsListResponse {
-  groups?: GroupsListResponseGroupsList;
+export interface ListGroupsResponse {
+  groups?: ListGroupsResponseGroupsList;
 }
-export const GroupsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListGroupsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    groups: S.optional(GroupsListResponseGroupsList),
+    groups: S.optional(ListGroupsResponseGroupsList),
   }),
 ).annotate({
-  identifier: "GroupsListResponse",
-}) as any as S.Schema<GroupsListResponse>;
+  identifier: "ListGroupsResponse",
+}) as any as S.Schema<ListGroupsResponse>;
 
-export interface GroupsUpdateRequest {
-  /** The group's slug */
-  slug: string;
-  name?: string;
-  /** Identifier of the project role */
-  default_project_role?: string;
-}
-export const GroupsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    slug: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    default_project_role: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/v3/workplace/groups/group/{slug}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GroupsUpdateRequest",
-}) as any as S.Schema<GroupsUpdateRequest>;
-
-export type GroupsUpdateResponseGroupDefaultProjectRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-export const GroupsUpdateResponseGroupDefaultProjectRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-
-export type GroupsUpdateResponseGroupProjectsItemRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-export const GroupsUpdateResponseGroupProjectsItemRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-
-export type GroupsUpdateResponseGroupProjectsItem =
-  GroupsCreateResponseGroupProjectsItem;
-export const GroupsUpdateResponseGroupProjectsItem =
-  GroupsCreateResponseGroupProjectsItem;
-
-export type GroupsUpdateResponseGroupProjectsList =
-  Array<GroupsCreateResponseGroupProjectsItem>;
-export const GroupsUpdateResponseGroupProjectsList = /*@__PURE__*/ S.Array(
-  GroupsCreateResponseGroupProjectsItem,
-) as any as S.Schema<GroupsUpdateResponseGroupProjectsList>;
-
-export type GroupsUpdateResponseGroupMembersItem = AuthMeResponsePrincipal;
-export const GroupsUpdateResponseGroupMembersItem = AuthMeResponsePrincipal;
-
-export type GroupsUpdateResponseGroupMembersList =
-  Array<AuthMeResponsePrincipal>;
-export const GroupsUpdateResponseGroupMembersList = /*@__PURE__*/ S.Array(
-  AuthMeResponsePrincipal,
-) as any as S.Schema<GroupsUpdateResponseGroupMembersList>;
-
-export interface GroupsUpdateResponseGroup {
-  name?: string;
-  slug?: string;
-  created_at?: string;
-  default_project_role?: GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-  projects?: GroupsUpdateResponseGroupProjectsList;
-  members?: GroupsUpdateResponseGroupMembersList;
-}
-export const GroupsUpdateResponseGroup = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    slug: S.optional(S.String),
-    created_at: S.optional(S.String),
-    default_project_role: S.optional(
-      GetV3IntegrationsIntegrationMembersResponseMembersItemRole,
-    ),
-    projects: S.optional(GroupsUpdateResponseGroupProjectsList),
-    members: S.optional(GroupsUpdateResponseGroupMembersList),
-  }),
-).annotate({
-  identifier: "GroupsUpdateResponseGroup",
-}) as any as S.Schema<GroupsUpdateResponseGroup>;
-
-export interface GroupsUpdateResponse {
-  group?: GroupsUpdateResponseGroup;
-}
-export const GroupsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    group: S.optional(GroupsUpdateResponseGroup),
-  }),
-).annotate({
-  identifier: "GroupsUpdateResponse",
-}) as any as S.Schema<GroupsUpdateResponse>;
-
-export interface IntegrationsCreateRequest {
-  /** The integration type */
-  type: string;
-  /** The name of the integration */
-  name: string;
-  /** The authentication data for the integration */
-  data?: unknown;
-}
-export const IntegrationsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    name: S.String,
-    data: S.optional(S.Unknown),
-  }).pipe(T.Http({ method: "POST", uri: "/v3/integrations", code: 200 })),
-).annotate({
-  identifier: "IntegrationsCreateRequest",
-}) as any as S.Schema<IntegrationsCreateRequest>;
-
-export interface IntegrationsCreateResponseIntegration {
-  slug?: string;
-  name?: string;
-  type?: string;
-}
-export const IntegrationsCreateResponseIntegration = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      slug: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "IntegrationsCreateResponseIntegration",
-}) as any as S.Schema<IntegrationsCreateResponseIntegration>;
-
-export interface IntegrationsCreateResponse {
-  integration?: IntegrationsCreateResponseIntegration;
-}
-export const IntegrationsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    integration: S.optional(IntegrationsCreateResponseIntegration),
-  }),
-).annotate({
-  identifier: "IntegrationsCreateResponse",
-}) as any as S.Schema<IntegrationsCreateResponse>;
-
-export interface IntegrationsDeleteRequest {
-  /** The slug of the integration to delete */
-  integration: string;
-}
-export const IntegrationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    integration: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/v3/integrations/integration",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "IntegrationsDeleteRequest",
-}) as any as S.Schema<IntegrationsDeleteRequest>;
-
-export type IntegrationsDeleteResponse = unknown;
-export const IntegrationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "IntegrationsDeleteResponse",
-}) as any as S.Schema<IntegrationsDeleteResponse>;
-
-export interface IntegrationsGetRequest {
-  /** The integration slug */
-  integration: string;
-}
-export const IntegrationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    integration: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v3/integrations/integration", code: 200 }),
-  ),
-).annotate({
-  identifier: "IntegrationsGetRequest",
-}) as any as S.Schema<IntegrationsGetRequest>;
-
-export type IntegrationsGetResponseIntegration =
-  IntegrationsCreateResponseIntegration;
-export const IntegrationsGetResponseIntegration =
-  IntegrationsCreateResponseIntegration;
-
-export interface IntegrationsGetResponse {
-  integration?: IntegrationsCreateResponseIntegration;
-}
-export const IntegrationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    integration: S.optional(IntegrationsCreateResponseIntegration),
-  }),
-).annotate({
-  identifier: "IntegrationsGetResponse",
-}) as any as S.Schema<IntegrationsGetResponse>;
-
-export interface IntegrationsListRequest {}
-export const IntegrationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListIntegrationsRequest {}
+export const ListIntegrationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/v3/integrations", code: 200 }),
   ),
 ).annotate({
-  identifier: "IntegrationsListRequest",
-}) as any as S.Schema<IntegrationsListRequest>;
+  identifier: "ListIntegrationsRequest",
+}) as any as S.Schema<ListIntegrationsRequest>;
 
-export interface IntegrationsListResponseIntegrationsItem {
+export interface ListIntegrationsResponseIntegrationsItem {
   slug?: string;
   name?: string;
   type?: string;
   kind?: string;
   enabled?: boolean;
 }
-export const IntegrationsListResponseIntegrationsItem = /*@__PURE__*/ S.suspend(
+export const ListIntegrationsResponseIntegrationsItem = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       slug: S.optional(S.String),
@@ -3748,89 +4126,62 @@ export const IntegrationsListResponseIntegrationsItem = /*@__PURE__*/ S.suspend(
       enabled: S.optional(S.Boolean),
     }),
 ).annotate({
-  identifier: "IntegrationsListResponseIntegrationsItem",
-}) as any as S.Schema<IntegrationsListResponseIntegrationsItem>;
+  identifier: "ListIntegrationsResponseIntegrationsItem",
+}) as any as S.Schema<ListIntegrationsResponseIntegrationsItem>;
 
-export type IntegrationsListResponseIntegrationsList =
-  Array<IntegrationsListResponseIntegrationsItem>;
-export const IntegrationsListResponseIntegrationsList = /*@__PURE__*/ S.Array(
-  IntegrationsListResponseIntegrationsItem,
-) as any as S.Schema<IntegrationsListResponseIntegrationsList>;
+export type ListIntegrationsResponseIntegrationsList =
+  Array<ListIntegrationsResponseIntegrationsItem>;
+export const ListIntegrationsResponseIntegrationsList = /*@__PURE__*/ S.Array(
+  ListIntegrationsResponseIntegrationsItem,
+) as any as S.Schema<ListIntegrationsResponseIntegrationsList>;
 
-export interface IntegrationsListResponse {
-  integrations?: IntegrationsListResponseIntegrationsList;
+export interface ListIntegrationsResponse {
+  integrations?: ListIntegrationsResponseIntegrationsList;
   success?: boolean;
 }
-export const IntegrationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListIntegrationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    integrations: S.optional(IntegrationsListResponseIntegrationsList),
+    integrations: S.optional(ListIntegrationsResponseIntegrationsList),
     success: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "IntegrationsListResponse",
-}) as any as S.Schema<IntegrationsListResponse>;
+  identifier: "ListIntegrationsResponse",
+}) as any as S.Schema<ListIntegrationsResponse>;
 
-export interface IntegrationsUpdateRequest {
-  /** The slug of the integration to update */
-  integration: string;
-  /** The new name of the integration */
-  name?: string;
-  /** The new authentication data for the integration */
-  data?: string;
-}
-export const IntegrationsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    integration: S.String.pipe(T.Query()),
-    name: S.optional(S.String),
-    data: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "PUT", uri: "/v3/integrations/integration", code: 200 }),
-  ),
-).annotate({
-  identifier: "IntegrationsUpdateRequest",
-}) as any as S.Schema<IntegrationsUpdateRequest>;
-
-export type IntegrationsUpdateResponse = unknown;
-export const IntegrationsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "IntegrationsUpdateResponse",
-}) as any as S.Schema<IntegrationsUpdateResponse>;
-
-export interface InvitesListRequest {
+export interface ListInvitesRequest {
   page?: number;
   per_page?: number;
 }
-export const InvitesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListInvitesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     page: S.optional(S.Number.pipe(T.Query())),
     per_page: S.optional(S.Number.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/v3/workplace/invites", code: 200 })),
 ).annotate({
-  identifier: "InvitesListRequest",
-}) as any as S.Schema<InvitesListRequest>;
+  identifier: "ListInvitesRequest",
+}) as any as S.Schema<ListInvitesRequest>;
 
-export type InvitesListResponseInvitesItemWorkplaceRolePermissionsList =
+export type ListInvitesResponseInvitesItemWorkplaceRolePermissionsList =
   Array<string>;
-export const InvitesListResponseInvitesItemWorkplaceRolePermissionsList =
+export const ListInvitesResponseInvitesItemWorkplaceRolePermissionsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<InvitesListResponseInvitesItemWorkplaceRolePermissionsList>;
+  ) as any as S.Schema<ListInvitesResponseInvitesItemWorkplaceRolePermissionsList>;
 
-export interface InvitesListResponseInvitesItemWorkplaceRole {
+export interface ListInvitesResponseInvitesItemWorkplaceRole {
   name?: string;
-  permissions?: InvitesListResponseInvitesItemWorkplaceRolePermissionsList;
+  permissions?: ListInvitesResponseInvitesItemWorkplaceRolePermissionsList;
   identifier?: string;
   created_at?: string;
   is_custom_role?: boolean;
   is_inline_role?: boolean;
 }
-export const InvitesListResponseInvitesItemWorkplaceRole =
+export const ListInvitesResponseInvitesItemWorkplaceRole =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.optional(S.String),
       permissions: S.optional(
-        InvitesListResponseInvitesItemWorkplaceRolePermissionsList,
+        ListInvitesResponseInvitesItemWorkplaceRolePermissionsList,
       ),
       identifier: S.optional(S.String),
       created_at: S.optional(S.String),
@@ -3838,203 +4189,278 @@ export const InvitesListResponseInvitesItemWorkplaceRole =
       is_inline_role: S.optional(S.Boolean),
     }),
   ).annotate({
-    identifier: "InvitesListResponseInvitesItemWorkplaceRole",
-  }) as any as S.Schema<InvitesListResponseInvitesItemWorkplaceRole>;
+    identifier: "ListInvitesResponseInvitesItemWorkplaceRole",
+  }) as any as S.Schema<ListInvitesResponseInvitesItemWorkplaceRole>;
 
-export interface InvitesListResponseInvitesItem {
+export interface ListInvitesResponseInvitesItem {
   slug?: string;
   email?: string;
   created_at?: string;
-  workplace_role?: InvitesListResponseInvitesItemWorkplaceRole;
+  workplace_role?: ListInvitesResponseInvitesItemWorkplaceRole;
 }
-export const InvitesListResponseInvitesItem = /*@__PURE__*/ S.suspend(() =>
+export const ListInvitesResponseInvitesItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     slug: S.optional(S.String),
     email: S.optional(S.String),
     created_at: S.optional(S.String),
-    workplace_role: S.optional(InvitesListResponseInvitesItemWorkplaceRole),
+    workplace_role: S.optional(ListInvitesResponseInvitesItemWorkplaceRole),
   }),
 ).annotate({
-  identifier: "InvitesListResponseInvitesItem",
-}) as any as S.Schema<InvitesListResponseInvitesItem>;
+  identifier: "ListInvitesResponseInvitesItem",
+}) as any as S.Schema<ListInvitesResponseInvitesItem>;
 
-export type InvitesListResponseInvitesList =
-  Array<InvitesListResponseInvitesItem>;
-export const InvitesListResponseInvitesList = /*@__PURE__*/ S.Array(
-  InvitesListResponseInvitesItem,
-) as any as S.Schema<InvitesListResponseInvitesList>;
+export type ListInvitesResponseInvitesList =
+  Array<ListInvitesResponseInvitesItem>;
+export const ListInvitesResponseInvitesList = /*@__PURE__*/ S.Array(
+  ListInvitesResponseInvitesItem,
+) as any as S.Schema<ListInvitesResponseInvitesList>;
 
-export interface InvitesListResponse {
-  invites?: InvitesListResponseInvitesList;
+export interface ListInvitesResponse {
+  invites?: ListInvitesResponseInvitesList;
 }
-export const InvitesListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListInvitesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    invites: S.optional(InvitesListResponseInvitesList),
+    invites: S.optional(ListInvitesResponseInvitesList),
   }),
 ).annotate({
-  identifier: "InvitesListResponse",
-}) as any as S.Schema<InvitesListResponse>;
+  identifier: "ListInvitesResponse",
+}) as any as S.Schema<ListInvitesResponse>;
 
-export type PatchV3IntegrationsIntegrationMembersTypeSlugRequestType =
-  | "workplace_user"
-  | "invite"
-  | "group"
-  | "service_account";
-export const PatchV3IntegrationsIntegrationMembersTypeSlugRequestType =
-  /*@__PURE__*/ S.String;
-
-export interface PatchV3IntegrationsIntegrationMembersTypeSlugRequest {
-  type:
-    | PatchV3IntegrationsIntegrationMembersTypeSlugRequestType
-    | (string & {});
-  /** Member's slug */
-  slug: string;
-  /** Integration slug */
-  integration: string;
-  role: string;
+export interface ListProjectsRequest {
+  /** Page number */
+  page?: number;
+  /** Items per page */
+  per_page?: number;
 }
-export const PatchV3IntegrationsIntegrationMembersTypeSlugRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: PatchV3IntegrationsIntegrationMembersTypeSlugRequestType.pipe(
-        T.Label(),
-      ),
-      slug: S.String.pipe(T.Label()),
-      integration: S.String.pipe(T.Query()),
-      role: S.String,
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/v3/integrations/integration/members/{type}/{slug}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PatchV3IntegrationsIntegrationMembersTypeSlugRequest",
-  }) as any as S.Schema<PatchV3IntegrationsIntegrationMembersTypeSlugRequest>;
+export const ListProjectsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    page: S.optional(S.Number.pipe(T.Query())),
+    per_page: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v3/projects", code: 200 })),
+).annotate({
+  identifier: "ListProjectsRequest",
+}) as any as S.Schema<ListProjectsRequest>;
 
-export type PatchV3IntegrationsIntegrationMembersTypeSlugResponseMemberType =
-  | "workplace_user"
-  | "invite"
-  | "group"
-  | "service_account";
-export const PatchV3IntegrationsIntegrationMembersTypeSlugResponseMemberType =
-  /*@__PURE__*/ S.String;
-
-export type PatchV3IntegrationsIntegrationMembersTypeSlugResponseMemberRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-export const PatchV3IntegrationsIntegrationMembersTypeSlugResponseMemberRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-
-export interface PatchV3IntegrationsIntegrationMembersTypeSlugResponseMember {
-  type?: PatchV3IntegrationsIntegrationMembersTypeSlugResponseMemberType;
+export interface ListProjectsResponseProjectsItem {
+  id?: string;
   slug?: string;
-  role?: GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+  name?: string;
+  description?: string;
+  created_at?: string;
 }
-export const PatchV3IntegrationsIntegrationMembersTypeSlugResponseMember =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(
-        PatchV3IntegrationsIntegrationMembersTypeSlugResponseMemberType,
-      ),
-      slug: S.optional(S.String),
-      role: S.optional(
-        GetV3IntegrationsIntegrationMembersResponseMembersItemRole,
-      ),
-    }),
-  ).annotate({
-    identifier: "PatchV3IntegrationsIntegrationMembersTypeSlugResponseMember",
-  }) as any as S.Schema<PatchV3IntegrationsIntegrationMembersTypeSlugResponseMember>;
+export const ListProjectsResponseProjectsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    slug: S.optional(S.String),
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    created_at: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListProjectsResponseProjectsItem",
+}) as any as S.Schema<ListProjectsResponseProjectsItem>;
 
-export interface PatchV3IntegrationsIntegrationMembersTypeSlugResponse {
-  member?: PatchV3IntegrationsIntegrationMembersTypeSlugResponseMember;
+export type ListProjectsResponseProjectsList =
+  Array<ListProjectsResponseProjectsItem>;
+export const ListProjectsResponseProjectsList = /*@__PURE__*/ S.Array(
+  ListProjectsResponseProjectsItem,
+) as any as S.Schema<ListProjectsResponseProjectsList>;
+
+export interface ListProjectsResponse {
+  page?: number;
+  projects?: ListProjectsResponseProjectsList;
 }
-export const PatchV3IntegrationsIntegrationMembersTypeSlugResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      member: S.optional(
-        PatchV3IntegrationsIntegrationMembersTypeSlugResponseMember,
-      ),
-    }),
-  ).annotate({
-    identifier: "PatchV3IntegrationsIntegrationMembersTypeSlugResponse",
-  }) as any as S.Schema<PatchV3IntegrationsIntegrationMembersTypeSlugResponse>;
+export const ListProjectsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    page: S.optional(S.Number),
+    projects: S.optional(ListProjectsResponseProjectsList),
+  }),
+).annotate({
+  identifier: "ListProjectsResponse",
+}) as any as S.Schema<ListProjectsResponse>;
 
-export type PostV3IntegrationsIntegrationMembersRequestType =
-  | "workplace_user"
-  | "invite"
-  | "group"
-  | "service_account";
-export const PostV3IntegrationsIntegrationMembersRequestType =
-  /*@__PURE__*/ S.String;
-
-export interface PostV3IntegrationsIntegrationMembersRequest {
-  /** Integration slug */
-  integration: string;
-  type: PostV3IntegrationsIntegrationMembersRequestType | (string & {});
-  slug: string;
-  role: string;
+export interface ListSecretsRequest {
+  /** Unique identifier for the project object. */
+  project: string;
+  /** Name of the config object. */
+  config: string;
+  /** Whether or not to issue leases and include dynamic secret values for the config */
+  include_dynamic_secrets?: boolean;
+  /** The number of seconds until dynamic leases expire. Must be used with `include_dynamic_secrets`. Defaults to 1800 (30 minutes). */
+  dynamic_secrets_ttl_sec?: number;
+  /** A comma-separated list of secrets to include in the response */
+  secrets?: string;
+  /** Whether to include Doppler's auto-generated (managed) secrets */
+  include_managed_secrets?: boolean;
 }
-export const PostV3IntegrationsIntegrationMembersRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      integration: S.String.pipe(T.Query()),
-      type: PostV3IntegrationsIntegrationMembersRequestType,
-      slug: S.String,
-      role: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v3/integrations/integration/members",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV3IntegrationsIntegrationMembersRequest",
-  }) as any as S.Schema<PostV3IntegrationsIntegrationMembersRequest>;
+export const ListSecretsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String.pipe(T.Query()),
+    config: S.String.pipe(T.Query()),
+    include_dynamic_secrets: S.optional(S.Boolean.pipe(T.Query())),
+    dynamic_secrets_ttl_sec: S.optional(S.Number.pipe(T.Query())),
+    secrets: S.optional(S.String.pipe(T.Query())),
+    include_managed_secrets: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v3/configs/config/secrets", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListSecretsRequest",
+}) as any as S.Schema<ListSecretsRequest>;
 
-export type PostV3IntegrationsIntegrationMembersResponseMemberType =
-  | "workplace_user"
-  | "invite"
-  | "group"
-  | "service_account";
-export const PostV3IntegrationsIntegrationMembersResponseMemberType =
-  /*@__PURE__*/ S.String;
-
-export type PostV3IntegrationsIntegrationMembersResponseMemberRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-export const PostV3IntegrationsIntegrationMembersResponseMemberRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-
-export interface PostV3IntegrationsIntegrationMembersResponseMember {
-  type?: PostV3IntegrationsIntegrationMembersResponseMemberType;
-  slug?: string;
-  role?: GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+export interface ListSecretsResponseSecretsSTRIPE {
+  raw?: string;
+  computed?: string;
+  note?: string;
+  rawVisibility?: string;
+  computedVisibility?: string;
 }
-export const PostV3IntegrationsIntegrationMembersResponseMember =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(PostV3IntegrationsIntegrationMembersResponseMemberType),
-      slug: S.optional(S.String),
-      role: S.optional(
-        GetV3IntegrationsIntegrationMembersResponseMembersItemRole,
-      ),
-    }),
-  ).annotate({
-    identifier: "PostV3IntegrationsIntegrationMembersResponseMember",
-  }) as any as S.Schema<PostV3IntegrationsIntegrationMembersResponseMember>;
+export const ListSecretsResponseSecretsSTRIPE = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    raw: S.optional(S.String),
+    computed: S.optional(S.String),
+    note: S.optional(S.String),
+    rawVisibility: S.optional(S.String),
+    computedVisibility: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListSecretsResponseSecretsSTRIPE",
+}) as any as S.Schema<ListSecretsResponseSecretsSTRIPE>;
 
-export interface PostV3IntegrationsIntegrationMembersResponse {
-  member?: PostV3IntegrationsIntegrationMembersResponseMember;
+export type ListSecretsResponseSecretsALGOLIA =
+  ListSecretsResponseSecretsSTRIPE;
+export const ListSecretsResponseSecretsALGOLIA =
+  ListSecretsResponseSecretsSTRIPE;
+
+export type ListSecretsResponseSecretsDATABASE =
+  ListSecretsResponseSecretsSTRIPE;
+export const ListSecretsResponseSecretsDATABASE =
+  ListSecretsResponseSecretsSTRIPE;
+
+export type ListSecretsResponseSecretsUSER = ListSecretsResponseSecretsSTRIPE;
+export const ListSecretsResponseSecretsUSER = ListSecretsResponseSecretsSTRIPE;
+
+export interface ListSecretsResponseSecrets {
+  STRIPE?: ListSecretsResponseSecretsSTRIPE;
+  ALGOLIA?: ListSecretsResponseSecretsSTRIPE;
+  DATABASE?: ListSecretsResponseSecretsSTRIPE;
+  USER?: ListSecretsResponseSecretsSTRIPE;
 }
-export const PostV3IntegrationsIntegrationMembersResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      member: S.optional(PostV3IntegrationsIntegrationMembersResponseMember),
-    }),
-  ).annotate({
-    identifier: "PostV3IntegrationsIntegrationMembersResponse",
-  }) as any as S.Schema<PostV3IntegrationsIntegrationMembersResponse>;
+export const ListSecretsResponseSecrets = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    STRIPE: S.optional(ListSecretsResponseSecretsSTRIPE),
+    ALGOLIA: S.optional(ListSecretsResponseSecretsSTRIPE),
+    DATABASE: S.optional(ListSecretsResponseSecretsSTRIPE),
+    USER: S.optional(ListSecretsResponseSecretsSTRIPE),
+  }),
+).annotate({
+  identifier: "ListSecretsResponseSecrets",
+}) as any as S.Schema<ListSecretsResponseSecrets>;
+
+export interface ListSecretsResponse {
+  secrets?: ListSecretsResponseSecrets;
+}
+export const ListSecretsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    secrets: S.optional(ListSecretsResponseSecrets),
+  }),
+).annotate({
+  identifier: "ListSecretsResponse",
+}) as any as S.Schema<ListSecretsResponse>;
+
+export interface ListUsersRequest {
+  /** The page of users to fetch */
+  page?: number;
+  /** Filter results to only include the user with the provided email address */
+  email?: string;
+}
+export const ListUsersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    page: S.optional(S.Number.pipe(T.Query())),
+    email: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v3/workplace/users", code: 200 })),
+).annotate({
+  identifier: "ListUsersRequest",
+}) as any as S.Schema<ListUsersRequest>;
+
+export type ListUsersResponseWorkplaceUsersItemUser =
+  ConfigLogsGetResponseLogUser;
+export const ListUsersResponseWorkplaceUsersItemUser =
+  ConfigLogsGetResponseLogUser;
+
+export type ListUsersResponseWorkplaceUsersItem = GetUserResponseWorkplaceUser;
+export const ListUsersResponseWorkplaceUsersItem = GetUserResponseWorkplaceUser;
+
+export type ListUsersResponseWorkplaceUsersList =
+  Array<GetUserResponseWorkplaceUser>;
+export const ListUsersResponseWorkplaceUsersList = /*@__PURE__*/ S.Array(
+  GetUserResponseWorkplaceUser,
+) as any as S.Schema<ListUsersResponseWorkplaceUsersList>;
+
+export interface ListUsersResponse {
+  workplace_users?: ListUsersResponseWorkplaceUsersList;
+  page?: number;
+  success?: boolean;
+}
+export const ListUsersResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workplace_users: S.optional(ListUsersResponseWorkplaceUsersList),
+    page: S.optional(S.Number),
+    success: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ListUsersResponse",
+}) as any as S.Schema<ListUsersResponse>;
+
+export interface ListWebhooksRequest {
+  /** The project's name */
+  project?: string;
+}
+export const ListWebhooksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v3/webhooks", code: 200 })),
+).annotate({
+  identifier: "ListWebhooksRequest",
+}) as any as S.Schema<ListWebhooksRequest>;
+
+export type ListWebhooksResponse = unknown;
+export const ListWebhooksResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListWebhooksResponse",
+}) as any as S.Schema<ListWebhooksResponse>;
+
+export interface LockConfigRequest {
+  /** Unique identifier for the project object. */
+  project: string;
+  /** Name of the config. */
+  config: string;
+}
+export const LockConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String,
+    config: S.String,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v3/configs/config/lock", code: 200 }),
+  ),
+).annotate({
+  identifier: "LockConfigRequest",
+}) as any as S.Schema<LockConfigRequest>;
+
+export type LockConfigResponseConfig = CloneConfigResponseConfig;
+export const LockConfigResponseConfig = CloneConfigResponseConfig;
+
+export interface LockConfigResponse {
+  config?: CloneConfigResponseConfig;
+}
+export const LockConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    config: S.optional(CloneConfigResponseConfig),
+  }),
+).annotate({
+  identifier: "LockConfigResponse",
+}) as any as S.Schema<LockConfigResponse>;
 
 export type PostV3workplacechangeRequestsRequestAssignedItemType =
   | "WorkplaceUser"
@@ -4773,9 +5199,9 @@ export const ProjectMembersAddRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProjectMembersAddRequest>;
 
 export type ProjectMembersAddResponseMemberRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+  CreateGroupResponseGroupDefaultProjectRole;
 export const ProjectMembersAddResponseMemberRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+  CreateGroupResponseGroupDefaultProjectRole;
 
 export type ProjectMembersAddResponseMemberEnvironmentsList = Array<string>;
 export const ProjectMembersAddResponseMemberEnvironmentsList =
@@ -4786,7 +5212,7 @@ export const ProjectMembersAddResponseMemberEnvironmentsList =
 export interface ProjectMembersAddResponseMember {
   type?: string;
   slug?: string;
-  role?: GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+  role?: CreateGroupResponseGroupDefaultProjectRole;
   access_all_environments?: boolean;
   environments?: ProjectMembersAddResponseMemberEnvironmentsList;
 }
@@ -4794,9 +5220,7 @@ export const ProjectMembersAddResponseMember = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: S.optional(S.String),
     slug: S.optional(S.String),
-    role: S.optional(
-      GetV3IntegrationsIntegrationMembersResponseMembersItemRole,
-    ),
+    role: S.optional(CreateGroupResponseGroupDefaultProjectRole),
     access_all_environments: S.optional(S.Boolean),
     environments: S.optional(ProjectMembersAddResponseMemberEnvironmentsList),
   }),
@@ -4883,9 +5307,9 @@ export const ProjectMembersGetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProjectMembersGetRequest>;
 
 export type ProjectMembersGetResponseMemberRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+  CreateGroupResponseGroupDefaultProjectRole;
 export const ProjectMembersGetResponseMemberRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+  CreateGroupResponseGroupDefaultProjectRole;
 
 export type ProjectMembersGetResponseMemberEnvironmentsList = Array<string>;
 export const ProjectMembersGetResponseMemberEnvironmentsList =
@@ -4896,7 +5320,7 @@ export const ProjectMembersGetResponseMemberEnvironmentsList =
 export interface ProjectMembersGetResponseMember {
   type?: string;
   slug?: string;
-  role?: GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+  role?: CreateGroupResponseGroupDefaultProjectRole;
   access_all_environments?: boolean;
   environments?: ProjectMembersGetResponseMemberEnvironmentsList;
 }
@@ -4904,9 +5328,7 @@ export const ProjectMembersGetResponseMember = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: S.optional(S.String),
     slug: S.optional(S.String),
-    role: S.optional(
-      GetV3IntegrationsIntegrationMembersResponseMembersItemRole,
-    ),
+    role: S.optional(CreateGroupResponseGroupDefaultProjectRole),
     access_all_environments: S.optional(S.Boolean),
     environments: S.optional(ProjectMembersGetResponseMemberEnvironmentsList),
   }),
@@ -4944,9 +5366,9 @@ export const ProjectMembersListRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProjectMembersListRequest>;
 
 export type ProjectMembersListResponseMembersItemRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+  CreateGroupResponseGroupDefaultProjectRole;
 export const ProjectMembersListResponseMembersItemRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+  CreateGroupResponseGroupDefaultProjectRole;
 
 export type ProjectMembersListResponseMembersItemEnvironmentsList =
   Array<string>;
@@ -4958,7 +5380,7 @@ export const ProjectMembersListResponseMembersItemEnvironmentsList =
 export interface ProjectMembersListResponseMembersItem {
   type?: string;
   slug?: string;
-  role?: GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+  role?: CreateGroupResponseGroupDefaultProjectRole;
   access_all_environments?: boolean;
   environments?: ProjectMembersListResponseMembersItemEnvironmentsList;
 }
@@ -4967,9 +5389,7 @@ export const ProjectMembersListResponseMembersItem = /*@__PURE__*/ S.suspend(
     S.Struct({
       type: S.optional(S.String),
       slug: S.optional(S.String),
-      role: S.optional(
-        GetV3IntegrationsIntegrationMembersResponseMembersItemRole,
-      ),
+      role: S.optional(CreateGroupResponseGroupDefaultProjectRole),
       access_all_environments: S.optional(S.Boolean),
       environments: S.optional(
         ProjectMembersListResponseMembersItemEnvironmentsList,
@@ -5040,9 +5460,9 @@ export const ProjectMembersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProjectMembersUpdateRequest>;
 
 export type ProjectMembersUpdateResponseMemberRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+  CreateGroupResponseGroupDefaultProjectRole;
 export const ProjectMembersUpdateResponseMemberRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+  CreateGroupResponseGroupDefaultProjectRole;
 
 export type ProjectMembersUpdateResponseMemberEnvironmentsList = Array<string>;
 export const ProjectMembersUpdateResponseMemberEnvironmentsList =
@@ -5053,7 +5473,7 @@ export const ProjectMembersUpdateResponseMemberEnvironmentsList =
 export interface ProjectMembersUpdateResponseMember {
   type?: string;
   slug?: string;
-  role?: GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
+  role?: CreateGroupResponseGroupDefaultProjectRole;
   access_all_environments?: boolean;
   environments?: ProjectMembersUpdateResponseMemberEnvironmentsList;
 }
@@ -5061,9 +5481,7 @@ export const ProjectMembersUpdateResponseMember = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: S.optional(S.String),
     slug: S.optional(S.String),
-    role: S.optional(
-      GetV3IntegrationsIntegrationMembersResponseMembersItemRole,
-    ),
+    role: S.optional(CreateGroupResponseGroupDefaultProjectRole),
     access_all_environments: S.optional(S.Boolean),
     environments: S.optional(
       ProjectMembersUpdateResponseMemberEnvironmentsList,
@@ -5357,179 +5775,6 @@ export const ProjectRolesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ProjectRolesUpdateResponse",
 }) as any as S.Schema<ProjectRolesUpdateResponse>;
-
-export interface ProjectsCreateRequest {
-  /** Name of project */
-  name: string;
-  /** Description of project */
-  description?: string;
-}
-export const ProjectsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    description: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/v3/projects", code: 200 })),
-).annotate({
-  identifier: "ProjectsCreateRequest",
-}) as any as S.Schema<ProjectsCreateRequest>;
-
-export interface ProjectsCreateResponseProject {
-  id?: string;
-  name?: string;
-  description?: string;
-  created_at?: string;
-}
-export const ProjectsCreateResponseProject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    description: S.optional(S.String),
-    created_at: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProjectsCreateResponseProject",
-}) as any as S.Schema<ProjectsCreateResponseProject>;
-
-export interface ProjectsCreateResponse {
-  project?: ProjectsCreateResponseProject;
-}
-export const ProjectsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.optional(ProjectsCreateResponseProject),
-  }),
-).annotate({
-  identifier: "ProjectsCreateResponse",
-}) as any as S.Schema<ProjectsCreateResponse>;
-
-export interface ProjectsDeleteRequest {
-  /** Unique identifier for the project object. */
-  project: string;
-}
-export const ProjectsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String,
-  }).pipe(T.Http({ method: "DELETE", uri: "/v3/projects/project", code: 200 })),
-).annotate({
-  identifier: "ProjectsDeleteRequest",
-}) as any as S.Schema<ProjectsDeleteRequest>;
-
-export interface ProjectsDeleteResponse {}
-export const ProjectsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ProjectsDeleteResponse",
-}) as any as S.Schema<ProjectsDeleteResponse>;
-
-export interface ProjectsGetRequest {
-  /** Unique identifier for the project object. */
-  project: string;
-}
-export const ProjectsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String.pipe(T.Query()),
-  }).pipe(T.Http({ method: "GET", uri: "/v3/projects/project", code: 200 })),
-).annotate({
-  identifier: "ProjectsGetRequest",
-}) as any as S.Schema<ProjectsGetRequest>;
-
-export type ProjectsGetResponseProject = ProjectsCreateResponseProject;
-export const ProjectsGetResponseProject = ProjectsCreateResponseProject;
-
-export interface ProjectsGetResponse {
-  project?: ProjectsCreateResponseProject;
-}
-export const ProjectsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.optional(ProjectsCreateResponseProject),
-  }),
-).annotate({
-  identifier: "ProjectsGetResponse",
-}) as any as S.Schema<ProjectsGetResponse>;
-
-export interface ProjectsListRequest {
-  /** Page number */
-  page?: number;
-  /** Items per page */
-  per_page?: number;
-}
-export const ProjectsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    page: S.optional(S.Number.pipe(T.Query())),
-    per_page: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v3/projects", code: 200 })),
-).annotate({
-  identifier: "ProjectsListRequest",
-}) as any as S.Schema<ProjectsListRequest>;
-
-export interface ProjectsListResponseProjectsItem {
-  id?: string;
-  slug?: string;
-  name?: string;
-  description?: string;
-  created_at?: string;
-}
-export const ProjectsListResponseProjectsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    slug: S.optional(S.String),
-    name: S.optional(S.String),
-    description: S.optional(S.String),
-    created_at: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProjectsListResponseProjectsItem",
-}) as any as S.Schema<ProjectsListResponseProjectsItem>;
-
-export type ProjectsListResponseProjectsList =
-  Array<ProjectsListResponseProjectsItem>;
-export const ProjectsListResponseProjectsList = /*@__PURE__*/ S.Array(
-  ProjectsListResponseProjectsItem,
-) as any as S.Schema<ProjectsListResponseProjectsList>;
-
-export interface ProjectsListResponse {
-  page?: number;
-  projects?: ProjectsListResponseProjectsList;
-}
-export const ProjectsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    page: S.optional(S.Number),
-    projects: S.optional(ProjectsListResponseProjectsList),
-  }),
-).annotate({
-  identifier: "ProjectsListResponse",
-}) as any as S.Schema<ProjectsListResponse>;
-
-export interface ProjectsUpdateRequest {
-  /** Unique identifier for the project object. */
-  project: string;
-  /** Name of the project. */
-  name: string;
-  /** Description of the project. */
-  description?: string;
-}
-export const ProjectsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String,
-    name: S.String,
-    description: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/v3/projects/project", code: 200 })),
-).annotate({
-  identifier: "ProjectsUpdateRequest",
-}) as any as S.Schema<ProjectsUpdateRequest>;
-
-export type ProjectsUpdateResponseProject = ProjectsCreateResponseProject;
-export const ProjectsUpdateResponseProject = ProjectsCreateResponseProject;
-
-export interface ProjectsUpdateResponse {
-  project?: ProjectsCreateResponseProject;
-}
-export const ProjectsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.optional(ProjectsCreateResponseProject),
-  }),
-).annotate({
-  identifier: "ProjectsUpdateResponse",
-}) as any as S.Schema<ProjectsUpdateResponse>;
 
 export type PutV3workplacechangeRequestschangeRequestChangeRequestIdRequestAssignedItemType =
   | "WorkplaceUser"
@@ -5926,332 +6171,65 @@ export const PutV3workplaceserviceAccountsserviceAccountServiceAccountIdentities
       "PutV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponse",
   }) as any as S.Schema<PutV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponse>;
 
-export type RetrieveMemberRequestMemberType = "workplace_user";
-export const RetrieveMemberRequestMemberType = /*@__PURE__*/ S.String;
-
-export interface RetrieveMemberRequest {
-  /** The group's slug */
-  group_slug: string;
-  member_type: RetrieveMemberRequestMemberType | (string & {});
-  /** The member's slug */
-  member_slug: string;
-}
-export const RetrieveMemberRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    group_slug: S.String.pipe(T.Label()),
-    member_type: RetrieveMemberRequestMemberType.pipe(T.Label()),
-    member_slug: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v3/workplace/groups/group/{group_slug}/members/{member_type}/{member_slug}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveMemberRequest",
-}) as any as S.Schema<RetrieveMemberRequest>;
-
-export type RetrieveMemberResponseGroupDefaultProjectRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-export const RetrieveMemberResponseGroupDefaultProjectRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-
-export type RetrieveMemberResponseGroupProjectsItemRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-export const RetrieveMemberResponseGroupProjectsItemRole =
-  GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-
-export type RetrieveMemberResponseGroupProjectsItem =
-  GroupsCreateResponseGroupProjectsItem;
-export const RetrieveMemberResponseGroupProjectsItem =
-  GroupsCreateResponseGroupProjectsItem;
-
-export type RetrieveMemberResponseGroupProjectsList =
-  Array<GroupsCreateResponseGroupProjectsItem>;
-export const RetrieveMemberResponseGroupProjectsList = /*@__PURE__*/ S.Array(
-  GroupsCreateResponseGroupProjectsItem,
-) as any as S.Schema<RetrieveMemberResponseGroupProjectsList>;
-
-export type RetrieveMemberResponseGroupMembersItem = AuthMeResponsePrincipal;
-export const RetrieveMemberResponseGroupMembersItem = AuthMeResponsePrincipal;
-
-export type RetrieveMemberResponseGroupMembersList =
-  Array<AuthMeResponsePrincipal>;
-export const RetrieveMemberResponseGroupMembersList = /*@__PURE__*/ S.Array(
-  AuthMeResponsePrincipal,
-) as any as S.Schema<RetrieveMemberResponseGroupMembersList>;
-
-export interface RetrieveMemberResponseGroup {
+export interface RenameEnvironmentRequest {
+  /** The project's name */
+  project: string;
+  /** The environment's slug */
+  environment: string;
+  /** Desired name */
   name?: string;
+  /** Desired slug */
   slug?: string;
-  created_at?: string;
-  default_project_role?: GetV3IntegrationsIntegrationMembersResponseMembersItemRole;
-  projects?: RetrieveMemberResponseGroupProjectsList;
-  members?: RetrieveMemberResponseGroupMembersList;
+  /** Whether or not to enable personal configs for the environment */
+  personal_configs?: boolean;
 }
-export const RetrieveMemberResponseGroup = /*@__PURE__*/ S.suspend(() =>
+export const RenameEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    project: S.String.pipe(T.Query()),
+    environment: S.String.pipe(T.Query()),
     name: S.optional(S.String),
     slug: S.optional(S.String),
-    created_at: S.optional(S.String),
-    default_project_role: S.optional(
-      GetV3IntegrationsIntegrationMembersResponseMembersItemRole,
-    ),
-    projects: S.optional(RetrieveMemberResponseGroupProjectsList),
-    members: S.optional(RetrieveMemberResponseGroupMembersList),
-  }),
-).annotate({
-  identifier: "RetrieveMemberResponseGroup",
-}) as any as S.Schema<RetrieveMemberResponseGroup>;
-
-export interface RetrieveMemberResponse {
-  group?: RetrieveMemberResponseGroup;
-}
-export const RetrieveMemberResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    group: S.optional(RetrieveMemberResponseGroup),
-  }),
-).annotate({
-  identifier: "RetrieveMemberResponse",
-}) as any as S.Schema<RetrieveMemberResponse>;
-
-export interface SecretsDeleteRequest {
-  /** Unique identifier for the project object. */
-  project: string;
-  /** Name of the config object. */
-  config: string;
-  /** Name of the secret. */
-  name: string;
-}
-export const SecretsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String.pipe(T.Query()),
-    config: S.String.pipe(T.Query()),
-    name: S.String.pipe(T.Query()),
+    personal_configs: S.optional(S.Boolean),
   }).pipe(
-    T.Http({ method: "DELETE", uri: "/v3/configs/config/secret", code: 200 }),
+    T.Http({ method: "PUT", uri: "/v3/environments/environment", code: 200 }),
   ),
 ).annotate({
-  identifier: "SecretsDeleteRequest",
-}) as any as S.Schema<SecretsDeleteRequest>;
+  identifier: "RenameEnvironmentRequest",
+}) as any as S.Schema<RenameEnvironmentRequest>;
 
-export interface SecretsDeleteResponse {}
-export const SecretsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export type RenameEnvironmentResponseEnvironment =
+  CreateEnvironmentResponseEnvironment;
+export const RenameEnvironmentResponseEnvironment =
+  CreateEnvironmentResponseEnvironment;
+
+export interface RenameEnvironmentResponse {
+  environment?: CreateEnvironmentResponseEnvironment;
+}
+export const RenameEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    environment: S.optional(CreateEnvironmentResponseEnvironment),
+  }),
+).annotate({
+  identifier: "RenameEnvironmentResponse",
+}) as any as S.Schema<RenameEnvironmentResponse>;
+
+export interface RevokeAuthRequest {
+  token: string;
+}
+export const RevokeAuthRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    token: S.String,
+  }).pipe(T.Http({ method: "POST", uri: "/v3/auth/revoke", code: 200 })),
+).annotate({
+  identifier: "RevokeAuthRequest",
+}) as any as S.Schema<RevokeAuthRequest>;
+
+export interface RevokeAuthResponse {}
+export const RevokeAuthResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "SecretsDeleteResponse",
-}) as any as S.Schema<SecretsDeleteResponse>;
-
-export type SecretsDownloadRequestFormat =
-  | "json"
-  | "dotnet-json"
-  | "env"
-  | "yaml"
-  | "docker"
-  | "env-no-quotes";
-export const SecretsDownloadRequestFormat = /*@__PURE__*/ S.String;
-
-export type SecretsDownloadRequestNameTransformer =
-  | "camel"
-  | "upper-camel"
-  | "lower-snake"
-  | "tf-var"
-  | "dotnet"
-  | "dotnet-env"
-  | "lower-kebab";
-export const SecretsDownloadRequestNameTransformer = /*@__PURE__*/ S.String;
-
-export interface SecretsDownloadRequest {
-  /** Unique identifier for the project object. Not required if using a Service Token. */
-  project: string;
-  /** Name of the config object. Not required if using a Service Token. */
-  config: string;
-  format?: SecretsDownloadRequestFormat | (string & {});
-  /** Transform secret names to a different case */
-  name_transformer?: SecretsDownloadRequestNameTransformer | (string & {});
-  /** Whether or not to issue leases and include dynamic secret values for the config */
-  include_dynamic_secrets?: boolean;
-  /** The number of seconds until dynamic leases expire. Must be used with `include_dynamic_secrets`. Defaults to 1800 (30 minutes). */
-  dynamic_secrets_ttl_sec?: number;
-  /** Comma-delimited list of secrets to include in the download. Defaults to all secrets if left unspecified. */
-  secrets?: string;
-}
-export const SecretsDownloadRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String.pipe(T.Query()),
-    config: S.String.pipe(T.Query()),
-    format: S.optional(SecretsDownloadRequestFormat.pipe(T.Query())),
-    name_transformer: S.optional(
-      SecretsDownloadRequestNameTransformer.pipe(T.Query()),
-    ),
-    include_dynamic_secrets: S.optional(S.Boolean.pipe(T.Query())),
-    dynamic_secrets_ttl_sec: S.optional(S.Number.pipe(T.Query())),
-    secrets: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v3/configs/config/secrets/download",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SecretsDownloadRequest",
-}) as any as S.Schema<SecretsDownloadRequest>;
-
-export interface SecretsDownloadResponse {
-  STRIPE?: string;
-  ALGOLIA?: string;
-  DATABASE?: string;
-  USER?: string;
-}
-export const SecretsDownloadResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    STRIPE: S.optional(S.String),
-    ALGOLIA: S.optional(S.String),
-    DATABASE: S.optional(S.String),
-    USER: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SecretsDownloadResponse",
-}) as any as S.Schema<SecretsDownloadResponse>;
-
-export interface SecretsGetRequest {
-  /** Unique identifier for the project object. */
-  project: string;
-  /** Name of the config object. */
-  config: string;
-  /** Name of the secret. */
-  name: string;
-}
-export const SecretsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String.pipe(T.Query()),
-    config: S.String.pipe(T.Query()),
-    name: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v3/configs/config/secret", code: 200 }),
-  ),
-).annotate({
-  identifier: "SecretsGetRequest",
-}) as any as S.Schema<SecretsGetRequest>;
-
-export interface SecretsGetResponseValue {
-  raw?: string;
-  computed?: string;
-  note?: string;
-}
-export const SecretsGetResponseValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    raw: S.optional(S.String),
-    computed: S.optional(S.String),
-    note: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SecretsGetResponseValue",
-}) as any as S.Schema<SecretsGetResponseValue>;
-
-export interface SecretsGetResponse {
-  name?: string;
-  value?: SecretsGetResponseValue;
-}
-export const SecretsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    value: S.optional(SecretsGetResponseValue),
-  }),
-).annotate({
-  identifier: "SecretsGetResponse",
-}) as any as S.Schema<SecretsGetResponse>;
-
-export interface SecretsListRequest {
-  /** Unique identifier for the project object. */
-  project: string;
-  /** Name of the config object. */
-  config: string;
-  /** Whether or not to issue leases and include dynamic secret values for the config */
-  include_dynamic_secrets?: boolean;
-  /** The number of seconds until dynamic leases expire. Must be used with `include_dynamic_secrets`. Defaults to 1800 (30 minutes). */
-  dynamic_secrets_ttl_sec?: number;
-  /** A comma-separated list of secrets to include in the response */
-  secrets?: string;
-  /** Whether to include Doppler's auto-generated (managed) secrets */
-  include_managed_secrets?: boolean;
-}
-export const SecretsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String.pipe(T.Query()),
-    config: S.String.pipe(T.Query()),
-    include_dynamic_secrets: S.optional(S.Boolean.pipe(T.Query())),
-    dynamic_secrets_ttl_sec: S.optional(S.Number.pipe(T.Query())),
-    secrets: S.optional(S.String.pipe(T.Query())),
-    include_managed_secrets: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v3/configs/config/secrets", code: 200 }),
-  ),
-).annotate({
-  identifier: "SecretsListRequest",
-}) as any as S.Schema<SecretsListRequest>;
-
-export interface SecretsListResponseSecretsSTRIPE {
-  raw?: string;
-  computed?: string;
-  note?: string;
-  rawVisibility?: string;
-  computedVisibility?: string;
-}
-export const SecretsListResponseSecretsSTRIPE = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    raw: S.optional(S.String),
-    computed: S.optional(S.String),
-    note: S.optional(S.String),
-    rawVisibility: S.optional(S.String),
-    computedVisibility: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SecretsListResponseSecretsSTRIPE",
-}) as any as S.Schema<SecretsListResponseSecretsSTRIPE>;
-
-export type SecretsListResponseSecretsALGOLIA =
-  SecretsListResponseSecretsSTRIPE;
-export const SecretsListResponseSecretsALGOLIA =
-  SecretsListResponseSecretsSTRIPE;
-
-export type SecretsListResponseSecretsDATABASE =
-  SecretsListResponseSecretsSTRIPE;
-export const SecretsListResponseSecretsDATABASE =
-  SecretsListResponseSecretsSTRIPE;
-
-export type SecretsListResponseSecretsUSER = SecretsListResponseSecretsSTRIPE;
-export const SecretsListResponseSecretsUSER = SecretsListResponseSecretsSTRIPE;
-
-export interface SecretsListResponseSecrets {
-  STRIPE?: SecretsListResponseSecretsSTRIPE;
-  ALGOLIA?: SecretsListResponseSecretsSTRIPE;
-  DATABASE?: SecretsListResponseSecretsSTRIPE;
-  USER?: SecretsListResponseSecretsSTRIPE;
-}
-export const SecretsListResponseSecrets = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    STRIPE: S.optional(SecretsListResponseSecretsSTRIPE),
-    ALGOLIA: S.optional(SecretsListResponseSecretsSTRIPE),
-    DATABASE: S.optional(SecretsListResponseSecretsSTRIPE),
-    USER: S.optional(SecretsListResponseSecretsSTRIPE),
-  }),
-).annotate({
-  identifier: "SecretsListResponseSecrets",
-}) as any as S.Schema<SecretsListResponseSecrets>;
-
-export interface SecretsListResponse {
-  secrets?: SecretsListResponseSecrets;
-}
-export const SecretsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    secrets: S.optional(SecretsListResponseSecrets),
-  }),
-).annotate({
-  identifier: "SecretsListResponse",
-}) as any as S.Schema<SecretsListResponse>;
+  identifier: "RevokeAuthResponse",
+}) as any as S.Schema<RevokeAuthResponse>;
 
 export interface SecretsNamesRequest {
   /** Unique identifier for the project object. */
@@ -6295,198 +6273,6 @@ export const SecretsNamesResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SecretsNamesResponse",
 }) as any as S.Schema<SecretsNamesResponse>;
-
-/** Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below. */
-export interface SecretsUpdateRequestSecrets {
-  STRIPE?: string;
-  ALGOLIA?: string;
-  DATABASE?: string;
-}
-export const SecretsUpdateRequestSecrets = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    STRIPE: S.optional(S.String),
-    ALGOLIA: S.optional(S.String),
-    DATABASE: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SecretsUpdateRequestSecrets",
-}) as any as S.Schema<SecretsUpdateRequestSecrets>;
-
-export type SecretsUpdateRequestChangeRequestsItemValueTypeType =
-  | "string"
-  | "json"
-  | "json5"
-  | "boolean"
-  | "integer"
-  | "decimal"
-  | "email"
-  | "url"
-  | "uuidv4"
-  | "cuid2"
-  | "ulid"
-  | "datetime8601"
-  | "date8601"
-  | "yaml";
-export const SecretsUpdateRequestChangeRequestsItemValueTypeType =
-  /*@__PURE__*/ S.String;
-
-/** The default valueType (string) will result in no validations being applied. */
-export interface SecretsUpdateRequestChangeRequestsItemValueType {
-  type?: SecretsUpdateRequestChangeRequestsItemValueTypeType | (string & {});
-}
-export const SecretsUpdateRequestChangeRequestsItemValueType =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(SecretsUpdateRequestChangeRequestsItemValueTypeType),
-    }),
-  ).annotate({
-    identifier: "SecretsUpdateRequestChangeRequestsItemValueType",
-  }) as any as S.Schema<SecretsUpdateRequestChangeRequestsItemValueType>;
-
-export type SecretsUpdateRequestChangeRequestsItemOriginalValueTypeType =
-  | "string"
-  | "json"
-  | "json5"
-  | "boolean"
-  | "integer"
-  | "decimal"
-  | "email"
-  | "url"
-  | "uuidv4"
-  | "cuid2"
-  | "ulid"
-  | "datetime8601"
-  | "date8601"
-  | "yaml";
-export const SecretsUpdateRequestChangeRequestsItemOriginalValueTypeType =
-  /*@__PURE__*/ S.String;
-
-/** The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler. */
-export interface SecretsUpdateRequestChangeRequestsItemOriginalValueType {
-  type?:
-    | SecretsUpdateRequestChangeRequestsItemOriginalValueTypeType
-    | (string & {});
-}
-export const SecretsUpdateRequestChangeRequestsItemOriginalValueType =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(
-        SecretsUpdateRequestChangeRequestsItemOriginalValueTypeType,
-      ),
-    }),
-  ).annotate({
-    identifier: "SecretsUpdateRequestChangeRequestsItemOriginalValueType",
-  }) as any as S.Schema<SecretsUpdateRequestChangeRequestsItemOriginalValueType>;
-
-export interface SecretsUpdateRequestChangeRequestsItem {
-  /** The name of the secret. */
-  name: string;
-  /** The original name of the secret. Use `null` (an actual `null`, not the string `null`) or omit this parameter for new secrets. If it differs from `name` then a rename is inferred. */
-  originalName: string;
-  /** The value the secret should have. Use `null` (an actual `null`, not the string `null`) to leave the existing secret value unchanged. */
-  value: string;
-  /** The value you expect the secret to have before `name` is applied. If specified, the request will only be processed if the provided value matches what's found in Doppler. */
-  originalValue?: string;
-  /** Must be set to either `masked`, `unmasked`, or `restricted`. */
-  visibility?: string;
-  /** Must be set to either `masked`, `unmasked`, or `restricted`. The visibility you expect the secret to have before `visibility` is applied. If specified, the request will only be processed if the provided visibility matches what's found in Doppler. */
-  originalVisibility?: string;
-  /** Defaults to `false`. Can only be set to `true` if the config being updated is a branch config. If set to `true`, the provided secret will be set in both the branch config as well as the root config in that environment. */
-  shouldPromote?: boolean;
-  /** Defaults to `false`. If set to `true`, will delete the secret matching the `name` field. */
-  shouldDelete?: boolean;
-  /** Defaults to `false`. Can only be set to `true` if the config being updated is a branch config and there is a secret with the same name in the root config. In this case, the branch secret will inherit the value and visibility type from the root secret. */
-  shouldConverge?: boolean;
-  /** The default valueType (string) will result in no validations being applied. */
-  valueType?: SecretsUpdateRequestChangeRequestsItemValueType;
-  /** The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler. */
-  originalValueType?: SecretsUpdateRequestChangeRequestsItemOriginalValueType;
-}
-export const SecretsUpdateRequestChangeRequestsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String,
-      originalName: S.String,
-      value: S.String,
-      originalValue: S.optional(S.String),
-      visibility: S.optional(S.String),
-      originalVisibility: S.optional(S.String),
-      shouldPromote: S.optional(S.Boolean),
-      shouldDelete: S.optional(S.Boolean),
-      shouldConverge: S.optional(S.Boolean),
-      valueType: S.optional(SecretsUpdateRequestChangeRequestsItemValueType),
-      originalValueType: S.optional(
-        SecretsUpdateRequestChangeRequestsItemOriginalValueType,
-      ),
-    }),
-).annotate({
-  identifier: "SecretsUpdateRequestChangeRequestsItem",
-}) as any as S.Schema<SecretsUpdateRequestChangeRequestsItem>;
-
-/** Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below. */
-export type SecretsUpdateRequestChangeRequestsList =
-  Array<SecretsUpdateRequestChangeRequestsItem>;
-export const SecretsUpdateRequestChangeRequestsList = /*@__PURE__*/ S.Array(
-  SecretsUpdateRequestChangeRequestsItem,
-) as any as S.Schema<SecretsUpdateRequestChangeRequestsList>;
-
-export interface SecretsUpdateRequest {
-  /** Unique identifier for the project object. */
-  project: string;
-  /** Name of the config object. */
-  config: string;
-  /** Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below. */
-  secrets?: SecretsUpdateRequestSecrets;
-  /** Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below. */
-  change_requests?: SecretsUpdateRequestChangeRequestsList;
-}
-export const SecretsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String,
-    config: S.String,
-    secrets: S.optional(SecretsUpdateRequestSecrets),
-    change_requests: S.optional(SecretsUpdateRequestChangeRequestsList),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v3/configs/config/secrets", code: 200 }),
-  ),
-).annotate({
-  identifier: "SecretsUpdateRequest",
-}) as any as S.Schema<SecretsUpdateRequest>;
-
-export type SecretsUpdateResponseSecretsSTRIPE = SecretsGetResponseValue;
-export const SecretsUpdateResponseSecretsSTRIPE = SecretsGetResponseValue;
-
-export type SecretsUpdateResponseSecretsALGOLIA = SecretsGetResponseValue;
-export const SecretsUpdateResponseSecretsALGOLIA = SecretsGetResponseValue;
-
-export type SecretsUpdateResponseSecretsDATABASE = SecretsGetResponseValue;
-export const SecretsUpdateResponseSecretsDATABASE = SecretsGetResponseValue;
-
-export interface SecretsUpdateResponseSecrets {
-  STRIPE?: SecretsGetResponseValue;
-  ALGOLIA?: SecretsGetResponseValue;
-  DATABASE?: SecretsGetResponseValue;
-}
-export const SecretsUpdateResponseSecrets = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    STRIPE: S.optional(SecretsGetResponseValue),
-    ALGOLIA: S.optional(SecretsGetResponseValue),
-    DATABASE: S.optional(SecretsGetResponseValue),
-  }),
-).annotate({
-  identifier: "SecretsUpdateResponseSecrets",
-}) as any as S.Schema<SecretsUpdateResponseSecrets>;
-
-export interface SecretsUpdateResponse {
-  secrets?: SecretsUpdateResponseSecrets;
-}
-export const SecretsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    secrets: S.optional(SecretsUpdateResponseSecrets),
-  }),
-).annotate({
-  identifier: "SecretsUpdateResponse",
-}) as any as S.Schema<SecretsUpdateResponse>;
 
 export interface SecretsUpdateNoteRequest {
   /** Unique identifier for the project object. */
@@ -7363,241 +7149,635 @@ export const ShareSecretEncryptedResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ShareSecretEncryptedResponse",
 }) as any as S.Schema<ShareSecretEncryptedResponse>;
 
-/** An option indicating if and how Doppler should attempt to import secrets from the sync destination */
-export type SyncsCreateRequestImportOption =
-  | "none"
-  | "prefer_doppler"
-  | "prefer_integration";
-export const SyncsCreateRequestImportOption = /*@__PURE__*/ S.String;
-
-export interface SyncsCreateRequest {
-  /** The project slug */
+export interface UnlockConfigRequest {
+  /** Unique identifier for the project object. */
   project: string;
-  /** The config slug */
+  /** Name of the config. */
   config: string;
-  /** The integration slug which the sync will use */
-  integration: string;
-  /** Configuration data for the sync */
-  data: unknown;
-  /** An option indicating if and how Doppler should attempt to import secrets from the sync destination */
-  import_option?: SyncsCreateRequestImportOption | (string & {});
-  /** Causes sync creation to wait for the initial sync to complete before returning. */
-  await_initial_sync?: boolean;
 }
-export const SyncsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UnlockConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Query()),
-    config: S.String.pipe(T.Query()),
-    integration: S.String,
-    data: S.Unknown,
-    import_option: S.optional(SyncsCreateRequestImportOption),
-    await_initial_sync: S.optional(S.Boolean),
+    project: S.String,
+    config: S.String,
   }).pipe(
-    T.Http({ method: "POST", uri: "/v3/configs/config/syncs", code: 200 }),
+    T.Http({ method: "POST", uri: "/v3/configs/config/unlock", code: 200 }),
   ),
 ).annotate({
-  identifier: "SyncsCreateRequest",
-}) as any as S.Schema<SyncsCreateRequest>;
+  identifier: "UnlockConfigRequest",
+}) as any as S.Schema<UnlockConfigRequest>;
 
-export interface SyncsCreateResponseSync {
-  slug?: string;
-  integration?: string;
-  project?: string;
-  config?: string;
-  enabled?: boolean;
-  lastSyncedAt?: string;
+export type UnlockConfigResponseConfig = CloneConfigResponseConfig;
+export const UnlockConfigResponseConfig = CloneConfigResponseConfig;
+
+export interface UnlockConfigResponse {
+  config?: CloneConfigResponseConfig;
 }
-export const SyncsCreateResponseSync = /*@__PURE__*/ S.suspend(() =>
+export const UnlockConfigResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    slug: S.optional(S.String),
-    integration: S.optional(S.String),
-    project: S.optional(S.String),
-    config: S.optional(S.String),
-    enabled: S.optional(S.Boolean),
-    lastSyncedAt: S.optional(S.String),
+    config: S.optional(CloneConfigResponseConfig),
   }),
 ).annotate({
-  identifier: "SyncsCreateResponseSync",
-}) as any as S.Schema<SyncsCreateResponseSync>;
+  identifier: "UnlockConfigResponse",
+}) as any as S.Schema<UnlockConfigResponse>;
 
-export interface SyncsCreateResponse {
-  sync?: SyncsCreateResponseSync;
-}
-export const SyncsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sync: S.optional(SyncsCreateResponseSync),
-  }),
-).annotate({
-  identifier: "SyncsCreateResponse",
-}) as any as S.Schema<SyncsCreateResponse>;
+export type UpdateChangeRequestPolicyRequestRulesItemType =
+  | '"RequiredReviewer"'
+  | '"DisallowSelfReview"';
+export const UpdateChangeRequestPolicyRequestRulesItemType =
+  /*@__PURE__*/ S.String;
 
-export interface SyncsDeleteRequest {
-  /** The project slug */
-  project: string;
-  /** The config slug */
-  config: string;
-  /** The sync slug */
-  sync: string;
-  /** Whether or not to delete the synced data from the target integration */
-  delete_from_target: boolean;
+/** The type of the subject. */
+export type UpdateChangeRequestPolicyRequestRulesItemSubjectsItemType =
+  | '"WorkplaceUser"'
+  | '"Group"';
+export const UpdateChangeRequestPolicyRequestRulesItemSubjectsItemType =
+  /*@__PURE__*/ S.String;
+
+export interface UpdateChangeRequestPolicyRequestRulesItemSubjectsItem {
+  /** The type of the subject. */
+  type:
+    | UpdateChangeRequestPolicyRequestRulesItemSubjectsItemType
+    | (string & {});
+  /** The unique identifier of the subject. */
+  slug: string;
 }
-export const SyncsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateChangeRequestPolicyRequestRulesItemSubjectsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: UpdateChangeRequestPolicyRequestRulesItemSubjectsItemType,
+      slug: S.String,
+    }),
+  ).annotate({
+    identifier: "UpdateChangeRequestPolicyRequestRulesItemSubjectsItem",
+  }) as any as S.Schema<UpdateChangeRequestPolicyRequestRulesItemSubjectsItem>;
+
+/** A list of required reviewers. If specified, only reviews from reviewers in this list will satisfy the policy. Only applies to "RequiredReviewer" rules. */
+export type UpdateChangeRequestPolicyRequestRulesItemSubjectsList =
+  Array<UpdateChangeRequestPolicyRequestRulesItemSubjectsItem>;
+export const UpdateChangeRequestPolicyRequestRulesItemSubjectsList =
+  /*@__PURE__*/ S.Array(
+    UpdateChangeRequestPolicyRequestRulesItemSubjectsItem,
+  ) as any as S.Schema<UpdateChangeRequestPolicyRequestRulesItemSubjectsList>;
+
+export interface UpdateChangeRequestPolicyRequestRulesItem {
+  type: UpdateChangeRequestPolicyRequestRulesItemType | (string & {});
+  /** The number of required reviewers. Only applies to "RequiredReviewer" rules. */
+  count?: number;
+  /** A list of required reviewers. If specified, only reviews from reviewers in this list will satisfy the policy. Only applies to "RequiredReviewer" rules. */
+  subjects?: UpdateChangeRequestPolicyRequestRulesItemSubjectsList;
+}
+export const UpdateChangeRequestPolicyRequestRulesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: UpdateChangeRequestPolicyRequestRulesItemType,
+      count: S.optional(S.Number),
+      subjects: S.optional(
+        UpdateChangeRequestPolicyRequestRulesItemSubjectsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "UpdateChangeRequestPolicyRequestRulesItem",
+  }) as any as S.Schema<UpdateChangeRequestPolicyRequestRulesItem>;
+
+/** A list of rules the policy enforces. */
+export type UpdateChangeRequestPolicyRequestRulesList =
+  Array<UpdateChangeRequestPolicyRequestRulesItem>;
+export const UpdateChangeRequestPolicyRequestRulesList = /*@__PURE__*/ S.Array(
+  UpdateChangeRequestPolicyRequestRulesItem,
+) as any as S.Schema<UpdateChangeRequestPolicyRequestRulesList>;
+
+/** Describes the which projects, environments, and configs the policy applies to. */
+export type UpdateChangeRequestPolicyRequestTargets =
+  CreateChangeRequestPolicyRequestTargets;
+export const UpdateChangeRequestPolicyRequestTargets =
+  CreateChangeRequestPolicyRequestTargets;
+
+export interface UpdateChangeRequestPolicyRequest {
+  /** The unique identifier of the policy. */
+  slug: string;
+  /** The name of the policy. */
+  name: string;
+  /** An optional description of the policy. */
+  description?: string;
+  /** A list of rules the policy enforces. */
+  rules: UpdateChangeRequestPolicyRequestRulesList;
+  /** Describes the which projects, environments, and configs the policy applies to. */
+  targets: CreateChangeRequestPolicyRequestTargets;
+}
+export const UpdateChangeRequestPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project: S.String.pipe(T.Query()),
-    config: S.String.pipe(T.Query()),
-    sync: S.String.pipe(T.Query()),
-    delete_from_target: S.Boolean.pipe(T.Query()),
+    slug: S.String.pipe(T.Label()),
+    name: S.String,
+    description: S.optional(S.String),
+    rules: UpdateChangeRequestPolicyRequestRulesList,
+    targets: CreateChangeRequestPolicyRequestTargets,
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/v3/configs/config/syncs/sync",
+      method: "POST",
+      uri: "/v3/workplace/change_request_policies/change_request_policy/{slug}",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "SyncsDeleteRequest",
-}) as any as S.Schema<SyncsDeleteRequest>;
+  identifier: "UpdateChangeRequestPolicyRequest",
+}) as any as S.Schema<UpdateChangeRequestPolicyRequest>;
 
-export type SyncsDeleteResponse = unknown;
-export const SyncsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "SyncsDeleteResponse",
-}) as any as S.Schema<SyncsDeleteResponse>;
+export type UpdateChangeRequestPolicyResponsePolicyRulesList = Array<unknown>;
+export const UpdateChangeRequestPolicyResponsePolicyRulesList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<UpdateChangeRequestPolicyResponsePolicyRulesList>;
 
-export interface SyncsGetRequest {
-  /** The project slug */
-  project: string;
-  /** The config slug */
-  config: string;
-  /** The sync slug */
-  sync: string;
+export type UpdateChangeRequestPolicyResponsePolicyTargets =
+  CreateChangeRequestPolicyResponsePolicyTargets;
+export const UpdateChangeRequestPolicyResponsePolicyTargets =
+  CreateChangeRequestPolicyResponsePolicyTargets;
+
+export interface UpdateChangeRequestPolicyResponsePolicy {
+  id?: string;
+  name?: string;
+  description?: string;
+  rules?: UpdateChangeRequestPolicyResponsePolicyRulesList;
+  targets?: CreateChangeRequestPolicyResponsePolicyTargets;
 }
-export const SyncsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String.pipe(T.Query()),
-    config: S.String.pipe(T.Query()),
-    sync: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v3/configs/config/syncs/sync", code: 200 }),
-  ),
+export const UpdateChangeRequestPolicyResponsePolicy = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      description: S.optional(S.String),
+      rules: S.optional(UpdateChangeRequestPolicyResponsePolicyRulesList),
+      targets: S.optional(CreateChangeRequestPolicyResponsePolicyTargets),
+    }),
 ).annotate({
-  identifier: "SyncsGetRequest",
-}) as any as S.Schema<SyncsGetRequest>;
+  identifier: "UpdateChangeRequestPolicyResponsePolicy",
+}) as any as S.Schema<UpdateChangeRequestPolicyResponsePolicy>;
 
-export type SyncsGetResponseSync = SyncsCreateResponseSync;
-export const SyncsGetResponseSync = SyncsCreateResponseSync;
-
-export interface SyncsGetResponse {
-  sync?: SyncsCreateResponseSync;
+export interface UpdateChangeRequestPolicyResponse {
+  policy?: UpdateChangeRequestPolicyResponsePolicy;
+  success?: boolean;
 }
-export const SyncsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateChangeRequestPolicyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    sync: S.optional(SyncsCreateResponseSync),
+    policy: S.optional(UpdateChangeRequestPolicyResponsePolicy),
+    success: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "SyncsGetResponse",
-}) as any as S.Schema<SyncsGetResponse>;
+  identifier: "UpdateChangeRequestPolicyResponse",
+}) as any as S.Schema<UpdateChangeRequestPolicyResponse>;
 
-export interface UsersGetRequest {
-  /** The slug of the workplace user */
-  slug: string;
+export interface UpdateConfigRequest {
+  /** Unique identifier for the project object. */
+  project: string;
+  /** Name of the config object. */
+  config: string;
+  /** The new name of config. */
+  name: string;
 }
-export const UsersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String,
+    config: S.String,
+    name: S.String,
+  }).pipe(T.Http({ method: "POST", uri: "/v3/configs/config", code: 200 })),
+).annotate({
+  identifier: "UpdateConfigRequest",
+}) as any as S.Schema<UpdateConfigRequest>;
+
+export type UpdateConfigResponseConfig = CloneConfigResponseConfig;
+export const UpdateConfigResponseConfig = CloneConfigResponseConfig;
+
+export interface UpdateConfigResponse {
+  config?: CloneConfigResponseConfig;
+}
+export const UpdateConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    config: S.optional(CloneConfigResponseConfig),
+  }),
+).annotate({
+  identifier: "UpdateConfigResponse",
+}) as any as S.Schema<UpdateConfigResponse>;
+
+export interface UpdateGroupRequest {
+  /** The group's slug */
+  slug: string;
+  name?: string;
+  /** Identifier of the project role */
+  default_project_role?: string;
+}
+export const UpdateGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     slug: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    default_project_role: S.optional(S.String),
   }).pipe(
-    T.Http({ method: "GET", uri: "/v3/workplace/users/{slug}", code: 200 }),
+    T.Http({
+      method: "PATCH",
+      uri: "/v3/workplace/groups/group/{slug}",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "UsersGetRequest",
-}) as any as S.Schema<UsersGetRequest>;
+  identifier: "UpdateGroupRequest",
+}) as any as S.Schema<UpdateGroupRequest>;
 
-export type UsersGetResponseWorkplaceUserUser = ConfigLogsGetResponseLogUser;
-export const UsersGetResponseWorkplaceUserUser = ConfigLogsGetResponseLogUser;
+export type UpdateGroupResponseGroupDefaultProjectRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+export const UpdateGroupResponseGroupDefaultProjectRole =
+  CreateGroupResponseGroupDefaultProjectRole;
 
-export interface UsersGetResponseWorkplaceUser {
-  id?: string;
-  access?: string;
+export type UpdateGroupResponseGroupProjectsItemRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+export const UpdateGroupResponseGroupProjectsItemRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+
+export type UpdateGroupResponseGroupProjectsItem =
+  CreateGroupResponseGroupProjectsItem;
+export const UpdateGroupResponseGroupProjectsItem =
+  CreateGroupResponseGroupProjectsItem;
+
+export type UpdateGroupResponseGroupProjectsList =
+  Array<CreateGroupResponseGroupProjectsItem>;
+export const UpdateGroupResponseGroupProjectsList = /*@__PURE__*/ S.Array(
+  CreateGroupResponseGroupProjectsItem,
+) as any as S.Schema<UpdateGroupResponseGroupProjectsList>;
+
+export type UpdateGroupResponseGroupMembersItem = AuthMeResponsePrincipal;
+export const UpdateGroupResponseGroupMembersItem = AuthMeResponsePrincipal;
+
+export type UpdateGroupResponseGroupMembersList =
+  Array<AuthMeResponsePrincipal>;
+export const UpdateGroupResponseGroupMembersList = /*@__PURE__*/ S.Array(
+  AuthMeResponsePrincipal,
+) as any as S.Schema<UpdateGroupResponseGroupMembersList>;
+
+export interface UpdateGroupResponseGroup {
+  name?: string;
+  slug?: string;
   created_at?: string;
-  user?: ConfigLogsGetResponseLogUser;
+  default_project_role?: CreateGroupResponseGroupDefaultProjectRole;
+  projects?: UpdateGroupResponseGroupProjectsList;
+  members?: UpdateGroupResponseGroupMembersList;
 }
-export const UsersGetResponseWorkplaceUser = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGroupResponseGroup = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
-    access: S.optional(S.String),
+    name: S.optional(S.String),
+    slug: S.optional(S.String),
     created_at: S.optional(S.String),
-    user: S.optional(ConfigLogsGetResponseLogUser),
+    default_project_role: S.optional(
+      CreateGroupResponseGroupDefaultProjectRole,
+    ),
+    projects: S.optional(UpdateGroupResponseGroupProjectsList),
+    members: S.optional(UpdateGroupResponseGroupMembersList),
   }),
 ).annotate({
-  identifier: "UsersGetResponseWorkplaceUser",
-}) as any as S.Schema<UsersGetResponseWorkplaceUser>;
+  identifier: "UpdateGroupResponseGroup",
+}) as any as S.Schema<UpdateGroupResponseGroup>;
 
-export interface UsersGetResponse {
-  workplace_user?: UsersGetResponseWorkplaceUser;
-  success?: boolean;
+export interface UpdateGroupResponse {
+  group?: UpdateGroupResponseGroup;
 }
-export const UsersGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    workplace_user: S.optional(UsersGetResponseWorkplaceUser),
-    success: S.optional(S.Boolean),
+    group: S.optional(UpdateGroupResponseGroup),
   }),
 ).annotate({
-  identifier: "UsersGetResponse",
-}) as any as S.Schema<UsersGetResponse>;
+  identifier: "UpdateGroupResponse",
+}) as any as S.Schema<UpdateGroupResponse>;
 
-export interface UsersListRequest {
-  /** The page of users to fetch */
-  page?: number;
-  /** Filter results to only include the user with the provided email address */
-  email?: string;
+export interface UpdateIntegrationRequest {
+  /** The slug of the integration to update */
+  integration: string;
+  /** The new name of the integration */
+  name?: string;
+  /** The new authentication data for the integration */
+  data?: string;
 }
-export const UsersListRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    page: S.optional(S.Number.pipe(T.Query())),
-    email: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v3/workplace/users", code: 200 })),
+    integration: S.String.pipe(T.Query()),
+    name: S.optional(S.String),
+    data: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "PUT", uri: "/v3/integrations/integration", code: 200 }),
+  ),
 ).annotate({
-  identifier: "UsersListRequest",
-}) as any as S.Schema<UsersListRequest>;
+  identifier: "UpdateIntegrationRequest",
+}) as any as S.Schema<UpdateIntegrationRequest>;
 
-export type UsersListResponseWorkplaceUsersItemUser =
-  ConfigLogsGetResponseLogUser;
-export const UsersListResponseWorkplaceUsersItemUser =
-  ConfigLogsGetResponseLogUser;
+export type UpdateIntegrationResponse = unknown;
+export const UpdateIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "UpdateIntegrationResponse",
+}) as any as S.Schema<UpdateIntegrationResponse>;
 
-export type UsersListResponseWorkplaceUsersItem = UsersGetResponseWorkplaceUser;
-export const UsersListResponseWorkplaceUsersItem =
-  UsersGetResponseWorkplaceUser;
+export type UpdateIntegrationsIntegrationMemberRequestType =
+  | "workplace_user"
+  | "invite"
+  | "group"
+  | "service_account";
+export const UpdateIntegrationsIntegrationMemberRequestType =
+  /*@__PURE__*/ S.String;
 
-export type UsersListResponseWorkplaceUsersList =
-  Array<UsersGetResponseWorkplaceUser>;
-export const UsersListResponseWorkplaceUsersList = /*@__PURE__*/ S.Array(
-  UsersGetResponseWorkplaceUser,
-) as any as S.Schema<UsersListResponseWorkplaceUsersList>;
-
-export interface UsersListResponse {
-  workplace_users?: UsersListResponseWorkplaceUsersList;
-  page?: number;
-  success?: boolean;
+export interface UpdateIntegrationsIntegrationMemberRequest {
+  type: UpdateIntegrationsIntegrationMemberRequestType | (string & {});
+  /** Member's slug */
+  slug: string;
+  /** Integration slug */
+  integration: string;
+  role: string;
 }
-export const UsersListResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateIntegrationsIntegrationMemberRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: UpdateIntegrationsIntegrationMemberRequestType.pipe(T.Label()),
+      slug: S.String.pipe(T.Label()),
+      integration: S.String.pipe(T.Query()),
+      role: S.String,
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/v3/integrations/integration/members/{type}/{slug}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateIntegrationsIntegrationMemberRequest",
+  }) as any as S.Schema<UpdateIntegrationsIntegrationMemberRequest>;
+
+export type UpdateIntegrationsIntegrationMemberResponseMemberType =
+  | "workplace_user"
+  | "invite"
+  | "group"
+  | "service_account";
+export const UpdateIntegrationsIntegrationMemberResponseMemberType =
+  /*@__PURE__*/ S.String;
+
+export type UpdateIntegrationsIntegrationMemberResponseMemberRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+export const UpdateIntegrationsIntegrationMemberResponseMemberRole =
+  CreateGroupResponseGroupDefaultProjectRole;
+
+export interface UpdateIntegrationsIntegrationMemberResponseMember {
+  type?: UpdateIntegrationsIntegrationMemberResponseMemberType;
+  slug?: string;
+  role?: CreateGroupResponseGroupDefaultProjectRole;
+}
+export const UpdateIntegrationsIntegrationMemberResponseMember =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.optional(UpdateIntegrationsIntegrationMemberResponseMemberType),
+      slug: S.optional(S.String),
+      role: S.optional(CreateGroupResponseGroupDefaultProjectRole),
+    }),
+  ).annotate({
+    identifier: "UpdateIntegrationsIntegrationMemberResponseMember",
+  }) as any as S.Schema<UpdateIntegrationsIntegrationMemberResponseMember>;
+
+export interface UpdateIntegrationsIntegrationMemberResponse {
+  member?: UpdateIntegrationsIntegrationMemberResponseMember;
+}
+export const UpdateIntegrationsIntegrationMemberResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      member: S.optional(UpdateIntegrationsIntegrationMemberResponseMember),
+    }),
+  ).annotate({
+    identifier: "UpdateIntegrationsIntegrationMemberResponse",
+  }) as any as S.Schema<UpdateIntegrationsIntegrationMemberResponse>;
+
+export interface UpdateProjectRequest {
+  /** Unique identifier for the project object. */
+  project: string;
+  /** Name of the project. */
+  name: string;
+  /** Description of the project. */
+  description?: string;
+}
+export const UpdateProjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    workplace_users: S.optional(UsersListResponseWorkplaceUsersList),
-    page: S.optional(S.Number),
-    success: S.optional(S.Boolean),
+    project: S.String,
+    name: S.String,
+    description: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/v3/projects/project", code: 200 })),
+).annotate({
+  identifier: "UpdateProjectRequest",
+}) as any as S.Schema<UpdateProjectRequest>;
+
+export type UpdateProjectResponseProject = CreateProjectResponseProject;
+export const UpdateProjectResponseProject = CreateProjectResponseProject;
+
+export interface UpdateProjectResponse {
+  project?: CreateProjectResponseProject;
+}
+export const UpdateProjectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.optional(CreateProjectResponseProject),
   }),
 ).annotate({
-  identifier: "UsersListResponse",
-}) as any as S.Schema<UsersListResponse>;
+  identifier: "UpdateProjectResponse",
+}) as any as S.Schema<UpdateProjectResponse>;
 
-export interface UsersUpdateRequest {
+/** Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below. */
+export interface UpdateSecretRequestSecrets {
+  STRIPE?: string;
+  ALGOLIA?: string;
+  DATABASE?: string;
+}
+export const UpdateSecretRequestSecrets = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    STRIPE: S.optional(S.String),
+    ALGOLIA: S.optional(S.String),
+    DATABASE: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateSecretRequestSecrets",
+}) as any as S.Schema<UpdateSecretRequestSecrets>;
+
+export type UpdateSecretRequestChangeRequestsItemValueTypeType =
+  | "string"
+  | "json"
+  | "json5"
+  | "boolean"
+  | "integer"
+  | "decimal"
+  | "email"
+  | "url"
+  | "uuidv4"
+  | "cuid2"
+  | "ulid"
+  | "datetime8601"
+  | "date8601"
+  | "yaml";
+export const UpdateSecretRequestChangeRequestsItemValueTypeType =
+  /*@__PURE__*/ S.String;
+
+/** The default valueType (string) will result in no validations being applied. */
+export interface UpdateSecretRequestChangeRequestsItemValueType {
+  type?: UpdateSecretRequestChangeRequestsItemValueTypeType | (string & {});
+}
+export const UpdateSecretRequestChangeRequestsItemValueType =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.optional(UpdateSecretRequestChangeRequestsItemValueTypeType),
+    }),
+  ).annotate({
+    identifier: "UpdateSecretRequestChangeRequestsItemValueType",
+  }) as any as S.Schema<UpdateSecretRequestChangeRequestsItemValueType>;
+
+export type UpdateSecretRequestChangeRequestsItemOriginalValueTypeType =
+  | "string"
+  | "json"
+  | "json5"
+  | "boolean"
+  | "integer"
+  | "decimal"
+  | "email"
+  | "url"
+  | "uuidv4"
+  | "cuid2"
+  | "ulid"
+  | "datetime8601"
+  | "date8601"
+  | "yaml";
+export const UpdateSecretRequestChangeRequestsItemOriginalValueTypeType =
+  /*@__PURE__*/ S.String;
+
+/** The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler. */
+export interface UpdateSecretRequestChangeRequestsItemOriginalValueType {
+  type?:
+    | UpdateSecretRequestChangeRequestsItemOriginalValueTypeType
+    | (string & {});
+}
+export const UpdateSecretRequestChangeRequestsItemOriginalValueType =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.optional(
+        UpdateSecretRequestChangeRequestsItemOriginalValueTypeType,
+      ),
+    }),
+  ).annotate({
+    identifier: "UpdateSecretRequestChangeRequestsItemOriginalValueType",
+  }) as any as S.Schema<UpdateSecretRequestChangeRequestsItemOriginalValueType>;
+
+export interface UpdateSecretRequestChangeRequestsItem {
+  /** The name of the secret. */
+  name: string;
+  /** The original name of the secret. Use `null` (an actual `null`, not the string `null`) or omit this parameter for new secrets. If it differs from `name` then a rename is inferred. */
+  originalName: string;
+  /** The value the secret should have. Use `null` (an actual `null`, not the string `null`) to leave the existing secret value unchanged. */
+  value: string;
+  /** The value you expect the secret to have before `name` is applied. If specified, the request will only be processed if the provided value matches what's found in Doppler. */
+  originalValue?: string;
+  /** Must be set to either `masked`, `unmasked`, or `restricted`. */
+  visibility?: string;
+  /** Must be set to either `masked`, `unmasked`, or `restricted`. The visibility you expect the secret to have before `visibility` is applied. If specified, the request will only be processed if the provided visibility matches what's found in Doppler. */
+  originalVisibility?: string;
+  /** Defaults to `false`. Can only be set to `true` if the config being updated is a branch config. If set to `true`, the provided secret will be set in both the branch config as well as the root config in that environment. */
+  shouldPromote?: boolean;
+  /** Defaults to `false`. If set to `true`, will delete the secret matching the `name` field. */
+  shouldDelete?: boolean;
+  /** Defaults to `false`. Can only be set to `true` if the config being updated is a branch config and there is a secret with the same name in the root config. In this case, the branch secret will inherit the value and visibility type from the root secret. */
+  shouldConverge?: boolean;
+  /** The default valueType (string) will result in no validations being applied. */
+  valueType?: UpdateSecretRequestChangeRequestsItemValueType;
+  /** The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler. */
+  originalValueType?: UpdateSecretRequestChangeRequestsItemOriginalValueType;
+}
+export const UpdateSecretRequestChangeRequestsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String,
+      originalName: S.String,
+      value: S.String,
+      originalValue: S.optional(S.String),
+      visibility: S.optional(S.String),
+      originalVisibility: S.optional(S.String),
+      shouldPromote: S.optional(S.Boolean),
+      shouldDelete: S.optional(S.Boolean),
+      shouldConverge: S.optional(S.Boolean),
+      valueType: S.optional(UpdateSecretRequestChangeRequestsItemValueType),
+      originalValueType: S.optional(
+        UpdateSecretRequestChangeRequestsItemOriginalValueType,
+      ),
+    }),
+).annotate({
+  identifier: "UpdateSecretRequestChangeRequestsItem",
+}) as any as S.Schema<UpdateSecretRequestChangeRequestsItem>;
+
+/** Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below. */
+export type UpdateSecretRequestChangeRequestsList =
+  Array<UpdateSecretRequestChangeRequestsItem>;
+export const UpdateSecretRequestChangeRequestsList = /*@__PURE__*/ S.Array(
+  UpdateSecretRequestChangeRequestsItem,
+) as any as S.Schema<UpdateSecretRequestChangeRequestsList>;
+
+export interface UpdateSecretRequest {
+  /** Unique identifier for the project object. */
+  project: string;
+  /** Name of the config object. */
+  config: string;
+  /** Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below. */
+  secrets?: UpdateSecretRequestSecrets;
+  /** Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below. */
+  change_requests?: UpdateSecretRequestChangeRequestsList;
+}
+export const UpdateSecretRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String,
+    config: S.String,
+    secrets: S.optional(UpdateSecretRequestSecrets),
+    change_requests: S.optional(UpdateSecretRequestChangeRequestsList),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v3/configs/config/secrets", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateSecretRequest",
+}) as any as S.Schema<UpdateSecretRequest>;
+
+export type UpdateSecretResponseSecretsSTRIPE = GetSecretResponseValue;
+export const UpdateSecretResponseSecretsSTRIPE = GetSecretResponseValue;
+
+export type UpdateSecretResponseSecretsALGOLIA = GetSecretResponseValue;
+export const UpdateSecretResponseSecretsALGOLIA = GetSecretResponseValue;
+
+export type UpdateSecretResponseSecretsDATABASE = GetSecretResponseValue;
+export const UpdateSecretResponseSecretsDATABASE = GetSecretResponseValue;
+
+export interface UpdateSecretResponseSecrets {
+  STRIPE?: GetSecretResponseValue;
+  ALGOLIA?: GetSecretResponseValue;
+  DATABASE?: GetSecretResponseValue;
+}
+export const UpdateSecretResponseSecrets = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    STRIPE: S.optional(GetSecretResponseValue),
+    ALGOLIA: S.optional(GetSecretResponseValue),
+    DATABASE: S.optional(GetSecretResponseValue),
+  }),
+).annotate({
+  identifier: "UpdateSecretResponseSecrets",
+}) as any as S.Schema<UpdateSecretResponseSecrets>;
+
+export interface UpdateSecretResponse {
+  secrets?: UpdateSecretResponseSecrets;
+}
+export const UpdateSecretResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    secrets: S.optional(UpdateSecretResponseSecrets),
+  }),
+).annotate({
+  identifier: "UpdateSecretResponse",
+}) as any as S.Schema<UpdateSecretResponse>;
+
+export interface UpdateUserRequest {
   /** The slug of the workplace user. */
   slug: string;
   /** The identifier of the workplace role. E.g., `owner`, `collaborator`, etc. */
   access?: string;
 }
-export const UsersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateUserRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     slug: S.String.pipe(T.Label()),
     access: S.optional(S.String),
@@ -7605,225 +7785,36 @@ export const UsersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "PATCH", uri: "/v3/workplace/users/{slug}", code: 200 }),
   ),
 ).annotate({
-  identifier: "UsersUpdateRequest",
-}) as any as S.Schema<UsersUpdateRequest>;
+  identifier: "UpdateUserRequest",
+}) as any as S.Schema<UpdateUserRequest>;
 
-export type UsersUpdateResponseWorkplaceUserUser = ConfigLogsGetResponseLogUser;
-export const UsersUpdateResponseWorkplaceUserUser =
-  ConfigLogsGetResponseLogUser;
+export type UpdateUserResponseWorkplaceUserUser = ConfigLogsGetResponseLogUser;
+export const UpdateUserResponseWorkplaceUserUser = ConfigLogsGetResponseLogUser;
 
-export type UsersUpdateResponseWorkplaceUser = UsersGetResponseWorkplaceUser;
-export const UsersUpdateResponseWorkplaceUser = UsersGetResponseWorkplaceUser;
+export type UpdateUserResponseWorkplaceUser = GetUserResponseWorkplaceUser;
+export const UpdateUserResponseWorkplaceUser = GetUserResponseWorkplaceUser;
 
-export interface UsersUpdateResponse {
-  workplace_user?: UsersGetResponseWorkplaceUser;
+export interface UpdateUserResponse {
+  workplace_user?: GetUserResponseWorkplaceUser;
   success?: boolean;
 }
-export const UsersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateUserResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    workplace_user: S.optional(UsersGetResponseWorkplaceUser),
+    workplace_user: S.optional(GetUserResponseWorkplaceUser),
     success: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "UsersUpdateResponse",
-}) as any as S.Schema<UsersUpdateResponse>;
+  identifier: "UpdateUserResponse",
+}) as any as S.Schema<UpdateUserResponse>;
 
-export type WebhooksAddRequestAuthenticationType = "None" | "Bearer" | "Basic";
-export const WebhooksAddRequestAuthenticationType = /*@__PURE__*/ S.String;
-
-export interface WebhooksAddRequestAuthentication {
-  type?: WebhooksAddRequestAuthenticationType | (string & {});
-  /** Used when type = Bearer */
-  token?: string;
-  /** Used when type = Basic */
-  username?: string;
-  /** Used when type = Basic */
-  password?: string | Redacted.Redacted<string>;
-}
-export const WebhooksAddRequestAuthentication = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(WebhooksAddRequestAuthenticationType),
-    token: S.optional(S.String),
-    username: S.optional(S.String),
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }),
-).annotate({
-  identifier: "WebhooksAddRequestAuthentication",
-}) as any as S.Schema<WebhooksAddRequestAuthentication>;
-
-/** Config slugs that the webhook should be enabled for */
-export type WebhooksAddRequestEnableConfigsList = Array<string>;
-export const WebhooksAddRequestEnableConfigsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WebhooksAddRequestEnableConfigsList>;
-
-export interface WebhooksAddRequest {
-  /** The project's name */
-  project?: string;
-  /** The webhook URL. Must be https */
-  url: string;
-  /** See: https://docs.doppler.com/docs/webhooks#verify-webhook-with-request-signing */
-  secret?: string | Redacted.Redacted<string>;
-  authentication?: WebhooksAddRequestAuthentication;
-  /** See: https://docs.doppler.com/docs/webhooks#default-payload */
-  payload?: string;
-  /** Config slugs that the webhook should be enabled for */
-  enableConfigs?: WebhooksAddRequestEnableConfigsList;
-  /** The name of the webhook. */
-  name?: string;
-}
-export const WebhooksAddRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.optional(S.String.pipe(T.Query())),
-    url: S.String,
-    secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    authentication: S.optional(WebhooksAddRequestAuthentication),
-    payload: S.optional(S.String),
-    enableConfigs: S.optional(WebhooksAddRequestEnableConfigsList),
-    name: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/v3/webhooks", code: 200 })),
-).annotate({
-  identifier: "WebhooksAddRequest",
-}) as any as S.Schema<WebhooksAddRequest>;
-
-export type WebhooksAddResponse = unknown;
-export const WebhooksAddResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "WebhooksAddResponse",
-}) as any as S.Schema<WebhooksAddResponse>;
-
-export interface WebhooksDeleteRequest {
-  /** Webhook's slug */
-  slug: string;
-  /** The project's name */
-  project?: string;
-}
-export const WebhooksDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    slug: S.String.pipe(T.Label()),
-    project: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/v3/webhooks/webhook/{slug}", code: 200 }),
-  ),
-).annotate({
-  identifier: "WebhooksDeleteRequest",
-}) as any as S.Schema<WebhooksDeleteRequest>;
-
-export type WebhooksDeleteResponse = unknown;
-export const WebhooksDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "WebhooksDeleteResponse",
-}) as any as S.Schema<WebhooksDeleteResponse>;
-
-export interface WebhooksDisableRequest {
-  /** Webhook's slug */
-  slug: string;
-  /** The project's name */
-  project?: string;
-}
-export const WebhooksDisableRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    slug: S.String.pipe(T.Label()),
-    project: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v3/webhooks/webhook/{slug}/disable",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebhooksDisableRequest",
-}) as any as S.Schema<WebhooksDisableRequest>;
-
-export type WebhooksDisableResponse = unknown;
-export const WebhooksDisableResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "WebhooksDisableResponse",
-}) as any as S.Schema<WebhooksDisableResponse>;
-
-export interface WebhooksEnableRequest {
-  /** Webhook's slug */
-  slug: string;
-  /** The project's name */
-  project?: string;
-}
-export const WebhooksEnableRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    slug: S.String.pipe(T.Label()),
-    project: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v3/webhooks/webhook/{slug}/enable",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebhooksEnableRequest",
-}) as any as S.Schema<WebhooksEnableRequest>;
-
-export type WebhooksEnableResponse = unknown;
-export const WebhooksEnableResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "WebhooksEnableResponse",
-}) as any as S.Schema<WebhooksEnableResponse>;
-
-export interface WebhooksGetRequest {
-  /** Webhook's slug */
-  slug: string;
-  /** The project's name */
-  project?: string;
-}
-export const WebhooksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    slug: S.String.pipe(T.Label()),
-    project: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v3/webhooks/webhook/{slug}", code: 200 }),
-  ),
-).annotate({
-  identifier: "WebhooksGetRequest",
-}) as any as S.Schema<WebhooksGetRequest>;
-
-export type WebhooksGetResponse = unknown;
-export const WebhooksGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "WebhooksGetResponse",
-}) as any as S.Schema<WebhooksGetResponse>;
-
-export interface WebhooksListRequest {
-  /** The project's name */
-  project?: string;
-}
-export const WebhooksListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v3/webhooks", code: 200 })),
-).annotate({
-  identifier: "WebhooksListRequest",
-}) as any as S.Schema<WebhooksListRequest>;
-
-export type WebhooksListResponse = unknown;
-export const WebhooksListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "WebhooksListResponse",
-}) as any as S.Schema<WebhooksListResponse>;
-
-export type WebhooksUpdateRequestAuthenticationType =
+export type UpdateWebhookRequestAuthenticationType =
   | "None"
   | "Bearer"
   | "Basic";
-export const WebhooksUpdateRequestAuthenticationType = /*@__PURE__*/ S.String;
+export const UpdateWebhookRequestAuthenticationType = /*@__PURE__*/ S.String;
 
-export interface WebhooksUpdateRequestAuthentication {
-  type?: WebhooksUpdateRequestAuthenticationType | (string & {});
+export interface UpdateWebhookRequestAuthentication {
+  type?: UpdateWebhookRequestAuthenticationType | (string & {});
   /** Used when type = Bearer */
   token?: string;
   /** Used when type = Basic */
@@ -7831,30 +7822,30 @@ export interface WebhooksUpdateRequestAuthentication {
   /** Used when type = Basic */
   password?: string | Redacted.Redacted<string>;
 }
-export const WebhooksUpdateRequestAuthentication = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWebhookRequestAuthentication = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: S.optional(WebhooksUpdateRequestAuthenticationType),
+    type: S.optional(UpdateWebhookRequestAuthenticationType),
     token: S.optional(S.String),
     username: S.optional(S.String),
     password: S.optional(S.String.pipe(T.SensitiveValue({}))),
   }),
 ).annotate({
-  identifier: "WebhooksUpdateRequestAuthentication",
-}) as any as S.Schema<WebhooksUpdateRequestAuthentication>;
+  identifier: "UpdateWebhookRequestAuthentication",
+}) as any as S.Schema<UpdateWebhookRequestAuthentication>;
 
 /** Config slugs that the webhook should be enabled for */
-export type WebhooksUpdateRequestEnableConfigsList = Array<string>;
-export const WebhooksUpdateRequestEnableConfigsList = /*@__PURE__*/ S.Array(
+export type UpdateWebhookRequestEnableConfigsList = Array<string>;
+export const UpdateWebhookRequestEnableConfigsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<WebhooksUpdateRequestEnableConfigsList>;
+) as any as S.Schema<UpdateWebhookRequestEnableConfigsList>;
 
 /** Config slugs that the webhook should be disabled for */
-export type WebhooksUpdateRequestDisableConfigsList = Array<string>;
-export const WebhooksUpdateRequestDisableConfigsList = /*@__PURE__*/ S.Array(
+export type UpdateWebhookRequestDisableConfigsList = Array<string>;
+export const UpdateWebhookRequestDisableConfigsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<WebhooksUpdateRequestDisableConfigsList>;
+) as any as S.Schema<UpdateWebhookRequestDisableConfigsList>;
 
-export interface WebhooksUpdateRequest {
+export interface UpdateWebhookRequest {
   /** Webhook's slug */
   slug: string;
   /** The project's name */
@@ -7863,75 +7854,70 @@ export interface WebhooksUpdateRequest {
   url?: string;
   /** See: https://docs.doppler.com/docs/webhooks#verify-webhook-with-request-signing */
   secret?: string | Redacted.Redacted<string>;
-  authentication?: WebhooksUpdateRequestAuthentication;
+  authentication?: UpdateWebhookRequestAuthentication;
   /** See: https://docs.doppler.com/docs/webhooks#default-payload */
   payload?: string;
   /** Name of the webhook. */
   name?: string;
   /** Config slugs that the webhook should be enabled for */
-  enableConfigs?: WebhooksUpdateRequestEnableConfigsList;
+  enableConfigs?: UpdateWebhookRequestEnableConfigsList;
   /** Config slugs that the webhook should be disabled for */
-  disableConfigs?: WebhooksUpdateRequestDisableConfigsList;
+  disableConfigs?: UpdateWebhookRequestDisableConfigsList;
 }
-export const WebhooksUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     slug: S.String.pipe(T.Label()),
     project: S.optional(S.String.pipe(T.Query())),
     url: S.optional(S.String),
     secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    authentication: S.optional(WebhooksUpdateRequestAuthentication),
+    authentication: S.optional(UpdateWebhookRequestAuthentication),
     payload: S.optional(S.String),
     name: S.optional(S.String),
-    enableConfigs: S.optional(WebhooksUpdateRequestEnableConfigsList),
-    disableConfigs: S.optional(WebhooksUpdateRequestDisableConfigsList),
+    enableConfigs: S.optional(UpdateWebhookRequestEnableConfigsList),
+    disableConfigs: S.optional(UpdateWebhookRequestDisableConfigsList),
   }).pipe(
     T.Http({ method: "PATCH", uri: "/v3/webhooks/webhook/{slug}", code: 200 }),
   ),
 ).annotate({
-  identifier: "WebhooksUpdateRequest",
-}) as any as S.Schema<WebhooksUpdateRequest>;
+  identifier: "UpdateWebhookRequest",
+}) as any as S.Schema<UpdateWebhookRequest>;
 
-export type WebhooksUpdateResponse = unknown;
-export const WebhooksUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export type UpdateWebhookResponse = unknown;
+export const UpdateWebhookResponse = /*@__PURE__*/ S.suspend(() =>
   S.Unknown.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "WebhooksUpdateResponse",
-}) as any as S.Schema<WebhooksUpdateResponse>;
+  identifier: "UpdateWebhookResponse",
+}) as any as S.Schema<UpdateWebhookResponse>;
 
-export interface WorkplaceGetRequest {}
-export const WorkplaceGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/v3/workplace", code: 200 })),
-).annotate({
-  identifier: "WorkplaceGetRequest",
-}) as any as S.Schema<WorkplaceGetRequest>;
-
-export interface WorkplaceGetResponseWorkplace {
-  id?: string;
+export interface UpdateWorkplaceRequest {
+  /** Workplace name */
   name?: string;
   billing_email?: string;
   security_email?: string;
 }
-export const WorkplaceGetResponseWorkplace = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWorkplaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
     name: S.optional(S.String),
     billing_email: S.optional(S.String),
     security_email: S.optional(S.String),
-  }),
+  }).pipe(T.Http({ method: "POST", uri: "/v3/workplace", code: 200 })),
 ).annotate({
-  identifier: "WorkplaceGetResponseWorkplace",
-}) as any as S.Schema<WorkplaceGetResponseWorkplace>;
+  identifier: "UpdateWorkplaceRequest",
+}) as any as S.Schema<UpdateWorkplaceRequest>;
 
-export interface WorkplaceGetResponse {
-  workplace?: WorkplaceGetResponseWorkplace;
+export type UpdateWorkplaceResponseWorkplace = GetWorkplaceResponseWorkplace;
+export const UpdateWorkplaceResponseWorkplace = GetWorkplaceResponseWorkplace;
+
+export interface UpdateWorkplaceResponse {
+  workplace?: GetWorkplaceResponseWorkplace;
 }
-export const WorkplaceGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWorkplaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    workplace: S.optional(WorkplaceGetResponseWorkplace),
+    workplace: S.optional(GetWorkplaceResponseWorkplace),
   }),
 ).annotate({
-  identifier: "WorkplaceGetResponse",
-}) as any as S.Schema<WorkplaceGetResponse>;
+  identifier: "UpdateWorkplaceResponse",
+}) as any as S.Schema<UpdateWorkplaceResponse>;
 
 /** An array containing the permissions the role has. Valid permissions are: `all_enclave_projects`, `all_enclave_projects_admin`, `analytics_dashboard`, `billing`, `billing_manage`, `change_request_policy_manage`, `change_request_policy_read`, `create_enclave_project`, `custom_roles_manage`, `ekm`, `enclave_inheritance`, `enclave_secrets_referencing`, `logs`, `logs_audit`, `service_account_api_tokens`, `service_account_api_tokens_manage`, `service_account_identities`, `service_account_identities_manage`, `service_accounts`, `service_accounts_manage`, `settings`, `settings_manage`, `team`, `team_manage`, `verified_domains`, `verified_domains_manage`, `workplace_default_environments_manage`, `workplace_default_environments_read`, `workplace_integrations_create`, `workplace_integrations_list`, `workplace_integrations_manage`, `workplace_integrations_read` */
 export type WorkplaceRolesCreateRequestPermissionsList = Array<string>;
@@ -8225,36 +8211,6 @@ export const WorkplaceRolesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkplaceRolesUpdateResponse",
 }) as any as S.Schema<WorkplaceRolesUpdateResponse>;
 
-export interface WorkplaceUpdateRequest {
-  /** Workplace name */
-  name?: string;
-  billing_email?: string;
-  security_email?: string;
-}
-export const WorkplaceUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    billing_email: S.optional(S.String),
-    security_email: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/v3/workplace", code: 200 })),
-).annotate({
-  identifier: "WorkplaceUpdateRequest",
-}) as any as S.Schema<WorkplaceUpdateRequest>;
-
-export type WorkplaceUpdateResponseWorkplace = WorkplaceGetResponseWorkplace;
-export const WorkplaceUpdateResponseWorkplace = WorkplaceGetResponseWorkplace;
-
-export interface WorkplaceUpdateResponse {
-  workplace?: WorkplaceGetResponseWorkplace;
-}
-export const WorkplaceUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    workplace: S.optional(WorkplaceGetResponseWorkplace),
-  }),
-).annotate({
-  identifier: "WorkplaceUpdateResponse",
-}) as any as S.Schema<WorkplaceUpdateResponse>;
-
 export type ActivityLogsListError = DopplerOpError;
 /** List Activity Logs */
 export const activityLogsList: API.OperationMethod<
@@ -8281,6 +8237,21 @@ export const activityLogsRetrieve: API.OperationMethod<
   input: ActivityLogsRetrieveRequest,
   output: ActivityLogsRetrieveResponse,
   errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AddWebhookError = BadRequest | DopplerOpError;
+/** Add Webhook */
+export const addWebhook: API.OperationMethod<
+  AddWebhookRequest,
+  AddWebhookResponse,
+  AddWebhookError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddWebhookRequest,
+  output: AddWebhookResponse,
+  errors: [BadRequest, UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
@@ -8330,91 +8301,16 @@ export const authOidc: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AuthRevokeError = DopplerOpError;
-/** Revoke Revoke an auth token */
-export const authRevoke: API.OperationMethod<
-  AuthRevokeRequest,
-  AuthRevokeResponse,
-  AuthRevokeError,
+export type CloneConfigError = DopplerOpError;
+/** Clone Create a new branch config by cloning another. This duplicates a branch config and all its secrets. */
+export const cloneConfig: API.OperationMethod<
+  CloneConfigRequest,
+  CloneConfigResponse,
+  CloneConfigError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AuthRevokeRequest,
-  output: AuthRevokeResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ChangeRequestPoliciesCreateError = DopplerOpError;
-/** Create Create a new change request policy */
-export const changeRequestPoliciesCreate: API.OperationMethod<
-  ChangeRequestPoliciesCreateRequest,
-  ChangeRequestPoliciesCreateResponse,
-  ChangeRequestPoliciesCreateError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ChangeRequestPoliciesCreateRequest,
-  output: ChangeRequestPoliciesCreateResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ChangeRequestPoliciesDeleteError = DopplerOpError;
-/** Delete Delete an existing change request policy */
-export const changeRequestPoliciesDelete: API.OperationMethod<
-  ChangeRequestPoliciesDeleteRequest,
-  ChangeRequestPoliciesDeleteResponse,
-  ChangeRequestPoliciesDeleteError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ChangeRequestPoliciesDeleteRequest,
-  output: ChangeRequestPoliciesDeleteResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ChangeRequestPoliciesGetError = DopplerOpError;
-/** Retrieve Fetch an existing change request policy */
-export const changeRequestPoliciesGet: API.OperationMethod<
-  ChangeRequestPoliciesGetRequest,
-  ChangeRequestPoliciesGetResponse,
-  ChangeRequestPoliciesGetError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ChangeRequestPoliciesGetRequest,
-  output: ChangeRequestPoliciesGetResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ChangeRequestPoliciesListError = BadRequest | DopplerOpError;
-/** List List existing change request policies */
-export const changeRequestPoliciesList: API.OperationMethod<
-  ChangeRequestPoliciesListRequest,
-  ChangeRequestPoliciesListResponse,
-  ChangeRequestPoliciesListError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ChangeRequestPoliciesListRequest,
-  output: ChangeRequestPoliciesListResponse,
-  errors: [BadRequest, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ChangeRequestPoliciesUpdateError = DopplerOpError;
-/** Update Update an existing change request policy */
-export const changeRequestPoliciesUpdate: API.OperationMethod<
-  ChangeRequestPoliciesUpdateRequest,
-  ChangeRequestPoliciesUpdateResponse,
-  ChangeRequestPoliciesUpdateError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ChangeRequestPoliciesUpdateRequest,
-  output: ChangeRequestPoliciesUpdateResponse,
+  input: CloneConfigRequest,
+  output: CloneConfigResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
@@ -8480,51 +8376,6 @@ export const configsAddTrustedIp: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConfigsCloneError = DopplerOpError;
-/** Clone Create a new branch config by cloning another. This duplicates a branch config and all its secrets. */
-export const configsClone: API.OperationMethod<
-  ConfigsCloneRequest,
-  ConfigsCloneResponse,
-  ConfigsCloneError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigsCloneRequest,
-  output: ConfigsCloneResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigsCreateError = DopplerOpError;
-/** Create Create a new branch config. */
-export const configsCreate: API.OperationMethod<
-  ConfigsCreateRequest,
-  ConfigsCreateResponse,
-  ConfigsCreateError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigsCreateRequest,
-  output: ConfigsCreateResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigsDeleteError = DopplerOpError;
-/** Delete Permanently delete the config. */
-export const configsDelete: API.OperationMethod<
-  ConfigsDeleteRequest,
-  ConfigsDeleteResponse,
-  ConfigsDeleteError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigsDeleteRequest,
-  output: ConfigsDeleteResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ConfigsDeleteTrustedIpError = NotFound | DopplerOpError;
 /** Delete */
 export const configsDeleteTrustedIp: API.OperationMethod<
@@ -8536,21 +8387,6 @@ export const configsDeleteTrustedIp: API.OperationMethod<
   input: ConfigsDeleteTrustedIpRequest,
   output: ConfigsDeleteTrustedIpResponse,
   errors: [NotFound, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigsGetError = DopplerOpError;
-/** Retrieve Fetch a config's details. */
-export const configsGet: API.OperationMethod<
-  ConfigsGetRequest,
-  ConfigsGetResponse,
-  ConfigsGetError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigsGetRequest,
-  output: ConfigsGetResponse,
-  errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
@@ -8585,21 +8421,6 @@ export const configsInherits: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConfigsListError = DopplerOpError;
-/** List Fetch all configs. */
-export const configsList: API.OperationMethod<
-  ConfigsListRequest,
-  ConfigsListResponse,
-  ConfigsListError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigsListRequest,
-  output: ConfigsListResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ConfigsListTrustedIpsError = DopplerOpError;
 /** List */
 export const configsListTrustedIps: API.OperationMethod<
@@ -8615,47 +8436,242 @@ export const configsListTrustedIps: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConfigsLockError = DopplerOpError;
-/** Lock Prevent the config from being renamed or deleted. */
-export const configsLock: API.OperationMethod<
-  ConfigsLockRequest,
-  ConfigsLockResponse,
-  ConfigsLockError,
+export type CreateChangeRequestPolicyError = DopplerOpError;
+/** Create Create a new change request policy */
+export const createChangeRequestPolicy: API.OperationMethod<
+  CreateChangeRequestPolicyRequest,
+  CreateChangeRequestPolicyResponse,
+  CreateChangeRequestPolicyError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConfigsLockRequest,
-  output: ConfigsLockResponse,
+  input: CreateChangeRequestPolicyRequest,
+  output: CreateChangeRequestPolicyResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConfigsUnlockError = DopplerOpError;
-/** Unlock Allow the config to be renamed and/or deleted. */
-export const configsUnlock: API.OperationMethod<
-  ConfigsUnlockRequest,
-  ConfigsUnlockResponse,
-  ConfigsUnlockError,
+export type CreateConfigError = DopplerOpError;
+/** Create Create a new branch config. */
+export const createConfig: API.OperationMethod<
+  CreateConfigRequest,
+  CreateConfigResponse,
+  CreateConfigError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConfigsUnlockRequest,
-  output: ConfigsUnlockResponse,
+  input: CreateConfigRequest,
+  output: CreateConfigResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConfigsUpdateError = DopplerOpError;
-/** Update Modify an existing config. */
-export const configsUpdate: API.OperationMethod<
-  ConfigsUpdateRequest,
-  ConfigsUpdateResponse,
-  ConfigsUpdateError,
+export type CreateEnvironmentError = DopplerOpError;
+/** Create Environment */
+export const createEnvironment: API.OperationMethod<
+  CreateEnvironmentRequest,
+  CreateEnvironmentResponse,
+  CreateEnvironmentError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConfigsUpdateRequest,
-  output: ConfigsUpdateResponse,
+  input: CreateEnvironmentRequest,
+  output: CreateEnvironmentResponse,
   errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateGroupError = NotFound | DopplerOpError;
+/** Create */
+export const createGroup: API.OperationMethod<
+  CreateGroupRequest,
+  CreateGroupResponse,
+  CreateGroupError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateGroupRequest,
+  output: CreateGroupResponse,
+  errors: [NotFound, UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateIntegrationError = BadRequest | DopplerOpError;
+/** Create Create a new external integration. */
+export const createIntegration: API.OperationMethod<
+  CreateIntegrationRequest,
+  CreateIntegrationResponse,
+  CreateIntegrationError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateIntegrationRequest,
+  output: CreateIntegrationResponse,
+  errors: [BadRequest, UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateIntegrationsIntegrationMemberError = DopplerOpError;
+/** Add */
+export const createIntegrationsIntegrationMember: API.OperationMethod<
+  CreateIntegrationsIntegrationMemberRequest,
+  CreateIntegrationsIntegrationMemberResponse,
+  CreateIntegrationsIntegrationMemberError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateIntegrationsIntegrationMemberRequest,
+  output: CreateIntegrationsIntegrationMemberResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateProjectError = DopplerOpError;
+/** Create Project */
+export const createProject: API.OperationMethod<
+  CreateProjectRequest,
+  CreateProjectResponse,
+  CreateProjectError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateProjectRequest,
+  output: CreateProjectResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSyncError = BadRequest | DopplerOpError;
+/** Create Create a new secrets sync. */
+export const createSync: API.OperationMethod<
+  CreateSyncRequest,
+  CreateSyncResponse,
+  CreateSyncError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSyncRequest,
+  output: CreateSyncResponse,
+  errors: [BadRequest, UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteChangeRequestPolicyError = DopplerOpError;
+/** Delete Delete an existing change request policy */
+export const deleteChangeRequestPolicy: API.OperationMethod<
+  DeleteChangeRequestPolicyRequest,
+  DeleteChangeRequestPolicyResponse,
+  DeleteChangeRequestPolicyError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteChangeRequestPolicyRequest,
+  output: DeleteChangeRequestPolicyResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteConfigError = DopplerOpError;
+/** Delete Permanently delete the config. */
+export const deleteConfig: API.OperationMethod<
+  DeleteConfigRequest,
+  DeleteConfigResponse,
+  DeleteConfigError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteConfigRequest,
+  output: DeleteConfigResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEnvironmentError = DopplerOpError;
+/** Delete Environment */
+export const deleteEnvironment: API.OperationMethod<
+  DeleteEnvironmentRequest,
+  DeleteEnvironmentResponse,
+  DeleteEnvironmentError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEnvironmentRequest,
+  output: DeleteEnvironmentResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteGroupError = DopplerOpError;
+/** Delete */
+export const deleteGroup: API.OperationMethod<
+  DeleteGroupRequest,
+  DeleteGroupResponse,
+  DeleteGroupError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteGroupRequest,
+  output: DeleteGroupResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteIntegrationError = BadRequest | DopplerOpError;
+/** Delete Delete an existing integration. */
+export const deleteIntegration: API.OperationMethod<
+  DeleteIntegrationRequest,
+  DeleteIntegrationResponse,
+  DeleteIntegrationError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteIntegrationRequest,
+  output: DeleteIntegrationResponse,
+  errors: [BadRequest, UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteProjectError = DopplerOpError;
+/** Delete Project */
+export const deleteProject: API.OperationMethod<
+  DeleteProjectRequest,
+  DeleteProjectResponse,
+  DeleteProjectError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteProjectRequest,
+  output: DeleteProjectResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSecretError = DopplerOpError;
+/** Delete Secret */
+export const deleteSecret: API.OperationMethod<
+  DeleteSecretRequest,
+  DeleteSecretResponse,
+  DeleteSecretError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSecretRequest,
+  output: DeleteSecretResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSyncError = BadRequest | DopplerOpError;
+/** Delete Delete an existing sync. */
+export const deleteSync: API.OperationMethod<
+  DeleteSyncRequest,
+  DeleteSyncResponse,
+  DeleteSyncError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSyncRequest,
+  output: DeleteSyncResponse,
+  errors: [BadRequest, UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
@@ -8677,22 +8693,6 @@ export const deleteV3workplacechangeRequestschangeRequestChangeRequestIdUnitsuni
   retry: Retry.Retry,
 }));
 
-export type DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugError =
-  DopplerOpError;
-/** Delete */
-export const deleteV3WorkplaceIntegrationsIntegrationMembersTypeSlug: API.OperationMethod<
-  DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest,
-  DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponse,
-  DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest,
-  output: DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeleteV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityError =
   DopplerOpError;
 export const deleteV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentity: API.OperationMethod<
@@ -8705,6 +8705,66 @@ export const deleteV3workplaceserviceAccountsserviceAccountServiceAccountIdentit
     DeleteV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityRequest,
   output:
     DeleteV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWebhookError = BadRequest | DopplerOpError;
+/** Delete Webhook */
+export const deleteWebhook: API.OperationMethod<
+  DeleteWebhookRequest,
+  DeleteWebhookResponse,
+  DeleteWebhookError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWebhookRequest,
+  output: DeleteWebhookResponse,
+  errors: [BadRequest, UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkplaceIntegrationsIntegrationMemberError = DopplerOpError;
+/** Delete */
+export const deleteWorkplaceIntegrationsIntegrationMember: API.OperationMethod<
+  DeleteWorkplaceIntegrationsIntegrationMemberRequest,
+  DeleteWorkplaceIntegrationsIntegrationMemberResponse,
+  DeleteWorkplaceIntegrationsIntegrationMemberError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkplaceIntegrationsIntegrationMemberRequest,
+  output: DeleteWorkplaceIntegrationsIntegrationMemberResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DisableWebhookError = BadRequest | DopplerOpError;
+/** Disable Webhook */
+export const disableWebhook: API.OperationMethod<
+  DisableWebhookRequest,
+  DisableWebhookResponse,
+  DisableWebhookError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DisableWebhookRequest,
+  output: DisableWebhookResponse,
+  errors: [BadRequest, UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DownloadSecretError = DopplerOpError;
+/** Download Download Secrets */
+export const downloadSecret: API.OperationMethod<
+  DownloadSecretRequest,
+  DownloadSecretResponse,
+  DownloadSecretError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DownloadSecretRequest,
+  output: DownloadSecretResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
@@ -8740,77 +8800,122 @@ export const dynamicSecretsRevokeLease: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EnvironmentsCreateError = DopplerOpError;
-/** Create Environment */
-export const environmentsCreate: API.OperationMethod<
-  EnvironmentsCreateRequest,
-  EnvironmentsCreateResponse,
-  EnvironmentsCreateError,
+export type EnableWebhookError = BadRequest | DopplerOpError;
+/** Enable Webhook */
+export const enableWebhook: API.OperationMethod<
+  EnableWebhookRequest,
+  EnableWebhookResponse,
+  EnableWebhookError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsCreateRequest,
-  output: EnvironmentsCreateResponse,
+  input: EnableWebhookRequest,
+  output: EnableWebhookResponse,
+  errors: [BadRequest, UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetChangeRequestPolicyError = DopplerOpError;
+/** Retrieve Fetch an existing change request policy */
+export const getChangeRequestPolicy: API.OperationMethod<
+  GetChangeRequestPolicyRequest,
+  GetChangeRequestPolicyResponse,
+  GetChangeRequestPolicyError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetChangeRequestPolicyRequest,
+  output: GetChangeRequestPolicyResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type EnvironmentsDeleteError = DopplerOpError;
-/** Delete Environment */
-export const environmentsDelete: API.OperationMethod<
-  EnvironmentsDeleteRequest,
-  EnvironmentsDeleteResponse,
-  EnvironmentsDeleteError,
+export type GetConfigError = DopplerOpError;
+/** Retrieve Fetch a config's details. */
+export const getConfig: API.OperationMethod<
+  GetConfigRequest,
+  GetConfigResponse,
+  GetConfigError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsDeleteRequest,
-  output: EnvironmentsDeleteResponse,
+  input: GetConfigRequest,
+  output: GetConfigResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type EnvironmentsGetError = DopplerOpError;
+export type GetEnvironmentError = DopplerOpError;
 /** Retrieve Environment */
-export const environmentsGet: API.OperationMethod<
-  EnvironmentsGetRequest,
-  EnvironmentsGetResponse,
-  EnvironmentsGetError,
+export const getEnvironment: API.OperationMethod<
+  GetEnvironmentRequest,
+  GetEnvironmentResponse,
+  GetEnvironmentError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsGetRequest,
-  output: EnvironmentsGetResponse,
+  input: GetEnvironmentRequest,
+  output: GetEnvironmentResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type EnvironmentsListError = DopplerOpError;
-/** List Environments */
-export const environmentsList: API.OperationMethod<
-  EnvironmentsListRequest,
-  EnvironmentsListResponse,
-  EnvironmentsListError,
+export type GetGroupError = NotFound | DopplerOpError;
+/** Retrieve */
+export const getGroup: API.OperationMethod<
+  GetGroupRequest,
+  GetGroupResponse,
+  GetGroupError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsListRequest,
-  output: EnvironmentsListResponse,
+  input: GetGroupRequest,
+  output: GetGroupResponse,
+  errors: [NotFound, UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationError = BadRequest | DopplerOpError;
+/** Retrieve Retrieve an existing integration */
+export const getIntegration: API.OperationMethod<
+  GetIntegrationRequest,
+  GetIntegrationResponse,
+  GetIntegrationError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationRequest,
+  output: GetIntegrationResponse,
+  errors: [BadRequest, UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationsIntegrationMembersError = DopplerOpError;
+/** List */
+export const getIntegrationsIntegrationMembers: API.OperationMethod<
+  GetIntegrationsIntegrationMembersRequest,
+  GetIntegrationsIntegrationMembersResponse,
+  GetIntegrationsIntegrationMembersError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationsIntegrationMembersRequest,
+  output: GetIntegrationsIntegrationMembersResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type EnvironmentsRenameError = DopplerOpError;
-/** Rename Environment */
-export const environmentsRename: API.OperationMethod<
-  EnvironmentsRenameRequest,
-  EnvironmentsRenameResponse,
-  EnvironmentsRenameError,
+export type GetMemberError = NotFound | DopplerOpError;
+/** Retrieve Member */
+export const getMember: API.OperationMethod<
+  GetMemberRequest,
+  GetMemberResponse,
+  GetMemberError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsRenameRequest,
-  output: EnvironmentsRenameResponse,
-  errors: [UnknownDopplerError],
+  input: GetMemberRequest,
+  output: GetMemberResponse,
+  errors: [NotFound, UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
@@ -8830,16 +8935,61 @@ export const getOptions: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetV3IntegrationsIntegrationMembersError = DopplerOpError;
-/** List */
-export const getV3IntegrationsIntegrationMembers: API.OperationMethod<
-  GetV3IntegrationsIntegrationMembersRequest,
-  GetV3IntegrationsIntegrationMembersResponse,
-  GetV3IntegrationsIntegrationMembersError,
+export type GetProjectError = DopplerOpError;
+/** Retrieve Project */
+export const getProject: API.OperationMethod<
+  GetProjectRequest,
+  GetProjectResponse,
+  GetProjectError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetV3IntegrationsIntegrationMembersRequest,
-  output: GetV3IntegrationsIntegrationMembersResponse,
+  input: GetProjectRequest,
+  output: GetProjectResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSecretError = DopplerOpError;
+/** Retrieve Secret */
+export const getSecret: API.OperationMethod<
+  GetSecretRequest,
+  GetSecretResponse,
+  GetSecretError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSecretRequest,
+  output: GetSecretResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSyncError = BadRequest | DopplerOpError;
+/** Retrieve Retrieve an existing secrets sync. */
+export const getSync: API.OperationMethod<
+  GetSyncRequest,
+  GetSyncResponse,
+  GetSyncError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSyncRequest,
+  output: GetSyncResponse,
+  errors: [BadRequest, UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUserError = DopplerOpError;
+/** Retrieve Get a specific user in a workplace */
+export const getUser: API.OperationMethod<
+  GetUserRequest,
+  GetUserResponse,
+  GetUserError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserRequest,
+  output: GetUserResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
@@ -8891,22 +9041,6 @@ export const getV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUn
   retry: Retry.Retry,
 }));
 
-export type GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugError =
-  DopplerOpError;
-/** Retrieve */
-export const getV3WorkplaceIntegrationsIntegrationMembersTypeSlug: API.OperationMethod<
-  GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest,
-  GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponse,
-  GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest,
-  output: GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesError =
   DopplerOpError;
 export const getV3workplaceserviceAccountsserviceAccountServiceAccountIdentities: API.OperationMethod<
@@ -8941,6 +9075,51 @@ export const getV3workplaceserviceAccountsserviceAccountServiceAccountIdentities
   retry: Retry.Retry,
 }));
 
+export type GetWebhookError = BadRequest | DopplerOpError;
+/** Retrieve Webhook */
+export const getWebhook: API.OperationMethod<
+  GetWebhookRequest,
+  GetWebhookResponse,
+  GetWebhookError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebhookRequest,
+  output: GetWebhookResponse,
+  errors: [BadRequest, UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkplaceError = DopplerOpError;
+/** Retrieve */
+export const getWorkplace: API.OperationMethod<
+  GetWorkplaceRequest,
+  GetWorkplaceResponse,
+  GetWorkplaceError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkplaceRequest,
+  output: GetWorkplaceResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkplaceIntegrationsIntegrationMemberError = DopplerOpError;
+/** Retrieve */
+export const getWorkplaceIntegrationsIntegrationMember: API.OperationMethod<
+  GetWorkplaceIntegrationsIntegrationMemberRequest,
+  GetWorkplaceIntegrationsIntegrationMemberResponse,
+  GetWorkplaceIntegrationsIntegrationMemberError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkplaceIntegrationsIntegrationMemberRequest,
+  output: GetWorkplaceIntegrationsIntegrationMemberResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GroupsAddMemberError = Conflict | DopplerOpError;
 /** Add Member */
 export const groupsAddMember: API.OperationMethod<
@@ -8952,36 +9131,6 @@ export const groupsAddMember: API.OperationMethod<
   input: GroupsAddMemberRequest,
   output: GroupsAddMemberResponse,
   errors: [Conflict, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupsCreateError = NotFound | DopplerOpError;
-/** Create */
-export const groupsCreate: API.OperationMethod<
-  GroupsCreateRequest,
-  GroupsCreateResponse,
-  GroupsCreateError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupsCreateRequest,
-  output: GroupsCreateResponse,
-  errors: [NotFound, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupsDeleteError = DopplerOpError;
-/** Delete */
-export const groupsDelete: API.OperationMethod<
-  GroupsDeleteRequest,
-  GroupsDeleteResponse,
-  GroupsDeleteError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupsDeleteRequest,
-  output: GroupsDeleteResponse,
-  errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
@@ -9001,166 +9150,166 @@ export const groupsDeleteMember: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GroupsGetError = NotFound | DopplerOpError;
-/** Retrieve */
-export const groupsGet: API.OperationMethod<
-  GroupsGetRequest,
-  GroupsGetResponse,
-  GroupsGetError,
+export type ListChangeRequestPoliciesError = BadRequest | DopplerOpError;
+/** List List existing change request policies */
+export const listChangeRequestPolicies: API.OperationMethod<
+  ListChangeRequestPoliciesRequest,
+  ListChangeRequestPoliciesResponse,
+  ListChangeRequestPoliciesError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GroupsGetRequest,
-  output: GroupsGetResponse,
-  errors: [NotFound, UnknownDopplerError],
+  input: ListChangeRequestPoliciesRequest,
+  output: ListChangeRequestPoliciesResponse,
+  errors: [BadRequest, UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type GroupsListError = DopplerOpError;
-/** List */
-export const groupsList: API.OperationMethod<
-  GroupsListRequest,
-  GroupsListResponse,
-  GroupsListError,
+export type ListConfigsError = DopplerOpError;
+/** List Fetch all configs. */
+export const listConfigs: API.OperationMethod<
+  ListConfigsRequest,
+  ListConfigsResponse,
+  ListConfigsError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GroupsListRequest,
-  output: GroupsListResponse,
+  input: ListConfigsRequest,
+  output: ListConfigsResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type GroupsUpdateError = NotFound | DopplerOpError;
-/** Update */
-export const groupsUpdate: API.OperationMethod<
-  GroupsUpdateRequest,
-  GroupsUpdateResponse,
-  GroupsUpdateError,
+export type ListEnvironmentsError = DopplerOpError;
+/** List Environments */
+export const listEnvironments: API.OperationMethod<
+  ListEnvironmentsRequest,
+  ListEnvironmentsResponse,
+  ListEnvironmentsError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GroupsUpdateRequest,
-  output: GroupsUpdateResponse,
-  errors: [NotFound, UnknownDopplerError],
+  input: ListEnvironmentsRequest,
+  output: ListEnvironmentsResponse,
+  errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type IntegrationsCreateError = BadRequest | DopplerOpError;
-/** Create Create a new external integration. */
-export const integrationsCreate: API.OperationMethod<
-  IntegrationsCreateRequest,
-  IntegrationsCreateResponse,
-  IntegrationsCreateError,
+export type ListGroupsError = DopplerOpError;
+/** List */
+export const listGroups: API.OperationMethod<
+  ListGroupsRequest,
+  ListGroupsResponse,
+  ListGroupsError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsCreateRequest,
-  output: IntegrationsCreateResponse,
-  errors: [BadRequest, UnknownDopplerError],
+  input: ListGroupsRequest,
+  output: ListGroupsResponse,
+  errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type IntegrationsDeleteError = BadRequest | DopplerOpError;
-/** Delete Delete an existing integration. */
-export const integrationsDelete: API.OperationMethod<
-  IntegrationsDeleteRequest,
-  IntegrationsDeleteResponse,
-  IntegrationsDeleteError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsDeleteRequest,
-  output: IntegrationsDeleteResponse,
-  errors: [BadRequest, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationsGetError = BadRequest | DopplerOpError;
-/** Retrieve Retrieve an existing integration */
-export const integrationsGet: API.OperationMethod<
-  IntegrationsGetRequest,
-  IntegrationsGetResponse,
-  IntegrationsGetError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsGetRequest,
-  output: IntegrationsGetResponse,
-  errors: [BadRequest, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationsListError = DopplerOpError;
+export type ListIntegrationsError = DopplerOpError;
 /** List List all existing integrations */
-export const integrationsList: API.OperationMethod<
-  IntegrationsListRequest,
-  IntegrationsListResponse,
-  IntegrationsListError,
+export const listIntegrations: API.OperationMethod<
+  ListIntegrationsRequest,
+  ListIntegrationsResponse,
+  ListIntegrationsError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsListRequest,
-  output: IntegrationsListResponse,
+  input: ListIntegrationsRequest,
+  output: ListIntegrationsResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type IntegrationsUpdateError = BadRequest | DopplerOpError;
-/** Update Update an existing integration. */
-export const integrationsUpdate: API.OperationMethod<
-  IntegrationsUpdateRequest,
-  IntegrationsUpdateResponse,
-  IntegrationsUpdateError,
+export type ListInvitesError = DopplerOpError;
+/** List */
+export const listInvites: API.OperationMethod<
+  ListInvitesRequest,
+  ListInvitesResponse,
+  ListInvitesError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsUpdateRequest,
-  output: IntegrationsUpdateResponse,
+  input: ListInvitesRequest,
+  output: ListInvitesResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProjectsError = DopplerOpError;
+/** List Projects */
+export const listProjects: API.OperationMethod<
+  ListProjectsRequest,
+  ListProjectsResponse,
+  ListProjectsError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProjectsRequest,
+  output: ListProjectsResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSecretsError = DopplerOpError;
+/** List Secrets */
+export const listSecrets: API.OperationMethod<
+  ListSecretsRequest,
+  ListSecretsResponse,
+  ListSecretsError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSecretsRequest,
+  output: ListSecretsResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListUsersError = DopplerOpError;
+/** List Get all users within a workplace */
+export const listUsers: API.OperationMethod<
+  ListUsersRequest,
+  ListUsersResponse,
+  ListUsersError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListUsersRequest,
+  output: ListUsersResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebhooksError = BadRequest | DopplerOpError;
+/** List Webhooks */
+export const listWebhooks: API.OperationMethod<
+  ListWebhooksRequest,
+  ListWebhooksResponse,
+  ListWebhooksError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebhooksRequest,
+  output: ListWebhooksResponse,
   errors: [BadRequest, UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type InvitesListError = DopplerOpError;
-/** List */
-export const invitesList: API.OperationMethod<
-  InvitesListRequest,
-  InvitesListResponse,
-  InvitesListError,
+export type LockConfigError = DopplerOpError;
+/** Lock Prevent the config from being renamed or deleted. */
+export const lockConfig: API.OperationMethod<
+  LockConfigRequest,
+  LockConfigResponse,
+  LockConfigError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InvitesListRequest,
-  output: InvitesListResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchV3IntegrationsIntegrationMembersTypeSlugError = DopplerOpError;
-/** Update */
-export const patchV3IntegrationsIntegrationMembersTypeSlug: API.OperationMethod<
-  PatchV3IntegrationsIntegrationMembersTypeSlugRequest,
-  PatchV3IntegrationsIntegrationMembersTypeSlugResponse,
-  PatchV3IntegrationsIntegrationMembersTypeSlugError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchV3IntegrationsIntegrationMembersTypeSlugRequest,
-  output: PatchV3IntegrationsIntegrationMembersTypeSlugResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV3IntegrationsIntegrationMembersError = DopplerOpError;
-/** Add */
-export const postV3IntegrationsIntegrationMembers: API.OperationMethod<
-  PostV3IntegrationsIntegrationMembersRequest,
-  PostV3IntegrationsIntegrationMembersResponse,
-  PostV3IntegrationsIntegrationMembersError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV3IntegrationsIntegrationMembersRequest,
-  output: PostV3IntegrationsIntegrationMembersResponse,
+  input: LockConfigRequest,
+  output: LockConfigResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
@@ -9444,81 +9593,6 @@ export const projectRolesUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ProjectsCreateError = DopplerOpError;
-/** Create Project */
-export const projectsCreate: API.OperationMethod<
-  ProjectsCreateRequest,
-  ProjectsCreateResponse,
-  ProjectsCreateError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectsCreateRequest,
-  output: ProjectsCreateResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectsDeleteError = DopplerOpError;
-/** Delete Project */
-export const projectsDelete: API.OperationMethod<
-  ProjectsDeleteRequest,
-  ProjectsDeleteResponse,
-  ProjectsDeleteError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectsDeleteRequest,
-  output: ProjectsDeleteResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectsGetError = DopplerOpError;
-/** Retrieve Project */
-export const projectsGet: API.OperationMethod<
-  ProjectsGetRequest,
-  ProjectsGetResponse,
-  ProjectsGetError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectsGetRequest,
-  output: ProjectsGetResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectsListError = DopplerOpError;
-/** List Projects */
-export const projectsList: API.OperationMethod<
-  ProjectsListRequest,
-  ProjectsListResponse,
-  ProjectsListError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectsListRequest,
-  output: ProjectsListResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectsUpdateError = DopplerOpError;
-/** Update Project */
-export const projectsUpdate: API.OperationMethod<
-  ProjectsUpdateRequest,
-  ProjectsUpdateResponse,
-  ProjectsUpdateError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectsUpdateRequest,
-  output: ProjectsUpdateResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PutV3workplacechangeRequestschangeRequestChangeRequestIdError =
   DopplerOpError;
 export const putV3workplacechangeRequestschangeRequestChangeRequestId: API.OperationMethod<
@@ -9551,76 +9625,31 @@ export const putV3workplaceserviceAccountsserviceAccountServiceAccountIdentities
   retry: Retry.Retry,
 }));
 
-export type RetrieveMemberError = NotFound | DopplerOpError;
-/** Retrieve Member */
-export const retrieveMember: API.OperationMethod<
-  RetrieveMemberRequest,
-  RetrieveMemberResponse,
-  RetrieveMemberError,
+export type RenameEnvironmentError = DopplerOpError;
+/** Rename Environment */
+export const renameEnvironment: API.OperationMethod<
+  RenameEnvironmentRequest,
+  RenameEnvironmentResponse,
+  RenameEnvironmentError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveMemberRequest,
-  output: RetrieveMemberResponse,
-  errors: [NotFound, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecretsDeleteError = DopplerOpError;
-/** Delete Secret */
-export const secretsDelete: API.OperationMethod<
-  SecretsDeleteRequest,
-  SecretsDeleteResponse,
-  SecretsDeleteError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecretsDeleteRequest,
-  output: SecretsDeleteResponse,
+  input: RenameEnvironmentRequest,
+  output: RenameEnvironmentResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type SecretsDownloadError = DopplerOpError;
-/** Download Download Secrets */
-export const secretsDownload: API.OperationMethod<
-  SecretsDownloadRequest,
-  SecretsDownloadResponse,
-  SecretsDownloadError,
+export type RevokeAuthError = DopplerOpError;
+/** Revoke Revoke an auth token */
+export const revokeAuth: API.OperationMethod<
+  RevokeAuthRequest,
+  RevokeAuthResponse,
+  RevokeAuthError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SecretsDownloadRequest,
-  output: SecretsDownloadResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecretsGetError = DopplerOpError;
-/** Retrieve Secret */
-export const secretsGet: API.OperationMethod<
-  SecretsGetRequest,
-  SecretsGetResponse,
-  SecretsGetError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecretsGetRequest,
-  output: SecretsGetResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecretsListError = DopplerOpError;
-/** List Secrets */
-export const secretsList: API.OperationMethod<
-  SecretsListRequest,
-  SecretsListResponse,
-  SecretsListError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecretsListRequest,
-  output: SecretsListResponse,
+  input: RevokeAuthRequest,
+  output: RevokeAuthResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
@@ -9636,21 +9665,6 @@ export const secretsNames: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SecretsNamesRequest,
   output: SecretsNamesResponse,
-  errors: [UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecretsUpdateError = DopplerOpError;
-/** Update Secrets */
-export const secretsUpdate: API.OperationMethod<
-  SecretsUpdateRequest,
-  SecretsUpdateResponse,
-  SecretsUpdateError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecretsUpdateRequest,
-  output: SecretsUpdateResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
@@ -9881,211 +9895,166 @@ export const shareSecretEncrypted: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SyncsCreateError = BadRequest | DopplerOpError;
-/** Create Create a new secrets sync. */
-export const syncsCreate: API.OperationMethod<
-  SyncsCreateRequest,
-  SyncsCreateResponse,
-  SyncsCreateError,
+export type UnlockConfigError = DopplerOpError;
+/** Unlock Allow the config to be renamed and/or deleted. */
+export const unlockConfig: API.OperationMethod<
+  UnlockConfigRequest,
+  UnlockConfigResponse,
+  UnlockConfigError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SyncsCreateRequest,
-  output: SyncsCreateResponse,
-  errors: [BadRequest, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SyncsDeleteError = BadRequest | DopplerOpError;
-/** Delete Delete an existing sync. */
-export const syncsDelete: API.OperationMethod<
-  SyncsDeleteRequest,
-  SyncsDeleteResponse,
-  SyncsDeleteError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SyncsDeleteRequest,
-  output: SyncsDeleteResponse,
-  errors: [BadRequest, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SyncsGetError = BadRequest | DopplerOpError;
-/** Retrieve Retrieve an existing secrets sync. */
-export const syncsGet: API.OperationMethod<
-  SyncsGetRequest,
-  SyncsGetResponse,
-  SyncsGetError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SyncsGetRequest,
-  output: SyncsGetResponse,
-  errors: [BadRequest, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsersGetError = DopplerOpError;
-/** Retrieve Get a specific user in a workplace */
-export const usersGet: API.OperationMethod<
-  UsersGetRequest,
-  UsersGetResponse,
-  UsersGetError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsersGetRequest,
-  output: UsersGetResponse,
+  input: UnlockConfigRequest,
+  output: UnlockConfigResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type UsersListError = DopplerOpError;
-/** List Get all users within a workplace */
-export const usersList: API.OperationMethod<
-  UsersListRequest,
-  UsersListResponse,
-  UsersListError,
+export type UpdateChangeRequestPolicyError = DopplerOpError;
+/** Update Update an existing change request policy */
+export const updateChangeRequestPolicy: API.OperationMethod<
+  UpdateChangeRequestPolicyRequest,
+  UpdateChangeRequestPolicyResponse,
+  UpdateChangeRequestPolicyError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UsersListRequest,
-  output: UsersListResponse,
+  input: UpdateChangeRequestPolicyRequest,
+  output: UpdateChangeRequestPolicyResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type UsersUpdateError = DopplerOpError;
+export type UpdateConfigError = DopplerOpError;
+/** Update Modify an existing config. */
+export const updateConfig: API.OperationMethod<
+  UpdateConfigRequest,
+  UpdateConfigResponse,
+  UpdateConfigError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateConfigRequest,
+  output: UpdateConfigResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateGroupError = NotFound | DopplerOpError;
+/** Update */
+export const updateGroup: API.OperationMethod<
+  UpdateGroupRequest,
+  UpdateGroupResponse,
+  UpdateGroupError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateGroupRequest,
+  output: UpdateGroupResponse,
+  errors: [NotFound, UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateIntegrationError = BadRequest | DopplerOpError;
+/** Update Update an existing integration. */
+export const updateIntegration: API.OperationMethod<
+  UpdateIntegrationRequest,
+  UpdateIntegrationResponse,
+  UpdateIntegrationError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateIntegrationRequest,
+  output: UpdateIntegrationResponse,
+  errors: [BadRequest, UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateIntegrationsIntegrationMemberError = DopplerOpError;
+/** Update */
+export const updateIntegrationsIntegrationMember: API.OperationMethod<
+  UpdateIntegrationsIntegrationMemberRequest,
+  UpdateIntegrationsIntegrationMemberResponse,
+  UpdateIntegrationsIntegrationMemberError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateIntegrationsIntegrationMemberRequest,
+  output: UpdateIntegrationsIntegrationMemberResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateProjectError = DopplerOpError;
+/** Update Project */
+export const updateProject: API.OperationMethod<
+  UpdateProjectRequest,
+  UpdateProjectResponse,
+  UpdateProjectError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateProjectRequest,
+  output: UpdateProjectResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSecretError = DopplerOpError;
+/** Update Secrets */
+export const updateSecret: API.OperationMethod<
+  UpdateSecretRequest,
+  UpdateSecretResponse,
+  UpdateSecretError,
+  DopplerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSecretRequest,
+  output: UpdateSecretResponse,
+  errors: [UnknownDopplerError],
+  protocol: DopplerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateUserError = DopplerOpError;
 /** Update Update a specific user for a workplace */
-export const usersUpdate: API.OperationMethod<
-  UsersUpdateRequest,
-  UsersUpdateResponse,
-  UsersUpdateError,
+export const updateUser: API.OperationMethod<
+  UpdateUserRequest,
+  UpdateUserResponse,
+  UpdateUserError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UsersUpdateRequest,
-  output: UsersUpdateResponse,
+  input: UpdateUserRequest,
+  output: UpdateUserResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type WebhooksAddError = BadRequest | DopplerOpError;
-/** Add Webhook */
-export const webhooksAdd: API.OperationMethod<
-  WebhooksAddRequest,
-  WebhooksAddResponse,
-  WebhooksAddError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksAddRequest,
-  output: WebhooksAddResponse,
-  errors: [BadRequest, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksDeleteError = BadRequest | DopplerOpError;
-/** Delete Webhook */
-export const webhooksDelete: API.OperationMethod<
-  WebhooksDeleteRequest,
-  WebhooksDeleteResponse,
-  WebhooksDeleteError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksDeleteRequest,
-  output: WebhooksDeleteResponse,
-  errors: [BadRequest, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksDisableError = BadRequest | DopplerOpError;
-/** Disable Webhook */
-export const webhooksDisable: API.OperationMethod<
-  WebhooksDisableRequest,
-  WebhooksDisableResponse,
-  WebhooksDisableError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksDisableRequest,
-  output: WebhooksDisableResponse,
-  errors: [BadRequest, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksEnableError = BadRequest | DopplerOpError;
-/** Enable Webhook */
-export const webhooksEnable: API.OperationMethod<
-  WebhooksEnableRequest,
-  WebhooksEnableResponse,
-  WebhooksEnableError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksEnableRequest,
-  output: WebhooksEnableResponse,
-  errors: [BadRequest, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksGetError = BadRequest | DopplerOpError;
-/** Retrieve Webhook */
-export const webhooksGet: API.OperationMethod<
-  WebhooksGetRequest,
-  WebhooksGetResponse,
-  WebhooksGetError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksGetRequest,
-  output: WebhooksGetResponse,
-  errors: [BadRequest, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksListError = BadRequest | DopplerOpError;
-/** List Webhooks */
-export const webhooksList: API.OperationMethod<
-  WebhooksListRequest,
-  WebhooksListResponse,
-  WebhooksListError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksListRequest,
-  output: WebhooksListResponse,
-  errors: [BadRequest, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksUpdateError = BadRequest | DopplerOpError;
+export type UpdateWebhookError = BadRequest | DopplerOpError;
 /** Update Webhook */
-export const webhooksUpdate: API.OperationMethod<
-  WebhooksUpdateRequest,
-  WebhooksUpdateResponse,
-  WebhooksUpdateError,
+export const updateWebhook: API.OperationMethod<
+  UpdateWebhookRequest,
+  UpdateWebhookResponse,
+  UpdateWebhookError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksUpdateRequest,
-  output: WebhooksUpdateResponse,
+  input: UpdateWebhookRequest,
+  output: UpdateWebhookResponse,
   errors: [BadRequest, UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));
 
-export type WorkplaceGetError = DopplerOpError;
-/** Retrieve */
-export const workplaceGet: API.OperationMethod<
-  WorkplaceGetRequest,
-  WorkplaceGetResponse,
-  WorkplaceGetError,
+export type UpdateWorkplaceError = DopplerOpError;
+/** Update */
+export const updateWorkplace: API.OperationMethod<
+  UpdateWorkplaceRequest,
+  UpdateWorkplaceResponse,
+  UpdateWorkplaceError,
   DopplerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WorkplaceGetRequest,
-  output: WorkplaceGetResponse,
+  input: UpdateWorkplaceRequest,
+  output: UpdateWorkplaceResponse,
   errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
@@ -10177,21 +10146,6 @@ export const workplaceRolesUpdate: API.OperationMethod<
   input: WorkplaceRolesUpdateRequest,
   output: WorkplaceRolesUpdateResponse,
   errors: [NotFound, UnknownDopplerError],
-  protocol: DopplerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkplaceUpdateError = DopplerOpError;
-/** Update */
-export const workplaceUpdate: API.OperationMethod<
-  WorkplaceUpdateRequest,
-  WorkplaceUpdateResponse,
-  WorkplaceUpdateError,
-  DopplerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkplaceUpdateRequest,
-  output: WorkplaceUpdateResponse,
-  errors: [UnknownDopplerError],
   protocol: DopplerProtocol,
   retry: Retry.Retry,
 }));

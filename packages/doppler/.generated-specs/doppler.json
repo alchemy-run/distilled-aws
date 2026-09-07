@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.doppler.api#ShareSecretEncryptedRequest": {
@@ -219,7 +220,7 @@
         "smithy.api#documentation": "OIDC (Service Account Identity)\n\nAuthenticate via a Service Account Identity with OIDC. Returns a short lived API token."
       }
     },
-    "com.doppler.api#AuthRevokeRequest": {
+    "com.doppler.api#RevokeAuthRequest": {
       "type": "structure",
       "members": {
         "token": {
@@ -233,10 +234,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#AuthRevoke": {
+    "com.doppler.api#RevokeAuth": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#AuthRevokeRequest"
+        "target": "com.doppler.api#RevokeAuthRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -250,7 +251,7 @@
         "smithy.api#documentation": "Revoke\n\nRevoke an auth token"
       }
     },
-    "com.doppler.api#ConfigsListRequest": {
+    "com.doppler.api#ListConfigsRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -287,7 +288,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ConfigsListResponseConfigsItem": {
+    "com.doppler.api#ListConfigsResponseConfigsItem": {
       "type": "structure",
       "members": {
         "name": {
@@ -317,34 +318,34 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ConfigsListResponseConfigsList": {
+    "com.doppler.api#ListConfigsResponseConfigsList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#ConfigsListResponseConfigsItem"
+        "target": "com.doppler.api#ListConfigsResponseConfigsItem"
       },
       "traits": {}
     },
-    "com.doppler.api#ConfigsListResponse": {
+    "com.doppler.api#ListConfigsResponse": {
       "type": "structure",
       "members": {
         "page": {
           "target": "smithy.api#Integer"
         },
         "configs": {
-          "target": "com.doppler.api#ConfigsListResponseConfigsList"
+          "target": "com.doppler.api#ListConfigsResponseConfigsList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ConfigsList": {
+    "com.doppler.api#ListConfigs": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ConfigsListRequest"
+        "target": "com.doppler.api#ListConfigsRequest"
       },
       "output": {
-        "target": "com.doppler.api#ConfigsListResponse"
+        "target": "com.doppler.api#ListConfigsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -355,7 +356,7 @@
         "smithy.api#documentation": "List\n\nFetch all configs."
       }
     },
-    "com.doppler.api#ConfigsCreateRequest": {
+    "com.doppler.api#CreateConfigRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -384,7 +385,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ConfigsCreateResponseConfig": {
+    "com.doppler.api#CreateConfigResponseConfig": {
       "type": "structure",
       "members": {
         "name": {
@@ -414,24 +415,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ConfigsCreateResponse": {
+    "com.doppler.api#CreateConfigResponse": {
       "type": "structure",
       "members": {
         "config": {
-          "target": "com.doppler.api#ConfigsCreateResponseConfig"
+          "target": "com.doppler.api#CreateConfigResponseConfig"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ConfigsCreate": {
+    "com.doppler.api#CreateConfig": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ConfigsCreateRequest"
+        "target": "com.doppler.api#CreateConfigRequest"
       },
       "output": {
-        "target": "com.doppler.api#ConfigsCreateResponse"
+        "target": "com.doppler.api#CreateConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -442,7 +443,7 @@
         "smithy.api#documentation": "Create\n\nCreate a new branch config."
       }
     },
-    "com.doppler.api#ConfigsGetRequest": {
+    "com.doppler.api#GetConfigRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -466,7 +467,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ConfigsGetResponseConfig": {
+    "com.doppler.api#GetConfigResponseConfig": {
       "type": "structure",
       "members": {
         "name": {
@@ -496,24 +497,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ConfigsGetResponse": {
+    "com.doppler.api#GetConfigResponse": {
       "type": "structure",
       "members": {
         "config": {
-          "target": "com.doppler.api#ConfigsGetResponseConfig"
+          "target": "com.doppler.api#GetConfigResponseConfig"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ConfigsGet": {
+    "com.doppler.api#GetConfig": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ConfigsGetRequest"
+        "target": "com.doppler.api#GetConfigRequest"
       },
       "output": {
-        "target": "com.doppler.api#ConfigsGetResponse"
+        "target": "com.doppler.api#GetConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -524,7 +525,7 @@
         "smithy.api#documentation": "Retrieve\n\nFetch a config's details."
       }
     },
-    "com.doppler.api#ConfigsUpdateRequest": {
+    "com.doppler.api#UpdateConfigRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -553,7 +554,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ConfigsUpdateResponseConfig": {
+    "com.doppler.api#UpdateConfigResponseConfig": {
       "type": "structure",
       "members": {
         "name": {
@@ -583,24 +584,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ConfigsUpdateResponse": {
+    "com.doppler.api#UpdateConfigResponse": {
       "type": "structure",
       "members": {
         "config": {
-          "target": "com.doppler.api#ConfigsUpdateResponseConfig"
+          "target": "com.doppler.api#UpdateConfigResponseConfig"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ConfigsUpdate": {
+    "com.doppler.api#UpdateConfig": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ConfigsUpdateRequest"
+        "target": "com.doppler.api#UpdateConfigRequest"
       },
       "output": {
-        "target": "com.doppler.api#ConfigsUpdateResponse"
+        "target": "com.doppler.api#UpdateConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -611,7 +612,7 @@
         "smithy.api#documentation": "Update\n\nModify an existing config."
       }
     },
-    "com.doppler.api#ConfigsDeleteRequest": {
+    "com.doppler.api#DeleteConfigRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -635,7 +636,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ConfigsDeleteResponse": {
+    "com.doppler.api#DeleteConfigResponse": {
       "type": "structure",
       "members": {
         "success": {
@@ -646,13 +647,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ConfigsDelete": {
+    "com.doppler.api#DeleteConfig": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ConfigsDeleteRequest"
+        "target": "com.doppler.api#DeleteConfigRequest"
       },
       "output": {
-        "target": "com.doppler.api#ConfigsDeleteResponse"
+        "target": "com.doppler.api#DeleteConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -663,7 +664,7 @@
         "smithy.api#documentation": "Delete\n\nPermanently delete the config."
       }
     },
-    "com.doppler.api#ConfigsCloneRequest": {
+    "com.doppler.api#CloneConfigRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -692,7 +693,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ConfigsCloneResponseConfig": {
+    "com.doppler.api#CloneConfigResponseConfig": {
       "type": "structure",
       "members": {
         "name": {
@@ -722,24 +723,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ConfigsCloneResponse": {
+    "com.doppler.api#CloneConfigResponse": {
       "type": "structure",
       "members": {
         "config": {
-          "target": "com.doppler.api#ConfigsCloneResponseConfig"
+          "target": "com.doppler.api#CloneConfigResponseConfig"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ConfigsClone": {
+    "com.doppler.api#CloneConfig": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ConfigsCloneRequest"
+        "target": "com.doppler.api#CloneConfigRequest"
       },
       "output": {
-        "target": "com.doppler.api#ConfigsCloneResponse"
+        "target": "com.doppler.api#CloneConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1168,7 +1169,7 @@
         "smithy.api#documentation": "Inherits"
       }
     },
-    "com.doppler.api#ConfigsLockRequest": {
+    "com.doppler.api#LockConfigRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -1190,7 +1191,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ConfigsLockResponseConfig": {
+    "com.doppler.api#LockConfigResponseConfig": {
       "type": "structure",
       "members": {
         "name": {
@@ -1220,24 +1221,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ConfigsLockResponse": {
+    "com.doppler.api#LockConfigResponse": {
       "type": "structure",
       "members": {
         "config": {
-          "target": "com.doppler.api#ConfigsLockResponseConfig"
+          "target": "com.doppler.api#LockConfigResponseConfig"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ConfigsLock": {
+    "com.doppler.api#LockConfig": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ConfigsLockRequest"
+        "target": "com.doppler.api#LockConfigRequest"
       },
       "output": {
-        "target": "com.doppler.api#ConfigsLockResponse"
+        "target": "com.doppler.api#LockConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1641,7 +1642,7 @@
         "smithy.api#documentation": "Rollback\n\nConfig Log"
       }
     },
-    "com.doppler.api#SecretsGetRequest": {
+    "com.doppler.api#GetSecretRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -1673,7 +1674,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#SecretsGetResponseValue": {
+    "com.doppler.api#GetSecretResponseValue": {
       "type": "structure",
       "members": {
         "raw": {
@@ -1688,27 +1689,27 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsGetResponse": {
+    "com.doppler.api#GetSecretResponse": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String"
         },
         "value": {
-          "target": "com.doppler.api#SecretsGetResponseValue"
+          "target": "com.doppler.api#GetSecretResponseValue"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#SecretsGet": {
+    "com.doppler.api#GetSecret": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#SecretsGetRequest"
+        "target": "com.doppler.api#GetSecretRequest"
       },
       "output": {
-        "target": "com.doppler.api#SecretsGetResponse"
+        "target": "com.doppler.api#GetSecretResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1719,7 +1720,7 @@
         "smithy.api#documentation": "Retrieve\n\nSecret"
       }
     },
-    "com.doppler.api#SecretsDeleteRequest": {
+    "com.doppler.api#DeleteSecretRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -1751,10 +1752,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#SecretsDelete": {
+    "com.doppler.api#DeleteSecret": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#SecretsDeleteRequest"
+        "target": "com.doppler.api#DeleteSecretRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1768,7 +1769,7 @@
         "smithy.api#documentation": "Delete\n\nSecret"
       }
     },
-    "com.doppler.api#SecretsListRequest": {
+    "com.doppler.api#ListSecretsRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -1820,7 +1821,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#SecretsListResponseSecretsSTRIPE": {
+    "com.doppler.api#ListSecretsResponseSecretsSTRIPE": {
       "type": "structure",
       "members": {
         "raw": {
@@ -1841,7 +1842,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsListResponseSecretsALGOLIA": {
+    "com.doppler.api#ListSecretsResponseSecretsALGOLIA": {
       "type": "structure",
       "members": {
         "raw": {
@@ -1862,7 +1863,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsListResponseSecretsDATABASE": {
+    "com.doppler.api#ListSecretsResponseSecretsDATABASE": {
       "type": "structure",
       "members": {
         "raw": {
@@ -1883,7 +1884,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsListResponseSecretsUSER": {
+    "com.doppler.api#ListSecretsResponseSecretsUSER": {
       "type": "structure",
       "members": {
         "raw": {
@@ -1904,42 +1905,42 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsListResponseSecrets": {
+    "com.doppler.api#ListSecretsResponseSecrets": {
       "type": "structure",
       "members": {
         "STRIPE": {
-          "target": "com.doppler.api#SecretsListResponseSecretsSTRIPE"
+          "target": "com.doppler.api#ListSecretsResponseSecretsSTRIPE"
         },
         "ALGOLIA": {
-          "target": "com.doppler.api#SecretsListResponseSecretsALGOLIA"
+          "target": "com.doppler.api#ListSecretsResponseSecretsALGOLIA"
         },
         "DATABASE": {
-          "target": "com.doppler.api#SecretsListResponseSecretsDATABASE"
+          "target": "com.doppler.api#ListSecretsResponseSecretsDATABASE"
         },
         "USER": {
-          "target": "com.doppler.api#SecretsListResponseSecretsUSER"
+          "target": "com.doppler.api#ListSecretsResponseSecretsUSER"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsListResponse": {
+    "com.doppler.api#ListSecretsResponse": {
       "type": "structure",
       "members": {
         "secrets": {
-          "target": "com.doppler.api#SecretsListResponseSecrets"
+          "target": "com.doppler.api#ListSecretsResponseSecrets"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#SecretsList": {
+    "com.doppler.api#ListSecrets": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#SecretsListRequest"
+        "target": "com.doppler.api#ListSecretsRequest"
       },
       "output": {
-        "target": "com.doppler.api#SecretsListResponse"
+        "target": "com.doppler.api#ListSecretsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1950,7 +1951,7 @@
         "smithy.api#documentation": "List\n\nSecrets"
       }
     },
-    "com.doppler.api#SecretsUpdateRequestSecrets": {
+    "com.doppler.api#UpdateSecretRequestSecrets": {
       "type": "structure",
       "members": {
         "STRIPE": {
@@ -1967,7 +1968,7 @@
         "smithy.api#documentation": "Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below."
       }
     },
-    "com.doppler.api#SecretsUpdateRequestChangeRequestsItemValueTypeType": {
+    "com.doppler.api#UpdateSecretRequestChangeRequestsItemValueTypeType": {
       "type": "enum",
       "members": {
         "STRING": {
@@ -2057,18 +2058,18 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsUpdateRequestChangeRequestsItemValueType": {
+    "com.doppler.api#UpdateSecretRequestChangeRequestsItemValueType": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#SecretsUpdateRequestChangeRequestsItemValueTypeType"
+          "target": "com.doppler.api#UpdateSecretRequestChangeRequestsItemValueTypeType"
         }
       },
       "traits": {
         "smithy.api#documentation": "The default valueType (string) will result in no validations being applied."
       }
     },
-    "com.doppler.api#SecretsUpdateRequestChangeRequestsItemOriginalValueTypeType": {
+    "com.doppler.api#UpdateSecretRequestChangeRequestsItemOriginalValueTypeType": {
       "type": "enum",
       "members": {
         "STRING": {
@@ -2158,18 +2159,18 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsUpdateRequestChangeRequestsItemOriginalValueType": {
+    "com.doppler.api#UpdateSecretRequestChangeRequestsItemOriginalValueType": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#SecretsUpdateRequestChangeRequestsItemOriginalValueTypeType"
+          "target": "com.doppler.api#UpdateSecretRequestChangeRequestsItemOriginalValueTypeType"
         }
       },
       "traits": {
         "smithy.api#documentation": "The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler."
       }
     },
-    "com.doppler.api#SecretsUpdateRequestChangeRequestsItem": {
+    "com.doppler.api#UpdateSecretRequestChangeRequestsItem": {
       "type": "structure",
       "members": {
         "name": {
@@ -2230,13 +2231,13 @@
           }
         },
         "valueType": {
-          "target": "com.doppler.api#SecretsUpdateRequestChangeRequestsItemValueType",
+          "target": "com.doppler.api#UpdateSecretRequestChangeRequestsItemValueType",
           "traits": {
             "smithy.api#documentation": "The default valueType (string) will result in no validations being applied."
           }
         },
         "originalValueType": {
-          "target": "com.doppler.api#SecretsUpdateRequestChangeRequestsItemOriginalValueType",
+          "target": "com.doppler.api#UpdateSecretRequestChangeRequestsItemOriginalValueType",
           "traits": {
             "smithy.api#documentation": "The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler."
           }
@@ -2244,16 +2245,16 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsUpdateRequestChangeRequestsList": {
+    "com.doppler.api#UpdateSecretRequestChangeRequestsList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#SecretsUpdateRequestChangeRequestsItem"
+        "target": "com.doppler.api#UpdateSecretRequestChangeRequestsItem"
       },
       "traits": {
         "smithy.api#documentation": "Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below."
       }
     },
-    "com.doppler.api#SecretsUpdateRequest": {
+    "com.doppler.api#UpdateSecretRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -2271,13 +2272,13 @@
           }
         },
         "secrets": {
-          "target": "com.doppler.api#SecretsUpdateRequestSecrets",
+          "target": "com.doppler.api#UpdateSecretRequestSecrets",
           "traits": {
             "smithy.api#documentation": "Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below."
           }
         },
         "change_requests": {
-          "target": "com.doppler.api#SecretsUpdateRequestChangeRequestsList",
+          "target": "com.doppler.api#UpdateSecretRequestChangeRequestsList",
           "traits": {
             "smithy.api#documentation": "Either `secrets` or `change_requests` is required (can't use both). Object of secrets you would like to save to the config. Try it with the sample secrets below."
           }
@@ -2287,7 +2288,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#SecretsUpdateResponseSecretsSTRIPE": {
+    "com.doppler.api#UpdateSecretResponseSecretsSTRIPE": {
       "type": "structure",
       "members": {
         "raw": {
@@ -2302,7 +2303,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsUpdateResponseSecretsALGOLIA": {
+    "com.doppler.api#UpdateSecretResponseSecretsALGOLIA": {
       "type": "structure",
       "members": {
         "raw": {
@@ -2317,7 +2318,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsUpdateResponseSecretsDATABASE": {
+    "com.doppler.api#UpdateSecretResponseSecretsDATABASE": {
       "type": "structure",
       "members": {
         "raw": {
@@ -2332,39 +2333,39 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsUpdateResponseSecrets": {
+    "com.doppler.api#UpdateSecretResponseSecrets": {
       "type": "structure",
       "members": {
         "STRIPE": {
-          "target": "com.doppler.api#SecretsUpdateResponseSecretsSTRIPE"
+          "target": "com.doppler.api#UpdateSecretResponseSecretsSTRIPE"
         },
         "ALGOLIA": {
-          "target": "com.doppler.api#SecretsUpdateResponseSecretsALGOLIA"
+          "target": "com.doppler.api#UpdateSecretResponseSecretsALGOLIA"
         },
         "DATABASE": {
-          "target": "com.doppler.api#SecretsUpdateResponseSecretsDATABASE"
+          "target": "com.doppler.api#UpdateSecretResponseSecretsDATABASE"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsUpdateResponse": {
+    "com.doppler.api#UpdateSecretResponse": {
       "type": "structure",
       "members": {
         "secrets": {
-          "target": "com.doppler.api#SecretsUpdateResponseSecrets"
+          "target": "com.doppler.api#UpdateSecretResponseSecrets"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#SecretsUpdate": {
+    "com.doppler.api#UpdateSecret": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#SecretsUpdateRequest"
+        "target": "com.doppler.api#UpdateSecretRequest"
       },
       "output": {
-        "target": "com.doppler.api#SecretsUpdateResponse"
+        "target": "com.doppler.api#UpdateSecretResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2375,7 +2376,7 @@
         "smithy.api#documentation": "Update\n\nSecrets"
       }
     },
-    "com.doppler.api#SecretsDownloadRequestFormat": {
+    "com.doppler.api#DownloadSecretRequestFormat": {
       "type": "enum",
       "members": {
         "JSON": {
@@ -2417,7 +2418,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsDownloadRequestNameTransformer": {
+    "com.doppler.api#DownloadSecretRequestNameTransformer": {
       "type": "enum",
       "members": {
         "CAMEL": {
@@ -2465,7 +2466,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SecretsDownloadRequest": {
+    "com.doppler.api#DownloadSecretRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -2485,13 +2486,13 @@
           }
         },
         "format": {
-          "target": "com.doppler.api#SecretsDownloadRequestFormat",
+          "target": "com.doppler.api#DownloadSecretRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
         },
         "name_transformer": {
-          "target": "com.doppler.api#SecretsDownloadRequestNameTransformer",
+          "target": "com.doppler.api#DownloadSecretRequestNameTransformer",
           "traits": {
             "smithy.api#httpQuery": "name_transformer",
             "smithy.api#documentation": "Transform secret names to a different case"
@@ -2523,7 +2524,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#SecretsDownloadResponse": {
+    "com.doppler.api#DownloadSecretResponse": {
       "type": "structure",
       "members": {
         "STRIPE": {
@@ -2543,13 +2544,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#SecretsDownload": {
+    "com.doppler.api#DownloadSecret": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#SecretsDownloadRequest"
+        "target": "com.doppler.api#DownloadSecretRequest"
       },
       "output": {
-        "target": "com.doppler.api#SecretsDownloadResponse"
+        "target": "com.doppler.api#DownloadSecretResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2633,7 +2634,7 @@
         "smithy.api#documentation": "List Names\n\nSecret Names"
       }
     },
-    "com.doppler.api#SyncsCreateRequestImportOption": {
+    "com.doppler.api#CreateSyncRequestImportOption": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -2659,7 +2660,7 @@
         "smithy.api#documentation": "An option indicating if and how Doppler should attempt to import secrets from the sync destination"
       }
     },
-    "com.doppler.api#SyncsCreateRequest": {
+    "com.doppler.api#CreateSyncRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -2693,7 +2694,7 @@
           }
         },
         "import_option": {
-          "target": "com.doppler.api#SyncsCreateRequestImportOption",
+          "target": "com.doppler.api#CreateSyncRequestImportOption",
           "traits": {
             "smithy.api#documentation": "An option indicating if and how Doppler should attempt to import secrets from the sync destination"
           }
@@ -2709,7 +2710,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#SyncsCreateResponseSync": {
+    "com.doppler.api#CreateSyncResponseSync": {
       "type": "structure",
       "members": {
         "slug": {
@@ -2733,24 +2734,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SyncsCreateResponse": {
+    "com.doppler.api#CreateSyncResponse": {
       "type": "structure",
       "members": {
         "sync": {
-          "target": "com.doppler.api#SyncsCreateResponseSync"
+          "target": "com.doppler.api#CreateSyncResponseSync"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#SyncsCreate": {
+    "com.doppler.api#CreateSync": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#SyncsCreateRequest"
+        "target": "com.doppler.api#CreateSyncRequest"
       },
       "output": {
-        "target": "com.doppler.api#SyncsCreateResponse"
+        "target": "com.doppler.api#CreateSyncResponse"
       },
       "errors": [
         {
@@ -2766,7 +2767,7 @@
         "smithy.api#documentation": "Create\n\nCreate a new secrets sync."
       }
     },
-    "com.doppler.api#SyncsGetRequest": {
+    "com.doppler.api#GetSyncRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -2798,7 +2799,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#SyncsGetResponseSync": {
+    "com.doppler.api#GetSyncResponseSync": {
       "type": "structure",
       "members": {
         "slug": {
@@ -2822,24 +2823,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#SyncsGetResponse": {
+    "com.doppler.api#GetSyncResponse": {
       "type": "structure",
       "members": {
         "sync": {
-          "target": "com.doppler.api#SyncsGetResponseSync"
+          "target": "com.doppler.api#GetSyncResponseSync"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#SyncsGet": {
+    "com.doppler.api#GetSync": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#SyncsGetRequest"
+        "target": "com.doppler.api#GetSyncRequest"
       },
       "output": {
-        "target": "com.doppler.api#SyncsGetResponse"
+        "target": "com.doppler.api#GetSyncResponse"
       },
       "errors": [
         {
@@ -2855,7 +2856,7 @@
         "smithy.api#documentation": "Retrieve\n\nRetrieve an existing secrets sync."
       }
     },
-    "com.doppler.api#SyncsDeleteRequest": {
+    "com.doppler.api#DeleteSyncRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -2895,7 +2896,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#SyncsDeleteResponse": {
+    "com.doppler.api#DeleteSyncResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -2910,13 +2911,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#SyncsDelete": {
+    "com.doppler.api#DeleteSync": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#SyncsDeleteRequest"
+        "target": "com.doppler.api#DeleteSyncRequest"
       },
       "output": {
-        "target": "com.doppler.api#SyncsDeleteResponse"
+        "target": "com.doppler.api#DeleteSyncResponse"
       },
       "errors": [
         {
@@ -3367,7 +3368,7 @@
         "smithy.api#documentation": "Delete"
       }
     },
-    "com.doppler.api#ConfigsUnlockRequest": {
+    "com.doppler.api#UnlockConfigRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -3389,7 +3390,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ConfigsUnlockResponseConfig": {
+    "com.doppler.api#UnlockConfigResponseConfig": {
       "type": "structure",
       "members": {
         "name": {
@@ -3419,24 +3420,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ConfigsUnlockResponse": {
+    "com.doppler.api#UnlockConfigResponse": {
       "type": "structure",
       "members": {
         "config": {
-          "target": "com.doppler.api#ConfigsUnlockResponseConfig"
+          "target": "com.doppler.api#UnlockConfigResponseConfig"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ConfigsUnlock": {
+    "com.doppler.api#UnlockConfig": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ConfigsUnlockRequest"
+        "target": "com.doppler.api#UnlockConfigRequest"
       },
       "output": {
-        "target": "com.doppler.api#ConfigsUnlockResponse"
+        "target": "com.doppler.api#UnlockConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3447,7 +3448,7 @@
         "smithy.api#documentation": "Unlock\n\nAllow the config to be renamed and/or deleted."
       }
     },
-    "com.doppler.api#EnvironmentsListRequest": {
+    "com.doppler.api#ListEnvironmentsRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -3463,7 +3464,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#EnvironmentsListResponseEnvironmentsItem": {
+    "com.doppler.api#ListEnvironmentsResponseEnvironmentsItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -3484,18 +3485,18 @@
       },
       "traits": {}
     },
-    "com.doppler.api#EnvironmentsListResponseEnvironmentsList": {
+    "com.doppler.api#ListEnvironmentsResponseEnvironmentsList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#EnvironmentsListResponseEnvironmentsItem"
+        "target": "com.doppler.api#ListEnvironmentsResponseEnvironmentsItem"
       },
       "traits": {}
     },
-    "com.doppler.api#EnvironmentsListResponse": {
+    "com.doppler.api#ListEnvironmentsResponse": {
       "type": "structure",
       "members": {
         "environments": {
-          "target": "com.doppler.api#EnvironmentsListResponseEnvironmentsList"
+          "target": "com.doppler.api#ListEnvironmentsResponseEnvironmentsList"
         },
         "page": {
           "target": "smithy.api#Integer"
@@ -3505,13 +3506,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#EnvironmentsList": {
+    "com.doppler.api#ListEnvironments": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#EnvironmentsListRequest"
+        "target": "com.doppler.api#ListEnvironmentsRequest"
       },
       "output": {
-        "target": "com.doppler.api#EnvironmentsListResponse"
+        "target": "com.doppler.api#ListEnvironmentsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3522,7 +3523,7 @@
         "smithy.api#documentation": "List\n\nEnvironments"
       }
     },
-    "com.doppler.api#EnvironmentsCreateRequest": {
+    "com.doppler.api#CreateEnvironmentRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -3556,7 +3557,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#EnvironmentsCreateResponseEnvironment": {
+    "com.doppler.api#CreateEnvironmentResponseEnvironment": {
       "type": "structure",
       "members": {
         "id": {
@@ -3577,24 +3578,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#EnvironmentsCreateResponse": {
+    "com.doppler.api#CreateEnvironmentResponse": {
       "type": "structure",
       "members": {
         "environment": {
-          "target": "com.doppler.api#EnvironmentsCreateResponseEnvironment"
+          "target": "com.doppler.api#CreateEnvironmentResponseEnvironment"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#EnvironmentsCreate": {
+    "com.doppler.api#CreateEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#EnvironmentsCreateRequest"
+        "target": "com.doppler.api#CreateEnvironmentRequest"
       },
       "output": {
-        "target": "com.doppler.api#EnvironmentsCreateResponse"
+        "target": "com.doppler.api#CreateEnvironmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3605,7 +3606,7 @@
         "smithy.api#documentation": "Create\n\nEnvironment"
       }
     },
-    "com.doppler.api#EnvironmentsGetRequest": {
+    "com.doppler.api#GetEnvironmentRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -3629,7 +3630,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#EnvironmentsGetResponseEnvironment": {
+    "com.doppler.api#GetEnvironmentResponseEnvironment": {
       "type": "structure",
       "members": {
         "id": {
@@ -3650,24 +3651,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#EnvironmentsGetResponse": {
+    "com.doppler.api#GetEnvironmentResponse": {
       "type": "structure",
       "members": {
         "environment": {
-          "target": "com.doppler.api#EnvironmentsGetResponseEnvironment"
+          "target": "com.doppler.api#GetEnvironmentResponseEnvironment"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#EnvironmentsGet": {
+    "com.doppler.api#GetEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#EnvironmentsGetRequest"
+        "target": "com.doppler.api#GetEnvironmentRequest"
       },
       "output": {
-        "target": "com.doppler.api#EnvironmentsGetResponse"
+        "target": "com.doppler.api#GetEnvironmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3678,7 +3679,7 @@
         "smithy.api#documentation": "Retrieve\n\nEnvironment"
       }
     },
-    "com.doppler.api#EnvironmentsRenameRequest": {
+    "com.doppler.api#RenameEnvironmentRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -3720,7 +3721,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#EnvironmentsRenameResponseEnvironment": {
+    "com.doppler.api#RenameEnvironmentResponseEnvironment": {
       "type": "structure",
       "members": {
         "id": {
@@ -3741,24 +3742,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#EnvironmentsRenameResponse": {
+    "com.doppler.api#RenameEnvironmentResponse": {
       "type": "structure",
       "members": {
         "environment": {
-          "target": "com.doppler.api#EnvironmentsRenameResponseEnvironment"
+          "target": "com.doppler.api#RenameEnvironmentResponseEnvironment"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#EnvironmentsRename": {
+    "com.doppler.api#RenameEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#EnvironmentsRenameRequest"
+        "target": "com.doppler.api#RenameEnvironmentRequest"
       },
       "output": {
-        "target": "com.doppler.api#EnvironmentsRenameResponse"
+        "target": "com.doppler.api#RenameEnvironmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3769,7 +3770,7 @@
         "smithy.api#documentation": "Rename\n\nEnvironment"
       }
     },
-    "com.doppler.api#EnvironmentsDeleteRequest": {
+    "com.doppler.api#DeleteEnvironmentRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -3793,10 +3794,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#EnvironmentsDelete": {
+    "com.doppler.api#DeleteEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#EnvironmentsDeleteRequest"
+        "target": "com.doppler.api#DeleteEnvironmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3810,7 +3811,7 @@
         "smithy.api#documentation": "Delete\n\nEnvironment"
       }
     },
-    "com.doppler.api#IntegrationsListResponseIntegrationsItem": {
+    "com.doppler.api#ListIntegrationsResponseIntegrationsItem": {
       "type": "structure",
       "members": {
         "slug": {
@@ -3831,18 +3832,18 @@
       },
       "traits": {}
     },
-    "com.doppler.api#IntegrationsListResponseIntegrationsList": {
+    "com.doppler.api#ListIntegrationsResponseIntegrationsList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#IntegrationsListResponseIntegrationsItem"
+        "target": "com.doppler.api#ListIntegrationsResponseIntegrationsItem"
       },
       "traits": {}
     },
-    "com.doppler.api#IntegrationsListResponse": {
+    "com.doppler.api#ListIntegrationsResponse": {
       "type": "structure",
       "members": {
         "integrations": {
-          "target": "com.doppler.api#IntegrationsListResponseIntegrationsList"
+          "target": "com.doppler.api#ListIntegrationsResponseIntegrationsList"
         },
         "success": {
           "target": "smithy.api#Boolean"
@@ -3852,13 +3853,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#IntegrationsList": {
+    "com.doppler.api#ListIntegrations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.doppler.api#IntegrationsListResponse"
+        "target": "com.doppler.api#ListIntegrationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3869,7 +3870,7 @@
         "smithy.api#documentation": "List\n\nList all existing integrations"
       }
     },
-    "com.doppler.api#IntegrationsCreateRequest": {
+    "com.doppler.api#CreateIntegrationRequest": {
       "type": "structure",
       "members": {
         "type": {
@@ -3897,7 +3898,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#IntegrationsCreateResponseIntegration": {
+    "com.doppler.api#CreateIntegrationResponseIntegration": {
       "type": "structure",
       "members": {
         "slug": {
@@ -3912,24 +3913,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#IntegrationsCreateResponse": {
+    "com.doppler.api#CreateIntegrationResponse": {
       "type": "structure",
       "members": {
         "integration": {
-          "target": "com.doppler.api#IntegrationsCreateResponseIntegration"
+          "target": "com.doppler.api#CreateIntegrationResponseIntegration"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#IntegrationsCreate": {
+    "com.doppler.api#CreateIntegration": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#IntegrationsCreateRequest"
+        "target": "com.doppler.api#CreateIntegrationRequest"
       },
       "output": {
-        "target": "com.doppler.api#IntegrationsCreateResponse"
+        "target": "com.doppler.api#CreateIntegrationResponse"
       },
       "errors": [
         {
@@ -3945,7 +3946,7 @@
         "smithy.api#documentation": "Create\n\nCreate a new external integration."
       }
     },
-    "com.doppler.api#IntegrationsGetRequest": {
+    "com.doppler.api#GetIntegrationRequest": {
       "type": "structure",
       "members": {
         "integration": {
@@ -3961,7 +3962,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#IntegrationsGetResponseIntegration": {
+    "com.doppler.api#GetIntegrationResponseIntegration": {
       "type": "structure",
       "members": {
         "slug": {
@@ -3976,24 +3977,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#IntegrationsGetResponse": {
+    "com.doppler.api#GetIntegrationResponse": {
       "type": "structure",
       "members": {
         "integration": {
-          "target": "com.doppler.api#IntegrationsGetResponseIntegration"
+          "target": "com.doppler.api#GetIntegrationResponseIntegration"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#IntegrationsGet": {
+    "com.doppler.api#GetIntegration": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#IntegrationsGetRequest"
+        "target": "com.doppler.api#GetIntegrationRequest"
       },
       "output": {
-        "target": "com.doppler.api#IntegrationsGetResponse"
+        "target": "com.doppler.api#GetIntegrationResponse"
       },
       "errors": [
         {
@@ -4009,7 +4010,7 @@
         "smithy.api#documentation": "Retrieve\n\nRetrieve an existing integration"
       }
     },
-    "com.doppler.api#IntegrationsUpdateRequest": {
+    "com.doppler.api#UpdateIntegrationRequest": {
       "type": "structure",
       "members": {
         "integration": {
@@ -4037,7 +4038,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#IntegrationsUpdateResponse": {
+    "com.doppler.api#UpdateIntegrationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4052,13 +4053,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#IntegrationsUpdate": {
+    "com.doppler.api#UpdateIntegration": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#IntegrationsUpdateRequest"
+        "target": "com.doppler.api#UpdateIntegrationRequest"
       },
       "output": {
-        "target": "com.doppler.api#IntegrationsUpdateResponse"
+        "target": "com.doppler.api#UpdateIntegrationResponse"
       },
       "errors": [
         {
@@ -4074,7 +4075,7 @@
         "smithy.api#documentation": "Update\n\nUpdate an existing integration."
       }
     },
-    "com.doppler.api#IntegrationsDeleteRequest": {
+    "com.doppler.api#DeleteIntegrationRequest": {
       "type": "structure",
       "members": {
         "integration": {
@@ -4090,7 +4091,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#IntegrationsDeleteResponse": {
+    "com.doppler.api#DeleteIntegrationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4105,13 +4106,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#IntegrationsDelete": {
+    "com.doppler.api#DeleteIntegration": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#IntegrationsDeleteRequest"
+        "target": "com.doppler.api#DeleteIntegrationRequest"
       },
       "output": {
-        "target": "com.doppler.api#IntegrationsDeleteResponse"
+        "target": "com.doppler.api#DeleteIntegrationResponse"
       },
       "errors": [
         {
@@ -4127,7 +4128,7 @@
         "smithy.api#documentation": "Delete\n\nDelete an existing integration."
       }
     },
-    "com.doppler.api#GetV3IntegrationsIntegrationMembersRequest": {
+    "com.doppler.api#GetIntegrationsIntegrationMembersRequest": {
       "type": "structure",
       "members": {
         "integration": {
@@ -4155,7 +4156,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#GetV3IntegrationsIntegrationMembersResponseMembersItemType": {
+    "com.doppler.api#GetIntegrationsIntegrationMembersResponseMembersItemType": {
       "type": "enum",
       "members": {
         "WORKPLACE_USER": {
@@ -4185,7 +4186,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GetV3IntegrationsIntegrationMembersResponseMembersItemRole": {
+    "com.doppler.api#GetIntegrationsIntegrationMembersResponseMembersItemRole": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -4194,46 +4195,46 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GetV3IntegrationsIntegrationMembersResponseMembersItem": {
+    "com.doppler.api#GetIntegrationsIntegrationMembersResponseMembersItem": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#GetV3IntegrationsIntegrationMembersResponseMembersItemType"
+          "target": "com.doppler.api#GetIntegrationsIntegrationMembersResponseMembersItemType"
         },
         "slug": {
           "target": "smithy.api#String"
         },
         "role": {
-          "target": "com.doppler.api#GetV3IntegrationsIntegrationMembersResponseMembersItemRole"
+          "target": "com.doppler.api#GetIntegrationsIntegrationMembersResponseMembersItemRole"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#GetV3IntegrationsIntegrationMembersResponseMembersList": {
+    "com.doppler.api#GetIntegrationsIntegrationMembersResponseMembersList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#GetV3IntegrationsIntegrationMembersResponseMembersItem"
+        "target": "com.doppler.api#GetIntegrationsIntegrationMembersResponseMembersItem"
       },
       "traits": {}
     },
-    "com.doppler.api#GetV3IntegrationsIntegrationMembersResponse": {
+    "com.doppler.api#GetIntegrationsIntegrationMembersResponse": {
       "type": "structure",
       "members": {
         "members": {
-          "target": "com.doppler.api#GetV3IntegrationsIntegrationMembersResponseMembersList"
+          "target": "com.doppler.api#GetIntegrationsIntegrationMembersResponseMembersList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#GetV3IntegrationsIntegrationMembers": {
+    "com.doppler.api#GetIntegrationsIntegrationMembers": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#GetV3IntegrationsIntegrationMembersRequest"
+        "target": "com.doppler.api#GetIntegrationsIntegrationMembersRequest"
       },
       "output": {
-        "target": "com.doppler.api#GetV3IntegrationsIntegrationMembersResponse"
+        "target": "com.doppler.api#GetIntegrationsIntegrationMembersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4244,7 +4245,7 @@
         "smithy.api#documentation": "List"
       }
     },
-    "com.doppler.api#PostV3IntegrationsIntegrationMembersRequestType": {
+    "com.doppler.api#CreateIntegrationsIntegrationMemberRequestType": {
       "type": "enum",
       "members": {
         "WORKPLACE_USER": {
@@ -4274,7 +4275,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#PostV3IntegrationsIntegrationMembersRequest": {
+    "com.doppler.api#CreateIntegrationsIntegrationMemberRequest": {
       "type": "structure",
       "members": {
         "integration": {
@@ -4286,7 +4287,7 @@
           }
         },
         "type": {
-          "target": "com.doppler.api#PostV3IntegrationsIntegrationMembersRequestType",
+          "target": "com.doppler.api#CreateIntegrationsIntegrationMemberRequestType",
           "traits": {
             "smithy.api#required": {}
           }
@@ -4308,7 +4309,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#PostV3IntegrationsIntegrationMembersResponseMemberType": {
+    "com.doppler.api#CreateIntegrationsIntegrationMemberResponseMemberType": {
       "type": "enum",
       "members": {
         "WORKPLACE_USER": {
@@ -4338,7 +4339,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#PostV3IntegrationsIntegrationMembersResponseMemberRole": {
+    "com.doppler.api#CreateIntegrationsIntegrationMemberResponseMemberRole": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -4347,39 +4348,39 @@
       },
       "traits": {}
     },
-    "com.doppler.api#PostV3IntegrationsIntegrationMembersResponseMember": {
+    "com.doppler.api#CreateIntegrationsIntegrationMemberResponseMember": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#PostV3IntegrationsIntegrationMembersResponseMemberType"
+          "target": "com.doppler.api#CreateIntegrationsIntegrationMemberResponseMemberType"
         },
         "slug": {
           "target": "smithy.api#String"
         },
         "role": {
-          "target": "com.doppler.api#PostV3IntegrationsIntegrationMembersResponseMemberRole"
+          "target": "com.doppler.api#CreateIntegrationsIntegrationMemberResponseMemberRole"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#PostV3IntegrationsIntegrationMembersResponse": {
+    "com.doppler.api#CreateIntegrationsIntegrationMemberResponse": {
       "type": "structure",
       "members": {
         "member": {
-          "target": "com.doppler.api#PostV3IntegrationsIntegrationMembersResponseMember"
+          "target": "com.doppler.api#CreateIntegrationsIntegrationMemberResponseMember"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#PostV3IntegrationsIntegrationMembers": {
+    "com.doppler.api#CreateIntegrationsIntegrationMember": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#PostV3IntegrationsIntegrationMembersRequest"
+        "target": "com.doppler.api#CreateIntegrationsIntegrationMemberRequest"
       },
       "output": {
-        "target": "com.doppler.api#PostV3IntegrationsIntegrationMembersResponse"
+        "target": "com.doppler.api#CreateIntegrationsIntegrationMemberResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4390,7 +4391,7 @@
         "smithy.api#documentation": "Add"
       }
     },
-    "com.doppler.api#PatchV3IntegrationsIntegrationMembersTypeSlugRequestType": {
+    "com.doppler.api#UpdateIntegrationsIntegrationMemberRequestType": {
       "type": "enum",
       "members": {
         "WORKPLACE_USER": {
@@ -4420,11 +4421,11 @@
       },
       "traits": {}
     },
-    "com.doppler.api#PatchV3IntegrationsIntegrationMembersTypeSlugRequest": {
+    "com.doppler.api#UpdateIntegrationsIntegrationMemberRequest": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#PatchV3IntegrationsIntegrationMembersTypeSlugRequestType",
+          "target": "com.doppler.api#UpdateIntegrationsIntegrationMemberRequestType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
@@ -4457,7 +4458,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#PatchV3IntegrationsIntegrationMembersTypeSlugResponseMemberType": {
+    "com.doppler.api#UpdateIntegrationsIntegrationMemberResponseMemberType": {
       "type": "enum",
       "members": {
         "WORKPLACE_USER": {
@@ -4487,7 +4488,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#PatchV3IntegrationsIntegrationMembersTypeSlugResponseMemberRole": {
+    "com.doppler.api#UpdateIntegrationsIntegrationMemberResponseMemberRole": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -4496,39 +4497,39 @@
       },
       "traits": {}
     },
-    "com.doppler.api#PatchV3IntegrationsIntegrationMembersTypeSlugResponseMember": {
+    "com.doppler.api#UpdateIntegrationsIntegrationMemberResponseMember": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#PatchV3IntegrationsIntegrationMembersTypeSlugResponseMemberType"
+          "target": "com.doppler.api#UpdateIntegrationsIntegrationMemberResponseMemberType"
         },
         "slug": {
           "target": "smithy.api#String"
         },
         "role": {
-          "target": "com.doppler.api#PatchV3IntegrationsIntegrationMembersTypeSlugResponseMemberRole"
+          "target": "com.doppler.api#UpdateIntegrationsIntegrationMemberResponseMemberRole"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#PatchV3IntegrationsIntegrationMembersTypeSlugResponse": {
+    "com.doppler.api#UpdateIntegrationsIntegrationMemberResponse": {
       "type": "structure",
       "members": {
         "member": {
-          "target": "com.doppler.api#PatchV3IntegrationsIntegrationMembersTypeSlugResponseMember"
+          "target": "com.doppler.api#UpdateIntegrationsIntegrationMemberResponseMember"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#PatchV3IntegrationsIntegrationMembersTypeSlug": {
+    "com.doppler.api#UpdateIntegrationsIntegrationMember": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#PatchV3IntegrationsIntegrationMembersTypeSlugRequest"
+        "target": "com.doppler.api#UpdateIntegrationsIntegrationMemberRequest"
       },
       "output": {
-        "target": "com.doppler.api#PatchV3IntegrationsIntegrationMembersTypeSlugResponse"
+        "target": "com.doppler.api#UpdateIntegrationsIntegrationMemberResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4864,7 +4865,7 @@
         "smithy.api#documentation": "Me\n\nGet information about a token"
       }
     },
-    "com.doppler.api#ProjectsListRequest": {
+    "com.doppler.api#ListProjectsRequest": {
       "type": "structure",
       "members": {
         "page": {
@@ -4886,7 +4887,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ProjectsListResponseProjectsItem": {
+    "com.doppler.api#ListProjectsResponseProjectsItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -4907,34 +4908,34 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ProjectsListResponseProjectsList": {
+    "com.doppler.api#ListProjectsResponseProjectsList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#ProjectsListResponseProjectsItem"
+        "target": "com.doppler.api#ListProjectsResponseProjectsItem"
       },
       "traits": {}
     },
-    "com.doppler.api#ProjectsListResponse": {
+    "com.doppler.api#ListProjectsResponse": {
       "type": "structure",
       "members": {
         "page": {
           "target": "smithy.api#Integer"
         },
         "projects": {
-          "target": "com.doppler.api#ProjectsListResponseProjectsList"
+          "target": "com.doppler.api#ListProjectsResponseProjectsList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ProjectsList": {
+    "com.doppler.api#ListProjects": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ProjectsListRequest"
+        "target": "com.doppler.api#ListProjectsRequest"
       },
       "output": {
-        "target": "com.doppler.api#ProjectsListResponse"
+        "target": "com.doppler.api#ListProjectsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4945,7 +4946,7 @@
         "smithy.api#documentation": "List\n\nProjects"
       }
     },
-    "com.doppler.api#ProjectsCreateRequest": {
+    "com.doppler.api#CreateProjectRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -4966,7 +4967,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ProjectsCreateResponseProject": {
+    "com.doppler.api#CreateProjectResponseProject": {
       "type": "structure",
       "members": {
         "id": {
@@ -4984,24 +4985,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ProjectsCreateResponse": {
+    "com.doppler.api#CreateProjectResponse": {
       "type": "structure",
       "members": {
         "project": {
-          "target": "com.doppler.api#ProjectsCreateResponseProject"
+          "target": "com.doppler.api#CreateProjectResponseProject"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ProjectsCreate": {
+    "com.doppler.api#CreateProject": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ProjectsCreateRequest"
+        "target": "com.doppler.api#CreateProjectRequest"
       },
       "output": {
-        "target": "com.doppler.api#ProjectsCreateResponse"
+        "target": "com.doppler.api#CreateProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5047,7 +5048,7 @@
         "smithy.api#documentation": "List Permissions"
       }
     },
-    "com.doppler.api#ProjectsGetRequest": {
+    "com.doppler.api#GetProjectRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -5063,7 +5064,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ProjectsGetResponseProject": {
+    "com.doppler.api#GetProjectResponseProject": {
       "type": "structure",
       "members": {
         "id": {
@@ -5081,24 +5082,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ProjectsGetResponse": {
+    "com.doppler.api#GetProjectResponse": {
       "type": "structure",
       "members": {
         "project": {
-          "target": "com.doppler.api#ProjectsGetResponseProject"
+          "target": "com.doppler.api#GetProjectResponseProject"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ProjectsGet": {
+    "com.doppler.api#GetProject": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ProjectsGetRequest"
+        "target": "com.doppler.api#GetProjectRequest"
       },
       "output": {
-        "target": "com.doppler.api#ProjectsGetResponse"
+        "target": "com.doppler.api#GetProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5109,7 +5110,7 @@
         "smithy.api#documentation": "Retrieve\n\nProject"
       }
     },
-    "com.doppler.api#ProjectsUpdateRequest": {
+    "com.doppler.api#UpdateProjectRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -5137,7 +5138,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ProjectsUpdateResponseProject": {
+    "com.doppler.api#UpdateProjectResponseProject": {
       "type": "structure",
       "members": {
         "id": {
@@ -5155,24 +5156,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ProjectsUpdateResponse": {
+    "com.doppler.api#UpdateProjectResponse": {
       "type": "structure",
       "members": {
         "project": {
-          "target": "com.doppler.api#ProjectsUpdateResponseProject"
+          "target": "com.doppler.api#UpdateProjectResponseProject"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ProjectsUpdate": {
+    "com.doppler.api#UpdateProject": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ProjectsUpdateRequest"
+        "target": "com.doppler.api#UpdateProjectRequest"
       },
       "output": {
-        "target": "com.doppler.api#ProjectsUpdateResponse"
+        "target": "com.doppler.api#UpdateProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5183,7 +5184,7 @@
         "smithy.api#documentation": "Update\n\nProject"
       }
     },
-    "com.doppler.api#ProjectsDeleteRequest": {
+    "com.doppler.api#DeleteProjectRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -5198,10 +5199,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ProjectsDelete": {
+    "com.doppler.api#DeleteProject": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ProjectsDeleteRequest"
+        "target": "com.doppler.api#DeleteProjectRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6238,7 +6239,7 @@
         "smithy.api#documentation": "Delete"
       }
     },
-    "com.doppler.api#WebhooksListRequest": {
+    "com.doppler.api#ListWebhooksRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -6253,7 +6254,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#WebhooksListResponse": {
+    "com.doppler.api#ListWebhooksResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -6268,13 +6269,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#WebhooksList": {
+    "com.doppler.api#ListWebhooks": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#WebhooksListRequest"
+        "target": "com.doppler.api#ListWebhooksRequest"
       },
       "output": {
-        "target": "com.doppler.api#WebhooksListResponse"
+        "target": "com.doppler.api#ListWebhooksResponse"
       },
       "errors": [
         {
@@ -6290,7 +6291,7 @@
         "smithy.api#documentation": "List\n\nWebhooks"
       }
     },
-    "com.doppler.api#WebhooksAddRequestAuthenticationType": {
+    "com.doppler.api#AddWebhookRequestAuthenticationType": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -6314,11 +6315,11 @@
       },
       "traits": {}
     },
-    "com.doppler.api#WebhooksAddRequestAuthentication": {
+    "com.doppler.api#AddWebhookRequestAuthentication": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#WebhooksAddRequestAuthenticationType"
+          "target": "com.doppler.api#AddWebhookRequestAuthenticationType"
         },
         "token": {
           "target": "smithy.api#String",
@@ -6342,7 +6343,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#WebhooksAddRequestEnableConfigsList": {
+    "com.doppler.api#AddWebhookRequestEnableConfigsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6351,7 +6352,7 @@
         "smithy.api#documentation": "Config slugs that the webhook should be enabled for"
       }
     },
-    "com.doppler.api#WebhooksAddRequest": {
+    "com.doppler.api#AddWebhookRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -6376,7 +6377,7 @@
           }
         },
         "authentication": {
-          "target": "com.doppler.api#WebhooksAddRequestAuthentication"
+          "target": "com.doppler.api#AddWebhookRequestAuthentication"
         },
         "payload": {
           "target": "smithy.api#String",
@@ -6385,7 +6386,7 @@
           }
         },
         "enableConfigs": {
-          "target": "com.doppler.api#WebhooksAddRequestEnableConfigsList",
+          "target": "com.doppler.api#AddWebhookRequestEnableConfigsList",
           "traits": {
             "smithy.api#documentation": "Config slugs that the webhook should be enabled for"
           }
@@ -6401,7 +6402,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#WebhooksAddResponse": {
+    "com.doppler.api#AddWebhookResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -6416,13 +6417,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#WebhooksAdd": {
+    "com.doppler.api#AddWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#WebhooksAddRequest"
+        "target": "com.doppler.api#AddWebhookRequest"
       },
       "output": {
-        "target": "com.doppler.api#WebhooksAddResponse"
+        "target": "com.doppler.api#AddWebhookResponse"
       },
       "errors": [
         {
@@ -6438,7 +6439,7 @@
         "smithy.api#documentation": "Add\n\nWebhook"
       }
     },
-    "com.doppler.api#WebhooksGetRequest": {
+    "com.doppler.api#GetWebhookRequest": {
       "type": "structure",
       "members": {
         "slug": {
@@ -6461,7 +6462,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#WebhooksGetResponse": {
+    "com.doppler.api#GetWebhookResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -6476,13 +6477,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#WebhooksGet": {
+    "com.doppler.api#GetWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#WebhooksGetRequest"
+        "target": "com.doppler.api#GetWebhookRequest"
       },
       "output": {
-        "target": "com.doppler.api#WebhooksGetResponse"
+        "target": "com.doppler.api#GetWebhookResponse"
       },
       "errors": [
         {
@@ -6498,7 +6499,7 @@
         "smithy.api#documentation": "Retrieve\n\nWebhook"
       }
     },
-    "com.doppler.api#WebhooksUpdateRequestAuthenticationType": {
+    "com.doppler.api#UpdateWebhookRequestAuthenticationType": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -6522,11 +6523,11 @@
       },
       "traits": {}
     },
-    "com.doppler.api#WebhooksUpdateRequestAuthentication": {
+    "com.doppler.api#UpdateWebhookRequestAuthentication": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#WebhooksUpdateRequestAuthenticationType"
+          "target": "com.doppler.api#UpdateWebhookRequestAuthenticationType"
         },
         "token": {
           "target": "smithy.api#String",
@@ -6550,7 +6551,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#WebhooksUpdateRequestEnableConfigsList": {
+    "com.doppler.api#UpdateWebhookRequestEnableConfigsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6559,7 +6560,7 @@
         "smithy.api#documentation": "Config slugs that the webhook should be enabled for"
       }
     },
-    "com.doppler.api#WebhooksUpdateRequestDisableConfigsList": {
+    "com.doppler.api#UpdateWebhookRequestDisableConfigsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6568,7 +6569,7 @@
         "smithy.api#documentation": "Config slugs that the webhook should be disabled for"
       }
     },
-    "com.doppler.api#WebhooksUpdateRequest": {
+    "com.doppler.api#UpdateWebhookRequest": {
       "type": "structure",
       "members": {
         "slug": {
@@ -6600,7 +6601,7 @@
           }
         },
         "authentication": {
-          "target": "com.doppler.api#WebhooksUpdateRequestAuthentication"
+          "target": "com.doppler.api#UpdateWebhookRequestAuthentication"
         },
         "payload": {
           "target": "smithy.api#String",
@@ -6615,13 +6616,13 @@
           }
         },
         "enableConfigs": {
-          "target": "com.doppler.api#WebhooksUpdateRequestEnableConfigsList",
+          "target": "com.doppler.api#UpdateWebhookRequestEnableConfigsList",
           "traits": {
             "smithy.api#documentation": "Config slugs that the webhook should be enabled for"
           }
         },
         "disableConfigs": {
-          "target": "com.doppler.api#WebhooksUpdateRequestDisableConfigsList",
+          "target": "com.doppler.api#UpdateWebhookRequestDisableConfigsList",
           "traits": {
             "smithy.api#documentation": "Config slugs that the webhook should be disabled for"
           }
@@ -6631,7 +6632,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#WebhooksUpdateResponse": {
+    "com.doppler.api#UpdateWebhookResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -6646,13 +6647,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#WebhooksUpdate": {
+    "com.doppler.api#UpdateWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#WebhooksUpdateRequest"
+        "target": "com.doppler.api#UpdateWebhookRequest"
       },
       "output": {
-        "target": "com.doppler.api#WebhooksUpdateResponse"
+        "target": "com.doppler.api#UpdateWebhookResponse"
       },
       "errors": [
         {
@@ -6668,7 +6669,7 @@
         "smithy.api#documentation": "Update\n\nWebhook"
       }
     },
-    "com.doppler.api#WebhooksDeleteRequest": {
+    "com.doppler.api#DeleteWebhookRequest": {
       "type": "structure",
       "members": {
         "slug": {
@@ -6691,7 +6692,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#WebhooksDeleteResponse": {
+    "com.doppler.api#DeleteWebhookResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -6706,13 +6707,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#WebhooksDelete": {
+    "com.doppler.api#DeleteWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#WebhooksDeleteRequest"
+        "target": "com.doppler.api#DeleteWebhookRequest"
       },
       "output": {
-        "target": "com.doppler.api#WebhooksDeleteResponse"
+        "target": "com.doppler.api#DeleteWebhookResponse"
       },
       "errors": [
         {
@@ -6728,7 +6729,7 @@
         "smithy.api#documentation": "Delete\n\nWebhook"
       }
     },
-    "com.doppler.api#WebhooksDisableRequest": {
+    "com.doppler.api#DisableWebhookRequest": {
       "type": "structure",
       "members": {
         "slug": {
@@ -6751,7 +6752,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#WebhooksDisableResponse": {
+    "com.doppler.api#DisableWebhookResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -6766,13 +6767,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#WebhooksDisable": {
+    "com.doppler.api#DisableWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#WebhooksDisableRequest"
+        "target": "com.doppler.api#DisableWebhookRequest"
       },
       "output": {
-        "target": "com.doppler.api#WebhooksDisableResponse"
+        "target": "com.doppler.api#DisableWebhookResponse"
       },
       "errors": [
         {
@@ -6788,7 +6789,7 @@
         "smithy.api#documentation": "Disable\n\nWebhook"
       }
     },
-    "com.doppler.api#WebhooksEnableRequest": {
+    "com.doppler.api#EnableWebhookRequest": {
       "type": "structure",
       "members": {
         "slug": {
@@ -6811,7 +6812,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#WebhooksEnableResponse": {
+    "com.doppler.api#EnableWebhookResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -6826,13 +6827,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#WebhooksEnable": {
+    "com.doppler.api#EnableWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#WebhooksEnableRequest"
+        "target": "com.doppler.api#EnableWebhookRequest"
       },
       "output": {
-        "target": "com.doppler.api#WebhooksEnableResponse"
+        "target": "com.doppler.api#EnableWebhookResponse"
       },
       "errors": [
         {
@@ -6848,7 +6849,7 @@
         "smithy.api#documentation": "Enable\n\nWebhook"
       }
     },
-    "com.doppler.api#WorkplaceGetResponseWorkplace": {
+    "com.doppler.api#GetWorkplaceResponseWorkplace": {
       "type": "structure",
       "members": {
         "id": {
@@ -6866,24 +6867,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#WorkplaceGetResponse": {
+    "com.doppler.api#GetWorkplaceResponse": {
       "type": "structure",
       "members": {
         "workplace": {
-          "target": "com.doppler.api#WorkplaceGetResponseWorkplace"
+          "target": "com.doppler.api#GetWorkplaceResponseWorkplace"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#WorkplaceGet": {
+    "com.doppler.api#GetWorkplace": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.doppler.api#WorkplaceGetResponse"
+        "target": "com.doppler.api#GetWorkplaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6894,7 +6895,7 @@
         "smithy.api#documentation": "Retrieve"
       }
     },
-    "com.doppler.api#WorkplaceUpdateRequest": {
+    "com.doppler.api#UpdateWorkplaceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -6914,7 +6915,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#WorkplaceUpdateResponseWorkplace": {
+    "com.doppler.api#UpdateWorkplaceResponseWorkplace": {
       "type": "structure",
       "members": {
         "id": {
@@ -6932,24 +6933,24 @@
       },
       "traits": {}
     },
-    "com.doppler.api#WorkplaceUpdateResponse": {
+    "com.doppler.api#UpdateWorkplaceResponse": {
       "type": "structure",
       "members": {
         "workplace": {
-          "target": "com.doppler.api#WorkplaceUpdateResponseWorkplace"
+          "target": "com.doppler.api#UpdateWorkplaceResponseWorkplace"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#WorkplaceUpdate": {
+    "com.doppler.api#UpdateWorkplace": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#WorkplaceUpdateRequest"
+        "target": "com.doppler.api#UpdateWorkplaceRequest"
       },
       "output": {
-        "target": "com.doppler.api#WorkplaceUpdateResponse"
+        "target": "com.doppler.api#UpdateWorkplaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6960,14 +6961,14 @@
         "smithy.api#documentation": "Update"
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesListResponsePoliciesItemPolicyRulesList": {
+    "com.doppler.api#ListChangeRequestPoliciesResponsePoliciesItemPolicyRulesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesListResponsePoliciesItemPolicyTargets": {
+    "com.doppler.api#ListChangeRequestPoliciesResponsePoliciesItemPolicyTargets": {
       "type": "structure",
       "members": {
         "allProjects": {
@@ -6979,7 +6980,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesListResponsePoliciesItemPolicy": {
+    "com.doppler.api#ListChangeRequestPoliciesResponsePoliciesItemPolicy": {
       "type": "structure",
       "members": {
         "id": {
@@ -6992,35 +6993,35 @@
           "target": "smithy.api#String"
         },
         "rules": {
-          "target": "com.doppler.api#ChangeRequestPoliciesListResponsePoliciesItemPolicyRulesList"
+          "target": "com.doppler.api#ListChangeRequestPoliciesResponsePoliciesItemPolicyRulesList"
         },
         "targets": {
-          "target": "com.doppler.api#ChangeRequestPoliciesListResponsePoliciesItemPolicyTargets"
+          "target": "com.doppler.api#ListChangeRequestPoliciesResponsePoliciesItemPolicyTargets"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesListResponsePoliciesItem": {
+    "com.doppler.api#ListChangeRequestPoliciesResponsePoliciesItem": {
       "type": "structure",
       "members": {
         "policy": {
-          "target": "com.doppler.api#ChangeRequestPoliciesListResponsePoliciesItemPolicy"
+          "target": "com.doppler.api#ListChangeRequestPoliciesResponsePoliciesItemPolicy"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesListResponsePoliciesList": {
+    "com.doppler.api#ListChangeRequestPoliciesResponsePoliciesList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#ChangeRequestPoliciesListResponsePoliciesItem"
+        "target": "com.doppler.api#ListChangeRequestPoliciesResponsePoliciesItem"
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesListResponse": {
+    "com.doppler.api#ListChangeRequestPoliciesResponse": {
       "type": "structure",
       "members": {
         "policies": {
-          "target": "com.doppler.api#ChangeRequestPoliciesListResponsePoliciesList"
+          "target": "com.doppler.api#ListChangeRequestPoliciesResponsePoliciesList"
         },
         "success": {
           "target": "smithy.api#Boolean"
@@ -7030,13 +7031,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesList": {
+    "com.doppler.api#ListChangeRequestPolicies": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.doppler.api#ChangeRequestPoliciesListResponse"
+        "target": "com.doppler.api#ListChangeRequestPoliciesResponse"
       },
       "errors": [
         {
@@ -7052,7 +7053,7 @@
         "smithy.api#documentation": "List\n\nList existing change request policies"
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesCreateRequestRulesItemType": {
+    "com.doppler.api#CreateChangeRequestPolicyRequestRulesItemType": {
       "type": "enum",
       "members": {
         "REQUIREDREVIEWER": {
@@ -7070,7 +7071,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesCreateRequestRulesItemSubjectsItemType": {
+    "com.doppler.api#CreateChangeRequestPolicyRequestRulesItemSubjectsItemType": {
       "type": "enum",
       "members": {
         "WORKPLACEUSER": {
@@ -7090,11 +7091,11 @@
         "smithy.api#documentation": "The type of the subject."
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesCreateRequestRulesItemSubjectsItem": {
+    "com.doppler.api#CreateChangeRequestPolicyRequestRulesItemSubjectsItem": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#ChangeRequestPoliciesCreateRequestRulesItemSubjectsItemType",
+          "target": "com.doppler.api#CreateChangeRequestPolicyRequestRulesItemSubjectsItemType",
           "traits": {
             "smithy.api#documentation": "The type of the subject.",
             "smithy.api#required": {}
@@ -7110,20 +7111,20 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesCreateRequestRulesItemSubjectsList": {
+    "com.doppler.api#CreateChangeRequestPolicyRequestRulesItemSubjectsList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#ChangeRequestPoliciesCreateRequestRulesItemSubjectsItem"
+        "target": "com.doppler.api#CreateChangeRequestPolicyRequestRulesItemSubjectsItem"
       },
       "traits": {
         "smithy.api#documentation": "A list of required reviewers. If specified, only reviews from reviewers in this list will satisfy the policy. Only applies to \"RequiredReviewer\" rules."
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesCreateRequestRulesItem": {
+    "com.doppler.api#CreateChangeRequestPolicyRequestRulesItem": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#ChangeRequestPoliciesCreateRequestRulesItemType",
+          "target": "com.doppler.api#CreateChangeRequestPolicyRequestRulesItemType",
           "traits": {
             "smithy.api#required": {}
           }
@@ -7135,7 +7136,7 @@
           }
         },
         "subjects": {
-          "target": "com.doppler.api#ChangeRequestPoliciesCreateRequestRulesItemSubjectsList",
+          "target": "com.doppler.api#CreateChangeRequestPolicyRequestRulesItemSubjectsList",
           "traits": {
             "smithy.api#documentation": "A list of required reviewers. If specified, only reviews from reviewers in this list will satisfy the policy. Only applies to \"RequiredReviewer\" rules."
           }
@@ -7143,16 +7144,16 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesCreateRequestRulesList": {
+    "com.doppler.api#CreateChangeRequestPolicyRequestRulesList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#ChangeRequestPoliciesCreateRequestRulesItem"
+        "target": "com.doppler.api#CreateChangeRequestPolicyRequestRulesItem"
       },
       "traits": {
         "smithy.api#documentation": "A list of rules the policy enforces."
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesCreateRequestTargets": {
+    "com.doppler.api#CreateChangeRequestPolicyRequestTargets": {
       "type": "structure",
       "members": {
         "allProjects": {
@@ -7172,7 +7173,7 @@
         "smithy.api#documentation": "Describes the which projects, environments, and configs the policy applies to."
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesCreateRequest": {
+    "com.doppler.api#CreateChangeRequestPolicyRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -7189,14 +7190,14 @@
           }
         },
         "rules": {
-          "target": "com.doppler.api#ChangeRequestPoliciesCreateRequestRulesList",
+          "target": "com.doppler.api#CreateChangeRequestPolicyRequestRulesList",
           "traits": {
             "smithy.api#documentation": "A list of rules the policy enforces.",
             "smithy.api#required": {}
           }
         },
         "targets": {
-          "target": "com.doppler.api#ChangeRequestPoliciesCreateRequestTargets",
+          "target": "com.doppler.api#CreateChangeRequestPolicyRequestTargets",
           "traits": {
             "smithy.api#documentation": "Describes the which projects, environments, and configs the policy applies to.",
             "smithy.api#required": {}
@@ -7207,14 +7208,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesCreateResponsePolicyRulesList": {
+    "com.doppler.api#CreateChangeRequestPolicyResponsePolicyRulesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesCreateResponsePolicyTargets": {
+    "com.doppler.api#CreateChangeRequestPolicyResponsePolicyTargets": {
       "type": "structure",
       "members": {
         "allProjects": {
@@ -7226,7 +7227,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesCreateResponsePolicy": {
+    "com.doppler.api#CreateChangeRequestPolicyResponsePolicy": {
       "type": "structure",
       "members": {
         "id": {
@@ -7239,19 +7240,19 @@
           "target": "smithy.api#String"
         },
         "rules": {
-          "target": "com.doppler.api#ChangeRequestPoliciesCreateResponsePolicyRulesList"
+          "target": "com.doppler.api#CreateChangeRequestPolicyResponsePolicyRulesList"
         },
         "targets": {
-          "target": "com.doppler.api#ChangeRequestPoliciesCreateResponsePolicyTargets"
+          "target": "com.doppler.api#CreateChangeRequestPolicyResponsePolicyTargets"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesCreateResponse": {
+    "com.doppler.api#CreateChangeRequestPolicyResponse": {
       "type": "structure",
       "members": {
         "policy": {
-          "target": "com.doppler.api#ChangeRequestPoliciesCreateResponsePolicy"
+          "target": "com.doppler.api#CreateChangeRequestPolicyResponsePolicy"
         },
         "success": {
           "target": "smithy.api#Boolean"
@@ -7261,13 +7262,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesCreate": {
+    "com.doppler.api#CreateChangeRequestPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ChangeRequestPoliciesCreateRequest"
+        "target": "com.doppler.api#CreateChangeRequestPolicyRequest"
       },
       "output": {
-        "target": "com.doppler.api#ChangeRequestPoliciesCreateResponse"
+        "target": "com.doppler.api#CreateChangeRequestPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7278,7 +7279,7 @@
         "smithy.api#documentation": "Create\n\nCreate a new change request policy"
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesGetRequest": {
+    "com.doppler.api#GetChangeRequestPolicyRequest": {
       "type": "structure",
       "members": {
         "slug": {
@@ -7294,14 +7295,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesGetResponsePolicyRulesList": {
+    "com.doppler.api#GetChangeRequestPolicyResponsePolicyRulesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesGetResponsePolicyTargets": {
+    "com.doppler.api#GetChangeRequestPolicyResponsePolicyTargets": {
       "type": "structure",
       "members": {
         "allProjects": {
@@ -7313,7 +7314,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesGetResponsePolicy": {
+    "com.doppler.api#GetChangeRequestPolicyResponsePolicy": {
       "type": "structure",
       "members": {
         "id": {
@@ -7326,19 +7327,19 @@
           "target": "smithy.api#String"
         },
         "rules": {
-          "target": "com.doppler.api#ChangeRequestPoliciesGetResponsePolicyRulesList"
+          "target": "com.doppler.api#GetChangeRequestPolicyResponsePolicyRulesList"
         },
         "targets": {
-          "target": "com.doppler.api#ChangeRequestPoliciesGetResponsePolicyTargets"
+          "target": "com.doppler.api#GetChangeRequestPolicyResponsePolicyTargets"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesGetResponse": {
+    "com.doppler.api#GetChangeRequestPolicyResponse": {
       "type": "structure",
       "members": {
         "policy": {
-          "target": "com.doppler.api#ChangeRequestPoliciesGetResponsePolicy"
+          "target": "com.doppler.api#GetChangeRequestPolicyResponsePolicy"
         },
         "success": {
           "target": "smithy.api#Boolean"
@@ -7348,13 +7349,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesGet": {
+    "com.doppler.api#GetChangeRequestPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ChangeRequestPoliciesGetRequest"
+        "target": "com.doppler.api#GetChangeRequestPolicyRequest"
       },
       "output": {
-        "target": "com.doppler.api#ChangeRequestPoliciesGetResponse"
+        "target": "com.doppler.api#GetChangeRequestPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7365,7 +7366,7 @@
         "smithy.api#documentation": "Retrieve\n\nFetch an existing change request policy"
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesUpdateRequestRulesItemType": {
+    "com.doppler.api#UpdateChangeRequestPolicyRequestRulesItemType": {
       "type": "enum",
       "members": {
         "REQUIREDREVIEWER": {
@@ -7383,7 +7384,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesUpdateRequestRulesItemSubjectsItemType": {
+    "com.doppler.api#UpdateChangeRequestPolicyRequestRulesItemSubjectsItemType": {
       "type": "enum",
       "members": {
         "WORKPLACEUSER": {
@@ -7403,11 +7404,11 @@
         "smithy.api#documentation": "The type of the subject."
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesUpdateRequestRulesItemSubjectsItem": {
+    "com.doppler.api#UpdateChangeRequestPolicyRequestRulesItemSubjectsItem": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#ChangeRequestPoliciesUpdateRequestRulesItemSubjectsItemType",
+          "target": "com.doppler.api#UpdateChangeRequestPolicyRequestRulesItemSubjectsItemType",
           "traits": {
             "smithy.api#documentation": "The type of the subject.",
             "smithy.api#required": {}
@@ -7423,20 +7424,20 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesUpdateRequestRulesItemSubjectsList": {
+    "com.doppler.api#UpdateChangeRequestPolicyRequestRulesItemSubjectsList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#ChangeRequestPoliciesUpdateRequestRulesItemSubjectsItem"
+        "target": "com.doppler.api#UpdateChangeRequestPolicyRequestRulesItemSubjectsItem"
       },
       "traits": {
         "smithy.api#documentation": "A list of required reviewers. If specified, only reviews from reviewers in this list will satisfy the policy. Only applies to \"RequiredReviewer\" rules."
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesUpdateRequestRulesItem": {
+    "com.doppler.api#UpdateChangeRequestPolicyRequestRulesItem": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#ChangeRequestPoliciesUpdateRequestRulesItemType",
+          "target": "com.doppler.api#UpdateChangeRequestPolicyRequestRulesItemType",
           "traits": {
             "smithy.api#required": {}
           }
@@ -7448,7 +7449,7 @@
           }
         },
         "subjects": {
-          "target": "com.doppler.api#ChangeRequestPoliciesUpdateRequestRulesItemSubjectsList",
+          "target": "com.doppler.api#UpdateChangeRequestPolicyRequestRulesItemSubjectsList",
           "traits": {
             "smithy.api#documentation": "A list of required reviewers. If specified, only reviews from reviewers in this list will satisfy the policy. Only applies to \"RequiredReviewer\" rules."
           }
@@ -7456,16 +7457,16 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesUpdateRequestRulesList": {
+    "com.doppler.api#UpdateChangeRequestPolicyRequestRulesList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#ChangeRequestPoliciesUpdateRequestRulesItem"
+        "target": "com.doppler.api#UpdateChangeRequestPolicyRequestRulesItem"
       },
       "traits": {
         "smithy.api#documentation": "A list of rules the policy enforces."
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesUpdateRequestTargets": {
+    "com.doppler.api#UpdateChangeRequestPolicyRequestTargets": {
       "type": "structure",
       "members": {
         "allProjects": {
@@ -7485,7 +7486,7 @@
         "smithy.api#documentation": "Describes the which projects, environments, and configs the policy applies to."
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesUpdateRequest": {
+    "com.doppler.api#UpdateChangeRequestPolicyRequest": {
       "type": "structure",
       "members": {
         "slug": {
@@ -7510,14 +7511,14 @@
           }
         },
         "rules": {
-          "target": "com.doppler.api#ChangeRequestPoliciesUpdateRequestRulesList",
+          "target": "com.doppler.api#UpdateChangeRequestPolicyRequestRulesList",
           "traits": {
             "smithy.api#documentation": "A list of rules the policy enforces.",
             "smithy.api#required": {}
           }
         },
         "targets": {
-          "target": "com.doppler.api#ChangeRequestPoliciesUpdateRequestTargets",
+          "target": "com.doppler.api#UpdateChangeRequestPolicyRequestTargets",
           "traits": {
             "smithy.api#documentation": "Describes the which projects, environments, and configs the policy applies to.",
             "smithy.api#required": {}
@@ -7528,14 +7529,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesUpdateResponsePolicyRulesList": {
+    "com.doppler.api#UpdateChangeRequestPolicyResponsePolicyRulesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesUpdateResponsePolicyTargets": {
+    "com.doppler.api#UpdateChangeRequestPolicyResponsePolicyTargets": {
       "type": "structure",
       "members": {
         "allProjects": {
@@ -7547,7 +7548,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesUpdateResponsePolicy": {
+    "com.doppler.api#UpdateChangeRequestPolicyResponsePolicy": {
       "type": "structure",
       "members": {
         "id": {
@@ -7560,19 +7561,19 @@
           "target": "smithy.api#String"
         },
         "rules": {
-          "target": "com.doppler.api#ChangeRequestPoliciesUpdateResponsePolicyRulesList"
+          "target": "com.doppler.api#UpdateChangeRequestPolicyResponsePolicyRulesList"
         },
         "targets": {
-          "target": "com.doppler.api#ChangeRequestPoliciesUpdateResponsePolicyTargets"
+          "target": "com.doppler.api#UpdateChangeRequestPolicyResponsePolicyTargets"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#ChangeRequestPoliciesUpdateResponse": {
+    "com.doppler.api#UpdateChangeRequestPolicyResponse": {
       "type": "structure",
       "members": {
         "policy": {
-          "target": "com.doppler.api#ChangeRequestPoliciesUpdateResponsePolicy"
+          "target": "com.doppler.api#UpdateChangeRequestPolicyResponsePolicy"
         },
         "success": {
           "target": "smithy.api#Boolean"
@@ -7582,13 +7583,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesUpdate": {
+    "com.doppler.api#UpdateChangeRequestPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ChangeRequestPoliciesUpdateRequest"
+        "target": "com.doppler.api#UpdateChangeRequestPolicyRequest"
       },
       "output": {
-        "target": "com.doppler.api#ChangeRequestPoliciesUpdateResponse"
+        "target": "com.doppler.api#UpdateChangeRequestPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7599,7 +7600,7 @@
         "smithy.api#documentation": "Update\n\nUpdate an existing change request policy"
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesDeleteRequest": {
+    "com.doppler.api#DeleteChangeRequestPolicyRequest": {
       "type": "structure",
       "members": {
         "slug": {
@@ -7615,7 +7616,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesDeleteResponse": {
+    "com.doppler.api#DeleteChangeRequestPolicyResponse": {
       "type": "structure",
       "members": {
         "success": {
@@ -7626,13 +7627,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#ChangeRequestPoliciesDelete": {
+    "com.doppler.api#DeleteChangeRequestPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#ChangeRequestPoliciesDeleteRequest"
+        "target": "com.doppler.api#DeleteChangeRequestPolicyRequest"
       },
       "output": {
-        "target": "com.doppler.api#ChangeRequestPoliciesDeleteResponse"
+        "target": "com.doppler.api#DeleteChangeRequestPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9770,7 +9771,7 @@
         }
       }
     },
-    "com.doppler.api#GroupsListRequest": {
+    "com.doppler.api#ListGroupsRequest": {
       "type": "structure",
       "members": {
         "page": {
@@ -9790,7 +9791,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#GroupsListResponseGroupsItemDefaultProjectRole": {
+    "com.doppler.api#ListGroupsResponseGroupsItemDefaultProjectRole": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -9799,7 +9800,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsListResponseGroupsItem": {
+    "com.doppler.api#ListGroupsResponseGroupsItem": {
       "type": "structure",
       "members": {
         "name": {
@@ -9812,36 +9813,36 @@
           "target": "smithy.api#String"
         },
         "default_project_role": {
-          "target": "com.doppler.api#GroupsListResponseGroupsItemDefaultProjectRole"
+          "target": "com.doppler.api#ListGroupsResponseGroupsItemDefaultProjectRole"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsListResponseGroupsList": {
+    "com.doppler.api#ListGroupsResponseGroupsList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#GroupsListResponseGroupsItem"
+        "target": "com.doppler.api#ListGroupsResponseGroupsItem"
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsListResponse": {
+    "com.doppler.api#ListGroupsResponse": {
       "type": "structure",
       "members": {
         "groups": {
-          "target": "com.doppler.api#GroupsListResponseGroupsList"
+          "target": "com.doppler.api#ListGroupsResponseGroupsList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#GroupsList": {
+    "com.doppler.api#ListGroups": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#GroupsListRequest"
+        "target": "com.doppler.api#ListGroupsRequest"
       },
       "output": {
-        "target": "com.doppler.api#GroupsListResponse"
+        "target": "com.doppler.api#ListGroupsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9852,7 +9853,7 @@
         "smithy.api#documentation": "List"
       }
     },
-    "com.doppler.api#GroupsCreateRequest": {
+    "com.doppler.api#CreateGroupRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -9872,7 +9873,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#GroupsCreateResponseGroupDefaultProjectRole": {
+    "com.doppler.api#CreateGroupResponseGroupDefaultProjectRole": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -9881,7 +9882,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsCreateResponseGroupProjectsItemRole": {
+    "com.doppler.api#CreateGroupResponseGroupProjectsItemRole": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -9890,7 +9891,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsCreateResponseGroupProjectsItem": {
+    "com.doppler.api#CreateGroupResponseGroupProjectsItem": {
       "type": "structure",
       "members": {
         "name": {
@@ -9900,19 +9901,19 @@
           "target": "smithy.api#String"
         },
         "role": {
-          "target": "com.doppler.api#GroupsCreateResponseGroupProjectsItemRole"
+          "target": "com.doppler.api#CreateGroupResponseGroupProjectsItemRole"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsCreateResponseGroupProjectsList": {
+    "com.doppler.api#CreateGroupResponseGroupProjectsList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#GroupsCreateResponseGroupProjectsItem"
+        "target": "com.doppler.api#CreateGroupResponseGroupProjectsItem"
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsCreateResponseGroupMembersItem": {
+    "com.doppler.api#CreateGroupResponseGroupMembersItem": {
       "type": "structure",
       "members": {
         "type": {
@@ -9924,14 +9925,14 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsCreateResponseGroupMembersList": {
+    "com.doppler.api#CreateGroupResponseGroupMembersList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#GroupsCreateResponseGroupMembersItem"
+        "target": "com.doppler.api#CreateGroupResponseGroupMembersItem"
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsCreateResponseGroup": {
+    "com.doppler.api#CreateGroupResponseGroup": {
       "type": "structure",
       "members": {
         "name": {
@@ -9944,35 +9945,35 @@
           "target": "smithy.api#String"
         },
         "default_project_role": {
-          "target": "com.doppler.api#GroupsCreateResponseGroupDefaultProjectRole"
+          "target": "com.doppler.api#CreateGroupResponseGroupDefaultProjectRole"
         },
         "projects": {
-          "target": "com.doppler.api#GroupsCreateResponseGroupProjectsList"
+          "target": "com.doppler.api#CreateGroupResponseGroupProjectsList"
         },
         "members": {
-          "target": "com.doppler.api#GroupsCreateResponseGroupMembersList"
+          "target": "com.doppler.api#CreateGroupResponseGroupMembersList"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsCreateResponse": {
+    "com.doppler.api#CreateGroupResponse": {
       "type": "structure",
       "members": {
         "group": {
-          "target": "com.doppler.api#GroupsCreateResponseGroup"
+          "target": "com.doppler.api#CreateGroupResponseGroup"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#GroupsCreate": {
+    "com.doppler.api#CreateGroup": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#GroupsCreateRequest"
+        "target": "com.doppler.api#CreateGroupRequest"
       },
       "output": {
-        "target": "com.doppler.api#GroupsCreateResponse"
+        "target": "com.doppler.api#CreateGroupResponse"
       },
       "errors": [
         {
@@ -9988,7 +9989,7 @@
         "smithy.api#documentation": "Create"
       }
     },
-    "com.doppler.api#RetrieveMemberRequestMemberType": {
+    "com.doppler.api#GetMemberRequestMemberType": {
       "type": "enum",
       "members": {
         "WORKPLACE_USER": {
@@ -10000,7 +10001,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#RetrieveMemberRequest": {
+    "com.doppler.api#GetMemberRequest": {
       "type": "structure",
       "members": {
         "group_slug": {
@@ -10012,7 +10013,7 @@
           }
         },
         "member_type": {
-          "target": "com.doppler.api#RetrieveMemberRequestMemberType",
+          "target": "com.doppler.api#GetMemberRequestMemberType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
@@ -10031,7 +10032,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#RetrieveMemberResponseGroupDefaultProjectRole": {
+    "com.doppler.api#GetMemberResponseGroupDefaultProjectRole": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -10040,7 +10041,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#RetrieveMemberResponseGroupProjectsItemRole": {
+    "com.doppler.api#GetMemberResponseGroupProjectsItemRole": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -10049,7 +10050,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#RetrieveMemberResponseGroupProjectsItem": {
+    "com.doppler.api#GetMemberResponseGroupProjectsItem": {
       "type": "structure",
       "members": {
         "name": {
@@ -10059,19 +10060,19 @@
           "target": "smithy.api#String"
         },
         "role": {
-          "target": "com.doppler.api#RetrieveMemberResponseGroupProjectsItemRole"
+          "target": "com.doppler.api#GetMemberResponseGroupProjectsItemRole"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#RetrieveMemberResponseGroupProjectsList": {
+    "com.doppler.api#GetMemberResponseGroupProjectsList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#RetrieveMemberResponseGroupProjectsItem"
+        "target": "com.doppler.api#GetMemberResponseGroupProjectsItem"
       },
       "traits": {}
     },
-    "com.doppler.api#RetrieveMemberResponseGroupMembersItem": {
+    "com.doppler.api#GetMemberResponseGroupMembersItem": {
       "type": "structure",
       "members": {
         "type": {
@@ -10083,14 +10084,14 @@
       },
       "traits": {}
     },
-    "com.doppler.api#RetrieveMemberResponseGroupMembersList": {
+    "com.doppler.api#GetMemberResponseGroupMembersList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#RetrieveMemberResponseGroupMembersItem"
+        "target": "com.doppler.api#GetMemberResponseGroupMembersItem"
       },
       "traits": {}
     },
-    "com.doppler.api#RetrieveMemberResponseGroup": {
+    "com.doppler.api#GetMemberResponseGroup": {
       "type": "structure",
       "members": {
         "name": {
@@ -10103,35 +10104,35 @@
           "target": "smithy.api#String"
         },
         "default_project_role": {
-          "target": "com.doppler.api#RetrieveMemberResponseGroupDefaultProjectRole"
+          "target": "com.doppler.api#GetMemberResponseGroupDefaultProjectRole"
         },
         "projects": {
-          "target": "com.doppler.api#RetrieveMemberResponseGroupProjectsList"
+          "target": "com.doppler.api#GetMemberResponseGroupProjectsList"
         },
         "members": {
-          "target": "com.doppler.api#RetrieveMemberResponseGroupMembersList"
+          "target": "com.doppler.api#GetMemberResponseGroupMembersList"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#RetrieveMemberResponse": {
+    "com.doppler.api#GetMemberResponse": {
       "type": "structure",
       "members": {
         "group": {
-          "target": "com.doppler.api#RetrieveMemberResponseGroup"
+          "target": "com.doppler.api#GetMemberResponseGroup"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#RetrieveMember": {
+    "com.doppler.api#GetMember": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#RetrieveMemberRequest"
+        "target": "com.doppler.api#GetMemberRequest"
       },
       "output": {
-        "target": "com.doppler.api#RetrieveMemberResponse"
+        "target": "com.doppler.api#GetMemberResponse"
       },
       "errors": [
         {
@@ -10147,7 +10148,7 @@
         "smithy.api#documentation": "Retrieve Member"
       }
     },
-    "com.doppler.api#GroupsGetRequest": {
+    "com.doppler.api#GetGroupRequest": {
       "type": "structure",
       "members": {
         "slug": {
@@ -10163,7 +10164,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#GroupsGetResponseGroupDefaultProjectRole": {
+    "com.doppler.api#GetGroupResponseGroupDefaultProjectRole": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -10172,7 +10173,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsGetResponseGroupProjectsItemRole": {
+    "com.doppler.api#GetGroupResponseGroupProjectsItemRole": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -10181,7 +10182,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsGetResponseGroupProjectsItem": {
+    "com.doppler.api#GetGroupResponseGroupProjectsItem": {
       "type": "structure",
       "members": {
         "name": {
@@ -10191,19 +10192,19 @@
           "target": "smithy.api#String"
         },
         "role": {
-          "target": "com.doppler.api#GroupsGetResponseGroupProjectsItemRole"
+          "target": "com.doppler.api#GetGroupResponseGroupProjectsItemRole"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsGetResponseGroupProjectsList": {
+    "com.doppler.api#GetGroupResponseGroupProjectsList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#GroupsGetResponseGroupProjectsItem"
+        "target": "com.doppler.api#GetGroupResponseGroupProjectsItem"
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsGetResponseGroupMembersItem": {
+    "com.doppler.api#GetGroupResponseGroupMembersItem": {
       "type": "structure",
       "members": {
         "type": {
@@ -10215,14 +10216,14 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsGetResponseGroupMembersList": {
+    "com.doppler.api#GetGroupResponseGroupMembersList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#GroupsGetResponseGroupMembersItem"
+        "target": "com.doppler.api#GetGroupResponseGroupMembersItem"
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsGetResponseGroup": {
+    "com.doppler.api#GetGroupResponseGroup": {
       "type": "structure",
       "members": {
         "name": {
@@ -10235,35 +10236,35 @@
           "target": "smithy.api#String"
         },
         "default_project_role": {
-          "target": "com.doppler.api#GroupsGetResponseGroupDefaultProjectRole"
+          "target": "com.doppler.api#GetGroupResponseGroupDefaultProjectRole"
         },
         "projects": {
-          "target": "com.doppler.api#GroupsGetResponseGroupProjectsList"
+          "target": "com.doppler.api#GetGroupResponseGroupProjectsList"
         },
         "members": {
-          "target": "com.doppler.api#GroupsGetResponseGroupMembersList"
+          "target": "com.doppler.api#GetGroupResponseGroupMembersList"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsGetResponse": {
+    "com.doppler.api#GetGroupResponse": {
       "type": "structure",
       "members": {
         "group": {
-          "target": "com.doppler.api#GroupsGetResponseGroup"
+          "target": "com.doppler.api#GetGroupResponseGroup"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#GroupsGet": {
+    "com.doppler.api#GetGroup": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#GroupsGetRequest"
+        "target": "com.doppler.api#GetGroupRequest"
       },
       "output": {
-        "target": "com.doppler.api#GroupsGetResponse"
+        "target": "com.doppler.api#GetGroupResponse"
       },
       "errors": [
         {
@@ -10279,7 +10280,7 @@
         "smithy.api#documentation": "Retrieve"
       }
     },
-    "com.doppler.api#GroupsUpdateRequest": {
+    "com.doppler.api#UpdateGroupRequest": {
       "type": "structure",
       "members": {
         "slug": {
@@ -10304,7 +10305,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#GroupsUpdateResponseGroupDefaultProjectRole": {
+    "com.doppler.api#UpdateGroupResponseGroupDefaultProjectRole": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -10313,7 +10314,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsUpdateResponseGroupProjectsItemRole": {
+    "com.doppler.api#UpdateGroupResponseGroupProjectsItemRole": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -10322,7 +10323,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsUpdateResponseGroupProjectsItem": {
+    "com.doppler.api#UpdateGroupResponseGroupProjectsItem": {
       "type": "structure",
       "members": {
         "name": {
@@ -10332,19 +10333,19 @@
           "target": "smithy.api#String"
         },
         "role": {
-          "target": "com.doppler.api#GroupsUpdateResponseGroupProjectsItemRole"
+          "target": "com.doppler.api#UpdateGroupResponseGroupProjectsItemRole"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsUpdateResponseGroupProjectsList": {
+    "com.doppler.api#UpdateGroupResponseGroupProjectsList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#GroupsUpdateResponseGroupProjectsItem"
+        "target": "com.doppler.api#UpdateGroupResponseGroupProjectsItem"
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsUpdateResponseGroupMembersItem": {
+    "com.doppler.api#UpdateGroupResponseGroupMembersItem": {
       "type": "structure",
       "members": {
         "type": {
@@ -10356,14 +10357,14 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsUpdateResponseGroupMembersList": {
+    "com.doppler.api#UpdateGroupResponseGroupMembersList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#GroupsUpdateResponseGroupMembersItem"
+        "target": "com.doppler.api#UpdateGroupResponseGroupMembersItem"
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsUpdateResponseGroup": {
+    "com.doppler.api#UpdateGroupResponseGroup": {
       "type": "structure",
       "members": {
         "name": {
@@ -10376,35 +10377,35 @@
           "target": "smithy.api#String"
         },
         "default_project_role": {
-          "target": "com.doppler.api#GroupsUpdateResponseGroupDefaultProjectRole"
+          "target": "com.doppler.api#UpdateGroupResponseGroupDefaultProjectRole"
         },
         "projects": {
-          "target": "com.doppler.api#GroupsUpdateResponseGroupProjectsList"
+          "target": "com.doppler.api#UpdateGroupResponseGroupProjectsList"
         },
         "members": {
-          "target": "com.doppler.api#GroupsUpdateResponseGroupMembersList"
+          "target": "com.doppler.api#UpdateGroupResponseGroupMembersList"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#GroupsUpdateResponse": {
+    "com.doppler.api#UpdateGroupResponse": {
       "type": "structure",
       "members": {
         "group": {
-          "target": "com.doppler.api#GroupsUpdateResponseGroup"
+          "target": "com.doppler.api#UpdateGroupResponseGroup"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#GroupsUpdate": {
+    "com.doppler.api#UpdateGroup": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#GroupsUpdateRequest"
+        "target": "com.doppler.api#UpdateGroupRequest"
       },
       "output": {
-        "target": "com.doppler.api#GroupsUpdateResponse"
+        "target": "com.doppler.api#UpdateGroupResponse"
       },
       "errors": [
         {
@@ -10420,7 +10421,7 @@
         "smithy.api#documentation": "Update"
       }
     },
-    "com.doppler.api#GroupsDeleteRequest": {
+    "com.doppler.api#DeleteGroupRequest": {
       "type": "structure",
       "members": {
         "slug": {
@@ -10436,10 +10437,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#GroupsDelete": {
+    "com.doppler.api#DeleteGroup": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#GroupsDeleteRequest"
+        "target": "com.doppler.api#DeleteGroupRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10569,7 +10570,7 @@
         "smithy.api#documentation": "Delete Member"
       }
     },
-    "com.doppler.api#GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequestType": {
+    "com.doppler.api#GetWorkplaceIntegrationsIntegrationMemberRequestType": {
       "type": "enum",
       "members": {
         "WORKPLACE_USER": {
@@ -10599,11 +10600,11 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest": {
+    "com.doppler.api#GetWorkplaceIntegrationsIntegrationMemberRequest": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequestType",
+          "target": "com.doppler.api#GetWorkplaceIntegrationsIntegrationMemberRequestType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
@@ -10630,7 +10631,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMemberType": {
+    "com.doppler.api#GetWorkplaceIntegrationsIntegrationMemberResponseMemberType": {
       "type": "enum",
       "members": {
         "WORKPLACE_USER": {
@@ -10660,7 +10661,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMemberRole": {
+    "com.doppler.api#GetWorkplaceIntegrationsIntegrationMemberResponseMemberRole": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -10669,39 +10670,39 @@
       },
       "traits": {}
     },
-    "com.doppler.api#GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMember": {
+    "com.doppler.api#GetWorkplaceIntegrationsIntegrationMemberResponseMember": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMemberType"
+          "target": "com.doppler.api#GetWorkplaceIntegrationsIntegrationMemberResponseMemberType"
         },
         "slug": {
           "target": "smithy.api#String"
         },
         "role": {
-          "target": "com.doppler.api#GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMemberRole"
+          "target": "com.doppler.api#GetWorkplaceIntegrationsIntegrationMemberResponseMemberRole"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponse": {
+    "com.doppler.api#GetWorkplaceIntegrationsIntegrationMemberResponse": {
       "type": "structure",
       "members": {
         "member": {
-          "target": "com.doppler.api#GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponseMember"
+          "target": "com.doppler.api#GetWorkplaceIntegrationsIntegrationMemberResponseMember"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#GetV3WorkplaceIntegrationsIntegrationMembersTypeSlug": {
+    "com.doppler.api#GetWorkplaceIntegrationsIntegrationMember": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest"
+        "target": "com.doppler.api#GetWorkplaceIntegrationsIntegrationMemberRequest"
       },
       "output": {
-        "target": "com.doppler.api#GetV3WorkplaceIntegrationsIntegrationMembersTypeSlugResponse"
+        "target": "com.doppler.api#GetWorkplaceIntegrationsIntegrationMemberResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10712,7 +10713,7 @@
         "smithy.api#documentation": "Retrieve"
       }
     },
-    "com.doppler.api#DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequestType": {
+    "com.doppler.api#DeleteWorkplaceIntegrationsIntegrationMemberRequestType": {
       "type": "enum",
       "members": {
         "WORKPLACE_USER": {
@@ -10742,11 +10743,11 @@
       },
       "traits": {}
     },
-    "com.doppler.api#DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest": {
+    "com.doppler.api#DeleteWorkplaceIntegrationsIntegrationMemberRequest": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.doppler.api#DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequestType",
+          "target": "com.doppler.api#DeleteWorkplaceIntegrationsIntegrationMemberRequestType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
@@ -10773,10 +10774,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlug": {
+    "com.doppler.api#DeleteWorkplaceIntegrationsIntegrationMember": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlugRequest"
+        "target": "com.doppler.api#DeleteWorkplaceIntegrationsIntegrationMemberRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10790,7 +10791,7 @@
         "smithy.api#documentation": "Delete"
       }
     },
-    "com.doppler.api#InvitesListRequest": {
+    "com.doppler.api#ListInvitesRequest": {
       "type": "structure",
       "members": {
         "page": {
@@ -10810,21 +10811,21 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#InvitesListResponseInvitesItemWorkplaceRolePermissionsList": {
+    "com.doppler.api#ListInvitesResponseInvitesItemWorkplaceRolePermissionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.doppler.api#InvitesListResponseInvitesItemWorkplaceRole": {
+    "com.doppler.api#ListInvitesResponseInvitesItemWorkplaceRole": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String"
         },
         "permissions": {
-          "target": "com.doppler.api#InvitesListResponseInvitesItemWorkplaceRolePermissionsList"
+          "target": "com.doppler.api#ListInvitesResponseInvitesItemWorkplaceRolePermissionsList"
         },
         "identifier": {
           "target": "smithy.api#String"
@@ -10841,7 +10842,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#InvitesListResponseInvitesItem": {
+    "com.doppler.api#ListInvitesResponseInvitesItem": {
       "type": "structure",
       "members": {
         "slug": {
@@ -10854,36 +10855,36 @@
           "target": "smithy.api#String"
         },
         "workplace_role": {
-          "target": "com.doppler.api#InvitesListResponseInvitesItemWorkplaceRole"
+          "target": "com.doppler.api#ListInvitesResponseInvitesItemWorkplaceRole"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#InvitesListResponseInvitesList": {
+    "com.doppler.api#ListInvitesResponseInvitesList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#InvitesListResponseInvitesItem"
+        "target": "com.doppler.api#ListInvitesResponseInvitesItem"
       },
       "traits": {}
     },
-    "com.doppler.api#InvitesListResponse": {
+    "com.doppler.api#ListInvitesResponse": {
       "type": "structure",
       "members": {
         "invites": {
-          "target": "com.doppler.api#InvitesListResponseInvitesList"
+          "target": "com.doppler.api#ListInvitesResponseInvitesList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#InvitesList": {
+    "com.doppler.api#ListInvites": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#InvitesListRequest"
+        "target": "com.doppler.api#ListInvitesRequest"
       },
       "output": {
-        "target": "com.doppler.api#InvitesListResponse"
+        "target": "com.doppler.api#ListInvitesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12927,7 +12928,7 @@
         "smithy.api#documentation": "Delete"
       }
     },
-    "com.doppler.api#UsersListRequest": {
+    "com.doppler.api#ListUsersRequest": {
       "type": "structure",
       "members": {
         "page": {
@@ -12949,7 +12950,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#UsersListResponseWorkplaceUsersItemUser": {
+    "com.doppler.api#ListUsersResponseWorkplaceUsersItemUser": {
       "type": "structure",
       "members": {
         "email": {
@@ -12967,7 +12968,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#UsersListResponseWorkplaceUsersItem": {
+    "com.doppler.api#ListUsersResponseWorkplaceUsersItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -12980,23 +12981,23 @@
           "target": "smithy.api#String"
         },
         "user": {
-          "target": "com.doppler.api#UsersListResponseWorkplaceUsersItemUser"
+          "target": "com.doppler.api#ListUsersResponseWorkplaceUsersItemUser"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#UsersListResponseWorkplaceUsersList": {
+    "com.doppler.api#ListUsersResponseWorkplaceUsersList": {
       "type": "list",
       "member": {
-        "target": "com.doppler.api#UsersListResponseWorkplaceUsersItem"
+        "target": "com.doppler.api#ListUsersResponseWorkplaceUsersItem"
       },
       "traits": {}
     },
-    "com.doppler.api#UsersListResponse": {
+    "com.doppler.api#ListUsersResponse": {
       "type": "structure",
       "members": {
         "workplace_users": {
-          "target": "com.doppler.api#UsersListResponseWorkplaceUsersList"
+          "target": "com.doppler.api#ListUsersResponseWorkplaceUsersList"
         },
         "page": {
           "target": "smithy.api#Integer"
@@ -13009,13 +13010,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#UsersList": {
+    "com.doppler.api#ListUsers": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#UsersListRequest"
+        "target": "com.doppler.api#ListUsersRequest"
       },
       "output": {
-        "target": "com.doppler.api#UsersListResponse"
+        "target": "com.doppler.api#ListUsersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13026,7 +13027,7 @@
         "smithy.api#documentation": "List\n\nGet all users within a workplace"
       }
     },
-    "com.doppler.api#UsersGetRequest": {
+    "com.doppler.api#GetUserRequest": {
       "type": "structure",
       "members": {
         "slug": {
@@ -13042,7 +13043,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#UsersGetResponseWorkplaceUserUser": {
+    "com.doppler.api#GetUserResponseWorkplaceUserUser": {
       "type": "structure",
       "members": {
         "email": {
@@ -13060,7 +13061,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#UsersGetResponseWorkplaceUser": {
+    "com.doppler.api#GetUserResponseWorkplaceUser": {
       "type": "structure",
       "members": {
         "id": {
@@ -13073,16 +13074,16 @@
           "target": "smithy.api#String"
         },
         "user": {
-          "target": "com.doppler.api#UsersGetResponseWorkplaceUserUser"
+          "target": "com.doppler.api#GetUserResponseWorkplaceUserUser"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#UsersGetResponse": {
+    "com.doppler.api#GetUserResponse": {
       "type": "structure",
       "members": {
         "workplace_user": {
-          "target": "com.doppler.api#UsersGetResponseWorkplaceUser"
+          "target": "com.doppler.api#GetUserResponseWorkplaceUser"
         },
         "success": {
           "target": "smithy.api#Boolean"
@@ -13092,13 +13093,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#UsersGet": {
+    "com.doppler.api#GetUser": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#UsersGetRequest"
+        "target": "com.doppler.api#GetUserRequest"
       },
       "output": {
-        "target": "com.doppler.api#UsersGetResponse"
+        "target": "com.doppler.api#GetUserResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13109,7 +13110,7 @@
         "smithy.api#documentation": "Retrieve\n\nGet a specific user in a workplace"
       }
     },
-    "com.doppler.api#UsersUpdateRequest": {
+    "com.doppler.api#UpdateUserRequest": {
       "type": "structure",
       "members": {
         "slug": {
@@ -13131,7 +13132,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.doppler.api#UsersUpdateResponseWorkplaceUserUser": {
+    "com.doppler.api#UpdateUserResponseWorkplaceUserUser": {
       "type": "structure",
       "members": {
         "email": {
@@ -13149,7 +13150,7 @@
       },
       "traits": {}
     },
-    "com.doppler.api#UsersUpdateResponseWorkplaceUser": {
+    "com.doppler.api#UpdateUserResponseWorkplaceUser": {
       "type": "structure",
       "members": {
         "id": {
@@ -13162,16 +13163,16 @@
           "target": "smithy.api#String"
         },
         "user": {
-          "target": "com.doppler.api#UsersUpdateResponseWorkplaceUserUser"
+          "target": "com.doppler.api#UpdateUserResponseWorkplaceUserUser"
         }
       },
       "traits": {}
     },
-    "com.doppler.api#UsersUpdateResponse": {
+    "com.doppler.api#UpdateUserResponse": {
       "type": "structure",
       "members": {
         "workplace_user": {
-          "target": "com.doppler.api#UsersUpdateResponseWorkplaceUser"
+          "target": "com.doppler.api#UpdateUserResponseWorkplaceUser"
         },
         "success": {
           "target": "smithy.api#Boolean"
@@ -13181,13 +13182,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.doppler.api#UsersUpdate": {
+    "com.doppler.api#UpdateUser": {
       "type": "operation",
       "input": {
-        "target": "com.doppler.api#UsersUpdateRequest"
+        "target": "com.doppler.api#UpdateUserRequest"
       },
       "output": {
-        "target": "com.doppler.api#UsersUpdateResponse"
+        "target": "com.doppler.api#UpdateUserResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13350,25 +13351,25 @@
           "target": "com.doppler.api#AuthOidc"
         },
         {
-          "target": "com.doppler.api#AuthRevoke"
+          "target": "com.doppler.api#RevokeAuth"
         },
         {
-          "target": "com.doppler.api#ConfigsList"
+          "target": "com.doppler.api#ListConfigs"
         },
         {
-          "target": "com.doppler.api#ConfigsCreate"
+          "target": "com.doppler.api#CreateConfig"
         },
         {
-          "target": "com.doppler.api#ConfigsGet"
+          "target": "com.doppler.api#GetConfig"
         },
         {
-          "target": "com.doppler.api#ConfigsUpdate"
+          "target": "com.doppler.api#UpdateConfig"
         },
         {
-          "target": "com.doppler.api#ConfigsDelete"
+          "target": "com.doppler.api#DeleteConfig"
         },
         {
-          "target": "com.doppler.api#ConfigsClone"
+          "target": "com.doppler.api#CloneConfig"
         },
         {
           "target": "com.doppler.api#DynamicSecretsIssueLease"
@@ -13383,7 +13384,7 @@
           "target": "com.doppler.api#ConfigsInherits"
         },
         {
-          "target": "com.doppler.api#ConfigsLock"
+          "target": "com.doppler.api#LockConfig"
         },
         {
           "target": "com.doppler.api#ConfigLogsList"
@@ -13395,31 +13396,31 @@
           "target": "com.doppler.api#ConfigLogsRollback"
         },
         {
-          "target": "com.doppler.api#SecretsGet"
+          "target": "com.doppler.api#GetSecret"
         },
         {
-          "target": "com.doppler.api#SecretsDelete"
+          "target": "com.doppler.api#DeleteSecret"
         },
         {
-          "target": "com.doppler.api#SecretsList"
+          "target": "com.doppler.api#ListSecrets"
         },
         {
-          "target": "com.doppler.api#SecretsUpdate"
+          "target": "com.doppler.api#UpdateSecret"
         },
         {
-          "target": "com.doppler.api#SecretsDownload"
+          "target": "com.doppler.api#DownloadSecret"
         },
         {
           "target": "com.doppler.api#SecretsNames"
         },
         {
-          "target": "com.doppler.api#SyncsCreate"
+          "target": "com.doppler.api#CreateSync"
         },
         {
-          "target": "com.doppler.api#SyncsGet"
+          "target": "com.doppler.api#GetSync"
         },
         {
-          "target": "com.doppler.api#SyncsDelete"
+          "target": "com.doppler.api#DeleteSync"
         },
         {
           "target": "com.doppler.api#ServiceTokensList"
@@ -13440,46 +13441,46 @@
           "target": "com.doppler.api#ConfigsDeleteTrustedIp"
         },
         {
-          "target": "com.doppler.api#ConfigsUnlock"
+          "target": "com.doppler.api#UnlockConfig"
         },
         {
-          "target": "com.doppler.api#EnvironmentsList"
+          "target": "com.doppler.api#ListEnvironments"
         },
         {
-          "target": "com.doppler.api#EnvironmentsCreate"
+          "target": "com.doppler.api#CreateEnvironment"
         },
         {
-          "target": "com.doppler.api#EnvironmentsGet"
+          "target": "com.doppler.api#GetEnvironment"
         },
         {
-          "target": "com.doppler.api#EnvironmentsRename"
+          "target": "com.doppler.api#RenameEnvironment"
         },
         {
-          "target": "com.doppler.api#EnvironmentsDelete"
+          "target": "com.doppler.api#DeleteEnvironment"
         },
         {
-          "target": "com.doppler.api#IntegrationsList"
+          "target": "com.doppler.api#ListIntegrations"
         },
         {
-          "target": "com.doppler.api#IntegrationsCreate"
+          "target": "com.doppler.api#CreateIntegration"
         },
         {
-          "target": "com.doppler.api#IntegrationsGet"
+          "target": "com.doppler.api#GetIntegration"
         },
         {
-          "target": "com.doppler.api#IntegrationsUpdate"
+          "target": "com.doppler.api#UpdateIntegration"
         },
         {
-          "target": "com.doppler.api#IntegrationsDelete"
+          "target": "com.doppler.api#DeleteIntegration"
         },
         {
-          "target": "com.doppler.api#GetV3IntegrationsIntegrationMembers"
+          "target": "com.doppler.api#GetIntegrationsIntegrationMembers"
         },
         {
-          "target": "com.doppler.api#PostV3IntegrationsIntegrationMembers"
+          "target": "com.doppler.api#CreateIntegrationsIntegrationMember"
         },
         {
-          "target": "com.doppler.api#PatchV3IntegrationsIntegrationMembersTypeSlug"
+          "target": "com.doppler.api#UpdateIntegrationsIntegrationMember"
         },
         {
           "target": "com.doppler.api#GetOptions"
@@ -13494,22 +13495,22 @@
           "target": "com.doppler.api#AuthMe"
         },
         {
-          "target": "com.doppler.api#ProjectsList"
+          "target": "com.doppler.api#ListProjects"
         },
         {
-          "target": "com.doppler.api#ProjectsCreate"
+          "target": "com.doppler.api#CreateProject"
         },
         {
           "target": "com.doppler.api#ProjectRolesListPermissions"
         },
         {
-          "target": "com.doppler.api#ProjectsGet"
+          "target": "com.doppler.api#GetProject"
         },
         {
-          "target": "com.doppler.api#ProjectsUpdate"
+          "target": "com.doppler.api#UpdateProject"
         },
         {
-          "target": "com.doppler.api#ProjectsDelete"
+          "target": "com.doppler.api#DeleteProject"
         },
         {
           "target": "com.doppler.api#ProjectMembersList"
@@ -13545,46 +13546,46 @@
           "target": "com.doppler.api#ProjectRolesDelete"
         },
         {
-          "target": "com.doppler.api#WebhooksList"
+          "target": "com.doppler.api#ListWebhooks"
         },
         {
-          "target": "com.doppler.api#WebhooksAdd"
+          "target": "com.doppler.api#AddWebhook"
         },
         {
-          "target": "com.doppler.api#WebhooksGet"
+          "target": "com.doppler.api#GetWebhook"
         },
         {
-          "target": "com.doppler.api#WebhooksUpdate"
+          "target": "com.doppler.api#UpdateWebhook"
         },
         {
-          "target": "com.doppler.api#WebhooksDelete"
+          "target": "com.doppler.api#DeleteWebhook"
         },
         {
-          "target": "com.doppler.api#WebhooksDisable"
+          "target": "com.doppler.api#DisableWebhook"
         },
         {
-          "target": "com.doppler.api#WebhooksEnable"
+          "target": "com.doppler.api#EnableWebhook"
         },
         {
-          "target": "com.doppler.api#WorkplaceGet"
+          "target": "com.doppler.api#GetWorkplace"
         },
         {
-          "target": "com.doppler.api#WorkplaceUpdate"
+          "target": "com.doppler.api#UpdateWorkplace"
         },
         {
-          "target": "com.doppler.api#ChangeRequestPoliciesList"
+          "target": "com.doppler.api#ListChangeRequestPolicies"
         },
         {
-          "target": "com.doppler.api#ChangeRequestPoliciesCreate"
+          "target": "com.doppler.api#CreateChangeRequestPolicy"
         },
         {
-          "target": "com.doppler.api#ChangeRequestPoliciesGet"
+          "target": "com.doppler.api#GetChangeRequestPolicy"
         },
         {
-          "target": "com.doppler.api#ChangeRequestPoliciesUpdate"
+          "target": "com.doppler.api#UpdateChangeRequestPolicy"
         },
         {
-          "target": "com.doppler.api#ChangeRequestPoliciesDelete"
+          "target": "com.doppler.api#DeleteChangeRequestPolicy"
         },
         {
           "target": "com.doppler.api#GetV3workplacechangeRequests"
@@ -13620,22 +13621,22 @@
           "target": "com.doppler.api#PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdStatus"
         },
         {
-          "target": "com.doppler.api#GroupsList"
+          "target": "com.doppler.api#ListGroups"
         },
         {
-          "target": "com.doppler.api#GroupsCreate"
+          "target": "com.doppler.api#CreateGroup"
         },
         {
-          "target": "com.doppler.api#RetrieveMember"
+          "target": "com.doppler.api#GetMember"
         },
         {
-          "target": "com.doppler.api#GroupsGet"
+          "target": "com.doppler.api#GetGroup"
         },
         {
-          "target": "com.doppler.api#GroupsUpdate"
+          "target": "com.doppler.api#UpdateGroup"
         },
         {
-          "target": "com.doppler.api#GroupsDelete"
+          "target": "com.doppler.api#DeleteGroup"
         },
         {
           "target": "com.doppler.api#GroupsAddMember"
@@ -13644,13 +13645,13 @@
           "target": "com.doppler.api#GroupsDeleteMember"
         },
         {
-          "target": "com.doppler.api#GetV3WorkplaceIntegrationsIntegrationMembersTypeSlug"
+          "target": "com.doppler.api#GetWorkplaceIntegrationsIntegrationMember"
         },
         {
-          "target": "com.doppler.api#DeleteV3WorkplaceIntegrationsIntegrationMembersTypeSlug"
+          "target": "com.doppler.api#DeleteWorkplaceIntegrationsIntegrationMember"
         },
         {
-          "target": "com.doppler.api#InvitesList"
+          "target": "com.doppler.api#ListInvites"
         },
         {
           "target": "com.doppler.api#WorkplaceRolesListPermissions"
@@ -13713,13 +13714,13 @@
           "target": "com.doppler.api#ServiceAccountsDelete"
         },
         {
-          "target": "com.doppler.api#UsersList"
+          "target": "com.doppler.api#ListUsers"
         },
         {
-          "target": "com.doppler.api#UsersGet"
+          "target": "com.doppler.api#GetUser"
         },
         {
-          "target": "com.doppler.api#UsersUpdate"
+          "target": "com.doppler.api#UpdateUser"
         },
         {
           "target": "com.doppler.api#AuditGetUser"
