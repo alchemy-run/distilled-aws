@@ -1,0 +1,34 @@
+{
+  "description": "Type orgDelete's dependency-violation failure. Forgejo refuses to delete an organization that still owns repositories, but answers with a 500 and the body {\"message\":\"user still has ownership of repositories [uid: 16]\"} (observed on Forgejo 16.0.3) rather than a conflict status, so it currently lands as InternalServerError — indistinguishable from a genuine server fault. A dedicated tag lets callers retry until the repositories are gone (the usual case: a destroy deleting an organization and its repositories concurrently) without matching on message text.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.forgejo.organization#OrganizationOwnsRepositories",
+      "value": {
+        "type": "structure",
+        "members": {
+          "code": { "target": "smithy.api#Integer" },
+          "message": { "target": "smithy.api#String" }
+        },
+        "traits": {
+          "smithy.api#error": "client",
+          "smithy.api#httpError": 409,
+          "smithy.api#documentation": "The organization still owns repositories and cannot be deleted until they are gone (Forgejo answers HTTP 500 with `user still has ownership of repositories`). Retry once the repositories are deleted.",
+          "com.distilled.openapi#errorMatchers": [
+            {
+              "status": 500,
+              "message": { "includes": "still has ownership of repositories" }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.forgejo.organization#DeleteOrg/errors/-",
+      "value": {
+        "target": "com.forgejo.organization#OrganizationOwnsRepositories"
+      }
+    }
+  ]
+}

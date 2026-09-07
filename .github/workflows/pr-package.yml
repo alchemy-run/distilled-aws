@@ -58,6 +58,7 @@ jobs:
               { "dir": "packages/discord",         "name": "@distilled.cloud/discord",         "group": "Distilled" },
               { "dir": "packages/expo-eas",        "name": "@distilled.cloud/expo-eas",        "group": "Distilled" },
               { "dir": "packages/fly-io",          "name": "@distilled.cloud/fly-io",          "group": "Distilled" },
+              { "dir": "packages/forgejo",         "name": "@distilled.cloud/forgejo",         "group": "Distilled" },
               { "dir": "packages/gcp",             "name": "@distilled.cloud/gcp",             "group": "Distilled" },
               { "dir": "packages/github",          "name": "@distilled.cloud/github",          "group": "Distilled" },
               { "dir": "packages/hetzner",         "name": "@distilled.cloud/hetzner",         "group": "Distilled" },

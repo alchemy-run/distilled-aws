@@ -1,0 +1,473 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.forgejo.activitypub#ActivityPub": {
+      "type": "structure",
+      "members": {
+        "_context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "@context"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ActivityPub type"
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubInstanceActor": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.activitypub#ActivityPub"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/activitypub/actor",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the instance's Actor"
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubInstanceActorInbox": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/activitypub/actor/inbox",
+          "code": 200
+        },
+        "smithy.api#documentation": "Send to the inbox"
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubInstanceActorOutboxResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubInstanceActorOutbox": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.activitypub#ActivitypubInstanceActorOutboxResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/activitypub/actor/outbox",
+          "code": 200
+        },
+        "smithy.api#documentation": "Display the outbox (always empty)"
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubRepositoryRequest": {
+      "type": "structure",
+      "members": {
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "repository ID of the repo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubRepository": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.activitypub#ActivitypubRepositoryRequest"
+      },
+      "output": {
+        "target": "com.forgejo.activitypub#ActivityPub"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/activitypub/repository-id/{repository_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the Repository actor for a repo"
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubRepositoryInboxRequest": {
+      "type": "structure",
+      "members": {
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "repository ID of the repo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubRepositoryInbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.activitypub#ActivitypubRepositoryInboxRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/activitypub/repository-id/{repository_id}/inbox",
+          "code": 200
+        },
+        "smithy.api#documentation": "Send to the inbox"
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubRepositoryOutboxRequest": {
+      "type": "structure",
+      "members": {
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "repository ID of the repo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubRepositoryOutboxResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubRepositoryOutbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.activitypub#ActivitypubRepositoryOutboxRequest"
+      },
+      "output": {
+        "target": "com.forgejo.activitypub#ActivitypubRepositoryOutboxResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/activitypub/repository-id/{repository_id}/outbox",
+          "code": 200
+        },
+        "smithy.api#documentation": "Display the outbox"
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubPersonRequest": {
+      "type": "structure",
+      "members": {
+        "user_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "user ID of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubPerson": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.activitypub#ActivitypubPersonRequest"
+      },
+      "output": {
+        "target": "com.forgejo.activitypub#ActivityPub"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/activitypub/user-id/{user_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the Person actor for a user"
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubPersonActivityNoteRequest": {
+      "type": "structure",
+      "members": {
+        "user_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "user ID of the user"
+          }
+        },
+        "activity_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "activity ID of the sought activity"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubPersonActivityNote": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.activitypub#ActivitypubPersonActivityNoteRequest"
+      },
+      "output": {
+        "target": "com.forgejo.activitypub#ActivityPub"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/activitypub/user-id/{user_id}/activities/{activity_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a specific activity object of the user"
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubPersonActivityRequest": {
+      "type": "structure",
+      "members": {
+        "user_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "user ID of the user"
+          }
+        },
+        "activity_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "activity ID of the sought activity"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubPersonActivity": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.activitypub#ActivitypubPersonActivityRequest"
+      },
+      "output": {
+        "target": "com.forgejo.activitypub#ActivityPub"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/activitypub/user-id/{user_id}/activities/{activity_id}/activity",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a specific activity of the user"
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubPersonInboxRequest": {
+      "type": "structure",
+      "members": {
+        "user_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "user ID of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubPersonInbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.activitypub#ActivitypubPersonInboxRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/activitypub/user-id/{user_id}/inbox",
+          "code": 200
+        },
+        "smithy.api#documentation": "Send to the inbox"
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubPersonFeedRequest": {
+      "type": "structure",
+      "members": {
+        "user_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "user ID of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubPersonFeedResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.activitypub#ActivitypubPersonFeed": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.activitypub#ActivitypubPersonFeedRequest"
+      },
+      "output": {
+        "target": "com.forgejo.activitypub#ActivitypubPersonFeedResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.activitypub#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/activitypub/user-id/{user_id}/outbox",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the user's recorded activity"
+      }
+    },
+    "com.forgejo.activitypub#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.forgejo.activitypub#ForgejoActivitypub": {
+      "type": "service",
+      "version": "16.0.3",
+      "operations": [
+        {
+          "target": "com.forgejo.activitypub#ActivitypubInstanceActor"
+        },
+        {
+          "target": "com.forgejo.activitypub#ActivitypubInstanceActorInbox"
+        },
+        {
+          "target": "com.forgejo.activitypub#ActivitypubInstanceActorOutbox"
+        },
+        {
+          "target": "com.forgejo.activitypub#ActivitypubRepository"
+        },
+        {
+          "target": "com.forgejo.activitypub#ActivitypubRepositoryInbox"
+        },
+        {
+          "target": "com.forgejo.activitypub#ActivitypubRepositoryOutbox"
+        },
+        {
+          "target": "com.forgejo.activitypub#ActivitypubPerson"
+        },
+        {
+          "target": "com.forgejo.activitypub#ActivitypubPersonActivityNote"
+        },
+        {
+          "target": "com.forgejo.activitypub#ActivitypubPersonActivity"
+        },
+        {
+          "target": "com.forgejo.activitypub#ActivitypubPersonInbox"
+        },
+        {
+          "target": "com.forgejo.activitypub#ActivitypubPersonFeed"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Forgejo API",
+        "smithy.api#documentation": "This documentation describes the Forgejo API."
+      }
+    }
+  }
+}

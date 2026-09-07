@@ -1,0 +1,10 @@
+{
+  "description": "Mark the always-present members of the User definition as required. Forgejo's Swagger is generated from Go structs with no `required` lists at all, so a user's `id` and `login` type as optional even though they are plain struct members serialized on every response — including the `owner` nested in every repository.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/definitions/User/required",
+      "value": ["id", "login"]
+    }
+  ]
+}

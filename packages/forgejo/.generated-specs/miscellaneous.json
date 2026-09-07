@@ -1,0 +1,1678 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.forgejo.miscellaneous#ActionRun": {
+      "type": "structure",
+      "members": {
+        "ScheduleID": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the cron id for the schedule trigger"
+          }
+        },
+        "approved_by": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "who approved this action run"
+          }
+        },
+        "commit_sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the commit sha the action run ran on"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "when the action run was created"
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Integer"
+        },
+        "event": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the webhook event that causes the workflow to run"
+          }
+        },
+        "event_payload": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the payload of the webhook event that causes the workflow to run"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the url of this action run"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the action run id"
+          }
+        },
+        "index_in_repo": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "a unique number for each run of a repository"
+          }
+        },
+        "is_fork_pull_request": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If this is triggered by a PR from a forked repository or an untrusted user, we need to check if it is approved and limit permissions when running the workflow."
+          }
+        },
+        "is_ref_deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "has the commit/tag/… the action run ran on been deleted"
+          }
+        },
+        "need_approval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "may need approval if it's a fork pull request"
+          }
+        },
+        "prettyref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the commit/tag/… the action run ran on"
+          }
+        },
+        "repository": {
+          "target": "com.forgejo.miscellaneous#Repository"
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "when the action run was started"
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the current status of this run"
+          }
+        },
+        "stopped": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "when the action run was stopped"
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the action run's title"
+          }
+        },
+        "trigger_event": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the trigger event defined in the `on` configuration of the triggered workflow"
+          }
+        },
+        "trigger_user": {
+          "target": "com.forgejo.miscellaneous#User"
+        },
+        "updated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "when the action run was last updated"
+          }
+        },
+        "workflow_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the name of workflow file"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ActionRun represents an action run"
+      }
+    },
+    "com.forgejo.miscellaneous#Repository": {
+      "type": "structure",
+      "members": {
+        "allow_fast_forward_only_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_merge_commits": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_rebase": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_rebase_explicit": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_rebase_update": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_squash_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "archived_at": {
+          "target": "smithy.api#String"
+        },
+        "avatar_url": {
+          "target": "smithy.api#String"
+        },
+        "clone_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "default_allow_maintainer_edit": {
+          "target": "smithy.api#Boolean"
+        },
+        "default_branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "default_delete_branch_after_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "default_merge_style": {
+          "target": "smithy.api#String"
+        },
+        "default_update_style": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "empty": {
+          "target": "smithy.api#Boolean"
+        },
+        "external_tracker": {
+          "target": "com.forgejo.miscellaneous#ExternalTracker"
+        },
+        "external_wiki": {
+          "target": "com.forgejo.miscellaneous#ExternalWiki"
+        },
+        "fork": {
+          "target": "smithy.api#Boolean"
+        },
+        "forks_count": {
+          "target": "smithy.api#Integer"
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "globally_editable_wiki": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_actions": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_issues": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_packages": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_projects": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pull_requests": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_releases": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_wiki": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "is the wiki enabled"
+          }
+        },
+        "has_wiki_contents": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "have wiki pages ever been created"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ignore_whitespace_conflicts": {
+          "target": "smithy.api#Boolean"
+        },
+        "internal": {
+          "target": "smithy.api#Boolean"
+        },
+        "internal_tracker": {
+          "target": "com.forgejo.miscellaneous#InternalTracker"
+        },
+        "language": {
+          "target": "smithy.api#String"
+        },
+        "languages_url": {
+          "target": "smithy.api#String"
+        },
+        "link": {
+          "target": "smithy.api#String"
+        },
+        "mirror": {
+          "target": "smithy.api#Boolean"
+        },
+        "mirror_interval": {
+          "target": "smithy.api#String"
+        },
+        "mirror_updated": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "object_format_name": {
+          "target": "com.forgejo.miscellaneous#RepositoryObjectFormatName",
+          "traits": {
+            "smithy.api#documentation": "ObjectFormatName of the underlying git repository"
+          }
+        },
+        "open_issues_count": {
+          "target": "smithy.api#Integer"
+        },
+        "open_pr_counter": {
+          "target": "smithy.api#Integer"
+        },
+        "original_url": {
+          "target": "smithy.api#String"
+        },
+        "owner": {
+          "target": "com.forgejo.miscellaneous#User",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "parent": {
+          "target": "com.forgejo.miscellaneous#Repository"
+        },
+        "permissions": {
+          "target": "com.forgejo.miscellaneous#Permission"
+        },
+        "private": {
+          "target": "smithy.api#Boolean"
+        },
+        "release_counter": {
+          "target": "smithy.api#Integer"
+        },
+        "repo_transfer": {
+          "target": "com.forgejo.miscellaneous#RepoTransfer"
+        },
+        "size": {
+          "target": "smithy.api#Integer"
+        },
+        "ssh_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stars_count": {
+          "target": "smithy.api#Integer"
+        },
+        "template": {
+          "target": "smithy.api#Boolean"
+        },
+        "topics": {
+          "target": "com.forgejo.miscellaneous#RepositoryTopicsList"
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "watchers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "website": {
+          "target": "smithy.api#String"
+        },
+        "wiki_branch": {
+          "target": "smithy.api#String"
+        },
+        "wiki_clone_url": {
+          "target": "smithy.api#String"
+        },
+        "wiki_ssh_url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Repository represents a repository"
+      }
+    },
+    "com.forgejo.miscellaneous#ExternalTracker": {
+      "type": "structure",
+      "members": {
+        "external_tracker_format": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External Issue Tracker URL Format. Use the placeholders {user}, {repo} and {index} for the username, repository name and issue index."
+          }
+        },
+        "external_tracker_regexp_pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External Issue Tracker issue regular expression"
+          }
+        },
+        "external_tracker_style": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External Issue Tracker Number Format, either `numeric`, `alphanumeric`, or `regexp`"
+          }
+        },
+        "external_tracker_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of external issue tracker."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ExternalTracker represents settings for external tracker"
+      }
+    },
+    "com.forgejo.miscellaneous#ExternalWiki": {
+      "type": "structure",
+      "members": {
+        "external_wiki_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of external wiki."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ExternalWiki represents setting for external wiki"
+      }
+    },
+    "com.forgejo.miscellaneous#InternalTracker": {
+      "type": "structure",
+      "members": {
+        "allow_only_contributors_to_track_time": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Let only contributors track time (Built-in issue tracker)"
+          }
+        },
+        "enable_issue_dependencies": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable dependencies for issues and pull requests (Built-in issue tracker)"
+          }
+        },
+        "enable_time_tracker": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable time tracking (Built-in issue tracker)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "InternalTracker represents settings for internal tracker"
+      }
+    },
+    "com.forgejo.miscellaneous#RepositoryObjectFormatName": {
+      "type": "enum",
+      "members": {
+        "SHA1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sha1"
+          }
+        },
+        "SHA256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sha256"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ObjectFormatName of the underlying git repository"
+      }
+    },
+    "com.forgejo.miscellaneous#User": {
+      "type": "structure",
+      "members": {
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user active"
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the user's avatar"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's description"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "followers_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "user counts"
+          }
+        },
+        "following_count": {
+          "target": "smithy.api#Integer"
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's full name"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the user's profile page"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the user's id",
+            "smithy.api#required": {}
+          }
+        },
+        "is_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is the user an administrator"
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User locale"
+          }
+        },
+        "last_login": {
+          "target": "smithy.api#String"
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's location"
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's username",
+            "smithy.api#required": {}
+          }
+        },
+        "login_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's authentication sign-in name."
+          }
+        },
+        "prohibit_login": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user login prohibited"
+          }
+        },
+        "pronouns": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's pronouns"
+          }
+        },
+        "restricted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user restricted"
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ID of the user's Authentication Source"
+          }
+        },
+        "starred_repos_count": {
+          "target": "smithy.api#Integer"
+        },
+        "visibility": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User visibility level option: public, limited, private"
+          }
+        },
+        "website": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's website"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User represents a user"
+      }
+    },
+    "com.forgejo.miscellaneous#Permission": {
+      "type": "structure",
+      "members": {
+        "admin": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull": {
+          "target": "smithy.api#Boolean"
+        },
+        "push": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Permission represents a set of permissions"
+      }
+    },
+    "com.forgejo.miscellaneous#RepoTransfer": {
+      "type": "structure",
+      "members": {
+        "doer": {
+          "target": "com.forgejo.miscellaneous#User"
+        },
+        "recipient": {
+          "target": "com.forgejo.miscellaneous#User"
+        },
+        "teams": {
+          "target": "com.forgejo.miscellaneous#RepoTransferTeamsList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "RepoTransfer represents a pending repo transfer"
+      }
+    },
+    "com.forgejo.miscellaneous#Team": {
+      "type": "structure",
+      "members": {
+        "can_create_org_repo": {
+          "target": "smithy.api#Boolean"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "includes_all_repositories": {
+          "target": "smithy.api#Boolean"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organization": {
+          "target": "com.forgejo.miscellaneous#Organization"
+        },
+        "permission": {
+          "target": "com.forgejo.miscellaneous#TeamPermission"
+        },
+        "units": {
+          "target": "com.forgejo.miscellaneous#TeamUnitsList"
+        },
+        "units_map": {
+          "target": "com.forgejo.miscellaneous#TeamUnitsMapMap"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Team represents a team in an organization"
+      }
+    },
+    "com.forgejo.miscellaneous#Organization": {
+      "type": "structure",
+      "members": {
+        "avatar_url": {
+          "target": "smithy.api#String"
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "full_name": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "repo_admin_change_team_access": {
+          "target": "smithy.api#Boolean"
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "deprecated",
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "smithy.api#String"
+        },
+        "website": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization represents an organization"
+      }
+    },
+    "com.forgejo.miscellaneous#TeamPermission": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "owner"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.miscellaneous#TeamUnitsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.miscellaneous#TeamUnitsMapMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.miscellaneous#RepoTransferTeamsList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.miscellaneous#Team"
+      },
+      "traits": {}
+    },
+    "com.forgejo.miscellaneous#RepositoryTopicsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.miscellaneous#GetActionsRun": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.miscellaneous#ActionRun"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/actions/run",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a workflow run associated with a token\n\nThe automatic actions token must be used as the authentication mechanism (<code>Authorization: Bearer $&#x7b;&#x7b; forgejo.token &#x7d;&#x7d;</code>); other types of tokens cannot be used. The token is associated with the job, which must be still running for the request to this endpoint to succeed."
+      }
+    },
+    "com.forgejo.miscellaneous#ListGitignoresTemplatesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.miscellaneous#ListGitignoresTemplatesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.miscellaneous#ListGitignoresTemplatesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.miscellaneous#ListGitignoresTemplates": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.miscellaneous#ListGitignoresTemplatesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/gitignore/templates",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns a list of all gitignore templates"
+      }
+    },
+    "com.forgejo.miscellaneous#GetGitignoreTemplateInfoRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the template"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.miscellaneous#GitignoreTemplateInfo": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "source": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "GitignoreTemplateInfo name and text of a gitignore template"
+      }
+    },
+    "com.forgejo.miscellaneous#GetGitignoreTemplateInfo": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.miscellaneous#GetGitignoreTemplateInfoRequest"
+      },
+      "output": {
+        "target": "com.forgejo.miscellaneous#GitignoreTemplateInfo"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.miscellaneous#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/gitignore/templates/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns information about a gitignore template"
+      }
+    },
+    "com.forgejo.miscellaneous#ListLabelTemplatesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.miscellaneous#ListLabelTemplatesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.miscellaneous#ListLabelTemplatesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.miscellaneous#ListLabelTemplates": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.miscellaneous#ListLabelTemplatesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/label/templates",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns a list of all label templates"
+      }
+    },
+    "com.forgejo.miscellaneous#GetLabelTemplateInfoRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the template"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.miscellaneous#LabelTemplate": {
+      "type": "structure",
+      "members": {
+        "color": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "exclusive": {
+          "target": "smithy.api#Boolean"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "LabelTemplate info of a Label template"
+      }
+    },
+    "com.forgejo.miscellaneous#GetLabelTemplateInfoResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.miscellaneous#LabelTemplate"
+      },
+      "traits": {}
+    },
+    "com.forgejo.miscellaneous#GetLabelTemplateInfoResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.miscellaneous#GetLabelTemplateInfoResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.miscellaneous#GetLabelTemplateInfo": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.miscellaneous#GetLabelTemplateInfoRequest"
+      },
+      "output": {
+        "target": "com.forgejo.miscellaneous#GetLabelTemplateInfoResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.miscellaneous#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/label/templates/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns all labels in a template"
+      }
+    },
+    "com.forgejo.miscellaneous#LicensesTemplateListEntry": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "LicensesListEntry is used for the API"
+      }
+    },
+    "com.forgejo.miscellaneous#ListLicenseTemplatesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.miscellaneous#LicensesTemplateListEntry"
+      },
+      "traits": {}
+    },
+    "com.forgejo.miscellaneous#ListLicenseTemplatesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.miscellaneous#ListLicenseTemplatesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.miscellaneous#ListLicenseTemplates": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.miscellaneous#ListLicenseTemplatesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/licenses",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns a list of all license templates"
+      }
+    },
+    "com.forgejo.miscellaneous#GetLicenseTemplateInfoRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the license"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.miscellaneous#LicenseTemplateInfo": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String"
+        },
+        "implementation": {
+          "target": "smithy.api#String"
+        },
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "LicensesInfo contains information about a License"
+      }
+    },
+    "com.forgejo.miscellaneous#GetLicenseTemplateInfo": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.miscellaneous#GetLicenseTemplateInfoRequest"
+      },
+      "output": {
+        "target": "com.forgejo.miscellaneous#LicenseTemplateInfo"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.miscellaneous#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/licenses/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns information about a license template"
+      }
+    },
+    "com.forgejo.miscellaneous#RenderMarkdownRequest": {
+      "type": "structure",
+      "members": {
+        "Context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Context to render"
+          }
+        },
+        "Mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mode to render (comment, gfm, markdown)"
+          }
+        },
+        "Text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text markdown to render"
+          }
+        },
+        "Wiki": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is it a wiki page ?"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.miscellaneous#RenderMarkdownResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.miscellaneous#RenderMarkdown": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.miscellaneous#RenderMarkdownRequest"
+      },
+      "output": {
+        "target": "com.forgejo.miscellaneous#RenderMarkdownResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.miscellaneous#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/markdown",
+          "code": 200
+        },
+        "smithy.api#documentation": "Render a markdown document as HTML"
+      }
+    },
+    "com.forgejo.miscellaneous#RenderMarkdownRawRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.miscellaneous#RenderMarkdownRawResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.miscellaneous#RenderMarkdownRaw": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.miscellaneous#RenderMarkdownRawRequest"
+      },
+      "output": {
+        "target": "com.forgejo.miscellaneous#RenderMarkdownRawResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.miscellaneous#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/markdown/raw",
+          "code": 200
+        },
+        "smithy.api#documentation": "Render raw markdown as HTML"
+      }
+    },
+    "com.forgejo.miscellaneous#RenderMarkupRequest": {
+      "type": "structure",
+      "members": {
+        "BranchPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current branch path where the form gets posted"
+          }
+        },
+        "Context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Context to render"
+          }
+        },
+        "FilePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File path for detecting extension in file mode"
+          }
+        },
+        "Mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mode to render (comment, gfm, markdown, file)"
+          }
+        },
+        "Text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text markup to render"
+          }
+        },
+        "Wiki": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is it a wiki page ?"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.miscellaneous#RenderMarkupResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.miscellaneous#RenderMarkup": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.miscellaneous#RenderMarkupRequest"
+      },
+      "output": {
+        "target": "com.forgejo.miscellaneous#RenderMarkupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.miscellaneous#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/markup",
+          "code": 200
+        },
+        "smithy.api#documentation": "Render a markup document as HTML"
+      }
+    },
+    "com.forgejo.miscellaneous#NodeInfo": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "smithy.api#Document"
+        },
+        "openRegistrations": {
+          "target": "smithy.api#Boolean"
+        },
+        "protocols": {
+          "target": "com.forgejo.miscellaneous#NodeInfoProtocolsList"
+        },
+        "services": {
+          "target": "com.forgejo.miscellaneous#NodeInfoServices"
+        },
+        "software": {
+          "target": "com.forgejo.miscellaneous#NodeInfoSoftware"
+        },
+        "usage": {
+          "target": "com.forgejo.miscellaneous#NodeInfoUsage"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "NodeInfo contains standardized way of exposing metadata about a server running one of the distributed social networks"
+      }
+    },
+    "com.forgejo.miscellaneous#NodeInfoProtocolsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.miscellaneous#NodeInfoServices": {
+      "type": "structure",
+      "members": {
+        "inbound": {
+          "target": "com.forgejo.miscellaneous#NodeInfoServicesInboundList"
+        },
+        "outbound": {
+          "target": "com.forgejo.miscellaneous#NodeInfoServicesOutboundList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "NodeInfoServices contains the third party sites this server can connect to via their application API"
+      }
+    },
+    "com.forgejo.miscellaneous#NodeInfoServicesInboundList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.miscellaneous#NodeInfoServicesOutboundList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.miscellaneous#NodeInfoSoftware": {
+      "type": "structure",
+      "members": {
+        "homepage": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "repository": {
+          "target": "smithy.api#String"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "NodeInfoSoftware contains Metadata about server software in use"
+      }
+    },
+    "com.forgejo.miscellaneous#NodeInfoUsage": {
+      "type": "structure",
+      "members": {
+        "localComments": {
+          "target": "smithy.api#Integer"
+        },
+        "localPosts": {
+          "target": "smithy.api#Integer"
+        },
+        "users": {
+          "target": "com.forgejo.miscellaneous#NodeInfoUsageUsers"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "NodeInfoUsage contains usage statistics for this server"
+      }
+    },
+    "com.forgejo.miscellaneous#NodeInfoUsageUsers": {
+      "type": "structure",
+      "members": {
+        "activeHalfyear": {
+          "target": "smithy.api#Integer"
+        },
+        "activeMonth": {
+          "target": "smithy.api#Integer"
+        },
+        "total": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "NodeInfoUsageUsers contains statistics about the users of this server"
+      }
+    },
+    "com.forgejo.miscellaneous#GetNodeInfo": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.miscellaneous#NodeInfo"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/nodeinfo",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the nodeinfo of the Forgejo application"
+      }
+    },
+    "com.forgejo.miscellaneous#GetSigningKeyResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.miscellaneous#GetSigningKey": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.miscellaneous#GetSigningKeyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/signing-key.gpg",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get default signing-key.gpg"
+      }
+    },
+    "com.forgejo.miscellaneous#GetSSHSigningKeyResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.miscellaneous#GetSSHSigningKey": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.miscellaneous#GetSSHSigningKeyResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.miscellaneous#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/signing-key.ssh",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get default signing-key.ssh"
+      }
+    },
+    "com.forgejo.miscellaneous#ServerVersion": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ServerVersion wraps the version of the server"
+      }
+    },
+    "com.forgejo.miscellaneous#GetVersion": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.miscellaneous#ServerVersion"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/version",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the version of the running application"
+      }
+    },
+    "com.forgejo.miscellaneous#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.forgejo.miscellaneous#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.forgejo.miscellaneous#ForgejoMiscellaneous": {
+      "type": "service",
+      "version": "16.0.3",
+      "operations": [
+        {
+          "target": "com.forgejo.miscellaneous#GetActionsRun"
+        },
+        {
+          "target": "com.forgejo.miscellaneous#ListGitignoresTemplates"
+        },
+        {
+          "target": "com.forgejo.miscellaneous#GetGitignoreTemplateInfo"
+        },
+        {
+          "target": "com.forgejo.miscellaneous#ListLabelTemplates"
+        },
+        {
+          "target": "com.forgejo.miscellaneous#GetLabelTemplateInfo"
+        },
+        {
+          "target": "com.forgejo.miscellaneous#ListLicenseTemplates"
+        },
+        {
+          "target": "com.forgejo.miscellaneous#GetLicenseTemplateInfo"
+        },
+        {
+          "target": "com.forgejo.miscellaneous#RenderMarkdown"
+        },
+        {
+          "target": "com.forgejo.miscellaneous#RenderMarkdownRaw"
+        },
+        {
+          "target": "com.forgejo.miscellaneous#RenderMarkup"
+        },
+        {
+          "target": "com.forgejo.miscellaneous#GetNodeInfo"
+        },
+        {
+          "target": "com.forgejo.miscellaneous#GetSigningKey"
+        },
+        {
+          "target": "com.forgejo.miscellaneous#GetSSHSigningKey"
+        },
+        {
+          "target": "com.forgejo.miscellaneous#GetVersion"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Forgejo API",
+        "smithy.api#documentation": "This documentation describes the Forgejo API."
+      }
+    }
+  }
+}
