@@ -2829,18 +2829,19 @@ export const GetTransactionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTransactionRequest",
 }) as any as S.Schema<GetTransactionRequest>;
 
-export interface GetTransactionByIdRequest {
+export interface GetTransactionByTransactionIdRequest {
   transactionId: string;
 }
-export const GetTransactionByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    transactionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/transaction/{transactionId}", code: 200 }),
-  ),
+export const GetTransactionByTransactionIdRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      transactionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({ method: "GET", uri: "/transaction/{transactionId}", code: 200 }),
+    ),
 ).annotate({
-  identifier: "GetTransactionByIdRequest",
-}) as any as S.Schema<GetTransactionByIdRequest>;
+  identifier: "GetTransactionByTransactionIdRequest",
+}) as any as S.Schema<GetTransactionByTransactionIdRequest>;
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type GetTreasuryRequestOrder = "asc" | "desc";
@@ -5222,15 +5223,15 @@ export const getTransaction: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetTransactionByIdError = NotFound | MercuryOpError;
+export type GetTransactionByTransactionIdError = NotFound | MercuryOpError;
 /** Get a transaction by ID Retrieve a single transaction by its ID. Returns full transaction details including attachments, check images, and related metadata. */
-export const getTransactionById: API.OperationMethod<
-  GetTransactionByIdRequest,
+export const getTransactionByTransactionId: API.OperationMethod<
+  GetTransactionByTransactionIdRequest,
   Transaction,
-  GetTransactionByIdError,
+  GetTransactionByTransactionIdError,
   MercuryOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetTransactionByIdRequest,
+  input: GetTransactionByTransactionIdRequest,
   output: Transaction,
   errors: [NotFound, UnknownMercuryError],
   protocol: MercuryProtocol,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.mercury.api#GetAccountCardsRequest": {
@@ -9180,7 +9181,7 @@
         "smithy.api#documentation": "Download account statement PDF\n\nDownloads a PDF file for the specified account statement. The response includes a Content-Disposition header for proper file download handling. Returns binary PDF data."
       }
     },
-    "com.mercury.api#GetTransactionByIdRequest": {
+    "com.mercury.api#GetTransactionByTransactionIdRequest": {
       "type": "structure",
       "members": {
         "transactionId": {
@@ -9195,10 +9196,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.mercury.api#GetTransactionById": {
+    "com.mercury.api#GetTransactionByTransactionId": {
       "type": "operation",
       "input": {
-        "target": "com.mercury.api#GetTransactionByIdRequest"
+        "target": "com.mercury.api#GetTransactionByTransactionIdRequest"
       },
       "output": {
         "target": "com.mercury.api#Transaction"
@@ -11767,7 +11768,7 @@
           "target": "com.mercury.api#GetStatementPdf"
         },
         {
-          "target": "com.mercury.api#GetTransactionById"
+          "target": "com.mercury.api#GetTransactionByTransactionId"
         },
         {
           "target": "com.mercury.api#UpdateTransaction"
