@@ -443,12 +443,12 @@ export const SearchInfoResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SearchInfoResponse>;
 
 /** The list of messages to rotate through as a loading indicator. Maximum of 10 messages. */
-export type ThreadsSetStatusRequestLoadingMessagesList = Array<string>;
-export const ThreadsSetStatusRequestLoadingMessagesList = /*@__PURE__*/ S.Array(
+export type SetStatusRequestLoadingMessagesList = Array<string>;
+export const SetStatusRequestLoadingMessagesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ThreadsSetStatusRequestLoadingMessagesList>;
+) as any as S.Schema<SetStatusRequestLoadingMessagesList>;
 
-export interface ThreadsSetStatusRequest {
+export interface SetStatusRequest {
   /** Channel ID containing the assistant thread. */
   channel_id: string;
   /** Message timestamp of the thread of where to set the status. */
@@ -456,7 +456,7 @@ export interface ThreadsSetStatusRequest {
   /** Status of the specified bot user, e.g., 'is thinking...'. A two minute timeout applies, which will cause the status to be removed if no message has been sent. */
   status: string;
   /** The list of messages to rotate through as a loading indicator. Maximum of 10 messages. */
-  loading_messages?: ThreadsSetStatusRequestLoadingMessagesList;
+  loading_messages?: SetStatusRequestLoadingMessagesList;
   /** Emoji to use as the icon for this message. Overrides `icon_url`. */
   icon_emoji?: string;
   /** Image URL to use as the icon for this message. */
@@ -464,12 +464,12 @@ export interface ThreadsSetStatusRequest {
   /** The bot's username to display. */
   username?: string;
 }
-export const ThreadsSetStatusRequest = /*@__PURE__*/ S.suspend(() =>
+export const SetStatusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel_id: S.String,
     thread_ts: S.String,
     status: S.String,
-    loading_messages: S.optional(ThreadsSetStatusRequestLoadingMessagesList),
+    loading_messages: S.optional(SetStatusRequestLoadingMessagesList),
     icon_emoji: S.optional(S.String),
     icon_url: S.optional(S.String),
     username: S.optional(S.String),
@@ -477,22 +477,22 @@ export const ThreadsSetStatusRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "POST", uri: "/assistant.threads.setStatus", code: 200 }),
   ),
 ).annotate({
-  identifier: "ThreadsSetStatusRequest",
-}) as any as S.Schema<ThreadsSetStatusRequest>;
+  identifier: "SetStatusRequest",
+}) as any as S.Schema<SetStatusRequest>;
 
-export interface ThreadsSetStatusResponse {
+export interface SetStatusResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const ThreadsSetStatusResponse = /*@__PURE__*/ S.suspend(() =>
+export const SetStatusResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
 ).annotate({
-  identifier: "ThreadsSetStatusResponse",
-}) as any as S.Schema<ThreadsSetStatusResponse>;
+  identifier: "SetStatusResponse",
+}) as any as S.Schema<SetStatusResponse>;
 
-export interface ThreadsSetSuggestedPromptsRequest {
+export interface SetSuggestedPromptsRequest {
   /** Channel ID containing the assistant thread. */
   channel_id: string;
   /** Message timestamp of the thread to set suggested prompts for. */
@@ -502,7 +502,7 @@ export interface ThreadsSetSuggestedPromptsRequest {
   /** Title for the list of provided prompts. For example: Suggested Prompts, Related Questions. */
   title?: string;
 }
-export const ThreadsSetSuggestedPromptsRequest = /*@__PURE__*/ S.suspend(() =>
+export const SetSuggestedPromptsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel_id: S.String,
     thread_ts: S.optional(S.String),
@@ -516,22 +516,22 @@ export const ThreadsSetSuggestedPromptsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ThreadsSetSuggestedPromptsRequest",
-}) as any as S.Schema<ThreadsSetSuggestedPromptsRequest>;
+  identifier: "SetSuggestedPromptsRequest",
+}) as any as S.Schema<SetSuggestedPromptsRequest>;
 
-export interface ThreadsSetSuggestedPromptsResponse {
+export interface SetSuggestedPromptsResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const ThreadsSetSuggestedPromptsResponse = /*@__PURE__*/ S.suspend(() =>
+export const SetSuggestedPromptsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
 ).annotate({
-  identifier: "ThreadsSetSuggestedPromptsResponse",
-}) as any as S.Schema<ThreadsSetSuggestedPromptsResponse>;
+  identifier: "SetSuggestedPromptsResponse",
+}) as any as S.Schema<SetSuggestedPromptsResponse>;
 
-export interface ThreadsSetTitleRequest {
+export interface SetTitleRequest {
   /** Channel ID containing the assistant thread. */
   channel_id: string;
   /** Message timestamp of the thread to set suggested prompts for. */
@@ -539,7 +539,7 @@ export interface ThreadsSetTitleRequest {
   /** The title to use for the thread. */
   title: string;
 }
-export const ThreadsSetTitleRequest = /*@__PURE__*/ S.suspend(() =>
+export const SetTitleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel_id: S.String,
     thread_ts: S.String,
@@ -548,20 +548,20 @@ export const ThreadsSetTitleRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "POST", uri: "/assistant.threads.setTitle", code: 200 }),
   ),
 ).annotate({
-  identifier: "ThreadsSetTitleRequest",
-}) as any as S.Schema<ThreadsSetTitleRequest>;
+  identifier: "SetTitleRequest",
+}) as any as S.Schema<SetTitleRequest>;
 
-export interface ThreadsSetTitleResponse {
+export interface SetTitleResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const ThreadsSetTitleResponse = /*@__PURE__*/ S.suspend(() =>
+export const SetTitleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
 ).annotate({
-  identifier: "ThreadsSetTitleResponse",
-}) as any as S.Schema<ThreadsSetTitleResponse>;
+  identifier: "SetTitleResponse",
+}) as any as S.Schema<SetTitleResponse>;
 
 export type SearchContextError = SlackOpError;
 /** Searches messages, files, channels and users across your Slack organization. Required scopes — user: `search:read.public`, `search:read.private`, `search:read.im`, `search:read.mpim`, `search:read.files`, `search:read.users`; bot: `search:read.public`, `search:read.files`, `search:read.users` Rate limit tier: 5 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — Internal error. - `rate_limited` — Rate limited. - `missing_query` — Missing query. - `query_too_long` — Query too long. - `feature_not_enabled` — The feature is not available on the current workspace. - `invalid_action_token` — The `action_token` provided is not valid. - `invalid_cursor` — The cursormark provided is not valid. - `context_channel_not_found` — Specified `context_channel_id` is invalid or the user lacks permission to view it. - `missing_scope` — The requested channel types are not allowed by the provided scopes. - `assistant_search_context_disabled` — We're having issues returning your search results. Please wait and try again. See https://docs.slack.dev/reference/methods/assistant.search.context */
@@ -593,46 +593,46 @@ export const searchInfo: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ThreadsSetStatusError = SlackOpError;
+export type SetStatusError = SlackOpError;
 /** Set the status for an AI assistant thread. Required scopes — bot: `chat:write` Rate limit tier: 5 Method-specific errors (the `error` slug on the SlackError): - `channel_not_found` — Error returned when given an invalid channel_id - `invalid_thread_ts` — Error returned when given an invalid thread_ts - `reserved_username` — Reserved usernames are not allowed to be used. See https://docs.slack.dev/reference/methods/assistant.threads.setStatus */
-export const threadsSetStatus: API.OperationMethod<
-  ThreadsSetStatusRequest,
-  ThreadsSetStatusResponse,
-  ThreadsSetStatusError,
+export const setStatus: API.OperationMethod<
+  SetStatusRequest,
+  SetStatusResponse,
+  SetStatusError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ThreadsSetStatusRequest,
-  output: ThreadsSetStatusResponse,
+  input: SetStatusRequest,
+  output: SetStatusResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type ThreadsSetSuggestedPromptsError = SlackOpError;
+export type SetSuggestedPromptsError = SlackOpError;
 /** Set suggested prompts for the given assistant thread Required scopes — bot: `assistant:write` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `invalid_thread_ts` — Thread not found - `channel_not_found` — Error returned when given an invalid channel_id - `message_not_found` — Error returned when given an invalid message - `not_agent_app` — This method requires the app to be configured as an agent. Enable the Agent feature in your app configuration at https://api.slack.com/apps. See https://docs.slack.dev/reference/methods/assistant.threads.setSuggestedPrompts */
-export const threadsSetSuggestedPrompts: API.OperationMethod<
-  ThreadsSetSuggestedPromptsRequest,
-  ThreadsSetSuggestedPromptsResponse,
-  ThreadsSetSuggestedPromptsError,
+export const setSuggestedPrompts: API.OperationMethod<
+  SetSuggestedPromptsRequest,
+  SetSuggestedPromptsResponse,
+  SetSuggestedPromptsError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ThreadsSetSuggestedPromptsRequest,
-  output: ThreadsSetSuggestedPromptsResponse,
+  input: SetSuggestedPromptsRequest,
+  output: SetSuggestedPromptsResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type ThreadsSetTitleError = SlackOpError;
+export type SetTitleError = SlackOpError;
 /** Set the title for the given assistant thread Required scopes — bot: `assistant:write` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `invalid_thread_ts` — Thread not found - `channel_not_found` — Error returned when given an invalid channel_id See https://docs.slack.dev/reference/methods/assistant.threads.setTitle */
-export const threadsSetTitle: API.OperationMethod<
-  ThreadsSetTitleRequest,
-  ThreadsSetTitleResponse,
-  ThreadsSetTitleError,
+export const setTitle: API.OperationMethod<
+  SetTitleRequest,
+  SetTitleResponse,
+  SetTitleError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ThreadsSetTitleRequest,
-  output: ThreadsSetTitleResponse,
+  input: SetTitleRequest,
+  output: SetTitleResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

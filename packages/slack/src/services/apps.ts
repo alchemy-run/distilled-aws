@@ -14,165 +14,174 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-/** The direction you want the data sorted by (always by timestamp) */
-export type ActivitiesListRequestSortDirection = "asc" | "desc";
-export const ActivitiesListRequestSortDirection = /*@__PURE__*/ S.String;
+/** IDs of items to be deleted */
+export type BulkDeleteRequestIdsList = Array<string>;
+export const BulkDeleteRequestIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BulkDeleteRequestIdsList>;
 
-export interface ActivitiesListRequest {
-  /** The id of the app to get activities from. */
-  app_id: string;
-  /** The team who owns this log. */
-  team_id?: string;
-  /** Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. See [pagination](/apis/web-api/pagination) for more detail. */
-  cursor?: string;
-  /** The maximum number of items to return. */
-  limit?: number;
-  /** The minimum log level of the log events to be returned. Defaults to 'info'. Acceptable values (in order of relative importance from smallest to largest) are ('trace', 'debug', 'info', 'warn', 'error', 'fatal'). */
-  min_log_level?: string;
-  /** The event type of log events to be returned. */
-  log_event_type?: string;
-  /** The source of log events to be returned. Acceptable values are ('slack', 'developer'). */
-  source?: string;
-  /** The component type of log events to be returned. Acceptable values are ('events_api', 'workflows', 'functions', 'tables'). */
-  component_type?: string;
-  /** The component id of log events to be returned. Will be 'FnXXXXXX' for functions, and 'WfXXXXXX' for workflows */
-  component_id?: string;
-  /** The trace id of log events to be returned. */
-  trace_id?: string;
-  /** The earliest timestamp of the log to retrieve (epoch microseconds). */
-  min_date_created?: number;
-  /** The latest timestamp of the log to retrieve (epoch microseconds). */
-  max_date_created?: number;
-  /** The direction you want the data sorted by (always by timestamp) */
-  sort_direction?: ActivitiesListRequestSortDirection | (string & {});
-}
-export const ActivitiesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    app_id: S.String,
-    team_id: S.optional(S.String),
-    cursor: S.optional(S.String),
-    limit: S.optional(S.Number),
-    min_log_level: S.optional(S.String),
-    log_event_type: S.optional(S.String),
-    source: S.optional(S.String),
-    component_type: S.optional(S.String),
-    component_id: S.optional(S.String),
-    trace_id: S.optional(S.String),
-    min_date_created: S.optional(S.Number),
-    max_date_created: S.optional(S.Number),
-    sort_direction: S.optional(ActivitiesListRequestSortDirection),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/apps.activities.list",
-      code: 200,
-      contentType: "form-urlencoded",
-    }),
-  ),
-).annotate({
-  identifier: "ActivitiesListRequest",
-}) as any as S.Schema<ActivitiesListRequest>;
-
-export type ActivitiesListResponseActivitiesList = Array<unknown>;
-export const ActivitiesListResponseActivitiesList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<ActivitiesListResponseActivitiesList>;
-
-/** Pagination metadata. An empty `next_cursor` means the last page. */
-export interface ActivitiesListResponseResponseMetadata {
-  /** Cursor for the next page — pass as `cursor` on the next call. */
-  next_cursor?: string;
-}
-export const ActivitiesListResponseResponseMetadata = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      next_cursor: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ActivitiesListResponseResponseMetadata",
-}) as any as S.Schema<ActivitiesListResponseResponseMetadata>;
-
-export interface ActivitiesListResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  activities: ActivitiesListResponseActivitiesList;
-  /** Pagination metadata. An empty `next_cursor` means the last page. */
-  response_metadata?: ActivitiesListResponseResponseMetadata;
-}
-export const ActivitiesListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    activities: ActivitiesListResponseActivitiesList,
-    response_metadata: S.optional(ActivitiesListResponseResponseMetadata),
-  }),
-).annotate({
-  identifier: "ActivitiesListResponse",
-}) as any as S.Schema<ActivitiesListResponse>;
-
-export interface AuthExternalDeleteRequest {
-  /** The id of the app whose tokens you want to delete */
+export interface BulkDeleteRequest {
+  /** name of the datastore */
+  datastore: string;
+  /** IDs of items to be deleted */
+  ids: BulkDeleteRequestIdsList;
   app_id?: string;
-  /** The provider key of the provider whose tokens you want to delete */
-  provider_key?: string;
-  /** The id of the token that you want to delete */
-  external_token_id?: string;
 }
-export const AuthExternalDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const BulkDeleteRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    datastore: S.String,
+    ids: BulkDeleteRequestIdsList,
     app_id: S.optional(S.String),
-    provider_key: S.optional(S.String),
-    external_token_id: S.optional(S.String),
   }).pipe(
-    T.Http({ method: "POST", uri: "/apps.auth.external.delete", code: 200 }),
+    T.Http({ method: "POST", uri: "/apps.datastore.bulkDelete", code: 200 }),
   ),
 ).annotate({
-  identifier: "AuthExternalDeleteRequest",
-}) as any as S.Schema<AuthExternalDeleteRequest>;
+  identifier: "BulkDeleteRequest",
+}) as any as S.Schema<BulkDeleteRequest>;
 
-export interface AuthExternalDeleteResponse {
+/** attribute names and values of the items that failed to be processed */
+export type BulkDeleteResponseFailedItemsList = Array<string>;
+export const BulkDeleteResponseFailedItemsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BulkDeleteResponseFailedItemsList>;
+
+export interface BulkDeleteResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
+  /** attribute names and values of the items that failed to be processed */
+  failed_items?: BulkDeleteResponseFailedItemsList;
 }
-export const AuthExternalDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export const BulkDeleteResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
+    failed_items: S.optional(BulkDeleteResponseFailedItemsList),
   }),
 ).annotate({
-  identifier: "AuthExternalDeleteResponse",
-}) as any as S.Schema<AuthExternalDeleteResponse>;
+  identifier: "BulkDeleteResponse",
+}) as any as S.Schema<BulkDeleteResponse>;
 
-export interface AuthExternalGetRequest {
-  /** The id of the token you want to get the token for */
-  external_token_id: string;
-  /** Always refresh existing token before returning even when the token has not expired */
-  force_refresh?: boolean;
+/** items' ids */
+export type BulkGetRequestIdsList = Array<string>;
+export const BulkGetRequestIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BulkGetRequestIdsList>;
+
+export interface BulkGetRequest {
+  /** name of the datastore */
+  datastore: string;
+  /** items' ids */
+  ids: BulkGetRequestIdsList;
+  app_id?: string;
 }
-export const AuthExternalGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const BulkGetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    external_token_id: S.String,
-    force_refresh: S.optional(S.Boolean),
+    datastore: S.String,
+    ids: BulkGetRequestIdsList,
+    app_id: S.optional(S.String),
   }).pipe(
-    T.Http({ method: "POST", uri: "/apps.auth.external.get", code: 200 }),
+    T.Http({ method: "POST", uri: "/apps.datastore.bulkGet", code: 200 }),
   ),
-).annotate({
-  identifier: "AuthExternalGetRequest",
-}) as any as S.Schema<AuthExternalGetRequest>;
+).annotate({ identifier: "BulkGetRequest" }) as any as S.Schema<BulkGetRequest>;
 
-export interface AuthExternalGetResponse {
+export type BulkGetResponseItemsItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const BulkGetResponseItemsItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<BulkGetResponseItemsItemMap>;
+
+/** array of attribute names and values of each item */
+export type BulkGetResponseItemsList = Array<BulkGetResponseItemsItemMap>;
+export const BulkGetResponseItemsList = /*@__PURE__*/ S.Array(
+  BulkGetResponseItemsItemMap,
+) as any as S.Schema<BulkGetResponseItemsList>;
+
+/** attribute names and values of the items that failed to be processed */
+export type BulkGetResponseFailedItemsList = Array<string>;
+export const BulkGetResponseFailedItemsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BulkGetResponseFailedItemsList>;
+
+export interface BulkGetResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  external_token: string;
-  token_response_extras: unknown;
+  /** array of attribute names and values of each item */
+  items?: BulkGetResponseItemsList;
+  /** attribute names and values of the items that failed to be processed */
+  failed_items?: BulkGetResponseFailedItemsList;
 }
-export const AuthExternalGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const BulkGetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    external_token: S.String,
-    token_response_extras: S.Unknown,
+    items: S.optional(BulkGetResponseItemsList),
+    failed_items: S.optional(BulkGetResponseFailedItemsList),
   }),
 ).annotate({
-  identifier: "AuthExternalGetResponse",
-}) as any as S.Schema<AuthExternalGetResponse>;
+  identifier: "BulkGetResponse",
+}) as any as S.Schema<BulkGetResponse>;
+
+export type BulkPutRequestItemsItemMap = { [key: string]: unknown | undefined };
+export const BulkPutRequestItemsItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<BulkPutRequestItemsItemMap>;
+
+/** attribute names and values of the items; limit of 25 */
+export type BulkPutRequestItemsList = Array<BulkPutRequestItemsItemMap>;
+export const BulkPutRequestItemsList = /*@__PURE__*/ S.Array(
+  BulkPutRequestItemsItemMap,
+) as any as S.Schema<BulkPutRequestItemsList>;
+
+export interface BulkPutRequest {
+  /** name of the datastore */
+  datastore: string;
+  /** attribute names and values of the items; limit of 25 */
+  items: BulkPutRequestItemsList;
+  app_id?: string;
+}
+export const BulkPutRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    datastore: S.String,
+    items: BulkPutRequestItemsList,
+    app_id: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/apps.datastore.bulkPut", code: 200 }),
+  ),
+).annotate({ identifier: "BulkPutRequest" }) as any as S.Schema<BulkPutRequest>;
+
+export type BulkPutResponseFailedItemsItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const BulkPutResponseFailedItemsItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<BulkPutResponseFailedItemsItemMap>;
+
+/** attribute names and values of the items that failed to be processed */
+export type BulkPutResponseFailedItemsList =
+  Array<BulkPutResponseFailedItemsItemMap>;
+export const BulkPutResponseFailedItemsList = /*@__PURE__*/ S.Array(
+  BulkPutResponseFailedItemsItemMap,
+) as any as S.Schema<BulkPutResponseFailedItemsList>;
+
+export interface BulkPutResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  /** name of the datastore */
+  datastore?: string;
+  /** attribute names and values of the items that failed to be processed */
+  failed_items?: BulkPutResponseFailedItemsList;
+}
+export const BulkPutResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    datastore: S.optional(S.String),
+    failed_items: S.optional(BulkPutResponseFailedItemsList),
+  }),
+).annotate({
+  identifier: "BulkPutResponse",
+}) as any as S.Schema<BulkPutResponse>;
 
 export interface ConnectionsOpenRequest {}
 export const ConnectionsOpenRequest = /*@__PURE__*/ S.suspend(() =>
@@ -198,183 +207,63 @@ export const ConnectionsOpenResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConnectionsOpenResponse",
 }) as any as S.Schema<ConnectionsOpenResponse>;
 
-/** IDs of items to be deleted */
-export type DatastoreBulkDeleteRequestIdsList = Array<string>;
-export const DatastoreBulkDeleteRequestIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DatastoreBulkDeleteRequestIdsList>;
-
-export interface DatastoreBulkDeleteRequest {
-  /** name of the datastore */
-  datastore: string;
-  /** IDs of items to be deleted */
-  ids: DatastoreBulkDeleteRequestIdsList;
-  app_id?: string;
+export interface CreateManifestRequest {
+  /** A JSON app manifest encoded as a string. This manifest **must** use a valid [app manifest schema - read our guide to creating one](/app-manifests/configuring-apps-with-app-manifests#fields). */
+  manifest: string;
+  /** When called with an org token, which specific team to create app on */
+  team_id?: string;
 }
-export const DatastoreBulkDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateManifestRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    datastore: S.String,
-    ids: DatastoreBulkDeleteRequestIdsList,
-    app_id: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/apps.datastore.bulkDelete", code: 200 }),
-  ),
+    manifest: S.String,
+    team_id: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/apps.manifest.create", code: 200 })),
 ).annotate({
-  identifier: "DatastoreBulkDeleteRequest",
-}) as any as S.Schema<DatastoreBulkDeleteRequest>;
+  identifier: "CreateManifestRequest",
+}) as any as S.Schema<CreateManifestRequest>;
 
-/** attribute names and values of the items that failed to be processed */
-export type DatastoreBulkDeleteResponseFailedItemsList = Array<string>;
-export const DatastoreBulkDeleteResponseFailedItemsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DatastoreBulkDeleteResponseFailedItemsList>;
-
-export interface DatastoreBulkDeleteResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  /** attribute names and values of the items that failed to be processed */
-  failed_items?: DatastoreBulkDeleteResponseFailedItemsList;
+export interface CreateManifestResponseCredentials {
+  client_id?: string;
+  client_secret?: string | Redacted.Redacted<string>;
+  verification_token?: string;
+  signing_secret?: string | Redacted.Redacted<string>;
 }
-export const DatastoreBulkDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateManifestResponseCredentials = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    ok: S.Boolean,
-    failed_items: S.optional(DatastoreBulkDeleteResponseFailedItemsList),
+    client_id: S.optional(S.String),
+    client_secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    verification_token: S.optional(S.String),
+    signing_secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
   }),
 ).annotate({
-  identifier: "DatastoreBulkDeleteResponse",
-}) as any as S.Schema<DatastoreBulkDeleteResponse>;
+  identifier: "CreateManifestResponseCredentials",
+}) as any as S.Schema<CreateManifestResponseCredentials>;
 
-/** items' ids */
-export type DatastoreBulkGetRequestIdsList = Array<string>;
-export const DatastoreBulkGetRequestIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DatastoreBulkGetRequestIdsList>;
-
-export interface DatastoreBulkGetRequest {
-  /** name of the datastore */
-  datastore: string;
-  /** items' ids */
-  ids: DatastoreBulkGetRequestIdsList;
-  app_id?: string;
-}
-export const DatastoreBulkGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    datastore: S.String,
-    ids: DatastoreBulkGetRequestIdsList,
-    app_id: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/apps.datastore.bulkGet", code: 200 }),
-  ),
-).annotate({
-  identifier: "DatastoreBulkGetRequest",
-}) as any as S.Schema<DatastoreBulkGetRequest>;
-
-export type DatastoreBulkGetResponseItemsItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const DatastoreBulkGetResponseItemsItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<DatastoreBulkGetResponseItemsItemMap>;
-
-/** array of attribute names and values of each item */
-export type DatastoreBulkGetResponseItemsList =
-  Array<DatastoreBulkGetResponseItemsItemMap>;
-export const DatastoreBulkGetResponseItemsList = /*@__PURE__*/ S.Array(
-  DatastoreBulkGetResponseItemsItemMap,
-) as any as S.Schema<DatastoreBulkGetResponseItemsList>;
-
-/** attribute names and values of the items that failed to be processed */
-export type DatastoreBulkGetResponseFailedItemsList = Array<string>;
-export const DatastoreBulkGetResponseFailedItemsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DatastoreBulkGetResponseFailedItemsList>;
-
-export interface DatastoreBulkGetResponse {
+export interface CreateManifestResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  /** array of attribute names and values of each item */
-  items?: DatastoreBulkGetResponseItemsList;
-  /** attribute names and values of the items that failed to be processed */
-  failed_items?: DatastoreBulkGetResponseFailedItemsList;
+  app_id: string;
+  credentials: CreateManifestResponseCredentials;
+  oauth_authorize_url?: string;
+  /** The team ID where the app was created on */
+  team_id?: string;
+  /** The team domain where the app was created on */
+  team_domain?: string;
+  app_token?: string;
 }
-export const DatastoreBulkGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateManifestResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    items: S.optional(DatastoreBulkGetResponseItemsList),
-    failed_items: S.optional(DatastoreBulkGetResponseFailedItemsList),
+    app_id: S.String,
+    credentials: CreateManifestResponseCredentials,
+    oauth_authorize_url: S.optional(S.String),
+    team_id: S.optional(S.String),
+    team_domain: S.optional(S.String),
+    app_token: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DatastoreBulkGetResponse",
-}) as any as S.Schema<DatastoreBulkGetResponse>;
-
-export type DatastoreBulkPutRequestItemsItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const DatastoreBulkPutRequestItemsItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<DatastoreBulkPutRequestItemsItemMap>;
-
-/** attribute names and values of the items; limit of 25 */
-export type DatastoreBulkPutRequestItemsList =
-  Array<DatastoreBulkPutRequestItemsItemMap>;
-export const DatastoreBulkPutRequestItemsList = /*@__PURE__*/ S.Array(
-  DatastoreBulkPutRequestItemsItemMap,
-) as any as S.Schema<DatastoreBulkPutRequestItemsList>;
-
-export interface DatastoreBulkPutRequest {
-  /** name of the datastore */
-  datastore: string;
-  /** attribute names and values of the items; limit of 25 */
-  items: DatastoreBulkPutRequestItemsList;
-  app_id?: string;
-}
-export const DatastoreBulkPutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    datastore: S.String,
-    items: DatastoreBulkPutRequestItemsList,
-    app_id: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/apps.datastore.bulkPut", code: 200 }),
-  ),
-).annotate({
-  identifier: "DatastoreBulkPutRequest",
-}) as any as S.Schema<DatastoreBulkPutRequest>;
-
-export type DatastoreBulkPutResponseFailedItemsItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const DatastoreBulkPutResponseFailedItemsItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<DatastoreBulkPutResponseFailedItemsItemMap>;
-
-/** attribute names and values of the items that failed to be processed */
-export type DatastoreBulkPutResponseFailedItemsList =
-  Array<DatastoreBulkPutResponseFailedItemsItemMap>;
-export const DatastoreBulkPutResponseFailedItemsList = /*@__PURE__*/ S.Array(
-  DatastoreBulkPutResponseFailedItemsItemMap,
-) as any as S.Schema<DatastoreBulkPutResponseFailedItemsList>;
-
-export interface DatastoreBulkPutResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  /** name of the datastore */
-  datastore?: string;
-  /** attribute names and values of the items that failed to be processed */
-  failed_items?: DatastoreBulkPutResponseFailedItemsList;
-}
-export const DatastoreBulkPutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    datastore: S.optional(S.String),
-    failed_items: S.optional(DatastoreBulkPutResponseFailedItemsList),
-  }),
-).annotate({
-  identifier: "DatastoreBulkPutResponse",
-}) as any as S.Schema<DatastoreBulkPutResponse>;
+  identifier: "CreateManifestResponse",
+}) as any as S.Schema<CreateManifestResponse>;
 
 /** A map of attributes referenced in expression */
 export type DatastoreCountRequestExpressionAttributesMap = {
@@ -438,130 +327,6 @@ export const DatastoreCountResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DatastoreCountResponse",
 }) as any as S.Schema<DatastoreCountResponse>;
-
-export interface DatastoreDeleteRequest {
-  /** name of the datastore */
-  datastore: string;
-  /** item id */
-  id: string;
-  app_id?: string;
-}
-export const DatastoreDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    datastore: S.String,
-    id: S.String,
-    app_id: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/apps.datastore.delete", code: 200 })),
-).annotate({
-  identifier: "DatastoreDeleteRequest",
-}) as any as S.Schema<DatastoreDeleteRequest>;
-
-export interface DatastoreDeleteResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-}
-export const DatastoreDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-  }),
-).annotate({
-  identifier: "DatastoreDeleteResponse",
-}) as any as S.Schema<DatastoreDeleteResponse>;
-
-export interface DatastoreGetRequest {
-  /** name of the datastore */
-  datastore: string;
-  /** item id */
-  id: string;
-  app_id?: string;
-}
-export const DatastoreGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    datastore: S.String,
-    id: S.String,
-    app_id: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/apps.datastore.get", code: 200 })),
-).annotate({
-  identifier: "DatastoreGetRequest",
-}) as any as S.Schema<DatastoreGetRequest>;
-
-/** attribute names and values of the item */
-export type DatastoreGetResponseItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const DatastoreGetResponseItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<DatastoreGetResponseItemMap>;
-
-export interface DatastoreGetResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  /** name of the datastore */
-  datastore?: string;
-  /** attribute names and values of the item */
-  item?: DatastoreGetResponseItemMap;
-}
-export const DatastoreGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    datastore: S.optional(S.String),
-    item: S.optional(DatastoreGetResponseItemMap),
-  }),
-).annotate({
-  identifier: "DatastoreGetResponse",
-}) as any as S.Schema<DatastoreGetResponse>;
-
-/** attribute names and values of the item */
-export type DatastorePutRequestItemMap = { [key: string]: unknown | undefined };
-export const DatastorePutRequestItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<DatastorePutRequestItemMap>;
-
-export interface DatastorePutRequest {
-  /** name of the datastore */
-  datastore: string;
-  /** attribute names and values of the item */
-  item: DatastorePutRequestItemMap;
-  app_id?: string;
-}
-export const DatastorePutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    datastore: S.String,
-    item: DatastorePutRequestItemMap,
-    app_id: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/apps.datastore.put", code: 200 })),
-).annotate({
-  identifier: "DatastorePutRequest",
-}) as any as S.Schema<DatastorePutRequest>;
-
-/** attribute names and values of the item */
-export type DatastorePutResponseItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const DatastorePutResponseItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<DatastorePutResponseItemMap>;
-
-export interface DatastorePutResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  /** name of the datastore */
-  datastore?: string;
-  /** attribute names and values of the item */
-  item?: DatastorePutResponseItemMap;
-}
-export const DatastorePutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    datastore: S.optional(S.String),
-    item: S.optional(DatastorePutResponseItemMap),
-  }),
-).annotate({
-  identifier: "DatastorePutResponse",
-}) as any as S.Schema<DatastorePutResponse>;
 
 /** A map of attributes referenced in expression */
 export type DatastoreQueryRequestExpressionAttributesMap = {
@@ -630,10 +395,18 @@ export const DatastoreQueryResponseItemsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DatastoreQueryResponseItemsList>;
 
 /** Pagination metadata. An empty `next_cursor` means the last page. */
-export type DatastoreQueryResponseResponseMetadata =
-  ActivitiesListResponseResponseMetadata;
-export const DatastoreQueryResponseResponseMetadata =
-  ActivitiesListResponseResponseMetadata;
+export interface DatastoreQueryResponseResponseMetadata {
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
+}
+export const DatastoreQueryResponseResponseMetadata = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      next_cursor: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DatastoreQueryResponseResponseMetadata",
+}) as any as S.Schema<DatastoreQueryResponseResponseMetadata>;
 
 export interface DatastoreQueryResponse {
   /** Always `true` (a failed call raises a typed error instead). */
@@ -643,78 +416,300 @@ export interface DatastoreQueryResponse {
   /** attribute names and values of the items */
   items: DatastoreQueryResponseItemsList;
   /** Pagination metadata. An empty `next_cursor` means the last page. */
-  response_metadata?: ActivitiesListResponseResponseMetadata;
+  response_metadata?: DatastoreQueryResponseResponseMetadata;
 }
 export const DatastoreQueryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     datastore: S.optional(S.String),
     items: DatastoreQueryResponseItemsList,
-    response_metadata: S.optional(ActivitiesListResponseResponseMetadata),
+    response_metadata: S.optional(DatastoreQueryResponseResponseMetadata),
   }),
 ).annotate({
   identifier: "DatastoreQueryResponse",
 }) as any as S.Schema<DatastoreQueryResponse>;
 
-/** attribute names and values to be updated */
-export type DatastoreUpdateRequestItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const DatastoreUpdateRequestItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<DatastoreUpdateRequestItemMap>;
+export interface DeleteAuthExternalRequest {
+  /** The id of the app whose tokens you want to delete */
+  app_id?: string;
+  /** The provider key of the provider whose tokens you want to delete */
+  provider_key?: string;
+  /** The id of the token that you want to delete */
+  external_token_id?: string;
+}
+export const DeleteAuthExternalRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    app_id: S.optional(S.String),
+    provider_key: S.optional(S.String),
+    external_token_id: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/apps.auth.external.delete", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteAuthExternalRequest",
+}) as any as S.Schema<DeleteAuthExternalRequest>;
 
-export interface DatastoreUpdateRequest {
+export interface DeleteAuthExternalResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+}
+export const DeleteAuthExternalResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+  }),
+).annotate({
+  identifier: "DeleteAuthExternalResponse",
+}) as any as S.Schema<DeleteAuthExternalResponse>;
+
+export interface DeleteDatastoreRequest {
   /** name of the datastore */
   datastore: string;
-  /** attribute names and values to be updated */
-  item: DatastoreUpdateRequestItemMap;
+  /** item id */
+  id: string;
   app_id?: string;
 }
-export const DatastoreUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDatastoreRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     datastore: S.String,
-    item: DatastoreUpdateRequestItemMap,
+    id: S.String,
     app_id: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/apps.datastore.update", code: 200 })),
+  }).pipe(T.Http({ method: "POST", uri: "/apps.datastore.delete", code: 200 })),
 ).annotate({
-  identifier: "DatastoreUpdateRequest",
-}) as any as S.Schema<DatastoreUpdateRequest>;
+  identifier: "DeleteDatastoreRequest",
+}) as any as S.Schema<DeleteDatastoreRequest>;
 
-/** attribute names and values of the item, including those updated */
-export type DatastoreUpdateResponseItemMap = {
+export interface DeleteDatastoreResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+}
+export const DeleteDatastoreResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+  }),
+).annotate({
+  identifier: "DeleteDatastoreResponse",
+}) as any as S.Schema<DeleteDatastoreResponse>;
+
+export interface DeleteManifestRequest {
+  /** The ID of the app you want to delete. */
+  app_id: string;
+}
+export const DeleteManifestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    app_id: S.String,
+  }).pipe(T.Http({ method: "POST", uri: "/apps.manifest.delete", code: 200 })),
+).annotate({
+  identifier: "DeleteManifestRequest",
+}) as any as S.Schema<DeleteManifestRequest>;
+
+export interface DeleteManifestResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+}
+export const DeleteManifestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+  }),
+).annotate({
+  identifier: "DeleteManifestResponse",
+}) as any as S.Schema<DeleteManifestResponse>;
+
+export interface ExportManifestRequest {
+  /** The ID of the app whose configuration you want to export as a manifest. */
+  app_id: string;
+}
+export const ExportManifestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    app_id: S.String,
+  }).pipe(T.Http({ method: "POST", uri: "/apps.manifest.export", code: 200 })),
+).annotate({
+  identifier: "ExportManifestRequest",
+}) as any as S.Schema<ExportManifestRequest>;
+
+export interface ExportManifestResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  manifest: unknown;
+}
+export const ExportManifestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    manifest: S.Unknown,
+  }),
+).annotate({
+  identifier: "ExportManifestResponse",
+}) as any as S.Schema<ExportManifestResponse>;
+
+export interface GetAuthExternalRequest {
+  /** The id of the token you want to get the token for */
+  external_token_id: string;
+  /** Always refresh existing token before returning even when the token has not expired */
+  force_refresh?: boolean;
+}
+export const GetAuthExternalRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    external_token_id: S.String,
+    force_refresh: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/apps.auth.external.get", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetAuthExternalRequest",
+}) as any as S.Schema<GetAuthExternalRequest>;
+
+export interface GetAuthExternalResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  external_token: string;
+  token_response_extras: unknown;
+}
+export const GetAuthExternalResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    external_token: S.String,
+    token_response_extras: S.Unknown,
+  }),
+).annotate({
+  identifier: "GetAuthExternalResponse",
+}) as any as S.Schema<GetAuthExternalResponse>;
+
+export interface GetDatastoreRequest {
+  /** name of the datastore */
+  datastore: string;
+  /** item id */
+  id: string;
+  app_id?: string;
+}
+export const GetDatastoreRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    datastore: S.String,
+    id: S.String,
+    app_id: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/apps.datastore.get", code: 200 })),
+).annotate({
+  identifier: "GetDatastoreRequest",
+}) as any as S.Schema<GetDatastoreRequest>;
+
+/** attribute names and values of the item */
+export type GetDatastoreResponseItemMap = {
   [key: string]: unknown | undefined;
 };
-export const DatastoreUpdateResponseItemMap = /*@__PURE__*/ S.Record(
+export const GetDatastoreResponseItemMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<DatastoreUpdateResponseItemMap>;
+) as any as S.Schema<GetDatastoreResponseItemMap>;
 
-export interface DatastoreUpdateResponse {
+export interface GetDatastoreResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   /** name of the datastore */
   datastore?: string;
-  /** attribute names and values of the item, including those updated */
-  item?: DatastoreUpdateResponseItemMap;
+  /** attribute names and values of the item */
+  item?: GetDatastoreResponseItemMap;
 }
-export const DatastoreUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDatastoreResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     datastore: S.optional(S.String),
-    item: S.optional(DatastoreUpdateResponseItemMap),
+    item: S.optional(GetDatastoreResponseItemMap),
   }),
 ).annotate({
-  identifier: "DatastoreUpdateResponse",
-}) as any as S.Schema<DatastoreUpdateResponse>;
+  identifier: "GetDatastoreResponse",
+}) as any as S.Schema<GetDatastoreResponse>;
 
-export interface EventAuthorizationsListRequest {
+/** The direction you want the data sorted by (always by timestamp) */
+export type ListActivitiesRequestSortDirection = "asc" | "desc";
+export const ListActivitiesRequestSortDirection = /*@__PURE__*/ S.String;
+
+export interface ListActivitiesRequest {
+  /** The id of the app to get activities from. */
+  app_id: string;
+  /** The team who owns this log. */
+  team_id?: string;
+  /** Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. See [pagination](/apis/web-api/pagination) for more detail. */
+  cursor?: string;
+  /** The maximum number of items to return. */
+  limit?: number;
+  /** The minimum log level of the log events to be returned. Defaults to 'info'. Acceptable values (in order of relative importance from smallest to largest) are ('trace', 'debug', 'info', 'warn', 'error', 'fatal'). */
+  min_log_level?: string;
+  /** The event type of log events to be returned. */
+  log_event_type?: string;
+  /** The source of log events to be returned. Acceptable values are ('slack', 'developer'). */
+  source?: string;
+  /** The component type of log events to be returned. Acceptable values are ('events_api', 'workflows', 'functions', 'tables'). */
+  component_type?: string;
+  /** The component id of log events to be returned. Will be 'FnXXXXXX' for functions, and 'WfXXXXXX' for workflows */
+  component_id?: string;
+  /** The trace id of log events to be returned. */
+  trace_id?: string;
+  /** The earliest timestamp of the log to retrieve (epoch microseconds). */
+  min_date_created?: number;
+  /** The latest timestamp of the log to retrieve (epoch microseconds). */
+  max_date_created?: number;
+  /** The direction you want the data sorted by (always by timestamp) */
+  sort_direction?: ListActivitiesRequestSortDirection | (string & {});
+}
+export const ListActivitiesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    app_id: S.String,
+    team_id: S.optional(S.String),
+    cursor: S.optional(S.String),
+    limit: S.optional(S.Number),
+    min_log_level: S.optional(S.String),
+    log_event_type: S.optional(S.String),
+    source: S.optional(S.String),
+    component_type: S.optional(S.String),
+    component_id: S.optional(S.String),
+    trace_id: S.optional(S.String),
+    min_date_created: S.optional(S.Number),
+    max_date_created: S.optional(S.Number),
+    sort_direction: S.optional(ListActivitiesRequestSortDirection),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/apps.activities.list",
+      code: 200,
+      contentType: "form-urlencoded",
+    }),
+  ),
+).annotate({
+  identifier: "ListActivitiesRequest",
+}) as any as S.Schema<ListActivitiesRequest>;
+
+export type ListActivitiesResponseActivitiesList = Array<unknown>;
+export const ListActivitiesResponseActivitiesList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<ListActivitiesResponseActivitiesList>;
+
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type ListActivitiesResponseResponseMetadata =
+  DatastoreQueryResponseResponseMetadata;
+export const ListActivitiesResponseResponseMetadata =
+  DatastoreQueryResponseResponseMetadata;
+
+export interface ListActivitiesResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  activities: ListActivitiesResponseActivitiesList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: DatastoreQueryResponseResponseMetadata;
+}
+export const ListActivitiesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    activities: ListActivitiesResponseActivitiesList,
+    response_metadata: S.optional(DatastoreQueryResponseResponseMetadata),
+  }),
+).annotate({
+  identifier: "ListActivitiesResponse",
+}) as any as S.Schema<ListActivitiesResponse>;
+
+export interface ListEventAuthorizationsRequest {
   event_context: string;
   cursor?: string;
   limit?: number;
 }
-export const EventAuthorizationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListEventAuthorizationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     event_context: S.String,
     cursor: S.optional(S.String),
@@ -727,17 +722,17 @@ export const EventAuthorizationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EventAuthorizationsListRequest",
-}) as any as S.Schema<EventAuthorizationsListRequest>;
+  identifier: "ListEventAuthorizationsRequest",
+}) as any as S.Schema<ListEventAuthorizationsRequest>;
 
-export interface EventAuthorizationsListResponseAuthorizationsItem {
+export interface ListEventAuthorizationsResponseAuthorizationsItem {
   enterprise_id: string | null;
   team_id: string | null;
   user_id: string;
   is_bot: boolean;
   is_enterprise_install: boolean;
 }
-export const EventAuthorizationsListResponseAuthorizationsItem =
+export const ListEventAuthorizationsResponseAuthorizationsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       enterprise_id: S.NullOr(S.String),
@@ -747,43 +742,94 @@ export const EventAuthorizationsListResponseAuthorizationsItem =
       is_enterprise_install: S.Boolean,
     }),
   ).annotate({
-    identifier: "EventAuthorizationsListResponseAuthorizationsItem",
-  }) as any as S.Schema<EventAuthorizationsListResponseAuthorizationsItem>;
+    identifier: "ListEventAuthorizationsResponseAuthorizationsItem",
+  }) as any as S.Schema<ListEventAuthorizationsResponseAuthorizationsItem>;
 
-export type EventAuthorizationsListResponseAuthorizationsList =
-  Array<EventAuthorizationsListResponseAuthorizationsItem>;
-export const EventAuthorizationsListResponseAuthorizationsList =
+export type ListEventAuthorizationsResponseAuthorizationsList =
+  Array<ListEventAuthorizationsResponseAuthorizationsItem>;
+export const ListEventAuthorizationsResponseAuthorizationsList =
   /*@__PURE__*/ S.Array(
-    EventAuthorizationsListResponseAuthorizationsItem,
-  ) as any as S.Schema<EventAuthorizationsListResponseAuthorizationsList>;
+    ListEventAuthorizationsResponseAuthorizationsItem,
+  ) as any as S.Schema<ListEventAuthorizationsResponseAuthorizationsList>;
 
 /** Pagination metadata. An empty `next_cursor` means the last page. */
-export type EventAuthorizationsListResponseResponseMetadata =
-  ActivitiesListResponseResponseMetadata;
-export const EventAuthorizationsListResponseResponseMetadata =
-  ActivitiesListResponseResponseMetadata;
+export type ListEventAuthorizationsResponseResponseMetadata =
+  DatastoreQueryResponseResponseMetadata;
+export const ListEventAuthorizationsResponseResponseMetadata =
+  DatastoreQueryResponseResponseMetadata;
 
-export interface EventAuthorizationsListResponse {
+export interface ListEventAuthorizationsResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   /** The next cursor for use in [pagination](/apis/web-api/pagination). If present, pass this in subsequent calls to get additional results */
   cursor_next?: string;
-  authorizations: EventAuthorizationsListResponseAuthorizationsList;
+  authorizations: ListEventAuthorizationsResponseAuthorizationsList;
   /** Pagination metadata. An empty `next_cursor` means the last page. */
-  response_metadata?: ActivitiesListResponseResponseMetadata;
+  response_metadata?: DatastoreQueryResponseResponseMetadata;
 }
-export const EventAuthorizationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListEventAuthorizationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     cursor_next: S.optional(S.String),
-    authorizations: EventAuthorizationsListResponseAuthorizationsList,
-    response_metadata: S.optional(ActivitiesListResponseResponseMetadata),
+    authorizations: ListEventAuthorizationsResponseAuthorizationsList,
+    response_metadata: S.optional(DatastoreQueryResponseResponseMetadata),
   }),
 ).annotate({
-  identifier: "EventAuthorizationsListResponse",
-}) as any as S.Schema<EventAuthorizationsListResponse>;
+  identifier: "ListEventAuthorizationsResponse",
+}) as any as S.Schema<ListEventAuthorizationsResponse>;
 
-export interface IconSetRequest {
+/** attribute names and values of the item */
+export type PutDatastoreRequestItemMap = { [key: string]: unknown | undefined };
+export const PutDatastoreRequestItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<PutDatastoreRequestItemMap>;
+
+export interface PutDatastoreRequest {
+  /** name of the datastore */
+  datastore: string;
+  /** attribute names and values of the item */
+  item: PutDatastoreRequestItemMap;
+  app_id?: string;
+}
+export const PutDatastoreRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    datastore: S.String,
+    item: PutDatastoreRequestItemMap,
+    app_id: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/apps.datastore.put", code: 200 })),
+).annotate({
+  identifier: "PutDatastoreRequest",
+}) as any as S.Schema<PutDatastoreRequest>;
+
+/** attribute names and values of the item */
+export type PutDatastoreResponseItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const PutDatastoreResponseItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<PutDatastoreResponseItemMap>;
+
+export interface PutDatastoreResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  /** name of the datastore */
+  datastore?: string;
+  /** attribute names and values of the item */
+  item?: PutDatastoreResponseItemMap;
+}
+export const PutDatastoreResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    datastore: S.optional(S.String),
+    item: S.optional(PutDatastoreResponseItemMap),
+  }),
+).annotate({
+  identifier: "PutDatastoreResponse",
+}) as any as S.Schema<PutDatastoreResponse>;
+
+export interface SetIconRequest {
   /** The ID of the app whose icon you want to set. */
   app_id: string;
   /** File contents via `multipart/form-data` */
@@ -791,234 +837,33 @@ export interface IconSetRequest {
   /** URL of a publicly hosted image */
   url?: string;
 }
-export const IconSetRequest = /*@__PURE__*/ S.suspend(() =>
+export const SetIconRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     app_id: S.String,
     file: S.optional(S.Unknown),
     url: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/apps.icon.set", code: 200 })),
-).annotate({ identifier: "IconSetRequest" }) as any as S.Schema<IconSetRequest>;
+).annotate({ identifier: "SetIconRequest" }) as any as S.Schema<SetIconRequest>;
 
-export interface IconSetResponse {
+export interface SetIconResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const IconSetResponse = /*@__PURE__*/ S.suspend(() =>
+export const SetIconResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
 ).annotate({
-  identifier: "IconSetResponse",
-}) as any as S.Schema<IconSetResponse>;
+  identifier: "SetIconResponse",
+}) as any as S.Schema<SetIconResponse>;
 
-export interface ManifestCreateRequest {
-  /** A JSON app manifest encoded as a string. This manifest **must** use a valid [app manifest schema - read our guide to creating one](/app-manifests/configuring-apps-with-app-manifests#fields). */
-  manifest: string;
-  /** When called with an org token, which specific team to create app on */
-  team_id?: string;
-}
-export const ManifestCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    manifest: S.String,
-    team_id: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/apps.manifest.create", code: 200 })),
-).annotate({
-  identifier: "ManifestCreateRequest",
-}) as any as S.Schema<ManifestCreateRequest>;
-
-export interface ManifestCreateResponseCredentials {
-  client_id?: string;
-  client_secret?: string | Redacted.Redacted<string>;
-  verification_token?: string;
-  signing_secret?: string | Redacted.Redacted<string>;
-}
-export const ManifestCreateResponseCredentials = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    client_id: S.optional(S.String),
-    client_secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    verification_token: S.optional(S.String),
-    signing_secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }),
-).annotate({
-  identifier: "ManifestCreateResponseCredentials",
-}) as any as S.Schema<ManifestCreateResponseCredentials>;
-
-export interface ManifestCreateResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  app_id: string;
-  credentials: ManifestCreateResponseCredentials;
-  oauth_authorize_url?: string;
-  /** The team ID where the app was created on */
-  team_id?: string;
-  /** The team domain where the app was created on */
-  team_domain?: string;
-  app_token?: string;
-}
-export const ManifestCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    app_id: S.String,
-    credentials: ManifestCreateResponseCredentials,
-    oauth_authorize_url: S.optional(S.String),
-    team_id: S.optional(S.String),
-    team_domain: S.optional(S.String),
-    app_token: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManifestCreateResponse",
-}) as any as S.Schema<ManifestCreateResponse>;
-
-export interface ManifestDeleteRequest {
-  /** The ID of the app you want to delete. */
-  app_id: string;
-}
-export const ManifestDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    app_id: S.String,
-  }).pipe(T.Http({ method: "POST", uri: "/apps.manifest.delete", code: 200 })),
-).annotate({
-  identifier: "ManifestDeleteRequest",
-}) as any as S.Schema<ManifestDeleteRequest>;
-
-export interface ManifestDeleteResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-}
-export const ManifestDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-  }),
-).annotate({
-  identifier: "ManifestDeleteResponse",
-}) as any as S.Schema<ManifestDeleteResponse>;
-
-export interface ManifestExportRequest {
-  /** The ID of the app whose configuration you want to export as a manifest. */
-  app_id: string;
-}
-export const ManifestExportRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    app_id: S.String,
-  }).pipe(T.Http({ method: "POST", uri: "/apps.manifest.export", code: 200 })),
-).annotate({
-  identifier: "ManifestExportRequest",
-}) as any as S.Schema<ManifestExportRequest>;
-
-export interface ManifestExportResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  manifest: unknown;
-}
-export const ManifestExportResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    manifest: S.Unknown,
-  }),
-).annotate({
-  identifier: "ManifestExportResponse",
-}) as any as S.Schema<ManifestExportResponse>;
-
-export interface ManifestUpdateRequest {
-  /** A JSON app manifest encoded as a string. This manifest **must** use a valid [app manifest schema - read our guide to creating one](/app-manifests/configuring-apps-with-app-manifests#fields). As this method entirely _replaces_ any previous configuration, manifest must contain both unmodified and modified fields. */
-  manifest: string;
-  /** The ID of the app whose configuration you want to update. */
-  app_id: string;
-}
-export const ManifestUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    manifest: S.String,
-    app_id: S.String,
-  }).pipe(T.Http({ method: "POST", uri: "/apps.manifest.update", code: 200 })),
-).annotate({
-  identifier: "ManifestUpdateRequest",
-}) as any as S.Schema<ManifestUpdateRequest>;
-
-export interface ManifestUpdateResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  app_id: string;
-  permissions_updated?: boolean;
-}
-export const ManifestUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    app_id: S.String,
-    permissions_updated: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ManifestUpdateResponse",
-}) as any as S.Schema<ManifestUpdateResponse>;
-
-export interface ManifestValidateRequest {
-  /** The manifest to be validated. Will be validated against the [app manifest schema - read our guide](/app-manifests/configuring-apps-with-app-manifests#fields). */
-  manifest: string;
-  /** The ID of the app whose configuration you want to validate. */
-  app_id?: string;
-}
-export const ManifestValidateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    manifest: S.String,
-    app_id: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/apps.manifest.validate", code: 200 }),
-  ),
-).annotate({
-  identifier: "ManifestValidateRequest",
-}) as any as S.Schema<ManifestValidateRequest>;
-
-export type ManifestValidateResponseErrorsList = Array<string>;
-export const ManifestValidateResponseErrorsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ManifestValidateResponseErrorsList>;
-
-export interface ManifestValidateResponseWarningsItem {
-  code: string;
-  message: string;
-  pointer?: string;
-}
-export const ManifestValidateResponseWarningsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      code: S.String,
-      message: S.String,
-      pointer: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ManifestValidateResponseWarningsItem",
-}) as any as S.Schema<ManifestValidateResponseWarningsItem>;
-
-/** Non-blocking warnings from app manifest validation. */
-export type ManifestValidateResponseWarningsList =
-  Array<ManifestValidateResponseWarningsItem>;
-export const ManifestValidateResponseWarningsList = /*@__PURE__*/ S.Array(
-  ManifestValidateResponseWarningsItem,
-) as any as S.Schema<ManifestValidateResponseWarningsList>;
-
-export interface ManifestValidateResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  errors: ManifestValidateResponseErrorsList;
-  /** Non-blocking warnings from app manifest validation. */
-  warnings?: ManifestValidateResponseWarningsList;
-}
-export const ManifestValidateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    errors: ManifestValidateResponseErrorsList,
-    warnings: S.optional(ManifestValidateResponseWarningsList),
-  }),
-).annotate({
-  identifier: "ManifestValidateResponse",
-}) as any as S.Schema<ManifestValidateResponse>;
-
-export interface UninstallRequest {
+export interface UninstallAppRequest {
   /** Issued when you created your application. */
   client_id: string;
   /** Issued when you created your application. */
   client_secret: string | Redacted.Redacted<string>;
 }
-export const UninstallRequest = /*@__PURE__*/ S.suspend(() =>
+export const UninstallAppRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     client_id: S.String,
     client_secret: S.String.pipe(T.SensitiveValue({})),
@@ -1031,37 +876,121 @@ export const UninstallRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UninstallRequest",
-}) as any as S.Schema<UninstallRequest>;
+  identifier: "UninstallAppRequest",
+}) as any as S.Schema<UninstallAppRequest>;
 
-export interface UninstallResponse {
+export interface UninstallAppResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   uninstalled: boolean;
 }
-export const UninstallResponse = /*@__PURE__*/ S.suspend(() =>
+export const UninstallAppResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     uninstalled: S.Boolean,
   }),
 ).annotate({
-  identifier: "UninstallResponse",
-}) as any as S.Schema<UninstallResponse>;
+  identifier: "UninstallAppResponse",
+}) as any as S.Schema<UninstallAppResponse>;
+
+/** attribute names and values to be updated */
+export type UpdateDatastoreRequestItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateDatastoreRequestItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<UpdateDatastoreRequestItemMap>;
+
+export interface UpdateDatastoreRequest {
+  /** name of the datastore */
+  datastore: string;
+  /** attribute names and values to be updated */
+  item: UpdateDatastoreRequestItemMap;
+  app_id?: string;
+}
+export const UpdateDatastoreRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    datastore: S.String,
+    item: UpdateDatastoreRequestItemMap,
+    app_id: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/apps.datastore.update", code: 200 })),
+).annotate({
+  identifier: "UpdateDatastoreRequest",
+}) as any as S.Schema<UpdateDatastoreRequest>;
+
+/** attribute names and values of the item, including those updated */
+export type UpdateDatastoreResponseItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateDatastoreResponseItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<UpdateDatastoreResponseItemMap>;
+
+export interface UpdateDatastoreResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  /** name of the datastore */
+  datastore?: string;
+  /** attribute names and values of the item, including those updated */
+  item?: UpdateDatastoreResponseItemMap;
+}
+export const UpdateDatastoreResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    datastore: S.optional(S.String),
+    item: S.optional(UpdateDatastoreResponseItemMap),
+  }),
+).annotate({
+  identifier: "UpdateDatastoreResponse",
+}) as any as S.Schema<UpdateDatastoreResponse>;
+
+export interface UpdateManifestRequest {
+  /** A JSON app manifest encoded as a string. This manifest **must** use a valid [app manifest schema - read our guide to creating one](/app-manifests/configuring-apps-with-app-manifests#fields). As this method entirely _replaces_ any previous configuration, manifest must contain both unmodified and modified fields. */
+  manifest: string;
+  /** The ID of the app whose configuration you want to update. */
+  app_id: string;
+}
+export const UpdateManifestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    manifest: S.String,
+    app_id: S.String,
+  }).pipe(T.Http({ method: "POST", uri: "/apps.manifest.update", code: 200 })),
+).annotate({
+  identifier: "UpdateManifestRequest",
+}) as any as S.Schema<UpdateManifestRequest>;
+
+export interface UpdateManifestResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  app_id: string;
+  permissions_updated?: boolean;
+}
+export const UpdateManifestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    app_id: S.String,
+    permissions_updated: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "UpdateManifestResponse",
+}) as any as S.Schema<UpdateManifestResponse>;
 
 /** The status that should be set for the user. */
-export type UserConnectionUpdateRequestStatus = "connected" | "disconnected";
-export const UserConnectionUpdateRequestStatus = /*@__PURE__*/ S.String;
+export type UpdateUserConnectionRequestStatus = "connected" | "disconnected";
+export const UpdateUserConnectionRequestStatus = /*@__PURE__*/ S.String;
 
-export interface UserConnectionUpdateRequest {
+export interface UpdateUserConnectionRequest {
   /** The ID of the user for the status update. */
   user_id: string;
   /** The status that should be set for the user. */
-  status: UserConnectionUpdateRequestStatus | (string & {});
+  status: UpdateUserConnectionRequestStatus | (string & {});
 }
-export const UserConnectionUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateUserConnectionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     user_id: S.String,
-    status: UserConnectionUpdateRequestStatus,
+    status: UpdateUserConnectionRequestStatus,
   }).pipe(
     T.Http({
       method: "POST",
@@ -1071,72 +1000,123 @@ export const UserConnectionUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UserConnectionUpdateRequest",
-}) as any as S.Schema<UserConnectionUpdateRequest>;
+  identifier: "UpdateUserConnectionRequest",
+}) as any as S.Schema<UpdateUserConnectionRequest>;
 
-export interface UserConnectionUpdateResponse {
+export interface UpdateUserConnectionResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const UserConnectionUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateUserConnectionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
 ).annotate({
-  identifier: "UserConnectionUpdateResponse",
-}) as any as S.Schema<UserConnectionUpdateResponse>;
+  identifier: "UpdateUserConnectionResponse",
+}) as any as S.Schema<UpdateUserConnectionResponse>;
 
-export type ActivitiesListError = SlackOpError;
-/** Get logs for a specified app Required scopes — user: `hosting:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — Something went wrong on our end, please try again. - `invalid_app_id` — App ID provided is not valid. - `invalid_app` — App ID provided is not valid for team and user. - `invalid_args` — Required arguments either were not provided or contain invalid values. - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `free_team_not_allowed` — Feature is only available on a paid team. - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.activities.list */
-export const activitiesList: API.PaginatedOperationMethod<
-  ActivitiesListRequest,
-  ActivitiesListResponse,
-  ActivitiesListError,
-  SlackOpContext,
-  unknown
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: ActivitiesListRequest,
-    output: ActivitiesListResponse,
-    errors: [SlackError, SlackRateLimited],
-    protocol: SlackProtocol,
-    retry: Retry.Retry,
-    pagination: {
-      mode: "cursor",
-      inputToken: "cursor",
-      outputToken: "response_metadata.next_cursor",
-      items: "activities",
-      pageSize: "limit",
-    } as const,
+export interface ValidateManifestRequest {
+  /** The manifest to be validated. Will be validated against the [app manifest schema - read our guide](/app-manifests/configuring-apps-with-app-manifests#fields). */
+  manifest: string;
+  /** The ID of the app whose configuration you want to validate. */
+  app_id?: string;
+}
+export const ValidateManifestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    manifest: S.String,
+    app_id: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/apps.manifest.validate", code: 200 }),
+  ),
+).annotate({
+  identifier: "ValidateManifestRequest",
+}) as any as S.Schema<ValidateManifestRequest>;
+
+export type ValidateManifestResponseErrorsList = Array<string>;
+export const ValidateManifestResponseErrorsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ValidateManifestResponseErrorsList>;
+
+export interface ValidateManifestResponseWarningsItem {
+  code: string;
+  message: string;
+  pointer?: string;
+}
+export const ValidateManifestResponseWarningsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      code: S.String,
+      message: S.String,
+      pointer: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ValidateManifestResponseWarningsItem",
+}) as any as S.Schema<ValidateManifestResponseWarningsItem>;
+
+/** Non-blocking warnings from app manifest validation. */
+export type ValidateManifestResponseWarningsList =
+  Array<ValidateManifestResponseWarningsItem>;
+export const ValidateManifestResponseWarningsList = /*@__PURE__*/ S.Array(
+  ValidateManifestResponseWarningsItem,
+) as any as S.Schema<ValidateManifestResponseWarningsList>;
+
+export interface ValidateManifestResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  errors: ValidateManifestResponseErrorsList;
+  /** Non-blocking warnings from app manifest validation. */
+  warnings?: ValidateManifestResponseWarningsList;
+}
+export const ValidateManifestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    errors: ValidateManifestResponseErrorsList,
+    warnings: S.optional(ValidateManifestResponseWarningsList),
   }),
-  slackPaginate,
-) as any;
+).annotate({
+  identifier: "ValidateManifestResponse",
+}) as any as S.Schema<ValidateManifestResponse>;
 
-export type AuthExternalDeleteError = SlackOpError;
-/** Delete external auth tokens only on the Slack side Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `unable_to_delete` — There was an error deleting tokens - `providers_not_found` — The provided `provider_key` is invalid - `no_tokens_found` — No tokens found to delete - `method_not_supported` — This API method is not supported - `app_not_found` — The provided `app_id` was not found - `token_not_found` — The token pointed to by the external_token_id input is not found - `invalid_auth` — The token used to invoke this API doesn't have permission to delete the token pointed to by the external_token_id input - `invalid_args` — The arguments provided to this API are invalid See https://docs.slack.dev/reference/methods/apps.auth.external.delete */
-export const authExternalDelete: API.OperationMethod<
-  AuthExternalDeleteRequest,
-  AuthExternalDeleteResponse,
-  AuthExternalDeleteError,
+export type BulkDeleteError = SlackOpError;
+/** Delete items from a datastore in bulk Required scopes — bot: `datastore:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to create datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error - `access_denied` — Not authorized to access the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore put not allowed on a free team. - `team_quota_exceeded` — Total number of requests exceeded team quota. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `unknown_method` — This method does not exist - `partial_failure` — some items failed to be deleted - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.bulkDelete */
+export const bulkDelete: API.OperationMethod<
+  BulkDeleteRequest,
+  BulkDeleteResponse,
+  BulkDeleteError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AuthExternalDeleteRequest,
-  output: AuthExternalDeleteResponse,
+  input: BulkDeleteRequest,
+  output: BulkDeleteResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type AuthExternalGetError = SlackOpError;
-/** Get the access token for the provided token ID Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `token_not_found` — No token found for the passed external_token_id - `method_not_supported` — This API method is not supported - `no_refresh_token` — No refresh token found for the passed external_token_id - `access_token_exchange_failed` — There was an error while attempting to exchange or refresh token See https://docs.slack.dev/reference/methods/apps.auth.external.get */
-export const authExternalGet: API.OperationMethod<
-  AuthExternalGetRequest,
-  AuthExternalGetResponse,
-  AuthExternalGetError,
+export type BulkGetError = SlackOpError;
+/** Get items from a datastore in bulk Required scopes — bot: `datastore:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to create datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error - `access_denied` — Not authorized to access the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore put not allowed on a free team. - `team_quota_exceeded` — Total number of requests exceeded team quota. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `unknown_method` — This method does not exist - `partial_failure` — some items failed to be retrieved - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.bulkGet */
+export const bulkGet: API.OperationMethod<
+  BulkGetRequest,
+  BulkGetResponse,
+  BulkGetError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AuthExternalGetRequest,
-  output: AuthExternalGetResponse,
+  input: BulkGetRequest,
+  output: BulkGetResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkPutError = SlackOpError;
+/** Creates or replaces existing items in bulk Required scopes — bot: `datastore:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to create datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error - `access_denied` — Not authorized to access the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore put not allowed on a free team. - `team_quota_exceeded` — Total number of requests exceeded team quota. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `unknown_method` — This method does not exist - `partial_failure` — some items failed to be updated - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.bulkPut */
+export const bulkPut: API.OperationMethod<
+  BulkPutRequest,
+  BulkPutResponse,
+  BulkPutError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkPutRequest,
+  output: BulkPutResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
@@ -1157,46 +1137,16 @@ export const connectionsOpen: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DatastoreBulkDeleteError = SlackOpError;
-/** Delete items from a datastore in bulk Required scopes — bot: `datastore:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to create datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error - `access_denied` — Not authorized to access the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore put not allowed on a free team. - `team_quota_exceeded` — Total number of requests exceeded team quota. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `unknown_method` — This method does not exist - `partial_failure` — some items failed to be deleted - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.bulkDelete */
-export const datastoreBulkDelete: API.OperationMethod<
-  DatastoreBulkDeleteRequest,
-  DatastoreBulkDeleteResponse,
-  DatastoreBulkDeleteError,
+export type CreateManifestError = SlackOpError;
+/** Create an app from an app manifest. Required scopes — configuration: `app_configurations:write` Rate limit tier: 1 Method-specific errors (the `error` slug on the SlackError): - `invalid_app` — An app created from the provided manifest would not be valid. - `invalid_arguments` — Invalid API arguments provided. - `invalid_manager_app` — The calling app is not enrolled as a manager app. Ensure the app has `app_configurations:write` in its configured scopes and its home team has manager app support enabled. - `invalid_manifest` — The provided manifest file does not validate against schema. Consult the additional errors field to locate specific issues. - `invalid_team_id` — The provided team ID is not valid - `not_in_team` — Cannot create an app in a team that user is not a member of - `failed_adding_collaborator` — Failed writing a collaborator record for this new app - `failed_creating_app` — Failed to create the app model - `failed_datastore_operation` — Failed while managing datastore infrastructure - `failed_generating_app_token` — App level token failed to generate. - `feature_not_enabled` — The required feature is not enabled for this workspace. - `managed_app_limit_reached` — The manager app has reached the maximum number of managed apps it can create. - `ratelimited` — Too many calls in succession to create endpoint during a short period of time. - `socket_mode_not_enabled` — Socket mode is not enabled in manifest. - `enterprise_is_restricted` — Org-level tokens are not allowed. - `unknown_method` — Unknown method - `dynamic_client_registration_invalid_redirect_uri` — The remote server rejected Slack's redirect URI during Dynamic Client Registration. The server must allowlist https://oauth2.slack.com/external/auth/callback as a valid redirect URI. - `dynamic_client_registration_failed` — Dynamic client registration failed for an MCP server that requires OAuth authentication. - `oauth_metadata_not_found` — Could not discover OAuth metadata for the MCP server. Ensure the server exposes a .well-known/oauth-authorization-server or .well-known/openid-configuration endpoint. - `dynamic_client_registration_not_supported` — The MCP server's OAuth metadata does not include a registration endpoint. The server may not support Dynamic Client Registration. - `dynamic_client_registration_missing_oauth_endpoints` — The MCP server's OAuth metadata is missing a required authorization or token endpoint. - `dynamic_client_registration_rejected` — The MCP server rejected the Dynamic Client Registration request. - `dynamic_client_registration_invalid_response` — The MCP server returned an invalid response during Dynamic Client Registration. See https://docs.slack.dev/reference/methods/apps.manifest.create */
+export const createManifest: API.OperationMethod<
+  CreateManifestRequest,
+  CreateManifestResponse,
+  CreateManifestError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatastoreBulkDeleteRequest,
-  output: DatastoreBulkDeleteResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatastoreBulkGetError = SlackOpError;
-/** Get items from a datastore in bulk Required scopes — bot: `datastore:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to create datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error - `access_denied` — Not authorized to access the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore put not allowed on a free team. - `team_quota_exceeded` — Total number of requests exceeded team quota. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `unknown_method` — This method does not exist - `partial_failure` — some items failed to be retrieved - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.bulkGet */
-export const datastoreBulkGet: API.OperationMethod<
-  DatastoreBulkGetRequest,
-  DatastoreBulkGetResponse,
-  DatastoreBulkGetError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatastoreBulkGetRequest,
-  output: DatastoreBulkGetResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatastoreBulkPutError = SlackOpError;
-/** Creates or replaces existing items in bulk Required scopes — bot: `datastore:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to create datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error - `access_denied` — Not authorized to access the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore put not allowed on a free team. - `team_quota_exceeded` — Total number of requests exceeded team quota. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `unknown_method` — This method does not exist - `partial_failure` — some items failed to be updated - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.bulkPut */
-export const datastoreBulkPut: API.OperationMethod<
-  DatastoreBulkPutRequest,
-  DatastoreBulkPutResponse,
-  DatastoreBulkPutError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatastoreBulkPutRequest,
-  output: DatastoreBulkPutResponse,
+  input: CreateManifestRequest,
+  output: CreateManifestResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
@@ -1212,51 +1162,6 @@ export const datastoreCount: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DatastoreCountRequest,
   output: DatastoreCountResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatastoreDeleteError = SlackOpError;
-/** Delete an item from a datastore Required scopes — bot: `datastore:write` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to delete datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error - `access_denied` — Not authorized to access the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore delete not allowed on a free team. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.delete */
-export const datastoreDelete: API.OperationMethod<
-  DatastoreDeleteRequest,
-  DatastoreDeleteResponse,
-  DatastoreDeleteError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatastoreDeleteRequest,
-  output: DatastoreDeleteResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatastoreGetError = SlackOpError;
-/** Get an item from a datastore Required scopes — bot: `datastore:read` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to get datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error. - `access_denied` — Not authorized to access to the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore get not allowed on a free team. - `team_quota_exceeded` — Total number of requests exceeded team quota. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.get */
-export const datastoreGet: API.OperationMethod<
-  DatastoreGetRequest,
-  DatastoreGetResponse,
-  DatastoreGetError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatastoreGetRequest,
-  output: DatastoreGetResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatastorePutError = SlackOpError;
-/** Creates a new item, or replaces an old item with a new item. Required scopes — bot: `datastore:write` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to create datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error - `access_denied` — Not authorized to access the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore put not allowed on a free team. - `team_quota_exceeded` — Total number of requests exceeded team quota. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.put */
-export const datastorePut: API.OperationMethod<
-  DatastorePutRequest,
-  DatastorePutResponse,
-  DatastorePutError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatastorePutRequest,
-  output: DatastorePutResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
@@ -1288,33 +1193,134 @@ export const datastoreQuery: API.PaginatedOperationMethod<
   slackPaginate,
 ) as any;
 
-export type DatastoreUpdateError = SlackOpError;
-/** Edits an existing item's attributes, or adds a new item if it does not already exist. Required scopes — bot: `datastore:write` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to create datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error - `access_denied` — Not authorized to access the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore put not allowed on a free team. - `team_quota_exceeded` — Total number of requests exceeded team quota. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.update */
-export const datastoreUpdate: API.OperationMethod<
-  DatastoreUpdateRequest,
-  DatastoreUpdateResponse,
-  DatastoreUpdateError,
+export type DeleteAuthExternalError = SlackOpError;
+/** Delete external auth tokens only on the Slack side Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `unable_to_delete` — There was an error deleting tokens - `providers_not_found` — The provided `provider_key` is invalid - `no_tokens_found` — No tokens found to delete - `method_not_supported` — This API method is not supported - `app_not_found` — The provided `app_id` was not found - `token_not_found` — The token pointed to by the external_token_id input is not found - `invalid_auth` — The token used to invoke this API doesn't have permission to delete the token pointed to by the external_token_id input - `invalid_args` — The arguments provided to this API are invalid See https://docs.slack.dev/reference/methods/apps.auth.external.delete */
+export const deleteAuthExternal: API.OperationMethod<
+  DeleteAuthExternalRequest,
+  DeleteAuthExternalResponse,
+  DeleteAuthExternalError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatastoreUpdateRequest,
-  output: DatastoreUpdateResponse,
+  input: DeleteAuthExternalRequest,
+  output: DeleteAuthExternalResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type EventAuthorizationsListError = SlackOpError;
-/** Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is visible to. Rate limit tier: 5 Method-specific errors (the `error` slug on the SlackError): - `auth_mismatch` — The given authorization token is not associated with the app that sent this event. - `internal_error` — An unexpected error occurred while finding authorizations for this event. - `invalid_cursor` — The `cursor` argument was invalid. - `invalid_event_context` — The given `event_context` didn't match an event. See https://docs.slack.dev/reference/methods/apps.event.authorizations.list */
-export const eventAuthorizationsList: API.PaginatedOperationMethod<
-  EventAuthorizationsListRequest,
-  EventAuthorizationsListResponse,
-  EventAuthorizationsListError,
+export type DeleteDatastoreError = SlackOpError;
+/** Delete an item from a datastore Required scopes — bot: `datastore:write` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to delete datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error - `access_denied` — Not authorized to access the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore delete not allowed on a free team. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.delete */
+export const deleteDatastore: API.OperationMethod<
+  DeleteDatastoreRequest,
+  DeleteDatastoreResponse,
+  DeleteDatastoreError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDatastoreRequest,
+  output: DeleteDatastoreResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteManifestError = SlackOpError;
+/** Permanently deletes an app created through app manifests. When called with a manager app token, this method can only delete apps that were created by that manager app. Required scopes — configuration: `app_configurations:write` Rate limit tier: 1 Method-specific errors (the `error` slug on the SlackError): - `app_not_eligible` — The specified app is not eligible for this API. - `app_not_found` — The specified app was not found. - `internal_error` — Internal error. - `invalid_app_id` — The app ID passed in was invalid. - `no_permission` — User described by the used token does not have proper permissions to take this action. - `published_app_only` — This action is only permitted for published app IDs. - `app_not_owned_by_manager_app` — The specified app is not managed by the calling manager app. A manager app can only delete apps that it originally created via apps.manifest.create. See https://docs.slack.dev/reference/methods/apps.manifest.delete */
+export const deleteManifest: API.OperationMethod<
+  DeleteManifestRequest,
+  DeleteManifestResponse,
+  DeleteManifestError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteManifestRequest,
+  output: DeleteManifestResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportManifestError = SlackOpError;
+/** Export an app manifest from an existing app. When called with a manager app token, this method can only export apps that were created by that manager app. Required scopes — configuration: `app_configurations:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `app_not_eligible` — The specified app is not eligible for this API. - `app_not_found` — The specified app was not found or has been deleted. - `failed_export` — Failed to export manifest for given app ID - `internal_error` — Internal error. - `invalid_app_id` — The app ID passed is invalid. - `no_permission` — User does not have proper permissions. - `unknown_method` — This method does not exist. - `app_not_owned_by_manager_app` — The specified app is not managed by the calling manager app. A manager app can only access apps that it originally created via apps.manifest.create. See https://docs.slack.dev/reference/methods/apps.manifest.export */
+export const exportManifest: API.OperationMethod<
+  ExportManifestRequest,
+  ExportManifestResponse,
+  ExportManifestError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportManifestRequest,
+  output: ExportManifestResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAuthExternalError = SlackOpError;
+/** Get the access token for the provided token ID Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `token_not_found` — No token found for the passed external_token_id - `method_not_supported` — This API method is not supported - `no_refresh_token` — No refresh token found for the passed external_token_id - `access_token_exchange_failed` — There was an error while attempting to exchange or refresh token See https://docs.slack.dev/reference/methods/apps.auth.external.get */
+export const getAuthExternal: API.OperationMethod<
+  GetAuthExternalRequest,
+  GetAuthExternalResponse,
+  GetAuthExternalError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAuthExternalRequest,
+  output: GetAuthExternalResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDatastoreError = SlackOpError;
+/** Get an item from a datastore Required scopes — bot: `datastore:read` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to get datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error. - `access_denied` — Not authorized to access to the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore get not allowed on a free team. - `team_quota_exceeded` — Total number of requests exceeded team quota. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.get */
+export const getDatastore: API.OperationMethod<
+  GetDatastoreRequest,
+  GetDatastoreResponse,
+  GetDatastoreError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDatastoreRequest,
+  output: GetDatastoreResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListActivitiesError = SlackOpError;
+/** Get logs for a specified app Required scopes — user: `hosting:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — Something went wrong on our end, please try again. - `invalid_app_id` — App ID provided is not valid. - `invalid_app` — App ID provided is not valid for team and user. - `invalid_args` — Required arguments either were not provided or contain invalid values. - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `free_team_not_allowed` — Feature is only available on a paid team. - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.activities.list */
+export const listActivities: API.PaginatedOperationMethod<
+  ListActivitiesRequest,
+  ListActivitiesResponse,
+  ListActivitiesError,
   SlackOpContext,
-  EventAuthorizationsListResponseAuthorizationsItem
+  unknown
 > = /*@__PURE__*/ API.makePaginated(
   () => ({
-    input: EventAuthorizationsListRequest,
-    output: EventAuthorizationsListResponse,
+    input: ListActivitiesRequest,
+    output: ListActivitiesResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "activities",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
+
+export type ListEventAuthorizationsError = SlackOpError;
+/** Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is visible to. Rate limit tier: 5 Method-specific errors (the `error` slug on the SlackError): - `auth_mismatch` — The given authorization token is not associated with the app that sent this event. - `internal_error` — An unexpected error occurred while finding authorizations for this event. - `invalid_cursor` — The `cursor` argument was invalid. - `invalid_event_context` — The given `event_context` didn't match an event. See https://docs.slack.dev/reference/methods/apps.event.authorizations.list */
+export const listEventAuthorizations: API.PaginatedOperationMethod<
+  ListEventAuthorizationsRequest,
+  ListEventAuthorizationsResponse,
+  ListEventAuthorizationsError,
+  SlackOpContext,
+  ListEventAuthorizationsResponseAuthorizationsItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListEventAuthorizationsRequest,
+    output: ListEventAuthorizationsResponse,
     errors: [SlackError, SlackRateLimited],
     protocol: SlackProtocol,
     retry: Retry.Retry,
@@ -1329,121 +1335,106 @@ export const eventAuthorizationsList: API.PaginatedOperationMethod<
   slackPaginate,
 ) as any;
 
-export type IconSetError = SlackOpError;
+export type PutDatastoreError = SlackOpError;
+/** Creates a new item, or replaces an old item with a new item. Required scopes — bot: `datastore:write` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to create datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error - `access_denied` — Not authorized to access the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore put not allowed on a free team. - `team_quota_exceeded` — Total number of requests exceeded team quota. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.put */
+export const putDatastore: API.OperationMethod<
+  PutDatastoreRequest,
+  PutDatastoreResponse,
+  PutDatastoreError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutDatastoreRequest,
+  output: PutDatastoreResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SetIconError = SlackOpError;
 /** Sets the app icon Required scopes — user: `app_configurations:write` Rate limit tier: 1 Method-specific errors (the `error` slug on the SlackError): - `error_bad_format` — Icon must be a valid image file. - `icon_not_accessible` — The icon URL is not accessible or returned an error (e.g. 404 Not Found). Please verify the URL is publicly reachable and returns a valid image. - `invalid_app` — App does not exist. - `invalid_app_id` — App ID is not valid. - `invalid_icon_size` — Icon dimensions must be between 512x512px and 2000x2000px. - `invalid_parameters` — Only one of `URL` or `file` can be defined. - `missing_arguments` — One of `URL` or `file` must be provided. - `no_permission` — User does not have required permissions for app. - `unable_to_open_file` — Error with file upload. See https://docs.slack.dev/reference/methods/apps.icon.set */
-export const iconSet: API.OperationMethod<
-  IconSetRequest,
-  IconSetResponse,
-  IconSetError,
+export const setIcon: API.OperationMethod<
+  SetIconRequest,
+  SetIconResponse,
+  SetIconError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IconSetRequest,
-  output: IconSetResponse,
+  input: SetIconRequest,
+  output: SetIconResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type ManifestCreateError = SlackOpError;
-/** Create an app from an app manifest. Required scopes — configuration: `app_configurations:write` Rate limit tier: 1 Method-specific errors (the `error` slug on the SlackError): - `invalid_app` — An app created from the provided manifest would not be valid. - `invalid_arguments` — Invalid API arguments provided. - `invalid_manager_app` — The calling app is not enrolled as a manager app. Ensure the app has `app_configurations:write` in its configured scopes and its home team has manager app support enabled. - `invalid_manifest` — The provided manifest file does not validate against schema. Consult the additional errors field to locate specific issues. - `invalid_team_id` — The provided team ID is not valid - `not_in_team` — Cannot create an app in a team that user is not a member of - `failed_adding_collaborator` — Failed writing a collaborator record for this new app - `failed_creating_app` — Failed to create the app model - `failed_datastore_operation` — Failed while managing datastore infrastructure - `failed_generating_app_token` — App level token failed to generate. - `feature_not_enabled` — The required feature is not enabled for this workspace. - `managed_app_limit_reached` — The manager app has reached the maximum number of managed apps it can create. - `ratelimited` — Too many calls in succession to create endpoint during a short period of time. - `socket_mode_not_enabled` — Socket mode is not enabled in manifest. - `enterprise_is_restricted` — Org-level tokens are not allowed. - `unknown_method` — Unknown method - `dynamic_client_registration_invalid_redirect_uri` — The remote server rejected Slack's redirect URI during Dynamic Client Registration. The server must allowlist https://oauth2.slack.com/external/auth/callback as a valid redirect URI. - `dynamic_client_registration_failed` — Dynamic client registration failed for an MCP server that requires OAuth authentication. - `oauth_metadata_not_found` — Could not discover OAuth metadata for the MCP server. Ensure the server exposes a .well-known/oauth-authorization-server or .well-known/openid-configuration endpoint. - `dynamic_client_registration_not_supported` — The MCP server's OAuth metadata does not include a registration endpoint. The server may not support Dynamic Client Registration. - `dynamic_client_registration_missing_oauth_endpoints` — The MCP server's OAuth metadata is missing a required authorization or token endpoint. - `dynamic_client_registration_rejected` — The MCP server rejected the Dynamic Client Registration request. - `dynamic_client_registration_invalid_response` — The MCP server returned an invalid response during Dynamic Client Registration. See https://docs.slack.dev/reference/methods/apps.manifest.create */
-export const manifestCreate: API.OperationMethod<
-  ManifestCreateRequest,
-  ManifestCreateResponse,
-  ManifestCreateError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManifestCreateRequest,
-  output: ManifestCreateResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManifestDeleteError = SlackOpError;
-/** Permanently deletes an app created through app manifests. When called with a manager app token, this method can only delete apps that were created by that manager app. Required scopes — configuration: `app_configurations:write` Rate limit tier: 1 Method-specific errors (the `error` slug on the SlackError): - `app_not_eligible` — The specified app is not eligible for this API. - `app_not_found` — The specified app was not found. - `internal_error` — Internal error. - `invalid_app_id` — The app ID passed in was invalid. - `no_permission` — User described by the used token does not have proper permissions to take this action. - `published_app_only` — This action is only permitted for published app IDs. - `app_not_owned_by_manager_app` — The specified app is not managed by the calling manager app. A manager app can only delete apps that it originally created via apps.manifest.create. See https://docs.slack.dev/reference/methods/apps.manifest.delete */
-export const manifestDelete: API.OperationMethod<
-  ManifestDeleteRequest,
-  ManifestDeleteResponse,
-  ManifestDeleteError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManifestDeleteRequest,
-  output: ManifestDeleteResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManifestExportError = SlackOpError;
-/** Export an app manifest from an existing app. When called with a manager app token, this method can only export apps that were created by that manager app. Required scopes — configuration: `app_configurations:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `app_not_eligible` — The specified app is not eligible for this API. - `app_not_found` — The specified app was not found or has been deleted. - `failed_export` — Failed to export manifest for given app ID - `internal_error` — Internal error. - `invalid_app_id` — The app ID passed is invalid. - `no_permission` — User does not have proper permissions. - `unknown_method` — This method does not exist. - `app_not_owned_by_manager_app` — The specified app is not managed by the calling manager app. A manager app can only access apps that it originally created via apps.manifest.create. See https://docs.slack.dev/reference/methods/apps.manifest.export */
-export const manifestExport: API.OperationMethod<
-  ManifestExportRequest,
-  ManifestExportResponse,
-  ManifestExportError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManifestExportRequest,
-  output: ManifestExportResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManifestUpdateError = SlackOpError;
-/** Update an app from an app manifest. When called with a manager app token, this method can only update apps that were created by that manager app. Required scopes — configuration: `app_configurations:write` Rate limit tier: 1 Method-specific errors (the `error` slug on the SlackError): - `app_not_eligible` — The specified app is not eligible for this API. - `app_not_found` — The specified app was not found or has been deleted. - `failed_adding_collaborator` — Failed writing a collaborator record for this new app - `failed_creating_app` — Failed to create the app model - `failed_datastore_operation` — Failed while managing datastore infrastructure - `internal_error` — Internal error. - `invalid_app` — An app created from the provided manifest would not be valid. - `invalid_app_id` — The app id passed is invalid. - `invalid_manifest` — The provided manifest file does not validate against schema. - `no_permission` — User does not have permission to update app - `unknown_method` — Unknown method - `dynamic_client_registration_invalid_redirect_uri` — The remote server rejected Slack's redirect URI during Dynamic Client Registration. The server must allowlist https://oauth2.slack.com/external/auth/callback as a valid redirect URI. - `app_not_owned_by_manager_app` — The specified app is not managed by the calling manager app. A manager app can only update apps that it originally created via apps.manifest.create. It cannot modify apps created by other manager apps or apps created manually, even if the same user owns both. - `ratelimited` — Too many calls in succession to update endpoint during a short period of time. - `dynamic_client_registration_failed` — Dynamic client registration failed for an MCP server that requires OAuth authentication. - `oauth_metadata_not_found` — Could not discover OAuth metadata for the MCP server. Ensure the server exposes a .well-known/oauth-authorization-server or .well-known/openid-configuration endpoint. - `dynamic_client_registration_not_supported` — The MCP server's OAuth metadata does not include a registration endpoint. The server may not support Dynamic Client Registration. - `dynamic_client_registration_missing_oauth_endpoints` — The MCP server's OAuth metadata is missing a required authorization or token endpoint. - `dynamic_client_registration_rejected` — The MCP server rejected the Dynamic Client Registration request. - `dynamic_client_registration_invalid_response` — The MCP server returned an invalid response during Dynamic Client Registration. See https://docs.slack.dev/reference/methods/apps.manifest.update */
-export const manifestUpdate: API.OperationMethod<
-  ManifestUpdateRequest,
-  ManifestUpdateResponse,
-  ManifestUpdateError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManifestUpdateRequest,
-  output: ManifestUpdateResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManifestValidateError = SlackOpError;
-/** Validate an app manifest Required scopes — configuration: `app_configurations:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `app_not_eligible` — The specified app is not eligible for this API. - `invalid_app` — An app created from the provided manifest would not be valid. - `invalid_app_id` — The app id passed is invalid. - `invalid_manifest` — The provided manifest file does not validate against schema. - `failed_adding_collaborator` — Failed writing a collaborator record for this new app - `failed_creating_app` — Failed to create the app model - `unknown_method` — Unknown method - `no_permission` — User described by the used token does not have proper permissions to take this action. - `app_not_owned_by_manager_app` — The specified app is not managed by the calling manager app. A manager app can only validate apps that it originally created via apps.manifest.create. See https://docs.slack.dev/reference/methods/apps.manifest.validate */
-export const manifestValidate: API.OperationMethod<
-  ManifestValidateRequest,
-  ManifestValidateResponse,
-  ManifestValidateError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManifestValidateRequest,
-  output: ManifestValidateResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UninstallError = SlackOpError;
+export type UninstallAppError = SlackOpError;
 /** Uninstalls your app from a workspace. Rate limit tier: 1 Method-specific errors (the `error` slug on the SlackError): - `bad_client_secret` — Value passed for `client_secret` was invalid. - `client_id_token_mismatch` — The provided client ID and token do not belong to the same app. - `internal_error` — Internal error uninstall - `invalid_client_id` — Value passed for `client_id` was invalid. - `no_permission` — Granular bot not allowed to uninstall See https://docs.slack.dev/reference/methods/apps.uninstall */
-export const uninstall: API.OperationMethod<
-  UninstallRequest,
-  UninstallResponse,
-  UninstallError,
+export const uninstallApp: API.OperationMethod<
+  UninstallAppRequest,
+  UninstallAppResponse,
+  UninstallAppError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UninstallRequest,
-  output: UninstallResponse,
+  input: UninstallAppRequest,
+  output: UninstallAppResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type UserConnectionUpdateError = SlackOpError;
-/** Updates the connection status between a user and an app. Required scopes — user: `users:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `app_not_found` — The app was not found. - `invalid_auth` — The token doesn't have access to this endpoint. - `app_not_subscribed` — The app is not subscribed to the required events. - `user_not_found` — Value passed for `user_id` was invalid. See https://docs.slack.dev/reference/methods/apps.user.connection.update */
-export const userConnectionUpdate: API.OperationMethod<
-  UserConnectionUpdateRequest,
-  UserConnectionUpdateResponse,
-  UserConnectionUpdateError,
+export type UpdateDatastoreError = SlackOpError;
+/** Edits an existing item's attributes, or adds a new item if it does not already exist. Required scopes — bot: `datastore:write` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request is missing required arguments. - `invalid_datastore` — The provided datastore is invalid. - `invalid_auth` — Not authorized to create datastore items. - `app_not_hosted` — The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps. - `datastore_error` — Datastore error - `access_denied` — Not authorized to access the datastore. - `invalid_app_id` — The app_id provided is not valid for team and user. - `free_team_not_allowed` — Datastore put not allowed on a free team. - `team_quota_exceeded` — Total number of requests exceeded team quota. - `datastore_migration_in_progress` — The datastore is currently unavailable due to an in progress Enterprise org migration. - `restricted_plan_level` — Feature is not available on this team See https://docs.slack.dev/reference/methods/apps.datastore.update */
+export const updateDatastore: API.OperationMethod<
+  UpdateDatastoreRequest,
+  UpdateDatastoreResponse,
+  UpdateDatastoreError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UserConnectionUpdateRequest,
-  output: UserConnectionUpdateResponse,
+  input: UpdateDatastoreRequest,
+  output: UpdateDatastoreResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateManifestError = SlackOpError;
+/** Update an app from an app manifest. When called with a manager app token, this method can only update apps that were created by that manager app. Required scopes — configuration: `app_configurations:write` Rate limit tier: 1 Method-specific errors (the `error` slug on the SlackError): - `app_not_eligible` — The specified app is not eligible for this API. - `app_not_found` — The specified app was not found or has been deleted. - `failed_adding_collaborator` — Failed writing a collaborator record for this new app - `failed_creating_app` — Failed to create the app model - `failed_datastore_operation` — Failed while managing datastore infrastructure - `internal_error` — Internal error. - `invalid_app` — An app created from the provided manifest would not be valid. - `invalid_app_id` — The app id passed is invalid. - `invalid_manifest` — The provided manifest file does not validate against schema. - `no_permission` — User does not have permission to update app - `unknown_method` — Unknown method - `dynamic_client_registration_invalid_redirect_uri` — The remote server rejected Slack's redirect URI during Dynamic Client Registration. The server must allowlist https://oauth2.slack.com/external/auth/callback as a valid redirect URI. - `app_not_owned_by_manager_app` — The specified app is not managed by the calling manager app. A manager app can only update apps that it originally created via apps.manifest.create. It cannot modify apps created by other manager apps or apps created manually, even if the same user owns both. - `ratelimited` — Too many calls in succession to update endpoint during a short period of time. - `dynamic_client_registration_failed` — Dynamic client registration failed for an MCP server that requires OAuth authentication. - `oauth_metadata_not_found` — Could not discover OAuth metadata for the MCP server. Ensure the server exposes a .well-known/oauth-authorization-server or .well-known/openid-configuration endpoint. - `dynamic_client_registration_not_supported` — The MCP server's OAuth metadata does not include a registration endpoint. The server may not support Dynamic Client Registration. - `dynamic_client_registration_missing_oauth_endpoints` — The MCP server's OAuth metadata is missing a required authorization or token endpoint. - `dynamic_client_registration_rejected` — The MCP server rejected the Dynamic Client Registration request. - `dynamic_client_registration_invalid_response` — The MCP server returned an invalid response during Dynamic Client Registration. See https://docs.slack.dev/reference/methods/apps.manifest.update */
+export const updateManifest: API.OperationMethod<
+  UpdateManifestRequest,
+  UpdateManifestResponse,
+  UpdateManifestError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateManifestRequest,
+  output: UpdateManifestResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateUserConnectionError = SlackOpError;
+/** Updates the connection status between a user and an app. Required scopes — user: `users:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `app_not_found` — The app was not found. - `invalid_auth` — The token doesn't have access to this endpoint. - `app_not_subscribed` — The app is not subscribed to the required events. - `user_not_found` — Value passed for `user_id` was invalid. See https://docs.slack.dev/reference/methods/apps.user.connection.update */
+export const updateUserConnection: API.OperationMethod<
+  UpdateUserConnectionRequest,
+  UpdateUserConnectionResponse,
+  UpdateUserConnectionError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateUserConnectionRequest,
+  output: UpdateUserConnectionResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateManifestError = SlackOpError;
+/** Validate an app manifest Required scopes — configuration: `app_configurations:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `app_not_eligible` — The specified app is not eligible for this API. - `invalid_app` — An app created from the provided manifest would not be valid. - `invalid_app_id` — The app id passed is invalid. - `invalid_manifest` — The provided manifest file does not validate against schema. - `failed_adding_collaborator` — Failed writing a collaborator record for this new app - `failed_creating_app` — Failed to create the app model - `unknown_method` — Unknown method - `no_permission` — User described by the used token does not have proper permissions to take this action. - `app_not_owned_by_manager_app` — The specified app is not managed by the calling manager app. A manager app can only validate apps that it originally created via apps.manifest.create. See https://docs.slack.dev/reference/methods/apps.manifest.validate */
+export const validateManifest: API.OperationMethod<
+  ValidateManifestRequest,
+  ValidateManifestResponse,
+  ValidateManifestError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateManifestRequest,
+  output: ValidateManifestResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

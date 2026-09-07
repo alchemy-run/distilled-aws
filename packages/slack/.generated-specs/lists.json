@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.lists#AccessDeleteRequestChannelIdsList": {
+    "com.slack.lists#DeleteAccessRequestChannelIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -26,7 +27,7 @@
         "smithy.api#documentation": "List of channels you wish to update access for. Can only be used if `user_ids` is not provided."
       }
     },
-    "com.slack.lists#AccessDeleteRequestUserIdsList": {
+    "com.slack.lists#DeleteAccessRequestUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -35,7 +36,7 @@
         "smithy.api#documentation": "List of users you wish to update access for. Can only be used if `channel_ids` is not provided."
       }
     },
-    "com.slack.lists#AccessDeleteRequest": {
+    "com.slack.lists#DeleteAccessRequest": {
       "type": "structure",
       "members": {
         "list_id": {
@@ -46,13 +47,13 @@
           }
         },
         "channel_ids": {
-          "target": "com.slack.lists#AccessDeleteRequestChannelIdsList",
+          "target": "com.slack.lists#DeleteAccessRequestChannelIdsList",
           "traits": {
             "smithy.api#documentation": "List of channels you wish to update access for. Can only be used if `user_ids` is not provided."
           }
         },
         "user_ids": {
-          "target": "com.slack.lists#AccessDeleteRequestUserIdsList",
+          "target": "com.slack.lists#DeleteAccessRequestUserIdsList",
           "traits": {
             "smithy.api#documentation": "List of users you wish to update access for. Can only be used if `channel_ids` is not provided."
           }
@@ -62,7 +63,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.lists#AccessDeleteResponseFailedToUpdateChannelIdsList": {
+    "com.slack.lists#DeleteAccessResponseFailedToUpdateChannelIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -71,7 +72,7 @@
         "smithy.api#documentation": "The channel IDs that could not be updated."
       }
     },
-    "com.slack.lists#AccessDeleteResponseFailedToUpdateUserIdsList": {
+    "com.slack.lists#DeleteAccessResponseFailedToUpdateUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -80,7 +81,7 @@
         "smithy.api#documentation": "The user IDs that could not be updated."
       }
     },
-    "com.slack.lists#AccessDeleteResponse": {
+    "com.slack.lists#DeleteAccessResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -91,13 +92,13 @@
           }
         },
         "failed_to_update_channel_ids": {
-          "target": "com.slack.lists#AccessDeleteResponseFailedToUpdateChannelIdsList",
+          "target": "com.slack.lists#DeleteAccessResponseFailedToUpdateChannelIdsList",
           "traits": {
             "smithy.api#documentation": "The channel IDs that could not be updated."
           }
         },
         "failed_to_update_user_ids": {
-          "target": "com.slack.lists#AccessDeleteResponseFailedToUpdateUserIdsList",
+          "target": "com.slack.lists#DeleteAccessResponseFailedToUpdateUserIdsList",
           "traits": {
             "smithy.api#documentation": "The user IDs that could not be updated."
           }
@@ -107,13 +108,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.lists#AccessDelete": {
+    "com.slack.lists#DeleteAccess": {
       "type": "operation",
       "input": {
-        "target": "com.slack.lists#AccessDeleteRequest"
+        "target": "com.slack.lists#DeleteAccessRequest"
       },
       "output": {
-        "target": "com.slack.lists#AccessDeleteResponse"
+        "target": "com.slack.lists#DeleteAccessResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -125,7 +126,7 @@
         "com.distilled.openapi#contentType": "form-urlencoded"
       }
     },
-    "com.slack.lists#AccessSetRequestChannelIdsList": {
+    "com.slack.lists#SetAccessRequestChannelIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -134,7 +135,7 @@
         "smithy.api#documentation": "List of channels you wish to update access for. Can only be used if `user_ids` is not provided."
       }
     },
-    "com.slack.lists#AccessSetRequestUserIdsList": {
+    "com.slack.lists#SetAccessRequestUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -143,7 +144,7 @@
         "smithy.api#documentation": "List of users you wish to update access for. Can only be used if `channel_ids` is not provided."
       }
     },
-    "com.slack.lists#AccessSetRequest": {
+    "com.slack.lists#SetAccessRequest": {
       "type": "structure",
       "members": {
         "list_id": {
@@ -161,13 +162,13 @@
           }
         },
         "channel_ids": {
-          "target": "com.slack.lists#AccessSetRequestChannelIdsList",
+          "target": "com.slack.lists#SetAccessRequestChannelIdsList",
           "traits": {
             "smithy.api#documentation": "List of channels you wish to update access for. Can only be used if `user_ids` is not provided."
           }
         },
         "user_ids": {
-          "target": "com.slack.lists#AccessSetRequestUserIdsList",
+          "target": "com.slack.lists#SetAccessRequestUserIdsList",
           "traits": {
             "smithy.api#documentation": "List of users you wish to update access for. Can only be used if `channel_ids` is not provided."
           }
@@ -177,7 +178,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.lists#AccessSetResponseFailedToUpdateChannelIdsList": {
+    "com.slack.lists#SetAccessResponseFailedToUpdateChannelIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -186,7 +187,7 @@
         "smithy.api#documentation": "The channel IDs that could not be updated."
       }
     },
-    "com.slack.lists#AccessSetResponseFailedToUpdateUserIdsList": {
+    "com.slack.lists#SetAccessResponseFailedToUpdateUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -195,7 +196,7 @@
         "smithy.api#documentation": "The user IDs that could not be updated."
       }
     },
-    "com.slack.lists#AccessSetResponse": {
+    "com.slack.lists#SetAccessResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -206,13 +207,13 @@
           }
         },
         "failed_to_update_channel_ids": {
-          "target": "com.slack.lists#AccessSetResponseFailedToUpdateChannelIdsList",
+          "target": "com.slack.lists#SetAccessResponseFailedToUpdateChannelIdsList",
           "traits": {
             "smithy.api#documentation": "The channel IDs that could not be updated."
           }
         },
         "failed_to_update_user_ids": {
-          "target": "com.slack.lists#AccessSetResponseFailedToUpdateUserIdsList",
+          "target": "com.slack.lists#SetAccessResponseFailedToUpdateUserIdsList",
           "traits": {
             "smithy.api#documentation": "The user IDs that could not be updated."
           }
@@ -222,13 +223,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.lists#AccessSet": {
+    "com.slack.lists#SetAccess": {
       "type": "operation",
       "input": {
-        "target": "com.slack.lists#AccessSetRequest"
+        "target": "com.slack.lists#SetAccessRequest"
       },
       "output": {
-        "target": "com.slack.lists#AccessSetResponse"
+        "target": "com.slack.lists#SetAccessResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -240,7 +241,7 @@
         "com.distilled.openapi#contentType": "form-urlencoded"
       }
     },
-    "com.slack.lists#CreateRequestDescriptionBlocksList": {
+    "com.slack.lists#CreateSlackListRequestDescriptionBlocksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -249,7 +250,7 @@
         "smithy.api#documentation": "A rich text description of the List."
       }
     },
-    "com.slack.lists#CreateRequestSchemaList": {
+    "com.slack.lists#CreateSlackListRequestSchemaList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -258,7 +259,7 @@
         "smithy.api#documentation": "Column definition for the List."
       }
     },
-    "com.slack.lists#CreateRequest": {
+    "com.slack.lists#CreateSlackListRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -269,13 +270,13 @@
           }
         },
         "description_blocks": {
-          "target": "com.slack.lists#CreateRequestDescriptionBlocksList",
+          "target": "com.slack.lists#CreateSlackListRequestDescriptionBlocksList",
           "traits": {
             "smithy.api#documentation": "A rich text description of the List."
           }
         },
         "schema": {
-          "target": "com.slack.lists#CreateRequestSchemaList",
+          "target": "com.slack.lists#CreateSlackListRequestSchemaList",
           "traits": {
             "smithy.api#documentation": "Column definition for the List."
           }
@@ -303,7 +304,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.lists#CreateResponse": {
+    "com.slack.lists#CreateSlackListResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -331,13 +332,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.lists#Create": {
+    "com.slack.lists#CreateSlackList": {
       "type": "operation",
       "input": {
-        "target": "com.slack.lists#CreateRequest"
+        "target": "com.slack.lists#CreateSlackListRequest"
       },
       "output": {
-        "target": "com.slack.lists#CreateResponse"
+        "target": "com.slack.lists#CreateSlackListResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -511,7 +512,7 @@
         "com.distilled.openapi#contentType": "form-urlencoded"
       }
     },
-    "com.slack.lists#ItemsCreateRequestInitialFieldsList": {
+    "com.slack.lists#CreateItemRequestInitialFieldsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -520,7 +521,7 @@
         "smithy.api#documentation": "Initial item data."
       }
     },
-    "com.slack.lists#ItemsCreateRequest": {
+    "com.slack.lists#CreateItemRequest": {
       "type": "structure",
       "members": {
         "list_id": {
@@ -543,7 +544,7 @@
           }
         },
         "initial_fields": {
-          "target": "com.slack.lists#ItemsCreateRequestInitialFieldsList",
+          "target": "com.slack.lists#CreateItemRequestInitialFieldsList",
           "traits": {
             "smithy.api#documentation": "Initial item data."
           }
@@ -553,7 +554,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.lists#ItemsCreateResponse": {
+    "com.slack.lists#CreateItemResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -574,13 +575,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.lists#ItemsCreate": {
+    "com.slack.lists#CreateItem": {
       "type": "operation",
       "input": {
-        "target": "com.slack.lists#ItemsCreateRequest"
+        "target": "com.slack.lists#CreateItemRequest"
       },
       "output": {
-        "target": "com.slack.lists#ItemsCreateResponse"
+        "target": "com.slack.lists#CreateItemResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -592,7 +593,7 @@
         "com.distilled.openapi#contentType": "form-urlencoded"
       }
     },
-    "com.slack.lists#ItemsDeleteRequest": {
+    "com.slack.lists#DeleteItemRequest": {
       "type": "structure",
       "members": {
         "list_id": {
@@ -614,7 +615,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.lists#ItemsDeleteResponse": {
+    "com.slack.lists#DeleteItemResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -628,13 +629,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.lists#ItemsDelete": {
+    "com.slack.lists#DeleteItem": {
       "type": "operation",
       "input": {
-        "target": "com.slack.lists#ItemsDeleteRequest"
+        "target": "com.slack.lists#DeleteItemRequest"
       },
       "output": {
-        "target": "com.slack.lists#ItemsDeleteResponse"
+        "target": "com.slack.lists#DeleteItemResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -646,7 +647,7 @@
         "com.distilled.openapi#contentType": "form-urlencoded"
       }
     },
-    "com.slack.lists#ItemsDeleteMultipleRequestIdsList": {
+    "com.slack.lists#DeleteMultipleRequestIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -655,7 +656,7 @@
         "smithy.api#documentation": "IDs of items to delete."
       }
     },
-    "com.slack.lists#ItemsDeleteMultipleRequest": {
+    "com.slack.lists#DeleteMultipleRequest": {
       "type": "structure",
       "members": {
         "list_id": {
@@ -666,7 +667,7 @@
           }
         },
         "ids": {
-          "target": "com.slack.lists#ItemsDeleteMultipleRequestIdsList",
+          "target": "com.slack.lists#DeleteMultipleRequestIdsList",
           "traits": {
             "smithy.api#documentation": "IDs of items to delete.",
             "smithy.api#required": {}
@@ -677,7 +678,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.lists#ItemsDeleteMultipleResponse": {
+    "com.slack.lists#DeleteMultipleResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -691,13 +692,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.lists#ItemsDeleteMultiple": {
+    "com.slack.lists#DeleteMultiple": {
       "type": "operation",
       "input": {
-        "target": "com.slack.lists#ItemsDeleteMultipleRequest"
+        "target": "com.slack.lists#DeleteMultipleRequest"
       },
       "output": {
-        "target": "com.slack.lists#ItemsDeleteMultipleResponse"
+        "target": "com.slack.lists#DeleteMultipleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -795,7 +796,7 @@
         "com.distilled.openapi#contentType": "form-urlencoded"
       }
     },
-    "com.slack.lists#ItemsListRequest": {
+    "com.slack.lists#ListItemsRequest": {
       "type": "structure",
       "members": {
         "list_id": {
@@ -828,14 +829,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.lists#ItemsListResponseItemsList": {
+    "com.slack.lists#ListItemsResponseItemsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.slack.lists#ItemsListResponseResponseMetadata": {
+    "com.slack.lists#ListItemsResponseResponseMetadata": {
       "type": "structure",
       "members": {
         "next_cursor": {
@@ -849,7 +850,7 @@
         "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
       }
     },
-    "com.slack.lists#ItemsListResponse": {
+    "com.slack.lists#ListItemsResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -860,13 +861,13 @@
           }
         },
         "items": {
-          "target": "com.slack.lists#ItemsListResponseItemsList",
+          "target": "com.slack.lists#ListItemsResponseItemsList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "response_metadata": {
-          "target": "com.slack.lists#ItemsListResponseResponseMetadata",
+          "target": "com.slack.lists#ListItemsResponseResponseMetadata",
           "traits": {
             "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
@@ -876,13 +877,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.lists#ItemsList": {
+    "com.slack.lists#ListItems": {
       "type": "operation",
       "input": {
-        "target": "com.slack.lists#ItemsListRequest"
+        "target": "com.slack.lists#ListItemsRequest"
       },
       "output": {
-        "target": "com.slack.lists#ItemsListResponse"
+        "target": "com.slack.lists#ListItemsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -901,7 +902,7 @@
         }
       }
     },
-    "com.slack.lists#ItemsUpdateRequestCellsList": {
+    "com.slack.lists#UpdateItemRequestCellsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -910,7 +911,7 @@
         "smithy.api#documentation": "Cells to update."
       }
     },
-    "com.slack.lists#ItemsUpdateRequest": {
+    "com.slack.lists#UpdateItemRequest": {
       "type": "structure",
       "members": {
         "list_id": {
@@ -921,7 +922,7 @@
           }
         },
         "cells": {
-          "target": "com.slack.lists#ItemsUpdateRequestCellsList",
+          "target": "com.slack.lists#UpdateItemRequestCellsList",
           "traits": {
             "smithy.api#documentation": "Cells to update.",
             "smithy.api#required": {}
@@ -932,7 +933,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.lists#ItemsUpdateResponse": {
+    "com.slack.lists#UpdateItemResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -947,13 +948,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.lists#ItemsUpdate": {
+    "com.slack.lists#UpdateItem": {
       "type": "operation",
       "input": {
-        "target": "com.slack.lists#ItemsUpdateRequest"
+        "target": "com.slack.lists#UpdateItemRequest"
       },
       "output": {
-        "target": "com.slack.lists#ItemsUpdateResponse"
+        "target": "com.slack.lists#UpdateItemResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -965,7 +966,7 @@
         "com.distilled.openapi#contentType": "form-urlencoded"
       }
     },
-    "com.slack.lists#UpdateRequestDescriptionBlocksList": {
+    "com.slack.lists#UpdateSlackListRequestDescriptionBlocksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -974,7 +975,7 @@
         "smithy.api#documentation": "A rich text description of the List."
       }
     },
-    "com.slack.lists#UpdateRequest": {
+    "com.slack.lists#UpdateSlackListRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -991,7 +992,7 @@
           }
         },
         "description_blocks": {
-          "target": "com.slack.lists#UpdateRequestDescriptionBlocksList",
+          "target": "com.slack.lists#UpdateSlackListRequestDescriptionBlocksList",
           "traits": {
             "smithy.api#documentation": "A rich text description of the List."
           }
@@ -1007,7 +1008,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.lists#UpdateResponse": {
+    "com.slack.lists#UpdateSlackListResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -1022,13 +1023,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.lists#Update": {
+    "com.slack.lists#UpdateSlackList": {
       "type": "operation",
       "input": {
-        "target": "com.slack.lists#UpdateRequest"
+        "target": "com.slack.lists#UpdateSlackListRequest"
       },
       "output": {
-        "target": "com.slack.lists#UpdateResponse"
+        "target": "com.slack.lists#UpdateSlackListResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1045,13 +1046,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.lists#AccessDelete"
+          "target": "com.slack.lists#DeleteAccess"
         },
         {
-          "target": "com.slack.lists#AccessSet"
+          "target": "com.slack.lists#SetAccess"
         },
         {
-          "target": "com.slack.lists#Create"
+          "target": "com.slack.lists#CreateSlackList"
         },
         {
           "target": "com.slack.lists#DownloadGet"
@@ -1060,25 +1061,25 @@
           "target": "com.slack.lists#DownloadStart"
         },
         {
-          "target": "com.slack.lists#ItemsCreate"
+          "target": "com.slack.lists#CreateItem"
         },
         {
-          "target": "com.slack.lists#ItemsDelete"
+          "target": "com.slack.lists#DeleteItem"
         },
         {
-          "target": "com.slack.lists#ItemsDeleteMultiple"
+          "target": "com.slack.lists#DeleteMultiple"
         },
         {
           "target": "com.slack.lists#ItemsInfo"
         },
         {
-          "target": "com.slack.lists#ItemsList"
+          "target": "com.slack.lists#ListItems"
         },
         {
-          "target": "com.slack.lists#ItemsUpdate"
+          "target": "com.slack.lists#UpdateItem"
         },
         {
-          "target": "com.slack.lists#Update"
+          "target": "com.slack.lists#UpdateSlackList"
         }
       ],
       "traits": {

@@ -12,27 +12,29 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export interface InfoRequest {
+export interface BotsInfoRequest {
   /** Bot user to get info on */
   bot?: string;
   /** encoded team id or enterprise id where the bot exists, required if org token is used */
   team_id?: string;
 }
-export const InfoRequest = /*@__PURE__*/ S.suspend(() =>
+export const BotsInfoRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     bot: S.optional(S.String.pipe(T.Query())),
     team_id: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/bots.info", code: 200 })),
-).annotate({ identifier: "InfoRequest" }) as any as S.Schema<InfoRequest>;
+).annotate({
+  identifier: "BotsInfoRequest",
+}) as any as S.Schema<BotsInfoRequest>;
 
-export interface InfoResponseBotsItemIcons {
+export interface BotsInfoResponseBotsItemIcons {
   emoji?: string;
   image_36?: string;
   image_48?: string;
   image_64?: string;
   image_72?: string;
 }
-export const InfoResponseBotsItemIcons = /*@__PURE__*/ S.suspend(() =>
+export const BotsInfoResponseBotsItemIcons = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     emoji: S.optional(S.String),
     image_36: S.optional(S.String),
@@ -41,13 +43,13 @@ export const InfoResponseBotsItemIcons = /*@__PURE__*/ S.suspend(() =>
     image_72: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "InfoResponseBotsItemIcons",
-}) as any as S.Schema<InfoResponseBotsItemIcons>;
+  identifier: "BotsInfoResponseBotsItemIcons",
+}) as any as S.Schema<BotsInfoResponseBotsItemIcons>;
 
-export interface InfoResponseBotsItem {
+export interface BotsInfoResponseBotsItem {
   updated: number;
   name?: string;
-  icons?: InfoResponseBotsItemIcons;
+  icons?: BotsInfoResponseBotsItemIcons;
   deleted: boolean;
   app_id?: string;
   id: string;
@@ -56,11 +58,11 @@ export interface InfoResponseBotsItem {
   is_legacy_workflow_bot?: boolean;
   user_id?: string;
 }
-export const InfoResponseBotsItem = /*@__PURE__*/ S.suspend(() =>
+export const BotsInfoResponseBotsItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     updated: S.Number,
     name: S.optional(S.String),
-    icons: S.optional(InfoResponseBotsItemIcons),
+    icons: S.optional(BotsInfoResponseBotsItemIcons),
     deleted: S.Boolean,
     app_id: S.optional(S.String),
     id: S.String,
@@ -70,22 +72,22 @@ export const InfoResponseBotsItem = /*@__PURE__*/ S.suspend(() =>
     user_id: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "InfoResponseBotsItem",
-}) as any as S.Schema<InfoResponseBotsItem>;
+  identifier: "BotsInfoResponseBotsItem",
+}) as any as S.Schema<BotsInfoResponseBotsItem>;
 
-export type InfoResponseBotsList = Array<InfoResponseBotsItem>;
-export const InfoResponseBotsList = /*@__PURE__*/ S.Array(
-  InfoResponseBotsItem,
-) as any as S.Schema<InfoResponseBotsList>;
+export type BotsInfoResponseBotsList = Array<BotsInfoResponseBotsItem>;
+export const BotsInfoResponseBotsList = /*@__PURE__*/ S.Array(
+  BotsInfoResponseBotsItem,
+) as any as S.Schema<BotsInfoResponseBotsList>;
 
-export type InfoResponseBotIcons = InfoResponseBotsItemIcons;
-export const InfoResponseBotIcons = InfoResponseBotsItemIcons;
+export type BotsInfoResponseBotIcons = BotsInfoResponseBotsItemIcons;
+export const BotsInfoResponseBotIcons = BotsInfoResponseBotsItemIcons;
 
-export interface InfoResponseBot {
+export interface BotsInfoResponseBot {
   updated: number;
   user_id?: string;
   name?: string;
-  icons?: InfoResponseBotsItemIcons;
+  icons?: BotsInfoResponseBotsItemIcons;
   deleted: boolean;
   app_id?: string;
   id: string;
@@ -93,12 +95,12 @@ export interface InfoResponseBot {
   is_connector_bot?: boolean;
   is_legacy_workflow_bot?: boolean;
 }
-export const InfoResponseBot = /*@__PURE__*/ S.suspend(() =>
+export const BotsInfoResponseBot = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     updated: S.Number,
     user_id: S.optional(S.String),
     name: S.optional(S.String),
-    icons: S.optional(InfoResponseBotsItemIcons),
+    icons: S.optional(BotsInfoResponseBotsItemIcons),
     deleted: S.Boolean,
     app_id: S.optional(S.String),
     id: S.String,
@@ -107,33 +109,35 @@ export const InfoResponseBot = /*@__PURE__*/ S.suspend(() =>
     is_legacy_workflow_bot: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "InfoResponseBot",
-}) as any as S.Schema<InfoResponseBot>;
+  identifier: "BotsInfoResponseBot",
+}) as any as S.Schema<BotsInfoResponseBot>;
 
-export interface InfoResponse {
+export interface BotsInfoResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  bots?: InfoResponseBotsList;
-  bot?: InfoResponseBot;
+  bots?: BotsInfoResponseBotsList;
+  bot?: BotsInfoResponseBot;
 }
-export const InfoResponse = /*@__PURE__*/ S.suspend(() =>
+export const BotsInfoResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    bots: S.optional(InfoResponseBotsList),
-    bot: S.optional(InfoResponseBot),
+    bots: S.optional(BotsInfoResponseBotsList),
+    bot: S.optional(BotsInfoResponseBot),
   }),
-).annotate({ identifier: "InfoResponse" }) as any as S.Schema<InfoResponse>;
+).annotate({
+  identifier: "BotsInfoResponse",
+}) as any as S.Schema<BotsInfoResponse>;
 
-export type InfoError = SlackOpError;
+export type BotsInfoError = SlackOpError;
 /** Gets information about a bot user. Required scopes — bot: `users:read`; user: `users:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `bot_not_found` — Value passed for `bot` was invalid. - `bots_not_found` — At least one value passed for `bots` was invalid. - `missing_argument` — A required argument is missing. - `team_not_found` — Value passed for `team_id` was invalid. See https://docs.slack.dev/reference/methods/bots.info */
-export const info: API.OperationMethod<
-  InfoRequest,
-  InfoResponse,
-  InfoError,
+export const botsInfo: API.OperationMethod<
+  BotsInfoRequest,
+  BotsInfoResponse,
+  BotsInfoError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InfoRequest,
-  output: InfoResponse,
+  input: BotsInfoRequest,
+  output: BotsInfoResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

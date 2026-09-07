@@ -13,173 +13,74 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-/** List of channels you wish to update access for. Can only be used if `user_ids` is not provided. */
-export type AccessDeleteRequestChannelIdsList = Array<string>;
-export const AccessDeleteRequestChannelIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AccessDeleteRequestChannelIdsList>;
+/** Initial item data. */
+export type CreateItemRequestInitialFieldsList = Array<unknown>;
+export const CreateItemRequestInitialFieldsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<CreateItemRequestInitialFieldsList>;
 
-/** List of users you wish to update access for. Can only be used if `channel_ids` is not provided. */
-export type AccessDeleteRequestUserIdsList = Array<string>;
-export const AccessDeleteRequestUserIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AccessDeleteRequestUserIdsList>;
-
-export interface AccessDeleteRequest {
-  /** Encoded ID of the List. */
+export interface CreateItemRequest {
+  /** ID of the List to add the item to. */
   list_id: string;
-  /** List of channels you wish to update access for. Can only be used if `user_ids` is not provided. */
-  channel_ids?: AccessDeleteRequestChannelIdsList;
-  /** List of users you wish to update access for. Can only be used if `channel_ids` is not provided. */
-  user_ids?: AccessDeleteRequestUserIdsList;
+  /** ID of the record to make a copy of. */
+  duplicated_item_id?: string;
+  /** ID of the parent record for this subtask. */
+  parent_item_id?: string;
+  /** Initial item data. */
+  initial_fields?: CreateItemRequestInitialFieldsList;
 }
-export const AccessDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateItemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     list_id: S.String,
-    channel_ids: S.optional(AccessDeleteRequestChannelIdsList),
-    user_ids: S.optional(AccessDeleteRequestUserIdsList),
+    duplicated_item_id: S.optional(S.String),
+    parent_item_id: S.optional(S.String),
+    initial_fields: S.optional(CreateItemRequestInitialFieldsList),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/slackLists.access.delete",
+      uri: "/slackLists.items.create",
       code: 200,
       contentType: "form-urlencoded",
     }),
   ),
 ).annotate({
-  identifier: "AccessDeleteRequest",
-}) as any as S.Schema<AccessDeleteRequest>;
+  identifier: "CreateItemRequest",
+}) as any as S.Schema<CreateItemRequest>;
 
-/** The channel IDs that could not be updated. */
-export type AccessDeleteResponseFailedToUpdateChannelIdsList = Array<string>;
-export const AccessDeleteResponseFailedToUpdateChannelIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AccessDeleteResponseFailedToUpdateChannelIdsList>;
-
-/** The user IDs that could not be updated. */
-export type AccessDeleteResponseFailedToUpdateUserIdsList = Array<string>;
-export const AccessDeleteResponseFailedToUpdateUserIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AccessDeleteResponseFailedToUpdateUserIdsList>;
-
-export interface AccessDeleteResponse {
+export interface CreateItemResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  /** The channel IDs that could not be updated. */
-  failed_to_update_channel_ids?: AccessDeleteResponseFailedToUpdateChannelIdsList;
-  /** The user IDs that could not be updated. */
-  failed_to_update_user_ids?: AccessDeleteResponseFailedToUpdateUserIdsList;
+  item: unknown;
 }
-export const AccessDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateItemResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    failed_to_update_channel_ids: S.optional(
-      AccessDeleteResponseFailedToUpdateChannelIdsList,
-    ),
-    failed_to_update_user_ids: S.optional(
-      AccessDeleteResponseFailedToUpdateUserIdsList,
-    ),
+    item: S.Unknown,
   }),
 ).annotate({
-  identifier: "AccessDeleteResponse",
-}) as any as S.Schema<AccessDeleteResponse>;
-
-/** List of channels you wish to update access for. Can only be used if `user_ids` is not provided. */
-export type AccessSetRequestChannelIdsList = Array<string>;
-export const AccessSetRequestChannelIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AccessSetRequestChannelIdsList>;
-
-/** List of users you wish to update access for. Can only be used if `channel_ids` is not provided. */
-export type AccessSetRequestUserIdsList = Array<string>;
-export const AccessSetRequestUserIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AccessSetRequestUserIdsList>;
-
-export interface AccessSetRequest {
-  /** Encoded ID of the List. */
-  list_id: string;
-  /** Desired level of access. */
-  access_level: string;
-  /** List of channels you wish to update access for. Can only be used if `user_ids` is not provided. */
-  channel_ids?: AccessSetRequestChannelIdsList;
-  /** List of users you wish to update access for. Can only be used if `channel_ids` is not provided. */
-  user_ids?: AccessSetRequestUserIdsList;
-}
-export const AccessSetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    list_id: S.String,
-    access_level: S.String,
-    channel_ids: S.optional(AccessSetRequestChannelIdsList),
-    user_ids: S.optional(AccessSetRequestUserIdsList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/slackLists.access.set",
-      code: 200,
-      contentType: "form-urlencoded",
-    }),
-  ),
-).annotate({
-  identifier: "AccessSetRequest",
-}) as any as S.Schema<AccessSetRequest>;
-
-/** The channel IDs that could not be updated. */
-export type AccessSetResponseFailedToUpdateChannelIdsList = Array<string>;
-export const AccessSetResponseFailedToUpdateChannelIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AccessSetResponseFailedToUpdateChannelIdsList>;
-
-/** The user IDs that could not be updated. */
-export type AccessSetResponseFailedToUpdateUserIdsList = Array<string>;
-export const AccessSetResponseFailedToUpdateUserIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AccessSetResponseFailedToUpdateUserIdsList>;
-
-export interface AccessSetResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  /** The channel IDs that could not be updated. */
-  failed_to_update_channel_ids?: AccessSetResponseFailedToUpdateChannelIdsList;
-  /** The user IDs that could not be updated. */
-  failed_to_update_user_ids?: AccessSetResponseFailedToUpdateUserIdsList;
-}
-export const AccessSetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    failed_to_update_channel_ids: S.optional(
-      AccessSetResponseFailedToUpdateChannelIdsList,
-    ),
-    failed_to_update_user_ids: S.optional(
-      AccessSetResponseFailedToUpdateUserIdsList,
-    ),
-  }),
-).annotate({
-  identifier: "AccessSetResponse",
-}) as any as S.Schema<AccessSetResponse>;
+  identifier: "CreateItemResponse",
+}) as any as S.Schema<CreateItemResponse>;
 
 /** A rich text description of the List. */
-export type CreateRequestDescriptionBlocksList = Array<unknown>;
-export const CreateRequestDescriptionBlocksList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<CreateRequestDescriptionBlocksList>;
+export type CreateSlackListRequestDescriptionBlocksList = Array<unknown>;
+export const CreateSlackListRequestDescriptionBlocksList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CreateSlackListRequestDescriptionBlocksList>;
 
 /** Column definition for the List. */
-export type CreateRequestSchemaList = Array<unknown>;
-export const CreateRequestSchemaList = /*@__PURE__*/ S.Array(
+export type CreateSlackListRequestSchemaList = Array<unknown>;
+export const CreateSlackListRequestSchemaList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<CreateRequestSchemaList>;
+) as any as S.Schema<CreateSlackListRequestSchemaList>;
 
-export interface CreateRequest {
+export interface CreateSlackListRequest {
   /** Name of the List. */
   name: string;
   /** A rich text description of the List. */
-  description_blocks?: CreateRequestDescriptionBlocksList;
+  description_blocks?: CreateSlackListRequestDescriptionBlocksList;
   /** Column definition for the List. */
-  schema?: CreateRequestSchemaList;
+  schema?: CreateSlackListRequestSchemaList;
   /** ID of the List to copy. */
   copy_from_list_id?: string;
   /** Boolean indicating whether to include records when a List is copied. */
@@ -187,11 +88,11 @@ export interface CreateRequest {
   /** Boolean indicating whether the List should be used to track todo tasks. */
   todo_mode?: boolean;
 }
-export const CreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSlackListRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String,
-    description_blocks: S.optional(CreateRequestDescriptionBlocksList),
-    schema: S.optional(CreateRequestSchemaList),
+    description_blocks: S.optional(CreateSlackListRequestDescriptionBlocksList),
+    schema: S.optional(CreateSlackListRequestSchemaList),
     copy_from_list_id: S.optional(S.String),
     include_copied_list_records: S.optional(S.Boolean),
     todo_mode: S.optional(S.Boolean),
@@ -203,9 +104,11 @@ export const CreateRequest = /*@__PURE__*/ S.suspend(() =>
       contentType: "form-urlencoded",
     }),
   ),
-).annotate({ identifier: "CreateRequest" }) as any as S.Schema<CreateRequest>;
+).annotate({
+  identifier: "CreateSlackListRequest",
+}) as any as S.Schema<CreateSlackListRequest>;
 
-export interface CreateResponse {
+export interface CreateSlackListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   /** The ID of the List created. */
@@ -213,13 +116,160 @@ export interface CreateResponse {
   /** The metadata of the List created. */
   list_metadata?: unknown;
 }
-export const CreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateSlackListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     list_id: S.String,
     list_metadata: S.optional(S.Unknown),
   }),
-).annotate({ identifier: "CreateResponse" }) as any as S.Schema<CreateResponse>;
+).annotate({
+  identifier: "CreateSlackListResponse",
+}) as any as S.Schema<CreateSlackListResponse>;
+
+/** List of channels you wish to update access for. Can only be used if `user_ids` is not provided. */
+export type DeleteAccessRequestChannelIdsList = Array<string>;
+export const DeleteAccessRequestChannelIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DeleteAccessRequestChannelIdsList>;
+
+/** List of users you wish to update access for. Can only be used if `channel_ids` is not provided. */
+export type DeleteAccessRequestUserIdsList = Array<string>;
+export const DeleteAccessRequestUserIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DeleteAccessRequestUserIdsList>;
+
+export interface DeleteAccessRequest {
+  /** Encoded ID of the List. */
+  list_id: string;
+  /** List of channels you wish to update access for. Can only be used if `user_ids` is not provided. */
+  channel_ids?: DeleteAccessRequestChannelIdsList;
+  /** List of users you wish to update access for. Can only be used if `channel_ids` is not provided. */
+  user_ids?: DeleteAccessRequestUserIdsList;
+}
+export const DeleteAccessRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    list_id: S.String,
+    channel_ids: S.optional(DeleteAccessRequestChannelIdsList),
+    user_ids: S.optional(DeleteAccessRequestUserIdsList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/slackLists.access.delete",
+      code: 200,
+      contentType: "form-urlencoded",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAccessRequest",
+}) as any as S.Schema<DeleteAccessRequest>;
+
+/** The channel IDs that could not be updated. */
+export type DeleteAccessResponseFailedToUpdateChannelIdsList = Array<string>;
+export const DeleteAccessResponseFailedToUpdateChannelIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<DeleteAccessResponseFailedToUpdateChannelIdsList>;
+
+/** The user IDs that could not be updated. */
+export type DeleteAccessResponseFailedToUpdateUserIdsList = Array<string>;
+export const DeleteAccessResponseFailedToUpdateUserIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<DeleteAccessResponseFailedToUpdateUserIdsList>;
+
+export interface DeleteAccessResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  /** The channel IDs that could not be updated. */
+  failed_to_update_channel_ids?: DeleteAccessResponseFailedToUpdateChannelIdsList;
+  /** The user IDs that could not be updated. */
+  failed_to_update_user_ids?: DeleteAccessResponseFailedToUpdateUserIdsList;
+}
+export const DeleteAccessResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    failed_to_update_channel_ids: S.optional(
+      DeleteAccessResponseFailedToUpdateChannelIdsList,
+    ),
+    failed_to_update_user_ids: S.optional(
+      DeleteAccessResponseFailedToUpdateUserIdsList,
+    ),
+  }),
+).annotate({
+  identifier: "DeleteAccessResponse",
+}) as any as S.Schema<DeleteAccessResponse>;
+
+export interface DeleteItemRequest {
+  /** ID of the List containing the item. */
+  list_id: string;
+  /** ID of item to delete. */
+  id: string;
+}
+export const DeleteItemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    list_id: S.String,
+    id: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/slackLists.items.delete",
+      code: 200,
+      contentType: "form-urlencoded",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteItemRequest",
+}) as any as S.Schema<DeleteItemRequest>;
+
+export interface DeleteItemResponse {
+  ok: boolean;
+}
+export const DeleteItemResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+  }),
+).annotate({
+  identifier: "DeleteItemResponse",
+}) as any as S.Schema<DeleteItemResponse>;
+
+/** IDs of items to delete. */
+export type DeleteMultipleRequestIdsList = Array<string>;
+export const DeleteMultipleRequestIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DeleteMultipleRequestIdsList>;
+
+export interface DeleteMultipleRequest {
+  /** ID of the List containing the items. */
+  list_id: string;
+  /** IDs of items to delete. */
+  ids: DeleteMultipleRequestIdsList;
+}
+export const DeleteMultipleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    list_id: S.String,
+    ids: DeleteMultipleRequestIdsList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/slackLists.items.deleteMultiple",
+      code: 200,
+      contentType: "form-urlencoded",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteMultipleRequest",
+}) as any as S.Schema<DeleteMultipleRequest>;
+
+export interface DeleteMultipleResponse {
+  ok: boolean;
+}
+export const DeleteMultipleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+  }),
+).annotate({
+  identifier: "DeleteMultipleResponse",
+}) as any as S.Schema<DeleteMultipleResponse>;
 
 export interface DownloadGetRequest {
   /** ID of the List to export. */
@@ -315,126 +365,6 @@ export const DownloadStartResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DownloadStartResponse",
 }) as any as S.Schema<DownloadStartResponse>;
 
-/** Initial item data. */
-export type ItemsCreateRequestInitialFieldsList = Array<unknown>;
-export const ItemsCreateRequestInitialFieldsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<ItemsCreateRequestInitialFieldsList>;
-
-export interface ItemsCreateRequest {
-  /** ID of the List to add the item to. */
-  list_id: string;
-  /** ID of the record to make a copy of. */
-  duplicated_item_id?: string;
-  /** ID of the parent record for this subtask. */
-  parent_item_id?: string;
-  /** Initial item data. */
-  initial_fields?: ItemsCreateRequestInitialFieldsList;
-}
-export const ItemsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    list_id: S.String,
-    duplicated_item_id: S.optional(S.String),
-    parent_item_id: S.optional(S.String),
-    initial_fields: S.optional(ItemsCreateRequestInitialFieldsList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/slackLists.items.create",
-      code: 200,
-      contentType: "form-urlencoded",
-    }),
-  ),
-).annotate({
-  identifier: "ItemsCreateRequest",
-}) as any as S.Schema<ItemsCreateRequest>;
-
-export interface ItemsCreateResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  item: unknown;
-}
-export const ItemsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    item: S.Unknown,
-  }),
-).annotate({
-  identifier: "ItemsCreateResponse",
-}) as any as S.Schema<ItemsCreateResponse>;
-
-export interface ItemsDeleteRequest {
-  /** ID of the List containing the item. */
-  list_id: string;
-  /** ID of item to delete. */
-  id: string;
-}
-export const ItemsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    list_id: S.String,
-    id: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/slackLists.items.delete",
-      code: 200,
-      contentType: "form-urlencoded",
-    }),
-  ),
-).annotate({
-  identifier: "ItemsDeleteRequest",
-}) as any as S.Schema<ItemsDeleteRequest>;
-
-export interface ItemsDeleteResponse {
-  ok: boolean;
-}
-export const ItemsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-  }),
-).annotate({
-  identifier: "ItemsDeleteResponse",
-}) as any as S.Schema<ItemsDeleteResponse>;
-
-/** IDs of items to delete. */
-export type ItemsDeleteMultipleRequestIdsList = Array<string>;
-export const ItemsDeleteMultipleRequestIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ItemsDeleteMultipleRequestIdsList>;
-
-export interface ItemsDeleteMultipleRequest {
-  /** ID of the List containing the items. */
-  list_id: string;
-  /** IDs of items to delete. */
-  ids: ItemsDeleteMultipleRequestIdsList;
-}
-export const ItemsDeleteMultipleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    list_id: S.String,
-    ids: ItemsDeleteMultipleRequestIdsList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/slackLists.items.deleteMultiple",
-      code: 200,
-      contentType: "form-urlencoded",
-    }),
-  ),
-).annotate({
-  identifier: "ItemsDeleteMultipleRequest",
-}) as any as S.Schema<ItemsDeleteMultipleRequest>;
-
-export interface ItemsDeleteMultipleResponse {
-  ok: boolean;
-}
-export const ItemsDeleteMultipleResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-  }),
-).annotate({
-  identifier: "ItemsDeleteMultipleResponse",
-}) as any as S.Schema<ItemsDeleteMultipleResponse>;
-
 export interface ItemsInfoRequest {
   /** ID of the List. */
   list_id: string;
@@ -485,7 +415,7 @@ export const ItemsInfoResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ItemsInfoResponse",
 }) as any as S.Schema<ItemsInfoResponse>;
 
-export interface ItemsListRequest {
+export interface ListItemsRequest {
   /** ID of the List. */
   list_id: string;
   /** The maximum number of records to return. */
@@ -495,7 +425,7 @@ export interface ItemsListRequest {
   /** Boolean indicating whether archived items or normal items should be returned. */
   archived?: boolean;
 }
-export const ItemsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListItemsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     list_id: S.String,
     limit: S.optional(S.Number),
@@ -510,60 +440,135 @@ export const ItemsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ItemsListRequest",
-}) as any as S.Schema<ItemsListRequest>;
+  identifier: "ListItemsRequest",
+}) as any as S.Schema<ListItemsRequest>;
 
-export type ItemsListResponseItemsList = Array<unknown>;
-export const ItemsListResponseItemsList = /*@__PURE__*/ S.Array(
+export type ListItemsResponseItemsList = Array<unknown>;
+export const ListItemsResponseItemsList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<ItemsListResponseItemsList>;
+) as any as S.Schema<ListItemsResponseItemsList>;
 
 /** Pagination metadata. An empty `next_cursor` means the last page. */
-export interface ItemsListResponseResponseMetadata {
+export interface ListItemsResponseResponseMetadata {
   /** Cursor for the next page — pass as `cursor` on the next call. */
   next_cursor?: string;
 }
-export const ItemsListResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
+export const ListItemsResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     next_cursor: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ItemsListResponseResponseMetadata",
-}) as any as S.Schema<ItemsListResponseResponseMetadata>;
+  identifier: "ListItemsResponseResponseMetadata",
+}) as any as S.Schema<ListItemsResponseResponseMetadata>;
 
-export interface ItemsListResponse {
+export interface ListItemsResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  items: ItemsListResponseItemsList;
+  items: ListItemsResponseItemsList;
   /** Pagination metadata. An empty `next_cursor` means the last page. */
-  response_metadata?: ItemsListResponseResponseMetadata;
+  response_metadata?: ListItemsResponseResponseMetadata;
 }
-export const ItemsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListItemsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    items: ItemsListResponseItemsList,
-    response_metadata: S.optional(ItemsListResponseResponseMetadata),
+    items: ListItemsResponseItemsList,
+    response_metadata: S.optional(ListItemsResponseResponseMetadata),
   }),
 ).annotate({
-  identifier: "ItemsListResponse",
-}) as any as S.Schema<ItemsListResponse>;
+  identifier: "ListItemsResponse",
+}) as any as S.Schema<ListItemsResponse>;
+
+/** List of channels you wish to update access for. Can only be used if `user_ids` is not provided. */
+export type SetAccessRequestChannelIdsList = Array<string>;
+export const SetAccessRequestChannelIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SetAccessRequestChannelIdsList>;
+
+/** List of users you wish to update access for. Can only be used if `channel_ids` is not provided. */
+export type SetAccessRequestUserIdsList = Array<string>;
+export const SetAccessRequestUserIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SetAccessRequestUserIdsList>;
+
+export interface SetAccessRequest {
+  /** Encoded ID of the List. */
+  list_id: string;
+  /** Desired level of access. */
+  access_level: string;
+  /** List of channels you wish to update access for. Can only be used if `user_ids` is not provided. */
+  channel_ids?: SetAccessRequestChannelIdsList;
+  /** List of users you wish to update access for. Can only be used if `channel_ids` is not provided. */
+  user_ids?: SetAccessRequestUserIdsList;
+}
+export const SetAccessRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    list_id: S.String,
+    access_level: S.String,
+    channel_ids: S.optional(SetAccessRequestChannelIdsList),
+    user_ids: S.optional(SetAccessRequestUserIdsList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/slackLists.access.set",
+      code: 200,
+      contentType: "form-urlencoded",
+    }),
+  ),
+).annotate({
+  identifier: "SetAccessRequest",
+}) as any as S.Schema<SetAccessRequest>;
+
+/** The channel IDs that could not be updated. */
+export type SetAccessResponseFailedToUpdateChannelIdsList = Array<string>;
+export const SetAccessResponseFailedToUpdateChannelIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SetAccessResponseFailedToUpdateChannelIdsList>;
+
+/** The user IDs that could not be updated. */
+export type SetAccessResponseFailedToUpdateUserIdsList = Array<string>;
+export const SetAccessResponseFailedToUpdateUserIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SetAccessResponseFailedToUpdateUserIdsList>;
+
+export interface SetAccessResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  /** The channel IDs that could not be updated. */
+  failed_to_update_channel_ids?: SetAccessResponseFailedToUpdateChannelIdsList;
+  /** The user IDs that could not be updated. */
+  failed_to_update_user_ids?: SetAccessResponseFailedToUpdateUserIdsList;
+}
+export const SetAccessResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    failed_to_update_channel_ids: S.optional(
+      SetAccessResponseFailedToUpdateChannelIdsList,
+    ),
+    failed_to_update_user_ids: S.optional(
+      SetAccessResponseFailedToUpdateUserIdsList,
+    ),
+  }),
+).annotate({
+  identifier: "SetAccessResponse",
+}) as any as S.Schema<SetAccessResponse>;
 
 /** Cells to update. */
-export type ItemsUpdateRequestCellsList = Array<unknown>;
-export const ItemsUpdateRequestCellsList = /*@__PURE__*/ S.Array(
+export type UpdateItemRequestCellsList = Array<unknown>;
+export const UpdateItemRequestCellsList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<ItemsUpdateRequestCellsList>;
+) as any as S.Schema<UpdateItemRequestCellsList>;
 
-export interface ItemsUpdateRequest {
+export interface UpdateItemRequest {
   /** ID of the List to add or update cells. */
   list_id: string;
   /** Cells to update. */
-  cells: ItemsUpdateRequestCellsList;
+  cells: UpdateItemRequestCellsList;
 }
-export const ItemsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateItemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     list_id: S.String,
-    cells: ItemsUpdateRequestCellsList,
+    cells: UpdateItemRequestCellsList,
   }).pipe(
     T.Http({
       method: "POST",
@@ -573,42 +578,43 @@ export const ItemsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ItemsUpdateRequest",
-}) as any as S.Schema<ItemsUpdateRequest>;
+  identifier: "UpdateItemRequest",
+}) as any as S.Schema<UpdateItemRequest>;
 
-export interface ItemsUpdateResponse {
+export interface UpdateItemResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const ItemsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateItemResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
 ).annotate({
-  identifier: "ItemsUpdateResponse",
-}) as any as S.Schema<ItemsUpdateResponse>;
+  identifier: "UpdateItemResponse",
+}) as any as S.Schema<UpdateItemResponse>;
 
 /** A rich text description of the List. */
-export type UpdateRequestDescriptionBlocksList = Array<unknown>;
-export const UpdateRequestDescriptionBlocksList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<UpdateRequestDescriptionBlocksList>;
+export type UpdateSlackListRequestDescriptionBlocksList = Array<unknown>;
+export const UpdateSlackListRequestDescriptionBlocksList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<UpdateSlackListRequestDescriptionBlocksList>;
 
-export interface UpdateRequest {
+export interface UpdateSlackListRequest {
   /** The ID of the List to update. */
   id: string;
   /** The updated name of the List. */
   name?: string;
   /** A rich text description of the List. */
-  description_blocks?: UpdateRequestDescriptionBlocksList;
+  description_blocks?: UpdateSlackListRequestDescriptionBlocksList;
   /** Boolean indicating whether the List should be in todo mode. */
   todo_mode?: boolean;
 }
-export const UpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSlackListRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     name: S.optional(S.String),
-    description_blocks: S.optional(UpdateRequestDescriptionBlocksList),
+    description_blocks: S.optional(UpdateSlackListRequestDescriptionBlocksList),
     todo_mode: S.optional(S.Boolean),
   }).pipe(
     T.Http({
@@ -618,58 +624,92 @@ export const UpdateRequest = /*@__PURE__*/ S.suspend(() =>
       contentType: "form-urlencoded",
     }),
   ),
-).annotate({ identifier: "UpdateRequest" }) as any as S.Schema<UpdateRequest>;
+).annotate({
+  identifier: "UpdateSlackListRequest",
+}) as any as S.Schema<UpdateSlackListRequest>;
 
-export interface UpdateResponse {
+export interface UpdateSlackListResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const UpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSlackListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
-).annotate({ identifier: "UpdateResponse" }) as any as S.Schema<UpdateResponse>;
+).annotate({
+  identifier: "UpdateSlackListResponse",
+}) as any as S.Schema<UpdateSlackListResponse>;
 
-export type AccessDeleteError = SlackOpError;
-/** Revoke access to a List for specified entities. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `lists_disabled_user_team` — Lists is disabled on user's team. - `list_not_found` — The List you wish to update permissions for is not available. - `channel_not_found` — A channel could not be found. - `failed_to_update_user_ids` — Failed to update the specified user IDs. - `invalid_parameters` — One of `user_ids` or `channel_ids` must be defined, but not both. - `restricted_action` — User does not have permission to perform this action. - `user_not_found` — A user could not be found. See https://docs.slack.dev/reference/methods/slackLists.access.delete */
-export const accessDelete: API.OperationMethod<
-  AccessDeleteRequest,
-  AccessDeleteResponse,
-  AccessDeleteError,
+export type CreateItemError = SlackOpError;
+/** Add a new item to an existing List. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `list_not_found` — The List was not found. - `over_row_maximum` — Cannot create more items over the maximum. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. - `duplicated_item_not_found` — The item to duplicate cannot be found. - `invalid_option_id` — Option ID provided does not match column definition. - `invalid_args` — The provided arguments are invalid. - `uneditable_column` — Initial values provided for an uneditable column. - `invalid_input_type` — The field value type does not match the column type. - `invalid_column_id` — The column ID provided does not exist in the List. - `over_cell_fields_limit` — Too many values provided for a single field. - `file_not_found` — The attachment file could not be found. - `invalid_vote_value` — Invalid value provided for a vote column. See https://docs.slack.dev/reference/methods/slackLists.items.create */
+export const createItem: API.OperationMethod<
+  CreateItemRequest,
+  CreateItemResponse,
+  CreateItemError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccessDeleteRequest,
-  output: AccessDeleteResponse,
+  input: CreateItemRequest,
+  output: CreateItemResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccessSetError = SlackOpError;
-/** Set the access level to a List for specified entities. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `lists_disabled_user_team` — Lists is disabled on user's team. - `list_not_found` — The List you wish to update permissions for is not available. - `channel_not_found` — A channel could not be found. - `failed_to_update_user_ids` — Failed to update the specified user IDs. - `invalid_parameters` — One of `user_ids` or `channel_ids` must be defined, but not both. - `restricted_action` — User does not have permission to perform this action. - `user_not_found` — A user could not be found. See https://docs.slack.dev/reference/methods/slackLists.access.set */
-export const accessSet: API.OperationMethod<
-  AccessSetRequest,
-  AccessSetResponse,
-  AccessSetError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessSetRequest,
-  output: AccessSetResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateError = SlackOpError;
+export type CreateSlackListError = SlackOpError;
 /** Create a List. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `permission_denied` — The user does not have permission to perform this action. - `invalid_schema` — The schema was invalid. - `invalid_primary_column` — Missing or more than one primary column. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. - `over_list_file_maximum` — Cannot create any more List files. - `over_title_length_maximum` — Title can not exceed defined length. - `invalid_column_type` — Column type not allowed. - `missing_arg_copy_from_list_id` — Missing argument `copy_from_list_id`. - `invalid_copy_and_schema_args` — Cannot provide both `copy_from_list_id` and `schema`. - `over_column_maximum` — Cannot create List with more than allowed column count. See https://docs.slack.dev/reference/methods/slackLists.create */
-export const create: API.OperationMethod<
-  CreateRequest,
-  CreateResponse,
-  CreateError,
+export const createSlackList: API.OperationMethod<
+  CreateSlackListRequest,
+  CreateSlackListResponse,
+  CreateSlackListError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateRequest,
-  output: CreateResponse,
+  input: CreateSlackListRequest,
+  output: CreateSlackListResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAccessError = SlackOpError;
+/** Revoke access to a List for specified entities. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `lists_disabled_user_team` — Lists is disabled on user's team. - `list_not_found` — The List you wish to update permissions for is not available. - `channel_not_found` — A channel could not be found. - `failed_to_update_user_ids` — Failed to update the specified user IDs. - `invalid_parameters` — One of `user_ids` or `channel_ids` must be defined, but not both. - `restricted_action` — User does not have permission to perform this action. - `user_not_found` — A user could not be found. See https://docs.slack.dev/reference/methods/slackLists.access.delete */
+export const deleteAccess: API.OperationMethod<
+  DeleteAccessRequest,
+  DeleteAccessResponse,
+  DeleteAccessError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAccessRequest,
+  output: DeleteAccessResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteItemError = SlackOpError;
+/** Deletes an item from an existing List. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `list_not_found` — The List was not found. - `record_not_found` — The record was not found in the List. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. See https://docs.slack.dev/reference/methods/slackLists.items.delete */
+export const deleteItem: API.OperationMethod<
+  DeleteItemRequest,
+  DeleteItemResponse,
+  DeleteItemError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteItemRequest,
+  output: DeleteItemResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteMultipleError = SlackOpError;
+/** Deletes multiple items from an existing List. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `list_not_found` — The List was not found. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. See https://docs.slack.dev/reference/methods/slackLists.items.deleteMultiple */
+export const deleteMultiple: API.OperationMethod<
+  DeleteMultipleRequest,
+  DeleteMultipleResponse,
+  DeleteMultipleError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteMultipleRequest,
+  output: DeleteMultipleResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
@@ -705,51 +745,6 @@ export const downloadStart: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ItemsCreateError = SlackOpError;
-/** Add a new item to an existing List. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `list_not_found` — The List was not found. - `over_row_maximum` — Cannot create more items over the maximum. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. - `duplicated_item_not_found` — The item to duplicate cannot be found. - `invalid_option_id` — Option ID provided does not match column definition. - `invalid_args` — The provided arguments are invalid. - `uneditable_column` — Initial values provided for an uneditable column. - `invalid_input_type` — The field value type does not match the column type. - `invalid_column_id` — The column ID provided does not exist in the List. - `over_cell_fields_limit` — Too many values provided for a single field. - `file_not_found` — The attachment file could not be found. - `invalid_vote_value` — Invalid value provided for a vote column. See https://docs.slack.dev/reference/methods/slackLists.items.create */
-export const itemsCreate: API.OperationMethod<
-  ItemsCreateRequest,
-  ItemsCreateResponse,
-  ItemsCreateError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ItemsCreateRequest,
-  output: ItemsCreateResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ItemsDeleteError = SlackOpError;
-/** Deletes an item from an existing List. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `list_not_found` — The List was not found. - `record_not_found` — The record was not found in the List. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. See https://docs.slack.dev/reference/methods/slackLists.items.delete */
-export const itemsDelete: API.OperationMethod<
-  ItemsDeleteRequest,
-  ItemsDeleteResponse,
-  ItemsDeleteError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ItemsDeleteRequest,
-  output: ItemsDeleteResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ItemsDeleteMultipleError = SlackOpError;
-/** Deletes multiple items from an existing List. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `list_not_found` — The List was not found. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. See https://docs.slack.dev/reference/methods/slackLists.items.deleteMultiple */
-export const itemsDeleteMultiple: API.OperationMethod<
-  ItemsDeleteMultipleRequest,
-  ItemsDeleteMultipleResponse,
-  ItemsDeleteMultipleError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ItemsDeleteMultipleRequest,
-  output: ItemsDeleteMultipleResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ItemsInfoError = SlackOpError;
 /** Get a row from a List. Required scopes — bot: `lists:read`; user: `lists:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `list_not_found` — The List was not found. - `record_not_found` — The record was not found in the List. - `record_deleted` — The record has been deleted. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. See https://docs.slack.dev/reference/methods/slackLists.items.info */
 export const itemsInfo: API.OperationMethod<
@@ -765,18 +760,18 @@ export const itemsInfo: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ItemsListError = SlackOpError;
+export type ListItemsError = SlackOpError;
 /** Get records from a List. Required scopes — bot: `lists:read`; user: `lists:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `list_not_found` — The List was not found. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `archive_not_supported` — Archiving is not supported. See https://docs.slack.dev/reference/methods/slackLists.items.list */
-export const itemsList: API.PaginatedOperationMethod<
-  ItemsListRequest,
-  ItemsListResponse,
-  ItemsListError,
+export const listItems: API.PaginatedOperationMethod<
+  ListItemsRequest,
+  ListItemsResponse,
+  ListItemsError,
   SlackOpContext,
   unknown
 > = /*@__PURE__*/ API.makePaginated(
   () => ({
-    input: ItemsListRequest,
-    output: ItemsListResponse,
+    input: ListItemsRequest,
+    output: ListItemsResponse,
     errors: [SlackError, SlackRateLimited],
     protocol: SlackProtocol,
     retry: Retry.Retry,
@@ -791,31 +786,46 @@ export const itemsList: API.PaginatedOperationMethod<
   slackPaginate,
 ) as any;
 
-export type ItemsUpdateError = SlackOpError;
-/** Updates cells in a List. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `list_not_found` — The List was not found. - `row_not_found` — The row was not found. - `column_not_found` — The column was not found. - `file_not_found` — Invalid file ID for this List. - `invalid_input_type` — Supplied value key or value type is invalid for the given column type. - `invalid_row_id` — Invalid row ID for this List. - `invalid_column_id` — Invalid column ID for this List. - `permission_denied` — The user does not have permission to perform this action. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. - `channel_not_found` — The channel cannot be found. - `uneditable_column` — The column cannot be updated. - `invalid_blocks` — Rich text payload supplied is invalid. - `invalid_text_block` — Rich text payload supplied is invalid. - `invalid_email` — Email supplied is invalid. - `invalid_link` — Message archive link supplied is invalid. - `invalid_date` — Date supplied is invalid. - `invalid_option_id` — Option supplied is invalid. - `row_id_not_provided` — The `row_id` or `row_id_to_create` field must be provided. - `column_id_not_provided` — The `column_id` or `column_id_to_create` field must be provided. - `over_cell_fields_limit` — The supplied cell fields are over the cell field maximum. - `invalid_message` — Invalid message provided. - `invalid_attachment` — Invalid attachment provided. - `invalid_phone_number` — Invalid phone number provided. - `invalid_vote_value` — Invalid vote value is supplied. See https://docs.slack.dev/reference/methods/slackLists.items.update */
-export const itemsUpdate: API.OperationMethod<
-  ItemsUpdateRequest,
-  ItemsUpdateResponse,
-  ItemsUpdateError,
+export type SetAccessError = SlackOpError;
+/** Set the access level to a List for specified entities. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `lists_disabled_user_team` — Lists is disabled on user's team. - `list_not_found` — The List you wish to update permissions for is not available. - `channel_not_found` — A channel could not be found. - `failed_to_update_user_ids` — Failed to update the specified user IDs. - `invalid_parameters` — One of `user_ids` or `channel_ids` must be defined, but not both. - `restricted_action` — User does not have permission to perform this action. - `user_not_found` — A user could not be found. See https://docs.slack.dev/reference/methods/slackLists.access.set */
+export const setAccess: API.OperationMethod<
+  SetAccessRequest,
+  SetAccessResponse,
+  SetAccessError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ItemsUpdateRequest,
-  output: ItemsUpdateResponse,
+  input: SetAccessRequest,
+  output: SetAccessResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateError = SlackOpError;
-/** Update a List. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `list_not_found` — The List was not found. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. - `list_edits_update_error` — Failed to update List metadata. - `list_editor_upsert_error` — Failed to upsert List editor. - `over_title_length_maximum` — Title can not exceed defined length. - `file_channel_rename_error` — Failed to rename file channel based on file title. - `unexpected_description_blocks_arg` — Unexpected description blocks argument. - `missing_arguments` — No arguments were provided to update the List. See https://docs.slack.dev/reference/methods/slackLists.update */
-export const update: API.OperationMethod<
-  UpdateRequest,
-  UpdateResponse,
-  UpdateError,
+export type UpdateItemError = SlackOpError;
+/** Updates cells in a List. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `list_not_found` — The List was not found. - `row_not_found` — The row was not found. - `column_not_found` — The column was not found. - `file_not_found` — Invalid file ID for this List. - `invalid_input_type` — Supplied value key or value type is invalid for the given column type. - `invalid_row_id` — Invalid row ID for this List. - `invalid_column_id` — Invalid column ID for this List. - `permission_denied` — The user does not have permission to perform this action. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. - `channel_not_found` — The channel cannot be found. - `uneditable_column` — The column cannot be updated. - `invalid_blocks` — Rich text payload supplied is invalid. - `invalid_text_block` — Rich text payload supplied is invalid. - `invalid_email` — Email supplied is invalid. - `invalid_link` — Message archive link supplied is invalid. - `invalid_date` — Date supplied is invalid. - `invalid_option_id` — Option supplied is invalid. - `row_id_not_provided` — The `row_id` or `row_id_to_create` field must be provided. - `column_id_not_provided` — The `column_id` or `column_id_to_create` field must be provided. - `over_cell_fields_limit` — The supplied cell fields are over the cell field maximum. - `invalid_message` — Invalid message provided. - `invalid_attachment` — Invalid attachment provided. - `invalid_phone_number` — Invalid phone number provided. - `invalid_vote_value` — Invalid vote value is supplied. See https://docs.slack.dev/reference/methods/slackLists.items.update */
+export const updateItem: API.OperationMethod<
+  UpdateItemRequest,
+  UpdateItemResponse,
+  UpdateItemError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRequest,
-  output: UpdateResponse,
+  input: UpdateItemRequest,
+  output: UpdateItemResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSlackListError = SlackOpError;
+/** Update a List. Required scopes — bot: `lists:write`; user: `lists:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `list_not_found` — The List was not found. - `team_not_found` — The team cannot be found. - `user_not_found` — The user cannot be found. - `list_edits_update_error` — Failed to update List metadata. - `list_editor_upsert_error` — Failed to upsert List editor. - `over_title_length_maximum` — Title can not exceed defined length. - `file_channel_rename_error` — Failed to rename file channel based on file title. - `unexpected_description_blocks_arg` — Unexpected description blocks argument. - `missing_arguments` — No arguments were provided to update the List. See https://docs.slack.dev/reference/methods/slackLists.update */
+export const updateSlackList: API.OperationMethod<
+  UpdateSlackListRequest,
+  UpdateSlackListResponse,
+  UpdateSlackListError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSlackListRequest,
+  output: UpdateSlackListResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

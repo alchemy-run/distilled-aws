@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.blocks#ValidateRequestBlocksCase1ItemMap": {
+    "com.slack.blocks#ValidateBlockRequestBlocksCase1ItemMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -27,32 +28,32 @@
       },
       "traits": {}
     },
-    "com.slack.blocks#ValidateRequestBlocksCase1List": {
+    "com.slack.blocks#ValidateBlockRequestBlocksCase1List": {
       "type": "list",
       "member": {
-        "target": "com.slack.blocks#ValidateRequestBlocksCase1ItemMap"
+        "target": "com.slack.blocks#ValidateBlockRequestBlocksCase1ItemMap"
       },
       "traits": {}
     },
-    "com.slack.blocks#ValidateRequestBlocks": {
+    "com.slack.blocks#ValidateBlockRequestBlocks": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#String"
         },
         "Case1": {
-          "target": "com.slack.blocks#ValidateRequestBlocksCase1List"
+          "target": "com.slack.blocks#ValidateBlockRequestBlocksCase1List"
         }
       },
       "traits": {
         "smithy.api#documentation": "A JSON-encoded array of [structured blocks](/reference/block-kit/blocks). Provide exactly one of `blocks`, `view`, or `message`."
       }
     },
-    "com.slack.blocks#ValidateRequest": {
+    "com.slack.blocks#ValidateBlockRequest": {
       "type": "structure",
       "members": {
         "blocks": {
-          "target": "com.slack.blocks#ValidateRequestBlocks",
+          "target": "com.slack.blocks#ValidateBlockRequestBlocks",
           "traits": {
             "smithy.api#documentation": "A JSON-encoded array of [structured blocks](/reference/block-kit/blocks). Provide exactly one of `blocks`, `view`, or `message`."
           }
@@ -74,7 +75,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.blocks#ValidateResponse": {
+    "com.slack.blocks#ValidateBlockResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -89,13 +90,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.blocks#Validate": {
+    "com.slack.blocks#ValidateBlock": {
       "type": "operation",
       "input": {
-        "target": "com.slack.blocks#ValidateRequest"
+        "target": "com.slack.blocks#ValidateBlockRequest"
       },
       "output": {
-        "target": "com.slack.blocks#ValidateResponse"
+        "target": "com.slack.blocks#ValidateBlockResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -111,7 +112,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.blocks#Validate"
+          "target": "com.slack.blocks#ValidateBlock"
         }
       ],
       "traits": {

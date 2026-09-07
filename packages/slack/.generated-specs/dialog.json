@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.dialog#OpenRequest": {
+    "com.slack.dialog#DialogOpenRequest": {
       "type": "structure",
       "members": {
         "dialog": {
@@ -39,7 +40,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.dialog#OpenResponse": {
+    "com.slack.dialog#DialogOpenResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -54,13 +55,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.dialog#Open": {
+    "com.slack.dialog#DialogOpen": {
       "type": "operation",
       "input": {
-        "target": "com.slack.dialog#OpenRequest"
+        "target": "com.slack.dialog#DialogOpenRequest"
       },
       "output": {
-        "target": "com.slack.dialog#OpenResponse"
+        "target": "com.slack.dialog#DialogOpenResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -76,7 +77,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.dialog#Open"
+          "target": "com.slack.dialog#DialogOpen"
         }
       ],
       "traits": {

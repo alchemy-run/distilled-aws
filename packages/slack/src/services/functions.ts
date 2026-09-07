@@ -12,6 +12,87 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
+/** List of encoded user IDs */
+export type AddDistributionsPermissionsRequestUserIdsList = Array<string>;
+export const AddDistributionsPermissionsRequestUserIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AddDistributionsPermissionsRequestUserIdsList>;
+
+export interface AddDistributionsPermissionsRequest {
+  /** The encoded ID of the function */
+  function_id?: string;
+  /** The callback ID defined in the function's definition file */
+  function_callback_id?: string;
+  /** The encoded ID of the app */
+  function_app_id?: string;
+  /** List of encoded user IDs */
+  user_ids?: AddDistributionsPermissionsRequestUserIdsList;
+}
+export const AddDistributionsPermissionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    function_id: S.optional(S.String),
+    function_callback_id: S.optional(S.String),
+    function_app_id: S.optional(S.String),
+    user_ids: S.optional(AddDistributionsPermissionsRequestUserIdsList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/functions.distributions.permissions.add",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "AddDistributionsPermissionsRequest",
+}) as any as S.Schema<AddDistributionsPermissionsRequest>;
+
+export type AddDistributionsPermissionsResponsePermissionType =
+  | "everyone"
+  | "app_collaborators"
+  | "named_entities"
+  | "system";
+export const AddDistributionsPermissionsResponsePermissionType =
+  /*@__PURE__*/ S.String;
+
+export interface AddDistributionsPermissionsResponseUsersItem {
+  user_id?: string;
+  username?: string;
+  email?: string;
+}
+export const AddDistributionsPermissionsResponseUsersItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      user_id: S.optional(S.String),
+      username: S.optional(S.String),
+      email: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "AddDistributionsPermissionsResponseUsersItem",
+  }) as any as S.Schema<AddDistributionsPermissionsResponseUsersItem>;
+
+export type AddDistributionsPermissionsResponseUsersList =
+  Array<AddDistributionsPermissionsResponseUsersItem>;
+export const AddDistributionsPermissionsResponseUsersList =
+  /*@__PURE__*/ S.Array(
+    AddDistributionsPermissionsResponseUsersItem,
+  ) as any as S.Schema<AddDistributionsPermissionsResponseUsersList>;
+
+export interface AddDistributionsPermissionsResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  permission_type: AddDistributionsPermissionsResponsePermissionType;
+  users?: AddDistributionsPermissionsResponseUsersList;
+}
+export const AddDistributionsPermissionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    permission_type: AddDistributionsPermissionsResponsePermissionType,
+    users: S.optional(AddDistributionsPermissionsResponseUsersList),
+  }),
+).annotate({
+  identifier: "AddDistributionsPermissionsResponse",
+}) as any as S.Schema<AddDistributionsPermissionsResponse>;
+
 export interface CompleteErrorRequest {
   /** Context identifier that maps to the executed function */
   function_execution_id: string;
@@ -79,88 +160,47 @@ export const CompleteSuccessResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CompleteSuccessResponse",
 }) as any as S.Schema<CompleteSuccessResponse>;
 
-/** List of encoded user IDs */
-export type DistributionsPermissionsAddRequestUserIdsList = Array<string>;
-export const DistributionsPermissionsAddRequestUserIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DistributionsPermissionsAddRequestUserIdsList>;
-
-export interface DistributionsPermissionsAddRequest {
-  /** The encoded ID of the function */
-  function_id?: string;
-  /** The callback ID defined in the function's definition file */
-  function_callback_id?: string;
-  /** The encoded ID of the app */
-  function_app_id?: string;
-  /** List of encoded user IDs */
-  user_ids?: DistributionsPermissionsAddRequestUserIdsList;
+export interface ExportWorkflowsStepsResponseRequest {
+  /** The workflow ID, starts with Wf* */
+  workflow_id?: string;
+  /** The workflow encoded ID or workflow reference */
+  workflow?: string;
+  /** The app tied to the workflow reference. */
+  workflow_app_id?: string;
+  /** The ID of the OpenForm step to export. */
+  step_id: string;
 }
-export const DistributionsPermissionsAddRequest = /*@__PURE__*/ S.suspend(() =>
+export const ExportWorkflowsStepsResponseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    function_id: S.optional(S.String),
-    function_callback_id: S.optional(S.String),
-    function_app_id: S.optional(S.String),
-    user_ids: S.optional(DistributionsPermissionsAddRequestUserIdsList),
+    workflow_id: S.optional(S.String),
+    workflow: S.optional(S.String),
+    workflow_app_id: S.optional(S.String),
+    step_id: S.String,
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/functions.distributions.permissions.add",
+      uri: "/functions.workflows.steps.responses.export",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "DistributionsPermissionsAddRequest",
-}) as any as S.Schema<DistributionsPermissionsAddRequest>;
+  identifier: "ExportWorkflowsStepsResponseRequest",
+}) as any as S.Schema<ExportWorkflowsStepsResponseRequest>;
 
-export type DistributionsPermissionsAddResponsePermissionType =
-  | "everyone"
-  | "app_collaborators"
-  | "named_entities"
-  | "system";
-export const DistributionsPermissionsAddResponsePermissionType =
-  /*@__PURE__*/ S.String;
-
-export interface DistributionsPermissionsAddResponseUsersItem {
-  user_id?: string;
-  username?: string;
-  email?: string;
-}
-export const DistributionsPermissionsAddResponseUsersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      user_id: S.optional(S.String),
-      username: S.optional(S.String),
-      email: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "DistributionsPermissionsAddResponseUsersItem",
-  }) as any as S.Schema<DistributionsPermissionsAddResponseUsersItem>;
-
-export type DistributionsPermissionsAddResponseUsersList =
-  Array<DistributionsPermissionsAddResponseUsersItem>;
-export const DistributionsPermissionsAddResponseUsersList =
-  /*@__PURE__*/ S.Array(
-    DistributionsPermissionsAddResponseUsersItem,
-  ) as any as S.Schema<DistributionsPermissionsAddResponseUsersList>;
-
-export interface DistributionsPermissionsAddResponse {
+export interface ExportWorkflowsStepsResponseResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  permission_type: DistributionsPermissionsAddResponsePermissionType;
-  users?: DistributionsPermissionsAddResponseUsersList;
 }
-export const DistributionsPermissionsAddResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    permission_type: DistributionsPermissionsAddResponsePermissionType,
-    users: S.optional(DistributionsPermissionsAddResponseUsersList),
-  }),
+export const ExportWorkflowsStepsResponseResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      ok: S.Boolean,
+    }),
 ).annotate({
-  identifier: "DistributionsPermissionsAddResponse",
-}) as any as S.Schema<DistributionsPermissionsAddResponse>;
+  identifier: "ExportWorkflowsStepsResponseResponse",
+}) as any as S.Schema<ExportWorkflowsStepsResponseResponse>;
 
-export interface DistributionsPermissionsListRequest {
+export interface ListDistributionsPermissionsRequest {
   /** The encoded ID of the function */
   function_id?: string;
   /** The callback ID defined in the function's definition file */
@@ -168,7 +208,7 @@ export interface DistributionsPermissionsListRequest {
   /** The encoded ID of the app */
   function_app_id?: string;
 }
-export const DistributionsPermissionsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDistributionsPermissionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     function_id: S.optional(S.String),
     function_callback_id: S.optional(S.String),
@@ -181,265 +221,67 @@ export const DistributionsPermissionsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DistributionsPermissionsListRequest",
-}) as any as S.Schema<DistributionsPermissionsListRequest>;
+  identifier: "ListDistributionsPermissionsRequest",
+}) as any as S.Schema<ListDistributionsPermissionsRequest>;
 
-export type DistributionsPermissionsListResponsePermissionType =
+export type ListDistributionsPermissionsResponsePermissionType =
   | "everyone"
   | "app_collaborators"
   | "named_entities"
   | "system";
-export const DistributionsPermissionsListResponsePermissionType =
+export const ListDistributionsPermissionsResponsePermissionType =
   /*@__PURE__*/ S.String;
 
-export type DistributionsPermissionsListResponseUsersItem =
-  DistributionsPermissionsAddResponseUsersItem;
-export const DistributionsPermissionsListResponseUsersItem =
-  DistributionsPermissionsAddResponseUsersItem;
+export type ListDistributionsPermissionsResponseUsersItem =
+  AddDistributionsPermissionsResponseUsersItem;
+export const ListDistributionsPermissionsResponseUsersItem =
+  AddDistributionsPermissionsResponseUsersItem;
 
-export type DistributionsPermissionsListResponseUsersList =
-  Array<DistributionsPermissionsAddResponseUsersItem>;
-export const DistributionsPermissionsListResponseUsersList =
+export type ListDistributionsPermissionsResponseUsersList =
+  Array<AddDistributionsPermissionsResponseUsersItem>;
+export const ListDistributionsPermissionsResponseUsersList =
   /*@__PURE__*/ S.Array(
-    DistributionsPermissionsAddResponseUsersItem,
-  ) as any as S.Schema<DistributionsPermissionsListResponseUsersList>;
+    AddDistributionsPermissionsResponseUsersItem,
+  ) as any as S.Schema<ListDistributionsPermissionsResponseUsersList>;
 
 /** List of team IDs allowed with named_entities permission. */
-export type DistributionsPermissionsListResponseTeamIdsList = Array<string>;
-export const DistributionsPermissionsListResponseTeamIdsList =
+export type ListDistributionsPermissionsResponseTeamIdsList = Array<string>;
+export const ListDistributionsPermissionsResponseTeamIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<DistributionsPermissionsListResponseTeamIdsList>;
+  ) as any as S.Schema<ListDistributionsPermissionsResponseTeamIdsList>;
 
 /** List of org IDs allowed with named_entities permission. */
-export type DistributionsPermissionsListResponseOrgIdsList = Array<string>;
-export const DistributionsPermissionsListResponseOrgIdsList =
+export type ListDistributionsPermissionsResponseOrgIdsList = Array<string>;
+export const ListDistributionsPermissionsResponseOrgIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<DistributionsPermissionsListResponseOrgIdsList>;
+  ) as any as S.Schema<ListDistributionsPermissionsResponseOrgIdsList>;
 
-export interface DistributionsPermissionsListResponse {
+export interface ListDistributionsPermissionsResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  permission_type: DistributionsPermissionsListResponsePermissionType;
-  users?: DistributionsPermissionsListResponseUsersList;
+  permission_type: ListDistributionsPermissionsResponsePermissionType;
+  users?: ListDistributionsPermissionsResponseUsersList;
   /** List of team IDs allowed with named_entities permission. */
-  team_ids?: DistributionsPermissionsListResponseTeamIdsList;
+  team_ids?: ListDistributionsPermissionsResponseTeamIdsList;
   /** List of org IDs allowed with named_entities permission. */
-  org_ids?: DistributionsPermissionsListResponseOrgIdsList;
+  org_ids?: ListDistributionsPermissionsResponseOrgIdsList;
 }
-export const DistributionsPermissionsListResponse = /*@__PURE__*/ S.suspend(
+export const ListDistributionsPermissionsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       ok: S.Boolean,
-      permission_type: DistributionsPermissionsListResponsePermissionType,
-      users: S.optional(DistributionsPermissionsListResponseUsersList),
-      team_ids: S.optional(DistributionsPermissionsListResponseTeamIdsList),
-      org_ids: S.optional(DistributionsPermissionsListResponseOrgIdsList),
+      permission_type: ListDistributionsPermissionsResponsePermissionType,
+      users: S.optional(ListDistributionsPermissionsResponseUsersList),
+      team_ids: S.optional(ListDistributionsPermissionsResponseTeamIdsList),
+      org_ids: S.optional(ListDistributionsPermissionsResponseOrgIdsList),
     }),
 ).annotate({
-  identifier: "DistributionsPermissionsListResponse",
-}) as any as S.Schema<DistributionsPermissionsListResponse>;
+  identifier: "ListDistributionsPermissionsResponse",
+}) as any as S.Schema<ListDistributionsPermissionsResponse>;
 
-/** List of encoded user IDs */
-export type DistributionsPermissionsRemoveRequestUserIdsList = Array<string>;
-export const DistributionsPermissionsRemoveRequestUserIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DistributionsPermissionsRemoveRequestUserIdsList>;
-
-export interface DistributionsPermissionsRemoveRequest {
-  /** The encoded ID of the function */
-  function_id?: string;
-  /** The callback ID defined in the function's definition file */
-  function_callback_id?: string;
-  /** The encoded ID of the app. */
-  function_app_id?: string;
-  /** List of encoded user IDs */
-  user_ids?: DistributionsPermissionsRemoveRequestUserIdsList;
-}
-export const DistributionsPermissionsRemoveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      function_id: S.optional(S.String),
-      function_callback_id: S.optional(S.String),
-      function_app_id: S.optional(S.String),
-      user_ids: S.optional(DistributionsPermissionsRemoveRequestUserIdsList),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/functions.distributions.permissions.remove",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DistributionsPermissionsRemoveRequest",
-}) as any as S.Schema<DistributionsPermissionsRemoveRequest>;
-
-export type DistributionsPermissionsRemoveResponsePermissionType =
-  | "everyone"
-  | "app_collaborators"
-  | "named_entities"
-  | "system";
-export const DistributionsPermissionsRemoveResponsePermissionType =
-  /*@__PURE__*/ S.String;
-
-export type DistributionsPermissionsRemoveResponseUsersItem =
-  DistributionsPermissionsAddResponseUsersItem;
-export const DistributionsPermissionsRemoveResponseUsersItem =
-  DistributionsPermissionsAddResponseUsersItem;
-
-export type DistributionsPermissionsRemoveResponseUsersList =
-  Array<DistributionsPermissionsAddResponseUsersItem>;
-export const DistributionsPermissionsRemoveResponseUsersList =
-  /*@__PURE__*/ S.Array(
-    DistributionsPermissionsAddResponseUsersItem,
-  ) as any as S.Schema<DistributionsPermissionsRemoveResponseUsersList>;
-
-export interface DistributionsPermissionsRemoveResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  permission_type: DistributionsPermissionsRemoveResponsePermissionType;
-  users?: DistributionsPermissionsRemoveResponseUsersList;
-}
-export const DistributionsPermissionsRemoveResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      ok: S.Boolean,
-      permission_type: DistributionsPermissionsRemoveResponsePermissionType,
-      users: S.optional(DistributionsPermissionsRemoveResponseUsersList),
-    }),
-).annotate({
-  identifier: "DistributionsPermissionsRemoveResponse",
-}) as any as S.Schema<DistributionsPermissionsRemoveResponse>;
-
-/** The type of permission that defines how the function can be distributed */
-export type DistributionsPermissionsSetRequestPermissionType =
-  | "everyone"
-  | "app_collaborators"
-  | "named_entities"
-  | "system";
-export const DistributionsPermissionsSetRequestPermissionType =
-  /*@__PURE__*/ S.String;
-
-/** List of encoded user IDs */
-export type DistributionsPermissionsSetRequestUserIdsList = Array<string>;
-export const DistributionsPermissionsSetRequestUserIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DistributionsPermissionsSetRequestUserIdsList>;
-
-/** List of team IDs to allow for named_entities permission */
-export type DistributionsPermissionsSetRequestTeamIdsList = Array<string>;
-export const DistributionsPermissionsSetRequestTeamIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DistributionsPermissionsSetRequestTeamIdsList>;
-
-/** List of org IDs to allow for named_entities permission */
-export type DistributionsPermissionsSetRequestOrgIdsList = Array<string>;
-export const DistributionsPermissionsSetRequestOrgIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DistributionsPermissionsSetRequestOrgIdsList>;
-
-export interface DistributionsPermissionsSetRequest {
-  /** The encoded ID of the function */
-  function_id?: string;
-  /** The callback ID defined in the function's definition file */
-  function_callback_id?: string;
-  /** The encoded ID of the app */
-  function_app_id?: string;
-  /** The type of permission that defines how the function can be distributed */
-  permission_type?:
-    | DistributionsPermissionsSetRequestPermissionType
-    | (string & {});
-  /** List of encoded user IDs */
-  user_ids?: DistributionsPermissionsSetRequestUserIdsList;
-  /** List of team IDs to allow for named_entities permission */
-  team_ids?: DistributionsPermissionsSetRequestTeamIdsList;
-  /** List of org IDs to allow for named_entities permission */
-  org_ids?: DistributionsPermissionsSetRequestOrgIdsList;
-}
-export const DistributionsPermissionsSetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    function_id: S.optional(S.String),
-    function_callback_id: S.optional(S.String),
-    function_app_id: S.optional(S.String),
-    permission_type: S.optional(
-      DistributionsPermissionsSetRequestPermissionType,
-    ),
-    user_ids: S.optional(DistributionsPermissionsSetRequestUserIdsList),
-    team_ids: S.optional(DistributionsPermissionsSetRequestTeamIdsList),
-    org_ids: S.optional(DistributionsPermissionsSetRequestOrgIdsList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/functions.distributions.permissions.set",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DistributionsPermissionsSetRequest",
-}) as any as S.Schema<DistributionsPermissionsSetRequest>;
-
-export type DistributionsPermissionsSetResponsePermissionType =
-  | "everyone"
-  | "app_collaborators"
-  | "named_entities"
-  | "system";
-export const DistributionsPermissionsSetResponsePermissionType =
-  /*@__PURE__*/ S.String;
-
-export type DistributionsPermissionsSetResponseUsersItem =
-  DistributionsPermissionsAddResponseUsersItem;
-export const DistributionsPermissionsSetResponseUsersItem =
-  DistributionsPermissionsAddResponseUsersItem;
-
-export type DistributionsPermissionsSetResponseUsersList =
-  Array<DistributionsPermissionsAddResponseUsersItem>;
-export const DistributionsPermissionsSetResponseUsersList =
-  /*@__PURE__*/ S.Array(
-    DistributionsPermissionsAddResponseUsersItem,
-  ) as any as S.Schema<DistributionsPermissionsSetResponseUsersList>;
-
-/** List of team IDs allowed with named_entities permission. */
-export type DistributionsPermissionsSetResponseTeamIdsList = Array<string>;
-export const DistributionsPermissionsSetResponseTeamIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DistributionsPermissionsSetResponseTeamIdsList>;
-
-/** List of org IDs allowed with named_entities permission. */
-export type DistributionsPermissionsSetResponseOrgIdsList = Array<string>;
-export const DistributionsPermissionsSetResponseOrgIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DistributionsPermissionsSetResponseOrgIdsList>;
-
-export interface DistributionsPermissionsSetResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  permission_type: DistributionsPermissionsSetResponsePermissionType;
-  users?: DistributionsPermissionsSetResponseUsersList;
-  /** List of team IDs allowed with named_entities permission. */
-  team_ids?: DistributionsPermissionsSetResponseTeamIdsList;
-  /** List of org IDs allowed with named_entities permission. */
-  org_ids?: DistributionsPermissionsSetResponseOrgIdsList;
-}
-export const DistributionsPermissionsSetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    permission_type: DistributionsPermissionsSetResponsePermissionType,
-    users: S.optional(DistributionsPermissionsSetResponseUsersList),
-    team_ids: S.optional(DistributionsPermissionsSetResponseTeamIdsList),
-    org_ids: S.optional(DistributionsPermissionsSetResponseOrgIdsList),
-  }),
-).annotate({
-  identifier: "DistributionsPermissionsSetResponse",
-}) as any as S.Schema<DistributionsPermissionsSetResponse>;
-
-export interface WorkflowsStepsListRequest {
+export interface ListWorkflowsStepsRequest {
   /** The workflow ID, starts with Wf* */
   workflow_id?: string;
   /** The workflow encoded ID or workflow reference */
@@ -449,7 +291,7 @@ export interface WorkflowsStepsListRequest {
   /** The ID of the function to query */
   function_id: string;
 }
-export const WorkflowsStepsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkflowsStepsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     workflow_id: S.optional(S.String),
     workflow: S.optional(S.String),
@@ -463,69 +305,241 @@ export const WorkflowsStepsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WorkflowsStepsListRequest",
-}) as any as S.Schema<WorkflowsStepsListRequest>;
+  identifier: "ListWorkflowsStepsRequest",
+}) as any as S.Schema<ListWorkflowsStepsRequest>;
 
-export type WorkflowsStepsListResponseStepsVersionsList = Array<unknown>;
-export const WorkflowsStepsListResponseStepsVersionsList =
+export type ListWorkflowsStepsResponseStepsVersionsList = Array<unknown>;
+export const ListWorkflowsStepsResponseStepsVersionsList =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<WorkflowsStepsListResponseStepsVersionsList>;
+  ) as any as S.Schema<ListWorkflowsStepsResponseStepsVersionsList>;
 
-export interface WorkflowsStepsListResponse {
+export interface ListWorkflowsStepsResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  steps_versions: WorkflowsStepsListResponseStepsVersionsList;
+  steps_versions: ListWorkflowsStepsResponseStepsVersionsList;
 }
-export const WorkflowsStepsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkflowsStepsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    steps_versions: WorkflowsStepsListResponseStepsVersionsList,
+    steps_versions: ListWorkflowsStepsResponseStepsVersionsList,
   }),
 ).annotate({
-  identifier: "WorkflowsStepsListResponse",
-}) as any as S.Schema<WorkflowsStepsListResponse>;
+  identifier: "ListWorkflowsStepsResponse",
+}) as any as S.Schema<ListWorkflowsStepsResponse>;
 
-export interface WorkflowsStepsResponsesExportRequest {
-  /** The workflow ID, starts with Wf* */
-  workflow_id?: string;
-  /** The workflow encoded ID or workflow reference */
-  workflow?: string;
-  /** The app tied to the workflow reference. */
-  workflow_app_id?: string;
-  /** The ID of the OpenForm step to export. */
-  step_id: string;
+/** List of encoded user IDs */
+export type RemoveDistributionsPermissionsRequestUserIdsList = Array<string>;
+export const RemoveDistributionsPermissionsRequestUserIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RemoveDistributionsPermissionsRequestUserIdsList>;
+
+export interface RemoveDistributionsPermissionsRequest {
+  /** The encoded ID of the function */
+  function_id?: string;
+  /** The callback ID defined in the function's definition file */
+  function_callback_id?: string;
+  /** The encoded ID of the app. */
+  function_app_id?: string;
+  /** List of encoded user IDs */
+  user_ids?: RemoveDistributionsPermissionsRequestUserIdsList;
 }
-export const WorkflowsStepsResponsesExportRequest = /*@__PURE__*/ S.suspend(
+export const RemoveDistributionsPermissionsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      workflow_id: S.optional(S.String),
-      workflow: S.optional(S.String),
-      workflow_app_id: S.optional(S.String),
-      step_id: S.String,
+      function_id: S.optional(S.String),
+      function_callback_id: S.optional(S.String),
+      function_app_id: S.optional(S.String),
+      user_ids: S.optional(RemoveDistributionsPermissionsRequestUserIdsList),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/functions.workflows.steps.responses.export",
+        uri: "/functions.distributions.permissions.remove",
         code: 200,
       }),
     ),
 ).annotate({
-  identifier: "WorkflowsStepsResponsesExportRequest",
-}) as any as S.Schema<WorkflowsStepsResponsesExportRequest>;
+  identifier: "RemoveDistributionsPermissionsRequest",
+}) as any as S.Schema<RemoveDistributionsPermissionsRequest>;
 
-export interface WorkflowsStepsResponsesExportResponse {
+export type RemoveDistributionsPermissionsResponsePermissionType =
+  | "everyone"
+  | "app_collaborators"
+  | "named_entities"
+  | "system";
+export const RemoveDistributionsPermissionsResponsePermissionType =
+  /*@__PURE__*/ S.String;
+
+export type RemoveDistributionsPermissionsResponseUsersItem =
+  AddDistributionsPermissionsResponseUsersItem;
+export const RemoveDistributionsPermissionsResponseUsersItem =
+  AddDistributionsPermissionsResponseUsersItem;
+
+export type RemoveDistributionsPermissionsResponseUsersList =
+  Array<AddDistributionsPermissionsResponseUsersItem>;
+export const RemoveDistributionsPermissionsResponseUsersList =
+  /*@__PURE__*/ S.Array(
+    AddDistributionsPermissionsResponseUsersItem,
+  ) as any as S.Schema<RemoveDistributionsPermissionsResponseUsersList>;
+
+export interface RemoveDistributionsPermissionsResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
+  permission_type: RemoveDistributionsPermissionsResponsePermissionType;
+  users?: RemoveDistributionsPermissionsResponseUsersList;
 }
-export const WorkflowsStepsResponsesExportResponse = /*@__PURE__*/ S.suspend(
+export const RemoveDistributionsPermissionsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       ok: S.Boolean,
+      permission_type: RemoveDistributionsPermissionsResponsePermissionType,
+      users: S.optional(RemoveDistributionsPermissionsResponseUsersList),
     }),
 ).annotate({
-  identifier: "WorkflowsStepsResponsesExportResponse",
-}) as any as S.Schema<WorkflowsStepsResponsesExportResponse>;
+  identifier: "RemoveDistributionsPermissionsResponse",
+}) as any as S.Schema<RemoveDistributionsPermissionsResponse>;
+
+/** The type of permission that defines how the function can be distributed */
+export type SetDistributionsPermissionsRequestPermissionType =
+  | "everyone"
+  | "app_collaborators"
+  | "named_entities"
+  | "system";
+export const SetDistributionsPermissionsRequestPermissionType =
+  /*@__PURE__*/ S.String;
+
+/** List of encoded user IDs */
+export type SetDistributionsPermissionsRequestUserIdsList = Array<string>;
+export const SetDistributionsPermissionsRequestUserIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SetDistributionsPermissionsRequestUserIdsList>;
+
+/** List of team IDs to allow for named_entities permission */
+export type SetDistributionsPermissionsRequestTeamIdsList = Array<string>;
+export const SetDistributionsPermissionsRequestTeamIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SetDistributionsPermissionsRequestTeamIdsList>;
+
+/** List of org IDs to allow for named_entities permission */
+export type SetDistributionsPermissionsRequestOrgIdsList = Array<string>;
+export const SetDistributionsPermissionsRequestOrgIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SetDistributionsPermissionsRequestOrgIdsList>;
+
+export interface SetDistributionsPermissionsRequest {
+  /** The encoded ID of the function */
+  function_id?: string;
+  /** The callback ID defined in the function's definition file */
+  function_callback_id?: string;
+  /** The encoded ID of the app */
+  function_app_id?: string;
+  /** The type of permission that defines how the function can be distributed */
+  permission_type?:
+    | SetDistributionsPermissionsRequestPermissionType
+    | (string & {});
+  /** List of encoded user IDs */
+  user_ids?: SetDistributionsPermissionsRequestUserIdsList;
+  /** List of team IDs to allow for named_entities permission */
+  team_ids?: SetDistributionsPermissionsRequestTeamIdsList;
+  /** List of org IDs to allow for named_entities permission */
+  org_ids?: SetDistributionsPermissionsRequestOrgIdsList;
+}
+export const SetDistributionsPermissionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    function_id: S.optional(S.String),
+    function_callback_id: S.optional(S.String),
+    function_app_id: S.optional(S.String),
+    permission_type: S.optional(
+      SetDistributionsPermissionsRequestPermissionType,
+    ),
+    user_ids: S.optional(SetDistributionsPermissionsRequestUserIdsList),
+    team_ids: S.optional(SetDistributionsPermissionsRequestTeamIdsList),
+    org_ids: S.optional(SetDistributionsPermissionsRequestOrgIdsList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/functions.distributions.permissions.set",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SetDistributionsPermissionsRequest",
+}) as any as S.Schema<SetDistributionsPermissionsRequest>;
+
+export type SetDistributionsPermissionsResponsePermissionType =
+  | "everyone"
+  | "app_collaborators"
+  | "named_entities"
+  | "system";
+export const SetDistributionsPermissionsResponsePermissionType =
+  /*@__PURE__*/ S.String;
+
+export type SetDistributionsPermissionsResponseUsersItem =
+  AddDistributionsPermissionsResponseUsersItem;
+export const SetDistributionsPermissionsResponseUsersItem =
+  AddDistributionsPermissionsResponseUsersItem;
+
+export type SetDistributionsPermissionsResponseUsersList =
+  Array<AddDistributionsPermissionsResponseUsersItem>;
+export const SetDistributionsPermissionsResponseUsersList =
+  /*@__PURE__*/ S.Array(
+    AddDistributionsPermissionsResponseUsersItem,
+  ) as any as S.Schema<SetDistributionsPermissionsResponseUsersList>;
+
+/** List of team IDs allowed with named_entities permission. */
+export type SetDistributionsPermissionsResponseTeamIdsList = Array<string>;
+export const SetDistributionsPermissionsResponseTeamIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SetDistributionsPermissionsResponseTeamIdsList>;
+
+/** List of org IDs allowed with named_entities permission. */
+export type SetDistributionsPermissionsResponseOrgIdsList = Array<string>;
+export const SetDistributionsPermissionsResponseOrgIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SetDistributionsPermissionsResponseOrgIdsList>;
+
+export interface SetDistributionsPermissionsResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  permission_type: SetDistributionsPermissionsResponsePermissionType;
+  users?: SetDistributionsPermissionsResponseUsersList;
+  /** List of team IDs allowed with named_entities permission. */
+  team_ids?: SetDistributionsPermissionsResponseTeamIdsList;
+  /** List of org IDs allowed with named_entities permission. */
+  org_ids?: SetDistributionsPermissionsResponseOrgIdsList;
+}
+export const SetDistributionsPermissionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    permission_type: SetDistributionsPermissionsResponsePermissionType,
+    users: S.optional(SetDistributionsPermissionsResponseUsersList),
+    team_ids: S.optional(SetDistributionsPermissionsResponseTeamIdsList),
+    org_ids: S.optional(SetDistributionsPermissionsResponseOrgIdsList),
+  }),
+).annotate({
+  identifier: "SetDistributionsPermissionsResponse",
+}) as any as S.Schema<SetDistributionsPermissionsResponse>;
+
+export type AddDistributionsPermissionsError = SlackOpError;
+/** Grant users access to a custom slack function if its permission_type is set to named_entities Required scopes — configuration: `app_configurations:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `unknown_method` — This method does not exist. - `access_denied` — This actor does not have access to the permissions on this resource. - `function_not_found` — This function does not exist. - `invalid_permission_type` — This function requires permission_type to be set as named_entities before adding users. - `user_not_found` — One or more of the named entities was not found. - `app_not_found` — This app does not exist. See https://docs.slack.dev/reference/methods/functions.distributions.permissions.add */
+export const addDistributionsPermissions: API.OperationMethod<
+  AddDistributionsPermissionsRequest,
+  AddDistributionsPermissionsResponse,
+  AddDistributionsPermissionsError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddDistributionsPermissionsRequest,
+  output: AddDistributionsPermissionsResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
 
 export type CompleteErrorError = SlackOpError;
 /** Signal that a function failed to complete Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `unknown_method` — This method does not exist. - `function_execution_not_found` — The specified function execution cannot be found. - `access_denied` — This actor does not have access to this function execution. - `execution_not_in_running_state` — The function execution is no longer in a state to be completed. See https://docs.slack.dev/reference/methods/functions.completeError */
@@ -557,91 +571,76 @@ export const completeSuccess: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DistributionsPermissionsAddError = SlackOpError;
-/** Grant users access to a custom slack function if its permission_type is set to named_entities Required scopes — configuration: `app_configurations:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `unknown_method` — This method does not exist. - `access_denied` — This actor does not have access to the permissions on this resource. - `function_not_found` — This function does not exist. - `invalid_permission_type` — This function requires permission_type to be set as named_entities before adding users. - `user_not_found` — One or more of the named entities was not found. - `app_not_found` — This app does not exist. See https://docs.slack.dev/reference/methods/functions.distributions.permissions.add */
-export const distributionsPermissionsAdd: API.OperationMethod<
-  DistributionsPermissionsAddRequest,
-  DistributionsPermissionsAddResponse,
-  DistributionsPermissionsAddError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DistributionsPermissionsAddRequest,
-  output: DistributionsPermissionsAddResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DistributionsPermissionsListError = SlackOpError;
-/** List the access type of a custom slack function and include the users, team or org ids with access if its permission_type is set to named_entities Required scopes — configuration: `app_configurations:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `unknown_method` — This method does not exist. - `access_denied` — This actor does not have access to the permissions on this resource. - `function_not_found` — This function does not exist. - `user_not_found` — One or more of the named entities was not found. - `app_not_found` — This app does not exist. See https://docs.slack.dev/reference/methods/functions.distributions.permissions.list */
-export const distributionsPermissionsList: API.OperationMethod<
-  DistributionsPermissionsListRequest,
-  DistributionsPermissionsListResponse,
-  DistributionsPermissionsListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DistributionsPermissionsListRequest,
-  output: DistributionsPermissionsListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DistributionsPermissionsRemoveError = SlackOpError;
-/** Revoke user access to a custom slack function if permission_type set to named_entities Required scopes — configuration: `app_configurations:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `unknown_method` — This method does not exist. - `access_denied` — This actor does not have access to the permissions on this resource. - `function_not_found` — This function does not exist. - `user_not_found` — One or more of the named entities was not found. - `invalid_permission_type` — This function requires permission_type to be set as named_entities before adding users. - `app_not_found` — This app does not exist. See https://docs.slack.dev/reference/methods/functions.distributions.permissions.remove */
-export const distributionsPermissionsRemove: API.OperationMethod<
-  DistributionsPermissionsRemoveRequest,
-  DistributionsPermissionsRemoveResponse,
-  DistributionsPermissionsRemoveError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DistributionsPermissionsRemoveRequest,
-  output: DistributionsPermissionsRemoveResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DistributionsPermissionsSetError = SlackOpError;
-/** Set the access type of a custom slack function and define the users, team or org ids to be granted access if permission_type is set to named_entities Required scopes — configuration: `app_configurations:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `unknown_method` — This method does not exist. - `access_denied` — This actor does not have access to the permissions on this resource. - `function_not_found` — This function does not exist. - `invalid_named_entities` — One or more of the named entities was not found - `invalid_permission_type` — This function requires permission_type to be set as named_entities before adding users. - `user_not_found` — One or more of the named entities was not found. - `app_not_found` — This app does not exist. - `permission_type_required` — `permission_type` is a required input. See https://docs.slack.dev/reference/methods/functions.distributions.permissions.set */
-export const distributionsPermissionsSet: API.OperationMethod<
-  DistributionsPermissionsSetRequest,
-  DistributionsPermissionsSetResponse,
-  DistributionsPermissionsSetError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DistributionsPermissionsSetRequest,
-  output: DistributionsPermissionsSetResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkflowsStepsListError = SlackOpError;
-/** List the steps of a specific function of a workflow's versions Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `unknown_method` — This method does not exist. - `access_denied` — This actor does not have access to the functions on this team. - `unknown_workflow_id` — The passed in workflow_id is invalid. - `unknown_function_id` — The passed in function_id is invalid. - `invalid_arguments` — The arguments passed in are invalid. - `unknown_app_id` — The passed in workflow_app_id is invalid. - `missing_step_ids` — The passed in workflow is missing step IDs - `cannot_fetch_versions` — Encountered unexpected error while trying to fetch versions See https://docs.slack.dev/reference/methods/functions.workflows.steps.list */
-export const workflowsStepsList: API.OperationMethod<
-  WorkflowsStepsListRequest,
-  WorkflowsStepsListResponse,
-  WorkflowsStepsListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowsStepsListRequest,
-  output: WorkflowsStepsListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkflowsStepsResponsesExportError = SlackOpError;
+export type ExportWorkflowsStepsResponseError = SlackOpError;
 /** Download form responses of a workflow Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `unknown_method` — This method does not exist. - `access_denied` — This actor does not have access to the functions on this team. - `workflows_export_csv_not_enabled` — Downloading form responses is not allowed. Admin pref needs to be enabled. - `unknown_workflow_id` — The passed in workflow_id is invalid. - `unknown_step_id` — The passed in step_id is invalid. - `invalid_arguments` — The arguments passed in are invalid. - `unknown_app_id` — The passed in workflow_app_id is invalid. See https://docs.slack.dev/reference/methods/functions.workflows.steps.responses.export */
-export const workflowsStepsResponsesExport: API.OperationMethod<
-  WorkflowsStepsResponsesExportRequest,
-  WorkflowsStepsResponsesExportResponse,
-  WorkflowsStepsResponsesExportError,
+export const exportWorkflowsStepsResponse: API.OperationMethod<
+  ExportWorkflowsStepsResponseRequest,
+  ExportWorkflowsStepsResponseResponse,
+  ExportWorkflowsStepsResponseError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowsStepsResponsesExportRequest,
-  output: WorkflowsStepsResponsesExportResponse,
+  input: ExportWorkflowsStepsResponseRequest,
+  output: ExportWorkflowsStepsResponseResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDistributionsPermissionsError = SlackOpError;
+/** List the access type of a custom slack function and include the users, team or org ids with access if its permission_type is set to named_entities Required scopes — configuration: `app_configurations:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `unknown_method` — This method does not exist. - `access_denied` — This actor does not have access to the permissions on this resource. - `function_not_found` — This function does not exist. - `user_not_found` — One or more of the named entities was not found. - `app_not_found` — This app does not exist. See https://docs.slack.dev/reference/methods/functions.distributions.permissions.list */
+export const listDistributionsPermissions: API.OperationMethod<
+  ListDistributionsPermissionsRequest,
+  ListDistributionsPermissionsResponse,
+  ListDistributionsPermissionsError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDistributionsPermissionsRequest,
+  output: ListDistributionsPermissionsResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkflowsStepsError = SlackOpError;
+/** List the steps of a specific function of a workflow's versions Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `unknown_method` — This method does not exist. - `access_denied` — This actor does not have access to the functions on this team. - `unknown_workflow_id` — The passed in workflow_id is invalid. - `unknown_function_id` — The passed in function_id is invalid. - `invalid_arguments` — The arguments passed in are invalid. - `unknown_app_id` — The passed in workflow_app_id is invalid. - `missing_step_ids` — The passed in workflow is missing step IDs - `cannot_fetch_versions` — Encountered unexpected error while trying to fetch versions See https://docs.slack.dev/reference/methods/functions.workflows.steps.list */
+export const listWorkflowsSteps: API.OperationMethod<
+  ListWorkflowsStepsRequest,
+  ListWorkflowsStepsResponse,
+  ListWorkflowsStepsError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkflowsStepsRequest,
+  output: ListWorkflowsStepsResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RemoveDistributionsPermissionsError = SlackOpError;
+/** Revoke user access to a custom slack function if permission_type set to named_entities Required scopes — configuration: `app_configurations:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `unknown_method` — This method does not exist. - `access_denied` — This actor does not have access to the permissions on this resource. - `function_not_found` — This function does not exist. - `user_not_found` — One or more of the named entities was not found. - `invalid_permission_type` — This function requires permission_type to be set as named_entities before adding users. - `app_not_found` — This app does not exist. See https://docs.slack.dev/reference/methods/functions.distributions.permissions.remove */
+export const removeDistributionsPermissions: API.OperationMethod<
+  RemoveDistributionsPermissionsRequest,
+  RemoveDistributionsPermissionsResponse,
+  RemoveDistributionsPermissionsError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RemoveDistributionsPermissionsRequest,
+  output: RemoveDistributionsPermissionsResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SetDistributionsPermissionsError = SlackOpError;
+/** Set the access type of a custom slack function and define the users, team or org ids to be granted access if permission_type is set to named_entities Required scopes — configuration: `app_configurations:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `unknown_method` — This method does not exist. - `access_denied` — This actor does not have access to the permissions on this resource. - `function_not_found` — This function does not exist. - `invalid_named_entities` — One or more of the named entities was not found - `invalid_permission_type` — This function requires permission_type to be set as named_entities before adding users. - `user_not_found` — One or more of the named entities was not found. - `app_not_found` — This app does not exist. - `permission_type_required` — `permission_type` is a required input. See https://docs.slack.dev/reference/methods/functions.distributions.permissions.set */
+export const setDistributionsPermissions: API.OperationMethod<
+  SetDistributionsPermissionsRequest,
+  SetDistributionsPermissionsResponse,
+  SetDistributionsPermissionsError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SetDistributionsPermissionsRequest,
+  output: SetDistributionsPermissionsResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

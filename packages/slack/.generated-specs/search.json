@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.search#AllRequestSortDir": {
+    "com.slack.search#SearchAllRequestSortDir": {
       "type": "enum",
       "members": {
         "ASC": {
@@ -35,7 +36,7 @@
       },
       "traits": {}
     },
-    "com.slack.search#AllRequest": {
+    "com.slack.search#SearchAllRequest": {
       "type": "structure",
       "members": {
         "count": {
@@ -73,7 +74,7 @@
           }
         },
         "sort_dir": {
-          "target": "com.slack.search#AllRequestSortDir",
+          "target": "com.slack.search#SearchAllRequestSortDir",
           "traits": {
             "smithy.api#httpQuery": "sort_dir",
             "smithy.api#documentation": "Change sort direction to ascending (`asc`) or descending (`desc`)."
@@ -91,7 +92,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.search#AllResponse": {
+    "com.slack.search#SearchAllResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -124,13 +125,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.search#All": {
+    "com.slack.search#SearchAll": {
       "type": "operation",
       "input": {
-        "target": "com.slack.search#AllRequest"
+        "target": "com.slack.search#SearchAllRequest"
       },
       "output": {
-        "target": "com.slack.search#AllResponse"
+        "target": "com.slack.search#SearchAllResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -141,7 +142,7 @@
         "smithy.api#documentation": "Searches for messages and files matching a query.\n\nRequired scopes — user: `search:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `no_query` — No query was provided.\n\nSee https://docs.slack.dev/reference/methods/search.all"
       }
     },
-    "com.slack.search#FilesRequestSortDir": {
+    "com.slack.search#SearchFilesRequestSortDir": {
       "type": "enum",
       "members": {
         "ASC": {
@@ -159,7 +160,7 @@
       },
       "traits": {}
     },
-    "com.slack.search#FilesRequest": {
+    "com.slack.search#SearchFilesRequest": {
       "type": "structure",
       "members": {
         "count": {
@@ -197,7 +198,7 @@
           }
         },
         "sort_dir": {
-          "target": "com.slack.search#FilesRequestSortDir",
+          "target": "com.slack.search#SearchFilesRequestSortDir",
           "traits": {
             "smithy.api#httpQuery": "sort_dir",
             "smithy.api#documentation": "Change sort direction to ascending (`asc`) or descending (`desc`)."
@@ -215,14 +216,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.search#FilesResponseFilesPaginationWarningsList": {
+    "com.slack.search#SearchFilesResponseFilesPaginationWarningsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.search#FilesResponseFilesPagination": {
+    "com.slack.search#SearchFilesResponseFilesPagination": {
       "type": "structure",
       "members": {
         "last": {
@@ -232,7 +233,7 @@
           }
         },
         "warnings": {
-          "target": "com.slack.search#FilesResponseFilesPaginationWarningsList"
+          "target": "com.slack.search#SearchFilesResponseFilesPaginationWarningsList"
         },
         "total_count": {
           "target": "smithy.api#Integer",
@@ -267,21 +268,21 @@
       },
       "traits": {}
     },
-    "com.slack.search#FilesResponseFilesMatchesList": {
+    "com.slack.search#SearchFilesResponseFilesMatchesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.slack.search#FilesResponseFilesPagingWarningsList": {
+    "com.slack.search#SearchFilesResponseFilesPagingWarningsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.search#FilesResponseFilesPaging": {
+    "com.slack.search#SearchFilesResponseFilesPaging": {
       "type": "structure",
       "members": {
         "count": {
@@ -309,22 +310,22 @@
           }
         },
         "warnings": {
-          "target": "com.slack.search#FilesResponseFilesPagingWarningsList"
+          "target": "com.slack.search#SearchFilesResponseFilesPagingWarningsList"
         }
       },
       "traits": {}
     },
-    "com.slack.search#FilesResponseFiles": {
+    "com.slack.search#SearchFilesResponseFiles": {
       "type": "structure",
       "members": {
         "pagination": {
-          "target": "com.slack.search#FilesResponseFilesPagination"
+          "target": "com.slack.search#SearchFilesResponseFilesPagination"
         },
         "matches": {
-          "target": "com.slack.search#FilesResponseFilesMatchesList"
+          "target": "com.slack.search#SearchFilesResponseFilesMatchesList"
         },
         "paging": {
-          "target": "com.slack.search#FilesResponseFilesPaging"
+          "target": "com.slack.search#SearchFilesResponseFilesPaging"
         },
         "all_stop_words": {
           "target": "smithy.api#Boolean"
@@ -341,7 +342,7 @@
       },
       "traits": {}
     },
-    "com.slack.search#FilesResponseUsersMap": {
+    "com.slack.search#SearchFilesResponseUsersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -351,7 +352,7 @@
       },
       "traits": {}
     },
-    "com.slack.search#FilesResponseTeamsMap": {
+    "com.slack.search#SearchFilesResponseTeamsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -361,7 +362,7 @@
       },
       "traits": {}
     },
-    "com.slack.search#FilesResponseChannelsMap": {
+    "com.slack.search#SearchFilesResponseChannelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -371,7 +372,7 @@
       },
       "traits": {}
     },
-    "com.slack.search#FilesResponseImsMap": {
+    "com.slack.search#SearchFilesResponseImsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -381,7 +382,7 @@
       },
       "traits": {}
     },
-    "com.slack.search#FilesResponseGroupsMap": {
+    "com.slack.search#SearchFilesResponseGroupsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -391,7 +392,7 @@
       },
       "traits": {}
     },
-    "com.slack.search#FilesResponse": {
+    "com.slack.search#SearchFilesResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -402,25 +403,25 @@
           }
         },
         "files": {
-          "target": "com.slack.search#FilesResponseFiles"
+          "target": "com.slack.search#SearchFilesResponseFiles"
         },
         "callstack": {
           "target": "smithy.api#String"
         },
         "users": {
-          "target": "com.slack.search#FilesResponseUsersMap"
+          "target": "com.slack.search#SearchFilesResponseUsersMap"
         },
         "teams": {
-          "target": "com.slack.search#FilesResponseTeamsMap"
+          "target": "com.slack.search#SearchFilesResponseTeamsMap"
         },
         "channels": {
-          "target": "com.slack.search#FilesResponseChannelsMap"
+          "target": "com.slack.search#SearchFilesResponseChannelsMap"
         },
         "ims": {
-          "target": "com.slack.search#FilesResponseImsMap"
+          "target": "com.slack.search#SearchFilesResponseImsMap"
         },
         "groups": {
-          "target": "com.slack.search#FilesResponseGroupsMap"
+          "target": "com.slack.search#SearchFilesResponseGroupsMap"
         },
         "query": {
           "target": "smithy.api#String",
@@ -436,13 +437,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.search#Files": {
+    "com.slack.search#SearchFiles": {
       "type": "operation",
       "input": {
-        "target": "com.slack.search#FilesRequest"
+        "target": "com.slack.search#SearchFilesRequest"
       },
       "output": {
-        "target": "com.slack.search#FilesResponse"
+        "target": "com.slack.search#SearchFilesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -453,7 +454,7 @@
         "smithy.api#documentation": "Searches for files matching a query.\n\nRequired scopes — user: `search:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `no_query` — No query was provided.\n\nSee https://docs.slack.dev/reference/methods/search.files"
       }
     },
-    "com.slack.search#MessagesRequestSortDir": {
+    "com.slack.search#SearchMessagesRequestSortDir": {
       "type": "enum",
       "members": {
         "ASC": {
@@ -477,7 +478,7 @@
       },
       "traits": {}
     },
-    "com.slack.search#MessagesRequest": {
+    "com.slack.search#SearchMessagesRequest": {
       "type": "structure",
       "members": {
         "count": {
@@ -523,7 +524,7 @@
           }
         },
         "sort_dir": {
-          "target": "com.slack.search#MessagesRequestSortDir",
+          "target": "com.slack.search#SearchMessagesRequestSortDir",
           "traits": {
             "smithy.api#httpQuery": "sort_dir",
             "smithy.api#documentation": "Change sort direction to ascending (`asc`) or descending (`desc`)."
@@ -541,7 +542,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.search#MessagesResponseUsersMap": {
+    "com.slack.search#SearchMessagesResponseUsersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -551,21 +552,21 @@
       },
       "traits": {}
     },
-    "com.slack.search#MessagesResponseMessagesMatchesList": {
+    "com.slack.search#SearchMessagesResponseMessagesMatchesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.slack.search#MessagesResponseMessagesPaginationWarningsList": {
+    "com.slack.search#SearchMessagesResponseMessagesPaginationWarningsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.search#MessagesResponseMessagesPagination": {
+    "com.slack.search#SearchMessagesResponseMessagesPagination": {
       "type": "structure",
       "members": {
         "last": {
@@ -575,7 +576,7 @@
           }
         },
         "warnings": {
-          "target": "com.slack.search#MessagesResponseMessagesPaginationWarningsList"
+          "target": "com.slack.search#SearchMessagesResponseMessagesPaginationWarningsList"
         },
         "total_count": {
           "target": "smithy.api#Integer",
@@ -616,14 +617,14 @@
       },
       "traits": {}
     },
-    "com.slack.search#MessagesResponseMessagesPagingWarningsList": {
+    "com.slack.search#SearchMessagesResponseMessagesPagingWarningsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.search#MessagesResponseMessagesPaging": {
+    "com.slack.search#SearchMessagesResponseMessagesPaging": {
       "type": "structure",
       "members": {
         "count": {
@@ -651,7 +652,7 @@
           }
         },
         "warnings": {
-          "target": "com.slack.search#MessagesResponseMessagesPagingWarningsList"
+          "target": "com.slack.search#SearchMessagesResponseMessagesPagingWarningsList"
         },
         "next_cursor": {
           "target": "smithy.api#String",
@@ -662,14 +663,14 @@
       },
       "traits": {}
     },
-    "com.slack.search#MessagesResponseMessages": {
+    "com.slack.search#SearchMessagesResponseMessages": {
       "type": "structure",
       "members": {
         "matches": {
-          "target": "com.slack.search#MessagesResponseMessagesMatchesList"
+          "target": "com.slack.search#SearchMessagesResponseMessagesMatchesList"
         },
         "pagination": {
-          "target": "com.slack.search#MessagesResponseMessagesPagination"
+          "target": "com.slack.search#SearchMessagesResponseMessagesPagination"
         },
         "total": {
           "target": "smithy.api#Integer",
@@ -681,12 +682,12 @@
           "target": "smithy.api#Boolean"
         },
         "paging": {
-          "target": "com.slack.search#MessagesResponseMessagesPaging"
+          "target": "com.slack.search#SearchMessagesResponseMessagesPaging"
         }
       },
       "traits": {}
     },
-    "com.slack.search#MessagesResponseTeamsMap": {
+    "com.slack.search#SearchMessagesResponseTeamsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -696,7 +697,7 @@
       },
       "traits": {}
     },
-    "com.slack.search#MessagesResponseBotsMap": {
+    "com.slack.search#SearchMessagesResponseBotsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -706,7 +707,7 @@
       },
       "traits": {}
     },
-    "com.slack.search#MessagesResponseResponseMetadata": {
+    "com.slack.search#SearchMessagesResponseResponseMetadata": {
       "type": "structure",
       "members": {
         "next_cursor": {
@@ -720,7 +721,7 @@
         "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
       }
     },
-    "com.slack.search#MessagesResponse": {
+    "com.slack.search#SearchMessagesResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -734,16 +735,16 @@
           "target": "smithy.api#String"
         },
         "users": {
-          "target": "com.slack.search#MessagesResponseUsersMap"
+          "target": "com.slack.search#SearchMessagesResponseUsersMap"
         },
         "messages": {
-          "target": "com.slack.search#MessagesResponseMessages"
+          "target": "com.slack.search#SearchMessagesResponseMessages"
         },
         "show_feedback": {
           "target": "smithy.api#Boolean"
         },
         "teams": {
-          "target": "com.slack.search#MessagesResponseTeamsMap"
+          "target": "com.slack.search#SearchMessagesResponseTeamsMap"
         },
         "query": {
           "target": "smithy.api#String",
@@ -752,13 +753,13 @@
           }
         },
         "bots": {
-          "target": "com.slack.search#MessagesResponseBotsMap"
+          "target": "com.slack.search#SearchMessagesResponseBotsMap"
         },
         "ignored_exclude_bots_pref": {
           "target": "smithy.api#Boolean"
         },
         "response_metadata": {
-          "target": "com.slack.search#MessagesResponseResponseMetadata",
+          "target": "com.slack.search#SearchMessagesResponseResponseMetadata",
           "traits": {
             "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
@@ -768,13 +769,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.search#Messages": {
+    "com.slack.search#SearchMessages": {
       "type": "operation",
       "input": {
-        "target": "com.slack.search#MessagesRequest"
+        "target": "com.slack.search#SearchMessagesRequest"
       },
       "output": {
-        "target": "com.slack.search#MessagesResponse"
+        "target": "com.slack.search#SearchMessagesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -790,13 +791,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.search#All"
+          "target": "com.slack.search#SearchAll"
         },
         {
-          "target": "com.slack.search#Files"
+          "target": "com.slack.search#SearchFiles"
         },
         {
-          "target": "com.slack.search#Messages"
+          "target": "com.slack.search#SearchMessages"
         }
       ],
       "traits": {

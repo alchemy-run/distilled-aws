@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.bots#InfoRequest": {
+    "com.slack.bots#BotsInfoRequest": {
       "type": "structure",
       "members": {
         "bot": {
@@ -39,7 +40,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.bots#InfoResponseBotsItemIcons": {
+    "com.slack.bots#BotsInfoResponseBotsItemIcons": {
       "type": "structure",
       "members": {
         "emoji": {
@@ -60,7 +61,7 @@
       },
       "traits": {}
     },
-    "com.slack.bots#InfoResponseBotsItem": {
+    "com.slack.bots#BotsInfoResponseBotsItem": {
       "type": "structure",
       "members": {
         "updated": {
@@ -73,7 +74,7 @@
           "target": "smithy.api#String"
         },
         "icons": {
-          "target": "com.slack.bots#InfoResponseBotsItemIcons"
+          "target": "com.slack.bots#BotsInfoResponseBotsItemIcons"
         },
         "deleted": {
           "target": "smithy.api#Boolean",
@@ -105,14 +106,14 @@
       },
       "traits": {}
     },
-    "com.slack.bots#InfoResponseBotsList": {
+    "com.slack.bots#BotsInfoResponseBotsList": {
       "type": "list",
       "member": {
-        "target": "com.slack.bots#InfoResponseBotsItem"
+        "target": "com.slack.bots#BotsInfoResponseBotsItem"
       },
       "traits": {}
     },
-    "com.slack.bots#InfoResponseBotIcons": {
+    "com.slack.bots#BotsInfoResponseBotIcons": {
       "type": "structure",
       "members": {
         "emoji": {
@@ -133,7 +134,7 @@
       },
       "traits": {}
     },
-    "com.slack.bots#InfoResponseBot": {
+    "com.slack.bots#BotsInfoResponseBot": {
       "type": "structure",
       "members": {
         "updated": {
@@ -149,7 +150,7 @@
           "target": "smithy.api#String"
         },
         "icons": {
-          "target": "com.slack.bots#InfoResponseBotIcons"
+          "target": "com.slack.bots#BotsInfoResponseBotIcons"
         },
         "deleted": {
           "target": "smithy.api#Boolean",
@@ -178,7 +179,7 @@
       },
       "traits": {}
     },
-    "com.slack.bots#InfoResponse": {
+    "com.slack.bots#BotsInfoResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -189,23 +190,23 @@
           }
         },
         "bots": {
-          "target": "com.slack.bots#InfoResponseBotsList"
+          "target": "com.slack.bots#BotsInfoResponseBotsList"
         },
         "bot": {
-          "target": "com.slack.bots#InfoResponseBot"
+          "target": "com.slack.bots#BotsInfoResponseBot"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.slack.bots#Info": {
+    "com.slack.bots#BotsInfo": {
       "type": "operation",
       "input": {
-        "target": "com.slack.bots#InfoRequest"
+        "target": "com.slack.bots#BotsInfoRequest"
       },
       "output": {
-        "target": "com.slack.bots#InfoResponse"
+        "target": "com.slack.bots#BotsInfoResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -221,7 +222,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.bots#Info"
+          "target": "com.slack.bots#BotsInfo"
         }
       ],
       "traits": {

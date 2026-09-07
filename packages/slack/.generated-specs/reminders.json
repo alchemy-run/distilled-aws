@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.reminders#AddRequest": {
+    "com.slack.reminders#AddReminderRequest": {
       "type": "structure",
       "members": {
         "text": {
@@ -57,7 +58,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.reminders#AddResponse": {
+    "com.slack.reminders#AddReminderResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.reminders#Add": {
+    "com.slack.reminders#AddReminder": {
       "type": "operation",
       "input": {
-        "target": "com.slack.reminders#AddRequest"
+        "target": "com.slack.reminders#AddReminderRequest"
       },
       "output": {
-        "target": "com.slack.reminders#AddResponse"
+        "target": "com.slack.reminders#AddReminderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -95,7 +96,7 @@
         "smithy.api#documentation": "Creates a reminder.\n\nRequired scopes — user: `reminders:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `cannot_add_bot` — Reminders can't be sent to bots.\n  - `cannot_add_others` — Guests can't set reminders for other team members.\n  - `cannot_add_others_recurring` — Recurring reminders can't be set for other team members.\n  - `cannot_add_profile_only_user` — Reminders can't be sent to profile only users.\n  - `cannot_add_slackbot` — Reminders can't be sent to Slackbot.\n  - `cannot_parse` — The phrasing of the timing for this reminder is unclear. You must include a complete time description. Some examples that work: `1458678068`, `20`, `in 5 minutes`, `tomorrow`, `at 3:30pm`, `on Tuesday`, or `next week`.\n  - `missing_argument` — An argument is missing.\n  - `user_not_found` — That user can't be found.\n\nSee https://docs.slack.dev/reference/methods/reminders.add"
       }
     },
-    "com.slack.reminders#CompleteRequest": {
+    "com.slack.reminders#CompleteReminderRequest": {
       "type": "structure",
       "members": {
         "reminder": {
@@ -116,7 +117,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.reminders#CompleteResponse": {
+    "com.slack.reminders#CompleteReminderResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -131,13 +132,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.reminders#Complete": {
+    "com.slack.reminders#CompleteReminder": {
       "type": "operation",
       "input": {
-        "target": "com.slack.reminders#CompleteRequest"
+        "target": "com.slack.reminders#CompleteReminderRequest"
       },
       "output": {
-        "target": "com.slack.reminders#CompleteResponse"
+        "target": "com.slack.reminders#CompleteReminderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -148,7 +149,7 @@
         "smithy.api#documentation": "Marks a reminder as complete.\n\nRequired scopes — user: `reminders:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `cannot_complete_others` — Reminders for other team members can't be marked complete.\n  - `cannot_complete_recurring` — Recurring reminders can't be marked complete.\n  - `missing_argument` — An argument is missing.\n  - `not_found` — That reminder can't be found.\n\nSee https://docs.slack.dev/reference/methods/reminders.complete"
       }
     },
-    "com.slack.reminders#DeleteRequest": {
+    "com.slack.reminders#DeleteReminderRequest": {
       "type": "structure",
       "members": {
         "reminder": {
@@ -169,7 +170,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.reminders#DeleteResponse": {
+    "com.slack.reminders#DeleteReminderResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -184,13 +185,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.reminders#Delete": {
+    "com.slack.reminders#DeleteReminder": {
       "type": "operation",
       "input": {
-        "target": "com.slack.reminders#DeleteRequest"
+        "target": "com.slack.reminders#DeleteReminderRequest"
       },
       "output": {
-        "target": "com.slack.reminders#DeleteResponse"
+        "target": "com.slack.reminders#DeleteReminderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -201,7 +202,7 @@
         "smithy.api#documentation": "Deletes a reminder.\n\nRequired scopes — user: `reminders:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — An argument is missing.\n  - `not_found` — That reminder can't be found.\n\nSee https://docs.slack.dev/reference/methods/reminders.delete"
       }
     },
-    "com.slack.reminders#InfoRequest": {
+    "com.slack.reminders#RemindersInfoRequest": {
       "type": "structure",
       "members": {
         "reminder": {
@@ -224,7 +225,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.reminders#InfoResponse": {
+    "com.slack.reminders#RemindersInfoResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -245,13 +246,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.reminders#Info": {
+    "com.slack.reminders#RemindersInfo": {
       "type": "operation",
       "input": {
-        "target": "com.slack.reminders#InfoRequest"
+        "target": "com.slack.reminders#RemindersInfoRequest"
       },
       "output": {
-        "target": "com.slack.reminders#InfoResponse"
+        "target": "com.slack.reminders#RemindersInfoResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -262,7 +263,7 @@
         "smithy.api#documentation": "Gets information about a reminder.\n\nRequired scopes — user: `reminders:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — An argument is missing.\n  - `not_found` — That reminder can't be found.\n\nSee https://docs.slack.dev/reference/methods/reminders.info"
       }
     },
-    "com.slack.reminders#ListRequest": {
+    "com.slack.reminders#ListRemindersRequest": {
       "type": "structure",
       "members": {
         "team_id": {
@@ -277,14 +278,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.reminders#ListResponseRemindersList": {
+    "com.slack.reminders#ListRemindersResponseRemindersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.slack.reminders#ListResponse": {
+    "com.slack.reminders#ListRemindersResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -295,20 +296,20 @@
           }
         },
         "reminders": {
-          "target": "com.slack.reminders#ListResponseRemindersList"
+          "target": "com.slack.reminders#ListRemindersResponseRemindersList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.slack.reminders#List": {
+    "com.slack.reminders#ListReminders": {
       "type": "operation",
       "input": {
-        "target": "com.slack.reminders#ListRequest"
+        "target": "com.slack.reminders#ListRemindersRequest"
       },
       "output": {
-        "target": "com.slack.reminders#ListResponse"
+        "target": "com.slack.reminders#ListRemindersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -324,19 +325,19 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.reminders#Add"
+          "target": "com.slack.reminders#AddReminder"
         },
         {
-          "target": "com.slack.reminders#Complete"
+          "target": "com.slack.reminders#CompleteReminder"
         },
         {
-          "target": "com.slack.reminders#Delete"
+          "target": "com.slack.reminders#DeleteReminder"
         },
         {
-          "target": "com.slack.reminders#Info"
+          "target": "com.slack.reminders#RemindersInfo"
         },
         {
-          "target": "com.slack.reminders#List"
+          "target": "com.slack.reminders#ListReminders"
         }
       ],
       "traits": {

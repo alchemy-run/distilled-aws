@@ -12,72 +12,73 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export type ExchangeRequestUsersList = Array<string>;
-export const ExchangeRequestUsersList = /*@__PURE__*/ S.Array(
+export type MigrationExchangeRequestUsersList = Array<string>;
+export const MigrationExchangeRequestUsersList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ExchangeRequestUsersList>;
+) as any as S.Schema<MigrationExchangeRequestUsersList>;
 
-export interface ExchangeRequest {
+export interface MigrationExchangeRequest {
   /** A comma-separated list of user ids, up to 400 per request */
-  users: ExchangeRequestUsersList;
+  users: MigrationExchangeRequestUsersList;
   /** Specify team_id starts with `T` in case of Org Token */
   team_id?: string;
   /** Specify `true` to convert `W` global user IDs to workspace-specific `U` IDs. Defaults to `false`. */
   to_old?: boolean;
 }
-export const ExchangeRequest = /*@__PURE__*/ S.suspend(() =>
+export const MigrationExchangeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    users: ExchangeRequestUsersList.pipe(T.Query()),
+    users: MigrationExchangeRequestUsersList.pipe(T.Query()),
     team_id: S.optional(S.String.pipe(T.Query())),
     to_old: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/migration.exchange", code: 200 })),
 ).annotate({
-  identifier: "ExchangeRequest",
-}) as any as S.Schema<ExchangeRequest>;
+  identifier: "MigrationExchangeRequest",
+}) as any as S.Schema<MigrationExchangeRequest>;
 
-export type ExchangeResponseUserIdMapMap = {
+export type MigrationExchangeResponseUserIdMapMap = {
   [key: string]: unknown | undefined;
 };
-export const ExchangeResponseUserIdMapMap = /*@__PURE__*/ S.Record(
+export const MigrationExchangeResponseUserIdMapMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<ExchangeResponseUserIdMapMap>;
+) as any as S.Schema<MigrationExchangeResponseUserIdMapMap>;
 
-export type ExchangeResponseInvalidUserIdsList = Array<string>;
-export const ExchangeResponseInvalidUserIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ExchangeResponseInvalidUserIdsList>;
+export type MigrationExchangeResponseInvalidUserIdsList = Array<string>;
+export const MigrationExchangeResponseInvalidUserIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<MigrationExchangeResponseInvalidUserIdsList>;
 
-export interface ExchangeResponse {
+export interface MigrationExchangeResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   team_id: string;
   enterprise_id: string;
-  user_id_map: ExchangeResponseUserIdMapMap;
-  invalid_user_ids?: ExchangeResponseInvalidUserIdsList;
+  user_id_map: MigrationExchangeResponseUserIdMapMap;
+  invalid_user_ids?: MigrationExchangeResponseInvalidUserIdsList;
 }
-export const ExchangeResponse = /*@__PURE__*/ S.suspend(() =>
+export const MigrationExchangeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     team_id: S.String,
     enterprise_id: S.String,
-    user_id_map: ExchangeResponseUserIdMapMap,
-    invalid_user_ids: S.optional(ExchangeResponseInvalidUserIdsList),
+    user_id_map: MigrationExchangeResponseUserIdMapMap,
+    invalid_user_ids: S.optional(MigrationExchangeResponseInvalidUserIdsList),
   }),
 ).annotate({
-  identifier: "ExchangeResponse",
-}) as any as S.Schema<ExchangeResponse>;
+  identifier: "MigrationExchangeResponse",
+}) as any as S.Schema<MigrationExchangeResponse>;
 
-export type ExchangeError = SlackOpError;
+export type MigrationExchangeError = SlackOpError;
 /** For Enterprise organization workspaces, map local user IDs to global user IDs Required scopes — bot: `tokens.basic`; user: `tokens.basic` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `not_enterprise_team` — The workspace associated with the token is not part of an Enterprise organization. User IDs have not changed and there is nothing to map. - `too_many_users` — Too many user IDs provided in `users`. Up to 400 user IDs are allowed per request. See https://docs.slack.dev/reference/methods/migration.exchange */
-export const exchange: API.OperationMethod<
-  ExchangeRequest,
-  ExchangeResponse,
-  ExchangeError,
+export const migrationExchange: API.OperationMethod<
+  MigrationExchangeRequest,
+  MigrationExchangeResponse,
+  MigrationExchangeError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExchangeRequest,
-  output: ExchangeResponse,
+  input: MigrationExchangeRequest,
+  output: MigrationExchangeResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

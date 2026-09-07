@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.canvases#AccessDeleteRequestChannelIdsList": {
+    "com.slack.canvases#DeleteAccessRequestChannelIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -26,7 +27,7 @@
         "smithy.api#documentation": "List of channels you wish to update access for"
       }
     },
-    "com.slack.canvases#AccessDeleteRequestUserIdsList": {
+    "com.slack.canvases#DeleteAccessRequestUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -35,7 +36,7 @@
         "smithy.api#documentation": "List of users you wish to update access for"
       }
     },
-    "com.slack.canvases#AccessDeleteRequest": {
+    "com.slack.canvases#DeleteAccessRequest": {
       "type": "structure",
       "members": {
         "canvas_id": {
@@ -46,13 +47,13 @@
           }
         },
         "channel_ids": {
-          "target": "com.slack.canvases#AccessDeleteRequestChannelIdsList",
+          "target": "com.slack.canvases#DeleteAccessRequestChannelIdsList",
           "traits": {
             "smithy.api#documentation": "List of channels you wish to update access for"
           }
         },
         "user_ids": {
-          "target": "com.slack.canvases#AccessDeleteRequestUserIdsList",
+          "target": "com.slack.canvases#DeleteAccessRequestUserIdsList",
           "traits": {
             "smithy.api#documentation": "List of users you wish to update access for"
           }
@@ -62,7 +63,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.canvases#AccessDeleteResponseFailedToUpdateChannelIdsList": {
+    "com.slack.canvases#DeleteAccessResponseFailedToUpdateChannelIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -71,7 +72,7 @@
         "smithy.api#documentation": "The channel IDs that could not be updated"
       }
     },
-    "com.slack.canvases#AccessDeleteResponseFailedToUpdateUserIdsList": {
+    "com.slack.canvases#DeleteAccessResponseFailedToUpdateUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -80,7 +81,7 @@
         "smithy.api#documentation": "The user IDs that could not be updated"
       }
     },
-    "com.slack.canvases#AccessDeleteResponse": {
+    "com.slack.canvases#DeleteAccessResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -91,13 +92,13 @@
           }
         },
         "failed_to_update_channel_ids": {
-          "target": "com.slack.canvases#AccessDeleteResponseFailedToUpdateChannelIdsList",
+          "target": "com.slack.canvases#DeleteAccessResponseFailedToUpdateChannelIdsList",
           "traits": {
             "smithy.api#documentation": "The channel IDs that could not be updated"
           }
         },
         "failed_to_update_user_ids": {
-          "target": "com.slack.canvases#AccessDeleteResponseFailedToUpdateUserIdsList",
+          "target": "com.slack.canvases#DeleteAccessResponseFailedToUpdateUserIdsList",
           "traits": {
             "smithy.api#documentation": "The user IDs that could not be updated"
           }
@@ -107,13 +108,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.canvases#AccessDelete": {
+    "com.slack.canvases#DeleteAccess": {
       "type": "operation",
       "input": {
-        "target": "com.slack.canvases#AccessDeleteRequest"
+        "target": "com.slack.canvases#DeleteAccessRequest"
       },
       "output": {
-        "target": "com.slack.canvases#AccessDeleteResponse"
+        "target": "com.slack.canvases#DeleteAccessResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -124,7 +125,7 @@
         "smithy.api#documentation": "Remove access to a canvas for specified entities\n\nRequired scopes — bot: `canvases:write`; user: `canvases:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `canvas_not_found` — The canvas you wish to revoke permissions for is not available.\n  - `restricted_action` — User does not have permission to perform this action.\n  - `canvas_disabled_user_team` — Canvas is disabled on user's team.\n  - `invalid_parameters` — One of user_ids and channel_ids must be defined.\n  - `channel_not_found` — A channel could not be found.\n  - `user_not_found` — A user could not be found.\n\nSee https://docs.slack.dev/reference/methods/canvases.access.delete"
       }
     },
-    "com.slack.canvases#AccessSetRequestChannelIdsList": {
+    "com.slack.canvases#SetAccessRequestChannelIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -133,7 +134,7 @@
         "smithy.api#documentation": "List of channels you wish to update access for. Can only be used if user_ids is not provided."
       }
     },
-    "com.slack.canvases#AccessSetRequestUserIdsList": {
+    "com.slack.canvases#SetAccessRequestUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -142,7 +143,7 @@
         "smithy.api#documentation": "List of users you wish to update access for. Can only be used if channel_ids is not provided."
       }
     },
-    "com.slack.canvases#AccessSetRequest": {
+    "com.slack.canvases#SetAccessRequest": {
       "type": "structure",
       "members": {
         "canvas_id": {
@@ -160,13 +161,13 @@
           }
         },
         "channel_ids": {
-          "target": "com.slack.canvases#AccessSetRequestChannelIdsList",
+          "target": "com.slack.canvases#SetAccessRequestChannelIdsList",
           "traits": {
             "smithy.api#documentation": "List of channels you wish to update access for. Can only be used if user_ids is not provided."
           }
         },
         "user_ids": {
-          "target": "com.slack.canvases#AccessSetRequestUserIdsList",
+          "target": "com.slack.canvases#SetAccessRequestUserIdsList",
           "traits": {
             "smithy.api#documentation": "List of users you wish to update access for. Can only be used if channel_ids is not provided."
           }
@@ -176,7 +177,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.canvases#AccessSetResponseFailedToUpdateChannelIdsList": {
+    "com.slack.canvases#SetAccessResponseFailedToUpdateChannelIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -185,7 +186,7 @@
         "smithy.api#documentation": "The channel IDs that could not be updated"
       }
     },
-    "com.slack.canvases#AccessSetResponseFailedToUpdateUserIdsList": {
+    "com.slack.canvases#SetAccessResponseFailedToUpdateUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -194,7 +195,7 @@
         "smithy.api#documentation": "The user IDs that could not be updated"
       }
     },
-    "com.slack.canvases#AccessSetResponse": {
+    "com.slack.canvases#SetAccessResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -205,13 +206,13 @@
           }
         },
         "failed_to_update_channel_ids": {
-          "target": "com.slack.canvases#AccessSetResponseFailedToUpdateChannelIdsList",
+          "target": "com.slack.canvases#SetAccessResponseFailedToUpdateChannelIdsList",
           "traits": {
             "smithy.api#documentation": "The channel IDs that could not be updated"
           }
         },
         "failed_to_update_user_ids": {
-          "target": "com.slack.canvases#AccessSetResponseFailedToUpdateUserIdsList",
+          "target": "com.slack.canvases#SetAccessResponseFailedToUpdateUserIdsList",
           "traits": {
             "smithy.api#documentation": "The user IDs that could not be updated"
           }
@@ -221,13 +222,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.canvases#AccessSet": {
+    "com.slack.canvases#SetAccess": {
       "type": "operation",
       "input": {
-        "target": "com.slack.canvases#AccessSetRequest"
+        "target": "com.slack.canvases#SetAccessRequest"
       },
       "output": {
-        "target": "com.slack.canvases#AccessSetResponse"
+        "target": "com.slack.canvases#SetAccessResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -238,7 +239,7 @@
         "smithy.api#documentation": "Sets the access level to a canvas for specified entities\n\nRequired scopes — bot: `canvases:write`; user: `canvases:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `canvas_disabled_user_team` — Canvas is disabled on user's team\n  - `canvas_not_found` — The canvas you wish to update permissions for is not available.\n  - `channel_not_found` — A channel could not be found.\n  - `failed_to_update_user_ids` — Failed to update the specified user_ids.\n  - `invalid_parameters` — One of user_ids or channel_ids must be defined, but not both.\n  - `restricted_action` — User does not have permission to perform this action.\n  - `user_not_found` — A user could not be found.\n\nSee https://docs.slack.dev/reference/methods/canvases.access.set"
       }
     },
-    "com.slack.canvases#CreateRequest": {
+    "com.slack.canvases#CreateCanvaseRequest": {
       "type": "structure",
       "members": {
         "title": {
@@ -264,7 +265,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.canvases#CreateResponse": {
+    "com.slack.canvases#CreateCanvaseResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -286,13 +287,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.canvases#Create": {
+    "com.slack.canvases#CreateCanvase": {
       "type": "operation",
       "input": {
-        "target": "com.slack.canvases#CreateRequest"
+        "target": "com.slack.canvases#CreateCanvaseRequest"
       },
       "output": {
-        "target": "com.slack.canvases#CreateResponse"
+        "target": "com.slack.canvases#CreateCanvaseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -303,7 +304,7 @@
         "smithy.api#documentation": "Create canvas for a user\n\nRequired scopes — bot: `canvases:write`; user: `canvases:write`; seamless_user: `seamless.user`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `canvas_disabled_user_team` — Canvas is disabled on user's team\n  - `restricted_action` — User does not have permission to perform this action.\n  - `canvas_creation_failed` — Canvas was unable to be created.\n  - `free_teams_cannot_create_non_tabbed_canvases` — Free teams cannot create non-tabbed standalone canvases\n  - `free_team_canvas_tab_already_exists` — Free teams are limited to one canvas tab per channel\n  - `free_teams_cannot_create_standalone_canvases` — Free teams cannot create standalone canvases\n\nSee https://docs.slack.dev/reference/methods/canvases.create"
       }
     },
-    "com.slack.canvases#DeleteRequest": {
+    "com.slack.canvases#DeleteCanvaseRequest": {
       "type": "structure",
       "members": {
         "canvas_id": {
@@ -318,7 +319,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.canvases#DeleteResponse": {
+    "com.slack.canvases#DeleteCanvaseResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -333,13 +334,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.canvases#Delete": {
+    "com.slack.canvases#DeleteCanvase": {
       "type": "operation",
       "input": {
-        "target": "com.slack.canvases#DeleteRequest"
+        "target": "com.slack.canvases#DeleteCanvaseRequest"
       },
       "output": {
-        "target": "com.slack.canvases#DeleteResponse"
+        "target": "com.slack.canvases#DeleteCanvaseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -350,7 +351,7 @@
         "smithy.api#documentation": "Deletes a canvas\n\nRequired scopes — bot: `canvases:write`; user: `canvases:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `canvas_deleting_disabled` — This functionality is disabled.\n  - `canvas_not_found` — The canvas does not exist, or is not visible to the calling user.\n  - `restricted_action` — User does not have permission to perform this action.\n\nSee https://docs.slack.dev/reference/methods/canvases.delete"
       }
     },
-    "com.slack.canvases#EditRequestChangesList": {
+    "com.slack.canvases#EditCanvaseRequestChangesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -359,7 +360,7 @@
         "smithy.api#documentation": "List of changes to apply on the specified canvas. The markdown content of each change is limited to 1 MiB (1,048,576 characters)."
       }
     },
-    "com.slack.canvases#EditRequest": {
+    "com.slack.canvases#EditCanvaseRequest": {
       "type": "structure",
       "members": {
         "canvas_id": {
@@ -370,7 +371,7 @@
           }
         },
         "changes": {
-          "target": "com.slack.canvases#EditRequestChangesList",
+          "target": "com.slack.canvases#EditCanvaseRequestChangesList",
           "traits": {
             "smithy.api#documentation": "List of changes to apply on the specified canvas. The markdown content of each change is limited to 1 MiB (1,048,576 characters).",
             "smithy.api#required": {}
@@ -381,7 +382,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.canvases#EditResponse": {
+    "com.slack.canvases#EditCanvaseResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -396,13 +397,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.canvases#Edit": {
+    "com.slack.canvases#EditCanvase": {
       "type": "operation",
       "input": {
-        "target": "com.slack.canvases#EditRequest"
+        "target": "com.slack.canvases#EditCanvaseRequest"
       },
       "output": {
-        "target": "com.slack.canvases#EditResponse"
+        "target": "com.slack.canvases#EditCanvaseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -413,7 +414,7 @@
         "smithy.api#documentation": "Update an existing canvas\n\nRequired scopes — bot: `canvases:write`; user: `canvases:write`; seamless_user: `seamless.user`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `canvas_not_found` — The canvas you wish to apply changes to is not available.\n  - `canvas_disabled_user_team` — Canvas is disabled on user's team\n  - `free_teams_cannot_edit_standalone_canvases` — Free teams cannot edit standalone canvases\n  - `restricted_action` — User does not have permission to perform this action.\n  - `canvas_editing_failed` — The changes to the canvas failed to be applied.\n  - `canvas_editing_locked` — Another edit to this canvas is currently in progress. Please retry after a short delay.\n  - `canvas_too_large` — The canvas is too large to apply the requested changes. Reduce the size of the canvas or the edit and try again.\n\nSee https://docs.slack.dev/reference/methods/canvases.edit"
       }
     },
-    "com.slack.canvases#SectionsLookupRequest": {
+    "com.slack.canvases#LookupSectionRequest": {
       "type": "structure",
       "members": {
         "canvas_id": {
@@ -435,7 +436,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.canvases#SectionsLookupResponseSectionsItemChildSectionIdsList": {
+    "com.slack.canvases#LookupSectionResponseSectionsItemChildSectionIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -444,7 +445,7 @@
         "smithy.api#documentation": "IDs of child sections within a layout container (blockquote, callout, flexbox, or table)."
       }
     },
-    "com.slack.canvases#SectionsLookupResponseSectionsItem": {
+    "com.slack.canvases#LookupSectionResponseSectionsItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -454,7 +455,7 @@
           }
         },
         "child_section_ids": {
-          "target": "com.slack.canvases#SectionsLookupResponseSectionsItemChildSectionIdsList",
+          "target": "com.slack.canvases#LookupSectionResponseSectionsItemChildSectionIdsList",
           "traits": {
             "smithy.api#documentation": "IDs of child sections within a layout container (blockquote, callout, flexbox, or table)."
           }
@@ -462,16 +463,16 @@
       },
       "traits": {}
     },
-    "com.slack.canvases#SectionsLookupResponseSectionsList": {
+    "com.slack.canvases#LookupSectionResponseSectionsList": {
       "type": "list",
       "member": {
-        "target": "com.slack.canvases#SectionsLookupResponseSectionsItem"
+        "target": "com.slack.canvases#LookupSectionResponseSectionsItem"
       },
       "traits": {
         "smithy.api#documentation": "Sections in the canvas that match the provided criteria"
       }
     },
-    "com.slack.canvases#SectionsLookupResponse": {
+    "com.slack.canvases#LookupSectionResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -482,7 +483,7 @@
           }
         },
         "sections": {
-          "target": "com.slack.canvases#SectionsLookupResponseSectionsList",
+          "target": "com.slack.canvases#LookupSectionResponseSectionsList",
           "traits": {
             "smithy.api#documentation": "Sections in the canvas that match the provided criteria",
             "smithy.api#required": {}
@@ -493,13 +494,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.canvases#SectionsLookup": {
+    "com.slack.canvases#LookupSection": {
       "type": "operation",
       "input": {
-        "target": "com.slack.canvases#SectionsLookupRequest"
+        "target": "com.slack.canvases#LookupSectionRequest"
       },
       "output": {
-        "target": "com.slack.canvases#SectionsLookupResponse"
+        "target": "com.slack.canvases#LookupSectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -515,22 +516,22 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.canvases#AccessDelete"
+          "target": "com.slack.canvases#DeleteAccess"
         },
         {
-          "target": "com.slack.canvases#AccessSet"
+          "target": "com.slack.canvases#SetAccess"
         },
         {
-          "target": "com.slack.canvases#Create"
+          "target": "com.slack.canvases#CreateCanvase"
         },
         {
-          "target": "com.slack.canvases#Delete"
+          "target": "com.slack.canvases#DeleteCanvase"
         },
         {
-          "target": "com.slack.canvases#Edit"
+          "target": "com.slack.canvases#EditCanvase"
         },
         {
-          "target": "com.slack.canvases#SectionsLookup"
+          "target": "com.slack.canvases#LookupSection"
         }
       ],
       "traits": {

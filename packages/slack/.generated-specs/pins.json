@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.pins#AddRequest": {
+    "com.slack.pins#AddPinRequest": {
       "type": "structure",
       "members": {
         "channel": {
@@ -38,7 +39,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.pins#AddResponse": {
+    "com.slack.pins#AddPinResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -53,13 +54,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.pins#Add": {
+    "com.slack.pins#AddPin": {
       "type": "operation",
       "input": {
-        "target": "com.slack.pins#AddRequest"
+        "target": "com.slack.pins#AddPinRequest"
       },
       "output": {
-        "target": "com.slack.pins#AddResponse"
+        "target": "com.slack.pins#AddPinResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -70,7 +71,7 @@
         "smithy.api#documentation": "Pins an item to a channel.\n\nRequired scopes — bot: `pins:write`; user: `pins:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `already_pinned` — The specified item is already pinned to the channel.\n  - `bad_timestamp` — Value passed for `timestamp` was invalid.\n  - `channel_not_found` — The `channel` argument was not specified or was invalid\n  - `external_channel_migrating` — Channel is undergoing an active migration.\n  - `file_not_found` — File not found.\n  - `file_not_shared` — File specified by `file` is not public nor shared to the channel.\n  - `message_not_found` — Message specified by `channel` and `timestamp` does not exist.\n  - `no_item_specified` — One of `file`, `file_comment`, or `timestamp` was not specified.\n  - `not_in_channel` — Item is not in channel.\n  - `not_pinnable` — This message type is not pinnable.\n  - `restricted_action` — The user does not have permission to add pins to the channel.\n  - `too_many_pins` — Too many pins in channel.\n\nSee https://docs.slack.dev/reference/methods/pins.add"
       }
     },
-    "com.slack.pins#ListRequest": {
+    "com.slack.pins#ListPinsRequest": {
       "type": "structure",
       "members": {
         "channel": {
@@ -86,7 +87,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.pins#ListResponseItemsItemType": {
+    "com.slack.pins#ListPinsResponseItemsItemType": {
       "type": "enum",
       "members": {
         "FILE": {
@@ -110,11 +111,11 @@
       },
       "traits": {}
     },
-    "com.slack.pins#ListResponseItemsItem": {
+    "com.slack.pins#ListPinsResponseItemsItem": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.slack.pins#ListResponseItemsItemType",
+          "target": "com.slack.pins#ListPinsResponseItemsItemType",
           "traits": {
             "smithy.api#required": {}
           }
@@ -146,14 +147,14 @@
       },
       "traits": {}
     },
-    "com.slack.pins#ListResponseItemsList": {
+    "com.slack.pins#ListPinsResponseItemsList": {
       "type": "list",
       "member": {
-        "target": "com.slack.pins#ListResponseItemsItem"
+        "target": "com.slack.pins#ListPinsResponseItemsItem"
       },
       "traits": {}
     },
-    "com.slack.pins#ListResponse": {
+    "com.slack.pins#ListPinsResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -164,7 +165,7 @@
           }
         },
         "items": {
-          "target": "com.slack.pins#ListResponseItemsList"
+          "target": "com.slack.pins#ListPinsResponseItemsList"
         },
         "count": {
           "target": "smithy.api#Integer"
@@ -174,13 +175,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.pins#List": {
+    "com.slack.pins#ListPins": {
       "type": "operation",
       "input": {
-        "target": "com.slack.pins#ListRequest"
+        "target": "com.slack.pins#ListPinsRequest"
       },
       "output": {
-        "target": "com.slack.pins#ListResponse"
+        "target": "com.slack.pins#ListPinsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -191,7 +192,7 @@
         "smithy.api#documentation": "Lists items pinned to a channel.\n\nRequired scopes — bot: `pins:read`; user: `pins:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `restricted_action` — The user does not have permission to view the channel.\n\nSee https://docs.slack.dev/reference/methods/pins.list"
       }
     },
-    "com.slack.pins#RemoveRequest": {
+    "com.slack.pins#RemovePinRequest": {
       "type": "structure",
       "members": {
         "channel": {
@@ -212,7 +213,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.pins#RemoveResponse": {
+    "com.slack.pins#RemovePinResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -227,13 +228,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.pins#Remove": {
+    "com.slack.pins#RemovePin": {
       "type": "operation",
       "input": {
-        "target": "com.slack.pins#RemoveRequest"
+        "target": "com.slack.pins#RemovePinRequest"
       },
       "output": {
-        "target": "com.slack.pins#RemoveResponse"
+        "target": "com.slack.pins#RemovePinResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -249,13 +250,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.pins#Add"
+          "target": "com.slack.pins#AddPin"
         },
         {
-          "target": "com.slack.pins#List"
+          "target": "com.slack.pins#ListPins"
         },
         {
-          "target": "com.slack.pins#Remove"
+          "target": "com.slack.pins#RemovePin"
         }
       ],
       "traits": {

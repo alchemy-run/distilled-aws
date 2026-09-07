@@ -207,11 +207,11 @@ export const BillingInfoResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BillingInfoResponse",
 }) as any as S.Schema<BillingInfoResponse>;
 
-export interface ExternalTeamsDisconnectRequest {
+export interface DisconnectExternalTeamRequest {
   /** The team ID of the target team. */
   target_team: string;
 }
-export const ExternalTeamsDisconnectRequest = /*@__PURE__*/ S.suspend(() =>
+export const DisconnectExternalTeamRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     target_team: S.String,
   }).pipe(
@@ -223,309 +223,74 @@ export const ExternalTeamsDisconnectRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ExternalTeamsDisconnectRequest",
-}) as any as S.Schema<ExternalTeamsDisconnectRequest>;
+  identifier: "DisconnectExternalTeamRequest",
+}) as any as S.Schema<DisconnectExternalTeamRequest>;
 
-export interface ExternalTeamsDisconnectResponse {
+export interface DisconnectExternalTeamResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   job_enqueued: boolean;
 }
-export const ExternalTeamsDisconnectResponse = /*@__PURE__*/ S.suspend(() =>
+export const DisconnectExternalTeamResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     job_enqueued: S.Boolean,
   }),
 ).annotate({
-  identifier: "ExternalTeamsDisconnectResponse",
-}) as any as S.Schema<ExternalTeamsDisconnectResponse>;
+  identifier: "DisconnectExternalTeamResponse",
+}) as any as S.Schema<DisconnectExternalTeamResponse>;
 
-export type ExternalTeamsListRequestSortField =
-  | "team_name"
-  | "last_active_timestamp"
-  | "connection_status";
-export const ExternalTeamsListRequestSortField = /*@__PURE__*/ S.String;
+export type GetProfileRequestVisibility = "all" | "visible" | "hidden";
+export const GetProfileRequestVisibility = /*@__PURE__*/ S.String;
 
-export type ExternalTeamsListRequestSortDirection = "asc" | "desc";
-export const ExternalTeamsListRequestSortDirection = /*@__PURE__*/ S.String;
-
-export type ExternalTeamsListRequestSlackConnectPrefFilterItem =
-  | "approved_orgs_only"
-  | "allow_sc_file_uploads"
-  | "profile_visibility"
-  | "away_team_sc_invite_permissions"
-  | "accept_sc_invites"
-  | "sc_mpdm_to_private"
-  | "require_sc_channel_for_sc_dm"
-  | "external_awareness_context_bar"
-  | "interact_with_externally_owned_workflows"
-  | "external_teams_interact_with_locally_owned_workflows";
-export const ExternalTeamsListRequestSlackConnectPrefFilterItem =
-  /*@__PURE__*/ S.String;
-
-export type ExternalTeamsListRequestSlackConnectPrefFilterList = Array<
-  ExternalTeamsListRequestSlackConnectPrefFilterItem | (string & {})
->;
-export const ExternalTeamsListRequestSlackConnectPrefFilterList =
-  /*@__PURE__*/ S.Array(
-    ExternalTeamsListRequestSlackConnectPrefFilterItem,
-  ) as any as S.Schema<ExternalTeamsListRequestSlackConnectPrefFilterList>;
-
-export type ExternalTeamsListRequestWorkspaceFilterList = Array<string>;
-export const ExternalTeamsListRequestWorkspaceFilterList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ExternalTeamsListRequestWorkspaceFilterList>;
-
-export type ExternalTeamsListRequestConnectionStatusFilter =
-  | "CONNECTED"
-  | "DISCONNECTED"
-  | "BLOCKED"
-  | "IN_REVIEW";
-export const ExternalTeamsListRequestConnectionStatusFilter =
-  /*@__PURE__*/ S.String;
-
-export interface ExternalTeamsListRequest {
-  /** The maximum number of items to return per page */
-  limit?: number;
-  /** Paginate through collections of data by setting parameter to the `team_id` attribute returned by a previous request's `response_metadata`. If not provided, the first page of the collection is returned. See [pagination](/apis/web-api/pagination#cursors) for more detail. */
-  cursor?: string;
-  /** Name of the parameter that we are sorting by */
-  sort_field?: ExternalTeamsListRequestSortField | (string & {});
-  /** Direction to sort in asc or desc */
-  sort_direction?: ExternalTeamsListRequestSortDirection | (string & {});
-  /** Filters connected orgs by Slack Connect pref override(s). Value can be: `approved_orgs_only` `allow_sc_file_uploads` `profile_visibility` `away_team_sc_invite_permissions` `accept_sc_invites` `sc_mpdm_to_private` `require_sc_channel_for_sc_dm` `external_awareness_context_bar` */
-  slack_connect_pref_filter?: ExternalTeamsListRequestSlackConnectPrefFilterList;
-  /** Shows connected orgs which are connected on a specified encoded workspace ID */
-  workspace_filter?: ExternalTeamsListRequestWorkspaceFilterList;
-  /** Status of the connected team. */
-  connection_status_filter?:
-    | ExternalTeamsListRequestConnectionStatusFilter
-    | (string & {});
+export interface GetProfileRequest {
+  /** Filter by visibility. */
+  visibility?: GetProfileRequestVisibility | (string & {});
 }
-export const ExternalTeamsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetProfileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    limit: S.optional(S.Number.pipe(T.Query())),
-    cursor: S.optional(S.String.pipe(T.Query())),
-    sort_field: S.optional(ExternalTeamsListRequestSortField.pipe(T.Query())),
-    sort_direction: S.optional(
-      ExternalTeamsListRequestSortDirection.pipe(T.Query()),
-    ),
-    slack_connect_pref_filter: S.optional(
-      ExternalTeamsListRequestSlackConnectPrefFilterList.pipe(T.Query()),
-    ),
-    workspace_filter: S.optional(
-      ExternalTeamsListRequestWorkspaceFilterList.pipe(T.Query()),
-    ),
-    connection_status_filter: S.optional(
-      ExternalTeamsListRequestConnectionStatusFilter.pipe(T.Query()),
-    ),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/team.externalTeams.list", code: 200 }),
-  ),
+    visibility: S.optional(GetProfileRequestVisibility.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/team.profile.get", code: 200 })),
 ).annotate({
-  identifier: "ExternalTeamsListRequest",
-}) as any as S.Schema<ExternalTeamsListRequest>;
+  identifier: "GetProfileRequest",
+}) as any as S.Schema<GetProfileRequest>;
 
-export interface ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesItem {
-  workspace_id: string;
-  /** Name of the workspace. */
-  workspace_name: string;
+export type GetProfileResponseProfileFieldsList = Array<unknown>;
+export const GetProfileResponseProfileFieldsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<GetProfileResponseProfileFieldsList>;
+
+export type GetProfileResponseProfileSectionsList = Array<unknown>;
+export const GetProfileResponseProfileSectionsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<GetProfileResponseProfileSectionsList>;
+
+export interface GetProfileResponseProfile {
+  fields?: GetProfileResponseProfileFieldsList;
+  sections?: GetProfileResponseProfileSectionsList;
 }
-export const ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      workspace_id: S.String,
-      workspace_name: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesItem",
-  }) as any as S.Schema<ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesItem>;
-
-export type ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesList =
-  Array<ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesItem>;
-export const ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesList =
-  /*@__PURE__*/ S.Array(
-    ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesItem,
-  ) as any as S.Schema<ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesList>;
-
-/** Status of the connected team. (CONNECTED / DISCONNECTED / BLOCKED / IN_REVIEW / DISCONNECTiNG) */
-export type ExternalTeamsListResponseOrganizationsItemConnectionStatus =
-  | "CONNECTED"
-  | "DISCONNECTED"
-  | "BLOCKED"
-  | "IN_REVIEW"
-  | "DISCONNECTING";
-export const ExternalTeamsListResponseOrganizationsItemConnectionStatus =
-  /*@__PURE__*/ S.String;
-
-export interface ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsItem {
-  team_id: string;
-  count: number;
-}
-export const ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      team_id: S.String,
-      count: S.Number,
-    }),
-  ).annotate({
-    identifier:
-      "ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsItem",
-  }) as any as S.Schema<ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsItem>;
-
-export type ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsList =
-  Array<ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsItem>;
-export const ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsList =
-  /*@__PURE__*/ S.Array(
-    ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsItem,
-  ) as any as S.Schema<ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsList>;
-
-export interface ExternalTeamsListResponseOrganizationsItemCanvas {
-  total_count: number;
-  ownership_details: ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsList;
-}
-export const ExternalTeamsListResponseOrganizationsItemCanvas =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      total_count: S.Number,
-      ownership_details:
-        ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsList,
-    }),
-  ).annotate({
-    identifier: "ExternalTeamsListResponseOrganizationsItemCanvas",
-  }) as any as S.Schema<ExternalTeamsListResponseOrganizationsItemCanvas>;
-
-export type ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsItem =
-  ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsItem;
-export const ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsItem =
-  ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsItem;
-
-export type ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsList =
-  Array<ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsItem>;
-export const ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsList =
-  /*@__PURE__*/ S.Array(
-    ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsItem,
-  ) as any as S.Schema<ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsList>;
-
-export interface ExternalTeamsListResponseOrganizationsItemLists {
-  total_count: number;
-  ownership_details: ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsList;
-}
-export const ExternalTeamsListResponseOrganizationsItemLists =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      total_count: S.Number,
-      ownership_details:
-        ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsList,
-    }),
-  ).annotate({
-    identifier: "ExternalTeamsListResponseOrganizationsItemLists",
-  }) as any as S.Schema<ExternalTeamsListResponseOrganizationsItemLists>;
-
-export interface ExternalTeamsListResponseOrganizationsItem {
-  team_id: string;
-  /** Name of the team that is connected */
-  team_name: string;
-  /** Domain of the team that is connected */
-  team_domain: string;
-  /** The number of public channels connected on this team */
-  public_channel_count: number;
-  /** The number of private channels connected on this team */
-  private_channel_count: number;
-  /** The number of direct messages connected on this team */
-  im_channel_count: number;
-  /** The number of multi person direct messages connected on this team */
-  mpim_channel_count: number;
-  connected_workspaces: ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesList;
-  slack_connect_prefs: unknown;
-  /** Status of the connected team. (CONNECTED / DISCONNECTED / BLOCKED / IN_REVIEW / DISCONNECTiNG) */
-  connection_status: ExternalTeamsListResponseOrganizationsItemConnectionStatus;
-  /** timestamp of the last time a connected team was active in SC channel */
-  last_active_timestamp: number;
-  /** True when team is on a free plan. False otherwise. */
-  is_sponsored: boolean;
-  canvas?: ExternalTeamsListResponseOrganizationsItemCanvas;
-  lists?: ExternalTeamsListResponseOrganizationsItemLists;
-}
-export const ExternalTeamsListResponseOrganizationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      team_id: S.String,
-      team_name: S.String,
-      team_domain: S.String,
-      public_channel_count: S.Number,
-      private_channel_count: S.Number,
-      im_channel_count: S.Number,
-      mpim_channel_count: S.Number,
-      connected_workspaces:
-        ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesList,
-      slack_connect_prefs: S.Unknown,
-      connection_status:
-        ExternalTeamsListResponseOrganizationsItemConnectionStatus,
-      last_active_timestamp: S.Number,
-      is_sponsored: S.Boolean,
-      canvas: S.optional(ExternalTeamsListResponseOrganizationsItemCanvas),
-      lists: S.optional(ExternalTeamsListResponseOrganizationsItemLists),
-    }),
-  ).annotate({
-    identifier: "ExternalTeamsListResponseOrganizationsItem",
-  }) as any as S.Schema<ExternalTeamsListResponseOrganizationsItem>;
-
-export type ExternalTeamsListResponseOrganizationsList =
-  Array<ExternalTeamsListResponseOrganizationsItem>;
-export const ExternalTeamsListResponseOrganizationsList = /*@__PURE__*/ S.Array(
-  ExternalTeamsListResponseOrganizationsItem,
-) as any as S.Schema<ExternalTeamsListResponseOrganizationsList>;
-
-/** Pagination metadata. An empty `next_cursor` means the last page. */
-export type ExternalTeamsListResponseResponseMetadata =
-  AccessLogsResponseResponseMetadata;
-export const ExternalTeamsListResponseResponseMetadata =
-  AccessLogsResponseResponseMetadata;
-
-export interface ExternalTeamsListResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  organizations: ExternalTeamsListResponseOrganizationsList;
-  total_count: number;
-  /** Pagination metadata. An empty `next_cursor` means the last page. */
-  response_metadata?: AccessLogsResponseResponseMetadata;
-}
-export const ExternalTeamsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetProfileResponseProfile = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    ok: S.Boolean,
-    organizations: ExternalTeamsListResponseOrganizationsList,
-    total_count: S.Number,
-    response_metadata: S.optional(AccessLogsResponseResponseMetadata),
+    fields: S.optional(GetProfileResponseProfileFieldsList),
+    sections: S.optional(GetProfileResponseProfileSectionsList),
   }),
 ).annotate({
-  identifier: "ExternalTeamsListResponse",
-}) as any as S.Schema<ExternalTeamsListResponse>;
+  identifier: "GetProfileResponseProfile",
+}) as any as S.Schema<GetProfileResponseProfile>;
 
-export interface InfoRequest {
-  /** Query by domain instead of team (only when team is null). This only works for domains in the same enterprise as the querying team token. This also expects the domain to belong to a team and not the enterprise itself. This is the value set up for the 'Joining This Workspace' workspace setting. If it contains more than one domain, the field will contain multiple comma-separated domain values. If no domain is set, the field is empty. */
-  domain?: string;
-  /** Team to get info about; if omitted, will return information about the current team. */
-  team?: string;
-}
-export const InfoRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domain: S.optional(S.String.pipe(T.Query())),
-    team: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/team.info", code: 200 })),
-).annotate({ identifier: "InfoRequest" }) as any as S.Schema<InfoRequest>;
-
-export interface InfoResponse {
+export interface GetProfileResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
+  profile: GetProfileResponseProfile;
 }
-export const InfoResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetProfileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
+    profile: GetProfileResponseProfile,
   }),
-).annotate({ identifier: "InfoResponse" }) as any as S.Schema<InfoResponse>;
+).annotate({
+  identifier: "GetProfileResponse",
+}) as any as S.Schema<GetProfileResponse>;
 
 export type IntegrationLogsRequestChangeType =
   | "added"
@@ -593,16 +358,280 @@ export const IntegrationLogsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "IntegrationLogsResponse",
 }) as any as S.Schema<IntegrationLogsResponse>;
 
-export interface PreferencesListRequest {}
-export const PreferencesListRequest = /*@__PURE__*/ S.suspend(() =>
+export type ListExternalTeamsRequestSortField =
+  | "team_name"
+  | "last_active_timestamp"
+  | "connection_status";
+export const ListExternalTeamsRequestSortField = /*@__PURE__*/ S.String;
+
+export type ListExternalTeamsRequestSortDirection = "asc" | "desc";
+export const ListExternalTeamsRequestSortDirection = /*@__PURE__*/ S.String;
+
+export type ListExternalTeamsRequestSlackConnectPrefFilterItem =
+  | "approved_orgs_only"
+  | "allow_sc_file_uploads"
+  | "profile_visibility"
+  | "away_team_sc_invite_permissions"
+  | "accept_sc_invites"
+  | "sc_mpdm_to_private"
+  | "require_sc_channel_for_sc_dm"
+  | "external_awareness_context_bar"
+  | "interact_with_externally_owned_workflows"
+  | "external_teams_interact_with_locally_owned_workflows";
+export const ListExternalTeamsRequestSlackConnectPrefFilterItem =
+  /*@__PURE__*/ S.String;
+
+export type ListExternalTeamsRequestSlackConnectPrefFilterList = Array<
+  ListExternalTeamsRequestSlackConnectPrefFilterItem | (string & {})
+>;
+export const ListExternalTeamsRequestSlackConnectPrefFilterList =
+  /*@__PURE__*/ S.Array(
+    ListExternalTeamsRequestSlackConnectPrefFilterItem,
+  ) as any as S.Schema<ListExternalTeamsRequestSlackConnectPrefFilterList>;
+
+export type ListExternalTeamsRequestWorkspaceFilterList = Array<string>;
+export const ListExternalTeamsRequestWorkspaceFilterList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListExternalTeamsRequestWorkspaceFilterList>;
+
+export type ListExternalTeamsRequestConnectionStatusFilter =
+  | "CONNECTED"
+  | "DISCONNECTED"
+  | "BLOCKED"
+  | "IN_REVIEW";
+export const ListExternalTeamsRequestConnectionStatusFilter =
+  /*@__PURE__*/ S.String;
+
+export interface ListExternalTeamsRequest {
+  /** The maximum number of items to return per page */
+  limit?: number;
+  /** Paginate through collections of data by setting parameter to the `team_id` attribute returned by a previous request's `response_metadata`. If not provided, the first page of the collection is returned. See [pagination](/apis/web-api/pagination#cursors) for more detail. */
+  cursor?: string;
+  /** Name of the parameter that we are sorting by */
+  sort_field?: ListExternalTeamsRequestSortField | (string & {});
+  /** Direction to sort in asc or desc */
+  sort_direction?: ListExternalTeamsRequestSortDirection | (string & {});
+  /** Filters connected orgs by Slack Connect pref override(s). Value can be: `approved_orgs_only` `allow_sc_file_uploads` `profile_visibility` `away_team_sc_invite_permissions` `accept_sc_invites` `sc_mpdm_to_private` `require_sc_channel_for_sc_dm` `external_awareness_context_bar` */
+  slack_connect_pref_filter?: ListExternalTeamsRequestSlackConnectPrefFilterList;
+  /** Shows connected orgs which are connected on a specified encoded workspace ID */
+  workspace_filter?: ListExternalTeamsRequestWorkspaceFilterList;
+  /** Status of the connected team. */
+  connection_status_filter?:
+    | ListExternalTeamsRequestConnectionStatusFilter
+    | (string & {});
+}
+export const ListExternalTeamsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    limit: S.optional(S.Number.pipe(T.Query())),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    sort_field: S.optional(ListExternalTeamsRequestSortField.pipe(T.Query())),
+    sort_direction: S.optional(
+      ListExternalTeamsRequestSortDirection.pipe(T.Query()),
+    ),
+    slack_connect_pref_filter: S.optional(
+      ListExternalTeamsRequestSlackConnectPrefFilterList.pipe(T.Query()),
+    ),
+    workspace_filter: S.optional(
+      ListExternalTeamsRequestWorkspaceFilterList.pipe(T.Query()),
+    ),
+    connection_status_filter: S.optional(
+      ListExternalTeamsRequestConnectionStatusFilter.pipe(T.Query()),
+    ),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/team.externalTeams.list", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListExternalTeamsRequest",
+}) as any as S.Schema<ListExternalTeamsRequest>;
+
+export interface ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesItem {
+  workspace_id: string;
+  /** Name of the workspace. */
+  workspace_name: string;
+}
+export const ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      workspace_id: S.String,
+      workspace_name: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesItem",
+  }) as any as S.Schema<ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesItem>;
+
+export type ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesList =
+  Array<ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesItem>;
+export const ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesList =
+  /*@__PURE__*/ S.Array(
+    ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesItem,
+  ) as any as S.Schema<ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesList>;
+
+/** Status of the connected team. (CONNECTED / DISCONNECTED / BLOCKED / IN_REVIEW / DISCONNECTiNG) */
+export type ListExternalTeamsResponseOrganizationsItemConnectionStatus =
+  | "CONNECTED"
+  | "DISCONNECTED"
+  | "BLOCKED"
+  | "IN_REVIEW"
+  | "DISCONNECTING";
+export const ListExternalTeamsResponseOrganizationsItemConnectionStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsItem {
+  team_id: string;
+  count: number;
+}
+export const ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      team_id: S.String,
+      count: S.Number,
+    }),
+  ).annotate({
+    identifier:
+      "ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsItem",
+  }) as any as S.Schema<ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsItem>;
+
+export type ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsList =
+  Array<ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsItem>;
+export const ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsList =
+  /*@__PURE__*/ S.Array(
+    ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsItem,
+  ) as any as S.Schema<ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsList>;
+
+export interface ListExternalTeamsResponseOrganizationsItemCanvas {
+  total_count: number;
+  ownership_details: ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsList;
+}
+export const ListExternalTeamsResponseOrganizationsItemCanvas =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      total_count: S.Number,
+      ownership_details:
+        ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsList,
+    }),
+  ).annotate({
+    identifier: "ListExternalTeamsResponseOrganizationsItemCanvas",
+  }) as any as S.Schema<ListExternalTeamsResponseOrganizationsItemCanvas>;
+
+export type ListExternalTeamsResponseOrganizationsItemListsOwnershipDetailsItem =
+  ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsItem;
+export const ListExternalTeamsResponseOrganizationsItemListsOwnershipDetailsItem =
+  ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsItem;
+
+export type ListExternalTeamsResponseOrganizationsItemListsOwnershipDetailsList =
+  Array<ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsItem>;
+export const ListExternalTeamsResponseOrganizationsItemListsOwnershipDetailsList =
+  /*@__PURE__*/ S.Array(
+    ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsItem,
+  ) as any as S.Schema<ListExternalTeamsResponseOrganizationsItemListsOwnershipDetailsList>;
+
+export interface ListExternalTeamsResponseOrganizationsItemLists {
+  total_count: number;
+  ownership_details: ListExternalTeamsResponseOrganizationsItemListsOwnershipDetailsList;
+}
+export const ListExternalTeamsResponseOrganizationsItemLists =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      total_count: S.Number,
+      ownership_details:
+        ListExternalTeamsResponseOrganizationsItemListsOwnershipDetailsList,
+    }),
+  ).annotate({
+    identifier: "ListExternalTeamsResponseOrganizationsItemLists",
+  }) as any as S.Schema<ListExternalTeamsResponseOrganizationsItemLists>;
+
+export interface ListExternalTeamsResponseOrganizationsItem {
+  team_id: string;
+  /** Name of the team that is connected */
+  team_name: string;
+  /** Domain of the team that is connected */
+  team_domain: string;
+  /** The number of public channels connected on this team */
+  public_channel_count: number;
+  /** The number of private channels connected on this team */
+  private_channel_count: number;
+  /** The number of direct messages connected on this team */
+  im_channel_count: number;
+  /** The number of multi person direct messages connected on this team */
+  mpim_channel_count: number;
+  connected_workspaces: ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesList;
+  slack_connect_prefs: unknown;
+  /** Status of the connected team. (CONNECTED / DISCONNECTED / BLOCKED / IN_REVIEW / DISCONNECTiNG) */
+  connection_status: ListExternalTeamsResponseOrganizationsItemConnectionStatus;
+  /** timestamp of the last time a connected team was active in SC channel */
+  last_active_timestamp: number;
+  /** True when team is on a free plan. False otherwise. */
+  is_sponsored: boolean;
+  canvas?: ListExternalTeamsResponseOrganizationsItemCanvas;
+  lists?: ListExternalTeamsResponseOrganizationsItemLists;
+}
+export const ListExternalTeamsResponseOrganizationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      team_id: S.String,
+      team_name: S.String,
+      team_domain: S.String,
+      public_channel_count: S.Number,
+      private_channel_count: S.Number,
+      im_channel_count: S.Number,
+      mpim_channel_count: S.Number,
+      connected_workspaces:
+        ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesList,
+      slack_connect_prefs: S.Unknown,
+      connection_status:
+        ListExternalTeamsResponseOrganizationsItemConnectionStatus,
+      last_active_timestamp: S.Number,
+      is_sponsored: S.Boolean,
+      canvas: S.optional(ListExternalTeamsResponseOrganizationsItemCanvas),
+      lists: S.optional(ListExternalTeamsResponseOrganizationsItemLists),
+    }),
+  ).annotate({
+    identifier: "ListExternalTeamsResponseOrganizationsItem",
+  }) as any as S.Schema<ListExternalTeamsResponseOrganizationsItem>;
+
+export type ListExternalTeamsResponseOrganizationsList =
+  Array<ListExternalTeamsResponseOrganizationsItem>;
+export const ListExternalTeamsResponseOrganizationsList = /*@__PURE__*/ S.Array(
+  ListExternalTeamsResponseOrganizationsItem,
+) as any as S.Schema<ListExternalTeamsResponseOrganizationsList>;
+
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type ListExternalTeamsResponseResponseMetadata =
+  AccessLogsResponseResponseMetadata;
+export const ListExternalTeamsResponseResponseMetadata =
+  AccessLogsResponseResponseMetadata;
+
+export interface ListExternalTeamsResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  organizations: ListExternalTeamsResponseOrganizationsList;
+  total_count: number;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: AccessLogsResponseResponseMetadata;
+}
+export const ListExternalTeamsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    organizations: ListExternalTeamsResponseOrganizationsList,
+    total_count: S.Number,
+    response_metadata: S.optional(AccessLogsResponseResponseMetadata),
+  }),
+).annotate({
+  identifier: "ListExternalTeamsResponse",
+}) as any as S.Schema<ListExternalTeamsResponse>;
+
+export interface ListPreferencesRequest {}
+export const ListPreferencesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "POST", uri: "/team.preferences.list", code: 200 }),
   ),
 ).annotate({
-  identifier: "PreferencesListRequest",
-}) as any as S.Schema<PreferencesListRequest>;
+  identifier: "ListPreferencesRequest",
+}) as any as S.Schema<ListPreferencesRequest>;
 
-export interface PreferencesListResponse {
+export interface ListPreferencesResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   display_real_names: boolean;
@@ -610,7 +639,7 @@ export interface PreferencesListResponse {
   msg_edit_window_mins: number;
   who_can_post_general: string;
 }
-export const PreferencesListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListPreferencesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     display_real_names: S.Boolean,
@@ -619,60 +648,35 @@ export const PreferencesListResponse = /*@__PURE__*/ S.suspend(() =>
     who_can_post_general: S.String,
   }),
 ).annotate({
-  identifier: "PreferencesListResponse",
-}) as any as S.Schema<PreferencesListResponse>;
+  identifier: "ListPreferencesResponse",
+}) as any as S.Schema<ListPreferencesResponse>;
 
-export type ProfileGetRequestVisibility = "all" | "visible" | "hidden";
-export const ProfileGetRequestVisibility = /*@__PURE__*/ S.String;
-
-export interface ProfileGetRequest {
-  /** Filter by visibility. */
-  visibility?: ProfileGetRequestVisibility | (string & {});
+export interface TeamInfoRequest {
+  /** Query by domain instead of team (only when team is null). This only works for domains in the same enterprise as the querying team token. This also expects the domain to belong to a team and not the enterprise itself. This is the value set up for the 'Joining This Workspace' workspace setting. If it contains more than one domain, the field will contain multiple comma-separated domain values. If no domain is set, the field is empty. */
+  domain?: string;
+  /** Team to get info about; if omitted, will return information about the current team. */
+  team?: string;
 }
-export const ProfileGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const TeamInfoRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    visibility: S.optional(ProfileGetRequestVisibility.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/team.profile.get", code: 200 })),
+    domain: S.optional(S.String.pipe(T.Query())),
+    team: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/team.info", code: 200 })),
 ).annotate({
-  identifier: "ProfileGetRequest",
-}) as any as S.Schema<ProfileGetRequest>;
+  identifier: "TeamInfoRequest",
+}) as any as S.Schema<TeamInfoRequest>;
 
-export type ProfileGetResponseProfileFieldsList = Array<unknown>;
-export const ProfileGetResponseProfileFieldsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<ProfileGetResponseProfileFieldsList>;
-
-export type ProfileGetResponseProfileSectionsList = Array<unknown>;
-export const ProfileGetResponseProfileSectionsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<ProfileGetResponseProfileSectionsList>;
-
-export interface ProfileGetResponseProfile {
-  fields?: ProfileGetResponseProfileFieldsList;
-  sections?: ProfileGetResponseProfileSectionsList;
-}
-export const ProfileGetResponseProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fields: S.optional(ProfileGetResponseProfileFieldsList),
-    sections: S.optional(ProfileGetResponseProfileSectionsList),
-  }),
-).annotate({
-  identifier: "ProfileGetResponseProfile",
-}) as any as S.Schema<ProfileGetResponseProfile>;
-
-export interface ProfileGetResponse {
+export interface TeamInfoResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  profile: ProfileGetResponseProfile;
 }
-export const ProfileGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const TeamInfoResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    profile: ProfileGetResponseProfile,
   }),
 ).annotate({
-  identifier: "ProfileGetResponse",
-}) as any as S.Schema<ProfileGetResponse>;
+  identifier: "TeamInfoResponse",
+}) as any as S.Schema<TeamInfoResponse>;
 
 export type AccessLogsError = SlackOpError;
 /** Gets the access logs for the current team. Required scopes — user: `admin` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — A required argument is missing. - `missing_scope` — The provided token hasn't obtained the necessary scopes to use this method. - `not_allowed_token_type` — Method was called with an invalid token type - `over_pagination_limit` — It is not possible to request more than 1000 items per page or more than 100 pages. - `paid_only` — This is only available to paid teams. - `token_revoked` — token revoked (generated) - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `invalid_limit` — The value passed for `limit` was not valid. - `invalid_team_id` — The value passed for `team_id` is not valid given the token context. See https://docs.slack.dev/reference/methods/team.accessLogs */
@@ -730,57 +734,31 @@ export const billingInfo: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ExternalTeamsDisconnectError = SlackOpError;
+export type DisconnectExternalTeamError = SlackOpError;
 /** Disconnect an external organization. Required scopes — bot: `conversations.connect:manage` Rate limit tier: 1 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — A required argument is missing. - `restricted_action` — The actor is restricted from archiving or disconnecting. - `invalid_target_team` — target team is invalid See https://docs.slack.dev/reference/methods/team.externalTeams.disconnect */
-export const externalTeamsDisconnect: API.OperationMethod<
-  ExternalTeamsDisconnectRequest,
-  ExternalTeamsDisconnectResponse,
-  ExternalTeamsDisconnectError,
+export const disconnectExternalTeam: API.OperationMethod<
+  DisconnectExternalTeamRequest,
+  DisconnectExternalTeamResponse,
+  DisconnectExternalTeamError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExternalTeamsDisconnectRequest,
-  output: ExternalTeamsDisconnectResponse,
+  input: DisconnectExternalTeamRequest,
+  output: DisconnectExternalTeamResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type ExternalTeamsListError = SlackOpError;
-/** Returns a list of all the external teams connected and details about the connection. Required scopes — bot: `conversations.connect:manage`, `team:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — One or more of the API arguments are invalid. - `not_allowed` — The user is not allowed to perform the action. - `restricted_action` — The user does not have permission to perform the action. - `internal_error` — There was an internal error processing this request. - `invalid_workspace_filter` — The specified workspace is not valid. - `user_cannot_manage_workspace` — The calling user cannot manage the workspace passed in the workspace filter. See https://docs.slack.dev/reference/methods/team.externalTeams.list */
-export const externalTeamsList: API.PaginatedOperationMethod<
-  ExternalTeamsListRequest,
-  ExternalTeamsListResponse,
-  ExternalTeamsListError,
-  SlackOpContext,
-  ExternalTeamsListResponseOrganizationsItem
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: ExternalTeamsListRequest,
-    output: ExternalTeamsListResponse,
-    errors: [SlackError, SlackRateLimited],
-    protocol: SlackProtocol,
-    retry: Retry.Retry,
-    pagination: {
-      mode: "cursor",
-      inputToken: "cursor",
-      outputToken: "response_metadata.next_cursor",
-      items: "organizations",
-      pageSize: "limit",
-    } as const,
-  }),
-  slackPaginate,
-) as any;
-
-export type InfoError = SlackOpError;
-/** Gets information about the current team. Required scopes — bot: `team:read`; user: `team:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `enterprise_not_found` — The `enterprise` was not found. - `fail_to_get_teams_for_restricted_user` — Failed to get teams for restricted user. - `missing_user` — The `user` was not found. - `org_not_found` — The `org` was not found. - `team_not_found` — The `team` was not found. - `team_not_on_enterprise` — Cannot query team by domain because team is not on an enterprise. - `user_not_found` — The `user` was not found. See https://docs.slack.dev/reference/methods/team.info */
-export const info: API.OperationMethod<
-  InfoRequest,
-  InfoResponse,
-  InfoError,
+export type GetProfileError = SlackOpError;
+/** Retrieve a team's profile. Required scopes — bot: `users.profile:read`; user: `users.profile:read` Rate limit tier: 3 See https://docs.slack.dev/reference/methods/team.profile.get */
+export const getProfile: API.OperationMethod<
+  GetProfileRequest,
+  GetProfileResponse,
+  GetProfileError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InfoRequest,
-  output: InfoResponse,
+  input: GetProfileRequest,
+  output: GetProfileResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
@@ -801,31 +779,57 @@ export const integrationLogs: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PreferencesListError = SlackOpError;
+export type ListExternalTeamsError = SlackOpError;
+/** Returns a list of all the external teams connected and details about the connection. Required scopes — bot: `conversations.connect:manage`, `team:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — One or more of the API arguments are invalid. - `not_allowed` — The user is not allowed to perform the action. - `restricted_action` — The user does not have permission to perform the action. - `internal_error` — There was an internal error processing this request. - `invalid_workspace_filter` — The specified workspace is not valid. - `user_cannot_manage_workspace` — The calling user cannot manage the workspace passed in the workspace filter. See https://docs.slack.dev/reference/methods/team.externalTeams.list */
+export const listExternalTeams: API.PaginatedOperationMethod<
+  ListExternalTeamsRequest,
+  ListExternalTeamsResponse,
+  ListExternalTeamsError,
+  SlackOpContext,
+  ListExternalTeamsResponseOrganizationsItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListExternalTeamsRequest,
+    output: ListExternalTeamsResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "organizations",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
+
+export type ListPreferencesError = SlackOpError;
 /** Retrieve a list of a workspace's team preferences. Required scopes — bot: `team.preferences:read`; user: `team.preferences:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `invalid_auth` — Invalid token provided. - `invalid_team` — Cannot find a workspace associated with the presented token. See https://docs.slack.dev/reference/methods/team.preferences.list */
-export const preferencesList: API.OperationMethod<
-  PreferencesListRequest,
-  PreferencesListResponse,
-  PreferencesListError,
+export const listPreferences: API.OperationMethod<
+  ListPreferencesRequest,
+  ListPreferencesResponse,
+  ListPreferencesError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PreferencesListRequest,
-  output: PreferencesListResponse,
+  input: ListPreferencesRequest,
+  output: ListPreferencesResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProfileGetError = SlackOpError;
-/** Retrieve a team's profile. Required scopes — bot: `users.profile:read`; user: `users.profile:read` Rate limit tier: 3 See https://docs.slack.dev/reference/methods/team.profile.get */
-export const profileGet: API.OperationMethod<
-  ProfileGetRequest,
-  ProfileGetResponse,
-  ProfileGetError,
+export type TeamInfoError = SlackOpError;
+/** Gets information about the current team. Required scopes — bot: `team:read`; user: `team:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `enterprise_not_found` — The `enterprise` was not found. - `fail_to_get_teams_for_restricted_user` — Failed to get teams for restricted user. - `missing_user` — The `user` was not found. - `org_not_found` — The `org` was not found. - `team_not_found` — The `team` was not found. - `team_not_on_enterprise` — Cannot query team by domain because team is not on an enterprise. - `user_not_found` — The `user` was not found. See https://docs.slack.dev/reference/methods/team.info */
+export const teamInfo: API.OperationMethod<
+  TeamInfoRequest,
+  TeamInfoResponse,
+  TeamInfoError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProfileGetRequest,
-  output: ProfileGetResponse,
+  input: TeamInfoRequest,
+  output: TeamInfoResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

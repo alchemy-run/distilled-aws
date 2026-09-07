@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.slack.openid#ConnectTokenRequestGrantType": {
@@ -166,7 +167,7 @@
         "com.distilled.openapi#contentType": "form-urlencoded"
       }
     },
-    "com.slack.openid#ConnectUserInfoResponse": {
+    "com.slack.openid#UserInfoResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -344,13 +345,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.openid#ConnectUserInfo": {
+    "com.slack.openid#UserInfo": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.slack.openid#ConnectUserInfoResponse"
+        "target": "com.slack.openid#UserInfoResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -369,7 +370,7 @@
           "target": "com.slack.openid#ConnectToken"
         },
         {
-          "target": "com.slack.openid#ConnectUserInfo"
+          "target": "com.slack.openid#UserInfo"
         }
       ],
       "traits": {

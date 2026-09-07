@@ -13,22 +13,23 @@ import * as Retry from "../retry.ts";
 export type { SlackOpError, SlackOpContext };
 
 /** A comma separated string of encoded channel IDs for which the User Group uses as a default. */
-export type CreateRequestChannelsList = Array<string>;
-export const CreateRequestChannelsList = /*@__PURE__*/ S.Array(
+export type CreateUsergroupRequestChannelsList = Array<string>;
+export const CreateUsergroupRequestChannelsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<CreateRequestChannelsList>;
+) as any as S.Schema<CreateUsergroupRequestChannelsList>;
 
 /** A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too. */
-export type CreateRequestAdditionalChannelsList = Array<string>;
-export const CreateRequestAdditionalChannelsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CreateRequestAdditionalChannelsList>;
+export type CreateUsergroupRequestAdditionalChannelsList = Array<string>;
+export const CreateUsergroupRequestAdditionalChannelsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateUsergroupRequestAdditionalChannelsList>;
 
-export interface CreateRequest {
+export interface CreateUsergroupRequest {
   /** A comma separated string of encoded channel IDs for which the User Group uses as a default. */
-  channels?: CreateRequestChannelsList;
+  channels?: CreateUsergroupRequestChannelsList;
   /** A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too. */
-  additional_channels?: CreateRequestAdditionalChannelsList;
+  additional_channels?: CreateUsergroupRequestAdditionalChannelsList;
   /** A short description of the User Group. */
   description?: string;
   /** A mention handle. Must be unique among channels, users and User Groups. */
@@ -42,10 +43,12 @@ export interface CreateRequest {
   /** Configure this user group to show as a sidebar section for all group members. Note: Only relevant if group has 1 or more default channels added. */
   enable_section?: boolean;
 }
-export const CreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateUsergroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    channels: S.optional(CreateRequestChannelsList),
-    additional_channels: S.optional(CreateRequestAdditionalChannelsList),
+    channels: S.optional(CreateUsergroupRequestChannelsList),
+    additional_channels: S.optional(
+      CreateUsergroupRequestAdditionalChannelsList,
+    ),
     description: S.optional(S.String),
     handle: S.optional(S.String),
     include_count: S.optional(S.Boolean),
@@ -53,21 +56,25 @@ export const CreateRequest = /*@__PURE__*/ S.suspend(() =>
     team_id: S.optional(S.String),
     enable_section: S.optional(S.Boolean),
   }).pipe(T.Http({ method: "POST", uri: "/usergroups.create", code: 200 })),
-).annotate({ identifier: "CreateRequest" }) as any as S.Schema<CreateRequest>;
+).annotate({
+  identifier: "CreateUsergroupRequest",
+}) as any as S.Schema<CreateUsergroupRequest>;
 
-export interface CreateResponse {
+export interface CreateUsergroupResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   usergroup: unknown;
 }
-export const CreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateUsergroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     usergroup: S.Unknown,
   }),
-).annotate({ identifier: "CreateResponse" }) as any as S.Schema<CreateResponse>;
+).annotate({
+  identifier: "CreateUsergroupResponse",
+}) as any as S.Schema<CreateUsergroupResponse>;
 
-export interface DisableRequest {
+export interface DisableUsergroupRequest {
   /** Include the number of users in the User Group. */
   include_count?: boolean;
   /** Encoded target team id where the user group is, required if org token is used. */
@@ -75,29 +82,31 @@ export interface DisableRequest {
   /** The encoded ID of the User Group to disable. */
   usergroup: string;
 }
-export const DisableRequest = /*@__PURE__*/ S.suspend(() =>
+export const DisableUsergroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     include_count: S.optional(S.Boolean),
     team_id: S.optional(S.String),
     usergroup: S.String,
   }).pipe(T.Http({ method: "POST", uri: "/usergroups.disable", code: 200 })),
-).annotate({ identifier: "DisableRequest" }) as any as S.Schema<DisableRequest>;
+).annotate({
+  identifier: "DisableUsergroupRequest",
+}) as any as S.Schema<DisableUsergroupRequest>;
 
-export interface DisableResponse {
+export interface DisableUsergroupResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   usergroup: unknown;
 }
-export const DisableResponse = /*@__PURE__*/ S.suspend(() =>
+export const DisableUsergroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     usergroup: S.Unknown,
   }),
 ).annotate({
-  identifier: "DisableResponse",
-}) as any as S.Schema<DisableResponse>;
+  identifier: "DisableUsergroupResponse",
+}) as any as S.Schema<DisableUsergroupResponse>;
 
-export interface EnableRequest {
+export interface EnableUsergroupRequest {
   /** Include the number of users in the User Group. */
   include_count?: boolean;
   /** Encoded team id where the user group is, required if org token is used. */
@@ -105,27 +114,31 @@ export interface EnableRequest {
   /** The encoded ID of the User Group to enable. */
   usergroup: string;
 }
-export const EnableRequest = /*@__PURE__*/ S.suspend(() =>
+export const EnableUsergroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     include_count: S.optional(S.Boolean),
     team_id: S.optional(S.String),
     usergroup: S.String,
   }).pipe(T.Http({ method: "POST", uri: "/usergroups.enable", code: 200 })),
-).annotate({ identifier: "EnableRequest" }) as any as S.Schema<EnableRequest>;
+).annotate({
+  identifier: "EnableUsergroupRequest",
+}) as any as S.Schema<EnableUsergroupRequest>;
 
-export interface EnableResponse {
+export interface EnableUsergroupResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   usergroup: unknown;
 }
-export const EnableResponse = /*@__PURE__*/ S.suspend(() =>
+export const EnableUsergroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     usergroup: S.Unknown,
   }),
-).annotate({ identifier: "EnableResponse" }) as any as S.Schema<EnableResponse>;
+).annotate({
+  identifier: "EnableUsergroupResponse",
+}) as any as S.Schema<EnableUsergroupResponse>;
 
-export interface ListRequest {
+export interface ListUsergroupsRequest {
   /** Include the number of users in each User Group. */
   include_count?: boolean;
   /** Include results for disabled User Groups. */
@@ -135,49 +148,146 @@ export interface ListRequest {
   /** The user group's encoded team ID. Required if org token is used. */
   team_id?: string;
 }
-export const ListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListUsergroupsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     include_count: S.optional(S.Boolean.pipe(T.Query())),
     include_disabled: S.optional(S.Boolean.pipe(T.Query())),
     include_users: S.optional(S.Boolean.pipe(T.Query())),
     team_id: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/usergroups.list", code: 200 })),
-).annotate({ identifier: "ListRequest" }) as any as S.Schema<ListRequest>;
+).annotate({
+  identifier: "ListUsergroupsRequest",
+}) as any as S.Schema<ListUsergroupsRequest>;
 
-export type ListResponseUsergroupsList = Array<unknown>;
-export const ListResponseUsergroupsList = /*@__PURE__*/ S.Array(
+export type ListUsergroupsResponseUsergroupsList = Array<unknown>;
+export const ListUsergroupsResponseUsergroupsList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<ListResponseUsergroupsList>;
+) as any as S.Schema<ListUsergroupsResponseUsergroupsList>;
 
-export interface ListResponse {
+export interface ListUsergroupsResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  usergroups: ListResponseUsergroupsList;
+  usergroups: ListUsergroupsResponseUsergroupsList;
 }
-export const ListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListUsergroupsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    usergroups: ListResponseUsergroupsList,
+    usergroups: ListUsergroupsResponseUsergroupsList,
   }),
-).annotate({ identifier: "ListResponse" }) as any as S.Schema<ListResponse>;
+).annotate({
+  identifier: "ListUsergroupsResponse",
+}) as any as S.Schema<ListUsergroupsResponse>;
 
-/** A comma separated string of encoded channel IDs for which the User Group uses as a default. */
-export type UpdateRequestChannelsList = Array<string>;
-export const UpdateRequestChannelsList = /*@__PURE__*/ S.Array(
+export interface ListUsersRequest {
+  /** Include results for disabled User Groups. */
+  include_disabled?: boolean;
+  /** The encoded ID of the User Group. */
+  usergroup: string;
+  /** The user group's encoded team ID. Required if org token is used. */
+  team_id?: string;
+}
+export const ListUsersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    include_disabled: S.optional(S.Boolean.pipe(T.Query())),
+    usergroup: S.String.pipe(T.Query()),
+    team_id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/usergroups.users.list", code: 200 })),
+).annotate({
+  identifier: "ListUsersRequest",
+}) as any as S.Schema<ListUsersRequest>;
+
+export type ListUsersResponseUsersList = Array<unknown>;
+export const ListUsersResponseUsersList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<ListUsersResponseUsersList>;
+
+export interface ListUsersResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  users: ListUsersResponseUsersList;
+}
+export const ListUsersResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    users: ListUsersResponseUsersList,
+  }),
+).annotate({
+  identifier: "ListUsersResponse",
+}) as any as S.Schema<ListUsersResponse>;
+
+/** A comma separated string of encoded user IDs that represent the entire list of users for the user group. */
+export type UpdateUserRequestUsersList = Array<string>;
+export const UpdateUserRequestUsersList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<UpdateRequestChannelsList>;
+) as any as S.Schema<UpdateUserRequestUsersList>;
 
 /** A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too. */
-export type UpdateRequestAdditionalChannelsList = Array<string>;
-export const UpdateRequestAdditionalChannelsList = /*@__PURE__*/ S.Array(
+export type UpdateUserRequestAdditionalChannelsList = Array<string>;
+export const UpdateUserRequestAdditionalChannelsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<UpdateRequestAdditionalChannelsList>;
+) as any as S.Schema<UpdateUserRequestAdditionalChannelsList>;
 
-export interface UpdateRequest {
-  /** A comma separated string of encoded channel IDs for which the User Group uses as a default. */
-  channels?: UpdateRequestChannelsList;
+export interface UpdateUserRequest {
+  /** Include the number of users in the user group. */
+  include_count?: boolean;
+  /** encoded team id where the user group exists, required if org token is used */
+  team_id?: string;
+  /** The encoded ID of the user group to update. */
+  usergroup: string;
+  /** A comma separated string of encoded user IDs that represent the entire list of users for the user group. */
+  users: UpdateUserRequestUsersList;
   /** A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too. */
-  additional_channels?: UpdateRequestAdditionalChannelsList;
+  additional_channels?: UpdateUserRequestAdditionalChannelsList;
+  /** Boolean to identify if the API is getting called when a shared section is getting shared */
+  is_shared?: boolean;
+}
+export const UpdateUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    include_count: S.optional(S.Boolean),
+    team_id: S.optional(S.String),
+    usergroup: S.String,
+    users: UpdateUserRequestUsersList,
+    additional_channels: S.optional(UpdateUserRequestAdditionalChannelsList),
+    is_shared: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/usergroups.users.update", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateUserRequest",
+}) as any as S.Schema<UpdateUserRequest>;
+
+export interface UpdateUserResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  usergroup: unknown;
+}
+export const UpdateUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    usergroup: S.Unknown,
+  }),
+).annotate({
+  identifier: "UpdateUserResponse",
+}) as any as S.Schema<UpdateUserResponse>;
+
+/** A comma separated string of encoded channel IDs for which the User Group uses as a default. */
+export type UpdateUsergroupRequestChannelsList = Array<string>;
+export const UpdateUsergroupRequestChannelsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateUsergroupRequestChannelsList>;
+
+/** A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too. */
+export type UpdateUsergroupRequestAdditionalChannelsList = Array<string>;
+export const UpdateUsergroupRequestAdditionalChannelsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateUsergroupRequestAdditionalChannelsList>;
+
+export interface UpdateUsergroupRequest {
+  /** A comma separated string of encoded channel IDs for which the User Group uses as a default. */
+  channels?: UpdateUsergroupRequestChannelsList;
+  /** A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too. */
+  additional_channels?: UpdateUsergroupRequestAdditionalChannelsList;
   /** A short description of the User Group. */
   description?: string;
   /** A mention handle. Must be unique among channels, users and User Groups. */
@@ -193,10 +303,12 @@ export interface UpdateRequest {
   /** Configure this user group to show as a sidebar section for all group members. Note: Only relevant if group has 1 or more default channels added. */
   enable_section?: boolean;
 }
-export const UpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateUsergroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    channels: S.optional(UpdateRequestChannelsList),
-    additional_channels: S.optional(UpdateRequestAdditionalChannelsList),
+    channels: S.optional(UpdateUsergroupRequestChannelsList),
+    additional_channels: S.optional(
+      UpdateUsergroupRequestAdditionalChannelsList,
+    ),
     description: S.optional(S.String),
     handle: S.optional(S.String),
     include_count: S.optional(S.Boolean),
@@ -205,212 +317,124 @@ export const UpdateRequest = /*@__PURE__*/ S.suspend(() =>
     usergroup: S.String,
     enable_section: S.optional(S.Boolean),
   }).pipe(T.Http({ method: "POST", uri: "/usergroups.update", code: 200 })),
-).annotate({ identifier: "UpdateRequest" }) as any as S.Schema<UpdateRequest>;
+).annotate({
+  identifier: "UpdateUsergroupRequest",
+}) as any as S.Schema<UpdateUsergroupRequest>;
 
-export interface UpdateResponse {
+export interface UpdateUsergroupResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   usergroup: unknown;
 }
-export const UpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    usergroup: S.Unknown,
-  }),
-).annotate({ identifier: "UpdateResponse" }) as any as S.Schema<UpdateResponse>;
-
-export interface UsersListRequest {
-  /** Include results for disabled User Groups. */
-  include_disabled?: boolean;
-  /** The encoded ID of the User Group. */
-  usergroup: string;
-  /** The user group's encoded team ID. Required if org token is used. */
-  team_id?: string;
-}
-export const UsersListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    include_disabled: S.optional(S.Boolean.pipe(T.Query())),
-    usergroup: S.String.pipe(T.Query()),
-    team_id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/usergroups.users.list", code: 200 })),
-).annotate({
-  identifier: "UsersListRequest",
-}) as any as S.Schema<UsersListRequest>;
-
-export type UsersListResponseUsersList = Array<unknown>;
-export const UsersListResponseUsersList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<UsersListResponseUsersList>;
-
-export interface UsersListResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  users: UsersListResponseUsersList;
-}
-export const UsersListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    users: UsersListResponseUsersList,
-  }),
-).annotate({
-  identifier: "UsersListResponse",
-}) as any as S.Schema<UsersListResponse>;
-
-/** A comma separated string of encoded user IDs that represent the entire list of users for the user group. */
-export type UsersUpdateRequestUsersList = Array<string>;
-export const UsersUpdateRequestUsersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<UsersUpdateRequestUsersList>;
-
-/** A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too. */
-export type UsersUpdateRequestAdditionalChannelsList = Array<string>;
-export const UsersUpdateRequestAdditionalChannelsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<UsersUpdateRequestAdditionalChannelsList>;
-
-export interface UsersUpdateRequest {
-  /** Include the number of users in the user group. */
-  include_count?: boolean;
-  /** encoded team id where the user group exists, required if org token is used */
-  team_id?: string;
-  /** The encoded ID of the user group to update. */
-  usergroup: string;
-  /** A comma separated string of encoded user IDs that represent the entire list of users for the user group. */
-  users: UsersUpdateRequestUsersList;
-  /** A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too. */
-  additional_channels?: UsersUpdateRequestAdditionalChannelsList;
-  /** Boolean to identify if the API is getting called when a shared section is getting shared */
-  is_shared?: boolean;
-}
-export const UsersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    include_count: S.optional(S.Boolean),
-    team_id: S.optional(S.String),
-    usergroup: S.String,
-    users: UsersUpdateRequestUsersList,
-    additional_channels: S.optional(UsersUpdateRequestAdditionalChannelsList),
-    is_shared: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/usergroups.users.update", code: 200 }),
-  ),
-).annotate({
-  identifier: "UsersUpdateRequest",
-}) as any as S.Schema<UsersUpdateRequest>;
-
-export interface UsersUpdateResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  usergroup: unknown;
-}
-export const UsersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateUsergroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     usergroup: S.Unknown,
   }),
 ).annotate({
-  identifier: "UsersUpdateResponse",
-}) as any as S.Schema<UsersUpdateResponse>;
+  identifier: "UpdateUsergroupResponse",
+}) as any as S.Schema<UpdateUsergroupResponse>;
 
-export type CreateError = SlackOpError;
+export type CreateUsergroupError = SlackOpError;
 /** Create a User Group. Required scopes — bot: `usergroups:write`; user: `usergroups:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `bad_handle` — Handle is invalid - `description_too_long` — Given usergroup description is too long - `forbidden_handle` — Handle is invalid - `handle_already_exists` — Handle is already in use on this workspace - `invalid_channel_provided` — An invalid channel ID was provided - `invalid_group_provided` — An invalid group ID was provided - `missing_argument` — A required argument is missing. - `missing_subteam_name` — Subteam name is required - `name_already_exists` — Name is already in use on this workspace - `name_too_long` — Name too long. - `paid_teams_only` — Usergroups can only be used on paid Slack teams - `permission_denied` — The user does not have permission to create a User Group. - `plan_upgrade_required` — This workspace does not have access to User Groups, as that feature is only available on Standard and above plans. - `target_team_not_on_org` — Target team specified is not on the org in context - `target_team_must_be_specified_in_org_context` — No target team was specified but the team in context is an org See https://docs.slack.dev/reference/methods/usergroups.create */
-export const create: API.OperationMethod<
-  CreateRequest,
-  CreateResponse,
-  CreateError,
+export const createUsergroup: API.OperationMethod<
+  CreateUsergroupRequest,
+  CreateUsergroupResponse,
+  CreateUsergroupError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateRequest,
-  output: CreateResponse,
+  input: CreateUsergroupRequest,
+  output: CreateUsergroupResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type DisableError = SlackOpError;
+export type DisableUsergroupError = SlackOpError;
 /** Disable an existing User Group. Required scopes — bot: `usergroups:write`; user: `usergroups:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — A required argument is missing. - `permission_denied` — The user does not have permission to disable the User Group. - `plan_upgrade_required` — This workspace does not have access to User Groups, as that feature is only available on Standard and above plans. - `target_team_not_on_org` — Target team specified is not on the org in context - `target_team_must_be_specified_in_org_context` — No target team was specified but the team in context is an org See https://docs.slack.dev/reference/methods/usergroups.disable */
-export const disable: API.OperationMethod<
-  DisableRequest,
-  DisableResponse,
-  DisableError,
+export const disableUsergroup: API.OperationMethod<
+  DisableUsergroupRequest,
+  DisableUsergroupResponse,
+  DisableUsergroupError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DisableRequest,
-  output: DisableResponse,
+  input: DisableUsergroupRequest,
+  output: DisableUsergroupResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type EnableError = SlackOpError;
+export type EnableUsergroupError = SlackOpError;
 /** Enable a User Group. Required scopes — bot: `usergroups:write`; user: `usergroups:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — A required argument is missing. - `permission_denied` — The user does not have permission to enables the User Group. - `plan_upgrade_required` — This workspace does not have access to User Groups, as that feature is only available on Standard and above plans. See https://docs.slack.dev/reference/methods/usergroups.enable */
-export const enable: API.OperationMethod<
-  EnableRequest,
-  EnableResponse,
-  EnableError,
+export const enableUsergroup: API.OperationMethod<
+  EnableUsergroupRequest,
+  EnableUsergroupResponse,
+  EnableUsergroupError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnableRequest,
-  output: EnableResponse,
+  input: EnableUsergroupRequest,
+  output: EnableUsergroupResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListError = SlackOpError;
+export type ListUsergroupsError = SlackOpError;
 /** List all User Groups for a team. Required scopes — bot: `usergroups:read`; user: `usergroups:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — A required argument is missing. - `plan_upgrade_required` — This workspace does not have access to User Groups, as that feature is only available on Standard and above plans. - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `users_not_found` — Cannot find users on subteam. - `invalid_team` — Cannot find subteam team. See https://docs.slack.dev/reference/methods/usergroups.list */
-export const list: API.OperationMethod<
-  ListRequest,
-  ListResponse,
-  ListError,
+export const listUsergroups: API.OperationMethod<
+  ListUsergroupsRequest,
+  ListUsergroupsResponse,
+  ListUsergroupsError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListRequest,
-  output: ListResponse,
+  input: ListUsergroupsRequest,
+  output: ListUsergroupsResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateError = SlackOpError;
-/** Update an existing User Group. Required scopes — bot: `usergroups:write`; user: `usergroups:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — A required argument is missing. - `paid_teams_only` — This workspace does not have access to User Groups, as that feature is only available on Standard and above plans. - `permission_denied` — The user does not have permission to update the User Group. - `too_many_linked_channels` — This request exceeds the number of channels we supporting linking to a single usergroup. See https://docs.slack.dev/reference/methods/usergroups.update */
-export const update: API.OperationMethod<
-  UpdateRequest,
-  UpdateResponse,
-  UpdateError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRequest,
-  output: UpdateResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsersListError = SlackOpError;
+export type ListUsersError = SlackOpError;
 /** List all users in a User Group. Required scopes — bot: `usergroups:read`; user: `usergroups:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `no_such_subteam` — No usergroup found with the given ID. - `plan_upgrade_required` — This workspace does not have access to User Groups, as that feature is only available on Standard and above plans. - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. See https://docs.slack.dev/reference/methods/usergroups.users.list */
-export const usersList: API.OperationMethod<
-  UsersListRequest,
-  UsersListResponse,
-  UsersListError,
+export const listUsers: API.OperationMethod<
+  ListUsersRequest,
+  ListUsersResponse,
+  ListUsersError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UsersListRequest,
-  output: UsersListResponse,
+  input: ListUsersRequest,
+  output: ListUsersResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type UsersUpdateError = SlackOpError;
+export type UpdateUserError = SlackOpError;
 /** Update the list of users for a user group. Required scopes — bot: `usergroups:write`; user: `usergroups:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_users` — Value passed for `users` was empty or invalid. - `failed_for_some_users` — User(s) are not in the workspace where this usergroup exists - `missing_argument` — A required argument is missing. - `no_users_provided` — Either the `users` field wasn't provided or an empty value was passed. - `permission_denied` — The user does not have permission to update the list of users for a user group. Check workspace settings to confirm whether the calling user has permission. - `plan_upgrade_required` — This workspace does not have access to user groups, as that feature is only available on Standard and above plans. - `subteam_max_users_exceeded` — Exceeds maximum supported number of users per subteam. See https://docs.slack.dev/reference/methods/usergroups.users.update */
-export const usersUpdate: API.OperationMethod<
-  UsersUpdateRequest,
-  UsersUpdateResponse,
-  UsersUpdateError,
+export const updateUser: API.OperationMethod<
+  UpdateUserRequest,
+  UpdateUserResponse,
+  UpdateUserError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UsersUpdateRequest,
-  output: UsersUpdateResponse,
+  input: UpdateUserRequest,
+  output: UpdateUserResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateUsergroupError = SlackOpError;
+/** Update an existing User Group. Required scopes — bot: `usergroups:write`; user: `usergroups:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — A required argument is missing. - `paid_teams_only` — This workspace does not have access to User Groups, as that feature is only available on Standard and above plans. - `permission_denied` — The user does not have permission to update the User Group. - `too_many_linked_channels` — This request exceeds the number of channels we supporting linking to a single usergroup. See https://docs.slack.dev/reference/methods/usergroups.update */
+export const updateUsergroup: API.OperationMethod<
+  UpdateUsergroupRequest,
+  UpdateUsergroupResponse,
+  UpdateUsergroupError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateUsergroupRequest,
+  output: UpdateUsergroupResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

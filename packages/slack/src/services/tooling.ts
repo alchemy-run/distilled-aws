@@ -13,11 +13,11 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export interface TokensRotateRequest {
+export interface RotateTokenRequest {
   /** The `xoxe` refresh token that was issued along with the old app configuration token. */
   refresh_token: string | Redacted.Redacted<string>;
 }
-export const TokensRotateRequest = /*@__PURE__*/ S.suspend(() =>
+export const RotateTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     refresh_token: S.String.pipe(T.SensitiveValue({})),
   }).pipe(
@@ -29,10 +29,10 @@ export const TokensRotateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TokensRotateRequest",
-}) as any as S.Schema<TokensRotateRequest>;
+  identifier: "RotateTokenRequest",
+}) as any as S.Schema<RotateTokenRequest>;
 
-export interface TokensRotateResponse {
+export interface RotateTokenResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   /** The app configuration token used to access App Manifest APIs */
@@ -48,7 +48,7 @@ export interface TokensRotateResponse {
   /** Issued at (iat) identifies the time at which the token was issued. */
   iat: number;
 }
-export const TokensRotateResponse = /*@__PURE__*/ S.suspend(() =>
+export const RotateTokenResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     token: S.String,
@@ -59,19 +59,19 @@ export const TokensRotateResponse = /*@__PURE__*/ S.suspend(() =>
     iat: S.Number,
   }),
 ).annotate({
-  identifier: "TokensRotateResponse",
-}) as any as S.Schema<TokensRotateResponse>;
+  identifier: "RotateTokenResponse",
+}) as any as S.Schema<RotateTokenResponse>;
 
-export type TokensRotateError = SlackOpError;
+export type RotateTokenError = SlackOpError;
 /** Exchanges a refresh token for a new app configuration token. Rate limit tier: 5 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — Internal error - `invalid_refresh_token` — The given refresh token is invalid. - `unknown_error` — Temporary error for dev only restriction See https://docs.slack.dev/reference/methods/tooling.tokens.rotate */
-export const tokensRotate: API.OperationMethod<
-  TokensRotateRequest,
-  TokensRotateResponse,
-  TokensRotateError,
+export const rotateToken: API.OperationMethod<
+  RotateTokenRequest,
+  RotateTokenResponse,
+  RotateTokenError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TokensRotateRequest,
-  output: TokensRotateResponse,
+  input: RotateTokenRequest,
+  output: RotateTokenResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

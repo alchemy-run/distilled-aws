@@ -12,6 +12,47 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
+export interface DndInfoRequest {
+  /** User to fetch status for (defaults to current user) */
+  user?: string;
+  /** Encoded team id where passed in user param belongs, required if org token is used. If no user param is passed, then a team which has access to the app should be passed */
+  team_id?: string;
+}
+export const DndInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user: S.optional(S.String.pipe(T.Query())),
+    team_id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/dnd.info", code: 200 })),
+).annotate({ identifier: "DndInfoRequest" }) as any as S.Schema<DndInfoRequest>;
+
+export interface DndInfoResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  dnd_enabled: boolean;
+  next_dnd_start_ts: number;
+  next_dnd_end_ts: number;
+  snooze_enabled?: boolean;
+  snooze_endtime?: number;
+  snooze_remaining?: number;
+  snooze_is_indefinite?: boolean;
+  dnd_profile_status?: unknown;
+}
+export const DndInfoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    dnd_enabled: S.Boolean,
+    next_dnd_start_ts: S.Number,
+    next_dnd_end_ts: S.Number,
+    snooze_enabled: S.optional(S.Boolean),
+    snooze_endtime: S.optional(S.Number),
+    snooze_remaining: S.optional(S.Number),
+    snooze_is_indefinite: S.optional(S.Boolean),
+    dnd_profile_status: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "DndInfoResponse",
+}) as any as S.Schema<DndInfoResponse>;
+
 export interface EndDndRequest {}
 export const EndDndRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "POST", uri: "/dnd.endDnd", code: 200 })),
@@ -61,45 +102,6 @@ export const EndSnoozeResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "EndSnoozeResponse",
 }) as any as S.Schema<EndSnoozeResponse>;
-
-export interface InfoRequest {
-  /** User to fetch status for (defaults to current user) */
-  user?: string;
-  /** Encoded team id where passed in user param belongs, required if org token is used. If no user param is passed, then a team which has access to the app should be passed */
-  team_id?: string;
-}
-export const InfoRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user: S.optional(S.String.pipe(T.Query())),
-    team_id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/dnd.info", code: 200 })),
-).annotate({ identifier: "InfoRequest" }) as any as S.Schema<InfoRequest>;
-
-export interface InfoResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  dnd_enabled: boolean;
-  next_dnd_start_ts: number;
-  next_dnd_end_ts: number;
-  snooze_enabled?: boolean;
-  snooze_endtime?: number;
-  snooze_remaining?: number;
-  snooze_is_indefinite?: boolean;
-  dnd_profile_status?: unknown;
-}
-export const InfoResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    dnd_enabled: S.Boolean,
-    next_dnd_start_ts: S.Number,
-    next_dnd_end_ts: S.Number,
-    snooze_enabled: S.optional(S.Boolean),
-    snooze_endtime: S.optional(S.Number),
-    snooze_remaining: S.optional(S.Number),
-    snooze_is_indefinite: S.optional(S.Boolean),
-    dnd_profile_status: S.optional(S.Unknown),
-  }),
-).annotate({ identifier: "InfoResponse" }) as any as S.Schema<InfoResponse>;
 
 export interface SetSnoozeRequest {
   /** This argument is required. Number of minutes, from now, to snooze until. */
@@ -168,6 +170,21 @@ export const TeamInfoResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TeamInfoResponse",
 }) as any as S.Schema<TeamInfoResponse>;
 
+export type DndInfoError = SlackOpError;
+/** Retrieves a user's current Do Not Disturb status. Required scopes — bot: `dnd:read`; user: `dnd:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `user_not_found` — Value passed for `user` was invalid. - `user_not_visible` — User is not visible for this request. See https://docs.slack.dev/reference/methods/dnd.info */
+export const dndInfo: API.OperationMethod<
+  DndInfoRequest,
+  DndInfoResponse,
+  DndInfoError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DndInfoRequest,
+  output: DndInfoResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
 export type EndDndError = SlackOpError;
 /** Ends the current user's Do Not Disturb session immediately. Required scopes — user: `dnd:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `not_in_dnd` — The auth'd user isn't in DND mode. See https://docs.slack.dev/reference/methods/dnd.endDnd */
 export const endDnd: API.OperationMethod<
@@ -193,21 +210,6 @@ export const endSnooze: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: EndSnoozeRequest,
   output: EndSnoozeResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InfoError = SlackOpError;
-/** Retrieves a user's current Do Not Disturb status. Required scopes — bot: `dnd:read`; user: `dnd:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `user_not_found` — Value passed for `user` was invalid. - `user_not_visible` — User is not visible for this request. See https://docs.slack.dev/reference/methods/dnd.info */
-export const info: API.OperationMethod<
-  InfoRequest,
-  InfoResponse,
-  InfoError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InfoRequest,
-  output: InfoResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

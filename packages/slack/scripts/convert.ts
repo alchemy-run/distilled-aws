@@ -43,6 +43,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { convertOpenApiToSmithy } from "@distilled.cloud/core/codegen/openapi";
+import { finalizeConvert } from "@distilled.cloud/core/codegen/patches";
 
 const rootDir = path.resolve(import.meta.dir, "..");
 const specsDir = path.join(rootDir, "specs");
@@ -302,8 +303,18 @@ const buildOperation = (
   page: MethodPage,
 ): { method: "get" | "post"; operation: Record<string, any> } => {
   const httpMethod = page.http_method === "GET" ? "get" : "post";
+  // Slack's last dotted segment is the action. A camelCase action already
+  // names its object (`chat.postMessage` → postMessage) and is used as-is.
+  // A bare action is handed to the converter as go-swagger `Object_action`
+  // so its verbNoun policy orders it: `admin.apps.permissions.add` →
+  // addAppsPermissions, `conversations.archive` → archiveConversation,
+  // while a non-verb (`conversations.history`) stays `conversationsHistory`.
   const segments = name.split(".");
-  const operationId = camelJoin(segments.slice(1));
+  const action = segments.at(-1)!;
+  const object = segments.length > 2 ? segments.slice(1, -1) : [segments[0]!];
+  const operationId = /[A-Z]/.test(action)
+    ? action
+    : [...object, action].join("_");
 
   const argEntries = Object.entries(page.args?.properties ?? {})
     .filter(
@@ -571,3 +582,5 @@ for (const family of [...families.keys()].sort()) {
 console.log(
   `✅ ${written} Smithy models (${totalOps} operations, ${totalPaginated} cursor-paginated) → ${outDir}`,
 );
+
+await finalizeConvert({ root: rootDir });

@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.files#CommentsDeleteRequest": {
+    "com.slack.files#DeleteCommentRequest": {
       "type": "structure",
       "members": {
         "file": {
@@ -39,7 +40,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.files#CommentsDeleteResponse": {
+    "com.slack.files#DeleteCommentResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -54,13 +55,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.files#CommentsDelete": {
+    "com.slack.files#DeleteComment": {
       "type": "operation",
       "input": {
-        "target": "com.slack.files#CommentsDeleteRequest"
+        "target": "com.slack.files#DeleteCommentRequest"
       },
       "output": {
-        "target": "com.slack.files#CommentsDeleteResponse"
+        "target": "com.slack.files#DeleteCommentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -279,7 +280,7 @@
         "smithy.api#documentation": "Finishes an upload started with files.getUploadURLExternal\n\nRequired scopes — bot: `files:write`; user: `files:write`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `access_denied` — User is not the owner of the file.\n  - `channel_not_found` — Value passed for `channel_id` was invalid.\n  - `file_not_found` — Could not find the file from the upload ticket.\n  - `file_update_failed` — Failure occurred when attempting to update the file.\n  - `invalid_blocks` — Provided blocks are in the incorrect format.\n  - `invalid_channel` — Channel could not be found or channel specified is invalid.\n  - `not_in_channel` — User/bot membership is required for the specified channel.\n  - `posting_to_channel_denied` — User is not authorized to post to channel.\n  - `channels_limit_exceeded` — Exceeded the channel limit. A maximum of 100 channels is allowed per request.\n  - `file_type_not_allowed` — The file type is not permitted based on the team's allowed_file_upload_types preference.\n  - `file_uploads_except_images_disabled` — Only image file uploads are permitted for this team.\n\nSee https://docs.slack.dev/reference/methods/files.completeUploadExternal"
       }
     },
-    "com.slack.files#DeleteRequest": {
+    "com.slack.files#DeleteFileRequest": {
       "type": "structure",
       "members": {
         "file": {
@@ -294,7 +295,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.files#DeleteResponse": {
+    "com.slack.files#DeleteFileResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -309,13 +310,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.files#Delete": {
+    "com.slack.files#DeleteFile": {
       "type": "operation",
       "input": {
-        "target": "com.slack.files#DeleteRequest"
+        "target": "com.slack.files#DeleteFileRequest"
       },
       "output": {
-        "target": "com.slack.files#DeleteResponse"
+        "target": "com.slack.files#DeleteFileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -405,7 +406,7 @@
         "com.distilled.openapi#contentType": "form-urlencoded"
       }
     },
-    "com.slack.files#InfoRequest": {
+    "com.slack.files#FilesInfoRequest": {
       "type": "structure",
       "members": {
         "count": {
@@ -447,7 +448,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.files#InfoResponseFile": {
+    "com.slack.files#FilesInfoResponseFile": {
       "type": "structure",
       "members": {
         "id": {
@@ -459,7 +460,7 @@
       },
       "traits": {}
     },
-    "com.slack.files#InfoResponseCommentsItem": {
+    "com.slack.files#FilesInfoResponseCommentsItem": {
       "type": "structure",
       "members": {
         "comment": {
@@ -501,14 +502,14 @@
       },
       "traits": {}
     },
-    "com.slack.files#InfoResponseCommentsList": {
+    "com.slack.files#FilesInfoResponseCommentsList": {
       "type": "list",
       "member": {
-        "target": "com.slack.files#InfoResponseCommentsItem"
+        "target": "com.slack.files#FilesInfoResponseCommentsItem"
       },
       "traits": {}
     },
-    "com.slack.files#InfoResponseResponseMetadata": {
+    "com.slack.files#FilesInfoResponseResponseMetadata": {
       "type": "structure",
       "members": {
         "next_cursor": {
@@ -522,7 +523,7 @@
         "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
       }
     },
-    "com.slack.files#InfoResponse": {
+    "com.slack.files#FilesInfoResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -533,13 +534,13 @@
           }
         },
         "file": {
-          "target": "com.slack.files#InfoResponseFile",
+          "target": "com.slack.files#FilesInfoResponseFile",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "comments": {
-          "target": "com.slack.files#InfoResponseCommentsList"
+          "target": "com.slack.files#FilesInfoResponseCommentsList"
         },
         "content": {
           "target": "smithy.api#String"
@@ -551,7 +552,7 @@
           "target": "smithy.api#Document"
         },
         "response_metadata": {
-          "target": "com.slack.files#InfoResponseResponseMetadata",
+          "target": "com.slack.files#FilesInfoResponseResponseMetadata",
           "traits": {
             "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
@@ -561,13 +562,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.files#Info": {
+    "com.slack.files#FilesInfo": {
       "type": "operation",
       "input": {
-        "target": "com.slack.files#InfoRequest"
+        "target": "com.slack.files#FilesInfoRequest"
       },
       "output": {
-        "target": "com.slack.files#InfoResponse"
+        "target": "com.slack.files#FilesInfoResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -585,7 +586,7 @@
         }
       }
     },
-    "com.slack.files#ListRequestCount": {
+    "com.slack.files#ListFilesRequestCount": {
       "type": "union",
       "members": {
         "Case0": {
@@ -597,7 +598,7 @@
       },
       "traits": {}
     },
-    "com.slack.files#ListRequestPage": {
+    "com.slack.files#ListFilesRequestPage": {
       "type": "union",
       "members": {
         "Case0": {
@@ -609,7 +610,7 @@
       },
       "traits": {}
     },
-    "com.slack.files#ListRequest": {
+    "com.slack.files#ListFilesRequest": {
       "type": "structure",
       "members": {
         "channel": {
@@ -620,13 +621,13 @@
           }
         },
         "count": {
-          "target": "com.slack.files#ListRequestCount",
+          "target": "com.slack.files#ListFilesRequestCount",
           "traits": {
             "smithy.api#httpQuery": "count"
           }
         },
         "page": {
-          "target": "com.slack.files#ListRequestPage",
+          "target": "com.slack.files#ListFilesRequestPage",
           "traits": {
             "smithy.api#httpQuery": "page"
           }
@@ -678,7 +679,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.files#ListResponseFilesItem": {
+    "com.slack.files#ListFilesResponseFilesItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -696,14 +697,14 @@
       },
       "traits": {}
     },
-    "com.slack.files#ListResponseFilesList": {
+    "com.slack.files#ListFilesResponseFilesList": {
       "type": "list",
       "member": {
-        "target": "com.slack.files#ListResponseFilesItem"
+        "target": "com.slack.files#ListFilesResponseFilesItem"
       },
       "traits": {}
     },
-    "com.slack.files#ListResponsePaging": {
+    "com.slack.files#ListFilesResponsePaging": {
       "type": "structure",
       "members": {
         "count": {
@@ -730,7 +731,7 @@
       },
       "traits": {}
     },
-    "com.slack.files#ListResponse": {
+    "com.slack.files#ListFilesResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -741,26 +742,26 @@
           }
         },
         "files": {
-          "target": "com.slack.files#ListResponseFilesList",
+          "target": "com.slack.files#ListFilesResponseFilesList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "paging": {
-          "target": "com.slack.files#ListResponsePaging"
+          "target": "com.slack.files#ListFilesResponsePaging"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.slack.files#List": {
+    "com.slack.files#ListFiles": {
       "type": "operation",
       "input": {
-        "target": "com.slack.files#ListRequest"
+        "target": "com.slack.files#ListFilesRequest"
       },
       "output": {
-        "target": "com.slack.files#ListResponse"
+        "target": "com.slack.files#ListFilesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -771,7 +772,7 @@
         "smithy.api#documentation": "List files for a team, in a channel, or from a user with applied filters.\n\nRequired scopes — bot: `files:read`; user: `files:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — A required argument is missing.\n  - `slack_connect_canvas_sharing_blocked` — Admin has disabled sharing of Canvas links in all Slack Connect communications\n  - `user_not_found` — Value passed for `user` was invalid\n  - `unknown_type` — Value passed for `types` was invalid\n\nSee https://docs.slack.dev/reference/methods/files.list"
       }
     },
-    "com.slack.files#RemoteAddRequest": {
+    "com.slack.files#AddRemoteRequest": {
       "type": "structure",
       "members": {
         "external_id": {
@@ -818,7 +819,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.files#RemoteAddResponseFileSharesMap": {
+    "com.slack.files#AddRemoteResponseFileSharesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -828,28 +829,28 @@
       },
       "traits": {}
     },
-    "com.slack.files#RemoteAddResponseFileChannelsList": {
+    "com.slack.files#AddRemoteResponseFileChannelsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.files#RemoteAddResponseFileGroupsList": {
+    "com.slack.files#AddRemoteResponseFileGroupsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.files#RemoteAddResponseFileImsList": {
+    "com.slack.files#AddRemoteResponseFileImsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.files#RemoteAddResponseFile": {
+    "com.slack.files#AddRemoteResponseFile": {
       "type": "structure",
       "members": {
         "id": {
@@ -919,16 +920,16 @@
           "target": "smithy.api#Boolean"
         },
         "shares": {
-          "target": "com.slack.files#RemoteAddResponseFileSharesMap"
+          "target": "com.slack.files#AddRemoteResponseFileSharesMap"
         },
         "channels": {
-          "target": "com.slack.files#RemoteAddResponseFileChannelsList"
+          "target": "com.slack.files#AddRemoteResponseFileChannelsList"
         },
         "groups": {
-          "target": "com.slack.files#RemoteAddResponseFileGroupsList"
+          "target": "com.slack.files#AddRemoteResponseFileGroupsList"
         },
         "ims": {
-          "target": "com.slack.files#RemoteAddResponseFileImsList"
+          "target": "com.slack.files#AddRemoteResponseFileImsList"
         },
         "external_id": {
           "target": "smithy.api#String"
@@ -942,7 +943,7 @@
       },
       "traits": {}
     },
-    "com.slack.files#RemoteAddResponse": {
+    "com.slack.files#AddRemoteResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -953,7 +954,7 @@
           }
         },
         "file": {
-          "target": "com.slack.files#RemoteAddResponseFile",
+          "target": "com.slack.files#AddRemoteResponseFile",
           "traits": {
             "smithy.api#required": {}
           }
@@ -963,13 +964,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.files#RemoteAdd": {
+    "com.slack.files#AddRemote": {
       "type": "operation",
       "input": {
-        "target": "com.slack.files#RemoteAddRequest"
+        "target": "com.slack.files#AddRemoteRequest"
       },
       "output": {
-        "target": "com.slack.files#RemoteAddResponse"
+        "target": "com.slack.files#AddRemoteResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1059,7 +1060,7 @@
         "smithy.api#documentation": "Retrieve information about a remote file added to Slack\n\nRequired scopes — bot: `remote_files:read`; user: `remote_files:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `file_not_found` — Value passed for `file` or `external_id` was invalid\n  - `invalid_args` — Invalid arguments passed to endpoint\n  - `no_bot_user_for_app` — Cannot call the Remote Files endpoints unless app has associated bot user\n  - `too_many_ids` — The request specified both an external_id and a file, only one may be specified\n\nSee https://docs.slack.dev/reference/methods/files.remote.info"
       }
     },
-    "com.slack.files#RemoteListRequest": {
+    "com.slack.files#ListRemoteRequest": {
       "type": "structure",
       "members": {
         "channel": {
@@ -1102,7 +1103,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.files#RemoteListResponseFilesItem": {
+    "com.slack.files#ListRemoteResponseFilesItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -1111,14 +1112,14 @@
       },
       "traits": {}
     },
-    "com.slack.files#RemoteListResponseFilesList": {
+    "com.slack.files#ListRemoteResponseFilesList": {
       "type": "list",
       "member": {
-        "target": "com.slack.files#RemoteListResponseFilesItem"
+        "target": "com.slack.files#ListRemoteResponseFilesItem"
       },
       "traits": {}
     },
-    "com.slack.files#RemoteListResponseResponseMetadata": {
+    "com.slack.files#ListRemoteResponseResponseMetadata": {
       "type": "structure",
       "members": {
         "next_cursor": {
@@ -1132,7 +1133,7 @@
         "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
       }
     },
-    "com.slack.files#RemoteListResponse": {
+    "com.slack.files#ListRemoteResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -1143,10 +1144,10 @@
           }
         },
         "files": {
-          "target": "com.slack.files#RemoteListResponseFilesList"
+          "target": "com.slack.files#ListRemoteResponseFilesList"
         },
         "response_metadata": {
-          "target": "com.slack.files#RemoteListResponseResponseMetadata",
+          "target": "com.slack.files#ListRemoteResponseResponseMetadata",
           "traits": {
             "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
@@ -1156,13 +1157,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.files#RemoteList": {
+    "com.slack.files#ListRemote": {
       "type": "operation",
       "input": {
-        "target": "com.slack.files#RemoteListRequest"
+        "target": "com.slack.files#ListRemoteRequest"
       },
       "output": {
-        "target": "com.slack.files#RemoteListResponse"
+        "target": "com.slack.files#ListRemoteResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1180,7 +1181,7 @@
         }
       }
     },
-    "com.slack.files#RemoteRemoveRequest": {
+    "com.slack.files#RemoveRemoteRequest": {
       "type": "structure",
       "members": {
         "external_id": {
@@ -1200,7 +1201,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.files#RemoteRemoveResponse": {
+    "com.slack.files#RemoveRemoteResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -1215,13 +1216,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.files#RemoteRemove": {
+    "com.slack.files#RemoveRemote": {
       "type": "operation",
       "input": {
-        "target": "com.slack.files#RemoteRemoveRequest"
+        "target": "com.slack.files#RemoveRemoteRequest"
       },
       "output": {
-        "target": "com.slack.files#RemoteRemoveResponse"
+        "target": "com.slack.files#RemoveRemoteResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1233,7 +1234,7 @@
         "com.distilled.openapi#contentType": "form-urlencoded"
       }
     },
-    "com.slack.files#RemoteShareRequest": {
+    "com.slack.files#ShareRemoteRequest": {
       "type": "structure",
       "members": {
         "channels": {
@@ -1263,7 +1264,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.files#RemoteShareResponseFile": {
+    "com.slack.files#ShareRemoteResponseFile": {
       "type": "structure",
       "members": {
         "id": {
@@ -1272,7 +1273,7 @@
       },
       "traits": {}
     },
-    "com.slack.files#RemoteShareResponse": {
+    "com.slack.files#ShareRemoteResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -1283,20 +1284,20 @@
           }
         },
         "file": {
-          "target": "com.slack.files#RemoteShareResponseFile"
+          "target": "com.slack.files#ShareRemoteResponseFile"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.slack.files#RemoteShare": {
+    "com.slack.files#ShareRemote": {
       "type": "operation",
       "input": {
-        "target": "com.slack.files#RemoteShareRequest"
+        "target": "com.slack.files#ShareRemoteRequest"
       },
       "output": {
-        "target": "com.slack.files#RemoteShareResponse"
+        "target": "com.slack.files#ShareRemoteResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1307,7 +1308,7 @@
         "smithy.api#documentation": "Share a remote file into a channel.\n\nRequired scopes — bot: `remote_files:share`; user: `remote_files:share`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — At least one of the values passed for `channels` was invalid.\n  - `file_not_found` — No file with the requested ID found.\n  - `invalid_args` — Invalid arguments passed to endpoint\n  - `no_bot_user_for_app` — Cannot call the Remote Files endpoints unless app has associated bot user\n  - `not_in_channel` — Authenticated user is not in at least one of the the provided channels.\n\nSee https://docs.slack.dev/reference/methods/files.remote.share"
       }
     },
-    "com.slack.files#RemoteUpdateRequest": {
+    "com.slack.files#UpdateRemoteRequest": {
       "type": "structure",
       "members": {
         "external_id": {
@@ -1357,7 +1358,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.files#RemoteUpdateResponseFile": {
+    "com.slack.files#UpdateRemoteResponseFile": {
       "type": "structure",
       "members": {
         "id": {
@@ -1366,7 +1367,7 @@
       },
       "traits": {}
     },
-    "com.slack.files#RemoteUpdateResponse": {
+    "com.slack.files#UpdateRemoteResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -1377,20 +1378,20 @@
           }
         },
         "file": {
-          "target": "com.slack.files#RemoteUpdateResponseFile"
+          "target": "com.slack.files#UpdateRemoteResponseFile"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.slack.files#RemoteUpdate": {
+    "com.slack.files#UpdateRemote": {
       "type": "operation",
       "input": {
-        "target": "com.slack.files#RemoteUpdateRequest"
+        "target": "com.slack.files#UpdateRemoteRequest"
       },
       "output": {
-        "target": "com.slack.files#RemoteUpdateResponse"
+        "target": "com.slack.files#UpdateRemoteResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1571,7 +1572,7 @@
         "smithy.api#documentation": "Enables a file for public/external sharing.\n\nRequired scopes — user: `files:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `file_not_found` — Value passed for `file` was invalid\n  - `not_allowed` — Public sharing has been disabled for this team. You may see this error if you are creating an external link from a free or trial workspace. You can either upgrade to a [Paid Plan](https://app.slack.com/plans) or use `file.list` to get a `url_private_download` link, download the file with an application, and re-upload it somewhere it can be shared with users who are not members of your workspace. Be sure to pass the Slack [Bot token](/authentication/tokens#bot) to the request on the headers file when calling `url_private_download`.\n  - `public_video_not_allowed` — Public sharing of videos is not available. A `Free` instance of Slack may encounter this error because free teams don't have the ability to share video files publicly.\n  - `public_file_type_not_allowed` — Public sharing has been restricted for this file type.\n\nSee https://docs.slack.dev/reference/methods/files.sharedPublicURL"
       }
     },
-    "com.slack.files#UploadRequest": {
+    "com.slack.files#UploadFileRequest": {
       "type": "structure",
       "members": {
         "channels": {
@@ -1627,7 +1628,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.files#UploadResponseFile": {
+    "com.slack.files#UploadFileResponseFile": {
       "type": "structure",
       "members": {
         "id": {
@@ -1642,7 +1643,7 @@
       },
       "traits": {}
     },
-    "com.slack.files#UploadResponse": {
+    "com.slack.files#UploadFileResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -1653,7 +1654,7 @@
           }
         },
         "file": {
-          "target": "com.slack.files#UploadResponseFile",
+          "target": "com.slack.files#UploadFileResponseFile",
           "traits": {
             "smithy.api#required": {}
           }
@@ -1663,13 +1664,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.files#Upload": {
+    "com.slack.files#UploadFile": {
       "type": "operation",
       "input": {
-        "target": "com.slack.files#UploadRequest"
+        "target": "com.slack.files#UploadFileRequest"
       },
       "output": {
-        "target": "com.slack.files#UploadResponse"
+        "target": "com.slack.files#UploadFileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1686,40 +1687,40 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.files#CommentsDelete"
+          "target": "com.slack.files#DeleteComment"
         },
         {
           "target": "com.slack.files#CompleteUploadExternal"
         },
         {
-          "target": "com.slack.files#Delete"
+          "target": "com.slack.files#DeleteFile"
         },
         {
           "target": "com.slack.files#GetUploadURLExternal"
         },
         {
-          "target": "com.slack.files#Info"
+          "target": "com.slack.files#FilesInfo"
         },
         {
-          "target": "com.slack.files#List"
+          "target": "com.slack.files#ListFiles"
         },
         {
-          "target": "com.slack.files#RemoteAdd"
+          "target": "com.slack.files#AddRemote"
         },
         {
           "target": "com.slack.files#RemoteInfo"
         },
         {
-          "target": "com.slack.files#RemoteList"
+          "target": "com.slack.files#ListRemote"
         },
         {
-          "target": "com.slack.files#RemoteRemove"
+          "target": "com.slack.files#RemoveRemote"
         },
         {
-          "target": "com.slack.files#RemoteShare"
+          "target": "com.slack.files#ShareRemote"
         },
         {
-          "target": "com.slack.files#RemoteUpdate"
+          "target": "com.slack.files#UpdateRemote"
         },
         {
           "target": "com.slack.files#RevokePublicURL"
@@ -1728,7 +1729,7 @@
           "target": "com.slack.files#SharedPublicURL"
         },
         {
-          "target": "com.slack.files#Upload"
+          "target": "com.slack.files#UploadFile"
         }
       ],
       "traits": {

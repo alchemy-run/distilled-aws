@@ -13,7 +13,7 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export interface AddRequest {
+export interface AddStarRequest {
   /** Channel to add star to, or channel where the message to add star to was posted (used with `timestamp`). */
   channel?: string;
   /** File to add star to. */
@@ -23,26 +23,28 @@ export interface AddRequest {
   /** Timestamp of the message to add star to. */
   timestamp?: string;
 }
-export const AddRequest = /*@__PURE__*/ S.suspend(() =>
+export const AddStarRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel: S.optional(S.String),
     file: S.optional(S.String),
     file_comment: S.optional(S.String),
     timestamp: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/stars.add", code: 200 })),
-).annotate({ identifier: "AddRequest" }) as any as S.Schema<AddRequest>;
+).annotate({ identifier: "AddStarRequest" }) as any as S.Schema<AddStarRequest>;
 
-export interface AddResponse {
+export interface AddStarResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const AddResponse = /*@__PURE__*/ S.suspend(() =>
+export const AddStarResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
-).annotate({ identifier: "AddResponse" }) as any as S.Schema<AddResponse>;
+).annotate({
+  identifier: "AddStarResponse",
+}) as any as S.Schema<AddStarResponse>;
 
-export interface ListRequest {
+export interface ListStarsRequest {
   count?: number;
   /** Parameter for pagination. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first "page" of the collection. See [pagination](/apis/web-api/pagination) for more details. */
   cursor?: string;
@@ -52,7 +54,7 @@ export interface ListRequest {
   /** encoded team id to list stars in, required if org token is used */
   team_id?: string;
 }
-export const ListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListStarsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     count: S.optional(S.Number.pipe(T.Query())),
     cursor: S.optional(S.String.pipe(T.Query())),
@@ -60,128 +62,130 @@ export const ListRequest = /*@__PURE__*/ S.suspend(() =>
     page: S.optional(S.Number.pipe(T.Query())),
     team_id: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/stars.list", code: 200 })),
-).annotate({ identifier: "ListRequest" }) as any as S.Schema<ListRequest>;
+).annotate({
+  identifier: "ListStarsRequest",
+}) as any as S.Schema<ListStarsRequest>;
 
-export type ListResponseItemsItemCase0Type = "message";
-export const ListResponseItemsItemCase0Type = /*@__PURE__*/ S.String;
+export type ListStarsResponseItemsItemCase0Type = "message";
+export const ListStarsResponseItemsItemCase0Type = /*@__PURE__*/ S.String;
 
-export interface ListResponseItemsItemCase0 {
-  type: ListResponseItemsItemCase0Type;
+export interface ListStarsResponseItemsItemCase0 {
+  type: ListStarsResponseItemsItemCase0Type;
   channel: string;
   message: unknown;
   date_create: number;
 }
-export const ListResponseItemsItemCase0 = /*@__PURE__*/ S.suspend(() =>
+export const ListStarsResponseItemsItemCase0 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: ListResponseItemsItemCase0Type,
+    type: ListStarsResponseItemsItemCase0Type,
     channel: S.String,
     message: S.Unknown,
     date_create: S.Number,
   }),
 ).annotate({
-  identifier: "ListResponseItemsItemCase0",
-}) as any as S.Schema<ListResponseItemsItemCase0>;
+  identifier: "ListStarsResponseItemsItemCase0",
+}) as any as S.Schema<ListStarsResponseItemsItemCase0>;
 
-export type ListResponseItemsItemCase1Type = "file";
-export const ListResponseItemsItemCase1Type = /*@__PURE__*/ S.String;
+export type ListStarsResponseItemsItemCase1Type = "file";
+export const ListStarsResponseItemsItemCase1Type = /*@__PURE__*/ S.String;
 
-export interface ListResponseItemsItemCase1 {
-  type: ListResponseItemsItemCase1Type;
+export interface ListStarsResponseItemsItemCase1 {
+  type: ListStarsResponseItemsItemCase1Type;
   file: unknown;
   date_create: number;
 }
-export const ListResponseItemsItemCase1 = /*@__PURE__*/ S.suspend(() =>
+export const ListStarsResponseItemsItemCase1 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: ListResponseItemsItemCase1Type,
+    type: ListStarsResponseItemsItemCase1Type,
     file: S.Unknown,
     date_create: S.Number,
   }),
 ).annotate({
-  identifier: "ListResponseItemsItemCase1",
-}) as any as S.Schema<ListResponseItemsItemCase1>;
+  identifier: "ListStarsResponseItemsItemCase1",
+}) as any as S.Schema<ListStarsResponseItemsItemCase1>;
 
-export type ListResponseItemsItemCase2Type = "file_comment";
-export const ListResponseItemsItemCase2Type = /*@__PURE__*/ S.String;
+export type ListStarsResponseItemsItemCase2Type = "file_comment";
+export const ListStarsResponseItemsItemCase2Type = /*@__PURE__*/ S.String;
 
-export interface ListResponseItemsItemCase2 {
-  type: ListResponseItemsItemCase2Type;
+export interface ListStarsResponseItemsItemCase2 {
+  type: ListStarsResponseItemsItemCase2Type;
   file: unknown;
   comment: unknown;
   date_create: number;
 }
-export const ListResponseItemsItemCase2 = /*@__PURE__*/ S.suspend(() =>
+export const ListStarsResponseItemsItemCase2 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: ListResponseItemsItemCase2Type,
+    type: ListStarsResponseItemsItemCase2Type,
     file: S.Unknown,
     comment: S.Unknown,
     date_create: S.Number,
   }),
 ).annotate({
-  identifier: "ListResponseItemsItemCase2",
-}) as any as S.Schema<ListResponseItemsItemCase2>;
+  identifier: "ListStarsResponseItemsItemCase2",
+}) as any as S.Schema<ListStarsResponseItemsItemCase2>;
 
-export type ListResponseItemsItemCase3Type = "channel";
-export const ListResponseItemsItemCase3Type = /*@__PURE__*/ S.String;
+export type ListStarsResponseItemsItemCase3Type = "channel";
+export const ListStarsResponseItemsItemCase3Type = /*@__PURE__*/ S.String;
 
-export interface ListResponseItemsItemCase3 {
-  type: ListResponseItemsItemCase3Type;
+export interface ListStarsResponseItemsItemCase3 {
+  type: ListStarsResponseItemsItemCase3Type;
   channel: string;
   date_create: number;
 }
-export const ListResponseItemsItemCase3 = /*@__PURE__*/ S.suspend(() =>
+export const ListStarsResponseItemsItemCase3 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: ListResponseItemsItemCase3Type,
+    type: ListStarsResponseItemsItemCase3Type,
     channel: S.String,
     date_create: S.Number,
   }),
 ).annotate({
-  identifier: "ListResponseItemsItemCase3",
-}) as any as S.Schema<ListResponseItemsItemCase3>;
+  identifier: "ListStarsResponseItemsItemCase3",
+}) as any as S.Schema<ListStarsResponseItemsItemCase3>;
 
-export type ListResponseItemsItemCase4Type = "im";
-export const ListResponseItemsItemCase4Type = /*@__PURE__*/ S.String;
+export type ListStarsResponseItemsItemCase4Type = "im";
+export const ListStarsResponseItemsItemCase4Type = /*@__PURE__*/ S.String;
 
-export interface ListResponseItemsItemCase4 {
-  type: ListResponseItemsItemCase4Type;
+export interface ListStarsResponseItemsItemCase4 {
+  type: ListStarsResponseItemsItemCase4Type;
   channel: string;
   date_create: number;
 }
-export const ListResponseItemsItemCase4 = /*@__PURE__*/ S.suspend(() =>
+export const ListStarsResponseItemsItemCase4 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: ListResponseItemsItemCase4Type,
+    type: ListStarsResponseItemsItemCase4Type,
     channel: S.String,
     date_create: S.Number,
   }),
 ).annotate({
-  identifier: "ListResponseItemsItemCase4",
-}) as any as S.Schema<ListResponseItemsItemCase4>;
+  identifier: "ListStarsResponseItemsItemCase4",
+}) as any as S.Schema<ListStarsResponseItemsItemCase4>;
 
-export type ListResponseItemsItemCase5Type = "group";
-export const ListResponseItemsItemCase5Type = /*@__PURE__*/ S.String;
+export type ListStarsResponseItemsItemCase5Type = "group";
+export const ListStarsResponseItemsItemCase5Type = /*@__PURE__*/ S.String;
 
-export interface ListResponseItemsItemCase5 {
-  type: ListResponseItemsItemCase5Type;
+export interface ListStarsResponseItemsItemCase5 {
+  type: ListStarsResponseItemsItemCase5Type;
   channel: string;
   date_create: number;
 }
-export const ListResponseItemsItemCase5 = /*@__PURE__*/ S.suspend(() =>
+export const ListStarsResponseItemsItemCase5 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: ListResponseItemsItemCase5Type,
+    type: ListStarsResponseItemsItemCase5Type,
     channel: S.String,
     date_create: S.Number,
   }),
 ).annotate({
-  identifier: "ListResponseItemsItemCase5",
-}) as any as S.Schema<ListResponseItemsItemCase5>;
+  identifier: "ListStarsResponseItemsItemCase5",
+}) as any as S.Schema<ListStarsResponseItemsItemCase5>;
 
-export type ListResponseItemsItem =
-  | ListResponseItemsItemCase0
-  | ListResponseItemsItemCase1
-  | ListResponseItemsItemCase2
-  | ListResponseItemsItemCase3
-  | ListResponseItemsItemCase4
-  | ListResponseItemsItemCase5;
-export const ListResponseItemsItem = /*@__PURE__*/ S.Unknown.pipe(
+export type ListStarsResponseItemsItem =
+  | ListStarsResponseItemsItemCase0
+  | ListStarsResponseItemsItemCase1
+  | ListStarsResponseItemsItemCase2
+  | ListStarsResponseItemsItemCase3
+  | ListStarsResponseItemsItemCase4
+  | ListStarsResponseItemsItemCase5;
+export const ListStarsResponseItemsItem = /*@__PURE__*/ S.Unknown.pipe(
   T.UnionCases([
     ["type", "channel", "message", "date_create"],
     ["type", "file", "date_create"],
@@ -192,42 +196,44 @@ export const ListResponseItemsItem = /*@__PURE__*/ S.Unknown.pipe(
   ]),
 );
 
-export type ListResponseItemsList = Array<ListResponseItemsItem>;
-export const ListResponseItemsList = /*@__PURE__*/ S.Array(
-  ListResponseItemsItem,
-) as any as S.Schema<ListResponseItemsList>;
+export type ListStarsResponseItemsList = Array<ListStarsResponseItemsItem>;
+export const ListStarsResponseItemsList = /*@__PURE__*/ S.Array(
+  ListStarsResponseItemsItem,
+) as any as S.Schema<ListStarsResponseItemsList>;
 
 /** Pagination metadata. An empty `next_cursor` means the last page. */
-export interface ListResponseResponseMetadata {
+export interface ListStarsResponseResponseMetadata {
   /** Cursor for the next page — pass as `cursor` on the next call. */
   next_cursor?: string;
 }
-export const ListResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
+export const ListStarsResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     next_cursor: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListResponseResponseMetadata",
-}) as any as S.Schema<ListResponseResponseMetadata>;
+  identifier: "ListStarsResponseResponseMetadata",
+}) as any as S.Schema<ListStarsResponseResponseMetadata>;
 
-export interface ListResponse {
+export interface ListStarsResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  items: ListResponseItemsList;
+  items: ListStarsResponseItemsList;
   paging?: unknown;
   /** Pagination metadata. An empty `next_cursor` means the last page. */
-  response_metadata?: ListResponseResponseMetadata;
+  response_metadata?: ListStarsResponseResponseMetadata;
 }
-export const ListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListStarsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    items: ListResponseItemsList,
+    items: ListStarsResponseItemsList,
     paging: S.optional(S.Unknown),
-    response_metadata: S.optional(ListResponseResponseMetadata),
+    response_metadata: S.optional(ListStarsResponseResponseMetadata),
   }),
-).annotate({ identifier: "ListResponse" }) as any as S.Schema<ListResponse>;
+).annotate({
+  identifier: "ListStarsResponse",
+}) as any as S.Schema<ListStarsResponse>;
 
-export interface RemoveRequest {
+export interface RemoveStarRequest {
   /** Channel to remove star from, or channel where the message to remove star from was posted (used with `timestamp`). */
   channel?: string;
   /** File to remove star from. */
@@ -237,52 +243,56 @@ export interface RemoveRequest {
   /** Timestamp of the message to remove star from. */
   timestamp?: string;
 }
-export const RemoveRequest = /*@__PURE__*/ S.suspend(() =>
+export const RemoveStarRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel: S.optional(S.String),
     file: S.optional(S.String),
     file_comment: S.optional(S.String),
     timestamp: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/stars.remove", code: 200 })),
-).annotate({ identifier: "RemoveRequest" }) as any as S.Schema<RemoveRequest>;
+).annotate({
+  identifier: "RemoveStarRequest",
+}) as any as S.Schema<RemoveStarRequest>;
 
-export interface RemoveResponse {
+export interface RemoveStarResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const RemoveResponse = /*@__PURE__*/ S.suspend(() =>
+export const RemoveStarResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
-).annotate({ identifier: "RemoveResponse" }) as any as S.Schema<RemoveResponse>;
+).annotate({
+  identifier: "RemoveStarResponse",
+}) as any as S.Schema<RemoveStarResponse>;
 
-export type AddError = SlackOpError;
+export type AddStarError = SlackOpError;
 /** Save an item for later. Formerly known as adding a star. Required scopes — user: `stars:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `already_starred` — The specified item has already been starred by the authenticated user. - `bad_timestamp` — Value passed for `timestamp` was invalid. - `channel_not_found` — Channel, private group, or DM specified by `channel` does not exist - `external_channel_migrating` — Channel is undergoing active migration - `file_comment_not_found` — File comment specified by `file_comment` does not exist. - `file_not_found` — File specified by `file` does not exist. - `message_not_found` — Message specified by `channel` and `timestamp` does not exist. - `no_item_specified` — `file`, `file_comment`, `channel` and `timestamp` was not specified. See https://docs.slack.dev/reference/methods/stars.add */
-export const add: API.OperationMethod<
-  AddRequest,
-  AddResponse,
-  AddError,
+export const addStar: API.OperationMethod<
+  AddStarRequest,
+  AddStarResponse,
+  AddStarError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AddRequest,
-  output: AddResponse,
+  input: AddStarRequest,
+  output: AddStarResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListError = SlackOpError;
+export type ListStarsError = SlackOpError;
 /** (Deprecated) Listed a user's saved items, formerly known as stars. Required scopes — user: `stars:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — A required argument is missing. See https://docs.slack.dev/reference/methods/stars.list */
-export const list: API.PaginatedOperationMethod<
-  ListRequest,
-  ListResponse,
-  ListError,
+export const listStars: API.PaginatedOperationMethod<
+  ListStarsRequest,
+  ListStarsResponse,
+  ListStarsError,
   SlackOpContext,
-  ListResponseItemsItem
+  ListStarsResponseItemsItem
 > = /*@__PURE__*/ API.makePaginated(
   () => ({
-    input: ListRequest,
-    output: ListResponse,
+    input: ListStarsRequest,
+    output: ListStarsResponse,
     errors: [SlackError, SlackRateLimited],
     protocol: SlackProtocol,
     retry: Retry.Retry,
@@ -297,16 +307,16 @@ export const list: API.PaginatedOperationMethod<
   slackPaginate,
 ) as any;
 
-export type RemoveError = SlackOpError;
+export type RemoveStarError = SlackOpError;
 /** Removes a saved item (star) from an item. Required scopes — user: `stars:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `bad_timestamp` — Value passed for `timestamp` was invalid. - `channel_not_found` — Channel, private group, or DM specified by `channel` does not exist - `file_comment_not_found` — File comment specified by `file_comment` does not exist. - `file_not_found` — File specified by `file` does not exist. - `message_not_found` — Message specified by `channel` and `timestamp` does not exist. - `no_item_specified` — `file`, `file_comment`, `channel` and `timestamp` was not specified. - `not_starred` — The specified item is not currently starred by the authenticated user. See https://docs.slack.dev/reference/methods/stars.remove */
-export const remove: API.OperationMethod<
-  RemoveRequest,
-  RemoveResponse,
-  RemoveError,
+export const removeStar: API.OperationMethod<
+  RemoveStarRequest,
+  RemoveStarResponse,
+  RemoveStarError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RemoveRequest,
-  output: RemoveResponse,
+  input: RemoveStarRequest,
+  output: RemoveStarResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

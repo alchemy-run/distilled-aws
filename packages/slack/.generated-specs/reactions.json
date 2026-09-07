@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.reactions#AddRequest": {
+    "com.slack.reactions#AddReactionRequest": {
       "type": "structure",
       "members": {
         "channel": {
@@ -46,7 +47,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.reactions#AddResponse": {
+    "com.slack.reactions#AddReactionResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -61,13 +62,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.reactions#Add": {
+    "com.slack.reactions#AddReaction": {
       "type": "operation",
       "input": {
-        "target": "com.slack.reactions#AddRequest"
+        "target": "com.slack.reactions#AddReactionRequest"
       },
       "output": {
-        "target": "com.slack.reactions#AddResponse"
+        "target": "com.slack.reactions#AddReactionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -78,7 +79,7 @@
         "smithy.api#documentation": "Adds a reaction to an item.\n\nRequired scopes — bot: `reactions:write`; user: `reactions:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `already_reacted` — The specified item already has the user/reaction combination.\n  - `bad_timestamp` — Value passed for `timestamp` was invalid.\n  - `channel_not_found` — Value passed for `channel` is invalid.\n  - `external_channel_migrating` — The channel is in the process of being migrated.\n  - `invalid_name` — Value passed for `name` was invalid.\n  - `is_archived` — Channel specified has been archived.\n  - `message_not_found` — Message specified by `channel` and `timestamp` does not exist.\n  - `no_item_specified` — combination of `channel` and `timestamp` was not specified.\n  - `not_reactable` — Whatever you passed in, like a `file` or `file_comment`, can't be reacted to anymore. Your app can react to messages though.\n  - `thread_locked` — Reactions are disabled as the specified message is part of a locked thread.\n  - `too_many_emoji` — The limit for distinct reactions (i.e emoji) on the item has been reached.\n  - `too_many_reactions` — The limit for reactions a person may add to the item has been reached.\n  - `no_access` — User does not have access to react to this canvas.\n\nSee https://docs.slack.dev/reference/methods/reactions.add"
       }
     },
-    "com.slack.reactions#GetRequest": {
+    "com.slack.reactions#GetReactionRequest": {
       "type": "structure",
       "members": {
         "channel": {
@@ -121,7 +122,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.reactions#GetResponse": {
+    "com.slack.reactions#GetReactionResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -154,13 +155,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.reactions#Get": {
+    "com.slack.reactions#GetReaction": {
       "type": "operation",
       "input": {
-        "target": "com.slack.reactions#GetRequest"
+        "target": "com.slack.reactions#GetReactionRequest"
       },
       "output": {
-        "target": "com.slack.reactions#GetResponse"
+        "target": "com.slack.reactions#GetReactionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -171,7 +172,7 @@
         "smithy.api#documentation": "Gets reactions for an item.\n\nRequired scopes — bot: `reactions:read`; user: `reactions:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_timestamp` — Value passed for `timestamp` was invalid.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `file_comment_not_found` — File comment specified by `file_comment` does not exist.\n  - `file_not_found` — File specified by `file` does not exist.\n  - `message_not_found` — Message specified by `channel` and `timestamp` does not exist.\n  - `no_item_specified` — `file`, `file_comment`, or combination of `channel` and `timestamp` was not specified.\n\nSee https://docs.slack.dev/reference/methods/reactions.get"
       }
     },
-    "com.slack.reactions#ListRequest": {
+    "com.slack.reactions#ListReactionsRequest": {
       "type": "structure",
       "members": {
         "user": {
@@ -226,7 +227,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.reactions#ListResponseItemsItemMap": {
+    "com.slack.reactions#ListReactionsResponseItemsItemMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -236,14 +237,14 @@
       },
       "traits": {}
     },
-    "com.slack.reactions#ListResponseItemsList": {
+    "com.slack.reactions#ListReactionsResponseItemsList": {
       "type": "list",
       "member": {
-        "target": "com.slack.reactions#ListResponseItemsItemMap"
+        "target": "com.slack.reactions#ListReactionsResponseItemsItemMap"
       },
       "traits": {}
     },
-    "com.slack.reactions#ListResponseResponseMetadata": {
+    "com.slack.reactions#ListReactionsResponseResponseMetadata": {
       "type": "structure",
       "members": {
         "next_cursor": {
@@ -257,7 +258,7 @@
         "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
       }
     },
-    "com.slack.reactions#ListResponse": {
+    "com.slack.reactions#ListReactionsResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -268,7 +269,7 @@
           }
         },
         "items": {
-          "target": "com.slack.reactions#ListResponseItemsList",
+          "target": "com.slack.reactions#ListReactionsResponseItemsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -277,7 +278,7 @@
           "target": "smithy.api#Document"
         },
         "response_metadata": {
-          "target": "com.slack.reactions#ListResponseResponseMetadata",
+          "target": "com.slack.reactions#ListReactionsResponseResponseMetadata",
           "traits": {
             "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
@@ -287,13 +288,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.reactions#List": {
+    "com.slack.reactions#ListReactions": {
       "type": "operation",
       "input": {
-        "target": "com.slack.reactions#ListRequest"
+        "target": "com.slack.reactions#ListReactionsRequest"
       },
       "output": {
-        "target": "com.slack.reactions#ListResponse"
+        "target": "com.slack.reactions#ListReactionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -311,7 +312,7 @@
         }
       }
     },
-    "com.slack.reactions#RemoveRequest": {
+    "com.slack.reactions#RemoveReactionRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -350,7 +351,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.reactions#RemoveResponse": {
+    "com.slack.reactions#RemoveReactionResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -365,13 +366,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.reactions#Remove": {
+    "com.slack.reactions#RemoveReaction": {
       "type": "operation",
       "input": {
-        "target": "com.slack.reactions#RemoveRequest"
+        "target": "com.slack.reactions#RemoveReactionRequest"
       },
       "output": {
-        "target": "com.slack.reactions#RemoveResponse"
+        "target": "com.slack.reactions#RemoveReactionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -387,16 +388,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.reactions#Add"
+          "target": "com.slack.reactions#AddReaction"
         },
         {
-          "target": "com.slack.reactions#Get"
+          "target": "com.slack.reactions#GetReaction"
         },
         {
-          "target": "com.slack.reactions#List"
+          "target": "com.slack.reactions#ListReactions"
         },
         {
-          "target": "com.slack.reactions#Remove"
+          "target": "com.slack.reactions#RemoveReaction"
         }
       ],
       "traits": {

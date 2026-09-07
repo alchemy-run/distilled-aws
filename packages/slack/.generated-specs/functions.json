@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.slack.functions#CompleteErrorRequest": {
@@ -137,7 +138,7 @@
         "smithy.api#documentation": "Signal the successful completion of a function\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `unknown_method` — This method does not exist.\n  - `function_execution_not_found` — The specified function execution cannot be found.\n  - `access_denied` — This actor does not have access to this function execution.\n  - `execution_not_in_running_state` — The function execution is no longer in a state to be completed.\n  - `parameter_validation_failed` — There were problems when validating the outputs against the Function parameters. See API response for more details.\n\nSee https://docs.slack.dev/reference/methods/functions.completeSuccess"
       }
     },
-    "com.slack.functions#DistributionsPermissionsAddRequestUserIdsList": {
+    "com.slack.functions#AddDistributionsPermissionsRequestUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -146,7 +147,7 @@
         "smithy.api#documentation": "List of encoded user IDs"
       }
     },
-    "com.slack.functions#DistributionsPermissionsAddRequest": {
+    "com.slack.functions#AddDistributionsPermissionsRequest": {
       "type": "structure",
       "members": {
         "function_id": {
@@ -168,7 +169,7 @@
           }
         },
         "user_ids": {
-          "target": "com.slack.functions#DistributionsPermissionsAddRequestUserIdsList",
+          "target": "com.slack.functions#AddDistributionsPermissionsRequestUserIdsList",
           "traits": {
             "smithy.api#documentation": "List of encoded user IDs"
           }
@@ -178,7 +179,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.functions#DistributionsPermissionsAddResponsePermissionType": {
+    "com.slack.functions#AddDistributionsPermissionsResponsePermissionType": {
       "type": "enum",
       "members": {
         "EVERYONE": {
@@ -208,7 +209,7 @@
       },
       "traits": {}
     },
-    "com.slack.functions#DistributionsPermissionsAddResponseUsersItem": {
+    "com.slack.functions#AddDistributionsPermissionsResponseUsersItem": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -223,14 +224,14 @@
       },
       "traits": {}
     },
-    "com.slack.functions#DistributionsPermissionsAddResponseUsersList": {
+    "com.slack.functions#AddDistributionsPermissionsResponseUsersList": {
       "type": "list",
       "member": {
-        "target": "com.slack.functions#DistributionsPermissionsAddResponseUsersItem"
+        "target": "com.slack.functions#AddDistributionsPermissionsResponseUsersItem"
       },
       "traits": {}
     },
-    "com.slack.functions#DistributionsPermissionsAddResponse": {
+    "com.slack.functions#AddDistributionsPermissionsResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -241,26 +242,26 @@
           }
         },
         "permission_type": {
-          "target": "com.slack.functions#DistributionsPermissionsAddResponsePermissionType",
+          "target": "com.slack.functions#AddDistributionsPermissionsResponsePermissionType",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "users": {
-          "target": "com.slack.functions#DistributionsPermissionsAddResponseUsersList"
+          "target": "com.slack.functions#AddDistributionsPermissionsResponseUsersList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.slack.functions#DistributionsPermissionsAdd": {
+    "com.slack.functions#AddDistributionsPermissions": {
       "type": "operation",
       "input": {
-        "target": "com.slack.functions#DistributionsPermissionsAddRequest"
+        "target": "com.slack.functions#AddDistributionsPermissionsRequest"
       },
       "output": {
-        "target": "com.slack.functions#DistributionsPermissionsAddResponse"
+        "target": "com.slack.functions#AddDistributionsPermissionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -271,7 +272,7 @@
         "smithy.api#documentation": "Grant users access to a custom slack function if its permission_type is set to named_entities\n\nRequired scopes — configuration: `app_configurations:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `unknown_method` — This method does not exist.\n  - `access_denied` — This actor does not have access to the permissions on this resource.\n  - `function_not_found` — This function does not exist.\n  - `invalid_permission_type` — This function requires permission_type to be set as named_entities before adding users.\n  - `user_not_found` — One or more of the named entities was not found.\n  - `app_not_found` — This app does not exist.\n\nSee https://docs.slack.dev/reference/methods/functions.distributions.permissions.add"
       }
     },
-    "com.slack.functions#DistributionsPermissionsListRequest": {
+    "com.slack.functions#ListDistributionsPermissionsRequest": {
       "type": "structure",
       "members": {
         "function_id": {
@@ -297,7 +298,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.functions#DistributionsPermissionsListResponsePermissionType": {
+    "com.slack.functions#ListDistributionsPermissionsResponsePermissionType": {
       "type": "enum",
       "members": {
         "EVERYONE": {
@@ -327,7 +328,7 @@
       },
       "traits": {}
     },
-    "com.slack.functions#DistributionsPermissionsListResponseUsersItem": {
+    "com.slack.functions#ListDistributionsPermissionsResponseUsersItem": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -342,14 +343,14 @@
       },
       "traits": {}
     },
-    "com.slack.functions#DistributionsPermissionsListResponseUsersList": {
+    "com.slack.functions#ListDistributionsPermissionsResponseUsersList": {
       "type": "list",
       "member": {
-        "target": "com.slack.functions#DistributionsPermissionsListResponseUsersItem"
+        "target": "com.slack.functions#ListDistributionsPermissionsResponseUsersItem"
       },
       "traits": {}
     },
-    "com.slack.functions#DistributionsPermissionsListResponseTeamIdsList": {
+    "com.slack.functions#ListDistributionsPermissionsResponseTeamIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -358,7 +359,7 @@
         "smithy.api#documentation": "List of team IDs allowed with named_entities permission."
       }
     },
-    "com.slack.functions#DistributionsPermissionsListResponseOrgIdsList": {
+    "com.slack.functions#ListDistributionsPermissionsResponseOrgIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -367,7 +368,7 @@
         "smithy.api#documentation": "List of org IDs allowed with named_entities permission."
       }
     },
-    "com.slack.functions#DistributionsPermissionsListResponse": {
+    "com.slack.functions#ListDistributionsPermissionsResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -378,22 +379,22 @@
           }
         },
         "permission_type": {
-          "target": "com.slack.functions#DistributionsPermissionsListResponsePermissionType",
+          "target": "com.slack.functions#ListDistributionsPermissionsResponsePermissionType",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "users": {
-          "target": "com.slack.functions#DistributionsPermissionsListResponseUsersList"
+          "target": "com.slack.functions#ListDistributionsPermissionsResponseUsersList"
         },
         "team_ids": {
-          "target": "com.slack.functions#DistributionsPermissionsListResponseTeamIdsList",
+          "target": "com.slack.functions#ListDistributionsPermissionsResponseTeamIdsList",
           "traits": {
             "smithy.api#documentation": "List of team IDs allowed with named_entities permission."
           }
         },
         "org_ids": {
-          "target": "com.slack.functions#DistributionsPermissionsListResponseOrgIdsList",
+          "target": "com.slack.functions#ListDistributionsPermissionsResponseOrgIdsList",
           "traits": {
             "smithy.api#documentation": "List of org IDs allowed with named_entities permission."
           }
@@ -403,13 +404,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.functions#DistributionsPermissionsList": {
+    "com.slack.functions#ListDistributionsPermissions": {
       "type": "operation",
       "input": {
-        "target": "com.slack.functions#DistributionsPermissionsListRequest"
+        "target": "com.slack.functions#ListDistributionsPermissionsRequest"
       },
       "output": {
-        "target": "com.slack.functions#DistributionsPermissionsListResponse"
+        "target": "com.slack.functions#ListDistributionsPermissionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -420,7 +421,7 @@
         "smithy.api#documentation": "List the access type of a custom slack function and include the users, team or org ids with access if its permission_type is set to named_entities\n\nRequired scopes — configuration: `app_configurations:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `unknown_method` — This method does not exist.\n  - `access_denied` — This actor does not have access to the permissions on this resource.\n  - `function_not_found` — This function does not exist.\n  - `user_not_found` — One or more of the named entities was not found.\n  - `app_not_found` — This app does not exist.\n\nSee https://docs.slack.dev/reference/methods/functions.distributions.permissions.list"
       }
     },
-    "com.slack.functions#DistributionsPermissionsRemoveRequestUserIdsList": {
+    "com.slack.functions#RemoveDistributionsPermissionsRequestUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -429,7 +430,7 @@
         "smithy.api#documentation": "List of encoded user IDs"
       }
     },
-    "com.slack.functions#DistributionsPermissionsRemoveRequest": {
+    "com.slack.functions#RemoveDistributionsPermissionsRequest": {
       "type": "structure",
       "members": {
         "function_id": {
@@ -451,7 +452,7 @@
           }
         },
         "user_ids": {
-          "target": "com.slack.functions#DistributionsPermissionsRemoveRequestUserIdsList",
+          "target": "com.slack.functions#RemoveDistributionsPermissionsRequestUserIdsList",
           "traits": {
             "smithy.api#documentation": "List of encoded user IDs"
           }
@@ -461,7 +462,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.functions#DistributionsPermissionsRemoveResponsePermissionType": {
+    "com.slack.functions#RemoveDistributionsPermissionsResponsePermissionType": {
       "type": "enum",
       "members": {
         "EVERYONE": {
@@ -491,7 +492,7 @@
       },
       "traits": {}
     },
-    "com.slack.functions#DistributionsPermissionsRemoveResponseUsersItem": {
+    "com.slack.functions#RemoveDistributionsPermissionsResponseUsersItem": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -506,14 +507,14 @@
       },
       "traits": {}
     },
-    "com.slack.functions#DistributionsPermissionsRemoveResponseUsersList": {
+    "com.slack.functions#RemoveDistributionsPermissionsResponseUsersList": {
       "type": "list",
       "member": {
-        "target": "com.slack.functions#DistributionsPermissionsRemoveResponseUsersItem"
+        "target": "com.slack.functions#RemoveDistributionsPermissionsResponseUsersItem"
       },
       "traits": {}
     },
-    "com.slack.functions#DistributionsPermissionsRemoveResponse": {
+    "com.slack.functions#RemoveDistributionsPermissionsResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -524,26 +525,26 @@
           }
         },
         "permission_type": {
-          "target": "com.slack.functions#DistributionsPermissionsRemoveResponsePermissionType",
+          "target": "com.slack.functions#RemoveDistributionsPermissionsResponsePermissionType",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "users": {
-          "target": "com.slack.functions#DistributionsPermissionsRemoveResponseUsersList"
+          "target": "com.slack.functions#RemoveDistributionsPermissionsResponseUsersList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.slack.functions#DistributionsPermissionsRemove": {
+    "com.slack.functions#RemoveDistributionsPermissions": {
       "type": "operation",
       "input": {
-        "target": "com.slack.functions#DistributionsPermissionsRemoveRequest"
+        "target": "com.slack.functions#RemoveDistributionsPermissionsRequest"
       },
       "output": {
-        "target": "com.slack.functions#DistributionsPermissionsRemoveResponse"
+        "target": "com.slack.functions#RemoveDistributionsPermissionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -554,7 +555,7 @@
         "smithy.api#documentation": "Revoke user access to a custom slack function if permission_type set to named_entities\n\nRequired scopes — configuration: `app_configurations:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `unknown_method` — This method does not exist.\n  - `access_denied` — This actor does not have access to the permissions on this resource.\n  - `function_not_found` — This function does not exist.\n  - `user_not_found` — One or more of the named entities was not found.\n  - `invalid_permission_type` — This function requires permission_type to be set as named_entities before adding users.\n  - `app_not_found` — This app does not exist.\n\nSee https://docs.slack.dev/reference/methods/functions.distributions.permissions.remove"
       }
     },
-    "com.slack.functions#DistributionsPermissionsSetRequestPermissionType": {
+    "com.slack.functions#SetDistributionsPermissionsRequestPermissionType": {
       "type": "enum",
       "members": {
         "EVERYONE": {
@@ -586,7 +587,7 @@
         "smithy.api#documentation": "The type of permission that defines how the function can be distributed"
       }
     },
-    "com.slack.functions#DistributionsPermissionsSetRequestUserIdsList": {
+    "com.slack.functions#SetDistributionsPermissionsRequestUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -595,7 +596,7 @@
         "smithy.api#documentation": "List of encoded user IDs"
       }
     },
-    "com.slack.functions#DistributionsPermissionsSetRequestTeamIdsList": {
+    "com.slack.functions#SetDistributionsPermissionsRequestTeamIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -604,7 +605,7 @@
         "smithy.api#documentation": "List of team IDs to allow for named_entities permission"
       }
     },
-    "com.slack.functions#DistributionsPermissionsSetRequestOrgIdsList": {
+    "com.slack.functions#SetDistributionsPermissionsRequestOrgIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -613,7 +614,7 @@
         "smithy.api#documentation": "List of org IDs to allow for named_entities permission"
       }
     },
-    "com.slack.functions#DistributionsPermissionsSetRequest": {
+    "com.slack.functions#SetDistributionsPermissionsRequest": {
       "type": "structure",
       "members": {
         "function_id": {
@@ -635,25 +636,25 @@
           }
         },
         "permission_type": {
-          "target": "com.slack.functions#DistributionsPermissionsSetRequestPermissionType",
+          "target": "com.slack.functions#SetDistributionsPermissionsRequestPermissionType",
           "traits": {
             "smithy.api#documentation": "The type of permission that defines how the function can be distributed"
           }
         },
         "user_ids": {
-          "target": "com.slack.functions#DistributionsPermissionsSetRequestUserIdsList",
+          "target": "com.slack.functions#SetDistributionsPermissionsRequestUserIdsList",
           "traits": {
             "smithy.api#documentation": "List of encoded user IDs"
           }
         },
         "team_ids": {
-          "target": "com.slack.functions#DistributionsPermissionsSetRequestTeamIdsList",
+          "target": "com.slack.functions#SetDistributionsPermissionsRequestTeamIdsList",
           "traits": {
             "smithy.api#documentation": "List of team IDs to allow for named_entities permission"
           }
         },
         "org_ids": {
-          "target": "com.slack.functions#DistributionsPermissionsSetRequestOrgIdsList",
+          "target": "com.slack.functions#SetDistributionsPermissionsRequestOrgIdsList",
           "traits": {
             "smithy.api#documentation": "List of org IDs to allow for named_entities permission"
           }
@@ -663,7 +664,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.functions#DistributionsPermissionsSetResponsePermissionType": {
+    "com.slack.functions#SetDistributionsPermissionsResponsePermissionType": {
       "type": "enum",
       "members": {
         "EVERYONE": {
@@ -693,7 +694,7 @@
       },
       "traits": {}
     },
-    "com.slack.functions#DistributionsPermissionsSetResponseUsersItem": {
+    "com.slack.functions#SetDistributionsPermissionsResponseUsersItem": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -708,14 +709,14 @@
       },
       "traits": {}
     },
-    "com.slack.functions#DistributionsPermissionsSetResponseUsersList": {
+    "com.slack.functions#SetDistributionsPermissionsResponseUsersList": {
       "type": "list",
       "member": {
-        "target": "com.slack.functions#DistributionsPermissionsSetResponseUsersItem"
+        "target": "com.slack.functions#SetDistributionsPermissionsResponseUsersItem"
       },
       "traits": {}
     },
-    "com.slack.functions#DistributionsPermissionsSetResponseTeamIdsList": {
+    "com.slack.functions#SetDistributionsPermissionsResponseTeamIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -724,7 +725,7 @@
         "smithy.api#documentation": "List of team IDs allowed with named_entities permission."
       }
     },
-    "com.slack.functions#DistributionsPermissionsSetResponseOrgIdsList": {
+    "com.slack.functions#SetDistributionsPermissionsResponseOrgIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -733,7 +734,7 @@
         "smithy.api#documentation": "List of org IDs allowed with named_entities permission."
       }
     },
-    "com.slack.functions#DistributionsPermissionsSetResponse": {
+    "com.slack.functions#SetDistributionsPermissionsResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -744,22 +745,22 @@
           }
         },
         "permission_type": {
-          "target": "com.slack.functions#DistributionsPermissionsSetResponsePermissionType",
+          "target": "com.slack.functions#SetDistributionsPermissionsResponsePermissionType",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "users": {
-          "target": "com.slack.functions#DistributionsPermissionsSetResponseUsersList"
+          "target": "com.slack.functions#SetDistributionsPermissionsResponseUsersList"
         },
         "team_ids": {
-          "target": "com.slack.functions#DistributionsPermissionsSetResponseTeamIdsList",
+          "target": "com.slack.functions#SetDistributionsPermissionsResponseTeamIdsList",
           "traits": {
             "smithy.api#documentation": "List of team IDs allowed with named_entities permission."
           }
         },
         "org_ids": {
-          "target": "com.slack.functions#DistributionsPermissionsSetResponseOrgIdsList",
+          "target": "com.slack.functions#SetDistributionsPermissionsResponseOrgIdsList",
           "traits": {
             "smithy.api#documentation": "List of org IDs allowed with named_entities permission."
           }
@@ -769,13 +770,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.functions#DistributionsPermissionsSet": {
+    "com.slack.functions#SetDistributionsPermissions": {
       "type": "operation",
       "input": {
-        "target": "com.slack.functions#DistributionsPermissionsSetRequest"
+        "target": "com.slack.functions#SetDistributionsPermissionsRequest"
       },
       "output": {
-        "target": "com.slack.functions#DistributionsPermissionsSetResponse"
+        "target": "com.slack.functions#SetDistributionsPermissionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -786,7 +787,7 @@
         "smithy.api#documentation": "Set the access type of a custom slack function and define the users, team or org ids to be granted access if permission_type is set to named_entities\n\nRequired scopes — configuration: `app_configurations:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `unknown_method` — This method does not exist.\n  - `access_denied` — This actor does not have access to the permissions on this resource.\n  - `function_not_found` — This function does not exist.\n  - `invalid_named_entities` — One or more of the named entities was not found\n  - `invalid_permission_type` — This function requires permission_type to be set as named_entities before adding users.\n  - `user_not_found` — One or more of the named entities was not found.\n  - `app_not_found` — This app does not exist.\n  - `permission_type_required` — `permission_type` is a required input.\n\nSee https://docs.slack.dev/reference/methods/functions.distributions.permissions.set"
       }
     },
-    "com.slack.functions#WorkflowsStepsListRequest": {
+    "com.slack.functions#ListWorkflowsStepsRequest": {
       "type": "structure",
       "members": {
         "workflow_id": {
@@ -819,14 +820,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.functions#WorkflowsStepsListResponseStepsVersionsList": {
+    "com.slack.functions#ListWorkflowsStepsResponseStepsVersionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.slack.functions#WorkflowsStepsListResponse": {
+    "com.slack.functions#ListWorkflowsStepsResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -837,7 +838,7 @@
           }
         },
         "steps_versions": {
-          "target": "com.slack.functions#WorkflowsStepsListResponseStepsVersionsList",
+          "target": "com.slack.functions#ListWorkflowsStepsResponseStepsVersionsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -847,13 +848,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.functions#WorkflowsStepsList": {
+    "com.slack.functions#ListWorkflowsSteps": {
       "type": "operation",
       "input": {
-        "target": "com.slack.functions#WorkflowsStepsListRequest"
+        "target": "com.slack.functions#ListWorkflowsStepsRequest"
       },
       "output": {
-        "target": "com.slack.functions#WorkflowsStepsListResponse"
+        "target": "com.slack.functions#ListWorkflowsStepsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -864,7 +865,7 @@
         "smithy.api#documentation": "List the steps of a specific function of a workflow's versions\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `unknown_method` — This method does not exist.\n  - `access_denied` — This actor does not have access to the functions on this team.\n  - `unknown_workflow_id` — The passed in workflow_id is invalid.\n  - `unknown_function_id` — The passed in function_id is invalid.\n  - `invalid_arguments` — The arguments passed in are invalid.\n  - `unknown_app_id` — The passed in workflow_app_id is invalid.\n  - `missing_step_ids` — The passed in workflow is missing step IDs\n  - `cannot_fetch_versions` — Encountered unexpected error while trying to fetch versions\n\nSee https://docs.slack.dev/reference/methods/functions.workflows.steps.list"
       }
     },
-    "com.slack.functions#WorkflowsStepsResponsesExportRequest": {
+    "com.slack.functions#ExportWorkflowsStepsResponseRequest": {
       "type": "structure",
       "members": {
         "workflow_id": {
@@ -897,7 +898,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.functions#WorkflowsStepsResponsesExportResponse": {
+    "com.slack.functions#ExportWorkflowsStepsResponseResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -912,13 +913,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.functions#WorkflowsStepsResponsesExport": {
+    "com.slack.functions#ExportWorkflowsStepsResponse": {
       "type": "operation",
       "input": {
-        "target": "com.slack.functions#WorkflowsStepsResponsesExportRequest"
+        "target": "com.slack.functions#ExportWorkflowsStepsResponseRequest"
       },
       "output": {
-        "target": "com.slack.functions#WorkflowsStepsResponsesExportResponse"
+        "target": "com.slack.functions#ExportWorkflowsStepsResponseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -940,22 +941,22 @@
           "target": "com.slack.functions#CompleteSuccess"
         },
         {
-          "target": "com.slack.functions#DistributionsPermissionsAdd"
+          "target": "com.slack.functions#AddDistributionsPermissions"
         },
         {
-          "target": "com.slack.functions#DistributionsPermissionsList"
+          "target": "com.slack.functions#ListDistributionsPermissions"
         },
         {
-          "target": "com.slack.functions#DistributionsPermissionsRemove"
+          "target": "com.slack.functions#RemoveDistributionsPermissions"
         },
         {
-          "target": "com.slack.functions#DistributionsPermissionsSet"
+          "target": "com.slack.functions#SetDistributionsPermissions"
         },
         {
-          "target": "com.slack.functions#WorkflowsStepsList"
+          "target": "com.slack.functions#ListWorkflowsSteps"
         },
         {
-          "target": "com.slack.functions#WorkflowsStepsResponsesExport"
+          "target": "com.slack.functions#ExportWorkflowsStepsResponse"
         }
       ],
       "traits": {

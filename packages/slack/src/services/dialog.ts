@@ -12,39 +12,43 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export interface OpenRequest {
+export interface DialogOpenRequest {
   /** The dialog definition. This must be a JSON-encoded string. */
   dialog: string;
   /** Exchange a trigger to post to the user. */
   trigger_id: string;
 }
-export const OpenRequest = /*@__PURE__*/ S.suspend(() =>
+export const DialogOpenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     dialog: S.String,
     trigger_id: S.String,
   }).pipe(T.Http({ method: "POST", uri: "/dialog.open", code: 200 })),
-).annotate({ identifier: "OpenRequest" }) as any as S.Schema<OpenRequest>;
+).annotate({
+  identifier: "DialogOpenRequest",
+}) as any as S.Schema<DialogOpenRequest>;
 
-export interface OpenResponse {
+export interface DialogOpenResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const OpenResponse = /*@__PURE__*/ S.suspend(() =>
+export const DialogOpenResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
-).annotate({ identifier: "OpenResponse" }) as any as S.Schema<OpenResponse>;
+).annotate({
+  identifier: "DialogOpenResponse",
+}) as any as S.Schema<DialogOpenResponse>;
 
-export type OpenError = SlackOpError;
+export type DialogOpenError = SlackOpError;
 /** Open a dialog with a user Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `app_missing_action_url` — The app associated with the used token doesn't have a Action URL configured in its interactive components settings. - `cannot_create_dialog` — Something exceptional occurred and the dialog could not be created. - `failed_sending_dialog` — Something exceptional occurred and the dialog could not be sent. - `invalid_trigger` — The provided `trigger_id` is invalid or cannot be used by this token. - `missing_dialog` — No `dialog` argument was presented. - `missing_trigger` — No `trigger_id` argument was presented. - `trigger_exchanged` — The provided `trigger_id` has already been exchanged. - `trigger_expired` — The provided `trigger_id` was presented after the 3 second limit. - `validation_errors` — The provided `dialog` could not be validated. See https://docs.slack.dev/reference/methods/dialog.open */
-export const open: API.OperationMethod<
-  OpenRequest,
-  OpenResponse,
-  OpenError,
+export const dialogOpen: API.OperationMethod<
+  DialogOpenRequest,
+  DialogOpenResponse,
+  DialogOpenError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OpenRequest,
-  output: OpenResponse,
+  input: DialogOpenRequest,
+  output: DialogOpenResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

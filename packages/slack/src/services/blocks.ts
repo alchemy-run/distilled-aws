@@ -12,66 +12,68 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export type ValidateRequestBlocksCase1ItemMap = {
+export type ValidateBlockRequestBlocksCase1ItemMap = {
   [key: string]: unknown | undefined;
 };
-export const ValidateRequestBlocksCase1ItemMap = /*@__PURE__*/ S.Record(
+export const ValidateBlockRequestBlocksCase1ItemMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<ValidateRequestBlocksCase1ItemMap>;
+) as any as S.Schema<ValidateBlockRequestBlocksCase1ItemMap>;
 
-export type ValidateRequestBlocksCase1List =
-  Array<ValidateRequestBlocksCase1ItemMap>;
-export const ValidateRequestBlocksCase1List = /*@__PURE__*/ S.Array(
-  ValidateRequestBlocksCase1ItemMap,
-) as any as S.Schema<ValidateRequestBlocksCase1List>;
+export type ValidateBlockRequestBlocksCase1List =
+  Array<ValidateBlockRequestBlocksCase1ItemMap>;
+export const ValidateBlockRequestBlocksCase1List = /*@__PURE__*/ S.Array(
+  ValidateBlockRequestBlocksCase1ItemMap,
+) as any as S.Schema<ValidateBlockRequestBlocksCase1List>;
 
 /** A JSON-encoded array of [structured blocks](/reference/block-kit/blocks). Provide exactly one of `blocks`, `view`, or `message`. */
-export type ValidateRequestBlocks = string | ValidateRequestBlocksCase1List;
-export const ValidateRequestBlocks = /*@__PURE__*/ S.Unknown.pipe(
+export type ValidateBlockRequestBlocks =
+  | string
+  | ValidateBlockRequestBlocksCase1List;
+export const ValidateBlockRequestBlocks = /*@__PURE__*/ S.Unknown.pipe(
   T.UnionCases([[], []]),
 );
 
-export interface ValidateRequest {
+export interface ValidateBlockRequest {
   /** A JSON-encoded array of [structured blocks](/reference/block-kit/blocks). Provide exactly one of `blocks`, `view`, or `message`. */
-  blocks?: ValidateRequestBlocks;
+  blocks?: ValidateBlockRequestBlocks;
   /** A JSON-encoded [message payload](/messaging/creating-interactive-messages) to validate. Provide exactly one of `blocks`, `view`, or `message`. */
   message?: string;
   /** A JSON-encoded [view payload](/reference/views) to validate. Provide exactly one of `blocks`, `view`, or `message`. */
   view?: string;
 }
-export const ValidateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ValidateBlockRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    blocks: S.optional(ValidateRequestBlocks),
+    blocks: S.optional(ValidateBlockRequestBlocks),
     message: S.optional(S.String),
     view: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/blocks.validate", code: 200 })),
 ).annotate({
-  identifier: "ValidateRequest",
-}) as any as S.Schema<ValidateRequest>;
+  identifier: "ValidateBlockRequest",
+}) as any as S.Schema<ValidateBlockRequest>;
 
-export interface ValidateResponse {
+export interface ValidateBlockResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const ValidateResponse = /*@__PURE__*/ S.suspend(() =>
+export const ValidateBlockResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
 ).annotate({
-  identifier: "ValidateResponse",
-}) as any as S.Schema<ValidateResponse>;
+  identifier: "ValidateBlockResponse",
+}) as any as S.Schema<ValidateBlockResponse>;
 
-export type ValidateError = SlackOpError;
+export type ValidateBlockError = SlackOpError;
 /** Validates blocks, messages, and views Block Kit JSON payloads. Method-specific errors (the `error` slug on the SlackError): - `invalid_arguments` — The request arguments are invalid. Ensure you provide exactly one of `blocks`, `view`, or `message`, and that the value is valid JSON. Consult `response_metadata.messages` for details. - `invalid_blocks` — The blocks array failed validation. The `errors` field contains a list of issues, each with a JSON pointer path to the invalid element, the constraint that failed, and the expected value. - `invalid_view` — The view payload failed validation. The `errors` field contains a list of issues, each with a JSON pointer path to the invalid element, the constraint that failed, and the expected value. - `invalid_message` — The message payload failed validation. The `errors` field contains a list of issues, each with a JSON pointer path to the invalid element, the constraint that failed, and the expected value. - `ratelimited` — Too many requests. Reduce your request rate and retry after a brief wait. See https://docs.slack.dev/reference/methods/blocks.validate */
-export const validate: API.OperationMethod<
-  ValidateRequest,
-  ValidateResponse,
-  ValidateError,
+export const validateBlock: API.OperationMethod<
+  ValidateBlockRequest,
+  ValidateBlockResponse,
+  ValidateBlockError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ValidateRequest,
-  output: ValidateResponse,
+  input: ValidateBlockRequest,
+  output: ValidateBlockResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

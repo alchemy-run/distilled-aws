@@ -12,44 +12,46 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export interface TestRequest {
+export interface TestApiRequest {
   /** Error response to return */
   error?: string;
 }
-export const TestRequest = /*@__PURE__*/ S.suspend(() =>
+export const TestApiRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     error: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/api.test", code: 200 })),
-).annotate({ identifier: "TestRequest" }) as any as S.Schema<TestRequest>;
+).annotate({ identifier: "TestApiRequest" }) as any as S.Schema<TestApiRequest>;
 
-export type TestResponseArgsMap = { [key: string]: unknown | undefined };
-export const TestResponseArgsMap = /*@__PURE__*/ S.Record(
+export type TestApiResponseArgsMap = { [key: string]: unknown | undefined };
+export const TestApiResponseArgsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<TestResponseArgsMap>;
+) as any as S.Schema<TestApiResponseArgsMap>;
 
-export interface TestResponse {
+export interface TestApiResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  args?: TestResponseArgsMap;
+  args?: TestApiResponseArgsMap;
 }
-export const TestResponse = /*@__PURE__*/ S.suspend(() =>
+export const TestApiResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    args: S.optional(TestResponseArgsMap),
+    args: S.optional(TestApiResponseArgsMap),
   }),
-).annotate({ identifier: "TestResponse" }) as any as S.Schema<TestResponse>;
+).annotate({
+  identifier: "TestApiResponse",
+}) as any as S.Schema<TestApiResponse>;
 
-export type TestError = SlackOpError;
+export type TestApiError = SlackOpError;
 /** Checks API calling code. Rate limit tier: 4 See https://docs.slack.dev/reference/methods/api.test */
-export const test: API.OperationMethod<
-  TestRequest,
-  TestResponse,
-  TestError,
+export const testApi: API.OperationMethod<
+  TestApiRequest,
+  TestApiResponse,
+  TestApiError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TestRequest,
-  output: TestResponse,
+  input: TestApiRequest,
+  output: TestApiResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

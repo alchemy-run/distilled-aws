@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.slack.team#AccessLogsRequestBeforeCase0": {
@@ -405,7 +406,7 @@
         "smithy.api#documentation": "Reads a workspace's billing plan information.\n\nRequired scopes — bot: `team.billing:read`; user: `team.billing:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_auth` — Invalid token provided.\n  - `invalid_team` — Cannot find a team associated with the authed token.\n\nSee https://docs.slack.dev/reference/methods/team.billing.info"
       }
     },
-    "com.slack.team#ExternalTeamsDisconnectRequest": {
+    "com.slack.team#DisconnectExternalTeamRequest": {
       "type": "structure",
       "members": {
         "target_team": {
@@ -420,7 +421,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.team#ExternalTeamsDisconnectResponse": {
+    "com.slack.team#DisconnectExternalTeamResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -441,13 +442,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.team#ExternalTeamsDisconnect": {
+    "com.slack.team#DisconnectExternalTeam": {
       "type": "operation",
       "input": {
-        "target": "com.slack.team#ExternalTeamsDisconnectRequest"
+        "target": "com.slack.team#DisconnectExternalTeamRequest"
       },
       "output": {
-        "target": "com.slack.team#ExternalTeamsDisconnectResponse"
+        "target": "com.slack.team#DisconnectExternalTeamResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -459,7 +460,7 @@
         "com.distilled.openapi#contentType": "form-urlencoded"
       }
     },
-    "com.slack.team#ExternalTeamsListRequestSortField": {
+    "com.slack.team#ListExternalTeamsRequestSortField": {
       "type": "enum",
       "members": {
         "TEAM_NAME": {
@@ -483,7 +484,7 @@
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListRequestSortDirection": {
+    "com.slack.team#ListExternalTeamsRequestSortDirection": {
       "type": "enum",
       "members": {
         "ASC": {
@@ -501,7 +502,7 @@
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListRequestSlackConnectPrefFilterItem": {
+    "com.slack.team#ListExternalTeamsRequestSlackConnectPrefFilterItem": {
       "type": "enum",
       "members": {
         "APPROVED_ORGS_ONLY": {
@@ -567,21 +568,21 @@
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListRequestSlackConnectPrefFilterList": {
+    "com.slack.team#ListExternalTeamsRequestSlackConnectPrefFilterList": {
       "type": "list",
       "member": {
-        "target": "com.slack.team#ExternalTeamsListRequestSlackConnectPrefFilterItem"
+        "target": "com.slack.team#ListExternalTeamsRequestSlackConnectPrefFilterItem"
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListRequestWorkspaceFilterList": {
+    "com.slack.team#ListExternalTeamsRequestWorkspaceFilterList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListRequestConnectionStatusFilter": {
+    "com.slack.team#ListExternalTeamsRequestConnectionStatusFilter": {
       "type": "enum",
       "members": {
         "CONNECTED": {
@@ -611,7 +612,7 @@
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListRequest": {
+    "com.slack.team#ListExternalTeamsRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -629,35 +630,35 @@
           }
         },
         "sort_field": {
-          "target": "com.slack.team#ExternalTeamsListRequestSortField",
+          "target": "com.slack.team#ListExternalTeamsRequestSortField",
           "traits": {
             "smithy.api#httpQuery": "sort_field",
             "smithy.api#documentation": "Name of the parameter that we are sorting by"
           }
         },
         "sort_direction": {
-          "target": "com.slack.team#ExternalTeamsListRequestSortDirection",
+          "target": "com.slack.team#ListExternalTeamsRequestSortDirection",
           "traits": {
             "smithy.api#httpQuery": "sort_direction",
             "smithy.api#documentation": "Direction to sort in asc or desc"
           }
         },
         "slack_connect_pref_filter": {
-          "target": "com.slack.team#ExternalTeamsListRequestSlackConnectPrefFilterList",
+          "target": "com.slack.team#ListExternalTeamsRequestSlackConnectPrefFilterList",
           "traits": {
             "smithy.api#httpQuery": "slack_connect_pref_filter",
             "smithy.api#documentation": "Filters connected orgs by Slack Connect pref override(s). Value can be: `approved_orgs_only` `allow_sc_file_uploads` `profile_visibility` `away_team_sc_invite_permissions` `accept_sc_invites` `sc_mpdm_to_private` `require_sc_channel_for_sc_dm` `external_awareness_context_bar`"
           }
         },
         "workspace_filter": {
-          "target": "com.slack.team#ExternalTeamsListRequestWorkspaceFilterList",
+          "target": "com.slack.team#ListExternalTeamsRequestWorkspaceFilterList",
           "traits": {
             "smithy.api#httpQuery": "workspace_filter",
             "smithy.api#documentation": "Shows connected orgs which are connected on a specified encoded workspace ID"
           }
         },
         "connection_status_filter": {
-          "target": "com.slack.team#ExternalTeamsListRequestConnectionStatusFilter",
+          "target": "com.slack.team#ListExternalTeamsRequestConnectionStatusFilter",
           "traits": {
             "smithy.api#httpQuery": "connection_status_filter",
             "smithy.api#documentation": "Status of the connected team."
@@ -668,7 +669,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.team#ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesItem": {
+    "com.slack.team#ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesItem": {
       "type": "structure",
       "members": {
         "workspace_id": {
@@ -687,14 +688,14 @@
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesList": {
+    "com.slack.team#ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesList": {
       "type": "list",
       "member": {
-        "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesItem"
+        "target": "com.slack.team#ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesItem"
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListResponseOrganizationsItemConnectionStatus": {
+    "com.slack.team#ListExternalTeamsResponseOrganizationsItemConnectionStatus": {
       "type": "enum",
       "members": {
         "CONNECTED": {
@@ -732,7 +733,7 @@
         "smithy.api#documentation": "Status of the connected team. (CONNECTED / DISCONNECTED / BLOCKED  / IN_REVIEW / DISCONNECTiNG)"
       }
     },
-    "com.slack.team#ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsItem": {
+    "com.slack.team#ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsItem": {
       "type": "structure",
       "members": {
         "team_id": {
@@ -750,14 +751,14 @@
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsList": {
+    "com.slack.team#ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsList": {
       "type": "list",
       "member": {
-        "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsItem"
+        "target": "com.slack.team#ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsItem"
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListResponseOrganizationsItemCanvas": {
+    "com.slack.team#ListExternalTeamsResponseOrganizationsItemCanvas": {
       "type": "structure",
       "members": {
         "total_count": {
@@ -767,7 +768,7 @@
           }
         },
         "ownership_details": {
-          "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemCanvasOwnershipDetailsList",
+          "target": "com.slack.team#ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -775,7 +776,7 @@
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsItem": {
+    "com.slack.team#ListExternalTeamsResponseOrganizationsItemListsOwnershipDetailsItem": {
       "type": "structure",
       "members": {
         "team_id": {
@@ -793,14 +794,14 @@
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsList": {
+    "com.slack.team#ListExternalTeamsResponseOrganizationsItemListsOwnershipDetailsList": {
       "type": "list",
       "member": {
-        "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsItem"
+        "target": "com.slack.team#ListExternalTeamsResponseOrganizationsItemListsOwnershipDetailsItem"
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListResponseOrganizationsItemLists": {
+    "com.slack.team#ListExternalTeamsResponseOrganizationsItemLists": {
       "type": "structure",
       "members": {
         "total_count": {
@@ -810,7 +811,7 @@
           }
         },
         "ownership_details": {
-          "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemListsOwnershipDetailsList",
+          "target": "com.slack.team#ListExternalTeamsResponseOrganizationsItemListsOwnershipDetailsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -818,7 +819,7 @@
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListResponseOrganizationsItem": {
+    "com.slack.team#ListExternalTeamsResponseOrganizationsItem": {
       "type": "structure",
       "members": {
         "team_id": {
@@ -870,7 +871,7 @@
           }
         },
         "connected_workspaces": {
-          "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemConnectedWorkspacesList",
+          "target": "com.slack.team#ListExternalTeamsResponseOrganizationsItemConnectedWorkspacesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -882,7 +883,7 @@
           }
         },
         "connection_status": {
-          "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemConnectionStatus",
+          "target": "com.slack.team#ListExternalTeamsResponseOrganizationsItemConnectionStatus",
           "traits": {
             "smithy.api#documentation": "Status of the connected team. (CONNECTED / DISCONNECTED / BLOCKED  / IN_REVIEW / DISCONNECTiNG)",
             "smithy.api#required": {}
@@ -903,22 +904,22 @@
           }
         },
         "canvas": {
-          "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemCanvas"
+          "target": "com.slack.team#ListExternalTeamsResponseOrganizationsItemCanvas"
         },
         "lists": {
-          "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItemLists"
+          "target": "com.slack.team#ListExternalTeamsResponseOrganizationsItemLists"
         }
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListResponseOrganizationsList": {
+    "com.slack.team#ListExternalTeamsResponseOrganizationsList": {
       "type": "list",
       "member": {
-        "target": "com.slack.team#ExternalTeamsListResponseOrganizationsItem"
+        "target": "com.slack.team#ListExternalTeamsResponseOrganizationsItem"
       },
       "traits": {}
     },
-    "com.slack.team#ExternalTeamsListResponseResponseMetadata": {
+    "com.slack.team#ListExternalTeamsResponseResponseMetadata": {
       "type": "structure",
       "members": {
         "next_cursor": {
@@ -932,7 +933,7 @@
         "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
       }
     },
-    "com.slack.team#ExternalTeamsListResponse": {
+    "com.slack.team#ListExternalTeamsResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -943,7 +944,7 @@
           }
         },
         "organizations": {
-          "target": "com.slack.team#ExternalTeamsListResponseOrganizationsList",
+          "target": "com.slack.team#ListExternalTeamsResponseOrganizationsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -955,7 +956,7 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.team#ExternalTeamsListResponseResponseMetadata",
+          "target": "com.slack.team#ListExternalTeamsResponseResponseMetadata",
           "traits": {
             "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
@@ -965,13 +966,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.team#ExternalTeamsList": {
+    "com.slack.team#ListExternalTeams": {
       "type": "operation",
       "input": {
-        "target": "com.slack.team#ExternalTeamsListRequest"
+        "target": "com.slack.team#ListExternalTeamsRequest"
       },
       "output": {
-        "target": "com.slack.team#ExternalTeamsListResponse"
+        "target": "com.slack.team#ListExternalTeamsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -989,7 +990,7 @@
         }
       }
     },
-    "com.slack.team#InfoRequest": {
+    "com.slack.team#TeamInfoRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -1011,7 +1012,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.team#InfoResponse": {
+    "com.slack.team#TeamInfoResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -1026,13 +1027,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.team#Info": {
+    "com.slack.team#TeamInfo": {
       "type": "operation",
       "input": {
-        "target": "com.slack.team#InfoRequest"
+        "target": "com.slack.team#TeamInfoRequest"
       },
       "output": {
-        "target": "com.slack.team#InfoResponse"
+        "target": "com.slack.team#TeamInfoResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1195,7 +1196,7 @@
         "smithy.api#documentation": "Gets the integration logs for the current team.\n\nRequired scopes — user: `admin`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — Internal Error\n  - `missing_argument` — A required argument is missing.\n\nSee https://docs.slack.dev/reference/methods/team.integrationLogs"
       }
     },
-    "com.slack.team#PreferencesListResponse": {
+    "com.slack.team#ListPreferencesResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -1234,13 +1235,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.team#PreferencesList": {
+    "com.slack.team#ListPreferences": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.slack.team#PreferencesListResponse"
+        "target": "com.slack.team#ListPreferencesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1251,7 +1252,7 @@
         "smithy.api#documentation": "Retrieve a list of a workspace's team preferences.\n\nRequired scopes — bot: `team.preferences:read`; user: `team.preferences:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_auth` — Invalid token provided.\n  - `invalid_team` — Cannot find a workspace associated with the presented token.\n\nSee https://docs.slack.dev/reference/methods/team.preferences.list"
       }
     },
-    "com.slack.team#ProfileGetRequestVisibility": {
+    "com.slack.team#GetProfileRequestVisibility": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -1275,11 +1276,11 @@
       },
       "traits": {}
     },
-    "com.slack.team#ProfileGetRequest": {
+    "com.slack.team#GetProfileRequest": {
       "type": "structure",
       "members": {
         "visibility": {
-          "target": "com.slack.team#ProfileGetRequestVisibility",
+          "target": "com.slack.team#GetProfileRequestVisibility",
           "traits": {
             "smithy.api#httpQuery": "visibility",
             "smithy.api#documentation": "Filter by visibility."
@@ -1290,33 +1291,33 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.team#ProfileGetResponseProfileFieldsList": {
+    "com.slack.team#GetProfileResponseProfileFieldsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.slack.team#ProfileGetResponseProfileSectionsList": {
+    "com.slack.team#GetProfileResponseProfileSectionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.slack.team#ProfileGetResponseProfile": {
+    "com.slack.team#GetProfileResponseProfile": {
       "type": "structure",
       "members": {
         "fields": {
-          "target": "com.slack.team#ProfileGetResponseProfileFieldsList"
+          "target": "com.slack.team#GetProfileResponseProfileFieldsList"
         },
         "sections": {
-          "target": "com.slack.team#ProfileGetResponseProfileSectionsList"
+          "target": "com.slack.team#GetProfileResponseProfileSectionsList"
         }
       },
       "traits": {}
     },
-    "com.slack.team#ProfileGetResponse": {
+    "com.slack.team#GetProfileResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -1327,7 +1328,7 @@
           }
         },
         "profile": {
-          "target": "com.slack.team#ProfileGetResponseProfile",
+          "target": "com.slack.team#GetProfileResponseProfile",
           "traits": {
             "smithy.api#required": {}
           }
@@ -1337,13 +1338,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.team#ProfileGet": {
+    "com.slack.team#GetProfile": {
       "type": "operation",
       "input": {
-        "target": "com.slack.team#ProfileGetRequest"
+        "target": "com.slack.team#GetProfileRequest"
       },
       "output": {
-        "target": "com.slack.team#ProfileGetResponse"
+        "target": "com.slack.team#GetProfileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1368,22 +1369,22 @@
           "target": "com.slack.team#BillingInfo"
         },
         {
-          "target": "com.slack.team#ExternalTeamsDisconnect"
+          "target": "com.slack.team#DisconnectExternalTeam"
         },
         {
-          "target": "com.slack.team#ExternalTeamsList"
+          "target": "com.slack.team#ListExternalTeams"
         },
         {
-          "target": "com.slack.team#Info"
+          "target": "com.slack.team#TeamInfo"
         },
         {
           "target": "com.slack.team#IntegrationLogs"
         },
         {
-          "target": "com.slack.team#PreferencesList"
+          "target": "com.slack.team#ListPreferences"
         },
         {
-          "target": "com.slack.team#ProfileGet"
+          "target": "com.slack.team#GetProfile"
         }
       ],
       "traits": {

@@ -13,29 +13,7 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export interface RevokeRequest {
-  /** Setting this parameter to `1` triggers a _testing mode_ where the specified token will not actually be revoked. */
-  test?: boolean;
-}
-export const RevokeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    test: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/auth.revoke", code: 200 })),
-).annotate({ identifier: "RevokeRequest" }) as any as S.Schema<RevokeRequest>;
-
-export interface RevokeResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  revoked: boolean;
-}
-export const RevokeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    revoked: S.Boolean,
-  }),
-).annotate({ identifier: "RevokeResponse" }) as any as S.Schema<RevokeResponse>;
-
-export interface TeamsListRequest {
+export interface ListTeamsRequest {
   /** The maximum number of workspaces to return. Must be a positive integer no larger than 1000. */
   limit?: number;
   /** Set `cursor` to `next_cursor` returned by the previous call to list items in the next page. */
@@ -43,7 +21,7 @@ export interface TeamsListRequest {
   /** Whether to return icon paths for each workspace. An icon path represents a URI pointing to the image signifying the workspace. */
   include_icon?: boolean;
 }
-export const TeamsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListTeamsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     limit: S.optional(S.Number),
     cursor: S.optional(S.String),
@@ -57,11 +35,11 @@ export const TeamsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TeamsListRequest",
-}) as any as S.Schema<TeamsListRequest>;
+  identifier: "ListTeamsRequest",
+}) as any as S.Schema<ListTeamsRequest>;
 
 /** Paths to icons */
-export interface TeamsListResponseTeamsItemIcon {
+export interface ListTeamsResponseTeamsItemIcon {
   image_34?: string;
   image_44?: string;
   image_68?: string;
@@ -71,7 +49,7 @@ export interface TeamsListResponseTeamsItemIcon {
   image_230?: string;
   image_default?: boolean;
 }
-export const TeamsListResponseTeamsItemIcon = /*@__PURE__*/ S.suspend(() =>
+export const ListTeamsResponseTeamsItemIcon = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     image_34: S.optional(S.String),
     image_44: S.optional(S.String),
@@ -83,68 +61,96 @@ export const TeamsListResponseTeamsItemIcon = /*@__PURE__*/ S.suspend(() =>
     image_default: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "TeamsListResponseTeamsItemIcon",
-}) as any as S.Schema<TeamsListResponseTeamsItemIcon>;
+  identifier: "ListTeamsResponseTeamsItemIcon",
+}) as any as S.Schema<ListTeamsResponseTeamsItemIcon>;
 
-export interface TeamsListResponseTeamsItem {
+export interface ListTeamsResponseTeamsItem {
   /** ID of the workspace */
   id?: string;
   /** Name of the workspace */
   name: string;
   /** Paths to icons */
-  icon?: TeamsListResponseTeamsItemIcon;
+  icon?: ListTeamsResponseTeamsItemIcon;
 }
-export const TeamsListResponseTeamsItem = /*@__PURE__*/ S.suspend(() =>
+export const ListTeamsResponseTeamsItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.String,
-    icon: S.optional(TeamsListResponseTeamsItemIcon),
+    icon: S.optional(ListTeamsResponseTeamsItemIcon),
   }),
 ).annotate({
-  identifier: "TeamsListResponseTeamsItem",
-}) as any as S.Schema<TeamsListResponseTeamsItem>;
+  identifier: "ListTeamsResponseTeamsItem",
+}) as any as S.Schema<ListTeamsResponseTeamsItem>;
 
-export type TeamsListResponseTeamsList = Array<TeamsListResponseTeamsItem>;
-export const TeamsListResponseTeamsList = /*@__PURE__*/ S.Array(
-  TeamsListResponseTeamsItem,
-) as any as S.Schema<TeamsListResponseTeamsList>;
+export type ListTeamsResponseTeamsList = Array<ListTeamsResponseTeamsItem>;
+export const ListTeamsResponseTeamsList = /*@__PURE__*/ S.Array(
+  ListTeamsResponseTeamsItem,
+) as any as S.Schema<ListTeamsResponseTeamsList>;
 
 /** Pagination metadata. An empty `next_cursor` means the last page. */
-export interface TeamsListResponseResponseMetadata {
+export interface ListTeamsResponseResponseMetadata {
   /** Cursor for the next page — pass as `cursor` on the next call. */
   next_cursor?: string;
 }
-export const TeamsListResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
+export const ListTeamsResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     next_cursor: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "TeamsListResponseResponseMetadata",
-}) as any as S.Schema<TeamsListResponseResponseMetadata>;
+  identifier: "ListTeamsResponseResponseMetadata",
+}) as any as S.Schema<ListTeamsResponseResponseMetadata>;
 
-export interface TeamsListResponse {
+export interface ListTeamsResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  teams: TeamsListResponseTeamsList;
+  teams: ListTeamsResponseTeamsList;
   /** Pagination metadata. An empty `next_cursor` means the last page. */
-  response_metadata?: TeamsListResponseResponseMetadata;
+  response_metadata?: ListTeamsResponseResponseMetadata;
 }
-export const TeamsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListTeamsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    teams: TeamsListResponseTeamsList,
-    response_metadata: S.optional(TeamsListResponseResponseMetadata),
+    teams: ListTeamsResponseTeamsList,
+    response_metadata: S.optional(ListTeamsResponseResponseMetadata),
   }),
 ).annotate({
-  identifier: "TeamsListResponse",
-}) as any as S.Schema<TeamsListResponse>;
+  identifier: "ListTeamsResponse",
+}) as any as S.Schema<ListTeamsResponse>;
 
-export interface TestRequest {}
-export const TestRequest = /*@__PURE__*/ S.suspend(() =>
+export interface RevokeAuthRequest {
+  /** Setting this parameter to `1` triggers a _testing mode_ where the specified token will not actually be revoked. */
+  test?: boolean;
+}
+export const RevokeAuthRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    test: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/auth.revoke", code: 200 })),
+).annotate({
+  identifier: "RevokeAuthRequest",
+}) as any as S.Schema<RevokeAuthRequest>;
+
+export interface RevokeAuthResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  revoked: boolean;
+}
+export const RevokeAuthResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    revoked: S.Boolean,
+  }),
+).annotate({
+  identifier: "RevokeAuthResponse",
+}) as any as S.Schema<RevokeAuthResponse>;
+
+export interface TestAuthRequest {}
+export const TestAuthRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "POST", uri: "/auth.test", code: 200 })),
-).annotate({ identifier: "TestRequest" }) as any as S.Schema<TestRequest>;
+).annotate({
+  identifier: "TestAuthRequest",
+}) as any as S.Schema<TestAuthRequest>;
 
-export interface TestResponse {
+export interface TestAuthResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   user_id?: string;
@@ -159,7 +165,7 @@ export interface TestResponse {
   is_enterprise_install?: boolean;
   expires_in?: number | null;
 }
-export const TestResponse = /*@__PURE__*/ S.suspend(() =>
+export const TestAuthResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     user_id: S.optional(S.String),
@@ -174,35 +180,22 @@ export const TestResponse = /*@__PURE__*/ S.suspend(() =>
     is_enterprise_install: S.optional(S.Boolean),
     expires_in: S.optional(S.NullOr(S.Number)),
   }),
-).annotate({ identifier: "TestResponse" }) as any as S.Schema<TestResponse>;
+).annotate({
+  identifier: "TestAuthResponse",
+}) as any as S.Schema<TestAuthResponse>;
 
-export type RevokeError = SlackOpError;
-/** Revokes a token. Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — Internal system error - `not_bearer_token` — Incompatible token type provided See https://docs.slack.dev/reference/methods/auth.revoke */
-export const revoke: API.OperationMethod<
-  RevokeRequest,
-  RevokeResponse,
-  RevokeError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RevokeRequest,
-  output: RevokeResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TeamsListError = SlackOpError;
+export type ListTeamsError = SlackOpError;
 /** Obtain a full list of workspaces your org-wide app has been approved for. Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_cursor` — Invalid cursor. - `invalid_limit` — The value passed for `limit` was not valid. - `invalid_auth` — The token doesn't have access to this endpoint. - `internal_error` — There was an internal error. See https://docs.slack.dev/reference/methods/auth.teams.list */
-export const teamsList: API.PaginatedOperationMethod<
-  TeamsListRequest,
-  TeamsListResponse,
-  TeamsListError,
+export const listTeams: API.PaginatedOperationMethod<
+  ListTeamsRequest,
+  ListTeamsResponse,
+  ListTeamsError,
   SlackOpContext,
-  TeamsListResponseTeamsItem
+  ListTeamsResponseTeamsItem
 > = /*@__PURE__*/ API.makePaginated(
   () => ({
-    input: TeamsListRequest,
-    output: TeamsListResponse,
+    input: ListTeamsRequest,
+    output: ListTeamsResponse,
     errors: [SlackError, SlackRateLimited],
     protocol: SlackProtocol,
     retry: Retry.Retry,
@@ -217,16 +210,31 @@ export const teamsList: API.PaginatedOperationMethod<
   slackPaginate,
 ) as any;
 
-export type TestError = SlackOpError;
-/** Checks authentication & identity. Rate limit tier: 5 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — An internal error has been found. - `invalid_auth` — Method was called with invalid credentials See https://docs.slack.dev/reference/methods/auth.test */
-export const test: API.OperationMethod<
-  TestRequest,
-  TestResponse,
-  TestError,
+export type RevokeAuthError = SlackOpError;
+/** Revokes a token. Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — Internal system error - `not_bearer_token` — Incompatible token type provided See https://docs.slack.dev/reference/methods/auth.revoke */
+export const revokeAuth: API.OperationMethod<
+  RevokeAuthRequest,
+  RevokeAuthResponse,
+  RevokeAuthError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TestRequest,
-  output: TestResponse,
+  input: RevokeAuthRequest,
+  output: RevokeAuthResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TestAuthError = SlackOpError;
+/** Checks authentication & identity. Rate limit tier: 5 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — An internal error has been found. - `invalid_auth` — Method was called with invalid credentials See https://docs.slack.dev/reference/methods/auth.test */
+export const testAuth: API.OperationMethod<
+  TestAuthRequest,
+  TestAuthResponse,
+  TestAuthError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TestAuthRequest,
+  output: TestAuthResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

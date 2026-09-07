@@ -13,72 +13,6 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export interface ConversationsRequest {
-  /** Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/apis/web-api/pagination) for more detail. */
-  cursor?: string;
-  /** Set to `true` to exclude archived channels from the list */
-  exclude_archived?: boolean;
-  /** Set to `true` to exclude muted channels from the list */
-  exclude_muted?: boolean;
-  /** The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. Must be an integer with a max value of 999. */
-  limit?: number;
-  /** encoded team id to list conversations in, required if org token is used */
-  team_id?: string;
-  /** Mix and match channel types by providing a comma-separated list of any combination of `public_channel`, `private_channel`, `mpim`, `im` */
-  types?: string;
-  /** Browse conversations by a specific user ID's membership. Non-public channels are restricted to those where the calling user shares membership. */
-  user?: string;
-}
-export const ConversationsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cursor: S.optional(S.String.pipe(T.Query())),
-    exclude_archived: S.optional(S.Boolean.pipe(T.Query())),
-    exclude_muted: S.optional(S.Boolean.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    team_id: S.optional(S.String.pipe(T.Query())),
-    types: S.optional(S.String.pipe(T.Query())),
-    user: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/users.conversations", code: 200 })),
-).annotate({
-  identifier: "ConversationsRequest",
-}) as any as S.Schema<ConversationsRequest>;
-
-export type ConversationsResponseChannelsList = Array<unknown>;
-export const ConversationsResponseChannelsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<ConversationsResponseChannelsList>;
-
-/** Pagination metadata. An empty `next_cursor` means the last page. */
-export interface ConversationsResponseResponseMetadata {
-  /** Cursor for the next page — pass as `cursor` on the next call. */
-  next_cursor?: string;
-}
-export const ConversationsResponseResponseMetadata = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      next_cursor: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ConversationsResponseResponseMetadata",
-}) as any as S.Schema<ConversationsResponseResponseMetadata>;
-
-export interface ConversationsResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  channels: ConversationsResponseChannelsList;
-  /** Pagination metadata. An empty `next_cursor` means the last page. */
-  response_metadata?: ConversationsResponseResponseMetadata;
-}
-export const ConversationsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    channels: ConversationsResponseChannelsList,
-    response_metadata: S.optional(ConversationsResponseResponseMetadata),
-  }),
-).annotate({
-  identifier: "ConversationsResponse",
-}) as any as S.Schema<ConversationsResponse>;
-
 export interface DeletePhotoRequest {}
 export const DeletePhotoRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -99,37 +33,6 @@ export const DeletePhotoResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeletePhotoResponse",
 }) as any as S.Schema<DeletePhotoResponse>;
-
-export interface DiscoverableContactsLookupRequest {
-  email: string;
-}
-export const DiscoverableContactsLookupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    email: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/users.discoverableContacts.lookup",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DiscoverableContactsLookupRequest",
-}) as any as S.Schema<DiscoverableContactsLookupRequest>;
-
-export interface DiscoverableContactsLookupResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  is_discoverable: boolean;
-}
-export const DiscoverableContactsLookupResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    is_discoverable: S.Boolean,
-  }),
-).annotate({
-  identifier: "DiscoverableContactsLookupResponse",
-}) as any as S.Schema<DiscoverableContactsLookupResponse>;
 
 export interface GetPresenceRequest {
   /** User to get presence info on. Defaults to the authed user. */
@@ -167,60 +70,36 @@ export const GetPresenceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPresenceResponse",
 }) as any as S.Schema<GetPresenceResponse>;
 
-export interface IdentityRequest {}
-export const IdentityRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/users.identity", code: 200 }),
-  ),
+export interface GetProfileRequest {
+  /** Include labels for each ID in custom profile fields. Using this parameter will heavily rate-limit your requests and is not recommended. */
+  include_labels?: boolean;
+  /** User to retrieve profile info for */
+  user?: string;
+}
+export const GetProfileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    include_labels: S.optional(S.Boolean.pipe(T.Query())),
+    user: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/users.profile.get", code: 200 })),
 ).annotate({
-  identifier: "IdentityRequest",
-}) as any as S.Schema<IdentityRequest>;
+  identifier: "GetProfileRequest",
+}) as any as S.Schema<GetProfileRequest>;
 
-export interface IdentityResponse {
+export interface GetProfileResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
+  profile: unknown;
 }
-export const IdentityResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetProfileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
+    profile: S.Unknown,
   }),
 ).annotate({
-  identifier: "IdentityResponse",
-}) as any as S.Schema<IdentityResponse>;
+  identifier: "GetProfileResponse",
+}) as any as S.Schema<GetProfileResponse>;
 
-export interface InfoRequest {
-  /** Set this to `true` to receive the locale for this user. Defaults to `false` */
-  include_locale?: boolean;
-  /** User to get info on */
-  user: string;
-}
-export const InfoRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    include_locale: S.optional(S.Boolean.pipe(T.Query())),
-    user: S.String.pipe(T.Query()),
-  }).pipe(T.Http({ method: "GET", uri: "/users.info", code: 200 })),
-).annotate({ identifier: "InfoRequest" }) as any as S.Schema<InfoRequest>;
-
-export type InfoResponseUsersList = Array<unknown>;
-export const InfoResponseUsersList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<InfoResponseUsersList>;
-
-export interface InfoResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  user?: unknown;
-  users?: InfoResponseUsersList;
-}
-export const InfoResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    user: S.optional(S.Unknown),
-    users: S.optional(InfoResponseUsersList),
-  }),
-).annotate({ identifier: "InfoResponse" }) as any as S.Schema<InfoResponse>;
-
-export interface ListRequest {
+export interface ListUsersRequest {
   /** Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/apis/web-api/pagination) for more detail. */
   cursor?: string;
   /** Set this to `true` to receive the locale for users. Defaults to `false` */
@@ -230,44 +109,55 @@ export interface ListRequest {
   /** encoded team id to list users in, required if org token is used */
   team_id?: string;
 }
-export const ListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListUsersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     cursor: S.optional(S.String.pipe(T.Query())),
     include_locale: S.optional(S.Boolean.pipe(T.Query())),
     limit: S.optional(S.Number.pipe(T.Query())),
     team_id: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/users.list", code: 200 })),
-).annotate({ identifier: "ListRequest" }) as any as S.Schema<ListRequest>;
+).annotate({
+  identifier: "ListUsersRequest",
+}) as any as S.Schema<ListUsersRequest>;
 
-export type ListResponseMembersList = Array<unknown>;
-export const ListResponseMembersList = /*@__PURE__*/ S.Array(
+export type ListUsersResponseMembersList = Array<unknown>;
+export const ListUsersResponseMembersList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<ListResponseMembersList>;
+) as any as S.Schema<ListUsersResponseMembersList>;
 
 /** Pagination metadata. An empty `next_cursor` means the last page. */
-export type ListResponseResponseMetadata =
-  ConversationsResponseResponseMetadata;
-export const ListResponseResponseMetadata =
-  ConversationsResponseResponseMetadata;
+export interface ListUsersResponseResponseMetadata {
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
+}
+export const ListUsersResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    next_cursor: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListUsersResponseResponseMetadata",
+}) as any as S.Schema<ListUsersResponseResponseMetadata>;
 
-export interface ListResponse {
+export interface ListUsersResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  members: ListResponseMembersList;
+  members: ListUsersResponseMembersList;
   cache_ts: number;
   /** Pagination metadata. An empty `next_cursor` means the last page. */
-  response_metadata?: ConversationsResponseResponseMetadata;
+  response_metadata?: ListUsersResponseResponseMetadata;
   offset?: string;
 }
-export const ListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListUsersResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    members: ListResponseMembersList,
+    members: ListUsersResponseMembersList,
     cache_ts: S.Number,
-    response_metadata: S.optional(ConversationsResponseResponseMetadata),
+    response_metadata: S.optional(ListUsersResponseResponseMetadata),
     offset: S.optional(S.String),
   }),
-).annotate({ identifier: "ListResponse" }) as any as S.Schema<ListResponse>;
+).annotate({
+  identifier: "ListUsersResponse",
+}) as any as S.Schema<ListUsersResponse>;
 
 export interface LookupByEmailRequest {
   /** An email address belonging to a user in the workspace */
@@ -295,73 +185,36 @@ export const LookupByEmailResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "LookupByEmailResponse",
 }) as any as S.Schema<LookupByEmailResponse>;
 
-export interface ProfileGetRequest {
-  /** Include labels for each ID in custom profile fields. Using this parameter will heavily rate-limit your requests and is not recommended. */
-  include_labels?: boolean;
-  /** User to retrieve profile info for */
-  user?: string;
+export interface LookupDiscoverableContactRequest {
+  email: string;
 }
-export const ProfileGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const LookupDiscoverableContactRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    include_labels: S.optional(S.Boolean.pipe(T.Query())),
-    user: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/users.profile.get", code: 200 })),
+    email: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/users.discoverableContacts.lookup",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "ProfileGetRequest",
-}) as any as S.Schema<ProfileGetRequest>;
+  identifier: "LookupDiscoverableContactRequest",
+}) as any as S.Schema<LookupDiscoverableContactRequest>;
 
-export interface ProfileGetResponse {
+export interface LookupDiscoverableContactResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  profile: unknown;
+  is_discoverable: boolean;
 }
-export const ProfileGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const LookupDiscoverableContactResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    profile: S.Unknown,
+    is_discoverable: S.Boolean,
   }),
 ).annotate({
-  identifier: "ProfileGetResponse",
-}) as any as S.Schema<ProfileGetResponse>;
-
-export interface ProfileSetRequest {
-  /** Name of a single key to set. Usable only if `profile` is not passed. */
-  name?: string;
-  /** Collection of key:value pairs presented as a URL-encoded JSON hash. At most 50 fields may be set. Each field name is limited to 255 characters. */
-  profile?: string;
-  /** ID of user to change. This argument may only be specified by admins on paid teams. */
-  user?: string;
-  /** Value to set a single key to. Usable only if `profile` is not passed. */
-  value?: string;
-}
-export const ProfileSetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    profile: S.optional(S.String),
-    user: S.optional(S.String),
-    value: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/users.profile.set", code: 200 })),
-).annotate({
-  identifier: "ProfileSetRequest",
-}) as any as S.Schema<ProfileSetRequest>;
-
-export interface ProfileSetResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  username: string;
-  profile: unknown;
-  email_pending?: string;
-}
-export const ProfileSetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    username: S.String,
-    profile: S.Unknown,
-    email_pending: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProfileSetResponse",
-}) as any as S.Schema<ProfileSetResponse>;
+  identifier: "LookupDiscoverableContactResponse",
+}) as any as S.Schema<LookupDiscoverableContactResponse>;
 
 export interface SetActiveRequest {}
 export const SetActiveRequest = /*@__PURE__*/ S.suspend(() =>
@@ -460,31 +313,159 @@ export const SetPresenceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SetPresenceResponse",
 }) as any as S.Schema<SetPresenceResponse>;
 
-export type ConversationsError = SlackOpError;
-/** List conversations the calling user is a member of. Required scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `invalid_limit` — Value passed for `limit` is not understood. - `invalid_types` — Value passed for `type` could not be used based on the method's capabilities or the permission scopes granted to the used token. - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method. - `missing_argument` — A required argument is missing. - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation. See https://docs.slack.dev/reference/methods/users.conversations */
-export const conversations: API.PaginatedOperationMethod<
-  ConversationsRequest,
-  ConversationsResponse,
-  ConversationsError,
-  SlackOpContext,
-  unknown
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: ConversationsRequest,
-    output: ConversationsResponse,
-    errors: [SlackError, SlackRateLimited],
-    protocol: SlackProtocol,
-    retry: Retry.Retry,
-    pagination: {
-      mode: "cursor",
-      inputToken: "cursor",
-      outputToken: "response_metadata.next_cursor",
-      items: "channels",
-      pageSize: "limit",
-    } as const,
+export interface SetProfileRequest {
+  /** Name of a single key to set. Usable only if `profile` is not passed. */
+  name?: string;
+  /** Collection of key:value pairs presented as a URL-encoded JSON hash. At most 50 fields may be set. Each field name is limited to 255 characters. */
+  profile?: string;
+  /** ID of user to change. This argument may only be specified by admins on paid teams. */
+  user?: string;
+  /** Value to set a single key to. Usable only if `profile` is not passed. */
+  value?: string;
+}
+export const SetProfileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    profile: S.optional(S.String),
+    user: S.optional(S.String),
+    value: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/users.profile.set", code: 200 })),
+).annotate({
+  identifier: "SetProfileRequest",
+}) as any as S.Schema<SetProfileRequest>;
+
+export interface SetProfileResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  username: string;
+  profile: unknown;
+  email_pending?: string;
+}
+export const SetProfileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    username: S.String,
+    profile: S.Unknown,
+    email_pending: S.optional(S.String),
   }),
-  slackPaginate,
-) as any;
+).annotate({
+  identifier: "SetProfileResponse",
+}) as any as S.Schema<SetProfileResponse>;
+
+export interface UsersConversationsRequest {
+  /** Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/apis/web-api/pagination) for more detail. */
+  cursor?: string;
+  /** Set to `true` to exclude archived channels from the list */
+  exclude_archived?: boolean;
+  /** Set to `true` to exclude muted channels from the list */
+  exclude_muted?: boolean;
+  /** The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. Must be an integer with a max value of 999. */
+  limit?: number;
+  /** encoded team id to list conversations in, required if org token is used */
+  team_id?: string;
+  /** Mix and match channel types by providing a comma-separated list of any combination of `public_channel`, `private_channel`, `mpim`, `im` */
+  types?: string;
+  /** Browse conversations by a specific user ID's membership. Non-public channels are restricted to those where the calling user shares membership. */
+  user?: string;
+}
+export const UsersConversationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cursor: S.optional(S.String.pipe(T.Query())),
+    exclude_archived: S.optional(S.Boolean.pipe(T.Query())),
+    exclude_muted: S.optional(S.Boolean.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    team_id: S.optional(S.String.pipe(T.Query())),
+    types: S.optional(S.String.pipe(T.Query())),
+    user: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/users.conversations", code: 200 })),
+).annotate({
+  identifier: "UsersConversationsRequest",
+}) as any as S.Schema<UsersConversationsRequest>;
+
+export type UsersConversationsResponseChannelsList = Array<unknown>;
+export const UsersConversationsResponseChannelsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<UsersConversationsResponseChannelsList>;
+
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type UsersConversationsResponseResponseMetadata =
+  ListUsersResponseResponseMetadata;
+export const UsersConversationsResponseResponseMetadata =
+  ListUsersResponseResponseMetadata;
+
+export interface UsersConversationsResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  channels: UsersConversationsResponseChannelsList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: ListUsersResponseResponseMetadata;
+}
+export const UsersConversationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    channels: UsersConversationsResponseChannelsList,
+    response_metadata: S.optional(ListUsersResponseResponseMetadata),
+  }),
+).annotate({
+  identifier: "UsersConversationsResponse",
+}) as any as S.Schema<UsersConversationsResponse>;
+
+export interface UsersIdentityRequest {}
+export const UsersIdentityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/users.identity", code: 200 }),
+  ),
+).annotate({
+  identifier: "UsersIdentityRequest",
+}) as any as S.Schema<UsersIdentityRequest>;
+
+export interface UsersIdentityResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+}
+export const UsersIdentityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+  }),
+).annotate({
+  identifier: "UsersIdentityResponse",
+}) as any as S.Schema<UsersIdentityResponse>;
+
+export interface UsersInfoRequest {
+  /** Set this to `true` to receive the locale for this user. Defaults to `false` */
+  include_locale?: boolean;
+  /** User to get info on */
+  user: string;
+}
+export const UsersInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    include_locale: S.optional(S.Boolean.pipe(T.Query())),
+    user: S.String.pipe(T.Query()),
+  }).pipe(T.Http({ method: "GET", uri: "/users.info", code: 200 })),
+).annotate({
+  identifier: "UsersInfoRequest",
+}) as any as S.Schema<UsersInfoRequest>;
+
+export type UsersInfoResponseUsersList = Array<unknown>;
+export const UsersInfoResponseUsersList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<UsersInfoResponseUsersList>;
+
+export interface UsersInfoResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  user?: unknown;
+  users?: UsersInfoResponseUsersList;
+}
+export const UsersInfoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    user: S.optional(S.Unknown),
+    users: S.optional(UsersInfoResponseUsersList),
+  }),
+).annotate({
+  identifier: "UsersInfoResponse",
+}) as any as S.Schema<UsersInfoResponse>;
 
 export type DeletePhotoError = SlackOpError;
 /** Delete the user profile photo Required scopes — user: `users.profile:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — An unexpected error occurred. See https://docs.slack.dev/reference/methods/users.deletePhoto */
@@ -496,21 +477,6 @@ export const deletePhoto: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeletePhotoRequest,
   output: DeletePhotoResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DiscoverableContactsLookupError = SlackOpError;
-/** Look up an email address to see if someone is discoverable on Slack Required scopes — bot: `conversations.connect:manage`, `team:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `not_allowed` — user is not allowed to call this API - `ratelimited` — too many attempts - `invalid_arguments` — Invalid arguments (including exceeding character count) - `restricted_action` — user is restricted from calling this API - `not_an_enterprise` — The token does not belong to an enterprise. See https://docs.slack.dev/reference/methods/users.discoverableContacts.lookup */
-export const discoverableContactsLookup: API.OperationMethod<
-  DiscoverableContactsLookupRequest,
-  DiscoverableContactsLookupResponse,
-  DiscoverableContactsLookupError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DiscoverableContactsLookupRequest,
-  output: DiscoverableContactsLookupResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
@@ -531,48 +497,33 @@ export const getPresence: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IdentityError = SlackOpError;
-/** Get a user's identity. Required scopes — user: `identity:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — Internal error - `invalid_user_id` — Invalid user id provided - `email_not_verified` — user email has not been verified See https://docs.slack.dev/reference/methods/users.identity */
-export const identity: API.OperationMethod<
-  IdentityRequest,
-  IdentityResponse,
-  IdentityError,
+export type GetProfileError = SlackOpError;
+/** Retrieve a user's profile information, including their custom status. Required scopes — bot: `users.profile:read`; user: `users.profile:read` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `user_not_found` — Value passed for `user` was invalid. - `token_revoked` — The token being used is not valid. - `ratelimited` — You are attempting to call this method too frequently. See https://docs.slack.dev/reference/methods/users.profile.get */
+export const getProfile: API.OperationMethod<
+  GetProfileRequest,
+  GetProfileResponse,
+  GetProfileError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IdentityRequest,
-  output: IdentityResponse,
+  input: GetProfileRequest,
+  output: GetProfileResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type InfoError = SlackOpError;
-/** Gets information about a user. Required scopes — bot: `users:read`; user: `users:read` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `too_many_users` — Too many users. - `user_not_found` — Value passed for `user` was invalid. - `user_not_visible` — The requested user is not visible to the calling user See https://docs.slack.dev/reference/methods/users.info */
-export const info: API.OperationMethod<
-  InfoRequest,
-  InfoResponse,
-  InfoError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InfoRequest,
-  output: InfoResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListError = SlackOpError;
+export type ListUsersError = SlackOpError;
 /** Lists all users in a Slack team. Required scopes — bot: `users:read`; user: `users:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `limit_required` — For large teams a limit is required. - `missing_argument` — A required argument is missing. See https://docs.slack.dev/reference/methods/users.list */
-export const list: API.PaginatedOperationMethod<
-  ListRequest,
-  ListResponse,
-  ListError,
+export const listUsers: API.PaginatedOperationMethod<
+  ListUsersRequest,
+  ListUsersResponse,
+  ListUsersError,
   SlackOpContext,
   unknown
 > = /*@__PURE__*/ API.makePaginated(
   () => ({
-    input: ListRequest,
-    output: ListResponse,
+    input: ListUsersRequest,
+    output: ListUsersResponse,
     errors: [SlackError, SlackRateLimited],
     protocol: SlackProtocol,
     retry: Retry.Retry,
@@ -602,31 +553,16 @@ export const lookupByEmail: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ProfileGetError = SlackOpError;
-/** Retrieve a user's profile information, including their custom status. Required scopes — bot: `users.profile:read`; user: `users.profile:read` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `user_not_found` — Value passed for `user` was invalid. - `token_revoked` — The token being used is not valid. - `ratelimited` — You are attempting to call this method too frequently. See https://docs.slack.dev/reference/methods/users.profile.get */
-export const profileGet: API.OperationMethod<
-  ProfileGetRequest,
-  ProfileGetResponse,
-  ProfileGetError,
+export type LookupDiscoverableContactError = SlackOpError;
+/** Look up an email address to see if someone is discoverable on Slack Required scopes — bot: `conversations.connect:manage`, `team:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `not_allowed` — user is not allowed to call this API - `ratelimited` — too many attempts - `invalid_arguments` — Invalid arguments (including exceeding character count) - `restricted_action` — user is restricted from calling this API - `not_an_enterprise` — The token does not belong to an enterprise. See https://docs.slack.dev/reference/methods/users.discoverableContacts.lookup */
+export const lookupDiscoverableContact: API.OperationMethod<
+  LookupDiscoverableContactRequest,
+  LookupDiscoverableContactResponse,
+  LookupDiscoverableContactError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProfileGetRequest,
-  output: ProfileGetResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProfileSetError = SlackOpError;
-/** Set a user's profile information, including custom status. Required scopes — user: `users.profile:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `cannot_update_admin_user` — Only a primary owner can update the profile of an admin. - `email_taken` — email taken - `invalid_profile` — Profile object passed in is not valid JSON (make sure it is URL encoded!). - `must_clear_both_status_text_and_status_emoji` — Clearing the status requires setting both `status_text` and `status_emoji` to ''. - `name_not_allowed` — name cannot contain URL. - `not_admin` — Only admins can update the profile of another user. Some fields, like `email` may only be updated by an admin. - `not_app_admin` — Only team owners and selected members can update the profile of a bot user. - `partial_profile_set_failed` — Failed to set user profile. - `profile_set_failed` — Failed to set user profile. - `reserved_name` — First or last name are reserved. - `sudo_required` — Request requires sudo session. - `too_long` — You attempted to set a custom status but it was longer than the maximum allowed, 100. - `permission_denied` — Permission denied. - `username_same` — Username is the same as the current username. - `invalid_emoji_not_allowed` — Invalid emoji not allowed. - `invalid_ooo_message` — Invalid Out of Office message. - `invalid_starts_with_at` — Name cannot start with @. See https://docs.slack.dev/reference/methods/users.profile.set */
-export const profileSet: API.OperationMethod<
-  ProfileSetRequest,
-  ProfileSetResponse,
-  ProfileSetError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProfileSetRequest,
-  output: ProfileSetResponse,
+  input: LookupDiscoverableContactRequest,
+  output: LookupDiscoverableContactResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
@@ -672,6 +608,77 @@ export const setPresence: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SetPresenceRequest,
   output: SetPresenceResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SetProfileError = SlackOpError;
+/** Set a user's profile information, including custom status. Required scopes — user: `users.profile:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `cannot_update_admin_user` — Only a primary owner can update the profile of an admin. - `email_taken` — email taken - `invalid_profile` — Profile object passed in is not valid JSON (make sure it is URL encoded!). - `must_clear_both_status_text_and_status_emoji` — Clearing the status requires setting both `status_text` and `status_emoji` to ''. - `name_not_allowed` — name cannot contain URL. - `not_admin` — Only admins can update the profile of another user. Some fields, like `email` may only be updated by an admin. - `not_app_admin` — Only team owners and selected members can update the profile of a bot user. - `partial_profile_set_failed` — Failed to set user profile. - `profile_set_failed` — Failed to set user profile. - `reserved_name` — First or last name are reserved. - `sudo_required` — Request requires sudo session. - `too_long` — You attempted to set a custom status but it was longer than the maximum allowed, 100. - `permission_denied` — Permission denied. - `username_same` — Username is the same as the current username. - `invalid_emoji_not_allowed` — Invalid emoji not allowed. - `invalid_ooo_message` — Invalid Out of Office message. - `invalid_starts_with_at` — Name cannot start with @. See https://docs.slack.dev/reference/methods/users.profile.set */
+export const setProfile: API.OperationMethod<
+  SetProfileRequest,
+  SetProfileResponse,
+  SetProfileError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SetProfileRequest,
+  output: SetProfileResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UsersConversationsError = SlackOpError;
+/** List conversations the calling user is a member of. Required scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `invalid_limit` — Value passed for `limit` is not understood. - `invalid_types` — Value passed for `type` could not be used based on the method's capabilities or the permission scopes granted to the used token. - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method. - `missing_argument` — A required argument is missing. - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation. See https://docs.slack.dev/reference/methods/users.conversations */
+export const usersConversations: API.PaginatedOperationMethod<
+  UsersConversationsRequest,
+  UsersConversationsResponse,
+  UsersConversationsError,
+  SlackOpContext,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: UsersConversationsRequest,
+    output: UsersConversationsResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "channels",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
+
+export type UsersIdentityError = SlackOpError;
+/** Get a user's identity. Required scopes — user: `identity:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — Internal error - `invalid_user_id` — Invalid user id provided - `email_not_verified` — user email has not been verified See https://docs.slack.dev/reference/methods/users.identity */
+export const usersIdentity: API.OperationMethod<
+  UsersIdentityRequest,
+  UsersIdentityResponse,
+  UsersIdentityError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UsersIdentityRequest,
+  output: UsersIdentityResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UsersInfoError = SlackOpError;
+/** Gets information about a user. Required scopes — bot: `users:read`; user: `users:read` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `too_many_users` — Too many users. - `user_not_found` — Value passed for `user` was invalid. - `user_not_visible` — The requested user is not visible to the calling user See https://docs.slack.dev/reference/methods/users.info */
+export const usersInfo: API.OperationMethod<
+  UsersInfoRequest,
+  UsersInfoResponse,
+  UsersInfoError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UsersInfoRequest,
+  output: UsersInfoResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

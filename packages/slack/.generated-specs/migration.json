@@ -14,21 +14,22 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.migration#ExchangeRequestUsersList": {
+    "com.slack.migration#MigrationExchangeRequestUsersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.migration#ExchangeRequest": {
+    "com.slack.migration#MigrationExchangeRequest": {
       "type": "structure",
       "members": {
         "users": {
-          "target": "com.slack.migration#ExchangeRequestUsersList",
+          "target": "com.slack.migration#MigrationExchangeRequestUsersList",
           "traits": {
             "smithy.api#httpQuery": "users",
             "smithy.api#required": {},
@@ -54,7 +55,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.migration#ExchangeResponseUserIdMapMap": {
+    "com.slack.migration#MigrationExchangeResponseUserIdMapMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -64,14 +65,14 @@
       },
       "traits": {}
     },
-    "com.slack.migration#ExchangeResponseInvalidUserIdsList": {
+    "com.slack.migration#MigrationExchangeResponseInvalidUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.migration#ExchangeResponse": {
+    "com.slack.migration#MigrationExchangeResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -94,26 +95,26 @@
           }
         },
         "user_id_map": {
-          "target": "com.slack.migration#ExchangeResponseUserIdMapMap",
+          "target": "com.slack.migration#MigrationExchangeResponseUserIdMapMap",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "invalid_user_ids": {
-          "target": "com.slack.migration#ExchangeResponseInvalidUserIdsList"
+          "target": "com.slack.migration#MigrationExchangeResponseInvalidUserIdsList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.slack.migration#Exchange": {
+    "com.slack.migration#MigrationExchange": {
       "type": "operation",
       "input": {
-        "target": "com.slack.migration#ExchangeRequest"
+        "target": "com.slack.migration#MigrationExchangeRequest"
       },
       "output": {
-        "target": "com.slack.migration#ExchangeResponse"
+        "target": "com.slack.migration#MigrationExchangeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -129,7 +130,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.migration#Exchange"
+          "target": "com.slack.migration#MigrationExchange"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.slack.assistant#SearchContextRequestChannelTypesItem": {
@@ -785,7 +786,7 @@
         "smithy.api#documentation": "Returns search capabilities on a given team.\n\nRequired scopes — user: `search:read.public`; bot: `search:read.public`\n\nRate limit tier: 2\n\nSee https://docs.slack.dev/reference/methods/assistant.search.info"
       }
     },
-    "com.slack.assistant#ThreadsSetStatusRequestLoadingMessagesList": {
+    "com.slack.assistant#SetStatusRequestLoadingMessagesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -794,7 +795,7 @@
         "smithy.api#documentation": "The list of messages to rotate through as a loading indicator. Maximum of 10 messages."
       }
     },
-    "com.slack.assistant#ThreadsSetStatusRequest": {
+    "com.slack.assistant#SetStatusRequest": {
       "type": "structure",
       "members": {
         "channel_id": {
@@ -819,7 +820,7 @@
           }
         },
         "loading_messages": {
-          "target": "com.slack.assistant#ThreadsSetStatusRequestLoadingMessagesList",
+          "target": "com.slack.assistant#SetStatusRequestLoadingMessagesList",
           "traits": {
             "smithy.api#documentation": "The list of messages to rotate through as a loading indicator. Maximum of 10 messages."
           }
@@ -847,7 +848,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.assistant#ThreadsSetStatusResponse": {
+    "com.slack.assistant#SetStatusResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -862,13 +863,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.assistant#ThreadsSetStatus": {
+    "com.slack.assistant#SetStatus": {
       "type": "operation",
       "input": {
-        "target": "com.slack.assistant#ThreadsSetStatusRequest"
+        "target": "com.slack.assistant#SetStatusRequest"
       },
       "output": {
-        "target": "com.slack.assistant#ThreadsSetStatusResponse"
+        "target": "com.slack.assistant#SetStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -879,7 +880,7 @@
         "smithy.api#documentation": "Set the status for an AI assistant thread.\n\nRequired scopes — bot: `chat:write`\n\nRate limit tier: 5\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Error returned when given an invalid channel_id\n  - `invalid_thread_ts` — Error returned when given an invalid thread_ts\n  - `reserved_username` — Reserved usernames are not allowed to be used.\n\nSee https://docs.slack.dev/reference/methods/assistant.threads.setStatus"
       }
     },
-    "com.slack.assistant#ThreadsSetSuggestedPromptsRequest": {
+    "com.slack.assistant#SetSuggestedPromptsRequest": {
       "type": "structure",
       "members": {
         "channel_id": {
@@ -913,7 +914,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.assistant#ThreadsSetSuggestedPromptsResponse": {
+    "com.slack.assistant#SetSuggestedPromptsResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -928,13 +929,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.assistant#ThreadsSetSuggestedPrompts": {
+    "com.slack.assistant#SetSuggestedPrompts": {
       "type": "operation",
       "input": {
-        "target": "com.slack.assistant#ThreadsSetSuggestedPromptsRequest"
+        "target": "com.slack.assistant#SetSuggestedPromptsRequest"
       },
       "output": {
-        "target": "com.slack.assistant#ThreadsSetSuggestedPromptsResponse"
+        "target": "com.slack.assistant#SetSuggestedPromptsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -945,7 +946,7 @@
         "smithy.api#documentation": "Set suggested prompts for the given assistant thread\n\nRequired scopes — bot: `assistant:write`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_thread_ts` — Thread not found\n  - `channel_not_found` — Error returned when given an invalid channel_id\n  - `message_not_found` — Error returned when given an invalid message\n  - `not_agent_app` — This method requires the app to be configured as an agent. Enable the Agent feature in your app configuration at https://api.slack.com/apps.\n\nSee https://docs.slack.dev/reference/methods/assistant.threads.setSuggestedPrompts"
       }
     },
-    "com.slack.assistant#ThreadsSetTitleRequest": {
+    "com.slack.assistant#SetTitleRequest": {
       "type": "structure",
       "members": {
         "channel_id": {
@@ -974,7 +975,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.assistant#ThreadsSetTitleResponse": {
+    "com.slack.assistant#SetTitleResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -989,13 +990,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.assistant#ThreadsSetTitle": {
+    "com.slack.assistant#SetTitle": {
       "type": "operation",
       "input": {
-        "target": "com.slack.assistant#ThreadsSetTitleRequest"
+        "target": "com.slack.assistant#SetTitleRequest"
       },
       "output": {
-        "target": "com.slack.assistant#ThreadsSetTitleResponse"
+        "target": "com.slack.assistant#SetTitleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1017,13 +1018,13 @@
           "target": "com.slack.assistant#SearchInfo"
         },
         {
-          "target": "com.slack.assistant#ThreadsSetStatus"
+          "target": "com.slack.assistant#SetStatus"
         },
         {
-          "target": "com.slack.assistant#ThreadsSetSuggestedPrompts"
+          "target": "com.slack.assistant#SetSuggestedPrompts"
         },
         {
-          "target": "com.slack.assistant#ThreadsSetTitle"
+          "target": "com.slack.assistant#SetTitle"
         }
       ],
       "traits": {

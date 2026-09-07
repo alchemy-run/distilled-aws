@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.slack.chat#AppendStreamRequestChunksList": {
@@ -105,7 +106,7 @@
         "smithy.api#documentation": "Appends text to an existing streaming conversation.\n\nRequired scopes — bot: `chat:write`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `message_not_in_streaming_state` — The message is not in the streaming state.\n  - `messaging_processing_failed` — Failed to process the message.\n  - `as_user_not_supported` — The `as_user` parameter does not function with workspace apps.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `duplicate_channel_not_found` — Channel associated with `client_msg_id` was invalid.\n  - `duplicate_message_not_found` — No duplicate message exists associated with `client_msg_id`.\n  - `ekm_access_denied` — Your message couldn’t be sent because your admins have disabled sending messages to this channel.\n  - `invalid_blocks` — Blocks submitted with this message are not valid.\n  - `invalid_chunks` — Chunks submitted with this message are not valid.\n  - `invalid_metadata_format` — Invalid metadata format provided\n  - `invalid_metadata_schema` — Invalid metadata schema provided\n  - `is_archived` — Channel has been archived.\n  - `message_limit_exceeded` — Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces\n  - `messages_tab_disabled` — Messages tab for the app is disabled.\n  - `metadata_must_be_sent_from_app` — Message metadata can only be posted or updated using an app-level token\n  - `msg_blocks_too_long` — Blocks submitted with this message are too long.\n  - `msg_blocks_too_many` — Max blocks exceeded, blocks are limited to 50 per message.\n  - `metadata_too_large` — Metadata exceeds size limit\n  - `no_text` — No message text provided\n  - `not_in_channel` — Cannot post user messages to a channel they are not in.\n  - `rate_limited` — Application has posted too many messages, [read the Rate Limit documentation](/apis/web-api/rate-limits) for more information\n  - `restricted_action` — A workspace preference prevents the authenticated user from posting.\n  - `restricted_action_non_threadable_channel` — Cannot post thread replies into a non_threadable channel.\n  - `restricted_action_read_only_channel` — Cannot post any message into a read-only channel.\n  - `restricted_action_thread_locked` — Cannot post replies to a thread that has been locked by admins.\n  - `restricted_action_thread_only_channel` — Cannot post top-level messages into a thread-only channel.\n  - `slack_connect_canvas_sharing_blocked` — Admin has disabled Canvas File sharing in all Slack Connect communications\n  - `slack_connect_file_link_sharing_blocked` — Admin has disabled Slack File sharing in all Slack Connect communications\n  - `slack_connect_lists_sharing_blocked` — Admin has disabled Lists sharing in all Slack Connect communications\n  - `team_not_found` — This error occurs if, when using an org-wide token, the `channel_name` is passed instead of the `channel_id`.\n  - `too_many_attachments` — Too many attachments were provided with this message. A maximum of 100 attachments are allowed on a message.\n  - `too_many_contact_cards` — Too many contact_cards were provided with this message. A maximum of 10 contact cards are allowed on a message.\n  - `message_not_found` — Message not found\n  - `channel_type_not_supported` — Channel type not supported\n  - `stopped_by_user` — The streaming message was stopped by the user and no further appends are accepted.\n  - `message_not_owned_by_app` — The message is not owned by the app.\n\nSee https://docs.slack.dev/reference/methods/chat.appendStream"
       }
     },
-    "com.slack.chat#DeleteRequest": {
+    "com.slack.chat#DeleteChatRequest": {
       "type": "structure",
       "members": {
         "as_user": {
@@ -133,7 +134,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.chat#DeleteResponse": {
+    "com.slack.chat#DeleteChatResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -160,13 +161,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.chat#Delete": {
+    "com.slack.chat#DeleteChat": {
       "type": "operation",
       "input": {
-        "target": "com.slack.chat#DeleteRequest"
+        "target": "com.slack.chat#DeleteChatRequest"
       },
       "output": {
-        "target": "com.slack.chat#DeleteResponse"
+        "target": "com.slack.chat#DeleteChatResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -838,7 +839,7 @@
         "smithy.api#documentation": "Sends a message to a channel.\n\nRequired scopes — bot: `chat:write`; user: `chat:write`\n\nRate limit tier: 5\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `app_access_restricted` — The user does not have permission to use this app.\n  - `as_user_not_supported` — The `as_user` parameter does not function with workspace apps.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `draft_already_deleted` — The draft has already been deleted.\n  - `draft_already_sent` — The draft has already been sent.\n  - `draft_has_conflict` — The client draft version is out of sync with the server draft version.\n  - `draft_not_found` — The draft was not found.\n  - `duplicate_channel_not_found` — Channel associated with `client_msg_id` was invalid.\n  - `duplicate_message_not_found` — No duplicate message exists associated with `client_msg_id`.\n  - `ekm_access_denied` — Your message couldn’t be sent because your admins have disabled sending messages to this channel.\n  - `invalid_blocks` — Blocks submitted with this message are not valid.\n  - `invalid_blocks_format` — The `blocks` is not a valid JSON object or doesn't match the Block Kit syntax.\n  - `invalid_metadata_format` — Invalid metadata format provided.\n  - `invalid_metadata_schema` — Invalid metadata schema provided.\n  - `is_archived` — Channel has been archived.\n  - `markdown_text_conflict` — Markdown text cannot be used in conjunction with `blocks` or `text` argument.\n  - `message_limit_exceeded` — Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces.\n  - `messages_tab_disabled` — Messages tab for the app is disabled.\n  - `metadata_must_be_sent_from_app` — Message metadata can only be posted or updated using an app-level token.\n  - `metadata_too_large` — Metadata exceeds size limit.\n  - `msg_blocks_too_long` — Blocks submitted with this message are too long.\n  - `no_text` — No message text provided.\n  - `not_in_channel` — Cannot post user messages to a channel they are not in.\n  - `rate_limited` — Application has posted too many messages, [read the Rate Limit documentation](/apis/web-api/rate-limits) for more information.\n  - `restricted_action` — A workspace preference prevents the authenticated user from posting.\n  - `restricted_action_non_threadable_channel` — Cannot post thread replies into a non_threadable channel.\n  - `restricted_action_read_only_channel` — Cannot post any message into a read-only channel.\n  - `restricted_action_thread_locked` — Cannot post replies to a thread that has been locked by admins.\n  - `restricted_action_thread_only_channel` — Cannot post top-level messages into a thread-only channel.\n  - `send_on_behalf_not_allowed` — Cannot send on behalf of the provided user.\n  - `slack_connect_canvas_sharing_blocked` — Admin has disabled Canvas File sharing in all Slack Connect communications.\n  - `slack_connect_file_link_sharing_blocked` — Admin has disabled Slack File sharing in all Slack Connect communications.\n  - `slack_connect_lists_sharing_blocked` — Admin has disabled Lists sharing in all Slack Connect communications.\n  - `team_not_found` — This error occurs if, when using an org-wide token, the `channel_name` is passed instead of the `channel_id`.\n  - `too_many_attachments` — Too many attachments were provided with this message. A maximum of 100 attachments are allowed on a message.\n  - `too_many_contact_cards` — Too many contact_cards were provided with this message. A maximum of 10 contact cards are allowed on a message.\n  - `cannot_reply_to_message` — This message type cannot have thread replies.\n  - `missing_file_data` — Attempted to share a file but some required data was missing.\n  - `attachment_payload_limit_exceeded` — Attachment payload size is too long.\n\nSee https://docs.slack.dev/reference/methods/chat.postMessage"
       }
     },
-    "com.slack.chat#ScheduledMessagesListRequest": {
+    "com.slack.chat#ListScheduledMessagesRequest": {
       "type": "structure",
       "members": {
         "channel": {
@@ -882,7 +883,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.chat#ScheduledMessagesListResponseScheduledMessagesItem": {
+    "com.slack.chat#ListScheduledMessagesResponseScheduledMessagesItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -915,14 +916,14 @@
       },
       "traits": {}
     },
-    "com.slack.chat#ScheduledMessagesListResponseScheduledMessagesList": {
+    "com.slack.chat#ListScheduledMessagesResponseScheduledMessagesList": {
       "type": "list",
       "member": {
-        "target": "com.slack.chat#ScheduledMessagesListResponseScheduledMessagesItem"
+        "target": "com.slack.chat#ListScheduledMessagesResponseScheduledMessagesItem"
       },
       "traits": {}
     },
-    "com.slack.chat#ScheduledMessagesListResponseResponseMetadata": {
+    "com.slack.chat#ListScheduledMessagesResponseResponseMetadata": {
       "type": "structure",
       "members": {
         "next_cursor": {
@@ -936,7 +937,7 @@
         "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
       }
     },
-    "com.slack.chat#ScheduledMessagesListResponse": {
+    "com.slack.chat#ListScheduledMessagesResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -947,13 +948,13 @@
           }
         },
         "scheduled_messages": {
-          "target": "com.slack.chat#ScheduledMessagesListResponseScheduledMessagesList",
+          "target": "com.slack.chat#ListScheduledMessagesResponseScheduledMessagesList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "response_metadata": {
-          "target": "com.slack.chat#ScheduledMessagesListResponseResponseMetadata",
+          "target": "com.slack.chat#ListScheduledMessagesResponseResponseMetadata",
           "traits": {
             "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
@@ -963,13 +964,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.chat#ScheduledMessagesList": {
+    "com.slack.chat#ListScheduledMessages": {
       "type": "operation",
       "input": {
-        "target": "com.slack.chat#ScheduledMessagesListRequest"
+        "target": "com.slack.chat#ListScheduledMessagesRequest"
       },
       "output": {
-        "target": "com.slack.chat#ScheduledMessagesListResponse"
+        "target": "com.slack.chat#ListScheduledMessagesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1486,7 +1487,7 @@
         "smithy.api#documentation": "Stops a streaming conversation.\n\nRequired scopes — bot: `chat:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `message_not_found` — The message was not found.\n  - `message_not_in_streaming_state` — The message is not in a streaming state.\n  - `as_user_not_supported` — The `as_user` parameter does not function with workspace apps.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `channel_type_not_supported` — Channel type not supported.\n  - `duplicate_channel_not_found` — Channel associated with `client_msg_id` was invalid.\n  - `duplicate_message_not_found` — No duplicate message exists associated with `client_msg_id`.\n  - `ekm_access_denied` — Your message couldn’t be sent because your admins have disabled sending messages to this channel.\n  - `invalid_blocks` — Blocks submitted with this message are not valid.\n  - `invalid_chunks` — Chunks submitted with this message are not valid.\n  - `invalid_metadata_format` — Invalid metadata format provided\n  - `invalid_metadata_schema` — Invalid metadata schema provided\n  - `is_archived` — Channel has been archived.\n  - `message_limit_exceeded` — Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces\n  - `message_not_owned_by_app` — The message is not owned by the app.\n  - `messages_tab_disabled` — Messages tab for the app is disabled.\n  - `metadata_must_be_sent_from_app` — Message metadata can only be posted or updated using an app-level token\n  - `metadata_too_large` — Metadata exceeds size limit\n  - `msg_blocks_too_long` — Blocks submitted with this message are too long.\n  - `msg_blocks_too_many` — Max blocks exceeded, blocks are limited to 50 per message.\n  - `no_text` — No message text provided\n  - `not_in_channel` — Cannot post user messages to a channel they are not in.\n  - `rate_limited` — Application has posted too many messages, [read the Rate Limit documentation](/apis/web-api/rate-limits) for more information\n  - `restricted_action` — A workspace preference prevents the authenticated user from posting.\n  - `restricted_action_non_threadable_channel` — Cannot post thread replies into a non_threadable channel.\n  - `restricted_action_read_only_channel` — Cannot post any message into a read-only channel.\n  - `restricted_action_thread_locked` — Cannot post replies to a thread that has been locked by admins.\n  - `restricted_action_thread_only_channel` — Cannot post top-level messages into a thread-only channel.\n  - `slack_connect_canvas_sharing_blocked` — Admin has disabled Canvas File sharing in all Slack Connect communications\n  - `slack_connect_file_link_sharing_blocked` — Admin has disabled Slack File sharing in all Slack Connect communications\n  - `slack_connect_lists_sharing_blocked` — Admin has disabled Lists sharing in all Slack Connect communications\n  - `team_not_found` — This error occurs if, when using an org-wide token, the `channel_name` is passed instead of the `channel_id`.\n  - `too_many_attachments` — Too many attachments were provided with this message. A maximum of 100 attachments are allowed on a message.\n  - `too_many_contact_cards` — Too many contact_cards were provided with this message. A maximum of 10 contact cards are allowed on a message.\n  - `cannot_reply_to_message` — This message type cannot have thread replies.\n  - `missing_file_data` — Attempted to share a file but some required data was missing.\n  - `attachment_payload_limit_exceeded` — Attachment payload size is too long.\n\nSee https://docs.slack.dev/reference/methods/chat.stopStream"
       }
     },
-    "com.slack.chat#UnfurlRequestSource": {
+    "com.slack.chat#ChatUnfurlRequestSource": {
       "type": "enum",
       "members": {
         "COMPOSER": {
@@ -1506,7 +1507,7 @@
         "smithy.api#documentation": "The source of the link to unfurl. The source may either be `composer`, when the link is inside the message composer, or `conversations_history`, when the link has been posted to a conversation."
       }
     },
-    "com.slack.chat#UnfurlRequest": {
+    "com.slack.chat#ChatUnfurlRequest": {
       "type": "structure",
       "members": {
         "channel": {
@@ -1560,7 +1561,7 @@
           }
         },
         "source": {
-          "target": "com.slack.chat#UnfurlRequestSource",
+          "target": "com.slack.chat#ChatUnfurlRequestSource",
           "traits": {
             "smithy.api#documentation": "The source of the link to unfurl. The source may either be `composer`, when the link is inside the message composer, or `conversations_history`, when the link has been posted to a conversation."
           }
@@ -1570,7 +1571,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.chat#UnfurlResponse": {
+    "com.slack.chat#ChatUnfurlResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -1585,13 +1586,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.chat#Unfurl": {
+    "com.slack.chat#ChatUnfurl": {
       "type": "operation",
       "input": {
-        "target": "com.slack.chat#UnfurlRequest"
+        "target": "com.slack.chat#ChatUnfurlRequest"
       },
       "output": {
-        "target": "com.slack.chat#UnfurlResponse"
+        "target": "com.slack.chat#ChatUnfurlResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1602,7 +1603,7 @@
         "smithy.api#documentation": "Provide custom unfurl behavior for user-posted URLs\n\nRequired scopes — bot: `links:write`; user: `links:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `cannot_auth_user` — The current user cannot be authenticated.\n  - `cannot_find_channel` — The specified channel could not be located for this token.\n  - `cannot_find_message` — The `ts` value in the request does not match a message.\n  - `cannot_find_service` — A record of your app being allowed to unfurl for this workspace could not be found.\n  - `cannot_parse_attachment` — The provided `unfurls` argument could not be parsed or understood.\n  - `cannot_prompt` — The current user has already interacted with and dismissed a prompt for this application.\n  - `cannot_unfurl_message` — The URL cannot be unfurled because the URL provided does not appear in the message.\n  - `cannot_unfurl_url` — The URL cannot be unfurled. This error may be returned if you haven't acknowledged a `link_shared` event tied to the same URL. It is also returned when the domain appears in a workspace's administrative blocklists.\n  - `invalid_unfurl_id` — The unfurl ID is invalid.\n  - `invalid_unfurls_format` — The `unfurls` parameter cannot be JSON-decoded into a map of URLs to attachments.\n  - `invalid_metadata_format` — The `metadata` parameter cannot be JSON-decoded into the expected format.\n  - `invalid_source` — The unfurl source is invalid.\n  - `missing_channel` — The request is missing the `channel` parameter\n  - `missing_source` — The request is missing the `source` parameter.\n  - `missing_ts` — The request is missing the `ts` parameter\n  - `missing_unfurl_id` — The request is missing the `unfurl_id` parameter.\n  - `missing_unfurls` — The request is missing the `unfurls` parameter.\n\nSee https://docs.slack.dev/reference/methods/chat.unfurl"
       }
     },
-    "com.slack.chat#UpdateRequestAsUser": {
+    "com.slack.chat#UpdateChatRequestAsUser": {
       "type": "union",
       "members": {
         "Case0": {
@@ -1616,7 +1617,7 @@
         "smithy.api#documentation": "Pass true to update the message as the authed user. Bot users in this context are considered authed users."
       }
     },
-    "com.slack.chat#UpdateRequestAttachmentsCase1ItemMap": {
+    "com.slack.chat#UpdateChatRequestAttachmentsCase1ItemMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1626,28 +1627,28 @@
       },
       "traits": {}
     },
-    "com.slack.chat#UpdateRequestAttachmentsCase1List": {
+    "com.slack.chat#UpdateChatRequestAttachmentsCase1List": {
       "type": "list",
       "member": {
-        "target": "com.slack.chat#UpdateRequestAttachmentsCase1ItemMap"
+        "target": "com.slack.chat#UpdateChatRequestAttachmentsCase1ItemMap"
       },
       "traits": {}
     },
-    "com.slack.chat#UpdateRequestAttachments": {
+    "com.slack.chat#UpdateChatRequestAttachments": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#String"
         },
         "Case1": {
-          "target": "com.slack.chat#UpdateRequestAttachmentsCase1List"
+          "target": "com.slack.chat#UpdateChatRequestAttachmentsCase1List"
         }
       },
       "traits": {
         "smithy.api#documentation": "A JSON-based array of structured attachments, presented as a URL-encoded string."
       }
     },
-    "com.slack.chat#UpdateRequestBlocksCase1ItemMap": {
+    "com.slack.chat#UpdateChatRequestBlocksCase1ItemMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1657,28 +1658,28 @@
       },
       "traits": {}
     },
-    "com.slack.chat#UpdateRequestBlocksCase1List": {
+    "com.slack.chat#UpdateChatRequestBlocksCase1List": {
       "type": "list",
       "member": {
-        "target": "com.slack.chat#UpdateRequestBlocksCase1ItemMap"
+        "target": "com.slack.chat#UpdateChatRequestBlocksCase1ItemMap"
       },
       "traits": {}
     },
-    "com.slack.chat#UpdateRequestBlocks": {
+    "com.slack.chat#UpdateChatRequestBlocks": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#String"
         },
         "Case1": {
-          "target": "com.slack.chat#UpdateRequestBlocksCase1List"
+          "target": "com.slack.chat#UpdateChatRequestBlocksCase1List"
         }
       },
       "traits": {
         "smithy.api#documentation": "A JSON-based array of structured blocks, presented as a URL-encoded string."
       }
     },
-    "com.slack.chat#UpdateRequestLinkNames": {
+    "com.slack.chat#UpdateChatRequestLinkNames": {
       "type": "union",
       "members": {
         "Case0": {
@@ -1692,7 +1693,7 @@
         "smithy.api#documentation": "Find and link channel names and usernames. Defaults to `none`. If you do not specify a value for this field, the original value set for the message will be overwritten with the default, `none`."
       }
     },
-    "com.slack.chat#UpdateRequestFileIdsList": {
+    "com.slack.chat#UpdateChatRequestFileIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1701,18 +1702,18 @@
         "smithy.api#documentation": "Array of new file ids that will be sent with this message."
       }
     },
-    "com.slack.chat#UpdateRequest": {
+    "com.slack.chat#UpdateChatRequest": {
       "type": "structure",
       "members": {
         "as_user": {
-          "target": "com.slack.chat#UpdateRequestAsUser",
+          "target": "com.slack.chat#UpdateChatRequestAsUser",
           "traits": {
             "smithy.api#documentation": "Pass true to update the message as the authed user. Bot users in this context are considered authed users.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "attachments": {
-          "target": "com.slack.chat#UpdateRequestAttachments",
+          "target": "com.slack.chat#UpdateChatRequestAttachments",
           "traits": {
             "smithy.api#documentation": "A JSON-based array of structured attachments, presented as a URL-encoded string."
           }
@@ -1725,7 +1726,7 @@
           }
         },
         "blocks": {
-          "target": "com.slack.chat#UpdateRequestBlocks",
+          "target": "com.slack.chat#UpdateChatRequestBlocks",
           "traits": {
             "smithy.api#documentation": "A JSON-based array of structured blocks, presented as a URL-encoded string."
           }
@@ -1751,7 +1752,7 @@
           }
         },
         "link_names": {
-          "target": "com.slack.chat#UpdateRequestLinkNames",
+          "target": "com.slack.chat#UpdateChatRequestLinkNames",
           "traits": {
             "smithy.api#documentation": "Find and link channel names and usernames. Defaults to `none`. If you do not specify a value for this field, the original value set for the message will be overwritten with the default, `none`.",
             "com.distilled.openapi#nullable": {}
@@ -1785,7 +1786,7 @@
           }
         },
         "file_ids": {
-          "target": "com.slack.chat#UpdateRequestFileIdsList",
+          "target": "com.slack.chat#UpdateChatRequestFileIdsList",
           "traits": {
             "smithy.api#documentation": "Array of new file ids that will be sent with this message."
           }
@@ -1795,7 +1796,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.chat#UpdateResponseMessageAttachmentsItemMap": {
+    "com.slack.chat#UpdateChatResponseMessageAttachmentsItemMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1805,14 +1806,14 @@
       },
       "traits": {}
     },
-    "com.slack.chat#UpdateResponseMessageAttachmentsList": {
+    "com.slack.chat#UpdateChatResponseMessageAttachmentsList": {
       "type": "list",
       "member": {
-        "target": "com.slack.chat#UpdateResponseMessageAttachmentsItemMap"
+        "target": "com.slack.chat#UpdateChatResponseMessageAttachmentsItemMap"
       },
       "traits": {}
     },
-    "com.slack.chat#UpdateResponseMessageMetadataMap": {
+    "com.slack.chat#UpdateChatResponseMessageMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1822,7 +1823,7 @@
       },
       "traits": {}
     },
-    "com.slack.chat#UpdateResponseMessage": {
+    "com.slack.chat#UpdateChatResponseMessage": {
       "type": "structure",
       "members": {
         "text": {
@@ -1835,15 +1836,15 @@
           "target": "smithy.api#Document"
         },
         "attachments": {
-          "target": "com.slack.chat#UpdateResponseMessageAttachmentsList"
+          "target": "com.slack.chat#UpdateChatResponseMessageAttachmentsList"
         },
         "metadata": {
-          "target": "com.slack.chat#UpdateResponseMessageMetadataMap"
+          "target": "com.slack.chat#UpdateChatResponseMessageMetadataMap"
         }
       },
       "traits": {}
     },
-    "com.slack.chat#UpdateResponse": {
+    "com.slack.chat#UpdateChatResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -1872,7 +1873,7 @@
           }
         },
         "message": {
-          "target": "com.slack.chat#UpdateResponseMessage",
+          "target": "com.slack.chat#UpdateChatResponseMessage",
           "traits": {
             "smithy.api#required": {}
           }
@@ -1882,13 +1883,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.chat#Update": {
+    "com.slack.chat#UpdateChat": {
       "type": "operation",
       "input": {
-        "target": "com.slack.chat#UpdateRequest"
+        "target": "com.slack.chat#UpdateChatRequest"
       },
       "output": {
-        "target": "com.slack.chat#UpdateResponse"
+        "target": "com.slack.chat#UpdateChatResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1907,7 +1908,7 @@
           "target": "com.slack.chat#AppendStream"
         },
         {
-          "target": "com.slack.chat#Delete"
+          "target": "com.slack.chat#DeleteChat"
         },
         {
           "target": "com.slack.chat#DeleteScheduledMessage"
@@ -1925,7 +1926,7 @@
           "target": "com.slack.chat#PostMessage"
         },
         {
-          "target": "com.slack.chat#ScheduledMessagesList"
+          "target": "com.slack.chat#ListScheduledMessages"
         },
         {
           "target": "com.slack.chat#ScheduleMessage"
@@ -1937,10 +1938,10 @@
           "target": "com.slack.chat#StopStream"
         },
         {
-          "target": "com.slack.chat#Unfurl"
+          "target": "com.slack.chat#ChatUnfurl"
         },
         {
-          "target": "com.slack.chat#Update"
+          "target": "com.slack.chat#UpdateChat"
         }
       ],
       "traits": {

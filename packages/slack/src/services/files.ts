@@ -13,32 +13,143 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export interface CommentsDeleteRequest {
-  /** File to delete a comment from. */
-  file: string;
-  /** The comment to delete. */
-  id: string;
+export interface AddRemoteRequest {
+  /** Creator defined GUID for the file. */
+  external_id: string;
+  /** URL of the remote file. */
+  external_url: string;
+  /** type of file */
+  filetype?: string;
+  /** A text file (txt, pdf, doc, etc.) containing textual search terms that are used to improve discovery of the remote file. */
+  indexable_file_contents?: unknown;
+  /** Preview of the document via `multipart/form-data`. */
+  preview_image?: unknown;
+  /** Title of the file being shared. */
+  title: string;
 }
-export const CommentsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const AddRemoteRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    file: S.String,
-    id: S.String,
-  }).pipe(T.Http({ method: "POST", uri: "/files.comments.delete", code: 200 })),
+    external_id: S.String,
+    external_url: S.String,
+    filetype: S.optional(S.String),
+    indexable_file_contents: S.optional(S.Unknown),
+    preview_image: S.optional(S.Unknown),
+    title: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/files.remote.add",
+      code: 200,
+      contentType: "form-urlencoded",
+    }),
+  ),
 ).annotate({
-  identifier: "CommentsDeleteRequest",
-}) as any as S.Schema<CommentsDeleteRequest>;
+  identifier: "AddRemoteRequest",
+}) as any as S.Schema<AddRemoteRequest>;
 
-export interface CommentsDeleteResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
+export type AddRemoteResponseFileSharesMap = {
+  [key: string]: unknown | undefined;
+};
+export const AddRemoteResponseFileSharesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<AddRemoteResponseFileSharesMap>;
+
+export type AddRemoteResponseFileChannelsList = Array<string>;
+export const AddRemoteResponseFileChannelsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AddRemoteResponseFileChannelsList>;
+
+export type AddRemoteResponseFileGroupsList = Array<string>;
+export const AddRemoteResponseFileGroupsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AddRemoteResponseFileGroupsList>;
+
+export type AddRemoteResponseFileImsList = Array<string>;
+export const AddRemoteResponseFileImsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AddRemoteResponseFileImsList>;
+
+export interface AddRemoteResponseFile {
+  id?: string;
+  created?: number;
+  timestamp?: number;
+  name?: string;
+  title?: string;
+  mimetype?: string;
+  filetype?: string;
+  pretty_type?: string;
+  user?: string;
+  editable?: boolean;
+  size?: number;
+  mode?: string;
+  is_external?: boolean;
+  external_type?: string;
+  is_public?: boolean;
+  public_url_shared?: boolean;
+  display_as_bot?: boolean;
+  username?: string;
+  url_private?: string;
+  permalink?: string;
+  comments_count?: number;
+  is_starred?: boolean;
+  shares?: AddRemoteResponseFileSharesMap;
+  channels?: AddRemoteResponseFileChannelsList;
+  groups?: AddRemoteResponseFileGroupsList;
+  ims?: AddRemoteResponseFileImsList;
+  external_id?: string;
+  external_url?: string;
+  has_rich_preview?: boolean;
 }
-export const CommentsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export const AddRemoteResponseFile = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    ok: S.Boolean,
+    id: S.optional(S.String),
+    created: S.optional(S.Number),
+    timestamp: S.optional(S.Number),
+    name: S.optional(S.String),
+    title: S.optional(S.String),
+    mimetype: S.optional(S.String),
+    filetype: S.optional(S.String),
+    pretty_type: S.optional(S.String),
+    user: S.optional(S.String),
+    editable: S.optional(S.Boolean),
+    size: S.optional(S.Number),
+    mode: S.optional(S.String),
+    is_external: S.optional(S.Boolean),
+    external_type: S.optional(S.String),
+    is_public: S.optional(S.Boolean),
+    public_url_shared: S.optional(S.Boolean),
+    display_as_bot: S.optional(S.Boolean),
+    username: S.optional(S.String),
+    url_private: S.optional(S.String),
+    permalink: S.optional(S.String),
+    comments_count: S.optional(S.Number),
+    is_starred: S.optional(S.Boolean),
+    shares: S.optional(AddRemoteResponseFileSharesMap),
+    channels: S.optional(AddRemoteResponseFileChannelsList),
+    groups: S.optional(AddRemoteResponseFileGroupsList),
+    ims: S.optional(AddRemoteResponseFileImsList),
+    external_id: S.optional(S.String),
+    external_url: S.optional(S.String),
+    has_rich_preview: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "CommentsDeleteResponse",
-}) as any as S.Schema<CommentsDeleteResponse>;
+  identifier: "AddRemoteResponseFile",
+}) as any as S.Schema<AddRemoteResponseFile>;
+
+export interface AddRemoteResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  file: AddRemoteResponseFile;
+}
+export const AddRemoteResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    file: AddRemoteResponseFile,
+  }),
+).annotate({
+  identifier: "AddRemoteResponse",
+}) as any as S.Schema<AddRemoteResponse>;
 
 export interface CompleteUploadExternalRequestFilesItem {
   /** File ID returned from files.getUploadURL. */
@@ -172,25 +283,154 @@ export const CompleteUploadExternalResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CompleteUploadExternalResponse",
 }) as any as S.Schema<CompleteUploadExternalResponse>;
 
-export interface DeleteRequest {
-  /** ID of file to delete. */
+export interface DeleteCommentRequest {
+  /** File to delete a comment from. */
   file: string;
+  /** The comment to delete. */
+  id: string;
 }
-export const DeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteCommentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     file: S.String,
-  }).pipe(T.Http({ method: "POST", uri: "/files.delete", code: 200 })),
-).annotate({ identifier: "DeleteRequest" }) as any as S.Schema<DeleteRequest>;
+    id: S.String,
+  }).pipe(T.Http({ method: "POST", uri: "/files.comments.delete", code: 200 })),
+).annotate({
+  identifier: "DeleteCommentRequest",
+}) as any as S.Schema<DeleteCommentRequest>;
 
-export interface DeleteResponse {
+export interface DeleteCommentResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const DeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteCommentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
-).annotate({ identifier: "DeleteResponse" }) as any as S.Schema<DeleteResponse>;
+).annotate({
+  identifier: "DeleteCommentResponse",
+}) as any as S.Schema<DeleteCommentResponse>;
+
+export interface DeleteFileRequest {
+  /** ID of file to delete. */
+  file: string;
+}
+export const DeleteFileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    file: S.String,
+  }).pipe(T.Http({ method: "POST", uri: "/files.delete", code: 200 })),
+).annotate({
+  identifier: "DeleteFileRequest",
+}) as any as S.Schema<DeleteFileRequest>;
+
+export interface DeleteFileResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+}
+export const DeleteFileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+  }),
+).annotate({
+  identifier: "DeleteFileResponse",
+}) as any as S.Schema<DeleteFileResponse>;
+
+export interface FilesInfoRequest {
+  count?: number;
+  /** Parameter for pagination. File comments are paginated for a single file. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first "page" of the collection of comments. See [pagination](/apis/web-api/pagination) for more details. */
+  cursor?: string;
+  /** Specify a file by providing its ID. */
+  file: string;
+  /** The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. */
+  limit?: number;
+  page?: number;
+}
+export const FilesInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number.pipe(T.Query())),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    file: S.String.pipe(T.Query()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/files.info", code: 200 })),
+).annotate({
+  identifier: "FilesInfoRequest",
+}) as any as S.Schema<FilesInfoRequest>;
+
+export interface FilesInfoResponseFile {
+  id: string;
+}
+export const FilesInfoResponseFile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+  }),
+).annotate({
+  identifier: "FilesInfoResponseFile",
+}) as any as S.Schema<FilesInfoResponseFile>;
+
+export interface FilesInfoResponseCommentsItem {
+  comment: string;
+  created: number;
+  id: string;
+  is_intro: boolean;
+  timestamp: number;
+  user: string;
+}
+export const FilesInfoResponseCommentsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    comment: S.String,
+    created: S.Number,
+    id: S.String,
+    is_intro: S.Boolean,
+    timestamp: S.Number,
+    user: S.String,
+  }),
+).annotate({
+  identifier: "FilesInfoResponseCommentsItem",
+}) as any as S.Schema<FilesInfoResponseCommentsItem>;
+
+export type FilesInfoResponseCommentsList =
+  Array<FilesInfoResponseCommentsItem>;
+export const FilesInfoResponseCommentsList = /*@__PURE__*/ S.Array(
+  FilesInfoResponseCommentsItem,
+) as any as S.Schema<FilesInfoResponseCommentsList>;
+
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export interface FilesInfoResponseResponseMetadata {
+  /** Cursor for the next page — pass as `cursor` on the next call. */
+  next_cursor?: string;
+}
+export const FilesInfoResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    next_cursor: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FilesInfoResponseResponseMetadata",
+}) as any as S.Schema<FilesInfoResponseResponseMetadata>;
+
+export interface FilesInfoResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  file: FilesInfoResponseFile;
+  comments: FilesInfoResponseCommentsList;
+  content?: string;
+  content_html?: unknown;
+  content_highlight_html?: unknown;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: FilesInfoResponseResponseMetadata;
+}
+export const FilesInfoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    file: FilesInfoResponseFile,
+    comments: FilesInfoResponseCommentsList,
+    content: S.optional(S.String),
+    content_html: S.optional(S.Unknown),
+    content_highlight_html: S.optional(S.Unknown),
+    response_metadata: S.optional(FilesInfoResponseResponseMetadata),
+  }),
+).annotate({
+  identifier: "FilesInfoResponse",
+}) as any as S.Schema<FilesInfoResponse>;
 
 export interface GetUploadURLExternalRequest {
   /** Size in bytes of the file being uploaded. */
@@ -236,114 +476,21 @@ export const GetUploadURLExternalResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetUploadURLExternalResponse",
 }) as any as S.Schema<GetUploadURLExternalResponse>;
 
-export interface InfoRequest {
-  count?: number;
-  /** Parameter for pagination. File comments are paginated for a single file. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first "page" of the collection of comments. See [pagination](/apis/web-api/pagination) for more details. */
-  cursor?: string;
-  /** Specify a file by providing its ID. */
-  file: string;
-  /** The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. */
-  limit?: number;
-  page?: number;
-}
-export const InfoRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number.pipe(T.Query())),
-    cursor: S.optional(S.String.pipe(T.Query())),
-    file: S.String.pipe(T.Query()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    page: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/files.info", code: 200 })),
-).annotate({ identifier: "InfoRequest" }) as any as S.Schema<InfoRequest>;
-
-export interface InfoResponseFile {
-  id: string;
-}
-export const InfoResponseFile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-  }),
-).annotate({
-  identifier: "InfoResponseFile",
-}) as any as S.Schema<InfoResponseFile>;
-
-export interface InfoResponseCommentsItem {
-  comment: string;
-  created: number;
-  id: string;
-  is_intro: boolean;
-  timestamp: number;
-  user: string;
-}
-export const InfoResponseCommentsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    comment: S.String,
-    created: S.Number,
-    id: S.String,
-    is_intro: S.Boolean,
-    timestamp: S.Number,
-    user: S.String,
-  }),
-).annotate({
-  identifier: "InfoResponseCommentsItem",
-}) as any as S.Schema<InfoResponseCommentsItem>;
-
-export type InfoResponseCommentsList = Array<InfoResponseCommentsItem>;
-export const InfoResponseCommentsList = /*@__PURE__*/ S.Array(
-  InfoResponseCommentsItem,
-) as any as S.Schema<InfoResponseCommentsList>;
-
-/** Pagination metadata. An empty `next_cursor` means the last page. */
-export interface InfoResponseResponseMetadata {
-  /** Cursor for the next page — pass as `cursor` on the next call. */
-  next_cursor?: string;
-}
-export const InfoResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    next_cursor: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InfoResponseResponseMetadata",
-}) as any as S.Schema<InfoResponseResponseMetadata>;
-
-export interface InfoResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  file: InfoResponseFile;
-  comments: InfoResponseCommentsList;
-  content?: string;
-  content_html?: unknown;
-  content_highlight_html?: unknown;
-  /** Pagination metadata. An empty `next_cursor` means the last page. */
-  response_metadata?: InfoResponseResponseMetadata;
-}
-export const InfoResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    file: InfoResponseFile,
-    comments: InfoResponseCommentsList,
-    content: S.optional(S.String),
-    content_html: S.optional(S.Unknown),
-    content_highlight_html: S.optional(S.Unknown),
-    response_metadata: S.optional(InfoResponseResponseMetadata),
-  }),
-).annotate({ identifier: "InfoResponse" }) as any as S.Schema<InfoResponse>;
-
-export type ListRequestCount = number | string;
-export const ListRequestCount = /*@__PURE__*/ S.Unknown.pipe(
+export type ListFilesRequestCount = number | string;
+export const ListFilesRequestCount = /*@__PURE__*/ S.Unknown.pipe(
   T.UnionCases([[], []]),
 );
 
-export type ListRequestPage = number | string;
-export const ListRequestPage = /*@__PURE__*/ S.Unknown.pipe(
+export type ListFilesRequestPage = number | string;
+export const ListFilesRequestPage = /*@__PURE__*/ S.Unknown.pipe(
   T.UnionCases([[], []]),
 );
 
-export interface ListRequest {
+export interface ListFilesRequest {
   /** Filter files appearing in a specific channel, indicated by its ID. */
   channel?: string;
-  count?: ListRequestCount;
-  page?: ListRequestPage;
+  count?: ListFilesRequestCount;
+  page?: ListFilesRequestPage;
   /** Show truncated file info for files hidden due to being too old, and the team who owns the file being over the file limit. */
   show_files_hidden_by_limit?: boolean;
   /** encoded team id to list files in, required if org token is used */
@@ -357,11 +504,11 @@ export interface ListRequest {
   /** Filter files created by a single user. */
   user?: string;
 }
-export const ListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListFilesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel: S.optional(S.String.pipe(T.Query())),
-    count: S.optional(ListRequestCount.pipe(T.Query())),
-    page: S.optional(ListRequestPage.pipe(T.Query())),
+    count: S.optional(ListFilesRequestCount.pipe(T.Query())),
+    page: S.optional(ListFilesRequestPage.pipe(T.Query())),
     show_files_hidden_by_limit: S.optional(S.Boolean.pipe(T.Query())),
     team_id: S.optional(S.String.pipe(T.Query())),
     ts_from: S.optional(S.String.pipe(T.Query())),
@@ -369,35 +516,37 @@ export const ListRequest = /*@__PURE__*/ S.suspend(() =>
     types: S.optional(S.String.pipe(T.Query())),
     user: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/files.list", code: 200 })),
-).annotate({ identifier: "ListRequest" }) as any as S.Schema<ListRequest>;
+).annotate({
+  identifier: "ListFilesRequest",
+}) as any as S.Schema<ListFilesRequest>;
 
-export interface ListResponseFilesItem {
+export interface ListFilesResponseFilesItem {
   id: string;
   created?: number;
   user?: string;
 }
-export const ListResponseFilesItem = /*@__PURE__*/ S.suspend(() =>
+export const ListFilesResponseFilesItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     created: S.optional(S.Number),
     user: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListResponseFilesItem",
-}) as any as S.Schema<ListResponseFilesItem>;
+  identifier: "ListFilesResponseFilesItem",
+}) as any as S.Schema<ListFilesResponseFilesItem>;
 
-export type ListResponseFilesList = Array<ListResponseFilesItem>;
-export const ListResponseFilesList = /*@__PURE__*/ S.Array(
-  ListResponseFilesItem,
-) as any as S.Schema<ListResponseFilesList>;
+export type ListFilesResponseFilesList = Array<ListFilesResponseFilesItem>;
+export const ListFilesResponseFilesList = /*@__PURE__*/ S.Array(
+  ListFilesResponseFilesItem,
+) as any as S.Schema<ListFilesResponseFilesList>;
 
-export interface ListResponsePaging {
+export interface ListFilesResponsePaging {
   count?: number;
   total: number;
   page: number;
   pages: number;
 }
-export const ListResponsePaging = /*@__PURE__*/ S.suspend(() =>
+export const ListFilesResponsePaging = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     count: S.optional(S.Number),
     total: S.Number,
@@ -405,160 +554,87 @@ export const ListResponsePaging = /*@__PURE__*/ S.suspend(() =>
     pages: S.Number,
   }),
 ).annotate({
-  identifier: "ListResponsePaging",
-}) as any as S.Schema<ListResponsePaging>;
+  identifier: "ListFilesResponsePaging",
+}) as any as S.Schema<ListFilesResponsePaging>;
 
-export interface ListResponse {
+export interface ListFilesResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  files: ListResponseFilesList;
-  paging?: ListResponsePaging;
+  files: ListFilesResponseFilesList;
+  paging?: ListFilesResponsePaging;
 }
-export const ListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListFilesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    files: ListResponseFilesList,
-    paging: S.optional(ListResponsePaging),
+    files: ListFilesResponseFilesList,
+    paging: S.optional(ListFilesResponsePaging),
   }),
-).annotate({ identifier: "ListResponse" }) as any as S.Schema<ListResponse>;
-
-export interface RemoteAddRequest {
-  /** Creator defined GUID for the file. */
-  external_id: string;
-  /** URL of the remote file. */
-  external_url: string;
-  /** type of file */
-  filetype?: string;
-  /** A text file (txt, pdf, doc, etc.) containing textual search terms that are used to improve discovery of the remote file. */
-  indexable_file_contents?: unknown;
-  /** Preview of the document via `multipart/form-data`. */
-  preview_image?: unknown;
-  /** Title of the file being shared. */
-  title: string;
-}
-export const RemoteAddRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    external_id: S.String,
-    external_url: S.String,
-    filetype: S.optional(S.String),
-    indexable_file_contents: S.optional(S.Unknown),
-    preview_image: S.optional(S.Unknown),
-    title: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/files.remote.add",
-      code: 200,
-      contentType: "form-urlencoded",
-    }),
-  ),
 ).annotate({
-  identifier: "RemoteAddRequest",
-}) as any as S.Schema<RemoteAddRequest>;
+  identifier: "ListFilesResponse",
+}) as any as S.Schema<ListFilesResponse>;
 
-export type RemoteAddResponseFileSharesMap = {
-  [key: string]: unknown | undefined;
-};
-export const RemoteAddResponseFileSharesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<RemoteAddResponseFileSharesMap>;
-
-export type RemoteAddResponseFileChannelsList = Array<string>;
-export const RemoteAddResponseFileChannelsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RemoteAddResponseFileChannelsList>;
-
-export type RemoteAddResponseFileGroupsList = Array<string>;
-export const RemoteAddResponseFileGroupsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RemoteAddResponseFileGroupsList>;
-
-export type RemoteAddResponseFileImsList = Array<string>;
-export const RemoteAddResponseFileImsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RemoteAddResponseFileImsList>;
-
-export interface RemoteAddResponseFile {
-  id?: string;
-  created?: number;
-  timestamp?: number;
-  name?: string;
-  title?: string;
-  mimetype?: string;
-  filetype?: string;
-  pretty_type?: string;
-  user?: string;
-  editable?: boolean;
-  size?: number;
-  mode?: string;
-  is_external?: boolean;
-  external_type?: string;
-  is_public?: boolean;
-  public_url_shared?: boolean;
-  display_as_bot?: boolean;
-  username?: string;
-  url_private?: string;
-  permalink?: string;
-  comments_count?: number;
-  is_starred?: boolean;
-  shares?: RemoteAddResponseFileSharesMap;
-  channels?: RemoteAddResponseFileChannelsList;
-  groups?: RemoteAddResponseFileGroupsList;
-  ims?: RemoteAddResponseFileImsList;
-  external_id?: string;
-  external_url?: string;
-  has_rich_preview?: boolean;
+export interface ListRemoteRequest {
+  /** Filter files appearing in a specific channel, indicated by its ID. */
+  channel?: string;
+  /** Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/apis/web-api/pagination) for more detail. */
+  cursor?: string;
+  /** The maximum number of items to return. */
+  limit?: number;
+  /** Filter files created after this timestamp (inclusive). */
+  ts_from?: string;
+  /** Filter files created before this timestamp (inclusive). */
+  ts_to?: string;
 }
-export const RemoteAddResponseFile = /*@__PURE__*/ S.suspend(() =>
+export const ListRemoteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    channel: S.optional(S.String.pipe(T.Query())),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    ts_from: S.optional(S.String.pipe(T.Query())),
+    ts_to: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/files.remote.list", code: 200 })),
+).annotate({
+  identifier: "ListRemoteRequest",
+}) as any as S.Schema<ListRemoteRequest>;
+
+export interface ListRemoteResponseFilesItem {
+  id?: string;
+}
+export const ListRemoteResponseFilesItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
-    created: S.optional(S.Number),
-    timestamp: S.optional(S.Number),
-    name: S.optional(S.String),
-    title: S.optional(S.String),
-    mimetype: S.optional(S.String),
-    filetype: S.optional(S.String),
-    pretty_type: S.optional(S.String),
-    user: S.optional(S.String),
-    editable: S.optional(S.Boolean),
-    size: S.optional(S.Number),
-    mode: S.optional(S.String),
-    is_external: S.optional(S.Boolean),
-    external_type: S.optional(S.String),
-    is_public: S.optional(S.Boolean),
-    public_url_shared: S.optional(S.Boolean),
-    display_as_bot: S.optional(S.Boolean),
-    username: S.optional(S.String),
-    url_private: S.optional(S.String),
-    permalink: S.optional(S.String),
-    comments_count: S.optional(S.Number),
-    is_starred: S.optional(S.Boolean),
-    shares: S.optional(RemoteAddResponseFileSharesMap),
-    channels: S.optional(RemoteAddResponseFileChannelsList),
-    groups: S.optional(RemoteAddResponseFileGroupsList),
-    ims: S.optional(RemoteAddResponseFileImsList),
-    external_id: S.optional(S.String),
-    external_url: S.optional(S.String),
-    has_rich_preview: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "RemoteAddResponseFile",
-}) as any as S.Schema<RemoteAddResponseFile>;
+  identifier: "ListRemoteResponseFilesItem",
+}) as any as S.Schema<ListRemoteResponseFilesItem>;
 
-export interface RemoteAddResponse {
+export type ListRemoteResponseFilesList = Array<ListRemoteResponseFilesItem>;
+export const ListRemoteResponseFilesList = /*@__PURE__*/ S.Array(
+  ListRemoteResponseFilesItem,
+) as any as S.Schema<ListRemoteResponseFilesList>;
+
+/** Pagination metadata. An empty `next_cursor` means the last page. */
+export type ListRemoteResponseResponseMetadata =
+  FilesInfoResponseResponseMetadata;
+export const ListRemoteResponseResponseMetadata =
+  FilesInfoResponseResponseMetadata;
+
+export interface ListRemoteResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  file: RemoteAddResponseFile;
+  files: ListRemoteResponseFilesList;
+  /** Pagination metadata. An empty `next_cursor` means the last page. */
+  response_metadata?: FilesInfoResponseResponseMetadata;
 }
-export const RemoteAddResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListRemoteResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    file: RemoteAddResponseFile,
+    files: ListRemoteResponseFilesList,
+    response_metadata: S.optional(FilesInfoResponseResponseMetadata),
   }),
 ).annotate({
-  identifier: "RemoteAddResponse",
-}) as any as S.Schema<RemoteAddResponse>;
+  identifier: "ListRemoteResponse",
+}) as any as S.Schema<ListRemoteResponse>;
 
 export interface RemoteInfoRequest {
   /** Creator defined GUID for the file. */
@@ -575,91 +651,30 @@ export const RemoteInfoRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "RemoteInfoRequest",
 }) as any as S.Schema<RemoteInfoRequest>;
 
-export type RemoteInfoResponseFile = ListResponseFilesItem;
-export const RemoteInfoResponseFile = ListResponseFilesItem;
+export type RemoteInfoResponseFile = ListFilesResponseFilesItem;
+export const RemoteInfoResponseFile = ListFilesResponseFilesItem;
 
 export interface RemoteInfoResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  file: ListResponseFilesItem;
+  file: ListFilesResponseFilesItem;
 }
 export const RemoteInfoResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    file: ListResponseFilesItem,
+    file: ListFilesResponseFilesItem,
   }),
 ).annotate({
   identifier: "RemoteInfoResponse",
 }) as any as S.Schema<RemoteInfoResponse>;
 
-export interface RemoteListRequest {
-  /** Filter files appearing in a specific channel, indicated by its ID. */
-  channel?: string;
-  /** Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first "page" of the collection. See [pagination](/apis/web-api/pagination) for more detail. */
-  cursor?: string;
-  /** The maximum number of items to return. */
-  limit?: number;
-  /** Filter files created after this timestamp (inclusive). */
-  ts_from?: string;
-  /** Filter files created before this timestamp (inclusive). */
-  ts_to?: string;
-}
-export const RemoteListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    channel: S.optional(S.String.pipe(T.Query())),
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    ts_from: S.optional(S.String.pipe(T.Query())),
-    ts_to: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/files.remote.list", code: 200 })),
-).annotate({
-  identifier: "RemoteListRequest",
-}) as any as S.Schema<RemoteListRequest>;
-
-export interface RemoteListResponseFilesItem {
-  id?: string;
-}
-export const RemoteListResponseFilesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RemoteListResponseFilesItem",
-}) as any as S.Schema<RemoteListResponseFilesItem>;
-
-export type RemoteListResponseFilesList = Array<RemoteListResponseFilesItem>;
-export const RemoteListResponseFilesList = /*@__PURE__*/ S.Array(
-  RemoteListResponseFilesItem,
-) as any as S.Schema<RemoteListResponseFilesList>;
-
-/** Pagination metadata. An empty `next_cursor` means the last page. */
-export type RemoteListResponseResponseMetadata = InfoResponseResponseMetadata;
-export const RemoteListResponseResponseMetadata = InfoResponseResponseMetadata;
-
-export interface RemoteListResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  files: RemoteListResponseFilesList;
-  /** Pagination metadata. An empty `next_cursor` means the last page. */
-  response_metadata?: InfoResponseResponseMetadata;
-}
-export const RemoteListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    files: RemoteListResponseFilesList,
-    response_metadata: S.optional(InfoResponseResponseMetadata),
-  }),
-).annotate({
-  identifier: "RemoteListResponse",
-}) as any as S.Schema<RemoteListResponse>;
-
-export interface RemoteRemoveRequest {
+export interface RemoveRemoteRequest {
   /** Creator defined GUID for the file. */
   external_id?: string;
   /** Specify a file by providing its ID. */
   file?: string;
 }
-export const RemoteRemoveRequest = /*@__PURE__*/ S.suspend(() =>
+export const RemoveRemoteRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     external_id: S.optional(S.String),
     file: S.optional(S.String),
@@ -672,109 +687,20 @@ export const RemoteRemoveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RemoteRemoveRequest",
-}) as any as S.Schema<RemoteRemoveRequest>;
+  identifier: "RemoveRemoteRequest",
+}) as any as S.Schema<RemoveRemoteRequest>;
 
-export interface RemoteRemoveResponse {
+export interface RemoveRemoteResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const RemoteRemoveResponse = /*@__PURE__*/ S.suspend(() =>
+export const RemoveRemoteResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
 ).annotate({
-  identifier: "RemoteRemoveResponse",
-}) as any as S.Schema<RemoteRemoveResponse>;
-
-export interface RemoteShareRequest {
-  /** Comma-separated list of channel IDs where the file will be shared. */
-  channels: string;
-  /** The globally unique identifier (GUID) for the file, as set by the app registering the file with Slack. Either this field or `file` or both are required. */
-  external_id?: string;
-  /** Specify a file registered with Slack by providing its ID. Either this field or `external_id` or both are required. */
-  file?: string;
-}
-export const RemoteShareRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    channels: S.String.pipe(T.Query()),
-    external_id: S.optional(S.String.pipe(T.Query())),
-    file: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/files.remote.share", code: 200 })),
-).annotate({
-  identifier: "RemoteShareRequest",
-}) as any as S.Schema<RemoteShareRequest>;
-
-export type RemoteShareResponseFile = RemoteListResponseFilesItem;
-export const RemoteShareResponseFile = RemoteListResponseFilesItem;
-
-export interface RemoteShareResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  file?: RemoteListResponseFilesItem;
-}
-export const RemoteShareResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    file: S.optional(RemoteListResponseFilesItem),
-  }),
-).annotate({
-  identifier: "RemoteShareResponse",
-}) as any as S.Schema<RemoteShareResponse>;
-
-export interface RemoteUpdateRequest {
-  /** Creator defined GUID for the file. */
-  external_id?: string;
-  /** URL of the remote file. */
-  external_url?: string;
-  /** Specify a file by providing its ID. */
-  file?: string;
-  /** type of file */
-  filetype?: string;
-  /** File containing contents that can be used to improve searchability for the remote file. */
-  indexable_file_contents?: unknown;
-  /** Preview of the document via `multipart/form-data`. */
-  preview_image?: unknown;
-  /** Title of the file being shared. */
-  title?: string;
-}
-export const RemoteUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    external_id: S.optional(S.String),
-    external_url: S.optional(S.String),
-    file: S.optional(S.String),
-    filetype: S.optional(S.String),
-    indexable_file_contents: S.optional(S.Unknown),
-    preview_image: S.optional(S.Unknown),
-    title: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/files.remote.update",
-      code: 200,
-      contentType: "form-urlencoded",
-    }),
-  ),
-).annotate({
-  identifier: "RemoteUpdateRequest",
-}) as any as S.Schema<RemoteUpdateRequest>;
-
-export type RemoteUpdateResponseFile = RemoteListResponseFilesItem;
-export const RemoteUpdateResponseFile = RemoteListResponseFilesItem;
-
-export interface RemoteUpdateResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  file?: RemoteListResponseFilesItem;
-}
-export const RemoteUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    file: S.optional(RemoteListResponseFilesItem),
-  }),
-).annotate({
-  identifier: "RemoteUpdateResponse",
-}) as any as S.Schema<RemoteUpdateResponse>;
+  identifier: "RemoveRemoteResponse",
+}) as any as S.Schema<RemoveRemoteResponse>;
 
 export interface RevokePublicURLRequest {
   /** File to revoke */
@@ -872,7 +798,96 @@ export const SharedPublicURLResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SharedPublicURLResponse",
 }) as any as S.Schema<SharedPublicURLResponse>;
 
-export interface UploadRequest {
+export interface ShareRemoteRequest {
+  /** Comma-separated list of channel IDs where the file will be shared. */
+  channels: string;
+  /** The globally unique identifier (GUID) for the file, as set by the app registering the file with Slack. Either this field or `file` or both are required. */
+  external_id?: string;
+  /** Specify a file registered with Slack by providing its ID. Either this field or `external_id` or both are required. */
+  file?: string;
+}
+export const ShareRemoteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    channels: S.String.pipe(T.Query()),
+    external_id: S.optional(S.String.pipe(T.Query())),
+    file: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/files.remote.share", code: 200 })),
+).annotate({
+  identifier: "ShareRemoteRequest",
+}) as any as S.Schema<ShareRemoteRequest>;
+
+export type ShareRemoteResponseFile = ListRemoteResponseFilesItem;
+export const ShareRemoteResponseFile = ListRemoteResponseFilesItem;
+
+export interface ShareRemoteResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  file?: ListRemoteResponseFilesItem;
+}
+export const ShareRemoteResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    file: S.optional(ListRemoteResponseFilesItem),
+  }),
+).annotate({
+  identifier: "ShareRemoteResponse",
+}) as any as S.Schema<ShareRemoteResponse>;
+
+export interface UpdateRemoteRequest {
+  /** Creator defined GUID for the file. */
+  external_id?: string;
+  /** URL of the remote file. */
+  external_url?: string;
+  /** Specify a file by providing its ID. */
+  file?: string;
+  /** type of file */
+  filetype?: string;
+  /** File containing contents that can be used to improve searchability for the remote file. */
+  indexable_file_contents?: unknown;
+  /** Preview of the document via `multipart/form-data`. */
+  preview_image?: unknown;
+  /** Title of the file being shared. */
+  title?: string;
+}
+export const UpdateRemoteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    external_id: S.optional(S.String),
+    external_url: S.optional(S.String),
+    file: S.optional(S.String),
+    filetype: S.optional(S.String),
+    indexable_file_contents: S.optional(S.Unknown),
+    preview_image: S.optional(S.Unknown),
+    title: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/files.remote.update",
+      code: 200,
+      contentType: "form-urlencoded",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateRemoteRequest",
+}) as any as S.Schema<UpdateRemoteRequest>;
+
+export type UpdateRemoteResponseFile = ListRemoteResponseFilesItem;
+export const UpdateRemoteResponseFile = ListRemoteResponseFilesItem;
+
+export interface UpdateRemoteResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  file?: ListRemoteResponseFilesItem;
+}
+export const UpdateRemoteResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    file: S.optional(ListRemoteResponseFilesItem),
+  }),
+).annotate({
+  identifier: "UpdateRemoteResponse",
+}) as any as S.Schema<UpdateRemoteResponse>;
+
+export interface UploadFileRequest {
   /** Comma-separated list of channel names or IDs where the file will be shared. */
   channels?: string;
   /** File contents via a POST variable. If omitting this parameter, you must provide a `file`. */
@@ -890,7 +905,7 @@ export interface UploadRequest {
   /** Title of file. */
   title?: string;
 }
-export const UploadRequest = /*@__PURE__*/ S.suspend(() =>
+export const UploadFileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channels: S.optional(S.String),
     content: S.optional(S.String),
@@ -908,33 +923,37 @@ export const UploadRequest = /*@__PURE__*/ S.suspend(() =>
       contentType: "form-urlencoded",
     }),
   ),
-).annotate({ identifier: "UploadRequest" }) as any as S.Schema<UploadRequest>;
+).annotate({
+  identifier: "UploadFileRequest",
+}) as any as S.Schema<UploadFileRequest>;
 
-export type UploadResponseFile = RevokePublicURLResponseFile;
-export const UploadResponseFile = RevokePublicURLResponseFile;
+export type UploadFileResponseFile = RevokePublicURLResponseFile;
+export const UploadFileResponseFile = RevokePublicURLResponseFile;
 
-export interface UploadResponse {
+export interface UploadFileResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   file: RevokePublicURLResponseFile;
 }
-export const UploadResponse = /*@__PURE__*/ S.suspend(() =>
+export const UploadFileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     file: RevokePublicURLResponseFile,
   }),
-).annotate({ identifier: "UploadResponse" }) as any as S.Schema<UploadResponse>;
+).annotate({
+  identifier: "UploadFileResponse",
+}) as any as S.Schema<UploadFileResponse>;
 
-export type CommentsDeleteError = SlackOpError;
-/** Deletes an existing comment on a file. Required scopes — bot: `files:write`; user: `files:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `cant_delete` — The requested comment could not be deleted. - `file_deleted` — The requested file was previously deleted. - `file_not_found` — The requested file could not be found. See https://docs.slack.dev/reference/methods/files.comments.delete */
-export const commentsDelete: API.OperationMethod<
-  CommentsDeleteRequest,
-  CommentsDeleteResponse,
-  CommentsDeleteError,
+export type AddRemoteError = SlackOpError;
+/** Adds a file from a remote service Required scopes — bot: `remote_files:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `bad_image` — The uploaded image could not be processed - try passing a JPG or PNG - `bad_title` — The title provided is too long. - `bot_user_required` — bot user token is required - `invalid_external_id` — The external_id provided is too long. - `too_large` — The uploaded image had excessive dimensions See https://docs.slack.dev/reference/methods/files.remote.add */
+export const addRemote: API.OperationMethod<
+  AddRemoteRequest,
+  AddRemoteResponse,
+  AddRemoteError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CommentsDeleteRequest,
-  output: CommentsDeleteResponse,
+  input: AddRemoteRequest,
+  output: AddRemoteResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
@@ -955,20 +974,61 @@ export const completeUploadExternal: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteError = SlackOpError;
-/** Deletes a file. Required scopes — bot: `files:write`; user: `files:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `cant_delete_file` — Authenticated user does not have permission to delete this file. - `delete_not_allowed` — Error returned when the requested file does not support deletion; for example, when attempting to delete a canvas template. - `file_deleted` — The file has already been deleted. - `file_deleting_disabled` — This functionality is disabled. - `file_not_found` — The file does not exist, or is not visible to the calling user. See https://docs.slack.dev/reference/methods/files.delete */
-export const Delete: API.OperationMethod<
-  DeleteRequest,
-  DeleteResponse,
-  DeleteError,
+export type DeleteCommentError = SlackOpError;
+/** Deletes an existing comment on a file. Required scopes — bot: `files:write`; user: `files:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `cant_delete` — The requested comment could not be deleted. - `file_deleted` — The requested file was previously deleted. - `file_not_found` — The requested file could not be found. See https://docs.slack.dev/reference/methods/files.comments.delete */
+export const deleteComment: API.OperationMethod<
+  DeleteCommentRequest,
+  DeleteCommentResponse,
+  DeleteCommentError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteRequest,
-  output: DeleteResponse,
+  input: DeleteCommentRequest,
+  output: DeleteCommentResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
+
+export type DeleteFileError = SlackOpError;
+/** Deletes a file. Required scopes — bot: `files:write`; user: `files:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `cant_delete_file` — Authenticated user does not have permission to delete this file. - `delete_not_allowed` — Error returned when the requested file does not support deletion; for example, when attempting to delete a canvas template. - `file_deleted` — The file has already been deleted. - `file_deleting_disabled` — This functionality is disabled. - `file_not_found` — The file does not exist, or is not visible to the calling user. See https://docs.slack.dev/reference/methods/files.delete */
+export const deleteFile: API.OperationMethod<
+  DeleteFileRequest,
+  DeleteFileResponse,
+  DeleteFileError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteFileRequest,
+  output: DeleteFileResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type FilesInfoError = SlackOpError;
+/** Gets information about a file. Required scopes — bot: `files:read`; user: `files:read` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `access_denied` — Unable to access the file (slack connect) - `file_deleted` — The requested file has been deleted - `file_not_found` — Value passed for `file` was invalid - `canvas_globally_disabled` — Canvas is disabled for this team - `canvas_disabled_user_team` — Canvas is disabled on user's team for connected Channels - `canvas_disabled_file_team` — Canvas is disabled on file's team - `not_visible` — Do not have permission to view the file - `template_not_visible` — Do not have permissions to view this template - `slack_connect_canvas_sharing_blocked` — Admin has disabled sharing of Canvas links in all Slack Connect communications See https://docs.slack.dev/reference/methods/files.info */
+export const filesInfo: API.PaginatedOperationMethod<
+  FilesInfoRequest,
+  FilesInfoResponse,
+  FilesInfoError,
+  SlackOpContext,
+  FilesInfoResponseCommentsItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: FilesInfoRequest,
+    output: FilesInfoResponse,
+    errors: [SlackError, SlackRateLimited],
+    protocol: SlackProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "response_metadata.next_cursor",
+      items: "comments",
+      pageSize: "limit",
+    } as const,
+  }),
+  slackPaginate,
+) as any;
 
 export type GetUploadURLExternalError = SlackOpError;
 /** Gets a URL for an edge external file upload Required scopes — bot: `files:write`; user: `files:write` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `alt_txt_too_large` — Description for the image is longer than the limit of 1000 character - `file_upload_size_restricted` — The size of provided file is too large, as the team has restricted uploads of large files. - `file_uploads_disabled` — Team has disabled all file uploads. - `missing_argument` — A required argument was not provided. Typically only occurs when the `length` provided is 0. - `snippet_too_large` — The provided `length` is too large to create a snippet, which are limited to 1MB. - `storage_limit_reached` — File storage limit has been reached. This occurs when free teams have uploaded 5GB of files. - `unknown_snippet_type` — The provided `snippet_type` is not a supported type. - `unknown_subtype` — The provided `subtype` is not a supported type. - `file_type_not_allowed` — The file type is not allowed. - `file_uploads_except_images_disabled` — File uploads except images are disabled. See https://docs.slack.dev/reference/methods/files.getUploadURLExternal */
@@ -985,18 +1045,33 @@ export const getUploadURLExternal: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type InfoError = SlackOpError;
-/** Gets information about a file. Required scopes — bot: `files:read`; user: `files:read` Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `access_denied` — Unable to access the file (slack connect) - `file_deleted` — The requested file has been deleted - `file_not_found` — Value passed for `file` was invalid - `canvas_globally_disabled` — Canvas is disabled for this team - `canvas_disabled_user_team` — Canvas is disabled on user's team for connected Channels - `canvas_disabled_file_team` — Canvas is disabled on file's team - `not_visible` — Do not have permission to view the file - `template_not_visible` — Do not have permissions to view this template - `slack_connect_canvas_sharing_blocked` — Admin has disabled sharing of Canvas links in all Slack Connect communications See https://docs.slack.dev/reference/methods/files.info */
-export const info: API.PaginatedOperationMethod<
-  InfoRequest,
-  InfoResponse,
-  InfoError,
+export type ListFilesError = SlackOpError;
+/** List files for a team, in a channel, or from a user with applied filters. Required scopes — bot: `files:read`; user: `files:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — A required argument is missing. - `slack_connect_canvas_sharing_blocked` — Admin has disabled sharing of Canvas links in all Slack Connect communications - `user_not_found` — Value passed for `user` was invalid - `unknown_type` — Value passed for `types` was invalid See https://docs.slack.dev/reference/methods/files.list */
+export const listFiles: API.OperationMethod<
+  ListFilesRequest,
+  ListFilesResponse,
+  ListFilesError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFilesRequest,
+  output: ListFilesResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRemoteError = SlackOpError;
+/** Retrieve information about a remote file added to Slack Required scopes — bot: `remote_files:read`; user: `remote_files:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `no_bot_user_for_app` — Cannot call the Remote Files endpoints unless app has associated bot user See https://docs.slack.dev/reference/methods/files.remote.list */
+export const listRemote: API.PaginatedOperationMethod<
+  ListRemoteRequest,
+  ListRemoteResponse,
+  ListRemoteError,
   SlackOpContext,
-  InfoResponseCommentsItem
+  ListRemoteResponseFilesItem
 > = /*@__PURE__*/ API.makePaginated(
   () => ({
-    input: InfoRequest,
-    output: InfoResponse,
+    input: ListRemoteRequest,
+    output: ListRemoteResponse,
     errors: [SlackError, SlackRateLimited],
     protocol: SlackProtocol,
     retry: Retry.Retry,
@@ -1004,42 +1079,12 @@ export const info: API.PaginatedOperationMethod<
       mode: "cursor",
       inputToken: "cursor",
       outputToken: "response_metadata.next_cursor",
-      items: "comments",
+      items: "files",
       pageSize: "limit",
     } as const,
   }),
   slackPaginate,
 ) as any;
-
-export type ListError = SlackOpError;
-/** List files for a team, in a channel, or from a user with applied filters. Required scopes — bot: `files:read`; user: `files:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — A required argument is missing. - `slack_connect_canvas_sharing_blocked` — Admin has disabled sharing of Canvas links in all Slack Connect communications - `user_not_found` — Value passed for `user` was invalid - `unknown_type` — Value passed for `types` was invalid See https://docs.slack.dev/reference/methods/files.list */
-export const list: API.OperationMethod<
-  ListRequest,
-  ListResponse,
-  ListError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListRequest,
-  output: ListResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RemoteAddError = SlackOpError;
-/** Adds a file from a remote service Required scopes — bot: `remote_files:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `bad_image` — The uploaded image could not be processed - try passing a JPG or PNG - `bad_title` — The title provided is too long. - `bot_user_required` — bot user token is required - `invalid_external_id` — The external_id provided is too long. - `too_large` — The uploaded image had excessive dimensions See https://docs.slack.dev/reference/methods/files.remote.add */
-export const remoteAdd: API.OperationMethod<
-  RemoteAddRequest,
-  RemoteAddResponse,
-  RemoteAddError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RemoteAddRequest,
-  output: RemoteAddResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
 
 export type RemoteInfoError = SlackOpError;
 /** Retrieve information about a remote file added to Slack Required scopes — bot: `remote_files:read`; user: `remote_files:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `file_not_found` — Value passed for `file` or `external_id` was invalid - `invalid_args` — Invalid arguments passed to endpoint - `no_bot_user_for_app` — Cannot call the Remote Files endpoints unless app has associated bot user - `too_many_ids` — The request specified both an external_id and a file, only one may be specified See https://docs.slack.dev/reference/methods/files.remote.info */
@@ -1056,72 +1101,16 @@ export const remoteInfo: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RemoteListError = SlackOpError;
-/** Retrieve information about a remote file added to Slack Required scopes — bot: `remote_files:read`; user: `remote_files:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid. - `no_bot_user_for_app` — Cannot call the Remote Files endpoints unless app has associated bot user See https://docs.slack.dev/reference/methods/files.remote.list */
-export const remoteList: API.PaginatedOperationMethod<
-  RemoteListRequest,
-  RemoteListResponse,
-  RemoteListError,
-  SlackOpContext,
-  RemoteListResponseFilesItem
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: RemoteListRequest,
-    output: RemoteListResponse,
-    errors: [SlackError, SlackRateLimited],
-    protocol: SlackProtocol,
-    retry: Retry.Retry,
-    pagination: {
-      mode: "cursor",
-      inputToken: "cursor",
-      outputToken: "response_metadata.next_cursor",
-      items: "files",
-      pageSize: "limit",
-    } as const,
-  }),
-  slackPaginate,
-) as any;
-
-export type RemoteRemoveError = SlackOpError;
+export type RemoveRemoteError = SlackOpError;
 /** Remove a remote file. Required scopes — bot: `remote_files:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `bot_user_required` — bot user token is required - `file_not_found` — Value passed for `file` or `external_id` was invalid - `file_under_review` — File passed is tombstoned for DLP review - `invalid_args` — Invalid arguments passed to endpoint - `too_many_ids` — The request specified both an external_id and a file, only one may be specified See https://docs.slack.dev/reference/methods/files.remote.remove */
-export const remoteRemove: API.OperationMethod<
-  RemoteRemoveRequest,
-  RemoteRemoveResponse,
-  RemoteRemoveError,
+export const removeRemote: API.OperationMethod<
+  RemoveRemoteRequest,
+  RemoveRemoteResponse,
+  RemoveRemoteError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RemoteRemoveRequest,
-  output: RemoteRemoveResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RemoteShareError = SlackOpError;
-/** Share a remote file into a channel. Required scopes — bot: `remote_files:share`; user: `remote_files:share` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `channel_not_found` — At least one of the values passed for `channels` was invalid. - `file_not_found` — No file with the requested ID found. - `invalid_args` — Invalid arguments passed to endpoint - `no_bot_user_for_app` — Cannot call the Remote Files endpoints unless app has associated bot user - `not_in_channel` — Authenticated user is not in at least one of the the provided channels. See https://docs.slack.dev/reference/methods/files.remote.share */
-export const remoteShare: API.OperationMethod<
-  RemoteShareRequest,
-  RemoteShareResponse,
-  RemoteShareError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RemoteShareRequest,
-  output: RemoteShareResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RemoteUpdateError = SlackOpError;
-/** Updates an existing remote file. Required scopes — bot: `remote_files:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `bad_image` — The uploaded image could not be processed - try passing a JPG or PNG - `bot_user_required` — bot user token is required - `failed_to_unshare` — The file was either not found or it has been unshared already. - `file_not_found` — Could not find the file to update. - `invalid_title` — invalid title provided - `invalid_type` — invalid type provided - `invalid_url` — invalid url provided - `too_large` — The uploaded image had excessive dimensions See https://docs.slack.dev/reference/methods/files.remote.update */
-export const remoteUpdate: API.OperationMethod<
-  RemoteUpdateRequest,
-  RemoteUpdateResponse,
-  RemoteUpdateError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RemoteUpdateRequest,
-  output: RemoteUpdateResponse,
+  input: RemoveRemoteRequest,
+  output: RemoveRemoteResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
@@ -1157,16 +1146,46 @@ export const sharedPublicURL: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UploadError = SlackOpError;
-/** Uploads or creates a file. Required scopes — bot: `files:write`; user: `files:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `blocked_file_type` — Admin has disabled uploading this type of file - `channel_not_found` — At least one of the values passed for `channels` was invalid. - `invalid_channel` — One or more channels supplied are invalid - `malware_detected` — This file may contain a virus or other malware and can't be uploaded to Slack - `not_in_channel` — Authenticated user is not in the channel. - `post_contents_too_large` — File content is larger than 130kb. - `posting_to_general_channel_denied` — An admin has restricted posting to the #general channel. - `slack_connect_blocked_file_type` — File uploads with certain types are blocked in all Slack Connect communications - `slack_connect_clip_sharing_blocked` — Admin has disabled Clip sharing in Slack Connect channels - `slack_connect_file_upload_sharing_blocked` — Admin has disabled File uploads in all Slack Connect communications - `invalid_thread_ts` — Value passed to thread_ts was invalid - `method_deprecated` — This API is deprecated. Please refer to https://docs.slack.dev/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay See https://docs.slack.dev/reference/methods/files.upload */
-export const upload: API.OperationMethod<
-  UploadRequest,
-  UploadResponse,
-  UploadError,
+export type ShareRemoteError = SlackOpError;
+/** Share a remote file into a channel. Required scopes — bot: `remote_files:share`; user: `remote_files:share` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `channel_not_found` — At least one of the values passed for `channels` was invalid. - `file_not_found` — No file with the requested ID found. - `invalid_args` — Invalid arguments passed to endpoint - `no_bot_user_for_app` — Cannot call the Remote Files endpoints unless app has associated bot user - `not_in_channel` — Authenticated user is not in at least one of the the provided channels. See https://docs.slack.dev/reference/methods/files.remote.share */
+export const shareRemote: API.OperationMethod<
+  ShareRemoteRequest,
+  ShareRemoteResponse,
+  ShareRemoteError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UploadRequest,
-  output: UploadResponse,
+  input: ShareRemoteRequest,
+  output: ShareRemoteResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateRemoteError = SlackOpError;
+/** Updates an existing remote file. Required scopes — bot: `remote_files:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `bad_image` — The uploaded image could not be processed - try passing a JPG or PNG - `bot_user_required` — bot user token is required - `failed_to_unshare` — The file was either not found or it has been unshared already. - `file_not_found` — Could not find the file to update. - `invalid_title` — invalid title provided - `invalid_type` — invalid type provided - `invalid_url` — invalid url provided - `too_large` — The uploaded image had excessive dimensions See https://docs.slack.dev/reference/methods/files.remote.update */
+export const updateRemote: API.OperationMethod<
+  UpdateRemoteRequest,
+  UpdateRemoteResponse,
+  UpdateRemoteError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateRemoteRequest,
+  output: UpdateRemoteResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UploadFileError = SlackOpError;
+/** Uploads or creates a file. Required scopes — bot: `files:write`; user: `files:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `blocked_file_type` — Admin has disabled uploading this type of file - `channel_not_found` — At least one of the values passed for `channels` was invalid. - `invalid_channel` — One or more channels supplied are invalid - `malware_detected` — This file may contain a virus or other malware and can't be uploaded to Slack - `not_in_channel` — Authenticated user is not in the channel. - `post_contents_too_large` — File content is larger than 130kb. - `posting_to_general_channel_denied` — An admin has restricted posting to the #general channel. - `slack_connect_blocked_file_type` — File uploads with certain types are blocked in all Slack Connect communications - `slack_connect_clip_sharing_blocked` — Admin has disabled Clip sharing in Slack Connect channels - `slack_connect_file_upload_sharing_blocked` — Admin has disabled File uploads in all Slack Connect communications - `invalid_thread_ts` — Value passed to thread_ts was invalid - `method_deprecated` — This API is deprecated. Please refer to https://docs.slack.dev/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay See https://docs.slack.dev/reference/methods/files.upload */
+export const uploadFile: API.OperationMethod<
+  UploadFileRequest,
+  UploadFileResponse,
+  UploadFileError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UploadFileRequest,
+  output: UploadFileResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

@@ -1,6 +1,6 @@
 {
   "name": "@distilled.cloud/slack",
-  "version": "1.0.0-rc.4",
+  "version": "1.0.0-rc.8",
   "repository": {
     "type": "git",
     "url": "https://github.com/alchemy-run/distilled",
@@ -74,11 +74,11 @@
     "@distilled.cloud/core": "workspace:*"
   },
   "devDependencies": {
-    "@types/bun": "catalog:",
-    "@types/node": "catalog:",
-    "@effect/platform-bun": "catalog:"
+    "@types/bun": "catalog:tooling",
+    "@types/node": "catalog:tooling",
+    "@effect/platform-bun": "catalog:effect"
   },
   "peerDependencies": {
-    "effect": "catalog:"
+    "effect": "catalog:effect"
   }
 }

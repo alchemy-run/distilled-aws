@@ -12,7 +12,7 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export interface AddRequest {
+export interface AddReminderRequest {
   /** The content of the reminder */
   text: string;
   /** Can also take a type of integer. When this reminder should happen: the Unix timestamp (up to five years from now), the number of seconds until the reminder (if within 24 hours), or a natural language description (Ex. "in 15 minutes," or "every Thursday") */
@@ -24,7 +24,7 @@ export interface AddRequest {
   /** Specify the repeating behavior of a reminder. Available options: `daily`, `weekly`, `monthly`, or `yearly`. If `weekly`, may further specify the days of the week. */
   recurrence?: unknown;
 }
-export const AddRequest = /*@__PURE__*/ S.suspend(() =>
+export const AddReminderRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     text: S.String,
     time: S.String,
@@ -32,192 +32,208 @@ export const AddRequest = /*@__PURE__*/ S.suspend(() =>
     team_id: S.optional(S.String),
     recurrence: S.optional(S.Unknown),
   }).pipe(T.Http({ method: "POST", uri: "/reminders.add", code: 200 })),
-).annotate({ identifier: "AddRequest" }) as any as S.Schema<AddRequest>;
+).annotate({
+  identifier: "AddReminderRequest",
+}) as any as S.Schema<AddReminderRequest>;
 
-export interface AddResponse {
+export interface AddReminderResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   reminder: unknown;
 }
-export const AddResponse = /*@__PURE__*/ S.suspend(() =>
+export const AddReminderResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     reminder: S.Unknown,
   }),
-).annotate({ identifier: "AddResponse" }) as any as S.Schema<AddResponse>;
+).annotate({
+  identifier: "AddReminderResponse",
+}) as any as S.Schema<AddReminderResponse>;
 
-export interface CompleteRequest {
+export interface CompleteReminderRequest {
   /** The ID of the reminder to be marked as complete */
   reminder: string;
   /** Encoded team id, required if org token is used */
   team_id?: string;
 }
-export const CompleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const CompleteReminderRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     reminder: S.String,
     team_id: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/reminders.complete", code: 200 })),
 ).annotate({
-  identifier: "CompleteRequest",
-}) as any as S.Schema<CompleteRequest>;
+  identifier: "CompleteReminderRequest",
+}) as any as S.Schema<CompleteReminderRequest>;
 
-export interface CompleteResponse {
+export interface CompleteReminderResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const CompleteResponse = /*@__PURE__*/ S.suspend(() =>
+export const CompleteReminderResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
 ).annotate({
-  identifier: "CompleteResponse",
-}) as any as S.Schema<CompleteResponse>;
+  identifier: "CompleteReminderResponse",
+}) as any as S.Schema<CompleteReminderResponse>;
 
-export interface DeleteRequest {
+export interface DeleteReminderRequest {
   /** The ID of the reminder */
   reminder: string;
   /** Encoded team id, required if org token is used */
   team_id?: string;
 }
-export const DeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteReminderRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     reminder: S.String,
     team_id: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/reminders.delete", code: 200 })),
-).annotate({ identifier: "DeleteRequest" }) as any as S.Schema<DeleteRequest>;
+).annotate({
+  identifier: "DeleteReminderRequest",
+}) as any as S.Schema<DeleteReminderRequest>;
 
-export interface DeleteResponse {
+export interface DeleteReminderResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const DeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteReminderResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
-).annotate({ identifier: "DeleteResponse" }) as any as S.Schema<DeleteResponse>;
+).annotate({
+  identifier: "DeleteReminderResponse",
+}) as any as S.Schema<DeleteReminderResponse>;
 
-export interface InfoRequest {
+export interface ListRemindersRequest {
+  /** Encoded team id, required if org token is passed */
+  team_id?: string;
+}
+export const ListRemindersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    team_id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/reminders.list", code: 200 })),
+).annotate({
+  identifier: "ListRemindersRequest",
+}) as any as S.Schema<ListRemindersRequest>;
+
+export type ListRemindersResponseRemindersList = Array<unknown>;
+export const ListRemindersResponseRemindersList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<ListRemindersResponseRemindersList>;
+
+export interface ListRemindersResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  reminders?: ListRemindersResponseRemindersList;
+}
+export const ListRemindersResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    reminders: S.optional(ListRemindersResponseRemindersList),
+  }),
+).annotate({
+  identifier: "ListRemindersResponse",
+}) as any as S.Schema<ListRemindersResponse>;
+
+export interface RemindersInfoRequest {
   /** The ID of the reminder */
   reminder: string;
   /** Encoded team id, required if org token is passed */
   team_id?: string;
 }
-export const InfoRequest = /*@__PURE__*/ S.suspend(() =>
+export const RemindersInfoRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     reminder: S.String.pipe(T.Query()),
     team_id: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/reminders.info", code: 200 })),
-).annotate({ identifier: "InfoRequest" }) as any as S.Schema<InfoRequest>;
+).annotate({
+  identifier: "RemindersInfoRequest",
+}) as any as S.Schema<RemindersInfoRequest>;
 
-export interface InfoResponse {
+export interface RemindersInfoResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   reminder: unknown;
 }
-export const InfoResponse = /*@__PURE__*/ S.suspend(() =>
+export const RemindersInfoResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     reminder: S.Unknown,
   }),
-).annotate({ identifier: "InfoResponse" }) as any as S.Schema<InfoResponse>;
+).annotate({
+  identifier: "RemindersInfoResponse",
+}) as any as S.Schema<RemindersInfoResponse>;
 
-export interface ListRequest {
-  /** Encoded team id, required if org token is passed */
-  team_id?: string;
-}
-export const ListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    team_id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/reminders.list", code: 200 })),
-).annotate({ identifier: "ListRequest" }) as any as S.Schema<ListRequest>;
-
-export type ListResponseRemindersList = Array<unknown>;
-export const ListResponseRemindersList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<ListResponseRemindersList>;
-
-export interface ListResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  reminders?: ListResponseRemindersList;
-}
-export const ListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    reminders: S.optional(ListResponseRemindersList),
-  }),
-).annotate({ identifier: "ListResponse" }) as any as S.Schema<ListResponse>;
-
-export type AddError = SlackOpError;
+export type AddReminderError = SlackOpError;
 /** Creates a reminder. Required scopes — user: `reminders:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `cannot_add_bot` — Reminders can't be sent to bots. - `cannot_add_others` — Guests can't set reminders for other team members. - `cannot_add_others_recurring` — Recurring reminders can't be set for other team members. - `cannot_add_profile_only_user` — Reminders can't be sent to profile only users. - `cannot_add_slackbot` — Reminders can't be sent to Slackbot. - `cannot_parse` — The phrasing of the timing for this reminder is unclear. You must include a complete time description. Some examples that work: `1458678068`, `20`, `in 5 minutes`, `tomorrow`, `at 3:30pm`, `on Tuesday`, or `next week`. - `missing_argument` — An argument is missing. - `user_not_found` — That user can't be found. See https://docs.slack.dev/reference/methods/reminders.add */
-export const add: API.OperationMethod<
-  AddRequest,
-  AddResponse,
-  AddError,
+export const addReminder: API.OperationMethod<
+  AddReminderRequest,
+  AddReminderResponse,
+  AddReminderError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AddRequest,
-  output: AddResponse,
+  input: AddReminderRequest,
+  output: AddReminderResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type CompleteError = SlackOpError;
+export type CompleteReminderError = SlackOpError;
 /** Marks a reminder as complete. Required scopes — user: `reminders:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `cannot_complete_others` — Reminders for other team members can't be marked complete. - `cannot_complete_recurring` — Recurring reminders can't be marked complete. - `missing_argument` — An argument is missing. - `not_found` — That reminder can't be found. See https://docs.slack.dev/reference/methods/reminders.complete */
-export const complete: API.OperationMethod<
-  CompleteRequest,
-  CompleteResponse,
-  CompleteError,
+export const completeReminder: API.OperationMethod<
+  CompleteReminderRequest,
+  CompleteReminderResponse,
+  CompleteReminderError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CompleteRequest,
-  output: CompleteResponse,
+  input: CompleteReminderRequest,
+  output: CompleteReminderResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteError = SlackOpError;
+export type DeleteReminderError = SlackOpError;
 /** Deletes a reminder. Required scopes — user: `reminders:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — An argument is missing. - `not_found` — That reminder can't be found. See https://docs.slack.dev/reference/methods/reminders.delete */
-export const Delete: API.OperationMethod<
-  DeleteRequest,
-  DeleteResponse,
-  DeleteError,
+export const deleteReminder: API.OperationMethod<
+  DeleteReminderRequest,
+  DeleteReminderResponse,
+  DeleteReminderError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteRequest,
-  output: DeleteResponse,
+  input: DeleteReminderRequest,
+  output: DeleteReminderResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type InfoError = SlackOpError;
-/** Gets information about a reminder. Required scopes — user: `reminders:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — An argument is missing. - `not_found` — That reminder can't be found. See https://docs.slack.dev/reference/methods/reminders.info */
-export const info: API.OperationMethod<
-  InfoRequest,
-  InfoResponse,
-  InfoError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InfoRequest,
-  output: InfoResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListError = SlackOpError;
+export type ListRemindersError = SlackOpError;
 /** Lists all reminders created by or for a given user. Required scopes — user: `reminders:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — An argument is missing. See https://docs.slack.dev/reference/methods/reminders.list */
-export const list: API.OperationMethod<
-  ListRequest,
-  ListResponse,
-  ListError,
+export const listReminders: API.OperationMethod<
+  ListRemindersRequest,
+  ListRemindersResponse,
+  ListRemindersError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListRequest,
-  output: ListResponse,
+  input: ListRemindersRequest,
+  output: ListRemindersResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RemindersInfoError = SlackOpError;
+/** Gets information about a reminder. Required scopes — user: `reminders:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `missing_argument` — An argument is missing. - `not_found` — That reminder can't be found. See https://docs.slack.dev/reference/methods/reminders.info */
+export const remindersInfo: API.OperationMethod<
+  RemindersInfoRequest,
+  RemindersInfoResponse,
+  RemindersInfoError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RemindersInfoRequest,
+  output: RemindersInfoResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.rtm#ConnectRequest": {
+    "com.slack.rtm#ConnectRtmRequest": {
       "type": "structure",
       "members": {
         "batch_presence_aware": {
@@ -39,7 +40,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.rtm#ConnectResponseSelf": {
+    "com.slack.rtm#ConnectRtmResponseSelf": {
       "type": "structure",
       "members": {
         "id": {
@@ -57,7 +58,7 @@
       },
       "traits": {}
     },
-    "com.slack.rtm#ConnectResponseTeam": {
+    "com.slack.rtm#ConnectRtmResponseTeam": {
       "type": "structure",
       "members": {
         "domain": {
@@ -87,7 +88,7 @@
       },
       "traits": {}
     },
-    "com.slack.rtm#ConnectResponse": {
+    "com.slack.rtm#ConnectRtmResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -104,13 +105,13 @@
           }
         },
         "self": {
-          "target": "com.slack.rtm#ConnectResponseSelf",
+          "target": "com.slack.rtm#ConnectRtmResponseSelf",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "team": {
-          "target": "com.slack.rtm#ConnectResponseTeam",
+          "target": "com.slack.rtm#ConnectRtmResponseTeam",
           "traits": {
             "smithy.api#required": {}
           }
@@ -120,13 +121,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.rtm#Connect": {
+    "com.slack.rtm#ConnectRtm": {
       "type": "operation",
       "input": {
-        "target": "com.slack.rtm#ConnectRequest"
+        "target": "com.slack.rtm#ConnectRtmRequest"
       },
       "output": {
-        "target": "com.slack.rtm#ConnectResponse"
+        "target": "com.slack.rtm#ConnectRtmResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -137,7 +138,7 @@
         "smithy.api#documentation": "Starts a Real Time Messaging session.\n\nRate limit tier: 1\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `migration_in_progress` — Team is being migrated between servers. See [the `team_migration_started` event documentation](/reference/events/team_migration_started) for details.\n\nSee https://docs.slack.dev/reference/methods/rtm.connect"
       }
     },
-    "com.slack.rtm#StartRequest": {
+    "com.slack.rtm#StartRtmRequest": {
       "type": "structure",
       "members": {
         "simple_latest": {
@@ -194,7 +195,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.rtm#StartResponseSelf": {
+    "com.slack.rtm#StartRtmResponseSelf": {
       "type": "structure",
       "members": {
         "id": {
@@ -212,7 +213,7 @@
       },
       "traits": {}
     },
-    "com.slack.rtm#StartResponseTeam": {
+    "com.slack.rtm#StartRtmResponseTeam": {
       "type": "structure",
       "members": {
         "domain": {
@@ -242,7 +243,7 @@
       },
       "traits": {}
     },
-    "com.slack.rtm#StartResponse": {
+    "com.slack.rtm#StartRtmResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -259,13 +260,13 @@
           }
         },
         "self": {
-          "target": "com.slack.rtm#StartResponseSelf",
+          "target": "com.slack.rtm#StartRtmResponseSelf",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "team": {
-          "target": "com.slack.rtm#StartResponseTeam",
+          "target": "com.slack.rtm#StartRtmResponseTeam",
           "traits": {
             "smithy.api#required": {}
           }
@@ -275,13 +276,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.rtm#Start": {
+    "com.slack.rtm#StartRtm": {
       "type": "operation",
       "input": {
-        "target": "com.slack.rtm#StartRequest"
+        "target": "com.slack.rtm#StartRtmRequest"
       },
       "output": {
-        "target": "com.slack.rtm#StartResponse"
+        "target": "com.slack.rtm#StartRtmResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -297,10 +298,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.rtm#Connect"
+          "target": "com.slack.rtm#ConnectRtm"
         },
         {
-          "target": "com.slack.rtm#Start"
+          "target": "com.slack.rtm#StartRtm"
         }
       ],
       "traits": {

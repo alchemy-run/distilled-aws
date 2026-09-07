@@ -85,16 +85,16 @@ export const ConnectTokenResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConnectTokenResponse",
 }) as any as S.Schema<ConnectTokenResponse>;
 
-export interface ConnectUserInfoRequest {}
-export const ConnectUserInfoRequest = /*@__PURE__*/ S.suspend(() =>
+export interface UserInfoRequest {}
+export const UserInfoRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "POST", uri: "/openid.connect.userInfo", code: 200 }),
   ),
 ).annotate({
-  identifier: "ConnectUserInfoRequest",
-}) as any as S.Schema<ConnectUserInfoRequest>;
+  identifier: "UserInfoRequest",
+}) as any as S.Schema<UserInfoRequest>;
 
-export interface ConnectUserInfoResponse {
+export interface UserInfoResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   sub: string;
@@ -129,7 +129,7 @@ export interface ConnectUserInfoResponse {
   https___slack_com_team_image_230?: string;
   https___slack_com_team_image_default?: boolean;
 }
-export const ConnectUserInfoResponse = /*@__PURE__*/ S.suspend(() =>
+export const UserInfoResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     sub: S.String,
@@ -209,8 +209,8 @@ export const ConnectUserInfoResponse = /*@__PURE__*/ S.suspend(() =>
     ),
   }),
 ).annotate({
-  identifier: "ConnectUserInfoResponse",
-}) as any as S.Schema<ConnectUserInfoResponse>;
+  identifier: "UserInfoResponse",
+}) as any as S.Schema<UserInfoResponse>;
 
 export type ConnectTokenError = SlackOpError;
 /** Exchanges a temporary OAuth verifier code for an access token for Sign in with Slack. Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `bad_client_secret` — The value passed for `client_secret` was invalid. - `bad_redirect_uri` — The value passed for `redirect_uri` did not match the `redirect_uri` in the original request. - `cannot_install_an_org_installed_app` — An org-installed app cannot be installed on a workspace. - `invalid_client` — Client authentication failed (unknown `client_id` or bad `client_secret`). - `invalid_client_id` — The value passed for `client_id` was invalid. - `invalid_code` — The value passed for `code` was invalid. - `invalid_grant` — The authorization code is invalid, expired, revoked, or the PKCE `code_verifier` does not match. - `invalid_grant_type` — The value passed for `grant_type` was invalid. - `invalid_refresh_token` — The given refresh token is invalid. - `invalid_request` — The request is missing a required parameter or includes an invalid parameter value. - `oauth_authorization_url_mismatch` — The OAuth flow was initiated on an incorrect version of the authorization URL. The flow must be initiated via /openid/connect/authorize . - `preview_feature_not_available` — The API method is not yet available on the team. - `unsupported_grant_type` — The `grant_type` is not supported by this endpoint. See https://docs.slack.dev/reference/methods/openid.connect.token */
@@ -227,16 +227,16 @@ export const connectToken: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConnectUserInfoError = SlackOpError;
+export type UserInfoError = SlackOpError;
 /** Get the identity of a user who has authorized Sign in with Slack. Required scopes — user: `openid` Rate limit tier: 3 See https://docs.slack.dev/reference/methods/openid.connect.userInfo */
-export const connectUserInfo: API.OperationMethod<
-  ConnectUserInfoRequest,
-  ConnectUserInfoResponse,
-  ConnectUserInfoError,
+export const userInfo: API.OperationMethod<
+  UserInfoRequest,
+  UserInfoResponse,
+  UserInfoError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConnectUserInfoRequest,
-  output: ConnectUserInfoResponse,
+  input: UserInfoRequest,
+  output: UserInfoResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

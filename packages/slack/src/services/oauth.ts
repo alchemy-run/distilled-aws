@@ -13,7 +13,7 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export interface AccessRequest {
+export interface OauthAccessRequest {
   /** Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme. */
   client_id?: string;
   /** Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme. */
@@ -25,7 +25,7 @@ export interface AccessRequest {
   /** Request the user to add your app only to a single channel. Only valid with a [legacy workspace app](https://docs.slack.dev/changelog/2021-03-workspace-apps-to-retire-in-august-2021). */
   single_channel?: boolean;
 }
-export const AccessRequest = /*@__PURE__*/ S.suspend(() =>
+export const OauthAccessRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     client_id: S.optional(S.String),
     client_secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
@@ -40,91 +40,95 @@ export const AccessRequest = /*@__PURE__*/ S.suspend(() =>
       contentType: "form-urlencoded",
     }),
   ),
-).annotate({ identifier: "AccessRequest" }) as any as S.Schema<AccessRequest>;
+).annotate({
+  identifier: "OauthAccessRequest",
+}) as any as S.Schema<OauthAccessRequest>;
 
-export interface AccessResponseAuthorizingUser {
+export interface OauthAccessResponseAuthorizingUser {
   user_id?: string;
   app_home?: string | null;
 }
-export const AccessResponseAuthorizingUser = /*@__PURE__*/ S.suspend(() =>
+export const OauthAccessResponseAuthorizingUser = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     user_id: S.optional(S.String),
     app_home: S.optional(S.NullOr(S.String)),
   }),
 ).annotate({
-  identifier: "AccessResponseAuthorizingUser",
-}) as any as S.Schema<AccessResponseAuthorizingUser>;
+  identifier: "OauthAccessResponseAuthorizingUser",
+}) as any as S.Schema<OauthAccessResponseAuthorizingUser>;
 
-export type AccessResponseInstallerUser = AccessResponseAuthorizingUser;
-export const AccessResponseInstallerUser = AccessResponseAuthorizingUser;
+export type OauthAccessResponseInstallerUser =
+  OauthAccessResponseAuthorizingUser;
+export const OauthAccessResponseInstallerUser =
+  OauthAccessResponseAuthorizingUser;
 
-export type AccessResponseScopesAppHomeList = Array<string>;
-export const AccessResponseScopesAppHomeList = /*@__PURE__*/ S.Array(
+export type OauthAccessResponseScopesAppHomeList = Array<string>;
+export const OauthAccessResponseScopesAppHomeList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<AccessResponseScopesAppHomeList>;
+) as any as S.Schema<OauthAccessResponseScopesAppHomeList>;
 
-export type AccessResponseScopesTeamList = Array<string>;
-export const AccessResponseScopesTeamList = /*@__PURE__*/ S.Array(
+export type OauthAccessResponseScopesTeamList = Array<string>;
+export const OauthAccessResponseScopesTeamList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<AccessResponseScopesTeamList>;
+) as any as S.Schema<OauthAccessResponseScopesTeamList>;
 
-export type AccessResponseScopesChannelList = Array<string>;
-export const AccessResponseScopesChannelList = /*@__PURE__*/ S.Array(
+export type OauthAccessResponseScopesChannelList = Array<string>;
+export const OauthAccessResponseScopesChannelList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<AccessResponseScopesChannelList>;
+) as any as S.Schema<OauthAccessResponseScopesChannelList>;
 
-export type AccessResponseScopesGroupList = Array<string>;
-export const AccessResponseScopesGroupList = /*@__PURE__*/ S.Array(
+export type OauthAccessResponseScopesGroupList = Array<string>;
+export const OauthAccessResponseScopesGroupList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<AccessResponseScopesGroupList>;
+) as any as S.Schema<OauthAccessResponseScopesGroupList>;
 
-export type AccessResponseScopesMpimList = Array<string>;
-export const AccessResponseScopesMpimList = /*@__PURE__*/ S.Array(
+export type OauthAccessResponseScopesMpimList = Array<string>;
+export const OauthAccessResponseScopesMpimList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<AccessResponseScopesMpimList>;
+) as any as S.Schema<OauthAccessResponseScopesMpimList>;
 
-export type AccessResponseScopesImList = Array<string>;
-export const AccessResponseScopesImList = /*@__PURE__*/ S.Array(
+export type OauthAccessResponseScopesImList = Array<string>;
+export const OauthAccessResponseScopesImList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<AccessResponseScopesImList>;
+) as any as S.Schema<OauthAccessResponseScopesImList>;
 
-export interface AccessResponseScopes {
-  app_home?: AccessResponseScopesAppHomeList;
-  team?: AccessResponseScopesTeamList;
-  channel?: AccessResponseScopesChannelList;
-  group?: AccessResponseScopesGroupList;
-  mpim?: AccessResponseScopesMpimList;
-  im?: AccessResponseScopesImList;
+export interface OauthAccessResponseScopes {
+  app_home?: OauthAccessResponseScopesAppHomeList;
+  team?: OauthAccessResponseScopesTeamList;
+  channel?: OauthAccessResponseScopesChannelList;
+  group?: OauthAccessResponseScopesGroupList;
+  mpim?: OauthAccessResponseScopesMpimList;
+  im?: OauthAccessResponseScopesImList;
 }
-export const AccessResponseScopes = /*@__PURE__*/ S.suspend(() =>
+export const OauthAccessResponseScopes = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    app_home: S.optional(AccessResponseScopesAppHomeList),
-    team: S.optional(AccessResponseScopesTeamList),
-    channel: S.optional(AccessResponseScopesChannelList),
-    group: S.optional(AccessResponseScopesGroupList),
-    mpim: S.optional(AccessResponseScopesMpimList),
-    im: S.optional(AccessResponseScopesImList),
+    app_home: S.optional(OauthAccessResponseScopesAppHomeList),
+    team: S.optional(OauthAccessResponseScopesTeamList),
+    channel: S.optional(OauthAccessResponseScopesChannelList),
+    group: S.optional(OauthAccessResponseScopesGroupList),
+    mpim: S.optional(OauthAccessResponseScopesMpimList),
+    im: S.optional(OauthAccessResponseScopesImList),
   }),
 ).annotate({
-  identifier: "AccessResponseScopes",
-}) as any as S.Schema<AccessResponseScopes>;
+  identifier: "OauthAccessResponseScopes",
+}) as any as S.Schema<OauthAccessResponseScopes>;
 
-export interface AccessResponseBot {
+export interface OauthAccessResponseBot {
   bot_user_id?: string;
   bot_access_token?: string;
   scope?: string;
 }
-export const AccessResponseBot = /*@__PURE__*/ S.suspend(() =>
+export const OauthAccessResponseBot = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     bot_user_id: S.optional(S.String),
     bot_access_token: S.optional(S.String),
     scope: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AccessResponseBot",
-}) as any as S.Schema<AccessResponseBot>;
+  identifier: "OauthAccessResponseBot",
+}) as any as S.Schema<OauthAccessResponseBot>;
 
-export interface AccessResponseUser {
+export interface OauthAccessResponseUser {
   name?: string;
   id?: string;
   email?: string;
@@ -138,7 +142,7 @@ export interface AccessResponseUser {
   access_token?: string | Redacted.Redacted<string>;
   token_type?: string;
 }
-export const AccessResponseUser = /*@__PURE__*/ S.suspend(() =>
+export const OauthAccessResponseUser = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
     id: S.optional(S.String),
@@ -154,10 +158,10 @@ export const AccessResponseUser = /*@__PURE__*/ S.suspend(() =>
     token_type: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AccessResponseUser",
-}) as any as S.Schema<AccessResponseUser>;
+  identifier: "OauthAccessResponseUser",
+}) as any as S.Schema<OauthAccessResponseUser>;
 
-export interface AccessResponseTeam {
+export interface OauthAccessResponseTeam {
   id?: string;
   name?: string;
   domain?: string;
@@ -171,7 +175,7 @@ export interface AccessResponseTeam {
   image_default?: boolean;
   image_original?: string;
 }
-export const AccessResponseTeam = /*@__PURE__*/ S.suspend(() =>
+export const OauthAccessResponseTeam = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -187,16 +191,16 @@ export const AccessResponseTeam = /*@__PURE__*/ S.suspend(() =>
     image_original: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AccessResponseTeam",
-}) as any as S.Schema<AccessResponseTeam>;
+  identifier: "OauthAccessResponseTeam",
+}) as any as S.Schema<OauthAccessResponseTeam>;
 
-export interface AccessResponseIncomingWebhook {
+export interface OauthAccessResponseIncomingWebhook {
   channel?: string;
   channel_id?: string;
   configuration_url?: string;
   url?: string;
 }
-export const AccessResponseIncomingWebhook = /*@__PURE__*/ S.suspend(() =>
+export const OauthAccessResponseIncomingWebhook = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel: S.optional(S.String),
     channel_id: S.optional(S.String),
@@ -204,10 +208,10 @@ export const AccessResponseIncomingWebhook = /*@__PURE__*/ S.suspend(() =>
     url: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AccessResponseIncomingWebhook",
-}) as any as S.Schema<AccessResponseIncomingWebhook>;
+  identifier: "OauthAccessResponseIncomingWebhook",
+}) as any as S.Schema<OauthAccessResponseIncomingWebhook>;
 
-export interface AccessResponse {
+export interface OauthAccessResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   token_type?: string;
@@ -216,21 +220,21 @@ export interface AccessResponse {
   team_name?: string;
   team_id: string;
   access_token: string | Redacted.Redacted<string>;
-  authorizing_user?: AccessResponseAuthorizingUser;
-  installer_user?: AccessResponseAuthorizingUser;
-  scopes?: AccessResponseScopes;
+  authorizing_user?: OauthAccessResponseAuthorizingUser;
+  installer_user?: OauthAccessResponseAuthorizingUser;
+  scopes?: OauthAccessResponseScopes;
   scope?: string;
   user_id?: string;
-  bot?: AccessResponseBot;
+  bot?: OauthAccessResponseBot;
   refresh_token?: string | Redacted.Redacted<string>;
   expires_in?: number;
-  user?: AccessResponseUser;
-  team?: AccessResponseTeam;
+  user?: OauthAccessResponseUser;
+  team?: OauthAccessResponseTeam;
   enterprise_id?: string | null;
-  incoming_webhook?: AccessResponseIncomingWebhook;
+  incoming_webhook?: OauthAccessResponseIncomingWebhook;
   single_channel_id?: string;
 }
-export const AccessResponse = /*@__PURE__*/ S.suspend(() =>
+export const OauthAccessResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     token_type: S.optional(S.String),
@@ -239,21 +243,23 @@ export const AccessResponse = /*@__PURE__*/ S.suspend(() =>
     team_name: S.optional(S.String),
     team_id: S.String,
     access_token: S.String.pipe(T.SensitiveValue({})),
-    authorizing_user: S.optional(AccessResponseAuthorizingUser),
-    installer_user: S.optional(AccessResponseAuthorizingUser),
-    scopes: S.optional(AccessResponseScopes),
+    authorizing_user: S.optional(OauthAccessResponseAuthorizingUser),
+    installer_user: S.optional(OauthAccessResponseAuthorizingUser),
+    scopes: S.optional(OauthAccessResponseScopes),
     scope: S.optional(S.String),
     user_id: S.optional(S.String),
-    bot: S.optional(AccessResponseBot),
+    bot: S.optional(OauthAccessResponseBot),
     refresh_token: S.optional(S.String.pipe(T.SensitiveValue({}))),
     expires_in: S.optional(S.Number),
-    user: S.optional(AccessResponseUser),
-    team: S.optional(AccessResponseTeam),
+    user: S.optional(OauthAccessResponseUser),
+    team: S.optional(OauthAccessResponseTeam),
     enterprise_id: S.optional(S.NullOr(S.String)),
-    incoming_webhook: S.optional(AccessResponseIncomingWebhook),
+    incoming_webhook: S.optional(OauthAccessResponseIncomingWebhook),
     single_channel_id: S.optional(S.String),
   }),
-).annotate({ identifier: "AccessResponse" }) as any as S.Schema<AccessResponse>;
+).annotate({
+  identifier: "OauthAccessResponse",
+}) as any as S.Schema<OauthAccessResponse>;
 
 export interface V2AccessRequest {
   /** Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme. */
@@ -591,16 +597,16 @@ export const V2UserAccessResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "V2UserAccessResponse",
 }) as any as S.Schema<V2UserAccessResponse>;
 
-export type AccessError = SlackOpError;
+export type OauthAccessError = SlackOpError;
 /** Exchanges a temporary OAuth verifier code for an access token. Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `bad_client_secret` — Value passed for `client_secret` was invalid. - `bad_redirect_uri` — Value passed for `redirect_uri` did not match the `redirect_uri` in the original request. - `code_already_used` — Value passed for `code` was already exchanged. - `internal_error` — Something went wrong during app installation. - `invalid_client_id` — Value passed for `client_id` was invalid. - `invalid_code` — Value passed for `code` was invalid. - `invalid_token` — Invalid refresh token. - `missing_resource` — Missing permission resource. - `ratelimited` — Too many requests made in succession. - `oauth_authorization_url_mismatch` — The OAuth flow was initiated on an incorrect version of the authorization url. The flow must be initiated via /oauth/authorize. - `user_email_unverified` — The users email is unverified See https://docs.slack.dev/reference/methods/oauth.access */
-export const access: API.OperationMethod<
-  AccessRequest,
-  AccessResponse,
-  AccessError,
+export const oauthAccess: API.OperationMethod<
+  OauthAccessRequest,
+  OauthAccessResponse,
+  OauthAccessError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccessRequest,
-  output: AccessResponse,
+  input: OauthAccessRequest,
+  output: OauthAccessResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

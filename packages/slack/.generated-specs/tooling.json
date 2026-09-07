@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.tooling#TokensRotateRequest": {
+    "com.slack.tooling#RotateTokenRequest": {
       "type": "structure",
       "members": {
         "refresh_token": {
@@ -33,7 +34,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.tooling#TokensRotateResponse": {
+    "com.slack.tooling#RotateTokenResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -91,13 +92,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.tooling#TokensRotate": {
+    "com.slack.tooling#RotateToken": {
       "type": "operation",
       "input": {
-        "target": "com.slack.tooling#TokensRotateRequest"
+        "target": "com.slack.tooling#RotateTokenRequest"
       },
       "output": {
-        "target": "com.slack.tooling#TokensRotateResponse"
+        "target": "com.slack.tooling#RotateTokenResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -114,7 +115,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.tooling#TokensRotate"
+          "target": "com.slack.tooling#RotateToken"
         }
       ],
       "traits": {

@@ -13,7 +13,7 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export interface AddRequest {
+export interface AddReactionRequest {
   /** Channel where the message to add reaction to was posted. */
   channel: string;
   /** Reaction (emoji) name */
@@ -21,25 +21,29 @@ export interface AddRequest {
   /** Timestamp of the message to add reaction to. */
   timestamp: string;
 }
-export const AddRequest = /*@__PURE__*/ S.suspend(() =>
+export const AddReactionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel: S.String,
     name: S.String,
     timestamp: S.String,
   }).pipe(T.Http({ method: "POST", uri: "/reactions.add", code: 200 })),
-).annotate({ identifier: "AddRequest" }) as any as S.Schema<AddRequest>;
+).annotate({
+  identifier: "AddReactionRequest",
+}) as any as S.Schema<AddReactionRequest>;
 
-export interface AddResponse {
+export interface AddReactionResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const AddResponse = /*@__PURE__*/ S.suspend(() =>
+export const AddReactionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
-).annotate({ identifier: "AddResponse" }) as any as S.Schema<AddResponse>;
+).annotate({
+  identifier: "AddReactionResponse",
+}) as any as S.Schema<AddReactionResponse>;
 
-export interface GetRequest {
+export interface GetReactionRequest {
   /** Channel where the message to get reactions for was posted. */
   channel?: string;
   /** File to get reactions for. */
@@ -51,7 +55,7 @@ export interface GetRequest {
   /** Timestamp of the message to get reactions for. */
   timestamp?: string;
 }
-export const GetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetReactionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel: S.optional(S.String.pipe(T.Query())),
     file: S.optional(S.String.pipe(T.Query())),
@@ -59,9 +63,11 @@ export const GetRequest = /*@__PURE__*/ S.suspend(() =>
     full: S.optional(S.Boolean.pipe(T.Query())),
     timestamp: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/reactions.get", code: 200 })),
-).annotate({ identifier: "GetRequest" }) as any as S.Schema<GetRequest>;
+).annotate({
+  identifier: "GetReactionRequest",
+}) as any as S.Schema<GetReactionRequest>;
 
-export interface GetResponse {
+export interface GetReactionResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   comment?: unknown;
@@ -70,7 +76,7 @@ export interface GetResponse {
   channel?: string;
   file?: unknown;
 }
-export const GetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetReactionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     comment: S.optional(S.Unknown),
@@ -79,9 +85,11 @@ export const GetResponse = /*@__PURE__*/ S.suspend(() =>
     channel: S.optional(S.String),
     file: S.optional(S.Unknown),
   }),
-).annotate({ identifier: "GetResponse" }) as any as S.Schema<GetResponse>;
+).annotate({
+  identifier: "GetReactionResponse",
+}) as any as S.Schema<GetReactionResponse>;
 
-export interface ListRequest {
+export interface ListReactionsRequest {
   /** Show reactions made by this user. Defaults to the authed user. */
   user?: string;
   /** If true always return the complete reaction list. */
@@ -95,7 +103,7 @@ export interface ListRequest {
   /** encoded team id to list reactions in, required if org token is used */
   team_id?: string;
 }
-export const ListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListReactionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     user: S.optional(S.String.pipe(T.Query())),
     full: S.optional(S.Boolean.pipe(T.Query())),
@@ -105,50 +113,58 @@ export const ListRequest = /*@__PURE__*/ S.suspend(() =>
     limit: S.optional(S.Number.pipe(T.Query())),
     team_id: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/reactions.list", code: 200 })),
-).annotate({ identifier: "ListRequest" }) as any as S.Schema<ListRequest>;
+).annotate({
+  identifier: "ListReactionsRequest",
+}) as any as S.Schema<ListReactionsRequest>;
 
-export type ListResponseItemsItemMap = { [key: string]: unknown | undefined };
-export const ListResponseItemsItemMap = /*@__PURE__*/ S.Record(
+export type ListReactionsResponseItemsItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const ListReactionsResponseItemsItemMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<ListResponseItemsItemMap>;
+) as any as S.Schema<ListReactionsResponseItemsItemMap>;
 
-export type ListResponseItemsList = Array<ListResponseItemsItemMap>;
-export const ListResponseItemsList = /*@__PURE__*/ S.Array(
-  ListResponseItemsItemMap,
-) as any as S.Schema<ListResponseItemsList>;
+export type ListReactionsResponseItemsList =
+  Array<ListReactionsResponseItemsItemMap>;
+export const ListReactionsResponseItemsList = /*@__PURE__*/ S.Array(
+  ListReactionsResponseItemsItemMap,
+) as any as S.Schema<ListReactionsResponseItemsList>;
 
 /** Pagination metadata. An empty `next_cursor` means the last page. */
-export interface ListResponseResponseMetadata {
+export interface ListReactionsResponseResponseMetadata {
   /** Cursor for the next page — pass as `cursor` on the next call. */
   next_cursor?: string;
 }
-export const ListResponseResponseMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    next_cursor: S.optional(S.String),
-  }),
+export const ListReactionsResponseResponseMetadata = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      next_cursor: S.optional(S.String),
+    }),
 ).annotate({
-  identifier: "ListResponseResponseMetadata",
-}) as any as S.Schema<ListResponseResponseMetadata>;
+  identifier: "ListReactionsResponseResponseMetadata",
+}) as any as S.Schema<ListReactionsResponseResponseMetadata>;
 
-export interface ListResponse {
+export interface ListReactionsResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  items: ListResponseItemsList;
+  items: ListReactionsResponseItemsList;
   paging?: unknown;
   /** Pagination metadata. An empty `next_cursor` means the last page. */
-  response_metadata?: ListResponseResponseMetadata;
+  response_metadata?: ListReactionsResponseResponseMetadata;
 }
-export const ListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListReactionsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    items: ListResponseItemsList,
+    items: ListReactionsResponseItemsList,
     paging: S.optional(S.Unknown),
-    response_metadata: S.optional(ListResponseResponseMetadata),
+    response_metadata: S.optional(ListReactionsResponseResponseMetadata),
   }),
-).annotate({ identifier: "ListResponse" }) as any as S.Schema<ListResponse>;
+).annotate({
+  identifier: "ListReactionsResponse",
+}) as any as S.Schema<ListReactionsResponse>;
 
-export interface RemoveRequest {
+export interface RemoveReactionRequest {
   /** Reaction (emoji) name. */
   name: string;
   /** File to remove reaction from. */
@@ -160,7 +176,7 @@ export interface RemoveRequest {
   /** Timestamp of the message to remove reaction from. */
   timestamp?: string;
 }
-export const RemoveRequest = /*@__PURE__*/ S.suspend(() =>
+export const RemoveReactionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String,
     file: S.optional(S.String),
@@ -168,60 +184,64 @@ export const RemoveRequest = /*@__PURE__*/ S.suspend(() =>
     channel: S.optional(S.String),
     timestamp: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/reactions.remove", code: 200 })),
-).annotate({ identifier: "RemoveRequest" }) as any as S.Schema<RemoveRequest>;
+).annotate({
+  identifier: "RemoveReactionRequest",
+}) as any as S.Schema<RemoveReactionRequest>;
 
-export interface RemoveResponse {
+export interface RemoveReactionResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const RemoveResponse = /*@__PURE__*/ S.suspend(() =>
+export const RemoveReactionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
-).annotate({ identifier: "RemoveResponse" }) as any as S.Schema<RemoveResponse>;
+).annotate({
+  identifier: "RemoveReactionResponse",
+}) as any as S.Schema<RemoveReactionResponse>;
 
-export type AddError = SlackOpError;
+export type AddReactionError = SlackOpError;
 /** Adds a reaction to an item. Required scopes — bot: `reactions:write`; user: `reactions:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `already_reacted` — The specified item already has the user/reaction combination. - `bad_timestamp` — Value passed for `timestamp` was invalid. - `channel_not_found` — Value passed for `channel` is invalid. - `external_channel_migrating` — The channel is in the process of being migrated. - `invalid_name` — Value passed for `name` was invalid. - `is_archived` — Channel specified has been archived. - `message_not_found` — Message specified by `channel` and `timestamp` does not exist. - `no_item_specified` — combination of `channel` and `timestamp` was not specified. - `not_reactable` — Whatever you passed in, like a `file` or `file_comment`, can't be reacted to anymore. Your app can react to messages though. - `thread_locked` — Reactions are disabled as the specified message is part of a locked thread. - `too_many_emoji` — The limit for distinct reactions (i.e emoji) on the item has been reached. - `too_many_reactions` — The limit for reactions a person may add to the item has been reached. - `no_access` — User does not have access to react to this canvas. See https://docs.slack.dev/reference/methods/reactions.add */
-export const add: API.OperationMethod<
-  AddRequest,
-  AddResponse,
-  AddError,
+export const addReaction: API.OperationMethod<
+  AddReactionRequest,
+  AddReactionResponse,
+  AddReactionError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AddRequest,
-  output: AddResponse,
+  input: AddReactionRequest,
+  output: AddReactionResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetError = SlackOpError;
+export type GetReactionError = SlackOpError;
 /** Gets reactions for an item. Required scopes — bot: `reactions:read`; user: `reactions:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `bad_timestamp` — Value passed for `timestamp` was invalid. - `channel_not_found` — Value passed for `channel` was invalid. - `file_comment_not_found` — File comment specified by `file_comment` does not exist. - `file_not_found` — File specified by `file` does not exist. - `message_not_found` — Message specified by `channel` and `timestamp` does not exist. - `no_item_specified` — `file`, `file_comment`, or combination of `channel` and `timestamp` was not specified. See https://docs.slack.dev/reference/methods/reactions.get */
-export const get: API.OperationMethod<
-  GetRequest,
-  GetResponse,
-  GetError,
+export const getReaction: API.OperationMethod<
+  GetReactionRequest,
+  GetReactionResponse,
+  GetReactionError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetRequest,
-  output: GetResponse,
+  input: GetReactionRequest,
+  output: GetReactionResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListError = SlackOpError;
+export type ListReactionsError = SlackOpError;
 /** Lists reactions made by a user. Required scopes — bot: `reactions:read`; user: `reactions:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `user_not_found` — Value passed for `user` was invalid. See https://docs.slack.dev/reference/methods/reactions.list */
-export const list: API.PaginatedOperationMethod<
-  ListRequest,
-  ListResponse,
-  ListError,
+export const listReactions: API.PaginatedOperationMethod<
+  ListReactionsRequest,
+  ListReactionsResponse,
+  ListReactionsError,
   SlackOpContext,
-  ListResponseItemsItemMap
+  ListReactionsResponseItemsItemMap
 > = /*@__PURE__*/ API.makePaginated(
   () => ({
-    input: ListRequest,
-    output: ListResponse,
+    input: ListReactionsRequest,
+    output: ListReactionsResponse,
     errors: [SlackError, SlackRateLimited],
     protocol: SlackProtocol,
     retry: Retry.Retry,
@@ -236,16 +256,16 @@ export const list: API.PaginatedOperationMethod<
   slackPaginate,
 ) as any;
 
-export type RemoveError = SlackOpError;
+export type RemoveReactionError = SlackOpError;
 /** Removes a reaction from an item. Required scopes — bot: `reactions:write`; user: `reactions:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `bad_timestamp` — Value passed for `timestamp` was invalid. - `channel_not_found` — The specified channel was not found. - `external_channel_migrating` — The reaction is in a channel that is being migrated - `file_not_found` — File specified by `file` does not exist. - `file_comment_not_found` — File comment specified by `file_comment` does not exist. - `invalid_name` — Value passed for `name` was invalid. - `message_not_found` — Message specified by `channel` and `timestamp` does not exist. - `no_item_specified` — `file`, `file_comment`, or combination of `channel` and `timestamp` was not specified. - `no_access` — The requestor does not have permission to perform this action on the specified item. - `no_reaction` — The specified reaction does not exist, or the requestor is not the original reaction author. - `thread_locked` — Reactions are disabled as the specified message is part of a locked thread. See https://docs.slack.dev/reference/methods/reactions.remove */
-export const remove: API.OperationMethod<
-  RemoveRequest,
-  RemoveResponse,
-  RemoveError,
+export const removeReaction: API.OperationMethod<
+  RemoveReactionRequest,
+  RemoveReactionResponse,
+  RemoveReactionError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RemoveRequest,
-  output: RemoveResponse,
+  input: RemoveReactionRequest,
+  output: RemoveReactionResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

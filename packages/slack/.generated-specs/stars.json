@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.stars#AddRequest": {
+    "com.slack.stars#AddStarRequest": {
       "type": "structure",
       "members": {
         "channel": {
@@ -49,7 +50,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.stars#AddResponse": {
+    "com.slack.stars#AddStarResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -64,13 +65,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.stars#Add": {
+    "com.slack.stars#AddStar": {
       "type": "operation",
       "input": {
-        "target": "com.slack.stars#AddRequest"
+        "target": "com.slack.stars#AddStarRequest"
       },
       "output": {
-        "target": "com.slack.stars#AddResponse"
+        "target": "com.slack.stars#AddStarResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -81,7 +82,7 @@
         "smithy.api#documentation": "Save an item for later. Formerly known as adding a star.\n\nRequired scopes — user: `stars:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `already_starred` — The specified item has already been starred by the authenticated user.\n  - `bad_timestamp` — Value passed for `timestamp` was invalid.\n  - `channel_not_found` — Channel, private group, or DM specified by `channel` does not exist\n  - `external_channel_migrating` — Channel is undergoing active migration\n  - `file_comment_not_found` — File comment specified by `file_comment` does not exist.\n  - `file_not_found` — File specified by `file` does not exist.\n  - `message_not_found` — Message specified by `channel` and `timestamp` does not exist.\n  - `no_item_specified` — `file`, `file_comment`, `channel` and `timestamp` was not specified.\n\nSee https://docs.slack.dev/reference/methods/stars.add"
       }
     },
-    "com.slack.stars#ListRequest": {
+    "com.slack.stars#ListStarsRequest": {
       "type": "structure",
       "members": {
         "count": {
@@ -122,7 +123,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.stars#ListResponseItemsItemCase0Type": {
+    "com.slack.stars#ListStarsResponseItemsItemCase0Type": {
       "type": "enum",
       "members": {
         "MESSAGE": {
@@ -134,11 +135,11 @@
       },
       "traits": {}
     },
-    "com.slack.stars#ListResponseItemsItemCase0": {
+    "com.slack.stars#ListStarsResponseItemsItemCase0": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.slack.stars#ListResponseItemsItemCase0Type",
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase0Type",
           "traits": {
             "smithy.api#required": {}
           }
@@ -164,7 +165,7 @@
       },
       "traits": {}
     },
-    "com.slack.stars#ListResponseItemsItemCase1Type": {
+    "com.slack.stars#ListStarsResponseItemsItemCase1Type": {
       "type": "enum",
       "members": {
         "FILE": {
@@ -176,11 +177,11 @@
       },
       "traits": {}
     },
-    "com.slack.stars#ListResponseItemsItemCase1": {
+    "com.slack.stars#ListStarsResponseItemsItemCase1": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.slack.stars#ListResponseItemsItemCase1Type",
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase1Type",
           "traits": {
             "smithy.api#required": {}
           }
@@ -200,7 +201,7 @@
       },
       "traits": {}
     },
-    "com.slack.stars#ListResponseItemsItemCase2Type": {
+    "com.slack.stars#ListStarsResponseItemsItemCase2Type": {
       "type": "enum",
       "members": {
         "FILE_COMMENT": {
@@ -212,11 +213,11 @@
       },
       "traits": {}
     },
-    "com.slack.stars#ListResponseItemsItemCase2": {
+    "com.slack.stars#ListStarsResponseItemsItemCase2": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.slack.stars#ListResponseItemsItemCase2Type",
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase2Type",
           "traits": {
             "smithy.api#required": {}
           }
@@ -242,7 +243,7 @@
       },
       "traits": {}
     },
-    "com.slack.stars#ListResponseItemsItemCase3Type": {
+    "com.slack.stars#ListStarsResponseItemsItemCase3Type": {
       "type": "enum",
       "members": {
         "CHANNEL": {
@@ -254,11 +255,11 @@
       },
       "traits": {}
     },
-    "com.slack.stars#ListResponseItemsItemCase3": {
+    "com.slack.stars#ListStarsResponseItemsItemCase3": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.slack.stars#ListResponseItemsItemCase3Type",
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase3Type",
           "traits": {
             "smithy.api#required": {}
           }
@@ -278,7 +279,7 @@
       },
       "traits": {}
     },
-    "com.slack.stars#ListResponseItemsItemCase4Type": {
+    "com.slack.stars#ListStarsResponseItemsItemCase4Type": {
       "type": "enum",
       "members": {
         "IM": {
@@ -290,11 +291,11 @@
       },
       "traits": {}
     },
-    "com.slack.stars#ListResponseItemsItemCase4": {
+    "com.slack.stars#ListStarsResponseItemsItemCase4": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.slack.stars#ListResponseItemsItemCase4Type",
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase4Type",
           "traits": {
             "smithy.api#required": {}
           }
@@ -314,7 +315,7 @@
       },
       "traits": {}
     },
-    "com.slack.stars#ListResponseItemsItemCase5Type": {
+    "com.slack.stars#ListStarsResponseItemsItemCase5Type": {
       "type": "enum",
       "members": {
         "GROUP": {
@@ -326,11 +327,11 @@
       },
       "traits": {}
     },
-    "com.slack.stars#ListResponseItemsItemCase5": {
+    "com.slack.stars#ListStarsResponseItemsItemCase5": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.slack.stars#ListResponseItemsItemCase5Type",
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase5Type",
           "traits": {
             "smithy.api#required": {}
           }
@@ -350,38 +351,38 @@
       },
       "traits": {}
     },
-    "com.slack.stars#ListResponseItemsItem": {
+    "com.slack.stars#ListStarsResponseItemsItem": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.slack.stars#ListResponseItemsItemCase0"
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase0"
         },
         "Case1": {
-          "target": "com.slack.stars#ListResponseItemsItemCase1"
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase1"
         },
         "Case2": {
-          "target": "com.slack.stars#ListResponseItemsItemCase2"
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase2"
         },
         "Case3": {
-          "target": "com.slack.stars#ListResponseItemsItemCase3"
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase3"
         },
         "Case4": {
-          "target": "com.slack.stars#ListResponseItemsItemCase4"
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase4"
         },
         "Case5": {
-          "target": "com.slack.stars#ListResponseItemsItemCase5"
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase5"
         }
       },
       "traits": {}
     },
-    "com.slack.stars#ListResponseItemsList": {
+    "com.slack.stars#ListStarsResponseItemsList": {
       "type": "list",
       "member": {
-        "target": "com.slack.stars#ListResponseItemsItem"
+        "target": "com.slack.stars#ListStarsResponseItemsItem"
       },
       "traits": {}
     },
-    "com.slack.stars#ListResponseResponseMetadata": {
+    "com.slack.stars#ListStarsResponseResponseMetadata": {
       "type": "structure",
       "members": {
         "next_cursor": {
@@ -395,7 +396,7 @@
         "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
       }
     },
-    "com.slack.stars#ListResponse": {
+    "com.slack.stars#ListStarsResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -406,7 +407,7 @@
           }
         },
         "items": {
-          "target": "com.slack.stars#ListResponseItemsList",
+          "target": "com.slack.stars#ListStarsResponseItemsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -415,7 +416,7 @@
           "target": "smithy.api#Document"
         },
         "response_metadata": {
-          "target": "com.slack.stars#ListResponseResponseMetadata",
+          "target": "com.slack.stars#ListStarsResponseResponseMetadata",
           "traits": {
             "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
@@ -425,13 +426,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.stars#List": {
+    "com.slack.stars#ListStars": {
       "type": "operation",
       "input": {
-        "target": "com.slack.stars#ListRequest"
+        "target": "com.slack.stars#ListStarsRequest"
       },
       "output": {
-        "target": "com.slack.stars#ListResponse"
+        "target": "com.slack.stars#ListStarsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -449,7 +450,7 @@
         }
       }
     },
-    "com.slack.stars#RemoveRequest": {
+    "com.slack.stars#RemoveStarRequest": {
       "type": "structure",
       "members": {
         "channel": {
@@ -481,7 +482,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.stars#RemoveResponse": {
+    "com.slack.stars#RemoveStarResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -496,13 +497,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.stars#Remove": {
+    "com.slack.stars#RemoveStar": {
       "type": "operation",
       "input": {
-        "target": "com.slack.stars#RemoveRequest"
+        "target": "com.slack.stars#RemoveStarRequest"
       },
       "output": {
-        "target": "com.slack.stars#RemoveResponse"
+        "target": "com.slack.stars#RemoveStarResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -518,13 +519,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.stars#Add"
+          "target": "com.slack.stars#AddStar"
         },
         {
-          "target": "com.slack.stars#List"
+          "target": "com.slack.stars#ListStars"
         },
         {
-          "target": "com.slack.stars#Remove"
+          "target": "com.slack.stars#RemoveStar"
         }
       ],
       "traits": {

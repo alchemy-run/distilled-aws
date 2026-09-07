@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.emoji#ListRequest": {
+    "com.slack.emoji#ListEmojiRequest": {
       "type": "structure",
       "members": {
         "include_categories": {
@@ -32,7 +33,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.emoji#ListResponseEmojiMap": {
+    "com.slack.emoji#ListEmojiResponseEmojiMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -42,33 +43,33 @@
       },
       "traits": {}
     },
-    "com.slack.emoji#ListResponseCategoriesItemEmojiNamesList": {
+    "com.slack.emoji#ListEmojiResponseCategoriesItemEmojiNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.emoji#ListResponseCategoriesItem": {
+    "com.slack.emoji#ListEmojiResponseCategoriesItem": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String"
         },
         "emoji_names": {
-          "target": "com.slack.emoji#ListResponseCategoriesItemEmojiNamesList"
+          "target": "com.slack.emoji#ListEmojiResponseCategoriesItemEmojiNamesList"
         }
       },
       "traits": {}
     },
-    "com.slack.emoji#ListResponseCategoriesList": {
+    "com.slack.emoji#ListEmojiResponseCategoriesList": {
       "type": "list",
       "member": {
-        "target": "com.slack.emoji#ListResponseCategoriesItem"
+        "target": "com.slack.emoji#ListEmojiResponseCategoriesItem"
       },
       "traits": {}
     },
-    "com.slack.emoji#ListResponse": {
+    "com.slack.emoji#ListEmojiResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -82,7 +83,7 @@
           "target": "smithy.api#String"
         },
         "emoji": {
-          "target": "com.slack.emoji#ListResponseEmojiMap",
+          "target": "com.slack.emoji#ListEmojiResponseEmojiMap",
           "traits": {
             "smithy.api#required": {}
           }
@@ -91,20 +92,20 @@
           "target": "smithy.api#String"
         },
         "categories": {
-          "target": "com.slack.emoji#ListResponseCategoriesList"
+          "target": "com.slack.emoji#ListEmojiResponseCategoriesList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.slack.emoji#List": {
+    "com.slack.emoji#ListEmoji": {
       "type": "operation",
       "input": {
-        "target": "com.slack.emoji#ListRequest"
+        "target": "com.slack.emoji#ListEmojiRequest"
       },
       "output": {
-        "target": "com.slack.emoji#ListResponse"
+        "target": "com.slack.emoji#ListEmojiResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -120,7 +121,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.emoji#List"
+          "target": "com.slack.emoji#ListEmoji"
         }
       ],
       "traits": {

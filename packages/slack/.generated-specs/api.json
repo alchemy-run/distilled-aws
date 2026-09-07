@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.api#TestRequest": {
+    "com.slack.api#TestApiRequest": {
       "type": "structure",
       "members": {
         "error": {
@@ -31,7 +32,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.api#TestResponseArgsMap": {
+    "com.slack.api#TestApiResponseArgsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -41,7 +42,7 @@
       },
       "traits": {}
     },
-    "com.slack.api#TestResponse": {
+    "com.slack.api#TestApiResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -52,20 +53,20 @@
           }
         },
         "args": {
-          "target": "com.slack.api#TestResponseArgsMap"
+          "target": "com.slack.api#TestApiResponseArgsMap"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.slack.api#Test": {
+    "com.slack.api#TestApi": {
       "type": "operation",
       "input": {
-        "target": "com.slack.api#TestRequest"
+        "target": "com.slack.api#TestApiRequest"
       },
       "output": {
-        "target": "com.slack.api#TestResponse"
+        "target": "com.slack.api#TestApiResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -81,7 +82,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.api#Test"
+          "target": "com.slack.api#TestApi"
         }
       ],
       "traits": {

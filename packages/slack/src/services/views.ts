@@ -12,41 +12,7 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export type OpenRequestViewMap = { [key: string]: unknown | undefined };
-export const OpenRequestViewMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<OpenRequestViewMap>;
-
-export interface OpenRequest {
-  /** Exchange a trigger to post to the user. */
-  trigger_id?: string | null;
-  /** Exchange an interactivity pointer to post to the user. */
-  interactivity_pointer?: string | null;
-  /** A [view payload](/reference/views). This must be a JSON-encoded string. */
-  view: OpenRequestViewMap;
-}
-export const OpenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    trigger_id: S.optional(S.NullOr(S.String)),
-    interactivity_pointer: S.optional(S.NullOr(S.String)),
-    view: OpenRequestViewMap,
-  }).pipe(T.Http({ method: "POST", uri: "/views.open", code: 200 })),
-).annotate({ identifier: "OpenRequest" }) as any as S.Schema<OpenRequest>;
-
-export interface OpenResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  view: unknown;
-}
-export const OpenResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    view: S.Unknown,
-  }),
-).annotate({ identifier: "OpenResponse" }) as any as S.Schema<OpenResponse>;
-
-export interface PublishRequest {
+export interface PublishViewRequest {
   /** `id` of the user you want publish a view to. */
   user_id: string;
   /** A [view payload](/reference/views). This must be a JSON-encoded string. */
@@ -55,58 +21,32 @@ export interface PublishRequest {
   hash?: string;
   interactivity_pointer?: string;
 }
-export const PublishRequest = /*@__PURE__*/ S.suspend(() =>
+export const PublishViewRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     user_id: S.String,
     view: S.Unknown,
     hash: S.optional(S.String),
     interactivity_pointer: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/views.publish", code: 200 })),
-).annotate({ identifier: "PublishRequest" }) as any as S.Schema<PublishRequest>;
+).annotate({
+  identifier: "PublishViewRequest",
+}) as any as S.Schema<PublishViewRequest>;
 
-export interface PublishResponse {
+export interface PublishViewResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   view: unknown;
 }
-export const PublishResponse = /*@__PURE__*/ S.suspend(() =>
+export const PublishViewResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     view: S.Unknown,
   }),
 ).annotate({
-  identifier: "PublishResponse",
-}) as any as S.Schema<PublishResponse>;
+  identifier: "PublishViewResponse",
+}) as any as S.Schema<PublishViewResponse>;
 
-export interface PushRequest {
-  /** Exchange a trigger to post to the user. */
-  trigger_id?: string | null;
-  /** Exchange an interactivity pointer to post to the user. */
-  interactivity_pointer?: string | null;
-  /** A [view payload](/reference/views). This must be a JSON-encoded string. */
-  view: unknown;
-}
-export const PushRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    trigger_id: S.optional(S.NullOr(S.String)),
-    interactivity_pointer: S.optional(S.NullOr(S.String)),
-    view: S.Unknown,
-  }).pipe(T.Http({ method: "POST", uri: "/views.push", code: 200 })),
-).annotate({ identifier: "PushRequest" }) as any as S.Schema<PushRequest>;
-
-export interface PushResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  view: unknown;
-}
-export const PushResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    view: S.Unknown,
-  }),
-).annotate({ identifier: "PushResponse" }) as any as S.Schema<PushResponse>;
-
-export interface UpdateRequest {
+export interface UpdateViewRequest {
   /** A unique identifier of the view to be updated. Either `view_id` or `external_id` is required. */
   view_id?: string;
   /** A unique identifier of the view set by the developer. Must be unique for all views on a team. Max length of 255 characters. Either `view_id` or `external_id` is required. */
@@ -116,82 +56,156 @@ export interface UpdateRequest {
   /** A string that represents view state to protect against possible race conditions. */
   hash?: string;
 }
-export const UpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateViewRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     view_id: S.optional(S.String),
     external_id: S.optional(S.String),
     view: S.Unknown,
     hash: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/views.update", code: 200 })),
-).annotate({ identifier: "UpdateRequest" }) as any as S.Schema<UpdateRequest>;
+).annotate({
+  identifier: "UpdateViewRequest",
+}) as any as S.Schema<UpdateViewRequest>;
 
-export interface UpdateResponse {
+export interface UpdateViewResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   view: unknown;
 }
-export const UpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateViewResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     view: S.Unknown,
   }),
-).annotate({ identifier: "UpdateResponse" }) as any as S.Schema<UpdateResponse>;
+).annotate({
+  identifier: "UpdateViewResponse",
+}) as any as S.Schema<UpdateViewResponse>;
 
-export type OpenError = SlackOpError;
-/** Open a view for a user. Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `duplicate_external_id` — Error returned when the given `external_id` has already be used. - `exchanged_trigger_id` — The trigger_id was already exchanged in a previous call. - `expired_trigger_id` — The trigger_id is expired. - `invalid_trigger_id` — The trigger_id is invalid. The expected format for the trigger_id argument is "132456.7890123.abcdef". - `view_too_large` — Error returned if the provided view is greater than 250kb. See https://docs.slack.dev/reference/methods/views.open */
-export const open: API.OperationMethod<
-  OpenRequest,
-  OpenResponse,
-  OpenError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OpenRequest,
-  output: OpenResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
+export type ViewsOpenRequestViewMap = { [key: string]: unknown | undefined };
+export const ViewsOpenRequestViewMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ViewsOpenRequestViewMap>;
 
-export type PublishError = SlackOpError;
+export interface ViewsOpenRequest {
+  /** Exchange a trigger to post to the user. */
+  trigger_id?: string | null;
+  /** Exchange an interactivity pointer to post to the user. */
+  interactivity_pointer?: string | null;
+  /** A [view payload](/reference/views). This must be a JSON-encoded string. */
+  view: ViewsOpenRequestViewMap;
+}
+export const ViewsOpenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    trigger_id: S.optional(S.NullOr(S.String)),
+    interactivity_pointer: S.optional(S.NullOr(S.String)),
+    view: ViewsOpenRequestViewMap,
+  }).pipe(T.Http({ method: "POST", uri: "/views.open", code: 200 })),
+).annotate({
+  identifier: "ViewsOpenRequest",
+}) as any as S.Schema<ViewsOpenRequest>;
+
+export interface ViewsOpenResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  view: unknown;
+}
+export const ViewsOpenResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    view: S.Unknown,
+  }),
+).annotate({
+  identifier: "ViewsOpenResponse",
+}) as any as S.Schema<ViewsOpenResponse>;
+
+export interface ViewsPushRequest {
+  /** Exchange a trigger to post to the user. */
+  trigger_id?: string | null;
+  /** Exchange an interactivity pointer to post to the user. */
+  interactivity_pointer?: string | null;
+  /** A [view payload](/reference/views). This must be a JSON-encoded string. */
+  view: unknown;
+}
+export const ViewsPushRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    trigger_id: S.optional(S.NullOr(S.String)),
+    interactivity_pointer: S.optional(S.NullOr(S.String)),
+    view: S.Unknown,
+  }).pipe(T.Http({ method: "POST", uri: "/views.push", code: 200 })),
+).annotate({
+  identifier: "ViewsPushRequest",
+}) as any as S.Schema<ViewsPushRequest>;
+
+export interface ViewsPushResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  view: unknown;
+}
+export const ViewsPushResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    view: S.Unknown,
+  }),
+).annotate({
+  identifier: "ViewsPushResponse",
+}) as any as S.Schema<ViewsPushResponse>;
+
+export type PublishViewError = SlackOpError;
 /** Publish a static view for a User. Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `duplicate_external_id` — Error returned when the given `external_id` has already be used. - `hash_conflict` — Error returned when the provided `hash` doesn't match the current stored value. - `missing_profile_id` — A profile id was not provided when trying to publish a view of type profile. - `not_allowed_token_type` — The type of token your app used when requesting this method is not allowed. - `not_enabled` — Error returned if a `home` view is published but the Home tab isn't enabled for the app. - `not_implemented` — The profile view experiment is not enabled for this user. - `view_too_large` — Error returned if the provided view is greater than 250kb. See https://docs.slack.dev/reference/methods/views.publish */
-export const publish: API.OperationMethod<
-  PublishRequest,
-  PublishResponse,
-  PublishError,
+export const publishView: API.OperationMethod<
+  PublishViewRequest,
+  PublishViewResponse,
+  PublishViewError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PublishRequest,
-  output: PublishResponse,
+  input: PublishViewRequest,
+  output: PublishViewResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type PushError = SlackOpError;
-/** Push a view onto the stack of a root view. Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `duplicate_external_id` — Error returned when the given `external_id` has already be used. - `exchanged_trigger_id` — The trigger_id was already exchanged in a previous call. - `expired_trigger_id` — The trigger_id is expired. - `invalid_trigger_id` — The trigger_id is invalid. The expected format for the trigger_id argument is "132456.7890123.abcdef". - `not_found` — Error returned when the requested view can't be found. - `push_limit_reached` — Error returned when the max push limit has been reached for views. Currently the limit is 3. - `view_too_large` — Error returned if the provided view is greater than 250kb. See https://docs.slack.dev/reference/methods/views.push */
-export const push: API.OperationMethod<
-  PushRequest,
-  PushResponse,
-  PushError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PushRequest,
-  output: PushResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateError = SlackOpError;
+export type UpdateViewError = SlackOpError;
 /** Update an existing view. Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `duplicate_external_id` — Error returned when the given `external_id` has already be used. - `hash_conflict` — Error returned when the provided `hash` doesn't match the current stored value. - `not_found` — Error returned when the given `view_id` or `external_id` doesn't exist. - `view_too_large` — Error returned if the provided view is greater than 250kb. See https://docs.slack.dev/reference/methods/views.update */
-export const update: API.OperationMethod<
-  UpdateRequest,
-  UpdateResponse,
-  UpdateError,
+export const updateView: API.OperationMethod<
+  UpdateViewRequest,
+  UpdateViewResponse,
+  UpdateViewError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRequest,
-  output: UpdateResponse,
+  input: UpdateViewRequest,
+  output: UpdateViewResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ViewsOpenError = SlackOpError;
+/** Open a view for a user. Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `duplicate_external_id` — Error returned when the given `external_id` has already be used. - `exchanged_trigger_id` — The trigger_id was already exchanged in a previous call. - `expired_trigger_id` — The trigger_id is expired. - `invalid_trigger_id` — The trigger_id is invalid. The expected format for the trigger_id argument is "132456.7890123.abcdef". - `view_too_large` — Error returned if the provided view is greater than 250kb. See https://docs.slack.dev/reference/methods/views.open */
+export const viewsOpen: API.OperationMethod<
+  ViewsOpenRequest,
+  ViewsOpenResponse,
+  ViewsOpenError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ViewsOpenRequest,
+  output: ViewsOpenResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ViewsPushError = SlackOpError;
+/** Push a view onto the stack of a root view. Rate limit tier: 4 Method-specific errors (the `error` slug on the SlackError): - `duplicate_external_id` — Error returned when the given `external_id` has already be used. - `exchanged_trigger_id` — The trigger_id was already exchanged in a previous call. - `expired_trigger_id` — The trigger_id is expired. - `invalid_trigger_id` — The trigger_id is invalid. The expected format for the trigger_id argument is "132456.7890123.abcdef". - `not_found` — Error returned when the requested view can't be found. - `push_limit_reached` — Error returned when the max push limit has been reached for views. Currently the limit is 3. - `view_too_large` — Error returned if the provided view is greater than 250kb. See https://docs.slack.dev/reference/methods/views.push */
+export const viewsPush: API.OperationMethod<
+  ViewsPushRequest,
+  ViewsPushResponse,
+  ViewsPushError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ViewsPushRequest,
+  output: ViewsPushResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

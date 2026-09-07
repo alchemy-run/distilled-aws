@@ -13,10 +13,10 @@ import * as Retry from "../retry.ts";
 export type { SlackOpError, SlackOpContext };
 
 /** The level that we are setting the file's permission to (read or write) */
-export type AddRequestAccessLevel = "read" | "write";
-export const AddRequestAccessLevel = /*@__PURE__*/ S.String;
+export type AddBookmarkRequestAccessLevel = "read" | "write";
+export const AddBookmarkRequestAccessLevel = /*@__PURE__*/ S.String;
 
-export interface AddRequest {
+export interface AddBookmarkRequest {
   /** Channel to add bookmark in. Required for public channels. */
   channel_id?: string;
   /** Title for the bookmark. */
@@ -30,11 +30,11 @@ export interface AddRequest {
   /** ID of the entity being bookmarked. Only applies to message and file types. */
   entity_id?: string;
   /** The level that we are setting the file's permission to (read or write) */
-  access_level?: AddRequestAccessLevel | (string & {});
+  access_level?: AddBookmarkRequestAccessLevel | (string & {});
   /** Id of this bookmark's parent */
   parent_id?: string;
 }
-export const AddRequest = /*@__PURE__*/ S.suspend(() =>
+export const AddBookmarkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel_id: S.optional(S.String),
     title: S.String,
@@ -42,24 +42,28 @@ export const AddRequest = /*@__PURE__*/ S.suspend(() =>
     type: S.String,
     emoji: S.optional(S.String),
     entity_id: S.optional(S.String),
-    access_level: S.optional(AddRequestAccessLevel),
+    access_level: S.optional(AddBookmarkRequestAccessLevel),
     parent_id: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/bookmarks.add", code: 200 })),
-).annotate({ identifier: "AddRequest" }) as any as S.Schema<AddRequest>;
+).annotate({
+  identifier: "AddBookmarkRequest",
+}) as any as S.Schema<AddBookmarkRequest>;
 
-export interface AddResponse {
+export interface AddBookmarkResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   bookmark: unknown;
 }
-export const AddResponse = /*@__PURE__*/ S.suspend(() =>
+export const AddBookmarkResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     bookmark: S.Unknown,
   }),
-).annotate({ identifier: "AddResponse" }) as any as S.Schema<AddResponse>;
+).annotate({
+  identifier: "AddBookmarkResponse",
+}) as any as S.Schema<AddBookmarkResponse>;
 
-export interface EditRequest {
+export interface EditBookmarkRequest {
   /** Channel to update bookmark in. Required for public channels. */
   channel_id?: string;
   /** Bookmark to update. Required for public channels. */
@@ -71,7 +75,7 @@ export interface EditRequest {
   /** Emoji tag to apply to the link. */
   emoji?: string;
 }
-export const EditRequest = /*@__PURE__*/ S.suspend(() =>
+export const EditBookmarkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel_id: S.optional(S.String),
     bookmark_id: S.optional(S.String),
@@ -79,48 +83,56 @@ export const EditRequest = /*@__PURE__*/ S.suspend(() =>
     link: S.optional(S.String),
     emoji: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/bookmarks.edit", code: 200 })),
-).annotate({ identifier: "EditRequest" }) as any as S.Schema<EditRequest>;
+).annotate({
+  identifier: "EditBookmarkRequest",
+}) as any as S.Schema<EditBookmarkRequest>;
 
-export interface EditResponse {
+export interface EditBookmarkResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   bookmark: unknown;
 }
-export const EditResponse = /*@__PURE__*/ S.suspend(() =>
+export const EditBookmarkResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     bookmark: S.Unknown,
   }),
-).annotate({ identifier: "EditResponse" }) as any as S.Schema<EditResponse>;
+).annotate({
+  identifier: "EditBookmarkResponse",
+}) as any as S.Schema<EditBookmarkResponse>;
 
-export interface ListRequest {
+export interface ListBookmarksRequest {
   /** Channel to list bookmarks in. Required for public channels. */
   channel_id?: string;
 }
-export const ListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListBookmarksRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel_id: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/bookmarks.list", code: 200 })),
-).annotate({ identifier: "ListRequest" }) as any as S.Schema<ListRequest>;
+).annotate({
+  identifier: "ListBookmarksRequest",
+}) as any as S.Schema<ListBookmarksRequest>;
 
-export type ListResponseBookmarksList = Array<unknown>;
-export const ListResponseBookmarksList = /*@__PURE__*/ S.Array(
+export type ListBookmarksResponseBookmarksList = Array<unknown>;
+export const ListBookmarksResponseBookmarksList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<ListResponseBookmarksList>;
+) as any as S.Schema<ListBookmarksResponseBookmarksList>;
 
-export interface ListResponse {
+export interface ListBookmarksResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  bookmarks: ListResponseBookmarksList;
+  bookmarks: ListBookmarksResponseBookmarksList;
 }
-export const ListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListBookmarksResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    bookmarks: ListResponseBookmarksList,
+    bookmarks: ListBookmarksResponseBookmarksList,
   }),
-).annotate({ identifier: "ListResponse" }) as any as S.Schema<ListResponse>;
+).annotate({
+  identifier: "ListBookmarksResponse",
+}) as any as S.Schema<ListBookmarksResponse>;
 
-export interface RemoveRequest {
+export interface RemoveBookmarkRequest {
   /** Channel to remove bookmark. Required for public channels. */
   channel_id?: string;
   /** Bookmark to remove. Required for public channels. */
@@ -128,79 +140,83 @@ export interface RemoveRequest {
   /** Quip section ID to unbookmark */
   quip_section_id?: string;
 }
-export const RemoveRequest = /*@__PURE__*/ S.suspend(() =>
+export const RemoveBookmarkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel_id: S.optional(S.String),
     bookmark_id: S.optional(S.String),
     quip_section_id: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/bookmarks.remove", code: 200 })),
-).annotate({ identifier: "RemoveRequest" }) as any as S.Schema<RemoveRequest>;
+).annotate({
+  identifier: "RemoveBookmarkRequest",
+}) as any as S.Schema<RemoveBookmarkRequest>;
 
-export interface RemoveResponse {
+export interface RemoveBookmarkResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const RemoveResponse = /*@__PURE__*/ S.suspend(() =>
+export const RemoveBookmarkResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
-).annotate({ identifier: "RemoveResponse" }) as any as S.Schema<RemoveResponse>;
+).annotate({
+  identifier: "RemoveBookmarkResponse",
+}) as any as S.Schema<RemoveBookmarkResponse>;
 
-export type AddError = SlackOpError;
+export type AddBookmarkError = SlackOpError;
 /** Add bookmark to a channel. Required scopes — bot: `bookmarks:write`; user: `bookmarks:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `access_denied` — Actor lacks access to the requested resource. - `cannot_bookmark_from_external_org` — File is an external file and cannot be bookmarked. - `cannot_bookmark_restricted_sharing_enabled` — File has restricted sharing enabled and cannot be bookmarked. - `channel_not_found` — Channel cannot be found. - `file_already_added` — The file has already been added to the folder. - `file_not_found` — File cannot be found. - `invalid_bookmark_type` — Bookmark type is not valid. - `invalid_app_action_type` — App action type is not valid. - `invalid_shortcut_type` — Shortcut type is not valid. - `invalid_child_type` — Child type is not valid. - `invalid_emoji` — Invalid emoji, does not follow the pattern of a valid emoji name. - `invalid_entity_id` — Invalid entity_id, file or message type bookmark should have original file or message ID. - `invalid_link` — Invalid link, link should begin with either http:// or https://. - `invalid_parent_type` — Parent type is not valid. - `not_implemented` — bookmarking not available for the user. - `parent_bookmark_disabled` — Parent bookmark feature flag is off. - `parent_with_link` — Parent bookmark should not have link. - `permission_denied` — No permission to perform this operation. - `slack_connect_file_upload_sharing_blocked` — Admin has disabled File uploads in all Slack Connect communications - `slack_connect_clip_sharing_blocked` — Admin has disabled Clip sharing in Slack Connect channels - `slack_connect_blocked_file_type` — Files with certain extensions are blocked from being uploaded in all Slack Connect communications - `too_many_bookmarks` — Bookmark limit reached for channel. - `too_many_tabs` — tab limit reached for channel. - `too_many_requests` — Too many concurrent requests. Please retry. See https://docs.slack.dev/reference/methods/bookmarks.add */
-export const add: API.OperationMethod<
-  AddRequest,
-  AddResponse,
-  AddError,
+export const addBookmark: API.OperationMethod<
+  AddBookmarkRequest,
+  AddBookmarkResponse,
+  AddBookmarkError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AddRequest,
-  output: AddResponse,
+  input: AddBookmarkRequest,
+  output: AddBookmarkResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type EditError = SlackOpError;
+export type EditBookmarkError = SlackOpError;
 /** Edit bookmark. Required scopes — bot: `bookmarks:write`; user: `bookmarks:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `access_denied` — Actor lacks access to the requested resource. - `channel_not_found` — Channel cannot be found. - `invalid_bookmark_type` — Bookmark type is not valid. - `invalid_emoji` — Invalid emoji, does not follow the pattern of a valid emoji name. - `invalid_link` — Invalid link, link should begin with either http:// or https://. - `not_found` — Bookmark cannot be found. - `not_implemented` — bookmarking not available for the user. - `parent_with_link` — Parent bookmark should not have link. - `permission_denied` — No permission to perform this operation. - `slack_connect_file_upload_sharing_blocked` — Admin has disabled File uploads in all Slack Connect communications - `slack_connect_clip_sharing_blocked` — Admin has disabled Clip sharing in Slack Connect channels - `slack_connect_blocked_file_type` — Files with certain extensions are blocked from being uploaded in all Slack Connect communications See https://docs.slack.dev/reference/methods/bookmarks.edit */
-export const edit: API.OperationMethod<
-  EditRequest,
-  EditResponse,
-  EditError,
+export const editBookmark: API.OperationMethod<
+  EditBookmarkRequest,
+  EditBookmarkResponse,
+  EditBookmarkError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EditRequest,
-  output: EditResponse,
+  input: EditBookmarkRequest,
+  output: EditBookmarkResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListError = SlackOpError;
+export type ListBookmarksError = SlackOpError;
 /** List bookmark for the channel. Required scopes — bot: `bookmarks:read`; user: `bookmarks:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `access_denied` — Actor lacks access to the requested resource. - `channel_not_found` — Channel cannot be found. - `not_implemented` — bookmarking not available for the user. See https://docs.slack.dev/reference/methods/bookmarks.list */
-export const list: API.OperationMethod<
-  ListRequest,
-  ListResponse,
-  ListError,
+export const listBookmarks: API.OperationMethod<
+  ListBookmarksRequest,
+  ListBookmarksResponse,
+  ListBookmarksError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListRequest,
-  output: ListResponse,
+  input: ListBookmarksRequest,
+  output: ListBookmarksResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type RemoveError = SlackOpError;
+export type RemoveBookmarkError = SlackOpError;
 /** Remove bookmark from the channel. Required scopes — bot: `bookmarks:write`; user: `bookmarks:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `access_denied` — Actor lacks access to the requested resource. - `channel_not_found` — Channel cannot be found. - `user_not_found` — User cannot be found. - `invalid_bookmark_type` — Bookmark type is not valid. - `not_found` — Bookmark cannot be found. - `not_implemented` — bookmarking not available for the user. - `permission_denied` — No permission to perform this operation. See https://docs.slack.dev/reference/methods/bookmarks.remove */
-export const remove: API.OperationMethod<
-  RemoveRequest,
-  RemoveResponse,
-  RemoveError,
+export const removeBookmark: API.OperationMethod<
+  RemoveBookmarkRequest,
+  RemoveBookmarkResponse,
+  RemoveBookmarkError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RemoveRequest,
-  output: RemoveResponse,
+  input: RemoveBookmarkRequest,
+  output: RemoveBookmarkResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

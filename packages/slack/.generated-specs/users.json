@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.users#ConversationsRequest": {
+    "com.slack.users#UsersConversationsRequest": {
       "type": "structure",
       "members": {
         "cursor": {
@@ -74,14 +75,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.users#ConversationsResponseChannelsList": {
+    "com.slack.users#UsersConversationsResponseChannelsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.slack.users#ConversationsResponseResponseMetadata": {
+    "com.slack.users#UsersConversationsResponseResponseMetadata": {
       "type": "structure",
       "members": {
         "next_cursor": {
@@ -95,7 +96,7 @@
         "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
       }
     },
-    "com.slack.users#ConversationsResponse": {
+    "com.slack.users#UsersConversationsResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -106,13 +107,13 @@
           }
         },
         "channels": {
-          "target": "com.slack.users#ConversationsResponseChannelsList",
+          "target": "com.slack.users#UsersConversationsResponseChannelsList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "response_metadata": {
-          "target": "com.slack.users#ConversationsResponseResponseMetadata",
+          "target": "com.slack.users#UsersConversationsResponseResponseMetadata",
           "traits": {
             "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
@@ -122,13 +123,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.users#Conversations": {
+    "com.slack.users#UsersConversations": {
       "type": "operation",
       "input": {
-        "target": "com.slack.users#ConversationsRequest"
+        "target": "com.slack.users#UsersConversationsRequest"
       },
       "output": {
-        "target": "com.slack.users#ConversationsResponse"
+        "target": "com.slack.users#UsersConversationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -178,7 +179,7 @@
         "smithy.api#documentation": "Delete the user profile photo\n\nRequired scopes — user: `users.profile:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — An unexpected error occurred.\n\nSee https://docs.slack.dev/reference/methods/users.deletePhoto"
       }
     },
-    "com.slack.users#DiscoverableContactsLookupRequest": {
+    "com.slack.users#LookupDiscoverableContactRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -192,7 +193,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.users#DiscoverableContactsLookupResponse": {
+    "com.slack.users#LookupDiscoverableContactResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -213,13 +214,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.users#DiscoverableContactsLookup": {
+    "com.slack.users#LookupDiscoverableContact": {
       "type": "operation",
       "input": {
-        "target": "com.slack.users#DiscoverableContactsLookupRequest"
+        "target": "com.slack.users#LookupDiscoverableContactRequest"
       },
       "output": {
-        "target": "com.slack.users#DiscoverableContactsLookupResponse"
+        "target": "com.slack.users#LookupDiscoverableContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -298,7 +299,7 @@
         "smithy.api#documentation": "Gets user presence information.\n\nRequired scopes — bot: `users:read`; user: `users:read`\n\nRate limit tier: 3\n\nSee https://docs.slack.dev/reference/methods/users.getPresence"
       }
     },
-    "com.slack.users#IdentityResponse": {
+    "com.slack.users#UsersIdentityResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -313,13 +314,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.users#Identity": {
+    "com.slack.users#UsersIdentity": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.slack.users#IdentityResponse"
+        "target": "com.slack.users#UsersIdentityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -330,7 +331,7 @@
         "smithy.api#documentation": "Get a user's identity.\n\nRequired scopes — user: `identity:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — Internal error\n  - `invalid_user_id` — Invalid user id provided\n  - `email_not_verified` — user email has not been verified\n\nSee https://docs.slack.dev/reference/methods/users.identity"
       }
     },
-    "com.slack.users#InfoRequest": {
+    "com.slack.users#UsersInfoRequest": {
       "type": "structure",
       "members": {
         "include_locale": {
@@ -353,14 +354,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.users#InfoResponseUsersList": {
+    "com.slack.users#UsersInfoResponseUsersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.slack.users#InfoResponse": {
+    "com.slack.users#UsersInfoResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -374,20 +375,20 @@
           "target": "smithy.api#Document"
         },
         "users": {
-          "target": "com.slack.users#InfoResponseUsersList"
+          "target": "com.slack.users#UsersInfoResponseUsersList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.slack.users#Info": {
+    "com.slack.users#UsersInfo": {
       "type": "operation",
       "input": {
-        "target": "com.slack.users#InfoRequest"
+        "target": "com.slack.users#UsersInfoRequest"
       },
       "output": {
-        "target": "com.slack.users#InfoResponse"
+        "target": "com.slack.users#UsersInfoResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -398,7 +399,7 @@
         "smithy.api#documentation": "Gets information about a user.\n\nRequired scopes — bot: `users:read`; user: `users:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `too_many_users` — Too many users.\n  - `user_not_found` — Value passed for `user` was invalid.\n  - `user_not_visible` — The requested user is not visible to the calling user\n\nSee https://docs.slack.dev/reference/methods/users.info"
       }
     },
-    "com.slack.users#ListRequest": {
+    "com.slack.users#ListUsersRequest": {
       "type": "structure",
       "members": {
         "cursor": {
@@ -434,14 +435,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.users#ListResponseMembersList": {
+    "com.slack.users#ListUsersResponseMembersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.slack.users#ListResponseResponseMetadata": {
+    "com.slack.users#ListUsersResponseResponseMetadata": {
       "type": "structure",
       "members": {
         "next_cursor": {
@@ -455,7 +456,7 @@
         "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
       }
     },
-    "com.slack.users#ListResponse": {
+    "com.slack.users#ListUsersResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -466,7 +467,7 @@
           }
         },
         "members": {
-          "target": "com.slack.users#ListResponseMembersList",
+          "target": "com.slack.users#ListUsersResponseMembersList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -478,7 +479,7 @@
           }
         },
         "response_metadata": {
-          "target": "com.slack.users#ListResponseResponseMetadata",
+          "target": "com.slack.users#ListUsersResponseResponseMetadata",
           "traits": {
             "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
           }
@@ -491,13 +492,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.users#List": {
+    "com.slack.users#ListUsers": {
       "type": "operation",
       "input": {
-        "target": "com.slack.users#ListRequest"
+        "target": "com.slack.users#ListUsersRequest"
       },
       "output": {
-        "target": "com.slack.users#ListResponse"
+        "target": "com.slack.users#ListUsersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -569,7 +570,7 @@
         "smithy.api#documentation": "Find a user with an email address.\n\nRequired scopes — bot: `users:read.email`; user: `users:read.email`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `enterprise_is_restricted` — This method was called with an inappropriate enterprise-level token.\n  - `users_not_found` — Value passed for `user` was invalid.\n\nSee https://docs.slack.dev/reference/methods/users.lookupByEmail"
       }
     },
-    "com.slack.users#ProfileGetRequest": {
+    "com.slack.users#GetProfileRequest": {
       "type": "structure",
       "members": {
         "include_labels": {
@@ -591,7 +592,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.users#ProfileGetResponse": {
+    "com.slack.users#GetProfileResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -612,13 +613,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.users#ProfileGet": {
+    "com.slack.users#GetProfile": {
       "type": "operation",
       "input": {
-        "target": "com.slack.users#ProfileGetRequest"
+        "target": "com.slack.users#GetProfileRequest"
       },
       "output": {
-        "target": "com.slack.users#ProfileGetResponse"
+        "target": "com.slack.users#GetProfileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -629,7 +630,7 @@
         "smithy.api#documentation": "Retrieve a user's profile information, including their custom status.\n\nRequired scopes — bot: `users.profile:read`; user: `users.profile:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `user_not_found` — Value passed for `user` was invalid.\n  - `token_revoked` — The token being used is not valid.\n  - `ratelimited` — You are attempting to call this method too frequently.\n\nSee https://docs.slack.dev/reference/methods/users.profile.get"
       }
     },
-    "com.slack.users#ProfileSetRequest": {
+    "com.slack.users#SetProfileRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -661,7 +662,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.users#ProfileSetResponse": {
+    "com.slack.users#SetProfileResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -691,13 +692,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.users#ProfileSet": {
+    "com.slack.users#SetProfile": {
       "type": "operation",
       "input": {
-        "target": "com.slack.users#ProfileSetRequest"
+        "target": "com.slack.users#SetProfileRequest"
       },
       "output": {
-        "target": "com.slack.users#ProfileSetResponse"
+        "target": "com.slack.users#SetProfileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -893,34 +894,34 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.users#Conversations"
+          "target": "com.slack.users#UsersConversations"
         },
         {
           "target": "com.slack.users#DeletePhoto"
         },
         {
-          "target": "com.slack.users#DiscoverableContactsLookup"
+          "target": "com.slack.users#LookupDiscoverableContact"
         },
         {
           "target": "com.slack.users#GetPresence"
         },
         {
-          "target": "com.slack.users#Identity"
+          "target": "com.slack.users#UsersIdentity"
         },
         {
-          "target": "com.slack.users#Info"
+          "target": "com.slack.users#UsersInfo"
         },
         {
-          "target": "com.slack.users#List"
+          "target": "com.slack.users#ListUsers"
         },
         {
           "target": "com.slack.users#LookupByEmail"
         },
         {
-          "target": "com.slack.users#ProfileGet"
+          "target": "com.slack.users#GetProfile"
         },
         {
-          "target": "com.slack.users#ProfileSet"
+          "target": "com.slack.users#SetProfile"
         },
         {
           "target": "com.slack.users#SetActive"

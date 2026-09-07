@@ -13,12 +13,12 @@ import * as Retry from "../retry.ts";
 export type { SlackOpError, SlackOpContext };
 
 /** The list of users to register as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users). */
-export type AddRequestUsersList = Array<unknown>;
-export const AddRequestUsersList = /*@__PURE__*/ S.Array(
+export type AddCallRequestUsersList = Array<unknown>;
+export const AddCallRequestUsersList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<AddRequestUsersList>;
+) as any as S.Schema<AddCallRequestUsersList>;
 
-export interface AddRequest {
+export interface AddCallRequest {
   /** An ID supplied by the 3rd-party Call provider. It must be unique across all Calls from that service. */
   external_unique_id: string;
   /** An optional, human-readable ID supplied by the 3rd-party Call provider. If supplied, this ID will be displayed in the Call object. */
@@ -34,9 +34,9 @@ export interface AddRequest {
   /** The valid Slack user ID of the user who created this Call. When this method is called with a user token, the `created_by` field is optional and defaults to the authed user of the token. Otherwise, the field is required. */
   created_by?: string;
   /** The list of users to register as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users). */
-  users?: AddRequestUsersList;
+  users?: AddCallRequestUsersList;
 }
-export const AddRequest = /*@__PURE__*/ S.suspend(() =>
+export const AddCallRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     external_unique_id: S.String,
     external_display_id: S.optional(S.String),
@@ -45,144 +45,154 @@ export const AddRequest = /*@__PURE__*/ S.suspend(() =>
     date_start: S.optional(S.Number),
     title: S.optional(S.String),
     created_by: S.optional(S.String),
-    users: S.optional(AddRequestUsersList),
+    users: S.optional(AddCallRequestUsersList),
   }).pipe(T.Http({ method: "POST", uri: "/calls.add", code: 200 })),
-).annotate({ identifier: "AddRequest" }) as any as S.Schema<AddRequest>;
+).annotate({ identifier: "AddCallRequest" }) as any as S.Schema<AddCallRequest>;
 
-export interface AddResponse {
+export interface AddCallResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   call: unknown;
 }
-export const AddResponse = /*@__PURE__*/ S.suspend(() =>
+export const AddCallResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     call: S.Unknown,
   }),
-).annotate({ identifier: "AddResponse" }) as any as S.Schema<AddResponse>;
+).annotate({
+  identifier: "AddCallResponse",
+}) as any as S.Schema<AddCallResponse>;
 
-export interface EndRequest {
+/** The list of users to add as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users). */
+export type AddParticipantRequestUsersList = Array<unknown>;
+export const AddParticipantRequestUsersList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<AddParticipantRequestUsersList>;
+
+export interface AddParticipantRequest {
+  /** `id` returned by the [`calls.add`](/reference/methods/calls.add) method. */
+  id: string;
+  /** The list of users to add as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users). */
+  users: AddParticipantRequestUsersList;
+}
+export const AddParticipantRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    users: AddParticipantRequestUsersList,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/calls.participants.add", code: 200 }),
+  ),
+).annotate({
+  identifier: "AddParticipantRequest",
+}) as any as S.Schema<AddParticipantRequest>;
+
+export interface AddParticipantResponse {
+  /** Always `true` (a failed call raises a typed error instead). */
+  ok: boolean;
+  call: unknown;
+}
+export const AddParticipantResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+    call: S.Unknown,
+  }),
+).annotate({
+  identifier: "AddParticipantResponse",
+}) as any as S.Schema<AddParticipantResponse>;
+
+export interface CallsEndRequest {
   /** `id` returned when registering the call using the [`calls.add`](/reference/methods/calls.add) method. */
   id: string;
   /** Call duration in seconds */
   duration?: number;
 }
-export const EndRequest = /*@__PURE__*/ S.suspend(() =>
+export const CallsEndRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     duration: S.optional(S.Number),
   }).pipe(T.Http({ method: "POST", uri: "/calls.end", code: 200 })),
-).annotate({ identifier: "EndRequest" }) as any as S.Schema<EndRequest>;
+).annotate({
+  identifier: "CallsEndRequest",
+}) as any as S.Schema<CallsEndRequest>;
 
-export interface EndResponse {
+export interface CallsEndResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   call: unknown;
 }
-export const EndResponse = /*@__PURE__*/ S.suspend(() =>
+export const CallsEndResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     call: S.Unknown,
   }),
-).annotate({ identifier: "EndResponse" }) as any as S.Schema<EndResponse>;
+).annotate({
+  identifier: "CallsEndResponse",
+}) as any as S.Schema<CallsEndResponse>;
 
-export interface InfoRequest {
+export interface CallsInfoRequest {
   /** `id` of the Call returned by the [`calls.add`](/reference/methods/calls.add) method. */
   id: string;
 }
-export const InfoRequest = /*@__PURE__*/ S.suspend(() =>
+export const CallsInfoRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
   }).pipe(T.Http({ method: "POST", uri: "/calls.info", code: 200 })),
-).annotate({ identifier: "InfoRequest" }) as any as S.Schema<InfoRequest>;
-
-export interface InfoResponse {
-  /** Always `true` (a failed call raises a typed error instead). */
-  ok: boolean;
-  call: unknown;
-}
-export const InfoResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-    call: S.Unknown,
-  }),
-).annotate({ identifier: "InfoResponse" }) as any as S.Schema<InfoResponse>;
-
-/** The list of users to add as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users). */
-export type ParticipantsAddRequestUsersList = Array<unknown>;
-export const ParticipantsAddRequestUsersList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<ParticipantsAddRequestUsersList>;
-
-export interface ParticipantsAddRequest {
-  /** `id` returned by the [`calls.add`](/reference/methods/calls.add) method. */
-  id: string;
-  /** The list of users to add as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users). */
-  users: ParticipantsAddRequestUsersList;
-}
-export const ParticipantsAddRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    users: ParticipantsAddRequestUsersList,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/calls.participants.add", code: 200 }),
-  ),
 ).annotate({
-  identifier: "ParticipantsAddRequest",
-}) as any as S.Schema<ParticipantsAddRequest>;
+  identifier: "CallsInfoRequest",
+}) as any as S.Schema<CallsInfoRequest>;
 
-export interface ParticipantsAddResponse {
+export interface CallsInfoResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   call: unknown;
 }
-export const ParticipantsAddResponse = /*@__PURE__*/ S.suspend(() =>
+export const CallsInfoResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     call: S.Unknown,
   }),
 ).annotate({
-  identifier: "ParticipantsAddResponse",
-}) as any as S.Schema<ParticipantsAddResponse>;
+  identifier: "CallsInfoResponse",
+}) as any as S.Schema<CallsInfoResponse>;
 
 /** The list of users to remove as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users). */
-export type ParticipantsRemoveRequestUsersList = Array<unknown>;
-export const ParticipantsRemoveRequestUsersList = /*@__PURE__*/ S.Array(
+export type RemoveParticipantRequestUsersList = Array<unknown>;
+export const RemoveParticipantRequestUsersList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<ParticipantsRemoveRequestUsersList>;
+) as any as S.Schema<RemoveParticipantRequestUsersList>;
 
-export interface ParticipantsRemoveRequest {
+export interface RemoveParticipantRequest {
   /** `id` returned by the [`calls.add`](/reference/methods/calls.add) method. */
   id: string;
   /** The list of users to remove as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users). */
-  users: ParticipantsRemoveRequestUsersList;
+  users: RemoveParticipantRequestUsersList;
 }
-export const ParticipantsRemoveRequest = /*@__PURE__*/ S.suspend(() =>
+export const RemoveParticipantRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    users: ParticipantsRemoveRequestUsersList,
+    users: RemoveParticipantRequestUsersList,
   }).pipe(
     T.Http({ method: "POST", uri: "/calls.participants.remove", code: 200 }),
   ),
 ).annotate({
-  identifier: "ParticipantsRemoveRequest",
-}) as any as S.Schema<ParticipantsRemoveRequest>;
+  identifier: "RemoveParticipantRequest",
+}) as any as S.Schema<RemoveParticipantRequest>;
 
-export interface ParticipantsRemoveResponse {
+export interface RemoveParticipantResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   call: unknown;
 }
-export const ParticipantsRemoveResponse = /*@__PURE__*/ S.suspend(() =>
+export const RemoveParticipantResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     call: S.Unknown,
   }),
 ).annotate({
-  identifier: "ParticipantsRemoveResponse",
-}) as any as S.Schema<ParticipantsRemoveResponse>;
+  identifier: "RemoveParticipantResponse",
+}) as any as S.Schema<RemoveParticipantResponse>;
 
-export interface UpdateRequest {
+export interface UpdateCallRequest {
   /** `id` returned by the [`calls.add`](/reference/methods/calls.add) method. */
   id: string;
   /** The name of the Call. */
@@ -192,112 +202,116 @@ export interface UpdateRequest {
   /** When supplied, available Slack clients will attempt to directly launch the 3rd-party Call with this URL. */
   desktop_app_join_url?: string;
 }
-export const UpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCallRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     title: S.optional(S.String),
     join_url: S.optional(S.String),
     desktop_app_join_url: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/calls.update", code: 200 })),
-).annotate({ identifier: "UpdateRequest" }) as any as S.Schema<UpdateRequest>;
+).annotate({
+  identifier: "UpdateCallRequest",
+}) as any as S.Schema<UpdateCallRequest>;
 
-export interface UpdateResponse {
+export interface UpdateCallResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
   call: unknown;
 }
-export const UpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCallResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
     call: S.Unknown,
   }),
-).annotate({ identifier: "UpdateResponse" }) as any as S.Schema<UpdateResponse>;
+).annotate({
+  identifier: "UpdateCallResponse",
+}) as any as S.Schema<UpdateCallResponse>;
 
-export type AddError = SlackOpError;
+export type AddCallError = SlackOpError;
 /** Registers a new Call. Required scopes — bot: `calls:write`; user: `calls:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — An unexpected error has occurred while trying to register the Call. - `invalid_created_by` — The `created_by` user ID is invalid. - `invalid_start_time` — The start time is invalid. - `not_authorized` — The specified user is not authorized to create a Call in this channel. - `not_implemented` — This method is not available. - `user_not_found` — A specified user wasn't found. See https://docs.slack.dev/reference/methods/calls.add */
-export const add: API.OperationMethod<
-  AddRequest,
-  AddResponse,
-  AddError,
+export const addCall: API.OperationMethod<
+  AddCallRequest,
+  AddCallResponse,
+  AddCallError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AddRequest,
-  output: AddResponse,
+  input: AddCallRequest,
+  output: AddCallResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type EndError = SlackOpError;
-/** Ends a Call. Required scopes — bot: `calls:write`; user: `calls:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `inactive_call` — The Call has been already stopped. - `internal_error` — An unexpected error has occurred while ending the Call. - `invalid_call_id` — Invalid Call ID. - `not_implemented` — This method is not publicly available yet. See https://docs.slack.dev/reference/methods/calls.end */
-export const end: API.OperationMethod<
-  EndRequest,
-  EndResponse,
-  EndError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EndRequest,
-  output: EndResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InfoError = SlackOpError;
-/** Returns information about a Call. Required scopes — bot: `calls:read`; user: `calls:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — An unexpected error occurred while finding information about this Call. - `not_implemented` — This method is not available. See https://docs.slack.dev/reference/methods/calls.info */
-export const info: API.OperationMethod<
-  InfoRequest,
-  InfoResponse,
-  InfoError,
-  SlackOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InfoRequest,
-  output: InfoResponse,
-  errors: [SlackError, SlackRateLimited],
-  protocol: SlackProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ParticipantsAddError = SlackOpError;
+export type AddParticipantError = SlackOpError;
 /** Registers new participants added to a Call. Required scopes — bot: `calls:write`; user: `calls:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `bad_users` — At least one specified user is already part of the Call. - `inactive_call` — The Call has been already ended. - `internal_error` — An unexpected exception occurred while adding a Call participant. - `invalid_call_id` — The specified Call wasn't found. - `missing_argument` — A required argument is missing. - `not_implemented` — This method is not available. - `user_not_found` — At least one specified user wasn't found. See https://docs.slack.dev/reference/methods/calls.participants.add */
-export const participantsAdd: API.OperationMethod<
-  ParticipantsAddRequest,
-  ParticipantsAddResponse,
-  ParticipantsAddError,
+export const addParticipant: API.OperationMethod<
+  AddParticipantRequest,
+  AddParticipantResponse,
+  AddParticipantError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ParticipantsAddRequest,
-  output: ParticipantsAddResponse,
+  input: AddParticipantRequest,
+  output: AddParticipantResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type ParticipantsRemoveError = SlackOpError;
+export type CallsEndError = SlackOpError;
+/** Ends a Call. Required scopes — bot: `calls:write`; user: `calls:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `inactive_call` — The Call has been already stopped. - `internal_error` — An unexpected error has occurred while ending the Call. - `invalid_call_id` — Invalid Call ID. - `not_implemented` — This method is not publicly available yet. See https://docs.slack.dev/reference/methods/calls.end */
+export const callsEnd: API.OperationMethod<
+  CallsEndRequest,
+  CallsEndResponse,
+  CallsEndError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CallsEndRequest,
+  output: CallsEndResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CallsInfoError = SlackOpError;
+/** Returns information about a Call. Required scopes — bot: `calls:read`; user: `calls:read` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — An unexpected error occurred while finding information about this Call. - `not_implemented` — This method is not available. See https://docs.slack.dev/reference/methods/calls.info */
+export const callsInfo: API.OperationMethod<
+  CallsInfoRequest,
+  CallsInfoResponse,
+  CallsInfoError,
+  SlackOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CallsInfoRequest,
+  output: CallsInfoResponse,
+  errors: [SlackError, SlackRateLimited],
+  protocol: SlackProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RemoveParticipantError = SlackOpError;
 /** Registers participants removed from a Call. Required scopes — bot: `calls:write`; user: `calls:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `bad_users` — At least one specified user is not part of the Call. - `inactive_call` — The Call has been already ended. - `internal_error` — An unexpected exception occurred while removing participants from the Call. - `invalid_call_id` — The specified Call wasn't found. - `missing_argument` — A required argument is missing. - `not_implemented` — This method is not available. - `user_not_found` — At least one specified user wasn't found. See https://docs.slack.dev/reference/methods/calls.participants.remove */
-export const participantsRemove: API.OperationMethod<
-  ParticipantsRemoveRequest,
-  ParticipantsRemoveResponse,
-  ParticipantsRemoveError,
+export const removeParticipant: API.OperationMethod<
+  RemoveParticipantRequest,
+  RemoveParticipantResponse,
+  RemoveParticipantError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ParticipantsRemoveRequest,
-  output: ParticipantsRemoveResponse,
+  input: RemoveParticipantRequest,
+  output: RemoveParticipantResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateError = SlackOpError;
+export type UpdateCallError = SlackOpError;
 /** Updates information about a Call. Required scopes — bot: `calls:write`; user: `calls:write` Rate limit tier: 3 Method-specific errors (the `error` slug on the SlackError): - `internal_error` — An unexpected exception occurred while updating the Call info. - `invalid_call_id` — The Call's `id` was invalid. - `not_implemented` — This method is not available. See https://docs.slack.dev/reference/methods/calls.update */
-export const update: API.OperationMethod<
-  UpdateRequest,
-  UpdateResponse,
-  UpdateError,
+export const updateCall: API.OperationMethod<
+  UpdateCallRequest,
+  UpdateCallResponse,
+  UpdateCallError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRequest,
-  output: UpdateResponse,
+  input: UpdateCallRequest,
+  output: UpdateCallResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.oauth#AccessRequest": {
+    "com.slack.oauth#OauthAccessRequest": {
       "type": "structure",
       "members": {
         "client_id": {
@@ -56,7 +57,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.oauth#AccessResponseAuthorizingUser": {
+    "com.slack.oauth#OauthAccessResponseAuthorizingUser": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -71,7 +72,7 @@
       },
       "traits": {}
     },
-    "com.slack.oauth#AccessResponseInstallerUser": {
+    "com.slack.oauth#OauthAccessResponseInstallerUser": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -86,73 +87,73 @@
       },
       "traits": {}
     },
-    "com.slack.oauth#AccessResponseScopesAppHomeList": {
+    "com.slack.oauth#OauthAccessResponseScopesAppHomeList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.oauth#AccessResponseScopesTeamList": {
+    "com.slack.oauth#OauthAccessResponseScopesTeamList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.oauth#AccessResponseScopesChannelList": {
+    "com.slack.oauth#OauthAccessResponseScopesChannelList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.oauth#AccessResponseScopesGroupList": {
+    "com.slack.oauth#OauthAccessResponseScopesGroupList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.oauth#AccessResponseScopesMpimList": {
+    "com.slack.oauth#OauthAccessResponseScopesMpimList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.oauth#AccessResponseScopesImList": {
+    "com.slack.oauth#OauthAccessResponseScopesImList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.slack.oauth#AccessResponseScopes": {
+    "com.slack.oauth#OauthAccessResponseScopes": {
       "type": "structure",
       "members": {
         "app_home": {
-          "target": "com.slack.oauth#AccessResponseScopesAppHomeList"
+          "target": "com.slack.oauth#OauthAccessResponseScopesAppHomeList"
         },
         "team": {
-          "target": "com.slack.oauth#AccessResponseScopesTeamList"
+          "target": "com.slack.oauth#OauthAccessResponseScopesTeamList"
         },
         "channel": {
-          "target": "com.slack.oauth#AccessResponseScopesChannelList"
+          "target": "com.slack.oauth#OauthAccessResponseScopesChannelList"
         },
         "group": {
-          "target": "com.slack.oauth#AccessResponseScopesGroupList"
+          "target": "com.slack.oauth#OauthAccessResponseScopesGroupList"
         },
         "mpim": {
-          "target": "com.slack.oauth#AccessResponseScopesMpimList"
+          "target": "com.slack.oauth#OauthAccessResponseScopesMpimList"
         },
         "im": {
-          "target": "com.slack.oauth#AccessResponseScopesImList"
+          "target": "com.slack.oauth#OauthAccessResponseScopesImList"
         }
       },
       "traits": {}
     },
-    "com.slack.oauth#AccessResponseBot": {
+    "com.slack.oauth#OauthAccessResponseBot": {
       "type": "structure",
       "members": {
         "bot_user_id": {
@@ -167,7 +168,7 @@
       },
       "traits": {}
     },
-    "com.slack.oauth#AccessResponseUser": {
+    "com.slack.oauth#OauthAccessResponseUser": {
       "type": "structure",
       "members": {
         "name": {
@@ -212,7 +213,7 @@
       },
       "traits": {}
     },
-    "com.slack.oauth#AccessResponseTeam": {
+    "com.slack.oauth#OauthAccessResponseTeam": {
       "type": "structure",
       "members": {
         "id": {
@@ -254,7 +255,7 @@
       },
       "traits": {}
     },
-    "com.slack.oauth#AccessResponseIncomingWebhook": {
+    "com.slack.oauth#OauthAccessResponseIncomingWebhook": {
       "type": "structure",
       "members": {
         "channel": {
@@ -272,7 +273,7 @@
       },
       "traits": {}
     },
-    "com.slack.oauth#AccessResponse": {
+    "com.slack.oauth#OauthAccessResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -308,13 +309,13 @@
           }
         },
         "authorizing_user": {
-          "target": "com.slack.oauth#AccessResponseAuthorizingUser"
+          "target": "com.slack.oauth#OauthAccessResponseAuthorizingUser"
         },
         "installer_user": {
-          "target": "com.slack.oauth#AccessResponseInstallerUser"
+          "target": "com.slack.oauth#OauthAccessResponseInstallerUser"
         },
         "scopes": {
-          "target": "com.slack.oauth#AccessResponseScopes"
+          "target": "com.slack.oauth#OauthAccessResponseScopes"
         },
         "scope": {
           "target": "smithy.api#String"
@@ -323,7 +324,7 @@
           "target": "smithy.api#String"
         },
         "bot": {
-          "target": "com.slack.oauth#AccessResponseBot"
+          "target": "com.slack.oauth#OauthAccessResponseBot"
         },
         "refresh_token": {
           "target": "smithy.api#String",
@@ -335,10 +336,10 @@
           "target": "smithy.api#Integer"
         },
         "user": {
-          "target": "com.slack.oauth#AccessResponseUser"
+          "target": "com.slack.oauth#OauthAccessResponseUser"
         },
         "team": {
-          "target": "com.slack.oauth#AccessResponseTeam"
+          "target": "com.slack.oauth#OauthAccessResponseTeam"
         },
         "enterprise_id": {
           "target": "smithy.api#String",
@@ -347,7 +348,7 @@
           }
         },
         "incoming_webhook": {
-          "target": "com.slack.oauth#AccessResponseIncomingWebhook"
+          "target": "com.slack.oauth#OauthAccessResponseIncomingWebhook"
         },
         "single_channel_id": {
           "target": "smithy.api#String"
@@ -357,13 +358,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.oauth#Access": {
+    "com.slack.oauth#OauthAccess": {
       "type": "operation",
       "input": {
-        "target": "com.slack.oauth#AccessRequest"
+        "target": "com.slack.oauth#OauthAccessRequest"
       },
       "output": {
-        "target": "com.slack.oauth#AccessResponse"
+        "target": "com.slack.oauth#OauthAccessResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1066,7 +1067,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.oauth#Access"
+          "target": "com.slack.oauth#OauthAccess"
         },
         {
           "target": "com.slack.oauth#V2Access"

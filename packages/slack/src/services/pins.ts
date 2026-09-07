@@ -12,44 +12,46 @@ import * as Retry from "../retry.ts";
 
 export type { SlackOpError, SlackOpContext };
 
-export interface AddRequest {
+export interface AddPinRequest {
   /** Channel to pin the messsage to. You must also include a `timestamp` when pinning messages. */
   channel: string;
   /** Timestamp of the message to pin. You must also include the `channel`. */
   timestamp?: string;
 }
-export const AddRequest = /*@__PURE__*/ S.suspend(() =>
+export const AddPinRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel: S.String,
     timestamp: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/pins.add", code: 200 })),
-).annotate({ identifier: "AddRequest" }) as any as S.Schema<AddRequest>;
+).annotate({ identifier: "AddPinRequest" }) as any as S.Schema<AddPinRequest>;
 
-export interface AddResponse {
+export interface AddPinResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const AddResponse = /*@__PURE__*/ S.suspend(() =>
+export const AddPinResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
-).annotate({ identifier: "AddResponse" }) as any as S.Schema<AddResponse>;
+).annotate({ identifier: "AddPinResponse" }) as any as S.Schema<AddPinResponse>;
 
-export interface ListRequest {
+export interface ListPinsRequest {
   /** Channel to get pinned items for. */
   channel: string;
 }
-export const ListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPinsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel: S.String.pipe(T.Query()),
   }).pipe(T.Http({ method: "GET", uri: "/pins.list", code: 200 })),
-).annotate({ identifier: "ListRequest" }) as any as S.Schema<ListRequest>;
+).annotate({
+  identifier: "ListPinsRequest",
+}) as any as S.Schema<ListPinsRequest>;
 
-export type ListResponseItemsItemType = "file" | "message" | "file_comment";
-export const ListResponseItemsItemType = /*@__PURE__*/ S.String;
+export type ListPinsResponseItemsItemType = "file" | "message" | "file_comment";
+export const ListPinsResponseItemsItemType = /*@__PURE__*/ S.String;
 
-export interface ListResponseItemsItem {
-  type: ListResponseItemsItemType;
+export interface ListPinsResponseItemsItem {
+  type: ListPinsResponseItemsItemType;
   created: number;
   created_by: string;
   channel?: string;
@@ -57,9 +59,9 @@ export interface ListResponseItemsItem {
   file?: unknown;
   comment?: string;
 }
-export const ListResponseItemsItem = /*@__PURE__*/ S.suspend(() =>
+export const ListPinsResponseItemsItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: ListResponseItemsItemType,
+    type: ListPinsResponseItemsItemType,
     created: S.Number,
     created_by: S.String,
     channel: S.optional(S.String),
@@ -68,91 +70,97 @@ export const ListResponseItemsItem = /*@__PURE__*/ S.suspend(() =>
     comment: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListResponseItemsItem",
-}) as any as S.Schema<ListResponseItemsItem>;
+  identifier: "ListPinsResponseItemsItem",
+}) as any as S.Schema<ListPinsResponseItemsItem>;
 
-export type ListResponseItemsList = Array<ListResponseItemsItem>;
-export const ListResponseItemsList = /*@__PURE__*/ S.Array(
-  ListResponseItemsItem,
-) as any as S.Schema<ListResponseItemsList>;
+export type ListPinsResponseItemsList = Array<ListPinsResponseItemsItem>;
+export const ListPinsResponseItemsList = /*@__PURE__*/ S.Array(
+  ListPinsResponseItemsItem,
+) as any as S.Schema<ListPinsResponseItemsList>;
 
-export interface ListResponse {
+export interface ListPinsResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
-  items?: ListResponseItemsList;
+  items?: ListPinsResponseItemsList;
   count?: number;
 }
-export const ListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListPinsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
-    items: S.optional(ListResponseItemsList),
+    items: S.optional(ListPinsResponseItemsList),
     count: S.optional(S.Number),
   }),
-).annotate({ identifier: "ListResponse" }) as any as S.Schema<ListResponse>;
+).annotate({
+  identifier: "ListPinsResponse",
+}) as any as S.Schema<ListPinsResponse>;
 
-export interface RemoveRequest {
+export interface RemovePinRequest {
   /** Channel where the item is pinned to. */
   channel: string;
   /** Timestamp of the message to un-pin. */
   timestamp?: string;
 }
-export const RemoveRequest = /*@__PURE__*/ S.suspend(() =>
+export const RemovePinRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     channel: S.String,
     timestamp: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/pins.remove", code: 200 })),
-).annotate({ identifier: "RemoveRequest" }) as any as S.Schema<RemoveRequest>;
+).annotate({
+  identifier: "RemovePinRequest",
+}) as any as S.Schema<RemovePinRequest>;
 
-export interface RemoveResponse {
+export interface RemovePinResponse {
   /** Always `true` (a failed call raises a typed error instead). */
   ok: boolean;
 }
-export const RemoveResponse = /*@__PURE__*/ S.suspend(() =>
+export const RemovePinResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ok: S.Boolean,
   }),
-).annotate({ identifier: "RemoveResponse" }) as any as S.Schema<RemoveResponse>;
+).annotate({
+  identifier: "RemovePinResponse",
+}) as any as S.Schema<RemovePinResponse>;
 
-export type AddError = SlackOpError;
+export type AddPinError = SlackOpError;
 /** Pins an item to a channel. Required scopes — bot: `pins:write`; user: `pins:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `already_pinned` — The specified item is already pinned to the channel. - `bad_timestamp` — Value passed for `timestamp` was invalid. - `channel_not_found` — The `channel` argument was not specified or was invalid - `external_channel_migrating` — Channel is undergoing an active migration. - `file_not_found` — File not found. - `file_not_shared` — File specified by `file` is not public nor shared to the channel. - `message_not_found` — Message specified by `channel` and `timestamp` does not exist. - `no_item_specified` — One of `file`, `file_comment`, or `timestamp` was not specified. - `not_in_channel` — Item is not in channel. - `not_pinnable` — This message type is not pinnable. - `restricted_action` — The user does not have permission to add pins to the channel. - `too_many_pins` — Too many pins in channel. See https://docs.slack.dev/reference/methods/pins.add */
-export const add: API.OperationMethod<
-  AddRequest,
-  AddResponse,
-  AddError,
+export const addPin: API.OperationMethod<
+  AddPinRequest,
+  AddPinResponse,
+  AddPinError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AddRequest,
-  output: AddResponse,
+  input: AddPinRequest,
+  output: AddPinResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListError = SlackOpError;
+export type ListPinsError = SlackOpError;
 /** Lists items pinned to a channel. Required scopes — bot: `pins:read`; user: `pins:read` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `channel_not_found` — Value passed for `channel` was invalid. - `restricted_action` — The user does not have permission to view the channel. See https://docs.slack.dev/reference/methods/pins.list */
-export const list: API.OperationMethod<
-  ListRequest,
-  ListResponse,
-  ListError,
+export const listPins: API.OperationMethod<
+  ListPinsRequest,
+  ListPinsResponse,
+  ListPinsError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListRequest,
-  output: ListResponse,
+  input: ListPinsRequest,
+  output: ListPinsResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,
 }));
 
-export type RemoveError = SlackOpError;
+export type RemovePinError = SlackOpError;
 /** Un-pins an item from a channel. Required scopes — bot: `pins:write`; user: `pins:write` Rate limit tier: 2 Method-specific errors (the `error` slug on the SlackError): - `bad_timestamp` — Value passed for `timestamp` was invalid. - `channel_not_found` — The `channel` argument was not specified or was invalid - `external_channel_migrating` — Channel is undergoing an active migration. - `file_comment_not_found` — File comment specified by `file_comment` does not exist. - `file_not_found` — File specified by `file` does not exist. - `message_not_found` — Message specified by `channel` and `timestamp` does not exist. - `no_item_specified` — One of `file`, `file_comment`, or `timestamp` was not specified. - `no_pin` — The pin could not be found. - `not_pinned` — The specified item is not pinned to the channel. - `restricted_action` — The user does not have permission to remove pins from the channel. See https://docs.slack.dev/reference/methods/pins.remove */
-export const remove: API.OperationMethod<
-  RemoveRequest,
-  RemoveResponse,
-  RemoveError,
+export const removePin: API.OperationMethod<
+  RemovePinRequest,
+  RemovePinResponse,
+  RemovePinError,
   SlackOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RemoveRequest,
-  output: RemoveResponse,
+  input: RemovePinRequest,
+  output: RemovePinResponse,
   errors: [SlackError, SlackRateLimited],
   protocol: SlackProtocol,
   retry: Retry.Retry,

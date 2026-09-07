@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.slack.views#OpenRequestViewMap": {
+    "com.slack.views#ViewsOpenRequestViewMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -27,7 +28,7 @@
       },
       "traits": {}
     },
-    "com.slack.views#OpenRequest": {
+    "com.slack.views#ViewsOpenRequest": {
       "type": "structure",
       "members": {
         "trigger_id": {
@@ -45,7 +46,7 @@
           }
         },
         "view": {
-          "target": "com.slack.views#OpenRequestViewMap",
+          "target": "com.slack.views#ViewsOpenRequestViewMap",
           "traits": {
             "smithy.api#documentation": "A [view payload](/reference/views). This must be a JSON-encoded string.",
             "smithy.api#required": {}
@@ -56,7 +57,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.views#OpenResponse": {
+    "com.slack.views#ViewsOpenResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -77,13 +78,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.views#Open": {
+    "com.slack.views#ViewsOpen": {
       "type": "operation",
       "input": {
-        "target": "com.slack.views#OpenRequest"
+        "target": "com.slack.views#ViewsOpenRequest"
       },
       "output": {
-        "target": "com.slack.views#OpenResponse"
+        "target": "com.slack.views#ViewsOpenResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -94,7 +95,7 @@
         "smithy.api#documentation": "Open a view for a user.\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `duplicate_external_id` — Error returned when the given `external_id` has already be used.\n  - `exchanged_trigger_id` — The trigger_id was already exchanged in a previous call.\n  - `expired_trigger_id` — The trigger_id is expired.\n  - `invalid_trigger_id` — The trigger_id is invalid. The expected format for the trigger_id argument is \"132456.7890123.abcdef\".\n  - `view_too_large` — Error returned if the provided view is greater than 250kb.\n\nSee https://docs.slack.dev/reference/methods/views.open"
       }
     },
-    "com.slack.views#PublishRequest": {
+    "com.slack.views#PublishViewRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -125,7 +126,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.views#PublishResponse": {
+    "com.slack.views#PublishViewResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -146,13 +147,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.views#Publish": {
+    "com.slack.views#PublishView": {
       "type": "operation",
       "input": {
-        "target": "com.slack.views#PublishRequest"
+        "target": "com.slack.views#PublishViewRequest"
       },
       "output": {
-        "target": "com.slack.views#PublishResponse"
+        "target": "com.slack.views#PublishViewResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -163,7 +164,7 @@
         "smithy.api#documentation": "Publish a static view for a User.\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `duplicate_external_id` — Error returned when the given `external_id` has already be used.\n  - `hash_conflict` — Error returned when the provided `hash` doesn't match the current stored value.\n  - `missing_profile_id` — A profile id was not provided when trying to publish a view of type profile.\n  - `not_allowed_token_type` — The type of token your app used when requesting this method is not allowed.\n  - `not_enabled` — Error returned if a `home` view is published but the Home tab isn't enabled for the app.\n  - `not_implemented` — The profile view experiment is not enabled for this user.\n  - `view_too_large` — Error returned if the provided view is greater than 250kb.\n\nSee https://docs.slack.dev/reference/methods/views.publish"
       }
     },
-    "com.slack.views#PushRequest": {
+    "com.slack.views#ViewsPushRequest": {
       "type": "structure",
       "members": {
         "trigger_id": {
@@ -192,7 +193,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.views#PushResponse": {
+    "com.slack.views#ViewsPushResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -213,13 +214,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.views#Push": {
+    "com.slack.views#ViewsPush": {
       "type": "operation",
       "input": {
-        "target": "com.slack.views#PushRequest"
+        "target": "com.slack.views#ViewsPushRequest"
       },
       "output": {
-        "target": "com.slack.views#PushResponse"
+        "target": "com.slack.views#ViewsPushResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -230,7 +231,7 @@
         "smithy.api#documentation": "Push a view onto the stack of a root view.\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `duplicate_external_id` — Error returned when the given `external_id` has already be used.\n  - `exchanged_trigger_id` — The trigger_id was already exchanged in a previous call.\n  - `expired_trigger_id` — The trigger_id is expired.\n  - `invalid_trigger_id` — The trigger_id is invalid. The expected format for the trigger_id argument is \"132456.7890123.abcdef\".\n  - `not_found` — Error returned when the requested view can't be found.\n  - `push_limit_reached` — Error returned when the max push limit has been reached for views. Currently the limit is 3.\n  - `view_too_large` — Error returned if the provided view is greater than 250kb.\n\nSee https://docs.slack.dev/reference/methods/views.push"
       }
     },
-    "com.slack.views#UpdateRequest": {
+    "com.slack.views#UpdateViewRequest": {
       "type": "structure",
       "members": {
         "view_id": {
@@ -263,7 +264,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.slack.views#UpdateResponse": {
+    "com.slack.views#UpdateViewResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -284,13 +285,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.slack.views#Update": {
+    "com.slack.views#UpdateView": {
       "type": "operation",
       "input": {
-        "target": "com.slack.views#UpdateRequest"
+        "target": "com.slack.views#UpdateViewRequest"
       },
       "output": {
-        "target": "com.slack.views#UpdateResponse"
+        "target": "com.slack.views#UpdateViewResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -306,16 +307,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.slack.views#Open"
+          "target": "com.slack.views#ViewsOpen"
         },
         {
-          "target": "com.slack.views#Publish"
+          "target": "com.slack.views#PublishView"
         },
         {
-          "target": "com.slack.views#Push"
+          "target": "com.slack.views#ViewsPush"
         },
         {
-          "target": "com.slack.views#Update"
+          "target": "com.slack.views#UpdateView"
         }
       ],
       "traits": {
