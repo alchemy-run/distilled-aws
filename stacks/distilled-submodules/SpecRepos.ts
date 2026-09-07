@@ -55,6 +55,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
       "developers.cloudflare.com no longer serves markdown at <page>/index.md",
   },
   { package: "coinbase" },
+  { package: "coolify" },
   { package: "discord" },
   { package: "expo-eas" },
   { package: "fly-io" },

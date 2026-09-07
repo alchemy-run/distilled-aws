@@ -177,6 +177,12 @@
     },
     {
       "path": "./packages/adyen/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/coolify/tsconfig.json"
+    },
+    {
+      "path": "./packages/coolify/tsconfig.scripts.json"
     }
   ]
 }
