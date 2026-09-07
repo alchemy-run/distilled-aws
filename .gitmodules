@@ -263,3 +263,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-inngest.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/intercom/specs/spec-mirror-intercom"]
+	path = packages/intercom/specs/spec-mirror-intercom
+	url = https://github.com/distilled-mirror/spec-mirror-intercom.git
+	ignore = dirty
+	shallow = true

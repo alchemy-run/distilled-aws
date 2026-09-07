@@ -327,6 +327,12 @@
     },
     {
       "path": "./packages/inngest/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/intercom/tsconfig.json"
+    },
+    {
+      "path": "./packages/intercom/tsconfig.scripts.json"
     }
   ]
 }
