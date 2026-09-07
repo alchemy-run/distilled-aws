@@ -170,9 +170,9 @@ const encode = ({
     let resolvedRequest = request;
     let signingRegion = region; // Default to context region
     let signingServiceName = serviceName; // Default to service name from sigv4 trait
-    const customEndpoint = yield* yield* Effect.serviceOption(
-      Endpoint.Endpoint,
-    ).pipe(Effect.map(Option.getOrElse(() => Effect.undefined)));
+    // Keyed by SDK service ID; the signing name is only a fallback for a
+    // model missing the aws.api#service trait.
+    const customEndpoint = yield* Endpoint.resolve(serviceSdkId ?? serviceName);
 
     if (customEndpoint) {
       // User provided a custom endpoint - use it directly

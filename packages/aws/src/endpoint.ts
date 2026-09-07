@@ -27,3 +27,43 @@ export const fromEnv = () =>
 /** Override the endpoint for a scope, e.g. `Endpoint.of("http://localhost:4566")`. */
 export const of = (endpoint: string) =>
   Layer.succeed(Endpoint, Effect.succeed(endpoint));
+
+/**
+ * Resolves an endpoint for one AWS service, keyed by the service's SDK
+ * service ID exactly as it appears in the model's `aws.api#service` trait —
+ * e.g. `"S3"`, `"DynamoDB"`, `"SESv2"`, `"S3 Control"`. This is the
+ * identifier AWS's service-specific endpoint configuration
+ * (`AWS_ENDPOINT_URL_<SERVICE>`, the `services` sections of `~/.aws/config`)
+ * is derived from, and unlike the SigV4 signing name it never collides
+ * (SES and SESv2 both sign as `ses` but keep distinct SDK IDs).
+ *
+ * This is deliberately separate from {@link Endpoint}: providing
+ * `Endpoint` around an individual operation is an explicit override and must
+ * take precedence over a process-wide service policy.
+ */
+export interface ServiceEndpointResolver {
+  readonly resolve: (service: string) => string | undefined;
+}
+
+export class ServiceEndpoint extends Context.Service<
+  ServiceEndpoint,
+  ServiceEndpointResolver
+>()("AWS::ServiceEndpoint") {}
+
+/**
+ * Resolve the endpoint for one AWS service, keyed by its SDK service ID
+ * (see {@link ServiceEndpointResolver}). An explicit operation-scoped
+ * {@link Endpoint} wins, followed by the optional service resolver. Returning
+ * `undefined` lets the generated Smithy endpoint rules select AWS normally.
+ */
+export const resolve = Effect.fnUntraced(function* (service: string) {
+  const explicit = yield* yield* Effect.serviceOption(Endpoint).pipe(
+    Effect.map(Option.getOrElse(() => Effect.undefined)),
+  );
+  if (explicit !== undefined) return explicit;
+
+  const resolver = yield* Effect.serviceOption(ServiceEndpoint).pipe(
+    Effect.map(Option.getOrUndefined),
+  );
+  return resolver?.resolve(service);
+});
