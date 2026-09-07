@@ -45,157 +45,913 @@ export const AccountCanIResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountCanIResponse",
 }) as any as S.Schema<AccountCanIResponse>;
 
-export interface AccountServiceCreateTokenRequest {
-  name: string;
-  expiresIn?: number;
-  id?: string;
+export interface ApplicationServiceManagedResourcesRequest {
+  applicationName: string;
+  namespace?: string;
+  name?: string;
+  version?: string;
+  group?: string;
+  kind?: string;
+  appNamespace?: string;
+  project?: string;
 }
-export const AccountServiceCreateTokenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    expiresIn: S.optional(S.Number),
-    id: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/api/v1/account/{name}/token", code: 200 }),
-  ),
-).annotate({
-  identifier: "AccountServiceCreateTokenRequest",
-}) as any as S.Schema<AccountServiceCreateTokenRequest>;
+export const ApplicationServiceManagedResourcesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      applicationName: S.String.pipe(T.Label()),
+      namespace: S.optional(S.String.pipe(T.Query())),
+      name: S.optional(S.String.pipe(T.Query())),
+      version: S.optional(S.String.pipe(T.Query())),
+      group: S.optional(S.String.pipe(T.Query())),
+      kind: S.optional(S.String.pipe(T.Query())),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/applications/{applicationName}/managed-resources",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ApplicationServiceManagedResourcesRequest",
+  }) as any as S.Schema<ApplicationServiceManagedResourcesRequest>;
 
-export interface AccountCreateTokenResponse {
-  token?: string;
+/** ResourceDiff holds the diff between a live and target resource object in Argo CD. It is used to compare the desired state (from Git/Helm) with the actual state in the cluster. */
+export interface V1alpha1ResourceDiff {
+  /** Diff contains the JSON patch representing the difference between the live and target resource. Deprecated: Use NormalizedLiveState and PredictedLiveState instead to compute differences. */
+  diff?: string;
+  /** Group represents the API group of the resource (e.g., "apps" for Deployments). */
+  group?: string;
+  /** Hook indicates whether this resource is a hook resource (e.g., pre-sync or post-sync hooks). */
+  hook?: boolean;
+  /** Kind represents the Kubernetes resource kind (e.g., "Deployment", "Service"). */
+  kind?: string;
+  /** LiveState contains the JSON-serialized resource manifest of the resource currently running in the cluster. */
+  liveState?: string;
+  /** Modified indicates whether the live resource has changes compared to the target resource. */
+  modified?: boolean;
+  /** Name is the name of the resource. */
+  name?: string;
+  /** Namespace specifies the namespace where the resource exists. */
+  namespace?: string;
+  /** NormalizedLiveState contains the JSON-serialized live resource state after applying normalizations. Normalizations may include ignoring irrelevant fields like timestamps or defaults applied by Kubernetes. */
+  normalizedLiveState?: string;
+  /** PredictedLiveState contains the JSON-serialized resource state that Argo CD predicts based on the combination of the normalized live state and the desired target state. */
+  predictedLiveState?: string;
+  /** ResourceVersion is the Kubernetes resource version, which helps in tracking changes. */
+  resourceVersion?: string;
+  /** TargetState contains the JSON-serialized resource manifest as defined in the Git/Helm repository. */
+  targetState?: string;
 }
-export const AccountCreateTokenResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1alpha1ResourceDiff = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    token: S.optional(S.String),
+    diff: S.optional(S.String),
+    group: S.optional(S.String),
+    hook: S.optional(S.Boolean),
+    kind: S.optional(S.String),
+    liveState: S.optional(S.String),
+    modified: S.optional(S.Boolean),
+    name: S.optional(S.String),
+    namespace: S.optional(S.String),
+    normalizedLiveState: S.optional(S.String),
+    predictedLiveState: S.optional(S.String),
+    resourceVersion: S.optional(S.String),
+    targetState: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AccountCreateTokenResponse",
-}) as any as S.Schema<AccountCreateTokenResponse>;
+  identifier: "V1alpha1ResourceDiff",
+}) as any as S.Schema<V1alpha1ResourceDiff>;
 
-export interface AccountServiceDeleteTokenRequest {
-  name: string;
-  id: string;
+export type ApplicationManagedResourcesResponseItemsList =
+  Array<V1alpha1ResourceDiff>;
+export const ApplicationManagedResourcesResponseItemsList =
+  /*@__PURE__*/ S.Array(
+    V1alpha1ResourceDiff,
+  ) as any as S.Schema<ApplicationManagedResourcesResponseItemsList>;
+
+export interface ApplicationManagedResourcesResponse {
+  items?: ApplicationManagedResourcesResponseItemsList;
 }
-export const AccountServiceDeleteTokenRequest = /*@__PURE__*/ S.suspend(() =>
+export const ApplicationManagedResourcesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(ApplicationManagedResourcesResponseItemsList),
+  }),
+).annotate({
+  identifier: "ApplicationManagedResourcesResponse",
+}) as any as S.Schema<ApplicationManagedResourcesResponse>;
+
+export interface ApplicationServicePodLogsRequest {
+  name: string;
+  podName: string;
+  namespace?: string;
+  container?: string;
+  sinceSeconds?: string;
+  /** Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive. */
+  sinceTime_seconds?: string;
+  /** Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive. This field may be limited in precision depending on context. */
+  sinceTime_nanos?: number;
+  tailLines?: string;
+  follow?: boolean;
+  untilTime?: string;
+  filter?: string;
+  kind?: string;
+  group?: string;
+  resourceName?: string;
+  previous?: boolean;
+  appNamespace?: string;
+  project?: string;
+  matchCase?: boolean;
+}
+export const ApplicationServicePodLogsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
+    podName: S.String.pipe(T.Label()),
+    namespace: S.optional(S.String.pipe(T.Query())),
+    container: S.optional(S.String.pipe(T.Query())),
+    sinceSeconds: S.optional(S.String.pipe(T.Query())),
+    sinceTime_seconds: S.optional(S.String.pipe(T.Query("sinceTime.seconds"))),
+    sinceTime_nanos: S.optional(S.Number.pipe(T.Query("sinceTime.nanos"))),
+    tailLines: S.optional(S.String.pipe(T.Query())),
+    follow: S.optional(S.Boolean.pipe(T.Query())),
+    untilTime: S.optional(S.String.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
+    kind: S.optional(S.String.pipe(T.Query())),
+    group: S.optional(S.String.pipe(T.Query())),
+    resourceName: S.optional(S.String.pipe(T.Query())),
+    previous: S.optional(S.Boolean.pipe(T.Query())),
+    appNamespace: S.optional(S.String.pipe(T.Query())),
+    project: S.optional(S.String.pipe(T.Query())),
+    matchCase: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/api/v1/account/{name}/token/{id}",
+      method: "GET",
+      uri: "/api/v1/applications/{name}/pods/{podName}/logs",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "AccountServiceDeleteTokenRequest",
-}) as any as S.Schema<AccountServiceDeleteTokenRequest>;
+  identifier: "ApplicationServicePodLogsRequest",
+}) as any as S.Schema<ApplicationServicePodLogsRequest>;
 
-export type AccountServiceDeleteTokenResponse = unknown;
-export const AccountServiceDeleteTokenResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "AccountServiceDeleteTokenResponse",
-}) as any as S.Schema<AccountServiceDeleteTokenResponse>;
-
-export interface AccountServiceGetAccountRequest {
-  name: string;
+export interface ProtobufAny {
+  type_url?: string;
+  value?: string;
 }
-export const AccountServiceGetAccountRequest = /*@__PURE__*/ S.suspend(() =>
+export const ProtobufAny = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type_url: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({ identifier: "ProtobufAny" }) as any as S.Schema<ProtobufAny>;
+
+export type RuntimeStreamErrorDetailsList = Array<ProtobufAny>;
+export const RuntimeStreamErrorDetailsList = /*@__PURE__*/ S.Array(
+  ProtobufAny,
+) as any as S.Schema<RuntimeStreamErrorDetailsList>;
+
+export interface RuntimeStreamError {
+  details?: RuntimeStreamErrorDetailsList;
+  grpc_code?: number;
+  http_code?: number;
+  http_status?: string;
+  message?: string;
+}
+export const RuntimeStreamError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    details: S.optional(RuntimeStreamErrorDetailsList),
+    grpc_code: S.optional(S.Number),
+    http_code: S.optional(S.Number),
+    http_status: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RuntimeStreamError",
+}) as any as S.Schema<RuntimeStreamError>;
+
+export interface ApplicationLogEntry {
+  content?: string;
+  last?: boolean;
+  podName?: string;
+  timeStamp?: string;
+  timeStampStr?: string;
+}
+export const ApplicationLogEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    content: S.optional(S.String),
+    last: S.optional(S.Boolean),
+    podName: S.optional(S.String),
+    timeStamp: S.optional(S.String),
+    timeStampStr: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApplicationLogEntry",
+}) as any as S.Schema<ApplicationLogEntry>;
+
+export interface ApplicationServicePodLogsResponse {
+  error?: RuntimeStreamError;
+  result?: ApplicationLogEntry;
+}
+export const ApplicationServicePodLogsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    error: S.optional(RuntimeStreamError),
+    result: S.optional(ApplicationLogEntry),
+  }),
+).annotate({
+  identifier: "ApplicationServicePodLogsResponse",
+}) as any as S.Schema<ApplicationServicePodLogsResponse>;
+
+export interface ApplicationServicePodLogs2Request {
+  name: string;
+  namespace?: string;
+  podName?: string;
+  container?: string;
+  sinceSeconds?: string;
+  /** Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive. */
+  sinceTime_seconds?: string;
+  /** Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive. This field may be limited in precision depending on context. */
+  sinceTime_nanos?: number;
+  tailLines?: string;
+  follow?: boolean;
+  untilTime?: string;
+  filter?: string;
+  kind?: string;
+  group?: string;
+  resourceName?: string;
+  previous?: boolean;
+  appNamespace?: string;
+  project?: string;
+  matchCase?: boolean;
+}
+export const ApplicationServicePodLogs2Request = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/api/v1/account/{name}", code: 200 })),
-).annotate({
-  identifier: "AccountServiceGetAccountRequest",
-}) as any as S.Schema<AccountServiceGetAccountRequest>;
-
-export type AccountAccountCapabilitiesList = Array<string>;
-export const AccountAccountCapabilitiesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AccountAccountCapabilitiesList>;
-
-export interface AccountToken {
-  expiresAt?: number;
-  id?: string;
-  issuedAt?: number;
-}
-export const AccountToken = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expiresAt: S.optional(S.Number),
-    id: S.optional(S.String),
-    issuedAt: S.optional(S.Number),
-  }),
-).annotate({ identifier: "AccountToken" }) as any as S.Schema<AccountToken>;
-
-export type AccountAccountTokensList = Array<AccountToken>;
-export const AccountAccountTokensList = /*@__PURE__*/ S.Array(
-  AccountToken,
-) as any as S.Schema<AccountAccountTokensList>;
-
-export interface AccountAccount {
-  capabilities?: AccountAccountCapabilitiesList;
-  enabled?: boolean;
-  name?: string;
-  tokens?: AccountAccountTokensList;
-}
-export const AccountAccount = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    capabilities: S.optional(AccountAccountCapabilitiesList),
-    enabled: S.optional(S.Boolean),
-    name: S.optional(S.String),
-    tokens: S.optional(AccountAccountTokensList),
-  }),
-).annotate({ identifier: "AccountAccount" }) as any as S.Schema<AccountAccount>;
-
-export interface AccountServiceListAccountsRequest {}
-export const AccountServiceListAccountsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/api/v1/account", code: 200 }),
-  ),
-).annotate({
-  identifier: "AccountServiceListAccountsRequest",
-}) as any as S.Schema<AccountServiceListAccountsRequest>;
-
-export type AccountAccountsListItemsList = Array<AccountAccount>;
-export const AccountAccountsListItemsList = /*@__PURE__*/ S.Array(
-  AccountAccount,
-) as any as S.Schema<AccountAccountsListItemsList>;
-
-export interface AccountAccountsList {
-  items?: AccountAccountsListItemsList;
-}
-export const AccountAccountsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(AccountAccountsListItemsList),
-  }),
-).annotate({
-  identifier: "AccountAccountsList",
-}) as any as S.Schema<AccountAccountsList>;
-
-export interface AccountServiceUpdatePasswordRequest {
-  currentPassword?: string | Redacted.Redacted<string>;
-  name?: string;
-  newPassword?: string | Redacted.Redacted<string>;
-}
-export const AccountServiceUpdatePasswordRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    currentPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    name: S.optional(S.String),
-    newPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    namespace: S.optional(S.String.pipe(T.Query())),
+    podName: S.optional(S.String.pipe(T.Query())),
+    container: S.optional(S.String.pipe(T.Query())),
+    sinceSeconds: S.optional(S.String.pipe(T.Query())),
+    sinceTime_seconds: S.optional(S.String.pipe(T.Query("sinceTime.seconds"))),
+    sinceTime_nanos: S.optional(S.Number.pipe(T.Query("sinceTime.nanos"))),
+    tailLines: S.optional(S.String.pipe(T.Query())),
+    follow: S.optional(S.Boolean.pipe(T.Query())),
+    untilTime: S.optional(S.String.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
+    kind: S.optional(S.String.pipe(T.Query())),
+    group: S.optional(S.String.pipe(T.Query())),
+    resourceName: S.optional(S.String.pipe(T.Query())),
+    previous: S.optional(S.Boolean.pipe(T.Query())),
+    appNamespace: S.optional(S.String.pipe(T.Query())),
+    project: S.optional(S.String.pipe(T.Query())),
+    matchCase: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
-    T.Http({ method: "PUT", uri: "/api/v1/account/password", code: 200 }),
+    T.Http({
+      method: "GET",
+      uri: "/api/v1/applications/{name}/logs",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "AccountServiceUpdatePasswordRequest",
-}) as any as S.Schema<AccountServiceUpdatePasswordRequest>;
+  identifier: "ApplicationServicePodLogs2Request",
+}) as any as S.Schema<ApplicationServicePodLogs2Request>;
 
-export type AccountServiceUpdatePasswordResponse = unknown;
-export const AccountServiceUpdatePasswordResponse = /*@__PURE__*/ S.suspend(
-  () => S.Unknown.pipe(T.RawResponseRoot()),
+export interface ApplicationServicePodLogs2Response {
+  error?: RuntimeStreamError;
+  result?: ApplicationLogEntry;
+}
+export const ApplicationServicePodLogs2Response = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    error: S.optional(RuntimeStreamError),
+    result: S.optional(ApplicationLogEntry),
+  }),
 ).annotate({
-  identifier: "AccountServiceUpdatePasswordResponse",
-}) as any as S.Schema<AccountServiceUpdatePasswordResponse>;
+  identifier: "ApplicationServicePodLogs2Response",
+}) as any as S.Schema<ApplicationServicePodLogs2Response>;
+
+export interface ApplicationServiceResourceTreeRequest {
+  applicationName: string;
+  namespace?: string;
+  name?: string;
+  version?: string;
+  group?: string;
+  kind?: string;
+  appNamespace?: string;
+  project?: string;
+}
+export const ApplicationServiceResourceTreeRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      applicationName: S.String.pipe(T.Label()),
+      namespace: S.optional(S.String.pipe(T.Query())),
+      name: S.optional(S.String.pipe(T.Query())),
+      version: S.optional(S.String.pipe(T.Query())),
+      group: S.optional(S.String.pipe(T.Query())),
+      kind: S.optional(S.String.pipe(T.Query())),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/applications/{applicationName}/resource-tree",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ApplicationServiceResourceTreeRequest",
+}) as any as S.Schema<ApplicationServiceResourceTreeRequest>;
+
+/** Labels holds the labels attached to the host. */
+export type V1alpha1HostInfoLabelsMap = { [key: string]: string | undefined };
+export const V1alpha1HostInfoLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<V1alpha1HostInfoLabelsMap>;
+
+/** HostResourceInfo represents resource usage details for a specific resource type on a host. */
+export interface V1alpha1HostResourceInfo {
+  /** Capacity represents the total available capacity of this resource on the host. */
+  capacity?: number;
+  /** RequestedByApp indicates the total amount of this resource requested by the application running on the host. */
+  requestedByApp?: number;
+  /** RequestedByNeighbors indicates the total amount of this resource requested by other workloads on the same host. */
+  requestedByNeighbors?: number;
+  /** ResourceName specifies the type of resource (e.g., CPU, memory, storage). */
+  resourceName?: string;
+}
+export const V1alpha1HostResourceInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    capacity: S.optional(S.Number),
+    requestedByApp: S.optional(S.Number),
+    requestedByNeighbors: S.optional(S.Number),
+    resourceName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "V1alpha1HostResourceInfo",
+}) as any as S.Schema<V1alpha1HostResourceInfo>;
+
+/** ResourcesInfo provides a list of resource usage details for different resource types on this host. */
+export type V1alpha1HostInfoResourcesInfoList = Array<V1alpha1HostResourceInfo>;
+export const V1alpha1HostInfoResourcesInfoList = /*@__PURE__*/ S.Array(
+  V1alpha1HostResourceInfo,
+) as any as S.Schema<V1alpha1HostInfoResourcesInfoList>;
+
+/** NodeSwapStatus represents swap memory information. */
+export interface V1NodeSwapStatus {
+  capacity?: number;
+}
+export const V1NodeSwapStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    capacity: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "V1NodeSwapStatus",
+}) as any as S.Schema<V1NodeSwapStatus>;
+
+/** NodeSystemInfo is a set of ids/uuids to uniquely identify the node. */
+export interface V1NodeSystemInfo {
+  architecture?: string;
+  /** Boot ID reported by the node. */
+  bootID?: string;
+  /** ContainerRuntime Version reported by the node through runtime remote API (e.g. containerd://1.4.2). */
+  containerRuntimeVersion?: string;
+  /** Kernel Version reported by the node from 'uname -r' (e.g. 3.16.0-0.bpo.4-amd64). */
+  kernelVersion?: string;
+  /** Deprecated: KubeProxy Version reported by the node. */
+  kubeProxyVersion?: string;
+  /** Kubelet Version reported by the node. */
+  kubeletVersion?: string;
+  machineID?: string;
+  operatingSystem?: string;
+  /** OS Image reported by the node from /etc/os-release (e.g. Debian GNU/Linux 7 (wheezy)). */
+  osImage?: string;
+  swap?: V1NodeSwapStatus;
+  systemUUID?: string;
+}
+export const V1NodeSystemInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    architecture: S.optional(S.String),
+    bootID: S.optional(S.String),
+    containerRuntimeVersion: S.optional(S.String),
+    kernelVersion: S.optional(S.String),
+    kubeProxyVersion: S.optional(S.String),
+    kubeletVersion: S.optional(S.String),
+    machineID: S.optional(S.String),
+    operatingSystem: S.optional(S.String),
+    osImage: S.optional(S.String),
+    swap: S.optional(V1NodeSwapStatus),
+    systemUUID: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "V1NodeSystemInfo",
+}) as any as S.Schema<V1NodeSystemInfo>;
+
+/** HostInfo holds metadata and resource usage metrics for a specific host in the cluster. */
+export interface V1alpha1HostInfo {
+  /** Labels holds the labels attached to the host. */
+  labels?: V1alpha1HostInfoLabelsMap;
+  /** Name is the hostname or node name in the Kubernetes cluster. */
+  name?: string;
+  /** ResourcesInfo provides a list of resource usage details for different resource types on this host. */
+  resourcesInfo?: V1alpha1HostInfoResourcesInfoList;
+  systemInfo?: V1NodeSystemInfo;
+}
+export const V1alpha1HostInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    labels: S.optional(V1alpha1HostInfoLabelsMap),
+    name: S.optional(S.String),
+    resourcesInfo: S.optional(V1alpha1HostInfoResourcesInfoList),
+    systemInfo: S.optional(V1NodeSystemInfo),
+  }),
+).annotate({
+  identifier: "V1alpha1HostInfo",
+}) as any as S.Schema<V1alpha1HostInfo>;
+
+/** Hosts provides a list of Kubernetes nodes that are running pods related to the application. */
+export type V1alpha1ApplicationTreeHostsList = Array<V1alpha1HostInfo>;
+export const V1alpha1ApplicationTreeHostsList = /*@__PURE__*/ S.Array(
+  V1alpha1HostInfo,
+) as any as S.Schema<V1alpha1ApplicationTreeHostsList>;
+
+export interface V1alpha1HealthStatus {
+  lastTransitionTime?: string;
+  message?: string;
+  status?: string;
+}
+export const V1alpha1HealthStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lastTransitionTime: S.optional(S.String),
+    message: S.optional(S.String),
+    status: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "V1alpha1HealthStatus",
+}) as any as S.Schema<V1alpha1HealthStatus>;
+
+/** Images lists container images associated with the resource. This is primarily useful for pods and other workload resources. */
+export type V1alpha1ResourceNodeImagesList = Array<string>;
+export const V1alpha1ResourceNodeImagesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<V1alpha1ResourceNodeImagesList>;
+
+export interface V1alpha1InfoItem {
+  /** Name is a human readable title for this piece of information. */
+  name?: string;
+  /** Value is human readable content. */
+  value?: string;
+}
+export const V1alpha1InfoItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "V1alpha1InfoItem",
+}) as any as S.Schema<V1alpha1InfoItem>;
+
+/** Info provides additional metadata or annotations about the resource. */
+export type V1alpha1ResourceNodeInfoList = Array<V1alpha1InfoItem>;
+export const V1alpha1ResourceNodeInfoList = /*@__PURE__*/ S.Array(
+  V1alpha1InfoItem,
+) as any as S.Schema<V1alpha1ResourceNodeInfoList>;
+
+/** ExternalURLs holds a list of URLs that should be accessible externally. This field is typically populated for Ingress resources based on their hostname rules. */
+export type V1alpha1ResourceNetworkingInfoExternalURLsList = Array<string>;
+export const V1alpha1ResourceNetworkingInfoExternalURLsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<V1alpha1ResourceNetworkingInfoExternalURLsList>;
+
+export interface V1PortStatus {
+  error?: string;
+  port?: number;
+  protocol?: string;
+}
+export const V1PortStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    error: S.optional(S.String),
+    port: S.optional(S.Number),
+    protocol: S.optional(S.String),
+  }),
+).annotate({ identifier: "V1PortStatus" }) as any as S.Schema<V1PortStatus>;
+
+export type V1LoadBalancerIngressPortsList = Array<V1PortStatus>;
+export const V1LoadBalancerIngressPortsList = /*@__PURE__*/ S.Array(
+  V1PortStatus,
+) as any as S.Schema<V1LoadBalancerIngressPortsList>;
+
+/** LoadBalancerIngress represents the status of a load-balancer ingress point: traffic intended for the service should be sent to an ingress point. */
+export interface V1LoadBalancerIngress {
+  hostname?: string;
+  ip?: string;
+  ipMode?: string;
+  ports?: V1LoadBalancerIngressPortsList;
+}
+export const V1LoadBalancerIngress = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hostname: S.optional(S.String),
+    ip: S.optional(S.String),
+    ipMode: S.optional(S.String),
+    ports: S.optional(V1LoadBalancerIngressPortsList),
+  }),
+).annotate({
+  identifier: "V1LoadBalancerIngress",
+}) as any as S.Schema<V1LoadBalancerIngress>;
+
+/** Ingress provides information about external access points (e.g., load balancer ingress) for this resource. */
+export type V1alpha1ResourceNetworkingInfoIngressList =
+  Array<V1LoadBalancerIngress>;
+export const V1alpha1ResourceNetworkingInfoIngressList = /*@__PURE__*/ S.Array(
+  V1LoadBalancerIngress,
+) as any as S.Schema<V1alpha1ResourceNetworkingInfoIngressList>;
+
+/** Labels holds the labels associated with this networking resource. */
+export type V1alpha1ResourceNetworkingInfoLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const V1alpha1ResourceNetworkingInfoLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<V1alpha1ResourceNetworkingInfoLabelsMap>;
+
+/** TargetLabels represents labels associated with the target resources that this resource communicates with. */
+export type V1alpha1ResourceNetworkingInfoTargetLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const V1alpha1ResourceNetworkingInfoTargetLabelsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<V1alpha1ResourceNetworkingInfoTargetLabelsMap>;
+
+export interface V1alpha1ResourceRef {
+  group?: string;
+  kind?: string;
+  name?: string;
+  namespace?: string;
+  uid?: string;
+  version?: string;
+}
+export const V1alpha1ResourceRef = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    group: S.optional(S.String),
+    kind: S.optional(S.String),
+    name: S.optional(S.String),
+    namespace: S.optional(S.String),
+    uid: S.optional(S.String),
+    version: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "V1alpha1ResourceRef",
+}) as any as S.Schema<V1alpha1ResourceRef>;
+
+/** TargetRefs contains references to other resources that this resource interacts with, such as Services or Pods. */
+export type V1alpha1ResourceNetworkingInfoTargetRefsList =
+  Array<V1alpha1ResourceRef>;
+export const V1alpha1ResourceNetworkingInfoTargetRefsList =
+  /*@__PURE__*/ S.Array(
+    V1alpha1ResourceRef,
+  ) as any as S.Schema<V1alpha1ResourceNetworkingInfoTargetRefsList>;
+
+/** ResourceNetworkingInfo holds networking-related information for a resource. */
+export interface V1alpha1ResourceNetworkingInfo {
+  /** ExternalURLs holds a list of URLs that should be accessible externally. This field is typically populated for Ingress resources based on their hostname rules. */
+  externalURLs?: V1alpha1ResourceNetworkingInfoExternalURLsList;
+  /** Ingress provides information about external access points (e.g., load balancer ingress) for this resource. */
+  ingress?: V1alpha1ResourceNetworkingInfoIngressList;
+  /** Labels holds the labels associated with this networking resource. */
+  labels?: V1alpha1ResourceNetworkingInfoLabelsMap;
+  /** TargetLabels represents labels associated with the target resources that this resource communicates with. */
+  targetLabels?: V1alpha1ResourceNetworkingInfoTargetLabelsMap;
+  /** TargetRefs contains references to other resources that this resource interacts with, such as Services or Pods. */
+  targetRefs?: V1alpha1ResourceNetworkingInfoTargetRefsList;
+}
+export const V1alpha1ResourceNetworkingInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    externalURLs: S.optional(V1alpha1ResourceNetworkingInfoExternalURLsList),
+    ingress: S.optional(V1alpha1ResourceNetworkingInfoIngressList),
+    labels: S.optional(V1alpha1ResourceNetworkingInfoLabelsMap),
+    targetLabels: S.optional(V1alpha1ResourceNetworkingInfoTargetLabelsMap),
+    targetRefs: S.optional(V1alpha1ResourceNetworkingInfoTargetRefsList),
+  }),
+).annotate({
+  identifier: "V1alpha1ResourceNetworkingInfo",
+}) as any as S.Schema<V1alpha1ResourceNetworkingInfo>;
+
+/** ParentRefs lists the parent resources that reference this resource. This helps in understanding ownership and hierarchical relationships. */
+export type V1alpha1ResourceNodeParentRefsList = Array<V1alpha1ResourceRef>;
+export const V1alpha1ResourceNodeParentRefsList = /*@__PURE__*/ S.Array(
+  V1alpha1ResourceRef,
+) as any as S.Schema<V1alpha1ResourceNodeParentRefsList>;
+
+/** ResourceNode contains information about a live Kubernetes resource and its relationships with other resources. */
+export interface V1alpha1ResourceNode {
+  group?: string;
+  kind?: string;
+  name?: string;
+  namespace?: string;
+  uid?: string;
+  version?: string;
+  createdAt?: string;
+  health?: V1alpha1HealthStatus;
+  /** Images lists container images associated with the resource. This is primarily useful for pods and other workload resources. */
+  images?: V1alpha1ResourceNodeImagesList;
+  /** Info provides additional metadata or annotations about the resource. */
+  info?: V1alpha1ResourceNodeInfoList;
+  networkingInfo?: V1alpha1ResourceNetworkingInfo;
+  /** ParentRefs lists the parent resources that reference this resource. This helps in understanding ownership and hierarchical relationships. */
+  parentRefs?: V1alpha1ResourceNodeParentRefsList;
+  /** ResourceVersion indicates the version of the resource, used to track changes. */
+  resourceVersion?: string;
+}
+export const V1alpha1ResourceNode = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    group: S.optional(S.String),
+    kind: S.optional(S.String),
+    name: S.optional(S.String),
+    namespace: S.optional(S.String),
+    uid: S.optional(S.String),
+    version: S.optional(S.String),
+    createdAt: S.optional(S.String),
+    health: S.optional(V1alpha1HealthStatus),
+    images: S.optional(V1alpha1ResourceNodeImagesList),
+    info: S.optional(V1alpha1ResourceNodeInfoList),
+    networkingInfo: S.optional(V1alpha1ResourceNetworkingInfo),
+    parentRefs: S.optional(V1alpha1ResourceNodeParentRefsList),
+    resourceVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "V1alpha1ResourceNode",
+}) as any as S.Schema<V1alpha1ResourceNode>;
+
+/** Nodes contains a list of resources that are either directly managed by the application or are children of directly managed resources. */
+export type V1alpha1ApplicationTreeNodesList = Array<V1alpha1ResourceNode>;
+export const V1alpha1ApplicationTreeNodesList = /*@__PURE__*/ S.Array(
+  V1alpha1ResourceNode,
+) as any as S.Schema<V1alpha1ApplicationTreeNodesList>;
+
+/** OrphanedNodes contains resources that exist in the same namespace as the application but are not managed by it. This list is populated only if orphaned resource tracking is enabled in the application's project settings. */
+export type V1alpha1ApplicationTreeOrphanedNodesList =
+  Array<V1alpha1ResourceNode>;
+export const V1alpha1ApplicationTreeOrphanedNodesList = /*@__PURE__*/ S.Array(
+  V1alpha1ResourceNode,
+) as any as S.Schema<V1alpha1ApplicationTreeOrphanedNodesList>;
+
+/** ApplicationTree represents the hierarchical structure of resources associated with an Argo CD application. */
+export interface V1alpha1ApplicationTree {
+  /** Hosts provides a list of Kubernetes nodes that are running pods related to the application. */
+  hosts?: V1alpha1ApplicationTreeHostsList;
+  /** Nodes contains a list of resources that are either directly managed by the application or are children of directly managed resources. */
+  nodes?: V1alpha1ApplicationTreeNodesList;
+  /** OrphanedNodes contains resources that exist in the same namespace as the application but are not managed by it. This list is populated only if orphaned resource tracking is enabled in the application's project settings. */
+  orphanedNodes?: V1alpha1ApplicationTreeOrphanedNodesList;
+  /** ShardsCount represents the total number of shards the application tree is split into. This is used to distribute resource processing across multiple shards. */
+  shardsCount?: number;
+}
+export const V1alpha1ApplicationTree = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hosts: S.optional(V1alpha1ApplicationTreeHostsList),
+    nodes: S.optional(V1alpha1ApplicationTreeNodesList),
+    orphanedNodes: S.optional(V1alpha1ApplicationTreeOrphanedNodesList),
+    shardsCount: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "V1alpha1ApplicationTree",
+}) as any as S.Schema<V1alpha1ApplicationTree>;
+
+export interface ApplicationServiceRevisionChartDetailsRequest {
+  /** the application's name */
+  name: string;
+  /** the revision of the app */
+  revision: string;
+  /** the application's namespace. */
+  appNamespace?: string;
+  project?: string;
+  /** source index (for multi source apps). */
+  sourceIndex?: number;
+  /** versionId from historical data (for multi source apps). */
+  versionId?: number;
+}
+export const ApplicationServiceRevisionChartDetailsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      revision: S.String.pipe(T.Label()),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+      sourceIndex: S.optional(S.Number.pipe(T.Query())),
+      versionId: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/applications/{name}/revisions/{revision}/chartdetails",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ApplicationServiceRevisionChartDetailsRequest",
+  }) as any as S.Schema<ApplicationServiceRevisionChartDetailsRequest>;
+
+export type V1alpha1ChartDetailsMaintainersList = Array<string>;
+export const V1alpha1ChartDetailsMaintainersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<V1alpha1ChartDetailsMaintainersList>;
+
+export interface V1alpha1ChartDetails {
+  description?: string;
+  home?: string;
+  maintainers?: V1alpha1ChartDetailsMaintainersList;
+}
+export const V1alpha1ChartDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    home: S.optional(S.String),
+    maintainers: S.optional(V1alpha1ChartDetailsMaintainersList),
+  }),
+).annotate({
+  identifier: "V1alpha1ChartDetails",
+}) as any as S.Schema<V1alpha1ChartDetails>;
+
+export interface ApplicationServiceRevisionMetadataRequest {
+  /** the application's name */
+  name: string;
+  /** the revision of the app */
+  revision: string;
+  /** the application's namespace. */
+  appNamespace?: string;
+  project?: string;
+  /** source index (for multi source apps). */
+  sourceIndex?: number;
+  /** versionId from historical data (for multi source apps). */
+  versionId?: number;
+}
+export const ApplicationServiceRevisionMetadataRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      revision: S.String.pipe(T.Label()),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+      sourceIndex: S.optional(S.Number.pipe(T.Query())),
+      versionId: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/applications/{name}/revisions/{revision}/metadata",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ApplicationServiceRevisionMetadataRequest",
+  }) as any as S.Schema<ApplicationServiceRevisionMetadataRequest>;
+
+/** CommitMetadata contains metadata about a commit that is related in some way to another commit. */
+export interface V1alpha1CommitMetadata {
+  /** Author is the author of the commit, i.e. `git show -s --format=%an <%ae>`. Must be formatted according to RFC 5322 (mail.Address.String()). Comes from the Argocd-reference-commit-author trailer. */
+  author?: string;
+  /** Body is the commit message body minus the subject line, i.e. `git show -s --format=%b`. Comes from the Argocd-reference-commit-body trailer. */
+  body?: string;
+  /** Date is the date of the commit, formatted as by `git show -s --format=%aI` (RFC 3339). It can also be an empty string if the date is unknown. Comes from the Argocd-reference-commit-date trailer. */
+  date?: string;
+  /** RepoURL is the URL of the repository where the commit is located. Comes from the Argocd-reference-commit-repourl trailer. This value is not validated and should not be used to construct UI links unless it is properly validated and/or sanitized first. */
+  repoUrl?: string;
+  /** SHA is the commit hash. Comes from the Argocd-reference-commit-sha trailer. */
+  sha?: string;
+  /** Subject is the commit message subject line, i.e. `git show -s --format=%s`. Comes from the Argocd-reference-commit-subject trailer. */
+  subject?: string;
+}
+export const V1alpha1CommitMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    author: S.optional(S.String),
+    body: S.optional(S.String),
+    date: S.optional(S.String),
+    repoUrl: S.optional(S.String),
+    sha: S.optional(S.String),
+    subject: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "V1alpha1CommitMetadata",
+}) as any as S.Schema<V1alpha1CommitMetadata>;
+
+/** RevisionReference contains a reference to a some information that is related in some way to another commit. For now, it supports only references to a commit. In the future, it may support other types of references. */
+export interface V1alpha1RevisionReference {
+  commit?: V1alpha1CommitMetadata;
+}
+export const V1alpha1RevisionReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    commit: S.optional(V1alpha1CommitMetadata),
+  }),
+).annotate({
+  identifier: "V1alpha1RevisionReference",
+}) as any as S.Schema<V1alpha1RevisionReference>;
+
+/** References contains references to information that's related to this commit in some way. */
+export type V1alpha1RevisionMetadataReferencesList =
+  Array<V1alpha1RevisionReference>;
+export const V1alpha1RevisionMetadataReferencesList = /*@__PURE__*/ S.Array(
+  V1alpha1RevisionReference,
+) as any as S.Schema<V1alpha1RevisionMetadataReferencesList>;
+
+/** Problems is a list of messages explaining why the check failed. Empty list means the check has succeeded. */
+export type V1alpha1SourceIntegrityCheckResultItemProblemsList = Array<string>;
+export const V1alpha1SourceIntegrityCheckResultItemProblemsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<V1alpha1SourceIntegrityCheckResultItemProblemsList>;
+
+export interface V1alpha1SourceIntegrityCheckResultItem {
+  /** Name of the check that is human-understandable pointing out to the kind of verification performed. */
+  name?: string;
+  /** Problems is a list of messages explaining why the check failed. Empty list means the check has succeeded. */
+  problems?: V1alpha1SourceIntegrityCheckResultItemProblemsList;
+}
+export const V1alpha1SourceIntegrityCheckResultItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.optional(S.String),
+      problems: S.optional(V1alpha1SourceIntegrityCheckResultItemProblemsList),
+    }),
+).annotate({
+  identifier: "V1alpha1SourceIntegrityCheckResultItem",
+}) as any as S.Schema<V1alpha1SourceIntegrityCheckResultItem>;
+
+/** Checks holds a list of checks performed, with their eventual problems. If a check is not specified here, it means it was not performed. */
+export type V1alpha1SourceIntegrityCheckResultChecksList =
+  Array<V1alpha1SourceIntegrityCheckResultItem>;
+export const V1alpha1SourceIntegrityCheckResultChecksList =
+  /*@__PURE__*/ S.Array(
+    V1alpha1SourceIntegrityCheckResultItem,
+  ) as any as S.Schema<V1alpha1SourceIntegrityCheckResultChecksList>;
+
+/** SourceIntegrityCheckResult represents a conclusion of the SourceIntegrity evaluation. Each check performed on a source(es), holds a check item representing all checks performed. */
+export interface V1alpha1SourceIntegrityCheckResult {
+  /** Checks holds a list of checks performed, with their eventual problems. If a check is not specified here, it means it was not performed. */
+  checks?: V1alpha1SourceIntegrityCheckResultChecksList;
+}
+export const V1alpha1SourceIntegrityCheckResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    checks: S.optional(V1alpha1SourceIntegrityCheckResultChecksList),
+  }),
+).annotate({
+  identifier: "V1alpha1SourceIntegrityCheckResult",
+}) as any as S.Schema<V1alpha1SourceIntegrityCheckResult>;
+
+export type V1alpha1RevisionMetadataTagsList = Array<string>;
+export const V1alpha1RevisionMetadataTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<V1alpha1RevisionMetadataTagsList>;
+
+/** RevisionMetadata contains metadata for a specific revision in a Git repository. This field is used by the Source Hydrator feature which may be removed in the future. */
+export interface V1alpha1RevisionMetadata {
+  author?: string;
+  date?: string;
+  /** Message contains the message associated with the revision, most likely the commit message. */
+  message?: string;
+  /** References contains references to information that's related to this commit in some way. */
+  references?: V1alpha1RevisionMetadataReferencesList;
+  /** SignatureInfo contains a hint on the signer if the revision was signed with GPG, and signature verification is enabled. Deprecated: Use SourceIntegrityResult for more detailed information. SignatureInfo will be removed with the next major version. */
+  signatureInfo?: string;
+  sourceIntegrityResult?: V1alpha1SourceIntegrityCheckResult;
+  tags?: V1alpha1RevisionMetadataTagsList;
+}
+export const V1alpha1RevisionMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    author: S.optional(S.String),
+    date: S.optional(S.String),
+    message: S.optional(S.String),
+    references: S.optional(V1alpha1RevisionMetadataReferencesList),
+    signatureInfo: S.optional(S.String),
+    sourceIntegrityResult: S.optional(V1alpha1SourceIntegrityCheckResult),
+    tags: S.optional(V1alpha1RevisionMetadataTagsList),
+  }),
+).annotate({
+  identifier: "V1alpha1RevisionMetadata",
+}) as any as S.Schema<V1alpha1RevisionMetadata>;
+
+export interface ApplicationServiceRollbackRequest {
+  name: string;
+  appNamespace?: string;
+  dryRun?: boolean;
+  id?: number;
+  project?: string;
+  prune?: boolean;
+}
+export const ApplicationServiceRollbackRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    appNamespace: S.optional(S.String),
+    dryRun: S.optional(S.Boolean),
+    id: S.optional(S.Number),
+    project: S.optional(S.String),
+    prune: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/v1/applications/{name}/rollback",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ApplicationServiceRollbackRequest",
+}) as any as S.Schema<ApplicationServiceRollbackRequest>;
 
 export type V1ObjectMetaAnnotationsMap = { [key: string]: string | undefined };
 export const V1ObjectMetaAnnotationsMap = /*@__PURE__*/ S.Record(
@@ -1281,20 +2037,8 @@ export const V1alpha1ApplicationStatusConditionsList = /*@__PURE__*/ S.Array(
   V1alpha1ApplicationCondition,
 ) as any as S.Schema<V1alpha1ApplicationStatusConditionsList>;
 
-export interface V1alpha1AppHealthStatus {
-  lastTransitionTime?: string;
-  message?: string;
-  status?: string;
-}
-export const V1alpha1AppHealthStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    lastTransitionTime: S.optional(S.String),
-    message: S.optional(S.String),
-    status: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "V1alpha1AppHealthStatus",
-}) as any as S.Schema<V1alpha1AppHealthStatus>;
+export type V1alpha1AppHealthStatus = V1alpha1HealthStatus;
+export const V1alpha1AppHealthStatus = V1alpha1HealthStatus;
 
 export type V1alpha1RevisionHistoryRevisionsList = Array<string>;
 export const V1alpha1RevisionHistoryRevisionsList = /*@__PURE__*/ S.Array(
@@ -1437,14 +2181,11 @@ export const V1alpha1OperationState = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1alpha1OperationState",
 }) as any as S.Schema<V1alpha1OperationState>;
 
-export type V1alpha1HealthStatus = V1alpha1AppHealthStatus;
-export const V1alpha1HealthStatus = V1alpha1AppHealthStatus;
-
 /** ResourceStatus holds the current synchronization and health status of a Kubernetes resource. */
 export interface Applicationv1alpha1ResourceStatus {
   /** Group represents the API group of the resource (e.g., "apps" for Deployments). */
   group?: string;
-  health?: V1alpha1AppHealthStatus;
+  health?: V1alpha1HealthStatus;
   /** Hook is true if the resource is used as a lifecycle hook in an Argo CD application. */
   hook?: boolean;
   /** Kind specifies the type of the resource (e.g., "Deployment", "Service"). */
@@ -1467,7 +2208,7 @@ export interface Applicationv1alpha1ResourceStatus {
 export const Applicationv1alpha1ResourceStatus = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     group: S.optional(S.String),
-    health: S.optional(V1alpha1AppHealthStatus),
+    health: S.optional(V1alpha1HealthStatus),
     hook: S.optional(S.Boolean),
     kind: S.optional(S.String),
     name: S.optional(S.String),
@@ -1630,7 +2371,7 @@ export const V1alpha1SyncStatus = /*@__PURE__*/ S.suspend(() =>
 export interface V1alpha1ApplicationStatus {
   conditions?: V1alpha1ApplicationStatusConditionsList;
   controllerNamespace?: string;
-  health?: V1alpha1AppHealthStatus;
+  health?: V1alpha1HealthStatus;
   history?: V1alpha1ApplicationStatusHistoryList;
   observedAt?: string;
   operationState?: V1alpha1OperationState;
@@ -1647,7 +2388,7 @@ export const V1alpha1ApplicationStatus = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     conditions: S.optional(V1alpha1ApplicationStatusConditionsList),
     controllerNamespace: S.optional(S.String),
-    health: S.optional(V1alpha1AppHealthStatus),
+    health: S.optional(V1alpha1HealthStatus),
     history: S.optional(V1alpha1ApplicationStatusHistoryList),
     observedAt: S.optional(S.String),
     operationState: S.optional(V1alpha1OperationState),
@@ -1663,27 +2404,6 @@ export const V1alpha1ApplicationStatus = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "V1alpha1ApplicationStatus",
 }) as any as S.Schema<V1alpha1ApplicationStatus>;
-
-export interface ApplicationServiceCreateRequest {
-  upsert?: boolean;
-  validate?: boolean;
-  metadata?: V1ObjectMeta;
-  operation?: V1alpha1Operation;
-  spec?: V1alpha1ApplicationSpec;
-  status?: V1alpha1ApplicationStatus;
-}
-export const ApplicationServiceCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    upsert: S.optional(S.Boolean.pipe(T.Query())),
-    validate: S.optional(S.Boolean.pipe(T.Query())),
-    metadata: S.optional(V1ObjectMeta),
-    operation: S.optional(V1alpha1Operation),
-    spec: S.optional(V1alpha1ApplicationSpec),
-    status: S.optional(V1alpha1ApplicationStatus),
-  }).pipe(T.Http({ method: "POST", uri: "/api/v1/applications", code: 200 })),
-).annotate({
-  identifier: "ApplicationServiceCreateRequest",
-}) as any as S.Schema<ApplicationServiceCreateRequest>;
 
 export interface V1alpha1Application {
   metadata?: V1ObjectMeta;
@@ -1701,1923 +2421,6 @@ export const V1alpha1Application = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "V1alpha1Application",
 }) as any as S.Schema<V1alpha1Application>;
-
-export interface ApplicationServiceDeleteRequest {
-  name: string;
-  cascade?: boolean;
-  propagationPolicy?: string;
-  appNamespace?: string;
-  project?: string;
-}
-export const ApplicationServiceDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    cascade: S.optional(S.Boolean.pipe(T.Query())),
-    propagationPolicy: S.optional(S.String.pipe(T.Query())),
-    appNamespace: S.optional(S.String.pipe(T.Query())),
-    project: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/api/v1/applications/{name}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ApplicationServiceDeleteRequest",
-}) as any as S.Schema<ApplicationServiceDeleteRequest>;
-
-export type ApplicationServiceDeleteResponse = unknown;
-export const ApplicationServiceDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ApplicationServiceDeleteResponse",
-}) as any as S.Schema<ApplicationServiceDeleteResponse>;
-
-export interface ApplicationServiceDeleteResourceRequest {
-  name: string;
-  namespace?: string;
-  resourceName?: string;
-  version?: string;
-  group?: string;
-  kind?: string;
-  force?: boolean;
-  orphan?: boolean;
-  appNamespace?: string;
-  project?: string;
-}
-export const ApplicationServiceDeleteResourceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      namespace: S.optional(S.String.pipe(T.Query())),
-      resourceName: S.optional(S.String.pipe(T.Query())),
-      version: S.optional(S.String.pipe(T.Query())),
-      group: S.optional(S.String.pipe(T.Query())),
-      kind: S.optional(S.String.pipe(T.Query())),
-      force: S.optional(S.Boolean.pipe(T.Query())),
-      orphan: S.optional(S.Boolean.pipe(T.Query())),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/api/v1/applications/{name}/resource",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ApplicationServiceDeleteResourceRequest",
-}) as any as S.Schema<ApplicationServiceDeleteResourceRequest>;
-
-export type ApplicationServiceDeleteResourceResponse = unknown;
-export const ApplicationServiceDeleteResourceResponse = /*@__PURE__*/ S.suspend(
-  () => S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ApplicationServiceDeleteResourceResponse",
-}) as any as S.Schema<ApplicationServiceDeleteResourceResponse>;
-
-export type ApplicationServiceGetRequestProjectsList = Array<string>;
-export const ApplicationServiceGetRequestProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ApplicationServiceGetRequestProjectsList>;
-
-export type ApplicationServiceGetRequestProjectList = Array<string>;
-export const ApplicationServiceGetRequestProjectList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ApplicationServiceGetRequestProjectList>;
-
-export interface ApplicationServiceGetRequest {
-  /** the application's name */
-  name: string;
-  /** forces application reconciliation if set to 'hard'. */
-  refresh?: string;
-  /** the project names to restrict returned list applications. */
-  projects?: ApplicationServiceGetRequestProjectsList;
-  /** when specified with a watch call, shows changes that occur after that particular version of a resource. */
-  resourceVersion?: string;
-  /** the selector to restrict returned list to applications only with matched labels. */
-  selector?: string;
-  /** the repoURL to restrict returned list applications. */
-  repo?: string;
-  /** the application's namespace. */
-  appNamespace?: string;
-  /** the project names to restrict returned list applications (legacy name for backwards-compatibility). */
-  project?: ApplicationServiceGetRequestProjectList;
-}
-export const ApplicationServiceGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    refresh: S.optional(S.String.pipe(T.Query())),
-    projects: S.optional(
-      ApplicationServiceGetRequestProjectsList.pipe(T.Query()),
-    ),
-    resourceVersion: S.optional(S.String.pipe(T.Query())),
-    selector: S.optional(S.String.pipe(T.Query())),
-    repo: S.optional(S.String.pipe(T.Query())),
-    appNamespace: S.optional(S.String.pipe(T.Query())),
-    project: S.optional(
-      ApplicationServiceGetRequestProjectList.pipe(T.Query()),
-    ),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v1/applications/{name}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ApplicationServiceGetRequest",
-}) as any as S.Schema<ApplicationServiceGetRequest>;
-
-export interface ApplicationServiceGetApplicationSyncWindowsRequest {
-  name: string;
-  appNamespace?: string;
-  project?: string;
-}
-export const ApplicationServiceGetApplicationSyncWindowsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/applications/{name}/syncwindows",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationServiceGetApplicationSyncWindowsRequest",
-  }) as any as S.Schema<ApplicationServiceGetApplicationSyncWindowsRequest>;
-
-export interface ApplicationApplicationSyncWindow {
-  duration?: string;
-  kind?: string;
-  manualSync?: boolean;
-  schedule?: string;
-}
-export const ApplicationApplicationSyncWindow = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    duration: S.optional(S.String),
-    kind: S.optional(S.String),
-    manualSync: S.optional(S.Boolean),
-    schedule: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApplicationApplicationSyncWindow",
-}) as any as S.Schema<ApplicationApplicationSyncWindow>;
-
-export type ApplicationApplicationSyncWindowsResponseActiveWindowsList =
-  Array<ApplicationApplicationSyncWindow>;
-export const ApplicationApplicationSyncWindowsResponseActiveWindowsList =
-  /*@__PURE__*/ S.Array(
-    ApplicationApplicationSyncWindow,
-  ) as any as S.Schema<ApplicationApplicationSyncWindowsResponseActiveWindowsList>;
-
-export type ApplicationApplicationSyncWindowsResponseAssignedWindowsList =
-  Array<ApplicationApplicationSyncWindow>;
-export const ApplicationApplicationSyncWindowsResponseAssignedWindowsList =
-  /*@__PURE__*/ S.Array(
-    ApplicationApplicationSyncWindow,
-  ) as any as S.Schema<ApplicationApplicationSyncWindowsResponseAssignedWindowsList>;
-
-export interface ApplicationApplicationSyncWindowsResponse {
-  activeWindows?: ApplicationApplicationSyncWindowsResponseActiveWindowsList;
-  assignedWindows?: ApplicationApplicationSyncWindowsResponseAssignedWindowsList;
-  canSync?: boolean;
-}
-export const ApplicationApplicationSyncWindowsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      activeWindows: S.optional(
-        ApplicationApplicationSyncWindowsResponseActiveWindowsList,
-      ),
-      assignedWindows: S.optional(
-        ApplicationApplicationSyncWindowsResponseAssignedWindowsList,
-      ),
-      canSync: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "ApplicationApplicationSyncWindowsResponse",
-  }) as any as S.Schema<ApplicationApplicationSyncWindowsResponse>;
-
-export type ApplicationServiceGetManifestsRequestSourcePositionsList =
-  Array<string>;
-export const ApplicationServiceGetManifestsRequestSourcePositionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ApplicationServiceGetManifestsRequestSourcePositionsList>;
-
-export type ApplicationServiceGetManifestsRequestRevisionsList = Array<string>;
-export const ApplicationServiceGetManifestsRequestRevisionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ApplicationServiceGetManifestsRequestRevisionsList>;
-
-export interface ApplicationServiceGetManifestsRequest {
-  name: string;
-  revision?: string;
-  appNamespace?: string;
-  project?: string;
-  sourcePositions?: ApplicationServiceGetManifestsRequestSourcePositionsList;
-  revisions?: ApplicationServiceGetManifestsRequestRevisionsList;
-  noCache?: boolean;
-}
-export const ApplicationServiceGetManifestsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      revision: S.optional(S.String.pipe(T.Query())),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-      sourcePositions: S.optional(
-        ApplicationServiceGetManifestsRequestSourcePositionsList.pipe(
-          T.Query(),
-        ),
-      ),
-      revisions: S.optional(
-        ApplicationServiceGetManifestsRequestRevisionsList.pipe(T.Query()),
-      ),
-      noCache: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/applications/{name}/manifests",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ApplicationServiceGetManifestsRequest",
-}) as any as S.Schema<ApplicationServiceGetManifestsRequest>;
-
-export type RepositoryManifestResponseCommandsList = Array<string>;
-export const RepositoryManifestResponseCommandsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RepositoryManifestResponseCommandsList>;
-
-export type RepositoryManifestResponseManifestsList = Array<string>;
-export const RepositoryManifestResponseManifestsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RepositoryManifestResponseManifestsList>;
-
-/** Problems is a list of messages explaining why the check failed. Empty list means the check has succeeded. */
-export type V1alpha1SourceIntegrityCheckResultItemProblemsList = Array<string>;
-export const V1alpha1SourceIntegrityCheckResultItemProblemsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<V1alpha1SourceIntegrityCheckResultItemProblemsList>;
-
-export interface V1alpha1SourceIntegrityCheckResultItem {
-  /** Name of the check that is human-understandable pointing out to the kind of verification performed. */
-  name?: string;
-  /** Problems is a list of messages explaining why the check failed. Empty list means the check has succeeded. */
-  problems?: V1alpha1SourceIntegrityCheckResultItemProblemsList;
-}
-export const V1alpha1SourceIntegrityCheckResultItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.optional(S.String),
-      problems: S.optional(V1alpha1SourceIntegrityCheckResultItemProblemsList),
-    }),
-).annotate({
-  identifier: "V1alpha1SourceIntegrityCheckResultItem",
-}) as any as S.Schema<V1alpha1SourceIntegrityCheckResultItem>;
-
-/** Checks holds a list of checks performed, with their eventual problems. If a check is not specified here, it means it was not performed. */
-export type V1alpha1SourceIntegrityCheckResultChecksList =
-  Array<V1alpha1SourceIntegrityCheckResultItem>;
-export const V1alpha1SourceIntegrityCheckResultChecksList =
-  /*@__PURE__*/ S.Array(
-    V1alpha1SourceIntegrityCheckResultItem,
-  ) as any as S.Schema<V1alpha1SourceIntegrityCheckResultChecksList>;
-
-/** SourceIntegrityCheckResult represents a conclusion of the SourceIntegrity evaluation. Each check performed on a source(es), holds a check item representing all checks performed. */
-export interface V1alpha1SourceIntegrityCheckResult {
-  /** Checks holds a list of checks performed, with their eventual problems. If a check is not specified here, it means it was not performed. */
-  checks?: V1alpha1SourceIntegrityCheckResultChecksList;
-}
-export const V1alpha1SourceIntegrityCheckResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    checks: S.optional(V1alpha1SourceIntegrityCheckResultChecksList),
-  }),
-).annotate({
-  identifier: "V1alpha1SourceIntegrityCheckResult",
-}) as any as S.Schema<V1alpha1SourceIntegrityCheckResult>;
-
-export interface RepositoryManifestResponse {
-  commands?: RepositoryManifestResponseCommandsList;
-  manifests?: RepositoryManifestResponseManifestsList;
-  namespace?: string;
-  revision?: string;
-  server?: string;
-  sourceIntegrityResult?: V1alpha1SourceIntegrityCheckResult;
-  sourceType?: string;
-  /** Deprecated: Use sourceIntegrityResult for more detailed information. verifyResult will be removed with the next major version. */
-  verifyResult?: string;
-}
-export const RepositoryManifestResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    commands: S.optional(RepositoryManifestResponseCommandsList),
-    manifests: S.optional(RepositoryManifestResponseManifestsList),
-    namespace: S.optional(S.String),
-    revision: S.optional(S.String),
-    server: S.optional(S.String),
-    sourceIntegrityResult: S.optional(V1alpha1SourceIntegrityCheckResult),
-    sourceType: S.optional(S.String),
-    verifyResult: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RepositoryManifestResponse",
-}) as any as S.Schema<RepositoryManifestResponse>;
-
-export interface ApplicationFileChunk {
-  chunk?: string;
-}
-export const ApplicationFileChunk = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    chunk: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApplicationFileChunk",
-}) as any as S.Schema<ApplicationFileChunk>;
-
-export interface ApplicationApplicationManifestQueryWithFiles {
-  appNamespace?: string;
-  checksum?: string;
-  name?: string;
-  project?: string;
-}
-export const ApplicationApplicationManifestQueryWithFiles =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      appNamespace: S.optional(S.String),
-      checksum: S.optional(S.String),
-      name: S.optional(S.String),
-      project: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ApplicationApplicationManifestQueryWithFiles",
-  }) as any as S.Schema<ApplicationApplicationManifestQueryWithFiles>;
-
-export interface ApplicationServiceGetManifestsWithFilesRequest {
-  chunk?: ApplicationFileChunk;
-  query?: ApplicationApplicationManifestQueryWithFiles;
-}
-export const ApplicationServiceGetManifestsWithFilesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      chunk: S.optional(ApplicationFileChunk),
-      query: S.optional(ApplicationApplicationManifestQueryWithFiles),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/v1/applications/manifestsWithFiles",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationServiceGetManifestsWithFilesRequest",
-  }) as any as S.Schema<ApplicationServiceGetManifestsWithFilesRequest>;
-
-export interface ApplicationServiceGetOCIMetadataRequest {
-  /** the application's name */
-  name: string;
-  /** the revision of the app */
-  revision: string;
-  /** the application's namespace. */
-  appNamespace?: string;
-  project?: string;
-  /** source index (for multi source apps). */
-  sourceIndex?: number;
-  /** versionId from historical data (for multi source apps). */
-  versionId?: number;
-}
-export const ApplicationServiceGetOCIMetadataRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      revision: S.String.pipe(T.Label()),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-      sourceIndex: S.optional(S.Number.pipe(T.Query())),
-      versionId: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/applications/{name}/revisions/{revision}/ocimetadata",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ApplicationServiceGetOCIMetadataRequest",
-}) as any as S.Schema<ApplicationServiceGetOCIMetadataRequest>;
-
-export interface V1alpha1OCIMetadata {
-  authors?: string;
-  createdAt?: string;
-  description?: string;
-  docsUrl?: string;
-  imageUrl?: string;
-  sourceUrl?: string;
-  version?: string;
-}
-export const V1alpha1OCIMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authors: S.optional(S.String),
-    createdAt: S.optional(S.String),
-    description: S.optional(S.String),
-    docsUrl: S.optional(S.String),
-    imageUrl: S.optional(S.String),
-    sourceUrl: S.optional(S.String),
-    version: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "V1alpha1OCIMetadata",
-}) as any as S.Schema<V1alpha1OCIMetadata>;
-
-export interface ApplicationServiceGetResourceRequest {
-  name: string;
-  namespace?: string;
-  resourceName?: string;
-  version?: string;
-  group?: string;
-  kind?: string;
-  appNamespace?: string;
-  project?: string;
-}
-export const ApplicationServiceGetResourceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      namespace: S.optional(S.String.pipe(T.Query())),
-      resourceName: S.optional(S.String.pipe(T.Query())),
-      version: S.optional(S.String.pipe(T.Query())),
-      group: S.optional(S.String.pipe(T.Query())),
-      kind: S.optional(S.String.pipe(T.Query())),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/applications/{name}/resource",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ApplicationServiceGetResourceRequest",
-}) as any as S.Schema<ApplicationServiceGetResourceRequest>;
-
-export interface ApplicationApplicationResourceResponse {
-  manifest?: string;
-}
-export const ApplicationApplicationResourceResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      manifest: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ApplicationApplicationResourceResponse",
-}) as any as S.Schema<ApplicationApplicationResourceResponse>;
-
-export type ApplicationServiceListRequestProjectsList = Array<string>;
-export const ApplicationServiceListRequestProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ApplicationServiceListRequestProjectsList>;
-
-export type ApplicationServiceListRequestProjectList = Array<string>;
-export const ApplicationServiceListRequestProjectList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ApplicationServiceListRequestProjectList>;
-
-export interface ApplicationServiceListRequest {
-  /** the application's name. */
-  name?: string;
-  /** forces application reconciliation if set to 'hard'. */
-  refresh?: string;
-  /** the project names to restrict returned list applications. */
-  projects?: ApplicationServiceListRequestProjectsList;
-  /** when specified with a watch call, shows changes that occur after that particular version of a resource. */
-  resourceVersion?: string;
-  /** the selector to restrict returned list to applications only with matched labels. */
-  selector?: string;
-  /** the repoURL to restrict returned list applications. */
-  repo?: string;
-  /** the application's namespace. */
-  appNamespace?: string;
-  /** the project names to restrict returned list applications (legacy name for backwards-compatibility). */
-  project?: ApplicationServiceListRequestProjectList;
-}
-export const ApplicationServiceListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String.pipe(T.Query())),
-    refresh: S.optional(S.String.pipe(T.Query())),
-    projects: S.optional(
-      ApplicationServiceListRequestProjectsList.pipe(T.Query()),
-    ),
-    resourceVersion: S.optional(S.String.pipe(T.Query())),
-    selector: S.optional(S.String.pipe(T.Query())),
-    repo: S.optional(S.String.pipe(T.Query())),
-    appNamespace: S.optional(S.String.pipe(T.Query())),
-    project: S.optional(
-      ApplicationServiceListRequestProjectList.pipe(T.Query()),
-    ),
-  }).pipe(T.Http({ method: "GET", uri: "/api/v1/applications", code: 200 })),
-).annotate({
-  identifier: "ApplicationServiceListRequest",
-}) as any as S.Schema<ApplicationServiceListRequest>;
-
-export type V1alpha1ApplicationListItemsList = Array<V1alpha1Application>;
-export const V1alpha1ApplicationListItemsList = /*@__PURE__*/ S.Array(
-  V1alpha1Application,
-) as any as S.Schema<V1alpha1ApplicationListItemsList>;
-
-/** ShardInfo describes the shard selector that was applied to produce a list response. Its presence on a list response indicates the list is a filtered subset. */
-export interface V1ShardInfo {
-  selector?: string;
-}
-export const V1ShardInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    selector: S.optional(S.String),
-  }),
-).annotate({ identifier: "V1ShardInfo" }) as any as S.Schema<V1ShardInfo>;
-
-/** ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}. */
-export interface V1ListMeta {
-  /** continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message. */
-  continue?: string;
-  remainingItemCount?: number;
-  resourceVersion?: string;
-  selfLink?: string;
-  shardInfo?: V1ShardInfo;
-}
-export const V1ListMeta = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    continue: S.optional(S.String),
-    remainingItemCount: S.optional(S.Number),
-    resourceVersion: S.optional(S.String),
-    selfLink: S.optional(S.String),
-    shardInfo: S.optional(V1ShardInfo),
-  }),
-).annotate({ identifier: "V1ListMeta" }) as any as S.Schema<V1ListMeta>;
-
-export interface V1alpha1ApplicationList {
-  items?: V1alpha1ApplicationListItemsList;
-  metadata?: V1ListMeta;
-}
-export const V1alpha1ApplicationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(V1alpha1ApplicationListItemsList),
-    metadata: S.optional(V1ListMeta),
-  }),
-).annotate({
-  identifier: "V1alpha1ApplicationList",
-}) as any as S.Schema<V1alpha1ApplicationList>;
-
-export interface ApplicationServiceListLinksRequest {
-  name: string;
-  namespace?: string;
-  project?: string;
-}
-export const ApplicationServiceListLinksRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    namespace: S.optional(S.String.pipe(T.Query())),
-    project: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v1/applications/{name}/links",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationServiceListLinksRequest",
-}) as any as S.Schema<ApplicationServiceListLinksRequest>;
-
-export interface ApplicationLinkInfo {
-  description?: string;
-  iconClass?: string;
-  title?: string;
-  url?: string;
-}
-export const ApplicationLinkInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    iconClass: S.optional(S.String),
-    title: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApplicationLinkInfo",
-}) as any as S.Schema<ApplicationLinkInfo>;
-
-export type ApplicationLinksResponseItemsList = Array<ApplicationLinkInfo>;
-export const ApplicationLinksResponseItemsList = /*@__PURE__*/ S.Array(
-  ApplicationLinkInfo,
-) as any as S.Schema<ApplicationLinksResponseItemsList>;
-
-export interface ApplicationLinksResponse {
-  items?: ApplicationLinksResponseItemsList;
-}
-export const ApplicationLinksResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(ApplicationLinksResponseItemsList),
-  }),
-).annotate({
-  identifier: "ApplicationLinksResponse",
-}) as any as S.Schema<ApplicationLinksResponse>;
-
-export interface ApplicationServiceListResourceActionsRequest {
-  name: string;
-  namespace?: string;
-  resourceName?: string;
-  version?: string;
-  group?: string;
-  kind?: string;
-  appNamespace?: string;
-  project?: string;
-}
-export const ApplicationServiceListResourceActionsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      namespace: S.optional(S.String.pipe(T.Query())),
-      resourceName: S.optional(S.String.pipe(T.Query())),
-      version: S.optional(S.String.pipe(T.Query())),
-      group: S.optional(S.String.pipe(T.Query())),
-      kind: S.optional(S.String.pipe(T.Query())),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/applications/{name}/resource/actions",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationServiceListResourceActionsRequest",
-  }) as any as S.Schema<ApplicationServiceListResourceActionsRequest>;
-
-/** ResourceActionParam represents a parameter for a resource action. It includes a name, value, type, and an optional default value for the parameter. */
-export interface V1alpha1ResourceActionParam {
-  /** Name is the name of the parameter. */
-  name?: string;
-}
-export const V1alpha1ResourceActionParam = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "V1alpha1ResourceActionParam",
-}) as any as S.Schema<V1alpha1ResourceActionParam>;
-
-/** Params contains the parameters required to execute the action. */
-export type V1alpha1ResourceActionParamsList =
-  Array<V1alpha1ResourceActionParam>;
-export const V1alpha1ResourceActionParamsList = /*@__PURE__*/ S.Array(
-  V1alpha1ResourceActionParam,
-) as any as S.Schema<V1alpha1ResourceActionParamsList>;
-
-/** ResourceAction represents an individual action that can be performed on a resource. It includes parameters, an optional disabled flag, an icon for display, and a name for the action. */
-export interface V1alpha1ResourceAction {
-  /** Disabled indicates whether the action is disabled. */
-  disabled?: boolean;
-  /** DisplayName provides a user-friendly name for the action. */
-  displayName?: string;
-  /** IconClass specifies the CSS class for the action's icon. */
-  iconClass?: string;
-  /** Name is the name or identifier for the action. */
-  name?: string;
-  /** Params contains the parameters required to execute the action. */
-  params?: V1alpha1ResourceActionParamsList;
-}
-export const V1alpha1ResourceAction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    disabled: S.optional(S.Boolean),
-    displayName: S.optional(S.String),
-    iconClass: S.optional(S.String),
-    name: S.optional(S.String),
-    params: S.optional(V1alpha1ResourceActionParamsList),
-  }),
-).annotate({
-  identifier: "V1alpha1ResourceAction",
-}) as any as S.Schema<V1alpha1ResourceAction>;
-
-export type ApplicationResourceActionsListResponseActionsList =
-  Array<V1alpha1ResourceAction>;
-export const ApplicationResourceActionsListResponseActionsList =
-  /*@__PURE__*/ S.Array(
-    V1alpha1ResourceAction,
-  ) as any as S.Schema<ApplicationResourceActionsListResponseActionsList>;
-
-export interface ApplicationResourceActionsListResponse {
-  actions?: ApplicationResourceActionsListResponseActionsList;
-}
-export const ApplicationResourceActionsListResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      actions: S.optional(ApplicationResourceActionsListResponseActionsList),
-    }),
-).annotate({
-  identifier: "ApplicationResourceActionsListResponse",
-}) as any as S.Schema<ApplicationResourceActionsListResponse>;
-
-export interface ApplicationServiceListResourceEventsRequest {
-  name: string;
-  resourceNamespace?: string;
-  resourceName?: string;
-  resourceUID?: string;
-  appNamespace?: string;
-  project?: string;
-}
-export const ApplicationServiceListResourceEventsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      resourceNamespace: S.optional(S.String.pipe(T.Query())),
-      resourceName: S.optional(S.String.pipe(T.Query())),
-      resourceUID: S.optional(S.String.pipe(T.Query())),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/applications/{name}/events",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationServiceListResourceEventsRequest",
-  }) as any as S.Schema<ApplicationServiceListResourceEventsRequest>;
-
-/** MicroTime is version of Time with microsecond level precision. +protobuf.options.marshal=false +protobuf.as=Timestamp +protobuf.options.(gogoproto.goproto_stringer)=false */
-export interface V1MicroTime {
-  /** Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive. This field may be limited in precision depending on context. */
-  nanos?: number;
-  /** Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive. */
-  seconds?: number;
-}
-export const V1MicroTime = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nanos: S.optional(S.Number),
-    seconds: S.optional(S.Number),
-  }),
-).annotate({ identifier: "V1MicroTime" }) as any as S.Schema<V1MicroTime>;
-
-/** ObjectReference contains enough information to let you inspect or modify the referred object. */
-export interface EventsObjectReference {
-  /** API version of the referent. */
-  apiVersion?: string;
-  /** If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). */
-  fieldPath?: string;
-  /** Kind of the referent. */
-  kind?: string;
-  /** Name of the referent. */
-  name?: string;
-  /** Namespace of the referent. */
-  namespace?: string;
-  /** Specific resourceVersion to which this reference is made, if any. */
-  resourceVersion?: string;
-  /** UID of the referent. */
-  uid?: string;
-}
-export const EventsObjectReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    apiVersion: S.optional(S.String),
-    fieldPath: S.optional(S.String),
-    kind: S.optional(S.String),
-    name: S.optional(S.String),
-    namespace: S.optional(S.String),
-    resourceVersion: S.optional(S.String),
-    uid: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EventsObjectReference",
-}) as any as S.Schema<EventsObjectReference>;
-
-/** EventSeries contain information on series of events, i.e. thing that was/is happening continuously for some time. */
-export interface EventsEventSeries {
-  /** Number of occurrences in this series up to the last heartbeat time. */
-  count?: number;
-  lastObservedTime?: V1MicroTime;
-}
-export const EventsEventSeries = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    lastObservedTime: S.optional(V1MicroTime),
-  }),
-).annotate({
-  identifier: "EventsEventSeries",
-}) as any as S.Schema<EventsEventSeries>;
-
-/** EventSource contains information for an event. */
-export interface EventsEventSource {
-  /** Component from which the event is generated. */
-  component?: string;
-  /** Node name on which the event is generated. */
-  host?: string;
-}
-export const EventsEventSource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    component: S.optional(S.String),
-    host: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EventsEventSource",
-}) as any as S.Schema<EventsEventSource>;
-
-/** Event mirrors corev1.Event and exposes the fields consumed by the Argo CD API and UI. Event is a report of an event somewhere in the cluster. Events have a limited retention time and triggers and messages may evolve with time. Event consumers should not rely on the timing of an event with a given Reason reflecting a consistent underlying trigger, or the continued existence of events with that Reason. Events should be treated as informative, best-effort, supplemental data. */
-export interface EventsEvent {
-  /** What action was taken/failed regarding to the Regarding object. */
-  action?: string;
-  /** The number of times this event has occurred. */
-  count?: number;
-  eventTime?: V1MicroTime;
-  firstTimestamp?: string;
-  involvedObject?: EventsObjectReference;
-  lastTimestamp?: string;
-  /** A human-readable description of the status of this operation. */
-  message?: string;
-  metadata?: V1ObjectMeta;
-  /** This should be a short, machine understandable string that gives the reason for the transition into the object's current status. */
-  reason?: string;
-  related?: EventsObjectReference;
-  /** Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`. */
-  reportingComponent?: string;
-  /** ID of the controller instance, e.g. `kubelet-xyzf`. */
-  reportingInstance?: string;
-  series?: EventsEventSeries;
-  source?: EventsEventSource;
-  /** Type of this event (Normal, Warning), new types could be added in the future. */
-  type?: string;
-}
-export const EventsEvent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    action: S.optional(S.String),
-    count: S.optional(S.Number),
-    eventTime: S.optional(V1MicroTime),
-    firstTimestamp: S.optional(S.String),
-    involvedObject: S.optional(EventsObjectReference),
-    lastTimestamp: S.optional(S.String),
-    message: S.optional(S.String),
-    metadata: S.optional(V1ObjectMeta),
-    reason: S.optional(S.String),
-    related: S.optional(EventsObjectReference),
-    reportingComponent: S.optional(S.String),
-    reportingInstance: S.optional(S.String),
-    series: S.optional(EventsEventSeries),
-    source: S.optional(EventsEventSource),
-    type: S.optional(S.String),
-  }),
-).annotate({ identifier: "EventsEvent" }) as any as S.Schema<EventsEvent>;
-
-/** List of events. */
-export type EventsEventListItemsList = Array<EventsEvent>;
-export const EventsEventListItemsList = /*@__PURE__*/ S.Array(
-  EventsEvent,
-) as any as S.Schema<EventsEventListItemsList>;
-
-/** EventList is a list of Argo CD Event messages. It mirrors corev1.EventList field-for-field but is defined in Argo CD's apiclient package to avoid pulling Kubernetes protobuf types into the public gRPC surface. */
-export interface EventsEventList {
-  /** List of events. */
-  items?: EventsEventListItemsList;
-  metadata?: V1ListMeta;
-}
-export const EventsEventList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(EventsEventListItemsList),
-    metadata: S.optional(V1ListMeta),
-  }),
-).annotate({
-  identifier: "EventsEventList",
-}) as any as S.Schema<EventsEventList>;
-
-export interface ApplicationServiceListResourceLinksRequest {
-  name: string;
-  namespace?: string;
-  resourceName?: string;
-  version?: string;
-  group?: string;
-  kind?: string;
-  appNamespace?: string;
-  project?: string;
-}
-export const ApplicationServiceListResourceLinksRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      namespace: S.optional(S.String.pipe(T.Query())),
-      resourceName: S.optional(S.String.pipe(T.Query())),
-      version: S.optional(S.String.pipe(T.Query())),
-      group: S.optional(S.String.pipe(T.Query())),
-      kind: S.optional(S.String.pipe(T.Query())),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/applications/{name}/resource/links",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationServiceListResourceLinksRequest",
-  }) as any as S.Schema<ApplicationServiceListResourceLinksRequest>;
-
-export interface ApplicationServiceManagedResourcesRequest {
-  applicationName: string;
-  namespace?: string;
-  name?: string;
-  version?: string;
-  group?: string;
-  kind?: string;
-  appNamespace?: string;
-  project?: string;
-}
-export const ApplicationServiceManagedResourcesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      applicationName: S.String.pipe(T.Label()),
-      namespace: S.optional(S.String.pipe(T.Query())),
-      name: S.optional(S.String.pipe(T.Query())),
-      version: S.optional(S.String.pipe(T.Query())),
-      group: S.optional(S.String.pipe(T.Query())),
-      kind: S.optional(S.String.pipe(T.Query())),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/applications/{applicationName}/managed-resources",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationServiceManagedResourcesRequest",
-  }) as any as S.Schema<ApplicationServiceManagedResourcesRequest>;
-
-/** ResourceDiff holds the diff between a live and target resource object in Argo CD. It is used to compare the desired state (from Git/Helm) with the actual state in the cluster. */
-export interface V1alpha1ResourceDiff {
-  /** Diff contains the JSON patch representing the difference between the live and target resource. Deprecated: Use NormalizedLiveState and PredictedLiveState instead to compute differences. */
-  diff?: string;
-  /** Group represents the API group of the resource (e.g., "apps" for Deployments). */
-  group?: string;
-  /** Hook indicates whether this resource is a hook resource (e.g., pre-sync or post-sync hooks). */
-  hook?: boolean;
-  /** Kind represents the Kubernetes resource kind (e.g., "Deployment", "Service"). */
-  kind?: string;
-  /** LiveState contains the JSON-serialized resource manifest of the resource currently running in the cluster. */
-  liveState?: string;
-  /** Modified indicates whether the live resource has changes compared to the target resource. */
-  modified?: boolean;
-  /** Name is the name of the resource. */
-  name?: string;
-  /** Namespace specifies the namespace where the resource exists. */
-  namespace?: string;
-  /** NormalizedLiveState contains the JSON-serialized live resource state after applying normalizations. Normalizations may include ignoring irrelevant fields like timestamps or defaults applied by Kubernetes. */
-  normalizedLiveState?: string;
-  /** PredictedLiveState contains the JSON-serialized resource state that Argo CD predicts based on the combination of the normalized live state and the desired target state. */
-  predictedLiveState?: string;
-  /** ResourceVersion is the Kubernetes resource version, which helps in tracking changes. */
-  resourceVersion?: string;
-  /** TargetState contains the JSON-serialized resource manifest as defined in the Git/Helm repository. */
-  targetState?: string;
-}
-export const V1alpha1ResourceDiff = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    diff: S.optional(S.String),
-    group: S.optional(S.String),
-    hook: S.optional(S.Boolean),
-    kind: S.optional(S.String),
-    liveState: S.optional(S.String),
-    modified: S.optional(S.Boolean),
-    name: S.optional(S.String),
-    namespace: S.optional(S.String),
-    normalizedLiveState: S.optional(S.String),
-    predictedLiveState: S.optional(S.String),
-    resourceVersion: S.optional(S.String),
-    targetState: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "V1alpha1ResourceDiff",
-}) as any as S.Schema<V1alpha1ResourceDiff>;
-
-export type ApplicationManagedResourcesResponseItemsList =
-  Array<V1alpha1ResourceDiff>;
-export const ApplicationManagedResourcesResponseItemsList =
-  /*@__PURE__*/ S.Array(
-    V1alpha1ResourceDiff,
-  ) as any as S.Schema<ApplicationManagedResourcesResponseItemsList>;
-
-export interface ApplicationManagedResourcesResponse {
-  items?: ApplicationManagedResourcesResponseItemsList;
-}
-export const ApplicationManagedResourcesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(ApplicationManagedResourcesResponseItemsList),
-  }),
-).annotate({
-  identifier: "ApplicationManagedResourcesResponse",
-}) as any as S.Schema<ApplicationManagedResourcesResponse>;
-
-export interface ApplicationServicePatchRequest {
-  name: string;
-  appNamespace?: string;
-  patch?: string;
-  patchType?: string;
-  project?: string;
-}
-export const ApplicationServicePatchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    appNamespace: S.optional(S.String),
-    patch: S.optional(S.String),
-    patchType: S.optional(S.String),
-    project: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "PATCH", uri: "/api/v1/applications/{name}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ApplicationServicePatchRequest",
-}) as any as S.Schema<ApplicationServicePatchRequest>;
-
-export interface ApplicationServicePatchResourceRequest {
-  name: string;
-  namespace?: string;
-  resourceName?: string;
-  version?: string;
-  group?: string;
-  kind?: string;
-  patchType?: string;
-  appNamespace?: string;
-  project?: string;
-  body: string;
-}
-export const ApplicationServicePatchResourceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      namespace: S.optional(S.String.pipe(T.Query())),
-      resourceName: S.optional(S.String.pipe(T.Query())),
-      version: S.optional(S.String.pipe(T.Query())),
-      group: S.optional(S.String.pipe(T.Query())),
-      kind: S.optional(S.String.pipe(T.Query())),
-      patchType: S.optional(S.String.pipe(T.Query())),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-      body: S.String.pipe(T.HttpBody()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/v1/applications/{name}/resource",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ApplicationServicePatchResourceRequest",
-}) as any as S.Schema<ApplicationServicePatchResourceRequest>;
-
-export interface ApplicationServicePodLogsRequest {
-  name: string;
-  podName: string;
-  namespace?: string;
-  container?: string;
-  sinceSeconds?: string;
-  /** Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive. */
-  sinceTime_seconds?: string;
-  /** Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive. This field may be limited in precision depending on context. */
-  sinceTime_nanos?: number;
-  tailLines?: string;
-  follow?: boolean;
-  untilTime?: string;
-  filter?: string;
-  kind?: string;
-  group?: string;
-  resourceName?: string;
-  previous?: boolean;
-  appNamespace?: string;
-  project?: string;
-  matchCase?: boolean;
-}
-export const ApplicationServicePodLogsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    podName: S.String.pipe(T.Label()),
-    namespace: S.optional(S.String.pipe(T.Query())),
-    container: S.optional(S.String.pipe(T.Query())),
-    sinceSeconds: S.optional(S.String.pipe(T.Query())),
-    sinceTime_seconds: S.optional(S.String.pipe(T.Query("sinceTime.seconds"))),
-    sinceTime_nanos: S.optional(S.Number.pipe(T.Query("sinceTime.nanos"))),
-    tailLines: S.optional(S.String.pipe(T.Query())),
-    follow: S.optional(S.Boolean.pipe(T.Query())),
-    untilTime: S.optional(S.String.pipe(T.Query())),
-    filter: S.optional(S.String.pipe(T.Query())),
-    kind: S.optional(S.String.pipe(T.Query())),
-    group: S.optional(S.String.pipe(T.Query())),
-    resourceName: S.optional(S.String.pipe(T.Query())),
-    previous: S.optional(S.Boolean.pipe(T.Query())),
-    appNamespace: S.optional(S.String.pipe(T.Query())),
-    project: S.optional(S.String.pipe(T.Query())),
-    matchCase: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v1/applications/{name}/pods/{podName}/logs",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationServicePodLogsRequest",
-}) as any as S.Schema<ApplicationServicePodLogsRequest>;
-
-export interface ProtobufAny {
-  type_url?: string;
-  value?: string;
-}
-export const ProtobufAny = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type_url: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({ identifier: "ProtobufAny" }) as any as S.Schema<ProtobufAny>;
-
-export type RuntimeStreamErrorDetailsList = Array<ProtobufAny>;
-export const RuntimeStreamErrorDetailsList = /*@__PURE__*/ S.Array(
-  ProtobufAny,
-) as any as S.Schema<RuntimeStreamErrorDetailsList>;
-
-export interface RuntimeStreamError {
-  details?: RuntimeStreamErrorDetailsList;
-  grpc_code?: number;
-  http_code?: number;
-  http_status?: string;
-  message?: string;
-}
-export const RuntimeStreamError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    details: S.optional(RuntimeStreamErrorDetailsList),
-    grpc_code: S.optional(S.Number),
-    http_code: S.optional(S.Number),
-    http_status: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RuntimeStreamError",
-}) as any as S.Schema<RuntimeStreamError>;
-
-export interface ApplicationLogEntry {
-  content?: string;
-  last?: boolean;
-  podName?: string;
-  timeStamp?: string;
-  timeStampStr?: string;
-}
-export const ApplicationLogEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    content: S.optional(S.String),
-    last: S.optional(S.Boolean),
-    podName: S.optional(S.String),
-    timeStamp: S.optional(S.String),
-    timeStampStr: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApplicationLogEntry",
-}) as any as S.Schema<ApplicationLogEntry>;
-
-export interface ApplicationServicePodLogsResponse {
-  error?: RuntimeStreamError;
-  result?: ApplicationLogEntry;
-}
-export const ApplicationServicePodLogsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    error: S.optional(RuntimeStreamError),
-    result: S.optional(ApplicationLogEntry),
-  }),
-).annotate({
-  identifier: "ApplicationServicePodLogsResponse",
-}) as any as S.Schema<ApplicationServicePodLogsResponse>;
-
-export interface ApplicationServicePodLogs2Request {
-  name: string;
-  namespace?: string;
-  podName?: string;
-  container?: string;
-  sinceSeconds?: string;
-  /** Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive. */
-  sinceTime_seconds?: string;
-  /** Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive. This field may be limited in precision depending on context. */
-  sinceTime_nanos?: number;
-  tailLines?: string;
-  follow?: boolean;
-  untilTime?: string;
-  filter?: string;
-  kind?: string;
-  group?: string;
-  resourceName?: string;
-  previous?: boolean;
-  appNamespace?: string;
-  project?: string;
-  matchCase?: boolean;
-}
-export const ApplicationServicePodLogs2Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    namespace: S.optional(S.String.pipe(T.Query())),
-    podName: S.optional(S.String.pipe(T.Query())),
-    container: S.optional(S.String.pipe(T.Query())),
-    sinceSeconds: S.optional(S.String.pipe(T.Query())),
-    sinceTime_seconds: S.optional(S.String.pipe(T.Query("sinceTime.seconds"))),
-    sinceTime_nanos: S.optional(S.Number.pipe(T.Query("sinceTime.nanos"))),
-    tailLines: S.optional(S.String.pipe(T.Query())),
-    follow: S.optional(S.Boolean.pipe(T.Query())),
-    untilTime: S.optional(S.String.pipe(T.Query())),
-    filter: S.optional(S.String.pipe(T.Query())),
-    kind: S.optional(S.String.pipe(T.Query())),
-    group: S.optional(S.String.pipe(T.Query())),
-    resourceName: S.optional(S.String.pipe(T.Query())),
-    previous: S.optional(S.Boolean.pipe(T.Query())),
-    appNamespace: S.optional(S.String.pipe(T.Query())),
-    project: S.optional(S.String.pipe(T.Query())),
-    matchCase: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v1/applications/{name}/logs",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationServicePodLogs2Request",
-}) as any as S.Schema<ApplicationServicePodLogs2Request>;
-
-export interface ApplicationServicePodLogs2Response {
-  error?: RuntimeStreamError;
-  result?: ApplicationLogEntry;
-}
-export const ApplicationServicePodLogs2Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    error: S.optional(RuntimeStreamError),
-    result: S.optional(ApplicationLogEntry),
-  }),
-).annotate({
-  identifier: "ApplicationServicePodLogs2Response",
-}) as any as S.Schema<ApplicationServicePodLogs2Response>;
-
-export interface ApplicationServiceResourceTreeRequest {
-  applicationName: string;
-  namespace?: string;
-  name?: string;
-  version?: string;
-  group?: string;
-  kind?: string;
-  appNamespace?: string;
-  project?: string;
-}
-export const ApplicationServiceResourceTreeRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      applicationName: S.String.pipe(T.Label()),
-      namespace: S.optional(S.String.pipe(T.Query())),
-      name: S.optional(S.String.pipe(T.Query())),
-      version: S.optional(S.String.pipe(T.Query())),
-      group: S.optional(S.String.pipe(T.Query())),
-      kind: S.optional(S.String.pipe(T.Query())),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/applications/{applicationName}/resource-tree",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ApplicationServiceResourceTreeRequest",
-}) as any as S.Schema<ApplicationServiceResourceTreeRequest>;
-
-/** Labels holds the labels attached to the host. */
-export type V1alpha1HostInfoLabelsMap = { [key: string]: string | undefined };
-export const V1alpha1HostInfoLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<V1alpha1HostInfoLabelsMap>;
-
-/** HostResourceInfo represents resource usage details for a specific resource type on a host. */
-export interface V1alpha1HostResourceInfo {
-  /** Capacity represents the total available capacity of this resource on the host. */
-  capacity?: number;
-  /** RequestedByApp indicates the total amount of this resource requested by the application running on the host. */
-  requestedByApp?: number;
-  /** RequestedByNeighbors indicates the total amount of this resource requested by other workloads on the same host. */
-  requestedByNeighbors?: number;
-  /** ResourceName specifies the type of resource (e.g., CPU, memory, storage). */
-  resourceName?: string;
-}
-export const V1alpha1HostResourceInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    capacity: S.optional(S.Number),
-    requestedByApp: S.optional(S.Number),
-    requestedByNeighbors: S.optional(S.Number),
-    resourceName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "V1alpha1HostResourceInfo",
-}) as any as S.Schema<V1alpha1HostResourceInfo>;
-
-/** ResourcesInfo provides a list of resource usage details for different resource types on this host. */
-export type V1alpha1HostInfoResourcesInfoList = Array<V1alpha1HostResourceInfo>;
-export const V1alpha1HostInfoResourcesInfoList = /*@__PURE__*/ S.Array(
-  V1alpha1HostResourceInfo,
-) as any as S.Schema<V1alpha1HostInfoResourcesInfoList>;
-
-/** NodeSwapStatus represents swap memory information. */
-export interface V1NodeSwapStatus {
-  capacity?: number;
-}
-export const V1NodeSwapStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    capacity: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "V1NodeSwapStatus",
-}) as any as S.Schema<V1NodeSwapStatus>;
-
-/** NodeSystemInfo is a set of ids/uuids to uniquely identify the node. */
-export interface V1NodeSystemInfo {
-  architecture?: string;
-  /** Boot ID reported by the node. */
-  bootID?: string;
-  /** ContainerRuntime Version reported by the node through runtime remote API (e.g. containerd://1.4.2). */
-  containerRuntimeVersion?: string;
-  /** Kernel Version reported by the node from 'uname -r' (e.g. 3.16.0-0.bpo.4-amd64). */
-  kernelVersion?: string;
-  /** Deprecated: KubeProxy Version reported by the node. */
-  kubeProxyVersion?: string;
-  /** Kubelet Version reported by the node. */
-  kubeletVersion?: string;
-  machineID?: string;
-  operatingSystem?: string;
-  /** OS Image reported by the node from /etc/os-release (e.g. Debian GNU/Linux 7 (wheezy)). */
-  osImage?: string;
-  swap?: V1NodeSwapStatus;
-  systemUUID?: string;
-}
-export const V1NodeSystemInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    architecture: S.optional(S.String),
-    bootID: S.optional(S.String),
-    containerRuntimeVersion: S.optional(S.String),
-    kernelVersion: S.optional(S.String),
-    kubeProxyVersion: S.optional(S.String),
-    kubeletVersion: S.optional(S.String),
-    machineID: S.optional(S.String),
-    operatingSystem: S.optional(S.String),
-    osImage: S.optional(S.String),
-    swap: S.optional(V1NodeSwapStatus),
-    systemUUID: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "V1NodeSystemInfo",
-}) as any as S.Schema<V1NodeSystemInfo>;
-
-/** HostInfo holds metadata and resource usage metrics for a specific host in the cluster. */
-export interface V1alpha1HostInfo {
-  /** Labels holds the labels attached to the host. */
-  labels?: V1alpha1HostInfoLabelsMap;
-  /** Name is the hostname or node name in the Kubernetes cluster. */
-  name?: string;
-  /** ResourcesInfo provides a list of resource usage details for different resource types on this host. */
-  resourcesInfo?: V1alpha1HostInfoResourcesInfoList;
-  systemInfo?: V1NodeSystemInfo;
-}
-export const V1alpha1HostInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    labels: S.optional(V1alpha1HostInfoLabelsMap),
-    name: S.optional(S.String),
-    resourcesInfo: S.optional(V1alpha1HostInfoResourcesInfoList),
-    systemInfo: S.optional(V1NodeSystemInfo),
-  }),
-).annotate({
-  identifier: "V1alpha1HostInfo",
-}) as any as S.Schema<V1alpha1HostInfo>;
-
-/** Hosts provides a list of Kubernetes nodes that are running pods related to the application. */
-export type V1alpha1ApplicationTreeHostsList = Array<V1alpha1HostInfo>;
-export const V1alpha1ApplicationTreeHostsList = /*@__PURE__*/ S.Array(
-  V1alpha1HostInfo,
-) as any as S.Schema<V1alpha1ApplicationTreeHostsList>;
-
-/** Images lists container images associated with the resource. This is primarily useful for pods and other workload resources. */
-export type V1alpha1ResourceNodeImagesList = Array<string>;
-export const V1alpha1ResourceNodeImagesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<V1alpha1ResourceNodeImagesList>;
-
-export interface V1alpha1InfoItem {
-  /** Name is a human readable title for this piece of information. */
-  name?: string;
-  /** Value is human readable content. */
-  value?: string;
-}
-export const V1alpha1InfoItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "V1alpha1InfoItem",
-}) as any as S.Schema<V1alpha1InfoItem>;
-
-/** Info provides additional metadata or annotations about the resource. */
-export type V1alpha1ResourceNodeInfoList = Array<V1alpha1InfoItem>;
-export const V1alpha1ResourceNodeInfoList = /*@__PURE__*/ S.Array(
-  V1alpha1InfoItem,
-) as any as S.Schema<V1alpha1ResourceNodeInfoList>;
-
-/** ExternalURLs holds a list of URLs that should be accessible externally. This field is typically populated for Ingress resources based on their hostname rules. */
-export type V1alpha1ResourceNetworkingInfoExternalURLsList = Array<string>;
-export const V1alpha1ResourceNetworkingInfoExternalURLsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<V1alpha1ResourceNetworkingInfoExternalURLsList>;
-
-export interface V1PortStatus {
-  error?: string;
-  port?: number;
-  protocol?: string;
-}
-export const V1PortStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    error: S.optional(S.String),
-    port: S.optional(S.Number),
-    protocol: S.optional(S.String),
-  }),
-).annotate({ identifier: "V1PortStatus" }) as any as S.Schema<V1PortStatus>;
-
-export type V1LoadBalancerIngressPortsList = Array<V1PortStatus>;
-export const V1LoadBalancerIngressPortsList = /*@__PURE__*/ S.Array(
-  V1PortStatus,
-) as any as S.Schema<V1LoadBalancerIngressPortsList>;
-
-/** LoadBalancerIngress represents the status of a load-balancer ingress point: traffic intended for the service should be sent to an ingress point. */
-export interface V1LoadBalancerIngress {
-  hostname?: string;
-  ip?: string;
-  ipMode?: string;
-  ports?: V1LoadBalancerIngressPortsList;
-}
-export const V1LoadBalancerIngress = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hostname: S.optional(S.String),
-    ip: S.optional(S.String),
-    ipMode: S.optional(S.String),
-    ports: S.optional(V1LoadBalancerIngressPortsList),
-  }),
-).annotate({
-  identifier: "V1LoadBalancerIngress",
-}) as any as S.Schema<V1LoadBalancerIngress>;
-
-/** Ingress provides information about external access points (e.g., load balancer ingress) for this resource. */
-export type V1alpha1ResourceNetworkingInfoIngressList =
-  Array<V1LoadBalancerIngress>;
-export const V1alpha1ResourceNetworkingInfoIngressList = /*@__PURE__*/ S.Array(
-  V1LoadBalancerIngress,
-) as any as S.Schema<V1alpha1ResourceNetworkingInfoIngressList>;
-
-/** Labels holds the labels associated with this networking resource. */
-export type V1alpha1ResourceNetworkingInfoLabelsMap = {
-  [key: string]: string | undefined;
-};
-export const V1alpha1ResourceNetworkingInfoLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<V1alpha1ResourceNetworkingInfoLabelsMap>;
-
-/** TargetLabels represents labels associated with the target resources that this resource communicates with. */
-export type V1alpha1ResourceNetworkingInfoTargetLabelsMap = {
-  [key: string]: string | undefined;
-};
-export const V1alpha1ResourceNetworkingInfoTargetLabelsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<V1alpha1ResourceNetworkingInfoTargetLabelsMap>;
-
-export interface V1alpha1ResourceRef {
-  group?: string;
-  kind?: string;
-  name?: string;
-  namespace?: string;
-  uid?: string;
-  version?: string;
-}
-export const V1alpha1ResourceRef = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    group: S.optional(S.String),
-    kind: S.optional(S.String),
-    name: S.optional(S.String),
-    namespace: S.optional(S.String),
-    uid: S.optional(S.String),
-    version: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "V1alpha1ResourceRef",
-}) as any as S.Schema<V1alpha1ResourceRef>;
-
-/** TargetRefs contains references to other resources that this resource interacts with, such as Services or Pods. */
-export type V1alpha1ResourceNetworkingInfoTargetRefsList =
-  Array<V1alpha1ResourceRef>;
-export const V1alpha1ResourceNetworkingInfoTargetRefsList =
-  /*@__PURE__*/ S.Array(
-    V1alpha1ResourceRef,
-  ) as any as S.Schema<V1alpha1ResourceNetworkingInfoTargetRefsList>;
-
-/** ResourceNetworkingInfo holds networking-related information for a resource. */
-export interface V1alpha1ResourceNetworkingInfo {
-  /** ExternalURLs holds a list of URLs that should be accessible externally. This field is typically populated for Ingress resources based on their hostname rules. */
-  externalURLs?: V1alpha1ResourceNetworkingInfoExternalURLsList;
-  /** Ingress provides information about external access points (e.g., load balancer ingress) for this resource. */
-  ingress?: V1alpha1ResourceNetworkingInfoIngressList;
-  /** Labels holds the labels associated with this networking resource. */
-  labels?: V1alpha1ResourceNetworkingInfoLabelsMap;
-  /** TargetLabels represents labels associated with the target resources that this resource communicates with. */
-  targetLabels?: V1alpha1ResourceNetworkingInfoTargetLabelsMap;
-  /** TargetRefs contains references to other resources that this resource interacts with, such as Services or Pods. */
-  targetRefs?: V1alpha1ResourceNetworkingInfoTargetRefsList;
-}
-export const V1alpha1ResourceNetworkingInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    externalURLs: S.optional(V1alpha1ResourceNetworkingInfoExternalURLsList),
-    ingress: S.optional(V1alpha1ResourceNetworkingInfoIngressList),
-    labels: S.optional(V1alpha1ResourceNetworkingInfoLabelsMap),
-    targetLabels: S.optional(V1alpha1ResourceNetworkingInfoTargetLabelsMap),
-    targetRefs: S.optional(V1alpha1ResourceNetworkingInfoTargetRefsList),
-  }),
-).annotate({
-  identifier: "V1alpha1ResourceNetworkingInfo",
-}) as any as S.Schema<V1alpha1ResourceNetworkingInfo>;
-
-/** ParentRefs lists the parent resources that reference this resource. This helps in understanding ownership and hierarchical relationships. */
-export type V1alpha1ResourceNodeParentRefsList = Array<V1alpha1ResourceRef>;
-export const V1alpha1ResourceNodeParentRefsList = /*@__PURE__*/ S.Array(
-  V1alpha1ResourceRef,
-) as any as S.Schema<V1alpha1ResourceNodeParentRefsList>;
-
-/** ResourceNode contains information about a live Kubernetes resource and its relationships with other resources. */
-export interface V1alpha1ResourceNode {
-  group?: string;
-  kind?: string;
-  name?: string;
-  namespace?: string;
-  uid?: string;
-  version?: string;
-  createdAt?: string;
-  health?: V1alpha1AppHealthStatus;
-  /** Images lists container images associated with the resource. This is primarily useful for pods and other workload resources. */
-  images?: V1alpha1ResourceNodeImagesList;
-  /** Info provides additional metadata or annotations about the resource. */
-  info?: V1alpha1ResourceNodeInfoList;
-  networkingInfo?: V1alpha1ResourceNetworkingInfo;
-  /** ParentRefs lists the parent resources that reference this resource. This helps in understanding ownership and hierarchical relationships. */
-  parentRefs?: V1alpha1ResourceNodeParentRefsList;
-  /** ResourceVersion indicates the version of the resource, used to track changes. */
-  resourceVersion?: string;
-}
-export const V1alpha1ResourceNode = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    group: S.optional(S.String),
-    kind: S.optional(S.String),
-    name: S.optional(S.String),
-    namespace: S.optional(S.String),
-    uid: S.optional(S.String),
-    version: S.optional(S.String),
-    createdAt: S.optional(S.String),
-    health: S.optional(V1alpha1AppHealthStatus),
-    images: S.optional(V1alpha1ResourceNodeImagesList),
-    info: S.optional(V1alpha1ResourceNodeInfoList),
-    networkingInfo: S.optional(V1alpha1ResourceNetworkingInfo),
-    parentRefs: S.optional(V1alpha1ResourceNodeParentRefsList),
-    resourceVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "V1alpha1ResourceNode",
-}) as any as S.Schema<V1alpha1ResourceNode>;
-
-/** Nodes contains a list of resources that are either directly managed by the application or are children of directly managed resources. */
-export type V1alpha1ApplicationTreeNodesList = Array<V1alpha1ResourceNode>;
-export const V1alpha1ApplicationTreeNodesList = /*@__PURE__*/ S.Array(
-  V1alpha1ResourceNode,
-) as any as S.Schema<V1alpha1ApplicationTreeNodesList>;
-
-/** OrphanedNodes contains resources that exist in the same namespace as the application but are not managed by it. This list is populated only if orphaned resource tracking is enabled in the application's project settings. */
-export type V1alpha1ApplicationTreeOrphanedNodesList =
-  Array<V1alpha1ResourceNode>;
-export const V1alpha1ApplicationTreeOrphanedNodesList = /*@__PURE__*/ S.Array(
-  V1alpha1ResourceNode,
-) as any as S.Schema<V1alpha1ApplicationTreeOrphanedNodesList>;
-
-/** ApplicationTree represents the hierarchical structure of resources associated with an Argo CD application. */
-export interface V1alpha1ApplicationTree {
-  /** Hosts provides a list of Kubernetes nodes that are running pods related to the application. */
-  hosts?: V1alpha1ApplicationTreeHostsList;
-  /** Nodes contains a list of resources that are either directly managed by the application or are children of directly managed resources. */
-  nodes?: V1alpha1ApplicationTreeNodesList;
-  /** OrphanedNodes contains resources that exist in the same namespace as the application but are not managed by it. This list is populated only if orphaned resource tracking is enabled in the application's project settings. */
-  orphanedNodes?: V1alpha1ApplicationTreeOrphanedNodesList;
-  /** ShardsCount represents the total number of shards the application tree is split into. This is used to distribute resource processing across multiple shards. */
-  shardsCount?: number;
-}
-export const V1alpha1ApplicationTree = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hosts: S.optional(V1alpha1ApplicationTreeHostsList),
-    nodes: S.optional(V1alpha1ApplicationTreeNodesList),
-    orphanedNodes: S.optional(V1alpha1ApplicationTreeOrphanedNodesList),
-    shardsCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "V1alpha1ApplicationTree",
-}) as any as S.Schema<V1alpha1ApplicationTree>;
-
-export interface ApplicationServiceRevisionChartDetailsRequest {
-  /** the application's name */
-  name: string;
-  /** the revision of the app */
-  revision: string;
-  /** the application's namespace. */
-  appNamespace?: string;
-  project?: string;
-  /** source index (for multi source apps). */
-  sourceIndex?: number;
-  /** versionId from historical data (for multi source apps). */
-  versionId?: number;
-}
-export const ApplicationServiceRevisionChartDetailsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      revision: S.String.pipe(T.Label()),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-      sourceIndex: S.optional(S.Number.pipe(T.Query())),
-      versionId: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/applications/{name}/revisions/{revision}/chartdetails",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationServiceRevisionChartDetailsRequest",
-  }) as any as S.Schema<ApplicationServiceRevisionChartDetailsRequest>;
-
-export type V1alpha1ChartDetailsMaintainersList = Array<string>;
-export const V1alpha1ChartDetailsMaintainersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<V1alpha1ChartDetailsMaintainersList>;
-
-export interface V1alpha1ChartDetails {
-  description?: string;
-  home?: string;
-  maintainers?: V1alpha1ChartDetailsMaintainersList;
-}
-export const V1alpha1ChartDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    home: S.optional(S.String),
-    maintainers: S.optional(V1alpha1ChartDetailsMaintainersList),
-  }),
-).annotate({
-  identifier: "V1alpha1ChartDetails",
-}) as any as S.Schema<V1alpha1ChartDetails>;
-
-export interface ApplicationServiceRevisionMetadataRequest {
-  /** the application's name */
-  name: string;
-  /** the revision of the app */
-  revision: string;
-  /** the application's namespace. */
-  appNamespace?: string;
-  project?: string;
-  /** source index (for multi source apps). */
-  sourceIndex?: number;
-  /** versionId from historical data (for multi source apps). */
-  versionId?: number;
-}
-export const ApplicationServiceRevisionMetadataRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      revision: S.String.pipe(T.Label()),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-      sourceIndex: S.optional(S.Number.pipe(T.Query())),
-      versionId: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/applications/{name}/revisions/{revision}/metadata",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationServiceRevisionMetadataRequest",
-  }) as any as S.Schema<ApplicationServiceRevisionMetadataRequest>;
-
-/** CommitMetadata contains metadata about a commit that is related in some way to another commit. */
-export interface V1alpha1CommitMetadata {
-  /** Author is the author of the commit, i.e. `git show -s --format=%an <%ae>`. Must be formatted according to RFC 5322 (mail.Address.String()). Comes from the Argocd-reference-commit-author trailer. */
-  author?: string;
-  /** Body is the commit message body minus the subject line, i.e. `git show -s --format=%b`. Comes from the Argocd-reference-commit-body trailer. */
-  body?: string;
-  /** Date is the date of the commit, formatted as by `git show -s --format=%aI` (RFC 3339). It can also be an empty string if the date is unknown. Comes from the Argocd-reference-commit-date trailer. */
-  date?: string;
-  /** RepoURL is the URL of the repository where the commit is located. Comes from the Argocd-reference-commit-repourl trailer. This value is not validated and should not be used to construct UI links unless it is properly validated and/or sanitized first. */
-  repoUrl?: string;
-  /** SHA is the commit hash. Comes from the Argocd-reference-commit-sha trailer. */
-  sha?: string;
-  /** Subject is the commit message subject line, i.e. `git show -s --format=%s`. Comes from the Argocd-reference-commit-subject trailer. */
-  subject?: string;
-}
-export const V1alpha1CommitMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    author: S.optional(S.String),
-    body: S.optional(S.String),
-    date: S.optional(S.String),
-    repoUrl: S.optional(S.String),
-    sha: S.optional(S.String),
-    subject: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "V1alpha1CommitMetadata",
-}) as any as S.Schema<V1alpha1CommitMetadata>;
-
-/** RevisionReference contains a reference to a some information that is related in some way to another commit. For now, it supports only references to a commit. In the future, it may support other types of references. */
-export interface V1alpha1RevisionReference {
-  commit?: V1alpha1CommitMetadata;
-}
-export const V1alpha1RevisionReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    commit: S.optional(V1alpha1CommitMetadata),
-  }),
-).annotate({
-  identifier: "V1alpha1RevisionReference",
-}) as any as S.Schema<V1alpha1RevisionReference>;
-
-/** References contains references to information that's related to this commit in some way. */
-export type V1alpha1RevisionMetadataReferencesList =
-  Array<V1alpha1RevisionReference>;
-export const V1alpha1RevisionMetadataReferencesList = /*@__PURE__*/ S.Array(
-  V1alpha1RevisionReference,
-) as any as S.Schema<V1alpha1RevisionMetadataReferencesList>;
-
-export type V1alpha1RevisionMetadataTagsList = Array<string>;
-export const V1alpha1RevisionMetadataTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<V1alpha1RevisionMetadataTagsList>;
-
-/** RevisionMetadata contains metadata for a specific revision in a Git repository. This field is used by the Source Hydrator feature which may be removed in the future. */
-export interface V1alpha1RevisionMetadata {
-  author?: string;
-  date?: string;
-  /** Message contains the message associated with the revision, most likely the commit message. */
-  message?: string;
-  /** References contains references to information that's related to this commit in some way. */
-  references?: V1alpha1RevisionMetadataReferencesList;
-  /** SignatureInfo contains a hint on the signer if the revision was signed with GPG, and signature verification is enabled. Deprecated: Use SourceIntegrityResult for more detailed information. SignatureInfo will be removed with the next major version. */
-  signatureInfo?: string;
-  sourceIntegrityResult?: V1alpha1SourceIntegrityCheckResult;
-  tags?: V1alpha1RevisionMetadataTagsList;
-}
-export const V1alpha1RevisionMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    author: S.optional(S.String),
-    date: S.optional(S.String),
-    message: S.optional(S.String),
-    references: S.optional(V1alpha1RevisionMetadataReferencesList),
-    signatureInfo: S.optional(S.String),
-    sourceIntegrityResult: S.optional(V1alpha1SourceIntegrityCheckResult),
-    tags: S.optional(V1alpha1RevisionMetadataTagsList),
-  }),
-).annotate({
-  identifier: "V1alpha1RevisionMetadata",
-}) as any as S.Schema<V1alpha1RevisionMetadata>;
-
-export interface ApplicationServiceRollbackRequest {
-  name: string;
-  appNamespace?: string;
-  dryRun?: boolean;
-  id?: number;
-  project?: string;
-  prune?: boolean;
-}
-export const ApplicationServiceRollbackRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    appNamespace: S.optional(S.String),
-    dryRun: S.optional(S.Boolean),
-    id: S.optional(S.Number),
-    project: S.optional(S.String),
-    prune: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/v1/applications/{name}/rollback",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationServiceRollbackRequest",
-}) as any as S.Schema<ApplicationServiceRollbackRequest>;
-
-export interface ApplicationServiceRunResourceActionRequest {
-  name: string;
-  namespace?: string;
-  resourceName?: string;
-  version?: string;
-  group?: string;
-  kind?: string;
-  appNamespace?: string;
-  project?: string;
-  body: string;
-}
-export const ApplicationServiceRunResourceActionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      namespace: S.optional(S.String.pipe(T.Query())),
-      resourceName: S.optional(S.String.pipe(T.Query())),
-      version: S.optional(S.String.pipe(T.Query())),
-      group: S.optional(S.String.pipe(T.Query())),
-      kind: S.optional(S.String.pipe(T.Query())),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-      body: S.String.pipe(T.HttpBody()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/v1/applications/{name}/resource/actions",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationServiceRunResourceActionRequest",
-  }) as any as S.Schema<ApplicationServiceRunResourceActionRequest>;
-
-export type ApplicationServiceRunResourceActionResponse = unknown;
-export const ApplicationServiceRunResourceActionResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "ApplicationServiceRunResourceActionResponse",
-  }) as any as S.Schema<ApplicationServiceRunResourceActionResponse>;
-
-export type ApplicationResourceActionParameters = V1alpha1Info;
-export const ApplicationResourceActionParameters = V1alpha1Info;
-
-export type ApplicationServiceRunResourceActionV2RequestResourceActionParametersList =
-  Array<V1alpha1Info>;
-export const ApplicationServiceRunResourceActionV2RequestResourceActionParametersList =
-  /*@__PURE__*/ S.Array(
-    V1alpha1Info,
-  ) as any as S.Schema<ApplicationServiceRunResourceActionV2RequestResourceActionParametersList>;
-
-export interface ApplicationServiceRunResourceActionV2Request {
-  name: string;
-  action?: string;
-  appNamespace?: string;
-  group?: string;
-  kind?: string;
-  namespace?: string;
-  project?: string;
-  resourceActionParameters?: ApplicationServiceRunResourceActionV2RequestResourceActionParametersList;
-  resourceName?: string;
-  version?: string;
-}
-export const ApplicationServiceRunResourceActionV2Request =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      action: S.optional(S.String),
-      appNamespace: S.optional(S.String),
-      group: S.optional(S.String),
-      kind: S.optional(S.String),
-      namespace: S.optional(S.String),
-      project: S.optional(S.String),
-      resourceActionParameters: S.optional(
-        ApplicationServiceRunResourceActionV2RequestResourceActionParametersList,
-      ),
-      resourceName: S.optional(S.String),
-      version: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/v1/applications/{name}/resource/actions/v2",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationServiceRunResourceActionV2Request",
-  }) as any as S.Schema<ApplicationServiceRunResourceActionV2Request>;
-
-export type ApplicationServiceRunResourceActionV2Response = unknown;
-export const ApplicationServiceRunResourceActionV2Response =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "ApplicationServiceRunResourceActionV2Response",
-  }) as any as S.Schema<ApplicationServiceRunResourceActionV2Response>;
 
 export type ApplicationServiceServerSideDiffRequestTargetManifestsList =
   Array<string>;
@@ -3675,335 +2478,91 @@ export const ApplicationApplicationServerSideDiffResponse =
     identifier: "ApplicationApplicationServerSideDiffResponse",
   }) as any as S.Schema<ApplicationApplicationServerSideDiffResponse>;
 
-export type ApplicationServiceSyncRequestInfosList = Array<V1alpha1Info>;
-export const ApplicationServiceSyncRequestInfosList = /*@__PURE__*/ S.Array(
-  V1alpha1Info,
-) as any as S.Schema<ApplicationServiceSyncRequestInfosList>;
-
-export type ApplicationServiceSyncRequestManifestsList = Array<string>;
-export const ApplicationServiceSyncRequestManifestsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ApplicationServiceSyncRequestManifestsList>;
-
-export type ApplicationServiceSyncRequestResourcesList =
-  Array<V1alpha1SyncOperationResource>;
-export const ApplicationServiceSyncRequestResourcesList = /*@__PURE__*/ S.Array(
-  V1alpha1SyncOperationResource,
-) as any as S.Schema<ApplicationServiceSyncRequestResourcesList>;
-
-export type ApplicationServiceSyncRequestRevisionsList = Array<string>;
-export const ApplicationServiceSyncRequestRevisionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ApplicationServiceSyncRequestRevisionsList>;
-
-export type ApplicationServiceSyncRequestSourcePositionsList = Array<string>;
-export const ApplicationServiceSyncRequestSourcePositionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ApplicationServiceSyncRequestSourcePositionsList>;
-
-export type ApplicationSyncOptionsItemsList = Array<string>;
-export const ApplicationSyncOptionsItemsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ApplicationSyncOptionsItemsList>;
-
-export interface ApplicationSyncOptions {
-  items?: ApplicationSyncOptionsItemsList;
-}
-export const ApplicationSyncOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(ApplicationSyncOptionsItemsList),
-  }),
-).annotate({
-  identifier: "ApplicationSyncOptions",
-}) as any as S.Schema<ApplicationSyncOptions>;
-
-export interface ApplicationServiceSyncRequest {
+export interface ApplicationSetServiceResourceTreeRequest {
   name: string;
-  appNamespace?: string;
-  dryRun?: boolean;
-  infos?: ApplicationServiceSyncRequestInfosList;
-  manifests?: ApplicationServiceSyncRequestManifestsList;
-  project?: string;
-  prune?: boolean;
-  resources?: ApplicationServiceSyncRequestResourcesList;
-  retryStrategy?: V1alpha1RetryStrategy;
-  revision?: string;
-  revisions?: ApplicationServiceSyncRequestRevisionsList;
-  sourcePositions?: ApplicationServiceSyncRequestSourcePositionsList;
-  strategy?: V1alpha1SyncStrategy;
-  syncOptions?: ApplicationSyncOptions;
+  /** The application set namespace. Default empty is argocd control plane namespace. */
+  appsetNamespace?: string;
 }
-export const ApplicationServiceSyncRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    appNamespace: S.optional(S.String),
-    dryRun: S.optional(S.Boolean),
-    infos: S.optional(ApplicationServiceSyncRequestInfosList),
-    manifests: S.optional(ApplicationServiceSyncRequestManifestsList),
-    project: S.optional(S.String),
-    prune: S.optional(S.Boolean),
-    resources: S.optional(ApplicationServiceSyncRequestResourcesList),
-    retryStrategy: S.optional(V1alpha1RetryStrategy),
-    revision: S.optional(S.String),
-    revisions: S.optional(ApplicationServiceSyncRequestRevisionsList),
-    sourcePositions: S.optional(
-      ApplicationServiceSyncRequestSourcePositionsList,
-    ),
-    strategy: S.optional(V1alpha1SyncStrategy),
-    syncOptions: S.optional(ApplicationSyncOptions),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/v1/applications/{name}/sync",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationServiceSyncRequest",
-}) as any as S.Schema<ApplicationServiceSyncRequest>;
-
-export interface ApplicationServiceTerminateOperationRequest {
-  name: string;
-  appNamespace?: string;
-  project?: string;
-}
-export const ApplicationServiceTerminateOperationRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ApplicationSetServiceResourceTreeRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       name: S.String.pipe(T.Label()),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
+      appsetNamespace: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/api/v1/applications/{name}/operation",
+        method: "GET",
+        uri: "/api/v1/applicationsets/{name}/resource-tree",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "ApplicationServiceTerminateOperationRequest",
-  }) as any as S.Schema<ApplicationServiceTerminateOperationRequest>;
+).annotate({
+  identifier: "ApplicationSetServiceResourceTreeRequest",
+}) as any as S.Schema<ApplicationSetServiceResourceTreeRequest>;
 
-export type ApplicationServiceTerminateOperationResponse = unknown;
-export const ApplicationServiceTerminateOperationResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "ApplicationServiceTerminateOperationResponse",
-  }) as any as S.Schema<ApplicationServiceTerminateOperationResponse>;
+export type V1alpha1ApplicationSetTreeNodesList = Array<V1alpha1ResourceNode>;
+export const V1alpha1ApplicationSetTreeNodesList = /*@__PURE__*/ S.Array(
+  V1alpha1ResourceNode,
+) as any as S.Schema<V1alpha1ApplicationSetTreeNodesList>;
 
-export interface ApplicationServiceUpdateRequest {
-  /** Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names +optional */
-  application_metadata_name: string;
+export interface V1alpha1ApplicationSetTree {
+  nodes?: V1alpha1ApplicationSetTreeNodesList;
+}
+export const V1alpha1ApplicationSetTree = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nodes: S.optional(V1alpha1ApplicationSetTreeNodesList),
+  }),
+).annotate({
+  identifier: "V1alpha1ApplicationSetTree",
+}) as any as S.Schema<V1alpha1ApplicationSetTree>;
+
+export interface CreateAccountServiceTokenRequest {
+  name: string;
+  expiresIn?: number;
+  id?: string;
+}
+export const CreateAccountServiceTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    expiresIn: S.optional(S.Number),
+    id: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/api/v1/account/{name}/token", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateAccountServiceTokenRequest",
+}) as any as S.Schema<CreateAccountServiceTokenRequest>;
+
+export interface AccountCreateTokenResponse {
+  token?: string;
+}
+export const AccountCreateTokenResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    token: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccountCreateTokenResponse",
+}) as any as S.Schema<AccountCreateTokenResponse>;
+
+export interface CreateApplicationServiceRequest {
+  upsert?: boolean;
   validate?: boolean;
-  project?: string;
   metadata?: V1ObjectMeta;
   operation?: V1alpha1Operation;
   spec?: V1alpha1ApplicationSpec;
   status?: V1alpha1ApplicationStatus;
 }
-export const ApplicationServiceUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateApplicationServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    application_metadata_name: S.String.pipe(T.Label()),
+    upsert: S.optional(S.Boolean.pipe(T.Query())),
     validate: S.optional(S.Boolean.pipe(T.Query())),
-    project: S.optional(S.String.pipe(T.Query())),
     metadata: S.optional(V1ObjectMeta),
     operation: S.optional(V1alpha1Operation),
     spec: S.optional(V1alpha1ApplicationSpec),
     status: S.optional(V1alpha1ApplicationStatus),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/api/v1/applications/{application_metadata_name}",
-      code: 200,
-    }),
-  ),
+  }).pipe(T.Http({ method: "POST", uri: "/api/v1/applications", code: 200 })),
 ).annotate({
-  identifier: "ApplicationServiceUpdateRequest",
-}) as any as S.Schema<ApplicationServiceUpdateRequest>;
-
-export type ApplicationServiceUpdateSpecRequestIgnoreDifferencesList =
-  Array<V1alpha1ResourceIgnoreDifferences>;
-export const ApplicationServiceUpdateSpecRequestIgnoreDifferencesList =
-  /*@__PURE__*/ S.Array(
-    V1alpha1ResourceIgnoreDifferences,
-  ) as any as S.Schema<ApplicationServiceUpdateSpecRequestIgnoreDifferencesList>;
-
-export type ApplicationServiceUpdateSpecRequestInfoList = Array<V1alpha1Info>;
-export const ApplicationServiceUpdateSpecRequestInfoList =
-  /*@__PURE__*/ S.Array(
-    V1alpha1Info,
-  ) as any as S.Schema<ApplicationServiceUpdateSpecRequestInfoList>;
-
-export type ApplicationServiceUpdateSpecRequestSourcesList =
-  Array<V1alpha1ApplicationSource>;
-export const ApplicationServiceUpdateSpecRequestSourcesList =
-  /*@__PURE__*/ S.Array(
-    V1alpha1ApplicationSource,
-  ) as any as S.Schema<ApplicationServiceUpdateSpecRequestSourcesList>;
-
-export interface ApplicationServiceUpdateSpecRequest {
-  name: string;
-  validate?: boolean;
-  appNamespace?: string;
-  project?: string;
-  destination?: V1alpha1ApplicationDestination;
-  ignoreDifferences?: ApplicationServiceUpdateSpecRequestIgnoreDifferencesList;
-  info?: ApplicationServiceUpdateSpecRequestInfoList;
-  /** RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10. */
-  revisionHistoryLimit?: number;
-  source?: V1alpha1ApplicationSource;
-  sourceHydrator?: V1alpha1SourceHydrator;
-  sources?: ApplicationServiceUpdateSpecRequestSourcesList;
-  syncPolicy?: V1alpha1SyncPolicy;
-}
-export const ApplicationServiceUpdateSpecRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    validate: S.optional(S.Boolean.pipe(T.Query())),
-    appNamespace: S.optional(S.String.pipe(T.Query())),
-    project: S.optional(S.String.pipe(T.Query())),
-    destination: S.optional(V1alpha1ApplicationDestination),
-    ignoreDifferences: S.optional(
-      ApplicationServiceUpdateSpecRequestIgnoreDifferencesList,
-    ),
-    info: S.optional(ApplicationServiceUpdateSpecRequestInfoList),
-    revisionHistoryLimit: S.optional(S.Number),
-    source: S.optional(V1alpha1ApplicationSource),
-    sourceHydrator: S.optional(V1alpha1SourceHydrator),
-    sources: S.optional(ApplicationServiceUpdateSpecRequestSourcesList),
-    syncPolicy: S.optional(V1alpha1SyncPolicy),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/api/v1/applications/{name}/spec",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationServiceUpdateSpecRequest",
-}) as any as S.Schema<ApplicationServiceUpdateSpecRequest>;
-
-export type ApplicationServiceWatchRequestProjectsList = Array<string>;
-export const ApplicationServiceWatchRequestProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ApplicationServiceWatchRequestProjectsList>;
-
-export type ApplicationServiceWatchRequestProjectList = Array<string>;
-export const ApplicationServiceWatchRequestProjectList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ApplicationServiceWatchRequestProjectList>;
-
-export interface ApplicationServiceWatchRequest {
-  /** the application's name. */
-  name?: string;
-  /** forces application reconciliation if set to 'hard'. */
-  refresh?: string;
-  /** the project names to restrict returned list applications. */
-  projects?: ApplicationServiceWatchRequestProjectsList;
-  /** when specified with a watch call, shows changes that occur after that particular version of a resource. */
-  resourceVersion?: string;
-  /** the selector to restrict returned list to applications only with matched labels. */
-  selector?: string;
-  /** the repoURL to restrict returned list applications. */
-  repo?: string;
-  /** the application's namespace. */
-  appNamespace?: string;
-  /** the project names to restrict returned list applications (legacy name for backwards-compatibility). */
-  project?: ApplicationServiceWatchRequestProjectList;
-}
-export const ApplicationServiceWatchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String.pipe(T.Query())),
-    refresh: S.optional(S.String.pipe(T.Query())),
-    projects: S.optional(
-      ApplicationServiceWatchRequestProjectsList.pipe(T.Query()),
-    ),
-    resourceVersion: S.optional(S.String.pipe(T.Query())),
-    selector: S.optional(S.String.pipe(T.Query())),
-    repo: S.optional(S.String.pipe(T.Query())),
-    appNamespace: S.optional(S.String.pipe(T.Query())),
-    project: S.optional(
-      ApplicationServiceWatchRequestProjectList.pipe(T.Query()),
-    ),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v1/stream/applications", code: 200 }),
-  ),
-).annotate({
-  identifier: "ApplicationServiceWatchRequest",
-}) as any as S.Schema<ApplicationServiceWatchRequest>;
-
-/** ApplicationWatchEvent contains information about application change. */
-export interface V1alpha1ApplicationWatchEvent {
-  application?: V1alpha1Application;
-  type?: string;
-}
-export const V1alpha1ApplicationWatchEvent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    application: S.optional(V1alpha1Application),
-    type: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "V1alpha1ApplicationWatchEvent",
-}) as any as S.Schema<V1alpha1ApplicationWatchEvent>;
-
-export interface ApplicationServiceWatchResponse {
-  error?: RuntimeStreamError;
-  result?: V1alpha1ApplicationWatchEvent;
-}
-export const ApplicationServiceWatchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    error: S.optional(RuntimeStreamError),
-    result: S.optional(V1alpha1ApplicationWatchEvent),
-  }),
-).annotate({
-  identifier: "ApplicationServiceWatchResponse",
-}) as any as S.Schema<ApplicationServiceWatchResponse>;
-
-export interface ApplicationServiceWatchResourceTreeRequest {
-  applicationName: string;
-  namespace?: string;
-  name?: string;
-  version?: string;
-  group?: string;
-  kind?: string;
-  appNamespace?: string;
-  project?: string;
-}
-export const ApplicationServiceWatchResourceTreeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      applicationName: S.String.pipe(T.Label()),
-      namespace: S.optional(S.String.pipe(T.Query())),
-      name: S.optional(S.String.pipe(T.Query())),
-      version: S.optional(S.String.pipe(T.Query())),
-      group: S.optional(S.String.pipe(T.Query())),
-      kind: S.optional(S.String.pipe(T.Query())),
-      appNamespace: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/stream/applications/{applicationName}/resource-tree",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationServiceWatchResourceTreeRequest",
-  }) as any as S.Schema<ApplicationServiceWatchResourceTreeRequest>;
-
-export interface ApplicationServiceWatchResourceTreeResponse {
-  error?: RuntimeStreamError;
-  result?: V1alpha1ApplicationTree;
-}
-export const ApplicationServiceWatchResourceTreeResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      error: S.optional(RuntimeStreamError),
-      result: S.optional(V1alpha1ApplicationTree),
-    }),
-  ).annotate({
-    identifier: "ApplicationServiceWatchResourceTreeResponse",
-  }) as any as S.Schema<ApplicationServiceWatchResourceTreeResponse>;
+  identifier: "CreateApplicationServiceRequest",
+}) as any as S.Schema<CreateApplicationServiceRequest>;
 
 export type V1LabelSelectorRequirementValuesList = Array<string>;
 export const V1LabelSelectorRequirementValuesList = /*@__PURE__*/ S.Array(
@@ -5321,7 +3880,7 @@ export const V1alpha1ApplicationSetStatusResourcesList = /*@__PURE__*/ S.Array(
 export interface V1alpha1ApplicationSetStatus {
   applicationStatus?: V1alpha1ApplicationSetStatusApplicationStatusList;
   conditions?: V1alpha1ApplicationSetStatusConditionsList;
-  health?: V1alpha1AppHealthStatus;
+  health?: V1alpha1HealthStatus;
   /** Resources is a list of Applications resources managed by this application set. */
   resources?: V1alpha1ApplicationSetStatusResourcesList;
   /** ResourcesCount is the total number of resources managed by this application set. The count may be higher than actual number of items in the Resources field when the number of managed resources exceeds the limit imposed by the controller (to avoid making the status field too large). */
@@ -5333,7 +3892,7 @@ export const V1alpha1ApplicationSetStatus = /*@__PURE__*/ S.suspend(() =>
       V1alpha1ApplicationSetStatusApplicationStatusList,
     ),
     conditions: S.optional(V1alpha1ApplicationSetStatusConditionsList),
-    health: S.optional(V1alpha1AppHealthStatus),
+    health: S.optional(V1alpha1HealthStatus),
     resources: S.optional(V1alpha1ApplicationSetStatusResourcesList),
     resourcesCount: S.optional(S.Number),
   }),
@@ -5341,14 +3900,14 @@ export const V1alpha1ApplicationSetStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1alpha1ApplicationSetStatus",
 }) as any as S.Schema<V1alpha1ApplicationSetStatus>;
 
-export interface ApplicationSetServiceCreateRequest {
+export interface CreateApplicationSetServiceRequest {
   upsert?: boolean;
   dryRun?: boolean;
   metadata?: V1ObjectMeta;
   spec?: V1alpha1ApplicationSetSpec;
   status?: V1alpha1ApplicationSetStatus;
 }
-export const ApplicationSetServiceCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateApplicationSetServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     upsert: S.optional(S.Boolean.pipe(T.Query())),
     dryRun: S.optional(S.Boolean.pipe(T.Query())),
@@ -5359,8 +3918,8 @@ export const ApplicationSetServiceCreateRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "POST", uri: "/api/v1/applicationsets", code: 200 }),
   ),
 ).annotate({
-  identifier: "ApplicationSetServiceCreateRequest",
-}) as any as S.Schema<ApplicationSetServiceCreateRequest>;
+  identifier: "CreateApplicationSetServiceRequest",
+}) as any as S.Schema<CreateApplicationSetServiceRequest>;
 
 export interface V1alpha1ApplicationSet {
   metadata?: V1ObjectMeta;
@@ -5376,256 +3935,6 @@ export const V1alpha1ApplicationSet = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "V1alpha1ApplicationSet",
 }) as any as S.Schema<V1alpha1ApplicationSet>;
-
-export interface ApplicationSetServiceDeleteRequest {
-  name: string;
-  /** The application set namespace. Default empty is argocd control plane namespace. */
-  appsetNamespace?: string;
-}
-export const ApplicationSetServiceDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    appsetNamespace: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/api/v1/applicationsets/{name}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationSetServiceDeleteRequest",
-}) as any as S.Schema<ApplicationSetServiceDeleteRequest>;
-
-export interface ApplicationsetApplicationSetResponse {
-  applicationset?: V1alpha1ApplicationSet;
-  project?: string;
-}
-export const ApplicationsetApplicationSetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      applicationset: S.optional(V1alpha1ApplicationSet),
-      project: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ApplicationsetApplicationSetResponse",
-}) as any as S.Schema<ApplicationsetApplicationSetResponse>;
-
-export interface ApplicationSetServiceGenerateRequest {
-  applicationSet?: V1alpha1ApplicationSet;
-}
-export const ApplicationSetServiceGenerateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      applicationSet: S.optional(V1alpha1ApplicationSet),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/v1/applicationsets/generate",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ApplicationSetServiceGenerateRequest",
-}) as any as S.Schema<ApplicationSetServiceGenerateRequest>;
-
-export type ApplicationsetApplicationSetGenerateResponseApplicationsList =
-  Array<V1alpha1Application>;
-export const ApplicationsetApplicationSetGenerateResponseApplicationsList =
-  /*@__PURE__*/ S.Array(
-    V1alpha1Application,
-  ) as any as S.Schema<ApplicationsetApplicationSetGenerateResponseApplicationsList>;
-
-export interface ApplicationsetApplicationSetGenerateResponse {
-  applications?: ApplicationsetApplicationSetGenerateResponseApplicationsList;
-}
-export const ApplicationsetApplicationSetGenerateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      applications: S.optional(
-        ApplicationsetApplicationSetGenerateResponseApplicationsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ApplicationsetApplicationSetGenerateResponse",
-  }) as any as S.Schema<ApplicationsetApplicationSetGenerateResponse>;
-
-export interface ApplicationSetServiceGetRequest {
-  /** the applicationsets's name */
-  name: string;
-  /** The application set namespace. Default empty is argocd control plane namespace. */
-  appsetNamespace?: string;
-}
-export const ApplicationSetServiceGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    appsetNamespace: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v1/applicationsets/{name}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ApplicationSetServiceGetRequest",
-}) as any as S.Schema<ApplicationSetServiceGetRequest>;
-
-export type ApplicationSetServiceListRequestProjectsList = Array<string>;
-export const ApplicationSetServiceListRequestProjectsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ApplicationSetServiceListRequestProjectsList>;
-
-export interface ApplicationSetServiceListRequest {
-  /** the project names to restrict returned list applicationsets. */
-  projects?: ApplicationSetServiceListRequestProjectsList;
-  /** the selector to restrict returned list to applications only with matched labels. */
-  selector?: string;
-  /** The application set namespace. Default empty is argocd control plane namespace. */
-  appsetNamespace?: string;
-}
-export const ApplicationSetServiceListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    projects: S.optional(
-      ApplicationSetServiceListRequestProjectsList.pipe(T.Query()),
-    ),
-    selector: S.optional(S.String.pipe(T.Query())),
-    appsetNamespace: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/api/v1/applicationsets", code: 200 })),
-).annotate({
-  identifier: "ApplicationSetServiceListRequest",
-}) as any as S.Schema<ApplicationSetServiceListRequest>;
-
-export type V1alpha1ApplicationSetListItemsList = Array<V1alpha1ApplicationSet>;
-export const V1alpha1ApplicationSetListItemsList = /*@__PURE__*/ S.Array(
-  V1alpha1ApplicationSet,
-) as any as S.Schema<V1alpha1ApplicationSetListItemsList>;
-
-export interface V1alpha1ApplicationSetList {
-  items?: V1alpha1ApplicationSetListItemsList;
-  metadata?: V1ListMeta;
-}
-export const V1alpha1ApplicationSetList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(V1alpha1ApplicationSetListItemsList),
-    metadata: S.optional(V1ListMeta),
-  }),
-).annotate({
-  identifier: "V1alpha1ApplicationSetList",
-}) as any as S.Schema<V1alpha1ApplicationSetList>;
-
-export interface ApplicationSetServiceListResourceEventsRequest {
-  /** the applicationsets's name */
-  name: string;
-  /** The application set namespace. Default empty is argocd control plane namespace. */
-  appsetNamespace?: string;
-}
-export const ApplicationSetServiceListResourceEventsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      appsetNamespace: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/applicationsets/{name}/events",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationSetServiceListResourceEventsRequest",
-  }) as any as S.Schema<ApplicationSetServiceListResourceEventsRequest>;
-
-export interface ApplicationSetServiceResourceTreeRequest {
-  name: string;
-  /** The application set namespace. Default empty is argocd control plane namespace. */
-  appsetNamespace?: string;
-}
-export const ApplicationSetServiceResourceTreeRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      appsetNamespace: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/applicationsets/{name}/resource-tree",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ApplicationSetServiceResourceTreeRequest",
-}) as any as S.Schema<ApplicationSetServiceResourceTreeRequest>;
-
-export type V1alpha1ApplicationSetTreeNodesList = Array<V1alpha1ResourceNode>;
-export const V1alpha1ApplicationSetTreeNodesList = /*@__PURE__*/ S.Array(
-  V1alpha1ResourceNode,
-) as any as S.Schema<V1alpha1ApplicationSetTreeNodesList>;
-
-export interface V1alpha1ApplicationSetTree {
-  nodes?: V1alpha1ApplicationSetTreeNodesList;
-}
-export const V1alpha1ApplicationSetTree = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nodes: S.optional(V1alpha1ApplicationSetTreeNodesList),
-  }),
-).annotate({
-  identifier: "V1alpha1ApplicationSetTree",
-}) as any as S.Schema<V1alpha1ApplicationSetTree>;
-
-export type ApplicationSetServiceWatchRequestProjectsList = Array<string>;
-export const ApplicationSetServiceWatchRequestProjectsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ApplicationSetServiceWatchRequestProjectsList>;
-
-export interface ApplicationSetServiceWatchRequest {
-  name?: string;
-  projects?: ApplicationSetServiceWatchRequestProjectsList;
-  selector?: string;
-  appSetNamespace?: string;
-  /** when specified with a watch call, shows changes that occur after that particular version of a resource. */
-  resourceVersion?: string;
-}
-export const ApplicationSetServiceWatchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String.pipe(T.Query())),
-    projects: S.optional(
-      ApplicationSetServiceWatchRequestProjectsList.pipe(T.Query()),
-    ),
-    selector: S.optional(S.String.pipe(T.Query())),
-    appSetNamespace: S.optional(S.String.pipe(T.Query())),
-    resourceVersion: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v1/stream/applicationsets", code: 200 }),
-  ),
-).annotate({
-  identifier: "ApplicationSetServiceWatchRequest",
-}) as any as S.Schema<ApplicationSetServiceWatchRequest>;
-
-/** ApplicationSetWatchEvent contains information about application change. */
-export interface V1alpha1ApplicationSetWatchEvent {
-  applicationSet?: V1alpha1ApplicationSet;
-  type?: string;
-}
-export const V1alpha1ApplicationSetWatchEvent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    applicationSet: S.optional(V1alpha1ApplicationSet),
-    type: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "V1alpha1ApplicationSetWatchEvent",
-}) as any as S.Schema<V1alpha1ApplicationSetWatchEvent>;
-
-export interface ApplicationSetServiceWatchResponse {
-  error?: RuntimeStreamError;
-  result?: V1alpha1ApplicationSetWatchEvent;
-}
-export const ApplicationSetServiceWatchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    error: S.optional(RuntimeStreamError),
-    result: S.optional(V1alpha1ApplicationSetWatchEvent),
-  }),
-).annotate({
-  identifier: "ApplicationSetServiceWatchResponse",
-}) as any as S.Schema<ApplicationSetServiceWatchResponse>;
 
 export interface V1alpha1RepositoryCertificate {
   certData?: string;
@@ -5646,29 +3955,58 @@ export const V1alpha1RepositoryCertificate = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1alpha1RepositoryCertificate",
 }) as any as S.Schema<V1alpha1RepositoryCertificate>;
 
-export type CertificateServiceCreateCertificateRequestItemsList =
+export type CreateCertificateServiceCertificateRequestItemsList =
   Array<V1alpha1RepositoryCertificate>;
-export const CertificateServiceCreateCertificateRequestItemsList =
+export const CreateCertificateServiceCertificateRequestItemsList =
   /*@__PURE__*/ S.Array(
     V1alpha1RepositoryCertificate,
-  ) as any as S.Schema<CertificateServiceCreateCertificateRequestItemsList>;
+  ) as any as S.Schema<CreateCertificateServiceCertificateRequestItemsList>;
 
-export interface CertificateServiceCreateCertificateRequest {
+/** ShardInfo describes the shard selector that was applied to produce a list response. Its presence on a list response indicates the list is a filtered subset. */
+export interface V1ShardInfo {
+  selector?: string;
+}
+export const V1ShardInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    selector: S.optional(S.String),
+  }),
+).annotate({ identifier: "V1ShardInfo" }) as any as S.Schema<V1ShardInfo>;
+
+/** ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}. */
+export interface V1ListMeta {
+  /** continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message. */
+  continue?: string;
+  remainingItemCount?: number;
+  resourceVersion?: string;
+  selfLink?: string;
+  shardInfo?: V1ShardInfo;
+}
+export const V1ListMeta = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    continue: S.optional(S.String),
+    remainingItemCount: S.optional(S.Number),
+    resourceVersion: S.optional(S.String),
+    selfLink: S.optional(S.String),
+    shardInfo: S.optional(V1ShardInfo),
+  }),
+).annotate({ identifier: "V1ListMeta" }) as any as S.Schema<V1ListMeta>;
+
+export interface CreateCertificateServiceCertificateRequest {
   /** Whether to upsert already existing certificates. */
   upsert?: boolean;
-  items?: CertificateServiceCreateCertificateRequestItemsList;
+  items?: CreateCertificateServiceCertificateRequestItemsList;
   metadata?: V1ListMeta;
 }
-export const CertificateServiceCreateCertificateRequest =
+export const CreateCertificateServiceCertificateRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       upsert: S.optional(S.Boolean.pipe(T.Query())),
-      items: S.optional(CertificateServiceCreateCertificateRequestItemsList),
+      items: S.optional(CreateCertificateServiceCertificateRequestItemsList),
       metadata: S.optional(V1ListMeta),
     }).pipe(T.Http({ method: "POST", uri: "/api/v1/certificates", code: 200 })),
   ).annotate({
-    identifier: "CertificateServiceCreateCertificateRequest",
-  }) as any as S.Schema<CertificateServiceCreateCertificateRequest>;
+    identifier: "CreateCertificateServiceCertificateRequest",
+  }) as any as S.Schema<CreateCertificateServiceCertificateRequest>;
 
 export type V1alpha1RepositoryCertificateListItemsList =
   Array<V1alpha1RepositoryCertificate>;
@@ -5689,53 +4027,13 @@ export const V1alpha1RepositoryCertificateList = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1alpha1RepositoryCertificateList",
 }) as any as S.Schema<V1alpha1RepositoryCertificateList>;
 
-export interface CertificateServiceDeleteCertificateRequest {
-  /** A file-glob pattern (not regular expression) the host name has to match. */
-  hostNamePattern?: string;
-  /** The type of the certificate to match (ssh or https). */
-  certType?: string;
-  /** The sub type of the certificate to match (protocol dependent, usually only used for ssh certs). */
-  certSubType?: string;
-}
-export const CertificateServiceDeleteCertificateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      hostNamePattern: S.optional(S.String.pipe(T.Query())),
-      certType: S.optional(S.String.pipe(T.Query())),
-      certSubType: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({ method: "DELETE", uri: "/api/v1/certificates", code: 200 }),
-    ),
-  ).annotate({
-    identifier: "CertificateServiceDeleteCertificateRequest",
-  }) as any as S.Schema<CertificateServiceDeleteCertificateRequest>;
-
-export interface CertificateServiceListCertificatesRequest {
-  /** A file-glob pattern (not regular expression) the host name has to match. */
-  hostNamePattern?: string;
-  /** The type of the certificate to match (ssh or https). */
-  certType?: string;
-  /** The sub type of the certificate to match (protocol dependent, usually only used for ssh certs). */
-  certSubType?: string;
-}
-export const CertificateServiceListCertificatesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      hostNamePattern: S.optional(S.String.pipe(T.Query())),
-      certType: S.optional(S.String.pipe(T.Query())),
-      certSubType: S.optional(S.String.pipe(T.Query())),
-    }).pipe(T.Http({ method: "GET", uri: "/api/v1/certificates", code: 200 })),
-  ).annotate({
-    identifier: "CertificateServiceListCertificatesRequest",
-  }) as any as S.Schema<CertificateServiceListCertificatesRequest>;
-
-export type ClusterServiceCreateRequestAnnotationsMap = {
+export type CreateClusterServiceRequestAnnotationsMap = {
   [key: string]: string | undefined;
 };
-export const ClusterServiceCreateRequestAnnotationsMap = /*@__PURE__*/ S.Record(
+export const CreateClusterServiceRequestAnnotationsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClusterServiceCreateRequestAnnotationsMap>;
+) as any as S.Schema<CreateClusterServiceRequestAnnotationsMap>;
 
 export interface V1alpha1AWSAuthConfig {
   clusterName?: string;
@@ -5893,32 +4191,32 @@ export const V1alpha1ClusterInfo = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1alpha1ClusterInfo",
 }) as any as S.Schema<V1alpha1ClusterInfo>;
 
-export type ClusterServiceCreateRequestLabelsMap = {
+export type CreateClusterServiceRequestLabelsMap = {
   [key: string]: string | undefined;
 };
-export const ClusterServiceCreateRequestLabelsMap = /*@__PURE__*/ S.Record(
+export const CreateClusterServiceRequestLabelsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClusterServiceCreateRequestLabelsMap>;
+) as any as S.Schema<CreateClusterServiceRequestLabelsMap>;
 
 /** Holds list of namespaces which are accessible in that cluster. Cluster level resources will be ignored if namespace list is not empty. */
-export type ClusterServiceCreateRequestNamespacesList = Array<string>;
-export const ClusterServiceCreateRequestNamespacesList = /*@__PURE__*/ S.Array(
+export type CreateClusterServiceRequestNamespacesList = Array<string>;
+export const CreateClusterServiceRequestNamespacesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ClusterServiceCreateRequestNamespacesList>;
+) as any as S.Schema<CreateClusterServiceRequestNamespacesList>;
 
-export interface ClusterServiceCreateRequest {
+export interface CreateClusterServiceRequest {
   upsert?: boolean;
-  annotations?: ClusterServiceCreateRequestAnnotationsMap;
+  annotations?: CreateClusterServiceRequestAnnotationsMap;
   /** Indicates if cluster level resources should be managed. This setting is used only if cluster is connected in a namespaced mode. */
   clusterResources?: boolean;
   config?: V1alpha1ClusterConfig;
   connectionState?: V1alpha1ConnectionState;
   info?: V1alpha1ClusterInfo;
-  labels?: ClusterServiceCreateRequestLabelsMap;
+  labels?: CreateClusterServiceRequestLabelsMap;
   name?: string;
   /** Holds list of namespaces which are accessible in that cluster. Cluster level resources will be ignored if namespace list is not empty. */
-  namespaces?: ClusterServiceCreateRequestNamespacesList;
+  namespaces?: CreateClusterServiceRequestNamespacesList;
   project?: string;
   refreshRequestedAt?: string;
   server?: string;
@@ -5926,17 +4224,17 @@ export interface ClusterServiceCreateRequest {
   /** Shard contains optional shard number. Calculated on the fly by the application controller if not specified. */
   shard?: number;
 }
-export const ClusterServiceCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateClusterServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     upsert: S.optional(S.Boolean.pipe(T.Query())),
-    annotations: S.optional(ClusterServiceCreateRequestAnnotationsMap),
+    annotations: S.optional(CreateClusterServiceRequestAnnotationsMap),
     clusterResources: S.optional(S.Boolean),
     config: S.optional(V1alpha1ClusterConfig),
     connectionState: S.optional(V1alpha1ConnectionState),
     info: S.optional(V1alpha1ClusterInfo),
-    labels: S.optional(ClusterServiceCreateRequestLabelsMap),
+    labels: S.optional(CreateClusterServiceRequestLabelsMap),
     name: S.optional(S.String),
-    namespaces: S.optional(ClusterServiceCreateRequestNamespacesList),
+    namespaces: S.optional(CreateClusterServiceRequestNamespacesList),
     project: S.optional(S.String),
     refreshRequestedAt: S.optional(S.String),
     server: S.optional(S.String),
@@ -5944,8 +4242,8 @@ export const ClusterServiceCreateRequest = /*@__PURE__*/ S.suspend(() =>
     shard: S.optional(S.Number),
   }).pipe(T.Http({ method: "POST", uri: "/api/v1/clusters", code: 200 })),
 ).annotate({
-  identifier: "ClusterServiceCreateRequest",
-}) as any as S.Schema<ClusterServiceCreateRequest>;
+  identifier: "CreateClusterServiceRequest",
+}) as any as S.Schema<CreateClusterServiceRequest>;
 
 export type V1alpha1ClusterAnnotationsMap = {
   [key: string]: string | undefined;
@@ -6005,216 +4303,7 @@ export const V1alpha1Cluster = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1alpha1Cluster",
 }) as any as S.Schema<V1alpha1Cluster>;
 
-export interface ClusterServiceDeleteRequest {
-  /** value holds the cluster server URL or cluster name */
-  id_value: string;
-  server?: string;
-  name?: string;
-  /** type is the type of the specified cluster identifier ( "server" - default, "name" ). */
-  id_type?: string;
-}
-export const ClusterServiceDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id_value: S.String.pipe(T.Label()),
-    server: S.optional(S.String.pipe(T.Query())),
-    name: S.optional(S.String.pipe(T.Query())),
-    id_type: S.optional(S.String.pipe(T.Query("id.type"))),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/api/v1/clusters/{id_value}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ClusterServiceDeleteRequest",
-}) as any as S.Schema<ClusterServiceDeleteRequest>;
-
-export type ClusterServiceDeleteResponse = unknown;
-export const ClusterServiceDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ClusterServiceDeleteResponse",
-}) as any as S.Schema<ClusterServiceDeleteResponse>;
-
-export interface ClusterServiceGetRequest {
-  /** value holds the cluster server URL or cluster name */
-  id_value: string;
-  server?: string;
-  name?: string;
-  /** type is the type of the specified cluster identifier ( "server" - default, "name" ). */
-  id_type?: string;
-}
-export const ClusterServiceGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id_value: S.String.pipe(T.Label()),
-    server: S.optional(S.String.pipe(T.Query())),
-    name: S.optional(S.String.pipe(T.Query())),
-    id_type: S.optional(S.String.pipe(T.Query("id.type"))),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v1/clusters/{id_value}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ClusterServiceGetRequest",
-}) as any as S.Schema<ClusterServiceGetRequest>;
-
-export interface ClusterServiceInvalidateCacheRequest {
-  /** value holds the cluster server URL or cluster name */
-  id_value: string;
-}
-export const ClusterServiceInvalidateCacheRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id_value: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/v1/clusters/{id_value}/invalidate-cache",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ClusterServiceInvalidateCacheRequest",
-}) as any as S.Schema<ClusterServiceInvalidateCacheRequest>;
-
-export interface ClusterServiceListRequest {
-  server?: string;
-  name?: string;
-  /** type is the type of the specified cluster identifier ( "server" - default, "name" ). */
-  id_type?: string;
-  /** value holds the cluster server URL or cluster name. */
-  id_value?: string;
-}
-export const ClusterServiceListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    server: S.optional(S.String.pipe(T.Query())),
-    name: S.optional(S.String.pipe(T.Query())),
-    id_type: S.optional(S.String.pipe(T.Query("id.type"))),
-    id_value: S.optional(S.String.pipe(T.Query("id.value"))),
-  }).pipe(T.Http({ method: "GET", uri: "/api/v1/clusters", code: 200 })),
-).annotate({
-  identifier: "ClusterServiceListRequest",
-}) as any as S.Schema<ClusterServiceListRequest>;
-
-export type V1alpha1ClusterListItemsList = Array<V1alpha1Cluster>;
-export const V1alpha1ClusterListItemsList = /*@__PURE__*/ S.Array(
-  V1alpha1Cluster,
-) as any as S.Schema<V1alpha1ClusterListItemsList>;
-
-/** ClusterList is a collection of Clusters. */
-export interface V1alpha1ClusterList {
-  items?: V1alpha1ClusterListItemsList;
-  metadata?: V1ListMeta;
-}
-export const V1alpha1ClusterList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(V1alpha1ClusterListItemsList),
-    metadata: S.optional(V1ListMeta),
-  }),
-).annotate({
-  identifier: "V1alpha1ClusterList",
-}) as any as S.Schema<V1alpha1ClusterList>;
-
-export interface ClusterServiceRotateAuthRequest {
-  /** value holds the cluster server URL or cluster name */
-  id_value: string;
-}
-export const ClusterServiceRotateAuthRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id_value: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/v1/clusters/{id_value}/rotate-auth",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ClusterServiceRotateAuthRequest",
-}) as any as S.Schema<ClusterServiceRotateAuthRequest>;
-
-export type ClusterServiceRotateAuthResponse = unknown;
-export const ClusterServiceRotateAuthResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ClusterServiceRotateAuthResponse",
-}) as any as S.Schema<ClusterServiceRotateAuthResponse>;
-
-export type ClusterServiceUpdateRequestUpdatedFieldsList = Array<string>;
-export const ClusterServiceUpdateRequestUpdatedFieldsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ClusterServiceUpdateRequestUpdatedFieldsList>;
-
-export type ClusterServiceUpdateRequestAnnotationsMap = {
-  [key: string]: string | undefined;
-};
-export const ClusterServiceUpdateRequestAnnotationsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClusterServiceUpdateRequestAnnotationsMap>;
-
-export type ClusterServiceUpdateRequestLabelsMap = {
-  [key: string]: string | undefined;
-};
-export const ClusterServiceUpdateRequestLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClusterServiceUpdateRequestLabelsMap>;
-
-/** Holds list of namespaces which are accessible in that cluster. Cluster level resources will be ignored if namespace list is not empty. */
-export type ClusterServiceUpdateRequestNamespacesList = Array<string>;
-export const ClusterServiceUpdateRequestNamespacesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ClusterServiceUpdateRequestNamespacesList>;
-
-export interface ClusterServiceUpdateRequest {
-  /** value holds the cluster server URL or cluster name */
-  id_value: string;
-  updatedFields?: ClusterServiceUpdateRequestUpdatedFieldsList;
-  /** type is the type of the specified cluster identifier ( "server" - default, "name" ). */
-  id_type?: string;
-  annotations?: ClusterServiceUpdateRequestAnnotationsMap;
-  /** Indicates if cluster level resources should be managed. This setting is used only if cluster is connected in a namespaced mode. */
-  clusterResources?: boolean;
-  config?: V1alpha1ClusterConfig;
-  connectionState?: V1alpha1ConnectionState;
-  info?: V1alpha1ClusterInfo;
-  labels?: ClusterServiceUpdateRequestLabelsMap;
-  name?: string;
-  /** Holds list of namespaces which are accessible in that cluster. Cluster level resources will be ignored if namespace list is not empty. */
-  namespaces?: ClusterServiceUpdateRequestNamespacesList;
-  project?: string;
-  refreshRequestedAt?: string;
-  server?: string;
-  serverVersion?: string;
-  /** Shard contains optional shard number. Calculated on the fly by the application controller if not specified. */
-  shard?: number;
-}
-export const ClusterServiceUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id_value: S.String.pipe(T.Label()),
-    updatedFields: S.optional(
-      ClusterServiceUpdateRequestUpdatedFieldsList.pipe(T.Query()),
-    ),
-    id_type: S.optional(S.String.pipe(T.Query("id.type"))),
-    annotations: S.optional(ClusterServiceUpdateRequestAnnotationsMap),
-    clusterResources: S.optional(S.Boolean),
-    config: S.optional(V1alpha1ClusterConfig),
-    connectionState: S.optional(V1alpha1ConnectionState),
-    info: S.optional(V1alpha1ClusterInfo),
-    labels: S.optional(ClusterServiceUpdateRequestLabelsMap),
-    name: S.optional(S.String),
-    namespaces: S.optional(ClusterServiceUpdateRequestNamespacesList),
-    project: S.optional(S.String),
-    refreshRequestedAt: S.optional(S.String),
-    server: S.optional(S.String),
-    serverVersion: S.optional(S.String),
-    shard: S.optional(S.Number),
-  }).pipe(
-    T.Http({ method: "PUT", uri: "/api/v1/clusters/{id_value}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ClusterServiceUpdateRequest",
-}) as any as S.Schema<ClusterServiceUpdateRequest>;
-
-export interface GPGKeyServiceCreateRequest {
+export interface CreateGPGKeyServiceRequest {
   /** Whether to upsert already existing public keys. */
   upsert?: boolean;
   fingerprint?: string;
@@ -6224,7 +4313,7 @@ export interface GPGKeyServiceCreateRequest {
   subType?: string;
   trust?: string;
 }
-export const GPGKeyServiceCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateGPGKeyServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     upsert: S.optional(S.Boolean.pipe(T.Query())),
     fingerprint: S.optional(S.String),
@@ -6235,8 +4324,8 @@ export const GPGKeyServiceCreateRequest = /*@__PURE__*/ S.suspend(() =>
     trust: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/api/v1/gpgkeys", code: 200 })),
 ).annotate({
-  identifier: "GPGKeyServiceCreateRequest",
-}) as any as S.Schema<GPGKeyServiceCreateRequest>;
+  identifier: "CreateGPGKeyServiceRequest",
+}) as any as S.Schema<CreateGPGKeyServiceRequest>;
 
 export interface V1alpha1GnuPGPublicKey {
   fingerprint?: string;
@@ -6295,151 +4384,6 @@ export const GpgkeyGnuPGPublicKeyCreateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GpgkeyGnuPGPublicKeyCreateResponse",
 }) as any as S.Schema<GpgkeyGnuPGPublicKeyCreateResponse>;
-
-export interface GPGKeyServiceDeleteRequest {
-  /** The GPG key ID to query for. */
-  keyID?: string;
-}
-export const GPGKeyServiceDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyID: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "DELETE", uri: "/api/v1/gpgkeys", code: 200 })),
-).annotate({
-  identifier: "GPGKeyServiceDeleteRequest",
-}) as any as S.Schema<GPGKeyServiceDeleteRequest>;
-
-export type GPGKeyServiceDeleteResponse = unknown;
-export const GPGKeyServiceDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GPGKeyServiceDeleteResponse",
-}) as any as S.Schema<GPGKeyServiceDeleteResponse>;
-
-export interface GPGKeyServiceGetRequest {
-  /** The GPG key ID to query for */
-  keyID: string;
-}
-export const GPGKeyServiceGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyID: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/api/v1/gpgkeys/{keyID}", code: 200 })),
-).annotate({
-  identifier: "GPGKeyServiceGetRequest",
-}) as any as S.Schema<GPGKeyServiceGetRequest>;
-
-export interface GPGKeyServiceListRequest {
-  /** The GPG key ID to query for. */
-  keyID?: string;
-}
-export const GPGKeyServiceListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyID: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/api/v1/gpgkeys", code: 200 })),
-).annotate({
-  identifier: "GPGKeyServiceListRequest",
-}) as any as S.Schema<GPGKeyServiceListRequest>;
-
-export interface NotificationServiceListServicesRequest {}
-export const NotificationServiceListServicesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({}).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/notifications/services",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "NotificationServiceListServicesRequest",
-}) as any as S.Schema<NotificationServiceListServicesRequest>;
-
-export type NotificationService = V1alpha1PluginConfigMapRef;
-export const NotificationService = V1alpha1PluginConfigMapRef;
-
-export type NotificationServiceListItemsList =
-  Array<V1alpha1PluginConfigMapRef>;
-export const NotificationServiceListItemsList = /*@__PURE__*/ S.Array(
-  V1alpha1PluginConfigMapRef,
-) as any as S.Schema<NotificationServiceListItemsList>;
-
-export interface NotificationServiceList {
-  items?: NotificationServiceListItemsList;
-}
-export const NotificationServiceList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(NotificationServiceListItemsList),
-  }),
-).annotate({
-  identifier: "NotificationServiceList",
-}) as any as S.Schema<NotificationServiceList>;
-
-export interface NotificationServiceListTemplatesRequest {}
-export const NotificationServiceListTemplatesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({}).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/notifications/templates",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "NotificationServiceListTemplatesRequest",
-}) as any as S.Schema<NotificationServiceListTemplatesRequest>;
-
-export type NotificationTemplate = V1alpha1PluginConfigMapRef;
-export const NotificationTemplate = V1alpha1PluginConfigMapRef;
-
-export type NotificationTemplateListItemsList =
-  Array<V1alpha1PluginConfigMapRef>;
-export const NotificationTemplateListItemsList = /*@__PURE__*/ S.Array(
-  V1alpha1PluginConfigMapRef,
-) as any as S.Schema<NotificationTemplateListItemsList>;
-
-export interface NotificationTemplateList {
-  items?: NotificationTemplateListItemsList;
-}
-export const NotificationTemplateList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(NotificationTemplateListItemsList),
-  }),
-).annotate({
-  identifier: "NotificationTemplateList",
-}) as any as S.Schema<NotificationTemplateList>;
-
-export interface NotificationServiceListTriggersRequest {}
-export const NotificationServiceListTriggersRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({}).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/notifications/triggers",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "NotificationServiceListTriggersRequest",
-}) as any as S.Schema<NotificationServiceListTriggersRequest>;
-
-export type NotificationTrigger = V1alpha1PluginConfigMapRef;
-export const NotificationTrigger = V1alpha1PluginConfigMapRef;
-
-export type NotificationTriggerListItemsList =
-  Array<V1alpha1PluginConfigMapRef>;
-export const NotificationTriggerListItemsList = /*@__PURE__*/ S.Array(
-  V1alpha1PluginConfigMapRef,
-) as any as S.Schema<NotificationTriggerListItemsList>;
-
-export interface NotificationTriggerList {
-  items?: NotificationTriggerListItemsList;
-}
-export const NotificationTriggerList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(NotificationTriggerListItemsList),
-  }),
-).annotate({
-  identifier: "NotificationTriggerList",
-}) as any as S.Schema<NotificationTriggerList>;
 
 export interface V1alpha1ClusterResourceRestrictionItem {
   group?: string;
@@ -6886,27 +4830,27 @@ export const V1alpha1AppProject = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1alpha1AppProject",
 }) as any as S.Schema<V1alpha1AppProject>;
 
-export interface ProjectServiceCreateRequest {
+export interface CreateProjectServiceRequest {
   project?: V1alpha1AppProject;
   upsert?: boolean;
 }
-export const ProjectServiceCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateProjectServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project: S.optional(V1alpha1AppProject),
     upsert: S.optional(S.Boolean),
   }).pipe(T.Http({ method: "POST", uri: "/api/v1/projects", code: 200 })),
 ).annotate({
-  identifier: "ProjectServiceCreateRequest",
-}) as any as S.Schema<ProjectServiceCreateRequest>;
+  identifier: "CreateProjectServiceRequest",
+}) as any as S.Schema<CreateProjectServiceRequest>;
 
-export interface ProjectServiceCreateTokenRequest {
+export interface CreateProjectServiceTokenRequest {
   project: string;
   role: string;
   description?: string;
   expiresIn?: number;
   id?: string;
 }
-export const ProjectServiceCreateTokenRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateProjectServiceTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project: S.String.pipe(T.Label()),
     role: S.String.pipe(T.Label()),
@@ -6921,8 +4865,8 @@ export const ProjectServiceCreateTokenRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ProjectServiceCreateTokenRequest",
-}) as any as S.Schema<ProjectServiceCreateTokenRequest>;
+  identifier: "CreateProjectServiceTokenRequest",
+}) as any as S.Schema<CreateProjectServiceTokenRequest>;
 
 /** ProjectTokenResponse wraps the created token or returns an empty string if deleted. */
 export interface ProjectProjectTokenResponse {
@@ -6936,98 +4880,272 @@ export const ProjectProjectTokenResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProjectProjectTokenResponse",
 }) as any as S.Schema<ProjectProjectTokenResponse>;
 
-export interface ProjectServiceDeleteRequest {
-  name: string;
+export interface CreateRepoCredsServiceRepositoryCredentialsRequest {
+  /** Whether to create in upsert mode. */
+  upsert?: boolean;
+  azureActiveDirectoryEndpoint?: string;
+  azureServicePrincipalClientId?: string;
+  azureServicePrincipalClientSecret?: string;
+  azureServicePrincipalTenantId?: string;
+  bearerToken?: string;
+  enableOCI?: boolean;
+  forceHttpBasicAuth?: boolean;
+  gcpServiceAccountKey?: string;
+  githubAppEnterpriseBaseUrl?: string;
+  githubAppID?: number;
+  githubAppInstallationID?: number;
+  githubAppPrivateKey?: string;
+  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
+  insecureOCIForceHttp?: boolean;
+  noProxy?: string;
+  password?: string | Redacted.Redacted<string>;
+  proxy?: string;
+  sshPrivateKey?: string;
+  tlsClientCertData?: string;
+  tlsClientCertKey?: string;
+  /** Type specifies the type of the repoCreds. Can be either "git", "helm" or "oci". "git" is assumed if empty or absent. */
+  type?: string;
+  url?: string;
+  useAzureWorkloadIdentity?: boolean;
+  username?: string;
 }
-export const ProjectServiceDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateRepoCredsServiceRepositoryCredentialsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      upsert: S.optional(S.Boolean.pipe(T.Query())),
+      azureActiveDirectoryEndpoint: S.optional(S.String),
+      azureServicePrincipalClientId: S.optional(S.String),
+      azureServicePrincipalClientSecret: S.optional(S.String),
+      azureServicePrincipalTenantId: S.optional(S.String),
+      bearerToken: S.optional(S.String),
+      enableOCI: S.optional(S.Boolean),
+      forceHttpBasicAuth: S.optional(S.Boolean),
+      gcpServiceAccountKey: S.optional(S.String),
+      githubAppEnterpriseBaseUrl: S.optional(S.String),
+      githubAppID: S.optional(S.Number),
+      githubAppInstallationID: S.optional(S.Number),
+      githubAppPrivateKey: S.optional(S.String),
+      insecureOCIForceHttp: S.optional(S.Boolean),
+      noProxy: S.optional(S.String),
+      password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+      proxy: S.optional(S.String),
+      sshPrivateKey: S.optional(S.String),
+      tlsClientCertData: S.optional(S.String),
+      tlsClientCertKey: S.optional(S.String),
+      type: S.optional(S.String),
+      url: S.optional(S.String),
+      useAzureWorkloadIdentity: S.optional(S.Boolean),
+      username: S.optional(S.String),
+    }).pipe(T.Http({ method: "POST", uri: "/api/v1/repocreds", code: 200 })),
+  ).annotate({
+    identifier: "CreateRepoCredsServiceRepositoryCredentialsRequest",
+  }) as any as S.Schema<CreateRepoCredsServiceRepositoryCredentialsRequest>;
+
+export interface V1alpha1RepoCreds {
+  azureActiveDirectoryEndpoint?: string;
+  azureServicePrincipalClientId?: string;
+  azureServicePrincipalClientSecret?: string;
+  azureServicePrincipalTenantId?: string;
+  bearerToken?: string;
+  enableOCI?: boolean;
+  forceHttpBasicAuth?: boolean;
+  gcpServiceAccountKey?: string;
+  githubAppEnterpriseBaseUrl?: string;
+  githubAppID?: number;
+  githubAppInstallationID?: number;
+  githubAppPrivateKey?: string;
+  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
+  insecureOCIForceHttp?: boolean;
+  noProxy?: string;
+  password?: string | Redacted.Redacted<string>;
+  proxy?: string;
+  sshPrivateKey?: string;
+  tlsClientCertData?: string;
+  tlsClientCertKey?: string;
+  /** Type specifies the type of the repoCreds. Can be either "git", "helm" or "oci". "git" is assumed if empty or absent. */
+  type?: string;
+  url?: string;
+  useAzureWorkloadIdentity?: boolean;
+  username?: string;
+}
+export const V1alpha1RepoCreds = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/api/v1/projects/{name}", code: 200 }),
-  ),
+    azureActiveDirectoryEndpoint: S.optional(S.String),
+    azureServicePrincipalClientId: S.optional(S.String),
+    azureServicePrincipalClientSecret: S.optional(S.String),
+    azureServicePrincipalTenantId: S.optional(S.String),
+    bearerToken: S.optional(S.String),
+    enableOCI: S.optional(S.Boolean),
+    forceHttpBasicAuth: S.optional(S.Boolean),
+    gcpServiceAccountKey: S.optional(S.String),
+    githubAppEnterpriseBaseUrl: S.optional(S.String),
+    githubAppID: S.optional(S.Number),
+    githubAppInstallationID: S.optional(S.Number),
+    githubAppPrivateKey: S.optional(S.String),
+    insecureOCIForceHttp: S.optional(S.Boolean),
+    noProxy: S.optional(S.String),
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    proxy: S.optional(S.String),
+    sshPrivateKey: S.optional(S.String),
+    tlsClientCertData: S.optional(S.String),
+    tlsClientCertKey: S.optional(S.String),
+    type: S.optional(S.String),
+    url: S.optional(S.String),
+    useAzureWorkloadIdentity: S.optional(S.Boolean),
+    username: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "ProjectServiceDeleteRequest",
-}) as any as S.Schema<ProjectServiceDeleteRequest>;
+  identifier: "V1alpha1RepoCreds",
+}) as any as S.Schema<V1alpha1RepoCreds>;
 
-export type ProjectServiceDeleteResponse = unknown;
-export const ProjectServiceDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ProjectServiceDeleteResponse",
-}) as any as S.Schema<ProjectServiceDeleteResponse>;
-
-export interface ProjectServiceDeleteTokenRequest {
-  project: string;
-  role: string;
-  iat: string;
-  id?: string;
+export interface CreateRepoCredsServiceWriteRepositoryCredentialsRequest {
+  /** Whether to create in upsert mode. */
+  upsert?: boolean;
+  azureActiveDirectoryEndpoint?: string;
+  azureServicePrincipalClientId?: string;
+  azureServicePrincipalClientSecret?: string;
+  azureServicePrincipalTenantId?: string;
+  bearerToken?: string;
+  enableOCI?: boolean;
+  forceHttpBasicAuth?: boolean;
+  gcpServiceAccountKey?: string;
+  githubAppEnterpriseBaseUrl?: string;
+  githubAppID?: number;
+  githubAppInstallationID?: number;
+  githubAppPrivateKey?: string;
+  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
+  insecureOCIForceHttp?: boolean;
+  noProxy?: string;
+  password?: string | Redacted.Redacted<string>;
+  proxy?: string;
+  sshPrivateKey?: string;
+  tlsClientCertData?: string;
+  tlsClientCertKey?: string;
+  /** Type specifies the type of the repoCreds. Can be either "git", "helm" or "oci". "git" is assumed if empty or absent. */
+  type?: string;
+  url?: string;
+  useAzureWorkloadIdentity?: boolean;
+  username?: string;
 }
-export const ProjectServiceDeleteTokenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.String.pipe(T.Label()),
-    role: S.String.pipe(T.Label()),
-    iat: S.String.pipe(T.Label()),
-    id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/api/v1/projects/{project}/roles/{role}/token/{iat}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ProjectServiceDeleteTokenRequest",
-}) as any as S.Schema<ProjectServiceDeleteTokenRequest>;
+export const CreateRepoCredsServiceWriteRepositoryCredentialsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      upsert: S.optional(S.Boolean.pipe(T.Query())),
+      azureActiveDirectoryEndpoint: S.optional(S.String),
+      azureServicePrincipalClientId: S.optional(S.String),
+      azureServicePrincipalClientSecret: S.optional(S.String),
+      azureServicePrincipalTenantId: S.optional(S.String),
+      bearerToken: S.optional(S.String),
+      enableOCI: S.optional(S.Boolean),
+      forceHttpBasicAuth: S.optional(S.Boolean),
+      gcpServiceAccountKey: S.optional(S.String),
+      githubAppEnterpriseBaseUrl: S.optional(S.String),
+      githubAppID: S.optional(S.Number),
+      githubAppInstallationID: S.optional(S.Number),
+      githubAppPrivateKey: S.optional(S.String),
+      insecureOCIForceHttp: S.optional(S.Boolean),
+      noProxy: S.optional(S.String),
+      password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+      proxy: S.optional(S.String),
+      sshPrivateKey: S.optional(S.String),
+      tlsClientCertData: S.optional(S.String),
+      tlsClientCertKey: S.optional(S.String),
+      type: S.optional(S.String),
+      url: S.optional(S.String),
+      useAzureWorkloadIdentity: S.optional(S.Boolean),
+      username: S.optional(S.String),
+    }).pipe(
+      T.Http({ method: "POST", uri: "/api/v1/write-repocreds", code: 200 }),
+    ),
+  ).annotate({
+    identifier: "CreateRepoCredsServiceWriteRepositoryCredentialsRequest",
+  }) as any as S.Schema<CreateRepoCredsServiceWriteRepositoryCredentialsRequest>;
 
-export type ProjectServiceDeleteTokenResponse = unknown;
-export const ProjectServiceDeleteTokenResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ProjectServiceDeleteTokenResponse",
-}) as any as S.Schema<ProjectServiceDeleteTokenResponse>;
-
-export interface ProjectServiceGetRequest {
-  name: string;
+export interface CreateRepositoryServiceRepositoryRequest {
+  /** Whether to create in upsert mode. */
+  upsert?: boolean;
+  /** Whether to operate on credential set instead of repository. */
+  credsOnly?: boolean;
+  azureActiveDirectoryEndpoint?: string;
+  azureServicePrincipalClientId?: string;
+  azureServicePrincipalClientSecret?: string;
+  azureServicePrincipalTenantId?: string;
+  bearerToken?: string;
+  connectionState?: V1alpha1ConnectionState;
+  /** Depth specifies the depth for shallow clones. A value of 0 or omitting the field indicates a full clone. */
+  depth?: number;
+  /** EnableLFS specifies whether git-lfs support should be enabled for this repo. Only valid for Git repositories. */
+  enableLfs?: boolean;
+  enableOCI?: boolean;
+  forceHttpBasicAuth?: boolean;
+  gcpServiceAccountKey?: string;
+  githubAppEnterpriseBaseUrl?: string;
+  githubAppID?: number;
+  githubAppInstallationID?: number;
+  githubAppPrivateKey?: string;
+  inheritedCreds?: boolean;
+  insecure?: boolean;
+  insecureIgnoreHostKey?: boolean;
+  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
+  insecureOCIForceHttp?: boolean;
+  name?: string;
+  noProxy?: string;
+  password?: string | Redacted.Redacted<string>;
+  project?: string;
+  proxy?: string;
+  repo?: string;
+  /** SSHPrivateKey contains the PEM data for authenticating at the repo server. Only used with Git repos. */
+  sshPrivateKey?: string;
+  tlsClientCertData?: string;
+  tlsClientCertKey?: string;
+  /** Type specifies the type of the repo. Can be either "git" or "helm. "git" is assumed if empty or absent. */
+  type?: string;
+  useAzureWorkloadIdentity?: boolean;
+  username?: string;
+  /** WebhookManifestCacheWarmDisabled disables manifest cache warming during webhook processing for this repository. When set, webhook handlers will only trigger reconciliation for affected applications and skip Redis cache operations for unaffected ones. Recommended for large monorepos with plain YAML manifests. */
+  webhookManifestCacheWarmDisabled?: boolean;
 }
-export const ProjectServiceGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/api/v1/projects/{name}", code: 200 })),
-).annotate({
-  identifier: "ProjectServiceGetRequest",
-}) as any as S.Schema<ProjectServiceGetRequest>;
-
-export interface ProjectServiceGetDetailedProjectRequest {
-  name: string;
-}
-export const ProjectServiceGetDetailedProjectRequest = /*@__PURE__*/ S.suspend(
+export const CreateRepositoryServiceRepositoryRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/projects/{name}/detailed",
-        code: 200,
-      }),
-    ),
+      upsert: S.optional(S.Boolean.pipe(T.Query())),
+      credsOnly: S.optional(S.Boolean.pipe(T.Query())),
+      azureActiveDirectoryEndpoint: S.optional(S.String),
+      azureServicePrincipalClientId: S.optional(S.String),
+      azureServicePrincipalClientSecret: S.optional(S.String),
+      azureServicePrincipalTenantId: S.optional(S.String),
+      bearerToken: S.optional(S.String),
+      connectionState: S.optional(V1alpha1ConnectionState),
+      depth: S.optional(S.Number),
+      enableLfs: S.optional(S.Boolean),
+      enableOCI: S.optional(S.Boolean),
+      forceHttpBasicAuth: S.optional(S.Boolean),
+      gcpServiceAccountKey: S.optional(S.String),
+      githubAppEnterpriseBaseUrl: S.optional(S.String),
+      githubAppID: S.optional(S.Number),
+      githubAppInstallationID: S.optional(S.Number),
+      githubAppPrivateKey: S.optional(S.String),
+      inheritedCreds: S.optional(S.Boolean),
+      insecure: S.optional(S.Boolean),
+      insecureIgnoreHostKey: S.optional(S.Boolean),
+      insecureOCIForceHttp: S.optional(S.Boolean),
+      name: S.optional(S.String),
+      noProxy: S.optional(S.String),
+      password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+      project: S.optional(S.String),
+      proxy: S.optional(S.String),
+      repo: S.optional(S.String),
+      sshPrivateKey: S.optional(S.String),
+      tlsClientCertData: S.optional(S.String),
+      tlsClientCertKey: S.optional(S.String),
+      type: S.optional(S.String),
+      useAzureWorkloadIdentity: S.optional(S.Boolean),
+      username: S.optional(S.String),
+      webhookManifestCacheWarmDisabled: S.optional(S.Boolean),
+    }).pipe(T.Http({ method: "POST", uri: "/api/v1/repositories", code: 200 })),
 ).annotate({
-  identifier: "ProjectServiceGetDetailedProjectRequest",
-}) as any as S.Schema<ProjectServiceGetDetailedProjectRequest>;
-
-export type ProjectDetailedProjectsResponseClustersList =
-  Array<V1alpha1Cluster>;
-export const ProjectDetailedProjectsResponseClustersList =
-  /*@__PURE__*/ S.Array(
-    V1alpha1Cluster,
-  ) as any as S.Schema<ProjectDetailedProjectsResponseClustersList>;
-
-export type ProjectDetailedProjectsResponseGlobalProjectsList =
-  Array<V1alpha1AppProject>;
-export const ProjectDetailedProjectsResponseGlobalProjectsList =
-  /*@__PURE__*/ S.Array(
-    V1alpha1AppProject,
-  ) as any as S.Schema<ProjectDetailedProjectsResponseGlobalProjectsList>;
+  identifier: "CreateRepositoryServiceRepositoryRequest",
+}) as any as S.Schema<CreateRepositoryServiceRepositoryRequest>;
 
 export interface V1alpha1Repository {
   azureActiveDirectoryEndpoint?: string;
@@ -7108,583 +5226,7 @@ export const V1alpha1Repository = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1alpha1Repository",
 }) as any as S.Schema<V1alpha1Repository>;
 
-export type ProjectDetailedProjectsResponseRepositoriesList =
-  Array<V1alpha1Repository>;
-export const ProjectDetailedProjectsResponseRepositoriesList =
-  /*@__PURE__*/ S.Array(
-    V1alpha1Repository,
-  ) as any as S.Schema<ProjectDetailedProjectsResponseRepositoriesList>;
-
-export interface ProjectDetailedProjectsResponse {
-  clusters?: ProjectDetailedProjectsResponseClustersList;
-  globalProjects?: ProjectDetailedProjectsResponseGlobalProjectsList;
-  project?: V1alpha1AppProject;
-  repositories?: ProjectDetailedProjectsResponseRepositoriesList;
-}
-export const ProjectDetailedProjectsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clusters: S.optional(ProjectDetailedProjectsResponseClustersList),
-    globalProjects: S.optional(
-      ProjectDetailedProjectsResponseGlobalProjectsList,
-    ),
-    project: S.optional(V1alpha1AppProject),
-    repositories: S.optional(ProjectDetailedProjectsResponseRepositoriesList),
-  }),
-).annotate({
-  identifier: "ProjectDetailedProjectsResponse",
-}) as any as S.Schema<ProjectDetailedProjectsResponse>;
-
-export interface ProjectServiceGetGlobalProjectsRequest {
-  name: string;
-}
-export const ProjectServiceGetGlobalProjectsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/projects/{name}/globalprojects",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ProjectServiceGetGlobalProjectsRequest",
-}) as any as S.Schema<ProjectServiceGetGlobalProjectsRequest>;
-
-export type ProjectGlobalProjectsResponseItemsList = Array<V1alpha1AppProject>;
-export const ProjectGlobalProjectsResponseItemsList = /*@__PURE__*/ S.Array(
-  V1alpha1AppProject,
-) as any as S.Schema<ProjectGlobalProjectsResponseItemsList>;
-
-export interface ProjectGlobalProjectsResponse {
-  items?: ProjectGlobalProjectsResponseItemsList;
-}
-export const ProjectGlobalProjectsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(ProjectGlobalProjectsResponseItemsList),
-  }),
-).annotate({
-  identifier: "ProjectGlobalProjectsResponse",
-}) as any as S.Schema<ProjectGlobalProjectsResponse>;
-
-export interface ProjectServiceGetSyncWindowsStateRequest {
-  name: string;
-}
-export const ProjectServiceGetSyncWindowsStateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v1/projects/{name}/syncwindows",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ProjectServiceGetSyncWindowsStateRequest",
-}) as any as S.Schema<ProjectServiceGetSyncWindowsStateRequest>;
-
-export type ProjectSyncWindowsResponseWindowsList =
-  Array<V1alpha1InlineSyncWindow>;
-export const ProjectSyncWindowsResponseWindowsList = /*@__PURE__*/ S.Array(
-  V1alpha1InlineSyncWindow,
-) as any as S.Schema<ProjectSyncWindowsResponseWindowsList>;
-
-export interface ProjectSyncWindowsResponse {
-  windows?: ProjectSyncWindowsResponseWindowsList;
-}
-export const ProjectSyncWindowsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    windows: S.optional(ProjectSyncWindowsResponseWindowsList),
-  }),
-).annotate({
-  identifier: "ProjectSyncWindowsResponse",
-}) as any as S.Schema<ProjectSyncWindowsResponse>;
-
-export interface ProjectServiceListRequest {
-  name?: string;
-}
-export const ProjectServiceListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/api/v1/projects", code: 200 })),
-).annotate({
-  identifier: "ProjectServiceListRequest",
-}) as any as S.Schema<ProjectServiceListRequest>;
-
-export type V1alpha1AppProjectListItemsList = Array<V1alpha1AppProject>;
-export const V1alpha1AppProjectListItemsList = /*@__PURE__*/ S.Array(
-  V1alpha1AppProject,
-) as any as S.Schema<V1alpha1AppProjectListItemsList>;
-
-export interface V1alpha1AppProjectList {
-  items?: V1alpha1AppProjectListItemsList;
-  metadata?: V1ListMeta;
-}
-export const V1alpha1AppProjectList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(V1alpha1AppProjectListItemsList),
-    metadata: S.optional(V1ListMeta),
-  }),
-).annotate({
-  identifier: "V1alpha1AppProjectList",
-}) as any as S.Schema<V1alpha1AppProjectList>;
-
-export interface ProjectServiceListEventsRequest {
-  name: string;
-}
-export const ProjectServiceListEventsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v1/projects/{name}/events", code: 200 }),
-  ),
-).annotate({
-  identifier: "ProjectServiceListEventsRequest",
-}) as any as S.Schema<ProjectServiceListEventsRequest>;
-
-export interface ProjectServiceListLinksRequest {
-  name: string;
-}
-export const ProjectServiceListLinksRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v1/projects/{name}/links", code: 200 }),
-  ),
-).annotate({
-  identifier: "ProjectServiceListLinksRequest",
-}) as any as S.Schema<ProjectServiceListLinksRequest>;
-
-export interface ProjectServiceUpdateRequest {
-  /** Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names +optional */
-  project_metadata_name: string;
-  project?: V1alpha1AppProject;
-}
-export const ProjectServiceUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_metadata_name: S.String.pipe(T.Label()),
-    project: S.optional(V1alpha1AppProject),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/api/v1/projects/{project_metadata_name}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ProjectServiceUpdateRequest",
-}) as any as S.Schema<ProjectServiceUpdateRequest>;
-
-export interface RepoCredsServiceCreateRepositoryCredentialsRequest {
-  /** Whether to create in upsert mode. */
-  upsert?: boolean;
-  azureActiveDirectoryEndpoint?: string;
-  azureServicePrincipalClientId?: string;
-  azureServicePrincipalClientSecret?: string;
-  azureServicePrincipalTenantId?: string;
-  bearerToken?: string;
-  enableOCI?: boolean;
-  forceHttpBasicAuth?: boolean;
-  gcpServiceAccountKey?: string;
-  githubAppEnterpriseBaseUrl?: string;
-  githubAppID?: number;
-  githubAppInstallationID?: number;
-  githubAppPrivateKey?: string;
-  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
-  insecureOCIForceHttp?: boolean;
-  noProxy?: string;
-  password?: string | Redacted.Redacted<string>;
-  proxy?: string;
-  sshPrivateKey?: string;
-  tlsClientCertData?: string;
-  tlsClientCertKey?: string;
-  /** Type specifies the type of the repoCreds. Can be either "git", "helm" or "oci". "git" is assumed if empty or absent. */
-  type?: string;
-  url?: string;
-  useAzureWorkloadIdentity?: boolean;
-  username?: string;
-}
-export const RepoCredsServiceCreateRepositoryCredentialsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      upsert: S.optional(S.Boolean.pipe(T.Query())),
-      azureActiveDirectoryEndpoint: S.optional(S.String),
-      azureServicePrincipalClientId: S.optional(S.String),
-      azureServicePrincipalClientSecret: S.optional(S.String),
-      azureServicePrincipalTenantId: S.optional(S.String),
-      bearerToken: S.optional(S.String),
-      enableOCI: S.optional(S.Boolean),
-      forceHttpBasicAuth: S.optional(S.Boolean),
-      gcpServiceAccountKey: S.optional(S.String),
-      githubAppEnterpriseBaseUrl: S.optional(S.String),
-      githubAppID: S.optional(S.Number),
-      githubAppInstallationID: S.optional(S.Number),
-      githubAppPrivateKey: S.optional(S.String),
-      insecureOCIForceHttp: S.optional(S.Boolean),
-      noProxy: S.optional(S.String),
-      password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-      proxy: S.optional(S.String),
-      sshPrivateKey: S.optional(S.String),
-      tlsClientCertData: S.optional(S.String),
-      tlsClientCertKey: S.optional(S.String),
-      type: S.optional(S.String),
-      url: S.optional(S.String),
-      useAzureWorkloadIdentity: S.optional(S.Boolean),
-      username: S.optional(S.String),
-    }).pipe(T.Http({ method: "POST", uri: "/api/v1/repocreds", code: 200 })),
-  ).annotate({
-    identifier: "RepoCredsServiceCreateRepositoryCredentialsRequest",
-  }) as any as S.Schema<RepoCredsServiceCreateRepositoryCredentialsRequest>;
-
-export interface V1alpha1RepoCreds {
-  azureActiveDirectoryEndpoint?: string;
-  azureServicePrincipalClientId?: string;
-  azureServicePrincipalClientSecret?: string;
-  azureServicePrincipalTenantId?: string;
-  bearerToken?: string;
-  enableOCI?: boolean;
-  forceHttpBasicAuth?: boolean;
-  gcpServiceAccountKey?: string;
-  githubAppEnterpriseBaseUrl?: string;
-  githubAppID?: number;
-  githubAppInstallationID?: number;
-  githubAppPrivateKey?: string;
-  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
-  insecureOCIForceHttp?: boolean;
-  noProxy?: string;
-  password?: string | Redacted.Redacted<string>;
-  proxy?: string;
-  sshPrivateKey?: string;
-  tlsClientCertData?: string;
-  tlsClientCertKey?: string;
-  /** Type specifies the type of the repoCreds. Can be either "git", "helm" or "oci". "git" is assumed if empty or absent. */
-  type?: string;
-  url?: string;
-  useAzureWorkloadIdentity?: boolean;
-  username?: string;
-}
-export const V1alpha1RepoCreds = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    azureActiveDirectoryEndpoint: S.optional(S.String),
-    azureServicePrincipalClientId: S.optional(S.String),
-    azureServicePrincipalClientSecret: S.optional(S.String),
-    azureServicePrincipalTenantId: S.optional(S.String),
-    bearerToken: S.optional(S.String),
-    enableOCI: S.optional(S.Boolean),
-    forceHttpBasicAuth: S.optional(S.Boolean),
-    gcpServiceAccountKey: S.optional(S.String),
-    githubAppEnterpriseBaseUrl: S.optional(S.String),
-    githubAppID: S.optional(S.Number),
-    githubAppInstallationID: S.optional(S.Number),
-    githubAppPrivateKey: S.optional(S.String),
-    insecureOCIForceHttp: S.optional(S.Boolean),
-    noProxy: S.optional(S.String),
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    proxy: S.optional(S.String),
-    sshPrivateKey: S.optional(S.String),
-    tlsClientCertData: S.optional(S.String),
-    tlsClientCertKey: S.optional(S.String),
-    type: S.optional(S.String),
-    url: S.optional(S.String),
-    useAzureWorkloadIdentity: S.optional(S.Boolean),
-    username: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "V1alpha1RepoCreds",
-}) as any as S.Schema<V1alpha1RepoCreds>;
-
-export interface RepoCredsServiceCreateWriteRepositoryCredentialsRequest {
-  /** Whether to create in upsert mode. */
-  upsert?: boolean;
-  azureActiveDirectoryEndpoint?: string;
-  azureServicePrincipalClientId?: string;
-  azureServicePrincipalClientSecret?: string;
-  azureServicePrincipalTenantId?: string;
-  bearerToken?: string;
-  enableOCI?: boolean;
-  forceHttpBasicAuth?: boolean;
-  gcpServiceAccountKey?: string;
-  githubAppEnterpriseBaseUrl?: string;
-  githubAppID?: number;
-  githubAppInstallationID?: number;
-  githubAppPrivateKey?: string;
-  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
-  insecureOCIForceHttp?: boolean;
-  noProxy?: string;
-  password?: string | Redacted.Redacted<string>;
-  proxy?: string;
-  sshPrivateKey?: string;
-  tlsClientCertData?: string;
-  tlsClientCertKey?: string;
-  /** Type specifies the type of the repoCreds. Can be either "git", "helm" or "oci". "git" is assumed if empty or absent. */
-  type?: string;
-  url?: string;
-  useAzureWorkloadIdentity?: boolean;
-  username?: string;
-}
-export const RepoCredsServiceCreateWriteRepositoryCredentialsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      upsert: S.optional(S.Boolean.pipe(T.Query())),
-      azureActiveDirectoryEndpoint: S.optional(S.String),
-      azureServicePrincipalClientId: S.optional(S.String),
-      azureServicePrincipalClientSecret: S.optional(S.String),
-      azureServicePrincipalTenantId: S.optional(S.String),
-      bearerToken: S.optional(S.String),
-      enableOCI: S.optional(S.Boolean),
-      forceHttpBasicAuth: S.optional(S.Boolean),
-      gcpServiceAccountKey: S.optional(S.String),
-      githubAppEnterpriseBaseUrl: S.optional(S.String),
-      githubAppID: S.optional(S.Number),
-      githubAppInstallationID: S.optional(S.Number),
-      githubAppPrivateKey: S.optional(S.String),
-      insecureOCIForceHttp: S.optional(S.Boolean),
-      noProxy: S.optional(S.String),
-      password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-      proxy: S.optional(S.String),
-      sshPrivateKey: S.optional(S.String),
-      tlsClientCertData: S.optional(S.String),
-      tlsClientCertKey: S.optional(S.String),
-      type: S.optional(S.String),
-      url: S.optional(S.String),
-      useAzureWorkloadIdentity: S.optional(S.Boolean),
-      username: S.optional(S.String),
-    }).pipe(
-      T.Http({ method: "POST", uri: "/api/v1/write-repocreds", code: 200 }),
-    ),
-  ).annotate({
-    identifier: "RepoCredsServiceCreateWriteRepositoryCredentialsRequest",
-  }) as any as S.Schema<RepoCredsServiceCreateWriteRepositoryCredentialsRequest>;
-
-export interface RepoCredsServiceDeleteRepositoryCredentialsRequest {
-  url: string;
-}
-export const RepoCredsServiceDeleteRepositoryCredentialsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      url: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({ method: "DELETE", uri: "/api/v1/repocreds/{url}", code: 200 }),
-    ),
-  ).annotate({
-    identifier: "RepoCredsServiceDeleteRepositoryCredentialsRequest",
-  }) as any as S.Schema<RepoCredsServiceDeleteRepositoryCredentialsRequest>;
-
-export type RepoCredsServiceDeleteRepositoryCredentialsResponse = unknown;
-export const RepoCredsServiceDeleteRepositoryCredentialsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "RepoCredsServiceDeleteRepositoryCredentialsResponse",
-  }) as any as S.Schema<RepoCredsServiceDeleteRepositoryCredentialsResponse>;
-
-export interface RepoCredsServiceDeleteWriteRepositoryCredentialsRequest {
-  url: string;
-}
-export const RepoCredsServiceDeleteWriteRepositoryCredentialsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      url: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/api/v1/write-repocreds/{url}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "RepoCredsServiceDeleteWriteRepositoryCredentialsRequest",
-  }) as any as S.Schema<RepoCredsServiceDeleteWriteRepositoryCredentialsRequest>;
-
-export type RepoCredsServiceDeleteWriteRepositoryCredentialsResponse = unknown;
-export const RepoCredsServiceDeleteWriteRepositoryCredentialsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "RepoCredsServiceDeleteWriteRepositoryCredentialsResponse",
-  }) as any as S.Schema<RepoCredsServiceDeleteWriteRepositoryCredentialsResponse>;
-
-export interface RepoCredsServiceListRepositoryCredentialsRequest {
-  /** Repo URL for query. */
-  url?: string;
-}
-export const RepoCredsServiceListRepositoryCredentialsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      url: S.optional(S.String.pipe(T.Query())),
-    }).pipe(T.Http({ method: "GET", uri: "/api/v1/repocreds", code: 200 })),
-  ).annotate({
-    identifier: "RepoCredsServiceListRepositoryCredentialsRequest",
-  }) as any as S.Schema<RepoCredsServiceListRepositoryCredentialsRequest>;
-
-export type V1alpha1RepoCredsListItemsList = Array<V1alpha1RepoCreds>;
-export const V1alpha1RepoCredsListItemsList = /*@__PURE__*/ S.Array(
-  V1alpha1RepoCreds,
-) as any as S.Schema<V1alpha1RepoCredsListItemsList>;
-
-/** RepositoryList is a collection of Repositories. */
-export interface V1alpha1RepoCredsList {
-  items?: V1alpha1RepoCredsListItemsList;
-  metadata?: V1ListMeta;
-}
-export const V1alpha1RepoCredsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(V1alpha1RepoCredsListItemsList),
-    metadata: S.optional(V1ListMeta),
-  }),
-).annotate({
-  identifier: "V1alpha1RepoCredsList",
-}) as any as S.Schema<V1alpha1RepoCredsList>;
-
-export interface RepoCredsServiceListWriteRepositoryCredentialsRequest {
-  /** Repo URL for query. */
-  url?: string;
-}
-export const RepoCredsServiceListWriteRepositoryCredentialsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      url: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({ method: "GET", uri: "/api/v1/write-repocreds", code: 200 }),
-    ),
-  ).annotate({
-    identifier: "RepoCredsServiceListWriteRepositoryCredentialsRequest",
-  }) as any as S.Schema<RepoCredsServiceListWriteRepositoryCredentialsRequest>;
-
-export interface RepoCredsServiceUpdateRepositoryCredentialsRequest {
-  /** URL is the URL to which these credentials match */
-  creds_url: string;
-  azureActiveDirectoryEndpoint?: string;
-  azureServicePrincipalClientId?: string;
-  azureServicePrincipalClientSecret?: string;
-  azureServicePrincipalTenantId?: string;
-  bearerToken?: string;
-  enableOCI?: boolean;
-  forceHttpBasicAuth?: boolean;
-  gcpServiceAccountKey?: string;
-  githubAppEnterpriseBaseUrl?: string;
-  githubAppID?: number;
-  githubAppInstallationID?: number;
-  githubAppPrivateKey?: string;
-  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
-  insecureOCIForceHttp?: boolean;
-  noProxy?: string;
-  password?: string | Redacted.Redacted<string>;
-  proxy?: string;
-  sshPrivateKey?: string;
-  tlsClientCertData?: string;
-  tlsClientCertKey?: string;
-  /** Type specifies the type of the repoCreds. Can be either "git", "helm" or "oci". "git" is assumed if empty or absent. */
-  type?: string;
-  url?: string;
-  useAzureWorkloadIdentity?: boolean;
-  username?: string;
-}
-export const RepoCredsServiceUpdateRepositoryCredentialsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      creds_url: S.String.pipe(T.Label()),
-      azureActiveDirectoryEndpoint: S.optional(S.String),
-      azureServicePrincipalClientId: S.optional(S.String),
-      azureServicePrincipalClientSecret: S.optional(S.String),
-      azureServicePrincipalTenantId: S.optional(S.String),
-      bearerToken: S.optional(S.String),
-      enableOCI: S.optional(S.Boolean),
-      forceHttpBasicAuth: S.optional(S.Boolean),
-      gcpServiceAccountKey: S.optional(S.String),
-      githubAppEnterpriseBaseUrl: S.optional(S.String),
-      githubAppID: S.optional(S.Number),
-      githubAppInstallationID: S.optional(S.Number),
-      githubAppPrivateKey: S.optional(S.String),
-      insecureOCIForceHttp: S.optional(S.Boolean),
-      noProxy: S.optional(S.String),
-      password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-      proxy: S.optional(S.String),
-      sshPrivateKey: S.optional(S.String),
-      tlsClientCertData: S.optional(S.String),
-      tlsClientCertKey: S.optional(S.String),
-      type: S.optional(S.String),
-      url: S.optional(S.String),
-      useAzureWorkloadIdentity: S.optional(S.Boolean),
-      username: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/api/v1/repocreds/{creds_url}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "RepoCredsServiceUpdateRepositoryCredentialsRequest",
-  }) as any as S.Schema<RepoCredsServiceUpdateRepositoryCredentialsRequest>;
-
-export interface RepoCredsServiceUpdateWriteRepositoryCredentialsRequest {
-  /** URL is the URL to which these credentials match */
-  creds_url: string;
-  azureActiveDirectoryEndpoint?: string;
-  azureServicePrincipalClientId?: string;
-  azureServicePrincipalClientSecret?: string;
-  azureServicePrincipalTenantId?: string;
-  bearerToken?: string;
-  enableOCI?: boolean;
-  forceHttpBasicAuth?: boolean;
-  gcpServiceAccountKey?: string;
-  githubAppEnterpriseBaseUrl?: string;
-  githubAppID?: number;
-  githubAppInstallationID?: number;
-  githubAppPrivateKey?: string;
-  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
-  insecureOCIForceHttp?: boolean;
-  noProxy?: string;
-  password?: string | Redacted.Redacted<string>;
-  proxy?: string;
-  sshPrivateKey?: string;
-  tlsClientCertData?: string;
-  tlsClientCertKey?: string;
-  /** Type specifies the type of the repoCreds. Can be either "git", "helm" or "oci". "git" is assumed if empty or absent. */
-  type?: string;
-  url?: string;
-  useAzureWorkloadIdentity?: boolean;
-  username?: string;
-}
-export const RepoCredsServiceUpdateWriteRepositoryCredentialsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      creds_url: S.String.pipe(T.Label()),
-      azureActiveDirectoryEndpoint: S.optional(S.String),
-      azureServicePrincipalClientId: S.optional(S.String),
-      azureServicePrincipalClientSecret: S.optional(S.String),
-      azureServicePrincipalTenantId: S.optional(S.String),
-      bearerToken: S.optional(S.String),
-      enableOCI: S.optional(S.Boolean),
-      forceHttpBasicAuth: S.optional(S.Boolean),
-      gcpServiceAccountKey: S.optional(S.String),
-      githubAppEnterpriseBaseUrl: S.optional(S.String),
-      githubAppID: S.optional(S.Number),
-      githubAppInstallationID: S.optional(S.Number),
-      githubAppPrivateKey: S.optional(S.String),
-      insecureOCIForceHttp: S.optional(S.Boolean),
-      noProxy: S.optional(S.String),
-      password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-      proxy: S.optional(S.String),
-      sshPrivateKey: S.optional(S.String),
-      tlsClientCertData: S.optional(S.String),
-      tlsClientCertKey: S.optional(S.String),
-      type: S.optional(S.String),
-      url: S.optional(S.String),
-      useAzureWorkloadIdentity: S.optional(S.Boolean),
-      username: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/api/v1/write-repocreds/{creds_url}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "RepoCredsServiceUpdateWriteRepositoryCredentialsRequest",
-  }) as any as S.Schema<RepoCredsServiceUpdateWriteRepositoryCredentialsRequest>;
-
-export interface RepositoryServiceCreateRepositoryRequest {
+export interface CreateRepositoryServiceWriteRepositoryRequest {
   /** Whether to create in upsert mode. */
   upsert?: boolean;
   /** Whether to operate on credential set instead of repository. */
@@ -7728,93 +5270,7 @@ export interface RepositoryServiceCreateRepositoryRequest {
   /** WebhookManifestCacheWarmDisabled disables manifest cache warming during webhook processing for this repository. When set, webhook handlers will only trigger reconciliation for affected applications and skip Redis cache operations for unaffected ones. Recommended for large monorepos with plain YAML manifests. */
   webhookManifestCacheWarmDisabled?: boolean;
 }
-export const RepositoryServiceCreateRepositoryRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      upsert: S.optional(S.Boolean.pipe(T.Query())),
-      credsOnly: S.optional(S.Boolean.pipe(T.Query())),
-      azureActiveDirectoryEndpoint: S.optional(S.String),
-      azureServicePrincipalClientId: S.optional(S.String),
-      azureServicePrincipalClientSecret: S.optional(S.String),
-      azureServicePrincipalTenantId: S.optional(S.String),
-      bearerToken: S.optional(S.String),
-      connectionState: S.optional(V1alpha1ConnectionState),
-      depth: S.optional(S.Number),
-      enableLfs: S.optional(S.Boolean),
-      enableOCI: S.optional(S.Boolean),
-      forceHttpBasicAuth: S.optional(S.Boolean),
-      gcpServiceAccountKey: S.optional(S.String),
-      githubAppEnterpriseBaseUrl: S.optional(S.String),
-      githubAppID: S.optional(S.Number),
-      githubAppInstallationID: S.optional(S.Number),
-      githubAppPrivateKey: S.optional(S.String),
-      inheritedCreds: S.optional(S.Boolean),
-      insecure: S.optional(S.Boolean),
-      insecureIgnoreHostKey: S.optional(S.Boolean),
-      insecureOCIForceHttp: S.optional(S.Boolean),
-      name: S.optional(S.String),
-      noProxy: S.optional(S.String),
-      password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-      project: S.optional(S.String),
-      proxy: S.optional(S.String),
-      repo: S.optional(S.String),
-      sshPrivateKey: S.optional(S.String),
-      tlsClientCertData: S.optional(S.String),
-      tlsClientCertKey: S.optional(S.String),
-      type: S.optional(S.String),
-      useAzureWorkloadIdentity: S.optional(S.Boolean),
-      username: S.optional(S.String),
-      webhookManifestCacheWarmDisabled: S.optional(S.Boolean),
-    }).pipe(T.Http({ method: "POST", uri: "/api/v1/repositories", code: 200 })),
-).annotate({
-  identifier: "RepositoryServiceCreateRepositoryRequest",
-}) as any as S.Schema<RepositoryServiceCreateRepositoryRequest>;
-
-export interface RepositoryServiceCreateWriteRepositoryRequest {
-  /** Whether to create in upsert mode. */
-  upsert?: boolean;
-  /** Whether to operate on credential set instead of repository. */
-  credsOnly?: boolean;
-  azureActiveDirectoryEndpoint?: string;
-  azureServicePrincipalClientId?: string;
-  azureServicePrincipalClientSecret?: string;
-  azureServicePrincipalTenantId?: string;
-  bearerToken?: string;
-  connectionState?: V1alpha1ConnectionState;
-  /** Depth specifies the depth for shallow clones. A value of 0 or omitting the field indicates a full clone. */
-  depth?: number;
-  /** EnableLFS specifies whether git-lfs support should be enabled for this repo. Only valid for Git repositories. */
-  enableLfs?: boolean;
-  enableOCI?: boolean;
-  forceHttpBasicAuth?: boolean;
-  gcpServiceAccountKey?: string;
-  githubAppEnterpriseBaseUrl?: string;
-  githubAppID?: number;
-  githubAppInstallationID?: number;
-  githubAppPrivateKey?: string;
-  inheritedCreds?: boolean;
-  insecure?: boolean;
-  insecureIgnoreHostKey?: boolean;
-  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
-  insecureOCIForceHttp?: boolean;
-  name?: string;
-  noProxy?: string;
-  password?: string | Redacted.Redacted<string>;
-  project?: string;
-  proxy?: string;
-  repo?: string;
-  /** SSHPrivateKey contains the PEM data for authenticating at the repo server. Only used with Git repos. */
-  sshPrivateKey?: string;
-  tlsClientCertData?: string;
-  tlsClientCertKey?: string;
-  /** Type specifies the type of the repo. Can be either "git" or "helm. "git" is assumed if empty or absent. */
-  type?: string;
-  useAzureWorkloadIdentity?: boolean;
-  username?: string;
-  /** WebhookManifestCacheWarmDisabled disables manifest cache warming during webhook processing for this repository. When set, webhook handlers will only trigger reconciliation for affected applications and skip Redis cache operations for unaffected ones. Recommended for large monorepos with plain YAML manifests. */
-  webhookManifestCacheWarmDisabled?: boolean;
-}
-export const RepositoryServiceCreateWriteRepositoryRequest =
+export const CreateRepositoryServiceWriteRepositoryRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       upsert: S.optional(S.Boolean.pipe(T.Query())),
@@ -7855,10 +5311,330 @@ export const RepositoryServiceCreateWriteRepositoryRequest =
       T.Http({ method: "POST", uri: "/api/v1/write-repositories", code: 200 }),
     ),
   ).annotate({
-    identifier: "RepositoryServiceCreateWriteRepositoryRequest",
-  }) as any as S.Schema<RepositoryServiceCreateWriteRepositoryRequest>;
+    identifier: "CreateRepositoryServiceWriteRepositoryRequest",
+  }) as any as S.Schema<CreateRepositoryServiceWriteRepositoryRequest>;
 
-export interface RepositoryServiceDeleteRepositoryRequest {
+export interface CreateSessionServiceRequest {
+  password?: string | Redacted.Redacted<string>;
+  token?: string;
+  username?: string;
+}
+export const CreateSessionServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    token: S.optional(S.String),
+    username: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/api/v1/session", code: 200 })),
+).annotate({
+  identifier: "CreateSessionServiceRequest",
+}) as any as S.Schema<CreateSessionServiceRequest>;
+
+/** SessionResponse wraps the created token or returns an empty string if deleted. */
+export interface SessionSessionResponse {
+  token?: string;
+}
+export const SessionSessionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    token: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SessionSessionResponse",
+}) as any as S.Schema<SessionSessionResponse>;
+
+export interface DeleteAccountServiceTokenRequest {
+  name: string;
+  id: string;
+}
+export const DeleteAccountServiceTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/api/v1/account/{name}/token/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAccountServiceTokenRequest",
+}) as any as S.Schema<DeleteAccountServiceTokenRequest>;
+
+export type DeleteAccountServiceTokenResponse = unknown;
+export const DeleteAccountServiceTokenResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteAccountServiceTokenResponse",
+}) as any as S.Schema<DeleteAccountServiceTokenResponse>;
+
+export interface DeleteApplicationServiceRequest {
+  name: string;
+  cascade?: boolean;
+  propagationPolicy?: string;
+  appNamespace?: string;
+  project?: string;
+}
+export const DeleteApplicationServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    cascade: S.optional(S.Boolean.pipe(T.Query())),
+    propagationPolicy: S.optional(S.String.pipe(T.Query())),
+    appNamespace: S.optional(S.String.pipe(T.Query())),
+    project: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/api/v1/applications/{name}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteApplicationServiceRequest",
+}) as any as S.Schema<DeleteApplicationServiceRequest>;
+
+export type DeleteApplicationServiceResponse = unknown;
+export const DeleteApplicationServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteApplicationServiceResponse",
+}) as any as S.Schema<DeleteApplicationServiceResponse>;
+
+export interface DeleteApplicationServiceResourceRequest {
+  name: string;
+  namespace?: string;
+  resourceName?: string;
+  version?: string;
+  group?: string;
+  kind?: string;
+  force?: boolean;
+  orphan?: boolean;
+  appNamespace?: string;
+  project?: string;
+}
+export const DeleteApplicationServiceResourceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      namespace: S.optional(S.String.pipe(T.Query())),
+      resourceName: S.optional(S.String.pipe(T.Query())),
+      version: S.optional(S.String.pipe(T.Query())),
+      group: S.optional(S.String.pipe(T.Query())),
+      kind: S.optional(S.String.pipe(T.Query())),
+      force: S.optional(S.Boolean.pipe(T.Query())),
+      orphan: S.optional(S.Boolean.pipe(T.Query())),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/api/v1/applications/{name}/resource",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "DeleteApplicationServiceResourceRequest",
+}) as any as S.Schema<DeleteApplicationServiceResourceRequest>;
+
+export type DeleteApplicationServiceResourceResponse = unknown;
+export const DeleteApplicationServiceResourceResponse = /*@__PURE__*/ S.suspend(
+  () => S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteApplicationServiceResourceResponse",
+}) as any as S.Schema<DeleteApplicationServiceResourceResponse>;
+
+export interface DeleteApplicationSetServiceRequest {
+  name: string;
+  /** The application set namespace. Default empty is argocd control plane namespace. */
+  appsetNamespace?: string;
+}
+export const DeleteApplicationSetServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    appsetNamespace: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/api/v1/applicationsets/{name}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteApplicationSetServiceRequest",
+}) as any as S.Schema<DeleteApplicationSetServiceRequest>;
+
+export interface ApplicationsetApplicationSetResponse {
+  applicationset?: V1alpha1ApplicationSet;
+  project?: string;
+}
+export const ApplicationsetApplicationSetResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      applicationset: S.optional(V1alpha1ApplicationSet),
+      project: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ApplicationsetApplicationSetResponse",
+}) as any as S.Schema<ApplicationsetApplicationSetResponse>;
+
+export interface DeleteCertificateServiceCertificateRequest {
+  /** A file-glob pattern (not regular expression) the host name has to match. */
+  hostNamePattern?: string;
+  /** The type of the certificate to match (ssh or https). */
+  certType?: string;
+  /** The sub type of the certificate to match (protocol dependent, usually only used for ssh certs). */
+  certSubType?: string;
+}
+export const DeleteCertificateServiceCertificateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      hostNamePattern: S.optional(S.String.pipe(T.Query())),
+      certType: S.optional(S.String.pipe(T.Query())),
+      certSubType: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({ method: "DELETE", uri: "/api/v1/certificates", code: 200 }),
+    ),
+  ).annotate({
+    identifier: "DeleteCertificateServiceCertificateRequest",
+  }) as any as S.Schema<DeleteCertificateServiceCertificateRequest>;
+
+export interface DeleteClusterServiceRequest {
+  /** value holds the cluster server URL or cluster name */
+  id_value: string;
+  server?: string;
+  name?: string;
+  /** type is the type of the specified cluster identifier ( "server" - default, "name" ). */
+  id_type?: string;
+}
+export const DeleteClusterServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id_value: S.String.pipe(T.Label()),
+    server: S.optional(S.String.pipe(T.Query())),
+    name: S.optional(S.String.pipe(T.Query())),
+    id_type: S.optional(S.String.pipe(T.Query("id.type"))),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/api/v1/clusters/{id_value}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteClusterServiceRequest",
+}) as any as S.Schema<DeleteClusterServiceRequest>;
+
+export type DeleteClusterServiceResponse = unknown;
+export const DeleteClusterServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteClusterServiceResponse",
+}) as any as S.Schema<DeleteClusterServiceResponse>;
+
+export interface DeleteGPGKeyServiceRequest {
+  /** The GPG key ID to query for. */
+  keyID?: string;
+}
+export const DeleteGPGKeyServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyID: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "DELETE", uri: "/api/v1/gpgkeys", code: 200 })),
+).annotate({
+  identifier: "DeleteGPGKeyServiceRequest",
+}) as any as S.Schema<DeleteGPGKeyServiceRequest>;
+
+export type DeleteGPGKeyServiceResponse = unknown;
+export const DeleteGPGKeyServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteGPGKeyServiceResponse",
+}) as any as S.Schema<DeleteGPGKeyServiceResponse>;
+
+export interface DeleteProjectServiceRequest {
+  name: string;
+}
+export const DeleteProjectServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/api/v1/projects/{name}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteProjectServiceRequest",
+}) as any as S.Schema<DeleteProjectServiceRequest>;
+
+export type DeleteProjectServiceResponse = unknown;
+export const DeleteProjectServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteProjectServiceResponse",
+}) as any as S.Schema<DeleteProjectServiceResponse>;
+
+export interface DeleteProjectServiceTokenRequest {
+  project: string;
+  role: string;
+  iat: string;
+  id?: string;
+}
+export const DeleteProjectServiceTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: S.String.pipe(T.Label()),
+    role: S.String.pipe(T.Label()),
+    iat: S.String.pipe(T.Label()),
+    id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/api/v1/projects/{project}/roles/{role}/token/{iat}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteProjectServiceTokenRequest",
+}) as any as S.Schema<DeleteProjectServiceTokenRequest>;
+
+export type DeleteProjectServiceTokenResponse = unknown;
+export const DeleteProjectServiceTokenResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteProjectServiceTokenResponse",
+}) as any as S.Schema<DeleteProjectServiceTokenResponse>;
+
+export interface DeleteRepoCredsServiceRepositoryCredentialsRequest {
+  url: string;
+}
+export const DeleteRepoCredsServiceRepositoryCredentialsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      url: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({ method: "DELETE", uri: "/api/v1/repocreds/{url}", code: 200 }),
+    ),
+  ).annotate({
+    identifier: "DeleteRepoCredsServiceRepositoryCredentialsRequest",
+  }) as any as S.Schema<DeleteRepoCredsServiceRepositoryCredentialsRequest>;
+
+export type DeleteRepoCredsServiceRepositoryCredentialsResponse = unknown;
+export const DeleteRepoCredsServiceRepositoryCredentialsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "DeleteRepoCredsServiceRepositoryCredentialsResponse",
+  }) as any as S.Schema<DeleteRepoCredsServiceRepositoryCredentialsResponse>;
+
+export interface DeleteRepoCredsServiceWriteRepositoryCredentialsRequest {
+  url: string;
+}
+export const DeleteRepoCredsServiceWriteRepositoryCredentialsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      url: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/api/v1/write-repocreds/{url}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteRepoCredsServiceWriteRepositoryCredentialsRequest",
+  }) as any as S.Schema<DeleteRepoCredsServiceWriteRepositoryCredentialsRequest>;
+
+export type DeleteRepoCredsServiceWriteRepositoryCredentialsResponse = unknown;
+export const DeleteRepoCredsServiceWriteRepositoryCredentialsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "DeleteRepoCredsServiceWriteRepositoryCredentialsResponse",
+  }) as any as S.Schema<DeleteRepoCredsServiceWriteRepositoryCredentialsResponse>;
+
+export interface DeleteRepositoryServiceRepositoryRequest {
   /** Repo URL for query */
   repo: string;
   /** Whether to force a cache refresh on repo's connection state. */
@@ -7866,7 +5642,7 @@ export interface RepositoryServiceDeleteRepositoryRequest {
   /** App project for query. */
   appProject?: string;
 }
-export const RepositoryServiceDeleteRepositoryRequest = /*@__PURE__*/ S.suspend(
+export const DeleteRepositoryServiceRepositoryRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       repo: S.String.pipe(T.Label()),
@@ -7880,16 +5656,16 @@ export const RepositoryServiceDeleteRepositoryRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "RepositoryServiceDeleteRepositoryRequest",
-}) as any as S.Schema<RepositoryServiceDeleteRepositoryRequest>;
+  identifier: "DeleteRepositoryServiceRepositoryRequest",
+}) as any as S.Schema<DeleteRepositoryServiceRepositoryRequest>;
 
-export type RepositoryServiceDeleteRepositoryResponse = unknown;
-export const RepositoryServiceDeleteRepositoryResponse =
+export type DeleteRepositoryServiceRepositoryResponse = unknown;
+export const DeleteRepositoryServiceRepositoryResponse =
   /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "RepositoryServiceDeleteRepositoryResponse",
-  }) as any as S.Schema<RepositoryServiceDeleteRepositoryResponse>;
+    identifier: "DeleteRepositoryServiceRepositoryResponse",
+  }) as any as S.Schema<DeleteRepositoryServiceRepositoryResponse>;
 
-export interface RepositoryServiceDeleteWriteRepositoryRequest {
+export interface DeleteRepositoryServiceWriteRepositoryRequest {
   /** Repo URL for query */
   repo: string;
   /** Whether to force a cache refresh on repo's connection state. */
@@ -7897,7 +5673,7 @@ export interface RepositoryServiceDeleteWriteRepositoryRequest {
   /** App project for query. */
   appProject?: string;
 }
-export const RepositoryServiceDeleteWriteRepositoryRequest =
+export const DeleteRepositoryServiceWriteRepositoryRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       repo: S.String.pipe(T.Label()),
@@ -7911,16 +5687,657 @@ export const RepositoryServiceDeleteWriteRepositoryRequest =
       }),
     ),
   ).annotate({
-    identifier: "RepositoryServiceDeleteWriteRepositoryRequest",
-  }) as any as S.Schema<RepositoryServiceDeleteWriteRepositoryRequest>;
+    identifier: "DeleteRepositoryServiceWriteRepositoryRequest",
+  }) as any as S.Schema<DeleteRepositoryServiceWriteRepositoryRequest>;
 
-export type RepositoryServiceDeleteWriteRepositoryResponse = unknown;
-export const RepositoryServiceDeleteWriteRepositoryResponse =
+export type DeleteRepositoryServiceWriteRepositoryResponse = unknown;
+export const DeleteRepositoryServiceWriteRepositoryResponse =
   /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "RepositoryServiceDeleteWriteRepositoryResponse",
-  }) as any as S.Schema<RepositoryServiceDeleteWriteRepositoryResponse>;
+    identifier: "DeleteRepositoryServiceWriteRepositoryResponse",
+  }) as any as S.Schema<DeleteRepositoryServiceWriteRepositoryResponse>;
 
-export interface RepositoryServiceGetRequest {
+export interface DeleteSessionServiceRequest {}
+export const DeleteSessionServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "DELETE", uri: "/api/v1/session", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteSessionServiceRequest",
+}) as any as S.Schema<DeleteSessionServiceRequest>;
+
+export interface GenerateApplicationSetServiceRequest {
+  applicationSet?: V1alpha1ApplicationSet;
+}
+export const GenerateApplicationSetServiceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      applicationSet: S.optional(V1alpha1ApplicationSet),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/v1/applicationsets/generate",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GenerateApplicationSetServiceRequest",
+}) as any as S.Schema<GenerateApplicationSetServiceRequest>;
+
+export type ApplicationsetApplicationSetGenerateResponseApplicationsList =
+  Array<V1alpha1Application>;
+export const ApplicationsetApplicationSetGenerateResponseApplicationsList =
+  /*@__PURE__*/ S.Array(
+    V1alpha1Application,
+  ) as any as S.Schema<ApplicationsetApplicationSetGenerateResponseApplicationsList>;
+
+export interface ApplicationsetApplicationSetGenerateResponse {
+  applications?: ApplicationsetApplicationSetGenerateResponseApplicationsList;
+}
+export const ApplicationsetApplicationSetGenerateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      applications: S.optional(
+        ApplicationsetApplicationSetGenerateResponseApplicationsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ApplicationsetApplicationSetGenerateResponse",
+  }) as any as S.Schema<ApplicationsetApplicationSetGenerateResponse>;
+
+export interface GetAccountServiceAccountRequest {
+  name: string;
+}
+export const GetAccountServiceAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/api/v1/account/{name}", code: 200 })),
+).annotate({
+  identifier: "GetAccountServiceAccountRequest",
+}) as any as S.Schema<GetAccountServiceAccountRequest>;
+
+export type AccountAccountCapabilitiesList = Array<string>;
+export const AccountAccountCapabilitiesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AccountAccountCapabilitiesList>;
+
+export interface AccountToken {
+  expiresAt?: number;
+  id?: string;
+  issuedAt?: number;
+}
+export const AccountToken = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expiresAt: S.optional(S.Number),
+    id: S.optional(S.String),
+    issuedAt: S.optional(S.Number),
+  }),
+).annotate({ identifier: "AccountToken" }) as any as S.Schema<AccountToken>;
+
+export type AccountAccountTokensList = Array<AccountToken>;
+export const AccountAccountTokensList = /*@__PURE__*/ S.Array(
+  AccountToken,
+) as any as S.Schema<AccountAccountTokensList>;
+
+export interface AccountAccount {
+  capabilities?: AccountAccountCapabilitiesList;
+  enabled?: boolean;
+  name?: string;
+  tokens?: AccountAccountTokensList;
+}
+export const AccountAccount = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    capabilities: S.optional(AccountAccountCapabilitiesList),
+    enabled: S.optional(S.Boolean),
+    name: S.optional(S.String),
+    tokens: S.optional(AccountAccountTokensList),
+  }),
+).annotate({ identifier: "AccountAccount" }) as any as S.Schema<AccountAccount>;
+
+export type GetApplicationServiceRequestProjectsList = Array<string>;
+export const GetApplicationServiceRequestProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetApplicationServiceRequestProjectsList>;
+
+export type GetApplicationServiceRequestProjectList = Array<string>;
+export const GetApplicationServiceRequestProjectList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetApplicationServiceRequestProjectList>;
+
+export interface GetApplicationServiceRequest {
+  /** the application's name */
+  name: string;
+  /** forces application reconciliation if set to 'hard'. */
+  refresh?: string;
+  /** the project names to restrict returned list applications. */
+  projects?: GetApplicationServiceRequestProjectsList;
+  /** when specified with a watch call, shows changes that occur after that particular version of a resource. */
+  resourceVersion?: string;
+  /** the selector to restrict returned list to applications only with matched labels. */
+  selector?: string;
+  /** the repoURL to restrict returned list applications. */
+  repo?: string;
+  /** the application's namespace. */
+  appNamespace?: string;
+  /** the project names to restrict returned list applications (legacy name for backwards-compatibility). */
+  project?: GetApplicationServiceRequestProjectList;
+}
+export const GetApplicationServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    refresh: S.optional(S.String.pipe(T.Query())),
+    projects: S.optional(
+      GetApplicationServiceRequestProjectsList.pipe(T.Query()),
+    ),
+    resourceVersion: S.optional(S.String.pipe(T.Query())),
+    selector: S.optional(S.String.pipe(T.Query())),
+    repo: S.optional(S.String.pipe(T.Query())),
+    appNamespace: S.optional(S.String.pipe(T.Query())),
+    project: S.optional(
+      GetApplicationServiceRequestProjectList.pipe(T.Query()),
+    ),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v1/applications/{name}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetApplicationServiceRequest",
+}) as any as S.Schema<GetApplicationServiceRequest>;
+
+export interface GetApplicationServiceApplicationSyncWindowsRequest {
+  name: string;
+  appNamespace?: string;
+  project?: string;
+}
+export const GetApplicationServiceApplicationSyncWindowsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/applications/{name}/syncwindows",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetApplicationServiceApplicationSyncWindowsRequest",
+  }) as any as S.Schema<GetApplicationServiceApplicationSyncWindowsRequest>;
+
+export interface ApplicationApplicationSyncWindow {
+  duration?: string;
+  kind?: string;
+  manualSync?: boolean;
+  schedule?: string;
+}
+export const ApplicationApplicationSyncWindow = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    duration: S.optional(S.String),
+    kind: S.optional(S.String),
+    manualSync: S.optional(S.Boolean),
+    schedule: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApplicationApplicationSyncWindow",
+}) as any as S.Schema<ApplicationApplicationSyncWindow>;
+
+export type ApplicationApplicationSyncWindowsResponseActiveWindowsList =
+  Array<ApplicationApplicationSyncWindow>;
+export const ApplicationApplicationSyncWindowsResponseActiveWindowsList =
+  /*@__PURE__*/ S.Array(
+    ApplicationApplicationSyncWindow,
+  ) as any as S.Schema<ApplicationApplicationSyncWindowsResponseActiveWindowsList>;
+
+export type ApplicationApplicationSyncWindowsResponseAssignedWindowsList =
+  Array<ApplicationApplicationSyncWindow>;
+export const ApplicationApplicationSyncWindowsResponseAssignedWindowsList =
+  /*@__PURE__*/ S.Array(
+    ApplicationApplicationSyncWindow,
+  ) as any as S.Schema<ApplicationApplicationSyncWindowsResponseAssignedWindowsList>;
+
+export interface ApplicationApplicationSyncWindowsResponse {
+  activeWindows?: ApplicationApplicationSyncWindowsResponseActiveWindowsList;
+  assignedWindows?: ApplicationApplicationSyncWindowsResponseAssignedWindowsList;
+  canSync?: boolean;
+}
+export const ApplicationApplicationSyncWindowsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      activeWindows: S.optional(
+        ApplicationApplicationSyncWindowsResponseActiveWindowsList,
+      ),
+      assignedWindows: S.optional(
+        ApplicationApplicationSyncWindowsResponseAssignedWindowsList,
+      ),
+      canSync: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "ApplicationApplicationSyncWindowsResponse",
+  }) as any as S.Schema<ApplicationApplicationSyncWindowsResponse>;
+
+export type GetApplicationServiceManifestsRequestSourcePositionsList =
+  Array<string>;
+export const GetApplicationServiceManifestsRequestSourcePositionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetApplicationServiceManifestsRequestSourcePositionsList>;
+
+export type GetApplicationServiceManifestsRequestRevisionsList = Array<string>;
+export const GetApplicationServiceManifestsRequestRevisionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetApplicationServiceManifestsRequestRevisionsList>;
+
+export interface GetApplicationServiceManifestsRequest {
+  name: string;
+  revision?: string;
+  appNamespace?: string;
+  project?: string;
+  sourcePositions?: GetApplicationServiceManifestsRequestSourcePositionsList;
+  revisions?: GetApplicationServiceManifestsRequestRevisionsList;
+  noCache?: boolean;
+}
+export const GetApplicationServiceManifestsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      revision: S.optional(S.String.pipe(T.Query())),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+      sourcePositions: S.optional(
+        GetApplicationServiceManifestsRequestSourcePositionsList.pipe(
+          T.Query(),
+        ),
+      ),
+      revisions: S.optional(
+        GetApplicationServiceManifestsRequestRevisionsList.pipe(T.Query()),
+      ),
+      noCache: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/applications/{name}/manifests",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetApplicationServiceManifestsRequest",
+}) as any as S.Schema<GetApplicationServiceManifestsRequest>;
+
+export type RepositoryManifestResponseCommandsList = Array<string>;
+export const RepositoryManifestResponseCommandsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RepositoryManifestResponseCommandsList>;
+
+export type RepositoryManifestResponseManifestsList = Array<string>;
+export const RepositoryManifestResponseManifestsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RepositoryManifestResponseManifestsList>;
+
+export interface RepositoryManifestResponse {
+  commands?: RepositoryManifestResponseCommandsList;
+  manifests?: RepositoryManifestResponseManifestsList;
+  namespace?: string;
+  revision?: string;
+  server?: string;
+  sourceIntegrityResult?: V1alpha1SourceIntegrityCheckResult;
+  sourceType?: string;
+  /** Deprecated: Use sourceIntegrityResult for more detailed information. verifyResult will be removed with the next major version. */
+  verifyResult?: string;
+}
+export const RepositoryManifestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    commands: S.optional(RepositoryManifestResponseCommandsList),
+    manifests: S.optional(RepositoryManifestResponseManifestsList),
+    namespace: S.optional(S.String),
+    revision: S.optional(S.String),
+    server: S.optional(S.String),
+    sourceIntegrityResult: S.optional(V1alpha1SourceIntegrityCheckResult),
+    sourceType: S.optional(S.String),
+    verifyResult: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RepositoryManifestResponse",
+}) as any as S.Schema<RepositoryManifestResponse>;
+
+export interface ApplicationFileChunk {
+  chunk?: string;
+}
+export const ApplicationFileChunk = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    chunk: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApplicationFileChunk",
+}) as any as S.Schema<ApplicationFileChunk>;
+
+export interface ApplicationApplicationManifestQueryWithFiles {
+  appNamespace?: string;
+  checksum?: string;
+  name?: string;
+  project?: string;
+}
+export const ApplicationApplicationManifestQueryWithFiles =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      appNamespace: S.optional(S.String),
+      checksum: S.optional(S.String),
+      name: S.optional(S.String),
+      project: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ApplicationApplicationManifestQueryWithFiles",
+  }) as any as S.Schema<ApplicationApplicationManifestQueryWithFiles>;
+
+export interface GetApplicationServiceManifestsWithFilesRequest {
+  chunk?: ApplicationFileChunk;
+  query?: ApplicationApplicationManifestQueryWithFiles;
+}
+export const GetApplicationServiceManifestsWithFilesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      chunk: S.optional(ApplicationFileChunk),
+      query: S.optional(ApplicationApplicationManifestQueryWithFiles),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/v1/applications/manifestsWithFiles",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetApplicationServiceManifestsWithFilesRequest",
+  }) as any as S.Schema<GetApplicationServiceManifestsWithFilesRequest>;
+
+export interface GetApplicationServiceOCIMetadataRequest {
+  /** the application's name */
+  name: string;
+  /** the revision of the app */
+  revision: string;
+  /** the application's namespace. */
+  appNamespace?: string;
+  project?: string;
+  /** source index (for multi source apps). */
+  sourceIndex?: number;
+  /** versionId from historical data (for multi source apps). */
+  versionId?: number;
+}
+export const GetApplicationServiceOCIMetadataRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      revision: S.String.pipe(T.Label()),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+      sourceIndex: S.optional(S.Number.pipe(T.Query())),
+      versionId: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/applications/{name}/revisions/{revision}/ocimetadata",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetApplicationServiceOCIMetadataRequest",
+}) as any as S.Schema<GetApplicationServiceOCIMetadataRequest>;
+
+export interface V1alpha1OCIMetadata {
+  authors?: string;
+  createdAt?: string;
+  description?: string;
+  docsUrl?: string;
+  imageUrl?: string;
+  sourceUrl?: string;
+  version?: string;
+}
+export const V1alpha1OCIMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authors: S.optional(S.String),
+    createdAt: S.optional(S.String),
+    description: S.optional(S.String),
+    docsUrl: S.optional(S.String),
+    imageUrl: S.optional(S.String),
+    sourceUrl: S.optional(S.String),
+    version: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "V1alpha1OCIMetadata",
+}) as any as S.Schema<V1alpha1OCIMetadata>;
+
+export interface GetApplicationServiceResourceRequest {
+  name: string;
+  namespace?: string;
+  resourceName?: string;
+  version?: string;
+  group?: string;
+  kind?: string;
+  appNamespace?: string;
+  project?: string;
+}
+export const GetApplicationServiceResourceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      namespace: S.optional(S.String.pipe(T.Query())),
+      resourceName: S.optional(S.String.pipe(T.Query())),
+      version: S.optional(S.String.pipe(T.Query())),
+      group: S.optional(S.String.pipe(T.Query())),
+      kind: S.optional(S.String.pipe(T.Query())),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/applications/{name}/resource",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetApplicationServiceResourceRequest",
+}) as any as S.Schema<GetApplicationServiceResourceRequest>;
+
+export interface ApplicationApplicationResourceResponse {
+  manifest?: string;
+}
+export const ApplicationApplicationResourceResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      manifest: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ApplicationApplicationResourceResponse",
+}) as any as S.Schema<ApplicationApplicationResourceResponse>;
+
+export interface GetApplicationSetServiceRequest {
+  /** the applicationsets's name */
+  name: string;
+  /** The application set namespace. Default empty is argocd control plane namespace. */
+  appsetNamespace?: string;
+}
+export const GetApplicationSetServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    appsetNamespace: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v1/applicationsets/{name}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetApplicationSetServiceRequest",
+}) as any as S.Schema<GetApplicationSetServiceRequest>;
+
+export interface GetClusterServiceRequest {
+  /** value holds the cluster server URL or cluster name */
+  id_value: string;
+  server?: string;
+  name?: string;
+  /** type is the type of the specified cluster identifier ( "server" - default, "name" ). */
+  id_type?: string;
+}
+export const GetClusterServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id_value: S.String.pipe(T.Label()),
+    server: S.optional(S.String.pipe(T.Query())),
+    name: S.optional(S.String.pipe(T.Query())),
+    id_type: S.optional(S.String.pipe(T.Query("id.type"))),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v1/clusters/{id_value}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetClusterServiceRequest",
+}) as any as S.Schema<GetClusterServiceRequest>;
+
+export interface GetGPGKeyServiceRequest {
+  /** The GPG key ID to query for */
+  keyID: string;
+}
+export const GetGPGKeyServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyID: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/api/v1/gpgkeys/{keyID}", code: 200 })),
+).annotate({
+  identifier: "GetGPGKeyServiceRequest",
+}) as any as S.Schema<GetGPGKeyServiceRequest>;
+
+export interface GetProjectServiceRequest {
+  name: string;
+}
+export const GetProjectServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/api/v1/projects/{name}", code: 200 })),
+).annotate({
+  identifier: "GetProjectServiceRequest",
+}) as any as S.Schema<GetProjectServiceRequest>;
+
+export interface GetProjectServiceDetailedProjectRequest {
+  name: string;
+}
+export const GetProjectServiceDetailedProjectRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/projects/{name}/detailed",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetProjectServiceDetailedProjectRequest",
+}) as any as S.Schema<GetProjectServiceDetailedProjectRequest>;
+
+export type ProjectDetailedProjectsResponseClustersList =
+  Array<V1alpha1Cluster>;
+export const ProjectDetailedProjectsResponseClustersList =
+  /*@__PURE__*/ S.Array(
+    V1alpha1Cluster,
+  ) as any as S.Schema<ProjectDetailedProjectsResponseClustersList>;
+
+export type ProjectDetailedProjectsResponseGlobalProjectsList =
+  Array<V1alpha1AppProject>;
+export const ProjectDetailedProjectsResponseGlobalProjectsList =
+  /*@__PURE__*/ S.Array(
+    V1alpha1AppProject,
+  ) as any as S.Schema<ProjectDetailedProjectsResponseGlobalProjectsList>;
+
+export type ProjectDetailedProjectsResponseRepositoriesList =
+  Array<V1alpha1Repository>;
+export const ProjectDetailedProjectsResponseRepositoriesList =
+  /*@__PURE__*/ S.Array(
+    V1alpha1Repository,
+  ) as any as S.Schema<ProjectDetailedProjectsResponseRepositoriesList>;
+
+export interface ProjectDetailedProjectsResponse {
+  clusters?: ProjectDetailedProjectsResponseClustersList;
+  globalProjects?: ProjectDetailedProjectsResponseGlobalProjectsList;
+  project?: V1alpha1AppProject;
+  repositories?: ProjectDetailedProjectsResponseRepositoriesList;
+}
+export const ProjectDetailedProjectsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clusters: S.optional(ProjectDetailedProjectsResponseClustersList),
+    globalProjects: S.optional(
+      ProjectDetailedProjectsResponseGlobalProjectsList,
+    ),
+    project: S.optional(V1alpha1AppProject),
+    repositories: S.optional(ProjectDetailedProjectsResponseRepositoriesList),
+  }),
+).annotate({
+  identifier: "ProjectDetailedProjectsResponse",
+}) as any as S.Schema<ProjectDetailedProjectsResponse>;
+
+export interface GetProjectServiceGlobalProjectsRequest {
+  name: string;
+}
+export const GetProjectServiceGlobalProjectsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/projects/{name}/globalprojects",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetProjectServiceGlobalProjectsRequest",
+}) as any as S.Schema<GetProjectServiceGlobalProjectsRequest>;
+
+export type ProjectGlobalProjectsResponseItemsList = Array<V1alpha1AppProject>;
+export const ProjectGlobalProjectsResponseItemsList = /*@__PURE__*/ S.Array(
+  V1alpha1AppProject,
+) as any as S.Schema<ProjectGlobalProjectsResponseItemsList>;
+
+export interface ProjectGlobalProjectsResponse {
+  items?: ProjectGlobalProjectsResponseItemsList;
+}
+export const ProjectGlobalProjectsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(ProjectGlobalProjectsResponseItemsList),
+  }),
+).annotate({
+  identifier: "ProjectGlobalProjectsResponse",
+}) as any as S.Schema<ProjectGlobalProjectsResponse>;
+
+export interface GetProjectServiceSyncWindowsStateRequest {
+  name: string;
+}
+export const GetProjectServiceSyncWindowsStateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/projects/{name}/syncwindows",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetProjectServiceSyncWindowsStateRequest",
+}) as any as S.Schema<GetProjectServiceSyncWindowsStateRequest>;
+
+export type ProjectSyncWindowsResponseWindowsList =
+  Array<V1alpha1InlineSyncWindow>;
+export const ProjectSyncWindowsResponseWindowsList = /*@__PURE__*/ S.Array(
+  V1alpha1InlineSyncWindow,
+) as any as S.Schema<ProjectSyncWindowsResponseWindowsList>;
+
+export interface ProjectSyncWindowsResponse {
+  windows?: ProjectSyncWindowsResponseWindowsList;
+}
+export const ProjectSyncWindowsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    windows: S.optional(ProjectSyncWindowsResponseWindowsList),
+  }),
+).annotate({
+  identifier: "ProjectSyncWindowsResponse",
+}) as any as S.Schema<ProjectSyncWindowsResponse>;
+
+export interface GetRepositoryServiceRequest {
   /** Repo URL for query */
   repo: string;
   /** Whether to force a cache refresh on repo's connection state. */
@@ -7928,7 +6345,7 @@ export interface RepositoryServiceGetRequest {
   /** App project for query. */
   appProject?: string;
 }
-export const RepositoryServiceGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRepositoryServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     repo: S.String.pipe(T.Label()),
     forceRefresh: S.optional(S.Boolean.pipe(T.Query())),
@@ -7937,10 +6354,10 @@ export const RepositoryServiceGetRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "GET", uri: "/api/v1/repositories/{repo}", code: 200 }),
   ),
 ).annotate({
-  identifier: "RepositoryServiceGetRequest",
-}) as any as S.Schema<RepositoryServiceGetRequest>;
+  identifier: "GetRepositoryServiceRequest",
+}) as any as S.Schema<GetRepositoryServiceRequest>;
 
-export interface RepositoryServiceGetAppDetailsRequest {
+export interface GetRepositoryServiceAppDetailsRequest {
   /** RepoURL is the URL to the repository (Git or Helm) that contains the application manifests */
   source_repoURL: string;
   appName?: string;
@@ -7949,7 +6366,7 @@ export interface RepositoryServiceGetAppDetailsRequest {
   sourceIndex?: number;
   versionId?: number;
 }
-export const RepositoryServiceGetAppDetailsRequest = /*@__PURE__*/ S.suspend(
+export const GetRepositoryServiceAppDetailsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       source_repoURL: S.String.pipe(T.Label()),
@@ -7966,8 +6383,8 @@ export const RepositoryServiceGetAppDetailsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "RepositoryServiceGetAppDetailsRequest",
-}) as any as S.Schema<RepositoryServiceGetAppDetailsRequest>;
+  identifier: "GetRepositoryServiceAppDetailsRequest",
+}) as any as S.Schema<GetRepositoryServiceAppDetailsRequest>;
 
 export type RepositoryHelmAppSpecFileParametersList =
   Array<V1alpha1HelmFileParameter>;
@@ -8112,7 +6529,7 @@ export const RepositoryRepoAppDetailsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RepositoryRepoAppDetailsResponse",
 }) as any as S.Schema<RepositoryRepoAppDetailsResponse>;
 
-export interface RepositoryServiceGetHelmChartsRequest {
+export interface GetRepositoryServiceHelmChartsRequest {
   /** Repo URL for query */
   repo: string;
   /** Whether to force a cache refresh on repo's connection state. */
@@ -8120,7 +6537,7 @@ export interface RepositoryServiceGetHelmChartsRequest {
   /** App project for query. */
   appProject?: string;
 }
-export const RepositoryServiceGetHelmChartsRequest = /*@__PURE__*/ S.suspend(
+export const GetRepositoryServiceHelmChartsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       repo: S.String.pipe(T.Label()),
@@ -8134,8 +6551,8 @@ export const RepositoryServiceGetHelmChartsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "RepositoryServiceGetHelmChartsRequest",
-}) as any as S.Schema<RepositoryServiceGetHelmChartsRequest>;
+  identifier: "GetRepositoryServiceHelmChartsRequest",
+}) as any as S.Schema<GetRepositoryServiceHelmChartsRequest>;
 
 export type RepositoryHelmChartVersionsList = Array<string>;
 export const RepositoryHelmChartVersionsList = /*@__PURE__*/ S.Array(
@@ -8171,7 +6588,7 @@ export const RepositoryHelmChartsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RepositoryHelmChartsResponse",
 }) as any as S.Schema<RepositoryHelmChartsResponse>;
 
-export interface RepositoryServiceGetWriteRequest {
+export interface GetRepositoryServiceWriteRequest {
   /** Repo URL for query */
   repo: string;
   /** Whether to force a cache refresh on repo's connection state. */
@@ -8179,7 +6596,7 @@ export interface RepositoryServiceGetWriteRequest {
   /** App project for query. */
   appProject?: string;
 }
-export const RepositoryServiceGetWriteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRepositoryServiceWriteRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     repo: S.String.pipe(T.Label()),
     forceRefresh: S.optional(S.Boolean.pipe(T.Query())),
@@ -8192,610 +6609,17 @@ export const RepositoryServiceGetWriteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RepositoryServiceGetWriteRequest",
-}) as any as S.Schema<RepositoryServiceGetWriteRequest>;
+  identifier: "GetRepositoryServiceWriteRequest",
+}) as any as S.Schema<GetRepositoryServiceWriteRequest>;
 
-export interface RepositoryServiceListAppsRequest {
-  repo: string;
-  revision?: string;
-  appName?: string;
-  appProject?: string;
-}
-export const RepositoryServiceListAppsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    repo: S.String.pipe(T.Label()),
-    revision: S.optional(S.String.pipe(T.Query())),
-    appName: S.optional(S.String.pipe(T.Query())),
-    appProject: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v1/repositories/{repo}/apps",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RepositoryServiceListAppsRequest",
-}) as any as S.Schema<RepositoryServiceListAppsRequest>;
-
-export interface RepositoryAppInfo {
-  path?: string;
-  type?: string;
-}
-export const RepositoryAppInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    path: S.optional(S.String),
-    type: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RepositoryAppInfo",
-}) as any as S.Schema<RepositoryAppInfo>;
-
-export type RepositoryRepoAppsResponseItemsList = Array<RepositoryAppInfo>;
-export const RepositoryRepoAppsResponseItemsList = /*@__PURE__*/ S.Array(
-  RepositoryAppInfo,
-) as any as S.Schema<RepositoryRepoAppsResponseItemsList>;
-
-export interface RepositoryRepoAppsResponse {
-  items?: RepositoryRepoAppsResponseItemsList;
-}
-export const RepositoryRepoAppsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(RepositoryRepoAppsResponseItemsList),
-  }),
-).annotate({
-  identifier: "RepositoryRepoAppsResponse",
-}) as any as S.Schema<RepositoryRepoAppsResponse>;
-
-export interface RepositoryServiceListOCITagsRequest {
-  /** Repo URL for query */
-  repo: string;
-  /** Whether to force a cache refresh on repo's connection state. */
-  forceRefresh?: boolean;
-  /** App project for query. */
-  appProject?: string;
-}
-export const RepositoryServiceListOCITagsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    repo: S.String.pipe(T.Label()),
-    forceRefresh: S.optional(S.Boolean.pipe(T.Query())),
-    appProject: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v1/repositories/{repo}/oci-tags",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RepositoryServiceListOCITagsRequest",
-}) as any as S.Schema<RepositoryServiceListOCITagsRequest>;
-
-export type RepositoryRefsBranchesList = Array<string>;
-export const RepositoryRefsBranchesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RepositoryRefsBranchesList>;
-
-export type RepositoryRefsTagsList = Array<string>;
-export const RepositoryRefsTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RepositoryRefsTagsList>;
-
-export interface RepositoryRefs {
-  branches?: RepositoryRefsBranchesList;
-  tags?: RepositoryRefsTagsList;
-}
-export const RepositoryRefs = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    branches: S.optional(RepositoryRefsBranchesList),
-    tags: S.optional(RepositoryRefsTagsList),
-  }),
-).annotate({ identifier: "RepositoryRefs" }) as any as S.Schema<RepositoryRefs>;
-
-export interface RepositoryServiceListRefsRequest {
-  /** Repo URL for query */
-  repo: string;
-  /** Whether to force a cache refresh on repo's connection state. */
-  forceRefresh?: boolean;
-  /** App project for query. */
-  appProject?: string;
-}
-export const RepositoryServiceListRefsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    repo: S.String.pipe(T.Label()),
-    forceRefresh: S.optional(S.Boolean.pipe(T.Query())),
-    appProject: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v1/repositories/{repo}/refs",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RepositoryServiceListRefsRequest",
-}) as any as S.Schema<RepositoryServiceListRefsRequest>;
-
-export interface RepositoryServiceListRepositoriesRequest {
-  /** Repo URL for query. */
-  repo?: string;
-  /** Whether to force a cache refresh on repo's connection state. */
-  forceRefresh?: boolean;
-  /** App project for query. */
-  appProject?: string;
-}
-export const RepositoryServiceListRepositoriesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      repo: S.optional(S.String.pipe(T.Query())),
-      forceRefresh: S.optional(S.Boolean.pipe(T.Query())),
-      appProject: S.optional(S.String.pipe(T.Query())),
-    }).pipe(T.Http({ method: "GET", uri: "/api/v1/repositories", code: 200 })),
-).annotate({
-  identifier: "RepositoryServiceListRepositoriesRequest",
-}) as any as S.Schema<RepositoryServiceListRepositoriesRequest>;
-
-export type V1alpha1RepositoryListItemsList = Array<V1alpha1Repository>;
-export const V1alpha1RepositoryListItemsList = /*@__PURE__*/ S.Array(
-  V1alpha1Repository,
-) as any as S.Schema<V1alpha1RepositoryListItemsList>;
-
-/** RepositoryList is a collection of Repositories. */
-export interface V1alpha1RepositoryList {
-  items?: V1alpha1RepositoryListItemsList;
-  metadata?: V1ListMeta;
-}
-export const V1alpha1RepositoryList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(V1alpha1RepositoryListItemsList),
-    metadata: S.optional(V1ListMeta),
-  }),
-).annotate({
-  identifier: "V1alpha1RepositoryList",
-}) as any as S.Schema<V1alpha1RepositoryList>;
-
-export interface RepositoryServiceListWriteRepositoriesRequest {
-  /** Repo URL for query. */
-  repo?: string;
-  /** Whether to force a cache refresh on repo's connection state. */
-  forceRefresh?: boolean;
-  /** App project for query. */
-  appProject?: string;
-}
-export const RepositoryServiceListWriteRepositoriesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      repo: S.optional(S.String.pipe(T.Query())),
-      forceRefresh: S.optional(S.Boolean.pipe(T.Query())),
-      appProject: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({ method: "GET", uri: "/api/v1/write-repositories", code: 200 }),
-    ),
-  ).annotate({
-    identifier: "RepositoryServiceListWriteRepositoriesRequest",
-  }) as any as S.Schema<RepositoryServiceListWriteRepositoriesRequest>;
-
-export interface RepositoryServiceUpdateRepositoryRequest {
-  /** Repo contains the URL to the remote repository */
-  repo_repo: string;
-  azureActiveDirectoryEndpoint?: string;
-  azureServicePrincipalClientId?: string;
-  azureServicePrincipalClientSecret?: string;
-  azureServicePrincipalTenantId?: string;
-  bearerToken?: string;
-  connectionState?: V1alpha1ConnectionState;
-  /** Depth specifies the depth for shallow clones. A value of 0 or omitting the field indicates a full clone. */
-  depth?: number;
-  /** EnableLFS specifies whether git-lfs support should be enabled for this repo. Only valid for Git repositories. */
-  enableLfs?: boolean;
-  enableOCI?: boolean;
-  forceHttpBasicAuth?: boolean;
-  gcpServiceAccountKey?: string;
-  githubAppEnterpriseBaseUrl?: string;
-  githubAppID?: number;
-  githubAppInstallationID?: number;
-  githubAppPrivateKey?: string;
-  inheritedCreds?: boolean;
-  insecure?: boolean;
-  insecureIgnoreHostKey?: boolean;
-  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
-  insecureOCIForceHttp?: boolean;
-  name?: string;
-  noProxy?: string;
-  password?: string | Redacted.Redacted<string>;
-  project?: string;
-  proxy?: string;
-  repo?: string;
-  /** SSHPrivateKey contains the PEM data for authenticating at the repo server. Only used with Git repos. */
-  sshPrivateKey?: string;
-  tlsClientCertData?: string;
-  tlsClientCertKey?: string;
-  /** Type specifies the type of the repo. Can be either "git" or "helm. "git" is assumed if empty or absent. */
-  type?: string;
-  useAzureWorkloadIdentity?: boolean;
-  username?: string;
-  /** WebhookManifestCacheWarmDisabled disables manifest cache warming during webhook processing for this repository. When set, webhook handlers will only trigger reconciliation for affected applications and skip Redis cache operations for unaffected ones. Recommended for large monorepos with plain YAML manifests. */
-  webhookManifestCacheWarmDisabled?: boolean;
-}
-export const RepositoryServiceUpdateRepositoryRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      repo_repo: S.String.pipe(T.Label()),
-      azureActiveDirectoryEndpoint: S.optional(S.String),
-      azureServicePrincipalClientId: S.optional(S.String),
-      azureServicePrincipalClientSecret: S.optional(S.String),
-      azureServicePrincipalTenantId: S.optional(S.String),
-      bearerToken: S.optional(S.String),
-      connectionState: S.optional(V1alpha1ConnectionState),
-      depth: S.optional(S.Number),
-      enableLfs: S.optional(S.Boolean),
-      enableOCI: S.optional(S.Boolean),
-      forceHttpBasicAuth: S.optional(S.Boolean),
-      gcpServiceAccountKey: S.optional(S.String),
-      githubAppEnterpriseBaseUrl: S.optional(S.String),
-      githubAppID: S.optional(S.Number),
-      githubAppInstallationID: S.optional(S.Number),
-      githubAppPrivateKey: S.optional(S.String),
-      inheritedCreds: S.optional(S.Boolean),
-      insecure: S.optional(S.Boolean),
-      insecureIgnoreHostKey: S.optional(S.Boolean),
-      insecureOCIForceHttp: S.optional(S.Boolean),
-      name: S.optional(S.String),
-      noProxy: S.optional(S.String),
-      password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-      project: S.optional(S.String),
-      proxy: S.optional(S.String),
-      repo: S.optional(S.String),
-      sshPrivateKey: S.optional(S.String),
-      tlsClientCertData: S.optional(S.String),
-      tlsClientCertKey: S.optional(S.String),
-      type: S.optional(S.String),
-      useAzureWorkloadIdentity: S.optional(S.Boolean),
-      username: S.optional(S.String),
-      webhookManifestCacheWarmDisabled: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/api/v1/repositories/{repo_repo}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "RepositoryServiceUpdateRepositoryRequest",
-}) as any as S.Schema<RepositoryServiceUpdateRepositoryRequest>;
-
-export interface RepositoryServiceUpdateWriteRepositoryRequest {
-  /** Repo contains the URL to the remote repository */
-  repo_repo: string;
-  azureActiveDirectoryEndpoint?: string;
-  azureServicePrincipalClientId?: string;
-  azureServicePrincipalClientSecret?: string;
-  azureServicePrincipalTenantId?: string;
-  bearerToken?: string;
-  connectionState?: V1alpha1ConnectionState;
-  /** Depth specifies the depth for shallow clones. A value of 0 or omitting the field indicates a full clone. */
-  depth?: number;
-  /** EnableLFS specifies whether git-lfs support should be enabled for this repo. Only valid for Git repositories. */
-  enableLfs?: boolean;
-  enableOCI?: boolean;
-  forceHttpBasicAuth?: boolean;
-  gcpServiceAccountKey?: string;
-  githubAppEnterpriseBaseUrl?: string;
-  githubAppID?: number;
-  githubAppInstallationID?: number;
-  githubAppPrivateKey?: string;
-  inheritedCreds?: boolean;
-  insecure?: boolean;
-  insecureIgnoreHostKey?: boolean;
-  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
-  insecureOCIForceHttp?: boolean;
-  name?: string;
-  noProxy?: string;
-  password?: string | Redacted.Redacted<string>;
-  project?: string;
-  proxy?: string;
-  repo?: string;
-  /** SSHPrivateKey contains the PEM data for authenticating at the repo server. Only used with Git repos. */
-  sshPrivateKey?: string;
-  tlsClientCertData?: string;
-  tlsClientCertKey?: string;
-  /** Type specifies the type of the repo. Can be either "git" or "helm. "git" is assumed if empty or absent. */
-  type?: string;
-  useAzureWorkloadIdentity?: boolean;
-  username?: string;
-  /** WebhookManifestCacheWarmDisabled disables manifest cache warming during webhook processing for this repository. When set, webhook handlers will only trigger reconciliation for affected applications and skip Redis cache operations for unaffected ones. Recommended for large monorepos with plain YAML manifests. */
-  webhookManifestCacheWarmDisabled?: boolean;
-}
-export const RepositoryServiceUpdateWriteRepositoryRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      repo_repo: S.String.pipe(T.Label()),
-      azureActiveDirectoryEndpoint: S.optional(S.String),
-      azureServicePrincipalClientId: S.optional(S.String),
-      azureServicePrincipalClientSecret: S.optional(S.String),
-      azureServicePrincipalTenantId: S.optional(S.String),
-      bearerToken: S.optional(S.String),
-      connectionState: S.optional(V1alpha1ConnectionState),
-      depth: S.optional(S.Number),
-      enableLfs: S.optional(S.Boolean),
-      enableOCI: S.optional(S.Boolean),
-      forceHttpBasicAuth: S.optional(S.Boolean),
-      gcpServiceAccountKey: S.optional(S.String),
-      githubAppEnterpriseBaseUrl: S.optional(S.String),
-      githubAppID: S.optional(S.Number),
-      githubAppInstallationID: S.optional(S.Number),
-      githubAppPrivateKey: S.optional(S.String),
-      inheritedCreds: S.optional(S.Boolean),
-      insecure: S.optional(S.Boolean),
-      insecureIgnoreHostKey: S.optional(S.Boolean),
-      insecureOCIForceHttp: S.optional(S.Boolean),
-      name: S.optional(S.String),
-      noProxy: S.optional(S.String),
-      password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-      project: S.optional(S.String),
-      proxy: S.optional(S.String),
-      repo: S.optional(S.String),
-      sshPrivateKey: S.optional(S.String),
-      tlsClientCertData: S.optional(S.String),
-      tlsClientCertKey: S.optional(S.String),
-      type: S.optional(S.String),
-      useAzureWorkloadIdentity: S.optional(S.Boolean),
-      username: S.optional(S.String),
-      webhookManifestCacheWarmDisabled: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/api/v1/write-repositories/{repo_repo}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "RepositoryServiceUpdateWriteRepositoryRequest",
-  }) as any as S.Schema<RepositoryServiceUpdateWriteRepositoryRequest>;
-
-export interface RepositoryServiceValidateAccessRequest {
-  /** The URL to the repo */
-  repo: string;
-  /** Username for accessing repo. */
-  username?: string;
-  /** Password for accessing repo. */
-  password?: string;
-  /** Private key data for accessing SSH repository. */
-  sshPrivateKey?: string;
-  /** Whether to skip certificate or host key validation. */
-  insecure?: boolean;
-  /** TLS client cert data for accessing HTTPS repository. */
-  tlsClientCertData?: string;
-  /** TLS client cert key for accessing HTTPS repository. */
-  tlsClientCertKey?: string;
-  /** The type of the repo. */
-  type?: string;
-  /** The name of the repo. */
-  name?: string;
-  /** Whether helm-oci support should be enabled for this repo. */
-  enableOci?: boolean;
-  /** Github App Private Key PEM data. */
-  githubAppPrivateKey?: string;
-  /** Github App ID of the app used to access the repo. */
-  githubAppID?: string;
-  /** Github App Installation ID of the installed GitHub App. */
-  githubAppInstallationID?: string;
-  /** Github App Enterprise base url if empty will default to https://api.github.com. */
-  githubAppEnterpriseBaseUrl?: string;
-  /** HTTP/HTTPS proxy to access the repository. */
-  proxy?: string;
-  /** Reference between project and repository that allow you automatically to be added as item inside SourceRepos project entity. */
-  project?: string;
-  /** Google Cloud Platform service account key. */
-  gcpServiceAccountKey?: string;
-  /** Whether to force HTTP basic auth. */
-  forceHttpBasicAuth?: boolean;
-  /** Whether to use azure workload identity for authentication. */
-  useAzureWorkloadIdentity?: boolean;
-  /** BearerToken contains the bearer token used for Git auth at the repo server. */
-  bearerToken?: string;
-  /** Whether https should be disabled for an OCI repo. */
-  insecureOciForceHttp?: boolean;
-  /** Azure Service Principal Client ID. */
-  azureServicePrincipalClientId?: string;
-  /** Azure Service Principal Client Secret. */
-  azureServicePrincipalClientSecret?: string;
-  /** Azure Service Principal Tenant ID. */
-  azureServicePrincipalTenantId?: string;
-  /** Azure Active Directory Endpoint. */
-  azureActiveDirectoryEndpoint?: string;
-  body: string;
-}
-export const RepositoryServiceValidateAccessRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      repo: S.String.pipe(T.Label()),
-      username: S.optional(S.String.pipe(T.Query())),
-      password: S.optional(S.String.pipe(T.Query())),
-      sshPrivateKey: S.optional(S.String.pipe(T.Query())),
-      insecure: S.optional(S.Boolean.pipe(T.Query())),
-      tlsClientCertData: S.optional(S.String.pipe(T.Query())),
-      tlsClientCertKey: S.optional(S.String.pipe(T.Query())),
-      type: S.optional(S.String.pipe(T.Query())),
-      name: S.optional(S.String.pipe(T.Query())),
-      enableOci: S.optional(S.Boolean.pipe(T.Query())),
-      githubAppPrivateKey: S.optional(S.String.pipe(T.Query())),
-      githubAppID: S.optional(S.String.pipe(T.Query())),
-      githubAppInstallationID: S.optional(S.String.pipe(T.Query())),
-      githubAppEnterpriseBaseUrl: S.optional(S.String.pipe(T.Query())),
-      proxy: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-      gcpServiceAccountKey: S.optional(S.String.pipe(T.Query())),
-      forceHttpBasicAuth: S.optional(S.Boolean.pipe(T.Query())),
-      useAzureWorkloadIdentity: S.optional(S.Boolean.pipe(T.Query())),
-      bearerToken: S.optional(S.String.pipe(T.Query())),
-      insecureOciForceHttp: S.optional(S.Boolean.pipe(T.Query())),
-      azureServicePrincipalClientId: S.optional(S.String.pipe(T.Query())),
-      azureServicePrincipalClientSecret: S.optional(S.String.pipe(T.Query())),
-      azureServicePrincipalTenantId: S.optional(S.String.pipe(T.Query())),
-      azureActiveDirectoryEndpoint: S.optional(S.String.pipe(T.Query())),
-      body: S.String.pipe(T.HttpBody()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/v1/repositories/{repo}/validate",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "RepositoryServiceValidateAccessRequest",
-}) as any as S.Schema<RepositoryServiceValidateAccessRequest>;
-
-export type RepositoryServiceValidateAccessResponse = unknown;
-export const RepositoryServiceValidateAccessResponse = /*@__PURE__*/ S.suspend(
-  () => S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "RepositoryServiceValidateAccessResponse",
-}) as any as S.Schema<RepositoryServiceValidateAccessResponse>;
-
-export interface RepositoryServiceValidateWriteAccessRequest {
-  /** The URL to the repo */
-  repo: string;
-  /** Username for accessing repo. */
-  username?: string;
-  /** Password for accessing repo. */
-  password?: string;
-  /** Private key data for accessing SSH repository. */
-  sshPrivateKey?: string;
-  /** Whether to skip certificate or host key validation. */
-  insecure?: boolean;
-  /** TLS client cert data for accessing HTTPS repository. */
-  tlsClientCertData?: string;
-  /** TLS client cert key for accessing HTTPS repository. */
-  tlsClientCertKey?: string;
-  /** The type of the repo. */
-  type?: string;
-  /** The name of the repo. */
-  name?: string;
-  /** Whether helm-oci support should be enabled for this repo. */
-  enableOci?: boolean;
-  /** Github App Private Key PEM data. */
-  githubAppPrivateKey?: string;
-  /** Github App ID of the app used to access the repo. */
-  githubAppID?: string;
-  /** Github App Installation ID of the installed GitHub App. */
-  githubAppInstallationID?: string;
-  /** Github App Enterprise base url if empty will default to https://api.github.com. */
-  githubAppEnterpriseBaseUrl?: string;
-  /** HTTP/HTTPS proxy to access the repository. */
-  proxy?: string;
-  /** Reference between project and repository that allow you automatically to be added as item inside SourceRepos project entity. */
-  project?: string;
-  /** Google Cloud Platform service account key. */
-  gcpServiceAccountKey?: string;
-  /** Whether to force HTTP basic auth. */
-  forceHttpBasicAuth?: boolean;
-  /** Whether to use azure workload identity for authentication. */
-  useAzureWorkloadIdentity?: boolean;
-  /** BearerToken contains the bearer token used for Git auth at the repo server. */
-  bearerToken?: string;
-  /** Whether https should be disabled for an OCI repo. */
-  insecureOciForceHttp?: boolean;
-  /** Azure Service Principal Client ID. */
-  azureServicePrincipalClientId?: string;
-  /** Azure Service Principal Client Secret. */
-  azureServicePrincipalClientSecret?: string;
-  /** Azure Service Principal Tenant ID. */
-  azureServicePrincipalTenantId?: string;
-  /** Azure Active Directory Endpoint. */
-  azureActiveDirectoryEndpoint?: string;
-  body: string;
-}
-export const RepositoryServiceValidateWriteAccessRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      repo: S.String.pipe(T.Label()),
-      username: S.optional(S.String.pipe(T.Query())),
-      password: S.optional(S.String.pipe(T.Query())),
-      sshPrivateKey: S.optional(S.String.pipe(T.Query())),
-      insecure: S.optional(S.Boolean.pipe(T.Query())),
-      tlsClientCertData: S.optional(S.String.pipe(T.Query())),
-      tlsClientCertKey: S.optional(S.String.pipe(T.Query())),
-      type: S.optional(S.String.pipe(T.Query())),
-      name: S.optional(S.String.pipe(T.Query())),
-      enableOci: S.optional(S.Boolean.pipe(T.Query())),
-      githubAppPrivateKey: S.optional(S.String.pipe(T.Query())),
-      githubAppID: S.optional(S.String.pipe(T.Query())),
-      githubAppInstallationID: S.optional(S.String.pipe(T.Query())),
-      githubAppEnterpriseBaseUrl: S.optional(S.String.pipe(T.Query())),
-      proxy: S.optional(S.String.pipe(T.Query())),
-      project: S.optional(S.String.pipe(T.Query())),
-      gcpServiceAccountKey: S.optional(S.String.pipe(T.Query())),
-      forceHttpBasicAuth: S.optional(S.Boolean.pipe(T.Query())),
-      useAzureWorkloadIdentity: S.optional(S.Boolean.pipe(T.Query())),
-      bearerToken: S.optional(S.String.pipe(T.Query())),
-      insecureOciForceHttp: S.optional(S.Boolean.pipe(T.Query())),
-      azureServicePrincipalClientId: S.optional(S.String.pipe(T.Query())),
-      azureServicePrincipalClientSecret: S.optional(S.String.pipe(T.Query())),
-      azureServicePrincipalTenantId: S.optional(S.String.pipe(T.Query())),
-      azureActiveDirectoryEndpoint: S.optional(S.String.pipe(T.Query())),
-      body: S.String.pipe(T.HttpBody()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/v1/write-repositories/{repo}/validate",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "RepositoryServiceValidateWriteAccessRequest",
-  }) as any as S.Schema<RepositoryServiceValidateWriteAccessRequest>;
-
-export type RepositoryServiceValidateWriteAccessResponse = unknown;
-export const RepositoryServiceValidateWriteAccessResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "RepositoryServiceValidateWriteAccessResponse",
-  }) as any as S.Schema<RepositoryServiceValidateWriteAccessResponse>;
-
-export interface SessionServiceCreateRequest {
-  password?: string | Redacted.Redacted<string>;
-  token?: string;
-  username?: string;
-}
-export const SessionServiceCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    token: S.optional(S.String),
-    username: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/api/v1/session", code: 200 })),
-).annotate({
-  identifier: "SessionServiceCreateRequest",
-}) as any as S.Schema<SessionServiceCreateRequest>;
-
-/** SessionResponse wraps the created token or returns an empty string if deleted. */
-export interface SessionSessionResponse {
-  token?: string;
-}
-export const SessionSessionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    token: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SessionSessionResponse",
-}) as any as S.Schema<SessionSessionResponse>;
-
-export interface SessionServiceDeleteRequest {}
-export const SessionServiceDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "DELETE", uri: "/api/v1/session", code: 200 }),
-  ),
-).annotate({
-  identifier: "SessionServiceDeleteRequest",
-}) as any as S.Schema<SessionServiceDeleteRequest>;
-
-export interface SessionServiceGetUserInfoRequest {}
-export const SessionServiceGetUserInfoRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetSessionServiceUserInfoRequest {}
+export const GetSessionServiceUserInfoRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/api/v1/session/userinfo", code: 200 }),
   ),
 ).annotate({
-  identifier: "SessionServiceGetUserInfoRequest",
-}) as any as S.Schema<SessionServiceGetUserInfoRequest>;
+  identifier: "GetSessionServiceUserInfoRequest",
+}) as any as S.Schema<GetSessionServiceUserInfoRequest>;
 
 export type SessionGetUserInfoResponseGroupsList = Array<string>;
 export const SessionGetUserInfoResponseGroupsList = /*@__PURE__*/ S.Array(
@@ -8819,14 +6643,14 @@ export const SessionGetUserInfoResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SessionGetUserInfoResponse",
 }) as any as S.Schema<SessionGetUserInfoResponse>;
 
-export interface SettingsServiceGetRequest {}
-export const SettingsServiceGetRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetSettingsServiceRequest {}
+export const GetSettingsServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/api/v1/settings", code: 200 }),
   ),
 ).annotate({
-  identifier: "SettingsServiceGetRequest",
-}) as any as S.Schema<SettingsServiceGetRequest>;
+  identifier: "GetSettingsServiceRequest",
+}) as any as S.Schema<GetSettingsServiceRequest>;
 
 export type ClusterSettingsAdditionalUrlsList = Array<string>;
 export const ClusterSettingsAdditionalUrlsList = /*@__PURE__*/ S.Array(
@@ -9217,14 +7041,14 @@ export const ClusterSettings = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterSettings",
 }) as any as S.Schema<ClusterSettings>;
 
-export interface SettingsServiceGetPluginsRequest {}
-export const SettingsServiceGetPluginsRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetSettingsServicePluginsRequest {}
+export const GetSettingsServicePluginsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/api/v1/settings/plugins", code: 200 }),
   ),
 ).annotate({
-  identifier: "SettingsServiceGetPluginsRequest",
-}) as any as S.Schema<SettingsServiceGetPluginsRequest>;
+  identifier: "GetSettingsServicePluginsRequest",
+}) as any as S.Schema<GetSettingsServicePluginsRequest>;
 
 export type ClusterSettingsPluginsResponsePluginsList =
   Array<V1alpha1PluginConfigMapRef>;
@@ -9242,6 +7066,2003 @@ export const ClusterSettingsPluginsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ClusterSettingsPluginsResponse",
 }) as any as S.Schema<ClusterSettingsPluginsResponse>;
+
+export interface InvalidateClusterServiceCacheRequest {
+  /** value holds the cluster server URL or cluster name */
+  id_value: string;
+}
+export const InvalidateClusterServiceCacheRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id_value: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/v1/clusters/{id_value}/invalidate-cache",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "InvalidateClusterServiceCacheRequest",
+}) as any as S.Schema<InvalidateClusterServiceCacheRequest>;
+
+export interface ListAccountServiceAccountsRequest {}
+export const ListAccountServiceAccountsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/api/v1/account", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListAccountServiceAccountsRequest",
+}) as any as S.Schema<ListAccountServiceAccountsRequest>;
+
+export type AccountAccountsListItemsList = Array<AccountAccount>;
+export const AccountAccountsListItemsList = /*@__PURE__*/ S.Array(
+  AccountAccount,
+) as any as S.Schema<AccountAccountsListItemsList>;
+
+export interface AccountAccountsList {
+  items?: AccountAccountsListItemsList;
+}
+export const AccountAccountsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(AccountAccountsListItemsList),
+  }),
+).annotate({
+  identifier: "AccountAccountsList",
+}) as any as S.Schema<AccountAccountsList>;
+
+export type ListApplicationServiceRequestProjectsList = Array<string>;
+export const ListApplicationServiceRequestProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListApplicationServiceRequestProjectsList>;
+
+export type ListApplicationServiceRequestProjectList = Array<string>;
+export const ListApplicationServiceRequestProjectList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListApplicationServiceRequestProjectList>;
+
+export interface ListApplicationServiceRequest {
+  /** the application's name. */
+  name?: string;
+  /** forces application reconciliation if set to 'hard'. */
+  refresh?: string;
+  /** the project names to restrict returned list applications. */
+  projects?: ListApplicationServiceRequestProjectsList;
+  /** when specified with a watch call, shows changes that occur after that particular version of a resource. */
+  resourceVersion?: string;
+  /** the selector to restrict returned list to applications only with matched labels. */
+  selector?: string;
+  /** the repoURL to restrict returned list applications. */
+  repo?: string;
+  /** the application's namespace. */
+  appNamespace?: string;
+  /** the project names to restrict returned list applications (legacy name for backwards-compatibility). */
+  project?: ListApplicationServiceRequestProjectList;
+}
+export const ListApplicationServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String.pipe(T.Query())),
+    refresh: S.optional(S.String.pipe(T.Query())),
+    projects: S.optional(
+      ListApplicationServiceRequestProjectsList.pipe(T.Query()),
+    ),
+    resourceVersion: S.optional(S.String.pipe(T.Query())),
+    selector: S.optional(S.String.pipe(T.Query())),
+    repo: S.optional(S.String.pipe(T.Query())),
+    appNamespace: S.optional(S.String.pipe(T.Query())),
+    project: S.optional(
+      ListApplicationServiceRequestProjectList.pipe(T.Query()),
+    ),
+  }).pipe(T.Http({ method: "GET", uri: "/api/v1/applications", code: 200 })),
+).annotate({
+  identifier: "ListApplicationServiceRequest",
+}) as any as S.Schema<ListApplicationServiceRequest>;
+
+export type V1alpha1ApplicationListItemsList = Array<V1alpha1Application>;
+export const V1alpha1ApplicationListItemsList = /*@__PURE__*/ S.Array(
+  V1alpha1Application,
+) as any as S.Schema<V1alpha1ApplicationListItemsList>;
+
+export interface V1alpha1ApplicationList {
+  items?: V1alpha1ApplicationListItemsList;
+  metadata?: V1ListMeta;
+}
+export const V1alpha1ApplicationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(V1alpha1ApplicationListItemsList),
+    metadata: S.optional(V1ListMeta),
+  }),
+).annotate({
+  identifier: "V1alpha1ApplicationList",
+}) as any as S.Schema<V1alpha1ApplicationList>;
+
+export interface ListApplicationServiceLinksRequest {
+  name: string;
+  namespace?: string;
+  project?: string;
+}
+export const ListApplicationServiceLinksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    namespace: S.optional(S.String.pipe(T.Query())),
+    project: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v1/applications/{name}/links",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListApplicationServiceLinksRequest",
+}) as any as S.Schema<ListApplicationServiceLinksRequest>;
+
+export interface ApplicationLinkInfo {
+  description?: string;
+  iconClass?: string;
+  title?: string;
+  url?: string;
+}
+export const ApplicationLinkInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    iconClass: S.optional(S.String),
+    title: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApplicationLinkInfo",
+}) as any as S.Schema<ApplicationLinkInfo>;
+
+export type ApplicationLinksResponseItemsList = Array<ApplicationLinkInfo>;
+export const ApplicationLinksResponseItemsList = /*@__PURE__*/ S.Array(
+  ApplicationLinkInfo,
+) as any as S.Schema<ApplicationLinksResponseItemsList>;
+
+export interface ApplicationLinksResponse {
+  items?: ApplicationLinksResponseItemsList;
+}
+export const ApplicationLinksResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(ApplicationLinksResponseItemsList),
+  }),
+).annotate({
+  identifier: "ApplicationLinksResponse",
+}) as any as S.Schema<ApplicationLinksResponse>;
+
+export interface ListApplicationServiceResourceActionsRequest {
+  name: string;
+  namespace?: string;
+  resourceName?: string;
+  version?: string;
+  group?: string;
+  kind?: string;
+  appNamespace?: string;
+  project?: string;
+}
+export const ListApplicationServiceResourceActionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      namespace: S.optional(S.String.pipe(T.Query())),
+      resourceName: S.optional(S.String.pipe(T.Query())),
+      version: S.optional(S.String.pipe(T.Query())),
+      group: S.optional(S.String.pipe(T.Query())),
+      kind: S.optional(S.String.pipe(T.Query())),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/applications/{name}/resource/actions",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListApplicationServiceResourceActionsRequest",
+  }) as any as S.Schema<ListApplicationServiceResourceActionsRequest>;
+
+/** ResourceActionParam represents a parameter for a resource action. It includes a name, value, type, and an optional default value for the parameter. */
+export interface V1alpha1ResourceActionParam {
+  /** Name is the name of the parameter. */
+  name?: string;
+}
+export const V1alpha1ResourceActionParam = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "V1alpha1ResourceActionParam",
+}) as any as S.Schema<V1alpha1ResourceActionParam>;
+
+/** Params contains the parameters required to execute the action. */
+export type V1alpha1ResourceActionParamsList =
+  Array<V1alpha1ResourceActionParam>;
+export const V1alpha1ResourceActionParamsList = /*@__PURE__*/ S.Array(
+  V1alpha1ResourceActionParam,
+) as any as S.Schema<V1alpha1ResourceActionParamsList>;
+
+/** ResourceAction represents an individual action that can be performed on a resource. It includes parameters, an optional disabled flag, an icon for display, and a name for the action. */
+export interface V1alpha1ResourceAction {
+  /** Disabled indicates whether the action is disabled. */
+  disabled?: boolean;
+  /** DisplayName provides a user-friendly name for the action. */
+  displayName?: string;
+  /** IconClass specifies the CSS class for the action's icon. */
+  iconClass?: string;
+  /** Name is the name or identifier for the action. */
+  name?: string;
+  /** Params contains the parameters required to execute the action. */
+  params?: V1alpha1ResourceActionParamsList;
+}
+export const V1alpha1ResourceAction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    disabled: S.optional(S.Boolean),
+    displayName: S.optional(S.String),
+    iconClass: S.optional(S.String),
+    name: S.optional(S.String),
+    params: S.optional(V1alpha1ResourceActionParamsList),
+  }),
+).annotate({
+  identifier: "V1alpha1ResourceAction",
+}) as any as S.Schema<V1alpha1ResourceAction>;
+
+export type ApplicationResourceActionsListResponseActionsList =
+  Array<V1alpha1ResourceAction>;
+export const ApplicationResourceActionsListResponseActionsList =
+  /*@__PURE__*/ S.Array(
+    V1alpha1ResourceAction,
+  ) as any as S.Schema<ApplicationResourceActionsListResponseActionsList>;
+
+export interface ApplicationResourceActionsListResponse {
+  actions?: ApplicationResourceActionsListResponseActionsList;
+}
+export const ApplicationResourceActionsListResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      actions: S.optional(ApplicationResourceActionsListResponseActionsList),
+    }),
+).annotate({
+  identifier: "ApplicationResourceActionsListResponse",
+}) as any as S.Schema<ApplicationResourceActionsListResponse>;
+
+export interface ListApplicationServiceResourceEventsRequest {
+  name: string;
+  resourceNamespace?: string;
+  resourceName?: string;
+  resourceUID?: string;
+  appNamespace?: string;
+  project?: string;
+}
+export const ListApplicationServiceResourceEventsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      resourceNamespace: S.optional(S.String.pipe(T.Query())),
+      resourceName: S.optional(S.String.pipe(T.Query())),
+      resourceUID: S.optional(S.String.pipe(T.Query())),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/applications/{name}/events",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListApplicationServiceResourceEventsRequest",
+  }) as any as S.Schema<ListApplicationServiceResourceEventsRequest>;
+
+/** MicroTime is version of Time with microsecond level precision. +protobuf.options.marshal=false +protobuf.as=Timestamp +protobuf.options.(gogoproto.goproto_stringer)=false */
+export interface V1MicroTime {
+  /** Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive. This field may be limited in precision depending on context. */
+  nanos?: number;
+  /** Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive. */
+  seconds?: number;
+}
+export const V1MicroTime = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nanos: S.optional(S.Number),
+    seconds: S.optional(S.Number),
+  }),
+).annotate({ identifier: "V1MicroTime" }) as any as S.Schema<V1MicroTime>;
+
+/** ObjectReference contains enough information to let you inspect or modify the referred object. */
+export interface EventsObjectReference {
+  /** API version of the referent. */
+  apiVersion?: string;
+  /** If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). */
+  fieldPath?: string;
+  /** Kind of the referent. */
+  kind?: string;
+  /** Name of the referent. */
+  name?: string;
+  /** Namespace of the referent. */
+  namespace?: string;
+  /** Specific resourceVersion to which this reference is made, if any. */
+  resourceVersion?: string;
+  /** UID of the referent. */
+  uid?: string;
+}
+export const EventsObjectReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    apiVersion: S.optional(S.String),
+    fieldPath: S.optional(S.String),
+    kind: S.optional(S.String),
+    name: S.optional(S.String),
+    namespace: S.optional(S.String),
+    resourceVersion: S.optional(S.String),
+    uid: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EventsObjectReference",
+}) as any as S.Schema<EventsObjectReference>;
+
+/** EventSeries contain information on series of events, i.e. thing that was/is happening continuously for some time. */
+export interface EventsEventSeries {
+  /** Number of occurrences in this series up to the last heartbeat time. */
+  count?: number;
+  lastObservedTime?: V1MicroTime;
+}
+export const EventsEventSeries = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    lastObservedTime: S.optional(V1MicroTime),
+  }),
+).annotate({
+  identifier: "EventsEventSeries",
+}) as any as S.Schema<EventsEventSeries>;
+
+/** EventSource contains information for an event. */
+export interface EventsEventSource {
+  /** Component from which the event is generated. */
+  component?: string;
+  /** Node name on which the event is generated. */
+  host?: string;
+}
+export const EventsEventSource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    component: S.optional(S.String),
+    host: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EventsEventSource",
+}) as any as S.Schema<EventsEventSource>;
+
+/** Event mirrors corev1.Event and exposes the fields consumed by the Argo CD API and UI. Event is a report of an event somewhere in the cluster. Events have a limited retention time and triggers and messages may evolve with time. Event consumers should not rely on the timing of an event with a given Reason reflecting a consistent underlying trigger, or the continued existence of events with that Reason. Events should be treated as informative, best-effort, supplemental data. */
+export interface EventsEvent {
+  /** What action was taken/failed regarding to the Regarding object. */
+  action?: string;
+  /** The number of times this event has occurred. */
+  count?: number;
+  eventTime?: V1MicroTime;
+  firstTimestamp?: string;
+  involvedObject?: EventsObjectReference;
+  lastTimestamp?: string;
+  /** A human-readable description of the status of this operation. */
+  message?: string;
+  metadata?: V1ObjectMeta;
+  /** This should be a short, machine understandable string that gives the reason for the transition into the object's current status. */
+  reason?: string;
+  related?: EventsObjectReference;
+  /** Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`. */
+  reportingComponent?: string;
+  /** ID of the controller instance, e.g. `kubelet-xyzf`. */
+  reportingInstance?: string;
+  series?: EventsEventSeries;
+  source?: EventsEventSource;
+  /** Type of this event (Normal, Warning), new types could be added in the future. */
+  type?: string;
+}
+export const EventsEvent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: S.optional(S.String),
+    count: S.optional(S.Number),
+    eventTime: S.optional(V1MicroTime),
+    firstTimestamp: S.optional(S.String),
+    involvedObject: S.optional(EventsObjectReference),
+    lastTimestamp: S.optional(S.String),
+    message: S.optional(S.String),
+    metadata: S.optional(V1ObjectMeta),
+    reason: S.optional(S.String),
+    related: S.optional(EventsObjectReference),
+    reportingComponent: S.optional(S.String),
+    reportingInstance: S.optional(S.String),
+    series: S.optional(EventsEventSeries),
+    source: S.optional(EventsEventSource),
+    type: S.optional(S.String),
+  }),
+).annotate({ identifier: "EventsEvent" }) as any as S.Schema<EventsEvent>;
+
+/** List of events. */
+export type EventsEventListItemsList = Array<EventsEvent>;
+export const EventsEventListItemsList = /*@__PURE__*/ S.Array(
+  EventsEvent,
+) as any as S.Schema<EventsEventListItemsList>;
+
+/** EventList is a list of Argo CD Event messages. It mirrors corev1.EventList field-for-field but is defined in Argo CD's apiclient package to avoid pulling Kubernetes protobuf types into the public gRPC surface. */
+export interface EventsEventList {
+  /** List of events. */
+  items?: EventsEventListItemsList;
+  metadata?: V1ListMeta;
+}
+export const EventsEventList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(EventsEventListItemsList),
+    metadata: S.optional(V1ListMeta),
+  }),
+).annotate({
+  identifier: "EventsEventList",
+}) as any as S.Schema<EventsEventList>;
+
+export interface ListApplicationServiceResourceLinksRequest {
+  name: string;
+  namespace?: string;
+  resourceName?: string;
+  version?: string;
+  group?: string;
+  kind?: string;
+  appNamespace?: string;
+  project?: string;
+}
+export const ListApplicationServiceResourceLinksRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      namespace: S.optional(S.String.pipe(T.Query())),
+      resourceName: S.optional(S.String.pipe(T.Query())),
+      version: S.optional(S.String.pipe(T.Query())),
+      group: S.optional(S.String.pipe(T.Query())),
+      kind: S.optional(S.String.pipe(T.Query())),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/applications/{name}/resource/links",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListApplicationServiceResourceLinksRequest",
+  }) as any as S.Schema<ListApplicationServiceResourceLinksRequest>;
+
+export type ListApplicationSetServiceRequestProjectsList = Array<string>;
+export const ListApplicationSetServiceRequestProjectsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListApplicationSetServiceRequestProjectsList>;
+
+export interface ListApplicationSetServiceRequest {
+  /** the project names to restrict returned list applicationsets. */
+  projects?: ListApplicationSetServiceRequestProjectsList;
+  /** the selector to restrict returned list to applications only with matched labels. */
+  selector?: string;
+  /** The application set namespace. Default empty is argocd control plane namespace. */
+  appsetNamespace?: string;
+}
+export const ListApplicationSetServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    projects: S.optional(
+      ListApplicationSetServiceRequestProjectsList.pipe(T.Query()),
+    ),
+    selector: S.optional(S.String.pipe(T.Query())),
+    appsetNamespace: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/api/v1/applicationsets", code: 200 })),
+).annotate({
+  identifier: "ListApplicationSetServiceRequest",
+}) as any as S.Schema<ListApplicationSetServiceRequest>;
+
+export type V1alpha1ApplicationSetListItemsList = Array<V1alpha1ApplicationSet>;
+export const V1alpha1ApplicationSetListItemsList = /*@__PURE__*/ S.Array(
+  V1alpha1ApplicationSet,
+) as any as S.Schema<V1alpha1ApplicationSetListItemsList>;
+
+export interface V1alpha1ApplicationSetList {
+  items?: V1alpha1ApplicationSetListItemsList;
+  metadata?: V1ListMeta;
+}
+export const V1alpha1ApplicationSetList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(V1alpha1ApplicationSetListItemsList),
+    metadata: S.optional(V1ListMeta),
+  }),
+).annotate({
+  identifier: "V1alpha1ApplicationSetList",
+}) as any as S.Schema<V1alpha1ApplicationSetList>;
+
+export interface ListApplicationSetServiceResourceEventsRequest {
+  /** the applicationsets's name */
+  name: string;
+  /** The application set namespace. Default empty is argocd control plane namespace. */
+  appsetNamespace?: string;
+}
+export const ListApplicationSetServiceResourceEventsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      appsetNamespace: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/applicationsets/{name}/events",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListApplicationSetServiceResourceEventsRequest",
+  }) as any as S.Schema<ListApplicationSetServiceResourceEventsRequest>;
+
+export interface ListCertificateServiceCertificatesRequest {
+  /** A file-glob pattern (not regular expression) the host name has to match. */
+  hostNamePattern?: string;
+  /** The type of the certificate to match (ssh or https). */
+  certType?: string;
+  /** The sub type of the certificate to match (protocol dependent, usually only used for ssh certs). */
+  certSubType?: string;
+}
+export const ListCertificateServiceCertificatesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      hostNamePattern: S.optional(S.String.pipe(T.Query())),
+      certType: S.optional(S.String.pipe(T.Query())),
+      certSubType: S.optional(S.String.pipe(T.Query())),
+    }).pipe(T.Http({ method: "GET", uri: "/api/v1/certificates", code: 200 })),
+  ).annotate({
+    identifier: "ListCertificateServiceCertificatesRequest",
+  }) as any as S.Schema<ListCertificateServiceCertificatesRequest>;
+
+export interface ListClusterServiceRequest {
+  server?: string;
+  name?: string;
+  /** type is the type of the specified cluster identifier ( "server" - default, "name" ). */
+  id_type?: string;
+  /** value holds the cluster server URL or cluster name. */
+  id_value?: string;
+}
+export const ListClusterServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    server: S.optional(S.String.pipe(T.Query())),
+    name: S.optional(S.String.pipe(T.Query())),
+    id_type: S.optional(S.String.pipe(T.Query("id.type"))),
+    id_value: S.optional(S.String.pipe(T.Query("id.value"))),
+  }).pipe(T.Http({ method: "GET", uri: "/api/v1/clusters", code: 200 })),
+).annotate({
+  identifier: "ListClusterServiceRequest",
+}) as any as S.Schema<ListClusterServiceRequest>;
+
+export type V1alpha1ClusterListItemsList = Array<V1alpha1Cluster>;
+export const V1alpha1ClusterListItemsList = /*@__PURE__*/ S.Array(
+  V1alpha1Cluster,
+) as any as S.Schema<V1alpha1ClusterListItemsList>;
+
+/** ClusterList is a collection of Clusters. */
+export interface V1alpha1ClusterList {
+  items?: V1alpha1ClusterListItemsList;
+  metadata?: V1ListMeta;
+}
+export const V1alpha1ClusterList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(V1alpha1ClusterListItemsList),
+    metadata: S.optional(V1ListMeta),
+  }),
+).annotate({
+  identifier: "V1alpha1ClusterList",
+}) as any as S.Schema<V1alpha1ClusterList>;
+
+export interface ListGPGKeyServiceRequest {
+  /** The GPG key ID to query for. */
+  keyID?: string;
+}
+export const ListGPGKeyServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyID: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/api/v1/gpgkeys", code: 200 })),
+).annotate({
+  identifier: "ListGPGKeyServiceRequest",
+}) as any as S.Schema<ListGPGKeyServiceRequest>;
+
+export interface ListNotificationServiceServicesRequest {}
+export const ListNotificationServiceServicesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({}).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/notifications/services",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListNotificationServiceServicesRequest",
+}) as any as S.Schema<ListNotificationServiceServicesRequest>;
+
+export type NotificationService = V1alpha1PluginConfigMapRef;
+export const NotificationService = V1alpha1PluginConfigMapRef;
+
+export type NotificationServiceListItemsList =
+  Array<V1alpha1PluginConfigMapRef>;
+export const NotificationServiceListItemsList = /*@__PURE__*/ S.Array(
+  V1alpha1PluginConfigMapRef,
+) as any as S.Schema<NotificationServiceListItemsList>;
+
+export interface NotificationServiceList {
+  items?: NotificationServiceListItemsList;
+}
+export const NotificationServiceList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(NotificationServiceListItemsList),
+  }),
+).annotate({
+  identifier: "NotificationServiceList",
+}) as any as S.Schema<NotificationServiceList>;
+
+export interface ListNotificationServiceTemplatesRequest {}
+export const ListNotificationServiceTemplatesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({}).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/notifications/templates",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListNotificationServiceTemplatesRequest",
+}) as any as S.Schema<ListNotificationServiceTemplatesRequest>;
+
+export type NotificationTemplate = V1alpha1PluginConfigMapRef;
+export const NotificationTemplate = V1alpha1PluginConfigMapRef;
+
+export type NotificationTemplateListItemsList =
+  Array<V1alpha1PluginConfigMapRef>;
+export const NotificationTemplateListItemsList = /*@__PURE__*/ S.Array(
+  V1alpha1PluginConfigMapRef,
+) as any as S.Schema<NotificationTemplateListItemsList>;
+
+export interface NotificationTemplateList {
+  items?: NotificationTemplateListItemsList;
+}
+export const NotificationTemplateList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(NotificationTemplateListItemsList),
+  }),
+).annotate({
+  identifier: "NotificationTemplateList",
+}) as any as S.Schema<NotificationTemplateList>;
+
+export interface ListNotificationServiceTriggersRequest {}
+export const ListNotificationServiceTriggersRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({}).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/notifications/triggers",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListNotificationServiceTriggersRequest",
+}) as any as S.Schema<ListNotificationServiceTriggersRequest>;
+
+export type NotificationTrigger = V1alpha1PluginConfigMapRef;
+export const NotificationTrigger = V1alpha1PluginConfigMapRef;
+
+export type NotificationTriggerListItemsList =
+  Array<V1alpha1PluginConfigMapRef>;
+export const NotificationTriggerListItemsList = /*@__PURE__*/ S.Array(
+  V1alpha1PluginConfigMapRef,
+) as any as S.Schema<NotificationTriggerListItemsList>;
+
+export interface NotificationTriggerList {
+  items?: NotificationTriggerListItemsList;
+}
+export const NotificationTriggerList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(NotificationTriggerListItemsList),
+  }),
+).annotate({
+  identifier: "NotificationTriggerList",
+}) as any as S.Schema<NotificationTriggerList>;
+
+export interface ListProjectServiceRequest {
+  name?: string;
+}
+export const ListProjectServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/api/v1/projects", code: 200 })),
+).annotate({
+  identifier: "ListProjectServiceRequest",
+}) as any as S.Schema<ListProjectServiceRequest>;
+
+export type V1alpha1AppProjectListItemsList = Array<V1alpha1AppProject>;
+export const V1alpha1AppProjectListItemsList = /*@__PURE__*/ S.Array(
+  V1alpha1AppProject,
+) as any as S.Schema<V1alpha1AppProjectListItemsList>;
+
+export interface V1alpha1AppProjectList {
+  items?: V1alpha1AppProjectListItemsList;
+  metadata?: V1ListMeta;
+}
+export const V1alpha1AppProjectList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(V1alpha1AppProjectListItemsList),
+    metadata: S.optional(V1ListMeta),
+  }),
+).annotate({
+  identifier: "V1alpha1AppProjectList",
+}) as any as S.Schema<V1alpha1AppProjectList>;
+
+export interface ListProjectServiceEventsRequest {
+  name: string;
+}
+export const ListProjectServiceEventsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v1/projects/{name}/events", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListProjectServiceEventsRequest",
+}) as any as S.Schema<ListProjectServiceEventsRequest>;
+
+export interface ListProjectServiceLinksRequest {
+  name: string;
+}
+export const ListProjectServiceLinksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v1/projects/{name}/links", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListProjectServiceLinksRequest",
+}) as any as S.Schema<ListProjectServiceLinksRequest>;
+
+export interface ListRepoCredsServiceRepositoryCredentialsRequest {
+  /** Repo URL for query. */
+  url?: string;
+}
+export const ListRepoCredsServiceRepositoryCredentialsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      url: S.optional(S.String.pipe(T.Query())),
+    }).pipe(T.Http({ method: "GET", uri: "/api/v1/repocreds", code: 200 })),
+  ).annotate({
+    identifier: "ListRepoCredsServiceRepositoryCredentialsRequest",
+  }) as any as S.Schema<ListRepoCredsServiceRepositoryCredentialsRequest>;
+
+export type V1alpha1RepoCredsListItemsList = Array<V1alpha1RepoCreds>;
+export const V1alpha1RepoCredsListItemsList = /*@__PURE__*/ S.Array(
+  V1alpha1RepoCreds,
+) as any as S.Schema<V1alpha1RepoCredsListItemsList>;
+
+/** RepositoryList is a collection of Repositories. */
+export interface V1alpha1RepoCredsList {
+  items?: V1alpha1RepoCredsListItemsList;
+  metadata?: V1ListMeta;
+}
+export const V1alpha1RepoCredsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(V1alpha1RepoCredsListItemsList),
+    metadata: S.optional(V1ListMeta),
+  }),
+).annotate({
+  identifier: "V1alpha1RepoCredsList",
+}) as any as S.Schema<V1alpha1RepoCredsList>;
+
+export interface ListRepoCredsServiceWriteRepositoryCredentialsRequest {
+  /** Repo URL for query. */
+  url?: string;
+}
+export const ListRepoCredsServiceWriteRepositoryCredentialsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      url: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({ method: "GET", uri: "/api/v1/write-repocreds", code: 200 }),
+    ),
+  ).annotate({
+    identifier: "ListRepoCredsServiceWriteRepositoryCredentialsRequest",
+  }) as any as S.Schema<ListRepoCredsServiceWriteRepositoryCredentialsRequest>;
+
+export interface ListRepositoryServiceAppsRequest {
+  repo: string;
+  revision?: string;
+  appName?: string;
+  appProject?: string;
+}
+export const ListRepositoryServiceAppsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    repo: S.String.pipe(T.Label()),
+    revision: S.optional(S.String.pipe(T.Query())),
+    appName: S.optional(S.String.pipe(T.Query())),
+    appProject: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v1/repositories/{repo}/apps",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListRepositoryServiceAppsRequest",
+}) as any as S.Schema<ListRepositoryServiceAppsRequest>;
+
+export interface RepositoryAppInfo {
+  path?: string;
+  type?: string;
+}
+export const RepositoryAppInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    path: S.optional(S.String),
+    type: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RepositoryAppInfo",
+}) as any as S.Schema<RepositoryAppInfo>;
+
+export type RepositoryRepoAppsResponseItemsList = Array<RepositoryAppInfo>;
+export const RepositoryRepoAppsResponseItemsList = /*@__PURE__*/ S.Array(
+  RepositoryAppInfo,
+) as any as S.Schema<RepositoryRepoAppsResponseItemsList>;
+
+export interface RepositoryRepoAppsResponse {
+  items?: RepositoryRepoAppsResponseItemsList;
+}
+export const RepositoryRepoAppsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(RepositoryRepoAppsResponseItemsList),
+  }),
+).annotate({
+  identifier: "RepositoryRepoAppsResponse",
+}) as any as S.Schema<RepositoryRepoAppsResponse>;
+
+export interface ListRepositoryServiceOCITagsRequest {
+  /** Repo URL for query */
+  repo: string;
+  /** Whether to force a cache refresh on repo's connection state. */
+  forceRefresh?: boolean;
+  /** App project for query. */
+  appProject?: string;
+}
+export const ListRepositoryServiceOCITagsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    repo: S.String.pipe(T.Label()),
+    forceRefresh: S.optional(S.Boolean.pipe(T.Query())),
+    appProject: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v1/repositories/{repo}/oci-tags",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListRepositoryServiceOCITagsRequest",
+}) as any as S.Schema<ListRepositoryServiceOCITagsRequest>;
+
+export type RepositoryRefsBranchesList = Array<string>;
+export const RepositoryRefsBranchesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RepositoryRefsBranchesList>;
+
+export type RepositoryRefsTagsList = Array<string>;
+export const RepositoryRefsTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RepositoryRefsTagsList>;
+
+export interface RepositoryRefs {
+  branches?: RepositoryRefsBranchesList;
+  tags?: RepositoryRefsTagsList;
+}
+export const RepositoryRefs = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    branches: S.optional(RepositoryRefsBranchesList),
+    tags: S.optional(RepositoryRefsTagsList),
+  }),
+).annotate({ identifier: "RepositoryRefs" }) as any as S.Schema<RepositoryRefs>;
+
+export interface ListRepositoryServiceRefsRequest {
+  /** Repo URL for query */
+  repo: string;
+  /** Whether to force a cache refresh on repo's connection state. */
+  forceRefresh?: boolean;
+  /** App project for query. */
+  appProject?: string;
+}
+export const ListRepositoryServiceRefsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    repo: S.String.pipe(T.Label()),
+    forceRefresh: S.optional(S.Boolean.pipe(T.Query())),
+    appProject: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v1/repositories/{repo}/refs",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListRepositoryServiceRefsRequest",
+}) as any as S.Schema<ListRepositoryServiceRefsRequest>;
+
+export interface ListRepositoryServiceRepositoriesRequest {
+  /** Repo URL for query. */
+  repo?: string;
+  /** Whether to force a cache refresh on repo's connection state. */
+  forceRefresh?: boolean;
+  /** App project for query. */
+  appProject?: string;
+}
+export const ListRepositoryServiceRepositoriesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      repo: S.optional(S.String.pipe(T.Query())),
+      forceRefresh: S.optional(S.Boolean.pipe(T.Query())),
+      appProject: S.optional(S.String.pipe(T.Query())),
+    }).pipe(T.Http({ method: "GET", uri: "/api/v1/repositories", code: 200 })),
+).annotate({
+  identifier: "ListRepositoryServiceRepositoriesRequest",
+}) as any as S.Schema<ListRepositoryServiceRepositoriesRequest>;
+
+export type V1alpha1RepositoryListItemsList = Array<V1alpha1Repository>;
+export const V1alpha1RepositoryListItemsList = /*@__PURE__*/ S.Array(
+  V1alpha1Repository,
+) as any as S.Schema<V1alpha1RepositoryListItemsList>;
+
+/** RepositoryList is a collection of Repositories. */
+export interface V1alpha1RepositoryList {
+  items?: V1alpha1RepositoryListItemsList;
+  metadata?: V1ListMeta;
+}
+export const V1alpha1RepositoryList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(V1alpha1RepositoryListItemsList),
+    metadata: S.optional(V1ListMeta),
+  }),
+).annotate({
+  identifier: "V1alpha1RepositoryList",
+}) as any as S.Schema<V1alpha1RepositoryList>;
+
+export interface ListRepositoryServiceWriteRepositoriesRequest {
+  /** Repo URL for query. */
+  repo?: string;
+  /** Whether to force a cache refresh on repo's connection state. */
+  forceRefresh?: boolean;
+  /** App project for query. */
+  appProject?: string;
+}
+export const ListRepositoryServiceWriteRepositoriesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      repo: S.optional(S.String.pipe(T.Query())),
+      forceRefresh: S.optional(S.Boolean.pipe(T.Query())),
+      appProject: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({ method: "GET", uri: "/api/v1/write-repositories", code: 200 }),
+    ),
+  ).annotate({
+    identifier: "ListRepositoryServiceWriteRepositoriesRequest",
+  }) as any as S.Schema<ListRepositoryServiceWriteRepositoriesRequest>;
+
+export interface PatchApplicationServiceRequest {
+  name: string;
+  appNamespace?: string;
+  patch?: string;
+  patchType?: string;
+  project?: string;
+}
+export const PatchApplicationServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    appNamespace: S.optional(S.String),
+    patch: S.optional(S.String),
+    patchType: S.optional(S.String),
+    project: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "PATCH", uri: "/api/v1/applications/{name}", code: 200 }),
+  ),
+).annotate({
+  identifier: "PatchApplicationServiceRequest",
+}) as any as S.Schema<PatchApplicationServiceRequest>;
+
+export interface PatchApplicationServiceResourceRequest {
+  name: string;
+  namespace?: string;
+  resourceName?: string;
+  version?: string;
+  group?: string;
+  kind?: string;
+  patchType?: string;
+  appNamespace?: string;
+  project?: string;
+  body: string;
+}
+export const PatchApplicationServiceResourceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      namespace: S.optional(S.String.pipe(T.Query())),
+      resourceName: S.optional(S.String.pipe(T.Query())),
+      version: S.optional(S.String.pipe(T.Query())),
+      group: S.optional(S.String.pipe(T.Query())),
+      kind: S.optional(S.String.pipe(T.Query())),
+      patchType: S.optional(S.String.pipe(T.Query())),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+      body: S.String.pipe(T.HttpBody()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/v1/applications/{name}/resource",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "PatchApplicationServiceResourceRequest",
+}) as any as S.Schema<PatchApplicationServiceResourceRequest>;
+
+export interface RotateClusterServiceAuthRequest {
+  /** value holds the cluster server URL or cluster name */
+  id_value: string;
+}
+export const RotateClusterServiceAuthRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id_value: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/v1/clusters/{id_value}/rotate-auth",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "RotateClusterServiceAuthRequest",
+}) as any as S.Schema<RotateClusterServiceAuthRequest>;
+
+export type RotateClusterServiceAuthResponse = unknown;
+export const RotateClusterServiceAuthResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "RotateClusterServiceAuthResponse",
+}) as any as S.Schema<RotateClusterServiceAuthResponse>;
+
+export interface RunApplicationServiceResourceActionRequest {
+  name: string;
+  namespace?: string;
+  resourceName?: string;
+  version?: string;
+  group?: string;
+  kind?: string;
+  appNamespace?: string;
+  project?: string;
+  body: string;
+}
+export const RunApplicationServiceResourceActionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      namespace: S.optional(S.String.pipe(T.Query())),
+      resourceName: S.optional(S.String.pipe(T.Query())),
+      version: S.optional(S.String.pipe(T.Query())),
+      group: S.optional(S.String.pipe(T.Query())),
+      kind: S.optional(S.String.pipe(T.Query())),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+      body: S.String.pipe(T.HttpBody()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/v1/applications/{name}/resource/actions",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "RunApplicationServiceResourceActionRequest",
+  }) as any as S.Schema<RunApplicationServiceResourceActionRequest>;
+
+export type RunApplicationServiceResourceActionResponse = unknown;
+export const RunApplicationServiceResourceActionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "RunApplicationServiceResourceActionResponse",
+  }) as any as S.Schema<RunApplicationServiceResourceActionResponse>;
+
+export type ApplicationResourceActionParameters = V1alpha1Info;
+export const ApplicationResourceActionParameters = V1alpha1Info;
+
+export type RunApplicationServiceResourceActionV2RequestResourceActionParametersList =
+  Array<V1alpha1Info>;
+export const RunApplicationServiceResourceActionV2RequestResourceActionParametersList =
+  /*@__PURE__*/ S.Array(
+    V1alpha1Info,
+  ) as any as S.Schema<RunApplicationServiceResourceActionV2RequestResourceActionParametersList>;
+
+export interface RunApplicationServiceResourceActionV2Request {
+  name: string;
+  action?: string;
+  appNamespace?: string;
+  group?: string;
+  kind?: string;
+  namespace?: string;
+  project?: string;
+  resourceActionParameters?: RunApplicationServiceResourceActionV2RequestResourceActionParametersList;
+  resourceName?: string;
+  version?: string;
+}
+export const RunApplicationServiceResourceActionV2Request =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      action: S.optional(S.String),
+      appNamespace: S.optional(S.String),
+      group: S.optional(S.String),
+      kind: S.optional(S.String),
+      namespace: S.optional(S.String),
+      project: S.optional(S.String),
+      resourceActionParameters: S.optional(
+        RunApplicationServiceResourceActionV2RequestResourceActionParametersList,
+      ),
+      resourceName: S.optional(S.String),
+      version: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/v1/applications/{name}/resource/actions/v2",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "RunApplicationServiceResourceActionV2Request",
+  }) as any as S.Schema<RunApplicationServiceResourceActionV2Request>;
+
+export type RunApplicationServiceResourceActionV2Response = unknown;
+export const RunApplicationServiceResourceActionV2Response =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "RunApplicationServiceResourceActionV2Response",
+  }) as any as S.Schema<RunApplicationServiceResourceActionV2Response>;
+
+export type SyncApplicationServiceRequestInfosList = Array<V1alpha1Info>;
+export const SyncApplicationServiceRequestInfosList = /*@__PURE__*/ S.Array(
+  V1alpha1Info,
+) as any as S.Schema<SyncApplicationServiceRequestInfosList>;
+
+export type SyncApplicationServiceRequestManifestsList = Array<string>;
+export const SyncApplicationServiceRequestManifestsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SyncApplicationServiceRequestManifestsList>;
+
+export type SyncApplicationServiceRequestResourcesList =
+  Array<V1alpha1SyncOperationResource>;
+export const SyncApplicationServiceRequestResourcesList = /*@__PURE__*/ S.Array(
+  V1alpha1SyncOperationResource,
+) as any as S.Schema<SyncApplicationServiceRequestResourcesList>;
+
+export type SyncApplicationServiceRequestRevisionsList = Array<string>;
+export const SyncApplicationServiceRequestRevisionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SyncApplicationServiceRequestRevisionsList>;
+
+export type SyncApplicationServiceRequestSourcePositionsList = Array<string>;
+export const SyncApplicationServiceRequestSourcePositionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SyncApplicationServiceRequestSourcePositionsList>;
+
+export type ApplicationSyncOptionsItemsList = Array<string>;
+export const ApplicationSyncOptionsItemsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ApplicationSyncOptionsItemsList>;
+
+export interface ApplicationSyncOptions {
+  items?: ApplicationSyncOptionsItemsList;
+}
+export const ApplicationSyncOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(ApplicationSyncOptionsItemsList),
+  }),
+).annotate({
+  identifier: "ApplicationSyncOptions",
+}) as any as S.Schema<ApplicationSyncOptions>;
+
+export interface SyncApplicationServiceRequest {
+  name: string;
+  appNamespace?: string;
+  dryRun?: boolean;
+  infos?: SyncApplicationServiceRequestInfosList;
+  manifests?: SyncApplicationServiceRequestManifestsList;
+  project?: string;
+  prune?: boolean;
+  resources?: SyncApplicationServiceRequestResourcesList;
+  retryStrategy?: V1alpha1RetryStrategy;
+  revision?: string;
+  revisions?: SyncApplicationServiceRequestRevisionsList;
+  sourcePositions?: SyncApplicationServiceRequestSourcePositionsList;
+  strategy?: V1alpha1SyncStrategy;
+  syncOptions?: ApplicationSyncOptions;
+}
+export const SyncApplicationServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    appNamespace: S.optional(S.String),
+    dryRun: S.optional(S.Boolean),
+    infos: S.optional(SyncApplicationServiceRequestInfosList),
+    manifests: S.optional(SyncApplicationServiceRequestManifestsList),
+    project: S.optional(S.String),
+    prune: S.optional(S.Boolean),
+    resources: S.optional(SyncApplicationServiceRequestResourcesList),
+    retryStrategy: S.optional(V1alpha1RetryStrategy),
+    revision: S.optional(S.String),
+    revisions: S.optional(SyncApplicationServiceRequestRevisionsList),
+    sourcePositions: S.optional(
+      SyncApplicationServiceRequestSourcePositionsList,
+    ),
+    strategy: S.optional(V1alpha1SyncStrategy),
+    syncOptions: S.optional(ApplicationSyncOptions),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/v1/applications/{name}/sync",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SyncApplicationServiceRequest",
+}) as any as S.Schema<SyncApplicationServiceRequest>;
+
+export interface TerminateApplicationServiceOperationRequest {
+  name: string;
+  appNamespace?: string;
+  project?: string;
+}
+export const TerminateApplicationServiceOperationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/api/v1/applications/{name}/operation",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "TerminateApplicationServiceOperationRequest",
+  }) as any as S.Schema<TerminateApplicationServiceOperationRequest>;
+
+export type TerminateApplicationServiceOperationResponse = unknown;
+export const TerminateApplicationServiceOperationResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "TerminateApplicationServiceOperationResponse",
+  }) as any as S.Schema<TerminateApplicationServiceOperationResponse>;
+
+export interface UpdateAccountServicePasswordRequest {
+  currentPassword?: string | Redacted.Redacted<string>;
+  name?: string;
+  newPassword?: string | Redacted.Redacted<string>;
+}
+export const UpdateAccountServicePasswordRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    currentPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    name: S.optional(S.String),
+    newPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }).pipe(
+    T.Http({ method: "PUT", uri: "/api/v1/account/password", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateAccountServicePasswordRequest",
+}) as any as S.Schema<UpdateAccountServicePasswordRequest>;
+
+export type UpdateAccountServicePasswordResponse = unknown;
+export const UpdateAccountServicePasswordResponse = /*@__PURE__*/ S.suspend(
+  () => S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "UpdateAccountServicePasswordResponse",
+}) as any as S.Schema<UpdateAccountServicePasswordResponse>;
+
+export interface UpdateApplicationServiceRequest {
+  /** Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names +optional */
+  application_metadata_name: string;
+  validate?: boolean;
+  project?: string;
+  metadata?: V1ObjectMeta;
+  operation?: V1alpha1Operation;
+  spec?: V1alpha1ApplicationSpec;
+  status?: V1alpha1ApplicationStatus;
+}
+export const UpdateApplicationServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    application_metadata_name: S.String.pipe(T.Label()),
+    validate: S.optional(S.Boolean.pipe(T.Query())),
+    project: S.optional(S.String.pipe(T.Query())),
+    metadata: S.optional(V1ObjectMeta),
+    operation: S.optional(V1alpha1Operation),
+    spec: S.optional(V1alpha1ApplicationSpec),
+    status: S.optional(V1alpha1ApplicationStatus),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/api/v1/applications/{application_metadata_name}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateApplicationServiceRequest",
+}) as any as S.Schema<UpdateApplicationServiceRequest>;
+
+export type UpdateApplicationServiceSpecRequestIgnoreDifferencesList =
+  Array<V1alpha1ResourceIgnoreDifferences>;
+export const UpdateApplicationServiceSpecRequestIgnoreDifferencesList =
+  /*@__PURE__*/ S.Array(
+    V1alpha1ResourceIgnoreDifferences,
+  ) as any as S.Schema<UpdateApplicationServiceSpecRequestIgnoreDifferencesList>;
+
+export type UpdateApplicationServiceSpecRequestInfoList = Array<V1alpha1Info>;
+export const UpdateApplicationServiceSpecRequestInfoList =
+  /*@__PURE__*/ S.Array(
+    V1alpha1Info,
+  ) as any as S.Schema<UpdateApplicationServiceSpecRequestInfoList>;
+
+export type UpdateApplicationServiceSpecRequestSourcesList =
+  Array<V1alpha1ApplicationSource>;
+export const UpdateApplicationServiceSpecRequestSourcesList =
+  /*@__PURE__*/ S.Array(
+    V1alpha1ApplicationSource,
+  ) as any as S.Schema<UpdateApplicationServiceSpecRequestSourcesList>;
+
+export interface UpdateApplicationServiceSpecRequest {
+  name: string;
+  validate?: boolean;
+  appNamespace?: string;
+  project?: string;
+  destination?: V1alpha1ApplicationDestination;
+  ignoreDifferences?: UpdateApplicationServiceSpecRequestIgnoreDifferencesList;
+  info?: UpdateApplicationServiceSpecRequestInfoList;
+  /** RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10. */
+  revisionHistoryLimit?: number;
+  source?: V1alpha1ApplicationSource;
+  sourceHydrator?: V1alpha1SourceHydrator;
+  sources?: UpdateApplicationServiceSpecRequestSourcesList;
+  syncPolicy?: V1alpha1SyncPolicy;
+}
+export const UpdateApplicationServiceSpecRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    validate: S.optional(S.Boolean.pipe(T.Query())),
+    appNamespace: S.optional(S.String.pipe(T.Query())),
+    project: S.optional(S.String.pipe(T.Query())),
+    destination: S.optional(V1alpha1ApplicationDestination),
+    ignoreDifferences: S.optional(
+      UpdateApplicationServiceSpecRequestIgnoreDifferencesList,
+    ),
+    info: S.optional(UpdateApplicationServiceSpecRequestInfoList),
+    revisionHistoryLimit: S.optional(S.Number),
+    source: S.optional(V1alpha1ApplicationSource),
+    sourceHydrator: S.optional(V1alpha1SourceHydrator),
+    sources: S.optional(UpdateApplicationServiceSpecRequestSourcesList),
+    syncPolicy: S.optional(V1alpha1SyncPolicy),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/api/v1/applications/{name}/spec",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateApplicationServiceSpecRequest",
+}) as any as S.Schema<UpdateApplicationServiceSpecRequest>;
+
+export type UpdateClusterServiceRequestUpdatedFieldsList = Array<string>;
+export const UpdateClusterServiceRequestUpdatedFieldsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateClusterServiceRequestUpdatedFieldsList>;
+
+export type UpdateClusterServiceRequestAnnotationsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateClusterServiceRequestAnnotationsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateClusterServiceRequestAnnotationsMap>;
+
+export type UpdateClusterServiceRequestLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateClusterServiceRequestLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateClusterServiceRequestLabelsMap>;
+
+/** Holds list of namespaces which are accessible in that cluster. Cluster level resources will be ignored if namespace list is not empty. */
+export type UpdateClusterServiceRequestNamespacesList = Array<string>;
+export const UpdateClusterServiceRequestNamespacesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateClusterServiceRequestNamespacesList>;
+
+export interface UpdateClusterServiceRequest {
+  /** value holds the cluster server URL or cluster name */
+  id_value: string;
+  updatedFields?: UpdateClusterServiceRequestUpdatedFieldsList;
+  /** type is the type of the specified cluster identifier ( "server" - default, "name" ). */
+  id_type?: string;
+  annotations?: UpdateClusterServiceRequestAnnotationsMap;
+  /** Indicates if cluster level resources should be managed. This setting is used only if cluster is connected in a namespaced mode. */
+  clusterResources?: boolean;
+  config?: V1alpha1ClusterConfig;
+  connectionState?: V1alpha1ConnectionState;
+  info?: V1alpha1ClusterInfo;
+  labels?: UpdateClusterServiceRequestLabelsMap;
+  name?: string;
+  /** Holds list of namespaces which are accessible in that cluster. Cluster level resources will be ignored if namespace list is not empty. */
+  namespaces?: UpdateClusterServiceRequestNamespacesList;
+  project?: string;
+  refreshRequestedAt?: string;
+  server?: string;
+  serverVersion?: string;
+  /** Shard contains optional shard number. Calculated on the fly by the application controller if not specified. */
+  shard?: number;
+}
+export const UpdateClusterServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id_value: S.String.pipe(T.Label()),
+    updatedFields: S.optional(
+      UpdateClusterServiceRequestUpdatedFieldsList.pipe(T.Query()),
+    ),
+    id_type: S.optional(S.String.pipe(T.Query("id.type"))),
+    annotations: S.optional(UpdateClusterServiceRequestAnnotationsMap),
+    clusterResources: S.optional(S.Boolean),
+    config: S.optional(V1alpha1ClusterConfig),
+    connectionState: S.optional(V1alpha1ConnectionState),
+    info: S.optional(V1alpha1ClusterInfo),
+    labels: S.optional(UpdateClusterServiceRequestLabelsMap),
+    name: S.optional(S.String),
+    namespaces: S.optional(UpdateClusterServiceRequestNamespacesList),
+    project: S.optional(S.String),
+    refreshRequestedAt: S.optional(S.String),
+    server: S.optional(S.String),
+    serverVersion: S.optional(S.String),
+    shard: S.optional(S.Number),
+  }).pipe(
+    T.Http({ method: "PUT", uri: "/api/v1/clusters/{id_value}", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateClusterServiceRequest",
+}) as any as S.Schema<UpdateClusterServiceRequest>;
+
+export interface UpdateProjectServiceRequest {
+  /** Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names +optional */
+  project_metadata_name: string;
+  project?: V1alpha1AppProject;
+}
+export const UpdateProjectServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_metadata_name: S.String.pipe(T.Label()),
+    project: S.optional(V1alpha1AppProject),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/api/v1/projects/{project_metadata_name}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateProjectServiceRequest",
+}) as any as S.Schema<UpdateProjectServiceRequest>;
+
+export interface UpdateRepoCredsServiceRepositoryCredentialsRequest {
+  /** URL is the URL to which these credentials match */
+  creds_url: string;
+  azureActiveDirectoryEndpoint?: string;
+  azureServicePrincipalClientId?: string;
+  azureServicePrincipalClientSecret?: string;
+  azureServicePrincipalTenantId?: string;
+  bearerToken?: string;
+  enableOCI?: boolean;
+  forceHttpBasicAuth?: boolean;
+  gcpServiceAccountKey?: string;
+  githubAppEnterpriseBaseUrl?: string;
+  githubAppID?: number;
+  githubAppInstallationID?: number;
+  githubAppPrivateKey?: string;
+  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
+  insecureOCIForceHttp?: boolean;
+  noProxy?: string;
+  password?: string | Redacted.Redacted<string>;
+  proxy?: string;
+  sshPrivateKey?: string;
+  tlsClientCertData?: string;
+  tlsClientCertKey?: string;
+  /** Type specifies the type of the repoCreds. Can be either "git", "helm" or "oci". "git" is assumed if empty or absent. */
+  type?: string;
+  url?: string;
+  useAzureWorkloadIdentity?: boolean;
+  username?: string;
+}
+export const UpdateRepoCredsServiceRepositoryCredentialsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      creds_url: S.String.pipe(T.Label()),
+      azureActiveDirectoryEndpoint: S.optional(S.String),
+      azureServicePrincipalClientId: S.optional(S.String),
+      azureServicePrincipalClientSecret: S.optional(S.String),
+      azureServicePrincipalTenantId: S.optional(S.String),
+      bearerToken: S.optional(S.String),
+      enableOCI: S.optional(S.Boolean),
+      forceHttpBasicAuth: S.optional(S.Boolean),
+      gcpServiceAccountKey: S.optional(S.String),
+      githubAppEnterpriseBaseUrl: S.optional(S.String),
+      githubAppID: S.optional(S.Number),
+      githubAppInstallationID: S.optional(S.Number),
+      githubAppPrivateKey: S.optional(S.String),
+      insecureOCIForceHttp: S.optional(S.Boolean),
+      noProxy: S.optional(S.String),
+      password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+      proxy: S.optional(S.String),
+      sshPrivateKey: S.optional(S.String),
+      tlsClientCertData: S.optional(S.String),
+      tlsClientCertKey: S.optional(S.String),
+      type: S.optional(S.String),
+      url: S.optional(S.String),
+      useAzureWorkloadIdentity: S.optional(S.Boolean),
+      username: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/api/v1/repocreds/{creds_url}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateRepoCredsServiceRepositoryCredentialsRequest",
+  }) as any as S.Schema<UpdateRepoCredsServiceRepositoryCredentialsRequest>;
+
+export interface UpdateRepoCredsServiceWriteRepositoryCredentialsRequest {
+  /** URL is the URL to which these credentials match */
+  creds_url: string;
+  azureActiveDirectoryEndpoint?: string;
+  azureServicePrincipalClientId?: string;
+  azureServicePrincipalClientSecret?: string;
+  azureServicePrincipalTenantId?: string;
+  bearerToken?: string;
+  enableOCI?: boolean;
+  forceHttpBasicAuth?: boolean;
+  gcpServiceAccountKey?: string;
+  githubAppEnterpriseBaseUrl?: string;
+  githubAppID?: number;
+  githubAppInstallationID?: number;
+  githubAppPrivateKey?: string;
+  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
+  insecureOCIForceHttp?: boolean;
+  noProxy?: string;
+  password?: string | Redacted.Redacted<string>;
+  proxy?: string;
+  sshPrivateKey?: string;
+  tlsClientCertData?: string;
+  tlsClientCertKey?: string;
+  /** Type specifies the type of the repoCreds. Can be either "git", "helm" or "oci". "git" is assumed if empty or absent. */
+  type?: string;
+  url?: string;
+  useAzureWorkloadIdentity?: boolean;
+  username?: string;
+}
+export const UpdateRepoCredsServiceWriteRepositoryCredentialsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      creds_url: S.String.pipe(T.Label()),
+      azureActiveDirectoryEndpoint: S.optional(S.String),
+      azureServicePrincipalClientId: S.optional(S.String),
+      azureServicePrincipalClientSecret: S.optional(S.String),
+      azureServicePrincipalTenantId: S.optional(S.String),
+      bearerToken: S.optional(S.String),
+      enableOCI: S.optional(S.Boolean),
+      forceHttpBasicAuth: S.optional(S.Boolean),
+      gcpServiceAccountKey: S.optional(S.String),
+      githubAppEnterpriseBaseUrl: S.optional(S.String),
+      githubAppID: S.optional(S.Number),
+      githubAppInstallationID: S.optional(S.Number),
+      githubAppPrivateKey: S.optional(S.String),
+      insecureOCIForceHttp: S.optional(S.Boolean),
+      noProxy: S.optional(S.String),
+      password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+      proxy: S.optional(S.String),
+      sshPrivateKey: S.optional(S.String),
+      tlsClientCertData: S.optional(S.String),
+      tlsClientCertKey: S.optional(S.String),
+      type: S.optional(S.String),
+      url: S.optional(S.String),
+      useAzureWorkloadIdentity: S.optional(S.Boolean),
+      username: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/api/v1/write-repocreds/{creds_url}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateRepoCredsServiceWriteRepositoryCredentialsRequest",
+  }) as any as S.Schema<UpdateRepoCredsServiceWriteRepositoryCredentialsRequest>;
+
+export interface UpdateRepositoryServiceRepositoryRequest {
+  /** Repo contains the URL to the remote repository */
+  repo_repo: string;
+  azureActiveDirectoryEndpoint?: string;
+  azureServicePrincipalClientId?: string;
+  azureServicePrincipalClientSecret?: string;
+  azureServicePrincipalTenantId?: string;
+  bearerToken?: string;
+  connectionState?: V1alpha1ConnectionState;
+  /** Depth specifies the depth for shallow clones. A value of 0 or omitting the field indicates a full clone. */
+  depth?: number;
+  /** EnableLFS specifies whether git-lfs support should be enabled for this repo. Only valid for Git repositories. */
+  enableLfs?: boolean;
+  enableOCI?: boolean;
+  forceHttpBasicAuth?: boolean;
+  gcpServiceAccountKey?: string;
+  githubAppEnterpriseBaseUrl?: string;
+  githubAppID?: number;
+  githubAppInstallationID?: number;
+  githubAppPrivateKey?: string;
+  inheritedCreds?: boolean;
+  insecure?: boolean;
+  insecureIgnoreHostKey?: boolean;
+  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
+  insecureOCIForceHttp?: boolean;
+  name?: string;
+  noProxy?: string;
+  password?: string | Redacted.Redacted<string>;
+  project?: string;
+  proxy?: string;
+  repo?: string;
+  /** SSHPrivateKey contains the PEM data for authenticating at the repo server. Only used with Git repos. */
+  sshPrivateKey?: string;
+  tlsClientCertData?: string;
+  tlsClientCertKey?: string;
+  /** Type specifies the type of the repo. Can be either "git" or "helm. "git" is assumed if empty or absent. */
+  type?: string;
+  useAzureWorkloadIdentity?: boolean;
+  username?: string;
+  /** WebhookManifestCacheWarmDisabled disables manifest cache warming during webhook processing for this repository. When set, webhook handlers will only trigger reconciliation for affected applications and skip Redis cache operations for unaffected ones. Recommended for large monorepos with plain YAML manifests. */
+  webhookManifestCacheWarmDisabled?: boolean;
+}
+export const UpdateRepositoryServiceRepositoryRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      repo_repo: S.String.pipe(T.Label()),
+      azureActiveDirectoryEndpoint: S.optional(S.String),
+      azureServicePrincipalClientId: S.optional(S.String),
+      azureServicePrincipalClientSecret: S.optional(S.String),
+      azureServicePrincipalTenantId: S.optional(S.String),
+      bearerToken: S.optional(S.String),
+      connectionState: S.optional(V1alpha1ConnectionState),
+      depth: S.optional(S.Number),
+      enableLfs: S.optional(S.Boolean),
+      enableOCI: S.optional(S.Boolean),
+      forceHttpBasicAuth: S.optional(S.Boolean),
+      gcpServiceAccountKey: S.optional(S.String),
+      githubAppEnterpriseBaseUrl: S.optional(S.String),
+      githubAppID: S.optional(S.Number),
+      githubAppInstallationID: S.optional(S.Number),
+      githubAppPrivateKey: S.optional(S.String),
+      inheritedCreds: S.optional(S.Boolean),
+      insecure: S.optional(S.Boolean),
+      insecureIgnoreHostKey: S.optional(S.Boolean),
+      insecureOCIForceHttp: S.optional(S.Boolean),
+      name: S.optional(S.String),
+      noProxy: S.optional(S.String),
+      password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+      project: S.optional(S.String),
+      proxy: S.optional(S.String),
+      repo: S.optional(S.String),
+      sshPrivateKey: S.optional(S.String),
+      tlsClientCertData: S.optional(S.String),
+      tlsClientCertKey: S.optional(S.String),
+      type: S.optional(S.String),
+      useAzureWorkloadIdentity: S.optional(S.Boolean),
+      username: S.optional(S.String),
+      webhookManifestCacheWarmDisabled: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/api/v1/repositories/{repo_repo}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "UpdateRepositoryServiceRepositoryRequest",
+}) as any as S.Schema<UpdateRepositoryServiceRepositoryRequest>;
+
+export interface UpdateRepositoryServiceWriteRepositoryRequest {
+  /** Repo contains the URL to the remote repository */
+  repo_repo: string;
+  azureActiveDirectoryEndpoint?: string;
+  azureServicePrincipalClientId?: string;
+  azureServicePrincipalClientSecret?: string;
+  azureServicePrincipalTenantId?: string;
+  bearerToken?: string;
+  connectionState?: V1alpha1ConnectionState;
+  /** Depth specifies the depth for shallow clones. A value of 0 or omitting the field indicates a full clone. */
+  depth?: number;
+  /** EnableLFS specifies whether git-lfs support should be enabled for this repo. Only valid for Git repositories. */
+  enableLfs?: boolean;
+  enableOCI?: boolean;
+  forceHttpBasicAuth?: boolean;
+  gcpServiceAccountKey?: string;
+  githubAppEnterpriseBaseUrl?: string;
+  githubAppID?: number;
+  githubAppInstallationID?: number;
+  githubAppPrivateKey?: string;
+  inheritedCreds?: boolean;
+  insecure?: boolean;
+  insecureIgnoreHostKey?: boolean;
+  /** InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only. */
+  insecureOCIForceHttp?: boolean;
+  name?: string;
+  noProxy?: string;
+  password?: string | Redacted.Redacted<string>;
+  project?: string;
+  proxy?: string;
+  repo?: string;
+  /** SSHPrivateKey contains the PEM data for authenticating at the repo server. Only used with Git repos. */
+  sshPrivateKey?: string;
+  tlsClientCertData?: string;
+  tlsClientCertKey?: string;
+  /** Type specifies the type of the repo. Can be either "git" or "helm. "git" is assumed if empty or absent. */
+  type?: string;
+  useAzureWorkloadIdentity?: boolean;
+  username?: string;
+  /** WebhookManifestCacheWarmDisabled disables manifest cache warming during webhook processing for this repository. When set, webhook handlers will only trigger reconciliation for affected applications and skip Redis cache operations for unaffected ones. Recommended for large monorepos with plain YAML manifests. */
+  webhookManifestCacheWarmDisabled?: boolean;
+}
+export const UpdateRepositoryServiceWriteRepositoryRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      repo_repo: S.String.pipe(T.Label()),
+      azureActiveDirectoryEndpoint: S.optional(S.String),
+      azureServicePrincipalClientId: S.optional(S.String),
+      azureServicePrincipalClientSecret: S.optional(S.String),
+      azureServicePrincipalTenantId: S.optional(S.String),
+      bearerToken: S.optional(S.String),
+      connectionState: S.optional(V1alpha1ConnectionState),
+      depth: S.optional(S.Number),
+      enableLfs: S.optional(S.Boolean),
+      enableOCI: S.optional(S.Boolean),
+      forceHttpBasicAuth: S.optional(S.Boolean),
+      gcpServiceAccountKey: S.optional(S.String),
+      githubAppEnterpriseBaseUrl: S.optional(S.String),
+      githubAppID: S.optional(S.Number),
+      githubAppInstallationID: S.optional(S.Number),
+      githubAppPrivateKey: S.optional(S.String),
+      inheritedCreds: S.optional(S.Boolean),
+      insecure: S.optional(S.Boolean),
+      insecureIgnoreHostKey: S.optional(S.Boolean),
+      insecureOCIForceHttp: S.optional(S.Boolean),
+      name: S.optional(S.String),
+      noProxy: S.optional(S.String),
+      password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+      project: S.optional(S.String),
+      proxy: S.optional(S.String),
+      repo: S.optional(S.String),
+      sshPrivateKey: S.optional(S.String),
+      tlsClientCertData: S.optional(S.String),
+      tlsClientCertKey: S.optional(S.String),
+      type: S.optional(S.String),
+      useAzureWorkloadIdentity: S.optional(S.Boolean),
+      username: S.optional(S.String),
+      webhookManifestCacheWarmDisabled: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/api/v1/write-repositories/{repo_repo}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateRepositoryServiceWriteRepositoryRequest",
+  }) as any as S.Schema<UpdateRepositoryServiceWriteRepositoryRequest>;
+
+export interface ValidateRepositoryServiceAccessRequest {
+  /** The URL to the repo */
+  repo: string;
+  /** Username for accessing repo. */
+  username?: string;
+  /** Password for accessing repo. */
+  password?: string;
+  /** Private key data for accessing SSH repository. */
+  sshPrivateKey?: string;
+  /** Whether to skip certificate or host key validation. */
+  insecure?: boolean;
+  /** TLS client cert data for accessing HTTPS repository. */
+  tlsClientCertData?: string;
+  /** TLS client cert key for accessing HTTPS repository. */
+  tlsClientCertKey?: string;
+  /** The type of the repo. */
+  type?: string;
+  /** The name of the repo. */
+  name?: string;
+  /** Whether helm-oci support should be enabled for this repo. */
+  enableOci?: boolean;
+  /** Github App Private Key PEM data. */
+  githubAppPrivateKey?: string;
+  /** Github App ID of the app used to access the repo. */
+  githubAppID?: string;
+  /** Github App Installation ID of the installed GitHub App. */
+  githubAppInstallationID?: string;
+  /** Github App Enterprise base url if empty will default to https://api.github.com. */
+  githubAppEnterpriseBaseUrl?: string;
+  /** HTTP/HTTPS proxy to access the repository. */
+  proxy?: string;
+  /** Reference between project and repository that allow you automatically to be added as item inside SourceRepos project entity. */
+  project?: string;
+  /** Google Cloud Platform service account key. */
+  gcpServiceAccountKey?: string;
+  /** Whether to force HTTP basic auth. */
+  forceHttpBasicAuth?: boolean;
+  /** Whether to use azure workload identity for authentication. */
+  useAzureWorkloadIdentity?: boolean;
+  /** BearerToken contains the bearer token used for Git auth at the repo server. */
+  bearerToken?: string;
+  /** Whether https should be disabled for an OCI repo. */
+  insecureOciForceHttp?: boolean;
+  /** Azure Service Principal Client ID. */
+  azureServicePrincipalClientId?: string;
+  /** Azure Service Principal Client Secret. */
+  azureServicePrincipalClientSecret?: string;
+  /** Azure Service Principal Tenant ID. */
+  azureServicePrincipalTenantId?: string;
+  /** Azure Active Directory Endpoint. */
+  azureActiveDirectoryEndpoint?: string;
+  body: string;
+}
+export const ValidateRepositoryServiceAccessRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      repo: S.String.pipe(T.Label()),
+      username: S.optional(S.String.pipe(T.Query())),
+      password: S.optional(S.String.pipe(T.Query())),
+      sshPrivateKey: S.optional(S.String.pipe(T.Query())),
+      insecure: S.optional(S.Boolean.pipe(T.Query())),
+      tlsClientCertData: S.optional(S.String.pipe(T.Query())),
+      tlsClientCertKey: S.optional(S.String.pipe(T.Query())),
+      type: S.optional(S.String.pipe(T.Query())),
+      name: S.optional(S.String.pipe(T.Query())),
+      enableOci: S.optional(S.Boolean.pipe(T.Query())),
+      githubAppPrivateKey: S.optional(S.String.pipe(T.Query())),
+      githubAppID: S.optional(S.String.pipe(T.Query())),
+      githubAppInstallationID: S.optional(S.String.pipe(T.Query())),
+      githubAppEnterpriseBaseUrl: S.optional(S.String.pipe(T.Query())),
+      proxy: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+      gcpServiceAccountKey: S.optional(S.String.pipe(T.Query())),
+      forceHttpBasicAuth: S.optional(S.Boolean.pipe(T.Query())),
+      useAzureWorkloadIdentity: S.optional(S.Boolean.pipe(T.Query())),
+      bearerToken: S.optional(S.String.pipe(T.Query())),
+      insecureOciForceHttp: S.optional(S.Boolean.pipe(T.Query())),
+      azureServicePrincipalClientId: S.optional(S.String.pipe(T.Query())),
+      azureServicePrincipalClientSecret: S.optional(S.String.pipe(T.Query())),
+      azureServicePrincipalTenantId: S.optional(S.String.pipe(T.Query())),
+      azureActiveDirectoryEndpoint: S.optional(S.String.pipe(T.Query())),
+      body: S.String.pipe(T.HttpBody()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/v1/repositories/{repo}/validate",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ValidateRepositoryServiceAccessRequest",
+}) as any as S.Schema<ValidateRepositoryServiceAccessRequest>;
+
+export type ValidateRepositoryServiceAccessResponse = unknown;
+export const ValidateRepositoryServiceAccessResponse = /*@__PURE__*/ S.suspend(
+  () => S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ValidateRepositoryServiceAccessResponse",
+}) as any as S.Schema<ValidateRepositoryServiceAccessResponse>;
+
+export interface ValidateRepositoryServiceWriteAccessRequest {
+  /** The URL to the repo */
+  repo: string;
+  /** Username for accessing repo. */
+  username?: string;
+  /** Password for accessing repo. */
+  password?: string;
+  /** Private key data for accessing SSH repository. */
+  sshPrivateKey?: string;
+  /** Whether to skip certificate or host key validation. */
+  insecure?: boolean;
+  /** TLS client cert data for accessing HTTPS repository. */
+  tlsClientCertData?: string;
+  /** TLS client cert key for accessing HTTPS repository. */
+  tlsClientCertKey?: string;
+  /** The type of the repo. */
+  type?: string;
+  /** The name of the repo. */
+  name?: string;
+  /** Whether helm-oci support should be enabled for this repo. */
+  enableOci?: boolean;
+  /** Github App Private Key PEM data. */
+  githubAppPrivateKey?: string;
+  /** Github App ID of the app used to access the repo. */
+  githubAppID?: string;
+  /** Github App Installation ID of the installed GitHub App. */
+  githubAppInstallationID?: string;
+  /** Github App Enterprise base url if empty will default to https://api.github.com. */
+  githubAppEnterpriseBaseUrl?: string;
+  /** HTTP/HTTPS proxy to access the repository. */
+  proxy?: string;
+  /** Reference between project and repository that allow you automatically to be added as item inside SourceRepos project entity. */
+  project?: string;
+  /** Google Cloud Platform service account key. */
+  gcpServiceAccountKey?: string;
+  /** Whether to force HTTP basic auth. */
+  forceHttpBasicAuth?: boolean;
+  /** Whether to use azure workload identity for authentication. */
+  useAzureWorkloadIdentity?: boolean;
+  /** BearerToken contains the bearer token used for Git auth at the repo server. */
+  bearerToken?: string;
+  /** Whether https should be disabled for an OCI repo. */
+  insecureOciForceHttp?: boolean;
+  /** Azure Service Principal Client ID. */
+  azureServicePrincipalClientId?: string;
+  /** Azure Service Principal Client Secret. */
+  azureServicePrincipalClientSecret?: string;
+  /** Azure Service Principal Tenant ID. */
+  azureServicePrincipalTenantId?: string;
+  /** Azure Active Directory Endpoint. */
+  azureActiveDirectoryEndpoint?: string;
+  body: string;
+}
+export const ValidateRepositoryServiceWriteAccessRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      repo: S.String.pipe(T.Label()),
+      username: S.optional(S.String.pipe(T.Query())),
+      password: S.optional(S.String.pipe(T.Query())),
+      sshPrivateKey: S.optional(S.String.pipe(T.Query())),
+      insecure: S.optional(S.Boolean.pipe(T.Query())),
+      tlsClientCertData: S.optional(S.String.pipe(T.Query())),
+      tlsClientCertKey: S.optional(S.String.pipe(T.Query())),
+      type: S.optional(S.String.pipe(T.Query())),
+      name: S.optional(S.String.pipe(T.Query())),
+      enableOci: S.optional(S.Boolean.pipe(T.Query())),
+      githubAppPrivateKey: S.optional(S.String.pipe(T.Query())),
+      githubAppID: S.optional(S.String.pipe(T.Query())),
+      githubAppInstallationID: S.optional(S.String.pipe(T.Query())),
+      githubAppEnterpriseBaseUrl: S.optional(S.String.pipe(T.Query())),
+      proxy: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+      gcpServiceAccountKey: S.optional(S.String.pipe(T.Query())),
+      forceHttpBasicAuth: S.optional(S.Boolean.pipe(T.Query())),
+      useAzureWorkloadIdentity: S.optional(S.Boolean.pipe(T.Query())),
+      bearerToken: S.optional(S.String.pipe(T.Query())),
+      insecureOciForceHttp: S.optional(S.Boolean.pipe(T.Query())),
+      azureServicePrincipalClientId: S.optional(S.String.pipe(T.Query())),
+      azureServicePrincipalClientSecret: S.optional(S.String.pipe(T.Query())),
+      azureServicePrincipalTenantId: S.optional(S.String.pipe(T.Query())),
+      azureActiveDirectoryEndpoint: S.optional(S.String.pipe(T.Query())),
+      body: S.String.pipe(T.HttpBody()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/v1/write-repositories/{repo}/validate",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateRepositoryServiceWriteAccessRequest",
+  }) as any as S.Schema<ValidateRepositoryServiceWriteAccessRequest>;
+
+export type ValidateRepositoryServiceWriteAccessResponse = unknown;
+export const ValidateRepositoryServiceWriteAccessResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ValidateRepositoryServiceWriteAccessResponse",
+  }) as any as S.Schema<ValidateRepositoryServiceWriteAccessResponse>;
 
 export interface VersionServiceVersionRequest {}
 export const VersionServiceVersionRequest = /*@__PURE__*/ S.suspend(() =>
@@ -9285,6 +9106,185 @@ export const VersionVersionMessage = /*@__PURE__*/ S.suspend(() =>
   identifier: "VersionVersionMessage",
 }) as any as S.Schema<VersionVersionMessage>;
 
+export type WatchApplicationServiceRequestProjectsList = Array<string>;
+export const WatchApplicationServiceRequestProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WatchApplicationServiceRequestProjectsList>;
+
+export type WatchApplicationServiceRequestProjectList = Array<string>;
+export const WatchApplicationServiceRequestProjectList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WatchApplicationServiceRequestProjectList>;
+
+export interface WatchApplicationServiceRequest {
+  /** the application's name. */
+  name?: string;
+  /** forces application reconciliation if set to 'hard'. */
+  refresh?: string;
+  /** the project names to restrict returned list applications. */
+  projects?: WatchApplicationServiceRequestProjectsList;
+  /** when specified with a watch call, shows changes that occur after that particular version of a resource. */
+  resourceVersion?: string;
+  /** the selector to restrict returned list to applications only with matched labels. */
+  selector?: string;
+  /** the repoURL to restrict returned list applications. */
+  repo?: string;
+  /** the application's namespace. */
+  appNamespace?: string;
+  /** the project names to restrict returned list applications (legacy name for backwards-compatibility). */
+  project?: WatchApplicationServiceRequestProjectList;
+}
+export const WatchApplicationServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String.pipe(T.Query())),
+    refresh: S.optional(S.String.pipe(T.Query())),
+    projects: S.optional(
+      WatchApplicationServiceRequestProjectsList.pipe(T.Query()),
+    ),
+    resourceVersion: S.optional(S.String.pipe(T.Query())),
+    selector: S.optional(S.String.pipe(T.Query())),
+    repo: S.optional(S.String.pipe(T.Query())),
+    appNamespace: S.optional(S.String.pipe(T.Query())),
+    project: S.optional(
+      WatchApplicationServiceRequestProjectList.pipe(T.Query()),
+    ),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v1/stream/applications", code: 200 }),
+  ),
+).annotate({
+  identifier: "WatchApplicationServiceRequest",
+}) as any as S.Schema<WatchApplicationServiceRequest>;
+
+/** ApplicationWatchEvent contains information about application change. */
+export interface V1alpha1ApplicationWatchEvent {
+  application?: V1alpha1Application;
+  type?: string;
+}
+export const V1alpha1ApplicationWatchEvent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    application: S.optional(V1alpha1Application),
+    type: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "V1alpha1ApplicationWatchEvent",
+}) as any as S.Schema<V1alpha1ApplicationWatchEvent>;
+
+export interface WatchApplicationServiceResponse {
+  error?: RuntimeStreamError;
+  result?: V1alpha1ApplicationWatchEvent;
+}
+export const WatchApplicationServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    error: S.optional(RuntimeStreamError),
+    result: S.optional(V1alpha1ApplicationWatchEvent),
+  }),
+).annotate({
+  identifier: "WatchApplicationServiceResponse",
+}) as any as S.Schema<WatchApplicationServiceResponse>;
+
+export interface WatchApplicationServiceResourceTreeRequest {
+  applicationName: string;
+  namespace?: string;
+  name?: string;
+  version?: string;
+  group?: string;
+  kind?: string;
+  appNamespace?: string;
+  project?: string;
+}
+export const WatchApplicationServiceResourceTreeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      applicationName: S.String.pipe(T.Label()),
+      namespace: S.optional(S.String.pipe(T.Query())),
+      name: S.optional(S.String.pipe(T.Query())),
+      version: S.optional(S.String.pipe(T.Query())),
+      group: S.optional(S.String.pipe(T.Query())),
+      kind: S.optional(S.String.pipe(T.Query())),
+      appNamespace: S.optional(S.String.pipe(T.Query())),
+      project: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v1/stream/applications/{applicationName}/resource-tree",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "WatchApplicationServiceResourceTreeRequest",
+  }) as any as S.Schema<WatchApplicationServiceResourceTreeRequest>;
+
+export interface WatchApplicationServiceResourceTreeResponse {
+  error?: RuntimeStreamError;
+  result?: V1alpha1ApplicationTree;
+}
+export const WatchApplicationServiceResourceTreeResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      error: S.optional(RuntimeStreamError),
+      result: S.optional(V1alpha1ApplicationTree),
+    }),
+  ).annotate({
+    identifier: "WatchApplicationServiceResourceTreeResponse",
+  }) as any as S.Schema<WatchApplicationServiceResourceTreeResponse>;
+
+export type WatchApplicationSetServiceRequestProjectsList = Array<string>;
+export const WatchApplicationSetServiceRequestProjectsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WatchApplicationSetServiceRequestProjectsList>;
+
+export interface WatchApplicationSetServiceRequest {
+  name?: string;
+  projects?: WatchApplicationSetServiceRequestProjectsList;
+  selector?: string;
+  appSetNamespace?: string;
+  /** when specified with a watch call, shows changes that occur after that particular version of a resource. */
+  resourceVersion?: string;
+}
+export const WatchApplicationSetServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String.pipe(T.Query())),
+    projects: S.optional(
+      WatchApplicationSetServiceRequestProjectsList.pipe(T.Query()),
+    ),
+    selector: S.optional(S.String.pipe(T.Query())),
+    appSetNamespace: S.optional(S.String.pipe(T.Query())),
+    resourceVersion: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v1/stream/applicationsets", code: 200 }),
+  ),
+).annotate({
+  identifier: "WatchApplicationSetServiceRequest",
+}) as any as S.Schema<WatchApplicationSetServiceRequest>;
+
+/** ApplicationSetWatchEvent contains information about application change. */
+export interface V1alpha1ApplicationSetWatchEvent {
+  applicationSet?: V1alpha1ApplicationSet;
+  type?: string;
+}
+export const V1alpha1ApplicationSetWatchEvent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    applicationSet: S.optional(V1alpha1ApplicationSet),
+    type: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "V1alpha1ApplicationSetWatchEvent",
+}) as any as S.Schema<V1alpha1ApplicationSetWatchEvent>;
+
+export interface WatchApplicationSetServiceResponse {
+  error?: RuntimeStreamError;
+  result?: V1alpha1ApplicationSetWatchEvent;
+}
+export const WatchApplicationSetServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    error: S.optional(RuntimeStreamError),
+    result: S.optional(V1alpha1ApplicationSetWatchEvent),
+  }),
+).annotate({
+  identifier: "WatchApplicationSetServiceResponse",
+}) as any as S.Schema<WatchApplicationSetServiceResponse>;
+
 export type AccountServiceCanIError = ArgocdOpError;
 /** CanI checks if the current account has permission to perform an action */
 export const accountServiceCanI: API.OperationMethod<
@@ -9300,291 +9300,6 @@ export const accountServiceCanI: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AccountServiceCreateTokenError = ArgocdOpError;
-/** CreateToken creates a token */
-export const accountServiceCreateToken: API.OperationMethod<
-  AccountServiceCreateTokenRequest,
-  AccountCreateTokenResponse,
-  AccountServiceCreateTokenError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountServiceCreateTokenRequest,
-  output: AccountCreateTokenResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountServiceDeleteTokenError = ArgocdOpError;
-/** DeleteToken deletes a token */
-export const accountServiceDeleteToken: API.OperationMethod<
-  AccountServiceDeleteTokenRequest,
-  AccountServiceDeleteTokenResponse,
-  AccountServiceDeleteTokenError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountServiceDeleteTokenRequest,
-  output: AccountServiceDeleteTokenResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountServiceGetAccountError = ArgocdOpError;
-/** GetAccount returns an account */
-export const accountServiceGetAccount: API.OperationMethod<
-  AccountServiceGetAccountRequest,
-  AccountAccount,
-  AccountServiceGetAccountError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountServiceGetAccountRequest,
-  output: AccountAccount,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountServiceListAccountsError = ArgocdOpError;
-/** ListAccounts returns the list of accounts */
-export const accountServiceListAccounts: API.OperationMethod<
-  AccountServiceListAccountsRequest,
-  AccountAccountsList,
-  AccountServiceListAccountsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountServiceListAccountsRequest,
-  output: AccountAccountsList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountServiceUpdatePasswordError = ArgocdOpError;
-/** UpdatePassword updates an account's password to a new value */
-export const accountServiceUpdatePassword: API.OperationMethod<
-  AccountServiceUpdatePasswordRequest,
-  AccountServiceUpdatePasswordResponse,
-  AccountServiceUpdatePasswordError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountServiceUpdatePasswordRequest,
-  output: AccountServiceUpdatePasswordResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceCreateError = ArgocdOpError;
-/** Create creates an application */
-export const applicationServiceCreate: API.OperationMethod<
-  ApplicationServiceCreateRequest,
-  V1alpha1Application,
-  ApplicationServiceCreateError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceCreateRequest,
-  output: V1alpha1Application,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceDeleteError = ArgocdOpError;
-/** Delete deletes an application */
-export const applicationServiceDelete: API.OperationMethod<
-  ApplicationServiceDeleteRequest,
-  ApplicationServiceDeleteResponse,
-  ApplicationServiceDeleteError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceDeleteRequest,
-  output: ApplicationServiceDeleteResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceDeleteResourceError = ArgocdOpError;
-/** DeleteResource deletes a single application resource */
-export const applicationServiceDeleteResource: API.OperationMethod<
-  ApplicationServiceDeleteResourceRequest,
-  ApplicationServiceDeleteResourceResponse,
-  ApplicationServiceDeleteResourceError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceDeleteResourceRequest,
-  output: ApplicationServiceDeleteResourceResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceGetError = ArgocdOpError;
-/** Get returns an application by name */
-export const applicationServiceGet: API.OperationMethod<
-  ApplicationServiceGetRequest,
-  V1alpha1Application,
-  ApplicationServiceGetError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceGetRequest,
-  output: V1alpha1Application,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceGetApplicationSyncWindowsError = ArgocdOpError;
-/** Get returns sync windows of the application */
-export const applicationServiceGetApplicationSyncWindows: API.OperationMethod<
-  ApplicationServiceGetApplicationSyncWindowsRequest,
-  ApplicationApplicationSyncWindowsResponse,
-  ApplicationServiceGetApplicationSyncWindowsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceGetApplicationSyncWindowsRequest,
-  output: ApplicationApplicationSyncWindowsResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceGetManifestsError = ArgocdOpError;
-/** GetManifests returns application manifests */
-export const applicationServiceGetManifests: API.OperationMethod<
-  ApplicationServiceGetManifestsRequest,
-  RepositoryManifestResponse,
-  ApplicationServiceGetManifestsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceGetManifestsRequest,
-  output: RepositoryManifestResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceGetManifestsWithFilesError = ArgocdOpError;
-/** GetManifestsWithFiles returns application manifests using provided files to generate them */
-export const applicationServiceGetManifestsWithFiles: API.OperationMethod<
-  ApplicationServiceGetManifestsWithFilesRequest,
-  RepositoryManifestResponse,
-  ApplicationServiceGetManifestsWithFilesError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceGetManifestsWithFilesRequest,
-  output: RepositoryManifestResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceGetOCIMetadataError = ArgocdOpError;
-/** Get the chart metadata (description, maintainers, home) for a specific revision of the application */
-export const applicationServiceGetOCIMetadata: API.OperationMethod<
-  ApplicationServiceGetOCIMetadataRequest,
-  V1alpha1OCIMetadata,
-  ApplicationServiceGetOCIMetadataError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceGetOCIMetadataRequest,
-  output: V1alpha1OCIMetadata,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceGetResourceError = ArgocdOpError;
-/** GetResource returns single application resource */
-export const applicationServiceGetResource: API.OperationMethod<
-  ApplicationServiceGetResourceRequest,
-  ApplicationApplicationResourceResponse,
-  ApplicationServiceGetResourceError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceGetResourceRequest,
-  output: ApplicationApplicationResourceResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceListError = ArgocdOpError;
-/** List returns list of applications */
-export const applicationServiceList: API.OperationMethod<
-  ApplicationServiceListRequest,
-  V1alpha1ApplicationList,
-  ApplicationServiceListError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceListRequest,
-  output: V1alpha1ApplicationList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceListLinksError = ArgocdOpError;
-/** ListLinks returns the list of all application deep links */
-export const applicationServiceListLinks: API.OperationMethod<
-  ApplicationServiceListLinksRequest,
-  ApplicationLinksResponse,
-  ApplicationServiceListLinksError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceListLinksRequest,
-  output: ApplicationLinksResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceListResourceActionsError = ArgocdOpError;
-/** ListResourceActions returns list of resource actions */
-export const applicationServiceListResourceActions: API.OperationMethod<
-  ApplicationServiceListResourceActionsRequest,
-  ApplicationResourceActionsListResponse,
-  ApplicationServiceListResourceActionsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceListResourceActionsRequest,
-  output: ApplicationResourceActionsListResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceListResourceEventsError = ArgocdOpError;
-/** ListResourceEvents returns a list of event resources */
-export const applicationServiceListResourceEvents: API.OperationMethod<
-  ApplicationServiceListResourceEventsRequest,
-  EventsEventList,
-  ApplicationServiceListResourceEventsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceListResourceEventsRequest,
-  output: EventsEventList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceListResourceLinksError = ArgocdOpError;
-/** ListResourceLinks returns the list of all resource deep links */
-export const applicationServiceListResourceLinks: API.OperationMethod<
-  ApplicationServiceListResourceLinksRequest,
-  ApplicationLinksResponse,
-  ApplicationServiceListResourceLinksError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceListResourceLinksRequest,
-  output: ApplicationLinksResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ApplicationServiceManagedResourcesError = ArgocdOpError;
 /** ManagedResources returns list of managed resources */
 export const applicationServiceManagedResources: API.OperationMethod<
@@ -9595,36 +9310,6 @@ export const applicationServiceManagedResources: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ApplicationServiceManagedResourcesRequest,
   output: ApplicationManagedResourcesResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServicePatchError = ArgocdOpError;
-/** Patch patch an application */
-export const applicationServicePatch: API.OperationMethod<
-  ApplicationServicePatchRequest,
-  V1alpha1Application,
-  ApplicationServicePatchError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServicePatchRequest,
-  output: V1alpha1Application,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServicePatchResourceError = ArgocdOpError;
-/** PatchResource patch single application resource */
-export const applicationServicePatchResource: API.OperationMethod<
-  ApplicationServicePatchResourceRequest,
-  ApplicationApplicationResourceResponse,
-  ApplicationServicePatchResourceError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServicePatchResourceRequest,
-  output: ApplicationApplicationResourceResponse,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
@@ -9720,36 +9405,6 @@ export const applicationServiceRollback: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ApplicationServiceRunResourceActionError = ArgocdOpError;
-/** RunResourceAction runs a resource action Deprecated: use RunResourceActionV2 instead. This version does not support resource action parameters but is maintained for backward compatibility. It will be removed in a future release. */
-export const applicationServiceRunResourceAction: API.OperationMethod<
-  ApplicationServiceRunResourceActionRequest,
-  ApplicationServiceRunResourceActionResponse,
-  ApplicationServiceRunResourceActionError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceRunResourceActionRequest,
-  output: ApplicationServiceRunResourceActionResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceRunResourceActionV2Error = ArgocdOpError;
-/** RunResourceActionV2 runs a resource action with parameters */
-export const applicationServiceRunResourceActionV2: API.OperationMethod<
-  ApplicationServiceRunResourceActionV2Request,
-  ApplicationServiceRunResourceActionV2Response,
-  ApplicationServiceRunResourceActionV2Error,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceRunResourceActionV2Request,
-  output: ApplicationServiceRunResourceActionV2Response,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ApplicationServiceServerSideDiffError = ArgocdOpError;
 /** ServerSideDiff performs server-side diff calculation using dry-run apply */
 export const applicationServiceServerSideDiff: API.OperationMethod<
@@ -9760,186 +9415,6 @@ export const applicationServiceServerSideDiff: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ApplicationServiceServerSideDiffRequest,
   output: ApplicationApplicationServerSideDiffResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceSyncError = ArgocdOpError;
-/** Sync syncs an application to its target state */
-export const applicationServiceSync: API.OperationMethod<
-  ApplicationServiceSyncRequest,
-  V1alpha1Application,
-  ApplicationServiceSyncError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceSyncRequest,
-  output: V1alpha1Application,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceTerminateOperationError = ArgocdOpError;
-/** TerminateOperation terminates the currently running operation */
-export const applicationServiceTerminateOperation: API.OperationMethod<
-  ApplicationServiceTerminateOperationRequest,
-  ApplicationServiceTerminateOperationResponse,
-  ApplicationServiceTerminateOperationError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceTerminateOperationRequest,
-  output: ApplicationServiceTerminateOperationResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceUpdateError = ArgocdOpError;
-/** Update updates an application */
-export const applicationServiceUpdate: API.OperationMethod<
-  ApplicationServiceUpdateRequest,
-  V1alpha1Application,
-  ApplicationServiceUpdateError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceUpdateRequest,
-  output: V1alpha1Application,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceUpdateSpecError = ArgocdOpError;
-/** UpdateSpec updates an application spec */
-export const applicationServiceUpdateSpec: API.OperationMethod<
-  ApplicationServiceUpdateSpecRequest,
-  V1alpha1ApplicationSpec,
-  ApplicationServiceUpdateSpecError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceUpdateSpecRequest,
-  output: V1alpha1ApplicationSpec,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceWatchError = ArgocdOpError;
-/** Watch returns stream of application change events */
-export const applicationServiceWatch: API.OperationMethod<
-  ApplicationServiceWatchRequest,
-  ApplicationServiceWatchResponse,
-  ApplicationServiceWatchError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceWatchRequest,
-  output: ApplicationServiceWatchResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationServiceWatchResourceTreeError = ArgocdOpError;
-/** Watch returns stream of application resource tree */
-export const applicationServiceWatchResourceTree: API.OperationMethod<
-  ApplicationServiceWatchResourceTreeRequest,
-  ApplicationServiceWatchResourceTreeResponse,
-  ApplicationServiceWatchResourceTreeError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationServiceWatchResourceTreeRequest,
-  output: ApplicationServiceWatchResourceTreeResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationSetServiceCreateError = ArgocdOpError;
-/** Create creates an applicationset */
-export const applicationSetServiceCreate: API.OperationMethod<
-  ApplicationSetServiceCreateRequest,
-  V1alpha1ApplicationSet,
-  ApplicationSetServiceCreateError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationSetServiceCreateRequest,
-  output: V1alpha1ApplicationSet,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationSetServiceDeleteError = ArgocdOpError;
-/** Delete deletes an application set */
-export const applicationSetServiceDelete: API.OperationMethod<
-  ApplicationSetServiceDeleteRequest,
-  ApplicationsetApplicationSetResponse,
-  ApplicationSetServiceDeleteError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationSetServiceDeleteRequest,
-  output: ApplicationsetApplicationSetResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationSetServiceGenerateError = ArgocdOpError;
-/** Generate generates */
-export const applicationSetServiceGenerate: API.OperationMethod<
-  ApplicationSetServiceGenerateRequest,
-  ApplicationsetApplicationSetGenerateResponse,
-  ApplicationSetServiceGenerateError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationSetServiceGenerateRequest,
-  output: ApplicationsetApplicationSetGenerateResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationSetServiceGetError = ArgocdOpError;
-/** Get returns an applicationset by name */
-export const applicationSetServiceGet: API.OperationMethod<
-  ApplicationSetServiceGetRequest,
-  V1alpha1ApplicationSet,
-  ApplicationSetServiceGetError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationSetServiceGetRequest,
-  output: V1alpha1ApplicationSet,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationSetServiceListError = ArgocdOpError;
-/** List returns list of applicationset */
-export const applicationSetServiceList: API.OperationMethod<
-  ApplicationSetServiceListRequest,
-  V1alpha1ApplicationSetList,
-  ApplicationSetServiceListError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationSetServiceListRequest,
-  output: V1alpha1ApplicationSetList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationSetServiceListResourceEventsError = ArgocdOpError;
-/** ListResourceEvents returns a list of event resources */
-export const applicationSetServiceListResourceEvents: API.OperationMethod<
-  ApplicationSetServiceListResourceEventsRequest,
-  EventsEventList,
-  ApplicationSetServiceListResourceEventsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationSetServiceListResourceEventsRequest,
-  output: EventsEventList,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
@@ -9960,901 +9435,1382 @@ export const applicationSetServiceResourceTree: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ApplicationSetServiceWatchError = ArgocdOpError;
-export const applicationSetServiceWatch: API.OperationMethod<
-  ApplicationSetServiceWatchRequest,
-  ApplicationSetServiceWatchResponse,
-  ApplicationSetServiceWatchError,
+export type CreateAccountServiceTokenError = ArgocdOpError;
+/** CreateToken creates a token */
+export const createAccountServiceToken: API.OperationMethod<
+  CreateAccountServiceTokenRequest,
+  AccountCreateTokenResponse,
+  CreateAccountServiceTokenError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationSetServiceWatchRequest,
-  output: ApplicationSetServiceWatchResponse,
+  input: CreateAccountServiceTokenRequest,
+  output: AccountCreateTokenResponse,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type CertificateServiceCreateCertificateError = ArgocdOpError;
+export type CreateApplicationServiceError = ArgocdOpError;
+/** Create creates an application */
+export const createApplicationService: API.OperationMethod<
+  CreateApplicationServiceRequest,
+  V1alpha1Application,
+  CreateApplicationServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateApplicationServiceRequest,
+  output: V1alpha1Application,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateApplicationSetServiceError = ArgocdOpError;
+/** Create creates an applicationset */
+export const createApplicationSetService: API.OperationMethod<
+  CreateApplicationSetServiceRequest,
+  V1alpha1ApplicationSet,
+  CreateApplicationSetServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateApplicationSetServiceRequest,
+  output: V1alpha1ApplicationSet,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateCertificateServiceCertificateError = ArgocdOpError;
 /** Creates repository certificates on the server */
-export const certificateServiceCreateCertificate: API.OperationMethod<
-  CertificateServiceCreateCertificateRequest,
+export const createCertificateServiceCertificate: API.OperationMethod<
+  CreateCertificateServiceCertificateRequest,
   V1alpha1RepositoryCertificateList,
-  CertificateServiceCreateCertificateError,
+  CreateCertificateServiceCertificateError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CertificateServiceCreateCertificateRequest,
+  input: CreateCertificateServiceCertificateRequest,
   output: V1alpha1RepositoryCertificateList,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type CertificateServiceDeleteCertificateError = ArgocdOpError;
-/** Delete the certificates that match the RepositoryCertificateQuery */
-export const certificateServiceDeleteCertificate: API.OperationMethod<
-  CertificateServiceDeleteCertificateRequest,
-  V1alpha1RepositoryCertificateList,
-  CertificateServiceDeleteCertificateError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CertificateServiceDeleteCertificateRequest,
-  output: V1alpha1RepositoryCertificateList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CertificateServiceListCertificatesError = ArgocdOpError;
-/** List all available repository certificates */
-export const certificateServiceListCertificates: API.OperationMethod<
-  CertificateServiceListCertificatesRequest,
-  V1alpha1RepositoryCertificateList,
-  CertificateServiceListCertificatesError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CertificateServiceListCertificatesRequest,
-  output: V1alpha1RepositoryCertificateList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterServiceCreateError = ArgocdOpError;
+export type CreateClusterServiceError = ArgocdOpError;
 /** Create creates a cluster */
-export const clusterServiceCreate: API.OperationMethod<
-  ClusterServiceCreateRequest,
+export const createClusterService: API.OperationMethod<
+  CreateClusterServiceRequest,
   V1alpha1Cluster,
-  ClusterServiceCreateError,
+  CreateClusterServiceError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClusterServiceCreateRequest,
+  input: CreateClusterServiceRequest,
   output: V1alpha1Cluster,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClusterServiceDeleteError = ArgocdOpError;
-/** Delete deletes a cluster */
-export const clusterServiceDelete: API.OperationMethod<
-  ClusterServiceDeleteRequest,
-  ClusterServiceDeleteResponse,
-  ClusterServiceDeleteError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterServiceDeleteRequest,
-  output: ClusterServiceDeleteResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterServiceGetError = ArgocdOpError;
-/** Get returns a cluster by server address */
-export const clusterServiceGet: API.OperationMethod<
-  ClusterServiceGetRequest,
-  V1alpha1Cluster,
-  ClusterServiceGetError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterServiceGetRequest,
-  output: V1alpha1Cluster,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterServiceInvalidateCacheError = ArgocdOpError;
-/** InvalidateCache invalidates cluster cache */
-export const clusterServiceInvalidateCache: API.OperationMethod<
-  ClusterServiceInvalidateCacheRequest,
-  V1alpha1Cluster,
-  ClusterServiceInvalidateCacheError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterServiceInvalidateCacheRequest,
-  output: V1alpha1Cluster,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterServiceListError = ArgocdOpError;
-/** List returns list of clusters */
-export const clusterServiceList: API.OperationMethod<
-  ClusterServiceListRequest,
-  V1alpha1ClusterList,
-  ClusterServiceListError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterServiceListRequest,
-  output: V1alpha1ClusterList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterServiceRotateAuthError = ArgocdOpError;
-/** RotateAuth rotates the bearer token used for a cluster */
-export const clusterServiceRotateAuth: API.OperationMethod<
-  ClusterServiceRotateAuthRequest,
-  ClusterServiceRotateAuthResponse,
-  ClusterServiceRotateAuthError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterServiceRotateAuthRequest,
-  output: ClusterServiceRotateAuthResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterServiceUpdateError = ArgocdOpError;
-/** Update updates a cluster */
-export const clusterServiceUpdate: API.OperationMethod<
-  ClusterServiceUpdateRequest,
-  V1alpha1Cluster,
-  ClusterServiceUpdateError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterServiceUpdateRequest,
-  output: V1alpha1Cluster,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GPGKeyServiceCreateError = ArgocdOpError;
+export type CreateGPGKeyServiceError = ArgocdOpError;
 /** Create one or more GPG public keys in the server's configuration */
-export const gPGKeyServiceCreate: API.OperationMethod<
-  GPGKeyServiceCreateRequest,
+export const createGPGKeyService: API.OperationMethod<
+  CreateGPGKeyServiceRequest,
   GpgkeyGnuPGPublicKeyCreateResponse,
-  GPGKeyServiceCreateError,
+  CreateGPGKeyServiceError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GPGKeyServiceCreateRequest,
+  input: CreateGPGKeyServiceRequest,
   output: GpgkeyGnuPGPublicKeyCreateResponse,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type GPGKeyServiceDeleteError = ArgocdOpError;
-/** Delete specified GPG public key from the server's configuration */
-export const gPGKeyServiceDelete: API.OperationMethod<
-  GPGKeyServiceDeleteRequest,
-  GPGKeyServiceDeleteResponse,
-  GPGKeyServiceDeleteError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GPGKeyServiceDeleteRequest,
-  output: GPGKeyServiceDeleteResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GPGKeyServiceGetError = ArgocdOpError;
-/** Get information about specified GPG public key from the server */
-export const gPGKeyServiceGet: API.OperationMethod<
-  GPGKeyServiceGetRequest,
-  V1alpha1GnuPGPublicKey,
-  GPGKeyServiceGetError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GPGKeyServiceGetRequest,
-  output: V1alpha1GnuPGPublicKey,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GPGKeyServiceListError = ArgocdOpError;
-/** List all available repository certificates */
-export const gPGKeyServiceList: API.OperationMethod<
-  GPGKeyServiceListRequest,
-  V1alpha1GnuPGPublicKeyList,
-  GPGKeyServiceListError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GPGKeyServiceListRequest,
-  output: V1alpha1GnuPGPublicKeyList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NotificationServiceListServicesError = ArgocdOpError;
-/** List returns list of services */
-export const notificationServiceListServices: API.OperationMethod<
-  NotificationServiceListServicesRequest,
-  NotificationServiceList,
-  NotificationServiceListServicesError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NotificationServiceListServicesRequest,
-  output: NotificationServiceList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NotificationServiceListTemplatesError = ArgocdOpError;
-/** List returns list of templates */
-export const notificationServiceListTemplates: API.OperationMethod<
-  NotificationServiceListTemplatesRequest,
-  NotificationTemplateList,
-  NotificationServiceListTemplatesError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NotificationServiceListTemplatesRequest,
-  output: NotificationTemplateList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NotificationServiceListTriggersError = ArgocdOpError;
-/** List returns list of triggers */
-export const notificationServiceListTriggers: API.OperationMethod<
-  NotificationServiceListTriggersRequest,
-  NotificationTriggerList,
-  NotificationServiceListTriggersError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NotificationServiceListTriggersRequest,
-  output: NotificationTriggerList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectServiceCreateError = ArgocdOpError;
+export type CreateProjectServiceError = ArgocdOpError;
 /** Create a new project */
-export const projectServiceCreate: API.OperationMethod<
-  ProjectServiceCreateRequest,
+export const createProjectService: API.OperationMethod<
+  CreateProjectServiceRequest,
   V1alpha1AppProject,
-  ProjectServiceCreateError,
+  CreateProjectServiceError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProjectServiceCreateRequest,
+  input: CreateProjectServiceRequest,
   output: V1alpha1AppProject,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProjectServiceCreateTokenError = ArgocdOpError;
+export type CreateProjectServiceTokenError = ArgocdOpError;
 /** Create a new project token */
-export const projectServiceCreateToken: API.OperationMethod<
-  ProjectServiceCreateTokenRequest,
+export const createProjectServiceToken: API.OperationMethod<
+  CreateProjectServiceTokenRequest,
   ProjectProjectTokenResponse,
-  ProjectServiceCreateTokenError,
+  CreateProjectServiceTokenError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProjectServiceCreateTokenRequest,
+  input: CreateProjectServiceTokenRequest,
   output: ProjectProjectTokenResponse,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProjectServiceDeleteError = ArgocdOpError;
+export type CreateRepoCredsServiceRepositoryCredentialsError = ArgocdOpError;
+/** CreateRepositoryCredentials creates a new repository credential set */
+export const createRepoCredsServiceRepositoryCredentials: API.OperationMethod<
+  CreateRepoCredsServiceRepositoryCredentialsRequest,
+  V1alpha1RepoCreds,
+  CreateRepoCredsServiceRepositoryCredentialsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateRepoCredsServiceRepositoryCredentialsRequest,
+  output: V1alpha1RepoCreds,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateRepoCredsServiceWriteRepositoryCredentialsError =
+  ArgocdOpError;
+/** CreateWriteRepositoryCredentials creates a new repository credential set with write access */
+export const createRepoCredsServiceWriteRepositoryCredentials: API.OperationMethod<
+  CreateRepoCredsServiceWriteRepositoryCredentialsRequest,
+  V1alpha1RepoCreds,
+  CreateRepoCredsServiceWriteRepositoryCredentialsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateRepoCredsServiceWriteRepositoryCredentialsRequest,
+  output: V1alpha1RepoCreds,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateRepositoryServiceRepositoryError = ArgocdOpError;
+/** CreateRepository creates a new repository configuration */
+export const createRepositoryServiceRepository: API.OperationMethod<
+  CreateRepositoryServiceRepositoryRequest,
+  V1alpha1Repository,
+  CreateRepositoryServiceRepositoryError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateRepositoryServiceRepositoryRequest,
+  output: V1alpha1Repository,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateRepositoryServiceWriteRepositoryError = ArgocdOpError;
+/** CreateWriteRepository creates a new write repository configuration */
+export const createRepositoryServiceWriteRepository: API.OperationMethod<
+  CreateRepositoryServiceWriteRepositoryRequest,
+  V1alpha1Repository,
+  CreateRepositoryServiceWriteRepositoryError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateRepositoryServiceWriteRepositoryRequest,
+  output: V1alpha1Repository,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSessionServiceError = ArgocdOpError;
+/** Create a new JWT for authentication and set a cookie if using HTTP */
+export const createSessionService: API.OperationMethod<
+  CreateSessionServiceRequest,
+  SessionSessionResponse,
+  CreateSessionServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSessionServiceRequest,
+  output: SessionSessionResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAccountServiceTokenError = ArgocdOpError;
+/** DeleteToken deletes a token */
+export const deleteAccountServiceToken: API.OperationMethod<
+  DeleteAccountServiceTokenRequest,
+  DeleteAccountServiceTokenResponse,
+  DeleteAccountServiceTokenError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAccountServiceTokenRequest,
+  output: DeleteAccountServiceTokenResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteApplicationServiceError = ArgocdOpError;
+/** Delete deletes an application */
+export const deleteApplicationService: API.OperationMethod<
+  DeleteApplicationServiceRequest,
+  DeleteApplicationServiceResponse,
+  DeleteApplicationServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteApplicationServiceRequest,
+  output: DeleteApplicationServiceResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteApplicationServiceResourceError = ArgocdOpError;
+/** DeleteResource deletes a single application resource */
+export const deleteApplicationServiceResource: API.OperationMethod<
+  DeleteApplicationServiceResourceRequest,
+  DeleteApplicationServiceResourceResponse,
+  DeleteApplicationServiceResourceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteApplicationServiceResourceRequest,
+  output: DeleteApplicationServiceResourceResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteApplicationSetServiceError = ArgocdOpError;
+/** Delete deletes an application set */
+export const deleteApplicationSetService: API.OperationMethod<
+  DeleteApplicationSetServiceRequest,
+  ApplicationsetApplicationSetResponse,
+  DeleteApplicationSetServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteApplicationSetServiceRequest,
+  output: ApplicationsetApplicationSetResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCertificateServiceCertificateError = ArgocdOpError;
+/** Delete the certificates that match the RepositoryCertificateQuery */
+export const deleteCertificateServiceCertificate: API.OperationMethod<
+  DeleteCertificateServiceCertificateRequest,
+  V1alpha1RepositoryCertificateList,
+  DeleteCertificateServiceCertificateError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCertificateServiceCertificateRequest,
+  output: V1alpha1RepositoryCertificateList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteClusterServiceError = ArgocdOpError;
+/** Delete deletes a cluster */
+export const deleteClusterService: API.OperationMethod<
+  DeleteClusterServiceRequest,
+  DeleteClusterServiceResponse,
+  DeleteClusterServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteClusterServiceRequest,
+  output: DeleteClusterServiceResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteGPGKeyServiceError = ArgocdOpError;
+/** Delete specified GPG public key from the server's configuration */
+export const deleteGPGKeyService: API.OperationMethod<
+  DeleteGPGKeyServiceRequest,
+  DeleteGPGKeyServiceResponse,
+  DeleteGPGKeyServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteGPGKeyServiceRequest,
+  output: DeleteGPGKeyServiceResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteProjectServiceError = ArgocdOpError;
 /** Delete deletes a project */
-export const projectServiceDelete: API.OperationMethod<
-  ProjectServiceDeleteRequest,
-  ProjectServiceDeleteResponse,
-  ProjectServiceDeleteError,
+export const deleteProjectService: API.OperationMethod<
+  DeleteProjectServiceRequest,
+  DeleteProjectServiceResponse,
+  DeleteProjectServiceError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProjectServiceDeleteRequest,
-  output: ProjectServiceDeleteResponse,
+  input: DeleteProjectServiceRequest,
+  output: DeleteProjectServiceResponse,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProjectServiceDeleteTokenError = ArgocdOpError;
+export type DeleteProjectServiceTokenError = ArgocdOpError;
 /** Delete a new project token */
-export const projectServiceDeleteToken: API.OperationMethod<
-  ProjectServiceDeleteTokenRequest,
-  ProjectServiceDeleteTokenResponse,
-  ProjectServiceDeleteTokenError,
+export const deleteProjectServiceToken: API.OperationMethod<
+  DeleteProjectServiceTokenRequest,
+  DeleteProjectServiceTokenResponse,
+  DeleteProjectServiceTokenError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProjectServiceDeleteTokenRequest,
-  output: ProjectServiceDeleteTokenResponse,
+  input: DeleteProjectServiceTokenRequest,
+  output: DeleteProjectServiceTokenResponse,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProjectServiceGetError = ArgocdOpError;
-/** Get returns a project by name */
-export const projectServiceGet: API.OperationMethod<
-  ProjectServiceGetRequest,
-  V1alpha1AppProject,
-  ProjectServiceGetError,
+export type DeleteRepoCredsServiceRepositoryCredentialsError = ArgocdOpError;
+/** DeleteRepositoryCredentials deletes a repository credential set from the configuration */
+export const deleteRepoCredsServiceRepositoryCredentials: API.OperationMethod<
+  DeleteRepoCredsServiceRepositoryCredentialsRequest,
+  DeleteRepoCredsServiceRepositoryCredentialsResponse,
+  DeleteRepoCredsServiceRepositoryCredentialsError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProjectServiceGetRequest,
+  input: DeleteRepoCredsServiceRepositoryCredentialsRequest,
+  output: DeleteRepoCredsServiceRepositoryCredentialsResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRepoCredsServiceWriteRepositoryCredentialsError =
+  ArgocdOpError;
+/** DeleteWriteRepositoryCredentials deletes a repository credential set with write access from the configuration */
+export const deleteRepoCredsServiceWriteRepositoryCredentials: API.OperationMethod<
+  DeleteRepoCredsServiceWriteRepositoryCredentialsRequest,
+  DeleteRepoCredsServiceWriteRepositoryCredentialsResponse,
+  DeleteRepoCredsServiceWriteRepositoryCredentialsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRepoCredsServiceWriteRepositoryCredentialsRequest,
+  output: DeleteRepoCredsServiceWriteRepositoryCredentialsResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRepositoryServiceRepositoryError = ArgocdOpError;
+/** DeleteRepository deletes a repository from the configuration */
+export const deleteRepositoryServiceRepository: API.OperationMethod<
+  DeleteRepositoryServiceRepositoryRequest,
+  DeleteRepositoryServiceRepositoryResponse,
+  DeleteRepositoryServiceRepositoryError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRepositoryServiceRepositoryRequest,
+  output: DeleteRepositoryServiceRepositoryResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRepositoryServiceWriteRepositoryError = ArgocdOpError;
+/** DeleteWriteRepository deletes a write repository from the configuration */
+export const deleteRepositoryServiceWriteRepository: API.OperationMethod<
+  DeleteRepositoryServiceWriteRepositoryRequest,
+  DeleteRepositoryServiceWriteRepositoryResponse,
+  DeleteRepositoryServiceWriteRepositoryError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRepositoryServiceWriteRepositoryRequest,
+  output: DeleteRepositoryServiceWriteRepositoryResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSessionServiceError = ArgocdOpError;
+/** Delete an existing JWT cookie if using HTTP */
+export const deleteSessionService: API.OperationMethod<
+  DeleteSessionServiceRequest,
+  SessionSessionResponse,
+  DeleteSessionServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSessionServiceRequest,
+  output: SessionSessionResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GenerateApplicationSetServiceError = ArgocdOpError;
+/** Generate generates */
+export const generateApplicationSetService: API.OperationMethod<
+  GenerateApplicationSetServiceRequest,
+  ApplicationsetApplicationSetGenerateResponse,
+  GenerateApplicationSetServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GenerateApplicationSetServiceRequest,
+  output: ApplicationsetApplicationSetGenerateResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAccountServiceAccountError = ArgocdOpError;
+/** GetAccount returns an account */
+export const getAccountServiceAccount: API.OperationMethod<
+  GetAccountServiceAccountRequest,
+  AccountAccount,
+  GetAccountServiceAccountError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAccountServiceAccountRequest,
+  output: AccountAccount,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationServiceError = ArgocdOpError;
+/** Get returns an application by name */
+export const getApplicationService: API.OperationMethod<
+  GetApplicationServiceRequest,
+  V1alpha1Application,
+  GetApplicationServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationServiceRequest,
+  output: V1alpha1Application,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationServiceApplicationSyncWindowsError = ArgocdOpError;
+/** Get returns sync windows of the application */
+export const getApplicationServiceApplicationSyncWindows: API.OperationMethod<
+  GetApplicationServiceApplicationSyncWindowsRequest,
+  ApplicationApplicationSyncWindowsResponse,
+  GetApplicationServiceApplicationSyncWindowsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationServiceApplicationSyncWindowsRequest,
+  output: ApplicationApplicationSyncWindowsResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationServiceManifestsError = ArgocdOpError;
+/** GetManifests returns application manifests */
+export const getApplicationServiceManifests: API.OperationMethod<
+  GetApplicationServiceManifestsRequest,
+  RepositoryManifestResponse,
+  GetApplicationServiceManifestsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationServiceManifestsRequest,
+  output: RepositoryManifestResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationServiceManifestsWithFilesError = ArgocdOpError;
+/** GetManifestsWithFiles returns application manifests using provided files to generate them */
+export const getApplicationServiceManifestsWithFiles: API.OperationMethod<
+  GetApplicationServiceManifestsWithFilesRequest,
+  RepositoryManifestResponse,
+  GetApplicationServiceManifestsWithFilesError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationServiceManifestsWithFilesRequest,
+  output: RepositoryManifestResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationServiceOCIMetadataError = ArgocdOpError;
+/** Get the chart metadata (description, maintainers, home) for a specific revision of the application */
+export const getApplicationServiceOCIMetadata: API.OperationMethod<
+  GetApplicationServiceOCIMetadataRequest,
+  V1alpha1OCIMetadata,
+  GetApplicationServiceOCIMetadataError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationServiceOCIMetadataRequest,
+  output: V1alpha1OCIMetadata,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationServiceResourceError = ArgocdOpError;
+/** GetResource returns single application resource */
+export const getApplicationServiceResource: API.OperationMethod<
+  GetApplicationServiceResourceRequest,
+  ApplicationApplicationResourceResponse,
+  GetApplicationServiceResourceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationServiceResourceRequest,
+  output: ApplicationApplicationResourceResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationSetServiceError = ArgocdOpError;
+/** Get returns an applicationset by name */
+export const getApplicationSetService: API.OperationMethod<
+  GetApplicationSetServiceRequest,
+  V1alpha1ApplicationSet,
+  GetApplicationSetServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationSetServiceRequest,
+  output: V1alpha1ApplicationSet,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetClusterServiceError = ArgocdOpError;
+/** Get returns a cluster by server address */
+export const getClusterService: API.OperationMethod<
+  GetClusterServiceRequest,
+  V1alpha1Cluster,
+  GetClusterServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetClusterServiceRequest,
+  output: V1alpha1Cluster,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGPGKeyServiceError = ArgocdOpError;
+/** Get information about specified GPG public key from the server */
+export const getGPGKeyService: API.OperationMethod<
+  GetGPGKeyServiceRequest,
+  V1alpha1GnuPGPublicKey,
+  GetGPGKeyServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGPGKeyServiceRequest,
+  output: V1alpha1GnuPGPublicKey,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectServiceError = ArgocdOpError;
+/** Get returns a project by name */
+export const getProjectService: API.OperationMethod<
+  GetProjectServiceRequest,
+  V1alpha1AppProject,
+  GetProjectServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectServiceRequest,
   output: V1alpha1AppProject,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProjectServiceGetDetailedProjectError = ArgocdOpError;
+export type GetProjectServiceDetailedProjectError = ArgocdOpError;
 /** GetDetailedProject returns a project that include project, global project and scoped resources by name */
-export const projectServiceGetDetailedProject: API.OperationMethod<
-  ProjectServiceGetDetailedProjectRequest,
+export const getProjectServiceDetailedProject: API.OperationMethod<
+  GetProjectServiceDetailedProjectRequest,
   ProjectDetailedProjectsResponse,
-  ProjectServiceGetDetailedProjectError,
+  GetProjectServiceDetailedProjectError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProjectServiceGetDetailedProjectRequest,
+  input: GetProjectServiceDetailedProjectRequest,
   output: ProjectDetailedProjectsResponse,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProjectServiceGetGlobalProjectsError = ArgocdOpError;
+export type GetProjectServiceGlobalProjectsError = ArgocdOpError;
 /** Get returns a virtual project by name */
-export const projectServiceGetGlobalProjects: API.OperationMethod<
-  ProjectServiceGetGlobalProjectsRequest,
+export const getProjectServiceGlobalProjects: API.OperationMethod<
+  GetProjectServiceGlobalProjectsRequest,
   ProjectGlobalProjectsResponse,
-  ProjectServiceGetGlobalProjectsError,
+  GetProjectServiceGlobalProjectsError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProjectServiceGetGlobalProjectsRequest,
+  input: GetProjectServiceGlobalProjectsRequest,
   output: ProjectGlobalProjectsResponse,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProjectServiceGetSyncWindowsStateError = ArgocdOpError;
+export type GetProjectServiceSyncWindowsStateError = ArgocdOpError;
 /** GetSchedulesState returns true if there are any active sync syncWindows */
-export const projectServiceGetSyncWindowsState: API.OperationMethod<
-  ProjectServiceGetSyncWindowsStateRequest,
+export const getProjectServiceSyncWindowsState: API.OperationMethod<
+  GetProjectServiceSyncWindowsStateRequest,
   ProjectSyncWindowsResponse,
-  ProjectServiceGetSyncWindowsStateError,
+  GetProjectServiceSyncWindowsStateError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProjectServiceGetSyncWindowsStateRequest,
+  input: GetProjectServiceSyncWindowsStateRequest,
   output: ProjectSyncWindowsResponse,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProjectServiceListError = ArgocdOpError;
-/** List returns list of projects */
-export const projectServiceList: API.OperationMethod<
-  ProjectServiceListRequest,
-  V1alpha1AppProjectList,
-  ProjectServiceListError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectServiceListRequest,
-  output: V1alpha1AppProjectList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectServiceListEventsError = ArgocdOpError;
-/** ListEvents returns a list of project events */
-export const projectServiceListEvents: API.OperationMethod<
-  ProjectServiceListEventsRequest,
-  EventsEventList,
-  ProjectServiceListEventsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectServiceListEventsRequest,
-  output: EventsEventList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectServiceListLinksError = ArgocdOpError;
-/** ListLinks returns all deep links for the particular project */
-export const projectServiceListLinks: API.OperationMethod<
-  ProjectServiceListLinksRequest,
-  ApplicationLinksResponse,
-  ProjectServiceListLinksError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectServiceListLinksRequest,
-  output: ApplicationLinksResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectServiceUpdateError = ArgocdOpError;
-/** Update updates a project */
-export const projectServiceUpdate: API.OperationMethod<
-  ProjectServiceUpdateRequest,
-  V1alpha1AppProject,
-  ProjectServiceUpdateError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectServiceUpdateRequest,
-  output: V1alpha1AppProject,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoCredsServiceCreateRepositoryCredentialsError = ArgocdOpError;
-/** CreateRepositoryCredentials creates a new repository credential set */
-export const repoCredsServiceCreateRepositoryCredentials: API.OperationMethod<
-  RepoCredsServiceCreateRepositoryCredentialsRequest,
-  V1alpha1RepoCreds,
-  RepoCredsServiceCreateRepositoryCredentialsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoCredsServiceCreateRepositoryCredentialsRequest,
-  output: V1alpha1RepoCreds,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoCredsServiceCreateWriteRepositoryCredentialsError =
-  ArgocdOpError;
-/** CreateWriteRepositoryCredentials creates a new repository credential set with write access */
-export const repoCredsServiceCreateWriteRepositoryCredentials: API.OperationMethod<
-  RepoCredsServiceCreateWriteRepositoryCredentialsRequest,
-  V1alpha1RepoCreds,
-  RepoCredsServiceCreateWriteRepositoryCredentialsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoCredsServiceCreateWriteRepositoryCredentialsRequest,
-  output: V1alpha1RepoCreds,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoCredsServiceDeleteRepositoryCredentialsError = ArgocdOpError;
-/** DeleteRepositoryCredentials deletes a repository credential set from the configuration */
-export const repoCredsServiceDeleteRepositoryCredentials: API.OperationMethod<
-  RepoCredsServiceDeleteRepositoryCredentialsRequest,
-  RepoCredsServiceDeleteRepositoryCredentialsResponse,
-  RepoCredsServiceDeleteRepositoryCredentialsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoCredsServiceDeleteRepositoryCredentialsRequest,
-  output: RepoCredsServiceDeleteRepositoryCredentialsResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoCredsServiceDeleteWriteRepositoryCredentialsError =
-  ArgocdOpError;
-/** DeleteWriteRepositoryCredentials deletes a repository credential set with write access from the configuration */
-export const repoCredsServiceDeleteWriteRepositoryCredentials: API.OperationMethod<
-  RepoCredsServiceDeleteWriteRepositoryCredentialsRequest,
-  RepoCredsServiceDeleteWriteRepositoryCredentialsResponse,
-  RepoCredsServiceDeleteWriteRepositoryCredentialsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoCredsServiceDeleteWriteRepositoryCredentialsRequest,
-  output: RepoCredsServiceDeleteWriteRepositoryCredentialsResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoCredsServiceListRepositoryCredentialsError = ArgocdOpError;
-/** ListRepositoryCredentials gets a list of all configured repository credential sets */
-export const repoCredsServiceListRepositoryCredentials: API.OperationMethod<
-  RepoCredsServiceListRepositoryCredentialsRequest,
-  V1alpha1RepoCredsList,
-  RepoCredsServiceListRepositoryCredentialsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoCredsServiceListRepositoryCredentialsRequest,
-  output: V1alpha1RepoCredsList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoCredsServiceListWriteRepositoryCredentialsError = ArgocdOpError;
-/** ListWriteRepositoryCredentials gets a list of all configured repository credential sets that have write access */
-export const repoCredsServiceListWriteRepositoryCredentials: API.OperationMethod<
-  RepoCredsServiceListWriteRepositoryCredentialsRequest,
-  V1alpha1RepoCredsList,
-  RepoCredsServiceListWriteRepositoryCredentialsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoCredsServiceListWriteRepositoryCredentialsRequest,
-  output: V1alpha1RepoCredsList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoCredsServiceUpdateRepositoryCredentialsError = ArgocdOpError;
-/** UpdateRepositoryCredentials updates a repository credential set */
-export const repoCredsServiceUpdateRepositoryCredentials: API.OperationMethod<
-  RepoCredsServiceUpdateRepositoryCredentialsRequest,
-  V1alpha1RepoCreds,
-  RepoCredsServiceUpdateRepositoryCredentialsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoCredsServiceUpdateRepositoryCredentialsRequest,
-  output: V1alpha1RepoCreds,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoCredsServiceUpdateWriteRepositoryCredentialsError =
-  ArgocdOpError;
-/** UpdateWriteRepositoryCredentials updates a repository credential set with write access */
-export const repoCredsServiceUpdateWriteRepositoryCredentials: API.OperationMethod<
-  RepoCredsServiceUpdateWriteRepositoryCredentialsRequest,
-  V1alpha1RepoCreds,
-  RepoCredsServiceUpdateWriteRepositoryCredentialsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoCredsServiceUpdateWriteRepositoryCredentialsRequest,
-  output: V1alpha1RepoCreds,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepositoryServiceCreateRepositoryError = ArgocdOpError;
-/** CreateRepository creates a new repository configuration */
-export const repositoryServiceCreateRepository: API.OperationMethod<
-  RepositoryServiceCreateRepositoryRequest,
-  V1alpha1Repository,
-  RepositoryServiceCreateRepositoryError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceCreateRepositoryRequest,
-  output: V1alpha1Repository,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepositoryServiceCreateWriteRepositoryError = ArgocdOpError;
-/** CreateWriteRepository creates a new write repository configuration */
-export const repositoryServiceCreateWriteRepository: API.OperationMethod<
-  RepositoryServiceCreateWriteRepositoryRequest,
-  V1alpha1Repository,
-  RepositoryServiceCreateWriteRepositoryError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceCreateWriteRepositoryRequest,
-  output: V1alpha1Repository,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepositoryServiceDeleteRepositoryError = ArgocdOpError;
-/** DeleteRepository deletes a repository from the configuration */
-export const repositoryServiceDeleteRepository: API.OperationMethod<
-  RepositoryServiceDeleteRepositoryRequest,
-  RepositoryServiceDeleteRepositoryResponse,
-  RepositoryServiceDeleteRepositoryError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceDeleteRepositoryRequest,
-  output: RepositoryServiceDeleteRepositoryResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepositoryServiceDeleteWriteRepositoryError = ArgocdOpError;
-/** DeleteWriteRepository deletes a write repository from the configuration */
-export const repositoryServiceDeleteWriteRepository: API.OperationMethod<
-  RepositoryServiceDeleteWriteRepositoryRequest,
-  RepositoryServiceDeleteWriteRepositoryResponse,
-  RepositoryServiceDeleteWriteRepositoryError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceDeleteWriteRepositoryRequest,
-  output: RepositoryServiceDeleteWriteRepositoryResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepositoryServiceGetError = ArgocdOpError;
+export type GetRepositoryServiceError = ArgocdOpError;
 /** Get returns a repository or its credentials */
-export const repositoryServiceGet: API.OperationMethod<
-  RepositoryServiceGetRequest,
+export const getRepositoryService: API.OperationMethod<
+  GetRepositoryServiceRequest,
   V1alpha1Repository,
-  RepositoryServiceGetError,
+  GetRepositoryServiceError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceGetRequest,
+  input: GetRepositoryServiceRequest,
   output: V1alpha1Repository,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type RepositoryServiceGetAppDetailsError = ArgocdOpError;
+export type GetRepositoryServiceAppDetailsError = ArgocdOpError;
 /** GetAppDetails returns application details by given path */
-export const repositoryServiceGetAppDetails: API.OperationMethod<
-  RepositoryServiceGetAppDetailsRequest,
+export const getRepositoryServiceAppDetails: API.OperationMethod<
+  GetRepositoryServiceAppDetailsRequest,
   RepositoryRepoAppDetailsResponse,
-  RepositoryServiceGetAppDetailsError,
+  GetRepositoryServiceAppDetailsError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceGetAppDetailsRequest,
+  input: GetRepositoryServiceAppDetailsRequest,
   output: RepositoryRepoAppDetailsResponse,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type RepositoryServiceGetHelmChartsError = ArgocdOpError;
+export type GetRepositoryServiceHelmChartsError = ArgocdOpError;
 /** GetHelmCharts returns list of helm charts in the specified repository */
-export const repositoryServiceGetHelmCharts: API.OperationMethod<
-  RepositoryServiceGetHelmChartsRequest,
+export const getRepositoryServiceHelmCharts: API.OperationMethod<
+  GetRepositoryServiceHelmChartsRequest,
   RepositoryHelmChartsResponse,
-  RepositoryServiceGetHelmChartsError,
+  GetRepositoryServiceHelmChartsError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceGetHelmChartsRequest,
+  input: GetRepositoryServiceHelmChartsRequest,
   output: RepositoryHelmChartsResponse,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type RepositoryServiceGetWriteError = ArgocdOpError;
+export type GetRepositoryServiceWriteError = ArgocdOpError;
 /** GetWrite returns a repository or its write credentials */
-export const repositoryServiceGetWrite: API.OperationMethod<
-  RepositoryServiceGetWriteRequest,
+export const getRepositoryServiceWrite: API.OperationMethod<
+  GetRepositoryServiceWriteRequest,
   V1alpha1Repository,
-  RepositoryServiceGetWriteError,
+  GetRepositoryServiceWriteError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceGetWriteRequest,
+  input: GetRepositoryServiceWriteRequest,
   output: V1alpha1Repository,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type RepositoryServiceListAppsError = ArgocdOpError;
-/** ListApps returns list of apps in the repo */
-export const repositoryServiceListApps: API.OperationMethod<
-  RepositoryServiceListAppsRequest,
-  RepositoryRepoAppsResponse,
-  RepositoryServiceListAppsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceListAppsRequest,
-  output: RepositoryRepoAppsResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepositoryServiceListOCITagsError = ArgocdOpError;
-export const repositoryServiceListOCITags: API.OperationMethod<
-  RepositoryServiceListOCITagsRequest,
-  RepositoryRefs,
-  RepositoryServiceListOCITagsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceListOCITagsRequest,
-  output: RepositoryRefs,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepositoryServiceListRefsError = ArgocdOpError;
-export const repositoryServiceListRefs: API.OperationMethod<
-  RepositoryServiceListRefsRequest,
-  RepositoryRefs,
-  RepositoryServiceListRefsError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceListRefsRequest,
-  output: RepositoryRefs,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepositoryServiceListRepositoriesError = ArgocdOpError;
-/** ListRepositories gets a list of all configured repositories */
-export const repositoryServiceListRepositories: API.OperationMethod<
-  RepositoryServiceListRepositoriesRequest,
-  V1alpha1RepositoryList,
-  RepositoryServiceListRepositoriesError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceListRepositoriesRequest,
-  output: V1alpha1RepositoryList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepositoryServiceListWriteRepositoriesError = ArgocdOpError;
-/** ListWriteRepositories gets a list of all configured write repositories */
-export const repositoryServiceListWriteRepositories: API.OperationMethod<
-  RepositoryServiceListWriteRepositoriesRequest,
-  V1alpha1RepositoryList,
-  RepositoryServiceListWriteRepositoriesError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceListWriteRepositoriesRequest,
-  output: V1alpha1RepositoryList,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepositoryServiceUpdateRepositoryError = ArgocdOpError;
-/** UpdateRepository updates a repository configuration */
-export const repositoryServiceUpdateRepository: API.OperationMethod<
-  RepositoryServiceUpdateRepositoryRequest,
-  V1alpha1Repository,
-  RepositoryServiceUpdateRepositoryError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceUpdateRepositoryRequest,
-  output: V1alpha1Repository,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepositoryServiceUpdateWriteRepositoryError = ArgocdOpError;
-/** UpdateWriteRepository updates a write repository configuration */
-export const repositoryServiceUpdateWriteRepository: API.OperationMethod<
-  RepositoryServiceUpdateWriteRepositoryRequest,
-  V1alpha1Repository,
-  RepositoryServiceUpdateWriteRepositoryError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceUpdateWriteRepositoryRequest,
-  output: V1alpha1Repository,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepositoryServiceValidateAccessError = ArgocdOpError;
-/** ValidateAccess validates access to a repository with given parameters */
-export const repositoryServiceValidateAccess: API.OperationMethod<
-  RepositoryServiceValidateAccessRequest,
-  RepositoryServiceValidateAccessResponse,
-  RepositoryServiceValidateAccessError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceValidateAccessRequest,
-  output: RepositoryServiceValidateAccessResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepositoryServiceValidateWriteAccessError = ArgocdOpError;
-/** ValidateWriteAccess validates write access to a repository with given parameters */
-export const repositoryServiceValidateWriteAccess: API.OperationMethod<
-  RepositoryServiceValidateWriteAccessRequest,
-  RepositoryServiceValidateWriteAccessResponse,
-  RepositoryServiceValidateWriteAccessError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepositoryServiceValidateWriteAccessRequest,
-  output: RepositoryServiceValidateWriteAccessResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SessionServiceCreateError = ArgocdOpError;
-/** Create a new JWT for authentication and set a cookie if using HTTP */
-export const sessionServiceCreate: API.OperationMethod<
-  SessionServiceCreateRequest,
-  SessionSessionResponse,
-  SessionServiceCreateError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SessionServiceCreateRequest,
-  output: SessionSessionResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SessionServiceDeleteError = ArgocdOpError;
-/** Delete an existing JWT cookie if using HTTP */
-export const sessionServiceDelete: API.OperationMethod<
-  SessionServiceDeleteRequest,
-  SessionSessionResponse,
-  SessionServiceDeleteError,
-  ArgocdOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SessionServiceDeleteRequest,
-  output: SessionSessionResponse,
-  errors: [UnknownArgocdError],
-  protocol: ArgocdProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SessionServiceGetUserInfoError = ArgocdOpError;
+export type GetSessionServiceUserInfoError = ArgocdOpError;
 /** Get the current user's info */
-export const sessionServiceGetUserInfo: API.OperationMethod<
-  SessionServiceGetUserInfoRequest,
+export const getSessionServiceUserInfo: API.OperationMethod<
+  GetSessionServiceUserInfoRequest,
   SessionGetUserInfoResponse,
-  SessionServiceGetUserInfoError,
+  GetSessionServiceUserInfoError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SessionServiceGetUserInfoRequest,
+  input: GetSessionServiceUserInfoRequest,
   output: SessionGetUserInfoResponse,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type SettingsServiceGetError = ArgocdOpError;
+export type GetSettingsServiceError = ArgocdOpError;
 /** Get returns Argo CD settings */
-export const settingsServiceGet: API.OperationMethod<
-  SettingsServiceGetRequest,
+export const getSettingsService: API.OperationMethod<
+  GetSettingsServiceRequest,
   ClusterSettings,
-  SettingsServiceGetError,
+  GetSettingsServiceError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SettingsServiceGetRequest,
+  input: GetSettingsServiceRequest,
   output: ClusterSettings,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
 }));
 
-export type SettingsServiceGetPluginsError = ArgocdOpError;
+export type GetSettingsServicePluginsError = ArgocdOpError;
 /** Get returns Argo CD plugins */
-export const settingsServiceGetPlugins: API.OperationMethod<
-  SettingsServiceGetPluginsRequest,
+export const getSettingsServicePlugins: API.OperationMethod<
+  GetSettingsServicePluginsRequest,
   ClusterSettingsPluginsResponse,
-  SettingsServiceGetPluginsError,
+  GetSettingsServicePluginsError,
   ArgocdOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SettingsServiceGetPluginsRequest,
+  input: GetSettingsServicePluginsRequest,
   output: ClusterSettingsPluginsResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type InvalidateClusterServiceCacheError = ArgocdOpError;
+/** InvalidateCache invalidates cluster cache */
+export const invalidateClusterServiceCache: API.OperationMethod<
+  InvalidateClusterServiceCacheRequest,
+  V1alpha1Cluster,
+  InvalidateClusterServiceCacheError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: InvalidateClusterServiceCacheRequest,
+  output: V1alpha1Cluster,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountServiceAccountsError = ArgocdOpError;
+/** ListAccounts returns the list of accounts */
+export const listAccountServiceAccounts: API.OperationMethod<
+  ListAccountServiceAccountsRequest,
+  AccountAccountsList,
+  ListAccountServiceAccountsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountServiceAccountsRequest,
+  output: AccountAccountsList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationServiceError = ArgocdOpError;
+/** List returns list of applications */
+export const listApplicationService: API.OperationMethod<
+  ListApplicationServiceRequest,
+  V1alpha1ApplicationList,
+  ListApplicationServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationServiceRequest,
+  output: V1alpha1ApplicationList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationServiceLinksError = ArgocdOpError;
+/** ListLinks returns the list of all application deep links */
+export const listApplicationServiceLinks: API.OperationMethod<
+  ListApplicationServiceLinksRequest,
+  ApplicationLinksResponse,
+  ListApplicationServiceLinksError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationServiceLinksRequest,
+  output: ApplicationLinksResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationServiceResourceActionsError = ArgocdOpError;
+/** ListResourceActions returns list of resource actions */
+export const listApplicationServiceResourceActions: API.OperationMethod<
+  ListApplicationServiceResourceActionsRequest,
+  ApplicationResourceActionsListResponse,
+  ListApplicationServiceResourceActionsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationServiceResourceActionsRequest,
+  output: ApplicationResourceActionsListResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationServiceResourceEventsError = ArgocdOpError;
+/** ListResourceEvents returns a list of event resources */
+export const listApplicationServiceResourceEvents: API.OperationMethod<
+  ListApplicationServiceResourceEventsRequest,
+  EventsEventList,
+  ListApplicationServiceResourceEventsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationServiceResourceEventsRequest,
+  output: EventsEventList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationServiceResourceLinksError = ArgocdOpError;
+/** ListResourceLinks returns the list of all resource deep links */
+export const listApplicationServiceResourceLinks: API.OperationMethod<
+  ListApplicationServiceResourceLinksRequest,
+  ApplicationLinksResponse,
+  ListApplicationServiceResourceLinksError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationServiceResourceLinksRequest,
+  output: ApplicationLinksResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationSetServiceError = ArgocdOpError;
+/** List returns list of applicationset */
+export const listApplicationSetService: API.OperationMethod<
+  ListApplicationSetServiceRequest,
+  V1alpha1ApplicationSetList,
+  ListApplicationSetServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationSetServiceRequest,
+  output: V1alpha1ApplicationSetList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationSetServiceResourceEventsError = ArgocdOpError;
+/** ListResourceEvents returns a list of event resources */
+export const listApplicationSetServiceResourceEvents: API.OperationMethod<
+  ListApplicationSetServiceResourceEventsRequest,
+  EventsEventList,
+  ListApplicationSetServiceResourceEventsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationSetServiceResourceEventsRequest,
+  output: EventsEventList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCertificateServiceCertificatesError = ArgocdOpError;
+/** List all available repository certificates */
+export const listCertificateServiceCertificates: API.OperationMethod<
+  ListCertificateServiceCertificatesRequest,
+  V1alpha1RepositoryCertificateList,
+  ListCertificateServiceCertificatesError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCertificateServiceCertificatesRequest,
+  output: V1alpha1RepositoryCertificateList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterServiceError = ArgocdOpError;
+/** List returns list of clusters */
+export const listClusterService: API.OperationMethod<
+  ListClusterServiceRequest,
+  V1alpha1ClusterList,
+  ListClusterServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterServiceRequest,
+  output: V1alpha1ClusterList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListGPGKeyServiceError = ArgocdOpError;
+/** List all available repository certificates */
+export const listGPGKeyService: API.OperationMethod<
+  ListGPGKeyServiceRequest,
+  V1alpha1GnuPGPublicKeyList,
+  ListGPGKeyServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListGPGKeyServiceRequest,
+  output: V1alpha1GnuPGPublicKeyList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNotificationServiceServicesError = ArgocdOpError;
+/** List returns list of services */
+export const listNotificationServiceServices: API.OperationMethod<
+  ListNotificationServiceServicesRequest,
+  NotificationServiceList,
+  ListNotificationServiceServicesError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNotificationServiceServicesRequest,
+  output: NotificationServiceList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNotificationServiceTemplatesError = ArgocdOpError;
+/** List returns list of templates */
+export const listNotificationServiceTemplates: API.OperationMethod<
+  ListNotificationServiceTemplatesRequest,
+  NotificationTemplateList,
+  ListNotificationServiceTemplatesError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNotificationServiceTemplatesRequest,
+  output: NotificationTemplateList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNotificationServiceTriggersError = ArgocdOpError;
+/** List returns list of triggers */
+export const listNotificationServiceTriggers: API.OperationMethod<
+  ListNotificationServiceTriggersRequest,
+  NotificationTriggerList,
+  ListNotificationServiceTriggersError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNotificationServiceTriggersRequest,
+  output: NotificationTriggerList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProjectServiceError = ArgocdOpError;
+/** List returns list of projects */
+export const listProjectService: API.OperationMethod<
+  ListProjectServiceRequest,
+  V1alpha1AppProjectList,
+  ListProjectServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProjectServiceRequest,
+  output: V1alpha1AppProjectList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProjectServiceEventsError = ArgocdOpError;
+/** ListEvents returns a list of project events */
+export const listProjectServiceEvents: API.OperationMethod<
+  ListProjectServiceEventsRequest,
+  EventsEventList,
+  ListProjectServiceEventsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProjectServiceEventsRequest,
+  output: EventsEventList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProjectServiceLinksError = ArgocdOpError;
+/** ListLinks returns all deep links for the particular project */
+export const listProjectServiceLinks: API.OperationMethod<
+  ListProjectServiceLinksRequest,
+  ApplicationLinksResponse,
+  ListProjectServiceLinksError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProjectServiceLinksRequest,
+  output: ApplicationLinksResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRepoCredsServiceRepositoryCredentialsError = ArgocdOpError;
+/** ListRepositoryCredentials gets a list of all configured repository credential sets */
+export const listRepoCredsServiceRepositoryCredentials: API.OperationMethod<
+  ListRepoCredsServiceRepositoryCredentialsRequest,
+  V1alpha1RepoCredsList,
+  ListRepoCredsServiceRepositoryCredentialsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRepoCredsServiceRepositoryCredentialsRequest,
+  output: V1alpha1RepoCredsList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRepoCredsServiceWriteRepositoryCredentialsError = ArgocdOpError;
+/** ListWriteRepositoryCredentials gets a list of all configured repository credential sets that have write access */
+export const listRepoCredsServiceWriteRepositoryCredentials: API.OperationMethod<
+  ListRepoCredsServiceWriteRepositoryCredentialsRequest,
+  V1alpha1RepoCredsList,
+  ListRepoCredsServiceWriteRepositoryCredentialsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRepoCredsServiceWriteRepositoryCredentialsRequest,
+  output: V1alpha1RepoCredsList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRepositoryServiceAppsError = ArgocdOpError;
+/** ListApps returns list of apps in the repo */
+export const listRepositoryServiceApps: API.OperationMethod<
+  ListRepositoryServiceAppsRequest,
+  RepositoryRepoAppsResponse,
+  ListRepositoryServiceAppsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRepositoryServiceAppsRequest,
+  output: RepositoryRepoAppsResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRepositoryServiceOCITagsError = ArgocdOpError;
+export const listRepositoryServiceOCITags: API.OperationMethod<
+  ListRepositoryServiceOCITagsRequest,
+  RepositoryRefs,
+  ListRepositoryServiceOCITagsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRepositoryServiceOCITagsRequest,
+  output: RepositoryRefs,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRepositoryServiceRefsError = ArgocdOpError;
+export const listRepositoryServiceRefs: API.OperationMethod<
+  ListRepositoryServiceRefsRequest,
+  RepositoryRefs,
+  ListRepositoryServiceRefsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRepositoryServiceRefsRequest,
+  output: RepositoryRefs,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRepositoryServiceRepositoriesError = ArgocdOpError;
+/** ListRepositories gets a list of all configured repositories */
+export const listRepositoryServiceRepositories: API.OperationMethod<
+  ListRepositoryServiceRepositoriesRequest,
+  V1alpha1RepositoryList,
+  ListRepositoryServiceRepositoriesError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRepositoryServiceRepositoriesRequest,
+  output: V1alpha1RepositoryList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRepositoryServiceWriteRepositoriesError = ArgocdOpError;
+/** ListWriteRepositories gets a list of all configured write repositories */
+export const listRepositoryServiceWriteRepositories: API.OperationMethod<
+  ListRepositoryServiceWriteRepositoriesRequest,
+  V1alpha1RepositoryList,
+  ListRepositoryServiceWriteRepositoriesError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRepositoryServiceWriteRepositoriesRequest,
+  output: V1alpha1RepositoryList,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PatchApplicationServiceError = ArgocdOpError;
+/** Patch patch an application */
+export const patchApplicationService: API.OperationMethod<
+  PatchApplicationServiceRequest,
+  V1alpha1Application,
+  PatchApplicationServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PatchApplicationServiceRequest,
+  output: V1alpha1Application,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PatchApplicationServiceResourceError = ArgocdOpError;
+/** PatchResource patch single application resource */
+export const patchApplicationServiceResource: API.OperationMethod<
+  PatchApplicationServiceResourceRequest,
+  ApplicationApplicationResourceResponse,
+  PatchApplicationServiceResourceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PatchApplicationServiceResourceRequest,
+  output: ApplicationApplicationResourceResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RotateClusterServiceAuthError = ArgocdOpError;
+/** RotateAuth rotates the bearer token used for a cluster */
+export const rotateClusterServiceAuth: API.OperationMethod<
+  RotateClusterServiceAuthRequest,
+  RotateClusterServiceAuthResponse,
+  RotateClusterServiceAuthError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RotateClusterServiceAuthRequest,
+  output: RotateClusterServiceAuthResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunApplicationServiceResourceActionError = ArgocdOpError;
+/** RunResourceAction runs a resource action Deprecated: use RunResourceActionV2 instead. This version does not support resource action parameters but is maintained for backward compatibility. It will be removed in a future release. */
+export const runApplicationServiceResourceAction: API.OperationMethod<
+  RunApplicationServiceResourceActionRequest,
+  RunApplicationServiceResourceActionResponse,
+  RunApplicationServiceResourceActionError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunApplicationServiceResourceActionRequest,
+  output: RunApplicationServiceResourceActionResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunApplicationServiceResourceActionV2Error = ArgocdOpError;
+/** RunResourceActionV2 runs a resource action with parameters */
+export const runApplicationServiceResourceActionV2: API.OperationMethod<
+  RunApplicationServiceResourceActionV2Request,
+  RunApplicationServiceResourceActionV2Response,
+  RunApplicationServiceResourceActionV2Error,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunApplicationServiceResourceActionV2Request,
+  output: RunApplicationServiceResourceActionV2Response,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SyncApplicationServiceError = ArgocdOpError;
+/** Sync syncs an application to its target state */
+export const syncApplicationService: API.OperationMethod<
+  SyncApplicationServiceRequest,
+  V1alpha1Application,
+  SyncApplicationServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SyncApplicationServiceRequest,
+  output: V1alpha1Application,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TerminateApplicationServiceOperationError = ArgocdOpError;
+/** TerminateOperation terminates the currently running operation */
+export const terminateApplicationServiceOperation: API.OperationMethod<
+  TerminateApplicationServiceOperationRequest,
+  TerminateApplicationServiceOperationResponse,
+  TerminateApplicationServiceOperationError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TerminateApplicationServiceOperationRequest,
+  output: TerminateApplicationServiceOperationResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateAccountServicePasswordError = ArgocdOpError;
+/** UpdatePassword updates an account's password to a new value */
+export const updateAccountServicePassword: API.OperationMethod<
+  UpdateAccountServicePasswordRequest,
+  UpdateAccountServicePasswordResponse,
+  UpdateAccountServicePasswordError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateAccountServicePasswordRequest,
+  output: UpdateAccountServicePasswordResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateApplicationServiceError = ArgocdOpError;
+/** Update updates an application */
+export const updateApplicationService: API.OperationMethod<
+  UpdateApplicationServiceRequest,
+  V1alpha1Application,
+  UpdateApplicationServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateApplicationServiceRequest,
+  output: V1alpha1Application,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateApplicationServiceSpecError = ArgocdOpError;
+/** UpdateSpec updates an application spec */
+export const updateApplicationServiceSpec: API.OperationMethod<
+  UpdateApplicationServiceSpecRequest,
+  V1alpha1ApplicationSpec,
+  UpdateApplicationServiceSpecError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateApplicationServiceSpecRequest,
+  output: V1alpha1ApplicationSpec,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateClusterServiceError = ArgocdOpError;
+/** Update updates a cluster */
+export const updateClusterService: API.OperationMethod<
+  UpdateClusterServiceRequest,
+  V1alpha1Cluster,
+  UpdateClusterServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateClusterServiceRequest,
+  output: V1alpha1Cluster,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateProjectServiceError = ArgocdOpError;
+/** Update updates a project */
+export const updateProjectService: API.OperationMethod<
+  UpdateProjectServiceRequest,
+  V1alpha1AppProject,
+  UpdateProjectServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateProjectServiceRequest,
+  output: V1alpha1AppProject,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateRepoCredsServiceRepositoryCredentialsError = ArgocdOpError;
+/** UpdateRepositoryCredentials updates a repository credential set */
+export const updateRepoCredsServiceRepositoryCredentials: API.OperationMethod<
+  UpdateRepoCredsServiceRepositoryCredentialsRequest,
+  V1alpha1RepoCreds,
+  UpdateRepoCredsServiceRepositoryCredentialsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateRepoCredsServiceRepositoryCredentialsRequest,
+  output: V1alpha1RepoCreds,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateRepoCredsServiceWriteRepositoryCredentialsError =
+  ArgocdOpError;
+/** UpdateWriteRepositoryCredentials updates a repository credential set with write access */
+export const updateRepoCredsServiceWriteRepositoryCredentials: API.OperationMethod<
+  UpdateRepoCredsServiceWriteRepositoryCredentialsRequest,
+  V1alpha1RepoCreds,
+  UpdateRepoCredsServiceWriteRepositoryCredentialsError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateRepoCredsServiceWriteRepositoryCredentialsRequest,
+  output: V1alpha1RepoCreds,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateRepositoryServiceRepositoryError = ArgocdOpError;
+/** UpdateRepository updates a repository configuration */
+export const updateRepositoryServiceRepository: API.OperationMethod<
+  UpdateRepositoryServiceRepositoryRequest,
+  V1alpha1Repository,
+  UpdateRepositoryServiceRepositoryError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateRepositoryServiceRepositoryRequest,
+  output: V1alpha1Repository,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateRepositoryServiceWriteRepositoryError = ArgocdOpError;
+/** UpdateWriteRepository updates a write repository configuration */
+export const updateRepositoryServiceWriteRepository: API.OperationMethod<
+  UpdateRepositoryServiceWriteRepositoryRequest,
+  V1alpha1Repository,
+  UpdateRepositoryServiceWriteRepositoryError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateRepositoryServiceWriteRepositoryRequest,
+  output: V1alpha1Repository,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateRepositoryServiceAccessError = ArgocdOpError;
+/** ValidateAccess validates access to a repository with given parameters */
+export const validateRepositoryServiceAccess: API.OperationMethod<
+  ValidateRepositoryServiceAccessRequest,
+  ValidateRepositoryServiceAccessResponse,
+  ValidateRepositoryServiceAccessError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateRepositoryServiceAccessRequest,
+  output: ValidateRepositoryServiceAccessResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateRepositoryServiceWriteAccessError = ArgocdOpError;
+/** ValidateWriteAccess validates write access to a repository with given parameters */
+export const validateRepositoryServiceWriteAccess: API.OperationMethod<
+  ValidateRepositoryServiceWriteAccessRequest,
+  ValidateRepositoryServiceWriteAccessResponse,
+  ValidateRepositoryServiceWriteAccessError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateRepositoryServiceWriteAccessRequest,
+  output: ValidateRepositoryServiceWriteAccessResponse,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,
@@ -10870,6 +10826,50 @@ export const versionServiceVersion: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VersionServiceVersionRequest,
   output: VersionVersionMessage,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchApplicationServiceError = ArgocdOpError;
+/** Watch returns stream of application change events */
+export const watchApplicationService: API.OperationMethod<
+  WatchApplicationServiceRequest,
+  WatchApplicationServiceResponse,
+  WatchApplicationServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchApplicationServiceRequest,
+  output: WatchApplicationServiceResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchApplicationServiceResourceTreeError = ArgocdOpError;
+/** Watch returns stream of application resource tree */
+export const watchApplicationServiceResourceTree: API.OperationMethod<
+  WatchApplicationServiceResourceTreeRequest,
+  WatchApplicationServiceResourceTreeResponse,
+  WatchApplicationServiceResourceTreeError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchApplicationServiceResourceTreeRequest,
+  output: WatchApplicationServiceResourceTreeResponse,
+  errors: [UnknownArgocdError],
+  protocol: ArgocdProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchApplicationSetServiceError = ArgocdOpError;
+export const watchApplicationSetService: API.OperationMethod<
+  WatchApplicationSetServiceRequest,
+  WatchApplicationSetServiceResponse,
+  WatchApplicationSetServiceError,
+  ArgocdOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchApplicationSetServiceRequest,
+  output: WatchApplicationSetServiceResponse,
   errors: [UnknownArgocdError],
   protocol: ArgocdProtocol,
   retry: Retry.Retry,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.argocd.api#AccountAccountsList": {
@@ -80,7 +81,7 @@
       },
       "traits": {}
     },
-    "com.argocd.api#AccountServiceListAccounts": {
+    "com.argocd.api#ListAccountServiceAccounts": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -152,7 +153,7 @@
         "smithy.api#documentation": "CanI checks if the current account has permission to perform an action"
       }
     },
-    "com.argocd.api#AccountServiceUpdatePasswordRequest": {
+    "com.argocd.api#UpdateAccountServicePasswordRequest": {
       "type": "structure",
       "members": {
         "currentPassword": {
@@ -175,7 +176,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#AccountServiceUpdatePasswordResponse": {
+    "com.argocd.api#UpdateAccountServicePasswordResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -190,13 +191,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#AccountServiceUpdatePassword": {
+    "com.argocd.api#UpdateAccountServicePassword": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#AccountServiceUpdatePasswordRequest"
+        "target": "com.argocd.api#UpdateAccountServicePasswordRequest"
       },
       "output": {
-        "target": "com.argocd.api#AccountServiceUpdatePasswordResponse"
+        "target": "com.argocd.api#UpdateAccountServicePasswordResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -207,7 +208,7 @@
         "smithy.api#documentation": "UpdatePassword updates an account's password to a new value"
       }
     },
-    "com.argocd.api#AccountServiceGetAccountRequest": {
+    "com.argocd.api#GetAccountServiceAccountRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -222,10 +223,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#AccountServiceGetAccount": {
+    "com.argocd.api#GetAccountServiceAccount": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#AccountServiceGetAccountRequest"
+        "target": "com.argocd.api#GetAccountServiceAccountRequest"
       },
       "output": {
         "target": "com.argocd.api#AccountAccount"
@@ -239,7 +240,7 @@
         "smithy.api#documentation": "GetAccount returns an account"
       }
     },
-    "com.argocd.api#AccountServiceCreateTokenRequest": {
+    "com.argocd.api#CreateAccountServiceTokenRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -269,10 +270,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#AccountServiceCreateToken": {
+    "com.argocd.api#CreateAccountServiceToken": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#AccountServiceCreateTokenRequest"
+        "target": "com.argocd.api#CreateAccountServiceTokenRequest"
       },
       "output": {
         "target": "com.argocd.api#AccountCreateTokenResponse"
@@ -286,7 +287,7 @@
         "smithy.api#documentation": "CreateToken creates a token"
       }
     },
-    "com.argocd.api#AccountServiceDeleteTokenRequest": {
+    "com.argocd.api#DeleteAccountServiceTokenRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -308,7 +309,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#AccountServiceDeleteTokenResponse": {
+    "com.argocd.api#DeleteAccountServiceTokenResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -323,13 +324,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#AccountServiceDeleteToken": {
+    "com.argocd.api#DeleteAccountServiceToken": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#AccountServiceDeleteTokenRequest"
+        "target": "com.argocd.api#DeleteAccountServiceTokenRequest"
       },
       "output": {
-        "target": "com.argocd.api#AccountServiceDeleteTokenResponse"
+        "target": "com.argocd.api#DeleteAccountServiceTokenResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -340,21 +341,21 @@
         "smithy.api#documentation": "DeleteToken deletes a token"
       }
     },
-    "com.argocd.api#ApplicationServiceListRequestProjectsList": {
+    "com.argocd.api#ListApplicationServiceRequestProjectsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceListRequestProjectList": {
+    "com.argocd.api#ListApplicationServiceRequestProjectList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceListRequest": {
+    "com.argocd.api#ListApplicationServiceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -372,7 +373,7 @@
           }
         },
         "projects": {
-          "target": "com.argocd.api#ApplicationServiceListRequestProjectsList",
+          "target": "com.argocd.api#ListApplicationServiceRequestProjectsList",
           "traits": {
             "smithy.api#httpQuery": "projects",
             "smithy.api#documentation": "the project names to restrict returned list applications."
@@ -407,7 +408,7 @@
           }
         },
         "project": {
-          "target": "com.argocd.api#ApplicationServiceListRequestProjectList",
+          "target": "com.argocd.api#ListApplicationServiceRequestProjectList",
           "traits": {
             "smithy.api#httpQuery": "project",
             "smithy.api#documentation": "the project names to restrict returned list applications (legacy name for backwards-compatibility)."
@@ -2302,10 +2303,10 @@
         "smithy.api#documentation": "ShardInfo describes the shard selector that was applied to produce a list response.\nIts presence on a list response indicates the list is a filtered subset."
       }
     },
-    "com.argocd.api#ApplicationServiceList": {
+    "com.argocd.api#ListApplicationService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceListRequest"
+        "target": "com.argocd.api#ListApplicationServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1ApplicationList"
@@ -2319,7 +2320,7 @@
         "smithy.api#documentation": "List returns list of applications"
       }
     },
-    "com.argocd.api#ApplicationServiceCreateRequest": {
+    "com.argocd.api#CreateApplicationServiceRequest": {
       "type": "structure",
       "members": {
         "upsert": {
@@ -2351,10 +2352,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServiceCreate": {
+    "com.argocd.api#CreateApplicationService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceCreateRequest"
+        "target": "com.argocd.api#CreateApplicationServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Application"
@@ -2395,7 +2396,7 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceGetManifestsWithFilesRequest": {
+    "com.argocd.api#GetApplicationServiceManifestsWithFilesRequest": {
       "type": "structure",
       "members": {
         "chunk": {
@@ -2506,10 +2507,10 @@
         "smithy.api#documentation": "Checks holds a list of checks performed, with their eventual problems. If a check is not specified here,\nit means it was not performed."
       }
     },
-    "com.argocd.api#ApplicationServiceGetManifestsWithFiles": {
+    "com.argocd.api#GetApplicationServiceManifestsWithFiles": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceGetManifestsWithFilesRequest"
+        "target": "com.argocd.api#GetApplicationServiceManifestsWithFilesRequest"
       },
       "output": {
         "target": "com.argocd.api#RepositoryManifestResponse"
@@ -2679,7 +2680,7 @@
         "smithy.api#documentation": "ServerSideDiff performs server-side diff calculation using dry-run apply"
       }
     },
-    "com.argocd.api#ApplicationServiceUpdateRequest": {
+    "com.argocd.api#UpdateApplicationServiceRequest": {
       "type": "structure",
       "members": {
         "application_metadata_name": {
@@ -2719,10 +2720,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServiceUpdate": {
+    "com.argocd.api#UpdateApplicationService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceUpdateRequest"
+        "target": "com.argocd.api#UpdateApplicationServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Application"
@@ -3370,21 +3371,21 @@
         "smithy.api#documentation": "ResourceTree returns resource tree"
       }
     },
-    "com.argocd.api#ApplicationServiceGetRequestProjectsList": {
+    "com.argocd.api#GetApplicationServiceRequestProjectsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceGetRequestProjectList": {
+    "com.argocd.api#GetApplicationServiceRequestProjectList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceGetRequest": {
+    "com.argocd.api#GetApplicationServiceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -3403,7 +3404,7 @@
           }
         },
         "projects": {
-          "target": "com.argocd.api#ApplicationServiceGetRequestProjectsList",
+          "target": "com.argocd.api#GetApplicationServiceRequestProjectsList",
           "traits": {
             "smithy.api#httpQuery": "projects",
             "smithy.api#documentation": "the project names to restrict returned list applications."
@@ -3438,7 +3439,7 @@
           }
         },
         "project": {
-          "target": "com.argocd.api#ApplicationServiceGetRequestProjectList",
+          "target": "com.argocd.api#GetApplicationServiceRequestProjectList",
           "traits": {
             "smithy.api#httpQuery": "project",
             "smithy.api#documentation": "the project names to restrict returned list applications (legacy name for backwards-compatibility)."
@@ -3449,10 +3450,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServiceGet": {
+    "com.argocd.api#GetApplicationService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceGetRequest"
+        "target": "com.argocd.api#GetApplicationServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Application"
@@ -3466,7 +3467,7 @@
         "smithy.api#documentation": "Get returns an application by name"
       }
     },
-    "com.argocd.api#ApplicationServicePatchRequest": {
+    "com.argocd.api#PatchApplicationServiceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -3493,10 +3494,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServicePatch": {
+    "com.argocd.api#PatchApplicationService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServicePatchRequest"
+        "target": "com.argocd.api#PatchApplicationServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Application"
@@ -3510,7 +3511,7 @@
         "smithy.api#documentation": "Patch patch an application"
       }
     },
-    "com.argocd.api#ApplicationServiceDeleteRequest": {
+    "com.argocd.api#DeleteApplicationServiceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -3549,7 +3550,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServiceDeleteResponse": {
+    "com.argocd.api#DeleteApplicationServiceResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -3564,13 +3565,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#ApplicationServiceDelete": {
+    "com.argocd.api#DeleteApplicationService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceDeleteRequest"
+        "target": "com.argocd.api#DeleteApplicationServiceRequest"
       },
       "output": {
-        "target": "com.argocd.api#ApplicationServiceDeleteResponse"
+        "target": "com.argocd.api#DeleteApplicationServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3581,7 +3582,7 @@
         "smithy.api#documentation": "Delete deletes an application"
       }
     },
-    "com.argocd.api#ApplicationServiceListResourceEventsRequest": {
+    "com.argocd.api#ListApplicationServiceResourceEventsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -3833,10 +3834,10 @@
         "smithy.api#documentation": "List of events."
       }
     },
-    "com.argocd.api#ApplicationServiceListResourceEvents": {
+    "com.argocd.api#ListApplicationServiceResourceEvents": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceListResourceEventsRequest"
+        "target": "com.argocd.api#ListApplicationServiceResourceEventsRequest"
       },
       "output": {
         "target": "com.argocd.api#EventsEventList"
@@ -3850,7 +3851,7 @@
         "smithy.api#documentation": "ListResourceEvents returns a list of event resources"
       }
     },
-    "com.argocd.api#ApplicationServiceListLinksRequest": {
+    "com.argocd.api#ListApplicationServiceLinksRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -3911,10 +3912,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceListLinks": {
+    "com.argocd.api#ListApplicationServiceLinks": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceListLinksRequest"
+        "target": "com.argocd.api#ListApplicationServiceLinksRequest"
       },
       "output": {
         "target": "com.argocd.api#ApplicationLinksResponse"
@@ -4139,21 +4140,21 @@
         "smithy.api#documentation": "PodLogs returns stream of log entries for the specified pod. Pod"
       }
     },
-    "com.argocd.api#ApplicationServiceGetManifestsRequestSourcePositionsList": {
+    "com.argocd.api#GetApplicationServiceManifestsRequestSourcePositionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceGetManifestsRequestRevisionsList": {
+    "com.argocd.api#GetApplicationServiceManifestsRequestRevisionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceGetManifestsRequest": {
+    "com.argocd.api#GetApplicationServiceManifestsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -4182,13 +4183,13 @@
           }
         },
         "sourcePositions": {
-          "target": "com.argocd.api#ApplicationServiceGetManifestsRequestSourcePositionsList",
+          "target": "com.argocd.api#GetApplicationServiceManifestsRequestSourcePositionsList",
           "traits": {
             "smithy.api#httpQuery": "sourcePositions"
           }
         },
         "revisions": {
-          "target": "com.argocd.api#ApplicationServiceGetManifestsRequestRevisionsList",
+          "target": "com.argocd.api#GetApplicationServiceManifestsRequestRevisionsList",
           "traits": {
             "smithy.api#httpQuery": "revisions"
           }
@@ -4204,10 +4205,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServiceGetManifests": {
+    "com.argocd.api#GetApplicationServiceManifests": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceGetManifestsRequest"
+        "target": "com.argocd.api#GetApplicationServiceManifestsRequest"
       },
       "output": {
         "target": "com.argocd.api#RepositoryManifestResponse"
@@ -4221,7 +4222,7 @@
         "smithy.api#documentation": "GetManifests returns application manifests"
       }
     },
-    "com.argocd.api#ApplicationServiceTerminateOperationRequest": {
+    "com.argocd.api#TerminateApplicationServiceOperationRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -4248,7 +4249,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServiceTerminateOperationResponse": {
+    "com.argocd.api#TerminateApplicationServiceOperationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4263,13 +4264,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#ApplicationServiceTerminateOperation": {
+    "com.argocd.api#TerminateApplicationServiceOperation": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceTerminateOperationRequest"
+        "target": "com.argocd.api#TerminateApplicationServiceOperationRequest"
       },
       "output": {
-        "target": "com.argocd.api#ApplicationServiceTerminateOperationResponse"
+        "target": "com.argocd.api#TerminateApplicationServiceOperationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4431,7 +4432,7 @@
         "smithy.api#documentation": "PodLogs returns stream of log entries for the specified pod. Pod"
       }
     },
-    "com.argocd.api#ApplicationServiceGetResourceRequest": {
+    "com.argocd.api#GetApplicationServiceResourceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -4497,10 +4498,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceGetResource": {
+    "com.argocd.api#GetApplicationServiceResource": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceGetResourceRequest"
+        "target": "com.argocd.api#GetApplicationServiceResourceRequest"
       },
       "output": {
         "target": "com.argocd.api#ApplicationApplicationResourceResponse"
@@ -4514,7 +4515,7 @@
         "smithy.api#documentation": "GetResource returns single application resource"
       }
     },
-    "com.argocd.api#ApplicationServicePatchResourceRequest": {
+    "com.argocd.api#PatchApplicationServiceResourceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -4584,10 +4585,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServicePatchResource": {
+    "com.argocd.api#PatchApplicationServiceResource": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServicePatchResourceRequest"
+        "target": "com.argocd.api#PatchApplicationServiceResourceRequest"
       },
       "output": {
         "target": "com.argocd.api#ApplicationApplicationResourceResponse"
@@ -4601,7 +4602,7 @@
         "smithy.api#documentation": "PatchResource patch single application resource"
       }
     },
-    "com.argocd.api#ApplicationServiceDeleteResourceRequest": {
+    "com.argocd.api#DeleteApplicationServiceResourceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -4670,7 +4671,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServiceDeleteResourceResponse": {
+    "com.argocd.api#DeleteApplicationServiceResourceResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4685,13 +4686,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#ApplicationServiceDeleteResource": {
+    "com.argocd.api#DeleteApplicationServiceResource": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceDeleteResourceRequest"
+        "target": "com.argocd.api#DeleteApplicationServiceResourceRequest"
       },
       "output": {
-        "target": "com.argocd.api#ApplicationServiceDeleteResourceResponse"
+        "target": "com.argocd.api#DeleteApplicationServiceResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4702,7 +4703,7 @@
         "smithy.api#documentation": "DeleteResource deletes a single application resource"
       }
     },
-    "com.argocd.api#ApplicationServiceListResourceActionsRequest": {
+    "com.argocd.api#ListApplicationServiceResourceActionsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -4836,10 +4837,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceListResourceActions": {
+    "com.argocd.api#ListApplicationServiceResourceActions": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceListResourceActionsRequest"
+        "target": "com.argocd.api#ListApplicationServiceResourceActionsRequest"
       },
       "output": {
         "target": "com.argocd.api#ApplicationResourceActionsListResponse"
@@ -4853,7 +4854,7 @@
         "smithy.api#documentation": "ListResourceActions returns list of resource actions"
       }
     },
-    "com.argocd.api#ApplicationServiceRunResourceActionRequest": {
+    "com.argocd.api#RunApplicationServiceResourceActionRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -4917,7 +4918,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServiceRunResourceActionResponse": {
+    "com.argocd.api#RunApplicationServiceResourceActionResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4932,13 +4933,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#ApplicationServiceRunResourceAction": {
+    "com.argocd.api#RunApplicationServiceResourceAction": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceRunResourceActionRequest"
+        "target": "com.argocd.api#RunApplicationServiceResourceActionRequest"
       },
       "output": {
-        "target": "com.argocd.api#ApplicationServiceRunResourceActionResponse"
+        "target": "com.argocd.api#RunApplicationServiceResourceActionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4961,14 +4962,14 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceRunResourceActionV2RequestResourceActionParametersList": {
+    "com.argocd.api#RunApplicationServiceResourceActionV2RequestResourceActionParametersList": {
       "type": "list",
       "member": {
         "target": "com.argocd.api#ApplicationResourceActionParameters"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceRunResourceActionV2Request": {
+    "com.argocd.api#RunApplicationServiceResourceActionV2Request": {
       "type": "structure",
       "members": {
         "name": {
@@ -4997,7 +4998,7 @@
           "target": "smithy.api#String"
         },
         "resourceActionParameters": {
-          "target": "com.argocd.api#ApplicationServiceRunResourceActionV2RequestResourceActionParametersList"
+          "target": "com.argocd.api#RunApplicationServiceResourceActionV2RequestResourceActionParametersList"
         },
         "resourceName": {
           "target": "smithy.api#String"
@@ -5010,7 +5011,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServiceRunResourceActionV2Response": {
+    "com.argocd.api#RunApplicationServiceResourceActionV2Response": {
       "type": "structure",
       "members": {
         "body": {
@@ -5025,13 +5026,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#ApplicationServiceRunResourceActionV2": {
+    "com.argocd.api#RunApplicationServiceResourceActionV2": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceRunResourceActionV2Request"
+        "target": "com.argocd.api#RunApplicationServiceResourceActionV2Request"
       },
       "output": {
-        "target": "com.argocd.api#ApplicationServiceRunResourceActionV2Response"
+        "target": "com.argocd.api#RunApplicationServiceResourceActionV2Response"
       },
       "traits": {
         "smithy.api#http": {
@@ -5042,7 +5043,7 @@
         "smithy.api#documentation": "RunResourceActionV2 runs a resource action with parameters"
       }
     },
-    "com.argocd.api#ApplicationServiceListResourceLinksRequest": {
+    "com.argocd.api#ListApplicationServiceResourceLinksRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -5099,10 +5100,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServiceListResourceLinks": {
+    "com.argocd.api#ListApplicationServiceResourceLinks": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceListResourceLinksRequest"
+        "target": "com.argocd.api#ListApplicationServiceResourceLinksRequest"
       },
       "output": {
         "target": "com.argocd.api#ApplicationLinksResponse"
@@ -5383,7 +5384,7 @@
         "smithy.api#documentation": "Get the meta-data (author, date, tags, message) for a specific revision of the application"
       }
     },
-    "com.argocd.api#ApplicationServiceGetOCIMetadataRequest": {
+    "com.argocd.api#GetApplicationServiceOCIMetadataRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -5461,10 +5462,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceGetOCIMetadata": {
+    "com.argocd.api#GetApplicationServiceOCIMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceGetOCIMetadataRequest"
+        "target": "com.argocd.api#GetApplicationServiceOCIMetadataRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1OCIMetadata"
@@ -5525,28 +5526,28 @@
         "smithy.api#documentation": "Rollback syncs an application to its target state"
       }
     },
-    "com.argocd.api#ApplicationServiceUpdateSpecRequestIgnoreDifferencesList": {
+    "com.argocd.api#UpdateApplicationServiceSpecRequestIgnoreDifferencesList": {
       "type": "list",
       "member": {
         "target": "com.argocd.api#V1alpha1ResourceIgnoreDifferences"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceUpdateSpecRequestInfoList": {
+    "com.argocd.api#UpdateApplicationServiceSpecRequestInfoList": {
       "type": "list",
       "member": {
         "target": "com.argocd.api#V1alpha1Info"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceUpdateSpecRequestSourcesList": {
+    "com.argocd.api#UpdateApplicationServiceSpecRequestSourcesList": {
       "type": "list",
       "member": {
         "target": "com.argocd.api#V1alpha1ApplicationSource"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceUpdateSpecRequest": {
+    "com.argocd.api#UpdateApplicationServiceSpecRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -5578,10 +5579,10 @@
           "target": "com.argocd.api#V1alpha1ApplicationDestination"
         },
         "ignoreDifferences": {
-          "target": "com.argocd.api#ApplicationServiceUpdateSpecRequestIgnoreDifferencesList"
+          "target": "com.argocd.api#UpdateApplicationServiceSpecRequestIgnoreDifferencesList"
         },
         "info": {
-          "target": "com.argocd.api#ApplicationServiceUpdateSpecRequestInfoList"
+          "target": "com.argocd.api#UpdateApplicationServiceSpecRequestInfoList"
         },
         "revisionHistoryLimit": {
           "target": "smithy.api#Integer",
@@ -5596,7 +5597,7 @@
           "target": "com.argocd.api#V1alpha1SourceHydrator"
         },
         "sources": {
-          "target": "com.argocd.api#ApplicationServiceUpdateSpecRequestSourcesList"
+          "target": "com.argocd.api#UpdateApplicationServiceSpecRequestSourcesList"
         },
         "syncPolicy": {
           "target": "com.argocd.api#V1alpha1SyncPolicy"
@@ -5606,10 +5607,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServiceUpdateSpec": {
+    "com.argocd.api#UpdateApplicationServiceSpec": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceUpdateSpecRequest"
+        "target": "com.argocd.api#UpdateApplicationServiceSpecRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1ApplicationSpec"
@@ -5623,35 +5624,35 @@
         "smithy.api#documentation": "UpdateSpec updates an application spec"
       }
     },
-    "com.argocd.api#ApplicationServiceSyncRequestInfosList": {
+    "com.argocd.api#SyncApplicationServiceRequestInfosList": {
       "type": "list",
       "member": {
         "target": "com.argocd.api#V1alpha1Info"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceSyncRequestManifestsList": {
+    "com.argocd.api#SyncApplicationServiceRequestManifestsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceSyncRequestResourcesList": {
+    "com.argocd.api#SyncApplicationServiceRequestResourcesList": {
       "type": "list",
       "member": {
         "target": "com.argocd.api#V1alpha1SyncOperationResource"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceSyncRequestRevisionsList": {
+    "com.argocd.api#SyncApplicationServiceRequestRevisionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceSyncRequestSourcePositionsList": {
+    "com.argocd.api#SyncApplicationServiceRequestSourcePositionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5674,7 +5675,7 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceSyncRequest": {
+    "com.argocd.api#SyncApplicationServiceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -5691,10 +5692,10 @@
           "target": "smithy.api#Boolean"
         },
         "infos": {
-          "target": "com.argocd.api#ApplicationServiceSyncRequestInfosList"
+          "target": "com.argocd.api#SyncApplicationServiceRequestInfosList"
         },
         "manifests": {
-          "target": "com.argocd.api#ApplicationServiceSyncRequestManifestsList"
+          "target": "com.argocd.api#SyncApplicationServiceRequestManifestsList"
         },
         "project": {
           "target": "smithy.api#String"
@@ -5703,7 +5704,7 @@
           "target": "smithy.api#Boolean"
         },
         "resources": {
-          "target": "com.argocd.api#ApplicationServiceSyncRequestResourcesList"
+          "target": "com.argocd.api#SyncApplicationServiceRequestResourcesList"
         },
         "retryStrategy": {
           "target": "com.argocd.api#V1alpha1RetryStrategy"
@@ -5712,10 +5713,10 @@
           "target": "smithy.api#String"
         },
         "revisions": {
-          "target": "com.argocd.api#ApplicationServiceSyncRequestRevisionsList"
+          "target": "com.argocd.api#SyncApplicationServiceRequestRevisionsList"
         },
         "sourcePositions": {
-          "target": "com.argocd.api#ApplicationServiceSyncRequestSourcePositionsList"
+          "target": "com.argocd.api#SyncApplicationServiceRequestSourcePositionsList"
         },
         "strategy": {
           "target": "com.argocd.api#V1alpha1SyncStrategy"
@@ -5728,10 +5729,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServiceSync": {
+    "com.argocd.api#SyncApplicationService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceSyncRequest"
+        "target": "com.argocd.api#SyncApplicationServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Application"
@@ -5745,7 +5746,7 @@
         "smithy.api#documentation": "Sync syncs an application to its target state"
       }
     },
-    "com.argocd.api#ApplicationServiceGetApplicationSyncWindowsRequest": {
+    "com.argocd.api#GetApplicationServiceApplicationSyncWindowsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -5819,10 +5820,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceGetApplicationSyncWindows": {
+    "com.argocd.api#GetApplicationServiceApplicationSyncWindows": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceGetApplicationSyncWindowsRequest"
+        "target": "com.argocd.api#GetApplicationServiceApplicationSyncWindowsRequest"
       },
       "output": {
         "target": "com.argocd.api#ApplicationApplicationSyncWindowsResponse"
@@ -5836,18 +5837,18 @@
         "smithy.api#documentation": "Get returns sync windows of the application"
       }
     },
-    "com.argocd.api#ApplicationSetServiceListRequestProjectsList": {
+    "com.argocd.api#ListApplicationSetServiceRequestProjectsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationSetServiceListRequest": {
+    "com.argocd.api#ListApplicationSetServiceRequest": {
       "type": "structure",
       "members": {
         "projects": {
-          "target": "com.argocd.api#ApplicationSetServiceListRequestProjectsList",
+          "target": "com.argocd.api#ListApplicationSetServiceRequestProjectsList",
           "traits": {
             "smithy.api#httpQuery": "projects",
             "smithy.api#documentation": "the project names to restrict returned list applicationsets."
@@ -7538,10 +7539,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationSetServiceList": {
+    "com.argocd.api#ListApplicationSetService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationSetServiceListRequest"
+        "target": "com.argocd.api#ListApplicationSetServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1ApplicationSetList"
@@ -7555,7 +7556,7 @@
         "smithy.api#documentation": "List returns list of applicationset"
       }
     },
-    "com.argocd.api#ApplicationSetServiceCreateRequest": {
+    "com.argocd.api#CreateApplicationSetServiceRequest": {
       "type": "structure",
       "members": {
         "upsert": {
@@ -7584,10 +7585,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationSetServiceCreate": {
+    "com.argocd.api#CreateApplicationSetService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationSetServiceCreateRequest"
+        "target": "com.argocd.api#CreateApplicationSetServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1ApplicationSet"
@@ -7601,7 +7602,7 @@
         "smithy.api#documentation": "Create creates an applicationset"
       }
     },
-    "com.argocd.api#ApplicationSetServiceGenerateRequest": {
+    "com.argocd.api#GenerateApplicationSetServiceRequest": {
       "type": "structure",
       "members": {
         "applicationSet": {
@@ -7628,10 +7629,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationSetServiceGenerate": {
+    "com.argocd.api#GenerateApplicationSetService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationSetServiceGenerateRequest"
+        "target": "com.argocd.api#GenerateApplicationSetServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#ApplicationsetApplicationSetGenerateResponse"
@@ -7645,7 +7646,7 @@
         "smithy.api#documentation": "Generate generates"
       }
     },
-    "com.argocd.api#ApplicationSetServiceGetRequest": {
+    "com.argocd.api#GetApplicationSetServiceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -7668,10 +7669,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationSetServiceGet": {
+    "com.argocd.api#GetApplicationSetService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationSetServiceGetRequest"
+        "target": "com.argocd.api#GetApplicationSetServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1ApplicationSet"
@@ -7685,7 +7686,7 @@
         "smithy.api#documentation": "Get returns an applicationset by name"
       }
     },
-    "com.argocd.api#ApplicationSetServiceDeleteRequest": {
+    "com.argocd.api#DeleteApplicationSetServiceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -7719,10 +7720,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationSetServiceDelete": {
+    "com.argocd.api#DeleteApplicationSetService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationSetServiceDeleteRequest"
+        "target": "com.argocd.api#DeleteApplicationSetServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#ApplicationsetApplicationSetResponse"
@@ -7736,7 +7737,7 @@
         "smithy.api#documentation": "Delete deletes an application set"
       }
     },
-    "com.argocd.api#ApplicationSetServiceListResourceEventsRequest": {
+    "com.argocd.api#ListApplicationSetServiceResourceEventsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -7759,10 +7760,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationSetServiceListResourceEvents": {
+    "com.argocd.api#ListApplicationSetServiceResourceEvents": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationSetServiceListResourceEventsRequest"
+        "target": "com.argocd.api#ListApplicationSetServiceResourceEventsRequest"
       },
       "output": {
         "target": "com.argocd.api#EventsEventList"
@@ -7831,7 +7832,7 @@
         "smithy.api#documentation": "ResourceTree returns resource tree"
       }
     },
-    "com.argocd.api#CertificateServiceListCertificatesRequest": {
+    "com.argocd.api#ListCertificateServiceCertificatesRequest": {
       "type": "structure",
       "members": {
         "hostNamePattern": {
@@ -7900,10 +7901,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#CertificateServiceListCertificates": {
+    "com.argocd.api#ListCertificateServiceCertificates": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#CertificateServiceListCertificatesRequest"
+        "target": "com.argocd.api#ListCertificateServiceCertificatesRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1RepositoryCertificateList"
@@ -7917,14 +7918,14 @@
         "smithy.api#documentation": "List all available repository certificates"
       }
     },
-    "com.argocd.api#CertificateServiceCreateCertificateRequestItemsList": {
+    "com.argocd.api#CreateCertificateServiceCertificateRequestItemsList": {
       "type": "list",
       "member": {
         "target": "com.argocd.api#V1alpha1RepositoryCertificate"
       },
       "traits": {}
     },
-    "com.argocd.api#CertificateServiceCreateCertificateRequest": {
+    "com.argocd.api#CreateCertificateServiceCertificateRequest": {
       "type": "structure",
       "members": {
         "upsert": {
@@ -7935,7 +7936,7 @@
           }
         },
         "items": {
-          "target": "com.argocd.api#CertificateServiceCreateCertificateRequestItemsList"
+          "target": "com.argocd.api#CreateCertificateServiceCertificateRequestItemsList"
         },
         "metadata": {
           "target": "com.argocd.api#V1ListMeta"
@@ -7945,10 +7946,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#CertificateServiceCreateCertificate": {
+    "com.argocd.api#CreateCertificateServiceCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#CertificateServiceCreateCertificateRequest"
+        "target": "com.argocd.api#CreateCertificateServiceCertificateRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1RepositoryCertificateList"
@@ -7962,7 +7963,7 @@
         "smithy.api#documentation": "Creates repository certificates on the server"
       }
     },
-    "com.argocd.api#CertificateServiceDeleteCertificateRequest": {
+    "com.argocd.api#DeleteCertificateServiceCertificateRequest": {
       "type": "structure",
       "members": {
         "hostNamePattern": {
@@ -7991,10 +7992,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#CertificateServiceDeleteCertificate": {
+    "com.argocd.api#DeleteCertificateServiceCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#CertificateServiceDeleteCertificateRequest"
+        "target": "com.argocd.api#DeleteCertificateServiceCertificateRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1RepositoryCertificateList"
@@ -8008,7 +8009,7 @@
         "smithy.api#documentation": "Delete the certificates that match the RepositoryCertificateQuery"
       }
     },
-    "com.argocd.api#ClusterServiceListRequest": {
+    "com.argocd.api#ListClusterServiceRequest": {
       "type": "structure",
       "members": {
         "server": {
@@ -8337,10 +8338,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ClusterServiceList": {
+    "com.argocd.api#ListClusterService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ClusterServiceListRequest"
+        "target": "com.argocd.api#ListClusterServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1ClusterList"
@@ -8354,7 +8355,7 @@
         "smithy.api#documentation": "List returns list of clusters"
       }
     },
-    "com.argocd.api#ClusterServiceCreateRequestAnnotationsMap": {
+    "com.argocd.api#CreateClusterServiceRequestAnnotationsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8364,7 +8365,7 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ClusterServiceCreateRequestLabelsMap": {
+    "com.argocd.api#CreateClusterServiceRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8374,7 +8375,7 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ClusterServiceCreateRequestNamespacesList": {
+    "com.argocd.api#CreateClusterServiceRequestNamespacesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -8383,7 +8384,7 @@
         "smithy.api#documentation": "Holds list of namespaces which are accessible in that cluster. Cluster level resources will be ignored if namespace list is not empty."
       }
     },
-    "com.argocd.api#ClusterServiceCreateRequest": {
+    "com.argocd.api#CreateClusterServiceRequest": {
       "type": "structure",
       "members": {
         "upsert": {
@@ -8393,7 +8394,7 @@
           }
         },
         "annotations": {
-          "target": "com.argocd.api#ClusterServiceCreateRequestAnnotationsMap"
+          "target": "com.argocd.api#CreateClusterServiceRequestAnnotationsMap"
         },
         "clusterResources": {
           "target": "smithy.api#Boolean",
@@ -8411,13 +8412,13 @@
           "target": "com.argocd.api#V1alpha1ClusterInfo"
         },
         "labels": {
-          "target": "com.argocd.api#ClusterServiceCreateRequestLabelsMap"
+          "target": "com.argocd.api#CreateClusterServiceRequestLabelsMap"
         },
         "name": {
           "target": "smithy.api#String"
         },
         "namespaces": {
-          "target": "com.argocd.api#ClusterServiceCreateRequestNamespacesList",
+          "target": "com.argocd.api#CreateClusterServiceRequestNamespacesList",
           "traits": {
             "smithy.api#documentation": "Holds list of namespaces which are accessible in that cluster. Cluster level resources will be ignored if namespace list is not empty."
           }
@@ -8445,10 +8446,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ClusterServiceCreate": {
+    "com.argocd.api#CreateClusterService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ClusterServiceCreateRequest"
+        "target": "com.argocd.api#CreateClusterServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Cluster"
@@ -8462,7 +8463,7 @@
         "smithy.api#documentation": "Create creates a cluster"
       }
     },
-    "com.argocd.api#ClusterServiceGetRequest": {
+    "com.argocd.api#GetClusterServiceRequest": {
       "type": "structure",
       "members": {
         "id_value": {
@@ -8497,10 +8498,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ClusterServiceGet": {
+    "com.argocd.api#GetClusterService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ClusterServiceGetRequest"
+        "target": "com.argocd.api#GetClusterServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Cluster"
@@ -8514,14 +8515,14 @@
         "smithy.api#documentation": "Get returns a cluster by server address"
       }
     },
-    "com.argocd.api#ClusterServiceUpdateRequestUpdatedFieldsList": {
+    "com.argocd.api#UpdateClusterServiceRequestUpdatedFieldsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.argocd.api#ClusterServiceUpdateRequestAnnotationsMap": {
+    "com.argocd.api#UpdateClusterServiceRequestAnnotationsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8531,7 +8532,7 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ClusterServiceUpdateRequestLabelsMap": {
+    "com.argocd.api#UpdateClusterServiceRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8541,7 +8542,7 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ClusterServiceUpdateRequestNamespacesList": {
+    "com.argocd.api#UpdateClusterServiceRequestNamespacesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -8550,7 +8551,7 @@
         "smithy.api#documentation": "Holds list of namespaces which are accessible in that cluster. Cluster level resources will be ignored if namespace list is not empty."
       }
     },
-    "com.argocd.api#ClusterServiceUpdateRequest": {
+    "com.argocd.api#UpdateClusterServiceRequest": {
       "type": "structure",
       "members": {
         "id_value": {
@@ -8562,7 +8563,7 @@
           }
         },
         "updatedFields": {
-          "target": "com.argocd.api#ClusterServiceUpdateRequestUpdatedFieldsList",
+          "target": "com.argocd.api#UpdateClusterServiceRequestUpdatedFieldsList",
           "traits": {
             "smithy.api#httpQuery": "updatedFields"
           }
@@ -8575,7 +8576,7 @@
           }
         },
         "annotations": {
-          "target": "com.argocd.api#ClusterServiceUpdateRequestAnnotationsMap"
+          "target": "com.argocd.api#UpdateClusterServiceRequestAnnotationsMap"
         },
         "clusterResources": {
           "target": "smithy.api#Boolean",
@@ -8593,13 +8594,13 @@
           "target": "com.argocd.api#V1alpha1ClusterInfo"
         },
         "labels": {
-          "target": "com.argocd.api#ClusterServiceUpdateRequestLabelsMap"
+          "target": "com.argocd.api#UpdateClusterServiceRequestLabelsMap"
         },
         "name": {
           "target": "smithy.api#String"
         },
         "namespaces": {
-          "target": "com.argocd.api#ClusterServiceUpdateRequestNamespacesList",
+          "target": "com.argocd.api#UpdateClusterServiceRequestNamespacesList",
           "traits": {
             "smithy.api#documentation": "Holds list of namespaces which are accessible in that cluster. Cluster level resources will be ignored if namespace list is not empty."
           }
@@ -8627,10 +8628,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ClusterServiceUpdate": {
+    "com.argocd.api#UpdateClusterService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ClusterServiceUpdateRequest"
+        "target": "com.argocd.api#UpdateClusterServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Cluster"
@@ -8644,7 +8645,7 @@
         "smithy.api#documentation": "Update updates a cluster"
       }
     },
-    "com.argocd.api#ClusterServiceDeleteRequest": {
+    "com.argocd.api#DeleteClusterServiceRequest": {
       "type": "structure",
       "members": {
         "id_value": {
@@ -8679,7 +8680,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ClusterServiceDeleteResponse": {
+    "com.argocd.api#DeleteClusterServiceResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -8694,13 +8695,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#ClusterServiceDelete": {
+    "com.argocd.api#DeleteClusterService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ClusterServiceDeleteRequest"
+        "target": "com.argocd.api#DeleteClusterServiceRequest"
       },
       "output": {
-        "target": "com.argocd.api#ClusterServiceDeleteResponse"
+        "target": "com.argocd.api#DeleteClusterServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8711,7 +8712,7 @@
         "smithy.api#documentation": "Delete deletes a cluster"
       }
     },
-    "com.argocd.api#ClusterServiceInvalidateCacheRequest": {
+    "com.argocd.api#InvalidateClusterServiceCacheRequest": {
       "type": "structure",
       "members": {
         "id_value": {
@@ -8727,10 +8728,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ClusterServiceInvalidateCache": {
+    "com.argocd.api#InvalidateClusterServiceCache": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ClusterServiceInvalidateCacheRequest"
+        "target": "com.argocd.api#InvalidateClusterServiceCacheRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Cluster"
@@ -8744,7 +8745,7 @@
         "smithy.api#documentation": "InvalidateCache invalidates cluster cache"
       }
     },
-    "com.argocd.api#ClusterServiceRotateAuthRequest": {
+    "com.argocd.api#RotateClusterServiceAuthRequest": {
       "type": "structure",
       "members": {
         "id_value": {
@@ -8760,7 +8761,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ClusterServiceRotateAuthResponse": {
+    "com.argocd.api#RotateClusterServiceAuthResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -8775,13 +8776,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#ClusterServiceRotateAuth": {
+    "com.argocd.api#RotateClusterServiceAuth": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ClusterServiceRotateAuthRequest"
+        "target": "com.argocd.api#RotateClusterServiceAuthRequest"
       },
       "output": {
-        "target": "com.argocd.api#ClusterServiceRotateAuthResponse"
+        "target": "com.argocd.api#RotateClusterServiceAuthResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8792,7 +8793,7 @@
         "smithy.api#documentation": "RotateAuth rotates the bearer token used for a cluster"
       }
     },
-    "com.argocd.api#GPGKeyServiceListRequest": {
+    "com.argocd.api#ListGPGKeyServiceRequest": {
       "type": "structure",
       "members": {
         "keyID": {
@@ -8850,10 +8851,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#GPGKeyServiceList": {
+    "com.argocd.api#ListGPGKeyService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#GPGKeyServiceListRequest"
+        "target": "com.argocd.api#ListGPGKeyServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1GnuPGPublicKeyList"
@@ -8867,7 +8868,7 @@
         "smithy.api#documentation": "List all available repository certificates"
       }
     },
-    "com.argocd.api#GPGKeyServiceCreateRequest": {
+    "com.argocd.api#CreateGPGKeyServiceRequest": {
       "type": "structure",
       "members": {
         "upsert": {
@@ -8919,10 +8920,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#GPGKeyServiceCreate": {
+    "com.argocd.api#CreateGPGKeyService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#GPGKeyServiceCreateRequest"
+        "target": "com.argocd.api#CreateGPGKeyServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#GpgkeyGnuPGPublicKeyCreateResponse"
@@ -8936,7 +8937,7 @@
         "smithy.api#documentation": "Create one or more GPG public keys in the server's configuration"
       }
     },
-    "com.argocd.api#GPGKeyServiceDeleteRequest": {
+    "com.argocd.api#DeleteGPGKeyServiceRequest": {
       "type": "structure",
       "members": {
         "keyID": {
@@ -8951,7 +8952,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#GPGKeyServiceDeleteResponse": {
+    "com.argocd.api#DeleteGPGKeyServiceResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -8966,13 +8967,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#GPGKeyServiceDelete": {
+    "com.argocd.api#DeleteGPGKeyService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#GPGKeyServiceDeleteRequest"
+        "target": "com.argocd.api#DeleteGPGKeyServiceRequest"
       },
       "output": {
-        "target": "com.argocd.api#GPGKeyServiceDeleteResponse"
+        "target": "com.argocd.api#DeleteGPGKeyServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8983,7 +8984,7 @@
         "smithy.api#documentation": "Delete specified GPG public key from the server's configuration"
       }
     },
-    "com.argocd.api#GPGKeyServiceGetRequest": {
+    "com.argocd.api#GetGPGKeyServiceRequest": {
       "type": "structure",
       "members": {
         "keyID": {
@@ -8999,10 +9000,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#GPGKeyServiceGet": {
+    "com.argocd.api#GetGPGKeyService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#GPGKeyServiceGetRequest"
+        "target": "com.argocd.api#GetGPGKeyServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1GnuPGPublicKey"
@@ -9041,7 +9042,7 @@
       },
       "traits": {}
     },
-    "com.argocd.api#NotificationServiceListServices": {
+    "com.argocd.api#ListNotificationServiceServices": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -9083,7 +9084,7 @@
       },
       "traits": {}
     },
-    "com.argocd.api#NotificationServiceListTemplates": {
+    "com.argocd.api#ListNotificationServiceTemplates": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -9125,7 +9126,7 @@
       },
       "traits": {}
     },
-    "com.argocd.api#NotificationServiceListTriggers": {
+    "com.argocd.api#ListNotificationServiceTriggers": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -9142,7 +9143,7 @@
         "smithy.api#documentation": "List returns list of triggers"
       }
     },
-    "com.argocd.api#ProjectServiceListRequest": {
+    "com.argocd.api#ListProjectServiceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -9662,10 +9663,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ProjectServiceList": {
+    "com.argocd.api#ListProjectService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ProjectServiceListRequest"
+        "target": "com.argocd.api#ListProjectServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1AppProjectList"
@@ -9679,7 +9680,7 @@
         "smithy.api#documentation": "List returns list of projects"
       }
     },
-    "com.argocd.api#ProjectServiceCreateRequest": {
+    "com.argocd.api#CreateProjectServiceRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -9693,10 +9694,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ProjectServiceCreate": {
+    "com.argocd.api#CreateProjectService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ProjectServiceCreateRequest"
+        "target": "com.argocd.api#CreateProjectServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1AppProject"
@@ -9710,7 +9711,7 @@
         "smithy.api#documentation": "Create a new project"
       }
     },
-    "com.argocd.api#ProjectServiceGetRequest": {
+    "com.argocd.api#GetProjectServiceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -9725,10 +9726,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ProjectServiceGet": {
+    "com.argocd.api#GetProjectService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ProjectServiceGetRequest"
+        "target": "com.argocd.api#GetProjectServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1AppProject"
@@ -9742,7 +9743,7 @@
         "smithy.api#documentation": "Get returns a project by name"
       }
     },
-    "com.argocd.api#ProjectServiceDeleteRequest": {
+    "com.argocd.api#DeleteProjectServiceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -9757,7 +9758,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ProjectServiceDeleteResponse": {
+    "com.argocd.api#DeleteProjectServiceResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -9772,13 +9773,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#ProjectServiceDelete": {
+    "com.argocd.api#DeleteProjectService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ProjectServiceDeleteRequest"
+        "target": "com.argocd.api#DeleteProjectServiceRequest"
       },
       "output": {
-        "target": "com.argocd.api#ProjectServiceDeleteResponse"
+        "target": "com.argocd.api#DeleteProjectServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9789,7 +9790,7 @@
         "smithy.api#documentation": "Delete deletes a project"
       }
     },
-    "com.argocd.api#ProjectServiceGetDetailedProjectRequest": {
+    "com.argocd.api#GetProjectServiceDetailedProjectRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -9966,10 +9967,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ProjectServiceGetDetailedProject": {
+    "com.argocd.api#GetProjectServiceDetailedProject": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ProjectServiceGetDetailedProjectRequest"
+        "target": "com.argocd.api#GetProjectServiceDetailedProjectRequest"
       },
       "output": {
         "target": "com.argocd.api#ProjectDetailedProjectsResponse"
@@ -9983,7 +9984,7 @@
         "smithy.api#documentation": "GetDetailedProject returns a project that include project, global project and scoped resources by name"
       }
     },
-    "com.argocd.api#ProjectServiceListEventsRequest": {
+    "com.argocd.api#ListProjectServiceEventsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -9998,10 +9999,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ProjectServiceListEvents": {
+    "com.argocd.api#ListProjectServiceEvents": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ProjectServiceListEventsRequest"
+        "target": "com.argocd.api#ListProjectServiceEventsRequest"
       },
       "output": {
         "target": "com.argocd.api#EventsEventList"
@@ -10015,7 +10016,7 @@
         "smithy.api#documentation": "ListEvents returns a list of project events"
       }
     },
-    "com.argocd.api#ProjectServiceGetGlobalProjectsRequest": {
+    "com.argocd.api#GetProjectServiceGlobalProjectsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -10046,10 +10047,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ProjectServiceGetGlobalProjects": {
+    "com.argocd.api#GetProjectServiceGlobalProjects": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ProjectServiceGetGlobalProjectsRequest"
+        "target": "com.argocd.api#GetProjectServiceGlobalProjectsRequest"
       },
       "output": {
         "target": "com.argocd.api#ProjectGlobalProjectsResponse"
@@ -10063,7 +10064,7 @@
         "smithy.api#documentation": "Get returns a virtual project by name"
       }
     },
-    "com.argocd.api#ProjectServiceListLinksRequest": {
+    "com.argocd.api#ListProjectServiceLinksRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -10078,10 +10079,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ProjectServiceListLinks": {
+    "com.argocd.api#ListProjectServiceLinks": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ProjectServiceListLinksRequest"
+        "target": "com.argocd.api#ListProjectServiceLinksRequest"
       },
       "output": {
         "target": "com.argocd.api#ApplicationLinksResponse"
@@ -10095,7 +10096,7 @@
         "smithy.api#documentation": "ListLinks returns all deep links for the particular project"
       }
     },
-    "com.argocd.api#ProjectServiceGetSyncWindowsStateRequest": {
+    "com.argocd.api#GetProjectServiceSyncWindowsStateRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -10126,10 +10127,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#ProjectServiceGetSyncWindowsState": {
+    "com.argocd.api#GetProjectServiceSyncWindowsState": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ProjectServiceGetSyncWindowsStateRequest"
+        "target": "com.argocd.api#GetProjectServiceSyncWindowsStateRequest"
       },
       "output": {
         "target": "com.argocd.api#ProjectSyncWindowsResponse"
@@ -10143,7 +10144,7 @@
         "smithy.api#documentation": "GetSchedulesState returns true if there are any active sync syncWindows"
       }
     },
-    "com.argocd.api#ProjectServiceUpdateRequest": {
+    "com.argocd.api#UpdateProjectServiceRequest": {
       "type": "structure",
       "members": {
         "project_metadata_name": {
@@ -10162,10 +10163,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ProjectServiceUpdate": {
+    "com.argocd.api#UpdateProjectService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ProjectServiceUpdateRequest"
+        "target": "com.argocd.api#UpdateProjectServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1AppProject"
@@ -10179,7 +10180,7 @@
         "smithy.api#documentation": "Update updates a project"
       }
     },
-    "com.argocd.api#ProjectServiceCreateTokenRequest": {
+    "com.argocd.api#CreateProjectServiceTokenRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -10221,10 +10222,10 @@
         "smithy.api#documentation": "ProjectTokenResponse wraps the created token or returns an empty string if deleted."
       }
     },
-    "com.argocd.api#ProjectServiceCreateToken": {
+    "com.argocd.api#CreateProjectServiceToken": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ProjectServiceCreateTokenRequest"
+        "target": "com.argocd.api#CreateProjectServiceTokenRequest"
       },
       "output": {
         "target": "com.argocd.api#ProjectProjectTokenResponse"
@@ -10238,7 +10239,7 @@
         "smithy.api#documentation": "Create a new project token"
       }
     },
-    "com.argocd.api#ProjectServiceDeleteTokenRequest": {
+    "com.argocd.api#DeleteProjectServiceTokenRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -10273,7 +10274,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ProjectServiceDeleteTokenResponse": {
+    "com.argocd.api#DeleteProjectServiceTokenResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -10288,13 +10289,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#ProjectServiceDeleteToken": {
+    "com.argocd.api#DeleteProjectServiceToken": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ProjectServiceDeleteTokenRequest"
+        "target": "com.argocd.api#DeleteProjectServiceTokenRequest"
       },
       "output": {
-        "target": "com.argocd.api#ProjectServiceDeleteTokenResponse"
+        "target": "com.argocd.api#DeleteProjectServiceTokenResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10305,7 +10306,7 @@
         "smithy.api#documentation": "Delete a new project token"
       }
     },
-    "com.argocd.api#RepoCredsServiceListRepositoryCredentialsRequest": {
+    "com.argocd.api#ListRepoCredsServiceRepositoryCredentialsRequest": {
       "type": "structure",
       "members": {
         "url": {
@@ -10425,10 +10426,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#RepoCredsServiceListRepositoryCredentials": {
+    "com.argocd.api#ListRepoCredsServiceRepositoryCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepoCredsServiceListRepositoryCredentialsRequest"
+        "target": "com.argocd.api#ListRepoCredsServiceRepositoryCredentialsRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1RepoCredsList"
@@ -10442,7 +10443,7 @@
         "smithy.api#documentation": "ListRepositoryCredentials gets a list of all configured repository credential sets"
       }
     },
-    "com.argocd.api#RepoCredsServiceCreateRepositoryCredentialsRequest": {
+    "com.argocd.api#CreateRepoCredsServiceRepositoryCredentialsRequest": {
       "type": "structure",
       "members": {
         "upsert": {
@@ -10535,10 +10536,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepoCredsServiceCreateRepositoryCredentials": {
+    "com.argocd.api#CreateRepoCredsServiceRepositoryCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepoCredsServiceCreateRepositoryCredentialsRequest"
+        "target": "com.argocd.api#CreateRepoCredsServiceRepositoryCredentialsRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1RepoCreds"
@@ -10552,7 +10553,7 @@
         "smithy.api#documentation": "CreateRepositoryCredentials creates a new repository credential set"
       }
     },
-    "com.argocd.api#RepoCredsServiceUpdateRepositoryCredentialsRequest": {
+    "com.argocd.api#UpdateRepoCredsServiceRepositoryCredentialsRequest": {
       "type": "structure",
       "members": {
         "creds_url": {
@@ -10646,10 +10647,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepoCredsServiceUpdateRepositoryCredentials": {
+    "com.argocd.api#UpdateRepoCredsServiceRepositoryCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepoCredsServiceUpdateRepositoryCredentialsRequest"
+        "target": "com.argocd.api#UpdateRepoCredsServiceRepositoryCredentialsRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1RepoCreds"
@@ -10663,7 +10664,7 @@
         "smithy.api#documentation": "UpdateRepositoryCredentials updates a repository credential set"
       }
     },
-    "com.argocd.api#RepoCredsServiceDeleteRepositoryCredentialsRequest": {
+    "com.argocd.api#DeleteRepoCredsServiceRepositoryCredentialsRequest": {
       "type": "structure",
       "members": {
         "url": {
@@ -10678,7 +10679,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepoCredsServiceDeleteRepositoryCredentialsResponse": {
+    "com.argocd.api#DeleteRepoCredsServiceRepositoryCredentialsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -10693,13 +10694,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#RepoCredsServiceDeleteRepositoryCredentials": {
+    "com.argocd.api#DeleteRepoCredsServiceRepositoryCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepoCredsServiceDeleteRepositoryCredentialsRequest"
+        "target": "com.argocd.api#DeleteRepoCredsServiceRepositoryCredentialsRequest"
       },
       "output": {
-        "target": "com.argocd.api#RepoCredsServiceDeleteRepositoryCredentialsResponse"
+        "target": "com.argocd.api#DeleteRepoCredsServiceRepositoryCredentialsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10710,7 +10711,7 @@
         "smithy.api#documentation": "DeleteRepositoryCredentials deletes a repository credential set from the configuration"
       }
     },
-    "com.argocd.api#RepositoryServiceListRepositoriesRequest": {
+    "com.argocd.api#ListRepositoryServiceRepositoriesRequest": {
       "type": "structure",
       "members": {
         "repo": {
@@ -10760,10 +10761,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#RepositoryServiceListRepositories": {
+    "com.argocd.api#ListRepositoryServiceRepositories": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceListRepositoriesRequest"
+        "target": "com.argocd.api#ListRepositoryServiceRepositoriesRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1RepositoryList"
@@ -10777,7 +10778,7 @@
         "smithy.api#documentation": "ListRepositories gets a list of all configured repositories"
       }
     },
-    "com.argocd.api#RepositoryServiceCreateRepositoryRequest": {
+    "com.argocd.api#CreateRepositoryServiceRepositoryRequest": {
       "type": "structure",
       "members": {
         "upsert": {
@@ -10916,10 +10917,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepositoryServiceCreateRepository": {
+    "com.argocd.api#CreateRepositoryServiceRepository": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceCreateRepositoryRequest"
+        "target": "com.argocd.api#CreateRepositoryServiceRepositoryRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Repository"
@@ -10933,7 +10934,7 @@
         "smithy.api#documentation": "CreateRepository creates a new repository configuration"
       }
     },
-    "com.argocd.api#RepositoryServiceUpdateRepositoryRequest": {
+    "com.argocd.api#UpdateRepositoryServiceRepositoryRequest": {
       "type": "structure",
       "members": {
         "repo_repo": {
@@ -11066,10 +11067,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepositoryServiceUpdateRepository": {
+    "com.argocd.api#UpdateRepositoryServiceRepository": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceUpdateRepositoryRequest"
+        "target": "com.argocd.api#UpdateRepositoryServiceRepositoryRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Repository"
@@ -11083,7 +11084,7 @@
         "smithy.api#documentation": "UpdateRepository updates a repository configuration"
       }
     },
-    "com.argocd.api#RepositoryServiceGetRequest": {
+    "com.argocd.api#GetRepositoryServiceRequest": {
       "type": "structure",
       "members": {
         "repo": {
@@ -11113,10 +11114,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepositoryServiceGet": {
+    "com.argocd.api#GetRepositoryService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceGetRequest"
+        "target": "com.argocd.api#GetRepositoryServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Repository"
@@ -11130,7 +11131,7 @@
         "smithy.api#documentation": "Get returns a repository or its credentials"
       }
     },
-    "com.argocd.api#RepositoryServiceDeleteRepositoryRequest": {
+    "com.argocd.api#DeleteRepositoryServiceRepositoryRequest": {
       "type": "structure",
       "members": {
         "repo": {
@@ -11160,7 +11161,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepositoryServiceDeleteRepositoryResponse": {
+    "com.argocd.api#DeleteRepositoryServiceRepositoryResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -11175,13 +11176,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#RepositoryServiceDeleteRepository": {
+    "com.argocd.api#DeleteRepositoryServiceRepository": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceDeleteRepositoryRequest"
+        "target": "com.argocd.api#DeleteRepositoryServiceRepositoryRequest"
       },
       "output": {
-        "target": "com.argocd.api#RepositoryServiceDeleteRepositoryResponse"
+        "target": "com.argocd.api#DeleteRepositoryServiceRepositoryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11192,7 +11193,7 @@
         "smithy.api#documentation": "DeleteRepository deletes a repository from the configuration"
       }
     },
-    "com.argocd.api#RepositoryServiceListAppsRequest": {
+    "com.argocd.api#ListRepositoryServiceAppsRequest": {
       "type": "structure",
       "members": {
         "repo": {
@@ -11253,10 +11254,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#RepositoryServiceListApps": {
+    "com.argocd.api#ListRepositoryServiceApps": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceListAppsRequest"
+        "target": "com.argocd.api#ListRepositoryServiceAppsRequest"
       },
       "output": {
         "target": "com.argocd.api#RepositoryRepoAppsResponse"
@@ -11270,7 +11271,7 @@
         "smithy.api#documentation": "ListApps returns list of apps in the repo"
       }
     },
-    "com.argocd.api#RepositoryServiceGetHelmChartsRequest": {
+    "com.argocd.api#GetRepositoryServiceHelmChartsRequest": {
       "type": "structure",
       "members": {
         "repo": {
@@ -11335,10 +11336,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#RepositoryServiceGetHelmCharts": {
+    "com.argocd.api#GetRepositoryServiceHelmCharts": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceGetHelmChartsRequest"
+        "target": "com.argocd.api#GetRepositoryServiceHelmChartsRequest"
       },
       "output": {
         "target": "com.argocd.api#RepositoryHelmChartsResponse"
@@ -11352,7 +11353,7 @@
         "smithy.api#documentation": "GetHelmCharts returns list of helm charts in the specified repository"
       }
     },
-    "com.argocd.api#RepositoryServiceListOCITagsRequest": {
+    "com.argocd.api#ListRepositoryServiceOCITagsRequest": {
       "type": "structure",
       "members": {
         "repo": {
@@ -11408,10 +11409,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#RepositoryServiceListOCITags": {
+    "com.argocd.api#ListRepositoryServiceOCITags": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceListOCITagsRequest"
+        "target": "com.argocd.api#ListRepositoryServiceOCITagsRequest"
       },
       "output": {
         "target": "com.argocd.api#RepositoryRefs"
@@ -11424,7 +11425,7 @@
         }
       }
     },
-    "com.argocd.api#RepositoryServiceListRefsRequest": {
+    "com.argocd.api#ListRepositoryServiceRefsRequest": {
       "type": "structure",
       "members": {
         "repo": {
@@ -11454,10 +11455,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepositoryServiceListRefs": {
+    "com.argocd.api#ListRepositoryServiceRefs": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceListRefsRequest"
+        "target": "com.argocd.api#ListRepositoryServiceRefsRequest"
       },
       "output": {
         "target": "com.argocd.api#RepositoryRefs"
@@ -11470,7 +11471,7 @@
         }
       }
     },
-    "com.argocd.api#RepositoryServiceValidateAccessRequest": {
+    "com.argocd.api#ValidateRepositoryServiceAccessRequest": {
       "type": "structure",
       "members": {
         "repo": {
@@ -11661,7 +11662,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepositoryServiceValidateAccessResponse": {
+    "com.argocd.api#ValidateRepositoryServiceAccessResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -11676,13 +11677,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#RepositoryServiceValidateAccess": {
+    "com.argocd.api#ValidateRepositoryServiceAccess": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceValidateAccessRequest"
+        "target": "com.argocd.api#ValidateRepositoryServiceAccessRequest"
       },
       "output": {
-        "target": "com.argocd.api#RepositoryServiceValidateAccessResponse"
+        "target": "com.argocd.api#ValidateRepositoryServiceAccessResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11693,7 +11694,7 @@
         "smithy.api#documentation": "ValidateAccess validates access to a repository with given parameters"
       }
     },
-    "com.argocd.api#RepositoryServiceGetAppDetailsRequest": {
+    "com.argocd.api#GetRepositoryServiceAppDetailsRequest": {
       "type": "structure",
       "members": {
         "source_repoURL": {
@@ -11905,10 +11906,10 @@
       },
       "traits": {}
     },
-    "com.argocd.api#RepositoryServiceGetAppDetails": {
+    "com.argocd.api#GetRepositoryServiceAppDetails": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceGetAppDetailsRequest"
+        "target": "com.argocd.api#GetRepositoryServiceAppDetailsRequest"
       },
       "output": {
         "target": "com.argocd.api#RepositoryRepoAppDetailsResponse"
@@ -11922,7 +11923,7 @@
         "smithy.api#documentation": "GetAppDetails returns application details by given path"
       }
     },
-    "com.argocd.api#SessionServiceCreateRequest": {
+    "com.argocd.api#CreateSessionServiceRequest": {
       "type": "structure",
       "members": {
         "password": {
@@ -11953,10 +11954,10 @@
         "smithy.api#documentation": "SessionResponse wraps the created token or returns an empty string if deleted."
       }
     },
-    "com.argocd.api#SessionServiceCreate": {
+    "com.argocd.api#CreateSessionService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#SessionServiceCreateRequest"
+        "target": "com.argocd.api#CreateSessionServiceRequest"
       },
       "output": {
         "target": "com.argocd.api#SessionSessionResponse"
@@ -11970,7 +11971,7 @@
         "smithy.api#documentation": "Create a new JWT for authentication and set a cookie if using HTTP"
       }
     },
-    "com.argocd.api#SessionServiceDelete": {
+    "com.argocd.api#DeleteSessionService": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -12012,7 +12013,7 @@
       },
       "traits": {}
     },
-    "com.argocd.api#SessionServiceGetUserInfo": {
+    "com.argocd.api#GetSessionServiceUserInfo": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -12507,7 +12508,7 @@
       },
       "traits": {}
     },
-    "com.argocd.api#SettingsServiceGet": {
+    "com.argocd.api#GetSettingsService": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -12540,7 +12541,7 @@
       },
       "traits": {}
     },
-    "com.argocd.api#SettingsServiceGetPlugins": {
+    "com.argocd.api#GetSettingsServicePlugins": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -12557,21 +12558,21 @@
         "smithy.api#documentation": "Get returns Argo CD plugins"
       }
     },
-    "com.argocd.api#ApplicationServiceWatchRequestProjectsList": {
+    "com.argocd.api#WatchApplicationServiceRequestProjectsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceWatchRequestProjectList": {
+    "com.argocd.api#WatchApplicationServiceRequestProjectList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationServiceWatchRequest": {
+    "com.argocd.api#WatchApplicationServiceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -12589,7 +12590,7 @@
           }
         },
         "projects": {
-          "target": "com.argocd.api#ApplicationServiceWatchRequestProjectsList",
+          "target": "com.argocd.api#WatchApplicationServiceRequestProjectsList",
           "traits": {
             "smithy.api#httpQuery": "projects",
             "smithy.api#documentation": "the project names to restrict returned list applications."
@@ -12624,7 +12625,7 @@
           }
         },
         "project": {
-          "target": "com.argocd.api#ApplicationServiceWatchRequestProjectList",
+          "target": "com.argocd.api#WatchApplicationServiceRequestProjectList",
           "traits": {
             "smithy.api#httpQuery": "project",
             "smithy.api#documentation": "the project names to restrict returned list applications (legacy name for backwards-compatibility)."
@@ -12649,7 +12650,7 @@
         "smithy.api#documentation": "ApplicationWatchEvent contains information about application change."
       }
     },
-    "com.argocd.api#ApplicationServiceWatchResponse": {
+    "com.argocd.api#WatchApplicationServiceResponse": {
       "type": "structure",
       "members": {
         "error": {
@@ -12663,13 +12664,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#ApplicationServiceWatch": {
+    "com.argocd.api#WatchApplicationService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceWatchRequest"
+        "target": "com.argocd.api#WatchApplicationServiceRequest"
       },
       "output": {
-        "target": "com.argocd.api#ApplicationServiceWatchResponse"
+        "target": "com.argocd.api#WatchApplicationServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12680,7 +12681,7 @@
         "smithy.api#documentation": "Watch returns stream of application change events"
       }
     },
-    "com.argocd.api#ApplicationServiceWatchResourceTreeRequest": {
+    "com.argocd.api#WatchApplicationServiceResourceTreeRequest": {
       "type": "structure",
       "members": {
         "applicationName": {
@@ -12737,7 +12738,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#ApplicationServiceWatchResourceTreeResponse": {
+    "com.argocd.api#WatchApplicationServiceResourceTreeResponse": {
       "type": "structure",
       "members": {
         "error": {
@@ -12751,13 +12752,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#ApplicationServiceWatchResourceTree": {
+    "com.argocd.api#WatchApplicationServiceResourceTree": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationServiceWatchResourceTreeRequest"
+        "target": "com.argocd.api#WatchApplicationServiceResourceTreeRequest"
       },
       "output": {
-        "target": "com.argocd.api#ApplicationServiceWatchResourceTreeResponse"
+        "target": "com.argocd.api#WatchApplicationServiceResourceTreeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12768,14 +12769,14 @@
         "smithy.api#documentation": "Watch returns stream of application resource tree"
       }
     },
-    "com.argocd.api#ApplicationSetServiceWatchRequestProjectsList": {
+    "com.argocd.api#WatchApplicationSetServiceRequestProjectsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.argocd.api#ApplicationSetServiceWatchRequest": {
+    "com.argocd.api#WatchApplicationSetServiceRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -12785,7 +12786,7 @@
           }
         },
         "projects": {
-          "target": "com.argocd.api#ApplicationSetServiceWatchRequestProjectsList",
+          "target": "com.argocd.api#WatchApplicationSetServiceRequestProjectsList",
           "traits": {
             "smithy.api#httpQuery": "projects"
           }
@@ -12828,7 +12829,7 @@
         "smithy.api#documentation": "ApplicationSetWatchEvent contains information about application change."
       }
     },
-    "com.argocd.api#ApplicationSetServiceWatchResponse": {
+    "com.argocd.api#WatchApplicationSetServiceResponse": {
       "type": "structure",
       "members": {
         "error": {
@@ -12842,13 +12843,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#ApplicationSetServiceWatch": {
+    "com.argocd.api#WatchApplicationSetService": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#ApplicationSetServiceWatchRequest"
+        "target": "com.argocd.api#WatchApplicationSetServiceRequest"
       },
       "output": {
-        "target": "com.argocd.api#ApplicationSetServiceWatchResponse"
+        "target": "com.argocd.api#WatchApplicationSetServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12858,7 +12859,7 @@
         }
       }
     },
-    "com.argocd.api#RepoCredsServiceListWriteRepositoryCredentialsRequest": {
+    "com.argocd.api#ListRepoCredsServiceWriteRepositoryCredentialsRequest": {
       "type": "structure",
       "members": {
         "url": {
@@ -12873,10 +12874,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepoCredsServiceListWriteRepositoryCredentials": {
+    "com.argocd.api#ListRepoCredsServiceWriteRepositoryCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepoCredsServiceListWriteRepositoryCredentialsRequest"
+        "target": "com.argocd.api#ListRepoCredsServiceWriteRepositoryCredentialsRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1RepoCredsList"
@@ -12890,7 +12891,7 @@
         "smithy.api#documentation": "ListWriteRepositoryCredentials gets a list of all configured repository credential sets that have write access"
       }
     },
-    "com.argocd.api#RepoCredsServiceCreateWriteRepositoryCredentialsRequest": {
+    "com.argocd.api#CreateRepoCredsServiceWriteRepositoryCredentialsRequest": {
       "type": "structure",
       "members": {
         "upsert": {
@@ -12983,10 +12984,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepoCredsServiceCreateWriteRepositoryCredentials": {
+    "com.argocd.api#CreateRepoCredsServiceWriteRepositoryCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepoCredsServiceCreateWriteRepositoryCredentialsRequest"
+        "target": "com.argocd.api#CreateRepoCredsServiceWriteRepositoryCredentialsRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1RepoCreds"
@@ -13000,7 +13001,7 @@
         "smithy.api#documentation": "CreateWriteRepositoryCredentials creates a new repository credential set with write access"
       }
     },
-    "com.argocd.api#RepoCredsServiceUpdateWriteRepositoryCredentialsRequest": {
+    "com.argocd.api#UpdateRepoCredsServiceWriteRepositoryCredentialsRequest": {
       "type": "structure",
       "members": {
         "creds_url": {
@@ -13094,10 +13095,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepoCredsServiceUpdateWriteRepositoryCredentials": {
+    "com.argocd.api#UpdateRepoCredsServiceWriteRepositoryCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepoCredsServiceUpdateWriteRepositoryCredentialsRequest"
+        "target": "com.argocd.api#UpdateRepoCredsServiceWriteRepositoryCredentialsRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1RepoCreds"
@@ -13111,7 +13112,7 @@
         "smithy.api#documentation": "UpdateWriteRepositoryCredentials updates a repository credential set with write access"
       }
     },
-    "com.argocd.api#RepoCredsServiceDeleteWriteRepositoryCredentialsRequest": {
+    "com.argocd.api#DeleteRepoCredsServiceWriteRepositoryCredentialsRequest": {
       "type": "structure",
       "members": {
         "url": {
@@ -13126,7 +13127,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepoCredsServiceDeleteWriteRepositoryCredentialsResponse": {
+    "com.argocd.api#DeleteRepoCredsServiceWriteRepositoryCredentialsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -13141,13 +13142,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#RepoCredsServiceDeleteWriteRepositoryCredentials": {
+    "com.argocd.api#DeleteRepoCredsServiceWriteRepositoryCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepoCredsServiceDeleteWriteRepositoryCredentialsRequest"
+        "target": "com.argocd.api#DeleteRepoCredsServiceWriteRepositoryCredentialsRequest"
       },
       "output": {
-        "target": "com.argocd.api#RepoCredsServiceDeleteWriteRepositoryCredentialsResponse"
+        "target": "com.argocd.api#DeleteRepoCredsServiceWriteRepositoryCredentialsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13158,7 +13159,7 @@
         "smithy.api#documentation": "DeleteWriteRepositoryCredentials deletes a repository credential set with write access from the configuration"
       }
     },
-    "com.argocd.api#RepositoryServiceListWriteRepositoriesRequest": {
+    "com.argocd.api#ListRepositoryServiceWriteRepositoriesRequest": {
       "type": "structure",
       "members": {
         "repo": {
@@ -13187,10 +13188,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepositoryServiceListWriteRepositories": {
+    "com.argocd.api#ListRepositoryServiceWriteRepositories": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceListWriteRepositoriesRequest"
+        "target": "com.argocd.api#ListRepositoryServiceWriteRepositoriesRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1RepositoryList"
@@ -13204,7 +13205,7 @@
         "smithy.api#documentation": "ListWriteRepositories gets a list of all configured write repositories"
       }
     },
-    "com.argocd.api#RepositoryServiceCreateWriteRepositoryRequest": {
+    "com.argocd.api#CreateRepositoryServiceWriteRepositoryRequest": {
       "type": "structure",
       "members": {
         "upsert": {
@@ -13343,10 +13344,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepositoryServiceCreateWriteRepository": {
+    "com.argocd.api#CreateRepositoryServiceWriteRepository": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceCreateWriteRepositoryRequest"
+        "target": "com.argocd.api#CreateRepositoryServiceWriteRepositoryRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Repository"
@@ -13360,7 +13361,7 @@
         "smithy.api#documentation": "CreateWriteRepository creates a new write repository configuration"
       }
     },
-    "com.argocd.api#RepositoryServiceUpdateWriteRepositoryRequest": {
+    "com.argocd.api#UpdateRepositoryServiceWriteRepositoryRequest": {
       "type": "structure",
       "members": {
         "repo_repo": {
@@ -13493,10 +13494,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepositoryServiceUpdateWriteRepository": {
+    "com.argocd.api#UpdateRepositoryServiceWriteRepository": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceUpdateWriteRepositoryRequest"
+        "target": "com.argocd.api#UpdateRepositoryServiceWriteRepositoryRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Repository"
@@ -13510,7 +13511,7 @@
         "smithy.api#documentation": "UpdateWriteRepository updates a write repository configuration"
       }
     },
-    "com.argocd.api#RepositoryServiceGetWriteRequest": {
+    "com.argocd.api#GetRepositoryServiceWriteRequest": {
       "type": "structure",
       "members": {
         "repo": {
@@ -13540,10 +13541,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepositoryServiceGetWrite": {
+    "com.argocd.api#GetRepositoryServiceWrite": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceGetWriteRequest"
+        "target": "com.argocd.api#GetRepositoryServiceWriteRequest"
       },
       "output": {
         "target": "com.argocd.api#V1alpha1Repository"
@@ -13557,7 +13558,7 @@
         "smithy.api#documentation": "GetWrite returns a repository or its write credentials"
       }
     },
-    "com.argocd.api#RepositoryServiceDeleteWriteRepositoryRequest": {
+    "com.argocd.api#DeleteRepositoryServiceWriteRepositoryRequest": {
       "type": "structure",
       "members": {
         "repo": {
@@ -13587,7 +13588,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepositoryServiceDeleteWriteRepositoryResponse": {
+    "com.argocd.api#DeleteRepositoryServiceWriteRepositoryResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -13602,13 +13603,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#RepositoryServiceDeleteWriteRepository": {
+    "com.argocd.api#DeleteRepositoryServiceWriteRepository": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceDeleteWriteRepositoryRequest"
+        "target": "com.argocd.api#DeleteRepositoryServiceWriteRepositoryRequest"
       },
       "output": {
-        "target": "com.argocd.api#RepositoryServiceDeleteWriteRepositoryResponse"
+        "target": "com.argocd.api#DeleteRepositoryServiceWriteRepositoryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13619,7 +13620,7 @@
         "smithy.api#documentation": "DeleteWriteRepository deletes a write repository from the configuration"
       }
     },
-    "com.argocd.api#RepositoryServiceValidateWriteAccessRequest": {
+    "com.argocd.api#ValidateRepositoryServiceWriteAccessRequest": {
       "type": "structure",
       "members": {
         "repo": {
@@ -13810,7 +13811,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.argocd.api#RepositoryServiceValidateWriteAccessResponse": {
+    "com.argocd.api#ValidateRepositoryServiceWriteAccessResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -13825,13 +13826,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.argocd.api#RepositoryServiceValidateWriteAccess": {
+    "com.argocd.api#ValidateRepositoryServiceWriteAccess": {
       "type": "operation",
       "input": {
-        "target": "com.argocd.api#RepositoryServiceValidateWriteAccessRequest"
+        "target": "com.argocd.api#ValidateRepositoryServiceWriteAccessRequest"
       },
       "output": {
-        "target": "com.argocd.api#RepositoryServiceValidateWriteAccessResponse"
+        "target": "com.argocd.api#ValidateRepositoryServiceWriteAccessResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13909,37 +13910,37 @@
       "version": "version not set",
       "operations": [
         {
-          "target": "com.argocd.api#AccountServiceListAccounts"
+          "target": "com.argocd.api#ListAccountServiceAccounts"
         },
         {
           "target": "com.argocd.api#AccountServiceCanI"
         },
         {
-          "target": "com.argocd.api#AccountServiceUpdatePassword"
+          "target": "com.argocd.api#UpdateAccountServicePassword"
         },
         {
-          "target": "com.argocd.api#AccountServiceGetAccount"
+          "target": "com.argocd.api#GetAccountServiceAccount"
         },
         {
-          "target": "com.argocd.api#AccountServiceCreateToken"
+          "target": "com.argocd.api#CreateAccountServiceToken"
         },
         {
-          "target": "com.argocd.api#AccountServiceDeleteToken"
+          "target": "com.argocd.api#DeleteAccountServiceToken"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceList"
+          "target": "com.argocd.api#ListApplicationService"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceCreate"
+          "target": "com.argocd.api#CreateApplicationService"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceGetManifestsWithFiles"
+          "target": "com.argocd.api#GetApplicationServiceManifestsWithFiles"
         },
         {
           "target": "com.argocd.api#ApplicationServiceServerSideDiff"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceUpdate"
+          "target": "com.argocd.api#UpdateApplicationService"
         },
         {
           "target": "com.argocd.api#ApplicationServiceManagedResources"
@@ -13948,52 +13949,52 @@
           "target": "com.argocd.api#ApplicationServiceResourceTree"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceGet"
+          "target": "com.argocd.api#GetApplicationService"
         },
         {
-          "target": "com.argocd.api#ApplicationServicePatch"
+          "target": "com.argocd.api#PatchApplicationService"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceDelete"
+          "target": "com.argocd.api#DeleteApplicationService"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceListResourceEvents"
+          "target": "com.argocd.api#ListApplicationServiceResourceEvents"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceListLinks"
+          "target": "com.argocd.api#ListApplicationServiceLinks"
         },
         {
           "target": "com.argocd.api#ApplicationServicePodLogs2"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceGetManifests"
+          "target": "com.argocd.api#GetApplicationServiceManifests"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceTerminateOperation"
+          "target": "com.argocd.api#TerminateApplicationServiceOperation"
         },
         {
           "target": "com.argocd.api#ApplicationServicePodLogs"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceGetResource"
+          "target": "com.argocd.api#GetApplicationServiceResource"
         },
         {
-          "target": "com.argocd.api#ApplicationServicePatchResource"
+          "target": "com.argocd.api#PatchApplicationServiceResource"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceDeleteResource"
+          "target": "com.argocd.api#DeleteApplicationServiceResource"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceListResourceActions"
+          "target": "com.argocd.api#ListApplicationServiceResourceActions"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceRunResourceAction"
+          "target": "com.argocd.api#RunApplicationServiceResourceAction"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceRunResourceActionV2"
+          "target": "com.argocd.api#RunApplicationServiceResourceActionV2"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceListResourceLinks"
+          "target": "com.argocd.api#ListApplicationServiceResourceLinks"
         },
         {
           "target": "com.argocd.api#ApplicationServiceRevisionChartDetails"
@@ -14002,226 +14003,226 @@
           "target": "com.argocd.api#ApplicationServiceRevisionMetadata"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceGetOCIMetadata"
+          "target": "com.argocd.api#GetApplicationServiceOCIMetadata"
         },
         {
           "target": "com.argocd.api#ApplicationServiceRollback"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceUpdateSpec"
+          "target": "com.argocd.api#UpdateApplicationServiceSpec"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceSync"
+          "target": "com.argocd.api#SyncApplicationService"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceGetApplicationSyncWindows"
+          "target": "com.argocd.api#GetApplicationServiceApplicationSyncWindows"
         },
         {
-          "target": "com.argocd.api#ApplicationSetServiceList"
+          "target": "com.argocd.api#ListApplicationSetService"
         },
         {
-          "target": "com.argocd.api#ApplicationSetServiceCreate"
+          "target": "com.argocd.api#CreateApplicationSetService"
         },
         {
-          "target": "com.argocd.api#ApplicationSetServiceGenerate"
+          "target": "com.argocd.api#GenerateApplicationSetService"
         },
         {
-          "target": "com.argocd.api#ApplicationSetServiceGet"
+          "target": "com.argocd.api#GetApplicationSetService"
         },
         {
-          "target": "com.argocd.api#ApplicationSetServiceDelete"
+          "target": "com.argocd.api#DeleteApplicationSetService"
         },
         {
-          "target": "com.argocd.api#ApplicationSetServiceListResourceEvents"
+          "target": "com.argocd.api#ListApplicationSetServiceResourceEvents"
         },
         {
           "target": "com.argocd.api#ApplicationSetServiceResourceTree"
         },
         {
-          "target": "com.argocd.api#CertificateServiceListCertificates"
+          "target": "com.argocd.api#ListCertificateServiceCertificates"
         },
         {
-          "target": "com.argocd.api#CertificateServiceCreateCertificate"
+          "target": "com.argocd.api#CreateCertificateServiceCertificate"
         },
         {
-          "target": "com.argocd.api#CertificateServiceDeleteCertificate"
+          "target": "com.argocd.api#DeleteCertificateServiceCertificate"
         },
         {
-          "target": "com.argocd.api#ClusterServiceList"
+          "target": "com.argocd.api#ListClusterService"
         },
         {
-          "target": "com.argocd.api#ClusterServiceCreate"
+          "target": "com.argocd.api#CreateClusterService"
         },
         {
-          "target": "com.argocd.api#ClusterServiceGet"
+          "target": "com.argocd.api#GetClusterService"
         },
         {
-          "target": "com.argocd.api#ClusterServiceUpdate"
+          "target": "com.argocd.api#UpdateClusterService"
         },
         {
-          "target": "com.argocd.api#ClusterServiceDelete"
+          "target": "com.argocd.api#DeleteClusterService"
         },
         {
-          "target": "com.argocd.api#ClusterServiceInvalidateCache"
+          "target": "com.argocd.api#InvalidateClusterServiceCache"
         },
         {
-          "target": "com.argocd.api#ClusterServiceRotateAuth"
+          "target": "com.argocd.api#RotateClusterServiceAuth"
         },
         {
-          "target": "com.argocd.api#GPGKeyServiceList"
+          "target": "com.argocd.api#ListGPGKeyService"
         },
         {
-          "target": "com.argocd.api#GPGKeyServiceCreate"
+          "target": "com.argocd.api#CreateGPGKeyService"
         },
         {
-          "target": "com.argocd.api#GPGKeyServiceDelete"
+          "target": "com.argocd.api#DeleteGPGKeyService"
         },
         {
-          "target": "com.argocd.api#GPGKeyServiceGet"
+          "target": "com.argocd.api#GetGPGKeyService"
         },
         {
-          "target": "com.argocd.api#NotificationServiceListServices"
+          "target": "com.argocd.api#ListNotificationServiceServices"
         },
         {
-          "target": "com.argocd.api#NotificationServiceListTemplates"
+          "target": "com.argocd.api#ListNotificationServiceTemplates"
         },
         {
-          "target": "com.argocd.api#NotificationServiceListTriggers"
+          "target": "com.argocd.api#ListNotificationServiceTriggers"
         },
         {
-          "target": "com.argocd.api#ProjectServiceList"
+          "target": "com.argocd.api#ListProjectService"
         },
         {
-          "target": "com.argocd.api#ProjectServiceCreate"
+          "target": "com.argocd.api#CreateProjectService"
         },
         {
-          "target": "com.argocd.api#ProjectServiceGet"
+          "target": "com.argocd.api#GetProjectService"
         },
         {
-          "target": "com.argocd.api#ProjectServiceDelete"
+          "target": "com.argocd.api#DeleteProjectService"
         },
         {
-          "target": "com.argocd.api#ProjectServiceGetDetailedProject"
+          "target": "com.argocd.api#GetProjectServiceDetailedProject"
         },
         {
-          "target": "com.argocd.api#ProjectServiceListEvents"
+          "target": "com.argocd.api#ListProjectServiceEvents"
         },
         {
-          "target": "com.argocd.api#ProjectServiceGetGlobalProjects"
+          "target": "com.argocd.api#GetProjectServiceGlobalProjects"
         },
         {
-          "target": "com.argocd.api#ProjectServiceListLinks"
+          "target": "com.argocd.api#ListProjectServiceLinks"
         },
         {
-          "target": "com.argocd.api#ProjectServiceGetSyncWindowsState"
+          "target": "com.argocd.api#GetProjectServiceSyncWindowsState"
         },
         {
-          "target": "com.argocd.api#ProjectServiceUpdate"
+          "target": "com.argocd.api#UpdateProjectService"
         },
         {
-          "target": "com.argocd.api#ProjectServiceCreateToken"
+          "target": "com.argocd.api#CreateProjectServiceToken"
         },
         {
-          "target": "com.argocd.api#ProjectServiceDeleteToken"
+          "target": "com.argocd.api#DeleteProjectServiceToken"
         },
         {
-          "target": "com.argocd.api#RepoCredsServiceListRepositoryCredentials"
+          "target": "com.argocd.api#ListRepoCredsServiceRepositoryCredentials"
         },
         {
-          "target": "com.argocd.api#RepoCredsServiceCreateRepositoryCredentials"
+          "target": "com.argocd.api#CreateRepoCredsServiceRepositoryCredentials"
         },
         {
-          "target": "com.argocd.api#RepoCredsServiceUpdateRepositoryCredentials"
+          "target": "com.argocd.api#UpdateRepoCredsServiceRepositoryCredentials"
         },
         {
-          "target": "com.argocd.api#RepoCredsServiceDeleteRepositoryCredentials"
+          "target": "com.argocd.api#DeleteRepoCredsServiceRepositoryCredentials"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceListRepositories"
+          "target": "com.argocd.api#ListRepositoryServiceRepositories"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceCreateRepository"
+          "target": "com.argocd.api#CreateRepositoryServiceRepository"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceUpdateRepository"
+          "target": "com.argocd.api#UpdateRepositoryServiceRepository"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceGet"
+          "target": "com.argocd.api#GetRepositoryService"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceDeleteRepository"
+          "target": "com.argocd.api#DeleteRepositoryServiceRepository"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceListApps"
+          "target": "com.argocd.api#ListRepositoryServiceApps"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceGetHelmCharts"
+          "target": "com.argocd.api#GetRepositoryServiceHelmCharts"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceListOCITags"
+          "target": "com.argocd.api#ListRepositoryServiceOCITags"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceListRefs"
+          "target": "com.argocd.api#ListRepositoryServiceRefs"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceValidateAccess"
+          "target": "com.argocd.api#ValidateRepositoryServiceAccess"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceGetAppDetails"
+          "target": "com.argocd.api#GetRepositoryServiceAppDetails"
         },
         {
-          "target": "com.argocd.api#SessionServiceCreate"
+          "target": "com.argocd.api#CreateSessionService"
         },
         {
-          "target": "com.argocd.api#SessionServiceDelete"
+          "target": "com.argocd.api#DeleteSessionService"
         },
         {
-          "target": "com.argocd.api#SessionServiceGetUserInfo"
+          "target": "com.argocd.api#GetSessionServiceUserInfo"
         },
         {
-          "target": "com.argocd.api#SettingsServiceGet"
+          "target": "com.argocd.api#GetSettingsService"
         },
         {
-          "target": "com.argocd.api#SettingsServiceGetPlugins"
+          "target": "com.argocd.api#GetSettingsServicePlugins"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceWatch"
+          "target": "com.argocd.api#WatchApplicationService"
         },
         {
-          "target": "com.argocd.api#ApplicationServiceWatchResourceTree"
+          "target": "com.argocd.api#WatchApplicationServiceResourceTree"
         },
         {
-          "target": "com.argocd.api#ApplicationSetServiceWatch"
+          "target": "com.argocd.api#WatchApplicationSetService"
         },
         {
-          "target": "com.argocd.api#RepoCredsServiceListWriteRepositoryCredentials"
+          "target": "com.argocd.api#ListRepoCredsServiceWriteRepositoryCredentials"
         },
         {
-          "target": "com.argocd.api#RepoCredsServiceCreateWriteRepositoryCredentials"
+          "target": "com.argocd.api#CreateRepoCredsServiceWriteRepositoryCredentials"
         },
         {
-          "target": "com.argocd.api#RepoCredsServiceUpdateWriteRepositoryCredentials"
+          "target": "com.argocd.api#UpdateRepoCredsServiceWriteRepositoryCredentials"
         },
         {
-          "target": "com.argocd.api#RepoCredsServiceDeleteWriteRepositoryCredentials"
+          "target": "com.argocd.api#DeleteRepoCredsServiceWriteRepositoryCredentials"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceListWriteRepositories"
+          "target": "com.argocd.api#ListRepositoryServiceWriteRepositories"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceCreateWriteRepository"
+          "target": "com.argocd.api#CreateRepositoryServiceWriteRepository"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceUpdateWriteRepository"
+          "target": "com.argocd.api#UpdateRepositoryServiceWriteRepository"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceGetWrite"
+          "target": "com.argocd.api#GetRepositoryServiceWrite"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceDeleteWriteRepository"
+          "target": "com.argocd.api#DeleteRepositoryServiceWriteRepository"
         },
         {
-          "target": "com.argocd.api#RepositoryServiceValidateWriteAccess"
+          "target": "com.argocd.api#ValidateRepositoryServiceWriteAccess"
         },
         {
           "target": "com.argocd.api#VersionServiceVersion"
