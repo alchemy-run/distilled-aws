@@ -1,0 +1,5712 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.inngest.api#V2FetchAccountResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2Account"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2Account": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "updatedAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "cachedUntil": {
+          "target": "smithy.api#String"
+        },
+        "fetchedAt": {
+          "target": "smithy.api#String"
+        },
+        "timeRange": {
+          "target": "com.inngest.api#V2TimeRange"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2TimeRange": {
+      "type": "structure",
+      "members": {
+        "from": {
+          "target": "smithy.api#String"
+        },
+        "until": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#FetchV2Account": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.inngest.api#V2FetchAccountResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/account",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get account\n\nReturns the account for the authenticated user"
+      }
+    },
+    "com.inngest.api#GetV2AppsRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of apps to return per page (min: 1, max: 100)"
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "archived",
+            "smithy.api#documentation": "Whether to return archived apps instead of active apps"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2GetAppsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2GetAppsResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2App": {
+      "type": "structure",
+      "members": {
+        "appVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User-defined app version, if set"
+          }
+        },
+        "archivedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the app was archived (if archived)"
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the app was first synced"
+          }
+        },
+        "functionCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of functions in the app"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user-defined app ID"
+          }
+        },
+        "isArchived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the app is archived"
+          }
+        },
+        "latestSync": {
+          "target": "com.inngest.api#V2AppSync"
+        },
+        "method": {
+          "target": "com.inngest.api#V2AppMethod"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "App name"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2AppSync": {
+      "type": "structure",
+      "members": {
+        "appVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "App version reported by the latest sync, if set"
+          }
+        },
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Most recent sync or connectivity error for the app, if any"
+          }
+        },
+        "framework": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Framework used by the app, if reported by the SDK"
+          }
+        },
+        "sdkLanguage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Language of the SDK that synced the app"
+          }
+        },
+        "sdkVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the SDK that synced the app"
+          }
+        },
+        "status": {
+          "target": "com.inngest.api#V2AppSyncStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the latest sync. `success` and `duplicate` are successful terminal states. `duplicate` means the sync payload matched the previous successful sync, so no function configuration changes were applied. `error` is a failed terminal state, and `pending` means the sync is still in progress."
+          }
+        },
+        "syncedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp for the latest sync, if available"
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of the Inngest endpoint in the app, if synced via URL"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2AppSyncStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "DUPLICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "duplicate"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the latest sync. `success` and `duplicate` are successful terminal states. `duplicate` means the sync payload matched the previous successful sync, so no function configuration changes were applied. `error` is a failed terminal state, and `pending` means the sync is still in progress."
+      }
+    },
+    "com.inngest.api#V2AppMethod": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED"
+          }
+        },
+        "SERVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVE"
+          }
+        },
+        "CONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECT"
+          }
+        },
+        "API": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "API"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2GetAppsResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2App"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2Page": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String"
+        },
+        "hasMore": {
+          "target": "smithy.api#Boolean"
+        },
+        "limit": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#GetV2Apps": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#GetV2AppsRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2GetAppsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apps",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get apps\n\nLists active apps in the authenticated environment. Set archived to true to list archived apps instead."
+      }
+    },
+    "com.inngest.api#GetV2AppRequest": {
+      "type": "structure",
+      "members": {
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The user-defined app ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2GetAppResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2App"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#GetV2App": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#GetV2AppRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2GetAppResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apps/{appId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get app\n\nFetches details for a single app, including sync metadata and function count"
+      }
+    },
+    "com.inngest.api#GetV2FunctionsRequest": {
+      "type": "structure",
+      "members": {
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of functions to return per page (min: 1, max: 100)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2GetFunctionsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2GetFunctionsResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2Function": {
+      "type": "structure",
+      "members": {
+        "app": {
+          "target": "com.inngest.api#V2FunctionApp"
+        },
+        "configuration": {
+          "target": "com.inngest.api#V2FunctionConfiguration"
+        },
+        "failureHandler": {
+          "target": "com.inngest.api#V2FunctionFailureHandler"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "isArchived": {
+          "target": "smithy.api#Boolean"
+        },
+        "isPaused": {
+          "target": "smithy.api#Boolean"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "slug": {
+          "target": "smithy.api#String"
+        },
+        "triggers": {
+          "target": "com.inngest.api#V2FunctionTriggersList"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionApp": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionConfiguration": {
+      "type": "structure",
+      "members": {
+        "cancellations": {
+          "target": "com.inngest.api#V2FunctionConfigurationCancellationsList"
+        },
+        "concurrency": {
+          "target": "com.inngest.api#V2FunctionConfigurationConcurrencyList"
+        },
+        "debounce": {
+          "target": "com.inngest.api#V2FunctionDebounceConfiguration"
+        },
+        "eventsBatch": {
+          "target": "com.inngest.api#V2FunctionEventsBatchConfiguration"
+        },
+        "priority": {
+          "target": "smithy.api#String"
+        },
+        "rateLimit": {
+          "target": "com.inngest.api#V2FunctionRateLimitConfiguration"
+        },
+        "retries": {
+          "target": "com.inngest.api#V2FunctionRetryConfiguration"
+        },
+        "singleton": {
+          "target": "com.inngest.api#V2FunctionSingletonConfiguration"
+        },
+        "throttle": {
+          "target": "com.inngest.api#V2FunctionThrottleConfiguration"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionCancellationConfiguration": {
+      "type": "structure",
+      "members": {
+        "condition": {
+          "target": "smithy.api#String"
+        },
+        "event": {
+          "target": "smithy.api#String"
+        },
+        "timeout": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionConfigurationCancellationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2FunctionCancellationConfiguration"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionConcurrencyConfiguration": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "limit": {
+          "target": "com.inngest.api#V2FunctionConcurrencyLimitConfiguration"
+        },
+        "scope": {
+          "target": "com.inngest.api#V2FunctionConcurrencyScope"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionConcurrencyLimitConfiguration": {
+      "type": "structure",
+      "members": {
+        "isPlanLimit": {
+          "target": "smithy.api#Boolean"
+        },
+        "value": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionConcurrencyScope": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED"
+          }
+        },
+        "ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT"
+          }
+        },
+        "ENVIRONMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENVIRONMENT"
+          }
+        },
+        "FUNCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FUNCTION"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionConfigurationConcurrencyList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2FunctionConcurrencyConfiguration"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionDebounceConfiguration": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "period": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionEventsBatchConfiguration": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "maxSize": {
+          "target": "smithy.api#Integer"
+        },
+        "timeout": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionRateLimitConfiguration": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "limit": {
+          "target": "smithy.api#Integer"
+        },
+        "period": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionRetryConfiguration": {
+      "type": "structure",
+      "members": {
+        "isDefault": {
+          "target": "smithy.api#Boolean"
+        },
+        "value": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionSingletonConfiguration": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "mode": {
+          "target": "com.inngest.api#V2FunctionSingletonMode"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionSingletonMode": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED"
+          }
+        },
+        "SKIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SKIP"
+          }
+        },
+        "CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCEL"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionThrottleConfiguration": {
+      "type": "structure",
+      "members": {
+        "burst": {
+          "target": "smithy.api#Integer"
+        },
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "limit": {
+          "target": "smithy.api#Integer"
+        },
+        "period": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionFailureHandler": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "slug": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionTrigger": {
+      "type": "structure",
+      "members": {
+        "if": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "com.inngest.api#V2FunctionTriggerType"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionTriggerType": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED"
+          }
+        },
+        "EVENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EVENT"
+          }
+        },
+        "CRON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRON"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionTriggersList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2FunctionTrigger"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2GetFunctionsResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2Function"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#GetV2Functions": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#GetV2FunctionsRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2GetFunctionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apps/{appId}/functions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get functions\n\nLists function configuration and status details for an app"
+      }
+    },
+    "com.inngest.api#GetV2FunctionRequest": {
+      "type": "structure",
+      "members": {
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "functionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2GetFunctionResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2Function"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#GetV2Function": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#GetV2FunctionRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2GetFunctionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apps/{appId}/functions/{functionId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get function\n\nFetches function configuration and status details for a function within an app"
+      }
+    },
+    "com.inngest.api#ListV2Experiments2Request": {
+      "type": "structure",
+      "members": {
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "functionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of experiments to return per page (min: 1, max: 100)"
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "from"
+          }
+        },
+        "until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "until"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2ListExperimentsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2ListExperimentsResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2Experiment": {
+      "type": "structure",
+      "members": {
+        "firstSeen": {
+          "target": "smithy.api#String"
+        },
+        "function": {
+          "target": "com.inngest.api#V2FunctionRef"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "lastSeen": {
+          "target": "smithy.api#String"
+        },
+        "selectionStrategy": {
+          "target": "smithy.api#String"
+        },
+        "totalRuns": {
+          "target": "smithy.api#Integer"
+        },
+        "variantCount": {
+          "target": "smithy.api#Integer"
+        },
+        "variants": {
+          "target": "com.inngest.api#V2ExperimentVariantsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionRef": {
+      "type": "structure",
+      "members": {
+        "app": {
+          "target": "com.inngest.api#V2AppRef"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2AppRef": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ExperimentVariantsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ListExperimentsResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2Experiment"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ListV2Experiments2": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#ListV2Experiments2Request"
+      },
+      "output": {
+        "target": "com.inngest.api#V2ListExperimentsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apps/{appId}/functions/{functionId}/experiments",
+          "code": 200
+        },
+        "smithy.api#documentation": "List experiments for a function\n\nLists observed experiments for one function in the authenticated environment."
+      }
+    },
+    "com.inngest.api#GetV2ExperimentRequest": {
+      "type": "structure",
+      "members": {
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "functionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "experimentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "variant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "variant",
+            "smithy.api#documentation": "Optional variant name to restrict the aggregate response."
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "from"
+          }
+        },
+        "until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "until"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2GetExperimentResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2ExperimentDetail"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ExperimentDetail": {
+      "type": "structure",
+      "members": {
+        "firstSeen": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "lastSeen": {
+          "target": "smithy.api#String"
+        },
+        "selectionStrategy": {
+          "target": "smithy.api#String"
+        },
+        "variantWeights": {
+          "target": "com.inngest.api#V2ExperimentDetailVariantWeightsList"
+        },
+        "variants": {
+          "target": "com.inngest.api#V2ExperimentDetailVariantsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ExperimentVariantWeight": {
+      "type": "structure",
+      "members": {
+        "variantName": {
+          "target": "smithy.api#String"
+        },
+        "weight": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ExperimentDetailVariantWeightsList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2ExperimentVariantWeight"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ExperimentVariantMetrics": {
+      "type": "structure",
+      "members": {
+        "metrics": {
+          "target": "com.inngest.api#V2ExperimentVariantMetricsMetricsList"
+        },
+        "runCount": {
+          "target": "smithy.api#Integer"
+        },
+        "variantName": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ExperimentVariantMetric": {
+      "type": "structure",
+      "members": {
+        "avg": {
+          "target": "smithy.api#Double"
+        },
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "max": {
+          "target": "smithy.api#Double"
+        },
+        "min": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ExperimentVariantMetricsMetricsList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2ExperimentVariantMetric"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ExperimentDetailVariantsList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2ExperimentVariantMetrics"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#GetV2Experiment": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#GetV2ExperimentRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2GetExperimentResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apps/{appId}/functions/{functionId}/experiments/{experimentId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get experiment aggregates\n\nFetches variant run counts and score aggregates for one experiment on one function."
+      }
+    },
+    "com.inngest.api#InvokeV2FunctionRequest": {
+      "type": "structure",
+      "members": {
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the app containing the function"
+          }
+        },
+        "functionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the function to invoke"
+          }
+        },
+        "data": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "JSON object containing the input data for the function"
+          }
+        },
+        "idempotencyKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional idempotency key to handle duplicate requests within a given idempotency period."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2InvokeFunctionResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2InvokeFunctionData"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2InvokeFunctionData": {
+      "type": "structure",
+      "members": {
+        "completedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the function execution completed (if finished)"
+          }
+        },
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message if the function execution failed"
+          }
+        },
+        "queuedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the function execution was enqueued"
+          }
+        },
+        "result": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "JSON string containing the function result (only available for completed synchronous invocations)"
+          }
+        },
+        "runId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for this function execution"
+          }
+        },
+        "startedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the function execution started (if started)"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#InvokeV2Function": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#InvokeV2FunctionRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2InvokeFunctionResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        },
+        {
+          "target": "com.inngest.api#NotFound"
+        },
+        {
+          "target": "com.inngest.api#Conflict"
+        },
+        {
+          "target": "com.inngest.api#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps/{appId}/functions/{functionId}/invoke",
+          "code": 200
+        },
+        "smithy.api#documentation": "Invoke function\n\nInvokes a function, executing the function either asynchronously or synchronously based on the mode parameter in the request body"
+      }
+    },
+    "com.inngest.api#ListV2FunctionRunsRequestStatusList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ListV2FunctionRunsRequest": {
+      "type": "structure",
+      "members": {
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "functionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "includeOutput": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "includeOutput"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of runs to return per page (min: 1, max: 100)"
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "from",
+            "smithy.api#documentation": "Inclusive start of the run time range"
+          }
+        },
+        "until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "until",
+            "smithy.api#documentation": "Inclusive end of the run time range"
+          }
+        },
+        "timeField": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "timeField",
+            "smithy.api#documentation": "Run timestamp field used for filtering and ordering. Accepts queuedAt, startedAt, or endedAt. Snake case aliases such as QUEUED_AT, STARTED_AT, and ENDED_AT are also accepted."
+          }
+        },
+        "status": {
+          "target": "com.inngest.api#ListV2FunctionRunsRequestStatusList",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Statuses to include, using response status values such as COMPLETED, FAILED, RUNNING, QUEUED, or CANCELLED"
+          }
+        },
+        "isDeferred": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "isDeferred",
+            "smithy.api#documentation": "Whether to include only deferred or non-deferred runs"
+          }
+        },
+        "order": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "order",
+            "smithy.api#documentation": "Sort direction. Accepts ASC or DESC."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2ListFunctionRunsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2ListFunctionRunsResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionRun": {
+      "type": "structure",
+      "members": {
+        "app": {
+          "target": "com.inngest.api#V2AppRef"
+        },
+        "durationMs": {
+          "target": "smithy.api#String"
+        },
+        "endedAt": {
+          "target": "smithy.api#String"
+        },
+        "function": {
+          "target": "com.inngest.api#V2FunctionRef"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "output": {
+          "target": "smithy.api#Document"
+        },
+        "queuedAt": {
+          "target": "smithy.api#String"
+        },
+        "startedAt": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.inngest.api#V2FunctionRunStatus"
+        },
+        "trigger": {
+          "target": "com.inngest.api#V2RunTrigger"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionRunStatus": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2RunTrigger": {
+      "type": "structure",
+      "members": {
+        "batchId": {
+          "target": "smithy.api#String"
+        },
+        "cronSchedule": {
+          "target": "smithy.api#String"
+        },
+        "eventIds": {
+          "target": "com.inngest.api#V2RunTriggerEventIdsList"
+        },
+        "eventName": {
+          "target": "smithy.api#String"
+        },
+        "isBatch": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2RunTriggerEventIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ListFunctionRunsResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2FunctionRun"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ListV2FunctionRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#ListV2FunctionRunsRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2ListFunctionRunsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apps/{appId}/functions/{functionId}/runs",
+          "code": 200
+        },
+        "smithy.api#documentation": "List runs for a function\n\nLists runs for one function in the authenticated environment"
+      }
+    },
+    "com.inngest.api#SyncV2AppRequest": {
+      "type": "structure",
+      "members": {
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "App ID"
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for the Inngest endpoint in the app"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2SyncAppResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2SyncAppData"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SyncAppData": {
+      "type": "structure",
+      "members": {
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "App ID"
+          }
+        },
+        "error": {
+          "target": "com.inngest.api#V2SyncAppError"
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID"
+          }
+        },
+        "status": {
+          "target": "com.inngest.api#V2SyncAppDataStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the sync. `success` and `duplicate` are successful terminal states. `duplicate` means the sync payload matched the previous successful sync, so no function configuration changes were applied. `error` is a failed terminal state, and `pending` means the sync is still in progress."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SyncAppError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SyncAppDataStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "DUPLICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "duplicate"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the sync. `success` and `duplicate` are successful terminal states. `duplicate` means the sync payload matched the previous successful sync, so no function configuration changes were applied. `error` is a failed terminal state, and `pending` means the sync is still in progress."
+      }
+    },
+    "com.inngest.api#SyncV2App": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#SyncV2AppRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2SyncAppResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        },
+        {
+          "target": "com.inngest.api#NotFound"
+        },
+        {
+          "target": "com.inngest.api#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apps/{appId}/syncs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sync app\n\nSync an app at the provided URL."
+      }
+    },
+    "com.inngest.api#ListV2WebhooksRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of webhooks to return per page (min: 1, max: 100)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2ListWebhooksResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2ListWebhooksResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2Webhook": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String"
+        },
+        "environment": {
+          "target": "smithy.api#String"
+        },
+        "eventFilter": {
+          "target": "com.inngest.api#V2EventFilter"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "response": {
+          "target": "smithy.api#String"
+        },
+        "transform": {
+          "target": "smithy.api#String"
+        },
+        "updatedAt": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2EventFilter": {
+      "type": "structure",
+      "members": {
+        "events": {
+          "target": "com.inngest.api#V2EventFilterEventsList",
+          "traits": {
+            "smithy.api#documentation": "Allow or deny specific events, e.g. 'orders/payment.created', or 'orders/*' for all orders. Only events in this list will be either allowed or denied."
+          }
+        },
+        "filter": {
+          "target": "com.inngest.api#V2FilterType"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2EventFilterEventsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Allow or deny specific events, e.g. 'orders/payment.created', or 'orders/*' for all orders. Only events in this list will be either allowed or denied."
+      }
+    },
+    "com.inngest.api#V2FilterType": {
+      "type": "enum",
+      "members": {
+        "ALLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALLOW"
+          }
+        },
+        "DENY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DENY"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ListWebhooksResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2Webhook"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ListV2Webhooks": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#ListV2WebhooksRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2ListWebhooksResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/env/webhooks",
+          "code": 200
+        },
+        "smithy.api#documentation": "List webhooks\n\nLists all webhooks in the specified environment"
+      }
+    },
+    "com.inngest.api#CreateV2WebhookRequest": {
+      "type": "structure",
+      "members": {
+        "eventFilter": {
+          "target": "com.inngest.api#V2EventFilter"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Descriptive name for the webhook"
+          }
+        },
+        "response": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional inline JS function which is called to respond to GET requests"
+          }
+        },
+        "transform": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The inline JS transform function for incoming events"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2CreateWebhookResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2Webhook"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#CreateV2Webhook": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#CreateV2WebhookRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2CreateWebhookResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        },
+        {
+          "target": "com.inngest.api#Conflict"
+        },
+        {
+          "target": "com.inngest.api#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/env/webhooks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create webhook\n\nCreates a new webhook for receiving events"
+      }
+    },
+    "com.inngest.api#FetchV2AccountEnvsRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of environments to return per page (min: 1, max: 250)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2FetchAccountEnvsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2FetchAccountEnvsResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2Env": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "isArchived": {
+          "target": "smithy.api#Boolean"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "com.inngest.api#V2EnvType"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2EnvType": {
+      "type": "enum",
+      "members": {
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCTION"
+          }
+        },
+        "TEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEST"
+          }
+        },
+        "BRANCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BRANCH"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FetchAccountEnvsResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2Env"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#FetchV2AccountEnvs": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#FetchV2AccountEnvsRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2FetchAccountEnvsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        },
+        {
+          "target": "com.inngest.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/envs",
+          "code": 200
+        },
+        "smithy.api#documentation": "List environments\n\nList of all custom environments."
+      }
+    },
+    "com.inngest.api#CreateV2EnvRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2CreateEnvResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2Env"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#CreateV2Env": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#CreateV2EnvRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2CreateEnvResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        },
+        {
+          "target": "com.inngest.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/envs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create environment\n\nCreate custom environment"
+      }
+    },
+    "com.inngest.api#PatchV2EnvRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the environment to update"
+          }
+        },
+        "isArchived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Updates the archived status of the environment. Set to true to archive the environment or false to unarchive it."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2PatchEnvsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2Env"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#PatchV2Env": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#PatchV2EnvRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2PatchEnvsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        },
+        {
+          "target": "com.inngest.api#NotFound"
+        },
+        {
+          "target": "com.inngest.api#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/envs/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update environment\n\nPartially updates an environment. Only the provided fields will be modified."
+      }
+    },
+    "com.inngest.api#SendV2EventRequest": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "JSON object containing event data"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional event ID used for idempotency when scheduling function runs"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Event name",
+            "smithy.api#required": {}
+          }
+        },
+        "ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional event timestamp as Unix time in milliseconds. Defaults to the current time."
+          }
+        },
+        "user": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Deprecated user data. Put user data in the data field instead."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2SendEventResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2SendEventData"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SendEventData": {
+      "type": "structure",
+      "members": {
+        "eventId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Internal event ID assigned by Inngest"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#SendV2Event": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#SendV2EventRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2SendEventResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/events",
+          "code": 200
+        },
+        "smithy.api#documentation": "Send event\n\nSends one event for testing and debugging. The request accepts the name, data, user, id, and ts fields; send batches and other Event API fields through an Inngest SDK or the Event API. This endpoint uses REST API rate limits and is not intended for high-volume ingestion. Use the returned event ID with the event runs endpoint to inspect any function runs triggered by the event."
+      }
+    },
+    "com.inngest.api#GetV2EventRunsRequest": {
+      "type": "structure",
+      "members": {
+        "eventId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "includeOutput": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "includeOutput"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of runs to return per page (min: 1, max: 40)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2GetEventRunsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2GetEventRunsResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2GetEventRunsResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2FunctionRun"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#GetV2EventRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#GetV2EventRunsRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2GetEventRunsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/events/{eventId}/runs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get event runs\n\nLists function runs triggered by a specific event"
+      }
+    },
+    "com.inngest.api#ListV2ExperimentsRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of experiments to return per page (min: 1, max: 100)"
+          }
+        },
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "appId"
+          }
+        },
+        "functionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "functionId"
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "from"
+          }
+        },
+        "until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "until"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#ListV2Experiments": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#ListV2ExperimentsRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2ListExperimentsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/experiments",
+          "code": 200
+        },
+        "smithy.api#documentation": "List experiments\n\nLists observed experiments in the authenticated environment. Use the nested app and function route to scope results to one function."
+      }
+    },
+    "com.inngest.api#ListV2InsightsEventSchemasRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of event schemas to return per page (min: 1, max: 100)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2ListInsightsEventSchemasResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2ListInsightsEventSchemasResponseDataList",
+          "traits": {
+            "smithy.api#documentation": "Paginated list of event type schemas"
+          }
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2InsightsEventSchema": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Event type name"
+          }
+        },
+        "schema": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "JSON Schema describing the shape of this event's data, represented as a nested JSON object"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ListInsightsEventSchemasResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2InsightsEventSchema"
+      },
+      "traits": {
+        "smithy.api#documentation": "Paginated list of event type schemas"
+      }
+    },
+    "com.inngest.api#ListV2InsightsEventSchemas": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#ListV2InsightsEventSchemasRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2ListInsightsEventSchemasResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/insights/events/schemas",
+          "code": 200
+        },
+        "smithy.api#documentation": "List event type schemas\n\nReturns a paginated list of event type schemas, where each schema describes the shape of a specific event's data as nested JSON."
+      }
+    },
+    "com.inngest.api#V2QueryInsightsRequest": {
+      "type": "structure",
+      "members": {
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The insights query to execute, written in modified ClickHouse SQL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2QueryInsightsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2QueryInsightsData"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2QueryInsightsData": {
+      "type": "structure",
+      "members": {
+        "columns": {
+          "target": "com.inngest.api#V2QueryInsightsDataColumnsList",
+          "traits": {
+            "smithy.api#documentation": "Column metadata for the insights query result"
+          }
+        },
+        "diagnostics": {
+          "target": "com.inngest.api#V2QueryInsightsDataDiagnosticsList",
+          "traits": {
+            "smithy.api#documentation": "Any non-fatal diagnostics related to the insights query execution"
+          }
+        },
+        "rows": {
+          "target": "com.inngest.api#V2QueryInsightsDataRowsList",
+          "traits": {
+            "smithy.api#documentation": "Rows of the insights query result, where each row contains a list of values corresponding to the columns"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2InsightsOutputColumn": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the column in the insights query result"
+          }
+        },
+        "type": {
+          "target": "com.inngest.api#V2InsightsOutputColumnType"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2InsightsOutputColumnType": {
+      "type": "enum",
+      "members": {
+        "VALUE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VALUE_TYPE_UNSPECIFIED"
+          }
+        },
+        "STRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STRING"
+          }
+        },
+        "NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NUMBER"
+          }
+        },
+        "BOOLEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOOLEAN"
+          }
+        },
+        "DATETIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATETIME"
+          }
+        },
+        "COMPLEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLEX"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2QueryInsightsDataColumnsList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2InsightsOutputColumn"
+      },
+      "traits": {
+        "smithy.api#documentation": "Column metadata for the insights query result"
+      }
+    },
+    "com.inngest.api#V2InsightsDiagnostic": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Machine-readable code representing the type of diagnostic"
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable message describing the diagnostic"
+          }
+        },
+        "position": {
+          "target": "com.inngest.api#V2InsightsDiagnosticPosition"
+        },
+        "severity": {
+          "target": "com.inngest.api#V2InsightsDiagnosticSeverity"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2InsightsDiagnosticPosition": {
+      "type": "structure",
+      "members": {
+        "context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snippet of the query string around the position to provide context for the diagnostic"
+          }
+        },
+        "end": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Ending character index in the query string where the diagnostic applies"
+          }
+        },
+        "start": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Starting character index in the query string where the diagnostic applies"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2InsightsDiagnosticSeverity": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INFO"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2QueryInsightsDataDiagnosticsList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2InsightsDiagnostic"
+      },
+      "traits": {
+        "smithy.api#documentation": "Any non-fatal diagnostics related to the insights query execution"
+      }
+    },
+    "com.inngest.api#V2InsightsRow": {
+      "type": "structure",
+      "members": {
+        "values": {
+          "target": "com.inngest.api#V2InsightsRowValuesList",
+          "traits": {
+            "smithy.api#documentation": "Values for a single row of the insights query result, where each value corresponds to a column. The value is represented as a JSON object to allow for flexible typing (e.g., string, number, boolean, etc.)"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2InsightsRowValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Values for a single row of the insights query result, where each value corresponds to a column. The value is represented as a JSON object to allow for flexible typing (e.g., string, number, boolean, etc.)"
+      }
+    },
+    "com.inngest.api#V2QueryInsightsDataRowsList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2InsightsRow"
+      },
+      "traits": {
+        "smithy.api#documentation": "Rows of the insights query result, where each row contains a list of values corresponding to the columns"
+      }
+    },
+    "com.inngest.api#V2QueryInsights": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#V2QueryInsightsRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2QueryInsightsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        },
+        {
+          "target": "com.inngest.api#NotFound"
+        },
+        {
+          "target": "com.inngest.api#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/insights/query",
+          "code": 200
+        },
+        "smithy.api#documentation": "Query insights\n\nQuery Insights using the provided SQL query."
+      }
+    },
+    "com.inngest.api#V2QueryInsightsPromptRequest": {
+      "type": "structure",
+      "members": {
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Natural language description of the query to generate"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2QueryInsightsPromptResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2QueryInsightsPromptData"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2QueryInsightsPromptData": {
+      "type": "structure",
+      "members": {
+        "sql": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The generated Insights SQL query"
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A natural language summary of the generated query, useful for explaining the query's intent to agents"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2QueryInsightsPrompt": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#V2QueryInsightsPromptRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2QueryInsightsPromptResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        },
+        {
+          "target": "com.inngest.api#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/insights/query/prompt",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate insights query from prompt\n\nTranslates a natural language prompt into an Insights SQL query."
+      }
+    },
+    "com.inngest.api#V2ListInsightsTablesResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2ListInsightsTablesResponseDataList",
+          "traits": {
+            "smithy.api#documentation": "List of available tables that can be queried via the Insights query endpoint"
+          }
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2InsightsTable": {
+      "type": "structure",
+      "members": {
+        "columns": {
+          "target": "com.inngest.api#V2InsightsTableColumnsList",
+          "traits": {
+            "smithy.api#documentation": "Columns available in this table"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable description of the table and its contents"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the table, used when writing queries"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2InsightsTableColumn": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable description of the column and the data it contains"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the column in the insights table"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Data type of the column (e.g., 'String', 'Int64', 'Array(String)', etc.)"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2InsightsTableColumnsList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2InsightsTableColumn"
+      },
+      "traits": {
+        "smithy.api#documentation": "Columns available in this table"
+      }
+    },
+    "com.inngest.api#V2ListInsightsTablesResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2InsightsTable"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of available tables that can be queried via the Insights query endpoint"
+      }
+    },
+    "com.inngest.api#ListV2InsightsTables": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.inngest.api#V2ListInsightsTablesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/insights/tables",
+          "code": 200
+        },
+        "smithy.api#documentation": "List insights tables\n\nLists the available tables that can be queried via the Insights query endpoint."
+      }
+    },
+    "com.inngest.api#FetchV2AccountEventKeysRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of event keys to return per page (min: 1, max: 100)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2FetchAccountEventKeysResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2FetchAccountEventKeysResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2EventKey": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String"
+        },
+        "environment": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FetchAccountEventKeysResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2EventKey"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#FetchV2AccountEventKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#FetchV2AccountEventKeysRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2FetchAccountEventKeysResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        },
+        {
+          "target": "com.inngest.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/keys/events",
+          "code": 200
+        },
+        "smithy.api#documentation": "List account event keys\n\nLists event keys for a specific account, optionally filtered by environment. If the environment header isn't specified, this returns the default production environment's keys."
+      }
+    },
+    "com.inngest.api#FetchV2AccountSigningKeysRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of signing keys to return per page (min: 1, max: 100)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2FetchAccountSigningKeysResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2FetchAccountSigningKeysResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SigningKey": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String"
+        },
+        "environment": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FetchAccountSigningKeysResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2SigningKey"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#FetchV2AccountSigningKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#FetchV2AccountSigningKeysRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2FetchAccountSigningKeysResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        },
+        {
+          "target": "com.inngest.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/keys/signing",
+          "code": 200
+        },
+        "smithy.api#documentation": "List account signing keys\n\nLists signing keys for a specific account, optionally filtered by environment.  If the environment header isn't specified, this returns the default production environment's keys."
+      }
+    },
+    "com.inngest.api#FetchV2PartnerAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of accounts to return per page (min: 1, max: 1000)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2FetchAccountsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2FetchAccountsResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FetchAccountsResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2Account"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#FetchV2PartnerAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#FetchV2PartnerAccountsRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2FetchAccountsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/partner/accounts",
+          "code": 200
+        },
+        "smithy.api#documentation": "List partner accounts\n\nLists sub-accounts (if you have partner access)"
+      }
+    },
+    "com.inngest.api#CreateV2PartnerAccountRequest": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2CreateAccountResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2CreateAccountData"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2CreateAccountData": {
+      "type": "structure",
+      "members": {
+        "apiKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "updatedAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#CreateV2PartnerAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#CreateV2PartnerAccountRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2CreateAccountResponse"
+      },
+      "errors": [
+        {
+          "target": "com.inngest.api#BadRequest"
+        },
+        {
+          "target": "com.inngest.api#Forbidden"
+        },
+        {
+          "target": "com.inngest.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/partner/accounts",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create partner account\n\nCreates a sub-account (if you have partner access)"
+      }
+    },
+    "com.inngest.api#ListV2RunsRequestStatusList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ListV2RunsRequestAppIdList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ListV2RunsRequestFunctionIdList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ListV2RunsRequest": {
+      "type": "structure",
+      "members": {
+        "includeOutput": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "includeOutput"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of runs to return per page (min: 1, max: 100)"
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "from",
+            "smithy.api#documentation": "Inclusive start of the run time range"
+          }
+        },
+        "until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "until",
+            "smithy.api#documentation": "Inclusive end of the run time range"
+          }
+        },
+        "timeField": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "timeField",
+            "smithy.api#documentation": "Run timestamp field used for filtering and ordering. Accepts queuedAt, startedAt, or endedAt. Snake case aliases such as QUEUED_AT, STARTED_AT, and ENDED_AT are also accepted."
+          }
+        },
+        "status": {
+          "target": "com.inngest.api#ListV2RunsRequestStatusList",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Statuses to include, using response status values such as COMPLETED, FAILED, RUNNING, QUEUED, or CANCELLED"
+          }
+        },
+        "appId": {
+          "target": "com.inngest.api#ListV2RunsRequestAppIdList",
+          "traits": {
+            "smithy.api#httpQuery": "appId",
+            "smithy.api#documentation": "App IDs to include"
+          }
+        },
+        "functionId": {
+          "target": "com.inngest.api#ListV2RunsRequestFunctionIdList",
+          "traits": {
+            "smithy.api#httpQuery": "functionId",
+            "smithy.api#documentation": "Function IDs to include"
+          }
+        },
+        "isDeferred": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "isDeferred",
+            "smithy.api#documentation": "Whether to include only deferred or non-deferred runs"
+          }
+        },
+        "order": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "order",
+            "smithy.api#documentation": "Sort direction. Accepts ASC or DESC."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2ListRunsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2ListRunsResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ListRunsResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2FunctionRun"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ListV2Runs": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#ListV2RunsRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2ListRunsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/runs",
+          "code": 200
+        },
+        "smithy.api#documentation": "List runs\n\nLists runs in the authenticated environment, optionally filtered by app and function IDs"
+      }
+    },
+    "com.inngest.api#GetV2FunctionRunRequest": {
+      "type": "structure",
+      "members": {
+        "runId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "includeOutput": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "includeOutput"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2GetFunctionRunResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2FunctionRun"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#GetV2FunctionRun": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#GetV2FunctionRunRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2GetFunctionRunResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/runs/{runId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get function run\n\nFetches the canonical run summary for a single function run"
+      }
+    },
+    "com.inngest.api#CancelV2RunRequest": {
+      "type": "structure",
+      "members": {
+        "runId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2CancelRunResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2CancelRunData"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2CancelRunData": {
+      "type": "structure",
+      "members": {
+        "runId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cancelled run ID"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#CancelV2Run": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#CancelV2RunRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2CancelRunResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/runs/{runId}/cancel",
+          "code": 200
+        },
+        "smithy.api#documentation": "Cancel function run\n\nCancels an in-progress function run"
+      }
+    },
+    "com.inngest.api#V2RerunFromStep": {
+      "type": "structure",
+      "members": {
+        "input": {
+          "target": "com.inngest.api#V2RerunFromStepInputList",
+          "traits": {
+            "smithy.api#documentation": "Optional replacement step input as a JSON array"
+          }
+        },
+        "stepId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User-defined step name to rerun from"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2RerunFromStepInputList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional replacement step input as a JSON array"
+      }
+    },
+    "com.inngest.api#V2RerunRequest": {
+      "type": "structure",
+      "members": {
+        "runId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "fromStep": {
+          "target": "com.inngest.api#V2RerunFromStep"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2RerunResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2RerunData"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2RerunData": {
+      "type": "structure",
+      "members": {
+        "runId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New run ID created by the rerun"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2Rerun": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#V2RerunRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2RerunResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/runs/{runId}/rerun",
+          "code": 200
+        },
+        "smithy.api#documentation": "Rerun function run\n\nCreates a new run using the original run's triggering event data"
+      }
+    },
+    "com.inngest.api#V2CreateScoreInput": {
+      "type": "structure",
+      "members": {
+        "experiment": {
+          "target": "com.inngest.api#V2ScoreExperiment"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Score name; must be at most 128 UTF-8 bytes"
+          }
+        },
+        "stepId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional SDK step ID; attaches the score to a specific step instead of the run. Step targets are recorded best-effort and are not validated before writing."
+          }
+        },
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Score value; must be a finite number or a boolean"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ScoreExperiment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Experiment ID"
+          }
+        },
+        "variant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Experiment variant"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#CreateV2ScoreRequestBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2CreateScoreInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Scores to record for the run. The REST request body is this array. Writes are applied in order and are not atomic; if a later score fails, earlier scores may already be recorded. Score writes are best-effort: run and step targets are not validated before writing, and scores for targets that do not exist may not surface in queries. Maximum 100 scores."
+      }
+    },
+    "com.inngest.api#CreateV2ScoreRequest": {
+      "type": "structure",
+      "members": {
+        "runId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Run ID (ULID) of the function run to score"
+          }
+        },
+        "body": {
+          "target": "com.inngest.api#CreateV2ScoreRequestBodyList",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2CreateScoreResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2CreateScoreResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2Score": {
+      "type": "structure",
+      "members": {
+        "experiment": {
+          "target": "com.inngest.api#V2ScoreExperiment"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Score name"
+          }
+        },
+        "runId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Run ID the score was recorded against"
+          }
+        },
+        "stepId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Step ID the score was recorded against, if step-scoped"
+          }
+        },
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Score value"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2CreateScoreResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2Score"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#CreateV2Score": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#CreateV2ScoreRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2CreateScoreResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/runs/{runId}/scores",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create score\n\nSubmits one or more named scores for a function run, or for specific steps when step IDs are provided. Scores are recorded as run metadata and aggregated for experiments."
+      }
+    },
+    "com.inngest.api#GetV2FunctionTraceRequest": {
+      "type": "structure",
+      "members": {
+        "runId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "includeOutput": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "includeOutput"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2GetFunctionTraceResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2FunctionTrace"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2FunctionTrace": {
+      "type": "structure",
+      "members": {
+        "rootSpan": {
+          "target": "com.inngest.api#V2TraceSpan"
+        },
+        "runId": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2TraceSpan": {
+      "type": "structure",
+      "members": {
+        "children": {
+          "target": "com.inngest.api#V2TraceSpanChildrenList"
+        },
+        "durationMs": {
+          "target": "smithy.api#String"
+        },
+        "endedAt": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "input": {
+          "target": "smithy.api#Document"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2TraceSpanMetadataList"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "output": {
+          "target": "smithy.api#Document"
+        },
+        "queuedAt": {
+          "target": "smithy.api#String"
+        },
+        "startedAt": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.inngest.api#V2TraceSpanStatus"
+        },
+        "stepId": {
+          "target": "smithy.api#String"
+        },
+        "stepOp": {
+          "target": "com.inngest.api#V2TraceStepOp"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2TraceSpanChildrenList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2TraceSpan"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2TraceSpanMetadata": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String"
+        },
+        "scope": {
+          "target": "smithy.api#String"
+        },
+        "updatedAt": {
+          "target": "smithy.api#String"
+        },
+        "values": {
+          "target": "com.inngest.api#V2TraceSpanMetadataValuesMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2TraceSpanMetadataValuesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2TraceSpanMetadataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2TraceSpanMetadata"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2TraceSpanStatus": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "WAITING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WAITING"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        },
+        "SKIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SKIPPED"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2TraceStepOp": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED"
+          }
+        },
+        "RUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUN"
+          }
+        },
+        "SLEEP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SLEEP"
+          }
+        },
+        "WAIT_FOR_EVENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WAIT_FOR_EVENT"
+          }
+        },
+        "INVOKE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVOKE"
+          }
+        },
+        "SEND_EVENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEND_EVENT"
+          }
+        },
+        "AI_GATEWAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AI_GATEWAY"
+          }
+        },
+        "WAIT_FOR_SIGNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WAIT_FOR_SIGNAL"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#GetV2FunctionTrace": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#GetV2FunctionTraceRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2GetFunctionTraceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/runs/{runId}/trace",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get function trace\n\nFetches the trace tree for a single function run"
+      }
+    },
+    "com.inngest.api#ListV2SandboxesRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2ListSandboxesResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2ListSandboxesResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2SandboxResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2SandboxPage"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2Sandbox": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String"
+        },
+        "endedAt": {
+          "target": "smithy.api#String"
+        },
+        "error": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "imageRef": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "resources": {
+          "target": "com.inngest.api#V2SandboxResourceSpec"
+        },
+        "startedAt": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.inngest.api#V2SandboxStatus"
+        },
+        "vpcId": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SandboxResourceSpec": {
+      "type": "structure",
+      "members": {
+        "memoryMb": {
+          "target": "smithy.api#Integer"
+        },
+        "vcpu": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SandboxStatus": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STARTING"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAUSED"
+          }
+        },
+        "TERMINATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TERMINATING"
+          }
+        },
+        "TERMINATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TERMINATED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ListSandboxesResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2Sandbox"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SandboxResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "fetchedAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SandboxPage": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String"
+        },
+        "hasMore": {
+          "target": "smithy.api#Boolean"
+        },
+        "limit": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ListV2Sandboxes": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#ListV2SandboxesRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2ListSandboxesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sandboxes",
+          "code": 200
+        },
+        "smithy.api#documentation": "List sandboxes"
+      }
+    },
+    "com.inngest.api#CreateV2SandboxRequestEnvironmentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#CreateV2SandboxRequest": {
+      "type": "structure",
+      "members": {
+        "environment": {
+          "target": "com.inngest.api#CreateV2SandboxRequestEnvironmentMap"
+        },
+        "memoryMb": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "vcpu": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2CreateSandboxResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2Sandbox"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2SandboxResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#CreateV2Sandbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#CreateV2SandboxRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2CreateSandboxResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sandboxes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a sandbox"
+      }
+    },
+    "com.inngest.api#GetV2SandboxRequest": {
+      "type": "structure",
+      "members": {
+        "sandboxId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2GetSandboxResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2Sandbox"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2SandboxResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#GetV2Sandbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#GetV2SandboxRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2GetSandboxResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sandboxes/{sandboxId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a sandbox"
+      }
+    },
+    "com.inngest.api#V2DestroySandboxRequest": {
+      "type": "structure",
+      "members": {
+        "sandboxId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2DestroySandboxResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2Sandbox"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2SandboxResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2DestroySandbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#V2DestroySandboxRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2DestroySandboxResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/sandboxes/{sandboxId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Destroy a sandbox"
+      }
+    },
+    "com.inngest.api#ExecV2SandboxRequestCommandList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ExecV2SandboxRequestEnvironmentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ExecV2SandboxRequest": {
+      "type": "structure",
+      "members": {
+        "sandboxId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "com.inngest.api#ExecV2SandboxRequestCommandList"
+        },
+        "cwd": {
+          "target": "smithy.api#String"
+        },
+        "environment": {
+          "target": "com.inngest.api#ExecV2SandboxRequestEnvironmentMap"
+        },
+        "timeout": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2ExecSandboxResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2ExecSandboxData"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2SandboxResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ExecSandboxData": {
+      "type": "structure",
+      "members": {
+        "encoding": {
+          "target": "smithy.api#String"
+        },
+        "exitCode": {
+          "target": "smithy.api#Integer"
+        },
+        "stderr": {
+          "target": "smithy.api#String"
+        },
+        "stdout": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ExecV2Sandbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#ExecV2SandboxRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2ExecSandboxResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sandboxes/{sandboxId}/exec",
+          "code": 200
+        },
+        "smithy.api#documentation": "Execute a command in a sandbox"
+      }
+    },
+    "com.inngest.api#ReadV2SandboxFileRequest": {
+      "type": "structure",
+      "members": {
+        "sandboxId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "path"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#ReadV2SandboxFileResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.inngest.api#ReadV2SandboxFile": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#ReadV2SandboxFileRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#ReadV2SandboxFileResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sandboxes/{sandboxId}/files",
+          "code": 200
+        },
+        "smithy.api#documentation": "Read a sandbox file"
+      }
+    },
+    "com.inngest.api#ProtobufAny": {
+      "type": "structure",
+      "members": {
+        "_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com. As of May 2023, there are no widely used type server\nimplementations and no plans to implement one.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics.",
+            "smithy.api#jsonName": "@type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n    // or ...\n    if (any.isSameTypeAs(Foo.getDefaultInstance())) {\n      foo = any.unpack(Foo.getDefaultInstance());\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+      }
+    },
+    "com.inngest.api#V2WriteSandboxFileRequestExtensionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#ProtobufAny"
+      },
+      "traits": {
+        "smithy.api#documentation": "Application specific response metadata. Must be set in the first response\nfor streaming APIs."
+      }
+    },
+    "com.inngest.api#V2WriteSandboxFileRequest": {
+      "type": "structure",
+      "members": {
+        "sandboxId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "path"
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "mode"
+          }
+        },
+        "contentType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The HTTP Content-Type header value specifying the content type of the body."
+          }
+        },
+        "data": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The HTTP request/response body as raw binary."
+          }
+        },
+        "extensions": {
+          "target": "com.inngest.api#V2WriteSandboxFileRequestExtensionsList",
+          "traits": {
+            "smithy.api#documentation": "Application specific response metadata. Must be set in the first response\nfor streaming APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2WriteSandboxFileResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2WriteSandboxFileData"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2SandboxResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2WriteSandboxFileData": {
+      "type": "structure",
+      "members": {
+        "bytesWritten": {
+          "target": "smithy.api#String"
+        },
+        "path": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2WriteSandboxFile": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#V2WriteSandboxFileRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2WriteSandboxFileResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/sandboxes/{sandboxId}/files",
+          "code": 200
+        },
+        "smithy.api#documentation": "Write a sandbox file"
+      }
+    },
+    "com.inngest.api#V2StreamSandboxLogsRequest": {
+      "type": "structure",
+      "members": {
+        "sandboxId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "follow": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "follow"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#RpcStatus": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "details": {
+          "target": "com.inngest.api#RpcStatusDetailsList"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#RpcStatusDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#ProtobufAny"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2StreamSandboxLogsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2SandboxLogChunk"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SandboxLogChunk": {
+      "type": "structure",
+      "members": {
+        "at": {
+          "target": "smithy.api#String"
+        },
+        "data": {
+          "target": "smithy.api#String"
+        },
+        "encoding": {
+          "target": "smithy.api#String"
+        },
+        "stream": {
+          "target": "com.inngest.api#V2SandboxLogStream"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SandboxLogStream": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED"
+          }
+        },
+        "STDOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STDOUT"
+          }
+        },
+        "STDERR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STDERR"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2StreamSandboxLogsResponse2": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "com.inngest.api#RpcStatus"
+        },
+        "result": {
+          "target": "com.inngest.api#V2StreamSandboxLogsResponse"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.inngest.api#V2StreamSandboxLogs": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#V2StreamSandboxLogsRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2StreamSandboxLogsResponse2"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sandboxes/{sandboxId}/logs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Stream sandbox logs"
+      }
+    },
+    "com.inngest.api#ListV2SandboxProcessesRequest": {
+      "type": "structure",
+      "members": {
+        "sandboxId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2ListSandboxProcessesResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2ListSandboxProcessesResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2SandboxResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2SandboxPage"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SandboxProcess": {
+      "type": "structure",
+      "members": {
+        "command": {
+          "target": "com.inngest.api#V2SandboxProcessCommandList"
+        },
+        "endedAt": {
+          "target": "smithy.api#String"
+        },
+        "exitCode": {
+          "target": "smithy.api#Integer"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "pid": {
+          "target": "smithy.api#Integer"
+        },
+        "startedAt": {
+          "target": "smithy.api#String"
+        },
+        "state": {
+          "target": "com.inngest.api#V2SandboxProcessState"
+        },
+        "terminationSignal": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SandboxProcessCommandList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SandboxProcessState": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED"
+          }
+        },
+        "STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STARTING"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "EXITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXITED"
+          }
+        },
+        "KILLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KILLED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "LOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOST"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ListSandboxProcessesResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2SandboxProcess"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ListV2SandboxProcesses": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#ListV2SandboxProcessesRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2ListSandboxProcessesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sandboxes/{sandboxId}/processes",
+          "code": 200
+        },
+        "smithy.api#documentation": "List sandbox processes"
+      }
+    },
+    "com.inngest.api#StartV2SandboxProcessRequestCommandList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#StartV2SandboxProcessRequestEnvironmentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#StartV2SandboxProcessRequest": {
+      "type": "structure",
+      "members": {
+        "sandboxId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "com.inngest.api#StartV2SandboxProcessRequestCommandList"
+        },
+        "cwd": {
+          "target": "smithy.api#String"
+        },
+        "environment": {
+          "target": "com.inngest.api#StartV2SandboxProcessRequestEnvironmentMap"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2StartSandboxProcessResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2SandboxProcess"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2SandboxResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#StartV2SandboxProcess": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#StartV2SandboxProcessRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2StartSandboxProcessResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sandboxes/{sandboxId}/processes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Start a sandbox process"
+      }
+    },
+    "com.inngest.api#GetV2SandboxProcessRequest": {
+      "type": "structure",
+      "members": {
+        "sandboxId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "processId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2GetSandboxProcessResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2SandboxProcess"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2SandboxResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#GetV2SandboxProcess": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#GetV2SandboxProcessRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2GetSandboxProcessResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sandboxes/{sandboxId}/processes/{processId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a sandbox process"
+      }
+    },
+    "com.inngest.api#GetV2SandboxProcessOutputRequest": {
+      "type": "structure",
+      "members": {
+        "sandboxId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "processId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "tailBytes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "tailBytes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2GetSandboxProcessOutputResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2GetSandboxProcessOutputData"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2SandboxResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2GetSandboxProcessOutputData": {
+      "type": "structure",
+      "members": {
+        "chunks": {
+          "target": "com.inngest.api#V2GetSandboxProcessOutputDataChunksList"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2GetSandboxProcessOutputDataChunksList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2SandboxLogChunk"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#GetV2SandboxProcessOutput": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#GetV2SandboxProcessOutputRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2GetSandboxProcessOutputResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sandboxes/{sandboxId}/processes/{processId}/output",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get sandbox process output"
+      }
+    },
+    "com.inngest.api#V2StreamSandboxProcessOutputRequest": {
+      "type": "structure",
+      "members": {
+        "sandboxId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "processId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "tailBytes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "tailBytes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2StreamSandboxProcessOutputResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2SandboxLogChunk"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2StreamSandboxProcessOutputResponse2": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "com.inngest.api#RpcStatus"
+        },
+        "result": {
+          "target": "com.inngest.api#V2StreamSandboxProcessOutputResponse"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.inngest.api#V2StreamSandboxProcessOutput": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#V2StreamSandboxProcessOutputRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2StreamSandboxProcessOutputResponse2"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sandboxes/{sandboxId}/processes/{processId}/output/stream",
+          "code": 200
+        },
+        "smithy.api#documentation": "Stream sandbox process output"
+      }
+    },
+    "com.inngest.api#SignalV2SandboxProcessRequest": {
+      "type": "structure",
+      "members": {
+        "sandboxId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "processId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "includeChildren": {
+          "target": "smithy.api#Boolean"
+        },
+        "signal": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#SignalV2SandboxProcessResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.inngest.api#SignalV2SandboxProcess": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#SignalV2SandboxProcessRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#SignalV2SandboxProcessResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sandboxes/{sandboxId}/processes/{processId}/signals",
+          "code": 200
+        },
+        "smithy.api#documentation": "Signal a sandbox process"
+      }
+    },
+    "com.inngest.api#WaitV2SandboxProcessRequest": {
+      "type": "structure",
+      "members": {
+        "sandboxId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "processId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "timeout"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2WaitSandboxProcessResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2SandboxProcess"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2SandboxResponseMetadata"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#WaitV2SandboxProcess": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#WaitV2SandboxProcessRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2WaitSandboxProcessResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sandboxes/{sandboxId}/processes/{processId}/wait",
+          "code": 200
+        },
+        "smithy.api#documentation": "Wait for a sandbox process"
+      }
+    },
+    "com.inngest.api#ListV2SessionKeysRequest": {
+      "type": "structure",
+      "members": {
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of sessions to return per page (min: 1, max: 100)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2ListSessionKeysResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2ListSessionKeysResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SessionKey": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ListSessionKeysResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2SessionKey"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ListV2SessionKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#ListV2SessionKeysRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2ListSessionKeysResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sessions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List session keys\n\nLists session keys observed in the authenticated environment."
+      }
+    },
+    "com.inngest.api#ListV2SessionsRequest": {
+      "type": "structure",
+      "members": {
+        "sessionKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of sessions to return per page (min: 1, max: 100)"
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "from"
+          }
+        },
+        "until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "until"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2ListSessionsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2ListSessionsResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SessionGroup": {
+      "type": "structure",
+      "members": {
+        "failedRunCount": {
+          "target": "smithy.api#Integer"
+        },
+        "failureRate": {
+          "target": "smithy.api#Double"
+        },
+        "functions": {
+          "target": "com.inngest.api#V2SessionGroupFunctionsList"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "lastActiveAt": {
+          "target": "smithy.api#String"
+        },
+        "runCount": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SessionGroupFunctionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2FunctionRef"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ListSessionsResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2SessionGroup"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ListV2Sessions": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#ListV2SessionsRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2ListSessionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sessions/{sessionKey}",
+          "code": 200
+        },
+        "smithy.api#documentation": "List sessions\n\nLists session IDs for one session key in the authenticated environment."
+      }
+    },
+    "com.inngest.api#ListV2SessionRunsRequest": {
+      "type": "structure",
+      "members": {
+        "sessionKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from previous response"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of session runs to return per page (min: 1, max: 100)"
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "from"
+          }
+        },
+        "until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "until"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.inngest.api#V2ListSessionRunsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.inngest.api#V2ListSessionRunsResponseDataList"
+        },
+        "metadata": {
+          "target": "com.inngest.api#V2ResponseMetadata"
+        },
+        "page": {
+          "target": "com.inngest.api#V2Page"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2SessionRun": {
+      "type": "structure",
+      "members": {
+        "endedAt": {
+          "target": "smithy.api#String"
+        },
+        "eventName": {
+          "target": "smithy.api#String"
+        },
+        "function": {
+          "target": "com.inngest.api#V2FunctionRef"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "queuedAt": {
+          "target": "smithy.api#String"
+        },
+        "startedAt": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.inngest.api#V2FunctionRunStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.inngest.api#V2ListSessionRunsResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.inngest.api#V2SessionRun"
+      },
+      "traits": {}
+    },
+    "com.inngest.api#ListV2SessionRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.inngest.api#ListV2SessionRunsRequest"
+      },
+      "output": {
+        "target": "com.inngest.api#V2ListSessionRunsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sessions/{sessionKey}/{sessionId}/runs",
+          "code": 200
+        },
+        "smithy.api#documentation": "List session runs\n\nLists runs associated with one session ID in the authenticated environment."
+      }
+    },
+    "com.inngest.api#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.inngest.api#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.inngest.api#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.inngest.api#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.inngest.api#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.inngest.api#Inngest": {
+      "type": "service",
+      "version": "2.0.0",
+      "operations": [
+        {
+          "target": "com.inngest.api#FetchV2Account"
+        },
+        {
+          "target": "com.inngest.api#GetV2Apps"
+        },
+        {
+          "target": "com.inngest.api#GetV2App"
+        },
+        {
+          "target": "com.inngest.api#GetV2Functions"
+        },
+        {
+          "target": "com.inngest.api#GetV2Function"
+        },
+        {
+          "target": "com.inngest.api#ListV2Experiments2"
+        },
+        {
+          "target": "com.inngest.api#GetV2Experiment"
+        },
+        {
+          "target": "com.inngest.api#InvokeV2Function"
+        },
+        {
+          "target": "com.inngest.api#ListV2FunctionRuns"
+        },
+        {
+          "target": "com.inngest.api#SyncV2App"
+        },
+        {
+          "target": "com.inngest.api#ListV2Webhooks"
+        },
+        {
+          "target": "com.inngest.api#CreateV2Webhook"
+        },
+        {
+          "target": "com.inngest.api#FetchV2AccountEnvs"
+        },
+        {
+          "target": "com.inngest.api#CreateV2Env"
+        },
+        {
+          "target": "com.inngest.api#PatchV2Env"
+        },
+        {
+          "target": "com.inngest.api#SendV2Event"
+        },
+        {
+          "target": "com.inngest.api#GetV2EventRuns"
+        },
+        {
+          "target": "com.inngest.api#ListV2Experiments"
+        },
+        {
+          "target": "com.inngest.api#ListV2InsightsEventSchemas"
+        },
+        {
+          "target": "com.inngest.api#V2QueryInsights"
+        },
+        {
+          "target": "com.inngest.api#V2QueryInsightsPrompt"
+        },
+        {
+          "target": "com.inngest.api#ListV2InsightsTables"
+        },
+        {
+          "target": "com.inngest.api#FetchV2AccountEventKeys"
+        },
+        {
+          "target": "com.inngest.api#FetchV2AccountSigningKeys"
+        },
+        {
+          "target": "com.inngest.api#FetchV2PartnerAccounts"
+        },
+        {
+          "target": "com.inngest.api#CreateV2PartnerAccount"
+        },
+        {
+          "target": "com.inngest.api#ListV2Runs"
+        },
+        {
+          "target": "com.inngest.api#GetV2FunctionRun"
+        },
+        {
+          "target": "com.inngest.api#CancelV2Run"
+        },
+        {
+          "target": "com.inngest.api#V2Rerun"
+        },
+        {
+          "target": "com.inngest.api#CreateV2Score"
+        },
+        {
+          "target": "com.inngest.api#GetV2FunctionTrace"
+        },
+        {
+          "target": "com.inngest.api#ListV2Sandboxes"
+        },
+        {
+          "target": "com.inngest.api#CreateV2Sandbox"
+        },
+        {
+          "target": "com.inngest.api#GetV2Sandbox"
+        },
+        {
+          "target": "com.inngest.api#V2DestroySandbox"
+        },
+        {
+          "target": "com.inngest.api#ExecV2Sandbox"
+        },
+        {
+          "target": "com.inngest.api#ReadV2SandboxFile"
+        },
+        {
+          "target": "com.inngest.api#V2WriteSandboxFile"
+        },
+        {
+          "target": "com.inngest.api#V2StreamSandboxLogs"
+        },
+        {
+          "target": "com.inngest.api#ListV2SandboxProcesses"
+        },
+        {
+          "target": "com.inngest.api#StartV2SandboxProcess"
+        },
+        {
+          "target": "com.inngest.api#GetV2SandboxProcess"
+        },
+        {
+          "target": "com.inngest.api#GetV2SandboxProcessOutput"
+        },
+        {
+          "target": "com.inngest.api#V2StreamSandboxProcessOutput"
+        },
+        {
+          "target": "com.inngest.api#SignalV2SandboxProcess"
+        },
+        {
+          "target": "com.inngest.api#WaitV2SandboxProcess"
+        },
+        {
+          "target": "com.inngest.api#ListV2SessionKeys"
+        },
+        {
+          "target": "com.inngest.api#ListV2Sessions"
+        },
+        {
+          "target": "com.inngest.api#ListV2SessionRuns"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Inngest REST API v2",
+        "smithy.api#documentation": "The v2 API delivers a significantly improved developer experience with consistent design patterns and enhanced functionality."
+      }
+    }
+  }
+}

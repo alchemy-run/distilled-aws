@@ -258,3 +258,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-infisical.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/inngest/specs/spec-mirror-inngest"]
+	path = packages/inngest/specs/spec-mirror-inngest
+	url = https://github.com/distilled-mirror/spec-mirror-inngest.git
+	ignore = dirty
+	shallow = true
