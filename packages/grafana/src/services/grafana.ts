@@ -808,6 +808,51 @@ export const CacheConfigResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CacheConfigResponse",
 }) as any as S.Schema<CacheConfigResponse>;
 
+export type CreateAnnotationRequestTagsList = Array<string>;
+export const CreateAnnotationRequestTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateAnnotationRequestTagsList>;
+
+export interface CreateAnnotationRequest {
+  dashboardId?: number;
+  dashboardUID?: string;
+  data?: unknown;
+  panelId?: number;
+  tags?: CreateAnnotationRequestTagsList;
+  text: string;
+  time?: number;
+  timeEnd?: number;
+}
+export const CreateAnnotationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dashboardId: S.optional(S.Number),
+    dashboardUID: S.optional(S.String),
+    data: S.optional(S.Unknown),
+    panelId: S.optional(S.Number),
+    tags: S.optional(CreateAnnotationRequestTagsList),
+    text: S.String,
+    time: S.optional(S.Number),
+    timeEnd: S.optional(S.Number),
+  }).pipe(T.Http({ method: "POST", uri: "/annotations", code: 200 })),
+).annotate({
+  identifier: "CreateAnnotationRequest",
+}) as any as S.Schema<CreateAnnotationRequest>;
+
+export interface CreateAnnotationResponse {
+  /** ID Identifier of the created annotation. */
+  id: number;
+  /** Message Message of the created annotation. */
+  message: string;
+}
+export const CreateAnnotationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.Number,
+    message: S.String,
+  }),
+).annotate({
+  identifier: "CreateAnnotationResponse",
+}) as any as S.Schema<CreateAnnotationResponse>;
+
 export interface CreateCloudMigrationTokenRequest {}
 export const CreateCloudMigrationTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -1953,10 +1998,10 @@ export const DatasourceProxyPOSTByUIDcallsResponse = /*@__PURE__*/ S.suspend(
   identifier: "DatasourceProxyPOSTByUIDcallsResponse",
 }) as any as S.Schema<DatasourceProxyPOSTByUIDcallsResponse>;
 
-export interface DeleteAnnotationByIDRequest {
+export interface DeleteAnnotationRequest {
   annotation_id: string;
 }
-export const DeleteAnnotationByIDRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAnnotationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     annotation_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -1967,8 +2012,8 @@ export const DeleteAnnotationByIDRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteAnnotationByIDRequest",
-}) as any as S.Schema<DeleteAnnotationByIDRequest>;
+  identifier: "DeleteAnnotationRequest",
+}) as any as S.Schema<DeleteAnnotationRequest>;
 
 export interface DeleteCloudMigrationTokenRequest {
   /** UID of a cloud migration token */
@@ -2098,16 +2143,16 @@ export const DeleteLicenseTokenResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteLicenseTokenResponse",
 }) as any as S.Schema<DeleteLicenseTokenResponse>;
 
-export interface DeleteOrgByIDRequest {
+export interface DeleteOrgRequest {
   org_id: number;
 }
-export const DeleteOrgByIDRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteOrgRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     org_id: S.Number.pipe(T.Label()),
   }).pipe(T.Http({ method: "DELETE", uri: "/orgs/{org_id}", code: 200 })),
 ).annotate({
-  identifier: "DeleteOrgByIDRequest",
-}) as any as S.Schema<DeleteOrgByIDRequest>;
+  identifier: "DeleteOrgRequest",
+}) as any as S.Schema<DeleteOrgRequest>;
 
 export interface DeletePublicDashboardRequest {
   dashboardUid: string;
@@ -2249,16 +2294,16 @@ export const DeleteSessionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteSessionResponse",
 }) as any as S.Schema<DeleteSessionResponse>;
 
-export interface DeleteTeamByIDRequest {
+export interface DeleteTeamRequest {
   team_id: string;
 }
-export const DeleteTeamByIDRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteTeamRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     team_id: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "DELETE", uri: "/teams/{team_id}", code: 200 })),
 ).annotate({
-  identifier: "DeleteTeamByIDRequest",
-}) as any as S.Schema<DeleteTeamByIDRequest>;
+  identifier: "DeleteTeamRequest",
+}) as any as S.Schema<DeleteTeamRequest>;
 
 export interface DeleteTokenRequest {
   serviceAccountId: number;
@@ -2339,18 +2384,18 @@ export const AccessControlStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccessControlStatus",
 }) as any as S.Schema<AccessControlStatus>;
 
-export interface GetAnnotationByIDRequest {
+export interface GetAnnotationRequest {
   annotation_id: string;
 }
-export const GetAnnotationByIDRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAnnotationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     annotation_id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/annotations/{annotation_id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetAnnotationByIDRequest",
-}) as any as S.Schema<GetAnnotationByIDRequest>;
+  identifier: "GetAnnotationRequest",
+}) as any as S.Schema<GetAnnotationRequest>;
 
 export type AnnotationTagsList = Array<string>;
 export const AnnotationTagsList = /*@__PURE__*/ S.Array(
@@ -2938,6 +2983,526 @@ export const HealthResponse = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "HealthResponse" }) as any as S.Schema<HealthResponse>;
 
+export interface GetJWKSRequest {}
+export const GetJWKSRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/signing-keys/keys", code: 200 }),
+  ),
+).annotate({ identifier: "GetJWKSRequest" }) as any as S.Schema<GetJWKSRequest>;
+
+/** X.509 certificate thumbprint (SHA-1), parsed from `x5t` header. */
+export type JSONWebKeyCertificateThumbprintSHA1List = Array<number>;
+export const JSONWebKeyCertificateThumbprintSHA1List = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<JSONWebKeyCertificateThumbprintSHA1List>;
+
+/** X.509 certificate thumbprint (SHA-256), parsed from `x5t#S256` header. */
+export type JSONWebKeyCertificateThumbprintSHA256List = Array<number>;
+export const JSONWebKeyCertificateThumbprintSHA256List = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<JSONWebKeyCertificateThumbprintSHA256List>;
+
+export type CertificateAuthorityKeyIdList = Array<number>;
+export const CertificateAuthorityKeyIdList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<CertificateAuthorityKeyIdList>;
+
+/** CRL Distribution Points */
+export type CertificateCRLDistributionPointsList = Array<string>;
+export const CertificateCRLDistributionPointsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CertificateCRLDistributionPointsList>;
+
+/** Subject Alternate Name values. (Note that these values may not be valid if invalid values were contained within a parsed certificate. For example, an element of DNSNames may not be a valid DNS domain name.) */
+export type CertificateDNSNamesList = Array<string>;
+export const CertificateDNSNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CertificateDNSNamesList>;
+
+export type CertificateEmailAddressesList = Array<string>;
+export const CertificateEmailAddressesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CertificateEmailAddressesList>;
+
+export type CertificateExcludedDNSDomainsList = Array<string>;
+export const CertificateExcludedDNSDomainsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CertificateExcludedDNSDomainsList>;
+
+export type CertificateExcludedEmailAddressesList = Array<string>;
+export const CertificateExcludedEmailAddressesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CertificateExcludedEmailAddressesList>;
+
+/** See type [IPNet] and func [ParseCIDR] for details. */
+export type IPMask = Array<number>;
+export const IPMask = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<IPMask>;
+
+export interface IPNet {
+  IP?: string;
+  Mask?: IPMask;
+}
+export const IPNet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    IP: S.optional(S.String),
+    Mask: S.optional(IPMask),
+  }),
+).annotate({ identifier: "IPNet" }) as any as S.Schema<IPNet>;
+
+export type CertificateExcludedIPRangesList = Array<IPNet>;
+export const CertificateExcludedIPRangesList = /*@__PURE__*/ S.Array(
+  IPNet,
+) as any as S.Schema<CertificateExcludedIPRangesList>;
+
+export type CertificateExcludedURIDomainsList = Array<string>;
+export const CertificateExcludedURIDomainsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CertificateExcludedURIDomainsList>;
+
+export type CertificateExtKeyUsageList = Array<number>;
+export const CertificateExtKeyUsageList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<CertificateExtKeyUsageList>;
+
+export type ObjectIdentifier = Array<number>;
+export const ObjectIdentifier = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ObjectIdentifier>;
+
+export type ExtensionValueList = Array<number>;
+export const ExtensionValueList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ExtensionValueList>;
+
+/** Extension represents the ASN.1 structure of the same name. See RFC 5280, section 4.2. */
+export interface Extension {
+  Critical?: boolean;
+  Id?: ObjectIdentifier;
+  Value?: ExtensionValueList;
+}
+export const Extension = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Critical: S.optional(S.Boolean),
+    Id: S.optional(ObjectIdentifier),
+    Value: S.optional(ExtensionValueList),
+  }),
+).annotate({ identifier: "Extension" }) as any as S.Schema<Extension>;
+
+/** Extensions contains raw X.509 extensions. When parsing certificates, this can be used to extract non-critical extensions that are not parsed by this package. When marshaling certificates, the Extensions field is ignored, see ExtraExtensions. */
+export type CertificateExtensionsList = Array<Extension>;
+export const CertificateExtensionsList = /*@__PURE__*/ S.Array(
+  Extension,
+) as any as S.Schema<CertificateExtensionsList>;
+
+/** ExtraExtensions contains extensions to be copied, raw, into any marshaled certificates. Values override any extensions that would otherwise be produced based on the other fields. The ExtraExtensions field is not populated when parsing certificates, see Extensions. */
+export type CertificateExtraExtensionsList = Array<Extension>;
+export const CertificateExtraExtensionsList = /*@__PURE__*/ S.Array(
+  Extension,
+) as any as S.Schema<CertificateExtraExtensionsList>;
+
+export type CertificateIPAddressesList = Array<string>;
+export const CertificateIPAddressesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CertificateIPAddressesList>;
+
+export type NameCountryList = Array<string>;
+export const NameCountryList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NameCountryList>;
+
+/** AttributeTypeAndValue mirrors the ASN.1 structure of the same name in RFC 5280, Section 4.1.2.4. */
+export interface AttributeTypeAndValue {
+  Type?: ObjectIdentifier;
+  Value?: unknown;
+}
+export const AttributeTypeAndValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Type: S.optional(ObjectIdentifier),
+    Value: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "AttributeTypeAndValue",
+}) as any as S.Schema<AttributeTypeAndValue>;
+
+/** ExtraNames contains attributes to be copied, raw, into any marshaled distinguished names. Values override any attributes with the same OID. The ExtraNames field is not populated when parsing, see Names. */
+export type NameExtraNamesList = Array<AttributeTypeAndValue>;
+export const NameExtraNamesList = /*@__PURE__*/ S.Array(
+  AttributeTypeAndValue,
+) as any as S.Schema<NameExtraNamesList>;
+
+export type NameLocalityList = Array<string>;
+export const NameLocalityList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NameLocalityList>;
+
+/** Names contains all parsed attributes. When parsing distinguished names, this can be used to extract non-standard attributes that are not parsed by this package. When marshaling to RDNSequences, the Names field is ignored, see ExtraNames. */
+export type NameNamesList = Array<AttributeTypeAndValue>;
+export const NameNamesList = /*@__PURE__*/ S.Array(
+  AttributeTypeAndValue,
+) as any as S.Schema<NameNamesList>;
+
+export type NameOrganizationList = Array<string>;
+export const NameOrganizationList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NameOrganizationList>;
+
+export type NameOrganizationalUnitList = Array<string>;
+export const NameOrganizationalUnitList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NameOrganizationalUnitList>;
+
+export type NamePostalCodeList = Array<string>;
+export const NamePostalCodeList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NamePostalCodeList>;
+
+export type NameProvinceList = Array<string>;
+export const NameProvinceList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NameProvinceList>;
+
+export type NameStreetAddressList = Array<string>;
+export const NameStreetAddressList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NameStreetAddressList>;
+
+/** Name represents an X.509 distinguished name. This only includes the common elements of a DN. Note that Name is only an approximation of the X.509 structure. If an accurate representation is needed, asn1.Unmarshal the raw subject or issuer as an [RDNSequence]. */
+export interface Name {
+  CommonName?: string;
+  Country?: NameCountryList;
+  /** ExtraNames contains attributes to be copied, raw, into any marshaled distinguished names. Values override any attributes with the same OID. The ExtraNames field is not populated when parsing, see Names. */
+  ExtraNames?: NameExtraNamesList;
+  Locality?: NameLocalityList;
+  /** Names contains all parsed attributes. When parsing distinguished names, this can be used to extract non-standard attributes that are not parsed by this package. When marshaling to RDNSequences, the Names field is ignored, see ExtraNames. */
+  Names?: NameNamesList;
+  Organization?: NameOrganizationList;
+  OrganizationalUnit?: NameOrganizationalUnitList;
+  PostalCode?: NamePostalCodeList;
+  Province?: NameProvinceList;
+  SerialNumber?: string;
+  StreetAddress?: NameStreetAddressList;
+}
+export const Name = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    CommonName: S.optional(S.String),
+    Country: S.optional(NameCountryList),
+    ExtraNames: S.optional(NameExtraNamesList),
+    Locality: S.optional(NameLocalityList),
+    Names: S.optional(NameNamesList),
+    Organization: S.optional(NameOrganizationList),
+    OrganizationalUnit: S.optional(NameOrganizationalUnitList),
+    PostalCode: S.optional(NamePostalCodeList),
+    Province: S.optional(NameProvinceList),
+    SerialNumber: S.optional(S.String),
+    StreetAddress: S.optional(NameStreetAddressList),
+  }),
+).annotate({ identifier: "Name" }) as any as S.Schema<Name>;
+
+export type CertificateIssuingCertificateURLList = Array<string>;
+export const CertificateIssuingCertificateURLList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CertificateIssuingCertificateURLList>;
+
+/** RFC 5280, 4.2.2.1 (Authority Information Access) */
+export type CertificateOCSPServerList = Array<string>;
+export const CertificateOCSPServerList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CertificateOCSPServerList>;
+
+export type CertificatePermittedDNSDomainsList = Array<string>;
+export const CertificatePermittedDNSDomainsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CertificatePermittedDNSDomainsList>;
+
+export type CertificatePermittedEmailAddressesList = Array<string>;
+export const CertificatePermittedEmailAddressesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CertificatePermittedEmailAddressesList>;
+
+export type CertificatePermittedIPRangesList = Array<IPNet>;
+export const CertificatePermittedIPRangesList = /*@__PURE__*/ S.Array(
+  IPNet,
+) as any as S.Schema<CertificatePermittedIPRangesList>;
+
+export type CertificatePermittedURIDomainsList = Array<string>;
+export const CertificatePermittedURIDomainsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CertificatePermittedURIDomainsList>;
+
+/** Policies contains all policy identifiers included in the certificate. See CreateCertificate for context about how this field and the PolicyIdentifiers field interact. In Go 1.22, encoding/gob cannot handle and ignores this field. */
+export type CertificatePoliciesList = Array<string>;
+export const CertificatePoliciesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CertificatePoliciesList>;
+
+/** PolicyIdentifiers contains asn1.ObjectIdentifiers, the components of which are limited to int32. If a certificate contains a policy which cannot be represented by asn1.ObjectIdentifier, it will not be included in PolicyIdentifiers, but will be present in Policies, which contains all parsed policy OIDs. See CreateCertificate for context about how this field and the Policies field interact. */
+export type CertificatePolicyIdentifiersList = Array<ObjectIdentifier>;
+export const CertificatePolicyIdentifiersList = /*@__PURE__*/ S.Array(
+  ObjectIdentifier,
+) as any as S.Schema<CertificatePolicyIdentifiersList>;
+
+export interface PolicyMapping {
+  /** IssuerDomainPolicy contains a policy OID the issuing certificate considers equivalent to SubjectDomainPolicy in the subject certificate. */
+  IssuerDomainPolicy?: string;
+  /** SubjectDomainPolicy contains a OID the issuing certificate considers equivalent to IssuerDomainPolicy in the subject certificate. */
+  SubjectDomainPolicy?: string;
+}
+export const PolicyMapping = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    IssuerDomainPolicy: S.optional(S.String),
+    SubjectDomainPolicy: S.optional(S.String),
+  }),
+).annotate({ identifier: "PolicyMapping" }) as any as S.Schema<PolicyMapping>;
+
+/** PolicyMappings contains a list of policy mappings included in the certificate. */
+export type CertificatePolicyMappingsList = Array<PolicyMapping>;
+export const CertificatePolicyMappingsList = /*@__PURE__*/ S.Array(
+  PolicyMapping,
+) as any as S.Schema<CertificatePolicyMappingsList>;
+
+export type CertificateRawList = Array<number>;
+export const CertificateRawList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<CertificateRawList>;
+
+export type CertificateRawIssuerList = Array<number>;
+export const CertificateRawIssuerList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<CertificateRawIssuerList>;
+
+export type CertificateRawSubjectList = Array<number>;
+export const CertificateRawSubjectList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<CertificateRawSubjectList>;
+
+export type CertificateRawSubjectPublicKeyInfoList = Array<number>;
+export const CertificateRawSubjectPublicKeyInfoList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<CertificateRawSubjectPublicKeyInfoList>;
+
+export type CertificateRawTBSCertificateList = Array<number>;
+export const CertificateRawTBSCertificateList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<CertificateRawTBSCertificateList>;
+
+export type CertificateSignatureList = Array<number>;
+export const CertificateSignatureList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<CertificateSignatureList>;
+
+export type CertificateSubjectKeyIdList = Array<number>;
+export const CertificateSubjectKeyIdList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<CertificateSubjectKeyIdList>;
+
+export type CertificateURIsList = Array<string>;
+export const CertificateURIsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CertificateURIsList>;
+
+/** UnhandledCriticalExtensions contains a list of extension IDs that were not (fully) processed when parsing. Verify will fail if this slice is non-empty, unless verification is delegated to an OS library which understands all the critical extensions. Users can access these extensions using Extensions and can remove elements from this slice if they believe that they have been handled. */
+export type CertificateUnhandledCriticalExtensionsList =
+  Array<ObjectIdentifier>;
+export const CertificateUnhandledCriticalExtensionsList = /*@__PURE__*/ S.Array(
+  ObjectIdentifier,
+) as any as S.Schema<CertificateUnhandledCriticalExtensionsList>;
+
+export type CertificateUnknownExtKeyUsageList = Array<ObjectIdentifier>;
+export const CertificateUnknownExtKeyUsageList = /*@__PURE__*/ S.Array(
+  ObjectIdentifier,
+) as any as S.Schema<CertificateUnknownExtKeyUsageList>;
+
+export interface Certificate {
+  AuthorityKeyId?: CertificateAuthorityKeyIdList;
+  /** BasicConstraintsValid indicates whether IsCA, MaxPathLen, and MaxPathLenZero are valid. */
+  BasicConstraintsValid?: boolean;
+  /** CRL Distribution Points */
+  CRLDistributionPoints?: CertificateCRLDistributionPointsList;
+  /** Subject Alternate Name values. (Note that these values may not be valid if invalid values were contained within a parsed certificate. For example, an element of DNSNames may not be a valid DNS domain name.) */
+  DNSNames?: CertificateDNSNamesList;
+  EmailAddresses?: CertificateEmailAddressesList;
+  ExcludedDNSDomains?: CertificateExcludedDNSDomainsList;
+  ExcludedEmailAddresses?: CertificateExcludedEmailAddressesList;
+  ExcludedIPRanges?: CertificateExcludedIPRangesList;
+  ExcludedURIDomains?: CertificateExcludedURIDomainsList;
+  ExtKeyUsage?: CertificateExtKeyUsageList;
+  /** Extensions contains raw X.509 extensions. When parsing certificates, this can be used to extract non-critical extensions that are not parsed by this package. When marshaling certificates, the Extensions field is ignored, see ExtraExtensions. */
+  Extensions?: CertificateExtensionsList;
+  /** ExtraExtensions contains extensions to be copied, raw, into any marshaled certificates. Values override any extensions that would otherwise be produced based on the other fields. The ExtraExtensions field is not populated when parsing certificates, see Extensions. */
+  ExtraExtensions?: CertificateExtraExtensionsList;
+  IPAddresses?: CertificateIPAddressesList;
+  /** InhibitAnyPolicy and InhibitAnyPolicyZero indicate the presence and value of the inhibitAnyPolicy extension. The value of InhibitAnyPolicy indicates the number of additional certificates in the path after this certificate that may use the anyPolicy policy OID to indicate a match with any other policy. When parsing a certificate, a positive non-zero InhibitAnyPolicy means that the field was specified, -1 means it was unset, and InhibitAnyPolicyZero being true mean that the field was explicitly set to zero. The case of InhibitAnyPolicy==0 with InhibitAnyPolicyZero==false should be treated equivalent to -1 (unset). */
+  InhibitAnyPolicy?: number;
+  /** InhibitAnyPolicyZero indicates that InhibitAnyPolicy==0 should be interpreted as an actual maximum path length of zero. Otherwise, that combination is interpreted as InhibitAnyPolicy not being set. */
+  InhibitAnyPolicyZero?: boolean;
+  /** InhibitPolicyMapping and InhibitPolicyMappingZero indicate the presence and value of the inhibitPolicyMapping field of the policyConstraints extension. The value of InhibitPolicyMapping indicates the number of additional certificates in the path after this certificate that may use policy mapping. When parsing a certificate, a positive non-zero InhibitPolicyMapping means that the field was specified, -1 means it was unset, and InhibitPolicyMappingZero being true mean that the field was explicitly set to zero. The case of InhibitPolicyMapping==0 with InhibitPolicyMappingZero==false should be treated equivalent to -1 (unset). */
+  InhibitPolicyMapping?: number;
+  /** InhibitPolicyMappingZero indicates that InhibitPolicyMapping==0 should be interpreted as an actual maximum path length of zero. Otherwise, that combination is interpreted as InhibitAnyPolicy not being set. */
+  InhibitPolicyMappingZero?: boolean;
+  IsCA?: boolean;
+  Issuer?: Name;
+  IssuingCertificateURL?: CertificateIssuingCertificateURLList;
+  KeyUsage?: number;
+  /** MaxPathLen and MaxPathLenZero indicate the presence and value of the BasicConstraints' "pathLenConstraint". When parsing a certificate, a positive non-zero MaxPathLen means that the field was specified, -1 means it was unset, and MaxPathLenZero being true mean that the field was explicitly set to zero. The case of MaxPathLen==0 with MaxPathLenZero==false should be treated equivalent to -1 (unset). When generating a certificate, an unset pathLenConstraint can be requested with either MaxPathLen == -1 or using the zero value for both MaxPathLen and MaxPathLenZero. */
+  MaxPathLen?: number;
+  /** MaxPathLenZero indicates that BasicConstraintsValid==true and MaxPathLen==0 should be interpreted as an actual maximum path length of zero. Otherwise, that combination is interpreted as MaxPathLen not being set. */
+  MaxPathLenZero?: boolean;
+  NotAfter?: string;
+  NotBefore?: string;
+  /** RFC 5280, 4.2.2.1 (Authority Information Access) */
+  OCSPServer?: CertificateOCSPServerList;
+  PermittedDNSDomains?: CertificatePermittedDNSDomainsList;
+  /** Name constraints */
+  PermittedDNSDomainsCritical?: boolean;
+  PermittedEmailAddresses?: CertificatePermittedEmailAddressesList;
+  PermittedIPRanges?: CertificatePermittedIPRangesList;
+  PermittedURIDomains?: CertificatePermittedURIDomainsList;
+  /** Policies contains all policy identifiers included in the certificate. See CreateCertificate for context about how this field and the PolicyIdentifiers field interact. In Go 1.22, encoding/gob cannot handle and ignores this field. */
+  Policies?: CertificatePoliciesList;
+  /** PolicyIdentifiers contains asn1.ObjectIdentifiers, the components of which are limited to int32. If a certificate contains a policy which cannot be represented by asn1.ObjectIdentifier, it will not be included in PolicyIdentifiers, but will be present in Policies, which contains all parsed policy OIDs. See CreateCertificate for context about how this field and the Policies field interact. */
+  PolicyIdentifiers?: CertificatePolicyIdentifiersList;
+  /** PolicyMappings contains a list of policy mappings included in the certificate. */
+  PolicyMappings?: CertificatePolicyMappingsList;
+  PublicKey?: unknown;
+  PublicKeyAlgorithm?: number;
+  Raw?: CertificateRawList;
+  RawIssuer?: CertificateRawIssuerList;
+  RawSubject?: CertificateRawSubjectList;
+  RawSubjectPublicKeyInfo?: CertificateRawSubjectPublicKeyInfoList;
+  RawTBSCertificate?: CertificateRawTBSCertificateList;
+  /** RequireExplicitPolicy and RequireExplicitPolicyZero indicate the presence and value of the requireExplicitPolicy field of the policyConstraints extension. The value of RequireExplicitPolicy indicates the number of additional certificates in the path after this certificate before an explicit policy is required for the rest of the path. When an explicit policy is required, each subsequent certificate in the path must contain a required policy OID, or a policy OID which has been declared as equivalent through the policy mapping extension. When parsing a certificate, a positive non-zero RequireExplicitPolicy means that the field was specified, -1 means it was unset, and RequireExplicitPolicyZero being true mean that the field was explicitly set to zero. The case of RequireExplicitPolicy==0 with RequireExplicitPolicyZero==false should be treated equivalent to -1 (unset). */
+  RequireExplicitPolicy?: number;
+  /** RequireExplicitPolicyZero indicates that RequireExplicitPolicy==0 should be interpreted as an actual maximum path length of zero. Otherwise, that combination is interpreted as InhibitAnyPolicy not being set. */
+  RequireExplicitPolicyZero?: boolean;
+  SerialNumber?: number;
+  Signature?: CertificateSignatureList;
+  SignatureAlgorithm?: number;
+  Subject?: Name;
+  SubjectKeyId?: CertificateSubjectKeyIdList;
+  URIs?: CertificateURIsList;
+  /** UnhandledCriticalExtensions contains a list of extension IDs that were not (fully) processed when parsing. Verify will fail if this slice is non-empty, unless verification is delegated to an OS library which understands all the critical extensions. Users can access these extensions using Extensions and can remove elements from this slice if they believe that they have been handled. */
+  UnhandledCriticalExtensions?: CertificateUnhandledCriticalExtensionsList;
+  UnknownExtKeyUsage?: CertificateUnknownExtKeyUsageList;
+  Version?: number;
+}
+export const Certificate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    AuthorityKeyId: S.optional(CertificateAuthorityKeyIdList),
+    BasicConstraintsValid: S.optional(S.Boolean),
+    CRLDistributionPoints: S.optional(CertificateCRLDistributionPointsList),
+    DNSNames: S.optional(CertificateDNSNamesList),
+    EmailAddresses: S.optional(CertificateEmailAddressesList),
+    ExcludedDNSDomains: S.optional(CertificateExcludedDNSDomainsList),
+    ExcludedEmailAddresses: S.optional(CertificateExcludedEmailAddressesList),
+    ExcludedIPRanges: S.optional(CertificateExcludedIPRangesList),
+    ExcludedURIDomains: S.optional(CertificateExcludedURIDomainsList),
+    ExtKeyUsage: S.optional(CertificateExtKeyUsageList),
+    Extensions: S.optional(CertificateExtensionsList),
+    ExtraExtensions: S.optional(CertificateExtraExtensionsList),
+    IPAddresses: S.optional(CertificateIPAddressesList),
+    InhibitAnyPolicy: S.optional(S.Number),
+    InhibitAnyPolicyZero: S.optional(S.Boolean),
+    InhibitPolicyMapping: S.optional(S.Number),
+    InhibitPolicyMappingZero: S.optional(S.Boolean),
+    IsCA: S.optional(S.Boolean),
+    Issuer: S.optional(Name),
+    IssuingCertificateURL: S.optional(CertificateIssuingCertificateURLList),
+    KeyUsage: S.optional(S.Number),
+    MaxPathLen: S.optional(S.Number),
+    MaxPathLenZero: S.optional(S.Boolean),
+    NotAfter: S.optional(S.String),
+    NotBefore: S.optional(S.String),
+    OCSPServer: S.optional(CertificateOCSPServerList),
+    PermittedDNSDomains: S.optional(CertificatePermittedDNSDomainsList),
+    PermittedDNSDomainsCritical: S.optional(S.Boolean),
+    PermittedEmailAddresses: S.optional(CertificatePermittedEmailAddressesList),
+    PermittedIPRanges: S.optional(CertificatePermittedIPRangesList),
+    PermittedURIDomains: S.optional(CertificatePermittedURIDomainsList),
+    Policies: S.optional(CertificatePoliciesList),
+    PolicyIdentifiers: S.optional(CertificatePolicyIdentifiersList),
+    PolicyMappings: S.optional(CertificatePolicyMappingsList),
+    PublicKey: S.optional(S.Unknown),
+    PublicKeyAlgorithm: S.optional(S.Number),
+    Raw: S.optional(CertificateRawList),
+    RawIssuer: S.optional(CertificateRawIssuerList),
+    RawSubject: S.optional(CertificateRawSubjectList),
+    RawSubjectPublicKeyInfo: S.optional(CertificateRawSubjectPublicKeyInfoList),
+    RawTBSCertificate: S.optional(CertificateRawTBSCertificateList),
+    RequireExplicitPolicy: S.optional(S.Number),
+    RequireExplicitPolicyZero: S.optional(S.Boolean),
+    SerialNumber: S.optional(S.Number),
+    Signature: S.optional(CertificateSignatureList),
+    SignatureAlgorithm: S.optional(S.Number),
+    Subject: S.optional(Name),
+    SubjectKeyId: S.optional(CertificateSubjectKeyIdList),
+    URIs: S.optional(CertificateURIsList),
+    UnhandledCriticalExtensions: S.optional(
+      CertificateUnhandledCriticalExtensionsList,
+    ),
+    UnknownExtKeyUsage: S.optional(CertificateUnknownExtKeyUsageList),
+    Version: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Certificate" }) as any as S.Schema<Certificate>;
+
+/** X.509 certificate chain, parsed from `x5c` header. */
+export type JSONWebKeyCertificatesList = Array<Certificate>;
+export const JSONWebKeyCertificatesList = /*@__PURE__*/ S.Array(
+  Certificate,
+) as any as S.Schema<JSONWebKeyCertificatesList>;
+
+/** JSONWebKey represents a public or private key in JWK format. It can be marshaled into JSON and unmarshaled from JSON. */
+export interface JSONWebKey {
+  /** Key algorithm, parsed from `alg` header. */
+  Algorithm?: string;
+  /** X.509 certificate thumbprint (SHA-1), parsed from `x5t` header. */
+  CertificateThumbprintSHA1?: JSONWebKeyCertificateThumbprintSHA1List;
+  /** X.509 certificate thumbprint (SHA-256), parsed from `x5t#S256` header. */
+  CertificateThumbprintSHA256?: JSONWebKeyCertificateThumbprintSHA256List;
+  /** X.509 certificate chain, parsed from `x5c` header. */
+  Certificates?: JSONWebKeyCertificatesList;
+  CertificatesURL?: string;
+  /** Key is the Go in-memory representation of this key. It must have one of these types: - ed25519.PublicKey - ed25519.PrivateKey - *ecdsa.PublicKey - *ecdsa.PrivateKey - *rsa.PublicKey - *rsa.PrivateKey - []byte (a symmetric key) When marshaling this JSONWebKey into JSON, the "kty" header parameter will be automatically set based on the type of this field. */
+  Key?: unknown;
+  /** Key identifier, parsed from `kid` header. */
+  KeyID?: string;
+  /** Key use, parsed from `use` header. */
+  Use?: string;
+}
+export const JSONWebKey = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Algorithm: S.optional(S.String),
+    CertificateThumbprintSHA1: S.optional(
+      JSONWebKeyCertificateThumbprintSHA1List,
+    ),
+    CertificateThumbprintSHA256: S.optional(
+      JSONWebKeyCertificateThumbprintSHA256List,
+    ),
+    Certificates: S.optional(JSONWebKeyCertificatesList),
+    CertificatesURL: S.optional(S.String),
+    Key: S.optional(S.Unknown),
+    KeyID: S.optional(S.String),
+    Use: S.optional(S.String),
+  }),
+).annotate({ identifier: "JSONWebKey" }) as any as S.Schema<JSONWebKey>;
+
+export type GetJWKSResponseKeysList = Array<JSONWebKey>;
+export const GetJWKSResponseKeysList = /*@__PURE__*/ S.Array(
+  JSONWebKey,
+) as any as S.Schema<GetJWKSResponseKeysList>;
+
+export interface GetJWKSResponse {
+  keys?: GetJWKSResponseKeysList;
+}
+export const GetJWKSResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keys: S.optional(GetJWKSResponseKeysList),
+  }),
+).annotate({
+  identifier: "GetJWKSResponse",
+}) as any as S.Schema<GetJWKSResponse>;
+
 export interface GetLDAPStatusRequest {}
 export const GetLDAPStatusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -3223,16 +3788,14 @@ export const GetMetadataResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetMetadataResponse",
 }) as any as S.Schema<GetMetadataResponse>;
 
-export interface GetOrgByIDRequest {
+export interface GetOrgRequest {
   org_id: number;
 }
-export const GetOrgByIDRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOrgRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     org_id: S.Number.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/orgs/{org_id}", code: 200 })),
-).annotate({
-  identifier: "GetOrgByIDRequest",
-}) as any as S.Schema<GetOrgByIDRequest>;
+).annotate({ identifier: "GetOrgRequest" }) as any as S.Schema<GetOrgRequest>;
 
 export interface GetOrgByNameRequest {
   org_name: string;
@@ -4169,6 +4732,23 @@ export const GetSAMLLogoutResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSAMLLogoutResponse",
 }) as any as S.Schema<GetSAMLLogoutResponse>;
 
+export interface GetServiceAccountRequest {
+  serviceAccountId: number;
+}
+export const GetServiceAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceAccountId: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/serviceaccounts/{serviceAccountId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetServiceAccountRequest",
+}) as any as S.Schema<GetServiceAccountRequest>;
+
 export interface GetSessionRequest {
   /** UID of a migration session */
   uid: string;
@@ -4756,18 +5336,16 @@ export const ActiveSyncStatusDTO = /*@__PURE__*/ S.suspend(() =>
   identifier: "ActiveSyncStatusDTO",
 }) as any as S.Schema<ActiveSyncStatusDTO>;
 
-export interface GetTeamByIDRequest {
+export interface GetTeamRequest {
   team_id: string;
   accesscontrol?: boolean;
 }
-export const GetTeamByIDRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetTeamRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     team_id: S.String.pipe(T.Label()),
     accesscontrol: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/teams/{team_id}", code: 200 })),
-).annotate({
-  identifier: "GetTeamByIDRequest",
-}) as any as S.Schema<GetTeamByIDRequest>;
+).annotate({ identifier: "GetTeamRequest" }) as any as S.Schema<GetTeamRequest>;
 
 export interface GetTeamGroupsApiRequest {
   teamId: string;
@@ -4995,6 +5573,15 @@ export const PreferencesSpec = /*@__PURE__*/ S.suspend(() =>
   identifier: "PreferencesSpec",
 }) as any as S.Schema<PreferencesSpec>;
 
+export interface GetUserRequest {
+  user_id: number;
+}
+export const GetUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_id: S.Number.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/users/{user_id}", code: 200 })),
+).annotate({ identifier: "GetUserRequest" }) as any as S.Schema<GetUserRequest>;
+
 export interface GetUserAuthTokensRequest {}
 export const GetUserAuthTokensRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -5015,17 +5602,6 @@ export const GetUserAuthTokensResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetUserAuthTokensResponse",
 }) as any as S.Schema<GetUserAuthTokensResponse>;
-
-export interface GetUserByIDRequest {
-  user_id: number;
-}
-export const GetUserByIDRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.Number.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/users/{user_id}", code: 200 })),
-).annotate({
-  identifier: "GetUserByIDRequest",
-}) as any as S.Schema<GetUserByIDRequest>;
 
 export interface GetUserByLoginOrEmailRequest {
   /** loginOrEmail of the user */
@@ -5694,36 +6270,6 @@ export const MassDeleteAnnotationsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "MassDeleteAnnotationsRequest",
 }) as any as S.Schema<MassDeleteAnnotationsRequest>;
 
-export type PatchAnnotationRequestTagsList = Array<string>;
-export const PatchAnnotationRequestTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PatchAnnotationRequestTagsList>;
-
-export interface PatchAnnotationRequest {
-  annotation_id: string;
-  data?: unknown;
-  id?: number;
-  tags?: PatchAnnotationRequestTagsList;
-  text?: string;
-  time?: number;
-  timeEnd?: number;
-}
-export const PatchAnnotationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    annotation_id: S.String.pipe(T.Label()),
-    data: S.optional(S.Unknown),
-    id: S.optional(S.Number),
-    tags: S.optional(PatchAnnotationRequestTagsList),
-    text: S.optional(S.String),
-    time: S.optional(S.Number),
-    timeEnd: S.optional(S.Number),
-  }).pipe(
-    T.Http({ method: "PATCH", uri: "/annotations/{annotation_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "PatchAnnotationRequest",
-}) as any as S.Schema<PatchAnnotationRequest>;
-
 export type PatchProviderSettingsRequestSettingsMap = {
   [key: string]: unknown | undefined;
 };
@@ -5782,51 +6328,6 @@ export const PostACSResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PostACSResponse",
 }) as any as S.Schema<PostACSResponse>;
-
-export type PostAnnotationRequestTagsList = Array<string>;
-export const PostAnnotationRequestTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostAnnotationRequestTagsList>;
-
-export interface PostAnnotationRequest {
-  dashboardId?: number;
-  dashboardUID?: string;
-  data?: unknown;
-  panelId?: number;
-  tags?: PostAnnotationRequestTagsList;
-  text: string;
-  time?: number;
-  timeEnd?: number;
-}
-export const PostAnnotationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dashboardId: S.optional(S.Number),
-    dashboardUID: S.optional(S.String),
-    data: S.optional(S.Unknown),
-    panelId: S.optional(S.Number),
-    tags: S.optional(PostAnnotationRequestTagsList),
-    text: S.String,
-    time: S.optional(S.Number),
-    timeEnd: S.optional(S.Number),
-  }).pipe(T.Http({ method: "POST", uri: "/annotations", code: 200 })),
-).annotate({
-  identifier: "PostAnnotationRequest",
-}) as any as S.Schema<PostAnnotationRequest>;
-
-export interface PostAnnotationResponse {
-  /** ID Identifier of the created annotation. */
-  id: number;
-  /** Message Message of the created annotation. */
-  message: string;
-}
-export const PostAnnotationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number,
-    message: S.String,
-  }),
-).annotate({
-  identifier: "PostAnnotationResponse",
-}) as any as S.Schema<PostAnnotationResponse>;
 
 export interface PostGraphiteAnnotationRequest {
   data?: string;
@@ -6667,545 +7168,6 @@ export const RenderReportPDFsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RenderReportPDFsResponse",
 }) as any as S.Schema<RenderReportPDFsResponse>;
-
-export interface RetrieveJWKSRequest {}
-export const RetrieveJWKSRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/signing-keys/keys", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveJWKSRequest",
-}) as any as S.Schema<RetrieveJWKSRequest>;
-
-/** X.509 certificate thumbprint (SHA-1), parsed from `x5t` header. */
-export type JSONWebKeyCertificateThumbprintSHA1List = Array<number>;
-export const JSONWebKeyCertificateThumbprintSHA1List = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<JSONWebKeyCertificateThumbprintSHA1List>;
-
-/** X.509 certificate thumbprint (SHA-256), parsed from `x5t#S256` header. */
-export type JSONWebKeyCertificateThumbprintSHA256List = Array<number>;
-export const JSONWebKeyCertificateThumbprintSHA256List = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<JSONWebKeyCertificateThumbprintSHA256List>;
-
-export type CertificateAuthorityKeyIdList = Array<number>;
-export const CertificateAuthorityKeyIdList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<CertificateAuthorityKeyIdList>;
-
-/** CRL Distribution Points */
-export type CertificateCRLDistributionPointsList = Array<string>;
-export const CertificateCRLDistributionPointsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CertificateCRLDistributionPointsList>;
-
-/** Subject Alternate Name values. (Note that these values may not be valid if invalid values were contained within a parsed certificate. For example, an element of DNSNames may not be a valid DNS domain name.) */
-export type CertificateDNSNamesList = Array<string>;
-export const CertificateDNSNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CertificateDNSNamesList>;
-
-export type CertificateEmailAddressesList = Array<string>;
-export const CertificateEmailAddressesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CertificateEmailAddressesList>;
-
-export type CertificateExcludedDNSDomainsList = Array<string>;
-export const CertificateExcludedDNSDomainsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CertificateExcludedDNSDomainsList>;
-
-export type CertificateExcludedEmailAddressesList = Array<string>;
-export const CertificateExcludedEmailAddressesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CertificateExcludedEmailAddressesList>;
-
-/** See type [IPNet] and func [ParseCIDR] for details. */
-export type IPMask = Array<number>;
-export const IPMask = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<IPMask>;
-
-export interface IPNet {
-  IP?: string;
-  Mask?: IPMask;
-}
-export const IPNet = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    IP: S.optional(S.String),
-    Mask: S.optional(IPMask),
-  }),
-).annotate({ identifier: "IPNet" }) as any as S.Schema<IPNet>;
-
-export type CertificateExcludedIPRangesList = Array<IPNet>;
-export const CertificateExcludedIPRangesList = /*@__PURE__*/ S.Array(
-  IPNet,
-) as any as S.Schema<CertificateExcludedIPRangesList>;
-
-export type CertificateExcludedURIDomainsList = Array<string>;
-export const CertificateExcludedURIDomainsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CertificateExcludedURIDomainsList>;
-
-export type CertificateExtKeyUsageList = Array<number>;
-export const CertificateExtKeyUsageList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<CertificateExtKeyUsageList>;
-
-export type ObjectIdentifier = Array<number>;
-export const ObjectIdentifier = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<ObjectIdentifier>;
-
-export type ExtensionValueList = Array<number>;
-export const ExtensionValueList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<ExtensionValueList>;
-
-/** Extension represents the ASN.1 structure of the same name. See RFC 5280, section 4.2. */
-export interface Extension {
-  Critical?: boolean;
-  Id?: ObjectIdentifier;
-  Value?: ExtensionValueList;
-}
-export const Extension = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Critical: S.optional(S.Boolean),
-    Id: S.optional(ObjectIdentifier),
-    Value: S.optional(ExtensionValueList),
-  }),
-).annotate({ identifier: "Extension" }) as any as S.Schema<Extension>;
-
-/** Extensions contains raw X.509 extensions. When parsing certificates, this can be used to extract non-critical extensions that are not parsed by this package. When marshaling certificates, the Extensions field is ignored, see ExtraExtensions. */
-export type CertificateExtensionsList = Array<Extension>;
-export const CertificateExtensionsList = /*@__PURE__*/ S.Array(
-  Extension,
-) as any as S.Schema<CertificateExtensionsList>;
-
-/** ExtraExtensions contains extensions to be copied, raw, into any marshaled certificates. Values override any extensions that would otherwise be produced based on the other fields. The ExtraExtensions field is not populated when parsing certificates, see Extensions. */
-export type CertificateExtraExtensionsList = Array<Extension>;
-export const CertificateExtraExtensionsList = /*@__PURE__*/ S.Array(
-  Extension,
-) as any as S.Schema<CertificateExtraExtensionsList>;
-
-export type CertificateIPAddressesList = Array<string>;
-export const CertificateIPAddressesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CertificateIPAddressesList>;
-
-export type NameCountryList = Array<string>;
-export const NameCountryList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NameCountryList>;
-
-/** AttributeTypeAndValue mirrors the ASN.1 structure of the same name in RFC 5280, Section 4.1.2.4. */
-export interface AttributeTypeAndValue {
-  Type?: ObjectIdentifier;
-  Value?: unknown;
-}
-export const AttributeTypeAndValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Type: S.optional(ObjectIdentifier),
-    Value: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "AttributeTypeAndValue",
-}) as any as S.Schema<AttributeTypeAndValue>;
-
-/** ExtraNames contains attributes to be copied, raw, into any marshaled distinguished names. Values override any attributes with the same OID. The ExtraNames field is not populated when parsing, see Names. */
-export type NameExtraNamesList = Array<AttributeTypeAndValue>;
-export const NameExtraNamesList = /*@__PURE__*/ S.Array(
-  AttributeTypeAndValue,
-) as any as S.Schema<NameExtraNamesList>;
-
-export type NameLocalityList = Array<string>;
-export const NameLocalityList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NameLocalityList>;
-
-/** Names contains all parsed attributes. When parsing distinguished names, this can be used to extract non-standard attributes that are not parsed by this package. When marshaling to RDNSequences, the Names field is ignored, see ExtraNames. */
-export type NameNamesList = Array<AttributeTypeAndValue>;
-export const NameNamesList = /*@__PURE__*/ S.Array(
-  AttributeTypeAndValue,
-) as any as S.Schema<NameNamesList>;
-
-export type NameOrganizationList = Array<string>;
-export const NameOrganizationList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NameOrganizationList>;
-
-export type NameOrganizationalUnitList = Array<string>;
-export const NameOrganizationalUnitList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NameOrganizationalUnitList>;
-
-export type NamePostalCodeList = Array<string>;
-export const NamePostalCodeList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NamePostalCodeList>;
-
-export type NameProvinceList = Array<string>;
-export const NameProvinceList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NameProvinceList>;
-
-export type NameStreetAddressList = Array<string>;
-export const NameStreetAddressList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NameStreetAddressList>;
-
-/** Name represents an X.509 distinguished name. This only includes the common elements of a DN. Note that Name is only an approximation of the X.509 structure. If an accurate representation is needed, asn1.Unmarshal the raw subject or issuer as an [RDNSequence]. */
-export interface Name {
-  CommonName?: string;
-  Country?: NameCountryList;
-  /** ExtraNames contains attributes to be copied, raw, into any marshaled distinguished names. Values override any attributes with the same OID. The ExtraNames field is not populated when parsing, see Names. */
-  ExtraNames?: NameExtraNamesList;
-  Locality?: NameLocalityList;
-  /** Names contains all parsed attributes. When parsing distinguished names, this can be used to extract non-standard attributes that are not parsed by this package. When marshaling to RDNSequences, the Names field is ignored, see ExtraNames. */
-  Names?: NameNamesList;
-  Organization?: NameOrganizationList;
-  OrganizationalUnit?: NameOrganizationalUnitList;
-  PostalCode?: NamePostalCodeList;
-  Province?: NameProvinceList;
-  SerialNumber?: string;
-  StreetAddress?: NameStreetAddressList;
-}
-export const Name = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    CommonName: S.optional(S.String),
-    Country: S.optional(NameCountryList),
-    ExtraNames: S.optional(NameExtraNamesList),
-    Locality: S.optional(NameLocalityList),
-    Names: S.optional(NameNamesList),
-    Organization: S.optional(NameOrganizationList),
-    OrganizationalUnit: S.optional(NameOrganizationalUnitList),
-    PostalCode: S.optional(NamePostalCodeList),
-    Province: S.optional(NameProvinceList),
-    SerialNumber: S.optional(S.String),
-    StreetAddress: S.optional(NameStreetAddressList),
-  }),
-).annotate({ identifier: "Name" }) as any as S.Schema<Name>;
-
-export type CertificateIssuingCertificateURLList = Array<string>;
-export const CertificateIssuingCertificateURLList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CertificateIssuingCertificateURLList>;
-
-/** RFC 5280, 4.2.2.1 (Authority Information Access) */
-export type CertificateOCSPServerList = Array<string>;
-export const CertificateOCSPServerList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CertificateOCSPServerList>;
-
-export type CertificatePermittedDNSDomainsList = Array<string>;
-export const CertificatePermittedDNSDomainsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CertificatePermittedDNSDomainsList>;
-
-export type CertificatePermittedEmailAddressesList = Array<string>;
-export const CertificatePermittedEmailAddressesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CertificatePermittedEmailAddressesList>;
-
-export type CertificatePermittedIPRangesList = Array<IPNet>;
-export const CertificatePermittedIPRangesList = /*@__PURE__*/ S.Array(
-  IPNet,
-) as any as S.Schema<CertificatePermittedIPRangesList>;
-
-export type CertificatePermittedURIDomainsList = Array<string>;
-export const CertificatePermittedURIDomainsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CertificatePermittedURIDomainsList>;
-
-/** Policies contains all policy identifiers included in the certificate. See CreateCertificate for context about how this field and the PolicyIdentifiers field interact. In Go 1.22, encoding/gob cannot handle and ignores this field. */
-export type CertificatePoliciesList = Array<string>;
-export const CertificatePoliciesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CertificatePoliciesList>;
-
-/** PolicyIdentifiers contains asn1.ObjectIdentifiers, the components of which are limited to int32. If a certificate contains a policy which cannot be represented by asn1.ObjectIdentifier, it will not be included in PolicyIdentifiers, but will be present in Policies, which contains all parsed policy OIDs. See CreateCertificate for context about how this field and the Policies field interact. */
-export type CertificatePolicyIdentifiersList = Array<ObjectIdentifier>;
-export const CertificatePolicyIdentifiersList = /*@__PURE__*/ S.Array(
-  ObjectIdentifier,
-) as any as S.Schema<CertificatePolicyIdentifiersList>;
-
-export interface PolicyMapping {
-  /** IssuerDomainPolicy contains a policy OID the issuing certificate considers equivalent to SubjectDomainPolicy in the subject certificate. */
-  IssuerDomainPolicy?: string;
-  /** SubjectDomainPolicy contains a OID the issuing certificate considers equivalent to IssuerDomainPolicy in the subject certificate. */
-  SubjectDomainPolicy?: string;
-}
-export const PolicyMapping = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    IssuerDomainPolicy: S.optional(S.String),
-    SubjectDomainPolicy: S.optional(S.String),
-  }),
-).annotate({ identifier: "PolicyMapping" }) as any as S.Schema<PolicyMapping>;
-
-/** PolicyMappings contains a list of policy mappings included in the certificate. */
-export type CertificatePolicyMappingsList = Array<PolicyMapping>;
-export const CertificatePolicyMappingsList = /*@__PURE__*/ S.Array(
-  PolicyMapping,
-) as any as S.Schema<CertificatePolicyMappingsList>;
-
-export type CertificateRawList = Array<number>;
-export const CertificateRawList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<CertificateRawList>;
-
-export type CertificateRawIssuerList = Array<number>;
-export const CertificateRawIssuerList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<CertificateRawIssuerList>;
-
-export type CertificateRawSubjectList = Array<number>;
-export const CertificateRawSubjectList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<CertificateRawSubjectList>;
-
-export type CertificateRawSubjectPublicKeyInfoList = Array<number>;
-export const CertificateRawSubjectPublicKeyInfoList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<CertificateRawSubjectPublicKeyInfoList>;
-
-export type CertificateRawTBSCertificateList = Array<number>;
-export const CertificateRawTBSCertificateList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<CertificateRawTBSCertificateList>;
-
-export type CertificateSignatureList = Array<number>;
-export const CertificateSignatureList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<CertificateSignatureList>;
-
-export type CertificateSubjectKeyIdList = Array<number>;
-export const CertificateSubjectKeyIdList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<CertificateSubjectKeyIdList>;
-
-export type CertificateURIsList = Array<string>;
-export const CertificateURIsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CertificateURIsList>;
-
-/** UnhandledCriticalExtensions contains a list of extension IDs that were not (fully) processed when parsing. Verify will fail if this slice is non-empty, unless verification is delegated to an OS library which understands all the critical extensions. Users can access these extensions using Extensions and can remove elements from this slice if they believe that they have been handled. */
-export type CertificateUnhandledCriticalExtensionsList =
-  Array<ObjectIdentifier>;
-export const CertificateUnhandledCriticalExtensionsList = /*@__PURE__*/ S.Array(
-  ObjectIdentifier,
-) as any as S.Schema<CertificateUnhandledCriticalExtensionsList>;
-
-export type CertificateUnknownExtKeyUsageList = Array<ObjectIdentifier>;
-export const CertificateUnknownExtKeyUsageList = /*@__PURE__*/ S.Array(
-  ObjectIdentifier,
-) as any as S.Schema<CertificateUnknownExtKeyUsageList>;
-
-export interface Certificate {
-  AuthorityKeyId?: CertificateAuthorityKeyIdList;
-  /** BasicConstraintsValid indicates whether IsCA, MaxPathLen, and MaxPathLenZero are valid. */
-  BasicConstraintsValid?: boolean;
-  /** CRL Distribution Points */
-  CRLDistributionPoints?: CertificateCRLDistributionPointsList;
-  /** Subject Alternate Name values. (Note that these values may not be valid if invalid values were contained within a parsed certificate. For example, an element of DNSNames may not be a valid DNS domain name.) */
-  DNSNames?: CertificateDNSNamesList;
-  EmailAddresses?: CertificateEmailAddressesList;
-  ExcludedDNSDomains?: CertificateExcludedDNSDomainsList;
-  ExcludedEmailAddresses?: CertificateExcludedEmailAddressesList;
-  ExcludedIPRanges?: CertificateExcludedIPRangesList;
-  ExcludedURIDomains?: CertificateExcludedURIDomainsList;
-  ExtKeyUsage?: CertificateExtKeyUsageList;
-  /** Extensions contains raw X.509 extensions. When parsing certificates, this can be used to extract non-critical extensions that are not parsed by this package. When marshaling certificates, the Extensions field is ignored, see ExtraExtensions. */
-  Extensions?: CertificateExtensionsList;
-  /** ExtraExtensions contains extensions to be copied, raw, into any marshaled certificates. Values override any extensions that would otherwise be produced based on the other fields. The ExtraExtensions field is not populated when parsing certificates, see Extensions. */
-  ExtraExtensions?: CertificateExtraExtensionsList;
-  IPAddresses?: CertificateIPAddressesList;
-  /** InhibitAnyPolicy and InhibitAnyPolicyZero indicate the presence and value of the inhibitAnyPolicy extension. The value of InhibitAnyPolicy indicates the number of additional certificates in the path after this certificate that may use the anyPolicy policy OID to indicate a match with any other policy. When parsing a certificate, a positive non-zero InhibitAnyPolicy means that the field was specified, -1 means it was unset, and InhibitAnyPolicyZero being true mean that the field was explicitly set to zero. The case of InhibitAnyPolicy==0 with InhibitAnyPolicyZero==false should be treated equivalent to -1 (unset). */
-  InhibitAnyPolicy?: number;
-  /** InhibitAnyPolicyZero indicates that InhibitAnyPolicy==0 should be interpreted as an actual maximum path length of zero. Otherwise, that combination is interpreted as InhibitAnyPolicy not being set. */
-  InhibitAnyPolicyZero?: boolean;
-  /** InhibitPolicyMapping and InhibitPolicyMappingZero indicate the presence and value of the inhibitPolicyMapping field of the policyConstraints extension. The value of InhibitPolicyMapping indicates the number of additional certificates in the path after this certificate that may use policy mapping. When parsing a certificate, a positive non-zero InhibitPolicyMapping means that the field was specified, -1 means it was unset, and InhibitPolicyMappingZero being true mean that the field was explicitly set to zero. The case of InhibitPolicyMapping==0 with InhibitPolicyMappingZero==false should be treated equivalent to -1 (unset). */
-  InhibitPolicyMapping?: number;
-  /** InhibitPolicyMappingZero indicates that InhibitPolicyMapping==0 should be interpreted as an actual maximum path length of zero. Otherwise, that combination is interpreted as InhibitAnyPolicy not being set. */
-  InhibitPolicyMappingZero?: boolean;
-  IsCA?: boolean;
-  Issuer?: Name;
-  IssuingCertificateURL?: CertificateIssuingCertificateURLList;
-  KeyUsage?: number;
-  /** MaxPathLen and MaxPathLenZero indicate the presence and value of the BasicConstraints' "pathLenConstraint". When parsing a certificate, a positive non-zero MaxPathLen means that the field was specified, -1 means it was unset, and MaxPathLenZero being true mean that the field was explicitly set to zero. The case of MaxPathLen==0 with MaxPathLenZero==false should be treated equivalent to -1 (unset). When generating a certificate, an unset pathLenConstraint can be requested with either MaxPathLen == -1 or using the zero value for both MaxPathLen and MaxPathLenZero. */
-  MaxPathLen?: number;
-  /** MaxPathLenZero indicates that BasicConstraintsValid==true and MaxPathLen==0 should be interpreted as an actual maximum path length of zero. Otherwise, that combination is interpreted as MaxPathLen not being set. */
-  MaxPathLenZero?: boolean;
-  NotAfter?: string;
-  NotBefore?: string;
-  /** RFC 5280, 4.2.2.1 (Authority Information Access) */
-  OCSPServer?: CertificateOCSPServerList;
-  PermittedDNSDomains?: CertificatePermittedDNSDomainsList;
-  /** Name constraints */
-  PermittedDNSDomainsCritical?: boolean;
-  PermittedEmailAddresses?: CertificatePermittedEmailAddressesList;
-  PermittedIPRanges?: CertificatePermittedIPRangesList;
-  PermittedURIDomains?: CertificatePermittedURIDomainsList;
-  /** Policies contains all policy identifiers included in the certificate. See CreateCertificate for context about how this field and the PolicyIdentifiers field interact. In Go 1.22, encoding/gob cannot handle and ignores this field. */
-  Policies?: CertificatePoliciesList;
-  /** PolicyIdentifiers contains asn1.ObjectIdentifiers, the components of which are limited to int32. If a certificate contains a policy which cannot be represented by asn1.ObjectIdentifier, it will not be included in PolicyIdentifiers, but will be present in Policies, which contains all parsed policy OIDs. See CreateCertificate for context about how this field and the Policies field interact. */
-  PolicyIdentifiers?: CertificatePolicyIdentifiersList;
-  /** PolicyMappings contains a list of policy mappings included in the certificate. */
-  PolicyMappings?: CertificatePolicyMappingsList;
-  PublicKey?: unknown;
-  PublicKeyAlgorithm?: number;
-  Raw?: CertificateRawList;
-  RawIssuer?: CertificateRawIssuerList;
-  RawSubject?: CertificateRawSubjectList;
-  RawSubjectPublicKeyInfo?: CertificateRawSubjectPublicKeyInfoList;
-  RawTBSCertificate?: CertificateRawTBSCertificateList;
-  /** RequireExplicitPolicy and RequireExplicitPolicyZero indicate the presence and value of the requireExplicitPolicy field of the policyConstraints extension. The value of RequireExplicitPolicy indicates the number of additional certificates in the path after this certificate before an explicit policy is required for the rest of the path. When an explicit policy is required, each subsequent certificate in the path must contain a required policy OID, or a policy OID which has been declared as equivalent through the policy mapping extension. When parsing a certificate, a positive non-zero RequireExplicitPolicy means that the field was specified, -1 means it was unset, and RequireExplicitPolicyZero being true mean that the field was explicitly set to zero. The case of RequireExplicitPolicy==0 with RequireExplicitPolicyZero==false should be treated equivalent to -1 (unset). */
-  RequireExplicitPolicy?: number;
-  /** RequireExplicitPolicyZero indicates that RequireExplicitPolicy==0 should be interpreted as an actual maximum path length of zero. Otherwise, that combination is interpreted as InhibitAnyPolicy not being set. */
-  RequireExplicitPolicyZero?: boolean;
-  SerialNumber?: number;
-  Signature?: CertificateSignatureList;
-  SignatureAlgorithm?: number;
-  Subject?: Name;
-  SubjectKeyId?: CertificateSubjectKeyIdList;
-  URIs?: CertificateURIsList;
-  /** UnhandledCriticalExtensions contains a list of extension IDs that were not (fully) processed when parsing. Verify will fail if this slice is non-empty, unless verification is delegated to an OS library which understands all the critical extensions. Users can access these extensions using Extensions and can remove elements from this slice if they believe that they have been handled. */
-  UnhandledCriticalExtensions?: CertificateUnhandledCriticalExtensionsList;
-  UnknownExtKeyUsage?: CertificateUnknownExtKeyUsageList;
-  Version?: number;
-}
-export const Certificate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    AuthorityKeyId: S.optional(CertificateAuthorityKeyIdList),
-    BasicConstraintsValid: S.optional(S.Boolean),
-    CRLDistributionPoints: S.optional(CertificateCRLDistributionPointsList),
-    DNSNames: S.optional(CertificateDNSNamesList),
-    EmailAddresses: S.optional(CertificateEmailAddressesList),
-    ExcludedDNSDomains: S.optional(CertificateExcludedDNSDomainsList),
-    ExcludedEmailAddresses: S.optional(CertificateExcludedEmailAddressesList),
-    ExcludedIPRanges: S.optional(CertificateExcludedIPRangesList),
-    ExcludedURIDomains: S.optional(CertificateExcludedURIDomainsList),
-    ExtKeyUsage: S.optional(CertificateExtKeyUsageList),
-    Extensions: S.optional(CertificateExtensionsList),
-    ExtraExtensions: S.optional(CertificateExtraExtensionsList),
-    IPAddresses: S.optional(CertificateIPAddressesList),
-    InhibitAnyPolicy: S.optional(S.Number),
-    InhibitAnyPolicyZero: S.optional(S.Boolean),
-    InhibitPolicyMapping: S.optional(S.Number),
-    InhibitPolicyMappingZero: S.optional(S.Boolean),
-    IsCA: S.optional(S.Boolean),
-    Issuer: S.optional(Name),
-    IssuingCertificateURL: S.optional(CertificateIssuingCertificateURLList),
-    KeyUsage: S.optional(S.Number),
-    MaxPathLen: S.optional(S.Number),
-    MaxPathLenZero: S.optional(S.Boolean),
-    NotAfter: S.optional(S.String),
-    NotBefore: S.optional(S.String),
-    OCSPServer: S.optional(CertificateOCSPServerList),
-    PermittedDNSDomains: S.optional(CertificatePermittedDNSDomainsList),
-    PermittedDNSDomainsCritical: S.optional(S.Boolean),
-    PermittedEmailAddresses: S.optional(CertificatePermittedEmailAddressesList),
-    PermittedIPRanges: S.optional(CertificatePermittedIPRangesList),
-    PermittedURIDomains: S.optional(CertificatePermittedURIDomainsList),
-    Policies: S.optional(CertificatePoliciesList),
-    PolicyIdentifiers: S.optional(CertificatePolicyIdentifiersList),
-    PolicyMappings: S.optional(CertificatePolicyMappingsList),
-    PublicKey: S.optional(S.Unknown),
-    PublicKeyAlgorithm: S.optional(S.Number),
-    Raw: S.optional(CertificateRawList),
-    RawIssuer: S.optional(CertificateRawIssuerList),
-    RawSubject: S.optional(CertificateRawSubjectList),
-    RawSubjectPublicKeyInfo: S.optional(CertificateRawSubjectPublicKeyInfoList),
-    RawTBSCertificate: S.optional(CertificateRawTBSCertificateList),
-    RequireExplicitPolicy: S.optional(S.Number),
-    RequireExplicitPolicyZero: S.optional(S.Boolean),
-    SerialNumber: S.optional(S.Number),
-    Signature: S.optional(CertificateSignatureList),
-    SignatureAlgorithm: S.optional(S.Number),
-    Subject: S.optional(Name),
-    SubjectKeyId: S.optional(CertificateSubjectKeyIdList),
-    URIs: S.optional(CertificateURIsList),
-    UnhandledCriticalExtensions: S.optional(
-      CertificateUnhandledCriticalExtensionsList,
-    ),
-    UnknownExtKeyUsage: S.optional(CertificateUnknownExtKeyUsageList),
-    Version: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Certificate" }) as any as S.Schema<Certificate>;
-
-/** X.509 certificate chain, parsed from `x5c` header. */
-export type JSONWebKeyCertificatesList = Array<Certificate>;
-export const JSONWebKeyCertificatesList = /*@__PURE__*/ S.Array(
-  Certificate,
-) as any as S.Schema<JSONWebKeyCertificatesList>;
-
-/** JSONWebKey represents a public or private key in JWK format. It can be marshaled into JSON and unmarshaled from JSON. */
-export interface JSONWebKey {
-  /** Key algorithm, parsed from `alg` header. */
-  Algorithm?: string;
-  /** X.509 certificate thumbprint (SHA-1), parsed from `x5t` header. */
-  CertificateThumbprintSHA1?: JSONWebKeyCertificateThumbprintSHA1List;
-  /** X.509 certificate thumbprint (SHA-256), parsed from `x5t#S256` header. */
-  CertificateThumbprintSHA256?: JSONWebKeyCertificateThumbprintSHA256List;
-  /** X.509 certificate chain, parsed from `x5c` header. */
-  Certificates?: JSONWebKeyCertificatesList;
-  CertificatesURL?: string;
-  /** Key is the Go in-memory representation of this key. It must have one of these types: - ed25519.PublicKey - ed25519.PrivateKey - *ecdsa.PublicKey - *ecdsa.PrivateKey - *rsa.PublicKey - *rsa.PrivateKey - []byte (a symmetric key) When marshaling this JSONWebKey into JSON, the "kty" header parameter will be automatically set based on the type of this field. */
-  Key?: unknown;
-  /** Key identifier, parsed from `kid` header. */
-  KeyID?: string;
-  /** Key use, parsed from `use` header. */
-  Use?: string;
-}
-export const JSONWebKey = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Algorithm: S.optional(S.String),
-    CertificateThumbprintSHA1: S.optional(
-      JSONWebKeyCertificateThumbprintSHA1List,
-    ),
-    CertificateThumbprintSHA256: S.optional(
-      JSONWebKeyCertificateThumbprintSHA256List,
-    ),
-    Certificates: S.optional(JSONWebKeyCertificatesList),
-    CertificatesURL: S.optional(S.String),
-    Key: S.optional(S.Unknown),
-    KeyID: S.optional(S.String),
-    Use: S.optional(S.String),
-  }),
-).annotate({ identifier: "JSONWebKey" }) as any as S.Schema<JSONWebKey>;
-
-export type RetrieveJWKSResponseKeysList = Array<JSONWebKey>;
-export const RetrieveJWKSResponseKeysList = /*@__PURE__*/ S.Array(
-  JSONWebKey,
-) as any as S.Schema<RetrieveJWKSResponseKeysList>;
-
-export interface RetrieveJWKSResponse {
-  keys?: RetrieveJWKSResponseKeysList;
-}
-export const RetrieveJWKSResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keys: S.optional(RetrieveJWKSResponseKeysList),
-  }),
-).annotate({
-  identifier: "RetrieveJWKSResponse",
-}) as any as S.Schema<RetrieveJWKSResponse>;
-
-export interface RetrieveServiceAccountRequest {
-  serviceAccountId: number;
-}
-export const RetrieveServiceAccountRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceAccountId: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/serviceaccounts/{serviceAccountId}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveServiceAccountRequest",
-}) as any as S.Schema<RetrieveServiceAccountRequest>;
 
 export interface RevokeInviteRequest {
   invitation_code: string;
@@ -9371,6 +9333,42 @@ export const UpdateAnnotationRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateAnnotationRequest",
 }) as any as S.Schema<UpdateAnnotationRequest>;
 
+export type UpdateAnnotationByAnnotationIdRequestTagsList = Array<string>;
+export const UpdateAnnotationByAnnotationIdRequestTagsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateAnnotationByAnnotationIdRequestTagsList>;
+
+export interface UpdateAnnotationByAnnotationIdRequest {
+  annotation_id: string;
+  data?: unknown;
+  id?: number;
+  tags?: UpdateAnnotationByAnnotationIdRequestTagsList;
+  text?: string;
+  time?: number;
+  timeEnd?: number;
+}
+export const UpdateAnnotationByAnnotationIdRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      annotation_id: S.String.pipe(T.Label()),
+      data: S.optional(S.Unknown),
+      id: S.optional(S.Number),
+      tags: S.optional(UpdateAnnotationByAnnotationIdRequestTagsList),
+      text: S.optional(S.String),
+      time: S.optional(S.Number),
+      timeEnd: S.optional(S.Number),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/annotations/{annotation_id}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "UpdateAnnotationByAnnotationIdRequest",
+}) as any as S.Schema<UpdateAnnotationByAnnotationIdRequest>;
+
 /** Target data query */
 export type CorrelationConfigUpdateDTOTargetMap = {
   [key: string]: unknown | undefined;
@@ -10699,6 +10697,21 @@ export const cleanDataSourceCache: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateAnnotationError = BadRequest | Forbidden | GrafanaOpError;
+/** Create Annotation. Creates an annotation in the Grafana database. The dashboardId and panelId fields are optional. If they are not specified then an organization annotation is created and can be queried in any dashboard that adds the Grafana annotations data source. When creating a region annotation include the timeEnd property. The format for `time` and `timeEnd` should be epoch numbers in millisecond resolution. The response for this HTTP request is slightly different in versions prior to v6.4. In prior versions you would also get an endId if you where creating a region. But in 6.4 regions are represented using a single event with time and timeEnd properties. */
+export const createAnnotation: API.OperationMethod<
+  CreateAnnotationRequest,
+  CreateAnnotationResponse,
+  CreateAnnotationError,
+  GrafanaOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateAnnotationRequest,
+  output: CreateAnnotationResponse,
+  errors: [BadRequest, Forbidden, UnknownGrafanaError],
+  protocol: GrafanaProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateCloudMigrationTokenError = Forbidden | GrafanaOpError;
 /** Create gcom access token. */
 export const createCloudMigrationToken: API.OperationMethod<
@@ -11020,15 +11033,15 @@ export const datasourceProxyPOSTByUIDcalls: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteAnnotationByIDError = Forbidden | GrafanaOpError;
+export type DeleteAnnotationError = Forbidden | GrafanaOpError;
 /** Delete Annotation By ID. Deletes the annotation that matches the specified ID. */
-export const deleteAnnotationByID: API.OperationMethod<
-  DeleteAnnotationByIDRequest,
+export const deleteAnnotation: API.OperationMethod<
+  DeleteAnnotationRequest,
   SuccessResponseBody,
-  DeleteAnnotationByIDError,
+  DeleteAnnotationError,
   GrafanaOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteAnnotationByIDRequest,
+  input: DeleteAnnotationRequest,
   output: SuccessResponseBody,
   errors: [Forbidden, UnknownGrafanaError],
   protocol: GrafanaProtocol,
@@ -11157,19 +11170,15 @@ export const deleteLicenseToken: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteOrgByIDError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | GrafanaOpError;
+export type DeleteOrgError = BadRequest | Forbidden | NotFound | GrafanaOpError;
 /** Delete Organization. */
-export const deleteOrgByID: API.OperationMethod<
-  DeleteOrgByIDRequest,
+export const deleteOrg: API.OperationMethod<
+  DeleteOrgRequest,
   SuccessResponseBody,
-  DeleteOrgByIDError,
+  DeleteOrgError,
   GrafanaOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteOrgByIDRequest,
+  input: DeleteOrgRequest,
   output: SuccessResponseBody,
   errors: [BadRequest, Forbidden, NotFound, UnknownGrafanaError],
   protocol: GrafanaProtocol,
@@ -11291,19 +11300,15 @@ export const deleteSession: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteTeamByIDError =
-  | Forbidden
-  | NotFound
-  | Conflict
-  | GrafanaOpError;
+export type DeleteTeamError = Forbidden | NotFound | Conflict | GrafanaOpError;
 /** Delete Team By ID. */
-export const deleteTeamByID: API.OperationMethod<
-  DeleteTeamByIDRequest,
+export const deleteTeam: API.OperationMethod<
+  DeleteTeamRequest,
   SuccessResponseBody,
-  DeleteTeamByIDError,
+  DeleteTeamError,
   GrafanaOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteTeamByIDRequest,
+  input: DeleteTeamRequest,
   output: SuccessResponseBody,
   errors: [Forbidden, NotFound, Conflict, UnknownGrafanaError],
   protocol: GrafanaProtocol,
@@ -11374,15 +11379,15 @@ export const getAccessControlStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAnnotationByIDError = GrafanaOpError;
+export type GetAnnotationError = GrafanaOpError;
 /** Get Annotation by ID. */
-export const getAnnotationByID: API.OperationMethod<
-  GetAnnotationByIDRequest,
+export const getAnnotation: API.OperationMethod<
+  GetAnnotationRequest,
   Annotation,
-  GetAnnotationByIDError,
+  GetAnnotationError,
   GrafanaOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAnnotationByIDRequest,
+  input: GetAnnotationRequest,
   output: Annotation,
   errors: [UnknownGrafanaError],
   protocol: GrafanaProtocol,
@@ -11588,6 +11593,21 @@ export const getHealth: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetJWKSError = GrafanaOpError;
+/** Get JSON Web Key Set (JWKS) with all the keys that can be used to verify tokens (public keys) Required permissions None */
+export const getJWKS: API.OperationMethod<
+  GetJWKSRequest,
+  GetJWKSResponse,
+  GetJWKSError,
+  GrafanaOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetJWKSRequest,
+  output: GetJWKSResponse,
+  errors: [UnknownGrafanaError],
+  protocol: GrafanaProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetLDAPStatusError = Forbidden | GrafanaOpError;
 /** Attempts to connect to all the configured LDAP servers and returns information on whenever they're available or not. If you are running Grafana Enterprise and have Fine-grained access control enabled, you need to have a permission with action `ldap.status:read`. */
 export const getLDAPStatus: API.OperationMethod<
@@ -11696,15 +11716,15 @@ export const getMetadata: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetOrgByIDError = Forbidden | GrafanaOpError;
+export type GetOrgError = Forbidden | GrafanaOpError;
 /** Get Organization by ID. */
-export const getOrgByID: API.OperationMethod<
-  GetOrgByIDRequest,
+export const getOrg: API.OperationMethod<
+  GetOrgRequest,
   OrgDetailsDTO,
-  GetOrgByIDError,
+  GetOrgError,
   GrafanaOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetOrgByIDRequest,
+  input: GetOrgRequest,
   output: OrgDetailsDTO,
   errors: [Forbidden, UnknownGrafanaError],
   protocol: GrafanaProtocol,
@@ -12011,6 +12031,25 @@ export const getSAMLLogout: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetServiceAccountError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | GrafanaOpError;
+/** Get single serviceaccount by Id Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation): action: `serviceaccounts:read` scope: `serviceaccounts:id:1` (single service account) */
+export const getServiceAccount: API.OperationMethod<
+  GetServiceAccountRequest,
+  ServiceAccountDTO,
+  GetServiceAccountError,
+  GrafanaOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServiceAccountRequest,
+  output: ServiceAccountDTO,
+  errors: [BadRequest, Forbidden, NotFound, UnknownGrafanaError],
+  protocol: GrafanaProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetSessionError = BadRequest | Forbidden | GrafanaOpError;
 /** Get a cloud migration session by its uid. */
 export const getSession: API.OperationMethod<
@@ -12191,15 +12230,15 @@ export const getSyncStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetTeamByIDError = Forbidden | NotFound | GrafanaOpError;
+export type GetTeamError = Forbidden | NotFound | GrafanaOpError;
 /** Get Team By ID. */
-export const getTeamByID: API.OperationMethod<
-  GetTeamByIDRequest,
+export const getTeam: API.OperationMethod<
+  GetTeamRequest,
   TeamDTO,
-  GetTeamByIDError,
+  GetTeamError,
   GrafanaOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetTeamByIDRequest,
+  input: GetTeamRequest,
   output: TeamDTO,
   errors: [Forbidden, NotFound, UnknownGrafanaError],
   protocol: GrafanaProtocol,
@@ -12274,6 +12313,21 @@ export const getTeamPreferences: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetUserError = Forbidden | NotFound | GrafanaOpError;
+/** Get user by id. */
+export const getUser: API.OperationMethod<
+  GetUserRequest,
+  UserProfileDTO,
+  GetUserError,
+  GrafanaOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserRequest,
+  output: UserProfileDTO,
+  errors: [Forbidden, NotFound, UnknownGrafanaError],
+  protocol: GrafanaProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetUserAuthTokensError = Forbidden | GrafanaOpError;
 /** Auth tokens of the actual User. Return a list of all auth tokens (devices) that the actual user currently have logged in from. */
 export const getUserAuthTokens: API.OperationMethod<
@@ -12285,21 +12339,6 @@ export const getUserAuthTokens: API.OperationMethod<
   input: GetUserAuthTokensRequest,
   output: GetUserAuthTokensResponse,
   errors: [Forbidden, UnknownGrafanaError],
-  protocol: GrafanaProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetUserByIDError = Forbidden | NotFound | GrafanaOpError;
-/** Get user by id. */
-export const getUserByID: API.OperationMethod<
-  GetUserByIDRequest,
-  UserProfileDTO,
-  GetUserByIDError,
-  GrafanaOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetUserByIDRequest,
-  output: UserProfileDTO,
-  errors: [Forbidden, NotFound, UnknownGrafanaError],
   protocol: GrafanaProtocol,
   retry: Retry.Retry,
 }));
@@ -12613,21 +12652,6 @@ export const massDeleteAnnotations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PatchAnnotationError = Forbidden | NotFound | GrafanaOpError;
-/** Patch Annotation. Updates one or more properties of an annotation that matches the specified ID. This operation currently supports updating of the `text`, `tags`, `time` and `timeEnd` properties. This is available in Grafana 6.0.0-beta2 and above. */
-export const patchAnnotation: API.OperationMethod<
-  PatchAnnotationRequest,
-  SuccessResponseBody,
-  PatchAnnotationError,
-  GrafanaOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchAnnotationRequest,
-  output: SuccessResponseBody,
-  errors: [Forbidden, NotFound, UnknownGrafanaError],
-  protocol: GrafanaProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PatchProviderSettingsError =
   | BadRequest
   | Forbidden
@@ -12672,21 +12696,6 @@ export const postACS: API.OperationMethod<
   input: PostACSRequest,
   output: PostACSResponse,
   errors: [Forbidden, UnknownGrafanaError],
-  protocol: GrafanaProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostAnnotationError = BadRequest | Forbidden | GrafanaOpError;
-/** Create Annotation. Creates an annotation in the Grafana database. The dashboardId and panelId fields are optional. If they are not specified then an organization annotation is created and can be queried in any dashboard that adds the Grafana annotations data source. When creating a region annotation include the timeEnd property. The format for `time` and `timeEnd` should be epoch numbers in millisecond resolution. The response for this HTTP request is slightly different in versions prior to v6.4. In prior versions you would also get an endId if you where creating a region. But in 6.4 regions are represented using a single event with time and timeEnd properties. */
-export const postAnnotation: API.OperationMethod<
-  PostAnnotationRequest,
-  PostAnnotationResponse,
-  PostAnnotationError,
-  GrafanaOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostAnnotationRequest,
-  output: PostAnnotationResponse,
-  errors: [BadRequest, Forbidden, UnknownGrafanaError],
   protocol: GrafanaProtocol,
   retry: Retry.Retry,
 }));
@@ -12986,40 +12995,6 @@ export const renderReportPDFs: API.OperationMethod<
   input: RenderReportPDFsRequest,
   output: RenderReportPDFsResponse,
   errors: [BadRequest, UnknownGrafanaError],
-  protocol: GrafanaProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveJWKSError = GrafanaOpError;
-/** Get JSON Web Key Set (JWKS) with all the keys that can be used to verify tokens (public keys) Required permissions None */
-export const retrieveJWKS: API.OperationMethod<
-  RetrieveJWKSRequest,
-  RetrieveJWKSResponse,
-  RetrieveJWKSError,
-  GrafanaOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveJWKSRequest,
-  output: RetrieveJWKSResponse,
-  errors: [UnknownGrafanaError],
-  protocol: GrafanaProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveServiceAccountError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | GrafanaOpError;
-/** Get single serviceaccount by Id Required permissions (See note in the [introduction](https://grafana.com/docs/grafana/latest/developers/http_api/serviceaccount/#service-account-api) for an explanation): action: `serviceaccounts:read` scope: `serviceaccounts:id:1` (single service account) */
-export const retrieveServiceAccount: API.OperationMethod<
-  RetrieveServiceAccountRequest,
-  ServiceAccountDTO,
-  RetrieveServiceAccountError,
-  GrafanaOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveServiceAccountRequest,
-  output: ServiceAccountDTO,
-  errors: [BadRequest, Forbidden, NotFound, UnknownGrafanaError],
   protocol: GrafanaProtocol,
   retry: Retry.Retry,
 }));
@@ -13853,6 +13828,24 @@ export const updateAnnotation: API.OperationMethod<
   input: UpdateAnnotationRequest,
   output: SuccessResponseBody,
   errors: [BadRequest, Forbidden, UnknownGrafanaError],
+  protocol: GrafanaProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateAnnotationByAnnotationIdError =
+  | Forbidden
+  | NotFound
+  | GrafanaOpError;
+/** Patch Annotation. Updates one or more properties of an annotation that matches the specified ID. This operation currently supports updating of the `text`, `tags`, `time` and `timeEnd` properties. This is available in Grafana 6.0.0-beta2 and above. */
+export const updateAnnotationByAnnotationId: API.OperationMethod<
+  UpdateAnnotationByAnnotationIdRequest,
+  SuccessResponseBody,
+  UpdateAnnotationByAnnotationIdError,
+  GrafanaOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateAnnotationByAnnotationIdRequest,
+  output: SuccessResponseBody,
+  errors: [Forbidden, NotFound, UnknownGrafanaError],
   protocol: GrafanaProtocol,
   retry: Retry.Retry,
 }));
