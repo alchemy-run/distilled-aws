@@ -3822,22 +3822,38 @@ export const CheckoutLinksUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CheckoutLinksUpdateRequest",
 }) as any as S.Schema<CheckoutLinksUpdateRequest>;
 
-export type CheckoutsClientConfirmRequestCustomFieldDataValue =
+export type CheckoutsCreateRequestMetadataValue =
+  | string
+  | number
+  | number
+  | boolean;
+export const CheckoutsCreateRequestMetadataValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsCreateRequestMetadataValue>;
+
+/** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
+export type CheckoutsCreateRequestMetadataMap = {
+  [key: string]: CheckoutsCreateRequestMetadataValue | undefined;
+};
+export const CheckoutsCreateRequestMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  CheckoutsCreateRequestMetadataValue,
+) as any as S.Schema<CheckoutsCreateRequestMetadataMap>;
+
+export type CheckoutsCreateRequestCustomFieldDataValue =
   | string
   | number
   | boolean;
-export const CheckoutsClientConfirmRequestCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsClientConfirmRequestCustomFieldDataValue>;
+export const CheckoutsCreateRequestCustomFieldDataValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsCreateRequestCustomFieldDataValue>;
 
 /** Key-value object storing custom field values. */
-export type CheckoutsClientConfirmRequestCustomFieldDataMap = {
-  [key: string]: CheckoutsClientConfirmRequestCustomFieldDataValue | undefined;
+export type CheckoutsCreateRequestCustomFieldDataMap = {
+  [key: string]: CheckoutsCreateRequestCustomFieldDataValue | undefined;
 };
-export const CheckoutsClientConfirmRequestCustomFieldDataMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    CheckoutsClientConfirmRequestCustomFieldDataValue,
-  ) as any as S.Schema<CheckoutsClientConfirmRequestCustomFieldDataMap>;
+export const CheckoutsCreateRequestCustomFieldDataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  CheckoutsCreateRequestCustomFieldDataValue,
+) as any as S.Schema<CheckoutsCreateRequestCustomFieldDataMap>;
 
 export type AddressInputCountry =
   | "AD"
@@ -4104,1227 +4120,6 @@ export const AddressInput = /*@__PURE__*/ S.suspend(() =>
     country: AddressInputCountry,
   }),
 ).annotate({ identifier: "AddressInput" }) as any as S.Schema<AddressInput>;
-
-export interface CheckoutsClientConfirmRequest {
-  /** The checkout session client secret. */
-  client_secret: string;
-  /** Key-value object storing custom field values. */
-  custom_field_data?: CheckoutsClientConfirmRequestCustomFieldDataMap;
-  /** ID of the product to checkout. Must be present in the checkout's product list. */
-  product_id?: string | null;
-  /** ID of the product price to checkout. Must correspond to a price present in the checkout's product list. */
-  product_price_id?: string | null;
-  amount?: number | null;
-  /** Number of seats for seat-based pricing. */
-  seats?: number | null;
-  is_business_customer?: boolean | null;
-  customer_name?: string | null;
-  customer_email?: string | null;
-  customer_billing_name?: string | null;
-  customer_billing_address?: AddressInput | null;
-  customer_tax_id?: string | null;
-  locale?: string | null;
-  /** Payment method type selected by the customer in the checkout form, e.g. `card`, `apple_pay` or `upi`. */
-  payment_method_type?: string | null;
-  /** Discount code to apply to the checkout. */
-  discount_code?: string | null;
-  /** Disable the trial period for the checkout session. It's mainly useful when the trial is blocked because the customer already redeemed one. */
-  allow_trial?: boolean | null;
-  /** ID of the Stripe confirmation token. Required for fixed prices and custom prices. */
-  confirmation_token_id?: string | null;
-}
-export const CheckoutsClientConfirmRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    client_secret: S.String.pipe(T.Label()),
-    custom_field_data: S.optional(
-      CheckoutsClientConfirmRequestCustomFieldDataMap,
-    ),
-    product_id: S.optional(S.NullOr(S.String)),
-    product_price_id: S.optional(S.NullOr(S.String)),
-    amount: S.optional(S.NullOr(S.Number)),
-    seats: S.optional(S.NullOr(S.Number)),
-    is_business_customer: S.optional(S.NullOr(S.Boolean)),
-    customer_name: S.optional(S.NullOr(S.String)),
-    customer_email: S.optional(S.NullOr(S.String)),
-    customer_billing_name: S.optional(S.NullOr(S.String)),
-    customer_billing_address: S.optional(S.NullOr(AddressInput)),
-    customer_tax_id: S.optional(S.NullOr(S.String)),
-    locale: S.optional(S.NullOr(S.String)),
-    payment_method_type: S.optional(S.NullOr(S.String)),
-    discount_code: S.optional(S.NullOr(S.String)),
-    allow_trial: S.optional(S.NullOr(S.Boolean)),
-    confirmation_token_id: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/checkouts/client/{client_secret}/confirm",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CheckoutsClientConfirmRequest",
-}) as any as S.Schema<CheckoutsClientConfirmRequest>;
-
-export type CheckoutPublicConfirmedCustomFieldDataValue =
-  | string
-  | number
-  | boolean;
-export const CheckoutPublicConfirmedCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicConfirmedCustomFieldDataValue>;
-
-/** Key-value object storing custom field values. */
-export type CheckoutPublicConfirmedCustomFieldDataMap = {
-  [key: string]: CheckoutPublicConfirmedCustomFieldDataValue | undefined;
-};
-export const CheckoutPublicConfirmedCustomFieldDataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  CheckoutPublicConfirmedCustomFieldDataValue,
-) as any as S.Schema<CheckoutPublicConfirmedCustomFieldDataMap>;
-
-export type TaxBehavior = "inclusive" | "exclusive";
-export const TaxBehavior = /*@__PURE__*/ S.String;
-
-export type CheckoutPublicConfirmedPaymentProcessorMetadataMap = {
-  [key: string]: string | undefined;
-};
-export const CheckoutPublicConfirmedPaymentProcessorMetadataMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CheckoutPublicConfirmedPaymentProcessorMetadataMap>;
-
-export type BillingAddressFieldMode = "required" | "optional" | "disabled";
-export const BillingAddressFieldMode = /*@__PURE__*/ S.String;
-
-export interface CheckoutBillingAddressFields {
-  country: BillingAddressFieldMode;
-  state: BillingAddressFieldMode;
-  city: BillingAddressFieldMode;
-  postal_code: BillingAddressFieldMode;
-  line1: BillingAddressFieldMode;
-  line2: BillingAddressFieldMode;
-}
-export const CheckoutBillingAddressFields = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    country: BillingAddressFieldMode,
-    state: BillingAddressFieldMode,
-    city: BillingAddressFieldMode,
-    postal_code: BillingAddressFieldMode,
-    line1: BillingAddressFieldMode,
-    line2: BillingAddressFieldMode,
-  }),
-).annotate({
-  identifier: "CheckoutBillingAddressFields",
-}) as any as S.Schema<CheckoutBillingAddressFields>;
-
-export type CheckoutProductPricesItem =
-  | LegacyRecurringProductPrice
-  | ProductPrice;
-export const CheckoutProductPricesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutProductPricesItem>;
-
-/** List of prices for this product. */
-export type CheckoutProductPricesList = Array<CheckoutProductPricesItem>;
-export const CheckoutProductPricesList = /*@__PURE__*/ S.Array(
-  CheckoutProductPricesItem,
-) as any as S.Schema<CheckoutProductPricesList>;
-
-/** List of benefits granted by the product. */
-export type CheckoutProductBenefitsList = Array<BenefitPublic>;
-export const CheckoutProductBenefitsList = /*@__PURE__*/ S.Array(
-  BenefitPublic,
-) as any as S.Schema<CheckoutProductBenefitsList>;
-
-/** List of medias associated to the product. */
-export type CheckoutProductMediasList = Array<ProductMediaFileRead>;
-export const CheckoutProductMediasList = /*@__PURE__*/ S.Array(
-  ProductMediaFileRead,
-) as any as S.Schema<CheckoutProductMediasList>;
-
-/** Product data for a checkout session. */
-export interface CheckoutProduct {
-  /** The ID of the object. */
-  id: string;
-  /** Creation timestamp of the object. */
-  created_at: string;
-  /** Last modification timestamp of the object. */
-  modified_at: string | null;
-  /** The interval unit for the trial period. */
-  trial_interval: TrialInterval | null;
-  /** The number of interval units for the trial period. */
-  trial_interval_count: number | null;
-  /** The name of the product. */
-  name: string;
-  /** The description of the product. */
-  description: string | null;
-  /** The visibility of the product. */
-  visibility: ProductVisibility;
-  /** The recurring interval of the product. If `None`, the product is a one-time purchase. */
-  recurring_interval: RecurringInterval | null;
-  /** Number of interval units of the subscription. If this is set to 1 the charge will happen every interval (e.g. every month), if set to 2 it will be every other month, and so on. None for one-time products. */
-  recurring_interval_count: number | null;
-  /** The meter cycle of the product, independent of the billing interval. If `None`, metered concerns follow the billing interval. */
-  meter_interval: RecurringInterval | null;
-  /** Number of meter interval units. None when no meter cycle is set. */
-  meter_interval_count: number | null;
-  /** Whether the product is a subscription. */
-  is_recurring: boolean;
-  /** Whether the product is archived and no longer available. */
-  is_archived: boolean;
-  /** The ID of the organization owning the product. */
-  organization_id: string;
-  /** List of prices for this product. */
-  prices: CheckoutProductPricesList;
-  /** List of benefits granted by the product. */
-  benefits: CheckoutProductBenefitsList;
-  /** List of medias associated to the product. */
-  medias: CheckoutProductMediasList;
-}
-export const CheckoutProduct = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    created_at: S.String,
-    modified_at: S.NullOr(S.String),
-    trial_interval: S.NullOr(TrialInterval),
-    trial_interval_count: S.NullOr(S.Number),
-    name: S.String,
-    description: S.NullOr(S.String),
-    visibility: ProductVisibility,
-    recurring_interval: S.NullOr(RecurringInterval),
-    recurring_interval_count: S.NullOr(S.Number),
-    meter_interval: S.NullOr(RecurringInterval),
-    meter_interval_count: S.NullOr(S.Number),
-    is_recurring: S.Boolean,
-    is_archived: S.Boolean,
-    organization_id: S.String,
-    prices: CheckoutProductPricesList,
-    benefits: CheckoutProductBenefitsList,
-    medias: CheckoutProductMediasList,
-  }),
-).annotate({
-  identifier: "CheckoutProduct",
-}) as any as S.Schema<CheckoutProduct>;
-
-/** List of products available to select. */
-export type CheckoutPublicConfirmedProductsList = Array<CheckoutProduct>;
-export const CheckoutPublicConfirmedProductsList = /*@__PURE__*/ S.Array(
-  CheckoutProduct,
-) as any as S.Schema<CheckoutPublicConfirmedProductsList>;
-
-export type CheckoutPublicConfirmedProductPrice =
-  | LegacyRecurringProductPrice
-  | ProductPrice;
-export const CheckoutPublicConfirmedProductPrice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicConfirmedProductPrice>;
-
-export type CheckoutPublicConfirmedPricesValueItem =
-  | LegacyRecurringProductPrice
-  | ProductPrice;
-export const CheckoutPublicConfirmedPricesValueItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicConfirmedPricesValueItem>;
-
-/** List of prices for this product. */
-export type CheckoutPublicConfirmedPricesValueList =
-  Array<CheckoutPublicConfirmedPricesValueItem>;
-export const CheckoutPublicConfirmedPricesValueList = /*@__PURE__*/ S.Array(
-  CheckoutPublicConfirmedPricesValueItem,
-) as any as S.Schema<CheckoutPublicConfirmedPricesValueList>;
-
-export type CheckoutPublicConfirmedPricesMap = {
-  [key: string]: CheckoutPublicConfirmedPricesValueList | undefined;
-};
-export const CheckoutPublicConfirmedPricesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  CheckoutPublicConfirmedPricesValueList,
-) as any as S.Schema<CheckoutPublicConfirmedPricesMap>;
-
-/** Map of currency to fixed amount to discount from the total. */
-export type CheckoutDiscountFixedOnceForeverDurationAmountsMap = {
-  [key: string]: number | undefined;
-};
-export const CheckoutDiscountFixedOnceForeverDurationAmountsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Number,
-  ) as any as S.Schema<CheckoutDiscountFixedOnceForeverDurationAmountsMap>;
-
-/** Schema for a fixed amount discount that is applied once or forever. */
-export interface CheckoutDiscountFixedOnceForeverDuration {
-  duration: DiscountDuration;
-  type: DiscountType;
-  amount: number;
-  currency: string;
-  /** Map of currency to fixed amount to discount from the total. */
-  amounts: CheckoutDiscountFixedOnceForeverDurationAmountsMap;
-  /** The ID of the object. */
-  id: string;
-  name: string;
-  code: string | null;
-}
-export const CheckoutDiscountFixedOnceForeverDuration = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      duration: DiscountDuration,
-      type: DiscountType,
-      amount: S.Number,
-      currency: S.String,
-      amounts: CheckoutDiscountFixedOnceForeverDurationAmountsMap,
-      id: S.String,
-      name: S.String,
-      code: S.NullOr(S.String),
-    }),
-).annotate({
-  identifier: "CheckoutDiscountFixedOnceForeverDuration",
-}) as any as S.Schema<CheckoutDiscountFixedOnceForeverDuration>;
-
-/** Map of currency to fixed amount to discount from the total. */
-export type CheckoutDiscountFixedRepeatDurationAmountsMap = {
-  [key: string]: number | undefined;
-};
-export const CheckoutDiscountFixedRepeatDurationAmountsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Number,
-  ) as any as S.Schema<CheckoutDiscountFixedRepeatDurationAmountsMap>;
-
-/** Schema for a fixed amount discount that is applied on every invoice for a certain number of months. */
-export interface CheckoutDiscountFixedRepeatDuration {
-  duration: DiscountDuration;
-  duration_in_months: number;
-  type: DiscountType;
-  amount: number;
-  currency: string;
-  /** Map of currency to fixed amount to discount from the total. */
-  amounts: CheckoutDiscountFixedRepeatDurationAmountsMap;
-  /** The ID of the object. */
-  id: string;
-  name: string;
-  code: string | null;
-}
-export const CheckoutDiscountFixedRepeatDuration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    duration: DiscountDuration,
-    duration_in_months: S.Number,
-    type: DiscountType,
-    amount: S.Number,
-    currency: S.String,
-    amounts: CheckoutDiscountFixedRepeatDurationAmountsMap,
-    id: S.String,
-    name: S.String,
-    code: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "CheckoutDiscountFixedRepeatDuration",
-}) as any as S.Schema<CheckoutDiscountFixedRepeatDuration>;
-
-/** Schema for a percentage discount that is applied once or forever. */
-export interface CheckoutDiscountPercentageOnceForeverDuration {
-  duration: DiscountDuration;
-  type: DiscountType;
-  /** Discount percentage in basis points. A basis point is 1/100th of a percent. For example, 1000 basis points equals a 10% discount. */
-  basis_points: number;
-  /** The ID of the object. */
-  id: string;
-  name: string;
-  code: string | null;
-}
-export const CheckoutDiscountPercentageOnceForeverDuration =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      duration: DiscountDuration,
-      type: DiscountType,
-      basis_points: S.Number,
-      id: S.String,
-      name: S.String,
-      code: S.NullOr(S.String),
-    }),
-  ).annotate({
-    identifier: "CheckoutDiscountPercentageOnceForeverDuration",
-  }) as any as S.Schema<CheckoutDiscountPercentageOnceForeverDuration>;
-
-/** Schema for a percentage discount that is applied on every invoice for a certain number of months. */
-export interface CheckoutDiscountPercentageRepeatDuration {
-  duration: DiscountDuration;
-  duration_in_months: number;
-  type: DiscountType;
-  /** Discount percentage in basis points. A basis point is 1/100th of a percent. For example, 1000 basis points equals a 10% discount. */
-  basis_points: number;
-  /** The ID of the object. */
-  id: string;
-  name: string;
-  code: string | null;
-}
-export const CheckoutDiscountPercentageRepeatDuration = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      duration: DiscountDuration,
-      duration_in_months: S.Number,
-      type: DiscountType,
-      basis_points: S.Number,
-      id: S.String,
-      name: S.String,
-      code: S.NullOr(S.String),
-    }),
-).annotate({
-  identifier: "CheckoutDiscountPercentageRepeatDuration",
-}) as any as S.Schema<CheckoutDiscountPercentageRepeatDuration>;
-
-export type CheckoutPublicConfirmedDiscount =
-  | CheckoutDiscountFixedOnceForeverDuration
-  | CheckoutDiscountFixedRepeatDuration
-  | CheckoutDiscountPercentageOnceForeverDuration
-  | CheckoutDiscountPercentageRepeatDuration;
-export const CheckoutPublicConfirmedDiscount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicConfirmedDiscount>;
-
-export type SubscriptionProrationBehavior =
-  | "invoice"
-  | "prorate"
-  | "next_period"
-  | "reset";
-export const SubscriptionProrationBehavior = /*@__PURE__*/ S.String;
-
-export interface CheckoutOrganization {
-  /** Creation timestamp of the object. */
-  created_at: string;
-  /** Last modification timestamp of the object. */
-  modified_at: string | null;
-  /** The ID of the object. */
-  id: string;
-  /** Organization name shown in checkout, customer portal, emails etc. */
-  name: string;
-  /** Unique organization slug in checkout, customer portal and credit card statements. */
-  slug: string;
-  /** Avatar URL shown in checkout, customer portal, emails etc. */
-  avatar_url: string | null;
-  /** Proration behavior applied when customer updates their subscription from the portal. */
-  proration_behavior: SubscriptionProrationBehavior;
-  /** Whether customers can update their subscriptions from the customer portal. */
-  allow_customer_updates: boolean;
-}
-export const CheckoutOrganization = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_at: S.String,
-    modified_at: S.NullOr(S.String),
-    id: S.String,
-    name: S.String,
-    slug: S.String,
-    avatar_url: S.NullOr(S.String),
-    proration_behavior: SubscriptionProrationBehavior,
-    allow_customer_updates: S.Boolean,
-  }),
-).annotate({
-  identifier: "CheckoutOrganization",
-}) as any as S.Schema<CheckoutOrganization>;
-
-export interface CustomFieldTextProperties {
-  form_label?: string;
-  form_help_text?: string;
-  form_placeholder?: string;
-  textarea?: boolean;
-  min_length?: number;
-  max_length?: number;
-}
-export const CustomFieldTextProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    form_label: S.optional(S.String),
-    form_help_text: S.optional(S.String),
-    form_placeholder: S.optional(S.String),
-    textarea: S.optional(S.Boolean),
-    min_length: S.optional(S.Number),
-    max_length: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "CustomFieldTextProperties",
-}) as any as S.Schema<CustomFieldTextProperties>;
-
-/** Schema for a custom field of type text. */
-export interface CustomFieldText {
-  /** Creation timestamp of the object. */
-  created_at: string;
-  /** Last modification timestamp of the object. */
-  modified_at: string | null;
-  /** The ID of the object. */
-  id: string;
-  metadata: MetadataOutputType;
-  type: string;
-  /** Identifier of the custom field. It'll be used as key when storing the value. */
-  slug: string;
-  /** Name of the custom field. */
-  name: string;
-  /** The ID of the organization owning the custom field. */
-  organization_id: string;
-  properties: CustomFieldTextProperties;
-}
-export const CustomFieldText = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_at: S.String,
-    modified_at: S.NullOr(S.String),
-    id: S.String,
-    metadata: MetadataOutputType,
-    type: S.String,
-    slug: S.String,
-    name: S.String,
-    organization_id: S.String,
-    properties: CustomFieldTextProperties,
-  }),
-).annotate({
-  identifier: "CustomFieldText",
-}) as any as S.Schema<CustomFieldText>;
-
-export interface CustomFieldNumberProperties {
-  form_label?: string;
-  form_help_text?: string;
-  form_placeholder?: string;
-  ge?: number;
-  le?: number;
-}
-export const CustomFieldNumberProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    form_label: S.optional(S.String),
-    form_help_text: S.optional(S.String),
-    form_placeholder: S.optional(S.String),
-    ge: S.optional(S.Number),
-    le: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "CustomFieldNumberProperties",
-}) as any as S.Schema<CustomFieldNumberProperties>;
-
-/** Schema for a custom field of type number. */
-export interface CustomFieldNumber {
-  /** Creation timestamp of the object. */
-  created_at: string;
-  /** Last modification timestamp of the object. */
-  modified_at: string | null;
-  /** The ID of the object. */
-  id: string;
-  metadata: MetadataOutputType;
-  type: string;
-  /** Identifier of the custom field. It'll be used as key when storing the value. */
-  slug: string;
-  /** Name of the custom field. */
-  name: string;
-  /** The ID of the organization owning the custom field. */
-  organization_id: string;
-  properties: CustomFieldNumberProperties;
-}
-export const CustomFieldNumber = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_at: S.String,
-    modified_at: S.NullOr(S.String),
-    id: S.String,
-    metadata: MetadataOutputType,
-    type: S.String,
-    slug: S.String,
-    name: S.String,
-    organization_id: S.String,
-    properties: CustomFieldNumberProperties,
-  }),
-).annotate({
-  identifier: "CustomFieldNumber",
-}) as any as S.Schema<CustomFieldNumber>;
-
-export type CustomFieldDateProperties = CustomFieldNumberProperties;
-export const CustomFieldDateProperties = CustomFieldNumberProperties;
-
-/** Schema for a custom field of type date. */
-export type CustomFieldDate = CustomFieldNumber;
-export const CustomFieldDate = CustomFieldNumber;
-
-export interface CustomFieldCheckboxProperties {
-  form_label?: string;
-  form_help_text?: string;
-  form_placeholder?: string;
-}
-export const CustomFieldCheckboxProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    form_label: S.optional(S.String),
-    form_help_text: S.optional(S.String),
-    form_placeholder: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CustomFieldCheckboxProperties",
-}) as any as S.Schema<CustomFieldCheckboxProperties>;
-
-/** Schema for a custom field of type checkbox. */
-export interface CustomFieldCheckbox {
-  /** Creation timestamp of the object. */
-  created_at: string;
-  /** Last modification timestamp of the object. */
-  modified_at: string | null;
-  /** The ID of the object. */
-  id: string;
-  metadata: MetadataOutputType;
-  type: string;
-  /** Identifier of the custom field. It'll be used as key when storing the value. */
-  slug: string;
-  /** Name of the custom field. */
-  name: string;
-  /** The ID of the organization owning the custom field. */
-  organization_id: string;
-  properties: CustomFieldCheckboxProperties;
-}
-export const CustomFieldCheckbox = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_at: S.String,
-    modified_at: S.NullOr(S.String),
-    id: S.String,
-    metadata: MetadataOutputType,
-    type: S.String,
-    slug: S.String,
-    name: S.String,
-    organization_id: S.String,
-    properties: CustomFieldCheckboxProperties,
-  }),
-).annotate({
-  identifier: "CustomFieldCheckbox",
-}) as any as S.Schema<CustomFieldCheckbox>;
-
-export interface CustomFieldSelectOption {
-  value: string;
-  label: string;
-}
-export const CustomFieldSelectOption = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.String,
-    label: S.String,
-  }),
-).annotate({
-  identifier: "CustomFieldSelectOption",
-}) as any as S.Schema<CustomFieldSelectOption>;
-
-export type CustomFieldSelectPropertiesOptionsList =
-  Array<CustomFieldSelectOption>;
-export const CustomFieldSelectPropertiesOptionsList = /*@__PURE__*/ S.Array(
-  CustomFieldSelectOption,
-) as any as S.Schema<CustomFieldSelectPropertiesOptionsList>;
-
-export interface CustomFieldSelectProperties {
-  form_label?: string;
-  form_help_text?: string;
-  form_placeholder?: string;
-  options: CustomFieldSelectPropertiesOptionsList;
-}
-export const CustomFieldSelectProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    form_label: S.optional(S.String),
-    form_help_text: S.optional(S.String),
-    form_placeholder: S.optional(S.String),
-    options: CustomFieldSelectPropertiesOptionsList,
-  }),
-).annotate({
-  identifier: "CustomFieldSelectProperties",
-}) as any as S.Schema<CustomFieldSelectProperties>;
-
-/** Schema for a custom field of type select. */
-export interface CustomFieldSelect {
-  /** Creation timestamp of the object. */
-  created_at: string;
-  /** Last modification timestamp of the object. */
-  modified_at: string | null;
-  /** The ID of the object. */
-  id: string;
-  metadata: MetadataOutputType;
-  type: string;
-  /** Identifier of the custom field. It'll be used as key when storing the value. */
-  slug: string;
-  /** Name of the custom field. */
-  name: string;
-  /** The ID of the organization owning the custom field. */
-  organization_id: string;
-  properties: CustomFieldSelectProperties;
-}
-export const CustomFieldSelect = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_at: S.String,
-    modified_at: S.NullOr(S.String),
-    id: S.String,
-    metadata: MetadataOutputType,
-    type: S.String,
-    slug: S.String,
-    name: S.String,
-    organization_id: S.String,
-    properties: CustomFieldSelectProperties,
-  }),
-).annotate({
-  identifier: "CustomFieldSelect",
-}) as any as S.Schema<CustomFieldSelect>;
-
-export type CustomField =
-  | CustomFieldText
-  | CustomFieldNumber
-  | CustomFieldNumber
-  | CustomFieldCheckbox
-  | CustomFieldSelect;
-export const CustomField =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomField>;
-
-/** Schema of a custom field attached to a resource. */
-export interface AttachedCustomField {
-  /** ID of the custom field. */
-  custom_field_id: string;
-  custom_field: CustomField;
-  /** Order of the custom field in the resource. */
-  order: number;
-  /** Whether the value is required for this custom field. */
-  required: boolean;
-}
-export const AttachedCustomField = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    custom_field_id: S.String,
-    custom_field: CustomField,
-    order: S.Number,
-    required: S.Boolean,
-  }),
-).annotate({
-  identifier: "AttachedCustomField",
-}) as any as S.Schema<AttachedCustomField>;
-
-export type CheckoutPublicConfirmedAttachedCustomFieldsList =
-  Array<AttachedCustomField>;
-export const CheckoutPublicConfirmedAttachedCustomFieldsList =
-  /*@__PURE__*/ S.Array(
-    AttachedCustomField,
-  ) as any as S.Schema<CheckoutPublicConfirmedAttachedCustomFieldsList>;
-
-/** Checkout session data retrieved using the client secret after confirmation. It contains a customer session token to retrieve order information right after the checkout. */
-export interface CheckoutPublicConfirmed {
-  /** The ID of the object. */
-  id: string;
-  /** Creation timestamp of the object. */
-  created_at: string;
-  /** Last modification timestamp of the object. */
-  modified_at: string | null;
-  /** Key-value object storing custom field values. */
-  custom_field_data?: CheckoutPublicConfirmedCustomFieldDataMap;
-  /** Payment processor used. */
-  payment_processor: PaymentProcessor;
-  status: string;
-  /** Client secret used to update and complete the checkout session from the client. */
-  client_secret: string | Redacted.Redacted<string>;
-  /** URL where the customer can access the checkout session. */
-  url: string;
-  /** Expiration date and time of the checkout session. */
-  expires_at: string;
-  /** URL where the customer will be redirected after a successful payment. */
-  success_url: string;
-  /** When set, a back button will be shown in the checkout to return to this URL. */
-  return_url: string | null;
-  /** When checkout is embedded, represents the Origin of the page embedding the checkout. Used as a security measure to send messages only to the embedding page. */
-  embed_origin: string | null;
-  /** Amount in cents, before discounts and taxes. */
-  amount: number;
-  /** Predefined number of seats (works with seat-based pricing only) */
-  seats?: number | null;
-  /** Minimum number of seats (works with seat-based pricing only) */
-  min_seats?: number | null;
-  /** Maximum number of seats (works with seat-based pricing only) */
-  max_seats?: number | null;
-  /** Discount amount in cents. */
-  discount_amount: number;
-  /** Amount in cents, after discounts but before taxes. */
-  net_amount: number;
-  /** Sales tax amount in cents. If `null`, it means there is no enough information yet to calculate it. */
-  tax_amount: number | null;
-  /** Tax behavior of the checkout. `inclusive` means the price includes tax, `exclusive` means tax is added on top. If `null`, tax is not yet calculated. */
-  tax_behavior: TaxBehavior | null;
-  /** Amount in cents, after discounts and taxes. */
-  total_amount: number;
-  /** Currency code of the checkout session. */
-  currency: string;
-  /** Whether to enable the trial period for the checkout session. If `false`, the trial period will be disabled, even if the selected product has a trial configured. */
-  allow_trial: boolean | null;
-  /** Interval unit of the trial period, if any. This value is either set from the checkout, if `trial_interval` is set, or from the selected product. */
-  active_trial_interval: TrialInterval | null;
-  /** Number of interval units of the trial period, if any. This value is either set from the checkout, if `trial_interval_count` is set, or from the selected product. */
-  active_trial_interval_count: number | null;
-  /** End date and time of the trial period, if any. */
-  trial_end: string | null;
-  /** ID of the organization owning the checkout session. */
-  organization_id: string;
-  /** ID of the product to checkout. */
-  product_id: string | null;
-  /** ID of the product price to checkout. */
-  product_price_id: string | null;
-  /** ID of the discount applied to the checkout. */
-  discount_id: string | null;
-  /** Whether to allow the customer to apply discount codes. If you apply a discount through `discount_id`, it'll still be applied, but the customer won't be able to change it. */
-  allow_discount_codes: boolean;
-  /** Whether to require the customer to fill their full billing address, instead of just the country. Customers in the US will always be required to fill their full address, regardless of this setting. If you preset the billing address, this setting will be automatically set to `true`. */
-  require_billing_address: boolean;
-  /** Whether the discount is applicable to the checkout. Typically, free and custom prices are not discountable. */
-  is_discount_applicable: boolean;
-  /** Whether the product price is free, regardless of discounts. */
-  is_free_product_price: boolean;
-  /** Whether the checkout requires payment, e.g. in case of free products or discounts that cover the total amount. */
-  is_payment_required: boolean;
-  /** Whether the checkout requires setting up a payment method, regardless of the amount, e.g. subscriptions that have first free cycles. */
-  is_payment_setup_required: boolean;
-  /** Whether the checkout requires a payment form, whether because of a payment or payment method setup. */
-  is_payment_form_required: boolean;
-  customer_id: string | null;
-  /** Whether the customer is a business or an individual. If `true`, the customer will be required to fill their full billing address and billing name. */
-  is_business_customer: boolean;
-  /** Name of the customer. */
-  customer_name: string | null;
-  /** Email address of the customer. */
-  customer_email: string | null;
-  customer_ip_address: string | null;
-  customer_billing_name: string | null;
-  customer_billing_address: Address | null;
-  customer_tax_id: string | null;
-  locale?: string | null;
-  /** Payment method type selected by the customer in the checkout form, e.g. `card`, `apple_pay` or `upi`. */
-  payment_method_type: string | null;
-  payment_processor_metadata: CheckoutPublicConfirmedPaymentProcessorMetadataMap;
-  /** Determine which billing address fields should be disabled, optional or required in the checkout form. */
-  billing_address_fields: CheckoutBillingAddressFields;
-  /** List of products available to select. */
-  products: CheckoutPublicConfirmedProductsList;
-  /** Product selected to checkout. */
-  product: CheckoutProduct | null;
-  /** Price of the selected product. */
-  product_price: CheckoutPublicConfirmedProductPrice | null;
-  /** Mapping of product IDs to their list of prices. */
-  prices: CheckoutPublicConfirmedPricesMap | null;
-  discount: CheckoutPublicConfirmedDiscount | null;
-  organization: CheckoutOrganization;
-  attached_custom_fields: CheckoutPublicConfirmedAttachedCustomFieldsList | null;
-  customer_session_token: string | null;
-}
-export const CheckoutPublicConfirmed = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    created_at: S.String,
-    modified_at: S.NullOr(S.String),
-    custom_field_data: S.optional(CheckoutPublicConfirmedCustomFieldDataMap),
-    payment_processor: PaymentProcessor,
-    status: S.String,
-    client_secret: S.String.pipe(T.SensitiveValue({})),
-    url: S.String,
-    expires_at: S.String,
-    success_url: S.String,
-    return_url: S.NullOr(S.String),
-    embed_origin: S.NullOr(S.String),
-    amount: S.Number,
-    seats: S.optional(S.NullOr(S.Number)),
-    min_seats: S.optional(S.NullOr(S.Number)),
-    max_seats: S.optional(S.NullOr(S.Number)),
-    discount_amount: S.Number,
-    net_amount: S.Number,
-    tax_amount: S.NullOr(S.Number),
-    tax_behavior: S.NullOr(TaxBehavior),
-    total_amount: S.Number,
-    currency: S.String,
-    allow_trial: S.NullOr(S.Boolean),
-    active_trial_interval: S.NullOr(TrialInterval),
-    active_trial_interval_count: S.NullOr(S.Number),
-    trial_end: S.NullOr(S.String),
-    organization_id: S.String,
-    product_id: S.NullOr(S.String),
-    product_price_id: S.NullOr(S.String),
-    discount_id: S.NullOr(S.String),
-    allow_discount_codes: S.Boolean,
-    require_billing_address: S.Boolean,
-    is_discount_applicable: S.Boolean,
-    is_free_product_price: S.Boolean,
-    is_payment_required: S.Boolean,
-    is_payment_setup_required: S.Boolean,
-    is_payment_form_required: S.Boolean,
-    customer_id: S.NullOr(S.String),
-    is_business_customer: S.Boolean,
-    customer_name: S.NullOr(S.String),
-    customer_email: S.NullOr(S.String),
-    customer_ip_address: S.NullOr(S.String),
-    customer_billing_name: S.NullOr(S.String),
-    customer_billing_address: S.NullOr(Address),
-    customer_tax_id: S.NullOr(S.String),
-    locale: S.optional(S.NullOr(S.String)),
-    payment_method_type: S.NullOr(S.String),
-    payment_processor_metadata:
-      CheckoutPublicConfirmedPaymentProcessorMetadataMap,
-    billing_address_fields: CheckoutBillingAddressFields,
-    products: CheckoutPublicConfirmedProductsList,
-    product: S.NullOr(CheckoutProduct),
-    product_price: S.NullOr(CheckoutPublicConfirmedProductPrice),
-    prices: S.NullOr(CheckoutPublicConfirmedPricesMap),
-    discount: S.NullOr(CheckoutPublicConfirmedDiscount),
-    organization: CheckoutOrganization,
-    attached_custom_fields: S.NullOr(
-      CheckoutPublicConfirmedAttachedCustomFieldsList,
-    ),
-    customer_session_token: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "CheckoutPublicConfirmed",
-}) as any as S.Schema<CheckoutPublicConfirmed>;
-
-export interface CheckoutsClientGetRequest {
-  /** The checkout session client secret. */
-  client_secret: string;
-}
-export const CheckoutsClientGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    client_secret: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/checkouts/client/{client_secret}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CheckoutsClientGetRequest",
-}) as any as S.Schema<CheckoutsClientGetRequest>;
-
-export type CheckoutPublicCustomFieldDataValue = string | number | boolean;
-export const CheckoutPublicCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicCustomFieldDataValue>;
-
-/** Key-value object storing custom field values. */
-export type CheckoutPublicCustomFieldDataMap = {
-  [key: string]: CheckoutPublicCustomFieldDataValue | undefined;
-};
-export const CheckoutPublicCustomFieldDataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  CheckoutPublicCustomFieldDataValue,
-) as any as S.Schema<CheckoutPublicCustomFieldDataMap>;
-
-export type CheckoutStatus =
-  | "open"
-  | "expired"
-  | "confirmed"
-  | "succeeded"
-  | "failed";
-export const CheckoutStatus = /*@__PURE__*/ S.String;
-
-export type CheckoutPublicPaymentProcessorMetadataMap = {
-  [key: string]: string | undefined;
-};
-export const CheckoutPublicPaymentProcessorMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CheckoutPublicPaymentProcessorMetadataMap>;
-
-/** List of products available to select. */
-export type CheckoutPublicProductsList = Array<CheckoutProduct>;
-export const CheckoutPublicProductsList = /*@__PURE__*/ S.Array(
-  CheckoutProduct,
-) as any as S.Schema<CheckoutPublicProductsList>;
-
-export type CheckoutPublicProductPrice =
-  | LegacyRecurringProductPrice
-  | ProductPrice;
-export const CheckoutPublicProductPrice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicProductPrice>;
-
-export type CheckoutPublicPricesValueItem =
-  | LegacyRecurringProductPrice
-  | ProductPrice;
-export const CheckoutPublicPricesValueItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicPricesValueItem>;
-
-/** List of prices for this product. */
-export type CheckoutPublicPricesValueList =
-  Array<CheckoutPublicPricesValueItem>;
-export const CheckoutPublicPricesValueList = /*@__PURE__*/ S.Array(
-  CheckoutPublicPricesValueItem,
-) as any as S.Schema<CheckoutPublicPricesValueList>;
-
-export type CheckoutPublicPricesMap = {
-  [key: string]: CheckoutPublicPricesValueList | undefined;
-};
-export const CheckoutPublicPricesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  CheckoutPublicPricesValueList,
-) as any as S.Schema<CheckoutPublicPricesMap>;
-
-export type CheckoutPublicDiscount =
-  | CheckoutDiscountFixedOnceForeverDuration
-  | CheckoutDiscountFixedRepeatDuration
-  | CheckoutDiscountPercentageOnceForeverDuration
-  | CheckoutDiscountPercentageRepeatDuration;
-export const CheckoutPublicDiscount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicDiscount>;
-
-export type CheckoutPublicAttachedCustomFieldsList = Array<AttachedCustomField>;
-export const CheckoutPublicAttachedCustomFieldsList = /*@__PURE__*/ S.Array(
-  AttachedCustomField,
-) as any as S.Schema<CheckoutPublicAttachedCustomFieldsList>;
-
-/** Checkout session data retrieved using the client secret. */
-export interface CheckoutPublic {
-  /** The ID of the object. */
-  id: string;
-  /** Creation timestamp of the object. */
-  created_at: string;
-  /** Last modification timestamp of the object. */
-  modified_at: string | null;
-  /** Key-value object storing custom field values. */
-  custom_field_data?: CheckoutPublicCustomFieldDataMap;
-  /** Payment processor used. */
-  payment_processor: PaymentProcessor;
-  /** Status of the checkout session. - Open: the checkout session was opened. - Expired: the checkout session was expired and is no more accessible. - Confirmed: the user on the checkout session clicked Pay. This is not indicative of the payment's success status. - Failed: the checkout definitely failed for technical reasons and cannot be retried. In most cases, this state is never reached. - Succeeded: the payment on the checkout was performed successfully. */
-  status: CheckoutStatus;
-  /** Client secret used to update and complete the checkout session from the client. */
-  client_secret: string | Redacted.Redacted<string>;
-  /** URL where the customer can access the checkout session. */
-  url: string;
-  /** Expiration date and time of the checkout session. */
-  expires_at: string;
-  /** URL where the customer will be redirected after a successful payment. */
-  success_url: string;
-  /** When set, a back button will be shown in the checkout to return to this URL. */
-  return_url: string | null;
-  /** When checkout is embedded, represents the Origin of the page embedding the checkout. Used as a security measure to send messages only to the embedding page. */
-  embed_origin: string | null;
-  /** Amount in cents, before discounts and taxes. */
-  amount: number;
-  /** Predefined number of seats (works with seat-based pricing only) */
-  seats?: number | null;
-  /** Minimum number of seats (works with seat-based pricing only) */
-  min_seats?: number | null;
-  /** Maximum number of seats (works with seat-based pricing only) */
-  max_seats?: number | null;
-  /** Discount amount in cents. */
-  discount_amount: number;
-  /** Amount in cents, after discounts but before taxes. */
-  net_amount: number;
-  /** Sales tax amount in cents. If `null`, it means there is no enough information yet to calculate it. */
-  tax_amount: number | null;
-  /** Tax behavior of the checkout. `inclusive` means the price includes tax, `exclusive` means tax is added on top. If `null`, tax is not yet calculated. */
-  tax_behavior: TaxBehavior | null;
-  /** Amount in cents, after discounts and taxes. */
-  total_amount: number;
-  /** Currency code of the checkout session. */
-  currency: string;
-  /** Whether to enable the trial period for the checkout session. If `false`, the trial period will be disabled, even if the selected product has a trial configured. */
-  allow_trial: boolean | null;
-  /** Interval unit of the trial period, if any. This value is either set from the checkout, if `trial_interval` is set, or from the selected product. */
-  active_trial_interval: TrialInterval | null;
-  /** Number of interval units of the trial period, if any. This value is either set from the checkout, if `trial_interval_count` is set, or from the selected product. */
-  active_trial_interval_count: number | null;
-  /** End date and time of the trial period, if any. */
-  trial_end: string | null;
-  /** ID of the organization owning the checkout session. */
-  organization_id: string;
-  /** ID of the product to checkout. */
-  product_id: string | null;
-  /** ID of the product price to checkout. */
-  product_price_id: string | null;
-  /** ID of the discount applied to the checkout. */
-  discount_id: string | null;
-  /** Whether to allow the customer to apply discount codes. If you apply a discount through `discount_id`, it'll still be applied, but the customer won't be able to change it. */
-  allow_discount_codes: boolean;
-  /** Whether to require the customer to fill their full billing address, instead of just the country. Customers in the US will always be required to fill their full address, regardless of this setting. If you preset the billing address, this setting will be automatically set to `true`. */
-  require_billing_address: boolean;
-  /** Whether the discount is applicable to the checkout. Typically, free and custom prices are not discountable. */
-  is_discount_applicable: boolean;
-  /** Whether the product price is free, regardless of discounts. */
-  is_free_product_price: boolean;
-  /** Whether the checkout requires payment, e.g. in case of free products or discounts that cover the total amount. */
-  is_payment_required: boolean;
-  /** Whether the checkout requires setting up a payment method, regardless of the amount, e.g. subscriptions that have first free cycles. */
-  is_payment_setup_required: boolean;
-  /** Whether the checkout requires a payment form, whether because of a payment or payment method setup. */
-  is_payment_form_required: boolean;
-  customer_id: string | null;
-  /** Whether the customer is a business or an individual. If `true`, the customer will be required to fill their full billing address and billing name. */
-  is_business_customer: boolean;
-  /** Name of the customer. */
-  customer_name: string | null;
-  /** Email address of the customer. */
-  customer_email: string | null;
-  customer_ip_address: string | null;
-  customer_billing_name: string | null;
-  customer_billing_address: Address | null;
-  customer_tax_id: string | null;
-  locale?: string | null;
-  /** Payment method type selected by the customer in the checkout form, e.g. `card`, `apple_pay` or `upi`. */
-  payment_method_type: string | null;
-  payment_processor_metadata: CheckoutPublicPaymentProcessorMetadataMap;
-  /** Determine which billing address fields should be disabled, optional or required in the checkout form. */
-  billing_address_fields: CheckoutBillingAddressFields;
-  /** List of products available to select. */
-  products: CheckoutPublicProductsList;
-  /** Product selected to checkout. */
-  product: CheckoutProduct | null;
-  /** Price of the selected product. */
-  product_price: CheckoutPublicProductPrice | null;
-  /** Mapping of product IDs to their list of prices. */
-  prices: CheckoutPublicPricesMap | null;
-  discount: CheckoutPublicDiscount | null;
-  organization: CheckoutOrganization;
-  attached_custom_fields: CheckoutPublicAttachedCustomFieldsList | null;
-}
-export const CheckoutPublic = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    created_at: S.String,
-    modified_at: S.NullOr(S.String),
-    custom_field_data: S.optional(CheckoutPublicCustomFieldDataMap),
-    payment_processor: PaymentProcessor,
-    status: CheckoutStatus,
-    client_secret: S.String.pipe(T.SensitiveValue({})),
-    url: S.String,
-    expires_at: S.String,
-    success_url: S.String,
-    return_url: S.NullOr(S.String),
-    embed_origin: S.NullOr(S.String),
-    amount: S.Number,
-    seats: S.optional(S.NullOr(S.Number)),
-    min_seats: S.optional(S.NullOr(S.Number)),
-    max_seats: S.optional(S.NullOr(S.Number)),
-    discount_amount: S.Number,
-    net_amount: S.Number,
-    tax_amount: S.NullOr(S.Number),
-    tax_behavior: S.NullOr(TaxBehavior),
-    total_amount: S.Number,
-    currency: S.String,
-    allow_trial: S.NullOr(S.Boolean),
-    active_trial_interval: S.NullOr(TrialInterval),
-    active_trial_interval_count: S.NullOr(S.Number),
-    trial_end: S.NullOr(S.String),
-    organization_id: S.String,
-    product_id: S.NullOr(S.String),
-    product_price_id: S.NullOr(S.String),
-    discount_id: S.NullOr(S.String),
-    allow_discount_codes: S.Boolean,
-    require_billing_address: S.Boolean,
-    is_discount_applicable: S.Boolean,
-    is_free_product_price: S.Boolean,
-    is_payment_required: S.Boolean,
-    is_payment_setup_required: S.Boolean,
-    is_payment_form_required: S.Boolean,
-    customer_id: S.NullOr(S.String),
-    is_business_customer: S.Boolean,
-    customer_name: S.NullOr(S.String),
-    customer_email: S.NullOr(S.String),
-    customer_ip_address: S.NullOr(S.String),
-    customer_billing_name: S.NullOr(S.String),
-    customer_billing_address: S.NullOr(Address),
-    customer_tax_id: S.NullOr(S.String),
-    locale: S.optional(S.NullOr(S.String)),
-    payment_method_type: S.NullOr(S.String),
-    payment_processor_metadata: CheckoutPublicPaymentProcessorMetadataMap,
-    billing_address_fields: CheckoutBillingAddressFields,
-    products: CheckoutPublicProductsList,
-    product: S.NullOr(CheckoutProduct),
-    product_price: S.NullOr(CheckoutPublicProductPrice),
-    prices: S.NullOr(CheckoutPublicPricesMap),
-    discount: S.NullOr(CheckoutPublicDiscount),
-    organization: CheckoutOrganization,
-    attached_custom_fields: S.NullOr(CheckoutPublicAttachedCustomFieldsList),
-  }),
-).annotate({ identifier: "CheckoutPublic" }) as any as S.Schema<CheckoutPublic>;
-
-export type CheckoutsClientUpdateRequestCustomFieldDataValue =
-  | string
-  | number
-  | boolean;
-export const CheckoutsClientUpdateRequestCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsClientUpdateRequestCustomFieldDataValue>;
-
-/** Key-value object storing custom field values. */
-export type CheckoutsClientUpdateRequestCustomFieldDataMap = {
-  [key: string]: CheckoutsClientUpdateRequestCustomFieldDataValue | undefined;
-};
-export const CheckoutsClientUpdateRequestCustomFieldDataMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    CheckoutsClientUpdateRequestCustomFieldDataValue,
-  ) as any as S.Schema<CheckoutsClientUpdateRequestCustomFieldDataMap>;
-
-export interface CheckoutsClientUpdateRequest {
-  /** The checkout session client secret. */
-  client_secret: string;
-  /** Key-value object storing custom field values. */
-  custom_field_data?: CheckoutsClientUpdateRequestCustomFieldDataMap;
-  /** ID of the product to checkout. Must be present in the checkout's product list. */
-  product_id?: string | null;
-  /** ID of the product price to checkout. Must correspond to a price present in the checkout's product list. */
-  product_price_id?: string | null;
-  amount?: number | null;
-  /** Number of seats for seat-based pricing. */
-  seats?: number | null;
-  is_business_customer?: boolean | null;
-  customer_name?: string | null;
-  customer_email?: string | null;
-  customer_billing_name?: string | null;
-  customer_billing_address?: AddressInput | null;
-  customer_tax_id?: string | null;
-  locale?: string | null;
-  /** Payment method type selected by the customer in the checkout form, e.g. `card`, `apple_pay` or `upi`. */
-  payment_method_type?: string | null;
-  /** Discount code to apply to the checkout. */
-  discount_code?: string | null;
-  /** Disable the trial period for the checkout session. It's mainly useful when the trial is blocked because the customer already redeemed one. */
-  allow_trial?: boolean | null;
-}
-export const CheckoutsClientUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    client_secret: S.String.pipe(T.Label()),
-    custom_field_data: S.optional(
-      CheckoutsClientUpdateRequestCustomFieldDataMap,
-    ),
-    product_id: S.optional(S.NullOr(S.String)),
-    product_price_id: S.optional(S.NullOr(S.String)),
-    amount: S.optional(S.NullOr(S.Number)),
-    seats: S.optional(S.NullOr(S.Number)),
-    is_business_customer: S.optional(S.NullOr(S.Boolean)),
-    customer_name: S.optional(S.NullOr(S.String)),
-    customer_email: S.optional(S.NullOr(S.String)),
-    customer_billing_name: S.optional(S.NullOr(S.String)),
-    customer_billing_address: S.optional(S.NullOr(AddressInput)),
-    customer_tax_id: S.optional(S.NullOr(S.String)),
-    locale: S.optional(S.NullOr(S.String)),
-    payment_method_type: S.optional(S.NullOr(S.String)),
-    discount_code: S.optional(S.NullOr(S.String)),
-    allow_trial: S.optional(S.NullOr(S.Boolean)),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/v1/checkouts/client/{client_secret}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CheckoutsClientUpdateRequest",
-}) as any as S.Schema<CheckoutsClientUpdateRequest>;
-
-export type CheckoutsCreateRequestMetadataValue =
-  | string
-  | number
-  | number
-  | boolean;
-export const CheckoutsCreateRequestMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsCreateRequestMetadataValue>;
-
-/** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
-export type CheckoutsCreateRequestMetadataMap = {
-  [key: string]: CheckoutsCreateRequestMetadataValue | undefined;
-};
-export const CheckoutsCreateRequestMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  CheckoutsCreateRequestMetadataValue,
-) as any as S.Schema<CheckoutsCreateRequestMetadataMap>;
-
-export type CheckoutsCreateRequestCustomFieldDataValue =
-  | string
-  | number
-  | boolean;
-export const CheckoutsCreateRequestCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsCreateRequestCustomFieldDataValue>;
-
-/** Key-value object storing custom field values. */
-export type CheckoutsCreateRequestCustomFieldDataMap = {
-  [key: string]: CheckoutsCreateRequestCustomFieldDataValue | undefined;
-};
-export const CheckoutsCreateRequestCustomFieldDataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  CheckoutsCreateRequestCustomFieldDataValue,
-) as any as S.Schema<CheckoutsCreateRequestCustomFieldDataMap>;
 
 export type CheckoutsCreateRequestCustomerMetadataValue =
   | string
@@ -5727,6 +4522,17 @@ export const CheckoutCustomFieldDataMap = /*@__PURE__*/ S.Record(
   CheckoutCustomFieldDataValue,
 ) as any as S.Schema<CheckoutCustomFieldDataMap>;
 
+export type CheckoutStatus =
+  | "open"
+  | "expired"
+  | "confirmed"
+  | "succeeded"
+  | "failed";
+export const CheckoutStatus = /*@__PURE__*/ S.String;
+
+export type TaxBehavior = "inclusive" | "exclusive";
+export const TaxBehavior = /*@__PURE__*/ S.String;
+
 export type CheckoutPaymentProcessorMetadataMap = {
   [key: string]: string | undefined;
 };
@@ -5734,6 +4540,118 @@ export const CheckoutPaymentProcessorMetadataMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
 ) as any as S.Schema<CheckoutPaymentProcessorMetadataMap>;
+
+export type BillingAddressFieldMode = "required" | "optional" | "disabled";
+export const BillingAddressFieldMode = /*@__PURE__*/ S.String;
+
+export interface CheckoutBillingAddressFields {
+  country: BillingAddressFieldMode;
+  state: BillingAddressFieldMode;
+  city: BillingAddressFieldMode;
+  postal_code: BillingAddressFieldMode;
+  line1: BillingAddressFieldMode;
+  line2: BillingAddressFieldMode;
+}
+export const CheckoutBillingAddressFields = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    country: BillingAddressFieldMode,
+    state: BillingAddressFieldMode,
+    city: BillingAddressFieldMode,
+    postal_code: BillingAddressFieldMode,
+    line1: BillingAddressFieldMode,
+    line2: BillingAddressFieldMode,
+  }),
+).annotate({
+  identifier: "CheckoutBillingAddressFields",
+}) as any as S.Schema<CheckoutBillingAddressFields>;
+
+export type CheckoutProductPricesItem =
+  | LegacyRecurringProductPrice
+  | ProductPrice;
+export const CheckoutProductPricesItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutProductPricesItem>;
+
+/** List of prices for this product. */
+export type CheckoutProductPricesList = Array<CheckoutProductPricesItem>;
+export const CheckoutProductPricesList = /*@__PURE__*/ S.Array(
+  CheckoutProductPricesItem,
+) as any as S.Schema<CheckoutProductPricesList>;
+
+/** List of benefits granted by the product. */
+export type CheckoutProductBenefitsList = Array<BenefitPublic>;
+export const CheckoutProductBenefitsList = /*@__PURE__*/ S.Array(
+  BenefitPublic,
+) as any as S.Schema<CheckoutProductBenefitsList>;
+
+/** List of medias associated to the product. */
+export type CheckoutProductMediasList = Array<ProductMediaFileRead>;
+export const CheckoutProductMediasList = /*@__PURE__*/ S.Array(
+  ProductMediaFileRead,
+) as any as S.Schema<CheckoutProductMediasList>;
+
+/** Product data for a checkout session. */
+export interface CheckoutProduct {
+  /** The ID of the object. */
+  id: string;
+  /** Creation timestamp of the object. */
+  created_at: string;
+  /** Last modification timestamp of the object. */
+  modified_at: string | null;
+  /** The interval unit for the trial period. */
+  trial_interval: TrialInterval | null;
+  /** The number of interval units for the trial period. */
+  trial_interval_count: number | null;
+  /** The name of the product. */
+  name: string;
+  /** The description of the product. */
+  description: string | null;
+  /** The visibility of the product. */
+  visibility: ProductVisibility;
+  /** The recurring interval of the product. If `None`, the product is a one-time purchase. */
+  recurring_interval: RecurringInterval | null;
+  /** Number of interval units of the subscription. If this is set to 1 the charge will happen every interval (e.g. every month), if set to 2 it will be every other month, and so on. None for one-time products. */
+  recurring_interval_count: number | null;
+  /** The meter cycle of the product, independent of the billing interval. If `None`, metered concerns follow the billing interval. */
+  meter_interval: RecurringInterval | null;
+  /** Number of meter interval units. None when no meter cycle is set. */
+  meter_interval_count: number | null;
+  /** Whether the product is a subscription. */
+  is_recurring: boolean;
+  /** Whether the product is archived and no longer available. */
+  is_archived: boolean;
+  /** The ID of the organization owning the product. */
+  organization_id: string;
+  /** List of prices for this product. */
+  prices: CheckoutProductPricesList;
+  /** List of benefits granted by the product. */
+  benefits: CheckoutProductBenefitsList;
+  /** List of medias associated to the product. */
+  medias: CheckoutProductMediasList;
+}
+export const CheckoutProduct = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    created_at: S.String,
+    modified_at: S.NullOr(S.String),
+    trial_interval: S.NullOr(TrialInterval),
+    trial_interval_count: S.NullOr(S.Number),
+    name: S.String,
+    description: S.NullOr(S.String),
+    visibility: ProductVisibility,
+    recurring_interval: S.NullOr(RecurringInterval),
+    recurring_interval_count: S.NullOr(S.Number),
+    meter_interval: S.NullOr(RecurringInterval),
+    meter_interval_count: S.NullOr(S.Number),
+    is_recurring: S.Boolean,
+    is_archived: S.Boolean,
+    organization_id: S.String,
+    prices: CheckoutProductPricesList,
+    benefits: CheckoutProductBenefitsList,
+    medias: CheckoutProductMediasList,
+  }),
+).annotate({
+  identifier: "CheckoutProduct",
+}) as any as S.Schema<CheckoutProduct>;
 
 /** List of products available to select. */
 export type CheckoutProductsList = Array<CheckoutProduct>;
@@ -5765,6 +4683,137 @@ export const CheckoutPricesMap = /*@__PURE__*/ S.Record(
   CheckoutPricesValueList,
 ) as any as S.Schema<CheckoutPricesMap>;
 
+/** Map of currency to fixed amount to discount from the total. */
+export type CheckoutDiscountFixedOnceForeverDurationAmountsMap = {
+  [key: string]: number | undefined;
+};
+export const CheckoutDiscountFixedOnceForeverDurationAmountsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Number,
+  ) as any as S.Schema<CheckoutDiscountFixedOnceForeverDurationAmountsMap>;
+
+/** Schema for a fixed amount discount that is applied once or forever. */
+export interface CheckoutDiscountFixedOnceForeverDuration {
+  duration: DiscountDuration;
+  type: DiscountType;
+  amount: number;
+  currency: string;
+  /** Map of currency to fixed amount to discount from the total. */
+  amounts: CheckoutDiscountFixedOnceForeverDurationAmountsMap;
+  /** The ID of the object. */
+  id: string;
+  name: string;
+  code: string | null;
+}
+export const CheckoutDiscountFixedOnceForeverDuration = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      duration: DiscountDuration,
+      type: DiscountType,
+      amount: S.Number,
+      currency: S.String,
+      amounts: CheckoutDiscountFixedOnceForeverDurationAmountsMap,
+      id: S.String,
+      name: S.String,
+      code: S.NullOr(S.String),
+    }),
+).annotate({
+  identifier: "CheckoutDiscountFixedOnceForeverDuration",
+}) as any as S.Schema<CheckoutDiscountFixedOnceForeverDuration>;
+
+/** Map of currency to fixed amount to discount from the total. */
+export type CheckoutDiscountFixedRepeatDurationAmountsMap = {
+  [key: string]: number | undefined;
+};
+export const CheckoutDiscountFixedRepeatDurationAmountsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Number,
+  ) as any as S.Schema<CheckoutDiscountFixedRepeatDurationAmountsMap>;
+
+/** Schema for a fixed amount discount that is applied on every invoice for a certain number of months. */
+export interface CheckoutDiscountFixedRepeatDuration {
+  duration: DiscountDuration;
+  duration_in_months: number;
+  type: DiscountType;
+  amount: number;
+  currency: string;
+  /** Map of currency to fixed amount to discount from the total. */
+  amounts: CheckoutDiscountFixedRepeatDurationAmountsMap;
+  /** The ID of the object. */
+  id: string;
+  name: string;
+  code: string | null;
+}
+export const CheckoutDiscountFixedRepeatDuration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    duration: DiscountDuration,
+    duration_in_months: S.Number,
+    type: DiscountType,
+    amount: S.Number,
+    currency: S.String,
+    amounts: CheckoutDiscountFixedRepeatDurationAmountsMap,
+    id: S.String,
+    name: S.String,
+    code: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "CheckoutDiscountFixedRepeatDuration",
+}) as any as S.Schema<CheckoutDiscountFixedRepeatDuration>;
+
+/** Schema for a percentage discount that is applied once or forever. */
+export interface CheckoutDiscountPercentageOnceForeverDuration {
+  duration: DiscountDuration;
+  type: DiscountType;
+  /** Discount percentage in basis points. A basis point is 1/100th of a percent. For example, 1000 basis points equals a 10% discount. */
+  basis_points: number;
+  /** The ID of the object. */
+  id: string;
+  name: string;
+  code: string | null;
+}
+export const CheckoutDiscountPercentageOnceForeverDuration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      duration: DiscountDuration,
+      type: DiscountType,
+      basis_points: S.Number,
+      id: S.String,
+      name: S.String,
+      code: S.NullOr(S.String),
+    }),
+  ).annotate({
+    identifier: "CheckoutDiscountPercentageOnceForeverDuration",
+  }) as any as S.Schema<CheckoutDiscountPercentageOnceForeverDuration>;
+
+/** Schema for a percentage discount that is applied on every invoice for a certain number of months. */
+export interface CheckoutDiscountPercentageRepeatDuration {
+  duration: DiscountDuration;
+  duration_in_months: number;
+  type: DiscountType;
+  /** Discount percentage in basis points. A basis point is 1/100th of a percent. For example, 1000 basis points equals a 10% discount. */
+  basis_points: number;
+  /** The ID of the object. */
+  id: string;
+  name: string;
+  code: string | null;
+}
+export const CheckoutDiscountPercentageRepeatDuration = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      duration: DiscountDuration,
+      duration_in_months: S.Number,
+      type: DiscountType,
+      basis_points: S.Number,
+      id: S.String,
+      name: S.String,
+      code: S.NullOr(S.String),
+    }),
+).annotate({
+  identifier: "CheckoutDiscountPercentageRepeatDuration",
+}) as any as S.Schema<CheckoutDiscountPercentageRepeatDuration>;
+
 export type CheckoutDiscount =
   | CheckoutDiscountFixedOnceForeverDuration
   | CheckoutDiscountFixedRepeatDuration
@@ -5772,6 +4821,270 @@ export type CheckoutDiscount =
   | CheckoutDiscountPercentageRepeatDuration;
 export const CheckoutDiscount =
   /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutDiscount>;
+
+export interface CustomFieldTextProperties {
+  form_label?: string;
+  form_help_text?: string;
+  form_placeholder?: string;
+  textarea?: boolean;
+  min_length?: number;
+  max_length?: number;
+}
+export const CustomFieldTextProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    form_label: S.optional(S.String),
+    form_help_text: S.optional(S.String),
+    form_placeholder: S.optional(S.String),
+    textarea: S.optional(S.Boolean),
+    min_length: S.optional(S.Number),
+    max_length: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "CustomFieldTextProperties",
+}) as any as S.Schema<CustomFieldTextProperties>;
+
+/** Schema for a custom field of type text. */
+export interface CustomFieldText {
+  /** Creation timestamp of the object. */
+  created_at: string;
+  /** Last modification timestamp of the object. */
+  modified_at: string | null;
+  /** The ID of the object. */
+  id: string;
+  metadata: MetadataOutputType;
+  type: string;
+  /** Identifier of the custom field. It'll be used as key when storing the value. */
+  slug: string;
+  /** Name of the custom field. */
+  name: string;
+  /** The ID of the organization owning the custom field. */
+  organization_id: string;
+  properties: CustomFieldTextProperties;
+}
+export const CustomFieldText = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.String,
+    modified_at: S.NullOr(S.String),
+    id: S.String,
+    metadata: MetadataOutputType,
+    type: S.String,
+    slug: S.String,
+    name: S.String,
+    organization_id: S.String,
+    properties: CustomFieldTextProperties,
+  }),
+).annotate({
+  identifier: "CustomFieldText",
+}) as any as S.Schema<CustomFieldText>;
+
+export interface CustomFieldNumberProperties {
+  form_label?: string;
+  form_help_text?: string;
+  form_placeholder?: string;
+  ge?: number;
+  le?: number;
+}
+export const CustomFieldNumberProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    form_label: S.optional(S.String),
+    form_help_text: S.optional(S.String),
+    form_placeholder: S.optional(S.String),
+    ge: S.optional(S.Number),
+    le: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "CustomFieldNumberProperties",
+}) as any as S.Schema<CustomFieldNumberProperties>;
+
+/** Schema for a custom field of type number. */
+export interface CustomFieldNumber {
+  /** Creation timestamp of the object. */
+  created_at: string;
+  /** Last modification timestamp of the object. */
+  modified_at: string | null;
+  /** The ID of the object. */
+  id: string;
+  metadata: MetadataOutputType;
+  type: string;
+  /** Identifier of the custom field. It'll be used as key when storing the value. */
+  slug: string;
+  /** Name of the custom field. */
+  name: string;
+  /** The ID of the organization owning the custom field. */
+  organization_id: string;
+  properties: CustomFieldNumberProperties;
+}
+export const CustomFieldNumber = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.String,
+    modified_at: S.NullOr(S.String),
+    id: S.String,
+    metadata: MetadataOutputType,
+    type: S.String,
+    slug: S.String,
+    name: S.String,
+    organization_id: S.String,
+    properties: CustomFieldNumberProperties,
+  }),
+).annotate({
+  identifier: "CustomFieldNumber",
+}) as any as S.Schema<CustomFieldNumber>;
+
+export type CustomFieldDateProperties = CustomFieldNumberProperties;
+export const CustomFieldDateProperties = CustomFieldNumberProperties;
+
+/** Schema for a custom field of type date. */
+export type CustomFieldDate = CustomFieldNumber;
+export const CustomFieldDate = CustomFieldNumber;
+
+export interface CustomFieldCheckboxProperties {
+  form_label?: string;
+  form_help_text?: string;
+  form_placeholder?: string;
+}
+export const CustomFieldCheckboxProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    form_label: S.optional(S.String),
+    form_help_text: S.optional(S.String),
+    form_placeholder: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CustomFieldCheckboxProperties",
+}) as any as S.Schema<CustomFieldCheckboxProperties>;
+
+/** Schema for a custom field of type checkbox. */
+export interface CustomFieldCheckbox {
+  /** Creation timestamp of the object. */
+  created_at: string;
+  /** Last modification timestamp of the object. */
+  modified_at: string | null;
+  /** The ID of the object. */
+  id: string;
+  metadata: MetadataOutputType;
+  type: string;
+  /** Identifier of the custom field. It'll be used as key when storing the value. */
+  slug: string;
+  /** Name of the custom field. */
+  name: string;
+  /** The ID of the organization owning the custom field. */
+  organization_id: string;
+  properties: CustomFieldCheckboxProperties;
+}
+export const CustomFieldCheckbox = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.String,
+    modified_at: S.NullOr(S.String),
+    id: S.String,
+    metadata: MetadataOutputType,
+    type: S.String,
+    slug: S.String,
+    name: S.String,
+    organization_id: S.String,
+    properties: CustomFieldCheckboxProperties,
+  }),
+).annotate({
+  identifier: "CustomFieldCheckbox",
+}) as any as S.Schema<CustomFieldCheckbox>;
+
+export interface CustomFieldSelectOption {
+  value: string;
+  label: string;
+}
+export const CustomFieldSelectOption = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.String,
+    label: S.String,
+  }),
+).annotate({
+  identifier: "CustomFieldSelectOption",
+}) as any as S.Schema<CustomFieldSelectOption>;
+
+export type CustomFieldSelectPropertiesOptionsList =
+  Array<CustomFieldSelectOption>;
+export const CustomFieldSelectPropertiesOptionsList = /*@__PURE__*/ S.Array(
+  CustomFieldSelectOption,
+) as any as S.Schema<CustomFieldSelectPropertiesOptionsList>;
+
+export interface CustomFieldSelectProperties {
+  form_label?: string;
+  form_help_text?: string;
+  form_placeholder?: string;
+  options: CustomFieldSelectPropertiesOptionsList;
+}
+export const CustomFieldSelectProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    form_label: S.optional(S.String),
+    form_help_text: S.optional(S.String),
+    form_placeholder: S.optional(S.String),
+    options: CustomFieldSelectPropertiesOptionsList,
+  }),
+).annotate({
+  identifier: "CustomFieldSelectProperties",
+}) as any as S.Schema<CustomFieldSelectProperties>;
+
+/** Schema for a custom field of type select. */
+export interface CustomFieldSelect {
+  /** Creation timestamp of the object. */
+  created_at: string;
+  /** Last modification timestamp of the object. */
+  modified_at: string | null;
+  /** The ID of the object. */
+  id: string;
+  metadata: MetadataOutputType;
+  type: string;
+  /** Identifier of the custom field. It'll be used as key when storing the value. */
+  slug: string;
+  /** Name of the custom field. */
+  name: string;
+  /** The ID of the organization owning the custom field. */
+  organization_id: string;
+  properties: CustomFieldSelectProperties;
+}
+export const CustomFieldSelect = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.String,
+    modified_at: S.NullOr(S.String),
+    id: S.String,
+    metadata: MetadataOutputType,
+    type: S.String,
+    slug: S.String,
+    name: S.String,
+    organization_id: S.String,
+    properties: CustomFieldSelectProperties,
+  }),
+).annotate({
+  identifier: "CustomFieldSelect",
+}) as any as S.Schema<CustomFieldSelect>;
+
+export type CustomField =
+  | CustomFieldText
+  | CustomFieldNumber
+  | CustomFieldNumber
+  | CustomFieldCheckbox
+  | CustomFieldSelect;
+export const CustomField =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomField>;
+
+/** Schema of a custom field attached to a resource. */
+export interface AttachedCustomField {
+  /** ID of the custom field. */
+  custom_field_id: string;
+  custom_field: CustomField;
+  /** Order of the custom field in the resource. */
+  order: number;
+  /** Whether the value is required for this custom field. */
+  required: boolean;
+}
+export const AttachedCustomField = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    custom_field_id: S.String,
+    custom_field: CustomField,
+    order: S.Number,
+    required: S.Boolean,
+  }),
+).annotate({
+  identifier: "AttachedCustomField",
+}) as any as S.Schema<AttachedCustomField>;
 
 export type CheckoutAttachedCustomFieldsList = Array<AttachedCustomField>;
 export const CheckoutAttachedCustomFieldsList = /*@__PURE__*/ S.Array(
@@ -6247,6 +5560,411 @@ export const CheckoutsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CheckoutsUpdateRequest",
 }) as any as S.Schema<CheckoutsUpdateRequest>;
+
+export interface ClaimCustomerSeatsGetInfoRequest {
+  invitation_token: string;
+}
+export const ClaimCustomerSeatsGetInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invitation_token: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/customer-seats/claim/{invitation_token}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ClaimCustomerSeatsGetInfoRequest",
+}) as any as S.Schema<ClaimCustomerSeatsGetInfoRequest>;
+
+/** Read-only information about a seat claim invitation. Safe for email scanners - no side effects when fetched. */
+export interface SeatClaimInfo {
+  /** Name of the product */
+  product_name: string;
+  /** ID of the product */
+  product_id: string;
+  /** Name of the organization */
+  organization_name: string;
+  /** Slug of the organization */
+  organization_slug: string;
+  /** Email of the customer assigned to this seat */
+  customer_email: string;
+  /** Whether the seat can be claimed */
+  can_claim: boolean;
+}
+export const SeatClaimInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    product_name: S.String,
+    product_id: S.String,
+    organization_name: S.String,
+    organization_slug: S.String,
+    customer_email: S.String,
+    can_claim: S.Boolean,
+  }),
+).annotate({ identifier: "SeatClaimInfo" }) as any as S.Schema<SeatClaimInfo>;
+
+export type ConfirmCheckoutsClientRequestCustomFieldDataValue =
+  | string
+  | number
+  | boolean;
+export const ConfirmCheckoutsClientRequestCustomFieldDataValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfirmCheckoutsClientRequestCustomFieldDataValue>;
+
+/** Key-value object storing custom field values. */
+export type ConfirmCheckoutsClientRequestCustomFieldDataMap = {
+  [key: string]: ConfirmCheckoutsClientRequestCustomFieldDataValue | undefined;
+};
+export const ConfirmCheckoutsClientRequestCustomFieldDataMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    ConfirmCheckoutsClientRequestCustomFieldDataValue,
+  ) as any as S.Schema<ConfirmCheckoutsClientRequestCustomFieldDataMap>;
+
+export interface ConfirmCheckoutsClientRequest {
+  /** The checkout session client secret. */
+  client_secret: string;
+  /** Key-value object storing custom field values. */
+  custom_field_data?: ConfirmCheckoutsClientRequestCustomFieldDataMap;
+  /** ID of the product to checkout. Must be present in the checkout's product list. */
+  product_id?: string | null;
+  /** ID of the product price to checkout. Must correspond to a price present in the checkout's product list. */
+  product_price_id?: string | null;
+  amount?: number | null;
+  /** Number of seats for seat-based pricing. */
+  seats?: number | null;
+  is_business_customer?: boolean | null;
+  customer_name?: string | null;
+  customer_email?: string | null;
+  customer_billing_name?: string | null;
+  customer_billing_address?: AddressInput | null;
+  customer_tax_id?: string | null;
+  locale?: string | null;
+  /** Payment method type selected by the customer in the checkout form, e.g. `card`, `apple_pay` or `upi`. */
+  payment_method_type?: string | null;
+  /** Discount code to apply to the checkout. */
+  discount_code?: string | null;
+  /** Disable the trial period for the checkout session. It's mainly useful when the trial is blocked because the customer already redeemed one. */
+  allow_trial?: boolean | null;
+  /** ID of the Stripe confirmation token. Required for fixed prices and custom prices. */
+  confirmation_token_id?: string | null;
+}
+export const ConfirmCheckoutsClientRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    client_secret: S.String.pipe(T.Label()),
+    custom_field_data: S.optional(
+      ConfirmCheckoutsClientRequestCustomFieldDataMap,
+    ),
+    product_id: S.optional(S.NullOr(S.String)),
+    product_price_id: S.optional(S.NullOr(S.String)),
+    amount: S.optional(S.NullOr(S.Number)),
+    seats: S.optional(S.NullOr(S.Number)),
+    is_business_customer: S.optional(S.NullOr(S.Boolean)),
+    customer_name: S.optional(S.NullOr(S.String)),
+    customer_email: S.optional(S.NullOr(S.String)),
+    customer_billing_name: S.optional(S.NullOr(S.String)),
+    customer_billing_address: S.optional(S.NullOr(AddressInput)),
+    customer_tax_id: S.optional(S.NullOr(S.String)),
+    locale: S.optional(S.NullOr(S.String)),
+    payment_method_type: S.optional(S.NullOr(S.String)),
+    discount_code: S.optional(S.NullOr(S.String)),
+    allow_trial: S.optional(S.NullOr(S.Boolean)),
+    confirmation_token_id: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/checkouts/client/{client_secret}/confirm",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ConfirmCheckoutsClientRequest",
+}) as any as S.Schema<ConfirmCheckoutsClientRequest>;
+
+export type CheckoutPublicConfirmedCustomFieldDataValue =
+  | string
+  | number
+  | boolean;
+export const CheckoutPublicConfirmedCustomFieldDataValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicConfirmedCustomFieldDataValue>;
+
+/** Key-value object storing custom field values. */
+export type CheckoutPublicConfirmedCustomFieldDataMap = {
+  [key: string]: CheckoutPublicConfirmedCustomFieldDataValue | undefined;
+};
+export const CheckoutPublicConfirmedCustomFieldDataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  CheckoutPublicConfirmedCustomFieldDataValue,
+) as any as S.Schema<CheckoutPublicConfirmedCustomFieldDataMap>;
+
+export type CheckoutPublicConfirmedPaymentProcessorMetadataMap = {
+  [key: string]: string | undefined;
+};
+export const CheckoutPublicConfirmedPaymentProcessorMetadataMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CheckoutPublicConfirmedPaymentProcessorMetadataMap>;
+
+/** List of products available to select. */
+export type CheckoutPublicConfirmedProductsList = Array<CheckoutProduct>;
+export const CheckoutPublicConfirmedProductsList = /*@__PURE__*/ S.Array(
+  CheckoutProduct,
+) as any as S.Schema<CheckoutPublicConfirmedProductsList>;
+
+export type CheckoutPublicConfirmedProductPrice =
+  | LegacyRecurringProductPrice
+  | ProductPrice;
+export const CheckoutPublicConfirmedProductPrice =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicConfirmedProductPrice>;
+
+export type CheckoutPublicConfirmedPricesValueItem =
+  | LegacyRecurringProductPrice
+  | ProductPrice;
+export const CheckoutPublicConfirmedPricesValueItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicConfirmedPricesValueItem>;
+
+/** List of prices for this product. */
+export type CheckoutPublicConfirmedPricesValueList =
+  Array<CheckoutPublicConfirmedPricesValueItem>;
+export const CheckoutPublicConfirmedPricesValueList = /*@__PURE__*/ S.Array(
+  CheckoutPublicConfirmedPricesValueItem,
+) as any as S.Schema<CheckoutPublicConfirmedPricesValueList>;
+
+export type CheckoutPublicConfirmedPricesMap = {
+  [key: string]: CheckoutPublicConfirmedPricesValueList | undefined;
+};
+export const CheckoutPublicConfirmedPricesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  CheckoutPublicConfirmedPricesValueList,
+) as any as S.Schema<CheckoutPublicConfirmedPricesMap>;
+
+export type CheckoutPublicConfirmedDiscount =
+  | CheckoutDiscountFixedOnceForeverDuration
+  | CheckoutDiscountFixedRepeatDuration
+  | CheckoutDiscountPercentageOnceForeverDuration
+  | CheckoutDiscountPercentageRepeatDuration;
+export const CheckoutPublicConfirmedDiscount =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicConfirmedDiscount>;
+
+export type SubscriptionProrationBehavior =
+  | "invoice"
+  | "prorate"
+  | "next_period"
+  | "reset";
+export const SubscriptionProrationBehavior = /*@__PURE__*/ S.String;
+
+export interface CheckoutOrganization {
+  /** Creation timestamp of the object. */
+  created_at: string;
+  /** Last modification timestamp of the object. */
+  modified_at: string | null;
+  /** The ID of the object. */
+  id: string;
+  /** Organization name shown in checkout, customer portal, emails etc. */
+  name: string;
+  /** Unique organization slug in checkout, customer portal and credit card statements. */
+  slug: string;
+  /** Avatar URL shown in checkout, customer portal, emails etc. */
+  avatar_url: string | null;
+  /** Proration behavior applied when customer updates their subscription from the portal. */
+  proration_behavior: SubscriptionProrationBehavior;
+  /** Whether customers can update their subscriptions from the customer portal. */
+  allow_customer_updates: boolean;
+}
+export const CheckoutOrganization = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.String,
+    modified_at: S.NullOr(S.String),
+    id: S.String,
+    name: S.String,
+    slug: S.String,
+    avatar_url: S.NullOr(S.String),
+    proration_behavior: SubscriptionProrationBehavior,
+    allow_customer_updates: S.Boolean,
+  }),
+).annotate({
+  identifier: "CheckoutOrganization",
+}) as any as S.Schema<CheckoutOrganization>;
+
+export type CheckoutPublicConfirmedAttachedCustomFieldsList =
+  Array<AttachedCustomField>;
+export const CheckoutPublicConfirmedAttachedCustomFieldsList =
+  /*@__PURE__*/ S.Array(
+    AttachedCustomField,
+  ) as any as S.Schema<CheckoutPublicConfirmedAttachedCustomFieldsList>;
+
+/** Checkout session data retrieved using the client secret after confirmation. It contains a customer session token to retrieve order information right after the checkout. */
+export interface CheckoutPublicConfirmed {
+  /** The ID of the object. */
+  id: string;
+  /** Creation timestamp of the object. */
+  created_at: string;
+  /** Last modification timestamp of the object. */
+  modified_at: string | null;
+  /** Key-value object storing custom field values. */
+  custom_field_data?: CheckoutPublicConfirmedCustomFieldDataMap;
+  /** Payment processor used. */
+  payment_processor: PaymentProcessor;
+  status: string;
+  /** Client secret used to update and complete the checkout session from the client. */
+  client_secret: string | Redacted.Redacted<string>;
+  /** URL where the customer can access the checkout session. */
+  url: string;
+  /** Expiration date and time of the checkout session. */
+  expires_at: string;
+  /** URL where the customer will be redirected after a successful payment. */
+  success_url: string;
+  /** When set, a back button will be shown in the checkout to return to this URL. */
+  return_url: string | null;
+  /** When checkout is embedded, represents the Origin of the page embedding the checkout. Used as a security measure to send messages only to the embedding page. */
+  embed_origin: string | null;
+  /** Amount in cents, before discounts and taxes. */
+  amount: number;
+  /** Predefined number of seats (works with seat-based pricing only) */
+  seats?: number | null;
+  /** Minimum number of seats (works with seat-based pricing only) */
+  min_seats?: number | null;
+  /** Maximum number of seats (works with seat-based pricing only) */
+  max_seats?: number | null;
+  /** Discount amount in cents. */
+  discount_amount: number;
+  /** Amount in cents, after discounts but before taxes. */
+  net_amount: number;
+  /** Sales tax amount in cents. If `null`, it means there is no enough information yet to calculate it. */
+  tax_amount: number | null;
+  /** Tax behavior of the checkout. `inclusive` means the price includes tax, `exclusive` means tax is added on top. If `null`, tax is not yet calculated. */
+  tax_behavior: TaxBehavior | null;
+  /** Amount in cents, after discounts and taxes. */
+  total_amount: number;
+  /** Currency code of the checkout session. */
+  currency: string;
+  /** Whether to enable the trial period for the checkout session. If `false`, the trial period will be disabled, even if the selected product has a trial configured. */
+  allow_trial: boolean | null;
+  /** Interval unit of the trial period, if any. This value is either set from the checkout, if `trial_interval` is set, or from the selected product. */
+  active_trial_interval: TrialInterval | null;
+  /** Number of interval units of the trial period, if any. This value is either set from the checkout, if `trial_interval_count` is set, or from the selected product. */
+  active_trial_interval_count: number | null;
+  /** End date and time of the trial period, if any. */
+  trial_end: string | null;
+  /** ID of the organization owning the checkout session. */
+  organization_id: string;
+  /** ID of the product to checkout. */
+  product_id: string | null;
+  /** ID of the product price to checkout. */
+  product_price_id: string | null;
+  /** ID of the discount applied to the checkout. */
+  discount_id: string | null;
+  /** Whether to allow the customer to apply discount codes. If you apply a discount through `discount_id`, it'll still be applied, but the customer won't be able to change it. */
+  allow_discount_codes: boolean;
+  /** Whether to require the customer to fill their full billing address, instead of just the country. Customers in the US will always be required to fill their full address, regardless of this setting. If you preset the billing address, this setting will be automatically set to `true`. */
+  require_billing_address: boolean;
+  /** Whether the discount is applicable to the checkout. Typically, free and custom prices are not discountable. */
+  is_discount_applicable: boolean;
+  /** Whether the product price is free, regardless of discounts. */
+  is_free_product_price: boolean;
+  /** Whether the checkout requires payment, e.g. in case of free products or discounts that cover the total amount. */
+  is_payment_required: boolean;
+  /** Whether the checkout requires setting up a payment method, regardless of the amount, e.g. subscriptions that have first free cycles. */
+  is_payment_setup_required: boolean;
+  /** Whether the checkout requires a payment form, whether because of a payment or payment method setup. */
+  is_payment_form_required: boolean;
+  customer_id: string | null;
+  /** Whether the customer is a business or an individual. If `true`, the customer will be required to fill their full billing address and billing name. */
+  is_business_customer: boolean;
+  /** Name of the customer. */
+  customer_name: string | null;
+  /** Email address of the customer. */
+  customer_email: string | null;
+  customer_ip_address: string | null;
+  customer_billing_name: string | null;
+  customer_billing_address: Address | null;
+  customer_tax_id: string | null;
+  locale?: string | null;
+  /** Payment method type selected by the customer in the checkout form, e.g. `card`, `apple_pay` or `upi`. */
+  payment_method_type: string | null;
+  payment_processor_metadata: CheckoutPublicConfirmedPaymentProcessorMetadataMap;
+  /** Determine which billing address fields should be disabled, optional or required in the checkout form. */
+  billing_address_fields: CheckoutBillingAddressFields;
+  /** List of products available to select. */
+  products: CheckoutPublicConfirmedProductsList;
+  /** Product selected to checkout. */
+  product: CheckoutProduct | null;
+  /** Price of the selected product. */
+  product_price: CheckoutPublicConfirmedProductPrice | null;
+  /** Mapping of product IDs to their list of prices. */
+  prices: CheckoutPublicConfirmedPricesMap | null;
+  discount: CheckoutPublicConfirmedDiscount | null;
+  organization: CheckoutOrganization;
+  attached_custom_fields: CheckoutPublicConfirmedAttachedCustomFieldsList | null;
+  customer_session_token: string | null;
+}
+export const CheckoutPublicConfirmed = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    created_at: S.String,
+    modified_at: S.NullOr(S.String),
+    custom_field_data: S.optional(CheckoutPublicConfirmedCustomFieldDataMap),
+    payment_processor: PaymentProcessor,
+    status: S.String,
+    client_secret: S.String.pipe(T.SensitiveValue({})),
+    url: S.String,
+    expires_at: S.String,
+    success_url: S.String,
+    return_url: S.NullOr(S.String),
+    embed_origin: S.NullOr(S.String),
+    amount: S.Number,
+    seats: S.optional(S.NullOr(S.Number)),
+    min_seats: S.optional(S.NullOr(S.Number)),
+    max_seats: S.optional(S.NullOr(S.Number)),
+    discount_amount: S.Number,
+    net_amount: S.Number,
+    tax_amount: S.NullOr(S.Number),
+    tax_behavior: S.NullOr(TaxBehavior),
+    total_amount: S.Number,
+    currency: S.String,
+    allow_trial: S.NullOr(S.Boolean),
+    active_trial_interval: S.NullOr(TrialInterval),
+    active_trial_interval_count: S.NullOr(S.Number),
+    trial_end: S.NullOr(S.String),
+    organization_id: S.String,
+    product_id: S.NullOr(S.String),
+    product_price_id: S.NullOr(S.String),
+    discount_id: S.NullOr(S.String),
+    allow_discount_codes: S.Boolean,
+    require_billing_address: S.Boolean,
+    is_discount_applicable: S.Boolean,
+    is_free_product_price: S.Boolean,
+    is_payment_required: S.Boolean,
+    is_payment_setup_required: S.Boolean,
+    is_payment_form_required: S.Boolean,
+    customer_id: S.NullOr(S.String),
+    is_business_customer: S.Boolean,
+    customer_name: S.NullOr(S.String),
+    customer_email: S.NullOr(S.String),
+    customer_ip_address: S.NullOr(S.String),
+    customer_billing_name: S.NullOr(S.String),
+    customer_billing_address: S.NullOr(Address),
+    customer_tax_id: S.NullOr(S.String),
+    locale: S.optional(S.NullOr(S.String)),
+    payment_method_type: S.NullOr(S.String),
+    payment_processor_metadata:
+      CheckoutPublicConfirmedPaymentProcessorMetadataMap,
+    billing_address_fields: CheckoutBillingAddressFields,
+    products: CheckoutPublicConfirmedProductsList,
+    product: S.NullOr(CheckoutProduct),
+    product_price: S.NullOr(CheckoutPublicConfirmedProductPrice),
+    prices: S.NullOr(CheckoutPublicConfirmedPricesMap),
+    discount: S.NullOr(CheckoutPublicConfirmedDiscount),
+    organization: CheckoutOrganization,
+    attached_custom_fields: S.NullOr(
+      CheckoutPublicConfirmedAttachedCustomFieldsList,
+    ),
+    customer_session_token: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "CheckoutPublicConfirmed",
+}) as any as S.Schema<CheckoutPublicConfirmed>;
 
 export interface CustomerMetersGetRequest {
   /** The customer meter ID. */
@@ -8011,30 +7729,6 @@ export const CustomerPortalCustomersAddPaymentMethodResponse =
     identifier: "CustomerPortalCustomersAddPaymentMethodResponse",
   }) as any as S.Schema<CustomerPortalCustomersAddPaymentMethodResponse>;
 
-export interface CustomerPortalCustomersCheckEmailUpdateRequest {
-  token: string;
-}
-export const CustomerPortalCustomersCheckEmailUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      token: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/customer-portal/customers/me/email-update/check",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CustomerPortalCustomersCheckEmailUpdateRequest",
-  }) as any as S.Schema<CustomerPortalCustomersCheckEmailUpdateRequest>;
-
-export interface CustomerPortalCustomersCheckEmailUpdateResponse {}
-export const CustomerPortalCustomersCheckEmailUpdateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "CustomerPortalCustomersCheckEmailUpdateResponse",
-  }) as any as S.Schema<CustomerPortalCustomersCheckEmailUpdateResponse>;
-
 export interface CustomerPortalCustomersConfirmPaymentMethodRequest {
   setup_intent_id: string;
   set_default: boolean;
@@ -8211,30 +7905,6 @@ export const ListResourceCustomerPaymentMethod = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListResourceCustomerPaymentMethod",
 }) as any as S.Schema<ListResourceCustomerPaymentMethod>;
 
-export interface CustomerPortalCustomersRequestEmailUpdateRequest {
-  email: string;
-}
-export const CustomerPortalCustomersRequestEmailUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      email: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/customer-portal/customers/me/email-update/request",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CustomerPortalCustomersRequestEmailUpdateRequest",
-  }) as any as S.Schema<CustomerPortalCustomersRequestEmailUpdateRequest>;
-
-export interface CustomerPortalCustomersRequestEmailUpdateResponse {}
-export const CustomerPortalCustomersRequestEmailUpdateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "CustomerPortalCustomersRequestEmailUpdateResponse",
-  }) as any as S.Schema<CustomerPortalCustomersRequestEmailUpdateResponse>;
-
 export interface CustomerPortalCustomersUpdateRequest {
   billing_name?: string | null;
   billing_address?: AddressInput | null;
@@ -8258,35 +7928,6 @@ export const CustomerPortalCustomersUpdateRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "CustomerPortalCustomersUpdateRequest",
 }) as any as S.Schema<CustomerPortalCustomersUpdateRequest>;
-
-export interface CustomerPortalCustomersVerifyEmailUpdateRequest {
-  token: string;
-}
-export const CustomerPortalCustomersVerifyEmailUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      token: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/customer-portal/customers/me/email-update/verify",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CustomerPortalCustomersVerifyEmailUpdateRequest",
-  }) as any as S.Schema<CustomerPortalCustomersVerifyEmailUpdateRequest>;
-
-export interface CustomerEmailUpdateVerifyResponse {
-  token: string;
-}
-export const CustomerEmailUpdateVerifyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    token: S.String,
-  }),
-).annotate({
-  identifier: "CustomerEmailUpdateVerifyResponse",
-}) as any as S.Schema<CustomerEmailUpdateVerifyResponse>;
 
 export type CustomerPortalDownloadablesListRequestBenefitIdCase1List =
   Array<string>;
@@ -9055,53 +8696,6 @@ export const CustomerPortalMembersUpdateMemberRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "CustomerPortalMembersUpdateMemberRequest",
 }) as any as S.Schema<CustomerPortalMembersUpdateMemberRequest>;
-
-export interface CustomerPortalOrdersConfirmRetryPaymentRequest {
-  /** The order ID. */
-  id: string;
-  /** ID of the Stripe confirmation token for new payment methods. */
-  confirmation_token_id?: string | null;
-  /** ID of an existing saved payment method. */
-  payment_method_id?: string | null;
-  /** Payment processor used. */
-  payment_processor?: PaymentProcessor;
-}
-export const CustomerPortalOrdersConfirmRetryPaymentRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String.pipe(T.Label()),
-      confirmation_token_id: S.optional(S.NullOr(S.String)),
-      payment_method_id: S.optional(S.NullOr(S.String)),
-      payment_processor: S.optional(PaymentProcessor),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/customer-portal/orders/{id}/confirm-payment",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CustomerPortalOrdersConfirmRetryPaymentRequest",
-  }) as any as S.Schema<CustomerPortalOrdersConfirmRetryPaymentRequest>;
-
-/** Response after confirming a retry payment. */
-export interface CustomerOrderPaymentConfirmation {
-  /** Payment status after confirmation. */
-  status: string;
-  /** Client secret for handling additional actions. */
-  client_secret?: string | null;
-  /** Error message if confirmation failed. */
-  error?: string | null;
-}
-export const CustomerOrderPaymentConfirmation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.String,
-    client_secret: S.optional(S.NullOr(S.String)),
-    error: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "CustomerOrderPaymentConfirmation",
-}) as any as S.Schema<CustomerOrderPaymentConfirmation>;
 
 export interface CustomerPortalOrdersGenerateInvoiceRequest {
   /** The order ID. */
@@ -11084,49 +10678,6 @@ export const CustomerSeatClaimResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CustomerSeatClaimResponse",
 }) as any as S.Schema<CustomerSeatClaimResponse>;
-
-export interface CustomerSeatsGetClaimInfoRequest {
-  invitation_token: string;
-}
-export const CustomerSeatsGetClaimInfoRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invitation_token: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/customer-seats/claim/{invitation_token}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CustomerSeatsGetClaimInfoRequest",
-}) as any as S.Schema<CustomerSeatsGetClaimInfoRequest>;
-
-/** Read-only information about a seat claim invitation. Safe for email scanners - no side effects when fetched. */
-export interface SeatClaimInfo {
-  /** Name of the product */
-  product_name: string;
-  /** ID of the product */
-  product_id: string;
-  /** Name of the organization */
-  organization_name: string;
-  /** Slug of the organization */
-  organization_slug: string;
-  /** Email of the customer assigned to this seat */
-  customer_email: string;
-  /** Whether the seat can be claimed */
-  can_claim: boolean;
-}
-export const SeatClaimInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    product_name: S.String,
-    product_id: S.String,
-    organization_name: S.String,
-    organization_slug: S.String,
-    customer_email: S.String,
-    can_claim: S.Boolean,
-  }),
-).annotate({ identifier: "SeatClaimInfo" }) as any as S.Schema<SeatClaimInfo>;
 
 export interface CustomerSeatsListSeatsRequest {
   subscription_id?: string;
@@ -17121,6 +16672,257 @@ export const FilesUploadedResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "FilesUploadedResponse",
 }) as any as S.Schema<FilesUploadedResponse>;
+
+export interface GetCheckoutsClientRequest {
+  /** The checkout session client secret. */
+  client_secret: string;
+}
+export const GetCheckoutsClientRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    client_secret: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/checkouts/client/{client_secret}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCheckoutsClientRequest",
+}) as any as S.Schema<GetCheckoutsClientRequest>;
+
+export type CheckoutPublicCustomFieldDataValue = string | number | boolean;
+export const CheckoutPublicCustomFieldDataValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicCustomFieldDataValue>;
+
+/** Key-value object storing custom field values. */
+export type CheckoutPublicCustomFieldDataMap = {
+  [key: string]: CheckoutPublicCustomFieldDataValue | undefined;
+};
+export const CheckoutPublicCustomFieldDataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  CheckoutPublicCustomFieldDataValue,
+) as any as S.Schema<CheckoutPublicCustomFieldDataMap>;
+
+export type CheckoutPublicPaymentProcessorMetadataMap = {
+  [key: string]: string | undefined;
+};
+export const CheckoutPublicPaymentProcessorMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CheckoutPublicPaymentProcessorMetadataMap>;
+
+/** List of products available to select. */
+export type CheckoutPublicProductsList = Array<CheckoutProduct>;
+export const CheckoutPublicProductsList = /*@__PURE__*/ S.Array(
+  CheckoutProduct,
+) as any as S.Schema<CheckoutPublicProductsList>;
+
+export type CheckoutPublicProductPrice =
+  | LegacyRecurringProductPrice
+  | ProductPrice;
+export const CheckoutPublicProductPrice =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicProductPrice>;
+
+export type CheckoutPublicPricesValueItem =
+  | LegacyRecurringProductPrice
+  | ProductPrice;
+export const CheckoutPublicPricesValueItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicPricesValueItem>;
+
+/** List of prices for this product. */
+export type CheckoutPublicPricesValueList =
+  Array<CheckoutPublicPricesValueItem>;
+export const CheckoutPublicPricesValueList = /*@__PURE__*/ S.Array(
+  CheckoutPublicPricesValueItem,
+) as any as S.Schema<CheckoutPublicPricesValueList>;
+
+export type CheckoutPublicPricesMap = {
+  [key: string]: CheckoutPublicPricesValueList | undefined;
+};
+export const CheckoutPublicPricesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  CheckoutPublicPricesValueList,
+) as any as S.Schema<CheckoutPublicPricesMap>;
+
+export type CheckoutPublicDiscount =
+  | CheckoutDiscountFixedOnceForeverDuration
+  | CheckoutDiscountFixedRepeatDuration
+  | CheckoutDiscountPercentageOnceForeverDuration
+  | CheckoutDiscountPercentageRepeatDuration;
+export const CheckoutPublicDiscount =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicDiscount>;
+
+export type CheckoutPublicAttachedCustomFieldsList = Array<AttachedCustomField>;
+export const CheckoutPublicAttachedCustomFieldsList = /*@__PURE__*/ S.Array(
+  AttachedCustomField,
+) as any as S.Schema<CheckoutPublicAttachedCustomFieldsList>;
+
+/** Checkout session data retrieved using the client secret. */
+export interface CheckoutPublic {
+  /** The ID of the object. */
+  id: string;
+  /** Creation timestamp of the object. */
+  created_at: string;
+  /** Last modification timestamp of the object. */
+  modified_at: string | null;
+  /** Key-value object storing custom field values. */
+  custom_field_data?: CheckoutPublicCustomFieldDataMap;
+  /** Payment processor used. */
+  payment_processor: PaymentProcessor;
+  /** Status of the checkout session. - Open: the checkout session was opened. - Expired: the checkout session was expired and is no more accessible. - Confirmed: the user on the checkout session clicked Pay. This is not indicative of the payment's success status. - Failed: the checkout definitely failed for technical reasons and cannot be retried. In most cases, this state is never reached. - Succeeded: the payment on the checkout was performed successfully. */
+  status: CheckoutStatus;
+  /** Client secret used to update and complete the checkout session from the client. */
+  client_secret: string | Redacted.Redacted<string>;
+  /** URL where the customer can access the checkout session. */
+  url: string;
+  /** Expiration date and time of the checkout session. */
+  expires_at: string;
+  /** URL where the customer will be redirected after a successful payment. */
+  success_url: string;
+  /** When set, a back button will be shown in the checkout to return to this URL. */
+  return_url: string | null;
+  /** When checkout is embedded, represents the Origin of the page embedding the checkout. Used as a security measure to send messages only to the embedding page. */
+  embed_origin: string | null;
+  /** Amount in cents, before discounts and taxes. */
+  amount: number;
+  /** Predefined number of seats (works with seat-based pricing only) */
+  seats?: number | null;
+  /** Minimum number of seats (works with seat-based pricing only) */
+  min_seats?: number | null;
+  /** Maximum number of seats (works with seat-based pricing only) */
+  max_seats?: number | null;
+  /** Discount amount in cents. */
+  discount_amount: number;
+  /** Amount in cents, after discounts but before taxes. */
+  net_amount: number;
+  /** Sales tax amount in cents. If `null`, it means there is no enough information yet to calculate it. */
+  tax_amount: number | null;
+  /** Tax behavior of the checkout. `inclusive` means the price includes tax, `exclusive` means tax is added on top. If `null`, tax is not yet calculated. */
+  tax_behavior: TaxBehavior | null;
+  /** Amount in cents, after discounts and taxes. */
+  total_amount: number;
+  /** Currency code of the checkout session. */
+  currency: string;
+  /** Whether to enable the trial period for the checkout session. If `false`, the trial period will be disabled, even if the selected product has a trial configured. */
+  allow_trial: boolean | null;
+  /** Interval unit of the trial period, if any. This value is either set from the checkout, if `trial_interval` is set, or from the selected product. */
+  active_trial_interval: TrialInterval | null;
+  /** Number of interval units of the trial period, if any. This value is either set from the checkout, if `trial_interval_count` is set, or from the selected product. */
+  active_trial_interval_count: number | null;
+  /** End date and time of the trial period, if any. */
+  trial_end: string | null;
+  /** ID of the organization owning the checkout session. */
+  organization_id: string;
+  /** ID of the product to checkout. */
+  product_id: string | null;
+  /** ID of the product price to checkout. */
+  product_price_id: string | null;
+  /** ID of the discount applied to the checkout. */
+  discount_id: string | null;
+  /** Whether to allow the customer to apply discount codes. If you apply a discount through `discount_id`, it'll still be applied, but the customer won't be able to change it. */
+  allow_discount_codes: boolean;
+  /** Whether to require the customer to fill their full billing address, instead of just the country. Customers in the US will always be required to fill their full address, regardless of this setting. If you preset the billing address, this setting will be automatically set to `true`. */
+  require_billing_address: boolean;
+  /** Whether the discount is applicable to the checkout. Typically, free and custom prices are not discountable. */
+  is_discount_applicable: boolean;
+  /** Whether the product price is free, regardless of discounts. */
+  is_free_product_price: boolean;
+  /** Whether the checkout requires payment, e.g. in case of free products or discounts that cover the total amount. */
+  is_payment_required: boolean;
+  /** Whether the checkout requires setting up a payment method, regardless of the amount, e.g. subscriptions that have first free cycles. */
+  is_payment_setup_required: boolean;
+  /** Whether the checkout requires a payment form, whether because of a payment or payment method setup. */
+  is_payment_form_required: boolean;
+  customer_id: string | null;
+  /** Whether the customer is a business or an individual. If `true`, the customer will be required to fill their full billing address and billing name. */
+  is_business_customer: boolean;
+  /** Name of the customer. */
+  customer_name: string | null;
+  /** Email address of the customer. */
+  customer_email: string | null;
+  customer_ip_address: string | null;
+  customer_billing_name: string | null;
+  customer_billing_address: Address | null;
+  customer_tax_id: string | null;
+  locale?: string | null;
+  /** Payment method type selected by the customer in the checkout form, e.g. `card`, `apple_pay` or `upi`. */
+  payment_method_type: string | null;
+  payment_processor_metadata: CheckoutPublicPaymentProcessorMetadataMap;
+  /** Determine which billing address fields should be disabled, optional or required in the checkout form. */
+  billing_address_fields: CheckoutBillingAddressFields;
+  /** List of products available to select. */
+  products: CheckoutPublicProductsList;
+  /** Product selected to checkout. */
+  product: CheckoutProduct | null;
+  /** Price of the selected product. */
+  product_price: CheckoutPublicProductPrice | null;
+  /** Mapping of product IDs to their list of prices. */
+  prices: CheckoutPublicPricesMap | null;
+  discount: CheckoutPublicDiscount | null;
+  organization: CheckoutOrganization;
+  attached_custom_fields: CheckoutPublicAttachedCustomFieldsList | null;
+}
+export const CheckoutPublic = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    created_at: S.String,
+    modified_at: S.NullOr(S.String),
+    custom_field_data: S.optional(CheckoutPublicCustomFieldDataMap),
+    payment_processor: PaymentProcessor,
+    status: CheckoutStatus,
+    client_secret: S.String.pipe(T.SensitiveValue({})),
+    url: S.String,
+    expires_at: S.String,
+    success_url: S.String,
+    return_url: S.NullOr(S.String),
+    embed_origin: S.NullOr(S.String),
+    amount: S.Number,
+    seats: S.optional(S.NullOr(S.Number)),
+    min_seats: S.optional(S.NullOr(S.Number)),
+    max_seats: S.optional(S.NullOr(S.Number)),
+    discount_amount: S.Number,
+    net_amount: S.Number,
+    tax_amount: S.NullOr(S.Number),
+    tax_behavior: S.NullOr(TaxBehavior),
+    total_amount: S.Number,
+    currency: S.String,
+    allow_trial: S.NullOr(S.Boolean),
+    active_trial_interval: S.NullOr(TrialInterval),
+    active_trial_interval_count: S.NullOr(S.Number),
+    trial_end: S.NullOr(S.String),
+    organization_id: S.String,
+    product_id: S.NullOr(S.String),
+    product_price_id: S.NullOr(S.String),
+    discount_id: S.NullOr(S.String),
+    allow_discount_codes: S.Boolean,
+    require_billing_address: S.Boolean,
+    is_discount_applicable: S.Boolean,
+    is_free_product_price: S.Boolean,
+    is_payment_required: S.Boolean,
+    is_payment_setup_required: S.Boolean,
+    is_payment_form_required: S.Boolean,
+    customer_id: S.NullOr(S.String),
+    is_business_customer: S.Boolean,
+    customer_name: S.NullOr(S.String),
+    customer_email: S.NullOr(S.String),
+    customer_ip_address: S.NullOr(S.String),
+    customer_billing_name: S.NullOr(S.String),
+    customer_billing_address: S.NullOr(Address),
+    customer_tax_id: S.NullOr(S.String),
+    locale: S.optional(S.NullOr(S.String)),
+    payment_method_type: S.NullOr(S.String),
+    payment_processor_metadata: CheckoutPublicPaymentProcessorMetadataMap,
+    billing_address_fields: CheckoutBillingAddressFields,
+    products: CheckoutPublicProductsList,
+    product: S.NullOr(CheckoutProduct),
+    product_price: S.NullOr(CheckoutPublicProductPrice),
+    prices: S.NullOr(CheckoutPublicPricesMap),
+    discount: S.NullOr(CheckoutPublicDiscount),
+    organization: CheckoutOrganization,
+    attached_custom_fields: S.NullOr(CheckoutPublicAttachedCustomFieldsList),
+  }),
+).annotate({ identifier: "CheckoutPublic" }) as any as S.Schema<CheckoutPublic>;
 
 export type LicenseKeysActivateRequestConditionsValue =
   | string
@@ -25053,6 +24855,53 @@ export const ListResourceRefund = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListResourceRefund",
 }) as any as S.Schema<ListResourceRefund>;
 
+export interface RetryCustomerPortalOrdersConfirmPaymentRequest {
+  /** The order ID. */
+  id: string;
+  /** ID of the Stripe confirmation token for new payment methods. */
+  confirmation_token_id?: string | null;
+  /** ID of an existing saved payment method. */
+  payment_method_id?: string | null;
+  /** Payment processor used. */
+  payment_processor?: PaymentProcessor;
+}
+export const RetryCustomerPortalOrdersConfirmPaymentRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String.pipe(T.Label()),
+      confirmation_token_id: S.optional(S.NullOr(S.String)),
+      payment_method_id: S.optional(S.NullOr(S.String)),
+      payment_processor: S.optional(PaymentProcessor),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/customer-portal/orders/{id}/confirm-payment",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "RetryCustomerPortalOrdersConfirmPaymentRequest",
+  }) as any as S.Schema<RetryCustomerPortalOrdersConfirmPaymentRequest>;
+
+/** Response after confirming a retry payment. */
+export interface CustomerOrderPaymentConfirmation {
+  /** Payment status after confirmation. */
+  status: string;
+  /** Client secret for handling additional actions. */
+  client_secret?: string | null;
+  /** Error message if confirmation failed. */
+  error?: string | null;
+}
+export const CustomerOrderPaymentConfirmation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.String,
+    client_secret: S.optional(S.NullOr(S.String)),
+    error: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "CustomerOrderPaymentConfirmation",
+}) as any as S.Schema<CustomerOrderPaymentConfirmation>;
+
 export type SubscriptionCreateCustomerMetadataValue =
   | string
   | number
@@ -25917,6 +25766,157 @@ export const SubscriptionsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "SubscriptionsUpdateRequest",
 }) as any as S.Schema<SubscriptionsUpdateRequest>;
 
+export type UpdateCheckoutsClientRequestCustomFieldDataValue =
+  | string
+  | number
+  | boolean;
+export const UpdateCheckoutsClientRequestCustomFieldDataValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCheckoutsClientRequestCustomFieldDataValue>;
+
+/** Key-value object storing custom field values. */
+export type UpdateCheckoutsClientRequestCustomFieldDataMap = {
+  [key: string]: UpdateCheckoutsClientRequestCustomFieldDataValue | undefined;
+};
+export const UpdateCheckoutsClientRequestCustomFieldDataMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UpdateCheckoutsClientRequestCustomFieldDataValue,
+  ) as any as S.Schema<UpdateCheckoutsClientRequestCustomFieldDataMap>;
+
+export interface UpdateCheckoutsClientRequest {
+  /** The checkout session client secret. */
+  client_secret: string;
+  /** Key-value object storing custom field values. */
+  custom_field_data?: UpdateCheckoutsClientRequestCustomFieldDataMap;
+  /** ID of the product to checkout. Must be present in the checkout's product list. */
+  product_id?: string | null;
+  /** ID of the product price to checkout. Must correspond to a price present in the checkout's product list. */
+  product_price_id?: string | null;
+  amount?: number | null;
+  /** Number of seats for seat-based pricing. */
+  seats?: number | null;
+  is_business_customer?: boolean | null;
+  customer_name?: string | null;
+  customer_email?: string | null;
+  customer_billing_name?: string | null;
+  customer_billing_address?: AddressInput | null;
+  customer_tax_id?: string | null;
+  locale?: string | null;
+  /** Payment method type selected by the customer in the checkout form, e.g. `card`, `apple_pay` or `upi`. */
+  payment_method_type?: string | null;
+  /** Discount code to apply to the checkout. */
+  discount_code?: string | null;
+  /** Disable the trial period for the checkout session. It's mainly useful when the trial is blocked because the customer already redeemed one. */
+  allow_trial?: boolean | null;
+}
+export const UpdateCheckoutsClientRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    client_secret: S.String.pipe(T.Label()),
+    custom_field_data: S.optional(
+      UpdateCheckoutsClientRequestCustomFieldDataMap,
+    ),
+    product_id: S.optional(S.NullOr(S.String)),
+    product_price_id: S.optional(S.NullOr(S.String)),
+    amount: S.optional(S.NullOr(S.Number)),
+    seats: S.optional(S.NullOr(S.Number)),
+    is_business_customer: S.optional(S.NullOr(S.Boolean)),
+    customer_name: S.optional(S.NullOr(S.String)),
+    customer_email: S.optional(S.NullOr(S.String)),
+    customer_billing_name: S.optional(S.NullOr(S.String)),
+    customer_billing_address: S.optional(S.NullOr(AddressInput)),
+    customer_tax_id: S.optional(S.NullOr(S.String)),
+    locale: S.optional(S.NullOr(S.String)),
+    payment_method_type: S.optional(S.NullOr(S.String)),
+    discount_code: S.optional(S.NullOr(S.String)),
+    allow_trial: S.optional(S.NullOr(S.Boolean)),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/v1/checkouts/client/{client_secret}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateCheckoutsClientRequest",
+}) as any as S.Schema<UpdateCheckoutsClientRequest>;
+
+export interface UpdateCustomerPortalCustomersCheckEmailRequest {
+  token: string;
+}
+export const UpdateCustomerPortalCustomersCheckEmailRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      token: S.String.pipe(T.Query()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/customer-portal/customers/me/email-update/check",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateCustomerPortalCustomersCheckEmailRequest",
+  }) as any as S.Schema<UpdateCustomerPortalCustomersCheckEmailRequest>;
+
+export interface UpdateCustomerPortalCustomersCheckEmailResponse {}
+export const UpdateCustomerPortalCustomersCheckEmailResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "UpdateCustomerPortalCustomersCheckEmailResponse",
+  }) as any as S.Schema<UpdateCustomerPortalCustomersCheckEmailResponse>;
+
+export interface UpdateCustomerPortalCustomersRequestEmailRequest {
+  email: string;
+}
+export const UpdateCustomerPortalCustomersRequestEmailRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      email: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/customer-portal/customers/me/email-update/request",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateCustomerPortalCustomersRequestEmailRequest",
+  }) as any as S.Schema<UpdateCustomerPortalCustomersRequestEmailRequest>;
+
+export interface UpdateCustomerPortalCustomersRequestEmailResponse {}
+export const UpdateCustomerPortalCustomersRequestEmailResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "UpdateCustomerPortalCustomersRequestEmailResponse",
+  }) as any as S.Schema<UpdateCustomerPortalCustomersRequestEmailResponse>;
+
+export interface UpdateCustomerPortalCustomersVerifyEmailRequest {
+  token: string;
+}
+export const UpdateCustomerPortalCustomersVerifyEmailRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      token: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/customer-portal/customers/me/email-update/verify",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateCustomerPortalCustomersVerifyEmailRequest",
+  }) as any as S.Schema<UpdateCustomerPortalCustomersVerifyEmailRequest>;
+
+export interface CustomerEmailUpdateVerifyResponse {
+  token: string;
+}
+export const CustomerEmailUpdateVerifyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    token: S.String,
+  }),
+).annotate({
+  identifier: "CustomerEmailUpdateVerifyResponse",
+}) as any as S.Schema<CustomerEmailUpdateVerifyResponse>;
+
 export type WebhookFormat = "raw" | "discord" | "slack";
 export const WebhookFormat = /*@__PURE__*/ S.String;
 
@@ -26656,69 +26656,6 @@ export const checkoutLinksUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CheckoutsClientConfirmError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PolarOpError;
-/** Confirm Checkout Session from Client Confirm a checkout session by client secret. Orders and subscriptions will be processed. */
-export const checkoutsClientConfirm: API.OperationMethod<
-  CheckoutsClientConfirmRequest,
-  CheckoutPublicConfirmed,
-  CheckoutsClientConfirmError,
-  PolarOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckoutsClientConfirmRequest,
-  output: CheckoutPublicConfirmed,
-  errors: [
-    BadRequest,
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPolarError,
-  ],
-  protocol: PolarProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CheckoutsClientGetError =
-  | NotFound
-  | UnprocessableEntity
-  | PolarOpError;
-/** Get Checkout Session from Client Get a checkout session by client secret. */
-export const checkoutsClientGet: API.OperationMethod<
-  CheckoutsClientGetRequest,
-  CheckoutPublic,
-  CheckoutsClientGetError,
-  PolarOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckoutsClientGetRequest,
-  output: CheckoutPublic,
-  errors: [NotFound, UnprocessableEntity, UnknownPolarError],
-  protocol: PolarProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CheckoutsClientUpdateError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PolarOpError;
-/** Update Checkout Session from Client Update a checkout session by client secret. */
-export const checkoutsClientUpdate: API.OperationMethod<
-  CheckoutsClientUpdateRequest,
-  CheckoutPublic,
-  CheckoutsClientUpdateError,
-  PolarOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckoutsClientUpdateRequest,
-  output: CheckoutPublic,
-  errors: [Forbidden, NotFound, UnprocessableEntity, UnknownPolarError],
-  protocol: PolarProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CheckoutsCreateError = UnprocessableEntity | PolarOpError;
 /** Create Checkout Session Create a checkout session. **Scopes**: `checkouts:write` */
 export const checkoutsCreate: API.OperationMethod<
@@ -26790,6 +26727,58 @@ export const checkoutsUpdate: API.OperationMethod<
   input: CheckoutsUpdateRequest,
   output: Checkout,
   errors: [Forbidden, NotFound, UnprocessableEntity, UnknownPolarError],
+  protocol: PolarProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ClaimCustomerSeatsGetInfoError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PolarOpError;
+/** Get Claim Info */
+export const claimCustomerSeatsGetInfo: API.OperationMethod<
+  ClaimCustomerSeatsGetInfoRequest,
+  SeatClaimInfo,
+  ClaimCustomerSeatsGetInfoError,
+  PolarOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ClaimCustomerSeatsGetInfoRequest,
+  output: SeatClaimInfo,
+  errors: [
+    BadRequest,
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPolarError,
+  ],
+  protocol: PolarProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ConfirmCheckoutsClientError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PolarOpError;
+/** Confirm Checkout Session from Client Confirm a checkout session by client secret. Orders and subscriptions will be processed. */
+export const confirmCheckoutsClient: API.OperationMethod<
+  ConfirmCheckoutsClientRequest,
+  CheckoutPublicConfirmed,
+  ConfirmCheckoutsClientError,
+  PolarOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ConfirmCheckoutsClientRequest,
+  output: CheckoutPublicConfirmed,
+  errors: [
+    BadRequest,
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPolarError,
+  ],
   protocol: PolarProtocol,
   retry: Retry.Retry,
 }));
@@ -26967,23 +26956,6 @@ export const customerPortalCustomersAddPaymentMethod: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CustomerPortalCustomersCheckEmailUpdateError =
-  | UnprocessableEntity
-  | PolarOpError;
-/** Check Email Change Token Check if an email change verification token is still valid. */
-export const customerPortalCustomersCheckEmailUpdate: API.OperationMethod<
-  CustomerPortalCustomersCheckEmailUpdateRequest,
-  CustomerPortalCustomersCheckEmailUpdateResponse,
-  CustomerPortalCustomersCheckEmailUpdateError,
-  PolarOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CustomerPortalCustomersCheckEmailUpdateRequest,
-  output: CustomerPortalCustomersCheckEmailUpdateResponse,
-  errors: [UnprocessableEntity, UnknownPolarError],
-  protocol: PolarProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CustomerPortalCustomersConfirmPaymentMethodError =
   | Forbidden
   | UnprocessableEntity
@@ -27095,23 +27067,6 @@ export const customerPortalCustomersListPaymentMethods: API.PaginatedOperationMe
   paginatePolar,
 ) as any;
 
-export type CustomerPortalCustomersRequestEmailUpdateError =
-  | UnprocessableEntity
-  | PolarOpError;
-/** Request Email Change Request an email change for the authenticated customer. */
-export const customerPortalCustomersRequestEmailUpdate: API.OperationMethod<
-  CustomerPortalCustomersRequestEmailUpdateRequest,
-  CustomerPortalCustomersRequestEmailUpdateResponse,
-  CustomerPortalCustomersRequestEmailUpdateError,
-  PolarOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CustomerPortalCustomersRequestEmailUpdateRequest,
-  output: CustomerPortalCustomersRequestEmailUpdateResponse,
-  errors: [UnprocessableEntity, UnknownPolarError],
-  protocol: PolarProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CustomerPortalCustomersUpdateError =
   | UnprocessableEntity
   | PolarOpError;
@@ -27124,23 +27079,6 @@ export const customerPortalCustomersUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CustomerPortalCustomersUpdateRequest,
   output: CustomerPortalCustomer,
-  errors: [UnprocessableEntity, UnknownPolarError],
-  protocol: PolarProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CustomerPortalCustomersVerifyEmailUpdateError =
-  | UnprocessableEntity
-  | PolarOpError;
-/** Verify Email Change Verify an email change using the token from the verification email. */
-export const customerPortalCustomersVerifyEmailUpdate: API.OperationMethod<
-  CustomerPortalCustomersVerifyEmailUpdateRequest,
-  CustomerEmailUpdateVerifyResponse,
-  CustomerPortalCustomersVerifyEmailUpdateError,
-  PolarOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CustomerPortalCustomersVerifyEmailUpdateRequest,
-  output: CustomerEmailUpdateVerifyResponse,
   errors: [UnprocessableEntity, UnknownPolarError],
   protocol: PolarProtocol,
   retry: Retry.Retry,
@@ -27372,25 +27310,6 @@ export const customerPortalMembersUpdateMember: API.OperationMethod<
     UnprocessableEntity,
     UnknownPolarError,
   ],
-  protocol: PolarProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CustomerPortalOrdersConfirmRetryPaymentError =
-  | NotFound
-  | Conflict
-  | UnprocessableEntity
-  | PolarOpError;
-/** Confirm Retry Payment Confirm a retry payment using a Stripe confirmation token. */
-export const customerPortalOrdersConfirmRetryPayment: API.OperationMethod<
-  CustomerPortalOrdersConfirmRetryPaymentRequest,
-  CustomerOrderPaymentConfirmation,
-  CustomerPortalOrdersConfirmRetryPaymentError,
-  PolarOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CustomerPortalOrdersConfirmRetryPaymentRequest,
-  output: CustomerOrderPaymentConfirmation,
-  errors: [NotFound, Conflict, UnprocessableEntity, UnknownPolarError],
   protocol: PolarProtocol,
   retry: Retry.Retry,
 }));
@@ -27893,32 +27812,6 @@ export const customerSeatsClaimSeat: API.OperationMethod<
   input: CustomerSeatsClaimSeatRequest,
   output: CustomerSeatClaimResponse,
   errors: [BadRequest, Forbidden, UnprocessableEntity, UnknownPolarError],
-  protocol: PolarProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CustomerSeatsGetClaimInfoError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PolarOpError;
-/** Get Claim Info */
-export const customerSeatsGetClaimInfo: API.OperationMethod<
-  CustomerSeatsGetClaimInfoRequest,
-  SeatClaimInfo,
-  CustomerSeatsGetClaimInfoError,
-  PolarOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CustomerSeatsGetClaimInfoRequest,
-  output: SeatClaimInfo,
-  errors: [
-    BadRequest,
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPolarError,
-  ],
   protocol: PolarProtocol,
   retry: Retry.Retry,
 }));
@@ -28818,6 +28711,24 @@ export const filesUploaded: API.OperationMethod<
   input: FilesUploadedRequest,
   output: FilesUploadedResponse,
   errors: [Forbidden, NotFound, UnprocessableEntity, UnknownPolarError],
+  protocol: PolarProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCheckoutsClientError =
+  | NotFound
+  | UnprocessableEntity
+  | PolarOpError;
+/** Get Checkout Session from Client Get a checkout session by client secret. */
+export const getCheckoutsClient: API.OperationMethod<
+  GetCheckoutsClientRequest,
+  CheckoutPublic,
+  GetCheckoutsClientError,
+  PolarOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCheckoutsClientRequest,
+  output: CheckoutPublic,
+  errors: [NotFound, UnprocessableEntity, UnknownPolarError],
   protocol: PolarProtocol,
   retry: Retry.Retry,
 }));
@@ -29753,6 +29664,25 @@ export const refundsList: API.PaginatedOperationMethod<
   paginatePolar,
 ) as any;
 
+export type RetryCustomerPortalOrdersConfirmPaymentError =
+  | NotFound
+  | Conflict
+  | UnprocessableEntity
+  | PolarOpError;
+/** Confirm Retry Payment Confirm a retry payment using a Stripe confirmation token. */
+export const retryCustomerPortalOrdersConfirmPayment: API.OperationMethod<
+  RetryCustomerPortalOrdersConfirmPaymentRequest,
+  CustomerOrderPaymentConfirmation,
+  RetryCustomerPortalOrdersConfirmPaymentError,
+  PolarOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RetryCustomerPortalOrdersConfirmPaymentRequest,
+  output: CustomerOrderPaymentConfirmation,
+  errors: [NotFound, Conflict, UnprocessableEntity, UnknownPolarError],
+  protocol: PolarProtocol,
+  retry: Retry.Retry,
+}));
+
 export type SubscriptionsCreateError = UnprocessableEntity | PolarOpError;
 /** Create Subscription Create a subscription programmatically. This endpoint only allows to create subscription on free products. For paid products, use the checkout flow. No initial order will be created and no confirmation email will be sent. **Scopes**: `subscriptions:write` */
 export const subscriptionsCreate: API.OperationMethod<
@@ -29875,6 +29805,76 @@ export const subscriptionsUpdate: API.OperationMethod<
     UnprocessableEntity,
     UnknownPolarError,
   ],
+  protocol: PolarProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateCheckoutsClientError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PolarOpError;
+/** Update Checkout Session from Client Update a checkout session by client secret. */
+export const updateCheckoutsClient: API.OperationMethod<
+  UpdateCheckoutsClientRequest,
+  CheckoutPublic,
+  UpdateCheckoutsClientError,
+  PolarOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateCheckoutsClientRequest,
+  output: CheckoutPublic,
+  errors: [Forbidden, NotFound, UnprocessableEntity, UnknownPolarError],
+  protocol: PolarProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateCustomerPortalCustomersCheckEmailError =
+  | UnprocessableEntity
+  | PolarOpError;
+/** Check Email Change Token Check if an email change verification token is still valid. */
+export const updateCustomerPortalCustomersCheckEmail: API.OperationMethod<
+  UpdateCustomerPortalCustomersCheckEmailRequest,
+  UpdateCustomerPortalCustomersCheckEmailResponse,
+  UpdateCustomerPortalCustomersCheckEmailError,
+  PolarOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateCustomerPortalCustomersCheckEmailRequest,
+  output: UpdateCustomerPortalCustomersCheckEmailResponse,
+  errors: [UnprocessableEntity, UnknownPolarError],
+  protocol: PolarProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateCustomerPortalCustomersRequestEmailError =
+  | UnprocessableEntity
+  | PolarOpError;
+/** Request Email Change Request an email change for the authenticated customer. */
+export const updateCustomerPortalCustomersRequestEmail: API.OperationMethod<
+  UpdateCustomerPortalCustomersRequestEmailRequest,
+  UpdateCustomerPortalCustomersRequestEmailResponse,
+  UpdateCustomerPortalCustomersRequestEmailError,
+  PolarOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateCustomerPortalCustomersRequestEmailRequest,
+  output: UpdateCustomerPortalCustomersRequestEmailResponse,
+  errors: [UnprocessableEntity, UnknownPolarError],
+  protocol: PolarProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateCustomerPortalCustomersVerifyEmailError =
+  | UnprocessableEntity
+  | PolarOpError;
+/** Verify Email Change Verify an email change using the token from the verification email. */
+export const updateCustomerPortalCustomersVerifyEmail: API.OperationMethod<
+  UpdateCustomerPortalCustomersVerifyEmailRequest,
+  CustomerEmailUpdateVerifyResponse,
+  UpdateCustomerPortalCustomersVerifyEmailError,
+  PolarOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateCustomerPortalCustomersVerifyEmailRequest,
+  output: CustomerEmailUpdateVerifyResponse,
+  errors: [UnprocessableEntity, UnknownPolarError],
   protocol: PolarProtocol,
   retry: Retry.Retry,
 }));

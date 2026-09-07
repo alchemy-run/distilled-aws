@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.polar.api#OrganizationSortProperty": {
@@ -28517,7 +28518,7 @@
         "smithy.api#documentation": "Update Checkout Session\n\nUpdate a checkout session.\n\n**Scopes**: `checkouts:write`"
       }
     },
-    "com.polar.api#CheckoutsClientGetRequest": {
+    "com.polar.api#GetCheckoutsClientRequest": {
       "type": "structure",
       "members": {
         "client_secret": {
@@ -29126,10 +29127,10 @@
       },
       "traits": {}
     },
-    "com.polar.api#CheckoutsClientGet": {
+    "com.polar.api#GetCheckoutsClient": {
       "type": "operation",
       "input": {
-        "target": "com.polar.api#CheckoutsClientGetRequest"
+        "target": "com.polar.api#GetCheckoutsClientRequest"
       },
       "output": {
         "target": "com.polar.api#CheckoutPublic"
@@ -29151,7 +29152,7 @@
         "smithy.api#documentation": "Get Checkout Session from Client\n\nGet a checkout session by client secret."
       }
     },
-    "com.polar.api#CheckoutsClientUpdateRequestCustomFieldDataValue": {
+    "com.polar.api#UpdateCheckoutsClientRequestCustomFieldDataValue": {
       "type": "union",
       "members": {
         "Case0": {
@@ -29166,19 +29167,19 @@
       },
       "traits": {}
     },
-    "com.polar.api#CheckoutsClientUpdateRequestCustomFieldDataMap": {
+    "com.polar.api#UpdateCheckoutsClientRequestCustomFieldDataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.polar.api#CheckoutsClientUpdateRequestCustomFieldDataValue"
+        "target": "com.polar.api#UpdateCheckoutsClientRequestCustomFieldDataValue"
       },
       "traits": {
         "smithy.api#documentation": "Key-value object storing custom field values."
       }
     },
-    "com.polar.api#CheckoutsClientUpdateRequest": {
+    "com.polar.api#UpdateCheckoutsClientRequest": {
       "type": "structure",
       "members": {
         "client_secret": {
@@ -29190,7 +29191,7 @@
           }
         },
         "custom_field_data": {
-          "target": "com.polar.api#CheckoutsClientUpdateRequestCustomFieldDataMap",
+          "target": "com.polar.api#UpdateCheckoutsClientRequestCustomFieldDataMap",
           "traits": {
             "smithy.api#documentation": "Key-value object storing custom field values."
           }
@@ -29290,10 +29291,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.polar.api#CheckoutsClientUpdate": {
+    "com.polar.api#UpdateCheckoutsClient": {
       "type": "operation",
       "input": {
-        "target": "com.polar.api#CheckoutsClientUpdateRequest"
+        "target": "com.polar.api#UpdateCheckoutsClientRequest"
       },
       "output": {
         "target": "com.polar.api#CheckoutPublic"
@@ -29318,7 +29319,7 @@
         "smithy.api#documentation": "Update Checkout Session from Client\n\nUpdate a checkout session by client secret."
       }
     },
-    "com.polar.api#CheckoutsClientConfirmRequestCustomFieldDataValue": {
+    "com.polar.api#ConfirmCheckoutsClientRequestCustomFieldDataValue": {
       "type": "union",
       "members": {
         "Case0": {
@@ -29333,19 +29334,19 @@
       },
       "traits": {}
     },
-    "com.polar.api#CheckoutsClientConfirmRequestCustomFieldDataMap": {
+    "com.polar.api#ConfirmCheckoutsClientRequestCustomFieldDataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.polar.api#CheckoutsClientConfirmRequestCustomFieldDataValue"
+        "target": "com.polar.api#ConfirmCheckoutsClientRequestCustomFieldDataValue"
       },
       "traits": {
         "smithy.api#documentation": "Key-value object storing custom field values."
       }
     },
-    "com.polar.api#CheckoutsClientConfirmRequest": {
+    "com.polar.api#ConfirmCheckoutsClientRequest": {
       "type": "structure",
       "members": {
         "client_secret": {
@@ -29357,7 +29358,7 @@
           }
         },
         "custom_field_data": {
-          "target": "com.polar.api#CheckoutsClientConfirmRequestCustomFieldDataMap",
+          "target": "com.polar.api#ConfirmCheckoutsClientRequestCustomFieldDataMap",
           "traits": {
             "smithy.api#documentation": "Key-value object storing custom field values."
           }
@@ -29999,10 +30000,10 @@
       },
       "traits": {}
     },
-    "com.polar.api#CheckoutsClientConfirm": {
+    "com.polar.api#ConfirmCheckoutsClient": {
       "type": "operation",
       "input": {
-        "target": "com.polar.api#CheckoutsClientConfirmRequest"
+        "target": "com.polar.api#ConfirmCheckoutsClientRequest"
       },
       "output": {
         "target": "com.polar.api#CheckoutPublicConfirmed"
@@ -52821,7 +52822,7 @@
         "smithy.api#documentation": "Delete Customer Payment Method\n\nDelete a payment method from the authenticated customer."
       }
     },
-    "com.polar.api#CustomerPortalCustomersRequestEmailUpdateRequest": {
+    "com.polar.api#UpdateCustomerPortalCustomersRequestEmailRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -52835,10 +52836,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.polar.api#CustomerPortalCustomersRequestEmailUpdate": {
+    "com.polar.api#UpdateCustomerPortalCustomersRequestEmail": {
       "type": "operation",
       "input": {
-        "target": "com.polar.api#CustomerPortalCustomersRequestEmailUpdateRequest"
+        "target": "com.polar.api#UpdateCustomerPortalCustomersRequestEmailRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -52857,7 +52858,7 @@
         "smithy.api#documentation": "Request Email Change\n\nRequest an email change for the authenticated customer."
       }
     },
-    "com.polar.api#CustomerPortalCustomersCheckEmailUpdateRequest": {
+    "com.polar.api#UpdateCustomerPortalCustomersCheckEmailRequest": {
       "type": "structure",
       "members": {
         "token": {
@@ -52872,10 +52873,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.polar.api#CustomerPortalCustomersCheckEmailUpdate": {
+    "com.polar.api#UpdateCustomerPortalCustomersCheckEmail": {
       "type": "operation",
       "input": {
-        "target": "com.polar.api#CustomerPortalCustomersCheckEmailUpdateRequest"
+        "target": "com.polar.api#UpdateCustomerPortalCustomersCheckEmailRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -52894,7 +52895,7 @@
         "smithy.api#documentation": "Check Email Change Token\n\nCheck if an email change verification token is still valid."
       }
     },
-    "com.polar.api#CustomerPortalCustomersVerifyEmailUpdateRequest": {
+    "com.polar.api#UpdateCustomerPortalCustomersVerifyEmailRequest": {
       "type": "structure",
       "members": {
         "token": {
@@ -52920,10 +52921,10 @@
       },
       "traits": {}
     },
-    "com.polar.api#CustomerPortalCustomersVerifyEmailUpdate": {
+    "com.polar.api#UpdateCustomerPortalCustomersVerifyEmail": {
       "type": "operation",
       "input": {
-        "target": "com.polar.api#CustomerPortalCustomersVerifyEmailUpdateRequest"
+        "target": "com.polar.api#UpdateCustomerPortalCustomersVerifyEmailRequest"
       },
       "output": {
         "target": "com.polar.api#CustomerEmailUpdateVerifyResponse"
@@ -56727,7 +56728,7 @@
         "smithy.api#documentation": "Get Order Payment Status\n\nGet the current payment status for an order."
       }
     },
-    "com.polar.api#CustomerPortalOrdersConfirmRetryPaymentRequest": {
+    "com.polar.api#RetryCustomerPortalOrdersConfirmPaymentRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -56792,10 +56793,10 @@
         "smithy.api#documentation": "Response after confirming a retry payment."
       }
     },
-    "com.polar.api#CustomerPortalOrdersConfirmRetryPayment": {
+    "com.polar.api#RetryCustomerPortalOrdersConfirmPayment": {
       "type": "operation",
       "input": {
-        "target": "com.polar.api#CustomerPortalOrdersConfirmRetryPaymentRequest"
+        "target": "com.polar.api#RetryCustomerPortalOrdersConfirmPaymentRequest"
       },
       "output": {
         "target": "com.polar.api#CustomerOrderPaymentConfirmation"
@@ -57951,7 +57952,7 @@
         "smithy.api#documentation": "Resend Invitation\n\n**Scopes**: `customer_seats:write`"
       }
     },
-    "com.polar.api#CustomerSeatsGetClaimInfoRequest": {
+    "com.polar.api#ClaimCustomerSeatsGetInfoRequest": {
       "type": "structure",
       "members": {
         "invitation_token": {
@@ -58016,10 +58017,10 @@
         "smithy.api#documentation": "Read-only information about a seat claim invitation.\nSafe for email scanners - no side effects when fetched."
       }
     },
-    "com.polar.api#CustomerSeatsGetClaimInfo": {
+    "com.polar.api#ClaimCustomerSeatsGetInfo": {
       "type": "operation",
       "input": {
-        "target": "com.polar.api#CustomerSeatsGetClaimInfoRequest"
+        "target": "com.polar.api#ClaimCustomerSeatsGetInfoRequest"
       },
       "output": {
         "target": "com.polar.api#SeatClaimInfo"
@@ -70718,13 +70719,13 @@
           "target": "com.polar.api#CheckoutsUpdate"
         },
         {
-          "target": "com.polar.api#CheckoutsClientGet"
+          "target": "com.polar.api#GetCheckoutsClient"
         },
         {
-          "target": "com.polar.api#CheckoutsClientUpdate"
+          "target": "com.polar.api#UpdateCheckoutsClient"
         },
         {
-          "target": "com.polar.api#CheckoutsClientConfirm"
+          "target": "com.polar.api#ConfirmCheckoutsClient"
         },
         {
           "target": "com.polar.api#FilesList"
@@ -70925,13 +70926,13 @@
           "target": "com.polar.api#CustomerPortalCustomersDeletePaymentMethod"
         },
         {
-          "target": "com.polar.api#CustomerPortalCustomersRequestEmailUpdate"
+          "target": "com.polar.api#UpdateCustomerPortalCustomersRequestEmail"
         },
         {
-          "target": "com.polar.api#CustomerPortalCustomersCheckEmailUpdate"
+          "target": "com.polar.api#UpdateCustomerPortalCustomersCheckEmail"
         },
         {
-          "target": "com.polar.api#CustomerPortalCustomersVerifyEmailUpdate"
+          "target": "com.polar.api#UpdateCustomerPortalCustomersVerifyEmail"
         },
         {
           "target": "com.polar.api#CustomerPortalCustomerMetersList"
@@ -71012,7 +71013,7 @@
           "target": "com.polar.api#CustomerPortalOrdersGetPaymentStatus"
         },
         {
-          "target": "com.polar.api#CustomerPortalOrdersConfirmRetryPayment"
+          "target": "com.polar.api#RetryCustomerPortalOrdersConfirmPayment"
         },
         {
           "target": "com.polar.api#CustomerPortalOrganizationsGet"
@@ -71048,7 +71049,7 @@
           "target": "com.polar.api#CustomerSeatsResendInvitation"
         },
         {
-          "target": "com.polar.api#CustomerSeatsGetClaimInfo"
+          "target": "com.polar.api#ClaimCustomerSeatsGetInfo"
         },
         {
           "target": "com.polar.api#CustomerSeatsClaimSeat"
