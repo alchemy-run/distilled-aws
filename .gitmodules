@@ -338,3 +338,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-unkey.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/vanta/specs/spec-mirror-vanta"]
+	path = packages/vanta/specs/spec-mirror-vanta
+	url = https://github.com/distilled-mirror/spec-mirror-vanta.git
+	ignore = dirty
+	shallow = true
