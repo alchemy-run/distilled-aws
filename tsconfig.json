@@ -201,6 +201,12 @@
     },
     {
       "path": "./packages/redis-cloud/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/xata/tsconfig.json"
+    },
+    {
+      "path": "./packages/xata/tsconfig.scripts.json"
     }
   ]
 }
