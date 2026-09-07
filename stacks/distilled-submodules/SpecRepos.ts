@@ -67,6 +67,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "discord" },
   { package: "docker" },
   { package: "doppler" },
+  { package: "elasticsearch" },
   { package: "expo-eas" },
   { package: "fly-io" },
   { package: "gcp" },

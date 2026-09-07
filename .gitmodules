@@ -238,3 +238,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-doppler.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/elasticsearch/specs/spec-mirror-elasticsearch"]
+	path = packages/elasticsearch/specs/spec-mirror-elasticsearch
+	url = https://github.com/distilled-mirror/spec-mirror-elasticsearch.git
+	ignore = dirty
+	shallow = true
