@@ -1,0 +1,3071 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.archil.api#ListDisksRequest": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of items to return"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from a previous response"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#documentation": "Filter disks by exact name match."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseDiskList": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.archil.api#ApiResponseDiskListDataList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All API responses use a standard envelope with `success: boolean` and `data` (on success) or `error: string` (on failure). The ApiResponse_* schemas each define the specific `data` shape for their endpoint.\n"
+      }
+    },
+    "com.archil.api#DiskResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Disk ID",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Disk name",
+            "smithy.api#required": {}
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Owning organization ID",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.archil.api#DiskResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Disk status",
+            "smithy.api#required": {}
+          }
+        },
+        "fsHandlerStatus": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filesystem handler status"
+          }
+        },
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloud provider",
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Disk region (e.g., aws-us-east-1, gcp-us-central1)",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation timestamp",
+            "smithy.api#required": {}
+          }
+        },
+        "lastAccessed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last access timestamp"
+          }
+        },
+        "dataSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total data size in bytes"
+          }
+        },
+        "monthlyUsage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Monthly usage amount formatted as a currency string (e.g., \"$1.23\")"
+          }
+        },
+        "mounts": {
+          "target": "com.archil.api#DiskResponseMountsList"
+        },
+        "metrics": {
+          "target": "com.archil.api#DiskMetrics"
+        },
+        "connectedClients": {
+          "target": "com.archil.api#DiskResponseConnectedClientsList"
+        },
+        "authorizedUsers": {
+          "target": "com.archil.api#DiskResponseAuthorizedUsersList"
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#DiskResponseStatus": {
+      "type": "enum",
+      "members": {
+        "AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "available"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Disk status"
+      }
+    },
+    "com.archil.api#MountResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mount identifier"
+          }
+        },
+        "type": {
+          "target": "com.archil.api#MountResponseType",
+          "traits": {
+            "smithy.api#documentation": "Storage backend type"
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mount path"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bucket/container name"
+          }
+        },
+        "accessMode": {
+          "target": "com.archil.api#MountResponseAccessMode",
+          "traits": {
+            "smithy.api#documentation": "Access mode"
+          }
+        },
+        "config": {
+          "target": "com.archil.api#MountConfigResponse"
+        },
+        "connectionStatus": {
+          "target": "com.archil.api#MountResponseConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "Current connection status"
+          }
+        },
+        "authError": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Authentication error message (if disconnected)"
+          }
+        },
+        "authorizationType": {
+          "target": "com.archil.api#MountResponseAuthorizationType",
+          "traits": {
+            "smithy.api#documentation": "How the mount authenticates to the storage backend"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#MountResponseType": {
+      "type": "enum",
+      "members": {
+        "S3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "s3"
+          }
+        },
+        "GCS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gcs"
+          }
+        },
+        "R2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "r2"
+          }
+        },
+        "S3_COMPATIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "s3-compatible"
+          }
+        },
+        "AZURE_BLOB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "azure-blob"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Storage backend type"
+      }
+    },
+    "com.archil.api#MountResponseAccessMode": {
+      "type": "enum",
+      "members": {
+        "RW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rw"
+          }
+        },
+        "RO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ro"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Access mode"
+      }
+    },
+    "com.archil.api#MountConfigResponse": {
+      "type": "structure",
+      "members": {
+        "bucketName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bucket name"
+          }
+        },
+        "bucketEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Storage endpoint URL"
+          }
+        },
+        "bucketPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prefix within the bucket"
+          }
+        },
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Session identifier for IAM-authorized mounts"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mount configuration details (secrets omitted)"
+      }
+    },
+    "com.archil.api#MountResponseConnectionStatus": {
+      "type": "enum",
+      "members": {
+        "CONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connected"
+          }
+        },
+        "DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disconnected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current connection status"
+      }
+    },
+    "com.archil.api#MountResponseAuthorizationType": {
+      "type": "enum",
+      "members": {
+        "IAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "iam"
+          }
+        },
+        "ACCESSKEYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "accessKeys"
+          }
+        },
+        "OAUTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oauth"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "How the mount authenticates to the storage backend"
+      }
+    },
+    "com.archil.api#DiskResponseMountsList": {
+      "type": "list",
+      "member": {
+        "target": "com.archil.api#MountResponse"
+      },
+      "traits": {}
+    },
+    "com.archil.api#DiskMetrics": {
+      "type": "structure",
+      "members": {
+        "dataTransfer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Data transfer amount with unit (e.g., \"1.5 GB\")"
+          }
+        },
+        "requests": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Total request count as a formatted string (e.g., \"1,234\")"
+          }
+        },
+        "avgResponseTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Average response time with unit (e.g., \"45ms\")"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#ConnectedClient": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "ipAddress": {
+          "target": "smithy.api#String"
+        },
+        "connectedAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#DiskResponseConnectedClientsList": {
+      "type": "list",
+      "member": {
+        "target": "com.archil.api#ConnectedClient"
+      },
+      "traits": {}
+    },
+    "com.archil.api#AuthorizedUser": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.archil.api#AuthorizedUserType"
+        },
+        "principal": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use identifier instead. Only populated for awssts type (the IAM ARN).\n"
+          }
+        },
+        "nickname": {
+          "target": "smithy.api#String"
+        },
+        "tokenSuffix": {
+          "target": "smithy.api#String"
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The generated disk token (used by clients when mounting the disk). Only present in the response when the server generates the token (i.e. principal was not provided). This value is shown exactly once and cannot be retrieved again.\n"
+          }
+        },
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable identifier for this user, returned in creation and list responses. Use this value with DELETE /api/disks/{id}/users/{type}?identifier={identifier} to remove the user. For awssts users, this is the IAM ARN.\n"
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#AuthorizedUserType": {
+      "type": "enum",
+      "members": {
+        "TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token"
+          }
+        },
+        "AWSSTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "awssts"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#DiskResponseAuthorizedUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.archil.api#AuthorizedUser"
+      },
+      "traits": {}
+    },
+    "com.archil.api#ApiResponseDiskListDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.archil.api#DiskResponse"
+      },
+      "traits": {}
+    },
+    "com.archil.api#ListDisks": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#ListDisksRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseDiskList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/disks",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all disks\n\nReturns all disks owned by the authenticated account."
+      }
+    },
+    "com.archil.api#MountConfig": {
+      "type": "union",
+      "members": {
+        "S3Mount": {
+          "target": "com.archil.api#S3Mount"
+        },
+        "GCSMount": {
+          "target": "com.archil.api#GCSMount"
+        },
+        "R2Mount": {
+          "target": "com.archil.api#R2Mount"
+        },
+        "S3CompatibleMount": {
+          "target": "com.archil.api#S3CompatibleMount"
+        },
+        "AzureBlobMount": {
+          "target": "com.archil.api#AzureBlobMount"
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#S3Mount": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.archil.api#S3MountType",
+          "traits": {
+            "smithy.api#documentation": "Mount type identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "bucketName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "S3 bucket name",
+            "smithy.api#required": {}
+          }
+        },
+        "accessKeyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "AWS access key ID (optional for public buckets or IAM role auth)",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "secretAccessKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "AWS secret access key",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "sessionToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Session token for temporary credentials",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "bucketPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prefix within the bucket"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mount configuration for Amazon S3 buckets"
+      }
+    },
+    "com.archil.api#S3MountType": {
+      "type": "enum",
+      "members": {
+        "S3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "s3"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mount type identifier"
+      }
+    },
+    "com.archil.api#GCSMount": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.archil.api#GCSMountType",
+          "traits": {
+            "smithy.api#documentation": "Mount type identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "bucketName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GCS bucket name",
+            "smithy.api#required": {}
+          }
+        },
+        "accessKeyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HMAC access key ID",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "secretAccessKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HMAC secret access key",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "bucketPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prefix within the bucket (optional)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mount configuration for Google Cloud Storage buckets"
+      }
+    },
+    "com.archil.api#GCSMountType": {
+      "type": "enum",
+      "members": {
+        "GCS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gcs"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mount type identifier"
+      }
+    },
+    "com.archil.api#R2Mount": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.archil.api#R2MountType",
+          "traits": {
+            "smithy.api#documentation": "Mount type identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "bucketName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "R2 bucket name",
+            "smithy.api#required": {}
+          }
+        },
+        "bucketEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "R2 endpoint URL",
+            "smithy.api#required": {}
+          }
+        },
+        "accessKeyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "R2 access key ID",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "secretAccessKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "R2 secret access key",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "bucketPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prefix within the bucket (optional)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mount configuration for Cloudflare R2 buckets"
+      }
+    },
+    "com.archil.api#R2MountType": {
+      "type": "enum",
+      "members": {
+        "R2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "r2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mount type identifier"
+      }
+    },
+    "com.archil.api#S3CompatibleMount": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.archil.api#S3CompatibleMountType",
+          "traits": {
+            "smithy.api#documentation": "Mount type identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "bucketName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bucket name",
+            "smithy.api#required": {}
+          }
+        },
+        "bucketEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "S3-compatible endpoint URL",
+            "smithy.api#required": {}
+          }
+        },
+        "accessKeyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Access key ID",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "secretAccessKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Secret access key",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "bucketPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prefix within the bucket (optional)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mount configuration for S3-compatible storage (MinIO, Backblaze B2, etc.)"
+      }
+    },
+    "com.archil.api#S3CompatibleMountType": {
+      "type": "enum",
+      "members": {
+        "S3_COMPATIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "s3-compatible"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mount type identifier"
+      }
+    },
+    "com.archil.api#AzureBlobMount": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.archil.api#AzureBlobMountType",
+          "traits": {
+            "smithy.api#documentation": "Mount type identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "containerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure blob container name",
+            "smithy.api#required": {}
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure blob endpoint URL (optional if storageAccountName provided)"
+          }
+        },
+        "storageAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure storage account name (used to derive endpoint if not provided)"
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure AD tenant ID",
+            "smithy.api#required": {}
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure AD application client ID",
+            "smithy.api#required": {}
+          }
+        },
+        "clientSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure AD application client secret",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "bucketPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prefix within the container"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mount configuration for Azure Blob Storage containers"
+      }
+    },
+    "com.archil.api#AzureBlobMountType": {
+      "type": "enum",
+      "members": {
+        "AZURE_BLOB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "azure-blob"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mount type identifier"
+      }
+    },
+    "com.archil.api#CreateDiskRequestMountsList": {
+      "type": "list",
+      "member": {
+        "target": "com.archil.api#MountConfig"
+      },
+      "traits": {
+        "smithy.api#documentation": "Storage mount to attach. Omit for archil-managed storage."
+      }
+    },
+    "com.archil.api#DiskUser": {
+      "type": "union",
+      "members": {
+        "TokenUser": {
+          "target": "com.archil.api#TokenUser"
+        },
+        "AwsStsUser": {
+          "target": "com.archil.api#AwsStsUser"
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#TokenUser": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.archil.api#TokenUserType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "principal": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated. Client-provided token. If omitted, the server generates a cryptographically secure token and returns it in the response.\n"
+          }
+        },
+        "nickname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tokenSuffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated. Last 4 characters of the token. Required when principal is provided; ignored when the server generates the token.\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#TokenUserType": {
+      "type": "enum",
+      "members": {
+        "TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#AwsStsUser": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.archil.api#AwsStsUserType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "principal": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IAM principal ARN",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#AwsStsUserType": {
+      "type": "enum",
+      "members": {
+        "AWSSTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "awssts"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#CreateDiskRequestAuthMethodsList": {
+      "type": "list",
+      "member": {
+        "target": "com.archil.api#DiskUser"
+      },
+      "traits": {
+        "smithy.api#documentation": "Deprecated. Use AddDiskUser after creation instead. When provided, suppresses the default auto-generated token user.\n"
+      }
+    },
+    "com.archil.api#CreateDiskRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Disk name (alphanumeric, dashes, underscores)",
+            "smithy.api#required": {}
+          }
+        },
+        "mounts": {
+          "target": "com.archil.api#CreateDiskRequestMountsList",
+          "traits": {
+            "smithy.api#documentation": "Storage mount to attach. Omit for archil-managed storage."
+          }
+        },
+        "authMethods": {
+          "target": "com.archil.api#CreateDiskRequestAuthMethodsList",
+          "traits": {
+            "smithy.api#documentation": "Deprecated. Use AddDiskUser after creation instead. When provided, suppresses the default auto-generated token user.\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseCreateDisk": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.archil.api#ApiResponseCreateDiskData",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#ApiResponseCreateDiskDataAuthorizedUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.archil.api#AuthorizedUser"
+      },
+      "traits": {}
+    },
+    "com.archil.api#ApiResponseCreateDiskData": {
+      "type": "structure",
+      "members": {
+        "diskId": {
+          "target": "smithy.api#String"
+        },
+        "authorizedUsers": {
+          "target": "com.archil.api#ApiResponseCreateDiskDataAuthorizedUsersList"
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#CreateDisk": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#CreateDiskRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseCreateDisk"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        },
+        {
+          "target": "com.archil.api#Forbidden"
+        },
+        {
+          "target": "com.archil.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/disks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new disk\n\nCreates a new disk with the specified configuration. A default disk\ntoken user is automatically generated and returned in the response,\nso the disk is immediately mountable. The one-time disk token appears\nin `authorizedUsers[].token` and cannot be retrieved again. (This\ndisk token is scoped to the new disk and is separate from the API\nkey you used to make this request.)\n\nTo provide your own users instead, pass the deprecated `authMethods`\nfield or call AddDiskUser after creation."
+      }
+    },
+    "com.archil.api#GetDiskRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Disk ID (format `dsk-{16 hex chars}`)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseDisk": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.archil.api#DiskResponse",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#GetDisk": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#GetDiskRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseDisk"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        },
+        {
+          "target": "com.archil.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/disks/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get disk details\n\nReturns detailed information about a specific disk."
+      }
+    },
+    "com.archil.api#DeleteDiskRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Disk ID (format `dsk-{16 hex chars}`)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseEmpty": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#DeleteDisk": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#DeleteDiskRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        },
+        {
+          "target": "com.archil.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/disks/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a disk\n\nDeletes a disk and all associated resources."
+      }
+    },
+    "com.archil.api#CreateShareUrlRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Disk ID (format `dsk-{16 hex chars}`)"
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File key (path) within the disk.",
+            "smithy.api#required": {}
+          }
+        },
+        "expiresIn": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "URL lifetime in seconds. Any integer from 1 to 604800 (7 days).\nDefaults to 86400 (24 hours).\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseShareUrl": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.archil.api#ApiResponseShareUrlData",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#ApiResponseShareUrlData": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The signed, public download URL.",
+            "smithy.api#required": {}
+          }
+        },
+        "expiresIn": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "URL lifetime in seconds.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#CreateShareUrl": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#CreateShareUrlRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseShareUrl"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        },
+        {
+          "target": "com.archil.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/disks/{id}/share",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a share URL for a file\n\nCreates a signed, time-limited URL for downloading a file without\nauthentication. The URL expires after 24 hours by default; pass\n`expiresIn` to set a custom lifetime up to 7 days.\n\nThe returned URL points to a public endpoint (`GET /api/shared/{token}`)\nthat verifies the signature, checks expiry, and streams the file with a\nsensible `Content-Type` and `Content-Disposition`. Range requests are\nsupported. No credentials are needed to open the URL."
+      }
+    },
+    "com.archil.api#AddDiskUserRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Disk ID (format `dsk-{16 hex chars}`)"
+          }
+        },
+        "body": {
+          "target": "com.archil.api#DiskUser",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseAuthorizedUser": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.archil.api#AuthorizedUser",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#AddDiskUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#AddDiskUserRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseAuthorizedUser"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/disks/{id}/users",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add user to disk\n\nAdds an authorized user to a disk. Users can authenticate via:\n- **token**: A shared token with a nickname and 4-character suffix\n- **awssts**: AWS STS role assumption with an IAM principal ARN"
+      }
+    },
+    "com.archil.api#RemoveDiskUserRequestUserType": {
+      "type": "enum",
+      "members": {
+        "TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token"
+          }
+        },
+        "AWSSTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "awssts"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#RemoveDiskUserRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Disk ID (format `dsk-{16 hex chars}`)"
+          }
+        },
+        "userType": {
+          "target": "com.archil.api#RemoveDiskUserRequestUserType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of user authentication"
+          }
+        },
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "identifier",
+            "smithy.api#documentation": "Identifier of the user to remove, as returned in the creation or list response. For awssts users, this is the IAM ARN.\n"
+          }
+        },
+        "principal": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "principal",
+            "smithy.api#documentation": "Use identifier instead."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseMessage": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.archil.api#ApiResponseMessageData",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#ApiResponseMessageData": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#RemoveDiskUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#RemoveDiskUserRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseMessage"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/disks/{id}/users/{userType}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove user from disk\n\nRemoves an authorized user from a disk."
+      }
+    },
+    "com.archil.api#ExecDiskRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Disk ID (format `dsk-{16 hex chars}`)"
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Shell command to execute inside the container",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseExecDisk": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.archil.api#ExecDiskResult",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#ExecDiskResult": {
+      "type": "structure",
+      "members": {
+        "exitCode": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Exit code of the command (0 = success)",
+            "smithy.api#required": {}
+          }
+        },
+        "stdout": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Standard output from the command",
+            "smithy.api#required": {}
+          }
+        },
+        "stderr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Standard error from the command",
+            "smithy.api#required": {}
+          }
+        },
+        "timing": {
+          "target": "com.archil.api#ExecTiming",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#ExecTiming": {
+      "type": "structure",
+      "members": {
+        "totalMs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "End-to-end wall clock measured on the server, from request arrival to response.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "queueMs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time spent queueing, scheduling, booting/claiming a VM, and mounting the filesystem before the command started running.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "executeMs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time the user's command itself ran, measured by the runtime.\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Server-measured timings for an exec request."
+      }
+    },
+    "com.archil.api#ExecDisk": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#ExecDiskRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseExecDisk"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        },
+        {
+          "target": "com.archil.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/disks/{id}/exec",
+          "code": 200
+        },
+        "smithy.api#documentation": "Execute a command on a disk\n\nLaunches a container with the specified disk mounted, runs the given\ncommand to completion, shuts down the container, and returns the command\nresult."
+      }
+    },
+    "com.archil.api#GrepDiskRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Disk ID (format `dsk-{16 hex chars}`)"
+          }
+        },
+        "directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Directory on the disk to search, relative to the disk root.\nAn empty string or \"/\" means the disk root.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Extended regular expression (passed to `grep -E`)",
+            "smithy.api#required": {}
+          }
+        },
+        "recursive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, walks subdirectories breadth-first."
+          }
+        },
+        "maxDurationSeconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Wall-clock deadline for the entire request. Capped at 30\nseconds because the runtime exec container itself is bounded\nat ~30s; longer requests would have their workers killed\nmid-scan.\n"
+          }
+        },
+        "concurrency": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of parallel grep workers. Higher values finish\nlarger datasets within the deadline but consume proportionally\nmore runtime capacity.\n"
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Stop scanning once the aggregator has this many matches.\nReturned matches are a sample of whichever workers reported\nfirst, not the lexicographically first N.\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseGrepDisk": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.archil.api#GrepDiskResult",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#GrepDiskResult": {
+      "type": "structure",
+      "members": {
+        "matches": {
+          "target": "com.archil.api#GrepDiskResultMatchesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stoppedReason": {
+          "target": "com.archil.api#GrepStoppedReason",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "filesScanned": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Files actually fed to a grep container.",
+            "smithy.api#required": {}
+          }
+        },
+        "containersDispatched": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of grep containers started for this request.",
+            "smithy.api#required": {}
+          }
+        },
+        "computeSecondsUsed": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Sum of per-container execution time in seconds, measured by the\nruntime. Approximates billable container-seconds.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "durationMs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "End-to-end wall clock measured by the server.",
+            "smithy.api#required": {}
+          }
+        },
+        "listingMs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Wall-clock time spent enumerating files via listObjects, from\nthe request's start to the moment listing fully drained (or\nwas canceled). Listing and matching overlap, so listingMs +\ngrepMs typically exceeds durationMs.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "grepMs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Wall-clock time spent matching, from the first grep container\nbeing dispatched to the last container reporting results. 0 if\nno batches ran.\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#GrepMatch": {
+      "type": "structure",
+      "members": {
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Path to the file (relative to the disk root).",
+            "smithy.api#required": {}
+          }
+        },
+        "line": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "1-based line number where the match occurred.",
+            "smithy.api#required": {}
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matching line.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#GrepDiskResultMatchesList": {
+      "type": "list",
+      "member": {
+        "target": "com.archil.api#GrepMatch"
+      },
+      "traits": {}
+    },
+    "com.archil.api#GrepStoppedReason": {
+      "type": "enum",
+      "members": {
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "INCOMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "incomplete"
+          }
+        },
+        "MAX_RESULTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "max_results"
+          }
+        },
+        "DEADLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deadline"
+          }
+        },
+        "LIST_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "list_failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Why the search stopped.\n- `completed`: every file under the directory was scanned successfully.\n- `incomplete`: pipeline ran to its natural end but one or more\n  batches errored (invalid regex, unreadable file, runtime issue).\n  Results may be partial or wrong; do not rely on completeness.\n- `max_results`: hit `maxResults` before scanning everything.\n- `deadline`: hit `maxDurationSeconds`.\n- `list_failed`: directory listing failed; partial results\n  may be present.\n"
+      }
+    },
+    "com.archil.api#GrepDisk": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#GrepDiskRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseGrepDisk"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        },
+        {
+          "target": "com.archil.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/disks/{id}/grep",
+          "code": 200
+        },
+        "smithy.api#documentation": "Parallel grep over a directory on a disk\n\nSearches files under a directory on the disk for lines matching a\nregular expression. Listing and matching are fanned out across\nephemeral exec containers, so the request finishes within the user's\ntime budget regardless of the size of the directory.\n\nThe user controls cost and latency with three knobs:\n\n- `maxDurationSeconds` is the wall-clock deadline (capped at 30s).\n- `concurrency` is the maximum number of parallel grep workers.\n  Higher concurrency finishes larger datasets within the deadline,\n  at proportionally more compute.\n- `maxResults` causes the search to short-circuit after the\n  aggregator has collected this many matches.\n\nWith `recursive: false` only files directly under `directory` are\nsearched. With `recursive: true` subdirectories are walked\nbreadth-first and grep workers are dispatched as soon as each level\nfinishes listing — listing and matching overlap.\n\nThe matches returned when stopping early on `maxResults` are a sample\nof whichever workers reported first, not the lexicographically first\nN. The response surfaces `stoppedReason` so callers can distinguish\ncompletion from early termination."
+      }
+    },
+    "com.archil.api#ExecMount": {
+      "type": "structure",
+      "members": {
+        "disk": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Disk ID to mount at this relative path",
+            "smithy.api#required": {}
+          }
+        },
+        "subdirectory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subdirectory of the disk to expose at the mountpoint. Must be a\nrelative path with no `.` or `..` segments. When omitted, the\ndisk's root is exposed.\n"
+          }
+        },
+        "readOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, the disk is mounted read-only inside the container.\nWrites against the mount fail with EROFS.\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#ExecRequestDisksValue": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "ExecMount": {
+          "target": "com.archil.api#ExecMount"
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#ExecRequestDisksMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.archil.api#ExecRequestDisksValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "Map of relative path under `/mnt/archil` to the disk to mount\nthere. At least one entry is required. Relative paths must be\nnon-empty, non-absolute, and contain no `.` or `..` segments.\n\nEach value is either a plain disk ID string (mounts the disk's\nroot, read-write) or an object that additionally selects a\nsubdirectory of the disk and/or marks the mount as read-only.\n"
+      }
+    },
+    "com.archil.api#ExecRequest": {
+      "type": "structure",
+      "members": {
+        "disks": {
+          "target": "com.archil.api#ExecRequestDisksMap",
+          "traits": {
+            "smithy.api#documentation": "Map of relative path under `/mnt/archil` to the disk to mount\nthere. At least one entry is required. Relative paths must be\nnon-empty, non-absolute, and contain no `.` or `..` segments.\n\nEach value is either a plain disk ID string (mounts the disk's\nroot, read-write) or an object that additionally selects a\nsubdirectory of the disk and/or marks the mount as read-only.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Shell command to execute inside the container",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseExec": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.archil.api#ExecDiskResult",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#Exec": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#ExecRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseExec"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        },
+        {
+          "target": "com.archil.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/exec",
+          "code": 200
+        },
+        "smithy.api#documentation": "Execute a command with multiple disks mounted\n\nLaunches a container with the supplied set of disks each mounted at its\nown relative path under `/mnt/archil`, runs the command to completion,\nand shuts down the container. Activation is atomic: every disk mounts\nor none of them do.\n\nRelative paths must be non-empty, non-absolute, and contain no `.` /\n`..` segments. Mounting two disks at the same relative path is an\nerror."
+      }
+    },
+    "com.archil.api#ListSandboxesRequest": {
+      "type": "structure",
+      "members": {
+        "filesystem": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "filesystem",
+            "smithy.api#documentation": "Only sandboxes that mount this disk"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseSandboxList": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.archil.api#ApiResponseSandboxListData",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#Sandbox": {
+      "type": "structure",
+      "members": {
+        "sandbox_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sandbox name.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.archil.api#SandboxState",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "vcpu_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mem_size_mib": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "max_ttl_seconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Lifetime budget for each powered-on session. Activity does not extend the deadline; starting or resuming the sandbox begins a fresh session.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_concurrent_execs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum concurrently attached process sessions",
+            "smithy.api#required": {}
+          }
+        },
+        "base_image": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OCI reference requested when the sandbox was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "platform": {
+          "target": "com.archil.api#SandboxPlatform",
+          "traits": {
+            "smithy.api#documentation": "Sandbox CPU architecture."
+          }
+        },
+        "endpoints": {
+          "target": "com.archil.api#SandboxEndpointsList"
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "running_at": {
+          "target": "smithy.api#String"
+        },
+        "finished_at": {
+          "target": "smithy.api#String"
+        },
+        "last_active_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current powered-on session deadline; absent while inactive."
+          }
+        },
+        "exit_reason": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#SandboxState": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "PAUSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pausing"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "paused"
+          }
+        },
+        "STOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopping"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopped"
+          }
+        },
+        "EXITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exited"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#SandboxPlatform": {
+      "type": "enum",
+      "members": {
+        "ARM64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "arm64"
+          }
+        },
+        "AMD64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "amd64"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sandbox CPU architecture."
+      }
+    },
+    "com.archil.api#SandboxEndpoint": {
+      "type": "structure",
+      "members": {
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#SandboxEndpointsList": {
+      "type": "list",
+      "member": {
+        "target": "com.archil.api#SandboxEndpoint"
+      },
+      "traits": {}
+    },
+    "com.archil.api#ApiResponseSandboxListDataSandboxesList": {
+      "type": "list",
+      "member": {
+        "target": "com.archil.api#Sandbox"
+      },
+      "traits": {}
+    },
+    "com.archil.api#ApiResponseSandboxListData": {
+      "type": "structure",
+      "members": {
+        "sandboxes": {
+          "target": "com.archil.api#ApiResponseSandboxListDataSandboxesList"
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#ListSandboxes": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#ListSandboxesRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseSandboxList"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/sandboxes",
+          "code": 200
+        },
+        "smithy.api#documentation": "List sandboxes\n\nAll the account's sandboxes, oldest first."
+      }
+    },
+    "com.archil.api#CreateSandboxRequestEnvMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Environment variables applied to every process"
+      }
+    },
+    "com.archil.api#CreateSandboxRequest": {
+      "type": "structure",
+      "members": {
+        "wait": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "wait",
+            "smithy.api#documentation": "Hold the request for a completed sandbox lifecycle transition"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sandbox name, unique within the account. A random word-list name is generated when omitted."
+          }
+        },
+        "vcpu_count": {
+          "target": "smithy.api#Integer"
+        },
+        "mem_size_mib": {
+          "target": "smithy.api#Integer"
+        },
+        "base_image": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Public Linux OCI image reference. Docker shorthand and tags are accepted."
+          }
+        },
+        "env": {
+          "target": "com.archil.api#CreateSandboxRequestEnvMap",
+          "traits": {
+            "smithy.api#documentation": "Environment variables applied to every process"
+          }
+        },
+        "max_ttl_seconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Lifetime budget for each powered-on session. Activity does not extend the deadline; starting or resuming the sandbox begins a fresh session."
+          }
+        },
+        "max_concurrent_execs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum concurrently attached process sessions"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#CreateSandbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#CreateSandboxRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        },
+        {
+          "target": "com.archil.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/sandboxes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a sandbox\n\nProvisions a sandbox VM with the requested shape and a dedicated,\npersistent Archil disk. By default the response reports `pending` after\nthe runtime accepts the start. Set `wait=true` to hold for `running`; if\nthe wait budget expires, the response remains `pending` and startup\ncontinues."
+      }
+    },
+    "com.archil.api#GetSandboxRequest": {
+      "type": "structure",
+      "members": {
+        "sid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Sandbox UUID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseSandbox": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.archil.api#Sandbox",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#GetSandbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#GetSandboxRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseSandbox"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/sandboxes/{sid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a sandbox"
+      }
+    },
+    "com.archil.api#DeleteSandboxRequest": {
+      "type": "structure",
+      "members": {
+        "sid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Sandbox UUID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#DeleteSandbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#DeleteSandboxRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#NotFound"
+        },
+        {
+          "target": "com.archil.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/sandboxes/{sid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a sandbox\n\nPermanently deletes a stopped, exited, or failed sandbox and its backing disk. A sandbox with child forks cannot be deleted until those children are deleted, starting with the deepest ones."
+      }
+    },
+    "com.archil.api#CreateSandboxConnectionRequest": {
+      "type": "structure",
+      "members": {
+        "sid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Sandbox UUID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseSandboxConnection": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.archil.api#SandboxConnection",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#SandboxConnection": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#CreateSandboxConnection": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#CreateSandboxConnectionRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseSandboxConnection"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#NotFound"
+        },
+        {
+          "target": "com.archil.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/sandboxes/{sid}/connections",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a sandbox process connection\n\nReturns a short-lived WebSocket URL for the process API in a running\nsandbox. The URL contains a signed token that expires at `expires_at`."
+      }
+    },
+    "com.archil.api#PauseSandboxRequest": {
+      "type": "structure",
+      "members": {
+        "sid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Sandbox UUID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#PauseSandbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#PauseSandboxRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseSandbox"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        },
+        {
+          "target": "com.archil.api#NotFound"
+        },
+        {
+          "target": "com.archil.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/sandboxes/{sid}/pause",
+          "code": 200
+        },
+        "smithy.api#documentation": "Pause a sandbox\n\nSnapshot the CPU & memory state, then stop the VM. The sandbox reports\n`pausing` until the snapshot commit marker is durable and the VM exits,\nthen reports `paused`. Attached process connections close, while\nagent-owned processes remain available for reattachment after resume.\nA sandbox that is still `pending` must reach `running` before it can be paused.\nTo restore the snapshot, call `/resume`."
+      }
+    },
+    "com.archil.api#ForkSandboxRequest": {
+      "type": "structure",
+      "members": {
+        "sid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Sandbox UUID"
+          }
+        },
+        "wait": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "wait",
+            "smithy.api#documentation": "Hold the request for a completed sandbox lifecycle transition"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name for the fork. A random word-list name is generated when omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ForkSandbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#ForkSandboxRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        },
+        {
+          "target": "com.archil.api#NotFound"
+        },
+        {
+          "target": "com.archil.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/sandboxes/{sid}/fork",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fork a sandbox\n\nCheckpoints a running source sandbox and creates an isolated writable\ndisk branch. Forks from running or paused sources resume from the\nsource's CPU, memory, and disk state. Forks from stopped sources\ncold-boot from the saved disk checkpoint. A running source is\nresumed after its checkpoint; paused and stopped sources remain\ninactive. Forked sandboxes may themselves be forked."
+      }
+    },
+    "com.archil.api#ResumeSandboxRequest": {
+      "type": "structure",
+      "members": {
+        "sid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Sandbox UUID"
+          }
+        },
+        "wait": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "wait",
+            "smithy.api#documentation": "Hold the request for a completed sandbox lifecycle transition"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ResumeSandbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#ResumeSandboxRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseSandbox"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        },
+        {
+          "target": "com.archil.api#NotFound"
+        },
+        {
+          "target": "com.archil.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/sandboxes/{sid}/resume",
+          "code": 200
+        },
+        "smithy.api#documentation": "Resume a sandbox\n\nRestores a paused sandbox's committed CPU and memory snapshot.\nResuming a running sandbox or a pending resume is idempotent. Only a\n`paused` sandbox can begin a new resume; `stopped`, `exited`, `failed`,\n`stopping`, `pausing`, or a pending cold start returns 409."
+      }
+    },
+    "com.archil.api#StartSandboxRequest": {
+      "type": "structure",
+      "members": {
+        "sid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Sandbox UUID"
+          }
+        },
+        "wait": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "wait",
+            "smithy.api#documentation": "Hold the request for a completed sandbox lifecycle transition"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#StartSandbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#StartSandboxRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseSandbox"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        },
+        {
+          "target": "com.archil.api#NotFound"
+        },
+        {
+          "target": "com.archil.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/sandboxes/{sid}/start",
+          "code": 200
+        },
+        "smithy.api#documentation": "Cold-start a sandbox\n\nCold-boots from the persisted configuration and disks. If the sandbox\nwas paused, its memory snapshot is consumed and discarded before the\nnew VM runs; disk state remains. Starting a running sandbox or a pending\ncold start is idempotent. A sandbox that is stopping, pausing, or\npending a resume returns 409."
+      }
+    },
+    "com.archil.api#StopSandboxRequest": {
+      "type": "structure",
+      "members": {
+        "sid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Sandbox UUID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#StopSandbox": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#StopSandboxRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseSandbox"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        },
+        {
+          "target": "com.archil.api#NotFound"
+        },
+        {
+          "target": "com.archil.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/sandboxes/{sid}/stop",
+          "code": 200
+        },
+        "smithy.api#documentation": "Stop a sandbox\n\nGracefully shuts down the guest, then checkpoints its disk before\nentering `stopped`. The sandbox and any forks from it cold-boot from\ndisk state. Stopping a paused sandbox reuses its existing disk\ncheckpoint. In-flight processes receive the guest shutdown signal."
+      }
+    },
+    "com.archil.api#ListApiTokensRequest": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of items to return"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor from a previous response"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseTokenList": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.archil.api#ApiResponseTokenListData",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#ApiTokenResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token hash/ID"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "tokenSuffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last 4 characters of the token"
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String"
+        },
+        "lastUsedAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#ApiResponseTokenListDataTokensList": {
+      "type": "list",
+      "member": {
+        "target": "com.archil.api#ApiTokenResponse"
+      },
+      "traits": {}
+    },
+    "com.archil.api#ApiResponseTokenListData": {
+      "type": "structure",
+      "members": {
+        "tokens": {
+          "target": "com.archil.api#ApiResponseTokenListDataTokensList"
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#ListApiTokens": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#ListApiTokensRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseTokenList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "List API tokens\n\nReturns all API tokens for the authenticated account."
+      }
+    },
+    "com.archil.api#CreateApiTokenRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token name",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token description"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#ApiResponseTokenCreated": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.archil.api#ApiResponseTokenCreatedData",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#ApiResponseTokenCreatedData": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token hash/ID"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "tokenSuffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last 4 characters of the token"
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String"
+        },
+        "lastUsedAt": {
+          "target": "smithy.api#String"
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full token value (only shown at creation)"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.archil.api#CreateApiToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#CreateApiTokenRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseTokenCreated"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create API token\n\nCreates a new API token for programmatic access. The full token value\nis only returned once at creation time."
+      }
+    },
+    "com.archil.api#DeleteTokenRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The token ID (hash)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.archil.api#DeleteToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.archil.api#DeleteTokenRequest"
+      },
+      "output": {
+        "target": "com.archil.api#ApiResponseMessage"
+      },
+      "errors": [
+        {
+          "target": "com.archil.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/tokens/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete API token\n\nRevokes and deletes an API token."
+      }
+    },
+    "com.archil.api#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.archil.api#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.archil.api#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.archil.api#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.archil.api#Archil": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.archil.api#ListDisks"
+        },
+        {
+          "target": "com.archil.api#CreateDisk"
+        },
+        {
+          "target": "com.archil.api#GetDisk"
+        },
+        {
+          "target": "com.archil.api#DeleteDisk"
+        },
+        {
+          "target": "com.archil.api#CreateShareUrl"
+        },
+        {
+          "target": "com.archil.api#AddDiskUser"
+        },
+        {
+          "target": "com.archil.api#RemoveDiskUser"
+        },
+        {
+          "target": "com.archil.api#ExecDisk"
+        },
+        {
+          "target": "com.archil.api#GrepDisk"
+        },
+        {
+          "target": "com.archil.api#Exec"
+        },
+        {
+          "target": "com.archil.api#ListSandboxes"
+        },
+        {
+          "target": "com.archil.api#CreateSandbox"
+        },
+        {
+          "target": "com.archil.api#GetSandbox"
+        },
+        {
+          "target": "com.archil.api#DeleteSandbox"
+        },
+        {
+          "target": "com.archil.api#CreateSandboxConnection"
+        },
+        {
+          "target": "com.archil.api#PauseSandbox"
+        },
+        {
+          "target": "com.archil.api#ForkSandbox"
+        },
+        {
+          "target": "com.archil.api#ResumeSandbox"
+        },
+        {
+          "target": "com.archil.api#StartSandbox"
+        },
+        {
+          "target": "com.archil.api#StopSandbox"
+        },
+        {
+          "target": "com.archil.api#ListApiTokens"
+        },
+        {
+          "target": "com.archil.api#CreateApiToken"
+        },
+        {
+          "target": "com.archil.api#DeleteToken"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Archil Control Plane API",
+        "smithy.api#documentation": "The Archil Control Plane API provides programmatic access to manage disks,\npersistent sandboxes, mounts, and API keys in the Archil distributed\nfilesystem platform.\n\nAPI keys authenticate requests to this control plane and are scoped to\nyour account. They are distinct from *disk tokens*, which are per-disk\ncredentials used by clients when mounting a disk.\n\n## Authentication\n\nAll endpoints require an API key:\n\n```\nAuthorization: {API_KEY}\n```\n\nCreate API keys in the [Archil Console](https://console.archil.com) or via the API.\n\n## Response Format\n\nAll responses use a consistent envelope:\n\n```json\n{\n  \"success\": true,\n  \"data\": { ... }\n}\n```\n\nOr on error:\n\n```json\n{\n  \"success\": false,\n  \"error\": \"Error message\"\n}\n```"
+      }
+    }
+  }
+}

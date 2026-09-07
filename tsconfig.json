@@ -255,6 +255,12 @@
     },
     {
       "path": "./packages/apache-superset/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/archil/tsconfig.json"
+    },
+    {
+      "path": "./packages/archil/tsconfig.scripts.json"
     }
   ]
 }

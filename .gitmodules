@@ -203,3 +203,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-apache-superset.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/archil/specs/spec-mirror-archil"]
+	path = packages/archil/specs/spec-mirror-archil
+	url = https://github.com/distilled-mirror/spec-mirror-archil.git
+	ignore = dirty
+	shallow = true
