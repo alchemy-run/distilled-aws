@@ -1130,7 +1130,7 @@ importers:
         specifier: catalog:tooling
         version: 26.4.1
 
-  packages/resend:
+  packages/render:
     dependencies:
       '@distilled.cloud/core':
         specifier: workspace:*
@@ -1149,7 +1149,7 @@ importers:
         specifier: catalog:tooling
         version: 26.4.1
 
-  packages/render:
+  packages/resend:
     dependencies:
       '@distilled.cloud/core':
         specifier: workspace:*
@@ -1163,10 +1163,10 @@ importers:
         version: 4.0.0-rc.112(effect@4.0.0-rc.112)
       '@types/bun':
         specifier: catalog:tooling
-        version: 1.4.0
+        version: 1.4.1
       '@types/node':
         specifier: catalog:tooling
-        version: 26.4.0
+        version: 26.4.1
 
   packages/stripe:
     dependencies:
