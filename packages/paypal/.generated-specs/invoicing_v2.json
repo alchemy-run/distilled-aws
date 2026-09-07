@@ -2825,7 +2825,7 @@
         "smithy.api#documentation": "A CSV file of fields to return for the user, if available. Because the invoice object can be very large, field filtering is required. Valid collection fields are <code>items</code>, <code>payments</code>, <code>refunds</code>, <code>additional_recipients_info</code>, and <code>attachments</code>."
       }
     },
-    "com.paypal.invoicing_v2#InvoicesSearchInvoicesRequest": {
+    "com.paypal.invoicing_v2#SearchInvoicesRequest": {
       "type": "structure",
       "members": {
         "page": {
@@ -2941,10 +2941,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.invoicing_v2#InvoicesSearchInvoices": {
+    "com.paypal.invoicing_v2#SearchInvoices": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#InvoicesSearchInvoicesRequest"
+        "target": "com.paypal.invoicing_v2#SearchInvoicesRequest"
       },
       "output": {
         "target": "com.paypal.invoicing_v2#Invoices"
@@ -4081,7 +4081,7 @@
           "target": "com.paypal.invoicing_v2#DeleteInvoice"
         },
         {
-          "target": "com.paypal.invoicing_v2#InvoicesSearchInvoices"
+          "target": "com.paypal.invoicing_v2#SearchInvoices"
         },
         {
           "target": "com.paypal.invoicing_v2#ListTemplates"

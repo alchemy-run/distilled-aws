@@ -1751,149 +1751,6 @@ export const InvoicesRemindResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "InvoicesRemindResponse",
 }) as any as S.Schema<InvoicesRemindResponse>;
 
-/** An array of status values. */
-export type InvoiceStatusList = Array<InvoiceStatus | (string & {})>;
-export const InvoiceStatusList = /*@__PURE__*/ S.Array(
-  InvoiceStatus,
-) as any as S.Schema<InvoiceStatusList>;
-
-/** The amount range. */
-export interface AmountRange {
-  /** The lower limit of the amount range. */
-  lower_amount: Money;
-  /** The upper limit of the amount range. */
-  upper_amount: Money;
-}
-export const AmountRange = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    lower_amount: Money,
-    upper_amount: Money,
-  }),
-).annotate({ identifier: "AmountRange" }) as any as S.Schema<AmountRange>;
-
-/** The date range. Filters invoices by creation date, invoice date, due date, and payment date. */
-export interface DateRange {
-  /** The start date of the range. Filters invoices by creation date, invoice date, due date, and payment date. */
-  start: string;
-  /** The end date of the range. Filters invoices by creation date, invoice date, due date, and payment date. */
-  end: string;
-}
-export const DateRange = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    start: S.String,
-    end: S.String,
-  }),
-).annotate({ identifier: "DateRange" }) as any as S.Schema<DateRange>;
-
-/** The date and time range. Filters invoices by creation date, invoice date, due date, and payment date. */
-export interface DateTimeRange {
-  /** The start date of the range. Filters invoices by creation date, invoice date, due date, and payment date. */
-  start: string;
-  /** The end date of the range. Filters invoices by creation date, invoice date, due date, and payment date. <blockquote><strong>Note: The regular expression provides guidance but does not reject all invalid dates.</strong></blockquote><br/>Minimum length: 20.<br/>Maximum length: 64<br/>Pattern: <code>^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$</code> */
-  end: string;
-}
-export const DateTimeRange = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    start: S.String,
-    end: S.String,
-  }),
-).annotate({ identifier: "DateTimeRange" }) as any as S.Schema<DateTimeRange>;
-
-/** A CSV file of fields to return for the user, if available. Because the invoice object can be very large, field filtering is required. Valid collection fields are <code>items</code>, <code>payments</code>, <code>refunds</code>, <code>additional_recipients_info</code>, and <code>attachments</code>. */
-export type FieldsList = Array<string>;
-export const FieldsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FieldsList>;
-
-export interface InvoicesSearchInvoicesRequest {
-  /** The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates. */
-  page?: number;
-  /** The maximum number of templates to return in the response. */
-  page_size?: number;
-  /** Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response. */
-  total_required?: boolean;
-  /** Filters the search by the email address. */
-  recipient_email?: string;
-  /** Filters the search by the recipient first name. */
-  recipient_first_name?: string;
-  /** Filters the search by the recipient last name. */
-  recipient_last_name?: string;
-  /** Filters the search by the recipient business name. */
-  recipient_business_name?: string;
-  /** Filters the search by the invoice number. */
-  invoice_number?: string;
-  status?: InvoiceStatusList;
-  /** The reference data. Includes a Purchase Order (PO) number. */
-  reference?: string;
-  /** The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency. */
-  currency_code?: string;
-  /** A private bookkeeping memo for the user. */
-  memo?: string;
-  /** Filters the search by the total amount. */
-  total_amount_range?: AmountRange;
-  /** Filters the search by a date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
-  invoice_date_range?: DateRange;
-  /** Filters the search by a due date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
-  due_date_range?: DateRange;
-  payment_date_range?: DateTimeRange;
-  /** Filters the search by a creation date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
-  creation_date_range?: DateTimeRange;
-  /** Indicates whether to list merchant-archived invoices in the response. Value is:<ul><li><code>true</code>. Response lists only merchant-archived invoices.</li><li><code>false</code>. Response lists only unarchived invoices.</li><li><code>null</code>. Response lists all invoices.</li></ul> */
-  archived?: boolean;
-  fields?: FieldsList;
-}
-export const InvoicesSearchInvoicesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    page: S.optional(S.Number.pipe(T.Query())),
-    page_size: S.optional(S.Number.pipe(T.Query())),
-    total_required: S.optional(S.Boolean.pipe(T.Query())),
-    recipient_email: S.optional(S.String),
-    recipient_first_name: S.optional(S.String),
-    recipient_last_name: S.optional(S.String),
-    recipient_business_name: S.optional(S.String),
-    invoice_number: S.optional(S.String),
-    status: S.optional(InvoiceStatusList),
-    reference: S.optional(S.String),
-    currency_code: S.optional(S.String),
-    memo: S.optional(S.String),
-    total_amount_range: S.optional(AmountRange),
-    invoice_date_range: S.optional(DateRange),
-    due_date_range: S.optional(DateRange),
-    payment_date_range: S.optional(DateTimeRange),
-    creation_date_range: S.optional(DateTimeRange),
-    archived: S.optional(S.Boolean),
-    fields: S.optional(FieldsList),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v2/invoicing/search-invoices", code: 200 }),
-  ),
-).annotate({
-  identifier: "InvoicesSearchInvoicesRequest",
-}) as any as S.Schema<InvoicesSearchInvoicesRequest>;
-
-/** The list of invoices that match the search criteria. */
-export type InvoiceList = Array<Invoice>;
-export const InvoiceList = /*@__PURE__*/ S.Array(
-  Invoice,
-) as any as S.Schema<InvoiceList>;
-
-/** An array of merchant invoices. Includes the total invoices count and [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links) for navigation. */
-export interface Invoices {
-  /** The total number of pages that are available for the search criteria. <blockquote><strong>Note:</strong> Clients MUST NOT assume that the value of total_pages is constant. The value MAY change from one request to the next</blockquote> */
-  total_pages?: number;
-  /** The total number of invoices that match the search criteria.<blockquote><strong>Note:</strong> Clients MUST NOT assume that the value of <code>total_items</code> is constant. The value MAY change from one request to the next.</blockquote> */
-  total_items?: number;
-  items?: InvoiceList;
-  links?: LinkDescriptionList;
-}
-export const Invoices = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total_pages: S.optional(S.Number),
-    total_items: S.optional(S.Number),
-    items: S.optional(InvoiceList),
-    links: S.optional(LinkDescriptionList),
-  }),
-).annotate({ identifier: "Invoices" }) as any as S.Schema<Invoices>;
-
 export interface InvoicingGenerateNextInvoiceNumberRequest {
   /** Optional to decide the number or ID. */
   fetch_id?: boolean;
@@ -1947,6 +1804,30 @@ export const ListInvoicesRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListInvoicesRequest",
 }) as any as S.Schema<ListInvoicesRequest>;
+
+/** The list of invoices that match the search criteria. */
+export type InvoiceList = Array<Invoice>;
+export const InvoiceList = /*@__PURE__*/ S.Array(
+  Invoice,
+) as any as S.Schema<InvoiceList>;
+
+/** An array of merchant invoices. Includes the total invoices count and [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links) for navigation. */
+export interface Invoices {
+  /** The total number of pages that are available for the search criteria. <blockquote><strong>Note:</strong> Clients MUST NOT assume that the value of total_pages is constant. The value MAY change from one request to the next</blockquote> */
+  total_pages?: number;
+  /** The total number of invoices that match the search criteria.<blockquote><strong>Note:</strong> Clients MUST NOT assume that the value of <code>total_items</code> is constant. The value MAY change from one request to the next.</blockquote> */
+  total_items?: number;
+  items?: InvoiceList;
+  links?: LinkDescriptionList;
+}
+export const Invoices = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total_pages: S.optional(S.Number),
+    total_items: S.optional(S.Number),
+    items: S.optional(InvoiceList),
+    links: S.optional(LinkDescriptionList),
+  }),
+).annotate({ identifier: "Invoices" }) as any as S.Schema<Invoices>;
 
 export interface ListTemplatesRequest {
   /** The fields to return in the response. Value is `all` or `none`. To return only the template name, ID, and default attributes, specify `none`. */
@@ -2002,6 +1883,125 @@ export const Templates = /*@__PURE__*/ S.suspend(() =>
     links: S.optional(LinkDescriptionList),
   }),
 ).annotate({ identifier: "Templates" }) as any as S.Schema<Templates>;
+
+/** An array of status values. */
+export type InvoiceStatusList = Array<InvoiceStatus | (string & {})>;
+export const InvoiceStatusList = /*@__PURE__*/ S.Array(
+  InvoiceStatus,
+) as any as S.Schema<InvoiceStatusList>;
+
+/** The amount range. */
+export interface AmountRange {
+  /** The lower limit of the amount range. */
+  lower_amount: Money;
+  /** The upper limit of the amount range. */
+  upper_amount: Money;
+}
+export const AmountRange = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lower_amount: Money,
+    upper_amount: Money,
+  }),
+).annotate({ identifier: "AmountRange" }) as any as S.Schema<AmountRange>;
+
+/** The date range. Filters invoices by creation date, invoice date, due date, and payment date. */
+export interface DateRange {
+  /** The start date of the range. Filters invoices by creation date, invoice date, due date, and payment date. */
+  start: string;
+  /** The end date of the range. Filters invoices by creation date, invoice date, due date, and payment date. */
+  end: string;
+}
+export const DateRange = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    start: S.String,
+    end: S.String,
+  }),
+).annotate({ identifier: "DateRange" }) as any as S.Schema<DateRange>;
+
+/** The date and time range. Filters invoices by creation date, invoice date, due date, and payment date. */
+export interface DateTimeRange {
+  /** The start date of the range. Filters invoices by creation date, invoice date, due date, and payment date. */
+  start: string;
+  /** The end date of the range. Filters invoices by creation date, invoice date, due date, and payment date. <blockquote><strong>Note: The regular expression provides guidance but does not reject all invalid dates.</strong></blockquote><br/>Minimum length: 20.<br/>Maximum length: 64<br/>Pattern: <code>^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$</code> */
+  end: string;
+}
+export const DateTimeRange = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    start: S.String,
+    end: S.String,
+  }),
+).annotate({ identifier: "DateTimeRange" }) as any as S.Schema<DateTimeRange>;
+
+/** A CSV file of fields to return for the user, if available. Because the invoice object can be very large, field filtering is required. Valid collection fields are <code>items</code>, <code>payments</code>, <code>refunds</code>, <code>additional_recipients_info</code>, and <code>attachments</code>. */
+export type FieldsList = Array<string>;
+export const FieldsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<FieldsList>;
+
+export interface SearchInvoicesRequest {
+  /** The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates. */
+  page?: number;
+  /** The maximum number of templates to return in the response. */
+  page_size?: number;
+  /** Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response. */
+  total_required?: boolean;
+  /** Filters the search by the email address. */
+  recipient_email?: string;
+  /** Filters the search by the recipient first name. */
+  recipient_first_name?: string;
+  /** Filters the search by the recipient last name. */
+  recipient_last_name?: string;
+  /** Filters the search by the recipient business name. */
+  recipient_business_name?: string;
+  /** Filters the search by the invoice number. */
+  invoice_number?: string;
+  status?: InvoiceStatusList;
+  /** The reference data. Includes a Purchase Order (PO) number. */
+  reference?: string;
+  /** The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency. */
+  currency_code?: string;
+  /** A private bookkeeping memo for the user. */
+  memo?: string;
+  /** Filters the search by the total amount. */
+  total_amount_range?: AmountRange;
+  /** Filters the search by a date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
+  invoice_date_range?: DateRange;
+  /** Filters the search by a due date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
+  due_date_range?: DateRange;
+  payment_date_range?: DateTimeRange;
+  /** Filters the search by a creation date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
+  creation_date_range?: DateTimeRange;
+  /** Indicates whether to list merchant-archived invoices in the response. Value is:<ul><li><code>true</code>. Response lists only merchant-archived invoices.</li><li><code>false</code>. Response lists only unarchived invoices.</li><li><code>null</code>. Response lists all invoices.</li></ul> */
+  archived?: boolean;
+  fields?: FieldsList;
+}
+export const SearchInvoicesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    page: S.optional(S.Number.pipe(T.Query())),
+    page_size: S.optional(S.Number.pipe(T.Query())),
+    total_required: S.optional(S.Boolean.pipe(T.Query())),
+    recipient_email: S.optional(S.String),
+    recipient_first_name: S.optional(S.String),
+    recipient_last_name: S.optional(S.String),
+    recipient_business_name: S.optional(S.String),
+    invoice_number: S.optional(S.String),
+    status: S.optional(InvoiceStatusList),
+    reference: S.optional(S.String),
+    currency_code: S.optional(S.String),
+    memo: S.optional(S.String),
+    total_amount_range: S.optional(AmountRange),
+    invoice_date_range: S.optional(DateRange),
+    due_date_range: S.optional(DateRange),
+    payment_date_range: S.optional(DateTimeRange),
+    creation_date_range: S.optional(DateTimeRange),
+    archived: S.optional(S.Boolean),
+    fields: S.optional(FieldsList),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v2/invoicing/search-invoices", code: 200 }),
+  ),
+).annotate({
+  identifier: "SearchInvoicesRequest",
+}) as any as S.Schema<SearchInvoicesRequest>;
 
 export interface SendInvoiceRequest {
   /** The ID of the draft invoice to delete. */
@@ -2424,24 +2424,6 @@ export const invoicesRemind: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type InvoicesSearchInvoicesError =
-  | BadRequest
-  | Forbidden
-  | PaypalOpError;
-/** Search for invoices Searches for and lists invoices that match search criteria. If you pass multiple criteria, the response lists invoices that match all criteria. */
-export const invoicesSearchInvoices: API.OperationMethod<
-  InvoicesSearchInvoicesRequest,
-  Invoices,
-  InvoicesSearchInvoicesError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesSearchInvoicesRequest,
-  output: Invoices,
-  errors: [BadRequest, Forbidden, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
 export type InvoicingGenerateNextInvoiceNumberError =
   | BadRequest
   | Forbidden
@@ -2485,6 +2467,21 @@ export const listTemplates: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListTemplatesRequest,
   output: Templates,
+  errors: [BadRequest, Forbidden, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchInvoicesError = BadRequest | Forbidden | PaypalOpError;
+/** Search for invoices Searches for and lists invoices that match search criteria. If you pass multiple criteria, the response lists invoices that match all criteria. */
+export const searchInvoices: API.OperationMethod<
+  SearchInvoicesRequest,
+  Invoices,
+  SearchInvoicesError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchInvoicesRequest,
+  output: Invoices,
   errors: [BadRequest, Forbidden, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
