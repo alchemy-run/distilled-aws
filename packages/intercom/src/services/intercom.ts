@@ -7019,6 +7019,55 @@ export const CreateDataExportRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateDataExportRequest",
 }) as any as S.Schema<CreateDataExportRequest>;
 
+export type CreateExportReportingDataEnqueueRequestAttributeIdsList =
+  Array<string>;
+export const CreateExportReportingDataEnqueueRequestAttributeIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateExportReportingDataEnqueueRequestAttributeIdsList>;
+
+export interface CreateExportReportingDataEnqueueRequest {
+  dataset_id: string;
+  attribute_ids: CreateExportReportingDataEnqueueRequestAttributeIdsList;
+  start_time: number;
+  end_time: number;
+}
+export const CreateExportReportingDataEnqueueRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      dataset_id: S.String,
+      attribute_ids: CreateExportReportingDataEnqueueRequestAttributeIdsList,
+      start_time: S.Number,
+      end_time: S.Number,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/export/reporting_data/enqueue",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateExportReportingDataEnqueueRequest",
+}) as any as S.Schema<CreateExportReportingDataEnqueueRequest>;
+
+export interface CreateExportReportingDataEnqueueResponse {
+  job_identifier?: string;
+  status?: string;
+  download_url?: string;
+  download_expires_at?: string;
+}
+export const CreateExportReportingDataEnqueueResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      job_identifier: S.optional(S.String),
+      status: S.optional(S.String),
+      download_url: S.optional(S.String),
+      download_expires_at: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "CreateExportReportingDataEnqueueResponse",
+}) as any as S.Schema<CreateExportReportingDataEnqueueResponse>;
+
 /** Always en */
 export type CreateExternalPageRequestLocale = "en";
 export const CreateExternalPageRequestLocale = /*@__PURE__*/ S.String;
@@ -9540,6 +9589,997 @@ export const FindTagRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(T.Http({ method: "GET", uri: "/tags/{tag_id}", code: 200 })),
 ).annotate({ identifier: "FindTagRequest" }) as any as S.Schema<FindTagRequest>;
 
+export interface GetACompanyByIdRequest {
+  /** The unique identifier for the company which is given by Intercom */
+  company_id: string;
+}
+export const GetACompanyByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/companies/{company_id}", code: 200 })),
+).annotate({
+  identifier: "GetACompanyByIdRequest",
+}) as any as S.Schema<GetACompanyByIdRequest>;
+
+export interface GetAdminRequest {
+  /** The unique identifier of a given admin */
+  admin_id: number;
+}
+export const GetAdminRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    admin_id: S.Number.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/admins/{admin_id}", code: 200 })),
+).annotate({
+  identifier: "GetAdminRequest",
+}) as any as S.Schema<GetAdminRequest>;
+
+export interface GetArticleRequest {
+  /** The unique identifier for the article which is given by Intercom. */
+  article_id: number;
+}
+export const GetArticleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    article_id: S.Number.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/articles/{article_id}", code: 200 })),
+).annotate({
+  identifier: "GetArticleRequest",
+}) as any as S.Schema<GetArticleRequest>;
+
+/** The type of object - `article`. */
+export type GetArticleResponseType = "article";
+export const GetArticleResponseType = /*@__PURE__*/ S.String;
+
+/** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
+export type GetArticleResponseState = "published" | "draft";
+export const GetArticleResponseState = /*@__PURE__*/ S.String;
+
+/** The ids of the article's parent collections or sections. An article without this field stands alone. */
+export type GetArticleResponseParentIdsList = Array<number>;
+export const GetArticleResponseParentIdsList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<GetArticleResponseParentIdsList>;
+
+/** The audience that can view this article in the Help Center. `everyone` means all users and visitors can view it; `restricted` indicates a custom audience ruleset. For multilingual articles, this is the article-level audience. */
+export type GetArticleResponseHelpCenterAudience =
+  | "everyone"
+  | "all_users"
+  | "all_visitors"
+  | "all_leads"
+  | "all_visitors_and_leads"
+  | "restricted";
+export const GetArticleResponseHelpCenterAudience = /*@__PURE__*/ S.String;
+
+export interface GetArticleResponse {
+  /** The type of object - `article`. */
+  type?: GetArticleResponseType;
+  /** The unique identifier for the article which is given by Intercom. */
+  id?: string;
+  /** The id of the workspace which the article belongs to. */
+  workspace_id?: string;
+  /** The title of the article. For multilingual articles, this will be the title of the default language's content. */
+  title?: string;
+  /** The description of the article. For multilingual articles, this will be the description of the default language's content. */
+  description?: string | null;
+  /** The body of the article in HTML. For multilingual articles, this will be the body of the default language's content. */
+  body?: string | null;
+  /** The body of the article in markdown. For multilingual articles, this will be the body of the default language's content. */
+  body_markdown?: string | null;
+  /** The id of the author of the article. For multilingual articles, this will be the id of the author of the default language's content. Must be a teammate on the help center's workspace. */
+  author_id?: number;
+  /** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
+  state?: GetArticleResponseState;
+  /** The time when the article was created. For multilingual articles, this will be the timestamp of creation of the default language's content in seconds. */
+  created_at?: number;
+  /** The time when the article was last updated. For multilingual articles, this will be the timestamp of last update of the default language's content in seconds. */
+  updated_at?: number;
+  /** Whether the published article has unpublished changes staged as a draft on top of its live content. For multilingual articles this reflects the default language's content; a pure draft (never published) reports `false`. */
+  has_unpublished_changes?: boolean;
+  /** The time, in seconds, when the staged draft was last edited, or `null` when there is no staged draft. */
+  draft_updated_at?: number | null;
+  /** The URL of the article. For multilingual articles, this will be the URL of the default language's content. */
+  url?: string | null;
+  /** The ids of the article's parent collections or sections. An article without this field stands alone. */
+  parent_ids?: GetArticleResponseParentIdsList;
+  /** Whether the article is available for AI Chatbot. For multilingual articles, this will be the value of the default language's content. */
+  ai_chatbot_availability?: boolean;
+  /** Whether the article is available for AI Copilot. For multilingual articles, this will be the value of the default language's content. */
+  ai_copilot_availability?: boolean;
+  /** Whether the article is available for AI Sales Agent. For multilingual articles, this will be the value of the default language's content. */
+  ai_sales_agent_availability?: boolean;
+  /** The ID of the teammate who created the article. For multilingual articles, this will be the creator of the default language's content. */
+  created_by_id?: number | null;
+  /** The ID of the teammate who last updated the article. For multilingual articles, this will be the last editor of the default language's content. */
+  updated_by_id?: number | null;
+  /** Whether the article is excluded from Fin AI Agent article suggestions. */
+  exclude_from_article_suggestions?: boolean;
+  /** The audience that can view this article in the Help Center. `everyone` means all users and visitors can view it; `restricted` indicates a custom audience ruleset. For multilingual articles, this is the article-level audience. */
+  help_center_audience?: GetArticleResponseHelpCenterAudience | null;
+  /** The Unix timestamp (in seconds) at which the article is scheduled to be published. `null` when no publish is scheduled. Mutually exclusive with `scheduled_unpublish_at` — at most one pending schedule exists per article. */
+  scheduled_publish_at?: number | null;
+  /** The Unix timestamp (in seconds) at which the article is scheduled to be unpublished. `null` when no unpublish is scheduled. Mutually exclusive with `scheduled_publish_at` — at most one pending schedule exists per article. */
+  scheduled_unpublish_at?: number | null;
+  /** The default locale of the help center. This field is only returned for multilingual help centers. */
+  default_locale?: string;
+  translated_content?: ArticleTranslatedContent | null;
+  tags?: Tags;
+  statistics?: ArticleStatistics | null;
+}
+export const GetArticleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(GetArticleResponseType),
+    id: S.optional(S.String),
+    workspace_id: S.optional(S.String),
+    title: S.optional(S.String),
+    description: S.optional(S.NullOr(S.String)),
+    body: S.optional(S.NullOr(S.String)),
+    body_markdown: S.optional(S.NullOr(S.String)),
+    author_id: S.optional(S.Number),
+    state: S.optional(GetArticleResponseState),
+    created_at: S.optional(S.Number),
+    updated_at: S.optional(S.Number),
+    has_unpublished_changes: S.optional(S.Boolean),
+    draft_updated_at: S.optional(S.NullOr(S.Number)),
+    url: S.optional(S.NullOr(S.String)),
+    parent_ids: S.optional(GetArticleResponseParentIdsList),
+    ai_chatbot_availability: S.optional(S.Boolean),
+    ai_copilot_availability: S.optional(S.Boolean),
+    ai_sales_agent_availability: S.optional(S.Boolean),
+    created_by_id: S.optional(S.NullOr(S.Number)),
+    updated_by_id: S.optional(S.NullOr(S.Number)),
+    exclude_from_article_suggestions: S.optional(S.Boolean),
+    help_center_audience: S.optional(
+      S.NullOr(GetArticleResponseHelpCenterAudience),
+    ),
+    scheduled_publish_at: S.optional(S.NullOr(S.Number)),
+    scheduled_unpublish_at: S.optional(S.NullOr(S.Number)),
+    default_locale: S.optional(S.String),
+    translated_content: S.optional(S.NullOr(ArticleTranslatedContent)),
+    tags: S.optional(Tags),
+    statistics: S.optional(S.NullOr(ArticleStatistics)),
+  }),
+).annotate({
+  identifier: "GetArticleResponse",
+}) as any as S.Schema<GetArticleResponse>;
+
+export interface GetArticleDraftRequest {
+  /** The unique identifier for the article which is given by Intercom. */
+  id: number;
+}
+export const GetArticleDraftRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.Number.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/articles/{id}/draft", code: 200 })),
+).annotate({
+  identifier: "GetArticleDraftRequest",
+}) as any as S.Schema<GetArticleDraftRequest>;
+
+/** The type of object - `article`. */
+export type GetArticleDraftResponseType = "article";
+export const GetArticleDraftResponseType = /*@__PURE__*/ S.String;
+
+/** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
+export type GetArticleDraftResponseState = "published" | "draft";
+export const GetArticleDraftResponseState = /*@__PURE__*/ S.String;
+
+/** The ids of the article's parent collections or sections. An article without this field stands alone. */
+export type GetArticleDraftResponseParentIdsList = Array<number>;
+export const GetArticleDraftResponseParentIdsList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<GetArticleDraftResponseParentIdsList>;
+
+/** The audience that can view this article in the Help Center. `everyone` means all users and visitors can view it; `restricted` indicates a custom audience ruleset. For multilingual articles, this is the article-level audience. */
+export type GetArticleDraftResponseHelpCenterAudience =
+  | "everyone"
+  | "all_users"
+  | "all_visitors"
+  | "all_leads"
+  | "all_visitors_and_leads"
+  | "restricted";
+export const GetArticleDraftResponseHelpCenterAudience = /*@__PURE__*/ S.String;
+
+export interface GetArticleDraftResponse {
+  /** The type of object - `article`. */
+  type?: GetArticleDraftResponseType;
+  /** The unique identifier for the article which is given by Intercom. */
+  id?: string;
+  /** The id of the workspace which the article belongs to. */
+  workspace_id?: string;
+  /** The title of the article. For multilingual articles, this will be the title of the default language's content. */
+  title?: string;
+  /** The description of the article. For multilingual articles, this will be the description of the default language's content. */
+  description?: string | null;
+  /** The body of the article in HTML. For multilingual articles, this will be the body of the default language's content. */
+  body?: string | null;
+  /** The body of the article in markdown. For multilingual articles, this will be the body of the default language's content. */
+  body_markdown?: string | null;
+  /** The id of the author of the article. For multilingual articles, this will be the id of the author of the default language's content. Must be a teammate on the help center's workspace. */
+  author_id?: number;
+  /** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
+  state?: GetArticleDraftResponseState;
+  /** The time when the article was created. For multilingual articles, this will be the timestamp of creation of the default language's content in seconds. */
+  created_at?: number;
+  /** The time when the article was last updated. For multilingual articles, this will be the timestamp of last update of the default language's content in seconds. */
+  updated_at?: number;
+  /** Whether the published article has unpublished changes staged as a draft on top of its live content. For multilingual articles this reflects the default language's content; a pure draft (never published) reports `false`. */
+  has_unpublished_changes?: boolean;
+  /** The time, in seconds, when the staged draft was last edited, or `null` when there is no staged draft. */
+  draft_updated_at?: number | null;
+  /** The URL of the article. For multilingual articles, this will be the URL of the default language's content. */
+  url?: string | null;
+  /** The ids of the article's parent collections or sections. An article without this field stands alone. */
+  parent_ids?: GetArticleDraftResponseParentIdsList;
+  /** Whether the article is available for AI Chatbot. For multilingual articles, this will be the value of the default language's content. */
+  ai_chatbot_availability?: boolean;
+  /** Whether the article is available for AI Copilot. For multilingual articles, this will be the value of the default language's content. */
+  ai_copilot_availability?: boolean;
+  /** Whether the article is available for AI Sales Agent. For multilingual articles, this will be the value of the default language's content. */
+  ai_sales_agent_availability?: boolean;
+  /** The ID of the teammate who created the article. For multilingual articles, this will be the creator of the default language's content. */
+  created_by_id?: number | null;
+  /** The ID of the teammate who last updated the article. For multilingual articles, this will be the last editor of the default language's content. */
+  updated_by_id?: number | null;
+  /** Whether the article is excluded from Fin AI Agent article suggestions. */
+  exclude_from_article_suggestions?: boolean;
+  /** The audience that can view this article in the Help Center. `everyone` means all users and visitors can view it; `restricted` indicates a custom audience ruleset. For multilingual articles, this is the article-level audience. */
+  help_center_audience?: GetArticleDraftResponseHelpCenterAudience | null;
+  /** The Unix timestamp (in seconds) at which the article is scheduled to be published. `null` when no publish is scheduled. Mutually exclusive with `scheduled_unpublish_at` — at most one pending schedule exists per article. */
+  scheduled_publish_at?: number | null;
+  /** The Unix timestamp (in seconds) at which the article is scheduled to be unpublished. `null` when no unpublish is scheduled. Mutually exclusive with `scheduled_publish_at` — at most one pending schedule exists per article. */
+  scheduled_unpublish_at?: number | null;
+  /** The default locale of the help center. This field is only returned for multilingual help centers. */
+  default_locale?: string;
+  translated_content?: ArticleTranslatedContent | null;
+  tags?: Tags;
+  statistics?: ArticleStatistics | null;
+}
+export const GetArticleDraftResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(GetArticleDraftResponseType),
+    id: S.optional(S.String),
+    workspace_id: S.optional(S.String),
+    title: S.optional(S.String),
+    description: S.optional(S.NullOr(S.String)),
+    body: S.optional(S.NullOr(S.String)),
+    body_markdown: S.optional(S.NullOr(S.String)),
+    author_id: S.optional(S.Number),
+    state: S.optional(GetArticleDraftResponseState),
+    created_at: S.optional(S.Number),
+    updated_at: S.optional(S.Number),
+    has_unpublished_changes: S.optional(S.Boolean),
+    draft_updated_at: S.optional(S.NullOr(S.Number)),
+    url: S.optional(S.NullOr(S.String)),
+    parent_ids: S.optional(GetArticleDraftResponseParentIdsList),
+    ai_chatbot_availability: S.optional(S.Boolean),
+    ai_copilot_availability: S.optional(S.Boolean),
+    ai_sales_agent_availability: S.optional(S.Boolean),
+    created_by_id: S.optional(S.NullOr(S.Number)),
+    updated_by_id: S.optional(S.NullOr(S.Number)),
+    exclude_from_article_suggestions: S.optional(S.Boolean),
+    help_center_audience: S.optional(
+      S.NullOr(GetArticleDraftResponseHelpCenterAudience),
+    ),
+    scheduled_publish_at: S.optional(S.NullOr(S.Number)),
+    scheduled_unpublish_at: S.optional(S.NullOr(S.Number)),
+    default_locale: S.optional(S.String),
+    translated_content: S.optional(S.NullOr(ArticleTranslatedContent)),
+    tags: S.optional(Tags),
+    statistics: S.optional(S.NullOr(ArticleStatistics)),
+  }),
+).annotate({
+  identifier: "GetArticleDraftResponse",
+}) as any as S.Schema<GetArticleDraftResponse>;
+
+export interface GetArticleVersionRequest {
+  /** The unique identifier for the article. */
+  article_id: number;
+  /** The unique identifier for the version. */
+  id: string;
+  /** Return the version's content for a specific locale. If the locale is not configured for the workspace, a `400` is returned. */
+  locale?: string;
+}
+export const GetArticleVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    article_id: S.Number.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    locale: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/articles/{article_id}/versions/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetArticleVersionRequest",
+}) as any as S.Schema<GetArticleVersionRequest>;
+
+/** String representing the object's type. Always has the value `article_version`. */
+export type ArticleVersionType = "article_version";
+export const ArticleVersionType = /*@__PURE__*/ S.String;
+
+/** Whether this version is the currently published version of the article (`published`) or an earlier non-live version (`draft`). */
+export type ArticleVersionState = "published" | "draft";
+export const ArticleVersionState = /*@__PURE__*/ S.String;
+
+/** A historical version of an article, including its content. */
+export interface ArticleVersion {
+  /** String representing the object's type. Always has the value `article_version`. */
+  type?: ArticleVersionType;
+  /** The unique identifier for the version. */
+  id?: string;
+  /** The unique identifier of the article this version belongs to. */
+  article_id?: string;
+  /** The title of the article at this version. */
+  title?: string;
+  /** The description of the article at this version. */
+  description?: string | null;
+  /** The HTML body of the article at this version. */
+  body?: string | null;
+  /** The Markdown body of the article at this version. */
+  body_markdown?: string | null;
+  /** The id of the teammate listed as the article's author at this version. */
+  author_id?: string;
+  /** The id of the teammate who created this version. */
+  created_by_id?: string | null;
+  /** How this version was created (for example `web`, `api`). */
+  created_via?: string;
+  /** The id of the version this version was created from, or `null` if this is the first version. */
+  from_version_id?: string | null;
+  /** Whether this version is the currently published version of the article (`published`) or an earlier non-live version (`draft`). */
+  state?: ArticleVersionState;
+  /** The time the version was created, as a UTC Unix timestamp. */
+  created_at?: number;
+  /** The time the version was last updated, as a UTC Unix timestamp. */
+  updated_at?: number;
+}
+export const ArticleVersion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(ArticleVersionType),
+    id: S.optional(S.String),
+    article_id: S.optional(S.String),
+    title: S.optional(S.String),
+    description: S.optional(S.NullOr(S.String)),
+    body: S.optional(S.NullOr(S.String)),
+    body_markdown: S.optional(S.NullOr(S.String)),
+    author_id: S.optional(S.String),
+    created_by_id: S.optional(S.NullOr(S.String)),
+    created_via: S.optional(S.String),
+    from_version_id: S.optional(S.NullOr(S.String)),
+    state: S.optional(ArticleVersionState),
+    created_at: S.optional(S.Number),
+    updated_at: S.optional(S.Number),
+  }),
+).annotate({ identifier: "ArticleVersion" }) as any as S.Schema<ArticleVersion>;
+
+export interface GetAudienceRequest {
+  /** The unique identifier for the audience. */
+  id: string;
+}
+export const GetAudienceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/audiences/{id}", code: 200 })),
+).annotate({
+  identifier: "GetAudienceRequest",
+}) as any as S.Schema<GetAudienceRequest>;
+
+export interface GetBrandRequest {
+  /** The unique identifier of the brand */
+  id: string;
+}
+export const GetBrandRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/brands/{id}", code: 200 })),
+).annotate({
+  identifier: "GetBrandRequest",
+}) as any as S.Schema<GetBrandRequest>;
+
+/** Represents a branding configuration for the workspace */
+export interface Brand {
+  /** The type of object */
+  type?: string;
+  /** Unique brand identifier. For default brand, matches the workspace ID */
+  id?: string;
+  /** Display name of the brand */
+  name?: string;
+  /** Whether this is the workspace's default brand */
+  is_default?: boolean;
+  /** Unix timestamp of brand creation */
+  created_at?: number;
+  /** Unix timestamp of last modification */
+  updated_at?: number;
+  /** Associated help center identifier */
+  help_center_id?: string;
+  /** Default email settings ID for this brand */
+  default_address_settings_id?: string;
+}
+export const Brand = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    is_default: S.optional(S.Boolean),
+    created_at: S.optional(S.Number),
+    updated_at: S.optional(S.Number),
+    help_center_id: S.optional(S.String),
+    default_address_settings_id: S.optional(S.String),
+  }),
+).annotate({ identifier: "Brand" }) as any as S.Schema<Brand>;
+
+export interface GetCallRequest {
+  /** The id of the call to retrieve */
+  call_id: string;
+}
+export const GetCallRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    call_id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/calls/{call_id}", code: 200 })),
+).annotate({ identifier: "GetCallRequest" }) as any as S.Schema<GetCallRequest>;
+
+/** Represents a phone call in Intercom */
+export interface Call {
+  /** String representing the object's type. Always has the value `call`. */
+  type?: string;
+  /** The id of the call. */
+  id?: string;
+  /** The id of the conversation associated with the call, if any. */
+  conversation_id?: string | null;
+  /** The id of the admin associated with the call, if any. */
+  admin_id?: string | null;
+  /** The id of the contact associated with the call, if any. */
+  contact_id?: string | null;
+  /** The current state of the call. */
+  state?: string;
+  initiated_at?: Datetime;
+  answered_at?: Datetime;
+  ended_at?: Datetime;
+  created_at?: Datetime;
+  updated_at?: Datetime;
+  /** API URL to download or redirect to the call recording if available. */
+  recording_url?: string | null;
+  /** API URL to download or redirect to the call transcript if available. */
+  transcription_url?: string | null;
+  /** The type of call. */
+  call_type?: string;
+  /** The direction of the call. */
+  direction?: string;
+  /** The reason for the call end, if applicable. */
+  ended_reason?: string | null;
+  /** The phone number involved in the call, in E.164 format. */
+  phone?: string | null;
+  /** API URL to the AI Agent (Fin) call recording if available. */
+  fin_recording_url?: string | null;
+  /** API URL to the AI Agent (Fin) call transcript if available. */
+  fin_transcription_url?: string | null;
+}
+export const Call = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    id: S.optional(S.String),
+    conversation_id: S.optional(S.NullOr(S.String)),
+    admin_id: S.optional(S.NullOr(S.String)),
+    contact_id: S.optional(S.NullOr(S.String)),
+    state: S.optional(S.String),
+    initiated_at: S.optional(Datetime),
+    answered_at: S.optional(Datetime),
+    ended_at: S.optional(Datetime),
+    created_at: S.optional(Datetime),
+    updated_at: S.optional(Datetime),
+    recording_url: S.optional(S.NullOr(S.String)),
+    transcription_url: S.optional(S.NullOr(S.String)),
+    call_type: S.optional(S.String),
+    direction: S.optional(S.String),
+    ended_reason: S.optional(S.NullOr(S.String)),
+    phone: S.optional(S.NullOr(S.String)),
+    fin_recording_url: S.optional(S.NullOr(S.String)),
+    fin_transcription_url: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "Call" }) as any as S.Schema<Call>;
+
+export interface GetCallRecordingRequest {
+  /** The id of the call */
+  call_id: string;
+}
+export const GetCallRecordingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    call_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/calls/{call_id}/recording", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetCallRecordingRequest",
+}) as any as S.Schema<GetCallRecordingRequest>;
+
+export interface GetCallRecordingResponse {}
+export const GetCallRecordingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetCallRecordingResponse",
+}) as any as S.Schema<GetCallRecordingResponse>;
+
+export interface GetCallTranscriptRequest {
+  /** The id of the call */
+  call_id: string;
+}
+export const GetCallTranscriptRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    call_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/calls/{call_id}/transcript", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetCallTranscriptRequest",
+}) as any as S.Schema<GetCallTranscriptRequest>;
+
+export interface GetCallTranscriptResponse {}
+export const GetCallTranscriptResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetCallTranscriptResponse",
+}) as any as S.Schema<GetCallTranscriptResponse>;
+
+export interface GetCollectionRequest {
+  /** The unique identifier for the collection which is given by Intercom. */
+  collection_id: number;
+}
+export const GetCollectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    collection_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/help_center/collections/{collection_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCollectionRequest",
+}) as any as S.Schema<GetCollectionRequest>;
+
+export interface GetCompanyRequest {
+  /** The `name` of the company to filter by. */
+  name?: string;
+  /** The `company_id` of the company to filter by. */
+  company_id?: string;
+  /** The `tag_id` of the company to filter by. */
+  tag_id?: string;
+  /** The `segment_id` of the company to filter by. */
+  segment_id?: string;
+  /** The page of results to fetch. Defaults to first page */
+  page?: number;
+  /** How many results to display per page. Defaults to 15 */
+  per_page?: number;
+}
+export const GetCompanyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String.pipe(T.Query())),
+    company_id: S.optional(S.String.pipe(T.Query())),
+    tag_id: S.optional(S.String.pipe(T.Query())),
+    segment_id: S.optional(S.String.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per_page: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/companies", code: 200 })),
+).annotate({
+  identifier: "GetCompanyRequest",
+}) as any as S.Schema<GetCompanyRequest>;
+
+/** The type of object - `list`. */
+export type CompanyListType = "list";
+export const CompanyListType = /*@__PURE__*/ S.String;
+
+/** the type of object `pages`. */
+export type CursorPagesType = "pages";
+export const CursorPagesType = /*@__PURE__*/ S.String;
+
+export interface StartingAfterPaging {
+  /** The number of results to fetch per page. */
+  per_page?: number;
+  /** The cursor to use in the next request to get the next page of results. */
+  starting_after?: string | null;
+}
+export const StartingAfterPaging = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    per_page: S.optional(S.Number),
+    starting_after: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "StartingAfterPaging",
+}) as any as S.Schema<StartingAfterPaging>;
+
+/** Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. A "cursor" or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or "pages" as needed. */
+export interface CursorPages {
+  /** the type of object `pages`. */
+  type?: CursorPagesType;
+  /** The current page */
+  page?: number;
+  next?: StartingAfterPaging | null;
+  /** Number of results per page */
+  per_page?: number;
+  /** Total number of pages */
+  total_pages?: number;
+}
+export const CursorPages = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(CursorPagesType),
+    page: S.optional(S.Number),
+    next: S.optional(S.NullOr(StartingAfterPaging)),
+    per_page: S.optional(S.Number),
+    total_pages: S.optional(S.Number),
+  }),
+).annotate({ identifier: "CursorPages" }) as any as S.Schema<CursorPages>;
+
+/** An array containing Company Objects. */
+export type CompanyListDataList = Array<Company>;
+export const CompanyListDataList = /*@__PURE__*/ S.Array(
+  Company,
+) as any as S.Schema<CompanyListDataList>;
+
+/** This will return a list of companies for the App. */
+export interface CompanyList {
+  /** The type of object - `list`. */
+  type?: CompanyListType;
+  pages?: CursorPages | null;
+  /** The total number of companies. */
+  total_count?: number;
+  /** An array containing Company Objects. */
+  data?: CompanyListDataList;
+}
+export const CompanyList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(CompanyListType),
+    pages: S.optional(S.NullOr(CursorPages)),
+    total_count: S.optional(S.Number),
+    data: S.optional(CompanyListDataList),
+  }),
+).annotate({ identifier: "CompanyList" }) as any as S.Schema<CompanyList>;
+
+export interface GetContactRequest {
+  /** contact_id */
+  contact_id: string;
+  /** Pass `true` to include the contact's merge history in the response. Only returned for contacts with a `user` role. */
+  include_merge_history?: boolean;
+}
+export const GetContactRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contact_id: S.String.pipe(T.Label()),
+    include_merge_history: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/contacts/{contact_id}", code: 200 })),
+).annotate({
+  identifier: "GetContactRequest",
+}) as any as S.Schema<GetContactRequest>;
+
+export type GetContactResponseAvatar = ContactAvatar;
+export const GetContactResponseAvatar = ContactAvatar;
+
+/** A list of contacts that were merged into this contact. Only included in the response when `include_merge_history=true` is passed as a query parameter. Only available for contacts with a `user` role. */
+export type GetContactResponseMergeHistoryList = Array<MergeHistoryItem>;
+export const GetContactResponseMergeHistoryList = /*@__PURE__*/ S.Array(
+  MergeHistoryItem,
+) as any as S.Schema<GetContactResponseMergeHistoryList>;
+
+export interface GetContactResponse {
+  /** The type of object. */
+  type?: string;
+  /** The unique identifier for the contact which is given by Intercom. */
+  id?: string;
+  /** The unique identifier for the contact which is provided by the Client. */
+  external_id?: string | null;
+  /** The id of the workspace which the contact belongs to. */
+  workspace_id?: string;
+  /** The role of the contact. */
+  role?: string;
+  /** The contact's email. */
+  email?: string;
+  /** The contact's email domain. */
+  email_domain?: string;
+  /** The contacts phone. */
+  phone?: string | null;
+  /** The contacts name. */
+  name?: string | null;
+  /** The id of an admin that has been assigned account ownership of the contact. */
+  owner_id?: string | null;
+  /** Whether the contact has had an email sent to them hard bounce. */
+  has_hard_bounced?: boolean;
+  /** Whether the contact has marked an email sent to them as spam. */
+  marked_email_as_spam?: boolean;
+  /** Whether the contact is unsubscribed from emails. */
+  unsubscribed_from_emails?: boolean;
+  /** (Unix timestamp in seconds) The time when the contact was created. */
+  created_at?: number;
+  /** (Unix timestamp in seconds) The time when the contact was last updated. */
+  updated_at?: number;
+  /** (Unix timestamp in seconds) The time specified for when a contact signed up. */
+  signed_up_at?: number | null;
+  /** (Unix timestamp in seconds) The time when the contact was last seen (either where the Intercom Messenger was installed or when specified manually). */
+  last_seen_at?: number | null;
+  /** (Unix timestamp in seconds) The time when the contact last messaged in. */
+  last_replied_at?: number | null;
+  /** (Unix timestamp in seconds) The time when the contact was last messaged. */
+  last_contacted_at?: number | null;
+  /** (Unix timestamp in seconds) The time when the contact last opened an email. */
+  last_email_opened_at?: number | null;
+  /** (Unix timestamp in seconds) The time when the contact last clicked a link in an email. */
+  last_email_clicked_at?: number | null;
+  /** A preferred language setting for the contact, used by the Intercom Messenger even if their browser settings change. */
+  language_override?: string | null;
+  /** The name of the browser which the contact is using. */
+  browser?: string | null;
+  /** The version of the browser which the contact is using. */
+  browser_version?: string | null;
+  /** The language set by the browser which the contact is using. */
+  browser_language?: string | null;
+  /** The operating system which the contact is using. */
+  os?: string | null;
+  /** The name of the Android app which the contact is using. */
+  android_app_name?: string | null;
+  /** The version of the Android app which the contact is using. */
+  android_app_version?: string | null;
+  /** The Android device which the contact is using. */
+  android_device?: string | null;
+  /** The version of the Android OS which the contact is using. */
+  android_os_version?: string | null;
+  /** The version of the Android SDK which the contact is using. */
+  android_sdk_version?: string | null;
+  /** (Unix timestamp in seconds) The time when the contact was last seen on an Android device. */
+  android_last_seen_at?: number | null;
+  /** The name of the iOS app which the contact is using. */
+  ios_app_name?: string | null;
+  /** The version of the iOS app which the contact is using. */
+  ios_app_version?: string | null;
+  /** The iOS device which the contact is using. */
+  ios_device?: string | null;
+  /** The version of iOS which the contact is using. */
+  ios_os_version?: string | null;
+  /** The version of the iOS SDK which the contact is using. */
+  ios_sdk_version?: string | null;
+  /** (Unix timestamp in seconds) The last time the contact used the iOS app. */
+  ios_last_seen_at?: number | null;
+  /** The custom attributes which are set for the contact. */
+  custom_attributes?: unknown;
+  avatar?: ContactAvatar | null;
+  tags?: ContactTags | null;
+  notes?: ContactNotes;
+  companies?: ContactCompanies;
+  location?: ContactLocation;
+  social_profiles?: ContactSocialProfiles;
+  /** A list of contacts that were merged into this contact. Only included in the response when `include_merge_history=true` is passed as a query parameter. Only available for contacts with a `user` role. */
+  merge_history?: GetContactResponseMergeHistoryList | null;
+  /** If the user has enabled push messaging. */
+  enabled_push_messaging?: boolean | null;
+}
+export const GetContactResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    id: S.optional(S.String),
+    external_id: S.optional(S.NullOr(S.String)),
+    workspace_id: S.optional(S.String),
+    role: S.optional(S.String),
+    email: S.optional(S.String),
+    email_domain: S.optional(S.String),
+    phone: S.optional(S.NullOr(S.String)),
+    name: S.optional(S.NullOr(S.String)),
+    owner_id: S.optional(S.NullOr(S.String)),
+    has_hard_bounced: S.optional(S.Boolean),
+    marked_email_as_spam: S.optional(S.Boolean),
+    unsubscribed_from_emails: S.optional(S.Boolean),
+    created_at: S.optional(S.Number),
+    updated_at: S.optional(S.Number),
+    signed_up_at: S.optional(S.NullOr(S.Number)),
+    last_seen_at: S.optional(S.NullOr(S.Number)),
+    last_replied_at: S.optional(S.NullOr(S.Number)),
+    last_contacted_at: S.optional(S.NullOr(S.Number)),
+    last_email_opened_at: S.optional(S.NullOr(S.Number)),
+    last_email_clicked_at: S.optional(S.NullOr(S.Number)),
+    language_override: S.optional(S.NullOr(S.String)),
+    browser: S.optional(S.NullOr(S.String)),
+    browser_version: S.optional(S.NullOr(S.String)),
+    browser_language: S.optional(S.NullOr(S.String)),
+    os: S.optional(S.NullOr(S.String)),
+    android_app_name: S.optional(S.NullOr(S.String)),
+    android_app_version: S.optional(S.NullOr(S.String)),
+    android_device: S.optional(S.NullOr(S.String)),
+    android_os_version: S.optional(S.NullOr(S.String)),
+    android_sdk_version: S.optional(S.NullOr(S.String)),
+    android_last_seen_at: S.optional(S.NullOr(S.Number)),
+    ios_app_name: S.optional(S.NullOr(S.String)),
+    ios_app_version: S.optional(S.NullOr(S.String)),
+    ios_device: S.optional(S.NullOr(S.String)),
+    ios_os_version: S.optional(S.NullOr(S.String)),
+    ios_sdk_version: S.optional(S.NullOr(S.String)),
+    ios_last_seen_at: S.optional(S.NullOr(S.Number)),
+    custom_attributes: S.optional(S.Unknown),
+    avatar: S.optional(S.NullOr(ContactAvatar)),
+    tags: S.optional(S.NullOr(ContactTags)),
+    notes: S.optional(ContactNotes),
+    companies: S.optional(ContactCompanies),
+    location: S.optional(ContactLocation),
+    social_profiles: S.optional(ContactSocialProfiles),
+    merge_history: S.optional(S.NullOr(GetContactResponseMergeHistoryList)),
+    enabled_push_messaging: S.optional(S.NullOr(S.Boolean)),
+  }),
+).annotate({
+  identifier: "GetContactResponse",
+}) as any as S.Schema<GetContactResponse>;
+
+export interface GetContactByExternalIdRequest {
+  /** The external ID of the user that you want to retrieve */
+  external_id: string;
+  /** Pass `true` to include the contact's merge history in the response. Only returned for contacts with a `user` role. */
+  include_merge_history?: boolean;
+}
+export const GetContactByExternalIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    external_id: S.String.pipe(T.Label()),
+    include_merge_history: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/contacts/find_by_external_id/{external_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetContactByExternalIdRequest",
+}) as any as S.Schema<GetContactByExternalIdRequest>;
+
+export type GetContactByExternalIdResponseAvatar = ContactAvatar;
+export const GetContactByExternalIdResponseAvatar = ContactAvatar;
+
+/** A list of contacts that were merged into this contact. Only included in the response when `include_merge_history=true` is passed as a query parameter. Only available for contacts with a `user` role. */
+export type GetContactByExternalIdResponseMergeHistoryList =
+  Array<MergeHistoryItem>;
+export const GetContactByExternalIdResponseMergeHistoryList =
+  /*@__PURE__*/ S.Array(
+    MergeHistoryItem,
+  ) as any as S.Schema<GetContactByExternalIdResponseMergeHistoryList>;
+
+export interface GetContactByExternalIdResponse {
+  /** The type of object. */
+  type?: string;
+  /** The unique identifier for the contact which is given by Intercom. */
+  id?: string;
+  /** The unique identifier for the contact which is provided by the Client. */
+  external_id?: string | null;
+  /** The id of the workspace which the contact belongs to. */
+  workspace_id?: string;
+  /** The role of the contact. */
+  role?: string;
+  /** The contact's email. */
+  email?: string;
+  /** The contact's email domain. */
+  email_domain?: string;
+  /** The contacts phone. */
+  phone?: string | null;
+  /** The contacts name. */
+  name?: string | null;
+  /** The id of an admin that has been assigned account ownership of the contact. */
+  owner_id?: string | null;
+  /** Whether the contact has had an email sent to them hard bounce. */
+  has_hard_bounced?: boolean;
+  /** Whether the contact has marked an email sent to them as spam. */
+  marked_email_as_spam?: boolean;
+  /** Whether the contact is unsubscribed from emails. */
+  unsubscribed_from_emails?: boolean;
+  /** (Unix timestamp in seconds) The time when the contact was created. */
+  created_at?: number;
+  /** (Unix timestamp in seconds) The time when the contact was last updated. */
+  updated_at?: number;
+  /** (Unix timestamp in seconds) The time specified for when a contact signed up. */
+  signed_up_at?: number | null;
+  /** (Unix timestamp in seconds) The time when the contact was last seen (either where the Intercom Messenger was installed or when specified manually). */
+  last_seen_at?: number | null;
+  /** (Unix timestamp in seconds) The time when the contact last messaged in. */
+  last_replied_at?: number | null;
+  /** (Unix timestamp in seconds) The time when the contact was last messaged. */
+  last_contacted_at?: number | null;
+  /** (Unix timestamp in seconds) The time when the contact last opened an email. */
+  last_email_opened_at?: number | null;
+  /** (Unix timestamp in seconds) The time when the contact last clicked a link in an email. */
+  last_email_clicked_at?: number | null;
+  /** A preferred language setting for the contact, used by the Intercom Messenger even if their browser settings change. */
+  language_override?: string | null;
+  /** The name of the browser which the contact is using. */
+  browser?: string | null;
+  /** The version of the browser which the contact is using. */
+  browser_version?: string | null;
+  /** The language set by the browser which the contact is using. */
+  browser_language?: string | null;
+  /** The operating system which the contact is using. */
+  os?: string | null;
+  /** The name of the Android app which the contact is using. */
+  android_app_name?: string | null;
+  /** The version of the Android app which the contact is using. */
+  android_app_version?: string | null;
+  /** The Android device which the contact is using. */
+  android_device?: string | null;
+  /** The version of the Android OS which the contact is using. */
+  android_os_version?: string | null;
+  /** The version of the Android SDK which the contact is using. */
+  android_sdk_version?: string | null;
+  /** (Unix timestamp in seconds) The time when the contact was last seen on an Android device. */
+  android_last_seen_at?: number | null;
+  /** The name of the iOS app which the contact is using. */
+  ios_app_name?: string | null;
+  /** The version of the iOS app which the contact is using. */
+  ios_app_version?: string | null;
+  /** The iOS device which the contact is using. */
+  ios_device?: string | null;
+  /** The version of iOS which the contact is using. */
+  ios_os_version?: string | null;
+  /** The version of the iOS SDK which the contact is using. */
+  ios_sdk_version?: string | null;
+  /** (Unix timestamp in seconds) The last time the contact used the iOS app. */
+  ios_last_seen_at?: number | null;
+  /** The custom attributes which are set for the contact. */
+  custom_attributes?: unknown;
+  avatar?: ContactAvatar | null;
+  tags?: ContactTags | null;
+  notes?: ContactNotes;
+  companies?: ContactCompanies;
+  location?: ContactLocation;
+  social_profiles?: ContactSocialProfiles;
+  /** A list of contacts that were merged into this contact. Only included in the response when `include_merge_history=true` is passed as a query parameter. Only available for contacts with a `user` role. */
+  merge_history?: GetContactByExternalIdResponseMergeHistoryList | null;
+  /** If the user has enabled push messaging. */
+  enabled_push_messaging?: boolean | null;
+}
+export const GetContactByExternalIdResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    id: S.optional(S.String),
+    external_id: S.optional(S.NullOr(S.String)),
+    workspace_id: S.optional(S.String),
+    role: S.optional(S.String),
+    email: S.optional(S.String),
+    email_domain: S.optional(S.String),
+    phone: S.optional(S.NullOr(S.String)),
+    name: S.optional(S.NullOr(S.String)),
+    owner_id: S.optional(S.NullOr(S.String)),
+    has_hard_bounced: S.optional(S.Boolean),
+    marked_email_as_spam: S.optional(S.Boolean),
+    unsubscribed_from_emails: S.optional(S.Boolean),
+    created_at: S.optional(S.Number),
+    updated_at: S.optional(S.Number),
+    signed_up_at: S.optional(S.NullOr(S.Number)),
+    last_seen_at: S.optional(S.NullOr(S.Number)),
+    last_replied_at: S.optional(S.NullOr(S.Number)),
+    last_contacted_at: S.optional(S.NullOr(S.Number)),
+    last_email_opened_at: S.optional(S.NullOr(S.Number)),
+    last_email_clicked_at: S.optional(S.NullOr(S.Number)),
+    language_override: S.optional(S.NullOr(S.String)),
+    browser: S.optional(S.NullOr(S.String)),
+    browser_version: S.optional(S.NullOr(S.String)),
+    browser_language: S.optional(S.NullOr(S.String)),
+    os: S.optional(S.NullOr(S.String)),
+    android_app_name: S.optional(S.NullOr(S.String)),
+    android_app_version: S.optional(S.NullOr(S.String)),
+    android_device: S.optional(S.NullOr(S.String)),
+    android_os_version: S.optional(S.NullOr(S.String)),
+    android_sdk_version: S.optional(S.NullOr(S.String)),
+    android_last_seen_at: S.optional(S.NullOr(S.Number)),
+    ios_app_name: S.optional(S.NullOr(S.String)),
+    ios_app_version: S.optional(S.NullOr(S.String)),
+    ios_device: S.optional(S.NullOr(S.String)),
+    ios_os_version: S.optional(S.NullOr(S.String)),
+    ios_sdk_version: S.optional(S.NullOr(S.String)),
+    ios_last_seen_at: S.optional(S.NullOr(S.Number)),
+    custom_attributes: S.optional(S.Unknown),
+    avatar: S.optional(S.NullOr(ContactAvatar)),
+    tags: S.optional(S.NullOr(ContactTags)),
+    notes: S.optional(ContactNotes),
+    companies: S.optional(ContactCompanies),
+    location: S.optional(ContactLocation),
+    social_profiles: S.optional(ContactSocialProfiles),
+    merge_history: S.optional(
+      S.NullOr(GetContactByExternalIdResponseMergeHistoryList),
+    ),
+    enabled_push_messaging: S.optional(S.NullOr(S.Boolean)),
+  }),
+).annotate({
+  identifier: "GetContactByExternalIdResponse",
+}) as any as S.Schema<GetContactByExternalIdResponse>;
+
 export interface GetContentImportSourceRequest {
   /** The unique identifier for the content import source which is given by Intercom. */
   source_id: string;
@@ -9570,6 +10610,30 @@ export const GetContentSnippetRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetContentSnippetRequest",
 }) as any as S.Schema<GetContentSnippetRequest>;
 
+export interface GetConversationRequest {
+  /** The id of the conversation to target */
+  conversation_id: number;
+  /** Set to plaintext to retrieve conversation messages in plain text. This affects both the body and subject fields. Inline links are rendered as `label (url)`, preserving the link URL alongside the visible text. */
+  display_as?: string;
+  /** If set to true, conversation parts will be translated to the detected language of the conversation. */
+  include_translations?: boolean;
+}
+export const GetConversationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    conversation_id: S.Number.pipe(T.Label()),
+    display_as: S.optional(S.String.pipe(T.Query())),
+    include_translations: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/conversations/{conversation_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetConversationRequest",
+}) as any as S.Schema<GetConversationRequest>;
+
 export interface GetConversationAttributeRequest {
   /** The conversation attribute id */
   id: number;
@@ -9591,13 +10655,13 @@ export const GetConversationAttributeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetConversationAttributeResponse",
 }) as any as S.Schema<GetConversationAttributeResponse>;
 
-export interface GetCustomObjectInstancesByIdRequest {
+export interface GetCustomObjectInstanceRequest {
   /** The unique identifier of the custom object type that defines the structure of the custom object instance. */
   custom_object_type_identifier: string;
   /** The id or external_id of the custom object instance */
   custom_object_instance_id: string;
 }
-export const GetCustomObjectInstancesByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCustomObjectInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     custom_object_type_identifier: S.String.pipe(T.Label()),
     custom_object_instance_id: S.String.pipe(T.Label()),
@@ -9609,8 +10673,152 @@ export const GetCustomObjectInstancesByIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetCustomObjectInstancesByIdRequest",
-}) as any as S.Schema<GetCustomObjectInstancesByIdRequest>;
+  identifier: "GetCustomObjectInstanceRequest",
+}) as any as S.Schema<GetCustomObjectInstanceRequest>;
+
+export type GetDataConnectorRequestStateVersion = "draft" | "live";
+export const GetDataConnectorRequestStateVersion = /*@__PURE__*/ S.String;
+
+export interface GetDataConnectorRequest {
+  /** The unique identifier of the data connector. */
+  id: string;
+  /** Which version of the data connector to return. Defaults to live. */
+  state_version?: GetDataConnectorRequestStateVersion | (string & {});
+}
+export const GetDataConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    state_version: S.optional(
+      GetDataConnectorRequestStateVersion.pipe(T.Query()),
+    ),
+  }).pipe(T.Http({ method: "GET", uri: "/data_connectors/{id}", code: 200 })),
+).annotate({
+  identifier: "GetDataConnectorRequest",
+}) as any as S.Schema<GetDataConnectorRequest>;
+
+export interface GetDataConnectorExecutionResultRequest {
+  /** The unique identifier for the data connector. */
+  data_connector_id: string;
+  /** The unique identifier for the execution result. */
+  id: string;
+}
+export const GetDataConnectorExecutionResultRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      data_connector_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/data_connectors/{data_connector_id}/execution_results/{id}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetDataConnectorExecutionResultRequest",
+}) as any as S.Schema<GetDataConnectorExecutionResultRequest>;
+
+/** The type of object - `data_connector.execution`. */
+export type DataConnectorExecutionResultType = "data_connector.execution";
+export const DataConnectorExecutionResultType = /*@__PURE__*/ S.String;
+
+/** The HTTP method used for the request. */
+export type DataConnectorExecutionResultHttpMethod =
+  | "get"
+  | "post"
+  | "put"
+  | "delete"
+  | "patch";
+export const DataConnectorExecutionResultHttpMethod = /*@__PURE__*/ S.String;
+
+/** The type of error that occurred, if any. */
+export type DataConnectorExecutionResultErrorType =
+  | "request_configuration_error"
+  | "faraday_error"
+  | "3rd_party_error"
+  | "response_mapping_error"
+  | "token_refresh_error"
+  | "fin_action_response_formatting_error"
+  | "fin_action_identity_verification_error"
+  | "email_verification_error"
+  | "non_fin_standalone_action_identity_verification_error"
+  | "request_validation_error"
+  | "client_side_action_error";
+export const DataConnectorExecutionResultErrorType = /*@__PURE__*/ S.String;
+
+/** The type of source that triggered this execution. */
+export type DataConnectorExecutionResultSourceType =
+  | "custom_bot"
+  | "inbound_custom_bot"
+  | "button_custom_bot"
+  | "answer"
+  | "workflow"
+  | "saved_reply"
+  | "triggerable_custom_bot"
+  | "inbox"
+  | "fin";
+export const DataConnectorExecutionResultSourceType = /*@__PURE__*/ S.String;
+
+/** An execution result from a data connector HTTP request. */
+export interface DataConnectorExecutionResult {
+  /** The type of object - `data_connector.execution`. */
+  type?: DataConnectorExecutionResultType;
+  /** The unique identifier for the execution result. */
+  id?: string;
+  /** The unique identifier of the data connector that produced this result. */
+  data_connector_id?: string;
+  /** Whether the execution was successful. */
+  success?: boolean;
+  /** The HTTP status code returned by the external API. */
+  http_status?: number | null;
+  /** The HTTP method used for the request. */
+  http_method?: DataConnectorExecutionResultHttpMethod;
+  /** The type of error that occurred, if any. */
+  error_type?: DataConnectorExecutionResultErrorType | null;
+  /** A human-readable error message. Query parameters, userinfo, and fragments in URLs are redacted. */
+  error_message?: string | null;
+  /** The execution time in milliseconds. */
+  execution_time_ms?: number | null;
+  /** The type of source that triggered this execution. */
+  source_type?: DataConnectorExecutionResultSourceType | null;
+  /** The identifier of the source that triggered this execution. */
+  source_id?: string | null;
+  /** The conversation associated with this execution, if any. */
+  conversation_id?: string | null;
+  /** The time the execution occurred. */
+  created_at?: string;
+  /** The request URL. Query parameters, userinfo, and fragments are redacted. */
+  request_url?: string | null;
+  /** The request body sent to the external API. */
+  request_body?: string | null;
+  /** The response body from the external API. */
+  response_body?: string | null;
+  /** The raw (unmapped) response body. */
+  raw_response_body?: string | null;
+}
+export const DataConnectorExecutionResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(DataConnectorExecutionResultType),
+    id: S.optional(S.String),
+    data_connector_id: S.optional(S.String),
+    success: S.optional(S.Boolean),
+    http_status: S.optional(S.NullOr(S.Number)),
+    http_method: S.optional(DataConnectorExecutionResultHttpMethod),
+    error_type: S.optional(S.NullOr(DataConnectorExecutionResultErrorType)),
+    error_message: S.optional(S.NullOr(S.String)),
+    execution_time_ms: S.optional(S.NullOr(S.Number)),
+    source_type: S.optional(S.NullOr(DataConnectorExecutionResultSourceType)),
+    source_id: S.optional(S.NullOr(S.String)),
+    conversation_id: S.optional(S.NullOr(S.String)),
+    created_at: S.optional(S.String),
+    request_url: S.optional(S.NullOr(S.String)),
+    request_body: S.optional(S.NullOr(S.String)),
+    response_body: S.optional(S.NullOr(S.String)),
+    raw_response_body: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "DataConnectorExecutionResult",
+}) as any as S.Schema<DataConnectorExecutionResult>;
 
 export interface GetDataExportRequest {
   /** job_identifier */
@@ -9630,155 +10838,120 @@ export const GetDataExportRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDataExportRequest",
 }) as any as S.Schema<GetDataExportRequest>;
 
-export interface GetDownloadReportingDataJobIdentifierRequest {
+export interface GetDownloadReportingDataRequest {
   job_identifier: string;
   app_id: string;
 }
-export const GetDownloadReportingDataJobIdentifierRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      job_identifier: S.String.pipe(T.Label()),
-      app_id: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/download/reporting_data/{job_identifier}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDownloadReportingDataJobIdentifierRequest",
-  }) as any as S.Schema<GetDownloadReportingDataJobIdentifierRequest>;
-
-export interface GetDownloadReportingDataJobIdentifierResponse {}
-export const GetDownloadReportingDataJobIdentifierResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "GetDownloadReportingDataJobIdentifierResponse",
-  }) as any as S.Schema<GetDownloadReportingDataJobIdentifierResponse>;
-
-export interface GetExportReportingDataGetDatasetsRequest {}
-export const GetExportReportingDataGetDatasetsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({}).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/export/reporting_data/get_datasets",
-        code: 200,
-      }),
-    ),
+export const GetDownloadReportingDataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    job_identifier: S.String.pipe(T.Label()),
+    app_id: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/download/reporting_data/{job_identifier}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetExportReportingDataGetDatasetsRequest",
-}) as any as S.Schema<GetExportReportingDataGetDatasetsRequest>;
+  identifier: "GetDownloadReportingDataRequest",
+}) as any as S.Schema<GetDownloadReportingDataRequest>;
 
-export interface GetExportReportingDataGetDatasetsResponseDataItemAttributesItem {
-  /** The simple attribute identifier. Note that this may be ambiguous if the same name exists across different attribute types. Use qualified_id when calling the enqueue endpoint. */
-  id?: string;
-  /** A namespaced identifier that uniquely identifies the attribute across all types. Format is "prefix.name" (e.g., "people.Brand", "conversation.Brand"). Required when calling the enqueue endpoint. */
-  qualified_id?: string;
-  name?: string;
+export interface GetDownloadReportingDataResponse {}
+export const GetDownloadReportingDataResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetDownloadReportingDataResponse",
+}) as any as S.Schema<GetDownloadReportingDataResponse>;
+
+export interface GetEmailRequest {
+  /** The unique identifier of the email setting */
+  id: string;
 }
-export const GetExportReportingDataGetDatasetsResponseDataItemAttributesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      qualified_id: S.optional(S.String),
-      name: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "GetExportReportingDataGetDatasetsResponseDataItemAttributesItem",
-  }) as any as S.Schema<GetExportReportingDataGetDatasetsResponseDataItemAttributesItem>;
+export const GetEmailRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/emails/{id}", code: 200 })),
+).annotate({
+  identifier: "GetEmailRequest",
+}) as any as S.Schema<GetEmailRequest>;
 
-export type GetExportReportingDataGetDatasetsResponseDataItemAttributesList =
-  Array<GetExportReportingDataGetDatasetsResponseDataItemAttributesItem>;
-export const GetExportReportingDataGetDatasetsResponseDataItemAttributesList =
-  /*@__PURE__*/ S.Array(
-    GetExportReportingDataGetDatasetsResponseDataItemAttributesItem,
-  ) as any as S.Schema<GetExportReportingDataGetDatasetsResponseDataItemAttributesList>;
-
-export interface GetExportReportingDataGetDatasetsResponseDataItem {
-  id?: string;
-  name?: string;
-  description?: string;
-  default_time_attribute_id?: string;
-  attributes?: GetExportReportingDataGetDatasetsResponseDataItemAttributesList;
-}
-export const GetExportReportingDataGetDatasetsResponseDataItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      description: S.optional(S.String),
-      default_time_attribute_id: S.optional(S.String),
-      attributes: S.optional(
-        GetExportReportingDataGetDatasetsResponseDataItemAttributesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "GetExportReportingDataGetDatasetsResponseDataItem",
-  }) as any as S.Schema<GetExportReportingDataGetDatasetsResponseDataItem>;
-
-export type GetExportReportingDataGetDatasetsResponseDataList =
-  Array<GetExportReportingDataGetDatasetsResponseDataItem>;
-export const GetExportReportingDataGetDatasetsResponseDataList =
-  /*@__PURE__*/ S.Array(
-    GetExportReportingDataGetDatasetsResponseDataItem,
-  ) as any as S.Schema<GetExportReportingDataGetDatasetsResponseDataList>;
-
-export interface GetExportReportingDataGetDatasetsResponse {
+/** Represents a sender email address configuration */
+export interface EmailSetting {
+  /** The type of object */
   type?: string;
-  data?: GetExportReportingDataGetDatasetsResponseDataList;
+  /** Unique email setting identifier */
+  id?: string;
+  /** Full sender email address */
+  email?: string;
+  /** Whether the email address has been verified */
+  verified?: boolean;
+  /** Domain portion of the email address */
+  domain?: string;
+  /** Associated brand identifier */
+  brand_id?: string;
+  /** Whether email forwarding is active */
+  forwarding_enabled?: boolean;
+  /** Unix timestamp of last forwarded email received (null if never) */
+  forwarded_email_last_received_at?: number | null;
+  /** Unix timestamp of creation */
+  created_at?: number;
+  /** Unix timestamp of last modification */
+  updated_at?: number;
 }
-export const GetExportReportingDataGetDatasetsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(S.String),
-      data: S.optional(GetExportReportingDataGetDatasetsResponseDataList),
-    }),
-  ).annotate({
-    identifier: "GetExportReportingDataGetDatasetsResponse",
-  }) as any as S.Schema<GetExportReportingDataGetDatasetsResponse>;
+export const EmailSetting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    id: S.optional(S.String),
+    email: S.optional(S.String),
+    verified: S.optional(S.Boolean),
+    domain: S.optional(S.String),
+    brand_id: S.optional(S.String),
+    forwarding_enabled: S.optional(S.Boolean),
+    forwarded_email_last_received_at: S.optional(S.NullOr(S.Number)),
+    created_at: S.optional(S.Number),
+    updated_at: S.optional(S.Number),
+  }),
+).annotate({ identifier: "EmailSetting" }) as any as S.Schema<EmailSetting>;
 
-export interface GetExportReportingDataJobIdentifierRequest {
+export interface GetExportReportingDataRequest {
   job_identifier: string;
   /** The Intercom defined code of the workspace the company is associated to. */
   app_id: string;
   client_id: string;
 }
-export const GetExportReportingDataJobIdentifierRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      job_identifier: S.String.pipe(T.Label()),
-      app_id: S.String.pipe(T.Query()),
-      client_id: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/export/reporting_data/{job_identifier}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetExportReportingDataJobIdentifierRequest",
-  }) as any as S.Schema<GetExportReportingDataJobIdentifierRequest>;
+export const GetExportReportingDataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    job_identifier: S.String.pipe(T.Label()),
+    app_id: S.String.pipe(T.Query()),
+    client_id: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/export/reporting_data/{job_identifier}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetExportReportingDataRequest",
+}) as any as S.Schema<GetExportReportingDataRequest>;
 
-export interface GetExportReportingDataJobIdentifierResponse {
+export interface GetExportReportingDataResponse {
   job_identifier?: string;
   status?: string;
   download_url?: string;
   download_expires_at?: string;
 }
-export const GetExportReportingDataJobIdentifierResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      job_identifier: S.optional(S.String),
-      status: S.optional(S.String),
-      download_url: S.optional(S.String),
-      download_expires_at: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "GetExportReportingDataJobIdentifierResponse",
-  }) as any as S.Schema<GetExportReportingDataJobIdentifierResponse>;
+export const GetExportReportingDataResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    job_identifier: S.optional(S.String),
+    status: S.optional(S.String),
+    download_url: S.optional(S.String),
+    download_expires_at: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetExportReportingDataResponse",
+}) as any as S.Schema<GetExportReportingDataResponse>;
 
 export interface GetExternalPageRequest {
   /** The unique identifier for the external page which is given by Intercom. */
@@ -9793,6 +10966,173 @@ export const GetExternalPageRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetExternalPageRequest",
 }) as any as S.Schema<GetExternalPageRequest>;
+
+export interface GetHelpCenterRequest {
+  /** The unique identifier for the collection which is given by Intercom. */
+  help_center_id: number;
+}
+export const GetHelpCenterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    help_center_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/help_center/help_centers/{help_center_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetHelpCenterRequest",
+}) as any as S.Schema<GetHelpCenterRequest>;
+
+/** The locales in which the help center is available. */
+export type HelpCenterLocalesList = Array<string>;
+export const HelpCenterLocalesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<HelpCenterLocalesList>;
+
+/** Help Centers contain collections */
+export interface HelpCenter {
+  /** The unique identifier for the Help Center which is given by Intercom. */
+  id?: string;
+  /** The id of the workspace which the Help Center belongs to. */
+  workspace_id?: string;
+  /** The time when the Help Center was created. */
+  created_at?: number;
+  /** The time when the Help Center was last updated. */
+  updated_at?: number;
+  /** The identifier of the Help Center. This is used in the URL of the Help Center. */
+  identifier?: string;
+  /** Whether the Help Center is turned on or not. This is controlled in your Help Center settings. */
+  website_turned_on?: boolean;
+  /** The display name of the Help Center only seen by teammates. */
+  display_name?: string;
+  /** The URL for the help center, if you have a custom domain then this will show the URL using the custom domain. */
+  url?: string;
+  /** Custom domain configured for the help center */
+  custom_domain?: string | null;
+  /** Whether this help center is the default for the workspace. */
+  default?: boolean;
+  /** The locales in which the help center is available. */
+  locales?: HelpCenterLocalesList;
+}
+export const HelpCenter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    workspace_id: S.optional(S.String),
+    created_at: S.optional(S.Number),
+    updated_at: S.optional(S.Number),
+    identifier: S.optional(S.String),
+    website_turned_on: S.optional(S.Boolean),
+    display_name: S.optional(S.String),
+    url: S.optional(S.String),
+    custom_domain: S.optional(S.NullOr(S.String)),
+    default: S.optional(S.Boolean),
+    locales: S.optional(HelpCenterLocalesList),
+  }),
+).annotate({ identifier: "HelpCenter" }) as any as S.Schema<HelpCenter>;
+
+export interface GetHelpCenterRedirectRequest {
+  /** The unique identifier for the help center. */
+  help_center_id: string;
+  /** The unique identifier for the redirect. */
+  id: string;
+}
+export const GetHelpCenterRedirectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    help_center_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/help_center/help_centers/{help_center_id}/redirects/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetHelpCenterRedirectRequest",
+}) as any as S.Schema<GetHelpCenterRedirectRequest>;
+
+export interface GetInternalArticleRequest {
+  /** The unique identifier for the article which is given by Intercom. */
+  internal_article_id: number;
+}
+export const GetInternalArticleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    internal_article_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/internal_articles/{internal_article_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetInternalArticleRequest",
+}) as any as S.Schema<GetInternalArticleRequest>;
+
+/** The type of object - `internal_article`. */
+export type GetInternalArticleResponseType = "internal_article";
+export const GetInternalArticleResponseType = /*@__PURE__*/ S.String;
+
+/** The list of audience IDs this internal article is targeted to for Fin AI Agent. Empty array means no audience targeting is set. */
+export type GetInternalArticleResponseAudienceIdsList = Array<number>;
+export const GetInternalArticleResponseAudienceIdsList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<GetInternalArticleResponseAudienceIdsList>;
+
+export interface GetInternalArticleResponse {
+  /** The type of object - `internal_article`. */
+  type?: GetInternalArticleResponseType;
+  /** The unique identifier for the article which is given by Intercom. */
+  id?: string;
+  /** The title of the article. */
+  title?: string;
+  /** The body of the article in HTML. */
+  body?: string | null;
+  /** The body of the article in markdown. */
+  body_markdown?: string | null;
+  /** The id of the owner of the article. */
+  owner_id?: number;
+  /** The id of the author of the article. */
+  author_id?: number;
+  /** The time when the article was created. */
+  created_at?: number;
+  /** The time when the article was last updated. */
+  updated_at?: number;
+  /** The default locale of the article. */
+  locale?: string;
+  /** The list of audience IDs this internal article is targeted to for Fin AI Agent. Empty array means no audience targeting is set. */
+  audience_ids?: GetInternalArticleResponseAudienceIdsList | null;
+  /** Whether the internal article is available for AI Chatbot (Fin). */
+  ai_chatbot_availability?: boolean;
+  /** Whether the internal article is available for AI Copilot. */
+  ai_copilot_availability?: boolean;
+  /** Whether the internal article is available for AI Sales Agent. */
+  ai_sales_agent_availability?: boolean;
+}
+export const GetInternalArticleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(GetInternalArticleResponseType),
+    id: S.optional(S.String),
+    title: S.optional(S.String),
+    body: S.optional(S.NullOr(S.String)),
+    body_markdown: S.optional(S.NullOr(S.String)),
+    owner_id: S.optional(S.Number),
+    author_id: S.optional(S.Number),
+    created_at: S.optional(S.Number),
+    updated_at: S.optional(S.Number),
+    locale: S.optional(S.String),
+    audience_ids: S.optional(
+      S.NullOr(GetInternalArticleResponseAudienceIdsList),
+    ),
+    ai_chatbot_availability: S.optional(S.Boolean),
+    ai_copilot_availability: S.optional(S.Boolean),
+    ai_sales_agent_availability: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "GetInternalArticleResponse",
+}) as any as S.Schema<GetInternalArticleResponse>;
 
 export interface GetIpAllowlistRequest {}
 export const GetIpAllowlistRequest = /*@__PURE__*/ S.suspend(() =>
@@ -9897,6 +11237,75 @@ export const Macro = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Macro" }) as any as S.Schema<Macro>;
 
+export interface GetNewsfeedRequest {
+  /** The unique identifier for the news feed item which is given by Intercom. */
+  newsfeed_id: string;
+}
+export const GetNewsfeedRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    newsfeed_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/news/newsfeeds/{newsfeed_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetNewsfeedRequest",
+}) as any as S.Schema<GetNewsfeedRequest>;
+
+/** The type of object. */
+export type NewsfeedType = "newsfeed";
+export const NewsfeedType = /*@__PURE__*/ S.String;
+
+/** A newsfeed is a collection of news items, targeted to a specific audience. Newsfeeds currently cannot be edited through the API, please refer to [this article](https://www.intercom.com/help/en/articles/6362267-getting-started-with-news) to set up your newsfeeds in Intercom. */
+export interface Newsfeed {
+  /** The unique identifier for the newsfeed which is given by Intercom. */
+  id?: string;
+  /** The type of object. */
+  type?: NewsfeedType;
+  /** The name of the newsfeed. This name will never be visible to your users. */
+  name?: string;
+  /** Timestamp for when the newsfeed was created. */
+  created_at?: number;
+  /** Timestamp for when the newsfeed was last updated. */
+  updated_at?: number;
+}
+export const Newsfeed = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    type: S.optional(NewsfeedType),
+    name: S.optional(S.String),
+    created_at: S.optional(S.Number),
+    updated_at: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Newsfeed" }) as any as S.Schema<Newsfeed>;
+
+export interface GetNewsItemRequest {
+  /** The unique identifier for the news item which is given by Intercom. */
+  news_item_id: number;
+}
+export const GetNewsItemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    news_item_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/news/news_items/{news_item_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetNewsItemRequest",
+}) as any as S.Schema<GetNewsItemRequest>;
+
+export interface GetNoteRequest {
+  /** The unique identifier of a given note */
+  note_id: number;
+}
+export const GetNoteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    note_id: S.Number.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/notes/{note_id}", code: 200 })),
+).annotate({ identifier: "GetNoteRequest" }) as any as S.Schema<GetNoteRequest>;
+
 export interface GetOfficeHoursExceptionRequest {
   /** The unique identifier for the office hours schedule. */
   office_hours_schedule_id: string;
@@ -9931,6 +11340,94 @@ export const GetOfficeHoursScheduleRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetOfficeHoursScheduleRequest",
 }) as any as S.Schema<GetOfficeHoursScheduleRequest>;
+
+export interface GetSegmentRequest {
+  /** The unique identified of a given segment. */
+  segment_id: string;
+}
+export const GetSegmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    segment_id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/segments/{segment_id}", code: 200 })),
+).annotate({
+  identifier: "GetSegmentRequest",
+}) as any as S.Schema<GetSegmentRequest>;
+
+export interface GetTeamRequest {
+  /** The unique identifier of a given team. */
+  team_id: string;
+}
+export const GetTeamRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    team_id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/teams/{team_id}", code: 200 })),
+).annotate({ identifier: "GetTeamRequest" }) as any as S.Schema<GetTeamRequest>;
+
+/** The list of admin IDs that are a part of the team. */
+export type TeamAdminIdsList = Array<number>;
+export const TeamAdminIdsList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<TeamAdminIdsList>;
+
+/** The primary admin ids for the team */
+export type AdminPriorityLevelPrimaryAdminIdsList = Array<number>;
+export const AdminPriorityLevelPrimaryAdminIdsList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<AdminPriorityLevelPrimaryAdminIdsList>;
+
+/** The secondary admin ids for the team */
+export type AdminPriorityLevelSecondaryAdminIdsList = Array<number>;
+export const AdminPriorityLevelSecondaryAdminIdsList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<AdminPriorityLevelSecondaryAdminIdsList>;
+
+/** Admin priority levels for the team */
+export interface AdminPriorityLevel {
+  /** The primary admin ids for the team */
+  primary_admin_ids?: AdminPriorityLevelPrimaryAdminIdsList | null;
+  /** The secondary admin ids for the team */
+  secondary_admin_ids?: AdminPriorityLevelSecondaryAdminIdsList | null;
+}
+export const AdminPriorityLevel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    primary_admin_ids: S.optional(
+      S.NullOr(AdminPriorityLevelPrimaryAdminIdsList),
+    ),
+    secondary_admin_ids: S.optional(
+      S.NullOr(AdminPriorityLevelSecondaryAdminIdsList),
+    ),
+  }),
+).annotate({
+  identifier: "AdminPriorityLevel",
+}) as any as S.Schema<AdminPriorityLevel>;
+
+/** Teams are groups of admins in Intercom. */
+export interface Team {
+  /** Value is always "team" */
+  type?: string;
+  /** The id of the team */
+  id?: string;
+  /** The name of the team */
+  name?: string;
+  /** The list of admin IDs that are a part of the team. */
+  admin_ids?: TeamAdminIdsList;
+  admin_priority_level?: AdminPriorityLevel | null;
+  /** The assignment limit for the team. This field is only present when the team's distribution type is load balanced. */
+  assignment_limit?: number | null;
+  /** Describes how assignments are distributed among the team members */
+  distribution_method?: string | null;
+}
+export const Team = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    admin_ids: S.optional(TeamAdminIdsList),
+    admin_priority_level: S.optional(S.NullOr(AdminPriorityLevel)),
+    assignment_limit: S.optional(S.NullOr(S.Number)),
+    distribution_method: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "Team" }) as any as S.Schema<Team>;
 
 export interface GetTeamMetricsRequest {
   /** The unique identifier of the team to retrieve metrics for. Use `GET /teams` to list available team IDs. */
@@ -10014,7 +11511,355 @@ export const GetTicketTypeRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTicketTypeRequest",
 }) as any as S.Schema<GetTicketTypeRequest>;
 
+export interface GetVisitorWithUserIdRequest {
+  /** The user_id of the Visitor you want to retrieve. */
+  user_id: string;
+}
+export const GetVisitorWithUserIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_id: S.String.pipe(T.Query()),
+  }).pipe(T.Http({ method: "GET", uri: "/visitors", code: 200 })),
+).annotate({
+  identifier: "GetVisitorWithUserIdRequest",
+}) as any as S.Schema<GetVisitorWithUserIdRequest>;
+
+export interface VisitorAvatar {
+  type?: string;
+  /** This object represents the avatar associated with the visitor. */
+  image_url?: string | null;
+}
+export const VisitorAvatar = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    image_url: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "VisitorAvatar" }) as any as S.Schema<VisitorAvatar>;
+
+/** The type of the object */
+export type VisitorCompaniesType = "company.list";
+export const VisitorCompaniesType = /*@__PURE__*/ S.String;
+
+export type VisitorCompaniesCompaniesList = Array<Company>;
+export const VisitorCompaniesCompaniesList = /*@__PURE__*/ S.Array(
+  Company,
+) as any as S.Schema<VisitorCompaniesCompaniesList>;
+
+export interface VisitorCompanies {
+  /** The type of the object */
+  type?: VisitorCompaniesType;
+  companies?: VisitorCompaniesCompaniesList;
+}
+export const VisitorCompanies = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(VisitorCompaniesType),
+    companies: S.optional(VisitorCompaniesCompaniesList),
+  }),
+).annotate({
+  identifier: "VisitorCompanies",
+}) as any as S.Schema<VisitorCompanies>;
+
+export interface VisitorLocationData {
+  type?: string;
+  /** The city name of the visitor. */
+  city_name?: string;
+  /** The continent code of the visitor. */
+  continent_code?: string;
+  /** The country code of the visitor. */
+  country_code?: string;
+  /** The country name of the visitor. */
+  country_name?: string;
+  /** The postal code of the visitor. */
+  postal_code?: string;
+  /** The region name of the visitor. */
+  region_name?: string;
+  /** The timezone of the visitor. */
+  timezone?: string;
+}
+export const VisitorLocationData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    city_name: S.optional(S.String),
+    continent_code: S.optional(S.String),
+    country_code: S.optional(S.String),
+    country_name: S.optional(S.String),
+    postal_code: S.optional(S.String),
+    region_name: S.optional(S.String),
+    timezone: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VisitorLocationData",
+}) as any as S.Schema<VisitorLocationData>;
+
+/** The type of the object */
+export type VisitorSocialProfilesType = "social_profile.list";
+export const VisitorSocialProfilesType = /*@__PURE__*/ S.String;
+
+export type VisitorSocialProfilesSocialProfilesList = Array<string>;
+export const VisitorSocialProfilesSocialProfilesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<VisitorSocialProfilesSocialProfilesList>;
+
+export interface VisitorSocialProfiles {
+  /** The type of the object */
+  type?: VisitorSocialProfilesType;
+  social_profiles?: VisitorSocialProfilesSocialProfilesList;
+}
+export const VisitorSocialProfiles = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(VisitorSocialProfilesType),
+    social_profiles: S.optional(VisitorSocialProfilesSocialProfilesList),
+  }),
+).annotate({
+  identifier: "VisitorSocialProfiles",
+}) as any as S.Schema<VisitorSocialProfiles>;
+
+/** The type of the object */
+export type VisitorTagsType = "tag.list";
+export const VisitorTagsType = /*@__PURE__*/ S.String;
+
+/** The type of the object */
+export type VisitorTagsTagsItemType = "tag";
+export const VisitorTagsTagsItemType = /*@__PURE__*/ S.String;
+
+export interface VisitorTagsTagsItem {
+  /** The type of the object */
+  type?: VisitorTagsTagsItemType;
+  /** The id of the tag. */
+  id?: string;
+  /** The name of the tag. */
+  name?: string;
+}
+export const VisitorTagsTagsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(VisitorTagsTagsItemType),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VisitorTagsTagsItem",
+}) as any as S.Schema<VisitorTagsTagsItem>;
+
+export type VisitorTagsTagsList = Array<VisitorTagsTagsItem>;
+export const VisitorTagsTagsList = /*@__PURE__*/ S.Array(
+  VisitorTagsTagsItem,
+) as any as S.Schema<VisitorTagsTagsList>;
+
+export interface VisitorTags {
+  /** The type of the object */
+  type?: VisitorTagsType;
+  tags?: VisitorTagsTagsList;
+}
+export const VisitorTags = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(VisitorTagsType),
+    tags: S.optional(VisitorTagsTagsList),
+  }),
+).annotate({ identifier: "VisitorTags" }) as any as S.Schema<VisitorTags>;
+
+/** The type of the object */
+export type VisitorSegmentsType = "segment.list";
+export const VisitorSegmentsType = /*@__PURE__*/ S.String;
+
+export type VisitorSegmentsSegmentsList = Array<string>;
+export const VisitorSegmentsSegmentsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<VisitorSegmentsSegmentsList>;
+
+export interface VisitorSegments {
+  /** The type of the object */
+  type?: VisitorSegmentsType;
+  segments?: VisitorSegmentsSegmentsList;
+}
+export const VisitorSegments = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(VisitorSegmentsType),
+    segments: S.optional(VisitorSegmentsSegmentsList),
+  }),
+).annotate({
+  identifier: "VisitorSegments",
+}) as any as S.Schema<VisitorSegments>;
+
+/** The custom attributes you have set on the Visitor. */
+export type VisitorCustomAttributesMap = { [key: string]: string | undefined };
+export const VisitorCustomAttributesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<VisitorCustomAttributesMap>;
+
+/** Visitors are useful for representing anonymous people that have not yet been identified. They usually represent website visitors. Visitors are not visible in Intercom platform. The Visitors resource provides methods to fetch, update, convert and delete. */
+export interface Visitor {
+  /** Value is 'visitor' */
+  type?: string;
+  /** The Intercom defined id representing the Visitor. */
+  id?: string;
+  /** Automatically generated identifier for the Visitor. */
+  user_id?: string;
+  /** Identifies if this visitor is anonymous. */
+  anonymous?: boolean;
+  /** The email of the visitor. */
+  email?: string;
+  /** The phone number of the visitor. */
+  phone?: string | null;
+  /** The name of the visitor. */
+  name?: string | null;
+  /** The pseudonym of the visitor. */
+  pseudonym?: string | null;
+  avatar?: VisitorAvatar;
+  /** The id of the app the visitor is associated with. */
+  app_id?: string;
+  companies?: VisitorCompanies;
+  location_data?: VisitorLocationData;
+  /** The time the Lead last recorded making a request. */
+  las_request_at?: number;
+  /** The time the Visitor was added to Intercom. */
+  created_at?: number;
+  /** The time the Visitor was added to Intercom. */
+  remote_created_at?: number;
+  /** The time the Visitor signed up for your product. */
+  signed_up_at?: number;
+  /** The last time the Visitor was updated. */
+  updated_at?: number;
+  /** The number of sessions the Visitor has had. */
+  session_count?: number;
+  social_profiles?: VisitorSocialProfiles;
+  /** The id of the admin that owns the Visitor. */
+  owner_id?: string | null;
+  /** Whether the Visitor is unsubscribed from emails. */
+  unsubscribed_from_emails?: boolean;
+  /** Identifies if this visitor has marked an email as spam. */
+  marked_email_as_spam?: boolean;
+  /** Identifies if this visitor has had a hard bounce. */
+  has_hard_bounced?: boolean;
+  tags?: VisitorTags;
+  segments?: VisitorSegments;
+  /** The custom attributes you have set on the Visitor. */
+  custom_attributes?: VisitorCustomAttributesMap;
+  /** The referer of the visitor. */
+  referrer?: string | null;
+  /** The utm_campaign of the visitor. */
+  utm_campaign?: string | null;
+  /** The utm_content of the visitor. */
+  utm_content?: string | null;
+  /** The utm_medium of the visitor. */
+  utm_medium?: string | null;
+  /** The utm_source of the visitor. */
+  utm_source?: string | null;
+  /** The utm_term of the visitor. */
+  utm_term?: string | null;
+  /** Identifies if this visitor has do not track enabled. */
+  do_not_track?: boolean | null;
+}
+export const Visitor = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    id: S.optional(S.String),
+    user_id: S.optional(S.String),
+    anonymous: S.optional(S.Boolean),
+    email: S.optional(S.String),
+    phone: S.optional(S.NullOr(S.String)),
+    name: S.optional(S.NullOr(S.String)),
+    pseudonym: S.optional(S.NullOr(S.String)),
+    avatar: S.optional(VisitorAvatar),
+    app_id: S.optional(S.String),
+    companies: S.optional(VisitorCompanies),
+    location_data: S.optional(VisitorLocationData),
+    las_request_at: S.optional(S.Number),
+    created_at: S.optional(S.Number),
+    remote_created_at: S.optional(S.Number),
+    signed_up_at: S.optional(S.Number),
+    updated_at: S.optional(S.Number),
+    session_count: S.optional(S.Number),
+    social_profiles: S.optional(VisitorSocialProfiles),
+    owner_id: S.optional(S.NullOr(S.String)),
+    unsubscribed_from_emails: S.optional(S.Boolean),
+    marked_email_as_spam: S.optional(S.Boolean),
+    has_hard_bounced: S.optional(S.Boolean),
+    tags: S.optional(VisitorTags),
+    segments: S.optional(VisitorSegments),
+    custom_attributes: S.optional(VisitorCustomAttributesMap),
+    referrer: S.optional(S.NullOr(S.String)),
+    utm_campaign: S.optional(S.NullOr(S.String)),
+    utm_content: S.optional(S.NullOr(S.String)),
+    utm_medium: S.optional(S.NullOr(S.String)),
+    utm_source: S.optional(S.NullOr(S.String)),
+    utm_term: S.optional(S.NullOr(S.String)),
+    do_not_track: S.optional(S.NullOr(S.Boolean)),
+  }),
+).annotate({ identifier: "Visitor" }) as any as S.Schema<Visitor>;
+
 export interface GetWhatsAppMessageStatusRequest {
+  /** The WhatsApp message ID to check status for */
+  message_id: string;
+}
+export const GetWhatsAppMessageStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message_id: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/messages/whatsapp/status", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetWhatsAppMessageStatusRequest",
+}) as any as S.Schema<GetWhatsAppMessageStatusRequest>;
+
+/** Current delivery status of the message */
+export type WhatsappMessageStatusStatus =
+  | "sent"
+  | "delivered"
+  | "read"
+  | "failed";
+export const WhatsappMessageStatusStatus = /*@__PURE__*/ S.String;
+
+/** Error details, present only when status is "failed" */
+export interface WhatsappMessageStatusError {
+  /** Error message */
+  message?: string;
+  /** Detailed error information */
+  details?: string;
+}
+export const WhatsappMessageStatusError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.optional(S.String),
+    details: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WhatsappMessageStatusError",
+}) as any as S.Schema<WhatsappMessageStatusError>;
+
+/** The delivery status of a specific WhatsApp message. */
+export interface WhatsappMessageStatus {
+  /** ID of the conversation */
+  conversation_id?: string;
+  /** Current delivery status of the message */
+  status?: WhatsappMessageStatusStatus;
+  /** Event type */
+  type?: string;
+  /** Creation timestamp */
+  created_at?: number;
+  /** Last update timestamp */
+  updated_at?: number;
+  /** Name of the WhatsApp template used */
+  template_name?: string;
+  /** The WhatsApp message ID */
+  message_id?: string;
+  /** Error details, present only when status is "failed" */
+  error?: WhatsappMessageStatusError | null;
+}
+export const WhatsappMessageStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    conversation_id: S.optional(S.String),
+    status: S.optional(WhatsappMessageStatusStatus),
+    type: S.optional(S.String),
+    created_at: S.optional(S.Number),
+    updated_at: S.optional(S.Number),
+    template_name: S.optional(S.String),
+    message_id: S.optional(S.String),
+    error: S.optional(S.NullOr(WhatsappMessageStatusError)),
+  }),
+).annotate({
+  identifier: "WhatsappMessageStatus",
+}) as any as S.Schema<WhatsappMessageStatus>;
+
+export interface GetWhatsAppMessageStatusRequest2 {
   /** The unique identifier for the set of messages to check status for */
   ruleset_id: string;
   /** Number of results per page (default 50, max 100) */
@@ -10022,15 +11867,15 @@ export interface GetWhatsAppMessageStatusRequest {
   /** Cursor for pagination, used to fetch the next page of results */
   starting_after?: string;
 }
-export const GetWhatsAppMessageStatusRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWhatsAppMessageStatusRequest2 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ruleset_id: S.String.pipe(T.Query()),
     per_page: S.optional(S.Number.pipe(T.Query())),
     starting_after: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/messages/status", code: 200 })),
 ).annotate({
-  identifier: "GetWhatsAppMessageStatusRequest",
-}) as any as S.Schema<GetWhatsAppMessageStatusRequest>;
+  identifier: "GetWhatsAppMessageStatusRequest2",
+}) as any as S.Schema<GetWhatsAppMessageStatusRequest2>;
 
 export type WhatsappMessageStatusListType = "list";
 export const WhatsappMessageStatusListType = /*@__PURE__*/ S.String;
@@ -10488,47 +12333,6 @@ export const ListActivityLogsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListActivityLogsRequest",
 }) as any as S.Schema<ListActivityLogsRequest>;
 
-/** the type of object `pages`. */
-export type CursorPagesType = "pages";
-export const CursorPagesType = /*@__PURE__*/ S.String;
-
-export interface StartingAfterPaging {
-  /** The number of results to fetch per page. */
-  per_page?: number;
-  /** The cursor to use in the next request to get the next page of results. */
-  starting_after?: string | null;
-}
-export const StartingAfterPaging = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    per_page: S.optional(S.Number),
-    starting_after: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "StartingAfterPaging",
-}) as any as S.Schema<StartingAfterPaging>;
-
-/** Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. A "cursor" or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or "pages" as needed. */
-export interface CursorPages {
-  /** the type of object `pages`. */
-  type?: CursorPagesType;
-  /** The current page */
-  page?: number;
-  next?: StartingAfterPaging | null;
-  /** Number of results per page */
-  per_page?: number;
-  /** Total number of pages */
-  total_pages?: number;
-}
-export const CursorPages = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(CursorPagesType),
-    page: S.optional(S.Number),
-    next: S.optional(S.NullOr(StartingAfterPaging)),
-    per_page: S.optional(S.Number),
-    total_pages: S.optional(S.Number),
-  }),
-).annotate({ identifier: "CursorPages" }) as any as S.Schema<CursorPages>;
-
 /** Details about the Admin involved in the activity. */
 export interface ActivityLogPerformedBy {
   /** String representing the object's type. Always has the value `admin`. */
@@ -10931,35 +12735,6 @@ export const ListAllCompaniesRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListAllCompaniesRequest",
 }) as any as S.Schema<ListAllCompaniesRequest>;
-
-/** The type of object - `list`. */
-export type CompanyListType = "list";
-export const CompanyListType = /*@__PURE__*/ S.String;
-
-/** An array containing Company Objects. */
-export type CompanyListDataList = Array<Company>;
-export const CompanyListDataList = /*@__PURE__*/ S.Array(
-  Company,
-) as any as S.Schema<CompanyListDataList>;
-
-/** This will return a list of companies for the App. */
-export interface CompanyList {
-  /** The type of object - `list`. */
-  type?: CompanyListType;
-  pages?: CursorPages | null;
-  /** The total number of companies. */
-  total_count?: number;
-  /** An array containing Company Objects. */
-  data?: CompanyListDataList;
-}
-export const CompanyList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(CompanyListType),
-    pages: S.optional(S.NullOr(CursorPages)),
-    total_count: S.optional(S.Number),
-    data: S.optional(CompanyListDataList),
-  }),
-).annotate({ identifier: "CompanyList" }) as any as S.Schema<CompanyList>;
 
 export interface ListArticlesRequest {}
 export const ListArticlesRequest = /*@__PURE__*/ S.suspend(() =>
@@ -11440,38 +13215,6 @@ export const ListBrandsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListBrandsRequest",
 }) as any as S.Schema<ListBrandsRequest>;
 
-/** Represents a branding configuration for the workspace */
-export interface Brand {
-  /** The type of object */
-  type?: string;
-  /** Unique brand identifier. For default brand, matches the workspace ID */
-  id?: string;
-  /** Display name of the brand */
-  name?: string;
-  /** Whether this is the workspace's default brand */
-  is_default?: boolean;
-  /** Unix timestamp of brand creation */
-  created_at?: number;
-  /** Unix timestamp of last modification */
-  updated_at?: number;
-  /** Associated help center identifier */
-  help_center_id?: string;
-  /** Default email settings ID for this brand */
-  default_address_settings_id?: string;
-}
-export const Brand = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    is_default: S.optional(S.Boolean),
-    created_at: S.optional(S.Number),
-    updated_at: S.optional(S.Number),
-    help_center_id: S.optional(S.String),
-    default_address_settings_id: S.optional(S.String),
-  }),
-).annotate({ identifier: "Brand" }) as any as S.Schema<Brand>;
-
 export type BrandListDataList = Array<Brand>;
 export const BrandListDataList = /*@__PURE__*/ S.Array(
   Brand,
@@ -11504,66 +13247,6 @@ export const ListCallsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListCallsRequest",
 }) as any as S.Schema<ListCallsRequest>;
-
-/** Represents a phone call in Intercom */
-export interface Call {
-  /** String representing the object's type. Always has the value `call`. */
-  type?: string;
-  /** The id of the call. */
-  id?: string;
-  /** The id of the conversation associated with the call, if any. */
-  conversation_id?: string | null;
-  /** The id of the admin associated with the call, if any. */
-  admin_id?: string | null;
-  /** The id of the contact associated with the call, if any. */
-  contact_id?: string | null;
-  /** The current state of the call. */
-  state?: string;
-  initiated_at?: Datetime;
-  answered_at?: Datetime;
-  ended_at?: Datetime;
-  created_at?: Datetime;
-  updated_at?: Datetime;
-  /** API URL to download or redirect to the call recording if available. */
-  recording_url?: string | null;
-  /** API URL to download or redirect to the call transcript if available. */
-  transcription_url?: string | null;
-  /** The type of call. */
-  call_type?: string;
-  /** The direction of the call. */
-  direction?: string;
-  /** The reason for the call end, if applicable. */
-  ended_reason?: string | null;
-  /** The phone number involved in the call, in E.164 format. */
-  phone?: string | null;
-  /** API URL to the AI Agent (Fin) call recording if available. */
-  fin_recording_url?: string | null;
-  /** API URL to the AI Agent (Fin) call transcript if available. */
-  fin_transcription_url?: string | null;
-}
-export const Call = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    id: S.optional(S.String),
-    conversation_id: S.optional(S.NullOr(S.String)),
-    admin_id: S.optional(S.NullOr(S.String)),
-    contact_id: S.optional(S.NullOr(S.String)),
-    state: S.optional(S.String),
-    initiated_at: S.optional(Datetime),
-    answered_at: S.optional(Datetime),
-    ended_at: S.optional(Datetime),
-    created_at: S.optional(Datetime),
-    updated_at: S.optional(Datetime),
-    recording_url: S.optional(S.NullOr(S.String)),
-    transcription_url: S.optional(S.NullOr(S.String)),
-    call_type: S.optional(S.String),
-    direction: S.optional(S.String),
-    ended_reason: S.optional(S.NullOr(S.String)),
-    phone: S.optional(S.NullOr(S.String)),
-    fin_recording_url: S.optional(S.NullOr(S.String)),
-    fin_transcription_url: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "Call" }) as any as S.Schema<Call>;
 
 /** A list of calls. */
 export type CallListDataList = Array<Call>;
@@ -12498,108 +14181,6 @@ export const ListDataConnectorExecutionResultsRequest = /*@__PURE__*/ S.suspend(
 export type DataConnectorExecutionResultListType = "list";
 export const DataConnectorExecutionResultListType = /*@__PURE__*/ S.String;
 
-/** The type of object - `data_connector.execution`. */
-export type DataConnectorExecutionResultType = "data_connector.execution";
-export const DataConnectorExecutionResultType = /*@__PURE__*/ S.String;
-
-/** The HTTP method used for the request. */
-export type DataConnectorExecutionResultHttpMethod =
-  | "get"
-  | "post"
-  | "put"
-  | "delete"
-  | "patch";
-export const DataConnectorExecutionResultHttpMethod = /*@__PURE__*/ S.String;
-
-/** The type of error that occurred, if any. */
-export type DataConnectorExecutionResultErrorType =
-  | "request_configuration_error"
-  | "faraday_error"
-  | "3rd_party_error"
-  | "response_mapping_error"
-  | "token_refresh_error"
-  | "fin_action_response_formatting_error"
-  | "fin_action_identity_verification_error"
-  | "email_verification_error"
-  | "non_fin_standalone_action_identity_verification_error"
-  | "request_validation_error"
-  | "client_side_action_error";
-export const DataConnectorExecutionResultErrorType = /*@__PURE__*/ S.String;
-
-/** The type of source that triggered this execution. */
-export type DataConnectorExecutionResultSourceType =
-  | "custom_bot"
-  | "inbound_custom_bot"
-  | "button_custom_bot"
-  | "answer"
-  | "workflow"
-  | "saved_reply"
-  | "triggerable_custom_bot"
-  | "inbox"
-  | "fin";
-export const DataConnectorExecutionResultSourceType = /*@__PURE__*/ S.String;
-
-/** An execution result from a data connector HTTP request. */
-export interface DataConnectorExecutionResult {
-  /** The type of object - `data_connector.execution`. */
-  type?: DataConnectorExecutionResultType;
-  /** The unique identifier for the execution result. */
-  id?: string;
-  /** The unique identifier of the data connector that produced this result. */
-  data_connector_id?: string;
-  /** Whether the execution was successful. */
-  success?: boolean;
-  /** The HTTP status code returned by the external API. */
-  http_status?: number | null;
-  /** The HTTP method used for the request. */
-  http_method?: DataConnectorExecutionResultHttpMethod;
-  /** The type of error that occurred, if any. */
-  error_type?: DataConnectorExecutionResultErrorType | null;
-  /** A human-readable error message. Query parameters, userinfo, and fragments in URLs are redacted. */
-  error_message?: string | null;
-  /** The execution time in milliseconds. */
-  execution_time_ms?: number | null;
-  /** The type of source that triggered this execution. */
-  source_type?: DataConnectorExecutionResultSourceType | null;
-  /** The identifier of the source that triggered this execution. */
-  source_id?: string | null;
-  /** The conversation associated with this execution, if any. */
-  conversation_id?: string | null;
-  /** The time the execution occurred. */
-  created_at?: string;
-  /** The request URL. Query parameters, userinfo, and fragments are redacted. */
-  request_url?: string | null;
-  /** The request body sent to the external API. */
-  request_body?: string | null;
-  /** The response body from the external API. */
-  response_body?: string | null;
-  /** The raw (unmapped) response body. */
-  raw_response_body?: string | null;
-}
-export const DataConnectorExecutionResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(DataConnectorExecutionResultType),
-    id: S.optional(S.String),
-    data_connector_id: S.optional(S.String),
-    success: S.optional(S.Boolean),
-    http_status: S.optional(S.NullOr(S.Number)),
-    http_method: S.optional(DataConnectorExecutionResultHttpMethod),
-    error_type: S.optional(S.NullOr(DataConnectorExecutionResultErrorType)),
-    error_message: S.optional(S.NullOr(S.String)),
-    execution_time_ms: S.optional(S.NullOr(S.Number)),
-    source_type: S.optional(S.NullOr(DataConnectorExecutionResultSourceType)),
-    source_id: S.optional(S.NullOr(S.String)),
-    conversation_id: S.optional(S.NullOr(S.String)),
-    created_at: S.optional(S.String),
-    request_url: S.optional(S.NullOr(S.String)),
-    request_body: S.optional(S.NullOr(S.String)),
-    response_body: S.optional(S.NullOr(S.String)),
-    raw_response_body: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "DataConnectorExecutionResult",
-}) as any as S.Schema<DataConnectorExecutionResult>;
-
 /** An array of execution result objects. */
 export type DataConnectorExecutionResultListDataList =
   Array<DataConnectorExecutionResult>;
@@ -12869,44 +14450,6 @@ export const ListEmailsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListEmailsRequest",
 }) as any as S.Schema<ListEmailsRequest>;
 
-/** Represents a sender email address configuration */
-export interface EmailSetting {
-  /** The type of object */
-  type?: string;
-  /** Unique email setting identifier */
-  id?: string;
-  /** Full sender email address */
-  email?: string;
-  /** Whether the email address has been verified */
-  verified?: boolean;
-  /** Domain portion of the email address */
-  domain?: string;
-  /** Associated brand identifier */
-  brand_id?: string;
-  /** Whether email forwarding is active */
-  forwarding_enabled?: boolean;
-  /** Unix timestamp of last forwarded email received (null if never) */
-  forwarded_email_last_received_at?: number | null;
-  /** Unix timestamp of creation */
-  created_at?: number;
-  /** Unix timestamp of last modification */
-  updated_at?: number;
-}
-export const EmailSetting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    id: S.optional(S.String),
-    email: S.optional(S.String),
-    verified: S.optional(S.Boolean),
-    domain: S.optional(S.String),
-    brand_id: S.optional(S.String),
-    forwarding_enabled: S.optional(S.Boolean),
-    forwarded_email_last_received_at: S.optional(S.NullOr(S.Number)),
-    created_at: S.optional(S.Number),
-    updated_at: S.optional(S.Number),
-  }),
-).annotate({ identifier: "EmailSetting" }) as any as S.Schema<EmailSetting>;
-
 export type EmailListDataList = Array<EmailSetting>;
 export const EmailListDataList = /*@__PURE__*/ S.Array(
   EmailSetting,
@@ -12924,6 +14467,89 @@ export const EmailList = /*@__PURE__*/ S.suspend(() =>
     data: S.optional(EmailListDataList),
   }),
 ).annotate({ identifier: "EmailList" }) as any as S.Schema<EmailList>;
+
+export interface ListExportReportingDataGetDatasetsRequest {}
+export const ListExportReportingDataGetDatasetsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({}).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/export/reporting_data/get_datasets",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListExportReportingDataGetDatasetsRequest",
+  }) as any as S.Schema<ListExportReportingDataGetDatasetsRequest>;
+
+export interface ListExportReportingDataGetDatasetsResponseDataItemAttributesItem {
+  /** The simple attribute identifier. Note that this may be ambiguous if the same name exists across different attribute types. Use qualified_id when calling the enqueue endpoint. */
+  id?: string;
+  /** A namespaced identifier that uniquely identifies the attribute across all types. Format is "prefix.name" (e.g., "people.Brand", "conversation.Brand"). Required when calling the enqueue endpoint. */
+  qualified_id?: string;
+  name?: string;
+}
+export const ListExportReportingDataGetDatasetsResponseDataItemAttributesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      qualified_id: S.optional(S.String),
+      name: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "ListExportReportingDataGetDatasetsResponseDataItemAttributesItem",
+  }) as any as S.Schema<ListExportReportingDataGetDatasetsResponseDataItemAttributesItem>;
+
+export type ListExportReportingDataGetDatasetsResponseDataItemAttributesList =
+  Array<ListExportReportingDataGetDatasetsResponseDataItemAttributesItem>;
+export const ListExportReportingDataGetDatasetsResponseDataItemAttributesList =
+  /*@__PURE__*/ S.Array(
+    ListExportReportingDataGetDatasetsResponseDataItemAttributesItem,
+  ) as any as S.Schema<ListExportReportingDataGetDatasetsResponseDataItemAttributesList>;
+
+export interface ListExportReportingDataGetDatasetsResponseDataItem {
+  id?: string;
+  name?: string;
+  description?: string;
+  default_time_attribute_id?: string;
+  attributes?: ListExportReportingDataGetDatasetsResponseDataItemAttributesList;
+}
+export const ListExportReportingDataGetDatasetsResponseDataItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      description: S.optional(S.String),
+      default_time_attribute_id: S.optional(S.String),
+      attributes: S.optional(
+        ListExportReportingDataGetDatasetsResponseDataItemAttributesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ListExportReportingDataGetDatasetsResponseDataItem",
+  }) as any as S.Schema<ListExportReportingDataGetDatasetsResponseDataItem>;
+
+export type ListExportReportingDataGetDatasetsResponseDataList =
+  Array<ListExportReportingDataGetDatasetsResponseDataItem>;
+export const ListExportReportingDataGetDatasetsResponseDataList =
+  /*@__PURE__*/ S.Array(
+    ListExportReportingDataGetDatasetsResponseDataItem,
+  ) as any as S.Schema<ListExportReportingDataGetDatasetsResponseDataList>;
+
+export interface ListExportReportingDataGetDatasetsResponse {
+  type?: string;
+  data?: ListExportReportingDataGetDatasetsResponseDataList;
+}
+export const ListExportReportingDataGetDatasetsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.optional(S.String),
+      data: S.optional(ListExportReportingDataGetDatasetsResponseDataList),
+    }),
+  ).annotate({
+    identifier: "ListExportReportingDataGetDatasetsResponse",
+  }) as any as S.Schema<ListExportReportingDataGetDatasetsResponse>;
 
 export interface ListExternalPagesRequest {}
 export const ListExternalPagesRequest = /*@__PURE__*/ S.suspend(() =>
@@ -13119,53 +14745,6 @@ export const ListHelpCentersRequest = /*@__PURE__*/ S.suspend(() =>
 export type HelpCenterListType = "list";
 export const HelpCenterListType = /*@__PURE__*/ S.String;
 
-/** The locales in which the help center is available. */
-export type HelpCenterLocalesList = Array<string>;
-export const HelpCenterLocalesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<HelpCenterLocalesList>;
-
-/** Help Centers contain collections */
-export interface HelpCenter {
-  /** The unique identifier for the Help Center which is given by Intercom. */
-  id?: string;
-  /** The id of the workspace which the Help Center belongs to. */
-  workspace_id?: string;
-  /** The time when the Help Center was created. */
-  created_at?: number;
-  /** The time when the Help Center was last updated. */
-  updated_at?: number;
-  /** The identifier of the Help Center. This is used in the URL of the Help Center. */
-  identifier?: string;
-  /** Whether the Help Center is turned on or not. This is controlled in your Help Center settings. */
-  website_turned_on?: boolean;
-  /** The display name of the Help Center only seen by teammates. */
-  display_name?: string;
-  /** The URL for the help center, if you have a custom domain then this will show the URL using the custom domain. */
-  url?: string;
-  /** Custom domain configured for the help center */
-  custom_domain?: string | null;
-  /** Whether this help center is the default for the workspace. */
-  default?: boolean;
-  /** The locales in which the help center is available. */
-  locales?: HelpCenterLocalesList;
-}
-export const HelpCenter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    workspace_id: S.optional(S.String),
-    created_at: S.optional(S.Number),
-    updated_at: S.optional(S.Number),
-    identifier: S.optional(S.String),
-    website_turned_on: S.optional(S.Boolean),
-    display_name: S.optional(S.String),
-    url: S.optional(S.String),
-    custom_domain: S.optional(S.NullOr(S.String)),
-    default: S.optional(S.Boolean),
-    locales: S.optional(HelpCenterLocalesList),
-  }),
-).annotate({ identifier: "HelpCenter" }) as any as S.Schema<HelpCenter>;
-
 /** An array of Help Center objects */
 export type HelpCenterListDataList = Array<HelpCenter>;
 export const HelpCenterListDataList = /*@__PURE__*/ S.Array(
@@ -13309,33 +14888,6 @@ export const ListLiveNewsfeedItemsRequest = /*@__PURE__*/ S.suspend(() =>
 /** The type of object */
 export type PaginatedResponseType = "list" | "conversation.list";
 export const PaginatedResponseType = /*@__PURE__*/ S.String;
-
-/** The type of object. */
-export type NewsfeedType = "newsfeed";
-export const NewsfeedType = /*@__PURE__*/ S.String;
-
-/** A newsfeed is a collection of news items, targeted to a specific audience. Newsfeeds currently cannot be edited through the API, please refer to [this article](https://www.intercom.com/help/en/articles/6362267-getting-started-with-news) to set up your newsfeeds in Intercom. */
-export interface Newsfeed {
-  /** The unique identifier for the newsfeed which is given by Intercom. */
-  id?: string;
-  /** The type of object. */
-  type?: NewsfeedType;
-  /** The name of the newsfeed. This name will never be visible to your users. */
-  name?: string;
-  /** Timestamp for when the newsfeed was created. */
-  created_at?: number;
-  /** Timestamp for when the newsfeed was last updated. */
-  updated_at?: number;
-}
-export const Newsfeed = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    type: S.optional(NewsfeedType),
-    name: S.optional(S.String),
-    created_at: S.optional(S.Number),
-    updated_at: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Newsfeed" }) as any as S.Schema<Newsfeed>;
 
 export type PaginatedResponseDataItem = NewsItem | Newsfeed;
 export const PaginatedResponseDataItem =
@@ -13852,72 +15404,6 @@ export const ListTeamsRequest = /*@__PURE__*/ S.suspend(() =>
 export type TeamListType = "team.list";
 export const TeamListType = /*@__PURE__*/ S.String;
 
-/** The list of admin IDs that are a part of the team. */
-export type TeamAdminIdsList = Array<number>;
-export const TeamAdminIdsList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<TeamAdminIdsList>;
-
-/** The primary admin ids for the team */
-export type AdminPriorityLevelPrimaryAdminIdsList = Array<number>;
-export const AdminPriorityLevelPrimaryAdminIdsList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<AdminPriorityLevelPrimaryAdminIdsList>;
-
-/** The secondary admin ids for the team */
-export type AdminPriorityLevelSecondaryAdminIdsList = Array<number>;
-export const AdminPriorityLevelSecondaryAdminIdsList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<AdminPriorityLevelSecondaryAdminIdsList>;
-
-/** Admin priority levels for the team */
-export interface AdminPriorityLevel {
-  /** The primary admin ids for the team */
-  primary_admin_ids?: AdminPriorityLevelPrimaryAdminIdsList | null;
-  /** The secondary admin ids for the team */
-  secondary_admin_ids?: AdminPriorityLevelSecondaryAdminIdsList | null;
-}
-export const AdminPriorityLevel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    primary_admin_ids: S.optional(
-      S.NullOr(AdminPriorityLevelPrimaryAdminIdsList),
-    ),
-    secondary_admin_ids: S.optional(
-      S.NullOr(AdminPriorityLevelSecondaryAdminIdsList),
-    ),
-  }),
-).annotate({
-  identifier: "AdminPriorityLevel",
-}) as any as S.Schema<AdminPriorityLevel>;
-
-/** Teams are groups of admins in Intercom. */
-export interface Team {
-  /** Value is always "team" */
-  type?: string;
-  /** The id of the team */
-  id?: string;
-  /** The name of the team */
-  name?: string;
-  /** The list of admin IDs that are a part of the team. */
-  admin_ids?: TeamAdminIdsList;
-  admin_priority_level?: AdminPriorityLevel | null;
-  /** The assignment limit for the team. This field is only present when the team's distribution type is load balanced. */
-  assignment_limit?: number | null;
-  /** Describes how assignments are distributed among the team members */
-  distribution_method?: string | null;
-}
-export const Team = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    admin_ids: S.optional(TeamAdminIdsList),
-    admin_priority_level: S.optional(S.NullOr(AdminPriorityLevel)),
-    assignment_limit: S.optional(S.NullOr(S.Number)),
-    distribution_method: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "Team" }) as any as S.Schema<Team>;
-
 /** A list of team objects */
 export type TeamListTeamsList = Array<Team>;
 export const TeamListTeamsList = /*@__PURE__*/ S.Array(
@@ -14369,55 +15855,6 @@ export const MergeConversationRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "MergeConversationRequest",
 }) as any as S.Schema<MergeConversationRequest>;
-
-export type PostExportReportingDataEnqueueRequestAttributeIdsList =
-  Array<string>;
-export const PostExportReportingDataEnqueueRequestAttributeIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostExportReportingDataEnqueueRequestAttributeIdsList>;
-
-export interface PostExportReportingDataEnqueueRequest {
-  dataset_id: string;
-  attribute_ids: PostExportReportingDataEnqueueRequestAttributeIdsList;
-  start_time: number;
-  end_time: number;
-}
-export const PostExportReportingDataEnqueueRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      dataset_id: S.String,
-      attribute_ids: PostExportReportingDataEnqueueRequestAttributeIdsList,
-      start_time: S.Number,
-      end_time: S.Number,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/export/reporting_data/enqueue",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostExportReportingDataEnqueueRequest",
-}) as any as S.Schema<PostExportReportingDataEnqueueRequest>;
-
-export interface PostExportReportingDataEnqueueResponse {
-  job_identifier?: string;
-  status?: string;
-  download_url?: string;
-  download_expires_at?: string;
-}
-export const PostExportReportingDataEnqueueResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      job_identifier: S.optional(S.String),
-      status: S.optional(S.String),
-      download_url: S.optional(S.String),
-      download_expires_at: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "PostExportReportingDataEnqueueResponse",
-}) as any as S.Schema<PostExportReportingDataEnqueueResponse>;
 
 /** The locales whose staged drafts should be published. Required on multilingual workspaces; each locale must have a pending draft. */
 export type PublishArticleDraftRequestLocalesList = Array<string>;
@@ -15268,1032 +16705,6 @@ export const ReplyToFinResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ReplyToFinResponse",
 }) as any as S.Schema<ReplyToFinResponse>;
-
-export interface RetrieveACompanyByIdRequest {
-  /** The unique identifier for the company which is given by Intercom */
-  company_id: string;
-}
-export const RetrieveACompanyByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    company_id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/companies/{company_id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveACompanyByIdRequest",
-}) as any as S.Schema<RetrieveACompanyByIdRequest>;
-
-export interface RetrieveAdminRequest {
-  /** The unique identifier of a given admin */
-  admin_id: number;
-}
-export const RetrieveAdminRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    admin_id: S.Number.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/admins/{admin_id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveAdminRequest",
-}) as any as S.Schema<RetrieveAdminRequest>;
-
-export interface RetrieveArticleRequest {
-  /** The unique identifier for the article which is given by Intercom. */
-  article_id: number;
-}
-export const RetrieveArticleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    article_id: S.Number.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/articles/{article_id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveArticleRequest",
-}) as any as S.Schema<RetrieveArticleRequest>;
-
-/** The type of object - `article`. */
-export type RetrieveArticleResponseType = "article";
-export const RetrieveArticleResponseType = /*@__PURE__*/ S.String;
-
-/** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
-export type RetrieveArticleResponseState = "published" | "draft";
-export const RetrieveArticleResponseState = /*@__PURE__*/ S.String;
-
-/** The ids of the article's parent collections or sections. An article without this field stands alone. */
-export type RetrieveArticleResponseParentIdsList = Array<number>;
-export const RetrieveArticleResponseParentIdsList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<RetrieveArticleResponseParentIdsList>;
-
-/** The audience that can view this article in the Help Center. `everyone` means all users and visitors can view it; `restricted` indicates a custom audience ruleset. For multilingual articles, this is the article-level audience. */
-export type RetrieveArticleResponseHelpCenterAudience =
-  | "everyone"
-  | "all_users"
-  | "all_visitors"
-  | "all_leads"
-  | "all_visitors_and_leads"
-  | "restricted";
-export const RetrieveArticleResponseHelpCenterAudience = /*@__PURE__*/ S.String;
-
-export interface RetrieveArticleResponse {
-  /** The type of object - `article`. */
-  type?: RetrieveArticleResponseType;
-  /** The unique identifier for the article which is given by Intercom. */
-  id?: string;
-  /** The id of the workspace which the article belongs to. */
-  workspace_id?: string;
-  /** The title of the article. For multilingual articles, this will be the title of the default language's content. */
-  title?: string;
-  /** The description of the article. For multilingual articles, this will be the description of the default language's content. */
-  description?: string | null;
-  /** The body of the article in HTML. For multilingual articles, this will be the body of the default language's content. */
-  body?: string | null;
-  /** The body of the article in markdown. For multilingual articles, this will be the body of the default language's content. */
-  body_markdown?: string | null;
-  /** The id of the author of the article. For multilingual articles, this will be the id of the author of the default language's content. Must be a teammate on the help center's workspace. */
-  author_id?: number;
-  /** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
-  state?: RetrieveArticleResponseState;
-  /** The time when the article was created. For multilingual articles, this will be the timestamp of creation of the default language's content in seconds. */
-  created_at?: number;
-  /** The time when the article was last updated. For multilingual articles, this will be the timestamp of last update of the default language's content in seconds. */
-  updated_at?: number;
-  /** Whether the published article has unpublished changes staged as a draft on top of its live content. For multilingual articles this reflects the default language's content; a pure draft (never published) reports `false`. */
-  has_unpublished_changes?: boolean;
-  /** The time, in seconds, when the staged draft was last edited, or `null` when there is no staged draft. */
-  draft_updated_at?: number | null;
-  /** The URL of the article. For multilingual articles, this will be the URL of the default language's content. */
-  url?: string | null;
-  /** The ids of the article's parent collections or sections. An article without this field stands alone. */
-  parent_ids?: RetrieveArticleResponseParentIdsList;
-  /** Whether the article is available for AI Chatbot. For multilingual articles, this will be the value of the default language's content. */
-  ai_chatbot_availability?: boolean;
-  /** Whether the article is available for AI Copilot. For multilingual articles, this will be the value of the default language's content. */
-  ai_copilot_availability?: boolean;
-  /** Whether the article is available for AI Sales Agent. For multilingual articles, this will be the value of the default language's content. */
-  ai_sales_agent_availability?: boolean;
-  /** The ID of the teammate who created the article. For multilingual articles, this will be the creator of the default language's content. */
-  created_by_id?: number | null;
-  /** The ID of the teammate who last updated the article. For multilingual articles, this will be the last editor of the default language's content. */
-  updated_by_id?: number | null;
-  /** Whether the article is excluded from Fin AI Agent article suggestions. */
-  exclude_from_article_suggestions?: boolean;
-  /** The audience that can view this article in the Help Center. `everyone` means all users and visitors can view it; `restricted` indicates a custom audience ruleset. For multilingual articles, this is the article-level audience. */
-  help_center_audience?: RetrieveArticleResponseHelpCenterAudience | null;
-  /** The Unix timestamp (in seconds) at which the article is scheduled to be published. `null` when no publish is scheduled. Mutually exclusive with `scheduled_unpublish_at` — at most one pending schedule exists per article. */
-  scheduled_publish_at?: number | null;
-  /** The Unix timestamp (in seconds) at which the article is scheduled to be unpublished. `null` when no unpublish is scheduled. Mutually exclusive with `scheduled_publish_at` — at most one pending schedule exists per article. */
-  scheduled_unpublish_at?: number | null;
-  /** The default locale of the help center. This field is only returned for multilingual help centers. */
-  default_locale?: string;
-  translated_content?: ArticleTranslatedContent | null;
-  tags?: Tags;
-  statistics?: ArticleStatistics | null;
-}
-export const RetrieveArticleResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(RetrieveArticleResponseType),
-    id: S.optional(S.String),
-    workspace_id: S.optional(S.String),
-    title: S.optional(S.String),
-    description: S.optional(S.NullOr(S.String)),
-    body: S.optional(S.NullOr(S.String)),
-    body_markdown: S.optional(S.NullOr(S.String)),
-    author_id: S.optional(S.Number),
-    state: S.optional(RetrieveArticleResponseState),
-    created_at: S.optional(S.Number),
-    updated_at: S.optional(S.Number),
-    has_unpublished_changes: S.optional(S.Boolean),
-    draft_updated_at: S.optional(S.NullOr(S.Number)),
-    url: S.optional(S.NullOr(S.String)),
-    parent_ids: S.optional(RetrieveArticleResponseParentIdsList),
-    ai_chatbot_availability: S.optional(S.Boolean),
-    ai_copilot_availability: S.optional(S.Boolean),
-    ai_sales_agent_availability: S.optional(S.Boolean),
-    created_by_id: S.optional(S.NullOr(S.Number)),
-    updated_by_id: S.optional(S.NullOr(S.Number)),
-    exclude_from_article_suggestions: S.optional(S.Boolean),
-    help_center_audience: S.optional(
-      S.NullOr(RetrieveArticleResponseHelpCenterAudience),
-    ),
-    scheduled_publish_at: S.optional(S.NullOr(S.Number)),
-    scheduled_unpublish_at: S.optional(S.NullOr(S.Number)),
-    default_locale: S.optional(S.String),
-    translated_content: S.optional(S.NullOr(ArticleTranslatedContent)),
-    tags: S.optional(Tags),
-    statistics: S.optional(S.NullOr(ArticleStatistics)),
-  }),
-).annotate({
-  identifier: "RetrieveArticleResponse",
-}) as any as S.Schema<RetrieveArticleResponse>;
-
-export interface RetrieveArticleDraftRequest {
-  /** The unique identifier for the article which is given by Intercom. */
-  id: number;
-}
-export const RetrieveArticleDraftRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/articles/{id}/draft", code: 200 })),
-).annotate({
-  identifier: "RetrieveArticleDraftRequest",
-}) as any as S.Schema<RetrieveArticleDraftRequest>;
-
-/** The type of object - `article`. */
-export type RetrieveArticleDraftResponseType = "article";
-export const RetrieveArticleDraftResponseType = /*@__PURE__*/ S.String;
-
-/** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
-export type RetrieveArticleDraftResponseState = "published" | "draft";
-export const RetrieveArticleDraftResponseState = /*@__PURE__*/ S.String;
-
-/** The ids of the article's parent collections or sections. An article without this field stands alone. */
-export type RetrieveArticleDraftResponseParentIdsList = Array<number>;
-export const RetrieveArticleDraftResponseParentIdsList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<RetrieveArticleDraftResponseParentIdsList>;
-
-/** The audience that can view this article in the Help Center. `everyone` means all users and visitors can view it; `restricted` indicates a custom audience ruleset. For multilingual articles, this is the article-level audience. */
-export type RetrieveArticleDraftResponseHelpCenterAudience =
-  | "everyone"
-  | "all_users"
-  | "all_visitors"
-  | "all_leads"
-  | "all_visitors_and_leads"
-  | "restricted";
-export const RetrieveArticleDraftResponseHelpCenterAudience =
-  /*@__PURE__*/ S.String;
-
-export interface RetrieveArticleDraftResponse {
-  /** The type of object - `article`. */
-  type?: RetrieveArticleDraftResponseType;
-  /** The unique identifier for the article which is given by Intercom. */
-  id?: string;
-  /** The id of the workspace which the article belongs to. */
-  workspace_id?: string;
-  /** The title of the article. For multilingual articles, this will be the title of the default language's content. */
-  title?: string;
-  /** The description of the article. For multilingual articles, this will be the description of the default language's content. */
-  description?: string | null;
-  /** The body of the article in HTML. For multilingual articles, this will be the body of the default language's content. */
-  body?: string | null;
-  /** The body of the article in markdown. For multilingual articles, this will be the body of the default language's content. */
-  body_markdown?: string | null;
-  /** The id of the author of the article. For multilingual articles, this will be the id of the author of the default language's content. Must be a teammate on the help center's workspace. */
-  author_id?: number;
-  /** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
-  state?: RetrieveArticleDraftResponseState;
-  /** The time when the article was created. For multilingual articles, this will be the timestamp of creation of the default language's content in seconds. */
-  created_at?: number;
-  /** The time when the article was last updated. For multilingual articles, this will be the timestamp of last update of the default language's content in seconds. */
-  updated_at?: number;
-  /** Whether the published article has unpublished changes staged as a draft on top of its live content. For multilingual articles this reflects the default language's content; a pure draft (never published) reports `false`. */
-  has_unpublished_changes?: boolean;
-  /** The time, in seconds, when the staged draft was last edited, or `null` when there is no staged draft. */
-  draft_updated_at?: number | null;
-  /** The URL of the article. For multilingual articles, this will be the URL of the default language's content. */
-  url?: string | null;
-  /** The ids of the article's parent collections or sections. An article without this field stands alone. */
-  parent_ids?: RetrieveArticleDraftResponseParentIdsList;
-  /** Whether the article is available for AI Chatbot. For multilingual articles, this will be the value of the default language's content. */
-  ai_chatbot_availability?: boolean;
-  /** Whether the article is available for AI Copilot. For multilingual articles, this will be the value of the default language's content. */
-  ai_copilot_availability?: boolean;
-  /** Whether the article is available for AI Sales Agent. For multilingual articles, this will be the value of the default language's content. */
-  ai_sales_agent_availability?: boolean;
-  /** The ID of the teammate who created the article. For multilingual articles, this will be the creator of the default language's content. */
-  created_by_id?: number | null;
-  /** The ID of the teammate who last updated the article. For multilingual articles, this will be the last editor of the default language's content. */
-  updated_by_id?: number | null;
-  /** Whether the article is excluded from Fin AI Agent article suggestions. */
-  exclude_from_article_suggestions?: boolean;
-  /** The audience that can view this article in the Help Center. `everyone` means all users and visitors can view it; `restricted` indicates a custom audience ruleset. For multilingual articles, this is the article-level audience. */
-  help_center_audience?: RetrieveArticleDraftResponseHelpCenterAudience | null;
-  /** The Unix timestamp (in seconds) at which the article is scheduled to be published. `null` when no publish is scheduled. Mutually exclusive with `scheduled_unpublish_at` — at most one pending schedule exists per article. */
-  scheduled_publish_at?: number | null;
-  /** The Unix timestamp (in seconds) at which the article is scheduled to be unpublished. `null` when no unpublish is scheduled. Mutually exclusive with `scheduled_publish_at` — at most one pending schedule exists per article. */
-  scheduled_unpublish_at?: number | null;
-  /** The default locale of the help center. This field is only returned for multilingual help centers. */
-  default_locale?: string;
-  translated_content?: ArticleTranslatedContent | null;
-  tags?: Tags;
-  statistics?: ArticleStatistics | null;
-}
-export const RetrieveArticleDraftResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(RetrieveArticleDraftResponseType),
-    id: S.optional(S.String),
-    workspace_id: S.optional(S.String),
-    title: S.optional(S.String),
-    description: S.optional(S.NullOr(S.String)),
-    body: S.optional(S.NullOr(S.String)),
-    body_markdown: S.optional(S.NullOr(S.String)),
-    author_id: S.optional(S.Number),
-    state: S.optional(RetrieveArticleDraftResponseState),
-    created_at: S.optional(S.Number),
-    updated_at: S.optional(S.Number),
-    has_unpublished_changes: S.optional(S.Boolean),
-    draft_updated_at: S.optional(S.NullOr(S.Number)),
-    url: S.optional(S.NullOr(S.String)),
-    parent_ids: S.optional(RetrieveArticleDraftResponseParentIdsList),
-    ai_chatbot_availability: S.optional(S.Boolean),
-    ai_copilot_availability: S.optional(S.Boolean),
-    ai_sales_agent_availability: S.optional(S.Boolean),
-    created_by_id: S.optional(S.NullOr(S.Number)),
-    updated_by_id: S.optional(S.NullOr(S.Number)),
-    exclude_from_article_suggestions: S.optional(S.Boolean),
-    help_center_audience: S.optional(
-      S.NullOr(RetrieveArticleDraftResponseHelpCenterAudience),
-    ),
-    scheduled_publish_at: S.optional(S.NullOr(S.Number)),
-    scheduled_unpublish_at: S.optional(S.NullOr(S.Number)),
-    default_locale: S.optional(S.String),
-    translated_content: S.optional(S.NullOr(ArticleTranslatedContent)),
-    tags: S.optional(Tags),
-    statistics: S.optional(S.NullOr(ArticleStatistics)),
-  }),
-).annotate({
-  identifier: "RetrieveArticleDraftResponse",
-}) as any as S.Schema<RetrieveArticleDraftResponse>;
-
-export interface RetrieveArticleVersionRequest {
-  /** The unique identifier for the article. */
-  article_id: number;
-  /** The unique identifier for the version. */
-  id: string;
-  /** Return the version's content for a specific locale. If the locale is not configured for the workspace, a `400` is returned. */
-  locale?: string;
-}
-export const RetrieveArticleVersionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    article_id: S.Number.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    locale: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/articles/{article_id}/versions/{id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveArticleVersionRequest",
-}) as any as S.Schema<RetrieveArticleVersionRequest>;
-
-/** String representing the object's type. Always has the value `article_version`. */
-export type ArticleVersionType = "article_version";
-export const ArticleVersionType = /*@__PURE__*/ S.String;
-
-/** Whether this version is the currently published version of the article (`published`) or an earlier non-live version (`draft`). */
-export type ArticleVersionState = "published" | "draft";
-export const ArticleVersionState = /*@__PURE__*/ S.String;
-
-/** A historical version of an article, including its content. */
-export interface ArticleVersion {
-  /** String representing the object's type. Always has the value `article_version`. */
-  type?: ArticleVersionType;
-  /** The unique identifier for the version. */
-  id?: string;
-  /** The unique identifier of the article this version belongs to. */
-  article_id?: string;
-  /** The title of the article at this version. */
-  title?: string;
-  /** The description of the article at this version. */
-  description?: string | null;
-  /** The HTML body of the article at this version. */
-  body?: string | null;
-  /** The Markdown body of the article at this version. */
-  body_markdown?: string | null;
-  /** The id of the teammate listed as the article's author at this version. */
-  author_id?: string;
-  /** The id of the teammate who created this version. */
-  created_by_id?: string | null;
-  /** How this version was created (for example `web`, `api`). */
-  created_via?: string;
-  /** The id of the version this version was created from, or `null` if this is the first version. */
-  from_version_id?: string | null;
-  /** Whether this version is the currently published version of the article (`published`) or an earlier non-live version (`draft`). */
-  state?: ArticleVersionState;
-  /** The time the version was created, as a UTC Unix timestamp. */
-  created_at?: number;
-  /** The time the version was last updated, as a UTC Unix timestamp. */
-  updated_at?: number;
-}
-export const ArticleVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(ArticleVersionType),
-    id: S.optional(S.String),
-    article_id: S.optional(S.String),
-    title: S.optional(S.String),
-    description: S.optional(S.NullOr(S.String)),
-    body: S.optional(S.NullOr(S.String)),
-    body_markdown: S.optional(S.NullOr(S.String)),
-    author_id: S.optional(S.String),
-    created_by_id: S.optional(S.NullOr(S.String)),
-    created_via: S.optional(S.String),
-    from_version_id: S.optional(S.NullOr(S.String)),
-    state: S.optional(ArticleVersionState),
-    created_at: S.optional(S.Number),
-    updated_at: S.optional(S.Number),
-  }),
-).annotate({ identifier: "ArticleVersion" }) as any as S.Schema<ArticleVersion>;
-
-export interface RetrieveAudienceRequest {
-  /** The unique identifier for the audience. */
-  id: string;
-}
-export const RetrieveAudienceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/audiences/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveAudienceRequest",
-}) as any as S.Schema<RetrieveAudienceRequest>;
-
-export interface RetrieveBrandRequest {
-  /** The unique identifier of the brand */
-  id: string;
-}
-export const RetrieveBrandRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/brands/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveBrandRequest",
-}) as any as S.Schema<RetrieveBrandRequest>;
-
-export interface RetrieveCollectionRequest {
-  /** The unique identifier for the collection which is given by Intercom. */
-  collection_id: number;
-}
-export const RetrieveCollectionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    collection_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/help_center/collections/{collection_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveCollectionRequest",
-}) as any as S.Schema<RetrieveCollectionRequest>;
-
-export interface RetrieveCompanyRequest {
-  /** The `name` of the company to filter by. */
-  name?: string;
-  /** The `company_id` of the company to filter by. */
-  company_id?: string;
-  /** The `tag_id` of the company to filter by. */
-  tag_id?: string;
-  /** The `segment_id` of the company to filter by. */
-  segment_id?: string;
-  /** The page of results to fetch. Defaults to first page */
-  page?: number;
-  /** How many results to display per page. Defaults to 15 */
-  per_page?: number;
-}
-export const RetrieveCompanyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String.pipe(T.Query())),
-    company_id: S.optional(S.String.pipe(T.Query())),
-    tag_id: S.optional(S.String.pipe(T.Query())),
-    segment_id: S.optional(S.String.pipe(T.Query())),
-    page: S.optional(S.Number.pipe(T.Query())),
-    per_page: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/companies", code: 200 })),
-).annotate({
-  identifier: "RetrieveCompanyRequest",
-}) as any as S.Schema<RetrieveCompanyRequest>;
-
-export interface RetrieveConversationRequest {
-  /** The id of the conversation to target */
-  conversation_id: number;
-  /** Set to plaintext to retrieve conversation messages in plain text. This affects both the body and subject fields. Inline links are rendered as `label (url)`, preserving the link URL alongside the visible text. */
-  display_as?: string;
-  /** If set to true, conversation parts will be translated to the detected language of the conversation. */
-  include_translations?: boolean;
-}
-export const RetrieveConversationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    conversation_id: S.Number.pipe(T.Label()),
-    display_as: S.optional(S.String.pipe(T.Query())),
-    include_translations: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/conversations/{conversation_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveConversationRequest",
-}) as any as S.Schema<RetrieveConversationRequest>;
-
-export type RetrieveDataConnectorRequestStateVersion = "draft" | "live";
-export const RetrieveDataConnectorRequestStateVersion = /*@__PURE__*/ S.String;
-
-export interface RetrieveDataConnectorRequest {
-  /** The unique identifier of the data connector. */
-  id: string;
-  /** Which version of the data connector to return. Defaults to live. */
-  state_version?: RetrieveDataConnectorRequestStateVersion | (string & {});
-}
-export const RetrieveDataConnectorRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    state_version: S.optional(
-      RetrieveDataConnectorRequestStateVersion.pipe(T.Query()),
-    ),
-  }).pipe(T.Http({ method: "GET", uri: "/data_connectors/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveDataConnectorRequest",
-}) as any as S.Schema<RetrieveDataConnectorRequest>;
-
-export interface RetrieveEmailRequest {
-  /** The unique identifier of the email setting */
-  id: string;
-}
-export const RetrieveEmailRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/emails/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveEmailRequest",
-}) as any as S.Schema<RetrieveEmailRequest>;
-
-export interface RetrieveHelpCenterRequest {
-  /** The unique identifier for the collection which is given by Intercom. */
-  help_center_id: number;
-}
-export const RetrieveHelpCenterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    help_center_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/help_center/help_centers/{help_center_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveHelpCenterRequest",
-}) as any as S.Schema<RetrieveHelpCenterRequest>;
-
-export interface RetrieveHelpCenterRedirectRequest {
-  /** The unique identifier for the help center. */
-  help_center_id: string;
-  /** The unique identifier for the redirect. */
-  id: string;
-}
-export const RetrieveHelpCenterRedirectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    help_center_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/help_center/help_centers/{help_center_id}/redirects/{id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveHelpCenterRedirectRequest",
-}) as any as S.Schema<RetrieveHelpCenterRedirectRequest>;
-
-export interface RetrieveInternalArticleRequest {
-  /** The unique identifier for the article which is given by Intercom. */
-  internal_article_id: number;
-}
-export const RetrieveInternalArticleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    internal_article_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/internal_articles/{internal_article_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveInternalArticleRequest",
-}) as any as S.Schema<RetrieveInternalArticleRequest>;
-
-/** The type of object - `internal_article`. */
-export type RetrieveInternalArticleResponseType = "internal_article";
-export const RetrieveInternalArticleResponseType = /*@__PURE__*/ S.String;
-
-/** The list of audience IDs this internal article is targeted to for Fin AI Agent. Empty array means no audience targeting is set. */
-export type RetrieveInternalArticleResponseAudienceIdsList = Array<number>;
-export const RetrieveInternalArticleResponseAudienceIdsList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<RetrieveInternalArticleResponseAudienceIdsList>;
-
-export interface RetrieveInternalArticleResponse {
-  /** The type of object - `internal_article`. */
-  type?: RetrieveInternalArticleResponseType;
-  /** The unique identifier for the article which is given by Intercom. */
-  id?: string;
-  /** The title of the article. */
-  title?: string;
-  /** The body of the article in HTML. */
-  body?: string | null;
-  /** The body of the article in markdown. */
-  body_markdown?: string | null;
-  /** The id of the owner of the article. */
-  owner_id?: number;
-  /** The id of the author of the article. */
-  author_id?: number;
-  /** The time when the article was created. */
-  created_at?: number;
-  /** The time when the article was last updated. */
-  updated_at?: number;
-  /** The default locale of the article. */
-  locale?: string;
-  /** The list of audience IDs this internal article is targeted to for Fin AI Agent. Empty array means no audience targeting is set. */
-  audience_ids?: RetrieveInternalArticleResponseAudienceIdsList | null;
-  /** Whether the internal article is available for AI Chatbot (Fin). */
-  ai_chatbot_availability?: boolean;
-  /** Whether the internal article is available for AI Copilot. */
-  ai_copilot_availability?: boolean;
-  /** Whether the internal article is available for AI Sales Agent. */
-  ai_sales_agent_availability?: boolean;
-}
-export const RetrieveInternalArticleResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(RetrieveInternalArticleResponseType),
-    id: S.optional(S.String),
-    title: S.optional(S.String),
-    body: S.optional(S.NullOr(S.String)),
-    body_markdown: S.optional(S.NullOr(S.String)),
-    owner_id: S.optional(S.Number),
-    author_id: S.optional(S.Number),
-    created_at: S.optional(S.Number),
-    updated_at: S.optional(S.Number),
-    locale: S.optional(S.String),
-    audience_ids: S.optional(
-      S.NullOr(RetrieveInternalArticleResponseAudienceIdsList),
-    ),
-    ai_chatbot_availability: S.optional(S.Boolean),
-    ai_copilot_availability: S.optional(S.Boolean),
-    ai_sales_agent_availability: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "RetrieveInternalArticleResponse",
-}) as any as S.Schema<RetrieveInternalArticleResponse>;
-
-export interface RetrieveNewsfeedRequest {
-  /** The unique identifier for the news feed item which is given by Intercom. */
-  newsfeed_id: string;
-}
-export const RetrieveNewsfeedRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    newsfeed_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/news/newsfeeds/{newsfeed_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveNewsfeedRequest",
-}) as any as S.Schema<RetrieveNewsfeedRequest>;
-
-export interface RetrieveNewsItemRequest {
-  /** The unique identifier for the news item which is given by Intercom. */
-  news_item_id: number;
-}
-export const RetrieveNewsItemRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    news_item_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/news/news_items/{news_item_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveNewsItemRequest",
-}) as any as S.Schema<RetrieveNewsItemRequest>;
-
-export interface RetrieveNoteRequest {
-  /** The unique identifier of a given note */
-  note_id: number;
-}
-export const RetrieveNoteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    note_id: S.Number.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/notes/{note_id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveNoteRequest",
-}) as any as S.Schema<RetrieveNoteRequest>;
-
-export interface RetrieveSegmentRequest {
-  /** The unique identified of a given segment. */
-  segment_id: string;
-}
-export const RetrieveSegmentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    segment_id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/segments/{segment_id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveSegmentRequest",
-}) as any as S.Schema<RetrieveSegmentRequest>;
-
-export interface RetrieveTeamRequest {
-  /** The unique identifier of a given team. */
-  team_id: string;
-}
-export const RetrieveTeamRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    team_id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/teams/{team_id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveTeamRequest",
-}) as any as S.Schema<RetrieveTeamRequest>;
-
-export interface RetrieveVisitorWithUserIdRequest {
-  /** The user_id of the Visitor you want to retrieve. */
-  user_id: string;
-}
-export const RetrieveVisitorWithUserIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.String.pipe(T.Query()),
-  }).pipe(T.Http({ method: "GET", uri: "/visitors", code: 200 })),
-).annotate({
-  identifier: "RetrieveVisitorWithUserIdRequest",
-}) as any as S.Schema<RetrieveVisitorWithUserIdRequest>;
-
-export interface VisitorAvatar {
-  type?: string;
-  /** This object represents the avatar associated with the visitor. */
-  image_url?: string | null;
-}
-export const VisitorAvatar = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    image_url: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "VisitorAvatar" }) as any as S.Schema<VisitorAvatar>;
-
-/** The type of the object */
-export type VisitorCompaniesType = "company.list";
-export const VisitorCompaniesType = /*@__PURE__*/ S.String;
-
-export type VisitorCompaniesCompaniesList = Array<Company>;
-export const VisitorCompaniesCompaniesList = /*@__PURE__*/ S.Array(
-  Company,
-) as any as S.Schema<VisitorCompaniesCompaniesList>;
-
-export interface VisitorCompanies {
-  /** The type of the object */
-  type?: VisitorCompaniesType;
-  companies?: VisitorCompaniesCompaniesList;
-}
-export const VisitorCompanies = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(VisitorCompaniesType),
-    companies: S.optional(VisitorCompaniesCompaniesList),
-  }),
-).annotate({
-  identifier: "VisitorCompanies",
-}) as any as S.Schema<VisitorCompanies>;
-
-export interface VisitorLocationData {
-  type?: string;
-  /** The city name of the visitor. */
-  city_name?: string;
-  /** The continent code of the visitor. */
-  continent_code?: string;
-  /** The country code of the visitor. */
-  country_code?: string;
-  /** The country name of the visitor. */
-  country_name?: string;
-  /** The postal code of the visitor. */
-  postal_code?: string;
-  /** The region name of the visitor. */
-  region_name?: string;
-  /** The timezone of the visitor. */
-  timezone?: string;
-}
-export const VisitorLocationData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    city_name: S.optional(S.String),
-    continent_code: S.optional(S.String),
-    country_code: S.optional(S.String),
-    country_name: S.optional(S.String),
-    postal_code: S.optional(S.String),
-    region_name: S.optional(S.String),
-    timezone: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VisitorLocationData",
-}) as any as S.Schema<VisitorLocationData>;
-
-/** The type of the object */
-export type VisitorSocialProfilesType = "social_profile.list";
-export const VisitorSocialProfilesType = /*@__PURE__*/ S.String;
-
-export type VisitorSocialProfilesSocialProfilesList = Array<string>;
-export const VisitorSocialProfilesSocialProfilesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<VisitorSocialProfilesSocialProfilesList>;
-
-export interface VisitorSocialProfiles {
-  /** The type of the object */
-  type?: VisitorSocialProfilesType;
-  social_profiles?: VisitorSocialProfilesSocialProfilesList;
-}
-export const VisitorSocialProfiles = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(VisitorSocialProfilesType),
-    social_profiles: S.optional(VisitorSocialProfilesSocialProfilesList),
-  }),
-).annotate({
-  identifier: "VisitorSocialProfiles",
-}) as any as S.Schema<VisitorSocialProfiles>;
-
-/** The type of the object */
-export type VisitorTagsType = "tag.list";
-export const VisitorTagsType = /*@__PURE__*/ S.String;
-
-/** The type of the object */
-export type VisitorTagsTagsItemType = "tag";
-export const VisitorTagsTagsItemType = /*@__PURE__*/ S.String;
-
-export interface VisitorTagsTagsItem {
-  /** The type of the object */
-  type?: VisitorTagsTagsItemType;
-  /** The id of the tag. */
-  id?: string;
-  /** The name of the tag. */
-  name?: string;
-}
-export const VisitorTagsTagsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(VisitorTagsTagsItemType),
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VisitorTagsTagsItem",
-}) as any as S.Schema<VisitorTagsTagsItem>;
-
-export type VisitorTagsTagsList = Array<VisitorTagsTagsItem>;
-export const VisitorTagsTagsList = /*@__PURE__*/ S.Array(
-  VisitorTagsTagsItem,
-) as any as S.Schema<VisitorTagsTagsList>;
-
-export interface VisitorTags {
-  /** The type of the object */
-  type?: VisitorTagsType;
-  tags?: VisitorTagsTagsList;
-}
-export const VisitorTags = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(VisitorTagsType),
-    tags: S.optional(VisitorTagsTagsList),
-  }),
-).annotate({ identifier: "VisitorTags" }) as any as S.Schema<VisitorTags>;
-
-/** The type of the object */
-export type VisitorSegmentsType = "segment.list";
-export const VisitorSegmentsType = /*@__PURE__*/ S.String;
-
-export type VisitorSegmentsSegmentsList = Array<string>;
-export const VisitorSegmentsSegmentsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<VisitorSegmentsSegmentsList>;
-
-export interface VisitorSegments {
-  /** The type of the object */
-  type?: VisitorSegmentsType;
-  segments?: VisitorSegmentsSegmentsList;
-}
-export const VisitorSegments = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(VisitorSegmentsType),
-    segments: S.optional(VisitorSegmentsSegmentsList),
-  }),
-).annotate({
-  identifier: "VisitorSegments",
-}) as any as S.Schema<VisitorSegments>;
-
-/** The custom attributes you have set on the Visitor. */
-export type VisitorCustomAttributesMap = { [key: string]: string | undefined };
-export const VisitorCustomAttributesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VisitorCustomAttributesMap>;
-
-/** Visitors are useful for representing anonymous people that have not yet been identified. They usually represent website visitors. Visitors are not visible in Intercom platform. The Visitors resource provides methods to fetch, update, convert and delete. */
-export interface Visitor {
-  /** Value is 'visitor' */
-  type?: string;
-  /** The Intercom defined id representing the Visitor. */
-  id?: string;
-  /** Automatically generated identifier for the Visitor. */
-  user_id?: string;
-  /** Identifies if this visitor is anonymous. */
-  anonymous?: boolean;
-  /** The email of the visitor. */
-  email?: string;
-  /** The phone number of the visitor. */
-  phone?: string | null;
-  /** The name of the visitor. */
-  name?: string | null;
-  /** The pseudonym of the visitor. */
-  pseudonym?: string | null;
-  avatar?: VisitorAvatar;
-  /** The id of the app the visitor is associated with. */
-  app_id?: string;
-  companies?: VisitorCompanies;
-  location_data?: VisitorLocationData;
-  /** The time the Lead last recorded making a request. */
-  las_request_at?: number;
-  /** The time the Visitor was added to Intercom. */
-  created_at?: number;
-  /** The time the Visitor was added to Intercom. */
-  remote_created_at?: number;
-  /** The time the Visitor signed up for your product. */
-  signed_up_at?: number;
-  /** The last time the Visitor was updated. */
-  updated_at?: number;
-  /** The number of sessions the Visitor has had. */
-  session_count?: number;
-  social_profiles?: VisitorSocialProfiles;
-  /** The id of the admin that owns the Visitor. */
-  owner_id?: string | null;
-  /** Whether the Visitor is unsubscribed from emails. */
-  unsubscribed_from_emails?: boolean;
-  /** Identifies if this visitor has marked an email as spam. */
-  marked_email_as_spam?: boolean;
-  /** Identifies if this visitor has had a hard bounce. */
-  has_hard_bounced?: boolean;
-  tags?: VisitorTags;
-  segments?: VisitorSegments;
-  /** The custom attributes you have set on the Visitor. */
-  custom_attributes?: VisitorCustomAttributesMap;
-  /** The referer of the visitor. */
-  referrer?: string | null;
-  /** The utm_campaign of the visitor. */
-  utm_campaign?: string | null;
-  /** The utm_content of the visitor. */
-  utm_content?: string | null;
-  /** The utm_medium of the visitor. */
-  utm_medium?: string | null;
-  /** The utm_source of the visitor. */
-  utm_source?: string | null;
-  /** The utm_term of the visitor. */
-  utm_term?: string | null;
-  /** Identifies if this visitor has do not track enabled. */
-  do_not_track?: boolean | null;
-}
-export const Visitor = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    id: S.optional(S.String),
-    user_id: S.optional(S.String),
-    anonymous: S.optional(S.Boolean),
-    email: S.optional(S.String),
-    phone: S.optional(S.NullOr(S.String)),
-    name: S.optional(S.NullOr(S.String)),
-    pseudonym: S.optional(S.NullOr(S.String)),
-    avatar: S.optional(VisitorAvatar),
-    app_id: S.optional(S.String),
-    companies: S.optional(VisitorCompanies),
-    location_data: S.optional(VisitorLocationData),
-    las_request_at: S.optional(S.Number),
-    created_at: S.optional(S.Number),
-    remote_created_at: S.optional(S.Number),
-    signed_up_at: S.optional(S.Number),
-    updated_at: S.optional(S.Number),
-    session_count: S.optional(S.Number),
-    social_profiles: S.optional(VisitorSocialProfiles),
-    owner_id: S.optional(S.NullOr(S.String)),
-    unsubscribed_from_emails: S.optional(S.Boolean),
-    marked_email_as_spam: S.optional(S.Boolean),
-    has_hard_bounced: S.optional(S.Boolean),
-    tags: S.optional(VisitorTags),
-    segments: S.optional(VisitorSegments),
-    custom_attributes: S.optional(VisitorCustomAttributesMap),
-    referrer: S.optional(S.NullOr(S.String)),
-    utm_campaign: S.optional(S.NullOr(S.String)),
-    utm_content: S.optional(S.NullOr(S.String)),
-    utm_medium: S.optional(S.NullOr(S.String)),
-    utm_source: S.optional(S.NullOr(S.String)),
-    utm_term: S.optional(S.NullOr(S.String)),
-    do_not_track: S.optional(S.NullOr(S.Boolean)),
-  }),
-).annotate({ identifier: "Visitor" }) as any as S.Schema<Visitor>;
-
-export interface RetrieveWhatsAppMessageStatusRequest {
-  /** The WhatsApp message ID to check status for */
-  message_id: string;
-}
-export const RetrieveWhatsAppMessageStatusRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      message_id: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({ method: "GET", uri: "/messages/whatsapp/status", code: 200 }),
-    ),
-).annotate({
-  identifier: "RetrieveWhatsAppMessageStatusRequest",
-}) as any as S.Schema<RetrieveWhatsAppMessageStatusRequest>;
-
-/** Current delivery status of the message */
-export type WhatsappMessageStatusStatus =
-  | "sent"
-  | "delivered"
-  | "read"
-  | "failed";
-export const WhatsappMessageStatusStatus = /*@__PURE__*/ S.String;
-
-/** Error details, present only when status is "failed" */
-export interface WhatsappMessageStatusError {
-  /** Error message */
-  message?: string;
-  /** Detailed error information */
-  details?: string;
-}
-export const WhatsappMessageStatusError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.optional(S.String),
-    details: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WhatsappMessageStatusError",
-}) as any as S.Schema<WhatsappMessageStatusError>;
-
-/** The delivery status of a specific WhatsApp message. */
-export interface WhatsappMessageStatus {
-  /** ID of the conversation */
-  conversation_id?: string;
-  /** Current delivery status of the message */
-  status?: WhatsappMessageStatusStatus;
-  /** Event type */
-  type?: string;
-  /** Creation timestamp */
-  created_at?: number;
-  /** Last update timestamp */
-  updated_at?: number;
-  /** Name of the WhatsApp template used */
-  template_name?: string;
-  /** The WhatsApp message ID */
-  message_id?: string;
-  /** Error details, present only when status is "failed" */
-  error?: WhatsappMessageStatusError | null;
-}
-export const WhatsappMessageStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    conversation_id: S.optional(S.String),
-    status: S.optional(WhatsappMessageStatusStatus),
-    type: S.optional(S.String),
-    created_at: S.optional(S.Number),
-    updated_at: S.optional(S.Number),
-    template_name: S.optional(S.String),
-    message_id: S.optional(S.String),
-    error: S.optional(S.NullOr(WhatsappMessageStatusError)),
-  }),
-).annotate({
-  identifier: "WhatsappMessageStatus",
-}) as any as S.Schema<WhatsappMessageStatus>;
 
 export interface ScrollOverAllCompaniesRequest {
   scroll_param?: string;
@@ -17248,428 +17659,6 @@ export const SetAwayAdminRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SetAwayAdminRequest",
 }) as any as S.Schema<SetAwayAdminRequest>;
-
-export interface ShowCallRequest {
-  /** The id of the call to retrieve */
-  call_id: string;
-}
-export const ShowCallRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    call_id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/calls/{call_id}", code: 200 })),
-).annotate({
-  identifier: "ShowCallRequest",
-}) as any as S.Schema<ShowCallRequest>;
-
-export interface ShowCallRecordingRequest {
-  /** The id of the call */
-  call_id: string;
-}
-export const ShowCallRecordingRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    call_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/calls/{call_id}/recording", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowCallRecordingRequest",
-}) as any as S.Schema<ShowCallRecordingRequest>;
-
-export interface ShowCallRecordingResponse {}
-export const ShowCallRecordingResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ShowCallRecordingResponse",
-}) as any as S.Schema<ShowCallRecordingResponse>;
-
-export interface ShowCallTranscriptRequest {
-  /** The id of the call */
-  call_id: string;
-}
-export const ShowCallTranscriptRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    call_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/calls/{call_id}/transcript", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowCallTranscriptRequest",
-}) as any as S.Schema<ShowCallTranscriptRequest>;
-
-export interface ShowCallTranscriptResponse {}
-export const ShowCallTranscriptResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ShowCallTranscriptResponse",
-}) as any as S.Schema<ShowCallTranscriptResponse>;
-
-export interface ShowContactRequest {
-  /** contact_id */
-  contact_id: string;
-  /** Pass `true` to include the contact's merge history in the response. Only returned for contacts with a `user` role. */
-  include_merge_history?: boolean;
-}
-export const ShowContactRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    contact_id: S.String.pipe(T.Label()),
-    include_merge_history: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/contacts/{contact_id}", code: 200 })),
-).annotate({
-  identifier: "ShowContactRequest",
-}) as any as S.Schema<ShowContactRequest>;
-
-export type ShowContactResponseAvatar = ContactAvatar;
-export const ShowContactResponseAvatar = ContactAvatar;
-
-/** A list of contacts that were merged into this contact. Only included in the response when `include_merge_history=true` is passed as a query parameter. Only available for contacts with a `user` role. */
-export type ShowContactResponseMergeHistoryList = Array<MergeHistoryItem>;
-export const ShowContactResponseMergeHistoryList = /*@__PURE__*/ S.Array(
-  MergeHistoryItem,
-) as any as S.Schema<ShowContactResponseMergeHistoryList>;
-
-export interface ShowContactResponse {
-  /** The type of object. */
-  type?: string;
-  /** The unique identifier for the contact which is given by Intercom. */
-  id?: string;
-  /** The unique identifier for the contact which is provided by the Client. */
-  external_id?: string | null;
-  /** The id of the workspace which the contact belongs to. */
-  workspace_id?: string;
-  /** The role of the contact. */
-  role?: string;
-  /** The contact's email. */
-  email?: string;
-  /** The contact's email domain. */
-  email_domain?: string;
-  /** The contacts phone. */
-  phone?: string | null;
-  /** The contacts name. */
-  name?: string | null;
-  /** The id of an admin that has been assigned account ownership of the contact. */
-  owner_id?: string | null;
-  /** Whether the contact has had an email sent to them hard bounce. */
-  has_hard_bounced?: boolean;
-  /** Whether the contact has marked an email sent to them as spam. */
-  marked_email_as_spam?: boolean;
-  /** Whether the contact is unsubscribed from emails. */
-  unsubscribed_from_emails?: boolean;
-  /** (Unix timestamp in seconds) The time when the contact was created. */
-  created_at?: number;
-  /** (Unix timestamp in seconds) The time when the contact was last updated. */
-  updated_at?: number;
-  /** (Unix timestamp in seconds) The time specified for when a contact signed up. */
-  signed_up_at?: number | null;
-  /** (Unix timestamp in seconds) The time when the contact was last seen (either where the Intercom Messenger was installed or when specified manually). */
-  last_seen_at?: number | null;
-  /** (Unix timestamp in seconds) The time when the contact last messaged in. */
-  last_replied_at?: number | null;
-  /** (Unix timestamp in seconds) The time when the contact was last messaged. */
-  last_contacted_at?: number | null;
-  /** (Unix timestamp in seconds) The time when the contact last opened an email. */
-  last_email_opened_at?: number | null;
-  /** (Unix timestamp in seconds) The time when the contact last clicked a link in an email. */
-  last_email_clicked_at?: number | null;
-  /** A preferred language setting for the contact, used by the Intercom Messenger even if their browser settings change. */
-  language_override?: string | null;
-  /** The name of the browser which the contact is using. */
-  browser?: string | null;
-  /** The version of the browser which the contact is using. */
-  browser_version?: string | null;
-  /** The language set by the browser which the contact is using. */
-  browser_language?: string | null;
-  /** The operating system which the contact is using. */
-  os?: string | null;
-  /** The name of the Android app which the contact is using. */
-  android_app_name?: string | null;
-  /** The version of the Android app which the contact is using. */
-  android_app_version?: string | null;
-  /** The Android device which the contact is using. */
-  android_device?: string | null;
-  /** The version of the Android OS which the contact is using. */
-  android_os_version?: string | null;
-  /** The version of the Android SDK which the contact is using. */
-  android_sdk_version?: string | null;
-  /** (Unix timestamp in seconds) The time when the contact was last seen on an Android device. */
-  android_last_seen_at?: number | null;
-  /** The name of the iOS app which the contact is using. */
-  ios_app_name?: string | null;
-  /** The version of the iOS app which the contact is using. */
-  ios_app_version?: string | null;
-  /** The iOS device which the contact is using. */
-  ios_device?: string | null;
-  /** The version of iOS which the contact is using. */
-  ios_os_version?: string | null;
-  /** The version of the iOS SDK which the contact is using. */
-  ios_sdk_version?: string | null;
-  /** (Unix timestamp in seconds) The last time the contact used the iOS app. */
-  ios_last_seen_at?: number | null;
-  /** The custom attributes which are set for the contact. */
-  custom_attributes?: unknown;
-  avatar?: ContactAvatar | null;
-  tags?: ContactTags | null;
-  notes?: ContactNotes;
-  companies?: ContactCompanies;
-  location?: ContactLocation;
-  social_profiles?: ContactSocialProfiles;
-  /** A list of contacts that were merged into this contact. Only included in the response when `include_merge_history=true` is passed as a query parameter. Only available for contacts with a `user` role. */
-  merge_history?: ShowContactResponseMergeHistoryList | null;
-  /** If the user has enabled push messaging. */
-  enabled_push_messaging?: boolean | null;
-}
-export const ShowContactResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    id: S.optional(S.String),
-    external_id: S.optional(S.NullOr(S.String)),
-    workspace_id: S.optional(S.String),
-    role: S.optional(S.String),
-    email: S.optional(S.String),
-    email_domain: S.optional(S.String),
-    phone: S.optional(S.NullOr(S.String)),
-    name: S.optional(S.NullOr(S.String)),
-    owner_id: S.optional(S.NullOr(S.String)),
-    has_hard_bounced: S.optional(S.Boolean),
-    marked_email_as_spam: S.optional(S.Boolean),
-    unsubscribed_from_emails: S.optional(S.Boolean),
-    created_at: S.optional(S.Number),
-    updated_at: S.optional(S.Number),
-    signed_up_at: S.optional(S.NullOr(S.Number)),
-    last_seen_at: S.optional(S.NullOr(S.Number)),
-    last_replied_at: S.optional(S.NullOr(S.Number)),
-    last_contacted_at: S.optional(S.NullOr(S.Number)),
-    last_email_opened_at: S.optional(S.NullOr(S.Number)),
-    last_email_clicked_at: S.optional(S.NullOr(S.Number)),
-    language_override: S.optional(S.NullOr(S.String)),
-    browser: S.optional(S.NullOr(S.String)),
-    browser_version: S.optional(S.NullOr(S.String)),
-    browser_language: S.optional(S.NullOr(S.String)),
-    os: S.optional(S.NullOr(S.String)),
-    android_app_name: S.optional(S.NullOr(S.String)),
-    android_app_version: S.optional(S.NullOr(S.String)),
-    android_device: S.optional(S.NullOr(S.String)),
-    android_os_version: S.optional(S.NullOr(S.String)),
-    android_sdk_version: S.optional(S.NullOr(S.String)),
-    android_last_seen_at: S.optional(S.NullOr(S.Number)),
-    ios_app_name: S.optional(S.NullOr(S.String)),
-    ios_app_version: S.optional(S.NullOr(S.String)),
-    ios_device: S.optional(S.NullOr(S.String)),
-    ios_os_version: S.optional(S.NullOr(S.String)),
-    ios_sdk_version: S.optional(S.NullOr(S.String)),
-    ios_last_seen_at: S.optional(S.NullOr(S.Number)),
-    custom_attributes: S.optional(S.Unknown),
-    avatar: S.optional(S.NullOr(ContactAvatar)),
-    tags: S.optional(S.NullOr(ContactTags)),
-    notes: S.optional(ContactNotes),
-    companies: S.optional(ContactCompanies),
-    location: S.optional(ContactLocation),
-    social_profiles: S.optional(ContactSocialProfiles),
-    merge_history: S.optional(S.NullOr(ShowContactResponseMergeHistoryList)),
-    enabled_push_messaging: S.optional(S.NullOr(S.Boolean)),
-  }),
-).annotate({
-  identifier: "ShowContactResponse",
-}) as any as S.Schema<ShowContactResponse>;
-
-export interface ShowContactByExternalIdRequest {
-  /** The external ID of the user that you want to retrieve */
-  external_id: string;
-  /** Pass `true` to include the contact's merge history in the response. Only returned for contacts with a `user` role. */
-  include_merge_history?: boolean;
-}
-export const ShowContactByExternalIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    external_id: S.String.pipe(T.Label()),
-    include_merge_history: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/contacts/find_by_external_id/{external_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowContactByExternalIdRequest",
-}) as any as S.Schema<ShowContactByExternalIdRequest>;
-
-export type ShowContactByExternalIdResponseAvatar = ContactAvatar;
-export const ShowContactByExternalIdResponseAvatar = ContactAvatar;
-
-/** A list of contacts that were merged into this contact. Only included in the response when `include_merge_history=true` is passed as a query parameter. Only available for contacts with a `user` role. */
-export type ShowContactByExternalIdResponseMergeHistoryList =
-  Array<MergeHistoryItem>;
-export const ShowContactByExternalIdResponseMergeHistoryList =
-  /*@__PURE__*/ S.Array(
-    MergeHistoryItem,
-  ) as any as S.Schema<ShowContactByExternalIdResponseMergeHistoryList>;
-
-export interface ShowContactByExternalIdResponse {
-  /** The type of object. */
-  type?: string;
-  /** The unique identifier for the contact which is given by Intercom. */
-  id?: string;
-  /** The unique identifier for the contact which is provided by the Client. */
-  external_id?: string | null;
-  /** The id of the workspace which the contact belongs to. */
-  workspace_id?: string;
-  /** The role of the contact. */
-  role?: string;
-  /** The contact's email. */
-  email?: string;
-  /** The contact's email domain. */
-  email_domain?: string;
-  /** The contacts phone. */
-  phone?: string | null;
-  /** The contacts name. */
-  name?: string | null;
-  /** The id of an admin that has been assigned account ownership of the contact. */
-  owner_id?: string | null;
-  /** Whether the contact has had an email sent to them hard bounce. */
-  has_hard_bounced?: boolean;
-  /** Whether the contact has marked an email sent to them as spam. */
-  marked_email_as_spam?: boolean;
-  /** Whether the contact is unsubscribed from emails. */
-  unsubscribed_from_emails?: boolean;
-  /** (Unix timestamp in seconds) The time when the contact was created. */
-  created_at?: number;
-  /** (Unix timestamp in seconds) The time when the contact was last updated. */
-  updated_at?: number;
-  /** (Unix timestamp in seconds) The time specified for when a contact signed up. */
-  signed_up_at?: number | null;
-  /** (Unix timestamp in seconds) The time when the contact was last seen (either where the Intercom Messenger was installed or when specified manually). */
-  last_seen_at?: number | null;
-  /** (Unix timestamp in seconds) The time when the contact last messaged in. */
-  last_replied_at?: number | null;
-  /** (Unix timestamp in seconds) The time when the contact was last messaged. */
-  last_contacted_at?: number | null;
-  /** (Unix timestamp in seconds) The time when the contact last opened an email. */
-  last_email_opened_at?: number | null;
-  /** (Unix timestamp in seconds) The time when the contact last clicked a link in an email. */
-  last_email_clicked_at?: number | null;
-  /** A preferred language setting for the contact, used by the Intercom Messenger even if their browser settings change. */
-  language_override?: string | null;
-  /** The name of the browser which the contact is using. */
-  browser?: string | null;
-  /** The version of the browser which the contact is using. */
-  browser_version?: string | null;
-  /** The language set by the browser which the contact is using. */
-  browser_language?: string | null;
-  /** The operating system which the contact is using. */
-  os?: string | null;
-  /** The name of the Android app which the contact is using. */
-  android_app_name?: string | null;
-  /** The version of the Android app which the contact is using. */
-  android_app_version?: string | null;
-  /** The Android device which the contact is using. */
-  android_device?: string | null;
-  /** The version of the Android OS which the contact is using. */
-  android_os_version?: string | null;
-  /** The version of the Android SDK which the contact is using. */
-  android_sdk_version?: string | null;
-  /** (Unix timestamp in seconds) The time when the contact was last seen on an Android device. */
-  android_last_seen_at?: number | null;
-  /** The name of the iOS app which the contact is using. */
-  ios_app_name?: string | null;
-  /** The version of the iOS app which the contact is using. */
-  ios_app_version?: string | null;
-  /** The iOS device which the contact is using. */
-  ios_device?: string | null;
-  /** The version of iOS which the contact is using. */
-  ios_os_version?: string | null;
-  /** The version of the iOS SDK which the contact is using. */
-  ios_sdk_version?: string | null;
-  /** (Unix timestamp in seconds) The last time the contact used the iOS app. */
-  ios_last_seen_at?: number | null;
-  /** The custom attributes which are set for the contact. */
-  custom_attributes?: unknown;
-  avatar?: ContactAvatar | null;
-  tags?: ContactTags | null;
-  notes?: ContactNotes;
-  companies?: ContactCompanies;
-  location?: ContactLocation;
-  social_profiles?: ContactSocialProfiles;
-  /** A list of contacts that were merged into this contact. Only included in the response when `include_merge_history=true` is passed as a query parameter. Only available for contacts with a `user` role. */
-  merge_history?: ShowContactByExternalIdResponseMergeHistoryList | null;
-  /** If the user has enabled push messaging. */
-  enabled_push_messaging?: boolean | null;
-}
-export const ShowContactByExternalIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    id: S.optional(S.String),
-    external_id: S.optional(S.NullOr(S.String)),
-    workspace_id: S.optional(S.String),
-    role: S.optional(S.String),
-    email: S.optional(S.String),
-    email_domain: S.optional(S.String),
-    phone: S.optional(S.NullOr(S.String)),
-    name: S.optional(S.NullOr(S.String)),
-    owner_id: S.optional(S.NullOr(S.String)),
-    has_hard_bounced: S.optional(S.Boolean),
-    marked_email_as_spam: S.optional(S.Boolean),
-    unsubscribed_from_emails: S.optional(S.Boolean),
-    created_at: S.optional(S.Number),
-    updated_at: S.optional(S.Number),
-    signed_up_at: S.optional(S.NullOr(S.Number)),
-    last_seen_at: S.optional(S.NullOr(S.Number)),
-    last_replied_at: S.optional(S.NullOr(S.Number)),
-    last_contacted_at: S.optional(S.NullOr(S.Number)),
-    last_email_opened_at: S.optional(S.NullOr(S.Number)),
-    last_email_clicked_at: S.optional(S.NullOr(S.Number)),
-    language_override: S.optional(S.NullOr(S.String)),
-    browser: S.optional(S.NullOr(S.String)),
-    browser_version: S.optional(S.NullOr(S.String)),
-    browser_language: S.optional(S.NullOr(S.String)),
-    os: S.optional(S.NullOr(S.String)),
-    android_app_name: S.optional(S.NullOr(S.String)),
-    android_app_version: S.optional(S.NullOr(S.String)),
-    android_device: S.optional(S.NullOr(S.String)),
-    android_os_version: S.optional(S.NullOr(S.String)),
-    android_sdk_version: S.optional(S.NullOr(S.String)),
-    android_last_seen_at: S.optional(S.NullOr(S.Number)),
-    ios_app_name: S.optional(S.NullOr(S.String)),
-    ios_app_version: S.optional(S.NullOr(S.String)),
-    ios_device: S.optional(S.NullOr(S.String)),
-    ios_os_version: S.optional(S.NullOr(S.String)),
-    ios_sdk_version: S.optional(S.NullOr(S.String)),
-    ios_last_seen_at: S.optional(S.NullOr(S.Number)),
-    custom_attributes: S.optional(S.Unknown),
-    avatar: S.optional(S.NullOr(ContactAvatar)),
-    tags: S.optional(S.NullOr(ContactTags)),
-    notes: S.optional(ContactNotes),
-    companies: S.optional(ContactCompanies),
-    location: S.optional(ContactLocation),
-    social_profiles: S.optional(ContactSocialProfiles),
-    merge_history: S.optional(
-      S.NullOr(ShowContactByExternalIdResponseMergeHistoryList),
-    ),
-    enabled_push_messaging: S.optional(S.NullOr(S.Boolean)),
-  }),
-).annotate({
-  identifier: "ShowContactByExternalIdResponse",
-}) as any as S.Schema<ShowContactByExternalIdResponse>;
-
-export interface ShowDataConnectorExecutionResultRequest {
-  /** The unique identifier for the data connector. */
-  data_connector_id: string;
-  /** The unique identifier for the execution result. */
-  id: string;
-}
-export const ShowDataConnectorExecutionResultRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      data_connector_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/data_connectors/{data_connector_id}/execution_results/{id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ShowDataConnectorExecutionResultRequest",
-}) as any as S.Schema<ShowDataConnectorExecutionResultRequest>;
 
 /** Whether the article will be `published` or will be a `draft`. Omitting this field leaves the publish state unchanged, so a draft stays a draft and an edit to a published article goes live immediately unless that article already has a pending draft or a scheduled publish time is set in the same request. The `PUT /articles/{id}/draft` endpoint ignores this field and always stages a draft. For multilingual articles, this will be the state of the default language's content. */
 export type StageArticleDraftRequestState = "published" | "draft";
@@ -20034,6 +20023,23 @@ export const createDataExport: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateExportReportingDataEnqueueError =
+  | BadRequest
+  | IntercomOpError;
+/** Enqueue a new reporting data export job For the conversation dataset, from this version onward this export returns all conversations, including those that never received a user reply. Earlier versions return only conversations that received at least one user reply. Other datasets are unaffected. */
+export const createExportReportingDataEnqueue: API.OperationMethod<
+  CreateExportReportingDataEnqueueRequest,
+  CreateExportReportingDataEnqueueResponse,
+  CreateExportReportingDataEnqueueError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateExportReportingDataEnqueueRequest,
+  output: CreateExportReportingDataEnqueueResponse,
+  errors: [BadRequest, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateExternalPageError = IntercomOpError;
 /** Create an external page (or update an external page by external ID) You can create a new external page by sending a POST request to this endpoint. If an external page already exists with the specified source_id and external_id, it will be updated instead. */
 export const createExternalPage: API.OperationMethod<
@@ -20825,6 +20831,216 @@ export const findTag: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetACompanyByIdError = NotFound | IntercomOpError;
+/** Retrieve a company by ID You can fetch a single company. */
+export const getACompanyById: API.OperationMethod<
+  GetACompanyByIdRequest,
+  Company,
+  GetACompanyByIdError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetACompanyByIdRequest,
+  output: Company,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAdminError = NotFound | IntercomOpError;
+/** Retrieve an admin You can retrieve the details of a single admin. */
+export const getAdmin: API.OperationMethod<
+  GetAdminRequest,
+  Admin,
+  GetAdminError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAdminRequest,
+  output: Admin,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetArticleError = NotFound | IntercomOpError;
+/** Retrieve an article You can fetch the details of a single article by making a GET request to `https://api.intercom.io/articles/<id>`. */
+export const getArticle: API.OperationMethod<
+  GetArticleRequest,
+  GetArticleResponse,
+  GetArticleError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetArticleRequest,
+  output: GetArticleResponse,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetArticleDraftError = NotFound | IntercomOpError;
+/** Retrieve an article draft Fetch the staged draft of a published article by making a GET request to `https://api.intercom.io/articles/<id>/draft`. The response is the article rendered with its draft content, leaving the live article untouched. A draft exists only when a published article has unpublished changes staged on top of it. Returns `404` when the article has no staged draft. Requires the `read_articles_scope` OAuth scope. */
+export const getArticleDraft: API.OperationMethod<
+  GetArticleDraftRequest,
+  GetArticleDraftResponse,
+  GetArticleDraftError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetArticleDraftRequest,
+  output: GetArticleDraftResponse,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetArticleVersionError = BadRequest | NotFound | IntercomOpError;
+/** Retrieve an article version Fetch a single prior version of an article, including its body content, by making a GET request to `https://api.intercom.io/articles/<article_id>/versions/<id>`. Returns the version's full content; the live article remains untouched. Requires the `read_articles_scope` OAuth scope. */
+export const getArticleVersion: API.OperationMethod<
+  GetArticleVersionRequest,
+  ArticleVersion,
+  GetArticleVersionError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetArticleVersionRequest,
+  output: ArticleVersion,
+  errors: [BadRequest, NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAudienceError = NotFound | IntercomOpError;
+/** Retrieve an audience You can fetch the details of a single audience by making a GET request to `https://api.intercom.io/audiences/{id}`. */
+export const getAudience: API.OperationMethod<
+  GetAudienceRequest,
+  Audience,
+  GetAudienceError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAudienceRequest,
+  output: Audience,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBrandError = NotFound | IntercomOpError;
+/** Retrieve a brand Fetches a specific brand by its unique identifier */
+export const getBrand: API.OperationMethod<
+  GetBrandRequest,
+  Brand,
+  GetBrandError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBrandRequest,
+  output: Brand,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCallError = NotFound | IntercomOpError;
+/** Get a call Retrieve a single call by id. */
+export const getCall: API.OperationMethod<
+  GetCallRequest,
+  Call,
+  GetCallError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCallRequest,
+  output: Call,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCallRecordingError = NotFound | IntercomOpError;
+/** Get call recording by call id Redirects to a signed URL for the call's recording if it exists. */
+export const getCallRecording: API.OperationMethod<
+  GetCallRecordingRequest,
+  GetCallRecordingResponse,
+  GetCallRecordingError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCallRecordingRequest,
+  output: GetCallRecordingResponse,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCallTranscriptError = NotFound | IntercomOpError;
+/** Get call transcript by call id Returns the transcript for the specified call as a downloadable text file. */
+export const getCallTranscript: API.OperationMethod<
+  GetCallTranscriptRequest,
+  GetCallTranscriptResponse,
+  GetCallTranscriptError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCallTranscriptRequest,
+  output: GetCallTranscriptResponse,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCollectionError = NotFound | IntercomOpError;
+/** Retrieve a collection You can fetch the details of a single collection by making a GET request to `https://api.intercom.io/help_center/collections/<id>`. */
+export const getCollection: API.OperationMethod<
+  GetCollectionRequest,
+  Collection,
+  GetCollectionError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCollectionRequest,
+  output: Collection,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyError = NotFound | IntercomOpError;
+/** Retrieve companies You can fetch a single company by passing in `company_id` or `name`. `https://api.intercom.io/companies?name={name}` `https://api.intercom.io/companies?company_id={company_id}` You can fetch all companies and filter by `segment_id` or `tag_id` as a query parameter. `https://api.intercom.io/companies?tag_id={tag_id}` `https://api.intercom.io/companies?segment_id={segment_id}` */
+export const getCompany: API.OperationMethod<
+  GetCompanyRequest,
+  CompanyList,
+  GetCompanyError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyRequest,
+  output: CompanyList,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContactError = IntercomOpError;
+/** Get a contact You can fetch the details of a single contact. {% admonition type="info" name="Merged contacts return 410 Gone" %} If a contact has been merged into another contact via the Merge endpoint (`POST /contacts/merge`), requesting it by its original ID will return **HTTP 410 Gone** with a `Link` header pointing to the canonical (merged-into) contact. **Response headers:** ``` Link: </contacts/{canonical_id}>; rel="canonical" ``` **Response body:** ```json { "type": "error.list", "errors": [{ "code": "contact_merged", "message": "This contact has been merged. See the 'Link' header for the canonical contact." }] } ``` The `Link` header contains the path to the final merge target, resolving multi-hop merge chains (up to 3 hops). {% /admonition %} */
+export const getContact: API.OperationMethod<
+  GetContactRequest,
+  GetContactResponse,
+  GetContactError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContactRequest,
+  output: GetContactResponse,
+  errors: [UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContactByExternalIdError = IntercomOpError;
+/** Get a contact by External ID You can fetch the details of a single contact by external ID. Note that this endpoint only supports users and not leads. {% admonition type="info" name="Merged contacts return 410 Gone" %} If the contact with this external ID has been merged into another contact, the API returns **HTTP 410 Gone** with a `Link` header pointing to the canonical (merged-into) contact. See `GET /contacts/{id}` for details on the response format. {% /admonition %} */
+export const getContactByExternalId: API.OperationMethod<
+  GetContactByExternalIdRequest,
+  GetContactByExternalIdResponse,
+  GetContactByExternalIdError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContactByExternalIdRequest,
+  output: GetContactByExternalIdResponse,
+  errors: [UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetContentImportSourceError = IntercomOpError;
 /** Retrieve a content import source */
 export const getContentImportSource: API.OperationMethod<
@@ -20855,6 +21071,21 @@ export const getContentSnippet: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetConversationError = Forbidden | NotFound | IntercomOpError;
+/** Retrieve a conversation You can fetch the details of a single conversation. This will return a single Conversation model with all its conversation parts. {% admonition type="warning" name="Hard limit of 500 parts" %} The maximum number of conversation parts that can be returned via the API is 500. If you have more than that we will return the 500 most recent conversation parts. {% /admonition %} For AI agent conversation metadata, please note that you need to have the agent enabled in your workspace, which is a [paid feature](https://www.intercom.com/help/en/articles/8205718-fin-resolutions#h_97f8c2e671). */
+export const getConversation: API.OperationMethod<
+  GetConversationRequest,
+  Conversation,
+  GetConversationError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetConversationRequest,
+  output: Conversation,
+  errors: [Forbidden, NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetConversationAttributeError = NotFound | IntercomOpError;
 /** Get a conversation attribute Retrieve a single conversation attribute by ID. */
 export const getConversationAttribute: API.OperationMethod<
@@ -20870,16 +21101,46 @@ export const getConversationAttribute: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetCustomObjectInstancesByIdError = NotFound | IntercomOpError;
+export type GetCustomObjectInstanceError = NotFound | IntercomOpError;
 /** Get Custom Object Instance by ID Fetch a Custom Object Instance by id. */
-export const getCustomObjectInstancesById: API.OperationMethod<
-  GetCustomObjectInstancesByIdRequest,
+export const getCustomObjectInstance: API.OperationMethod<
+  GetCustomObjectInstanceRequest,
   CustomObjectInstance,
-  GetCustomObjectInstancesByIdError,
+  GetCustomObjectInstanceError,
   IntercomOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetCustomObjectInstancesByIdRequest,
+  input: GetCustomObjectInstanceRequest,
   output: CustomObjectInstance,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataConnectorError = BadRequest | NotFound | IntercomOpError;
+/** Retrieve a data connector You can retrieve the full detail of a single data connector by its ID. The response includes configuration, data inputs, response fields, and object mappings. */
+export const getDataConnector: API.OperationMethod<
+  GetDataConnectorRequest,
+  DataConnectorDetail,
+  GetDataConnectorError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataConnectorRequest,
+  output: DataConnectorDetail,
+  errors: [BadRequest, NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataConnectorExecutionResultError = NotFound | IntercomOpError;
+/** Retrieve an execution result Retrieve details for a specific data connector execution result. Always includes request/response bodies and the sanitised request URL. */
+export const getDataConnectorExecutionResult: API.OperationMethod<
+  GetDataConnectorExecutionResultRequest,
+  DataConnectorExecutionResult,
+  GetDataConnectorExecutionResultError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataConnectorExecutionResultRequest,
+  output: DataConnectorExecutionResult,
   errors: [NotFound, UnknownIntercomError],
   protocol: IntercomProtocol,
   retry: Retry.Retry,
@@ -20900,50 +21161,46 @@ export const getDataExport: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetDownloadReportingDataJobIdentifierError =
-  | NotFound
-  | IntercomOpError;
+export type GetDownloadReportingDataError = NotFound | IntercomOpError;
 /** Download completed export job data Download the data from a completed reporting data export job. > Octet header required > > You will have to specify the header Accept: `application/octet-stream` when hitting this endpoint. */
-export const getDownloadReportingDataJobIdentifier: API.OperationMethod<
-  GetDownloadReportingDataJobIdentifierRequest,
-  GetDownloadReportingDataJobIdentifierResponse,
-  GetDownloadReportingDataJobIdentifierError,
+export const getDownloadReportingData: API.OperationMethod<
+  GetDownloadReportingDataRequest,
+  GetDownloadReportingDataResponse,
+  GetDownloadReportingDataError,
   IntercomOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDownloadReportingDataJobIdentifierRequest,
-  output: GetDownloadReportingDataJobIdentifierResponse,
+  input: GetDownloadReportingDataRequest,
+  output: GetDownloadReportingDataResponse,
   errors: [NotFound, UnknownIntercomError],
   protocol: IntercomProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetExportReportingDataGetDatasetsError = IntercomOpError;
-/** List available datasets and attributes */
-export const getExportReportingDataGetDatasets: API.OperationMethod<
-  GetExportReportingDataGetDatasetsRequest,
-  GetExportReportingDataGetDatasetsResponse,
-  GetExportReportingDataGetDatasetsError,
+export type GetEmailError = NotFound | IntercomOpError;
+/** Retrieve an email setting Fetches a specific email setting by its unique identifier */
+export const getEmail: API.OperationMethod<
+  GetEmailRequest,
+  EmailSetting,
+  GetEmailError,
   IntercomOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetExportReportingDataGetDatasetsRequest,
-  output: GetExportReportingDataGetDatasetsResponse,
-  errors: [UnknownIntercomError],
+  input: GetEmailRequest,
+  output: EmailSetting,
+  errors: [NotFound, UnknownIntercomError],
   protocol: IntercomProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetExportReportingDataJobIdentifierError =
-  | NotFound
-  | IntercomOpError;
+export type GetExportReportingDataError = NotFound | IntercomOpError;
 /** Get export job status */
-export const getExportReportingDataJobIdentifier: API.OperationMethod<
-  GetExportReportingDataJobIdentifierRequest,
-  GetExportReportingDataJobIdentifierResponse,
-  GetExportReportingDataJobIdentifierError,
+export const getExportReportingData: API.OperationMethod<
+  GetExportReportingDataRequest,
+  GetExportReportingDataResponse,
+  GetExportReportingDataError,
   IntercomOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetExportReportingDataJobIdentifierRequest,
-  output: GetExportReportingDataJobIdentifierResponse,
+  input: GetExportReportingDataRequest,
+  output: GetExportReportingDataResponse,
   errors: [NotFound, UnknownIntercomError],
   protocol: IntercomProtocol,
   retry: Retry.Retry,
@@ -20960,6 +21217,51 @@ export const getExternalPage: API.OperationMethod<
   input: GetExternalPageRequest,
   output: ExternalPage,
   errors: [UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHelpCenterError = NotFound | IntercomOpError;
+/** Retrieve a Help Center You can fetch the details of a single Help Center by making a GET request to `https://api.intercom.io/help_center/help_center/<id>`. */
+export const getHelpCenter: API.OperationMethod<
+  GetHelpCenterRequest,
+  HelpCenter,
+  GetHelpCenterError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHelpCenterRequest,
+  output: HelpCenter,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHelpCenterRedirectError = NotFound | IntercomOpError;
+/** Retrieve a redirect You can fetch the details of a single redirect by making a GET request to `https://api.intercom.io/help_center/help_centers/{help_center_id}/redirects/{id}`. Requires the `read_help_center_redirects_scope` OAuth scope. */
+export const getHelpCenterRedirect: API.OperationMethod<
+  GetHelpCenterRedirectRequest,
+  HelpCenterRedirect,
+  GetHelpCenterRedirectError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHelpCenterRedirectRequest,
+  output: HelpCenterRedirect,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetInternalArticleError = NotFound | IntercomOpError;
+/** Retrieve an internal article You can fetch the details of a single internal article by making a GET request to `https://api.intercom.io/internal_articles/<id>`. */
+export const getInternalArticle: API.OperationMethod<
+  GetInternalArticleRequest,
+  GetInternalArticleResponse,
+  GetInternalArticleError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetInternalArticleRequest,
+  output: GetInternalArticleResponse,
+  errors: [NotFound, UnknownIntercomError],
   protocol: IntercomProtocol,
   retry: Retry.Retry,
 }));
@@ -20994,6 +21296,51 @@ export const getMacro: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetNewsfeedError = IntercomOpError;
+/** Retrieve a newsfeed You can fetch the details of a single newsfeed */
+export const getNewsfeed: API.OperationMethod<
+  GetNewsfeedRequest,
+  Newsfeed,
+  GetNewsfeedError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNewsfeedRequest,
+  output: Newsfeed,
+  errors: [UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetNewsItemError = NotFound | IntercomOpError;
+/** Retrieve a news item You can fetch the details of a single news item. */
+export const getNewsItem: API.OperationMethod<
+  GetNewsItemRequest,
+  NewsItem,
+  GetNewsItemError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNewsItemRequest,
+  output: NewsItem,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetNoteError = NotFound | IntercomOpError;
+/** Retrieve a note You can fetch the details of a single note. */
+export const getNote: API.OperationMethod<
+  GetNoteRequest,
+  Note,
+  GetNoteError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNoteRequest,
+  output: Note,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetOfficeHoursExceptionError = NotFound | IntercomOpError;
 /** Retrieve an office hours exception You can fetch the details of a single office hours exception. */
 export const getOfficeHoursException: API.OperationMethod<
@@ -21019,6 +21366,36 @@ export const getOfficeHoursSchedule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetOfficeHoursScheduleRequest,
   output: OfficeHoursSchedule,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSegmentError = NotFound | IntercomOpError;
+/** Retrieve a segment You can fetch the details of a single segment. */
+export const getSegment: API.OperationMethod<
+  GetSegmentRequest,
+  Segment,
+  GetSegmentError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSegmentRequest,
+  output: Segment,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTeamError = NotFound | IntercomOpError;
+/** Retrieve a team You can fetch the details of a single team, containing an array of admins that belong to this team. */
+export const getTeam: API.OperationMethod<
+  GetTeamRequest,
+  Team,
+  GetTeamError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTeamRequest,
+  output: Team,
   errors: [NotFound, UnknownIntercomError],
   protocol: IntercomProtocol,
   retry: Retry.Retry,
@@ -21069,18 +21446,51 @@ export const getTicketType: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetVisitorWithUserIdError = NotFound | IntercomOpError;
+/** Retrieve a visitor with User ID You can fetch the details of a single visitor. */
+export const getVisitorWithUserId: API.OperationMethod<
+  GetVisitorWithUserIdRequest,
+  Visitor,
+  GetVisitorWithUserIdError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVisitorWithUserIdRequest,
+  output: Visitor,
+  errors: [NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetWhatsAppMessageStatusError =
   | BadRequest
-  | Forbidden
+  | NotFound
   | IntercomOpError;
-/** Get statuses of all messages sent based on the specified ruleset_id Retrieves statuses of messages sent from the Outbound module. Currently, this API only supports WhatsApp messages. This endpoint returns paginated status events for WhatsApp messages sent via the Outbound module, providing information about delivery state and related message details. */
+/** Retrieve WhatsApp message delivery status Retrieves the delivery status of a specific WhatsApp message by its message ID. Returns the current status, conversation details, and any error information if the message failed to deliver. */
 export const getWhatsAppMessageStatus: API.OperationMethod<
   GetWhatsAppMessageStatusRequest,
-  WhatsappMessageStatusList,
+  WhatsappMessageStatus,
   GetWhatsAppMessageStatusError,
   IntercomOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetWhatsAppMessageStatusRequest,
+  output: WhatsappMessageStatus,
+  errors: [BadRequest, NotFound, UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWhatsAppMessageStatus2Error =
+  | BadRequest
+  | Forbidden
+  | IntercomOpError;
+/** Get statuses of all messages sent based on the specified ruleset_id Retrieves statuses of messages sent from the Outbound module. Currently, this API only supports WhatsApp messages. This endpoint returns paginated status events for WhatsApp messages sent via the Outbound module, providing information about delivery state and related message details. */
+export const getWhatsAppMessageStatus2: API.OperationMethod<
+  GetWhatsAppMessageStatusRequest2,
+  WhatsappMessageStatusList,
+  GetWhatsAppMessageStatus2Error,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWhatsAppMessageStatusRequest2,
   output: WhatsappMessageStatusList,
   errors: [BadRequest, Forbidden, UnknownIntercomError],
   protocol: IntercomProtocol,
@@ -21588,6 +21998,21 @@ export const listEmails: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListExportReportingDataGetDatasetsError = IntercomOpError;
+/** List available datasets and attributes */
+export const listExportReportingDataGetDatasets: API.OperationMethod<
+  ListExportReportingDataGetDatasetsRequest,
+  ListExportReportingDataGetDatasetsResponse,
+  ListExportReportingDataGetDatasetsError,
+  IntercomOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListExportReportingDataGetDatasetsRequest,
+  output: ListExportReportingDataGetDatasetsResponse,
+  errors: [UnknownIntercomError],
+  protocol: IntercomProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListExternalPagesError = IntercomOpError;
 /** List external pages You can retrieve a list of all external pages for a workspace. */
 export const listExternalPages: API.OperationMethod<
@@ -21967,21 +22392,6 @@ export const mergeConversation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostExportReportingDataEnqueueError = BadRequest | IntercomOpError;
-/** Enqueue a new reporting data export job For the conversation dataset, from this version onward this export returns all conversations, including those that never received a user reply. Earlier versions return only conversations that received at least one user reply. Other datasets are unaffected. */
-export const postExportReportingDataEnqueue: API.OperationMethod<
-  PostExportReportingDataEnqueueRequest,
-  PostExportReportingDataEnqueueResponse,
-  PostExportReportingDataEnqueueError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostExportReportingDataEnqueueRequest,
-  output: PostExportReportingDataEnqueueResponse,
-  errors: [BadRequest, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PublishArticleDraftError =
   | NotFound
   | UnprocessableEntity
@@ -22071,345 +22481,6 @@ export const replyToFin: API.OperationMethod<
   input: ReplyToFinRequest,
   output: ReplyToFinResponse,
   errors: [BadRequest, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveACompanyByIdError = NotFound | IntercomOpError;
-/** Retrieve a company by ID You can fetch a single company. */
-export const retrieveACompanyById: API.OperationMethod<
-  RetrieveACompanyByIdRequest,
-  Company,
-  RetrieveACompanyByIdError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveACompanyByIdRequest,
-  output: Company,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveAdminError = NotFound | IntercomOpError;
-/** Retrieve an admin You can retrieve the details of a single admin. */
-export const retrieveAdmin: API.OperationMethod<
-  RetrieveAdminRequest,
-  Admin,
-  RetrieveAdminError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAdminRequest,
-  output: Admin,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveArticleError = NotFound | IntercomOpError;
-/** Retrieve an article You can fetch the details of a single article by making a GET request to `https://api.intercom.io/articles/<id>`. */
-export const retrieveArticle: API.OperationMethod<
-  RetrieveArticleRequest,
-  RetrieveArticleResponse,
-  RetrieveArticleError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveArticleRequest,
-  output: RetrieveArticleResponse,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveArticleDraftError = NotFound | IntercomOpError;
-/** Retrieve an article draft Fetch the staged draft of a published article by making a GET request to `https://api.intercom.io/articles/<id>/draft`. The response is the article rendered with its draft content, leaving the live article untouched. A draft exists only when a published article has unpublished changes staged on top of it. Returns `404` when the article has no staged draft. Requires the `read_articles_scope` OAuth scope. */
-export const retrieveArticleDraft: API.OperationMethod<
-  RetrieveArticleDraftRequest,
-  RetrieveArticleDraftResponse,
-  RetrieveArticleDraftError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveArticleDraftRequest,
-  output: RetrieveArticleDraftResponse,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveArticleVersionError =
-  | BadRequest
-  | NotFound
-  | IntercomOpError;
-/** Retrieve an article version Fetch a single prior version of an article, including its body content, by making a GET request to `https://api.intercom.io/articles/<article_id>/versions/<id>`. Returns the version's full content; the live article remains untouched. Requires the `read_articles_scope` OAuth scope. */
-export const retrieveArticleVersion: API.OperationMethod<
-  RetrieveArticleVersionRequest,
-  ArticleVersion,
-  RetrieveArticleVersionError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveArticleVersionRequest,
-  output: ArticleVersion,
-  errors: [BadRequest, NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveAudienceError = NotFound | IntercomOpError;
-/** Retrieve an audience You can fetch the details of a single audience by making a GET request to `https://api.intercom.io/audiences/{id}`. */
-export const retrieveAudience: API.OperationMethod<
-  RetrieveAudienceRequest,
-  Audience,
-  RetrieveAudienceError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAudienceRequest,
-  output: Audience,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveBrandError = NotFound | IntercomOpError;
-/** Retrieve a brand Fetches a specific brand by its unique identifier */
-export const retrieveBrand: API.OperationMethod<
-  RetrieveBrandRequest,
-  Brand,
-  RetrieveBrandError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveBrandRequest,
-  output: Brand,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveCollectionError = NotFound | IntercomOpError;
-/** Retrieve a collection You can fetch the details of a single collection by making a GET request to `https://api.intercom.io/help_center/collections/<id>`. */
-export const retrieveCollection: API.OperationMethod<
-  RetrieveCollectionRequest,
-  Collection,
-  RetrieveCollectionError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCollectionRequest,
-  output: Collection,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveCompanyError = NotFound | IntercomOpError;
-/** Retrieve companies You can fetch a single company by passing in `company_id` or `name`. `https://api.intercom.io/companies?name={name}` `https://api.intercom.io/companies?company_id={company_id}` You can fetch all companies and filter by `segment_id` or `tag_id` as a query parameter. `https://api.intercom.io/companies?tag_id={tag_id}` `https://api.intercom.io/companies?segment_id={segment_id}` */
-export const retrieveCompany: API.OperationMethod<
-  RetrieveCompanyRequest,
-  CompanyList,
-  RetrieveCompanyError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCompanyRequest,
-  output: CompanyList,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveConversationError = Forbidden | NotFound | IntercomOpError;
-/** Retrieve a conversation You can fetch the details of a single conversation. This will return a single Conversation model with all its conversation parts. {% admonition type="warning" name="Hard limit of 500 parts" %} The maximum number of conversation parts that can be returned via the API is 500. If you have more than that we will return the 500 most recent conversation parts. {% /admonition %} For AI agent conversation metadata, please note that you need to have the agent enabled in your workspace, which is a [paid feature](https://www.intercom.com/help/en/articles/8205718-fin-resolutions#h_97f8c2e671). */
-export const retrieveConversation: API.OperationMethod<
-  RetrieveConversationRequest,
-  Conversation,
-  RetrieveConversationError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveConversationRequest,
-  output: Conversation,
-  errors: [Forbidden, NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveDataConnectorError =
-  | BadRequest
-  | NotFound
-  | IntercomOpError;
-/** Retrieve a data connector You can retrieve the full detail of a single data connector by its ID. The response includes configuration, data inputs, response fields, and object mappings. */
-export const retrieveDataConnector: API.OperationMethod<
-  RetrieveDataConnectorRequest,
-  DataConnectorDetail,
-  RetrieveDataConnectorError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveDataConnectorRequest,
-  output: DataConnectorDetail,
-  errors: [BadRequest, NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveEmailError = NotFound | IntercomOpError;
-/** Retrieve an email setting Fetches a specific email setting by its unique identifier */
-export const retrieveEmail: API.OperationMethod<
-  RetrieveEmailRequest,
-  EmailSetting,
-  RetrieveEmailError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveEmailRequest,
-  output: EmailSetting,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveHelpCenterError = NotFound | IntercomOpError;
-/** Retrieve a Help Center You can fetch the details of a single Help Center by making a GET request to `https://api.intercom.io/help_center/help_center/<id>`. */
-export const retrieveHelpCenter: API.OperationMethod<
-  RetrieveHelpCenterRequest,
-  HelpCenter,
-  RetrieveHelpCenterError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveHelpCenterRequest,
-  output: HelpCenter,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveHelpCenterRedirectError = NotFound | IntercomOpError;
-/** Retrieve a redirect You can fetch the details of a single redirect by making a GET request to `https://api.intercom.io/help_center/help_centers/{help_center_id}/redirects/{id}`. Requires the `read_help_center_redirects_scope` OAuth scope. */
-export const retrieveHelpCenterRedirect: API.OperationMethod<
-  RetrieveHelpCenterRedirectRequest,
-  HelpCenterRedirect,
-  RetrieveHelpCenterRedirectError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveHelpCenterRedirectRequest,
-  output: HelpCenterRedirect,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveInternalArticleError = NotFound | IntercomOpError;
-/** Retrieve an internal article You can fetch the details of a single internal article by making a GET request to `https://api.intercom.io/internal_articles/<id>`. */
-export const retrieveInternalArticle: API.OperationMethod<
-  RetrieveInternalArticleRequest,
-  RetrieveInternalArticleResponse,
-  RetrieveInternalArticleError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveInternalArticleRequest,
-  output: RetrieveInternalArticleResponse,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveNewsfeedError = IntercomOpError;
-/** Retrieve a newsfeed You can fetch the details of a single newsfeed */
-export const retrieveNewsfeed: API.OperationMethod<
-  RetrieveNewsfeedRequest,
-  Newsfeed,
-  RetrieveNewsfeedError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveNewsfeedRequest,
-  output: Newsfeed,
-  errors: [UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveNewsItemError = NotFound | IntercomOpError;
-/** Retrieve a news item You can fetch the details of a single news item. */
-export const retrieveNewsItem: API.OperationMethod<
-  RetrieveNewsItemRequest,
-  NewsItem,
-  RetrieveNewsItemError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveNewsItemRequest,
-  output: NewsItem,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveNoteError = NotFound | IntercomOpError;
-/** Retrieve a note You can fetch the details of a single note. */
-export const retrieveNote: API.OperationMethod<
-  RetrieveNoteRequest,
-  Note,
-  RetrieveNoteError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveNoteRequest,
-  output: Note,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveSegmentError = NotFound | IntercomOpError;
-/** Retrieve a segment You can fetch the details of a single segment. */
-export const retrieveSegment: API.OperationMethod<
-  RetrieveSegmentRequest,
-  Segment,
-  RetrieveSegmentError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveSegmentRequest,
-  output: Segment,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveTeamError = NotFound | IntercomOpError;
-/** Retrieve a team You can fetch the details of a single team, containing an array of admins that belong to this team. */
-export const retrieveTeam: API.OperationMethod<
-  RetrieveTeamRequest,
-  Team,
-  RetrieveTeamError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveTeamRequest,
-  output: Team,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveVisitorWithUserIdError = NotFound | IntercomOpError;
-/** Retrieve a visitor with User ID You can fetch the details of a single visitor. */
-export const retrieveVisitorWithUserId: API.OperationMethod<
-  RetrieveVisitorWithUserIdRequest,
-  Visitor,
-  RetrieveVisitorWithUserIdError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveVisitorWithUserIdRequest,
-  output: Visitor,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveWhatsAppMessageStatusError =
-  | BadRequest
-  | NotFound
-  | IntercomOpError;
-/** Retrieve WhatsApp message delivery status Retrieves the delivery status of a specific WhatsApp message by its message ID. Returns the current status, conversation details, and any error information if the message failed to deliver. */
-export const retrieveWhatsAppMessageStatus: API.OperationMethod<
-  RetrieveWhatsAppMessageStatusRequest,
-  WhatsappMessageStatus,
-  RetrieveWhatsAppMessageStatusError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveWhatsAppMessageStatusRequest,
-  output: WhatsappMessageStatus,
-  errors: [BadRequest, NotFound, UnknownIntercomError],
   protocol: IntercomProtocol,
   retry: Retry.Retry,
 }));
@@ -22545,96 +22616,6 @@ export const setAwayAdmin: API.OperationMethod<
   input: SetAwayAdminRequest,
   output: Admin,
   errors: [BadRequest, NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCallError = NotFound | IntercomOpError;
-/** Get a call Retrieve a single call by id. */
-export const showCall: API.OperationMethod<
-  ShowCallRequest,
-  Call,
-  ShowCallError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCallRequest,
-  output: Call,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCallRecordingError = NotFound | IntercomOpError;
-/** Get call recording by call id Redirects to a signed URL for the call's recording if it exists. */
-export const showCallRecording: API.OperationMethod<
-  ShowCallRecordingRequest,
-  ShowCallRecordingResponse,
-  ShowCallRecordingError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCallRecordingRequest,
-  output: ShowCallRecordingResponse,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCallTranscriptError = NotFound | IntercomOpError;
-/** Get call transcript by call id Returns the transcript for the specified call as a downloadable text file. */
-export const showCallTranscript: API.OperationMethod<
-  ShowCallTranscriptRequest,
-  ShowCallTranscriptResponse,
-  ShowCallTranscriptError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCallTranscriptRequest,
-  output: ShowCallTranscriptResponse,
-  errors: [NotFound, UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowContactError = IntercomOpError;
-/** Get a contact You can fetch the details of a single contact. {% admonition type="info" name="Merged contacts return 410 Gone" %} If a contact has been merged into another contact via the Merge endpoint (`POST /contacts/merge`), requesting it by its original ID will return **HTTP 410 Gone** with a `Link` header pointing to the canonical (merged-into) contact. **Response headers:** ``` Link: </contacts/{canonical_id}>; rel="canonical" ``` **Response body:** ```json { "type": "error.list", "errors": [{ "code": "contact_merged", "message": "This contact has been merged. See the 'Link' header for the canonical contact." }] } ``` The `Link` header contains the path to the final merge target, resolving multi-hop merge chains (up to 3 hops). {% /admonition %} */
-export const showContact: API.OperationMethod<
-  ShowContactRequest,
-  ShowContactResponse,
-  ShowContactError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowContactRequest,
-  output: ShowContactResponse,
-  errors: [UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowContactByExternalIdError = IntercomOpError;
-/** Get a contact by External ID You can fetch the details of a single contact by external ID. Note that this endpoint only supports users and not leads. {% admonition type="info" name="Merged contacts return 410 Gone" %} If the contact with this external ID has been merged into another contact, the API returns **HTTP 410 Gone** with a `Link` header pointing to the canonical (merged-into) contact. See `GET /contacts/{id}` for details on the response format. {% /admonition %} */
-export const showContactByExternalId: API.OperationMethod<
-  ShowContactByExternalIdRequest,
-  ShowContactByExternalIdResponse,
-  ShowContactByExternalIdError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowContactByExternalIdRequest,
-  output: ShowContactByExternalIdResponse,
-  errors: [UnknownIntercomError],
-  protocol: IntercomProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowDataConnectorExecutionResultError = NotFound | IntercomOpError;
-/** Retrieve an execution result Retrieve details for a specific data connector execution result. Always includes request/response bodies and the sanitised request URL. */
-export const showDataConnectorExecutionResult: API.OperationMethod<
-  ShowDataConnectorExecutionResultRequest,
-  DataConnectorExecutionResult,
-  ShowDataConnectorExecutionResultError,
-  IntercomOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowDataConnectorExecutionResultRequest,
-  output: DataConnectorExecutionResult,
-  errors: [NotFound, UnknownIntercomError],
   protocol: IntercomProtocol,
   retry: Retry.Retry,
 }));

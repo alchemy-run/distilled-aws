@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.intercom.api#AdminWithApp": {
@@ -2941,7 +2942,7 @@
         "smithy.api#documentation": "Create an office hours schedule\n\nYou can create a new office hours schedule for the workspace."
       }
     },
-    "com.intercom.api#RetrieveAdminRequest": {
+    "com.intercom.api#GetAdminRequest": {
       "type": "structure",
       "members": {
         "admin_id": {
@@ -2957,10 +2958,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveAdmin": {
+    "com.intercom.api#GetAdmin": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveAdminRequest"
+        "target": "com.intercom.api#GetAdminRequest"
       },
       "output": {
         "target": "com.intercom.api#Admin"
@@ -5832,7 +5833,7 @@
         "smithy.api#documentation": "Create an article\n\nYou can create a new article by making a POST request to `https://api.intercom.io/articles`.\n\n> 📘 Tags cannot be managed via the Articles API\n>\n> Article tags are read-only in responses. To create, update, or delete tags, use the Intercom UI or the Tags API endpoints."
       }
     },
-    "com.intercom.api#RetrieveArticleRequest": {
+    "com.intercom.api#GetArticleRequest": {
       "type": "structure",
       "members": {
         "article_id": {
@@ -5848,7 +5849,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveArticleResponseType": {
+    "com.intercom.api#GetArticleResponseType": {
       "type": "enum",
       "members": {
         "ARTICLE": {
@@ -5862,7 +5863,7 @@
         "smithy.api#documentation": "The type of object - `article`."
       }
     },
-    "com.intercom.api#RetrieveArticleResponseState": {
+    "com.intercom.api#GetArticleResponseState": {
       "type": "enum",
       "members": {
         "PUBLISHED": {
@@ -5882,7 +5883,7 @@
         "smithy.api#documentation": "Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content."
       }
     },
-    "com.intercom.api#RetrieveArticleResponseParentIdsList": {
+    "com.intercom.api#GetArticleResponseParentIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -5891,7 +5892,7 @@
         "smithy.api#documentation": "The ids of the article's parent collections or sections. An article without this field stands alone."
       }
     },
-    "com.intercom.api#RetrieveArticleResponseHelpCenterAudience": {
+    "com.intercom.api#GetArticleResponseHelpCenterAudience": {
       "type": "enum",
       "members": {
         "EVERYONE": {
@@ -5935,11 +5936,11 @@
         "smithy.api#documentation": "The audience that can view this article in the Help Center. `everyone` means all users and visitors can view it; `restricted` indicates a custom audience ruleset. For multilingual articles, this is the article-level audience."
       }
     },
-    "com.intercom.api#RetrieveArticleResponse": {
+    "com.intercom.api#GetArticleResponse": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.intercom.api#RetrieveArticleResponseType",
+          "target": "com.intercom.api#GetArticleResponseType",
           "traits": {
             "smithy.api#documentation": "The type of object - `article`."
           }
@@ -5990,7 +5991,7 @@
           }
         },
         "state": {
-          "target": "com.intercom.api#RetrieveArticleResponseState",
+          "target": "com.intercom.api#GetArticleResponseState",
           "traits": {
             "smithy.api#documentation": "Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content."
           }
@@ -6028,7 +6029,7 @@
           }
         },
         "parent_ids": {
-          "target": "com.intercom.api#RetrieveArticleResponseParentIdsList",
+          "target": "com.intercom.api#GetArticleResponseParentIdsList",
           "traits": {
             "smithy.api#documentation": "The ids of the article's parent collections or sections. An article without this field stands alone."
           }
@@ -6072,7 +6073,7 @@
           }
         },
         "help_center_audience": {
-          "target": "com.intercom.api#RetrieveArticleResponseHelpCenterAudience",
+          "target": "com.intercom.api#GetArticleResponseHelpCenterAudience",
           "traits": {
             "smithy.api#documentation": "The audience that can view this article in the Help Center. `everyone` means all users and visitors can view it; `restricted` indicates a custom audience ruleset. For multilingual articles, this is the article-level audience.",
             "com.distilled.openapi#nullable": {}
@@ -6118,13 +6119,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.intercom.api#RetrieveArticle": {
+    "com.intercom.api#GetArticle": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveArticleRequest"
+        "target": "com.intercom.api#GetArticleRequest"
       },
       "output": {
-        "target": "com.intercom.api#RetrieveArticleResponse"
+        "target": "com.intercom.api#GetArticleResponse"
       },
       "errors": [
         {
@@ -6648,7 +6649,7 @@
         "smithy.api#documentation": "Delete an article\n\nYou can delete a single article by making a DELETE request to `https://api.intercom.io/articles/<id>`."
       }
     },
-    "com.intercom.api#RetrieveArticleDraftRequest": {
+    "com.intercom.api#GetArticleDraftRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -6664,7 +6665,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveArticleDraftResponseType": {
+    "com.intercom.api#GetArticleDraftResponseType": {
       "type": "enum",
       "members": {
         "ARTICLE": {
@@ -6678,7 +6679,7 @@
         "smithy.api#documentation": "The type of object - `article`."
       }
     },
-    "com.intercom.api#RetrieveArticleDraftResponseState": {
+    "com.intercom.api#GetArticleDraftResponseState": {
       "type": "enum",
       "members": {
         "PUBLISHED": {
@@ -6698,7 +6699,7 @@
         "smithy.api#documentation": "Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content."
       }
     },
-    "com.intercom.api#RetrieveArticleDraftResponseParentIdsList": {
+    "com.intercom.api#GetArticleDraftResponseParentIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -6707,7 +6708,7 @@
         "smithy.api#documentation": "The ids of the article's parent collections or sections. An article without this field stands alone."
       }
     },
-    "com.intercom.api#RetrieveArticleDraftResponseHelpCenterAudience": {
+    "com.intercom.api#GetArticleDraftResponseHelpCenterAudience": {
       "type": "enum",
       "members": {
         "EVERYONE": {
@@ -6751,11 +6752,11 @@
         "smithy.api#documentation": "The audience that can view this article in the Help Center. `everyone` means all users and visitors can view it; `restricted` indicates a custom audience ruleset. For multilingual articles, this is the article-level audience."
       }
     },
-    "com.intercom.api#RetrieveArticleDraftResponse": {
+    "com.intercom.api#GetArticleDraftResponse": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.intercom.api#RetrieveArticleDraftResponseType",
+          "target": "com.intercom.api#GetArticleDraftResponseType",
           "traits": {
             "smithy.api#documentation": "The type of object - `article`."
           }
@@ -6806,7 +6807,7 @@
           }
         },
         "state": {
-          "target": "com.intercom.api#RetrieveArticleDraftResponseState",
+          "target": "com.intercom.api#GetArticleDraftResponseState",
           "traits": {
             "smithy.api#documentation": "Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content."
           }
@@ -6844,7 +6845,7 @@
           }
         },
         "parent_ids": {
-          "target": "com.intercom.api#RetrieveArticleDraftResponseParentIdsList",
+          "target": "com.intercom.api#GetArticleDraftResponseParentIdsList",
           "traits": {
             "smithy.api#documentation": "The ids of the article's parent collections or sections. An article without this field stands alone."
           }
@@ -6888,7 +6889,7 @@
           }
         },
         "help_center_audience": {
-          "target": "com.intercom.api#RetrieveArticleDraftResponseHelpCenterAudience",
+          "target": "com.intercom.api#GetArticleDraftResponseHelpCenterAudience",
           "traits": {
             "smithy.api#documentation": "The audience that can view this article in the Help Center. `everyone` means all users and visitors can view it; `restricted` indicates a custom audience ruleset. For multilingual articles, this is the article-level audience.",
             "com.distilled.openapi#nullable": {}
@@ -6934,13 +6935,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.intercom.api#RetrieveArticleDraft": {
+    "com.intercom.api#GetArticleDraft": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveArticleDraftRequest"
+        "target": "com.intercom.api#GetArticleDraftRequest"
       },
       "output": {
-        "target": "com.intercom.api#RetrieveArticleDraftResponse"
+        "target": "com.intercom.api#GetArticleDraftResponse"
       },
       "errors": [
         {
@@ -8047,7 +8048,7 @@
         "smithy.api#documentation": "List article versions\n\nFetch the version history of an article by making a GET request to\n`https://api.intercom.io/articles/<article_id>/versions`. Versions are\nreturned newest-first as a paginated list of metadata. Use\n`GET /articles/{article_id}/versions/{id}` to retrieve a single version\nwith its full content.\n\nRequires the `read_articles_scope` OAuth scope."
       }
     },
-    "com.intercom.api#RetrieveArticleVersionRequest": {
+    "com.intercom.api#GetArticleVersionRequest": {
       "type": "structure",
       "members": {
         "article_id": {
@@ -8209,10 +8210,10 @@
         "smithy.api#documentation": "Whether this version is the currently published version of the article (`published`) or an earlier non-live version (`draft`)."
       }
     },
-    "com.intercom.api#RetrieveArticleVersion": {
+    "com.intercom.api#GetArticleVersion": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveArticleVersionRequest"
+        "target": "com.intercom.api#GetArticleVersionRequest"
       },
       "output": {
         "target": "com.intercom.api#ArticleVersion"
@@ -9172,7 +9173,7 @@
         "smithy.api#documentation": "Create an audience\n\nYou can create a new audience by making a POST request to `https://api.intercom.io/audiences`."
       }
     },
-    "com.intercom.api#RetrieveAudienceRequest": {
+    "com.intercom.api#GetAudienceRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -9188,10 +9189,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveAudience": {
+    "com.intercom.api#GetAudience": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveAudienceRequest"
+        "target": "com.intercom.api#GetAudienceRequest"
       },
       "output": {
         "target": "com.intercom.api#Audience"
@@ -9325,14 +9326,14 @@
         "smithy.api#documentation": "Delete an audience\n\nYou can delete a single audience by making a DELETE request to `https://api.intercom.io/audiences/{id}`."
       }
     },
-    "com.intercom.api#PostExportReportingDataEnqueueRequestAttributeIdsList": {
+    "com.intercom.api#CreateExportReportingDataEnqueueRequestAttributeIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.intercom.api#PostExportReportingDataEnqueueRequest": {
+    "com.intercom.api#CreateExportReportingDataEnqueueRequest": {
       "type": "structure",
       "members": {
         "dataset_id": {
@@ -9342,7 +9343,7 @@
           }
         },
         "attribute_ids": {
-          "target": "com.intercom.api#PostExportReportingDataEnqueueRequestAttributeIdsList",
+          "target": "com.intercom.api#CreateExportReportingDataEnqueueRequestAttributeIdsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -9364,7 +9365,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#PostExportReportingDataEnqueueResponse": {
+    "com.intercom.api#CreateExportReportingDataEnqueueResponse": {
       "type": "structure",
       "members": {
         "job_identifier": {
@@ -9384,13 +9385,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.intercom.api#PostExportReportingDataEnqueue": {
+    "com.intercom.api#CreateExportReportingDataEnqueue": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#PostExportReportingDataEnqueueRequest"
+        "target": "com.intercom.api#CreateExportReportingDataEnqueueRequest"
       },
       "output": {
-        "target": "com.intercom.api#PostExportReportingDataEnqueueResponse"
+        "target": "com.intercom.api#CreateExportReportingDataEnqueueResponse"
       },
       "errors": [
         {
@@ -9406,7 +9407,7 @@
         "smithy.api#documentation": "Enqueue a new reporting data export job\n\nFor the conversation dataset, from this version onward this export returns all conversations, including those that never received a user reply. Earlier versions return only conversations that received at least one user reply. Other datasets are unaffected."
       }
     },
-    "com.intercom.api#GetExportReportingDataJobIdentifierRequest": {
+    "com.intercom.api#GetExportReportingDataRequest": {
       "type": "structure",
       "members": {
         "job_identifier": {
@@ -9436,7 +9437,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#GetExportReportingDataJobIdentifierResponse": {
+    "com.intercom.api#GetExportReportingDataResponse": {
       "type": "structure",
       "members": {
         "job_identifier": {
@@ -9456,13 +9457,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.intercom.api#GetExportReportingDataJobIdentifier": {
+    "com.intercom.api#GetExportReportingData": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#GetExportReportingDataJobIdentifierRequest"
+        "target": "com.intercom.api#GetExportReportingDataRequest"
       },
       "output": {
-        "target": "com.intercom.api#GetExportReportingDataJobIdentifierResponse"
+        "target": "com.intercom.api#GetExportReportingDataResponse"
       },
       "errors": [
         {
@@ -9478,7 +9479,7 @@
         "smithy.api#documentation": "Get export job status"
       }
     },
-    "com.intercom.api#GetExportReportingDataGetDatasetsResponseDataItemAttributesItem": {
+    "com.intercom.api#ListExportReportingDataGetDatasetsResponseDataItemAttributesItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -9499,14 +9500,14 @@
       },
       "traits": {}
     },
-    "com.intercom.api#GetExportReportingDataGetDatasetsResponseDataItemAttributesList": {
+    "com.intercom.api#ListExportReportingDataGetDatasetsResponseDataItemAttributesList": {
       "type": "list",
       "member": {
-        "target": "com.intercom.api#GetExportReportingDataGetDatasetsResponseDataItemAttributesItem"
+        "target": "com.intercom.api#ListExportReportingDataGetDatasetsResponseDataItemAttributesItem"
       },
       "traits": {}
     },
-    "com.intercom.api#GetExportReportingDataGetDatasetsResponseDataItem": {
+    "com.intercom.api#ListExportReportingDataGetDatasetsResponseDataItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -9522,39 +9523,39 @@
           "target": "smithy.api#String"
         },
         "attributes": {
-          "target": "com.intercom.api#GetExportReportingDataGetDatasetsResponseDataItemAttributesList"
+          "target": "com.intercom.api#ListExportReportingDataGetDatasetsResponseDataItemAttributesList"
         }
       },
       "traits": {}
     },
-    "com.intercom.api#GetExportReportingDataGetDatasetsResponseDataList": {
+    "com.intercom.api#ListExportReportingDataGetDatasetsResponseDataList": {
       "type": "list",
       "member": {
-        "target": "com.intercom.api#GetExportReportingDataGetDatasetsResponseDataItem"
+        "target": "com.intercom.api#ListExportReportingDataGetDatasetsResponseDataItem"
       },
       "traits": {}
     },
-    "com.intercom.api#GetExportReportingDataGetDatasetsResponse": {
+    "com.intercom.api#ListExportReportingDataGetDatasetsResponse": {
       "type": "structure",
       "members": {
         "type": {
           "target": "smithy.api#String"
         },
         "data": {
-          "target": "com.intercom.api#GetExportReportingDataGetDatasetsResponseDataList"
+          "target": "com.intercom.api#ListExportReportingDataGetDatasetsResponseDataList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.intercom.api#GetExportReportingDataGetDatasets": {
+    "com.intercom.api#ListExportReportingDataGetDatasets": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.intercom.api#GetExportReportingDataGetDatasetsResponse"
+        "target": "com.intercom.api#ListExportReportingDataGetDatasetsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9565,7 +9566,7 @@
         "smithy.api#documentation": "List available datasets and attributes"
       }
     },
-    "com.intercom.api#GetDownloadReportingDataJobIdentifierRequest": {
+    "com.intercom.api#GetDownloadReportingDataRequest": {
       "type": "structure",
       "members": {
         "job_identifier": {
@@ -9587,10 +9588,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#GetDownloadReportingDataJobIdentifier": {
+    "com.intercom.api#GetDownloadReportingData": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#GetDownloadReportingDataJobIdentifierRequest"
+        "target": "com.intercom.api#GetDownloadReportingDataRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10652,7 +10653,7 @@
         "smithy.api#documentation": "Create a redirect\n\nYou can create a new URL redirect by making a POST request to `https://api.intercom.io/help_center/help_centers/{help_center_id}/redirects`.\n\nRequires the `read_write_help_center_redirects_scope` OAuth scope."
       }
     },
-    "com.intercom.api#RetrieveHelpCenterRedirectRequest": {
+    "com.intercom.api#GetHelpCenterRedirectRequest": {
       "type": "structure",
       "members": {
         "help_center_id": {
@@ -10676,10 +10677,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveHelpCenterRedirect": {
+    "com.intercom.api#GetHelpCenterRedirect": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveHelpCenterRedirectRequest"
+        "target": "com.intercom.api#GetHelpCenterRedirectRequest"
       },
       "output": {
         "target": "com.intercom.api#HelpCenterRedirect"
@@ -11342,7 +11343,7 @@
         "smithy.api#documentation": "Create a collection\n\nYou can create a new collection by making a POST request to `https://api.intercom.io/help_center/collections.`"
       }
     },
-    "com.intercom.api#RetrieveCollectionRequest": {
+    "com.intercom.api#GetCollectionRequest": {
       "type": "structure",
       "members": {
         "collection_id": {
@@ -11358,10 +11359,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveCollection": {
+    "com.intercom.api#GetCollection": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveCollectionRequest"
+        "target": "com.intercom.api#GetCollectionRequest"
       },
       "output": {
         "target": "com.intercom.api#Collection"
@@ -11521,7 +11522,7 @@
         "smithy.api#documentation": "Delete a collection\n\nYou can delete a single collection by making a DELETE request to `https://api.intercom.io/collections/<id>`."
       }
     },
-    "com.intercom.api#RetrieveHelpCenterRequest": {
+    "com.intercom.api#GetHelpCenterRequest": {
       "type": "structure",
       "members": {
         "help_center_id": {
@@ -11621,10 +11622,10 @@
         "smithy.api#documentation": "The locales in which the help center is available."
       }
     },
-    "com.intercom.api#RetrieveHelpCenter": {
+    "com.intercom.api#GetHelpCenter": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveHelpCenterRequest"
+        "target": "com.intercom.api#GetHelpCenterRequest"
       },
       "output": {
         "target": "com.intercom.api#HelpCenter"
@@ -12108,7 +12109,7 @@
         "smithy.api#documentation": "Create an internal article\n\nYou can create a new internal article by making a POST request to `https://api.intercom.io/internal_articles`."
       }
     },
-    "com.intercom.api#RetrieveInternalArticleRequest": {
+    "com.intercom.api#GetInternalArticleRequest": {
       "type": "structure",
       "members": {
         "internal_article_id": {
@@ -12124,7 +12125,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveInternalArticleResponseType": {
+    "com.intercom.api#GetInternalArticleResponseType": {
       "type": "enum",
       "members": {
         "INTERNAL_ARTICLE": {
@@ -12138,7 +12139,7 @@
         "smithy.api#documentation": "The type of object - `internal_article`."
       }
     },
-    "com.intercom.api#RetrieveInternalArticleResponseAudienceIdsList": {
+    "com.intercom.api#GetInternalArticleResponseAudienceIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -12147,11 +12148,11 @@
         "smithy.api#documentation": "The list of audience IDs this internal article is targeted to for Fin AI Agent. Empty array means no audience targeting is set."
       }
     },
-    "com.intercom.api#RetrieveInternalArticleResponse": {
+    "com.intercom.api#GetInternalArticleResponse": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.intercom.api#RetrieveInternalArticleResponseType",
+          "target": "com.intercom.api#GetInternalArticleResponseType",
           "traits": {
             "smithy.api#documentation": "The type of object - `internal_article`."
           }
@@ -12213,7 +12214,7 @@
           }
         },
         "audience_ids": {
-          "target": "com.intercom.api#RetrieveInternalArticleResponseAudienceIdsList",
+          "target": "com.intercom.api#GetInternalArticleResponseAudienceIdsList",
           "traits": {
             "smithy.api#documentation": "The list of audience IDs this internal article is targeted to for Fin AI Agent. Empty array means no audience targeting is set.",
             "com.distilled.openapi#nullable": {}
@@ -12242,13 +12243,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.intercom.api#RetrieveInternalArticle": {
+    "com.intercom.api#GetInternalArticle": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveInternalArticleRequest"
+        "target": "com.intercom.api#GetInternalArticleRequest"
       },
       "output": {
-        "target": "com.intercom.api#RetrieveInternalArticleResponse"
+        "target": "com.intercom.api#GetInternalArticleResponse"
       },
       "errors": [
         {
@@ -12876,7 +12877,7 @@
         "smithy.api#documentation": "Update IP allowlist settings\n\nUpdate the IP allowlist configuration for the workspace.\n\n{% admonition type=\"warning\" name=\"Lockout Protection\" %}\n  The API will reject updates that would lock out the caller's IP address. Ensure your current IP is included in the allowlist when enabling the feature.\n{% /admonition %}"
       }
     },
-    "com.intercom.api#RetrieveCompanyRequest": {
+    "com.intercom.api#GetCompanyRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -13447,10 +13448,10 @@
         "smithy.api#documentation": "An array containing Company Objects."
       }
     },
-    "com.intercom.api#RetrieveCompany": {
+    "com.intercom.api#GetCompany": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveCompanyRequest"
+        "target": "com.intercom.api#GetCompanyRequest"
       },
       "output": {
         "target": "com.intercom.api#CompanyList"
@@ -13571,7 +13572,7 @@
         "smithy.api#documentation": "Create or Update a company\n\nYou can create or update a company.\n\nCompanies will be only visible in Intercom when there is at least one associated user.\n\nCompanies are looked up via `company_id` in a `POST` request, if not found via `company_id`, the new company will be created, if found, that company will be updated.\n\n{% admonition type=\"warning\" name=\"Using `company_id`\" %}\n  You can set a unique `company_id` value when creating a company. However, it is not possible to update `company_id`. Be sure to set a unique value once upon creation of the company.\n{% /admonition %}"
       }
     },
-    "com.intercom.api#RetrieveACompanyByIdRequest": {
+    "com.intercom.api#GetACompanyByIdRequest": {
       "type": "structure",
       "members": {
         "company_id": {
@@ -13587,10 +13588,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveACompanyById": {
+    "com.intercom.api#GetACompanyById": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveACompanyByIdRequest"
+        "target": "com.intercom.api#GetACompanyByIdRequest"
       },
       "output": {
         "target": "com.intercom.api#Company"
@@ -15825,7 +15826,7 @@
         "smithy.api#documentation": "Remove tag from a contact\n\nYou can remove tag from a specific contact. This will return a tag object for the tag that was removed from the contact."
       }
     },
-    "com.intercom.api#ShowContactRequest": {
+    "com.intercom.api#GetContactRequest": {
       "type": "structure",
       "members": {
         "contact_id": {
@@ -15848,7 +15849,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#ShowContactResponseAvatar": {
+    "com.intercom.api#GetContactResponseAvatar": {
       "type": "structure",
       "members": {
         "type": {
@@ -15867,7 +15868,7 @@
       },
       "traits": {}
     },
-    "com.intercom.api#ShowContactResponseMergeHistoryList": {
+    "com.intercom.api#GetContactResponseMergeHistoryList": {
       "type": "list",
       "member": {
         "target": "com.intercom.api#MergeHistoryItem"
@@ -15876,7 +15877,7 @@
         "smithy.api#documentation": "A list of contacts that were merged into this contact. Only included in the response when `include_merge_history=true` is passed as a query parameter. Only available for contacts with a `user` role."
       }
     },
-    "com.intercom.api#ShowContactResponse": {
+    "com.intercom.api#GetContactResponse": {
       "type": "structure",
       "members": {
         "type": {
@@ -16141,7 +16142,7 @@
           }
         },
         "avatar": {
-          "target": "com.intercom.api#ShowContactResponseAvatar",
+          "target": "com.intercom.api#GetContactResponseAvatar",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -16165,7 +16166,7 @@
           "target": "com.intercom.api#ContactSocialProfiles"
         },
         "merge_history": {
-          "target": "com.intercom.api#ShowContactResponseMergeHistoryList",
+          "target": "com.intercom.api#GetContactResponseMergeHistoryList",
           "traits": {
             "smithy.api#documentation": "A list of contacts that were merged into this contact. Only included in the response when `include_merge_history=true` is passed as a query parameter. Only available for contacts with a `user` role.",
             "com.distilled.openapi#nullable": {}
@@ -16183,13 +16184,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.intercom.api#ShowContact": {
+    "com.intercom.api#GetContact": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#ShowContactRequest"
+        "target": "com.intercom.api#GetContactRequest"
       },
       "output": {
-        "target": "com.intercom.api#ShowContactResponse"
+        "target": "com.intercom.api#GetContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17901,7 +17902,7 @@
         "smithy.api#documentation": "Create contact\n\nYou can create a new contact (ie. user or lead)."
       }
     },
-    "com.intercom.api#ShowContactByExternalIdRequest": {
+    "com.intercom.api#GetContactByExternalIdRequest": {
       "type": "structure",
       "members": {
         "external_id": {
@@ -17924,7 +17925,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#ShowContactByExternalIdResponseAvatar": {
+    "com.intercom.api#GetContactByExternalIdResponseAvatar": {
       "type": "structure",
       "members": {
         "type": {
@@ -17943,7 +17944,7 @@
       },
       "traits": {}
     },
-    "com.intercom.api#ShowContactByExternalIdResponseMergeHistoryList": {
+    "com.intercom.api#GetContactByExternalIdResponseMergeHistoryList": {
       "type": "list",
       "member": {
         "target": "com.intercom.api#MergeHistoryItem"
@@ -17952,7 +17953,7 @@
         "smithy.api#documentation": "A list of contacts that were merged into this contact. Only included in the response when `include_merge_history=true` is passed as a query parameter. Only available for contacts with a `user` role."
       }
     },
-    "com.intercom.api#ShowContactByExternalIdResponse": {
+    "com.intercom.api#GetContactByExternalIdResponse": {
       "type": "structure",
       "members": {
         "type": {
@@ -18217,7 +18218,7 @@
           }
         },
         "avatar": {
-          "target": "com.intercom.api#ShowContactByExternalIdResponseAvatar",
+          "target": "com.intercom.api#GetContactByExternalIdResponseAvatar",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -18241,7 +18242,7 @@
           "target": "com.intercom.api#ContactSocialProfiles"
         },
         "merge_history": {
-          "target": "com.intercom.api#ShowContactByExternalIdResponseMergeHistoryList",
+          "target": "com.intercom.api#GetContactByExternalIdResponseMergeHistoryList",
           "traits": {
             "smithy.api#documentation": "A list of contacts that were merged into this contact. Only included in the response when `include_merge_history=true` is passed as a query parameter. Only available for contacts with a `user` role.",
             "com.distilled.openapi#nullable": {}
@@ -18259,13 +18260,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.intercom.api#ShowContactByExternalId": {
+    "com.intercom.api#GetContactByExternalId": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#ShowContactByExternalIdRequest"
+        "target": "com.intercom.api#GetContactByExternalIdRequest"
       },
       "output": {
-        "target": "com.intercom.api#ShowContactByExternalIdResponse"
+        "target": "com.intercom.api#GetContactByExternalIdResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22740,7 +22741,7 @@
         "smithy.api#documentation": "Creates a conversation\n\nYou can create a conversation that has been initiated by a contact (ie. user or lead).\nThe conversation can be an in-app message only.\n\n{% admonition type=\"info\" name=\"Sending for visitors\" %}\nYou can also send a message from a visitor by specifying their `user_id` or `id` value in the `from` field, along with a `type` field value of `contact`.\nThis visitor will be automatically converted to a contact with a lead role once the conversation is created.\n{% /admonition %}\n\nThis will return the Message model that has been created."
       }
     },
-    "com.intercom.api#RetrieveConversationRequest": {
+    "com.intercom.api#GetConversationRequest": {
       "type": "structure",
       "members": {
         "conversation_id": {
@@ -23677,10 +23678,10 @@
         "smithy.api#documentation": "QA scorecard results for this conversation. Only included when `include_scorecards=true` is passed as a query parameter."
       }
     },
-    "com.intercom.api#RetrieveConversation": {
+    "com.intercom.api#GetConversation": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveConversationRequest"
+        "target": "com.intercom.api#GetConversationRequest"
       },
       "output": {
         "target": "com.intercom.api#Conversation"
@@ -29981,7 +29982,7 @@
         "smithy.api#documentation": "Delete a Custom Object Instance by External ID\n\nDelete a single Custom Object instance by external_id."
       }
     },
-    "com.intercom.api#GetCustomObjectInstancesByIdRequest": {
+    "com.intercom.api#GetCustomObjectInstanceRequest": {
       "type": "structure",
       "members": {
         "custom_object_type_identifier": {
@@ -30005,10 +30006,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#GetCustomObjectInstancesById": {
+    "com.intercom.api#GetCustomObjectInstance": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#GetCustomObjectInstancesByIdRequest"
+        "target": "com.intercom.api#GetCustomObjectInstanceRequest"
       },
       "output": {
         "target": "com.intercom.api#CustomObjectInstance"
@@ -31779,7 +31780,7 @@
         "smithy.api#documentation": "Create a data connector\n\nCreate a new data connector. The connector is created in `draft` state. Configure its URL, headers, data inputs, and other settings, then set it to `live` when ready."
       }
     },
-    "com.intercom.api#RetrieveDataConnectorRequestStateVersion": {
+    "com.intercom.api#GetDataConnectorRequestStateVersion": {
       "type": "enum",
       "members": {
         "DRAFT": {
@@ -31797,7 +31798,7 @@
       },
       "traits": {}
     },
-    "com.intercom.api#RetrieveDataConnectorRequest": {
+    "com.intercom.api#GetDataConnectorRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -31809,7 +31810,7 @@
           }
         },
         "state_version": {
-          "target": "com.intercom.api#RetrieveDataConnectorRequestStateVersion",
+          "target": "com.intercom.api#GetDataConnectorRequestStateVersion",
           "traits": {
             "smithy.api#httpQuery": "state_version",
             "smithy.api#documentation": "Which version of the data connector to return. Defaults to live."
@@ -31820,10 +31821,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveDataConnector": {
+    "com.intercom.api#GetDataConnector": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveDataConnectorRequest"
+        "target": "com.intercom.api#GetDataConnectorRequest"
       },
       "output": {
         "target": "com.intercom.api#DataConnectorDetail"
@@ -32870,7 +32871,7 @@
         "smithy.api#documentation": "List execution results for a data connector\n\nRetrieve paginated execution logs for a specific data connector.\nResults from the last hour are returned by default. Use `start_ts` and `end_ts` to customize the time range.\n\nRequest/response bodies are excluded by default. Use `include_bodies=true` to include them."
       }
     },
-    "com.intercom.api#ShowDataConnectorExecutionResultRequest": {
+    "com.intercom.api#GetDataConnectorExecutionResultRequest": {
       "type": "structure",
       "members": {
         "data_connector_id": {
@@ -32894,10 +32895,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#ShowDataConnectorExecutionResult": {
+    "com.intercom.api#GetDataConnectorExecutionResult": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#ShowDataConnectorExecutionResultRequest"
+        "target": "com.intercom.api#GetDataConnectorExecutionResultRequest"
       },
       "output": {
         "target": "com.intercom.api#DataConnectorExecutionResult"
@@ -33941,7 +33942,7 @@
         "smithy.api#documentation": "Create a message\n\nYou can create a message that has been initiated by an admin. The conversation can be either an in-app message, an email or whatsapp.\n\n> 🚧 Sending for visitors\n>\n> There can be a short delay between when a contact is created and when a contact becomes available to be messaged through the API. A 404 Not Found error will be returned in this case.\n\nThis will return the Message model that has been created.\n\n> 🚧 Retrieving Associated Conversations\n>\n> As this is a message, there will be no conversation present until the contact responds. Once they do, you will have to search for a contact's conversations with the id of the message."
       }
     },
-    "com.intercom.api#RetrieveWhatsAppMessageStatusRequest": {
+    "com.intercom.api#GetWhatsAppMessageStatusRequest": {
       "type": "structure",
       "members": {
         "message_id": {
@@ -34066,10 +34067,10 @@
         "smithy.api#documentation": "Error details, present only when status is \"failed\""
       }
     },
-    "com.intercom.api#RetrieveWhatsAppMessageStatus": {
+    "com.intercom.api#GetWhatsAppMessageStatus": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveWhatsAppMessageStatusRequest"
+        "target": "com.intercom.api#GetWhatsAppMessageStatusRequest"
       },
       "output": {
         "target": "com.intercom.api#WhatsappMessageStatus"
@@ -34091,7 +34092,7 @@
         "smithy.api#documentation": "Retrieve WhatsApp message delivery status\n\nRetrieves the delivery status of a specific WhatsApp message by its message ID.\n\n\nReturns the current status, conversation details, and any error information if the message failed to deliver."
       }
     },
-    "com.intercom.api#GetWhatsAppMessageStatusRequest": {
+    "com.intercom.api#GetWhatsAppMessageStatusRequest2": {
       "type": "structure",
       "members": {
         "ruleset_id": {
@@ -34344,10 +34345,10 @@
       },
       "traits": {}
     },
-    "com.intercom.api#GetWhatsAppMessageStatus": {
+    "com.intercom.api#GetWhatsAppMessageStatus2": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#GetWhatsAppMessageStatusRequest"
+        "target": "com.intercom.api#GetWhatsAppMessageStatusRequest2"
       },
       "output": {
         "target": "com.intercom.api#WhatsappMessageStatusList"
@@ -34807,7 +34808,7 @@
         "smithy.api#documentation": "Create a news item\n\nYou can create a news item"
       }
     },
-    "com.intercom.api#RetrieveNewsItemRequest": {
+    "com.intercom.api#GetNewsItemRequest": {
       "type": "structure",
       "members": {
         "news_item_id": {
@@ -34823,10 +34824,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveNewsItem": {
+    "com.intercom.api#GetNewsItem": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveNewsItemRequest"
+        "target": "com.intercom.api#GetNewsItemRequest"
       },
       "output": {
         "target": "com.intercom.api#NewsItem"
@@ -35108,7 +35109,7 @@
         "smithy.api#documentation": "List all newsfeeds\n\nYou can fetch a list of all newsfeeds"
       }
     },
-    "com.intercom.api#RetrieveNewsfeedRequest": {
+    "com.intercom.api#GetNewsfeedRequest": {
       "type": "structure",
       "members": {
         "newsfeed_id": {
@@ -35124,10 +35125,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveNewsfeed": {
+    "com.intercom.api#GetNewsfeed": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveNewsfeedRequest"
+        "target": "com.intercom.api#GetNewsfeedRequest"
       },
       "output": {
         "target": "com.intercom.api#Newsfeed"
@@ -35141,7 +35142,7 @@
         "smithy.api#documentation": "Retrieve a newsfeed\n\nYou can fetch the details of a single newsfeed"
       }
     },
-    "com.intercom.api#RetrieveNoteRequest": {
+    "com.intercom.api#GetNoteRequest": {
       "type": "structure",
       "members": {
         "note_id": {
@@ -35157,10 +35158,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveNote": {
+    "com.intercom.api#GetNote": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveNoteRequest"
+        "target": "com.intercom.api#GetNoteRequest"
       },
       "output": {
         "target": "com.intercom.api#Note"
@@ -35260,7 +35261,7 @@
         "smithy.api#documentation": "List all segments\n\nYou can fetch a list of all segments."
       }
     },
-    "com.intercom.api#RetrieveSegmentRequest": {
+    "com.intercom.api#GetSegmentRequest": {
       "type": "structure",
       "members": {
         "segment_id": {
@@ -35276,10 +35277,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveSegment": {
+    "com.intercom.api#GetSegment": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveSegmentRequest"
+        "target": "com.intercom.api#GetSegmentRequest"
       },
       "output": {
         "target": "com.intercom.api#Segment"
@@ -35583,7 +35584,7 @@
         "smithy.api#documentation": "List all calls\n\nRetrieve a paginated list of calls."
       }
     },
-    "com.intercom.api#ShowCallRequest": {
+    "com.intercom.api#GetCallRequest": {
       "type": "structure",
       "members": {
         "call_id": {
@@ -35599,10 +35600,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#ShowCall": {
+    "com.intercom.api#GetCall": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#ShowCallRequest"
+        "target": "com.intercom.api#GetCallRequest"
       },
       "output": {
         "target": "com.intercom.api#Call"
@@ -35621,7 +35622,7 @@
         "smithy.api#documentation": "Get a call\n\nRetrieve a single call by id."
       }
     },
-    "com.intercom.api#ShowCallRecordingRequest": {
+    "com.intercom.api#GetCallRecordingRequest": {
       "type": "structure",
       "members": {
         "call_id": {
@@ -35637,10 +35638,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#ShowCallRecording": {
+    "com.intercom.api#GetCallRecording": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#ShowCallRecordingRequest"
+        "target": "com.intercom.api#GetCallRecordingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -35659,7 +35660,7 @@
         "smithy.api#documentation": "Get call recording by call id\n\nRedirects to a signed URL for the call's recording if it exists."
       }
     },
-    "com.intercom.api#ShowCallTranscriptRequest": {
+    "com.intercom.api#GetCallTranscriptRequest": {
       "type": "structure",
       "members": {
         "call_id": {
@@ -35675,10 +35676,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#ShowCallTranscript": {
+    "com.intercom.api#GetCallTranscript": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#ShowCallTranscriptRequest"
+        "target": "com.intercom.api#GetCallTranscriptRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36480,7 +36481,7 @@
         "smithy.api#documentation": "List all teams\n\nThis will return a list of team objects for the App."
       }
     },
-    "com.intercom.api#RetrieveTeamRequest": {
+    "com.intercom.api#GetTeamRequest": {
       "type": "structure",
       "members": {
         "team_id": {
@@ -36496,10 +36497,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveTeam": {
+    "com.intercom.api#GetTeam": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveTeamRequest"
+        "target": "com.intercom.api#GetTeamRequest"
       },
       "output": {
         "target": "com.intercom.api#Team"
@@ -38318,7 +38319,7 @@
         "smithy.api#documentation": "Search tickets\n\nYou can search for multiple tickets by the value of their attributes in order to fetch exactly which ones you want.\n\nTo search for tickets, you send a `POST` request to `https://api.intercom.io/tickets/search`.\n\nThis will accept a query object in the body which will define your filters.\n{% admonition type=\"warning\" name=\"Optimizing search queries\" %}\n  Search queries can be complex, so optimizing them can help the performance of your search.\n  Use the `AND` and `OR` operators to combine multiple filters to get the exact results you need and utilize\n  pagination to limit the number of results returned. The default is `20` results per page.\n  See the [pagination section](https://developers.intercom.com/docs/build-an-integration/learn-more/rest-apis/pagination/#example-search-conversations-request) for more details on how to use the `starting_after` param.\n{% /admonition %}\n\n### Nesting & Limitations\n\nYou can nest these filters in order to get even more granular insights that pinpoint exactly what you need. Example: (1 OR 2) AND (3 OR 4).\nThere are some limitations to the amount of multiples there can be:\n- There's a limit of max 2 nested filters\n- There's a limit of max 15 filters for each AND or OR group\n\n### Accepted Fields\n\nMost keys listed as part of the Ticket model are searchable, whether writeable or not. The value you search for has to match the accepted type, otherwise the query will fail (ie. as `created_at` accepts a date, the `value` cannot be a string such as `\"foobar\"`).\nThe `source.body` field is unique as the search will not be performed against the entire value, but instead against every element of the value separately. For example, when searching for a conversation with a `\"I need support\"` body - the query should contain a `=` operator with the value `\"support\"` for such conversation to be returned. A query with a `=` operator and a `\"need support\"` value will not yield a result.\n\n\n{% admonition type=\"info\" name=\"Searching by Category\" %}\nWhen searching for tickets by the **`category`** field, specific terms must be used instead of the category names:\n* For **Customer** category tickets, use the term `request`.\n* For **Back-office** category tickets, use the term `task`.\n* For **Tracker** category tickets, use the term `tracker`.\n{% /admonition %}\n\n### Accepted Operators\n\n{% admonition type=\"info\" name=\"Searching based on `created_at`\" %}\n  You may use the `<=` or `>=` operators to search by `created_at`.\n{% /admonition %}\n\nThe table below shows the operators you can use to define how you want to search for the value.  The operator should be put in as a string (`\"=\"`). The operator has to be compatible with the field's type  (eg. you cannot search with `>` for a given string value as it's only compatible for integer's and dates)."
       }
     },
-    "com.intercom.api#RetrieveVisitorWithUserIdRequest": {
+    "com.intercom.api#GetVisitorWithUserIdRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -38794,10 +38795,10 @@
         "smithy.api#documentation": "The custom attributes you have set on the Visitor."
       }
     },
-    "com.intercom.api#RetrieveVisitorWithUserId": {
+    "com.intercom.api#GetVisitorWithUserId": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveVisitorWithUserIdRequest"
+        "target": "com.intercom.api#GetVisitorWithUserIdRequest"
       },
       "output": {
         "target": "com.intercom.api#Visitor"
@@ -39025,7 +39026,7 @@
         "smithy.api#documentation": "List all brands\n\nRetrieves all brands for the workspace, including the default brand.\nThe default brand id always matches the workspace"
       }
     },
-    "com.intercom.api#RetrieveBrandRequest": {
+    "com.intercom.api#GetBrandRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -39041,10 +39042,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveBrand": {
+    "com.intercom.api#GetBrand": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveBrandRequest"
+        "target": "com.intercom.api#GetBrandRequest"
       },
       "output": {
         "target": "com.intercom.api#Brand"
@@ -39173,7 +39174,7 @@
         "smithy.api#documentation": "List all email settings\n\nLists all sender email address settings for the workspace"
       }
     },
-    "com.intercom.api#RetrieveEmailRequest": {
+    "com.intercom.api#GetEmailRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -39189,10 +39190,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.intercom.api#RetrieveEmail": {
+    "com.intercom.api#GetEmail": {
       "type": "operation",
       "input": {
-        "target": "com.intercom.api#RetrieveEmailRequest"
+        "target": "com.intercom.api#GetEmailRequest"
       },
       "output": {
         "target": "com.intercom.api#EmailSetting"
@@ -39902,7 +39903,7 @@
           "target": "com.intercom.api#CreateOfficeHoursSchedule"
         },
         {
-          "target": "com.intercom.api#RetrieveAdmin"
+          "target": "com.intercom.api#GetAdmin"
         },
         {
           "target": "com.intercom.api#ListContentImportSources"
@@ -39941,7 +39942,7 @@
           "target": "com.intercom.api#CreateArticle"
         },
         {
-          "target": "com.intercom.api#RetrieveArticle"
+          "target": "com.intercom.api#GetArticle"
         },
         {
           "target": "com.intercom.api#UpdateArticle"
@@ -39950,7 +39951,7 @@
           "target": "com.intercom.api#DeleteArticle"
         },
         {
-          "target": "com.intercom.api#RetrieveArticleDraft"
+          "target": "com.intercom.api#GetArticleDraft"
         },
         {
           "target": "com.intercom.api#StageArticleDraft"
@@ -39968,7 +39969,7 @@
           "target": "com.intercom.api#ListArticleVersions"
         },
         {
-          "target": "com.intercom.api#RetrieveArticleVersion"
+          "target": "com.intercom.api#GetArticleVersion"
         },
         {
           "target": "com.intercom.api#SearchArticles"
@@ -39983,7 +39984,7 @@
           "target": "com.intercom.api#CreateAudience"
         },
         {
-          "target": "com.intercom.api#RetrieveAudience"
+          "target": "com.intercom.api#GetAudience"
         },
         {
           "target": "com.intercom.api#UpdateAudience"
@@ -39992,16 +39993,16 @@
           "target": "com.intercom.api#DeleteAudience"
         },
         {
-          "target": "com.intercom.api#PostExportReportingDataEnqueue"
+          "target": "com.intercom.api#CreateExportReportingDataEnqueue"
         },
         {
-          "target": "com.intercom.api#GetExportReportingDataJobIdentifier"
+          "target": "com.intercom.api#GetExportReportingData"
         },
         {
-          "target": "com.intercom.api#GetExportReportingDataGetDatasets"
+          "target": "com.intercom.api#ListExportReportingDataGetDatasets"
         },
         {
-          "target": "com.intercom.api#GetDownloadReportingDataJobIdentifier"
+          "target": "com.intercom.api#GetDownloadReportingData"
         },
         {
           "target": "com.intercom.api#StartFinConversation"
@@ -40019,7 +40020,7 @@
           "target": "com.intercom.api#CreateHelpCenterRedirect"
         },
         {
-          "target": "com.intercom.api#RetrieveHelpCenterRedirect"
+          "target": "com.intercom.api#GetHelpCenterRedirect"
         },
         {
           "target": "com.intercom.api#DeleteHelpCenterRedirect"
@@ -40031,7 +40032,7 @@
           "target": "com.intercom.api#CreateCollection"
         },
         {
-          "target": "com.intercom.api#RetrieveCollection"
+          "target": "com.intercom.api#GetCollection"
         },
         {
           "target": "com.intercom.api#UpdateCollection"
@@ -40040,7 +40041,7 @@
           "target": "com.intercom.api#DeleteCollection"
         },
         {
-          "target": "com.intercom.api#RetrieveHelpCenter"
+          "target": "com.intercom.api#GetHelpCenter"
         },
         {
           "target": "com.intercom.api#ListHelpCenters"
@@ -40052,7 +40053,7 @@
           "target": "com.intercom.api#CreateInternalArticle"
         },
         {
-          "target": "com.intercom.api#RetrieveInternalArticle"
+          "target": "com.intercom.api#GetInternalArticle"
         },
         {
           "target": "com.intercom.api#UpdateInternalArticle"
@@ -40076,13 +40077,13 @@
           "target": "com.intercom.api#UpdateIpAllowlist"
         },
         {
-          "target": "com.intercom.api#RetrieveCompany"
+          "target": "com.intercom.api#GetCompany"
         },
         {
           "target": "com.intercom.api#CreateOrUpdateCompany"
         },
         {
-          "target": "com.intercom.api#RetrieveACompanyById"
+          "target": "com.intercom.api#GetACompanyById"
         },
         {
           "target": "com.intercom.api#UpdateCompany"
@@ -40145,7 +40146,7 @@
           "target": "com.intercom.api#DetachTagFromContact"
         },
         {
-          "target": "com.intercom.api#ShowContact"
+          "target": "com.intercom.api#GetContact"
         },
         {
           "target": "com.intercom.api#UpdateContact"
@@ -40166,7 +40167,7 @@
           "target": "com.intercom.api#CreateContact"
         },
         {
-          "target": "com.intercom.api#ShowContactByExternalId"
+          "target": "com.intercom.api#GetContactByExternalId"
         },
         {
           "target": "com.intercom.api#ArchiveContact"
@@ -40226,7 +40227,7 @@
           "target": "com.intercom.api#CreateConversation"
         },
         {
-          "target": "com.intercom.api#RetrieveConversation"
+          "target": "com.intercom.api#GetConversation"
         },
         {
           "target": "com.intercom.api#UpdateConversation"
@@ -40301,7 +40302,7 @@
           "target": "com.intercom.api#DeleteCustomObjectInstancesById"
         },
         {
-          "target": "com.intercom.api#GetCustomObjectInstancesById"
+          "target": "com.intercom.api#GetCustomObjectInstance"
         },
         {
           "target": "com.intercom.api#DeleteCustomObjectInstancesByExternalId"
@@ -40322,7 +40323,7 @@
           "target": "com.intercom.api#CreateDataConnector"
         },
         {
-          "target": "com.intercom.api#RetrieveDataConnector"
+          "target": "com.intercom.api#GetDataConnector"
         },
         {
           "target": "com.intercom.api#UpdateDataConnector"
@@ -40334,7 +40335,7 @@
           "target": "com.intercom.api#ListDataConnectorExecutionResults"
         },
         {
-          "target": "com.intercom.api#ShowDataConnectorExecutionResult"
+          "target": "com.intercom.api#GetDataConnectorExecutionResult"
         },
         {
           "target": "com.intercom.api#LisDataEvents"
@@ -40364,10 +40365,10 @@
           "target": "com.intercom.api#CreateMessage"
         },
         {
-          "target": "com.intercom.api#RetrieveWhatsAppMessageStatus"
+          "target": "com.intercom.api#GetWhatsAppMessageStatus"
         },
         {
-          "target": "com.intercom.api#GetWhatsAppMessageStatus"
+          "target": "com.intercom.api#GetWhatsAppMessageStatus2"
         },
         {
           "target": "com.intercom.api#ListNewsItems"
@@ -40376,7 +40377,7 @@
           "target": "com.intercom.api#CreateNewsItem"
         },
         {
-          "target": "com.intercom.api#RetrieveNewsItem"
+          "target": "com.intercom.api#GetNewsItem"
         },
         {
           "target": "com.intercom.api#UpdateNewsItem"
@@ -40391,16 +40392,16 @@
           "target": "com.intercom.api#ListNewsfeeds"
         },
         {
-          "target": "com.intercom.api#RetrieveNewsfeed"
+          "target": "com.intercom.api#GetNewsfeed"
         },
         {
-          "target": "com.intercom.api#RetrieveNote"
+          "target": "com.intercom.api#GetNote"
         },
         {
           "target": "com.intercom.api#ListSegments"
         },
         {
-          "target": "com.intercom.api#RetrieveSegment"
+          "target": "com.intercom.api#GetSegment"
         },
         {
           "target": "com.intercom.api#ListSubscriptionTypes"
@@ -40412,13 +40413,13 @@
           "target": "com.intercom.api#ListCalls"
         },
         {
-          "target": "com.intercom.api#ShowCall"
+          "target": "com.intercom.api#GetCall"
         },
         {
-          "target": "com.intercom.api#ShowCallRecording"
+          "target": "com.intercom.api#GetCallRecording"
         },
         {
-          "target": "com.intercom.api#ShowCallTranscript"
+          "target": "com.intercom.api#GetCallTranscript"
         },
         {
           "target": "com.intercom.api#ListCallsWithTranscripts"
@@ -40439,7 +40440,7 @@
           "target": "com.intercom.api#ListTeams"
         },
         {
-          "target": "com.intercom.api#RetrieveTeam"
+          "target": "com.intercom.api#GetTeam"
         },
         {
           "target": "com.intercom.api#GetTeamMetrics"
@@ -40502,7 +40503,7 @@
           "target": "com.intercom.api#SearchTickets"
         },
         {
-          "target": "com.intercom.api#RetrieveVisitorWithUserId"
+          "target": "com.intercom.api#GetVisitorWithUserId"
         },
         {
           "target": "com.intercom.api#UpdateVisitor"
@@ -40514,13 +40515,13 @@
           "target": "com.intercom.api#ListBrands"
         },
         {
-          "target": "com.intercom.api#RetrieveBrand"
+          "target": "com.intercom.api#GetBrand"
         },
         {
           "target": "com.intercom.api#ListEmails"
         },
         {
-          "target": "com.intercom.api#RetrieveEmail"
+          "target": "com.intercom.api#GetEmail"
         },
         {
           "target": "com.intercom.api#RegisterFinVoiceCall"
