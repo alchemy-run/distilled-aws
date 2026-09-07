@@ -1,0 +1,969 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.surrealdb.api#GetStatus": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/status",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetch the status of a SurrealDB server\n\nChecks the connection status of a local or remote SurrealDB server."
+      }
+    },
+    "com.surrealdb.api#GetHealth": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/health",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetch the health of a SurrealDB server\n\nChecks the health status of a local or remote SurrealDB server and storage engine."
+      }
+    },
+    "com.surrealdb.api#GetVersion": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/version",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetch the version of a SurrealDB server\n\nReturns the version of a local or remote SurrealDB database server."
+      }
+    },
+    "com.surrealdb.api#GetExportRequest": {
+      "type": "structure",
+      "members": {
+        "nS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "NS",
+            "smithy.api#documentation": "Sets the selected Namespace for queries"
+          }
+        },
+        "dB": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "DB",
+            "smithy.api#documentation": "Sets the selected Database for queries"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.surrealdb.api#GetExport": {
+      "type": "operation",
+      "input": {
+        "target": "com.surrealdb.api#GetExportRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/export",
+          "code": 200
+        },
+        "smithy.api#documentation": "Export SurrealQL data from SurrealDB\n\nExports SurrealQL data from a local or remote SurrealDB server."
+      }
+    },
+    "com.surrealdb.api#ImportRequest": {
+      "type": "structure",
+      "members": {
+        "nS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "NS",
+            "smithy.api#documentation": "Sets the selected Namespace for queries"
+          }
+        },
+        "dB": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "DB",
+            "smithy.api#documentation": "Sets the selected Database for queries"
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.surrealdb.api#Import": {
+      "type": "operation",
+      "input": {
+        "target": "com.surrealdb.api#ImportRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/import",
+          "code": 200
+        },
+        "smithy.api#documentation": "Import SurrealQL data into SurrealDB\n\nImports SurrealQL data into a local or remote SurrealDB server."
+      }
+    },
+    "com.surrealdb.api#GetKeyRequest": {
+      "type": "structure",
+      "members": {
+        "table": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The table of the records to select"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The number of record results to fetch"
+          }
+        },
+        "start": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "start",
+            "smithy.api#documentation": "The number of record results to skip"
+          }
+        },
+        "fields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fields",
+            "smithy.api#documentation": "A comma-separated list of specific fields to retrieve for each record"
+          }
+        },
+        "nS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "NS",
+            "smithy.api#documentation": "Sets the selected Namespace for queries"
+          }
+        },
+        "dB": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "DB",
+            "smithy.api#documentation": "Sets the selected Database for queries"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.surrealdb.api#GetKey": {
+      "type": "operation",
+      "input": {
+        "target": "com.surrealdb.api#GetKeyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/key/{table}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Select all records from a table\n\nThis HTTP RESTful endpoint selects all records from a specific table in the database. It is equivalent to running:\n\n``` sql\nSELECT * FROM type::table($table);\n```"
+      }
+    },
+    "com.surrealdb.api#UpdateKeyRequestBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Record content"
+      }
+    },
+    "com.surrealdb.api#UpdateKeyRequest": {
+      "type": "structure",
+      "members": {
+        "table": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The table of the record to create"
+          }
+        },
+        "nS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "NS",
+            "smithy.api#documentation": "Sets the selected Namespace for queries"
+          }
+        },
+        "dB": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "DB",
+            "smithy.api#documentation": "Sets the selected Database for queries"
+          }
+        },
+        "body": {
+          "target": "com.surrealdb.api#UpdateKeyRequestBodyMap",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.surrealdb.api#UpdateKey": {
+      "type": "operation",
+      "input": {
+        "target": "com.surrealdb.api#UpdateKeyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/key/{table}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new record in a table\n\nThis HTTP RESTful endpoint creates a record in a specific table in the database. The supplied request body is used as the content of the record, and is equivalent to running:\n\n``` sql\nCREATE type::table($table) CONTENT $body;\n```"
+      }
+    },
+    "com.surrealdb.api#PutKeyRequestBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Record content"
+      }
+    },
+    "com.surrealdb.api#PutKeyRequest": {
+      "type": "structure",
+      "members": {
+        "table": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The table of the records to update"
+          }
+        },
+        "nS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "NS",
+            "smithy.api#documentation": "Sets the selected Namespace for queries"
+          }
+        },
+        "dB": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "DB",
+            "smithy.api#documentation": "Sets the selected Database for queries"
+          }
+        },
+        "body": {
+          "target": "com.surrealdb.api#PutKeyRequestBodyMap",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.surrealdb.api#PutKey": {
+      "type": "operation",
+      "input": {
+        "target": "com.surrealdb.api#PutKeyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/key/{table}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update all records in a table\n\nThis HTTP RESTful endpoint updates all records in a specific table in the database. It replaces the record content with the supplied request data, and is equivalent to running:\n\n``` sql\nUPDATE type::table($table) CONTENT $body;\n```"
+      }
+    },
+    "com.surrealdb.api#UpdateKeyByTableRequestBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Fields to merge into each record"
+      }
+    },
+    "com.surrealdb.api#UpdateKeyByTableRequest": {
+      "type": "structure",
+      "members": {
+        "table": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The table of the records to update"
+          }
+        },
+        "nS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "NS",
+            "smithy.api#documentation": "Sets the selected Namespace for queries"
+          }
+        },
+        "dB": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "DB",
+            "smithy.api#documentation": "Sets the selected Database for queries"
+          }
+        },
+        "body": {
+          "target": "com.surrealdb.api#UpdateKeyByTableRequestBodyMap",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.surrealdb.api#UpdateKeyByTable": {
+      "type": "operation",
+      "input": {
+        "target": "com.surrealdb.api#UpdateKeyByTableRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/key/{table}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update all records in a table\n\nThis HTTP RESTful endpoint updates all records in a specific table in the database. It merges the supplied request data with the records in the table, and is equivalent to running:\n\n``` sql\nUPDATE type::table($table) MERGE $body;\n```"
+      }
+    },
+    "com.surrealdb.api#DeleteKeyRequest": {
+      "type": "structure",
+      "members": {
+        "table": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The table of the records to delete"
+          }
+        },
+        "nS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "NS",
+            "smithy.api#documentation": "Sets the selected Namespace for queries"
+          }
+        },
+        "dB": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "DB",
+            "smithy.api#documentation": "Sets the selected Database for queries"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.surrealdb.api#DeleteKey": {
+      "type": "operation",
+      "input": {
+        "target": "com.surrealdb.api#DeleteKeyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/key/{table}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete all records from a table\n\nThis HTTP RESTful endpoint deletes all records from a specific table in the database. It is equivalent to running:\n\n``` sql\nDELETE type::table($table);\n```"
+      }
+    },
+    "com.surrealdb.api#GetKeyByIdRequest": {
+      "type": "structure",
+      "members": {
+        "table": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The table of the record to select"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the record to select"
+          }
+        },
+        "nS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "NS",
+            "smithy.api#documentation": "Sets the selected Namespace for queries"
+          }
+        },
+        "dB": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "DB",
+            "smithy.api#documentation": "Sets the selected Database for queries"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.surrealdb.api#GetKeyByIdResponseBodyItemResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "some": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.surrealdb.api#GetKeyByIdResponseBodyItemResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.surrealdb.api#GetKeyByIdResponseBodyItemResultItem"
+      },
+      "traits": {}
+    },
+    "com.surrealdb.api#GetKeyByIdResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.surrealdb.api#GetKeyByIdResponseBodyItemResultList"
+        },
+        "status": {
+          "target": "smithy.api#String"
+        },
+        "time": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.surrealdb.api#GetKeyByIdResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.surrealdb.api#GetKeyByIdResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.surrealdb.api#GetKeyByIdResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.surrealdb.api#GetKeyByIdResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.surrealdb.api#GetKeyById": {
+      "type": "operation",
+      "input": {
+        "target": "com.surrealdb.api#GetKeyByIdRequest"
+      },
+      "output": {
+        "target": "com.surrealdb.api#GetKeyByIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/key/{table}/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Select a specific record from a table\n\nThis HTTP RESTful endpoint selects a specific record from a table in the database. It is equivalent to running:\n\n``` sql\nSELECT * FROM type::thing($table, $id);\n```"
+      }
+    },
+    "com.surrealdb.api#UpdateKeyByIdRequestBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Record content"
+      }
+    },
+    "com.surrealdb.api#UpdateKeyByIdRequest": {
+      "type": "structure",
+      "members": {
+        "table": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The table of the record to create"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the record to create"
+          }
+        },
+        "nS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "NS",
+            "smithy.api#documentation": "Sets the selected Namespace for queries"
+          }
+        },
+        "dB": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "DB",
+            "smithy.api#documentation": "Sets the selected Database for queries"
+          }
+        },
+        "body": {
+          "target": "com.surrealdb.api#UpdateKeyByIdRequestBodyMap",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.surrealdb.api#UpdateKeyById": {
+      "type": "operation",
+      "input": {
+        "target": "com.surrealdb.api#UpdateKeyByIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/key/{table}/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a specific record in a table\n\nThis HTTP RESTful endpoint creates a specific record in a table in the database. The supplied request body is used as the content of the record, and is equivalent to running:\n\n``` sql\nCREATE type::thing($table, $id) CONTENT $body;\n```"
+      }
+    },
+    "com.surrealdb.api#PutKeyByIdRequestBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Record content"
+      }
+    },
+    "com.surrealdb.api#PutKeyByIdRequest": {
+      "type": "structure",
+      "members": {
+        "table": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The table of the record to update"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the record to update"
+          }
+        },
+        "tags": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tags"
+          }
+        },
+        "nS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "NS",
+            "smithy.api#documentation": "Sets the selected Namespace for queries"
+          }
+        },
+        "dB": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "DB",
+            "smithy.api#documentation": "Sets the selected Database for queries"
+          }
+        },
+        "body": {
+          "target": "com.surrealdb.api#PutKeyByIdRequestBodyMap",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.surrealdb.api#PutKeyById": {
+      "type": "operation",
+      "input": {
+        "target": "com.surrealdb.api#PutKeyByIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/key/{table}/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a specific record in a table\n\nThis HTTP RESTful endpoint updates a specific record in a table in the database. The supplied request body is used as the content of the record, and is equivalent to running:\n\n``` sql\nUPDATE type::thing($table, $id) CONTENT $body;\n```"
+      }
+    },
+    "com.surrealdb.api#UpdateKeyByIdRequestBodyMap2": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Fields to merge into the record"
+      }
+    },
+    "com.surrealdb.api#UpdateKeyByIdRequest2": {
+      "type": "structure",
+      "members": {
+        "table": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The table of the record to update"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the record to update"
+          }
+        },
+        "nS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "NS",
+            "smithy.api#documentation": "Sets the selected Namespace for queries"
+          }
+        },
+        "dB": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "DB",
+            "smithy.api#documentation": "Sets the selected Database for queries"
+          }
+        },
+        "body": {
+          "target": "com.surrealdb.api#UpdateKeyByIdRequestBodyMap2",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.surrealdb.api#UpdateKeyById2": {
+      "type": "operation",
+      "input": {
+        "target": "com.surrealdb.api#UpdateKeyByIdRequest2"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/key/{table}/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a specific record in a table\n\nThis HTTP RESTful endpoint updates a specific record in a table in the database. It merges the supplied request data with the records in the table, and is equivalent to running:\n\n``` sql\nUPDATE type::thing($table, $id) MERGE $body;\n```"
+      }
+    },
+    "com.surrealdb.api#DeleteKeyByIdRequest": {
+      "type": "structure",
+      "members": {
+        "table": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The table of the record to delete"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the record to delete"
+          }
+        },
+        "nS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "NS",
+            "smithy.api#documentation": "Sets the selected Namespace for queries"
+          }
+        },
+        "dB": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "DB",
+            "smithy.api#documentation": "Sets the selected Database for queries"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.surrealdb.api#DeleteKeyById": {
+      "type": "operation",
+      "input": {
+        "target": "com.surrealdb.api#DeleteKeyByIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/key/{table}/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a specific record from a table\n\nThis HTTP RESTful endpoint deletes a specific record from a table in the database. It is equivalent to running:\n\n``` sql\nDELETE type::thing($table, $id);\n```"
+      }
+    },
+    "com.surrealdb.api#CreateSqlRequest": {
+      "type": "structure",
+      "members": {
+        "nS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "NS",
+            "smithy.api#documentation": "Sets the selected Namespace for queries"
+          }
+        },
+        "dB": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "DB",
+            "smithy.api#documentation": "Sets the selected Database for queries"
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.surrealdb.api#CreateSql": {
+      "type": "operation",
+      "input": {
+        "target": "com.surrealdb.api#CreateSqlRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sql",
+          "code": 200
+        },
+        "smithy.api#documentation": "Run SurrealQL queries against SurrealDB\n\nThe SQL endpoint enables running advanced SurrealQL queries. This HTTP endpoint expects the HTTP body to be one or more SurrealQL statements, separated by a semicolon."
+      }
+    },
+    "com.surrealdb.api#Surrealdb": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.surrealdb.api#GetStatus"
+        },
+        {
+          "target": "com.surrealdb.api#GetHealth"
+        },
+        {
+          "target": "com.surrealdb.api#GetVersion"
+        },
+        {
+          "target": "com.surrealdb.api#GetExport"
+        },
+        {
+          "target": "com.surrealdb.api#Import"
+        },
+        {
+          "target": "com.surrealdb.api#GetKey"
+        },
+        {
+          "target": "com.surrealdb.api#UpdateKey"
+        },
+        {
+          "target": "com.surrealdb.api#PutKey"
+        },
+        {
+          "target": "com.surrealdb.api#UpdateKeyByTable"
+        },
+        {
+          "target": "com.surrealdb.api#DeleteKey"
+        },
+        {
+          "target": "com.surrealdb.api#GetKeyById"
+        },
+        {
+          "target": "com.surrealdb.api#UpdateKeyById"
+        },
+        {
+          "target": "com.surrealdb.api#PutKeyById"
+        },
+        {
+          "target": "com.surrealdb.api#UpdateKeyById2"
+        },
+        {
+          "target": "com.surrealdb.api#DeleteKeyById"
+        },
+        {
+          "target": "com.surrealdb.api#CreateSql"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "SurrealDB HTTP API",
+        "smithy.api#documentation": "The HTTP endpoints enable simple selection and modifications of all records or a single record in a table, in addition to support for custom SurrealQL queries with multiple statements, using traditional RESTful HTTP url endpoints."
+      }
+    }
+  }
+}

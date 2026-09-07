@@ -193,3 +193,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-resend.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/surrealdb/specs/spec-mirror-surrealdb"]
+	path = packages/surrealdb/specs/spec-mirror-surrealdb
+	url = https://github.com/distilled-mirror/spec-mirror-surrealdb.git
+	ignore = dirty
+	shallow = true

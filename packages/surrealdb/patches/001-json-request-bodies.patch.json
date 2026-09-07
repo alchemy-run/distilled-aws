@@ -1,0 +1,131 @@
+{
+  "description": "The upstream spec models write bodies as text/plain with examples only. The converter only reads application/json (and form/multipart) schemas, so those operations would generate with no payload. Promote them to JSON: SurrealQL as a string, record content as a free-form object.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/paths/~1import/post/requestBody",
+      "value": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "SurrealQL statements to import"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/paths/~1sql/post/requestBody",
+      "value": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "One or more SurrealQL statements, separated by a semicolon"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/paths/~1key~1{table}/post/requestBody",
+      "value": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Record content"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/paths/~1key~1{table}/put/requestBody",
+      "value": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Record content"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/paths/~1key~1{table}/patch/requestBody",
+      "value": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Fields to merge into each record"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/paths/~1key~1{table}~1{id}/post/requestBody",
+      "value": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Record content"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/paths/~1key~1{table}~1{id}/put/requestBody",
+      "value": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Record content"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/paths/~1key~1{table}~1{id}/patch/requestBody",
+      "value": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Fields to merge into the record"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
