@@ -233,3 +233,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-docker.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/doppler/specs/spec-mirror-doppler"]
+	path = packages/doppler/specs/spec-mirror-doppler
+	url = https://github.com/distilled-mirror/spec-mirror-doppler.git
+	ignore = dirty
+	shallow = true
