@@ -128,44 +128,6 @@ export const AddTeamMemberResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddTeamMemberResponse",
 }) as any as S.Schema<AddTeamMemberResponse>;
 
-export interface CategoryListRequest {}
-export const CategoryListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/tag/category", code: 200 })),
-).annotate({
-  identifier: "CategoryListRequest",
-}) as any as S.Schema<CategoryListRequest>;
-
-export interface CategoryTag {
-  /** The SVG icon of a category */
-  icon: string;
-  /** The name of the category */
-  name: string;
-  /** The project type this category is applicable to */
-  project_type: string;
-  /** The header under which the category should go */
-  header: string;
-}
-export const CategoryTag = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    icon: S.String,
-    name: S.String,
-    project_type: S.String,
-    header: S.String,
-  }),
-).annotate({ identifier: "CategoryTag" }) as any as S.Schema<CategoryTag>;
-
-export type CategoryListResponseBodyList = Array<CategoryTag>;
-export const CategoryListResponseBodyList = /*@__PURE__*/ S.Array(
-  CategoryTag,
-) as any as S.Schema<CategoryListResponseBodyList>;
-
-export type CategoryListResponse = CategoryListResponseBodyList;
-export const CategoryListResponse = /*@__PURE__*/ S.suspend(() =>
-  CategoryListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "CategoryListResponse",
-}) as any as S.Schema<CategoryListResponse>;
-
 export type ChangeProjectIconRequestExt =
   | "png"
   | "jpg"
@@ -1397,42 +1359,6 @@ export const DeleteVersionResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteVersionResponse",
 }) as any as S.Schema<DeleteVersionResponse>;
-
-export interface DonationPlatformListRequest {}
-export const DonationPlatformListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/tag/donation_platform", code: 200 }),
-  ),
-).annotate({
-  identifier: "DonationPlatformListRequest",
-}) as any as S.Schema<DonationPlatformListRequest>;
-
-export interface DonationPlatformTag {
-  /** The short identifier of the donation platform */
-  short: string;
-  /** The full name of the donation platform */
-  name: string;
-}
-export const DonationPlatformTag = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    short: S.String,
-    name: S.String,
-  }),
-).annotate({
-  identifier: "DonationPlatformTag",
-}) as any as S.Schema<DonationPlatformTag>;
-
-export type DonationPlatformListResponseBodyList = Array<DonationPlatformTag>;
-export const DonationPlatformListResponseBodyList = /*@__PURE__*/ S.Array(
-  DonationPlatformTag,
-) as any as S.Schema<DonationPlatformListResponseBodyList>;
-
-export type DonationPlatformListResponse = DonationPlatformListResponseBodyList;
-export const DonationPlatformListResponse = /*@__PURE__*/ S.suspend(() =>
-  DonationPlatformListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "DonationPlatformListResponse",
-}) as any as S.Schema<DonationPlatformListResponse>;
 
 export interface FollowProjectRequest {
   /** The ID or slug of the project */
@@ -3170,12 +3096,86 @@ export const License = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "License" }) as any as S.Schema<License>;
 
-export interface LoaderListRequest {}
-export const LoaderListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListCategoryRequest {}
+export const ListCategoryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/tag/category", code: 200 })),
+).annotate({
+  identifier: "ListCategoryRequest",
+}) as any as S.Schema<ListCategoryRequest>;
+
+export interface CategoryTag {
+  /** The SVG icon of a category */
+  icon: string;
+  /** The name of the category */
+  name: string;
+  /** The project type this category is applicable to */
+  project_type: string;
+  /** The header under which the category should go */
+  header: string;
+}
+export const CategoryTag = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    icon: S.String,
+    name: S.String,
+    project_type: S.String,
+    header: S.String,
+  }),
+).annotate({ identifier: "CategoryTag" }) as any as S.Schema<CategoryTag>;
+
+export type ListCategoryResponseBodyList = Array<CategoryTag>;
+export const ListCategoryResponseBodyList = /*@__PURE__*/ S.Array(
+  CategoryTag,
+) as any as S.Schema<ListCategoryResponseBodyList>;
+
+export type ListCategoryResponse = ListCategoryResponseBodyList;
+export const ListCategoryResponse = /*@__PURE__*/ S.suspend(() =>
+  ListCategoryResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListCategoryResponse",
+}) as any as S.Schema<ListCategoryResponse>;
+
+export interface ListDonationPlatformRequest {}
+export const ListDonationPlatformRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/tag/donation_platform", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListDonationPlatformRequest",
+}) as any as S.Schema<ListDonationPlatformRequest>;
+
+export interface DonationPlatformTag {
+  /** The short identifier of the donation platform */
+  short: string;
+  /** The full name of the donation platform */
+  name: string;
+}
+export const DonationPlatformTag = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    short: S.String,
+    name: S.String,
+  }),
+).annotate({
+  identifier: "DonationPlatformTag",
+}) as any as S.Schema<DonationPlatformTag>;
+
+export type ListDonationPlatformResponseBodyList = Array<DonationPlatformTag>;
+export const ListDonationPlatformResponseBodyList = /*@__PURE__*/ S.Array(
+  DonationPlatformTag,
+) as any as S.Schema<ListDonationPlatformResponseBodyList>;
+
+export type ListDonationPlatformResponse = ListDonationPlatformResponseBodyList;
+export const ListDonationPlatformResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDonationPlatformResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDonationPlatformResponse",
+}) as any as S.Schema<ListDonationPlatformResponse>;
+
+export interface ListLoaderRequest {}
+export const ListLoaderRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/tag/loader", code: 200 })),
 ).annotate({
-  identifier: "LoaderListRequest",
-}) as any as S.Schema<LoaderListRequest>;
+  identifier: "ListLoaderRequest",
+}) as any as S.Schema<ListLoaderRequest>;
 
 /** The project types that this loader is applicable to */
 export type LoaderTagSupportedProjectTypesList = Array<string>;
@@ -3199,17 +3199,128 @@ export const LoaderTag = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "LoaderTag" }) as any as S.Schema<LoaderTag>;
 
-export type LoaderListResponseBodyList = Array<LoaderTag>;
-export const LoaderListResponseBodyList = /*@__PURE__*/ S.Array(
+export type ListLoaderResponseBodyList = Array<LoaderTag>;
+export const ListLoaderResponseBodyList = /*@__PURE__*/ S.Array(
   LoaderTag,
-) as any as S.Schema<LoaderListResponseBodyList>;
+) as any as S.Schema<ListLoaderResponseBodyList>;
 
-export type LoaderListResponse = LoaderListResponseBodyList;
-export const LoaderListResponse = /*@__PURE__*/ S.suspend(() =>
-  LoaderListResponseBodyList.pipe(T.RawResponseRoot()),
+export type ListLoaderResponse = ListLoaderResponseBodyList;
+export const ListLoaderResponse = /*@__PURE__*/ S.suspend(() =>
+  ListLoaderResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "LoaderListResponse",
-}) as any as S.Schema<LoaderListResponse>;
+  identifier: "ListLoaderResponse",
+}) as any as S.Schema<ListLoaderResponse>;
+
+export interface ListProjectTypeRequest {}
+export const ListProjectTypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/tag/project_type", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListProjectTypeRequest",
+}) as any as S.Schema<ListProjectTypeRequest>;
+
+export type ListProjectTypeResponseBodyList = Array<string>;
+export const ListProjectTypeResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListProjectTypeResponseBodyList>;
+
+export type ListProjectTypeResponse = ListProjectTypeResponseBodyList;
+export const ListProjectTypeResponse = /*@__PURE__*/ S.suspend(() =>
+  ListProjectTypeResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListProjectTypeResponse",
+}) as any as S.Schema<ListProjectTypeResponse>;
+
+export interface ListReportTypeRequest {}
+export const ListReportTypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/tag/report_type", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListReportTypeRequest",
+}) as any as S.Schema<ListReportTypeRequest>;
+
+export type ListReportTypeResponseBodyList = Array<string>;
+export const ListReportTypeResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListReportTypeResponseBodyList>;
+
+export type ListReportTypeResponse = ListReportTypeResponseBodyList;
+export const ListReportTypeResponse = /*@__PURE__*/ S.suspend(() =>
+  ListReportTypeResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListReportTypeResponse",
+}) as any as S.Schema<ListReportTypeResponse>;
+
+export interface ListSideTypeRequest {}
+export const ListSideTypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/tag/side_type", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListSideTypeRequest",
+}) as any as S.Schema<ListSideTypeRequest>;
+
+export type ListSideTypeResponseBodyList = Array<string>;
+export const ListSideTypeResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListSideTypeResponseBodyList>;
+
+export type ListSideTypeResponse = ListSideTypeResponseBodyList;
+export const ListSideTypeResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSideTypeResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSideTypeResponse",
+}) as any as S.Schema<ListSideTypeResponse>;
+
+export interface ListVersionRequest {}
+export const ListVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/tag/game_version", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListVersionRequest",
+}) as any as S.Schema<ListVersionRequest>;
+
+/** The type of the game version */
+export type GameVersionTagVersionType =
+  | "release"
+  | "snapshot"
+  | "alpha"
+  | "beta";
+export const GameVersionTagVersionType = /*@__PURE__*/ S.String;
+
+export interface GameVersionTag {
+  /** The name/number of the game version */
+  version: string;
+  /** The type of the game version */
+  version_type: GameVersionTagVersionType;
+  /** The date of the game version release */
+  date: string;
+  /** Whether or not this is a major version, used for Featured Versions */
+  major: boolean;
+}
+export const GameVersionTag = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    version: S.String,
+    version_type: GameVersionTagVersionType,
+    date: S.String,
+    major: S.Boolean,
+  }),
+).annotate({ identifier: "GameVersionTag" }) as any as S.Schema<GameVersionTag>;
+
+export type ListVersionResponseBodyList = Array<GameVersionTag>;
+export const ListVersionResponseBodyList = /*@__PURE__*/ S.Array(
+  GameVersionTag,
+) as any as S.Schema<ListVersionResponseBodyList>;
+
+export type ListVersionResponse = ListVersionResponseBodyList;
+export const ListVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  ListVersionResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListVersionResponse",
+}) as any as S.Schema<ListVersionResponse>;
 
 export interface ModifyGalleryImageRequest {
   /** The ID or slug of the project */
@@ -3581,151 +3692,6 @@ export const ModifyVersionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ModifyVersionResponse",
 }) as any as S.Schema<ModifyVersionResponse>;
 
-/** Set all of the categories to the categories specified here */
-export type PatchProjectsRequestCategoriesList = Array<string>;
-export const PatchProjectsRequestCategoriesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PatchProjectsRequestCategoriesList>;
-
-/** Add all of the categories specified here */
-export type PatchProjectsRequestAddCategoriesList = Array<string>;
-export const PatchProjectsRequestAddCategoriesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PatchProjectsRequestAddCategoriesList>;
-
-/** Remove all of the categories specified here */
-export type PatchProjectsRequestRemoveCategoriesList = Array<string>;
-export const PatchProjectsRequestRemoveCategoriesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PatchProjectsRequestRemoveCategoriesList>;
-
-/** Set all of the additional categories to the categories specified here */
-export type PatchProjectsRequestAdditionalCategoriesList = Array<string>;
-export const PatchProjectsRequestAdditionalCategoriesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PatchProjectsRequestAdditionalCategoriesList>;
-
-/** Add all of the additional categories specified here */
-export type PatchProjectsRequestAddAdditionalCategoriesList = Array<string>;
-export const PatchProjectsRequestAddAdditionalCategoriesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PatchProjectsRequestAddAdditionalCategoriesList>;
-
-/** Remove all of the additional categories specified here */
-export type PatchProjectsRequestRemoveAdditionalCategoriesList = Array<string>;
-export const PatchProjectsRequestRemoveAdditionalCategoriesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PatchProjectsRequestRemoveAdditionalCategoriesList>;
-
-/** Set all of the donation links to the donation links specified here */
-export type PatchProjectsRequestDonationUrlsList = Array<ProjectDonationURL>;
-export const PatchProjectsRequestDonationUrlsList = /*@__PURE__*/ S.Array(
-  ProjectDonationURL,
-) as any as S.Schema<PatchProjectsRequestDonationUrlsList>;
-
-/** Add all of the donation links specified here */
-export type PatchProjectsRequestAddDonationUrlsList = Array<ProjectDonationURL>;
-export const PatchProjectsRequestAddDonationUrlsList = /*@__PURE__*/ S.Array(
-  ProjectDonationURL,
-) as any as S.Schema<PatchProjectsRequestAddDonationUrlsList>;
-
-/** Remove all of the donation links specified here */
-export type PatchProjectsRequestRemoveDonationUrlsList =
-  Array<ProjectDonationURL>;
-export const PatchProjectsRequestRemoveDonationUrlsList = /*@__PURE__*/ S.Array(
-  ProjectDonationURL,
-) as any as S.Schema<PatchProjectsRequestRemoveDonationUrlsList>;
-
-export interface PatchProjectsRequest {
-  /** The IDs and/or slugs of the projects */
-  ids: string;
-  /** Set all of the categories to the categories specified here */
-  categories?: PatchProjectsRequestCategoriesList;
-  /** Add all of the categories specified here */
-  add_categories?: PatchProjectsRequestAddCategoriesList;
-  /** Remove all of the categories specified here */
-  remove_categories?: PatchProjectsRequestRemoveCategoriesList;
-  /** Set all of the additional categories to the categories specified here */
-  additional_categories?: PatchProjectsRequestAdditionalCategoriesList;
-  /** Add all of the additional categories specified here */
-  add_additional_categories?: PatchProjectsRequestAddAdditionalCategoriesList;
-  /** Remove all of the additional categories specified here */
-  remove_additional_categories?: PatchProjectsRequestRemoveAdditionalCategoriesList;
-  /** Set all of the donation links to the donation links specified here */
-  donation_urls?: PatchProjectsRequestDonationUrlsList;
-  /** Add all of the donation links specified here */
-  add_donation_urls?: PatchProjectsRequestAddDonationUrlsList;
-  /** Remove all of the donation links specified here */
-  remove_donation_urls?: PatchProjectsRequestRemoveDonationUrlsList;
-  /** An optional link to where to submit bugs or issues with the projects */
-  issues_url?: string | null;
-  /** An optional link to the source code of the projects */
-  source_url?: string | null;
-  /** An optional link to the projects' wiki page or other relevant information */
-  wiki_url?: string | null;
-  /** An optional invite link to the projects' discord */
-  discord_url?: string | null;
-}
-export const PatchProjectsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ids: S.String.pipe(T.Query()),
-    categories: S.optional(PatchProjectsRequestCategoriesList),
-    add_categories: S.optional(PatchProjectsRequestAddCategoriesList),
-    remove_categories: S.optional(PatchProjectsRequestRemoveCategoriesList),
-    additional_categories: S.optional(
-      PatchProjectsRequestAdditionalCategoriesList,
-    ),
-    add_additional_categories: S.optional(
-      PatchProjectsRequestAddAdditionalCategoriesList,
-    ),
-    remove_additional_categories: S.optional(
-      PatchProjectsRequestRemoveAdditionalCategoriesList,
-    ),
-    donation_urls: S.optional(PatchProjectsRequestDonationUrlsList),
-    add_donation_urls: S.optional(PatchProjectsRequestAddDonationUrlsList),
-    remove_donation_urls: S.optional(
-      PatchProjectsRequestRemoveDonationUrlsList,
-    ),
-    issues_url: S.optional(S.NullOr(S.String)),
-    source_url: S.optional(S.NullOr(S.String)),
-    wiki_url: S.optional(S.NullOr(S.String)),
-    discord_url: S.optional(S.NullOr(S.String)),
-  }).pipe(T.Http({ method: "PATCH", uri: "/projects", code: 200 })),
-).annotate({
-  identifier: "PatchProjectsRequest",
-}) as any as S.Schema<PatchProjectsRequest>;
-
-export interface PatchProjectsResponse {}
-export const PatchProjectsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PatchProjectsResponse",
-}) as any as S.Schema<PatchProjectsResponse>;
-
-export interface ProjectTypeListRequest {}
-export const ProjectTypeListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/tag/project_type", code: 200 }),
-  ),
-).annotate({
-  identifier: "ProjectTypeListRequest",
-}) as any as S.Schema<ProjectTypeListRequest>;
-
-export type ProjectTypeListResponseBodyList = Array<string>;
-export const ProjectTypeListResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ProjectTypeListResponseBodyList>;
-
-export type ProjectTypeListResponse = ProjectTypeListResponseBodyList;
-export const ProjectTypeListResponse = /*@__PURE__*/ S.suspend(() =>
-  ProjectTypeListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ProjectTypeListResponse",
-}) as any as S.Schema<ProjectTypeListResponse>;
-
 export interface RandomProjectsRequest {
   /** The number of random projects to return */
   count: number;
@@ -3787,27 +3753,6 @@ export const ReadNotificationsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ReadNotificationsResponse",
 }) as any as S.Schema<ReadNotificationsResponse>;
-
-export interface ReportTypeListRequest {}
-export const ReportTypeListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/tag/report_type", code: 200 }),
-  ),
-).annotate({
-  identifier: "ReportTypeListRequest",
-}) as any as S.Schema<ReportTypeListRequest>;
-
-export type ReportTypeListResponseBodyList = Array<string>;
-export const ReportTypeListResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ReportTypeListResponseBodyList>;
-
-export type ReportTypeListResponse = ReportTypeListResponseBodyList;
-export const ReportTypeListResponse = /*@__PURE__*/ S.suspend(() =>
-  ReportTypeListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ReportTypeListResponse",
-}) as any as S.Schema<ReportTypeListResponse>;
 
 /** The requested status when scheduling the project for release */
 export type ScheduleProjectRequestRequestedStatus =
@@ -4182,27 +4127,6 @@ export const SendThreadMessageRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "SendThreadMessageRequest",
 }) as any as S.Schema<SendThreadMessageRequest>;
 
-export interface SideTypeListRequest {}
-export const SideTypeListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/tag/side_type", code: 200 }),
-  ),
-).annotate({
-  identifier: "SideTypeListRequest",
-}) as any as S.Schema<SideTypeListRequest>;
-
-export type SideTypeListResponseBodyList = Array<string>;
-export const SideTypeListResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SideTypeListResponseBodyList>;
-
-export type SideTypeListResponse = SideTypeListResponseBodyList;
-export const SideTypeListResponse = /*@__PURE__*/ S.suspend(() =>
-  SideTypeListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "SideTypeListResponse",
-}) as any as S.Schema<SideTypeListResponse>;
-
 export interface Statistics2Request {}
 export const Statistics2Request = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/statistics", code: 200 })),
@@ -4336,6 +4260,132 @@ export const UnfollowProjectResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UnfollowProjectResponse",
 }) as any as S.Schema<UnfollowProjectResponse>;
 
+/** Set all of the categories to the categories specified here */
+export type UpdateProjectsRequestCategoriesList = Array<string>;
+export const UpdateProjectsRequestCategoriesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateProjectsRequestCategoriesList>;
+
+/** Add all of the categories specified here */
+export type UpdateProjectsRequestAddCategoriesList = Array<string>;
+export const UpdateProjectsRequestAddCategoriesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateProjectsRequestAddCategoriesList>;
+
+/** Remove all of the categories specified here */
+export type UpdateProjectsRequestRemoveCategoriesList = Array<string>;
+export const UpdateProjectsRequestRemoveCategoriesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateProjectsRequestRemoveCategoriesList>;
+
+/** Set all of the additional categories to the categories specified here */
+export type UpdateProjectsRequestAdditionalCategoriesList = Array<string>;
+export const UpdateProjectsRequestAdditionalCategoriesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateProjectsRequestAdditionalCategoriesList>;
+
+/** Add all of the additional categories specified here */
+export type UpdateProjectsRequestAddAdditionalCategoriesList = Array<string>;
+export const UpdateProjectsRequestAddAdditionalCategoriesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateProjectsRequestAddAdditionalCategoriesList>;
+
+/** Remove all of the additional categories specified here */
+export type UpdateProjectsRequestRemoveAdditionalCategoriesList = Array<string>;
+export const UpdateProjectsRequestRemoveAdditionalCategoriesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateProjectsRequestRemoveAdditionalCategoriesList>;
+
+/** Set all of the donation links to the donation links specified here */
+export type UpdateProjectsRequestDonationUrlsList = Array<ProjectDonationURL>;
+export const UpdateProjectsRequestDonationUrlsList = /*@__PURE__*/ S.Array(
+  ProjectDonationURL,
+) as any as S.Schema<UpdateProjectsRequestDonationUrlsList>;
+
+/** Add all of the donation links specified here */
+export type UpdateProjectsRequestAddDonationUrlsList =
+  Array<ProjectDonationURL>;
+export const UpdateProjectsRequestAddDonationUrlsList = /*@__PURE__*/ S.Array(
+  ProjectDonationURL,
+) as any as S.Schema<UpdateProjectsRequestAddDonationUrlsList>;
+
+/** Remove all of the donation links specified here */
+export type UpdateProjectsRequestRemoveDonationUrlsList =
+  Array<ProjectDonationURL>;
+export const UpdateProjectsRequestRemoveDonationUrlsList =
+  /*@__PURE__*/ S.Array(
+    ProjectDonationURL,
+  ) as any as S.Schema<UpdateProjectsRequestRemoveDonationUrlsList>;
+
+export interface UpdateProjectsRequest {
+  /** The IDs and/or slugs of the projects */
+  ids: string;
+  /** Set all of the categories to the categories specified here */
+  categories?: UpdateProjectsRequestCategoriesList;
+  /** Add all of the categories specified here */
+  add_categories?: UpdateProjectsRequestAddCategoriesList;
+  /** Remove all of the categories specified here */
+  remove_categories?: UpdateProjectsRequestRemoveCategoriesList;
+  /** Set all of the additional categories to the categories specified here */
+  additional_categories?: UpdateProjectsRequestAdditionalCategoriesList;
+  /** Add all of the additional categories specified here */
+  add_additional_categories?: UpdateProjectsRequestAddAdditionalCategoriesList;
+  /** Remove all of the additional categories specified here */
+  remove_additional_categories?: UpdateProjectsRequestRemoveAdditionalCategoriesList;
+  /** Set all of the donation links to the donation links specified here */
+  donation_urls?: UpdateProjectsRequestDonationUrlsList;
+  /** Add all of the donation links specified here */
+  add_donation_urls?: UpdateProjectsRequestAddDonationUrlsList;
+  /** Remove all of the donation links specified here */
+  remove_donation_urls?: UpdateProjectsRequestRemoveDonationUrlsList;
+  /** An optional link to where to submit bugs or issues with the projects */
+  issues_url?: string | null;
+  /** An optional link to the source code of the projects */
+  source_url?: string | null;
+  /** An optional link to the projects' wiki page or other relevant information */
+  wiki_url?: string | null;
+  /** An optional invite link to the projects' discord */
+  discord_url?: string | null;
+}
+export const UpdateProjectsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ids: S.String.pipe(T.Query()),
+    categories: S.optional(UpdateProjectsRequestCategoriesList),
+    add_categories: S.optional(UpdateProjectsRequestAddCategoriesList),
+    remove_categories: S.optional(UpdateProjectsRequestRemoveCategoriesList),
+    additional_categories: S.optional(
+      UpdateProjectsRequestAdditionalCategoriesList,
+    ),
+    add_additional_categories: S.optional(
+      UpdateProjectsRequestAddAdditionalCategoriesList,
+    ),
+    remove_additional_categories: S.optional(
+      UpdateProjectsRequestRemoveAdditionalCategoriesList,
+    ),
+    donation_urls: S.optional(UpdateProjectsRequestDonationUrlsList),
+    add_donation_urls: S.optional(UpdateProjectsRequestAddDonationUrlsList),
+    remove_donation_urls: S.optional(
+      UpdateProjectsRequestRemoveDonationUrlsList,
+    ),
+    issues_url: S.optional(S.NullOr(S.String)),
+    source_url: S.optional(S.NullOr(S.String)),
+    wiki_url: S.optional(S.NullOr(S.String)),
+    discord_url: S.optional(S.NullOr(S.String)),
+  }).pipe(T.Http({ method: "PATCH", uri: "/projects", code: 200 })),
+).annotate({
+  identifier: "UpdateProjectsRequest",
+}) as any as S.Schema<UpdateProjectsRequest>;
+
+export interface UpdateProjectsResponse {}
+export const UpdateProjectsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateProjectsResponse",
+}) as any as S.Schema<UpdateProjectsResponse>;
+
 export type VersionFromHashRequestAlgorithm = "sha1" | "sha512";
 export const VersionFromHashRequestAlgorithm = /*@__PURE__*/ S.String;
 
@@ -4462,54 +4512,6 @@ export const VersionFromHashResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VersionFromHashResponse",
 }) as any as S.Schema<VersionFromHashResponse>;
 
-export interface VersionListRequest {}
-export const VersionListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/tag/game_version", code: 200 }),
-  ),
-).annotate({
-  identifier: "VersionListRequest",
-}) as any as S.Schema<VersionListRequest>;
-
-/** The type of the game version */
-export type GameVersionTagVersionType =
-  | "release"
-  | "snapshot"
-  | "alpha"
-  | "beta";
-export const GameVersionTagVersionType = /*@__PURE__*/ S.String;
-
-export interface GameVersionTag {
-  /** The name/number of the game version */
-  version: string;
-  /** The type of the game version */
-  version_type: GameVersionTagVersionType;
-  /** The date of the game version release */
-  date: string;
-  /** Whether or not this is a major version, used for Featured Versions */
-  major: boolean;
-}
-export const GameVersionTag = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    version: S.String,
-    version_type: GameVersionTagVersionType,
-    date: S.String,
-    major: S.Boolean,
-  }),
-).annotate({ identifier: "GameVersionTag" }) as any as S.Schema<GameVersionTag>;
-
-export type VersionListResponseBodyList = Array<GameVersionTag>;
-export const VersionListResponseBodyList = /*@__PURE__*/ S.Array(
-  GameVersionTag,
-) as any as S.Schema<VersionListResponseBodyList>;
-
-export type VersionListResponse = VersionListResponseBodyList;
-export const VersionListResponse = /*@__PURE__*/ S.suspend(() =>
-  VersionListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "VersionListResponse",
-}) as any as S.Schema<VersionListResponse>;
-
 export type VersionsFromHashesRequestHashesList = Array<string>;
 export const VersionsFromHashesRequestHashesList = /*@__PURE__*/ S.Array(
   S.String,
@@ -4603,21 +4605,6 @@ export const addTeamMember: API.OperationMethod<
   input: AddTeamMemberRequest,
   output: AddTeamMemberResponse,
   errors: [NotFound, UnknownModrinthError],
-  protocol: ModrinthProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CategoryListError = ModrinthOpError;
-/** Get a list of categories Gets an array of categories, their icons, and applicable project types */
-export const categoryList: API.OperationMethod<
-  CategoryListRequest,
-  CategoryListResponse,
-  CategoryListError,
-  ModrinthOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CategoryListRequest,
-  output: CategoryListResponse,
-  errors: [UnknownModrinthError],
   protocol: ModrinthProtocol,
   retry: Retry.Retry,
 }));
@@ -4843,21 +4830,6 @@ export const deleteVersion: API.OperationMethod<
   input: DeleteVersionRequest,
   output: DeleteVersionResponse,
   errors: [NotFound, UnknownModrinthError],
-  protocol: ModrinthProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DonationPlatformListError = ModrinthOpError;
-/** Get a list of donation platforms Gets an array of donation platforms and information about them */
-export const donationPlatformList: API.OperationMethod<
-  DonationPlatformListRequest,
-  DonationPlatformListResponse,
-  DonationPlatformListError,
-  ModrinthOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DonationPlatformListRequest,
-  output: DonationPlatformListResponse,
-  errors: [UnknownModrinthError],
   protocol: ModrinthProtocol,
   retry: Retry.Retry,
 }));
@@ -5315,16 +5287,106 @@ export const licenseText: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type LoaderListError = ModrinthOpError;
-/** Get a list of loaders Gets an array of loaders, their icons, and supported project types */
-export const loaderList: API.OperationMethod<
-  LoaderListRequest,
-  LoaderListResponse,
-  LoaderListError,
+export type ListCategoryError = ModrinthOpError;
+/** Get a list of categories Gets an array of categories, their icons, and applicable project types */
+export const listCategory: API.OperationMethod<
+  ListCategoryRequest,
+  ListCategoryResponse,
+  ListCategoryError,
   ModrinthOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LoaderListRequest,
-  output: LoaderListResponse,
+  input: ListCategoryRequest,
+  output: ListCategoryResponse,
+  errors: [UnknownModrinthError],
+  protocol: ModrinthProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDonationPlatformError = ModrinthOpError;
+/** Get a list of donation platforms Gets an array of donation platforms and information about them */
+export const listDonationPlatform: API.OperationMethod<
+  ListDonationPlatformRequest,
+  ListDonationPlatformResponse,
+  ListDonationPlatformError,
+  ModrinthOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDonationPlatformRequest,
+  output: ListDonationPlatformResponse,
+  errors: [UnknownModrinthError],
+  protocol: ModrinthProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListLoaderError = ModrinthOpError;
+/** Get a list of loaders Gets an array of loaders, their icons, and supported project types */
+export const listLoader: API.OperationMethod<
+  ListLoaderRequest,
+  ListLoaderResponse,
+  ListLoaderError,
+  ModrinthOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListLoaderRequest,
+  output: ListLoaderResponse,
+  errors: [UnknownModrinthError],
+  protocol: ModrinthProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProjectTypeError = ModrinthOpError;
+/** Get a list of project types Gets an array of valid project types */
+export const listProjectType: API.OperationMethod<
+  ListProjectTypeRequest,
+  ListProjectTypeResponse,
+  ListProjectTypeError,
+  ModrinthOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProjectTypeRequest,
+  output: ListProjectTypeResponse,
+  errors: [UnknownModrinthError],
+  protocol: ModrinthProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListReportTypeError = ModrinthOpError;
+/** Get a list of report types Gets an array of valid report types */
+export const listReportType: API.OperationMethod<
+  ListReportTypeRequest,
+  ListReportTypeResponse,
+  ListReportTypeError,
+  ModrinthOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListReportTypeRequest,
+  output: ListReportTypeResponse,
+  errors: [UnknownModrinthError],
+  protocol: ModrinthProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSideTypeError = ModrinthOpError;
+/** Get a list of side types Gets an array of valid side types */
+export const listSideType: API.OperationMethod<
+  ListSideTypeRequest,
+  ListSideTypeResponse,
+  ListSideTypeError,
+  ModrinthOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSideTypeRequest,
+  output: ListSideTypeResponse,
+  errors: [UnknownModrinthError],
+  protocol: ModrinthProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVersionError = ModrinthOpError;
+/** Get a list of game versions Gets an array of game versions and information about them */
+export const listVersion: API.OperationMethod<
+  ListVersionRequest,
+  ListVersionResponse,
+  ListVersionError,
+  ModrinthOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVersionRequest,
+  output: ListVersionResponse,
   errors: [UnknownModrinthError],
   protocol: ModrinthProtocol,
   retry: Retry.Retry,
@@ -5420,36 +5482,6 @@ export const modifyVersion: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PatchProjectsError = BadRequest | ModrinthOpError;
-/** Bulk-edit multiple projects */
-export const patchProjects: API.OperationMethod<
-  PatchProjectsRequest,
-  PatchProjectsResponse,
-  PatchProjectsError,
-  ModrinthOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchProjectsRequest,
-  output: PatchProjectsResponse,
-  errors: [BadRequest, UnknownModrinthError],
-  protocol: ModrinthProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectTypeListError = ModrinthOpError;
-/** Get a list of project types Gets an array of valid project types */
-export const projectTypeList: API.OperationMethod<
-  ProjectTypeListRequest,
-  ProjectTypeListResponse,
-  ProjectTypeListError,
-  ModrinthOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectTypeListRequest,
-  output: ProjectTypeListResponse,
-  errors: [UnknownModrinthError],
-  protocol: ModrinthProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RandomProjectsError = BadRequest | ModrinthOpError;
 /** Get a list of random projects */
 export const randomProjects: API.OperationMethod<
@@ -5491,21 +5523,6 @@ export const readNotifications: API.OperationMethod<
   input: ReadNotificationsRequest,
   output: ReadNotificationsResponse,
   errors: [NotFound, UnknownModrinthError],
-  protocol: ModrinthProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReportTypeListError = ModrinthOpError;
-/** Get a list of report types Gets an array of valid report types */
-export const reportTypeList: API.OperationMethod<
-  ReportTypeListRequest,
-  ReportTypeListResponse,
-  ReportTypeListError,
-  ModrinthOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReportTypeListRequest,
-  output: ReportTypeListResponse,
-  errors: [UnknownModrinthError],
   protocol: ModrinthProtocol,
   retry: Retry.Retry,
 }));
@@ -5570,21 +5587,6 @@ export const sendThreadMessage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SideTypeListError = ModrinthOpError;
-/** Get a list of side types Gets an array of valid side types */
-export const sideTypeList: API.OperationMethod<
-  SideTypeListRequest,
-  SideTypeListResponse,
-  SideTypeListError,
-  ModrinthOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SideTypeListRequest,
-  output: SideTypeListResponse,
-  errors: [UnknownModrinthError],
-  protocol: ModrinthProtocol,
-  retry: Retry.Retry,
-}));
-
 export type Statistics2Error = ModrinthOpError;
 /** Various statistics about this Modrinth instance */
 export const statistics2: API.OperationMethod<
@@ -5645,6 +5647,21 @@ export const unfollowProject: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type UpdateProjectsError = BadRequest | ModrinthOpError;
+/** Bulk-edit multiple projects */
+export const updateProjects: API.OperationMethod<
+  UpdateProjectsRequest,
+  UpdateProjectsResponse,
+  UpdateProjectsError,
+  ModrinthOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateProjectsRequest,
+  output: UpdateProjectsResponse,
+  errors: [BadRequest, UnknownModrinthError],
+  protocol: ModrinthProtocol,
+  retry: Retry.Retry,
+}));
+
 export type VersionFromHashError = NotFound | ModrinthOpError;
 /** Get version from hash */
 export const versionFromHash: API.OperationMethod<
@@ -5656,21 +5673,6 @@ export const versionFromHash: API.OperationMethod<
   input: VersionFromHashRequest,
   output: VersionFromHashResponse,
   errors: [NotFound, UnknownModrinthError],
-  protocol: ModrinthProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VersionListError = ModrinthOpError;
-/** Get a list of game versions Gets an array of game versions and information about them */
-export const versionList: API.OperationMethod<
-  VersionListRequest,
-  VersionListResponse,
-  VersionListError,
-  ModrinthOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VersionListRequest,
-  output: VersionListResponse,
-  errors: [UnknownModrinthError],
   protocol: ModrinthProtocol,
   retry: Retry.Retry,
 }));
