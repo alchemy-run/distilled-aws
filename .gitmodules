@@ -318,3 +318,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-squarespace.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/temporal/specs/spec-mirror-temporal"]
+	path = packages/temporal/specs/spec-mirror-temporal
+	url = https://github.com/distilled-mirror/spec-mirror-temporal.git
+	ignore = dirty
+	shallow = true

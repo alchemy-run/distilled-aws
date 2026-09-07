@@ -393,6 +393,12 @@
     },
     {
       "path": "./packages/squarespace/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/temporal/tsconfig.json"
+    },
+    {
+      "path": "./packages/temporal/tsconfig.scripts.json"
     }
   ]
 }
