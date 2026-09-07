@@ -33508,1098 +33508,6 @@ export const AppByIdResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AppByIdResponse",
 }) as any as S.Schema<AppByIdResponse>;
 
-export interface AppInfoInput {
-  displayName?: string | null;
-}
-export const AppInfoInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "AppInfoInput" }) as any as S.Schema<AppInfoInput>;
-
-export interface AppInput {
-  accountId: string;
-  appInfo?: AppInfoInput | null;
-  projectName: string;
-}
-export const AppInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String,
-    appInfo: S.optional(S.NullOr(AppInfoInput)),
-    projectName: S.String,
-  }),
-).annotate({ identifier: "AppInput" }) as any as S.Schema<AppInput>;
-
-export interface AppCreateAppRequest {
-  appId?: string | null;
-  appInput: AppInput;
-}
-export const AppCreateAppRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.optional(S.NullOr(S.String)),
-    appInput: AppInput,
-  })
-    .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
-    .pipe(
-      T.GraphQLOp({
-        query:
-          "mutation appCreateApp($appId: ID, $appInput: AppInput!) {\n  app(appId: $appId) {\n    createApp(appInput: $appInput) {\n      appStoreConnectApp {\n        appStoreConnectApiKey {\n          createdAt\n          id\n          issuerIdentifier\n          keyIdentifier\n          keyP8\n          name\n          roles\n          updatedAt\n        }\n        ascAppIdentifier\n        createdAt\n        id\n        remoteAppStoreConnectApp {\n          appStoreIconUrl\n          ascAppIdentifier\n          bundleIdentifier\n          name\n        }\n        updatedAt\n        webhookEventTypes\n        webhookIdentifier\n      }\n      appStoreConnectWorkflowConnectionStatus\n      assetLimitPerUpdateGroup\n      buildProfiles\n      convexProject {\n        convexProjectIdentifier\n        convexProjectName\n        convexProjectSlug\n        convexTeamConnection {\n          convexTeamIdentifier\n          convexTeamName\n          convexTeamSlug\n          createdAt\n          hasBeenClaimed\n          id\n          invitedAt\n          invitedEmail\n          updatedAt\n        }\n        createdAt\n        id\n        updatedAt\n      }\n      description\n      devDomainName {\n        id\n        name\n      }\n      deviceRunSessionTags\n      environmentVariableEnvironments\n      fullName\n      githubBuildTriggers {\n        autoSubmit\n        buildProfile\n        createdAt\n        environment\n        executionBehavior\n        id\n        isActive\n        lastRunAt\n        lastRunBuild {\n          activityTimestamp\n          appBuildVersion\n          appIdentifier\n          appVersion\n          buildMode\n          buildProfile\n          channel\n          cliVersion\n          completedAt\n          createdAt\n          customNodeVersion\n          customWorkflowName\n          developmentClient\n          distribution\n          enqueuedAt\n          estimatedWaitTimeLeftSeconds\n          expirationDate\n          gitCommitHash\n          gitCommitMessage\n          gitRef\n          id\n          initialQueuePosition\n          iosEnterpriseProvisioning\n          isForIosSimulator\n          isGitWorkingTreeDirty\n          isWaived\n          logFileUrls\n          logFiles\n          maxBuildTimeSeconds\n          maxRetryTimeMinutes\n          message\n          platform\n          priority\n          projectMetadataFileUrl\n          projectRootDirectory\n          provisioningStartedAt\n          queuePosition\n          reactNativeVersion\n          releaseChannel\n          requiredPackageManager\n          resolvedEnvironment\n          resolvedImage\n          resourceClass\n          resourceClassDisplayName\n          runFromCI\n          runtimeVersion\n          sdkVersion\n          selectedImage\n          status\n          updatedAt\n          waiverType\n          workerStartedAt\n        }\n        lastRunErrorCode\n        lastRunErrorMessage\n        lastRunStatus\n        platform\n        sourcePattern\n        submitProfile\n        targetPattern\n        type\n        updatedAt\n      }\n      githubJobRunTriggers {\n        createdAt\n        id\n        isActive\n        jobType\n        lastRunAt\n        lastRunErrorCode\n        lastRunErrorMessage\n        lastRunStatus\n        sourcePattern\n        targetPattern\n        triggerType\n      }\n      githubRepository {\n        createdAt\n        githubAppInstallation {\n          id\n          installationIdentifier\n        }\n        githubRepositoryIdentifier\n        githubRepositoryUrl\n        id\n        lastDeletionAttemptTime\n        metadata {\n          defaultBranch\n          githubRepoDescription\n          githubRepoName\n          githubRepoOwnerName\n          githubRepoUrl\n          id\n          lastPushed\n          lastUpdated\n          private\n        }\n        nodeIdentifier\n      }\n      githubRepositorySettings {\n        baseDirectory\n        id\n      }\n      icon {\n        originalUrl\n        primaryColor\n        url\n      }\n      iconUrl\n      id\n      insights {\n        hasEventsFromExpoInsightsClientModule\n      }\n      internalDistributionBuildPrivacy\n      isEligibleForObserveLapsedPaidNotification\n      isEligibleForObserveNotice\n      lastDeletionAttemptTime\n      latestActivity\n      logRocketProject {\n        createdAt\n        id\n        logRocketOrgId\n        logRocketProjectSlug\n        updatedAt\n      }\n      name\n      observe {\n        latestExpoSdkVersion\n        totalEventCount\n      }\n      observeIngestionPaused\n      ownerAccount {\n        agentProviderConnections {\n          createdAt\n          expiresAt\n          id\n          name\n          provider\n          providerAccountEmail\n          providerAccountId\n          providerPlan\n          status\n          updatedAt\n        }\n        aiChatEnabled\n        appCount\n        appStoreConnectApiKeys {\n          createdAt\n          id\n          issuerIdentifier\n          keyIdentifier\n          keyP8\n          name\n          roles\n          updatedAt\n        }\n        appleDistributionCertificates {\n          certificateP12\n          certificatePassword\n          certificatePrivateSigningKey\n          createdAt\n          developerPortalIdentifier\n          id\n          serialNumber\n          updatedAt\n          validityNotAfter\n          validityNotBefore\n        }\n        applePushKeys {\n          createdAt\n          id\n          keyIdentifier\n          keyP8\n          updatedAt\n        }\n        billing {\n          id\n        }\n        convexTeamConnections {\n          convexTeamIdentifier\n          convexTeamName\n          convexTeamSlug\n          createdAt\n          hasBeenClaimed\n          id\n          invitedAt\n          invitedEmail\n          updatedAt\n        }\n        createdAt\n        displayName\n        environmentVariableEnvironments\n        githubAppInstallations {\n          id\n          installationIdentifier\n        }\n        googleServiceAccountKeys {\n          clientEmail\n          clientIdentifier\n          createdAt\n          id\n          keyJson\n          privateKeyIdentifier\n          projectIdentifier\n          updatedAt\n        }\n        id\n        isCurrent\n        isDisabled\n        isFreeAppDevDomainTier\n        isSSOEnabled\n        lastDeletionAttemptTime\n        logRocketOrganization {\n          createdAt\n          id\n          orgName\n          orgSlug\n        }\n        memberStats {\n          allHave2FAEnabled\n          humanCount\n          ownerCount\n          robotCount\n          ssoUserCount\n          totalCount\n        }\n        name\n        observeIngestionPaused\n        offers {\n          features\n          id\n          price\n          quantity\n          stripeId\n          trialLength\n          type\n        }\n        onboardingStats {\n          firstBuildCompletedAt\n          firstProjectCreatedAt\n          firstSubmissionCompletedAt\n          firstUpdateCreatedAt\n          hasConfiguredUpdate\n          hasConfiguredWorkflow\n          hasTeamMembers\n        }\n        owner {\n          appCount\n          bestContactEmail\n          created\n          displayName\n          email\n          emailVerified\n          firstName\n          fullName\n          hasPassword\n          hasPendingUserInvitations\n          id\n          isExpoAdmin\n          isSecondFactorAuthenticationEnabled\n          isStaffModeEnabled\n          lastDeletionAttemptTime\n          lastName\n          newEmailPendingVerification\n          primaryAccountProfileImageUrl\n          profilePhoto\n          username\n        }\n        ownerUserActor {\n          appCount\n          bestContactEmail\n          created\n          displayName\n          firstName\n          fullName\n          id\n          isExpoAdmin\n          isStaffModeEnabled\n          lastDeletionAttemptTime\n          lastName\n          primaryAccountProfileImageUrl\n          profilePhoto\n          username\n        }\n        pendingSentryInstallation {\n          createdAt\n          id\n          installationId\n          orgSlug\n        }\n        posthogOrganizationConnection {\n          createdAt\n          id\n          posthogOrganizationIdentifier\n          posthogOrganizationName\n          posthogRegion\n          updatedAt\n        }\n        profileImageUrl\n        pushSecurityEnabled\n        requireTwoFactor\n        sentryInstallation {\n          createdAt\n          id\n          installationId\n          orgSlug\n        }\n        ssoAllowedAuthProviders\n        ssoConfiguration {\n          authProtocol\n          authProviderIdentifier\n          clientIdentifier\n          clientSecret\n          createdAt\n          id\n          issuer\n          updatedAt\n        }\n        subscription {\n          cancelAt\n          endedAt\n          id\n          includedAgentCreditsInCents\n          isDowngrading\n          name\n          nextInvoice\n          nextInvoiceAmountDueCents\n          paymentFailedAt\n          planId\n          price\n          recurringCents\n          status\n          trialEnd\n          willCancel\n        }\n        supabaseConnection {\n          createdAt\n          id\n          supabaseOrganizationName\n          supabaseOrganizationSlug\n          updatedAt\n        }\n        updatedAt\n        userInvitations {\n          accountName\n          accountProfileImageUrl\n          accountRequiresTwoFactor\n          created\n          email\n          expires\n          id\n          isForOrganization\n          permissions\n          role\n        }\n        userSpecifiedAccountUsage\n        users {\n          id\n          permissions\n          role\n        }\n        vexoAccountConnection {\n          id\n        }\n        viewerUserPermission {\n          id\n          permissions\n          role\n        }\n      }\n      packageName\n      posthogProject {\n        createdAt\n        id\n        posthogHost\n        posthogOrganizationConnection {\n          createdAt\n          id\n          posthogOrganizationIdentifier\n          posthogOrganizationName\n          posthogRegion\n          updatedAt\n        }\n        posthogProjectIdentifier\n        posthogProjectName\n        posthogProjectToken\n        updatedAt\n      }\n      privacy\n      published\n      pushNotifications {\n        id\n        insights {\n          id\n        }\n      }\n      pushSecurityEnabled\n      resourceClassExperiment\n      scopeKey\n      sdkVersion\n      sentryProject {\n        createdAt\n        id\n        sentryInstallationId\n        sentryProjectId\n        sentryProjectSlug\n        updatedAt\n      }\n      slug\n      suggestedDevDomainName\n      supabaseProject {\n        createdAt\n        id\n        supabaseConnection {\n          createdAt\n          id\n          supabaseOrganizationName\n          supabaseOrganizationSlug\n          updatedAt\n        }\n        supabaseProjectName\n        supabaseProjectRef\n        supabaseProjectUrl\n        supabaseRegion\n        updatedAt\n      }\n      updated\n      username\n      vexoApp {\n        domain\n        iconUrl\n        id\n        name\n        owner\n        slug\n        vexoIdentifier\n      }\n      workerCustomDomain {\n        alias {\n          aliasName\n          createdAt\n          deploymentDomain\n          devDomainName\n          id\n          subdomain\n          updatedAt\n          url\n        }\n        createdAt\n        dcvDelegationRecord {\n          dnsContent\n          dnsName\n          dnsType\n          isConfigured\n        }\n        devDomainName\n        dnsRecord {\n          dnsContent\n          dnsName\n          dnsType\n          isConfigured\n        }\n        hostname\n        id\n        setup {\n          sslErrors\n          sslStatus\n          status\n          verificationErrors\n          verificationStatus\n        }\n        updatedAt\n        verificationRecord {\n          dnsContent\n          dnsName\n          dnsType\n          isConfigured\n        }\n      }\n      workflowCachingConfig {\n        ccacheEnabled\n        gradleCacheEnabled\n      }\n    }\n  }\n}",
-        operationName: "appCreateApp",
-        type: "mutation",
-      }),
-    ),
-).annotate({
-  identifier: "AppCreateAppRequest",
-}) as any as S.Schema<AppCreateAppRequest>;
-
-export type AppCreateAppResponseAppStoreConnectAppAppStoreConnectApiKeyRolesList =
-  Array<AppStoreConnectUserRole>;
-export const AppCreateAppResponseAppStoreConnectAppAppStoreConnectApiKeyRolesList =
-  /*@__PURE__*/ S.Array(
-    AppStoreConnectUserRole,
-  ) as any as S.Schema<AppCreateAppResponseAppStoreConnectAppAppStoreConnectApiKeyRolesList>;
-
-export interface AppCreateAppResponseAppStoreConnectAppAppStoreConnectApiKey {
-  createdAt: string;
-  id: string;
-  issuerIdentifier: string;
-  keyIdentifier: string;
-  keyP8: string;
-  name: string | null;
-  roles: AppCreateAppResponseAppStoreConnectAppAppStoreConnectApiKeyRolesList | null;
-  updatedAt: string;
-}
-export const AppCreateAppResponseAppStoreConnectAppAppStoreConnectApiKey =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdAt: S.String,
-      id: S.String,
-      issuerIdentifier: S.String,
-      keyIdentifier: S.String,
-      keyP8: S.String,
-      name: S.NullOr(S.String),
-      roles: S.NullOr(
-        AppCreateAppResponseAppStoreConnectAppAppStoreConnectApiKeyRolesList,
-      ),
-      updatedAt: S.String,
-    }),
-  ).annotate({
-    identifier: "AppCreateAppResponseAppStoreConnectAppAppStoreConnectApiKey",
-  }) as any as S.Schema<AppCreateAppResponseAppStoreConnectAppAppStoreConnectApiKey>;
-
-export type AppCreateAppResponseAppStoreConnectAppRemoteAppStoreConnectApp =
-  AppByDevDomainNameResponseAppStoreConnectAppRemoteAppStoreConnectApp;
-export const AppCreateAppResponseAppStoreConnectAppRemoteAppStoreConnectApp =
-  AppByDevDomainNameResponseAppStoreConnectAppRemoteAppStoreConnectApp;
-
-export type AppCreateAppResponseAppStoreConnectAppWebhookEventTypesList =
-  Array<string>;
-export const AppCreateAppResponseAppStoreConnectAppWebhookEventTypesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AppCreateAppResponseAppStoreConnectAppWebhookEventTypesList>;
-
-export interface AppCreateAppResponseAppStoreConnectApp {
-  appStoreConnectApiKey: AppCreateAppResponseAppStoreConnectAppAppStoreConnectApiKey;
-  ascAppIdentifier: string;
-  createdAt: string;
-  id: string;
-  remoteAppStoreConnectApp: AppByDevDomainNameResponseAppStoreConnectAppRemoteAppStoreConnectApp | null;
-  updatedAt: string;
-  webhookEventTypes: AppCreateAppResponseAppStoreConnectAppWebhookEventTypesList;
-  webhookIdentifier: string;
-}
-export const AppCreateAppResponseAppStoreConnectApp = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      appStoreConnectApiKey:
-        AppCreateAppResponseAppStoreConnectAppAppStoreConnectApiKey,
-      ascAppIdentifier: S.String,
-      createdAt: S.String,
-      id: S.String,
-      remoteAppStoreConnectApp: S.NullOr(
-        AppByDevDomainNameResponseAppStoreConnectAppRemoteAppStoreConnectApp,
-      ),
-      updatedAt: S.String,
-      webhookEventTypes:
-        AppCreateAppResponseAppStoreConnectAppWebhookEventTypesList,
-      webhookIdentifier: S.String,
-    }),
-).annotate({
-  identifier: "AppCreateAppResponseAppStoreConnectApp",
-}) as any as S.Schema<AppCreateAppResponseAppStoreConnectApp>;
-
-export type AppCreateAppResponseBuildProfilesList = Array<string>;
-export const AppCreateAppResponseBuildProfilesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AppCreateAppResponseBuildProfilesList>;
-
-export type AppCreateAppResponseConvexProjectConvexTeamConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
-export const AppCreateAppResponseConvexProjectConvexTeamConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
-
-export type AppCreateAppResponseConvexProject =
-  AppByDevDomainNameResponseConvexProject;
-export const AppCreateAppResponseConvexProject =
-  AppByDevDomainNameResponseConvexProject;
-
-export type AppCreateAppResponseDevDomainName =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName;
-export const AppCreateAppResponseDevDomainName =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName;
-
-export type AppCreateAppResponseDeviceRunSessionTagsList = Array<string>;
-export const AppCreateAppResponseDeviceRunSessionTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AppCreateAppResponseDeviceRunSessionTagsList>;
-
-export type AppCreateAppResponseEnvironmentVariableEnvironmentsList =
-  Array<unknown>;
-export const AppCreateAppResponseEnvironmentVariableEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AppCreateAppResponseEnvironmentVariableEnvironmentsList>;
-
-export type AppCreateAppResponseGithubBuildTriggersItemLastRunBuildLogFileUrlsList =
-  Array<string>;
-export const AppCreateAppResponseGithubBuildTriggersItemLastRunBuildLogFileUrlsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AppCreateAppResponseGithubBuildTriggersItemLastRunBuildLogFileUrlsList>;
-
-export type AppCreateAppResponseGithubBuildTriggersItemLastRunBuildLogFilesList =
-  Array<string>;
-export const AppCreateAppResponseGithubBuildTriggersItemLastRunBuildLogFilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AppCreateAppResponseGithubBuildTriggersItemLastRunBuildLogFilesList>;
-
-export interface AppCreateAppResponseGithubBuildTriggersItemLastRunBuild {
-  activityTimestamp: string;
-  appBuildVersion: string | null;
-  appIdentifier: string | null;
-  appVersion: string | null;
-  buildMode: BuildMode | null;
-  buildProfile: string | null;
-  channel: string | null;
-  cliVersion: string | null;
-  completedAt: string | null;
-  createdAt: string;
-  customNodeVersion: string | null;
-  customWorkflowName: string | null;
-  developmentClient: boolean | null;
-  distribution: DistributionType | null;
-  enqueuedAt: string | null;
-  estimatedWaitTimeLeftSeconds: number | null;
-  expirationDate: string | null;
-  gitCommitHash: string | null;
-  gitCommitMessage: string | null;
-  gitRef: string | null;
-  id: string;
-  initialQueuePosition: number | null;
-  iosEnterpriseProvisioning: BuildIosEnterpriseProvisioning | null;
-  isForIosSimulator: boolean;
-  isGitWorkingTreeDirty: boolean | null;
-  isWaived: boolean;
-  logFileUrls: AppCreateAppResponseGithubBuildTriggersItemLastRunBuildLogFileUrlsList;
-  logFiles: AppCreateAppResponseGithubBuildTriggersItemLastRunBuildLogFilesList;
-  maxBuildTimeSeconds: number;
-  maxRetryTimeMinutes: number | null;
-  message: string | null;
-  platform: AppPlatform;
-  priority: BuildPriority;
-  projectMetadataFileUrl: string | null;
-  projectRootDirectory: string | null;
-  provisioningStartedAt: string | null;
-  queuePosition: number | null;
-  reactNativeVersion: string | null;
-  releaseChannel: string | null;
-  requiredPackageManager: string | null;
-  resolvedEnvironment: unknown | null;
-  resolvedImage: string | null;
-  resourceClass: BuildResourceClass;
-  resourceClassDisplayName: string;
-  runFromCI: boolean | null;
-  runtimeVersion: string | null;
-  sdkVersion: string | null;
-  selectedImage: string | null;
-  status: BuildStatus;
-  updatedAt: string;
-  waiverType: EASBuildWaiverType | null;
-  workerStartedAt: string | null;
-}
-export const AppCreateAppResponseGithubBuildTriggersItemLastRunBuild =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      activityTimestamp: S.String,
-      appBuildVersion: S.NullOr(S.String),
-      appIdentifier: S.NullOr(S.String),
-      appVersion: S.NullOr(S.String),
-      buildMode: S.NullOr(BuildMode),
-      buildProfile: S.NullOr(S.String),
-      channel: S.NullOr(S.String),
-      cliVersion: S.NullOr(S.String),
-      completedAt: S.NullOr(S.String),
-      createdAt: S.String,
-      customNodeVersion: S.NullOr(S.String),
-      customWorkflowName: S.NullOr(S.String),
-      developmentClient: S.NullOr(S.Boolean),
-      distribution: S.NullOr(DistributionType),
-      enqueuedAt: S.NullOr(S.String),
-      estimatedWaitTimeLeftSeconds: S.NullOr(S.Number),
-      expirationDate: S.NullOr(S.String),
-      gitCommitHash: S.NullOr(S.String),
-      gitCommitMessage: S.NullOr(S.String),
-      gitRef: S.NullOr(S.String),
-      id: S.String,
-      initialQueuePosition: S.NullOr(S.Number),
-      iosEnterpriseProvisioning: S.NullOr(BuildIosEnterpriseProvisioning),
-      isForIosSimulator: S.Boolean,
-      isGitWorkingTreeDirty: S.NullOr(S.Boolean),
-      isWaived: S.Boolean,
-      logFileUrls:
-        AppCreateAppResponseGithubBuildTriggersItemLastRunBuildLogFileUrlsList,
-      logFiles:
-        AppCreateAppResponseGithubBuildTriggersItemLastRunBuildLogFilesList,
-      maxBuildTimeSeconds: S.Number,
-      maxRetryTimeMinutes: S.NullOr(S.Number),
-      message: S.NullOr(S.String),
-      platform: AppPlatform,
-      priority: BuildPriority,
-      projectMetadataFileUrl: S.NullOr(S.String),
-      projectRootDirectory: S.NullOr(S.String),
-      provisioningStartedAt: S.NullOr(S.String),
-      queuePosition: S.NullOr(S.Number),
-      reactNativeVersion: S.NullOr(S.String),
-      releaseChannel: S.NullOr(S.String),
-      requiredPackageManager: S.NullOr(S.String),
-      resolvedEnvironment: S.NullOr(S.Unknown),
-      resolvedImage: S.NullOr(S.String),
-      resourceClass: BuildResourceClass,
-      resourceClassDisplayName: S.String,
-      runFromCI: S.NullOr(S.Boolean),
-      runtimeVersion: S.NullOr(S.String),
-      sdkVersion: S.NullOr(S.String),
-      selectedImage: S.NullOr(S.String),
-      status: BuildStatus,
-      updatedAt: S.String,
-      waiverType: S.NullOr(EASBuildWaiverType),
-      workerStartedAt: S.NullOr(S.String),
-    }),
-  ).annotate({
-    identifier: "AppCreateAppResponseGithubBuildTriggersItemLastRunBuild",
-  }) as any as S.Schema<AppCreateAppResponseGithubBuildTriggersItemLastRunBuild>;
-
-export interface AppCreateAppResponseGithubBuildTriggersItem {
-  autoSubmit: boolean;
-  buildProfile: string;
-  createdAt: string;
-  environment: unknown | null;
-  executionBehavior: GitHubBuildTriggerExecutionBehavior;
-  id: string;
-  isActive: boolean;
-  lastRunAt: string | null;
-  lastRunBuild: AppCreateAppResponseGithubBuildTriggersItemLastRunBuild | null;
-  lastRunErrorCode: string | null;
-  lastRunErrorMessage: string | null;
-  lastRunStatus: GitHubBuildTriggerRunStatus | null;
-  platform: AppPlatform;
-  sourcePattern: string;
-  submitProfile: string | null;
-  targetPattern: string | null;
-  type: GitHubBuildTriggerType;
-  updatedAt: string;
-}
-export const AppCreateAppResponseGithubBuildTriggersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      autoSubmit: S.Boolean,
-      buildProfile: S.String,
-      createdAt: S.String,
-      environment: S.NullOr(S.Unknown),
-      executionBehavior: GitHubBuildTriggerExecutionBehavior,
-      id: S.String,
-      isActive: S.Boolean,
-      lastRunAt: S.NullOr(S.String),
-      lastRunBuild: S.NullOr(
-        AppCreateAppResponseGithubBuildTriggersItemLastRunBuild,
-      ),
-      lastRunErrorCode: S.NullOr(S.String),
-      lastRunErrorMessage: S.NullOr(S.String),
-      lastRunStatus: S.NullOr(GitHubBuildTriggerRunStatus),
-      platform: AppPlatform,
-      sourcePattern: S.String,
-      submitProfile: S.NullOr(S.String),
-      targetPattern: S.NullOr(S.String),
-      type: GitHubBuildTriggerType,
-      updatedAt: S.String,
-    }),
-  ).annotate({
-    identifier: "AppCreateAppResponseGithubBuildTriggersItem",
-  }) as any as S.Schema<AppCreateAppResponseGithubBuildTriggersItem>;
-
-export type AppCreateAppResponseGithubBuildTriggersList =
-  Array<AppCreateAppResponseGithubBuildTriggersItem>;
-export const AppCreateAppResponseGithubBuildTriggersList =
-  /*@__PURE__*/ S.Array(
-    AppCreateAppResponseGithubBuildTriggersItem,
-  ) as any as S.Schema<AppCreateAppResponseGithubBuildTriggersList>;
-
-export type AppCreateAppResponseGithubJobRunTriggersItem =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem;
-export const AppCreateAppResponseGithubJobRunTriggersItem =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem;
-
-export type AppCreateAppResponseGithubJobRunTriggersList =
-  Array<AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem>;
-export const AppCreateAppResponseGithubJobRunTriggersList =
-  /*@__PURE__*/ S.Array(
-    AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem,
-  ) as any as S.Schema<AppCreateAppResponseGithubJobRunTriggersList>;
-
-export type AppCreateAppResponseGithubRepositoryGithubAppInstallation =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
-export const AppCreateAppResponseGithubRepositoryGithubAppInstallation =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
-
-export type AppCreateAppResponseGithubRepositoryMetadata =
-  AppByDevDomainNameResponseGithubRepositoryMetadata;
-export const AppCreateAppResponseGithubRepositoryMetadata =
-  AppByDevDomainNameResponseGithubRepositoryMetadata;
-
-export type AppCreateAppResponseGithubRepository =
-  AppByDevDomainNameResponseGithubRepository;
-export const AppCreateAppResponseGithubRepository =
-  AppByDevDomainNameResponseGithubRepository;
-
-export type AppCreateAppResponseGithubRepositorySettings =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings;
-export const AppCreateAppResponseGithubRepositorySettings =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings;
-
-export type AppCreateAppResponseIcon =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon;
-export const AppCreateAppResponseIcon =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon;
-
-export type AppCreateAppResponseInsights =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights;
-export const AppCreateAppResponseInsights =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights;
-
-export type AppCreateAppResponseLogRocketProject =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject;
-export const AppCreateAppResponseLogRocketProject =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject;
-
-export type AppCreateAppResponseObserve =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve;
-export const AppCreateAppResponseObserve =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve;
-
-export type AppCreateAppResponseOwnerAccountAgentProviderConnectionsItem =
-  AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem;
-export const AppCreateAppResponseOwnerAccountAgentProviderConnectionsItem =
-  AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem;
-
-export type AppCreateAppResponseOwnerAccountAgentProviderConnectionsList =
-  Array<AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem>;
-export const AppCreateAppResponseOwnerAccountAgentProviderConnectionsList =
-  /*@__PURE__*/ S.Array(
-    AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem,
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountAgentProviderConnectionsList>;
-
-export type AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysItemRolesList =
-  Array<AppStoreConnectUserRole>;
-export const AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysItemRolesList =
-  /*@__PURE__*/ S.Array(
-    AppStoreConnectUserRole,
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysItemRolesList>;
-
-export interface AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysItem {
-  createdAt: string;
-  id: string;
-  issuerIdentifier: string;
-  keyIdentifier: string;
-  keyP8: string;
-  name: string | null;
-  roles: AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysItemRolesList | null;
-  updatedAt: string;
-}
-export const AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdAt: S.String,
-      id: S.String,
-      issuerIdentifier: S.String,
-      keyIdentifier: S.String,
-      keyP8: S.String,
-      name: S.NullOr(S.String),
-      roles: S.NullOr(
-        AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysItemRolesList,
-      ),
-      updatedAt: S.String,
-    }),
-  ).annotate({
-    identifier: "AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysItem",
-  }) as any as S.Schema<AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysItem>;
-
-export type AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysList =
-  Array<AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysItem>;
-export const AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysList =
-  /*@__PURE__*/ S.Array(
-    AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysItem,
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysList>;
-
-export type AppCreateAppResponseOwnerAccountAppleDistributionCertificatesItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem;
-export const AppCreateAppResponseOwnerAccountAppleDistributionCertificatesItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem;
-
-export type AppCreateAppResponseOwnerAccountAppleDistributionCertificatesList =
-  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem>;
-export const AppCreateAppResponseOwnerAccountAppleDistributionCertificatesList =
-  /*@__PURE__*/ S.Array(
-    AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem,
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountAppleDistributionCertificatesList>;
-
-export type AppCreateAppResponseOwnerAccountApplePushKeysItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem;
-export const AppCreateAppResponseOwnerAccountApplePushKeysItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem;
-
-export type AppCreateAppResponseOwnerAccountApplePushKeysList =
-  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem>;
-export const AppCreateAppResponseOwnerAccountApplePushKeysList =
-  /*@__PURE__*/ S.Array(
-    AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem,
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountApplePushKeysList>;
-
-export type AppCreateAppResponseOwnerAccountBilling =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-export const AppCreateAppResponseOwnerAccountBilling =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-
-export type AppCreateAppResponseOwnerAccountConvexTeamConnectionsItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
-export const AppCreateAppResponseOwnerAccountConvexTeamConnectionsItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
-
-export type AppCreateAppResponseOwnerAccountConvexTeamConnectionsList =
-  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem>;
-export const AppCreateAppResponseOwnerAccountConvexTeamConnectionsList =
-  /*@__PURE__*/ S.Array(
-    AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem,
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountConvexTeamConnectionsList>;
-
-export type AppCreateAppResponseOwnerAccountEnvironmentVariableEnvironmentsList =
-  Array<unknown>;
-export const AppCreateAppResponseOwnerAccountEnvironmentVariableEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountEnvironmentVariableEnvironmentsList>;
-
-export type AppCreateAppResponseOwnerAccountGithubAppInstallationsItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
-export const AppCreateAppResponseOwnerAccountGithubAppInstallationsItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
-
-export type AppCreateAppResponseOwnerAccountGithubAppInstallationsList =
-  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem>;
-export const AppCreateAppResponseOwnerAccountGithubAppInstallationsList =
-  /*@__PURE__*/ S.Array(
-    AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem,
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountGithubAppInstallationsList>;
-
-export type AppCreateAppResponseOwnerAccountGoogleServiceAccountKeysItem =
-  AccountByIdResponseGoogleServiceAccountKeysItem;
-export const AppCreateAppResponseOwnerAccountGoogleServiceAccountKeysItem =
-  AccountByIdResponseGoogleServiceAccountKeysItem;
-
-export type AppCreateAppResponseOwnerAccountGoogleServiceAccountKeysList =
-  Array<AccountByIdResponseGoogleServiceAccountKeysItem>;
-export const AppCreateAppResponseOwnerAccountGoogleServiceAccountKeysList =
-  /*@__PURE__*/ S.Array(
-    AccountByIdResponseGoogleServiceAccountKeysItem,
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountGoogleServiceAccountKeysList>;
-
-export type AppCreateAppResponseOwnerAccountLogRocketOrganization =
-  AccountByIdResponseLogRocketOrganization;
-export const AppCreateAppResponseOwnerAccountLogRocketOrganization =
-  AccountByIdResponseLogRocketOrganization;
-
-export type AppCreateAppResponseOwnerAccountMemberStats =
-  AccountByIdResponseMemberStats;
-export const AppCreateAppResponseOwnerAccountMemberStats =
-  AccountByIdResponseMemberStats;
-
-export type AppCreateAppResponseOwnerAccountOffersItemFeaturesList =
-  (Feature | null)[];
-export const AppCreateAppResponseOwnerAccountOffersItemFeaturesList =
-  /*@__PURE__*/ S.Array(
-    S.NullOr(Feature),
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountOffersItemFeaturesList>;
-
-export interface AppCreateAppResponseOwnerAccountOffersItem {
-  features: AppCreateAppResponseOwnerAccountOffersItemFeaturesList | null;
-  id: string;
-  price: number;
-  quantity: number | null;
-  stripeId: string;
-  trialLength: number | null;
-  type: OfferType;
-}
-export const AppCreateAppResponseOwnerAccountOffersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      features: S.NullOr(
-        AppCreateAppResponseOwnerAccountOffersItemFeaturesList,
-      ),
-      id: S.String,
-      price: S.Number,
-      quantity: S.NullOr(S.Number),
-      stripeId: S.String,
-      trialLength: S.NullOr(S.Number),
-      type: OfferType,
-    }),
-  ).annotate({
-    identifier: "AppCreateAppResponseOwnerAccountOffersItem",
-  }) as any as S.Schema<AppCreateAppResponseOwnerAccountOffersItem>;
-
-export type AppCreateAppResponseOwnerAccountOffersList =
-  Array<AppCreateAppResponseOwnerAccountOffersItem>;
-export const AppCreateAppResponseOwnerAccountOffersList = /*@__PURE__*/ S.Array(
-  AppCreateAppResponseOwnerAccountOffersItem,
-) as any as S.Schema<AppCreateAppResponseOwnerAccountOffersList>;
-
-export type AppCreateAppResponseOwnerAccountOnboardingStats =
-  AccountByIdResponseOnboardingStats;
-export const AppCreateAppResponseOwnerAccountOnboardingStats =
-  AccountByIdResponseOnboardingStats;
-
-export type AppCreateAppResponseOwnerAccountOwner =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner;
-export const AppCreateAppResponseOwnerAccountOwner =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner;
-
-export type AppCreateAppResponseOwnerAccountOwnerUserActor =
-  AccountByIdResponseUsersItemUserActor;
-export const AppCreateAppResponseOwnerAccountOwnerUserActor =
-  AccountByIdResponseUsersItemUserActor;
-
-export type AppCreateAppResponseOwnerAccountPendingSentryInstallation =
-  AccountByIdResponsePendingSentryInstallation;
-export const AppCreateAppResponseOwnerAccountPendingSentryInstallation =
-  AccountByIdResponsePendingSentryInstallation;
-
-export type AppCreateAppResponseOwnerAccountPosthogOrganizationConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
-export const AppCreateAppResponseOwnerAccountPosthogOrganizationConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
-
-export type AppCreateAppResponseOwnerAccountSentryInstallation =
-  AccountByIdResponsePendingSentryInstallation;
-export const AppCreateAppResponseOwnerAccountSentryInstallation =
-  AccountByIdResponsePendingSentryInstallation;
-
-export type AppCreateAppResponseOwnerAccountSsoAllowedAuthProvidersList =
-  Array<AuthProviderIdentifier>;
-export const AppCreateAppResponseOwnerAccountSsoAllowedAuthProvidersList =
-  /*@__PURE__*/ S.Array(
-    AuthProviderIdentifier,
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountSsoAllowedAuthProvidersList>;
-
-export type AppCreateAppResponseOwnerAccountSsoConfiguration =
-  AccountByIdResponseSsoConfiguration;
-export const AppCreateAppResponseOwnerAccountSsoConfiguration =
-  AccountByIdResponseSsoConfiguration;
-
-export type AppCreateAppResponseOwnerAccountSubscription =
-  AccountByIdResponseBillingSubscription;
-export const AppCreateAppResponseOwnerAccountSubscription =
-  AccountByIdResponseBillingSubscription;
-
-export type AppCreateAppResponseOwnerAccountSupabaseConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
-export const AppCreateAppResponseOwnerAccountSupabaseConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
-
-export type AppCreateAppResponseOwnerAccountUserInvitationsItemPermissionsList =
-  Array<Permission>;
-export const AppCreateAppResponseOwnerAccountUserInvitationsItemPermissionsList =
-  /*@__PURE__*/ S.Array(
-    Permission,
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountUserInvitationsItemPermissionsList>;
-
-export interface AppCreateAppResponseOwnerAccountUserInvitationsItem {
-  accountName: string;
-  accountProfileImageUrl: string;
-  accountRequiresTwoFactor: boolean;
-  created: string;
-  email: string;
-  expires: string;
-  id: string;
-  isForOrganization: boolean;
-  permissions: AppCreateAppResponseOwnerAccountUserInvitationsItemPermissionsList;
-  role: Role;
-}
-export const AppCreateAppResponseOwnerAccountUserInvitationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountName: S.String,
-      accountProfileImageUrl: S.String,
-      accountRequiresTwoFactor: S.Boolean,
-      created: S.String,
-      email: S.String,
-      expires: S.String,
-      id: S.String,
-      isForOrganization: S.Boolean,
-      permissions:
-        AppCreateAppResponseOwnerAccountUserInvitationsItemPermissionsList,
-      role: Role,
-    }),
-  ).annotate({
-    identifier: "AppCreateAppResponseOwnerAccountUserInvitationsItem",
-  }) as any as S.Schema<AppCreateAppResponseOwnerAccountUserInvitationsItem>;
-
-export type AppCreateAppResponseOwnerAccountUserInvitationsList =
-  Array<AppCreateAppResponseOwnerAccountUserInvitationsItem>;
-export const AppCreateAppResponseOwnerAccountUserInvitationsList =
-  /*@__PURE__*/ S.Array(
-    AppCreateAppResponseOwnerAccountUserInvitationsItem,
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountUserInvitationsList>;
-
-export type AppCreateAppResponseOwnerAccountUsersItemPermissionsList =
-  Array<Permission>;
-export const AppCreateAppResponseOwnerAccountUsersItemPermissionsList =
-  /*@__PURE__*/ S.Array(
-    Permission,
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountUsersItemPermissionsList>;
-
-export interface AppCreateAppResponseOwnerAccountUsersItem {
-  id: string;
-  permissions: AppCreateAppResponseOwnerAccountUsersItemPermissionsList;
-  role: Role;
-}
-export const AppCreateAppResponseOwnerAccountUsersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      permissions: AppCreateAppResponseOwnerAccountUsersItemPermissionsList,
-      role: Role,
-    }),
-  ).annotate({
-    identifier: "AppCreateAppResponseOwnerAccountUsersItem",
-  }) as any as S.Schema<AppCreateAppResponseOwnerAccountUsersItem>;
-
-export type AppCreateAppResponseOwnerAccountUsersList =
-  Array<AppCreateAppResponseOwnerAccountUsersItem>;
-export const AppCreateAppResponseOwnerAccountUsersList = /*@__PURE__*/ S.Array(
-  AppCreateAppResponseOwnerAccountUsersItem,
-) as any as S.Schema<AppCreateAppResponseOwnerAccountUsersList>;
-
-export type AppCreateAppResponseOwnerAccountVexoAccountConnection =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-export const AppCreateAppResponseOwnerAccountVexoAccountConnection =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-
-export type AppCreateAppResponseOwnerAccountViewerUserPermissionPermissionsList =
-  Array<Permission>;
-export const AppCreateAppResponseOwnerAccountViewerUserPermissionPermissionsList =
-  /*@__PURE__*/ S.Array(
-    Permission,
-  ) as any as S.Schema<AppCreateAppResponseOwnerAccountViewerUserPermissionPermissionsList>;
-
-export interface AppCreateAppResponseOwnerAccountViewerUserPermission {
-  id: string;
-  permissions: AppCreateAppResponseOwnerAccountViewerUserPermissionPermissionsList;
-  role: Role;
-}
-export const AppCreateAppResponseOwnerAccountViewerUserPermission =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      permissions:
-        AppCreateAppResponseOwnerAccountViewerUserPermissionPermissionsList,
-      role: Role,
-    }),
-  ).annotate({
-    identifier: "AppCreateAppResponseOwnerAccountViewerUserPermission",
-  }) as any as S.Schema<AppCreateAppResponseOwnerAccountViewerUserPermission>;
-
-export interface AppCreateAppResponseOwnerAccount {
-  agentProviderConnections: AppCreateAppResponseOwnerAccountAgentProviderConnectionsList;
-  aiChatEnabled: boolean;
-  appCount: number;
-  appStoreConnectApiKeys: AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysList;
-  appleDistributionCertificates: AppCreateAppResponseOwnerAccountAppleDistributionCertificatesList;
-  applePushKeys: AppCreateAppResponseOwnerAccountApplePushKeysList;
-  billing: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem | null;
-  convexTeamConnections: AppCreateAppResponseOwnerAccountConvexTeamConnectionsList;
-  createdAt: string;
-  displayName: string | null;
-  environmentVariableEnvironments: AppCreateAppResponseOwnerAccountEnvironmentVariableEnvironmentsList;
-  githubAppInstallations: AppCreateAppResponseOwnerAccountGithubAppInstallationsList;
-  googleServiceAccountKeys: AppCreateAppResponseOwnerAccountGoogleServiceAccountKeysList;
-  id: string;
-  isCurrent: boolean;
-  isDisabled: boolean;
-  isFreeAppDevDomainTier: boolean;
-  isSSOEnabled: boolean;
-  lastDeletionAttemptTime: string | null;
-  logRocketOrganization: AccountByIdResponseLogRocketOrganization | null;
-  memberStats: AccountByIdResponseMemberStats;
-  name: string;
-  observeIngestionPaused: boolean;
-  offers: AppCreateAppResponseOwnerAccountOffersList | null;
-  onboardingStats: AccountByIdResponseOnboardingStats;
-  owner: AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner | null;
-  ownerUserActor: AccountByIdResponseUsersItemUserActor | null;
-  pendingSentryInstallation: AccountByIdResponsePendingSentryInstallation | null;
-  posthogOrganizationConnection: AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection | null;
-  profileImageUrl: string;
-  pushSecurityEnabled: boolean;
-  requireTwoFactor: boolean;
-  sentryInstallation: AccountByIdResponsePendingSentryInstallation | null;
-  ssoAllowedAuthProviders: AppCreateAppResponseOwnerAccountSsoAllowedAuthProvidersList;
-  ssoConfiguration: AccountByIdResponseSsoConfiguration | null;
-  subscription: AccountByIdResponseBillingSubscription | null;
-  supabaseConnection: AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection | null;
-  updatedAt: string;
-  userInvitations: AppCreateAppResponseOwnerAccountUserInvitationsList;
-  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
-  users: AppCreateAppResponseOwnerAccountUsersList;
-  vexoAccountConnection: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem | null;
-  viewerUserPermission: AppCreateAppResponseOwnerAccountViewerUserPermission;
-}
-export const AppCreateAppResponseOwnerAccount = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    agentProviderConnections:
-      AppCreateAppResponseOwnerAccountAgentProviderConnectionsList,
-    aiChatEnabled: S.Boolean,
-    appCount: S.Number,
-    appStoreConnectApiKeys:
-      AppCreateAppResponseOwnerAccountAppStoreConnectApiKeysList,
-    appleDistributionCertificates:
-      AppCreateAppResponseOwnerAccountAppleDistributionCertificatesList,
-    applePushKeys: AppCreateAppResponseOwnerAccountApplePushKeysList,
-    billing: S.NullOr(
-      AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
-    ),
-    convexTeamConnections:
-      AppCreateAppResponseOwnerAccountConvexTeamConnectionsList,
-    createdAt: S.String,
-    displayName: S.NullOr(S.String),
-    environmentVariableEnvironments:
-      AppCreateAppResponseOwnerAccountEnvironmentVariableEnvironmentsList,
-    githubAppInstallations:
-      AppCreateAppResponseOwnerAccountGithubAppInstallationsList,
-    googleServiceAccountKeys:
-      AppCreateAppResponseOwnerAccountGoogleServiceAccountKeysList,
-    id: S.String,
-    isCurrent: S.Boolean,
-    isDisabled: S.Boolean,
-    isFreeAppDevDomainTier: S.Boolean,
-    isSSOEnabled: S.Boolean,
-    lastDeletionAttemptTime: S.NullOr(S.String),
-    logRocketOrganization: S.NullOr(AccountByIdResponseLogRocketOrganization),
-    memberStats: AccountByIdResponseMemberStats,
-    name: S.String,
-    observeIngestionPaused: S.Boolean,
-    offers: S.NullOr(AppCreateAppResponseOwnerAccountOffersList),
-    onboardingStats: AccountByIdResponseOnboardingStats,
-    owner: S.NullOr(
-      AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner,
-    ),
-    ownerUserActor: S.NullOr(AccountByIdResponseUsersItemUserActor),
-    pendingSentryInstallation: S.NullOr(
-      AccountByIdResponsePendingSentryInstallation,
-    ),
-    posthogOrganizationConnection: S.NullOr(
-      AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection,
-    ),
-    profileImageUrl: S.String,
-    pushSecurityEnabled: S.Boolean,
-    requireTwoFactor: S.Boolean,
-    sentryInstallation: S.NullOr(AccountByIdResponsePendingSentryInstallation),
-    ssoAllowedAuthProviders:
-      AppCreateAppResponseOwnerAccountSsoAllowedAuthProvidersList,
-    ssoConfiguration: S.NullOr(AccountByIdResponseSsoConfiguration),
-    subscription: S.NullOr(AccountByIdResponseBillingSubscription),
-    supabaseConnection: S.NullOr(
-      AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection,
-    ),
-    updatedAt: S.String,
-    userInvitations: AppCreateAppResponseOwnerAccountUserInvitationsList,
-    userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
-    users: AppCreateAppResponseOwnerAccountUsersList,
-    vexoAccountConnection: S.NullOr(
-      AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
-    ),
-    viewerUserPermission: AppCreateAppResponseOwnerAccountViewerUserPermission,
-  }),
-).annotate({
-  identifier: "AppCreateAppResponseOwnerAccount",
-}) as any as S.Schema<AppCreateAppResponseOwnerAccount>;
-
-export type AppCreateAppResponsePosthogProjectPosthogOrganizationConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
-export const AppCreateAppResponsePosthogProjectPosthogOrganizationConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
-
-export type AppCreateAppResponsePosthogProject =
-  AppByDevDomainNameResponsePosthogProject;
-export const AppCreateAppResponsePosthogProject =
-  AppByDevDomainNameResponsePosthogProject;
-
-export type AppCreateAppResponsePushNotificationsInsights =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-export const AppCreateAppResponsePushNotificationsInsights =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-
-export type AppCreateAppResponsePushNotifications =
-  AppByDevDomainNameResponsePushNotifications;
-export const AppCreateAppResponsePushNotifications =
-  AppByDevDomainNameResponsePushNotifications;
-
-export type AppCreateAppResponseSentryProject =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject;
-export const AppCreateAppResponseSentryProject =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject;
-
-export type AppCreateAppResponseSupabaseProjectSupabaseConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
-export const AppCreateAppResponseSupabaseProjectSupabaseConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
-
-export type AppCreateAppResponseSupabaseProject =
-  AppByDevDomainNameResponseSupabaseProject;
-export const AppCreateAppResponseSupabaseProject =
-  AppByDevDomainNameResponseSupabaseProject;
-
-export type AppCreateAppResponseVexoApp =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp;
-export const AppCreateAppResponseVexoApp =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp;
-
-export type AppCreateAppResponseWorkerCustomDomainAlias =
-  AppByDevDomainNameResponseWorkerCustomDomainAlias;
-export const AppCreateAppResponseWorkerCustomDomainAlias =
-  AppByDevDomainNameResponseWorkerCustomDomainAlias;
-
-export type AppCreateAppResponseWorkerCustomDomainDcvDelegationRecord =
-  AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord;
-export const AppCreateAppResponseWorkerCustomDomainDcvDelegationRecord =
-  AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord;
-
-export type AppCreateAppResponseWorkerCustomDomainDnsRecord =
-  AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord;
-export const AppCreateAppResponseWorkerCustomDomainDnsRecord =
-  AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord;
-
-export type AppCreateAppResponseWorkerCustomDomainSetupSslErrorsList =
-  Array<string>;
-export const AppCreateAppResponseWorkerCustomDomainSetupSslErrorsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AppCreateAppResponseWorkerCustomDomainSetupSslErrorsList>;
-
-export type AppCreateAppResponseWorkerCustomDomainSetupVerificationErrorsList =
-  Array<string>;
-export const AppCreateAppResponseWorkerCustomDomainSetupVerificationErrorsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AppCreateAppResponseWorkerCustomDomainSetupVerificationErrorsList>;
-
-export interface AppCreateAppResponseWorkerCustomDomainSetup {
-  sslErrors: AppCreateAppResponseWorkerCustomDomainSetupSslErrorsList | null;
-  sslStatus: CustomDomainStatus | null;
-  status: CustomDomainStatus;
-  verificationErrors: AppCreateAppResponseWorkerCustomDomainSetupVerificationErrorsList | null;
-  verificationStatus: CustomDomainStatus | null;
-}
-export const AppCreateAppResponseWorkerCustomDomainSetup =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      sslErrors: S.NullOr(
-        AppCreateAppResponseWorkerCustomDomainSetupSslErrorsList,
-      ),
-      sslStatus: S.NullOr(CustomDomainStatus),
-      status: CustomDomainStatus,
-      verificationErrors: S.NullOr(
-        AppCreateAppResponseWorkerCustomDomainSetupVerificationErrorsList,
-      ),
-      verificationStatus: S.NullOr(CustomDomainStatus),
-    }),
-  ).annotate({
-    identifier: "AppCreateAppResponseWorkerCustomDomainSetup",
-  }) as any as S.Schema<AppCreateAppResponseWorkerCustomDomainSetup>;
-
-export type AppCreateAppResponseWorkerCustomDomainVerificationRecord =
-  AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord;
-export const AppCreateAppResponseWorkerCustomDomainVerificationRecord =
-  AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord;
-
-export interface AppCreateAppResponseWorkerCustomDomain {
-  alias: AppByDevDomainNameResponseWorkerCustomDomainAlias;
-  createdAt: string;
-  dcvDelegationRecord: AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord | null;
-  devDomainName: unknown;
-  dnsRecord: AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord;
-  hostname: string;
-  id: string;
-  setup: AppCreateAppResponseWorkerCustomDomainSetup | null;
-  updatedAt: string;
-  verificationRecord: AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord | null;
-}
-export const AppCreateAppResponseWorkerCustomDomain = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      alias: AppByDevDomainNameResponseWorkerCustomDomainAlias,
-      createdAt: S.String,
-      dcvDelegationRecord: S.NullOr(
-        AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord,
-      ),
-      devDomainName: S.Unknown,
-      dnsRecord:
-        AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord,
-      hostname: S.String,
-      id: S.String,
-      setup: S.NullOr(AppCreateAppResponseWorkerCustomDomainSetup),
-      updatedAt: S.String,
-      verificationRecord: S.NullOr(
-        AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord,
-      ),
-    }),
-).annotate({
-  identifier: "AppCreateAppResponseWorkerCustomDomain",
-}) as any as S.Schema<AppCreateAppResponseWorkerCustomDomain>;
-
-export type AppCreateAppResponseWorkflowCachingConfig =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig;
-export const AppCreateAppResponseWorkflowCachingConfig =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig;
-
-/** Selection set for `app.createApp` (unwrapped from the GraphQL `data` envelope). */
-export interface AppCreateAppResponse {
-  appStoreConnectApp: AppCreateAppResponseAppStoreConnectApp | null;
-  appStoreConnectWorkflowConnectionStatus: AppStoreConnectWorkflowConnectionStatus;
-  assetLimitPerUpdateGroup: number;
-  buildProfiles: AppCreateAppResponseBuildProfilesList;
-  convexProject: AppByDevDomainNameResponseConvexProject | null;
-  description: string;
-  devDomainName: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName | null;
-  deviceRunSessionTags: AppCreateAppResponseDeviceRunSessionTagsList;
-  environmentVariableEnvironments: AppCreateAppResponseEnvironmentVariableEnvironmentsList;
-  fullName: string;
-  githubBuildTriggers: AppCreateAppResponseGithubBuildTriggersList;
-  githubJobRunTriggers: AppCreateAppResponseGithubJobRunTriggersList;
-  githubRepository: AppByDevDomainNameResponseGithubRepository | null;
-  githubRepositorySettings: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings | null;
-  icon: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon | null;
-  iconUrl: string | null;
-  id: string;
-  insights: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights;
-  internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy;
-  isEligibleForObserveLapsedPaidNotification: boolean;
-  isEligibleForObserveNotice: boolean;
-  lastDeletionAttemptTime: string | null;
-  latestActivity: string;
-  logRocketProject: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject | null;
-  name: string;
-  observe: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve;
-  observeIngestionPaused: boolean;
-  ownerAccount: AppCreateAppResponseOwnerAccount;
-  packageName: string;
-  posthogProject: AppByDevDomainNameResponsePosthogProject | null;
-  privacy: string;
-  published: boolean;
-  pushNotifications: AppByDevDomainNameResponsePushNotifications;
-  pushSecurityEnabled: boolean;
-  resourceClassExperiment: ResourceClassExperiment | null;
-  scopeKey: string;
-  sdkVersion: string;
-  sentryProject: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject | null;
-  slug: string;
-  suggestedDevDomainName: string;
-  supabaseProject: AppByDevDomainNameResponseSupabaseProject | null;
-  updated: string;
-  username: string;
-  vexoApp: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp | null;
-  workerCustomDomain: AppCreateAppResponseWorkerCustomDomain | null;
-  workflowCachingConfig: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig;
-}
-export const AppCreateAppResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appStoreConnectApp: S.NullOr(AppCreateAppResponseAppStoreConnectApp),
-    appStoreConnectWorkflowConnectionStatus:
-      AppStoreConnectWorkflowConnectionStatus,
-    assetLimitPerUpdateGroup: S.Number,
-    buildProfiles: AppCreateAppResponseBuildProfilesList,
-    convexProject: S.NullOr(AppByDevDomainNameResponseConvexProject),
-    description: S.String,
-    devDomainName: S.NullOr(
-      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName,
-    ),
-    deviceRunSessionTags: AppCreateAppResponseDeviceRunSessionTagsList,
-    environmentVariableEnvironments:
-      AppCreateAppResponseEnvironmentVariableEnvironmentsList,
-    fullName: S.String,
-    githubBuildTriggers: AppCreateAppResponseGithubBuildTriggersList,
-    githubJobRunTriggers: AppCreateAppResponseGithubJobRunTriggersList,
-    githubRepository: S.NullOr(AppByDevDomainNameResponseGithubRepository),
-    githubRepositorySettings: S.NullOr(
-      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings,
-    ),
-    icon: S.NullOr(
-      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon,
-    ),
-    iconUrl: S.NullOr(S.String),
-    id: S.String,
-    insights:
-      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights,
-    internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy,
-    isEligibleForObserveLapsedPaidNotification: S.Boolean,
-    isEligibleForObserveNotice: S.Boolean,
-    lastDeletionAttemptTime: S.NullOr(S.String),
-    latestActivity: S.String,
-    logRocketProject: S.NullOr(
-      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject,
-    ),
-    name: S.String,
-    observe: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve,
-    observeIngestionPaused: S.Boolean,
-    ownerAccount: AppCreateAppResponseOwnerAccount,
-    packageName: S.String,
-    posthogProject: S.NullOr(AppByDevDomainNameResponsePosthogProject),
-    privacy: S.String,
-    published: S.Boolean,
-    pushNotifications: AppByDevDomainNameResponsePushNotifications,
-    pushSecurityEnabled: S.Boolean,
-    resourceClassExperiment: S.NullOr(ResourceClassExperiment),
-    scopeKey: S.String,
-    sdkVersion: S.String,
-    sentryProject: S.NullOr(
-      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject,
-    ),
-    slug: S.String,
-    suggestedDevDomainName: S.String,
-    supabaseProject: S.NullOr(AppByDevDomainNameResponseSupabaseProject),
-    updated: S.String,
-    username: S.String,
-    vexoApp: S.NullOr(
-      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp,
-    ),
-    workerCustomDomain: S.NullOr(AppCreateAppResponseWorkerCustomDomain),
-    workflowCachingConfig:
-      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig,
-  }).pipe(T.ResponsePath("app.createApp")),
-).annotate({
-  identifier: "AppCreateAppResponse",
-}) as any as S.Schema<AppCreateAppResponse>;
-
 export interface AppleAppIdentifierInput {
   appleTeamId?: string | null;
   bundleIdentifier: string;
@@ -48388,6 +47296,15 @@ export const AppScheduleAppDeletionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AppScheduleAppDeletionResponse",
 }) as any as S.Schema<AppScheduleAppDeletionResponse>;
 
+export interface AppInfoInput {
+  displayName?: string | null;
+}
+export const AppInfoInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "AppInfoInput" }) as any as S.Schema<AppInfoInput>;
+
 export interface AppSetAppInfoRequest {
   appId?: string | null;
   setAppInfoAppId: string;
@@ -61195,6 +60112,1901 @@ export const BuildsByIdResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BuildsByIdResponse",
 }) as any as S.Schema<BuildsByIdResponse>;
 
+export interface CancelSubmissionRequest {
+  submissionId: string;
+}
+export const CancelSubmissionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    submissionId: S.String,
+  })
+    .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
+    .pipe(
+      T.GraphQLOp({
+        query:
+          "mutation submissionCancelSubmission($submissionId: ID!) {\n  submission {\n    cancelSubmission(submissionId: $submissionId) {\n      activityTimestamp\n      actor {\n        accessTokens {\n          createdAt\n          id\n          lastUsedAt\n          note\n          revokedAt\n          updatedAt\n          visibleTokenPrefix\n        }\n        accounts {\n          aiChatEnabled\n          appCount\n          createdAt\n          displayName\n          environmentVariableEnvironments\n          id\n          isCurrent\n          isDisabled\n          isFreeAppDevDomainTier\n          isSSOEnabled\n          lastDeletionAttemptTime\n          name\n          observeIngestionPaused\n          profileImageUrl\n          pushSecurityEnabled\n          requireTwoFactor\n          ssoAllowedAuthProviders\n          updatedAt\n          userSpecifiedAccountUsage\n        }\n        created\n        displayName\n        experiments {\n          createdAt\n          enabled\n          experiment\n          id\n          updatedAt\n        }\n        firstName\n        id\n        isExpoAdmin\n        lastDeletionAttemptTime\n      }\n      androidConfig {\n        applicationIdentifier\n        releaseStatus\n        rollout\n        track\n      }\n      app {\n        appStoreConnectApp {\n          ascAppIdentifier\n          createdAt\n          id\n          updatedAt\n          webhookEventTypes\n          webhookIdentifier\n        }\n        appStoreConnectWorkflowConnectionStatus\n        assetLimitPerUpdateGroup\n        buildProfiles\n        convexProject {\n          convexProjectIdentifier\n          convexProjectName\n          convexProjectSlug\n          createdAt\n          id\n          updatedAt\n        }\n        description\n        devDomainName {\n          id\n          name\n        }\n        deviceRunSessionTags\n        environmentVariableEnvironments\n        fullName\n        githubBuildTriggers {\n          autoSubmit\n          buildProfile\n          createdAt\n          environment\n          executionBehavior\n          id\n          isActive\n          lastRunAt\n          lastRunErrorCode\n          lastRunErrorMessage\n          lastRunStatus\n          platform\n          sourcePattern\n          submitProfile\n          targetPattern\n          type\n          updatedAt\n        }\n        githubJobRunTriggers {\n          createdAt\n          id\n          isActive\n          jobType\n          lastRunAt\n          lastRunErrorCode\n          lastRunErrorMessage\n          lastRunStatus\n          sourcePattern\n          targetPattern\n          triggerType\n        }\n        githubRepository {\n          createdAt\n          githubRepositoryIdentifier\n          githubRepositoryUrl\n          id\n          lastDeletionAttemptTime\n          nodeIdentifier\n        }\n        githubRepositorySettings {\n          baseDirectory\n          id\n        }\n        icon {\n          originalUrl\n          primaryColor\n          url\n        }\n        iconUrl\n        id\n        insights {\n          hasEventsFromExpoInsightsClientModule\n        }\n        internalDistributionBuildPrivacy\n        isEligibleForObserveLapsedPaidNotification\n        isEligibleForObserveNotice\n        lastDeletionAttemptTime\n        latestActivity\n        logRocketProject {\n          createdAt\n          id\n          logRocketOrgId\n          logRocketProjectSlug\n          updatedAt\n        }\n        name\n        observe {\n          latestExpoSdkVersion\n          totalEventCount\n        }\n        observeIngestionPaused\n        ownerAccount {\n          aiChatEnabled\n          appCount\n          createdAt\n          displayName\n          environmentVariableEnvironments\n          id\n          isCurrent\n          isDisabled\n          isFreeAppDevDomainTier\n          isSSOEnabled\n          lastDeletionAttemptTime\n          name\n          observeIngestionPaused\n          profileImageUrl\n          pushSecurityEnabled\n          requireTwoFactor\n          ssoAllowedAuthProviders\n          updatedAt\n          userSpecifiedAccountUsage\n        }\n        packageName\n        posthogProject {\n          createdAt\n          id\n          posthogHost\n          posthogProjectIdentifier\n          posthogProjectName\n          posthogProjectToken\n          updatedAt\n        }\n        privacy\n        published\n        pushNotifications {\n          id\n        }\n        pushSecurityEnabled\n        resourceClassExperiment\n        scopeKey\n        sdkVersion\n        sentryProject {\n          createdAt\n          id\n          sentryInstallationId\n          sentryProjectId\n          sentryProjectSlug\n          updatedAt\n        }\n        slug\n        suggestedDevDomainName\n        supabaseProject {\n          createdAt\n          id\n          supabaseProjectName\n          supabaseProjectRef\n          supabaseProjectUrl\n          supabaseRegion\n          updatedAt\n        }\n        updated\n        username\n        vexoApp {\n          domain\n          iconUrl\n          id\n          name\n          owner\n          slug\n          vexoIdentifier\n        }\n        workerCustomDomain {\n          createdAt\n          devDomainName\n          hostname\n          id\n          updatedAt\n        }\n        workflowCachingConfig {\n          ccacheEnabled\n          gradleCacheEnabled\n        }\n      }\n      appStoreConnectBuildUpload {\n        appStoreConnectBuild {\n          ascBuildIdentifier\n          buildNumber\n          expirationDate\n          minOsVersion\n          processingState\n          uploadedDate\n        }\n        ascBuildUploadIdentifier\n        buildNumber\n        createdDate\n        uploadState\n        uploadedDate\n        version\n      }\n      archiveUrl\n      canRetry\n      cancelingActor {\n        accessTokens {\n          createdAt\n          id\n          lastUsedAt\n          note\n          revokedAt\n          updatedAt\n          visibleTokenPrefix\n        }\n        accounts {\n          aiChatEnabled\n          appCount\n          createdAt\n          displayName\n          environmentVariableEnvironments\n          id\n          isCurrent\n          isDisabled\n          isFreeAppDevDomainTier\n          isSSOEnabled\n          lastDeletionAttemptTime\n          name\n          observeIngestionPaused\n          profileImageUrl\n          pushSecurityEnabled\n          requireTwoFactor\n          ssoAllowedAuthProviders\n          updatedAt\n          userSpecifiedAccountUsage\n        }\n        created\n        displayName\n        experiments {\n          createdAt\n          enabled\n          experiment\n          id\n          updatedAt\n        }\n        firstName\n        id\n        isExpoAdmin\n        lastDeletionAttemptTime\n      }\n      completedAt\n      createdAt\n      error {\n        errorCode\n        message\n      }\n      id\n      initiatingActor {\n        accessTokens {\n          createdAt\n          id\n          lastUsedAt\n          note\n          revokedAt\n          updatedAt\n          visibleTokenPrefix\n        }\n        accounts {\n          aiChatEnabled\n          appCount\n          createdAt\n          displayName\n          environmentVariableEnvironments\n          id\n          isCurrent\n          isDisabled\n          isFreeAppDevDomainTier\n          isSSOEnabled\n          lastDeletionAttemptTime\n          name\n          observeIngestionPaused\n          profileImageUrl\n          pushSecurityEnabled\n          requireTwoFactor\n          ssoAllowedAuthProviders\n          updatedAt\n          userSpecifiedAccountUsage\n        }\n        created\n        displayName\n        experiments {\n          createdAt\n          enabled\n          experiment\n          id\n          updatedAt\n        }\n        firstName\n        id\n        isExpoAdmin\n        lastDeletionAttemptTime\n      }\n      iosConfig {\n        appleIdUsername\n        ascApiKeyId\n        ascAppIdentifier\n      }\n      jobRun {\n        app {\n          appStoreConnectWorkflowConnectionStatus\n          assetLimitPerUpdateGroup\n          buildProfiles\n          description\n          deviceRunSessionTags\n          environmentVariableEnvironments\n          fullName\n          iconUrl\n          id\n          internalDistributionBuildPrivacy\n          isEligibleForObserveLapsedPaidNotification\n          isEligibleForObserveNotice\n          lastDeletionAttemptTime\n          latestActivity\n          name\n          observeIngestionPaused\n          packageName\n          privacy\n          published\n          pushSecurityEnabled\n          resourceClassExperiment\n          scopeKey\n          sdkVersion\n          slug\n          suggestedDevDomainName\n          updated\n          username\n        }\n        artifacts {\n          contentType\n          createdAt\n          downloadUrl\n          fileSizeBytes\n          filename\n          id\n          metadata\n          name\n          storageType\n          updatedAt\n        }\n        createdAt\n        displayName\n        endedAt\n        enqueuedAt\n        errors {\n          buildPhase\n          docsUrl\n          errorCode\n          message\n        }\n        expiresAt\n        gitCommitHash\n        gitCommitMessage\n        gitRef\n        id\n        initiatingActor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        isWaived\n        logFileUrls\n        maxRunTimeSeconds\n        name\n        priority\n        resourceClassDisplayName\n        sshSession {\n          createdAt\n          id\n          updatedAt\n        }\n        startedAt\n        status\n        updateGroups\n        workflowJob {\n          createdAt\n          environment\n          id\n          key\n          name\n          outputs\n          requiredJobKeys\n          status\n          type\n          updatedAt\n        }\n      }\n      logFiles\n      logsUrl\n      maxRetryTimeMinutes\n      platform\n      priority\n      status\n      submittedBuild {\n        activityTimestamp\n        actor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        app {\n          appStoreConnectWorkflowConnectionStatus\n          assetLimitPerUpdateGroup\n          buildProfiles\n          description\n          deviceRunSessionTags\n          environmentVariableEnvironments\n          fullName\n          iconUrl\n          id\n          internalDistributionBuildPrivacy\n          isEligibleForObserveLapsedPaidNotification\n          isEligibleForObserveNotice\n          lastDeletionAttemptTime\n          latestActivity\n          name\n          observeIngestionPaused\n          packageName\n          privacy\n          published\n          pushSecurityEnabled\n          resourceClassExperiment\n          scopeKey\n          sdkVersion\n          slug\n          suggestedDevDomainName\n          updated\n          username\n        }\n        appBuildVersion\n        appIdentifier\n        appVersion\n        artifacts {\n          applicationArchiveUrl\n          buildArtifactsUrl\n          buildUrl\n          xcodeBuildLogsUrl\n        }\n        buildMode\n        buildProfile\n        cancelingActor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        channel\n        cliVersion\n        completedAt\n        createdAt\n        customNodeVersion\n        customWorkflowName\n        deployment {\n          id\n        }\n        developmentClient\n        distribution\n        embeddedUpdate {\n          channel\n          createdAt\n          id\n          platform\n          runtimeVersion\n          signedAssetUrl\n        }\n        enqueuedAt\n        error {\n          buildPhase\n          docsUrl\n          errorCode\n          message\n        }\n        estimatedWaitTimeLeftSeconds\n        expirationDate\n        fingerprint {\n          buildCount\n          createdAt\n          debugInfoUrl\n          hash\n          id\n          updateCount\n          updatedAt\n        }\n        gitCommitHash\n        gitCommitMessage\n        gitRef\n        id\n        initialQueuePosition\n        initiatingActor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        iosEnterpriseProvisioning\n        isForIosSimulator\n        isGitWorkingTreeDirty\n        isWaived\n        logFileUrls\n        logFiles\n        maxBuildTimeSeconds\n        maxRetryTimeMinutes\n        message\n        metrics {\n          buildDuration\n          buildQueueTime\n          buildWaitTime\n        }\n        platform\n        priority\n        project {\n          description\n          fullName\n          iconUrl\n          id\n          name\n          published\n          slug\n          updated\n          username\n        }\n        projectMetadataFileUrl\n        projectRootDirectory\n        provisioningStartedAt\n        queuePosition\n        reactNativeVersion\n        releaseChannel\n        requiredPackageManager\n        resolvedEnvironment\n        resolvedImage\n        resourceClass\n        resourceClassDisplayName\n        runFromCI\n        runtime {\n          createdAt\n          firstBuildCreatedAt\n          id\n          isFingerprint\n          updatedAt\n          version\n        }\n        runtimeVersion\n        sdkVersion\n        selectedImage\n        sshSession {\n          createdAt\n          id\n          updatedAt\n        }\n        status\n        updateChannel {\n          appId\n          branchMapping\n          buildCount\n          createdAt\n          embeddedUpdateCount\n          id\n          isPaused\n          isProtected\n          lastDeletionAttemptTime\n          name\n          updatedAt\n        }\n        updatedAt\n        waiverType\n        workerStartedAt\n        workflowJob {\n          createdAt\n          environment\n          id\n          key\n          name\n          outputs\n          requiredJobKeys\n          status\n          type\n          updatedAt\n        }\n      }\n      updatedAt\n      workflowJob {\n        allDeviceTestCaseResults {\n          createdAt\n          duration\n          errorMessage\n          id\n          name\n          path\n          properties\n          retryCount\n          status\n          tags\n          updatedAt\n        }\n        approvals {\n          createdAt\n          decision\n          id\n          updatedAt\n        }\n        createdAt\n        credentialsAppleDeviceRegistrationRequest {\n          closedAt\n          id\n        }\n        deviceTestCaseResultAttempts {\n          createdAt\n          duration\n          errorMessage\n          id\n          name\n          path\n          properties\n          retryCount\n          status\n          tags\n          updatedAt\n        }\n        environment\n        errors {\n          message\n          title\n        }\n        id\n        key\n        name\n        outputs\n        requiredJobKeys\n        rolloutUpdateGroup {\n          activityTimestamp\n          assetHostOverride\n          assetMapUrl\n          awaitingCodeSigningInfo\n          branchId\n          createdAt\n          environment\n          expoGoSDKVersion\n          gitCommitHash\n          group\n          id\n          isGitWorkingTreeDirty\n          isRollBackToEmbedded\n          manifestFragment\n          manifestHostOverride\n          manifestPermalink\n          message\n          platform\n          rolloutPercentage\n          runtimeVersion\n          updatedAt\n        }\n        status\n        turtleBuild {\n          activityTimestamp\n          appBuildVersion\n          appIdentifier\n          appVersion\n          buildMode\n          buildProfile\n          channel\n          cliVersion\n          completedAt\n          createdAt\n          customNodeVersion\n          customWorkflowName\n          developmentClient\n          distribution\n          enqueuedAt\n          estimatedWaitTimeLeftSeconds\n          expirationDate\n          gitCommitHash\n          gitCommitMessage\n          gitRef\n          id\n          initialQueuePosition\n          iosEnterpriseProvisioning\n          isForIosSimulator\n          isGitWorkingTreeDirty\n          isWaived\n          logFileUrls\n          logFiles\n          maxBuildTimeSeconds\n          maxRetryTimeMinutes\n          message\n          platform\n          priority\n          projectMetadataFileUrl\n          projectRootDirectory\n          provisioningStartedAt\n          queuePosition\n          reactNativeVersion\n          releaseChannel\n          requiredPackageManager\n          resolvedEnvironment\n          resolvedImage\n          resourceClass\n          resourceClassDisplayName\n          runFromCI\n          runtimeVersion\n          sdkVersion\n          selectedImage\n          status\n          updatedAt\n          waiverType\n          workerStartedAt\n        }\n        turtleJobRun {\n          createdAt\n          displayName\n          endedAt\n          enqueuedAt\n          expiresAt\n          gitCommitHash\n          gitCommitMessage\n          gitRef\n          id\n          isWaived\n          logFileUrls\n          maxRunTimeSeconds\n          name\n          priority\n          resourceClassDisplayName\n          startedAt\n          status\n          updateGroups\n        }\n        type\n        updatedAt\n        workflowRun {\n          activityTimestamp\n          createdAt\n          durationSeconds\n          finalizedAt\n          gitCommitHash\n          gitCommitMessage\n          id\n          inputs\n          name\n          pullRequestNumber\n          requestedGitRef\n          sourceExpiresAt\n          status\n          triggerEventType\n          triggeringLabelName\n          triggeringSchedule\n          updatedAt\n        }\n      }\n    }\n  }\n}",
+        operationName: "submissionCancelSubmission",
+        type: "mutation",
+      }),
+    ),
+).annotate({
+  identifier: "CancelSubmissionRequest",
+}) as any as S.Schema<CancelSubmissionRequest>;
+
+export type CancelSubmissionResponseActorAccessTokensItem =
+  AccountByIdResponseOwnerAccessTokensItem;
+export const CancelSubmissionResponseActorAccessTokensItem =
+  AccountByIdResponseOwnerAccessTokensItem;
+
+export type CancelSubmissionResponseActorAccessTokensList =
+  Array<AccountByIdResponseOwnerAccessTokensItem>;
+export const CancelSubmissionResponseActorAccessTokensList =
+  /*@__PURE__*/ S.Array(
+    AccountByIdResponseOwnerAccessTokensItem,
+  ) as any as S.Schema<CancelSubmissionResponseActorAccessTokensList>;
+
+export type CancelSubmissionResponseActorAccountsItemEnvironmentVariableEnvironmentsList =
+  Array<unknown>;
+export const CancelSubmissionResponseActorAccountsItemEnvironmentVariableEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CancelSubmissionResponseActorAccountsItemEnvironmentVariableEnvironmentsList>;
+
+export type CancelSubmissionResponseActorAccountsItemSsoAllowedAuthProvidersList =
+  Array<AuthProviderIdentifier>;
+export const CancelSubmissionResponseActorAccountsItemSsoAllowedAuthProvidersList =
+  /*@__PURE__*/ S.Array(
+    AuthProviderIdentifier,
+  ) as any as S.Schema<CancelSubmissionResponseActorAccountsItemSsoAllowedAuthProvidersList>;
+
+export interface CancelSubmissionResponseActorAccountsItem {
+  aiChatEnabled: boolean;
+  appCount: number;
+  createdAt: string;
+  displayName: string | null;
+  environmentVariableEnvironments: CancelSubmissionResponseActorAccountsItemEnvironmentVariableEnvironmentsList;
+  id: string;
+  isCurrent: boolean;
+  isDisabled: boolean;
+  isFreeAppDevDomainTier: boolean;
+  isSSOEnabled: boolean;
+  lastDeletionAttemptTime: string | null;
+  name: string;
+  observeIngestionPaused: boolean;
+  profileImageUrl: string;
+  pushSecurityEnabled: boolean;
+  requireTwoFactor: boolean;
+  ssoAllowedAuthProviders: CancelSubmissionResponseActorAccountsItemSsoAllowedAuthProvidersList;
+  updatedAt: string;
+  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
+}
+export const CancelSubmissionResponseActorAccountsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      aiChatEnabled: S.Boolean,
+      appCount: S.Number,
+      createdAt: S.String,
+      displayName: S.NullOr(S.String),
+      environmentVariableEnvironments:
+        CancelSubmissionResponseActorAccountsItemEnvironmentVariableEnvironmentsList,
+      id: S.String,
+      isCurrent: S.Boolean,
+      isDisabled: S.Boolean,
+      isFreeAppDevDomainTier: S.Boolean,
+      isSSOEnabled: S.Boolean,
+      lastDeletionAttemptTime: S.NullOr(S.String),
+      name: S.String,
+      observeIngestionPaused: S.Boolean,
+      profileImageUrl: S.String,
+      pushSecurityEnabled: S.Boolean,
+      requireTwoFactor: S.Boolean,
+      ssoAllowedAuthProviders:
+        CancelSubmissionResponseActorAccountsItemSsoAllowedAuthProvidersList,
+      updatedAt: S.String,
+      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
+    }),
+  ).annotate({
+    identifier: "CancelSubmissionResponseActorAccountsItem",
+  }) as any as S.Schema<CancelSubmissionResponseActorAccountsItem>;
+
+export type CancelSubmissionResponseActorAccountsList =
+  Array<CancelSubmissionResponseActorAccountsItem>;
+export const CancelSubmissionResponseActorAccountsList = /*@__PURE__*/ S.Array(
+  CancelSubmissionResponseActorAccountsItem,
+) as any as S.Schema<CancelSubmissionResponseActorAccountsList>;
+
+export type CancelSubmissionResponseActorExperimentsItem =
+  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
+export const CancelSubmissionResponseActorExperimentsItem =
+  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
+
+export type CancelSubmissionResponseActorExperimentsList =
+  Array<AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem>;
+export const CancelSubmissionResponseActorExperimentsList =
+  /*@__PURE__*/ S.Array(
+    AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem,
+  ) as any as S.Schema<CancelSubmissionResponseActorExperimentsList>;
+
+export interface CancelSubmissionResponseActor {
+  accessTokens: CancelSubmissionResponseActorAccessTokensList;
+  accounts: CancelSubmissionResponseActorAccountsList;
+  created: string;
+  displayName: string;
+  experiments: CancelSubmissionResponseActorExperimentsList;
+  firstName: string | null;
+  id: string;
+  isExpoAdmin: boolean;
+  lastDeletionAttemptTime: string | null;
+}
+export const CancelSubmissionResponseActor = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accessTokens: CancelSubmissionResponseActorAccessTokensList,
+    accounts: CancelSubmissionResponseActorAccountsList,
+    created: S.String,
+    displayName: S.String,
+    experiments: CancelSubmissionResponseActorExperimentsList,
+    firstName: S.NullOr(S.String),
+    id: S.String,
+    isExpoAdmin: S.Boolean,
+    lastDeletionAttemptTime: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "CancelSubmissionResponseActor",
+}) as any as S.Schema<CancelSubmissionResponseActor>;
+
+export type CancelSubmissionResponseAndroidConfig =
+  BuildsByIdResponseSubmissionsItemAndroidConfig;
+export const CancelSubmissionResponseAndroidConfig =
+  BuildsByIdResponseSubmissionsItemAndroidConfig;
+
+export type CancelSubmissionResponseAppAppStoreConnectAppWebhookEventTypesList =
+  Array<string>;
+export const CancelSubmissionResponseAppAppStoreConnectAppWebhookEventTypesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseAppAppStoreConnectAppWebhookEventTypesList>;
+
+export interface CancelSubmissionResponseAppAppStoreConnectApp {
+  ascAppIdentifier: string;
+  createdAt: string;
+  id: string;
+  updatedAt: string;
+  webhookEventTypes: CancelSubmissionResponseAppAppStoreConnectAppWebhookEventTypesList;
+  webhookIdentifier: string;
+}
+export const CancelSubmissionResponseAppAppStoreConnectApp =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      ascAppIdentifier: S.String,
+      createdAt: S.String,
+      id: S.String,
+      updatedAt: S.String,
+      webhookEventTypes:
+        CancelSubmissionResponseAppAppStoreConnectAppWebhookEventTypesList,
+      webhookIdentifier: S.String,
+    }),
+  ).annotate({
+    identifier: "CancelSubmissionResponseAppAppStoreConnectApp",
+  }) as any as S.Schema<CancelSubmissionResponseAppAppStoreConnectApp>;
+
+export type CancelSubmissionResponseAppBuildProfilesList = Array<string>;
+export const CancelSubmissionResponseAppBuildProfilesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseAppBuildProfilesList>;
+
+export type CancelSubmissionResponseAppConvexProject =
+  AccountByIdResponseConvexTeamConnectionsItemConvexProjectsItem;
+export const CancelSubmissionResponseAppConvexProject =
+  AccountByIdResponseConvexTeamConnectionsItemConvexProjectsItem;
+
+export type CancelSubmissionResponseAppDevDomainName =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName;
+export const CancelSubmissionResponseAppDevDomainName =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName;
+
+export type CancelSubmissionResponseAppDeviceRunSessionTagsList = Array<string>;
+export const CancelSubmissionResponseAppDeviceRunSessionTagsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseAppDeviceRunSessionTagsList>;
+
+export type CancelSubmissionResponseAppEnvironmentVariableEnvironmentsList =
+  Array<unknown>;
+export const CancelSubmissionResponseAppEnvironmentVariableEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CancelSubmissionResponseAppEnvironmentVariableEnvironmentsList>;
+
+export type CancelSubmissionResponseAppGithubBuildTriggersItem =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubBuildTriggersItem;
+export const CancelSubmissionResponseAppGithubBuildTriggersItem =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubBuildTriggersItem;
+
+export type CancelSubmissionResponseAppGithubBuildTriggersList =
+  Array<AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubBuildTriggersItem>;
+export const CancelSubmissionResponseAppGithubBuildTriggersList =
+  /*@__PURE__*/ S.Array(
+    AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubBuildTriggersItem,
+  ) as any as S.Schema<CancelSubmissionResponseAppGithubBuildTriggersList>;
+
+export type CancelSubmissionResponseAppGithubJobRunTriggersItem =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem;
+export const CancelSubmissionResponseAppGithubJobRunTriggersItem =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem;
+
+export type CancelSubmissionResponseAppGithubJobRunTriggersList =
+  Array<AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem>;
+export const CancelSubmissionResponseAppGithubJobRunTriggersList =
+  /*@__PURE__*/ S.Array(
+    AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem,
+  ) as any as S.Schema<CancelSubmissionResponseAppGithubJobRunTriggersList>;
+
+export type CancelSubmissionResponseAppGithubRepository =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepository;
+export const CancelSubmissionResponseAppGithubRepository =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepository;
+
+export type CancelSubmissionResponseAppGithubRepositorySettings =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings;
+export const CancelSubmissionResponseAppGithubRepositorySettings =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings;
+
+export type CancelSubmissionResponseAppIcon =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon;
+export const CancelSubmissionResponseAppIcon =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon;
+
+export type CancelSubmissionResponseAppInsights =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights;
+export const CancelSubmissionResponseAppInsights =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights;
+
+export type CancelSubmissionResponseAppLogRocketProject =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject;
+export const CancelSubmissionResponseAppLogRocketProject =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject;
+
+export type CancelSubmissionResponseAppObserve =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve;
+export const CancelSubmissionResponseAppObserve =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve;
+
+export type CancelSubmissionResponseAppOwnerAccountEnvironmentVariableEnvironmentsList =
+  Array<unknown>;
+export const CancelSubmissionResponseAppOwnerAccountEnvironmentVariableEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CancelSubmissionResponseAppOwnerAccountEnvironmentVariableEnvironmentsList>;
+
+export type CancelSubmissionResponseAppOwnerAccountSsoAllowedAuthProvidersList =
+  Array<AuthProviderIdentifier>;
+export const CancelSubmissionResponseAppOwnerAccountSsoAllowedAuthProvidersList =
+  /*@__PURE__*/ S.Array(
+    AuthProviderIdentifier,
+  ) as any as S.Schema<CancelSubmissionResponseAppOwnerAccountSsoAllowedAuthProvidersList>;
+
+export interface CancelSubmissionResponseAppOwnerAccount {
+  aiChatEnabled: boolean;
+  appCount: number;
+  createdAt: string;
+  displayName: string | null;
+  environmentVariableEnvironments: CancelSubmissionResponseAppOwnerAccountEnvironmentVariableEnvironmentsList;
+  id: string;
+  isCurrent: boolean;
+  isDisabled: boolean;
+  isFreeAppDevDomainTier: boolean;
+  isSSOEnabled: boolean;
+  lastDeletionAttemptTime: string | null;
+  name: string;
+  observeIngestionPaused: boolean;
+  profileImageUrl: string;
+  pushSecurityEnabled: boolean;
+  requireTwoFactor: boolean;
+  ssoAllowedAuthProviders: CancelSubmissionResponseAppOwnerAccountSsoAllowedAuthProvidersList;
+  updatedAt: string;
+  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
+}
+export const CancelSubmissionResponseAppOwnerAccount = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      aiChatEnabled: S.Boolean,
+      appCount: S.Number,
+      createdAt: S.String,
+      displayName: S.NullOr(S.String),
+      environmentVariableEnvironments:
+        CancelSubmissionResponseAppOwnerAccountEnvironmentVariableEnvironmentsList,
+      id: S.String,
+      isCurrent: S.Boolean,
+      isDisabled: S.Boolean,
+      isFreeAppDevDomainTier: S.Boolean,
+      isSSOEnabled: S.Boolean,
+      lastDeletionAttemptTime: S.NullOr(S.String),
+      name: S.String,
+      observeIngestionPaused: S.Boolean,
+      profileImageUrl: S.String,
+      pushSecurityEnabled: S.Boolean,
+      requireTwoFactor: S.Boolean,
+      ssoAllowedAuthProviders:
+        CancelSubmissionResponseAppOwnerAccountSsoAllowedAuthProvidersList,
+      updatedAt: S.String,
+      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
+    }),
+).annotate({
+  identifier: "CancelSubmissionResponseAppOwnerAccount",
+}) as any as S.Schema<CancelSubmissionResponseAppOwnerAccount>;
+
+export type CancelSubmissionResponseAppPosthogProject =
+  AccountByIdResponsePosthogOrganizationConnectionPosthogProjectsItem;
+export const CancelSubmissionResponseAppPosthogProject =
+  AccountByIdResponsePosthogOrganizationConnectionPosthogProjectsItem;
+
+export type CancelSubmissionResponseAppPushNotifications =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+export const CancelSubmissionResponseAppPushNotifications =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+
+export type CancelSubmissionResponseAppSentryProject =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject;
+export const CancelSubmissionResponseAppSentryProject =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject;
+
+export type CancelSubmissionResponseAppSupabaseProject =
+  AccountByIdResponseSupabaseConnectionSupabaseProjectsItem;
+export const CancelSubmissionResponseAppSupabaseProject =
+  AccountByIdResponseSupabaseConnectionSupabaseProjectsItem;
+
+export type CancelSubmissionResponseAppVexoApp =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp;
+export const CancelSubmissionResponseAppVexoApp =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp;
+
+export type CancelSubmissionResponseAppWorkerCustomDomain =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkerCustomDomain;
+export const CancelSubmissionResponseAppWorkerCustomDomain =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkerCustomDomain;
+
+export type CancelSubmissionResponseAppWorkflowCachingConfig =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig;
+export const CancelSubmissionResponseAppWorkflowCachingConfig =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig;
+
+export interface CancelSubmissionResponseApp {
+  appStoreConnectApp: CancelSubmissionResponseAppAppStoreConnectApp | null;
+  appStoreConnectWorkflowConnectionStatus: AppStoreConnectWorkflowConnectionStatus;
+  assetLimitPerUpdateGroup: number;
+  buildProfiles: CancelSubmissionResponseAppBuildProfilesList;
+  convexProject: AccountByIdResponseConvexTeamConnectionsItemConvexProjectsItem | null;
+  description: string;
+  devDomainName: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName | null;
+  deviceRunSessionTags: CancelSubmissionResponseAppDeviceRunSessionTagsList;
+  environmentVariableEnvironments: CancelSubmissionResponseAppEnvironmentVariableEnvironmentsList;
+  fullName: string;
+  githubBuildTriggers: CancelSubmissionResponseAppGithubBuildTriggersList;
+  githubJobRunTriggers: CancelSubmissionResponseAppGithubJobRunTriggersList;
+  githubRepository: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepository | null;
+  githubRepositorySettings: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings | null;
+  icon: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon | null;
+  iconUrl: string | null;
+  id: string;
+  insights: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights;
+  internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy;
+  isEligibleForObserveLapsedPaidNotification: boolean;
+  isEligibleForObserveNotice: boolean;
+  lastDeletionAttemptTime: string | null;
+  latestActivity: string;
+  logRocketProject: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject | null;
+  name: string;
+  observe: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve;
+  observeIngestionPaused: boolean;
+  ownerAccount: CancelSubmissionResponseAppOwnerAccount;
+  packageName: string;
+  posthogProject: AccountByIdResponsePosthogOrganizationConnectionPosthogProjectsItem | null;
+  privacy: string;
+  published: boolean;
+  pushNotifications: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+  pushSecurityEnabled: boolean;
+  resourceClassExperiment: ResourceClassExperiment | null;
+  scopeKey: string;
+  sdkVersion: string;
+  sentryProject: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject | null;
+  slug: string;
+  suggestedDevDomainName: string;
+  supabaseProject: AccountByIdResponseSupabaseConnectionSupabaseProjectsItem | null;
+  updated: string;
+  username: string;
+  vexoApp: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp | null;
+  workerCustomDomain: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkerCustomDomain | null;
+  workflowCachingConfig: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig;
+}
+export const CancelSubmissionResponseApp = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appStoreConnectApp: S.NullOr(CancelSubmissionResponseAppAppStoreConnectApp),
+    appStoreConnectWorkflowConnectionStatus:
+      AppStoreConnectWorkflowConnectionStatus,
+    assetLimitPerUpdateGroup: S.Number,
+    buildProfiles: CancelSubmissionResponseAppBuildProfilesList,
+    convexProject: S.NullOr(
+      AccountByIdResponseConvexTeamConnectionsItemConvexProjectsItem,
+    ),
+    description: S.String,
+    devDomainName: S.NullOr(
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName,
+    ),
+    deviceRunSessionTags: CancelSubmissionResponseAppDeviceRunSessionTagsList,
+    environmentVariableEnvironments:
+      CancelSubmissionResponseAppEnvironmentVariableEnvironmentsList,
+    fullName: S.String,
+    githubBuildTriggers: CancelSubmissionResponseAppGithubBuildTriggersList,
+    githubJobRunTriggers: CancelSubmissionResponseAppGithubJobRunTriggersList,
+    githubRepository: S.NullOr(
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepository,
+    ),
+    githubRepositorySettings: S.NullOr(
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings,
+    ),
+    icon: S.NullOr(
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon,
+    ),
+    iconUrl: S.NullOr(S.String),
+    id: S.String,
+    insights:
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights,
+    internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy,
+    isEligibleForObserveLapsedPaidNotification: S.Boolean,
+    isEligibleForObserveNotice: S.Boolean,
+    lastDeletionAttemptTime: S.NullOr(S.String),
+    latestActivity: S.String,
+    logRocketProject: S.NullOr(
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject,
+    ),
+    name: S.String,
+    observe: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve,
+    observeIngestionPaused: S.Boolean,
+    ownerAccount: CancelSubmissionResponseAppOwnerAccount,
+    packageName: S.String,
+    posthogProject: S.NullOr(
+      AccountByIdResponsePosthogOrganizationConnectionPosthogProjectsItem,
+    ),
+    privacy: S.String,
+    published: S.Boolean,
+    pushNotifications:
+      AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
+    pushSecurityEnabled: S.Boolean,
+    resourceClassExperiment: S.NullOr(ResourceClassExperiment),
+    scopeKey: S.String,
+    sdkVersion: S.String,
+    sentryProject: S.NullOr(
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject,
+    ),
+    slug: S.String,
+    suggestedDevDomainName: S.String,
+    supabaseProject: S.NullOr(
+      AccountByIdResponseSupabaseConnectionSupabaseProjectsItem,
+    ),
+    updated: S.String,
+    username: S.String,
+    vexoApp: S.NullOr(
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp,
+    ),
+    workerCustomDomain: S.NullOr(
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkerCustomDomain,
+    ),
+    workflowCachingConfig:
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig,
+  }),
+).annotate({
+  identifier: "CancelSubmissionResponseApp",
+}) as any as S.Schema<CancelSubmissionResponseApp>;
+
+export type AppStoreConnectBuildProcessingState =
+  | "FAILED"
+  | "INVALID"
+  | "PROCESSING"
+  | "VALID";
+export const AppStoreConnectBuildProcessingState = /*@__PURE__*/ S.String;
+
+export interface CancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild {
+  ascBuildIdentifier: string;
+  buildNumber: string | null;
+  expirationDate: string | null;
+  minOsVersion: string | null;
+  processingState: AppStoreConnectBuildProcessingState;
+  uploadedDate: string | null;
+}
+export const CancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      ascBuildIdentifier: S.String,
+      buildNumber: S.NullOr(S.String),
+      expirationDate: S.NullOr(S.String),
+      minOsVersion: S.NullOr(S.String),
+      processingState: AppStoreConnectBuildProcessingState,
+      uploadedDate: S.NullOr(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "CancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild",
+  }) as any as S.Schema<CancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild>;
+
+export interface CancelSubmissionResponseAppStoreConnectBuildUpload {
+  appStoreConnectBuild: CancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild | null;
+  ascBuildUploadIdentifier: string;
+  buildNumber: string | null;
+  createdDate: string | null;
+  uploadState: AppStoreConnectBuildUploadState;
+  uploadedDate: string | null;
+  version: string | null;
+}
+export const CancelSubmissionResponseAppStoreConnectBuildUpload =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      appStoreConnectBuild: S.NullOr(
+        CancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild,
+      ),
+      ascBuildUploadIdentifier: S.String,
+      buildNumber: S.NullOr(S.String),
+      createdDate: S.NullOr(S.String),
+      uploadState: AppStoreConnectBuildUploadState,
+      uploadedDate: S.NullOr(S.String),
+      version: S.NullOr(S.String),
+    }),
+  ).annotate({
+    identifier: "CancelSubmissionResponseAppStoreConnectBuildUpload",
+  }) as any as S.Schema<CancelSubmissionResponseAppStoreConnectBuildUpload>;
+
+export type CancelSubmissionResponseCancelingActorAccessTokensItem =
+  AccountByIdResponseOwnerAccessTokensItem;
+export const CancelSubmissionResponseCancelingActorAccessTokensItem =
+  AccountByIdResponseOwnerAccessTokensItem;
+
+export type CancelSubmissionResponseCancelingActorAccessTokensList =
+  Array<AccountByIdResponseOwnerAccessTokensItem>;
+export const CancelSubmissionResponseCancelingActorAccessTokensList =
+  /*@__PURE__*/ S.Array(
+    AccountByIdResponseOwnerAccessTokensItem,
+  ) as any as S.Schema<CancelSubmissionResponseCancelingActorAccessTokensList>;
+
+export type CancelSubmissionResponseCancelingActorAccountsItemEnvironmentVariableEnvironmentsList =
+  Array<unknown>;
+export const CancelSubmissionResponseCancelingActorAccountsItemEnvironmentVariableEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CancelSubmissionResponseCancelingActorAccountsItemEnvironmentVariableEnvironmentsList>;
+
+export type CancelSubmissionResponseCancelingActorAccountsItemSsoAllowedAuthProvidersList =
+  Array<AuthProviderIdentifier>;
+export const CancelSubmissionResponseCancelingActorAccountsItemSsoAllowedAuthProvidersList =
+  /*@__PURE__*/ S.Array(
+    AuthProviderIdentifier,
+  ) as any as S.Schema<CancelSubmissionResponseCancelingActorAccountsItemSsoAllowedAuthProvidersList>;
+
+export interface CancelSubmissionResponseCancelingActorAccountsItem {
+  aiChatEnabled: boolean;
+  appCount: number;
+  createdAt: string;
+  displayName: string | null;
+  environmentVariableEnvironments: CancelSubmissionResponseCancelingActorAccountsItemEnvironmentVariableEnvironmentsList;
+  id: string;
+  isCurrent: boolean;
+  isDisabled: boolean;
+  isFreeAppDevDomainTier: boolean;
+  isSSOEnabled: boolean;
+  lastDeletionAttemptTime: string | null;
+  name: string;
+  observeIngestionPaused: boolean;
+  profileImageUrl: string;
+  pushSecurityEnabled: boolean;
+  requireTwoFactor: boolean;
+  ssoAllowedAuthProviders: CancelSubmissionResponseCancelingActorAccountsItemSsoAllowedAuthProvidersList;
+  updatedAt: string;
+  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
+}
+export const CancelSubmissionResponseCancelingActorAccountsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      aiChatEnabled: S.Boolean,
+      appCount: S.Number,
+      createdAt: S.String,
+      displayName: S.NullOr(S.String),
+      environmentVariableEnvironments:
+        CancelSubmissionResponseCancelingActorAccountsItemEnvironmentVariableEnvironmentsList,
+      id: S.String,
+      isCurrent: S.Boolean,
+      isDisabled: S.Boolean,
+      isFreeAppDevDomainTier: S.Boolean,
+      isSSOEnabled: S.Boolean,
+      lastDeletionAttemptTime: S.NullOr(S.String),
+      name: S.String,
+      observeIngestionPaused: S.Boolean,
+      profileImageUrl: S.String,
+      pushSecurityEnabled: S.Boolean,
+      requireTwoFactor: S.Boolean,
+      ssoAllowedAuthProviders:
+        CancelSubmissionResponseCancelingActorAccountsItemSsoAllowedAuthProvidersList,
+      updatedAt: S.String,
+      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
+    }),
+  ).annotate({
+    identifier: "CancelSubmissionResponseCancelingActorAccountsItem",
+  }) as any as S.Schema<CancelSubmissionResponseCancelingActorAccountsItem>;
+
+export type CancelSubmissionResponseCancelingActorAccountsList =
+  Array<CancelSubmissionResponseCancelingActorAccountsItem>;
+export const CancelSubmissionResponseCancelingActorAccountsList =
+  /*@__PURE__*/ S.Array(
+    CancelSubmissionResponseCancelingActorAccountsItem,
+  ) as any as S.Schema<CancelSubmissionResponseCancelingActorAccountsList>;
+
+export type CancelSubmissionResponseCancelingActorExperimentsItem =
+  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
+export const CancelSubmissionResponseCancelingActorExperimentsItem =
+  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
+
+export type CancelSubmissionResponseCancelingActorExperimentsList =
+  Array<AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem>;
+export const CancelSubmissionResponseCancelingActorExperimentsList =
+  /*@__PURE__*/ S.Array(
+    AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem,
+  ) as any as S.Schema<CancelSubmissionResponseCancelingActorExperimentsList>;
+
+export interface CancelSubmissionResponseCancelingActor {
+  accessTokens: CancelSubmissionResponseCancelingActorAccessTokensList;
+  accounts: CancelSubmissionResponseCancelingActorAccountsList;
+  created: string;
+  displayName: string;
+  experiments: CancelSubmissionResponseCancelingActorExperimentsList;
+  firstName: string | null;
+  id: string;
+  isExpoAdmin: boolean;
+  lastDeletionAttemptTime: string | null;
+}
+export const CancelSubmissionResponseCancelingActor = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      accessTokens: CancelSubmissionResponseCancelingActorAccessTokensList,
+      accounts: CancelSubmissionResponseCancelingActorAccountsList,
+      created: S.String,
+      displayName: S.String,
+      experiments: CancelSubmissionResponseCancelingActorExperimentsList,
+      firstName: S.NullOr(S.String),
+      id: S.String,
+      isExpoAdmin: S.Boolean,
+      lastDeletionAttemptTime: S.NullOr(S.String),
+    }),
+).annotate({
+  identifier: "CancelSubmissionResponseCancelingActor",
+}) as any as S.Schema<CancelSubmissionResponseCancelingActor>;
+
+export type CancelSubmissionResponseError =
+  BuildsByIdResponseSubmissionsItemError;
+export const CancelSubmissionResponseError =
+  BuildsByIdResponseSubmissionsItemError;
+
+export type CancelSubmissionResponseInitiatingActorAccessTokensItem =
+  AccountByIdResponseOwnerAccessTokensItem;
+export const CancelSubmissionResponseInitiatingActorAccessTokensItem =
+  AccountByIdResponseOwnerAccessTokensItem;
+
+export type CancelSubmissionResponseInitiatingActorAccessTokensList =
+  Array<AccountByIdResponseOwnerAccessTokensItem>;
+export const CancelSubmissionResponseInitiatingActorAccessTokensList =
+  /*@__PURE__*/ S.Array(
+    AccountByIdResponseOwnerAccessTokensItem,
+  ) as any as S.Schema<CancelSubmissionResponseInitiatingActorAccessTokensList>;
+
+export type CancelSubmissionResponseInitiatingActorAccountsItemEnvironmentVariableEnvironmentsList =
+  Array<unknown>;
+export const CancelSubmissionResponseInitiatingActorAccountsItemEnvironmentVariableEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CancelSubmissionResponseInitiatingActorAccountsItemEnvironmentVariableEnvironmentsList>;
+
+export type CancelSubmissionResponseInitiatingActorAccountsItemSsoAllowedAuthProvidersList =
+  Array<AuthProviderIdentifier>;
+export const CancelSubmissionResponseInitiatingActorAccountsItemSsoAllowedAuthProvidersList =
+  /*@__PURE__*/ S.Array(
+    AuthProviderIdentifier,
+  ) as any as S.Schema<CancelSubmissionResponseInitiatingActorAccountsItemSsoAllowedAuthProvidersList>;
+
+export interface CancelSubmissionResponseInitiatingActorAccountsItem {
+  aiChatEnabled: boolean;
+  appCount: number;
+  createdAt: string;
+  displayName: string | null;
+  environmentVariableEnvironments: CancelSubmissionResponseInitiatingActorAccountsItemEnvironmentVariableEnvironmentsList;
+  id: string;
+  isCurrent: boolean;
+  isDisabled: boolean;
+  isFreeAppDevDomainTier: boolean;
+  isSSOEnabled: boolean;
+  lastDeletionAttemptTime: string | null;
+  name: string;
+  observeIngestionPaused: boolean;
+  profileImageUrl: string;
+  pushSecurityEnabled: boolean;
+  requireTwoFactor: boolean;
+  ssoAllowedAuthProviders: CancelSubmissionResponseInitiatingActorAccountsItemSsoAllowedAuthProvidersList;
+  updatedAt: string;
+  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
+}
+export const CancelSubmissionResponseInitiatingActorAccountsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      aiChatEnabled: S.Boolean,
+      appCount: S.Number,
+      createdAt: S.String,
+      displayName: S.NullOr(S.String),
+      environmentVariableEnvironments:
+        CancelSubmissionResponseInitiatingActorAccountsItemEnvironmentVariableEnvironmentsList,
+      id: S.String,
+      isCurrent: S.Boolean,
+      isDisabled: S.Boolean,
+      isFreeAppDevDomainTier: S.Boolean,
+      isSSOEnabled: S.Boolean,
+      lastDeletionAttemptTime: S.NullOr(S.String),
+      name: S.String,
+      observeIngestionPaused: S.Boolean,
+      profileImageUrl: S.String,
+      pushSecurityEnabled: S.Boolean,
+      requireTwoFactor: S.Boolean,
+      ssoAllowedAuthProviders:
+        CancelSubmissionResponseInitiatingActorAccountsItemSsoAllowedAuthProvidersList,
+      updatedAt: S.String,
+      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
+    }),
+  ).annotate({
+    identifier: "CancelSubmissionResponseInitiatingActorAccountsItem",
+  }) as any as S.Schema<CancelSubmissionResponseInitiatingActorAccountsItem>;
+
+export type CancelSubmissionResponseInitiatingActorAccountsList =
+  Array<CancelSubmissionResponseInitiatingActorAccountsItem>;
+export const CancelSubmissionResponseInitiatingActorAccountsList =
+  /*@__PURE__*/ S.Array(
+    CancelSubmissionResponseInitiatingActorAccountsItem,
+  ) as any as S.Schema<CancelSubmissionResponseInitiatingActorAccountsList>;
+
+export type CancelSubmissionResponseInitiatingActorExperimentsItem =
+  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
+export const CancelSubmissionResponseInitiatingActorExperimentsItem =
+  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
+
+export type CancelSubmissionResponseInitiatingActorExperimentsList =
+  Array<AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem>;
+export const CancelSubmissionResponseInitiatingActorExperimentsList =
+  /*@__PURE__*/ S.Array(
+    AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem,
+  ) as any as S.Schema<CancelSubmissionResponseInitiatingActorExperimentsList>;
+
+export interface CancelSubmissionResponseInitiatingActor {
+  accessTokens: CancelSubmissionResponseInitiatingActorAccessTokensList;
+  accounts: CancelSubmissionResponseInitiatingActorAccountsList;
+  created: string;
+  displayName: string;
+  experiments: CancelSubmissionResponseInitiatingActorExperimentsList;
+  firstName: string | null;
+  id: string;
+  isExpoAdmin: boolean;
+  lastDeletionAttemptTime: string | null;
+}
+export const CancelSubmissionResponseInitiatingActor = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      accessTokens: CancelSubmissionResponseInitiatingActorAccessTokensList,
+      accounts: CancelSubmissionResponseInitiatingActorAccountsList,
+      created: S.String,
+      displayName: S.String,
+      experiments: CancelSubmissionResponseInitiatingActorExperimentsList,
+      firstName: S.NullOr(S.String),
+      id: S.String,
+      isExpoAdmin: S.Boolean,
+      lastDeletionAttemptTime: S.NullOr(S.String),
+    }),
+).annotate({
+  identifier: "CancelSubmissionResponseInitiatingActor",
+}) as any as S.Schema<CancelSubmissionResponseInitiatingActor>;
+
+export type CancelSubmissionResponseIosConfig =
+  BuildsByIdResponseSubmissionsItemIosConfig;
+export const CancelSubmissionResponseIosConfig =
+  BuildsByIdResponseSubmissionsItemIosConfig;
+
+export type CancelSubmissionResponseJobRunAppBuildProfilesList = Array<string>;
+export const CancelSubmissionResponseJobRunAppBuildProfilesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseJobRunAppBuildProfilesList>;
+
+export type CancelSubmissionResponseJobRunAppDeviceRunSessionTagsList =
+  Array<string>;
+export const CancelSubmissionResponseJobRunAppDeviceRunSessionTagsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseJobRunAppDeviceRunSessionTagsList>;
+
+export type CancelSubmissionResponseJobRunAppEnvironmentVariableEnvironmentsList =
+  Array<unknown>;
+export const CancelSubmissionResponseJobRunAppEnvironmentVariableEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CancelSubmissionResponseJobRunAppEnvironmentVariableEnvironmentsList>;
+
+export interface CancelSubmissionResponseJobRunApp {
+  appStoreConnectWorkflowConnectionStatus: AppStoreConnectWorkflowConnectionStatus;
+  assetLimitPerUpdateGroup: number;
+  buildProfiles: CancelSubmissionResponseJobRunAppBuildProfilesList;
+  description: string;
+  deviceRunSessionTags: CancelSubmissionResponseJobRunAppDeviceRunSessionTagsList;
+  environmentVariableEnvironments: CancelSubmissionResponseJobRunAppEnvironmentVariableEnvironmentsList;
+  fullName: string;
+  iconUrl: string | null;
+  id: string;
+  internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy;
+  isEligibleForObserveLapsedPaidNotification: boolean;
+  isEligibleForObserveNotice: boolean;
+  lastDeletionAttemptTime: string | null;
+  latestActivity: string;
+  name: string;
+  observeIngestionPaused: boolean;
+  packageName: string;
+  privacy: string;
+  published: boolean;
+  pushSecurityEnabled: boolean;
+  resourceClassExperiment: ResourceClassExperiment | null;
+  scopeKey: string;
+  sdkVersion: string;
+  slug: string;
+  suggestedDevDomainName: string;
+  updated: string;
+  username: string;
+}
+export const CancelSubmissionResponseJobRunApp = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appStoreConnectWorkflowConnectionStatus:
+      AppStoreConnectWorkflowConnectionStatus,
+    assetLimitPerUpdateGroup: S.Number,
+    buildProfiles: CancelSubmissionResponseJobRunAppBuildProfilesList,
+    description: S.String,
+    deviceRunSessionTags:
+      CancelSubmissionResponseJobRunAppDeviceRunSessionTagsList,
+    environmentVariableEnvironments:
+      CancelSubmissionResponseJobRunAppEnvironmentVariableEnvironmentsList,
+    fullName: S.String,
+    iconUrl: S.NullOr(S.String),
+    id: S.String,
+    internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy,
+    isEligibleForObserveLapsedPaidNotification: S.Boolean,
+    isEligibleForObserveNotice: S.Boolean,
+    lastDeletionAttemptTime: S.NullOr(S.String),
+    latestActivity: S.String,
+    name: S.String,
+    observeIngestionPaused: S.Boolean,
+    packageName: S.String,
+    privacy: S.String,
+    published: S.Boolean,
+    pushSecurityEnabled: S.Boolean,
+    resourceClassExperiment: S.NullOr(ResourceClassExperiment),
+    scopeKey: S.String,
+    sdkVersion: S.String,
+    slug: S.String,
+    suggestedDevDomainName: S.String,
+    updated: S.String,
+    username: S.String,
+  }),
+).annotate({
+  identifier: "CancelSubmissionResponseJobRunApp",
+}) as any as S.Schema<CancelSubmissionResponseJobRunApp>;
+
+export type WorkflowArtifactStorageType = "GCS" | "R2";
+export const WorkflowArtifactStorageType = /*@__PURE__*/ S.String;
+
+export interface CancelSubmissionResponseJobRunArtifactsItem {
+  contentType: string | null;
+  createdAt: string;
+  downloadUrl: string | null;
+  fileSizeBytes: number | null;
+  filename: string;
+  id: string;
+  metadata: unknown | null;
+  name: string;
+  storageType: WorkflowArtifactStorageType;
+  updatedAt: string;
+}
+export const CancelSubmissionResponseJobRunArtifactsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      contentType: S.NullOr(S.String),
+      createdAt: S.String,
+      downloadUrl: S.NullOr(S.String),
+      fileSizeBytes: S.NullOr(S.Number),
+      filename: S.String,
+      id: S.String,
+      metadata: S.NullOr(S.Unknown),
+      name: S.String,
+      storageType: WorkflowArtifactStorageType,
+      updatedAt: S.String,
+    }),
+  ).annotate({
+    identifier: "CancelSubmissionResponseJobRunArtifactsItem",
+  }) as any as S.Schema<CancelSubmissionResponseJobRunArtifactsItem>;
+
+export type CancelSubmissionResponseJobRunArtifactsList =
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
+export const CancelSubmissionResponseJobRunArtifactsList =
+  /*@__PURE__*/ S.Array(
+    CancelSubmissionResponseJobRunArtifactsItem,
+  ) as any as S.Schema<CancelSubmissionResponseJobRunArtifactsList>;
+
+export interface CancelSubmissionResponseJobRunErrorsItem {
+  buildPhase: string | null;
+  docsUrl: string | null;
+  errorCode: string;
+  message: string;
+}
+export const CancelSubmissionResponseJobRunErrorsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      buildPhase: S.NullOr(S.String),
+      docsUrl: S.NullOr(S.String),
+      errorCode: S.String,
+      message: S.String,
+    }),
+).annotate({
+  identifier: "CancelSubmissionResponseJobRunErrorsItem",
+}) as any as S.Schema<CancelSubmissionResponseJobRunErrorsItem>;
+
+export type CancelSubmissionResponseJobRunErrorsList =
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
+export const CancelSubmissionResponseJobRunErrorsList = /*@__PURE__*/ S.Array(
+  CancelSubmissionResponseJobRunErrorsItem,
+) as any as S.Schema<CancelSubmissionResponseJobRunErrorsList>;
+
+export type CancelSubmissionResponseJobRunInitiatingActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+export const CancelSubmissionResponseJobRunInitiatingActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+
+export type CancelSubmissionResponseJobRunLogFileUrlsList = Array<string>;
+export const CancelSubmissionResponseJobRunLogFileUrlsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseJobRunLogFileUrlsList>;
+
+export type CancelSubmissionResponseJobRunSshSession =
+  BuildResponseCancelSshSession;
+export const CancelSubmissionResponseJobRunSshSession =
+  BuildResponseCancelSshSession;
+
+export type CancelSubmissionResponseJobRunUpdateGroupsItemList = Array<unknown>;
+export const CancelSubmissionResponseJobRunUpdateGroupsItemList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CancelSubmissionResponseJobRunUpdateGroupsItemList>;
+
+export type CancelSubmissionResponseJobRunUpdateGroupsList =
+  Array<CancelSubmissionResponseJobRunUpdateGroupsItemList>;
+export const CancelSubmissionResponseJobRunUpdateGroupsList =
+  /*@__PURE__*/ S.Array(
+    CancelSubmissionResponseJobRunUpdateGroupsItemList,
+  ) as any as S.Schema<CancelSubmissionResponseJobRunUpdateGroupsList>;
+
+export type CancelSubmissionResponseJobRunWorkflowJobRequiredJobKeysList =
+  Array<string>;
+export const CancelSubmissionResponseJobRunWorkflowJobRequiredJobKeysList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseJobRunWorkflowJobRequiredJobKeysList>;
+
+export interface CancelSubmissionResponseJobRunWorkflowJob {
+  createdAt: string;
+  environment: string | null;
+  id: string;
+  key: string;
+  name: string;
+  outputs: unknown;
+  requiredJobKeys: CancelSubmissionResponseJobRunWorkflowJobRequiredJobKeysList;
+  status: WorkflowJobStatus;
+  type: WorkflowJobType;
+  updatedAt: string;
+}
+export const CancelSubmissionResponseJobRunWorkflowJob =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdAt: S.String,
+      environment: S.NullOr(S.String),
+      id: S.String,
+      key: S.String,
+      name: S.String,
+      outputs: S.Unknown,
+      requiredJobKeys:
+        CancelSubmissionResponseJobRunWorkflowJobRequiredJobKeysList,
+      status: WorkflowJobStatus,
+      type: WorkflowJobType,
+      updatedAt: S.String,
+    }),
+  ).annotate({
+    identifier: "CancelSubmissionResponseJobRunWorkflowJob",
+  }) as any as S.Schema<CancelSubmissionResponseJobRunWorkflowJob>;
+
+export interface CancelSubmissionResponseJobRun {
+  app: CancelSubmissionResponseJobRunApp;
+  artifacts: CancelSubmissionResponseJobRunArtifactsList;
+  createdAt: string;
+  displayName: string | null;
+  endedAt: string | null;
+  enqueuedAt: string | null;
+  errors: CancelSubmissionResponseJobRunErrorsList;
+  expiresAt: string;
+  gitCommitHash: string | null;
+  gitCommitMessage: string | null;
+  gitRef: string | null;
+  id: string;
+  initiatingActor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
+  isWaived: boolean;
+  logFileUrls: CancelSubmissionResponseJobRunLogFileUrlsList;
+  maxRunTimeSeconds: number;
+  name: string;
+  priority: JobRunPriority;
+  resourceClassDisplayName: string;
+  sshSession: BuildResponseCancelSshSession | null;
+  startedAt: string | null;
+  status: JobRunStatus;
+  updateGroups: CancelSubmissionResponseJobRunUpdateGroupsList;
+  workflowJob: CancelSubmissionResponseJobRunWorkflowJob | null;
+}
+export const CancelSubmissionResponseJobRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    app: CancelSubmissionResponseJobRunApp,
+    artifacts: CancelSubmissionResponseJobRunArtifactsList,
+    createdAt: S.String,
+    displayName: S.NullOr(S.String),
+    endedAt: S.NullOr(S.String),
+    enqueuedAt: S.NullOr(S.String),
+    errors: CancelSubmissionResponseJobRunErrorsList,
+    expiresAt: S.String,
+    gitCommitHash: S.NullOr(S.String),
+    gitCommitMessage: S.NullOr(S.String),
+    gitRef: S.NullOr(S.String),
+    id: S.String,
+    initiatingActor: S.NullOr(
+      AccessTokenCreateAccessTokenResponseAccessTokenOwner,
+    ),
+    isWaived: S.Boolean,
+    logFileUrls: CancelSubmissionResponseJobRunLogFileUrlsList,
+    maxRunTimeSeconds: S.Number,
+    name: S.String,
+    priority: JobRunPriority,
+    resourceClassDisplayName: S.String,
+    sshSession: S.NullOr(BuildResponseCancelSshSession),
+    startedAt: S.NullOr(S.String),
+    status: JobRunStatus,
+    updateGroups: CancelSubmissionResponseJobRunUpdateGroupsList,
+    workflowJob: S.NullOr(CancelSubmissionResponseJobRunWorkflowJob),
+  }),
+).annotate({
+  identifier: "CancelSubmissionResponseJobRun",
+}) as any as S.Schema<CancelSubmissionResponseJobRun>;
+
+export type CancelSubmissionResponseLogFilesList = Array<string>;
+export const CancelSubmissionResponseLogFilesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CancelSubmissionResponseLogFilesList>;
+
+export type CancelSubmissionResponseSubmittedBuildActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+export const CancelSubmissionResponseSubmittedBuildActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+
+export type CancelSubmissionResponseSubmittedBuildAppBuildProfilesList =
+  Array<string>;
+export const CancelSubmissionResponseSubmittedBuildAppBuildProfilesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseSubmittedBuildAppBuildProfilesList>;
+
+export type CancelSubmissionResponseSubmittedBuildAppDeviceRunSessionTagsList =
+  Array<string>;
+export const CancelSubmissionResponseSubmittedBuildAppDeviceRunSessionTagsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseSubmittedBuildAppDeviceRunSessionTagsList>;
+
+export type CancelSubmissionResponseSubmittedBuildAppEnvironmentVariableEnvironmentsList =
+  Array<unknown>;
+export const CancelSubmissionResponseSubmittedBuildAppEnvironmentVariableEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CancelSubmissionResponseSubmittedBuildAppEnvironmentVariableEnvironmentsList>;
+
+export interface CancelSubmissionResponseSubmittedBuildApp {
+  appStoreConnectWorkflowConnectionStatus: AppStoreConnectWorkflowConnectionStatus;
+  assetLimitPerUpdateGroup: number;
+  buildProfiles: CancelSubmissionResponseSubmittedBuildAppBuildProfilesList;
+  description: string;
+  deviceRunSessionTags: CancelSubmissionResponseSubmittedBuildAppDeviceRunSessionTagsList;
+  environmentVariableEnvironments: CancelSubmissionResponseSubmittedBuildAppEnvironmentVariableEnvironmentsList;
+  fullName: string;
+  iconUrl: string | null;
+  id: string;
+  internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy;
+  isEligibleForObserveLapsedPaidNotification: boolean;
+  isEligibleForObserveNotice: boolean;
+  lastDeletionAttemptTime: string | null;
+  latestActivity: string;
+  name: string;
+  observeIngestionPaused: boolean;
+  packageName: string;
+  privacy: string;
+  published: boolean;
+  pushSecurityEnabled: boolean;
+  resourceClassExperiment: ResourceClassExperiment | null;
+  scopeKey: string;
+  sdkVersion: string;
+  slug: string;
+  suggestedDevDomainName: string;
+  updated: string;
+  username: string;
+}
+export const CancelSubmissionResponseSubmittedBuildApp =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      appStoreConnectWorkflowConnectionStatus:
+        AppStoreConnectWorkflowConnectionStatus,
+      assetLimitPerUpdateGroup: S.Number,
+      buildProfiles: CancelSubmissionResponseSubmittedBuildAppBuildProfilesList,
+      description: S.String,
+      deviceRunSessionTags:
+        CancelSubmissionResponseSubmittedBuildAppDeviceRunSessionTagsList,
+      environmentVariableEnvironments:
+        CancelSubmissionResponseSubmittedBuildAppEnvironmentVariableEnvironmentsList,
+      fullName: S.String,
+      iconUrl: S.NullOr(S.String),
+      id: S.String,
+      internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy,
+      isEligibleForObserveLapsedPaidNotification: S.Boolean,
+      isEligibleForObserveNotice: S.Boolean,
+      lastDeletionAttemptTime: S.NullOr(S.String),
+      latestActivity: S.String,
+      name: S.String,
+      observeIngestionPaused: S.Boolean,
+      packageName: S.String,
+      privacy: S.String,
+      published: S.Boolean,
+      pushSecurityEnabled: S.Boolean,
+      resourceClassExperiment: S.NullOr(ResourceClassExperiment),
+      scopeKey: S.String,
+      sdkVersion: S.String,
+      slug: S.String,
+      suggestedDevDomainName: S.String,
+      updated: S.String,
+      username: S.String,
+    }),
+  ).annotate({
+    identifier: "CancelSubmissionResponseSubmittedBuildApp",
+  }) as any as S.Schema<CancelSubmissionResponseSubmittedBuildApp>;
+
+export type CancelSubmissionResponseSubmittedBuildArtifacts =
+  BuildResponseCancelArtifacts;
+export const CancelSubmissionResponseSubmittedBuildArtifacts =
+  BuildResponseCancelArtifacts;
+
+export type CancelSubmissionResponseSubmittedBuildCancelingActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+export const CancelSubmissionResponseSubmittedBuildCancelingActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+
+export type CancelSubmissionResponseSubmittedBuildDeployment =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+export const CancelSubmissionResponseSubmittedBuildDeployment =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+
+export type CancelSubmissionResponseSubmittedBuildEmbeddedUpdate =
+  BuildResponseCancelEmbeddedUpdate;
+export const CancelSubmissionResponseSubmittedBuildEmbeddedUpdate =
+  BuildResponseCancelEmbeddedUpdate;
+
+export type CancelSubmissionResponseSubmittedBuildError =
+  BuildResponseCancelError;
+export const CancelSubmissionResponseSubmittedBuildError =
+  BuildResponseCancelError;
+
+export type CancelSubmissionResponseSubmittedBuildFingerprint =
+  BuildResponseCancelFingerprint;
+export const CancelSubmissionResponseSubmittedBuildFingerprint =
+  BuildResponseCancelFingerprint;
+
+export type CancelSubmissionResponseSubmittedBuildInitiatingActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+export const CancelSubmissionResponseSubmittedBuildInitiatingActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+
+export type CancelSubmissionResponseSubmittedBuildLogFileUrlsList =
+  Array<string>;
+export const CancelSubmissionResponseSubmittedBuildLogFileUrlsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseSubmittedBuildLogFileUrlsList>;
+
+export type CancelSubmissionResponseSubmittedBuildLogFilesList = Array<string>;
+export const CancelSubmissionResponseSubmittedBuildLogFilesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseSubmittedBuildLogFilesList>;
+
+export type CancelSubmissionResponseSubmittedBuildMetrics =
+  BuildResponseCancelMetrics;
+export const CancelSubmissionResponseSubmittedBuildMetrics =
+  BuildResponseCancelMetrics;
+
+export type CancelSubmissionResponseSubmittedBuildProject =
+  BuildResponseCancelProject;
+export const CancelSubmissionResponseSubmittedBuildProject =
+  BuildResponseCancelProject;
+
+export type CancelSubmissionResponseSubmittedBuildRuntime =
+  BuildResponseCancelRuntime;
+export const CancelSubmissionResponseSubmittedBuildRuntime =
+  BuildResponseCancelRuntime;
+
+export type CancelSubmissionResponseSubmittedBuildSshSession =
+  BuildResponseCancelSshSession;
+export const CancelSubmissionResponseSubmittedBuildSshSession =
+  BuildResponseCancelSshSession;
+
+export type CancelSubmissionResponseSubmittedBuildUpdateChannel =
+  BuildResponseCancelUpdateChannel;
+export const CancelSubmissionResponseSubmittedBuildUpdateChannel =
+  BuildResponseCancelUpdateChannel;
+
+export type CancelSubmissionResponseSubmittedBuildWorkflowJobRequiredJobKeysList =
+  Array<string>;
+export const CancelSubmissionResponseSubmittedBuildWorkflowJobRequiredJobKeysList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseSubmittedBuildWorkflowJobRequiredJobKeysList>;
+
+export interface CancelSubmissionResponseSubmittedBuildWorkflowJob {
+  createdAt: string;
+  environment: string | null;
+  id: string;
+  key: string;
+  name: string;
+  outputs: unknown;
+  requiredJobKeys: CancelSubmissionResponseSubmittedBuildWorkflowJobRequiredJobKeysList;
+  status: WorkflowJobStatus;
+  type: WorkflowJobType;
+  updatedAt: string;
+}
+export const CancelSubmissionResponseSubmittedBuildWorkflowJob =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdAt: S.String,
+      environment: S.NullOr(S.String),
+      id: S.String,
+      key: S.String,
+      name: S.String,
+      outputs: S.Unknown,
+      requiredJobKeys:
+        CancelSubmissionResponseSubmittedBuildWorkflowJobRequiredJobKeysList,
+      status: WorkflowJobStatus,
+      type: WorkflowJobType,
+      updatedAt: S.String,
+    }),
+  ).annotate({
+    identifier: "CancelSubmissionResponseSubmittedBuildWorkflowJob",
+  }) as any as S.Schema<CancelSubmissionResponseSubmittedBuildWorkflowJob>;
+
+export interface CancelSubmissionResponseSubmittedBuild {
+  activityTimestamp: string;
+  actor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
+  app: CancelSubmissionResponseSubmittedBuildApp;
+  appBuildVersion: string | null;
+  appIdentifier: string | null;
+  appVersion: string | null;
+  artifacts: BuildResponseCancelArtifacts | null;
+  buildMode: BuildMode | null;
+  buildProfile: string | null;
+  cancelingActor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
+  channel: string | null;
+  cliVersion: string | null;
+  completedAt: string | null;
+  createdAt: string;
+  customNodeVersion: string | null;
+  customWorkflowName: string | null;
+  deployment: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem | null;
+  developmentClient: boolean | null;
+  distribution: DistributionType | null;
+  embeddedUpdate: BuildResponseCancelEmbeddedUpdate | null;
+  enqueuedAt: string | null;
+  error: BuildResponseCancelError | null;
+  estimatedWaitTimeLeftSeconds: number | null;
+  expirationDate: string | null;
+  fingerprint: BuildResponseCancelFingerprint | null;
+  gitCommitHash: string | null;
+  gitCommitMessage: string | null;
+  gitRef: string | null;
+  id: string;
+  initialQueuePosition: number | null;
+  initiatingActor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
+  iosEnterpriseProvisioning: BuildIosEnterpriseProvisioning | null;
+  isForIosSimulator: boolean;
+  isGitWorkingTreeDirty: boolean | null;
+  isWaived: boolean;
+  logFileUrls: CancelSubmissionResponseSubmittedBuildLogFileUrlsList;
+  logFiles: CancelSubmissionResponseSubmittedBuildLogFilesList;
+  maxBuildTimeSeconds: number;
+  maxRetryTimeMinutes: number | null;
+  message: string | null;
+  metrics: BuildResponseCancelMetrics | null;
+  platform: AppPlatform;
+  priority: BuildPriority;
+  project: BuildResponseCancelProject;
+  projectMetadataFileUrl: string | null;
+  projectRootDirectory: string | null;
+  provisioningStartedAt: string | null;
+  queuePosition: number | null;
+  reactNativeVersion: string | null;
+  releaseChannel: string | null;
+  requiredPackageManager: string | null;
+  resolvedEnvironment: unknown | null;
+  resolvedImage: string | null;
+  resourceClass: BuildResourceClass;
+  resourceClassDisplayName: string;
+  runFromCI: boolean | null;
+  runtime: BuildResponseCancelRuntime | null;
+  runtimeVersion: string | null;
+  sdkVersion: string | null;
+  selectedImage: string | null;
+  sshSession: BuildResponseCancelSshSession | null;
+  status: BuildStatus;
+  updateChannel: BuildResponseCancelUpdateChannel | null;
+  updatedAt: string;
+  waiverType: EASBuildWaiverType | null;
+  workerStartedAt: string | null;
+  workflowJob: CancelSubmissionResponseSubmittedBuildWorkflowJob | null;
+}
+export const CancelSubmissionResponseSubmittedBuild = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      activityTimestamp: S.String,
+      actor: S.NullOr(AccessTokenCreateAccessTokenResponseAccessTokenOwner),
+      app: CancelSubmissionResponseSubmittedBuildApp,
+      appBuildVersion: S.NullOr(S.String),
+      appIdentifier: S.NullOr(S.String),
+      appVersion: S.NullOr(S.String),
+      artifacts: S.NullOr(BuildResponseCancelArtifacts),
+      buildMode: S.NullOr(BuildMode),
+      buildProfile: S.NullOr(S.String),
+      cancelingActor: S.NullOr(
+        AccessTokenCreateAccessTokenResponseAccessTokenOwner,
+      ),
+      channel: S.NullOr(S.String),
+      cliVersion: S.NullOr(S.String),
+      completedAt: S.NullOr(S.String),
+      createdAt: S.String,
+      customNodeVersion: S.NullOr(S.String),
+      customWorkflowName: S.NullOr(S.String),
+      deployment: S.NullOr(
+        AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
+      ),
+      developmentClient: S.NullOr(S.Boolean),
+      distribution: S.NullOr(DistributionType),
+      embeddedUpdate: S.NullOr(BuildResponseCancelEmbeddedUpdate),
+      enqueuedAt: S.NullOr(S.String),
+      error: S.NullOr(BuildResponseCancelError),
+      estimatedWaitTimeLeftSeconds: S.NullOr(S.Number),
+      expirationDate: S.NullOr(S.String),
+      fingerprint: S.NullOr(BuildResponseCancelFingerprint),
+      gitCommitHash: S.NullOr(S.String),
+      gitCommitMessage: S.NullOr(S.String),
+      gitRef: S.NullOr(S.String),
+      id: S.String,
+      initialQueuePosition: S.NullOr(S.Number),
+      initiatingActor: S.NullOr(
+        AccessTokenCreateAccessTokenResponseAccessTokenOwner,
+      ),
+      iosEnterpriseProvisioning: S.NullOr(BuildIosEnterpriseProvisioning),
+      isForIosSimulator: S.Boolean,
+      isGitWorkingTreeDirty: S.NullOr(S.Boolean),
+      isWaived: S.Boolean,
+      logFileUrls: CancelSubmissionResponseSubmittedBuildLogFileUrlsList,
+      logFiles: CancelSubmissionResponseSubmittedBuildLogFilesList,
+      maxBuildTimeSeconds: S.Number,
+      maxRetryTimeMinutes: S.NullOr(S.Number),
+      message: S.NullOr(S.String),
+      metrics: S.NullOr(BuildResponseCancelMetrics),
+      platform: AppPlatform,
+      priority: BuildPriority,
+      project: BuildResponseCancelProject,
+      projectMetadataFileUrl: S.NullOr(S.String),
+      projectRootDirectory: S.NullOr(S.String),
+      provisioningStartedAt: S.NullOr(S.String),
+      queuePosition: S.NullOr(S.Number),
+      reactNativeVersion: S.NullOr(S.String),
+      releaseChannel: S.NullOr(S.String),
+      requiredPackageManager: S.NullOr(S.String),
+      resolvedEnvironment: S.NullOr(S.Unknown),
+      resolvedImage: S.NullOr(S.String),
+      resourceClass: BuildResourceClass,
+      resourceClassDisplayName: S.String,
+      runFromCI: S.NullOr(S.Boolean),
+      runtime: S.NullOr(BuildResponseCancelRuntime),
+      runtimeVersion: S.NullOr(S.String),
+      sdkVersion: S.NullOr(S.String),
+      selectedImage: S.NullOr(S.String),
+      sshSession: S.NullOr(BuildResponseCancelSshSession),
+      status: BuildStatus,
+      updateChannel: S.NullOr(BuildResponseCancelUpdateChannel),
+      updatedAt: S.String,
+      waiverType: S.NullOr(EASBuildWaiverType),
+      workerStartedAt: S.NullOr(S.String),
+      workflowJob: S.NullOr(CancelSubmissionResponseSubmittedBuildWorkflowJob),
+    }),
+).annotate({
+  identifier: "CancelSubmissionResponseSubmittedBuild",
+}) as any as S.Schema<CancelSubmissionResponseSubmittedBuild>;
+
+export type CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItemTagsList =
+  Array<string>;
+export const CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItemTagsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItemTagsList>;
+
+export interface CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItem {
+  createdAt: string;
+  duration: number | null;
+  errorMessage: string | null;
+  id: string;
+  name: string;
+  path: string;
+  properties: unknown | null;
+  retryCount: number | null;
+  status: WorkflowDeviceTestCaseStatus;
+  tags: CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItemTagsList | null;
+  updatedAt: string;
+}
+export const CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdAt: S.String,
+      duration: S.NullOr(S.Number),
+      errorMessage: S.NullOr(S.String),
+      id: S.String,
+      name: S.String,
+      path: S.String,
+      properties: S.NullOr(S.Unknown),
+      retryCount: S.NullOr(S.Number),
+      status: WorkflowDeviceTestCaseStatus,
+      tags: S.NullOr(
+        CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItemTagsList,
+      ),
+      updatedAt: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItem",
+  }) as any as S.Schema<CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItem>;
+
+export type CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsList =
+  Array<CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItem>;
+export const CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsList =
+  /*@__PURE__*/ S.Array(
+    CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItem,
+  ) as any as S.Schema<CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsList>;
+
+export type CancelSubmissionResponseWorkflowJobApprovalsItem =
+  AppleDeviceRegistrationRequestByIdResponseWorkflowJobApprovalsItem;
+export const CancelSubmissionResponseWorkflowJobApprovalsItem =
+  AppleDeviceRegistrationRequestByIdResponseWorkflowJobApprovalsItem;
+
+export type CancelSubmissionResponseWorkflowJobApprovalsList =
+  Array<AppleDeviceRegistrationRequestByIdResponseWorkflowJobApprovalsItem>;
+export const CancelSubmissionResponseWorkflowJobApprovalsList =
+  /*@__PURE__*/ S.Array(
+    AppleDeviceRegistrationRequestByIdResponseWorkflowJobApprovalsItem,
+  ) as any as S.Schema<CancelSubmissionResponseWorkflowJobApprovalsList>;
+
+export type CancelSubmissionResponseWorkflowJobCredentialsAppleDeviceRegistrationRequest =
+  BuildsByIdResponseWorkflowJobCredentialsAppleDeviceRegistrationRequest;
+export const CancelSubmissionResponseWorkflowJobCredentialsAppleDeviceRegistrationRequest =
+  BuildsByIdResponseWorkflowJobCredentialsAppleDeviceRegistrationRequest;
+
+export type CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItemTagsList =
+  Array<string>;
+export const CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItemTagsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItemTagsList>;
+
+export interface CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItem {
+  createdAt: string;
+  duration: number | null;
+  errorMessage: string | null;
+  id: string;
+  name: string;
+  path: string;
+  properties: unknown | null;
+  retryCount: number | null;
+  status: WorkflowDeviceTestCaseStatus;
+  tags: CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItemTagsList | null;
+  updatedAt: string;
+}
+export const CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdAt: S.String,
+      duration: S.NullOr(S.Number),
+      errorMessage: S.NullOr(S.String),
+      id: S.String,
+      name: S.String,
+      path: S.String,
+      properties: S.NullOr(S.Unknown),
+      retryCount: S.NullOr(S.Number),
+      status: WorkflowDeviceTestCaseStatus,
+      tags: S.NullOr(
+        CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItemTagsList,
+      ),
+      updatedAt: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItem",
+  }) as any as S.Schema<CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItem>;
+
+export type CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsList =
+  Array<CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItem>;
+export const CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsList =
+  /*@__PURE__*/ S.Array(
+    CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItem,
+  ) as any as S.Schema<CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsList>;
+
+export type CancelSubmissionResponseWorkflowJobErrorsItem =
+  AppleDeviceRegistrationRequestByIdResponseWorkflowJobErrorsItem;
+export const CancelSubmissionResponseWorkflowJobErrorsItem =
+  AppleDeviceRegistrationRequestByIdResponseWorkflowJobErrorsItem;
+
+export type CancelSubmissionResponseWorkflowJobErrorsList =
+  Array<AppleDeviceRegistrationRequestByIdResponseWorkflowJobErrorsItem>;
+export const CancelSubmissionResponseWorkflowJobErrorsList =
+  /*@__PURE__*/ S.Array(
+    AppleDeviceRegistrationRequestByIdResponseWorkflowJobErrorsItem,
+  ) as any as S.Schema<CancelSubmissionResponseWorkflowJobErrorsList>;
+
+export type CancelSubmissionResponseWorkflowJobRequiredJobKeysList =
+  Array<string>;
+export const CancelSubmissionResponseWorkflowJobRequiredJobKeysList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseWorkflowJobRequiredJobKeysList>;
+
+export type CancelSubmissionResponseWorkflowJobRolloutUpdateGroupItem =
+  AppleDeviceRegistrationRequestByIdResponseWorkflowJobRolloutUpdateGroupItem;
+export const CancelSubmissionResponseWorkflowJobRolloutUpdateGroupItem =
+  AppleDeviceRegistrationRequestByIdResponseWorkflowJobRolloutUpdateGroupItem;
+
+export type CancelSubmissionResponseWorkflowJobRolloutUpdateGroupList =
+  Array<AppleDeviceRegistrationRequestByIdResponseWorkflowJobRolloutUpdateGroupItem>;
+export const CancelSubmissionResponseWorkflowJobRolloutUpdateGroupList =
+  /*@__PURE__*/ S.Array(
+    AppleDeviceRegistrationRequestByIdResponseWorkflowJobRolloutUpdateGroupItem,
+  ) as any as S.Schema<CancelSubmissionResponseWorkflowJobRolloutUpdateGroupList>;
+
+export type CancelSubmissionResponseWorkflowJobTurtleBuildLogFileUrlsList =
+  Array<string>;
+export const CancelSubmissionResponseWorkflowJobTurtleBuildLogFileUrlsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseWorkflowJobTurtleBuildLogFileUrlsList>;
+
+export type CancelSubmissionResponseWorkflowJobTurtleBuildLogFilesList =
+  Array<string>;
+export const CancelSubmissionResponseWorkflowJobTurtleBuildLogFilesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseWorkflowJobTurtleBuildLogFilesList>;
+
+export interface CancelSubmissionResponseWorkflowJobTurtleBuild {
+  activityTimestamp: string;
+  appBuildVersion: string | null;
+  appIdentifier: string | null;
+  appVersion: string | null;
+  buildMode: BuildMode | null;
+  buildProfile: string | null;
+  channel: string | null;
+  cliVersion: string | null;
+  completedAt: string | null;
+  createdAt: string;
+  customNodeVersion: string | null;
+  customWorkflowName: string | null;
+  developmentClient: boolean | null;
+  distribution: DistributionType | null;
+  enqueuedAt: string | null;
+  estimatedWaitTimeLeftSeconds: number | null;
+  expirationDate: string | null;
+  gitCommitHash: string | null;
+  gitCommitMessage: string | null;
+  gitRef: string | null;
+  id: string;
+  initialQueuePosition: number | null;
+  iosEnterpriseProvisioning: BuildIosEnterpriseProvisioning | null;
+  isForIosSimulator: boolean;
+  isGitWorkingTreeDirty: boolean | null;
+  isWaived: boolean;
+  logFileUrls: CancelSubmissionResponseWorkflowJobTurtleBuildLogFileUrlsList;
+  logFiles: CancelSubmissionResponseWorkflowJobTurtleBuildLogFilesList;
+  maxBuildTimeSeconds: number;
+  maxRetryTimeMinutes: number | null;
+  message: string | null;
+  platform: AppPlatform;
+  priority: BuildPriority;
+  projectMetadataFileUrl: string | null;
+  projectRootDirectory: string | null;
+  provisioningStartedAt: string | null;
+  queuePosition: number | null;
+  reactNativeVersion: string | null;
+  releaseChannel: string | null;
+  requiredPackageManager: string | null;
+  resolvedEnvironment: unknown | null;
+  resolvedImage: string | null;
+  resourceClass: BuildResourceClass;
+  resourceClassDisplayName: string;
+  runFromCI: boolean | null;
+  runtimeVersion: string | null;
+  sdkVersion: string | null;
+  selectedImage: string | null;
+  status: BuildStatus;
+  updatedAt: string;
+  waiverType: EASBuildWaiverType | null;
+  workerStartedAt: string | null;
+}
+export const CancelSubmissionResponseWorkflowJobTurtleBuild =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      activityTimestamp: S.String,
+      appBuildVersion: S.NullOr(S.String),
+      appIdentifier: S.NullOr(S.String),
+      appVersion: S.NullOr(S.String),
+      buildMode: S.NullOr(BuildMode),
+      buildProfile: S.NullOr(S.String),
+      channel: S.NullOr(S.String),
+      cliVersion: S.NullOr(S.String),
+      completedAt: S.NullOr(S.String),
+      createdAt: S.String,
+      customNodeVersion: S.NullOr(S.String),
+      customWorkflowName: S.NullOr(S.String),
+      developmentClient: S.NullOr(S.Boolean),
+      distribution: S.NullOr(DistributionType),
+      enqueuedAt: S.NullOr(S.String),
+      estimatedWaitTimeLeftSeconds: S.NullOr(S.Number),
+      expirationDate: S.NullOr(S.String),
+      gitCommitHash: S.NullOr(S.String),
+      gitCommitMessage: S.NullOr(S.String),
+      gitRef: S.NullOr(S.String),
+      id: S.String,
+      initialQueuePosition: S.NullOr(S.Number),
+      iosEnterpriseProvisioning: S.NullOr(BuildIosEnterpriseProvisioning),
+      isForIosSimulator: S.Boolean,
+      isGitWorkingTreeDirty: S.NullOr(S.Boolean),
+      isWaived: S.Boolean,
+      logFileUrls:
+        CancelSubmissionResponseWorkflowJobTurtleBuildLogFileUrlsList,
+      logFiles: CancelSubmissionResponseWorkflowJobTurtleBuildLogFilesList,
+      maxBuildTimeSeconds: S.Number,
+      maxRetryTimeMinutes: S.NullOr(S.Number),
+      message: S.NullOr(S.String),
+      platform: AppPlatform,
+      priority: BuildPriority,
+      projectMetadataFileUrl: S.NullOr(S.String),
+      projectRootDirectory: S.NullOr(S.String),
+      provisioningStartedAt: S.NullOr(S.String),
+      queuePosition: S.NullOr(S.Number),
+      reactNativeVersion: S.NullOr(S.String),
+      releaseChannel: S.NullOr(S.String),
+      requiredPackageManager: S.NullOr(S.String),
+      resolvedEnvironment: S.NullOr(S.Unknown),
+      resolvedImage: S.NullOr(S.String),
+      resourceClass: BuildResourceClass,
+      resourceClassDisplayName: S.String,
+      runFromCI: S.NullOr(S.Boolean),
+      runtimeVersion: S.NullOr(S.String),
+      sdkVersion: S.NullOr(S.String),
+      selectedImage: S.NullOr(S.String),
+      status: BuildStatus,
+      updatedAt: S.String,
+      waiverType: S.NullOr(EASBuildWaiverType),
+      workerStartedAt: S.NullOr(S.String),
+    }),
+  ).annotate({
+    identifier: "CancelSubmissionResponseWorkflowJobTurtleBuild",
+  }) as any as S.Schema<CancelSubmissionResponseWorkflowJobTurtleBuild>;
+
+export type CancelSubmissionResponseWorkflowJobTurtleJobRunLogFileUrlsList =
+  Array<string>;
+export const CancelSubmissionResponseWorkflowJobTurtleJobRunLogFileUrlsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CancelSubmissionResponseWorkflowJobTurtleJobRunLogFileUrlsList>;
+
+export type CancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsItemList =
+  Array<unknown>;
+export const CancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsItemList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsItemList>;
+
+export type CancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsList =
+  Array<CancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsItemList>;
+export const CancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsList =
+  /*@__PURE__*/ S.Array(
+    CancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsItemList,
+  ) as any as S.Schema<CancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsList>;
+
+export interface CancelSubmissionResponseWorkflowJobTurtleJobRun {
+  createdAt: string;
+  displayName: string | null;
+  endedAt: string | null;
+  enqueuedAt: string | null;
+  expiresAt: string;
+  gitCommitHash: string | null;
+  gitCommitMessage: string | null;
+  gitRef: string | null;
+  id: string;
+  isWaived: boolean;
+  logFileUrls: CancelSubmissionResponseWorkflowJobTurtleJobRunLogFileUrlsList;
+  maxRunTimeSeconds: number;
+  name: string;
+  priority: JobRunPriority;
+  resourceClassDisplayName: string;
+  startedAt: string | null;
+  status: JobRunStatus;
+  updateGroups: CancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsList;
+}
+export const CancelSubmissionResponseWorkflowJobTurtleJobRun =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdAt: S.String,
+      displayName: S.NullOr(S.String),
+      endedAt: S.NullOr(S.String),
+      enqueuedAt: S.NullOr(S.String),
+      expiresAt: S.String,
+      gitCommitHash: S.NullOr(S.String),
+      gitCommitMessage: S.NullOr(S.String),
+      gitRef: S.NullOr(S.String),
+      id: S.String,
+      isWaived: S.Boolean,
+      logFileUrls:
+        CancelSubmissionResponseWorkflowJobTurtleJobRunLogFileUrlsList,
+      maxRunTimeSeconds: S.Number,
+      name: S.String,
+      priority: JobRunPriority,
+      resourceClassDisplayName: S.String,
+      startedAt: S.NullOr(S.String),
+      status: JobRunStatus,
+      updateGroups:
+        CancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsList,
+    }),
+  ).annotate({
+    identifier: "CancelSubmissionResponseWorkflowJobTurtleJobRun",
+  }) as any as S.Schema<CancelSubmissionResponseWorkflowJobTurtleJobRun>;
+
+export type CancelSubmissionResponseWorkflowJobWorkflowRun =
+  AppleDeviceRegistrationRequestByIdResponseWorkflowJobWorkflowRun;
+export const CancelSubmissionResponseWorkflowJobWorkflowRun =
+  AppleDeviceRegistrationRequestByIdResponseWorkflowJobWorkflowRun;
+
+export interface CancelSubmissionResponseWorkflowJob {
+  allDeviceTestCaseResults: CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsList;
+  approvals: CancelSubmissionResponseWorkflowJobApprovalsList;
+  createdAt: string;
+  credentialsAppleDeviceRegistrationRequest: BuildsByIdResponseWorkflowJobCredentialsAppleDeviceRegistrationRequest | null;
+  deviceTestCaseResultAttempts: CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsList;
+  environment: string | null;
+  errors: CancelSubmissionResponseWorkflowJobErrorsList;
+  id: string;
+  key: string;
+  name: string;
+  outputs: unknown;
+  requiredJobKeys: CancelSubmissionResponseWorkflowJobRequiredJobKeysList;
+  rolloutUpdateGroup: CancelSubmissionResponseWorkflowJobRolloutUpdateGroupList;
+  status: WorkflowJobStatus;
+  turtleBuild: CancelSubmissionResponseWorkflowJobTurtleBuild | null;
+  turtleJobRun: CancelSubmissionResponseWorkflowJobTurtleJobRun | null;
+  type: WorkflowJobType;
+  updatedAt: string;
+  workflowRun: AppleDeviceRegistrationRequestByIdResponseWorkflowJobWorkflowRun;
+}
+export const CancelSubmissionResponseWorkflowJob = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allDeviceTestCaseResults:
+      CancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsList,
+    approvals: CancelSubmissionResponseWorkflowJobApprovalsList,
+    createdAt: S.String,
+    credentialsAppleDeviceRegistrationRequest: S.NullOr(
+      BuildsByIdResponseWorkflowJobCredentialsAppleDeviceRegistrationRequest,
+    ),
+    deviceTestCaseResultAttempts:
+      CancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsList,
+    environment: S.NullOr(S.String),
+    errors: CancelSubmissionResponseWorkflowJobErrorsList,
+    id: S.String,
+    key: S.String,
+    name: S.String,
+    outputs: S.Unknown,
+    requiredJobKeys: CancelSubmissionResponseWorkflowJobRequiredJobKeysList,
+    rolloutUpdateGroup:
+      CancelSubmissionResponseWorkflowJobRolloutUpdateGroupList,
+    status: WorkflowJobStatus,
+    turtleBuild: S.NullOr(CancelSubmissionResponseWorkflowJobTurtleBuild),
+    turtleJobRun: S.NullOr(CancelSubmissionResponseWorkflowJobTurtleJobRun),
+    type: WorkflowJobType,
+    updatedAt: S.String,
+    workflowRun:
+      AppleDeviceRegistrationRequestByIdResponseWorkflowJobWorkflowRun,
+  }),
+).annotate({
+  identifier: "CancelSubmissionResponseWorkflowJob",
+}) as any as S.Schema<CancelSubmissionResponseWorkflowJob>;
+
+/** Selection set for `submission.cancelSubmission` (unwrapped from the GraphQL `data` envelope). */
+export interface CancelSubmissionResponse {
+  activityTimestamp: string;
+  actor: CancelSubmissionResponseActor | null;
+  androidConfig: BuildsByIdResponseSubmissionsItemAndroidConfig | null;
+  app: CancelSubmissionResponseApp;
+  appStoreConnectBuildUpload: CancelSubmissionResponseAppStoreConnectBuildUpload | null;
+  archiveUrl: string | null;
+  canRetry: boolean;
+  cancelingActor: CancelSubmissionResponseCancelingActor | null;
+  completedAt: string | null;
+  createdAt: string;
+  error: BuildsByIdResponseSubmissionsItemError | null;
+  id: string;
+  initiatingActor: CancelSubmissionResponseInitiatingActor | null;
+  iosConfig: BuildsByIdResponseSubmissionsItemIosConfig | null;
+  jobRun: CancelSubmissionResponseJobRun | null;
+  logFiles: CancelSubmissionResponseLogFilesList;
+  logsUrl: string | null;
+  maxRetryTimeMinutes: number;
+  platform: AppPlatform;
+  priority: SubmissionPriority | null;
+  status: SubmissionStatus;
+  submittedBuild: CancelSubmissionResponseSubmittedBuild | null;
+  updatedAt: string;
+  workflowJob: CancelSubmissionResponseWorkflowJob | null;
+}
+export const CancelSubmissionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    activityTimestamp: S.String,
+    actor: S.NullOr(CancelSubmissionResponseActor),
+    androidConfig: S.NullOr(BuildsByIdResponseSubmissionsItemAndroidConfig),
+    app: CancelSubmissionResponseApp,
+    appStoreConnectBuildUpload: S.NullOr(
+      CancelSubmissionResponseAppStoreConnectBuildUpload,
+    ),
+    archiveUrl: S.NullOr(S.String),
+    canRetry: S.Boolean,
+    cancelingActor: S.NullOr(CancelSubmissionResponseCancelingActor),
+    completedAt: S.NullOr(S.String),
+    createdAt: S.String,
+    error: S.NullOr(BuildsByIdResponseSubmissionsItemError),
+    id: S.String,
+    initiatingActor: S.NullOr(CancelSubmissionResponseInitiatingActor),
+    iosConfig: S.NullOr(BuildsByIdResponseSubmissionsItemIosConfig),
+    jobRun: S.NullOr(CancelSubmissionResponseJobRun),
+    logFiles: CancelSubmissionResponseLogFilesList,
+    logsUrl: S.NullOr(S.String),
+    maxRetryTimeMinutes: S.Number,
+    platform: AppPlatform,
+    priority: S.NullOr(SubmissionPriority),
+    status: SubmissionStatus,
+    submittedBuild: S.NullOr(CancelSubmissionResponseSubmittedBuild),
+    updatedAt: S.String,
+    workflowJob: S.NullOr(CancelSubmissionResponseWorkflowJob),
+  }).pipe(T.ResponsePath("submission.cancelSubmission")),
+).annotate({
+  identifier: "CancelSubmissionResponse",
+}) as any as S.Schema<CancelSubmissionResponse>;
+
 export interface ChannelsByIdRequest {
   /** Channel ID to use to look up channel */
   channelId: string;
@@ -63250,6 +64062,1791 @@ export const ConvexTeamConnectionSendConvexTeamInviteToVerifiedEmailResponse =
     identifier:
       "ConvexTeamConnectionSendConvexTeamInviteToVerifiedEmailResponse",
   }) as any as S.Schema<ConvexTeamConnectionSendConvexTeamInviteToVerifiedEmailResponse>;
+
+export interface AppInput {
+  accountId: string;
+  appInfo?: AppInfoInput | null;
+  projectName: string;
+}
+export const AppInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String,
+    appInfo: S.optional(S.NullOr(AppInfoInput)),
+    projectName: S.String,
+  }),
+).annotate({ identifier: "AppInput" }) as any as S.Schema<AppInput>;
+
+export interface CreateAppRequest {
+  appId?: string | null;
+  appInput: AppInput;
+}
+export const CreateAppRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.optional(S.NullOr(S.String)),
+    appInput: AppInput,
+  })
+    .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
+    .pipe(
+      T.GraphQLOp({
+        query:
+          "mutation appCreateApp($appId: ID, $appInput: AppInput!) {\n  app(appId: $appId) {\n    createApp(appInput: $appInput) {\n      appStoreConnectApp {\n        appStoreConnectApiKey {\n          createdAt\n          id\n          issuerIdentifier\n          keyIdentifier\n          keyP8\n          name\n          roles\n          updatedAt\n        }\n        ascAppIdentifier\n        createdAt\n        id\n        remoteAppStoreConnectApp {\n          appStoreIconUrl\n          ascAppIdentifier\n          bundleIdentifier\n          name\n        }\n        updatedAt\n        webhookEventTypes\n        webhookIdentifier\n      }\n      appStoreConnectWorkflowConnectionStatus\n      assetLimitPerUpdateGroup\n      buildProfiles\n      convexProject {\n        convexProjectIdentifier\n        convexProjectName\n        convexProjectSlug\n        convexTeamConnection {\n          convexTeamIdentifier\n          convexTeamName\n          convexTeamSlug\n          createdAt\n          hasBeenClaimed\n          id\n          invitedAt\n          invitedEmail\n          updatedAt\n        }\n        createdAt\n        id\n        updatedAt\n      }\n      description\n      devDomainName {\n        id\n        name\n      }\n      deviceRunSessionTags\n      environmentVariableEnvironments\n      fullName\n      githubBuildTriggers {\n        autoSubmit\n        buildProfile\n        createdAt\n        environment\n        executionBehavior\n        id\n        isActive\n        lastRunAt\n        lastRunBuild {\n          activityTimestamp\n          appBuildVersion\n          appIdentifier\n          appVersion\n          buildMode\n          buildProfile\n          channel\n          cliVersion\n          completedAt\n          createdAt\n          customNodeVersion\n          customWorkflowName\n          developmentClient\n          distribution\n          enqueuedAt\n          estimatedWaitTimeLeftSeconds\n          expirationDate\n          gitCommitHash\n          gitCommitMessage\n          gitRef\n          id\n          initialQueuePosition\n          iosEnterpriseProvisioning\n          isForIosSimulator\n          isGitWorkingTreeDirty\n          isWaived\n          logFileUrls\n          logFiles\n          maxBuildTimeSeconds\n          maxRetryTimeMinutes\n          message\n          platform\n          priority\n          projectMetadataFileUrl\n          projectRootDirectory\n          provisioningStartedAt\n          queuePosition\n          reactNativeVersion\n          releaseChannel\n          requiredPackageManager\n          resolvedEnvironment\n          resolvedImage\n          resourceClass\n          resourceClassDisplayName\n          runFromCI\n          runtimeVersion\n          sdkVersion\n          selectedImage\n          status\n          updatedAt\n          waiverType\n          workerStartedAt\n        }\n        lastRunErrorCode\n        lastRunErrorMessage\n        lastRunStatus\n        platform\n        sourcePattern\n        submitProfile\n        targetPattern\n        type\n        updatedAt\n      }\n      githubJobRunTriggers {\n        createdAt\n        id\n        isActive\n        jobType\n        lastRunAt\n        lastRunErrorCode\n        lastRunErrorMessage\n        lastRunStatus\n        sourcePattern\n        targetPattern\n        triggerType\n      }\n      githubRepository {\n        createdAt\n        githubAppInstallation {\n          id\n          installationIdentifier\n        }\n        githubRepositoryIdentifier\n        githubRepositoryUrl\n        id\n        lastDeletionAttemptTime\n        metadata {\n          defaultBranch\n          githubRepoDescription\n          githubRepoName\n          githubRepoOwnerName\n          githubRepoUrl\n          id\n          lastPushed\n          lastUpdated\n          private\n        }\n        nodeIdentifier\n      }\n      githubRepositorySettings {\n        baseDirectory\n        id\n      }\n      icon {\n        originalUrl\n        primaryColor\n        url\n      }\n      iconUrl\n      id\n      insights {\n        hasEventsFromExpoInsightsClientModule\n      }\n      internalDistributionBuildPrivacy\n      isEligibleForObserveLapsedPaidNotification\n      isEligibleForObserveNotice\n      lastDeletionAttemptTime\n      latestActivity\n      logRocketProject {\n        createdAt\n        id\n        logRocketOrgId\n        logRocketProjectSlug\n        updatedAt\n      }\n      name\n      observe {\n        latestExpoSdkVersion\n        totalEventCount\n      }\n      observeIngestionPaused\n      ownerAccount {\n        agentProviderConnections {\n          createdAt\n          expiresAt\n          id\n          name\n          provider\n          providerAccountEmail\n          providerAccountId\n          providerPlan\n          status\n          updatedAt\n        }\n        aiChatEnabled\n        appCount\n        appStoreConnectApiKeys {\n          createdAt\n          id\n          issuerIdentifier\n          keyIdentifier\n          keyP8\n          name\n          roles\n          updatedAt\n        }\n        appleDistributionCertificates {\n          certificateP12\n          certificatePassword\n          certificatePrivateSigningKey\n          createdAt\n          developerPortalIdentifier\n          id\n          serialNumber\n          updatedAt\n          validityNotAfter\n          validityNotBefore\n        }\n        applePushKeys {\n          createdAt\n          id\n          keyIdentifier\n          keyP8\n          updatedAt\n        }\n        billing {\n          id\n        }\n        convexTeamConnections {\n          convexTeamIdentifier\n          convexTeamName\n          convexTeamSlug\n          createdAt\n          hasBeenClaimed\n          id\n          invitedAt\n          invitedEmail\n          updatedAt\n        }\n        createdAt\n        displayName\n        environmentVariableEnvironments\n        githubAppInstallations {\n          id\n          installationIdentifier\n        }\n        googleServiceAccountKeys {\n          clientEmail\n          clientIdentifier\n          createdAt\n          id\n          keyJson\n          privateKeyIdentifier\n          projectIdentifier\n          updatedAt\n        }\n        id\n        isCurrent\n        isDisabled\n        isFreeAppDevDomainTier\n        isSSOEnabled\n        lastDeletionAttemptTime\n        logRocketOrganization {\n          createdAt\n          id\n          orgName\n          orgSlug\n        }\n        memberStats {\n          allHave2FAEnabled\n          humanCount\n          ownerCount\n          robotCount\n          ssoUserCount\n          totalCount\n        }\n        name\n        observeIngestionPaused\n        offers {\n          features\n          id\n          price\n          quantity\n          stripeId\n          trialLength\n          type\n        }\n        onboardingStats {\n          firstBuildCompletedAt\n          firstProjectCreatedAt\n          firstSubmissionCompletedAt\n          firstUpdateCreatedAt\n          hasConfiguredUpdate\n          hasConfiguredWorkflow\n          hasTeamMembers\n        }\n        owner {\n          appCount\n          bestContactEmail\n          created\n          displayName\n          email\n          emailVerified\n          firstName\n          fullName\n          hasPassword\n          hasPendingUserInvitations\n          id\n          isExpoAdmin\n          isSecondFactorAuthenticationEnabled\n          isStaffModeEnabled\n          lastDeletionAttemptTime\n          lastName\n          newEmailPendingVerification\n          primaryAccountProfileImageUrl\n          profilePhoto\n          username\n        }\n        ownerUserActor {\n          appCount\n          bestContactEmail\n          created\n          displayName\n          firstName\n          fullName\n          id\n          isExpoAdmin\n          isStaffModeEnabled\n          lastDeletionAttemptTime\n          lastName\n          primaryAccountProfileImageUrl\n          profilePhoto\n          username\n        }\n        pendingSentryInstallation {\n          createdAt\n          id\n          installationId\n          orgSlug\n        }\n        posthogOrganizationConnection {\n          createdAt\n          id\n          posthogOrganizationIdentifier\n          posthogOrganizationName\n          posthogRegion\n          updatedAt\n        }\n        profileImageUrl\n        pushSecurityEnabled\n        requireTwoFactor\n        sentryInstallation {\n          createdAt\n          id\n          installationId\n          orgSlug\n        }\n        ssoAllowedAuthProviders\n        ssoConfiguration {\n          authProtocol\n          authProviderIdentifier\n          clientIdentifier\n          clientSecret\n          createdAt\n          id\n          issuer\n          updatedAt\n        }\n        subscription {\n          cancelAt\n          endedAt\n          id\n          includedAgentCreditsInCents\n          isDowngrading\n          name\n          nextInvoice\n          nextInvoiceAmountDueCents\n          paymentFailedAt\n          planId\n          price\n          recurringCents\n          status\n          trialEnd\n          willCancel\n        }\n        supabaseConnection {\n          createdAt\n          id\n          supabaseOrganizationName\n          supabaseOrganizationSlug\n          updatedAt\n        }\n        updatedAt\n        userInvitations {\n          accountName\n          accountProfileImageUrl\n          accountRequiresTwoFactor\n          created\n          email\n          expires\n          id\n          isForOrganization\n          permissions\n          role\n        }\n        userSpecifiedAccountUsage\n        users {\n          id\n          permissions\n          role\n        }\n        vexoAccountConnection {\n          id\n        }\n        viewerUserPermission {\n          id\n          permissions\n          role\n        }\n      }\n      packageName\n      posthogProject {\n        createdAt\n        id\n        posthogHost\n        posthogOrganizationConnection {\n          createdAt\n          id\n          posthogOrganizationIdentifier\n          posthogOrganizationName\n          posthogRegion\n          updatedAt\n        }\n        posthogProjectIdentifier\n        posthogProjectName\n        posthogProjectToken\n        updatedAt\n      }\n      privacy\n      published\n      pushNotifications {\n        id\n        insights {\n          id\n        }\n      }\n      pushSecurityEnabled\n      resourceClassExperiment\n      scopeKey\n      sdkVersion\n      sentryProject {\n        createdAt\n        id\n        sentryInstallationId\n        sentryProjectId\n        sentryProjectSlug\n        updatedAt\n      }\n      slug\n      suggestedDevDomainName\n      supabaseProject {\n        createdAt\n        id\n        supabaseConnection {\n          createdAt\n          id\n          supabaseOrganizationName\n          supabaseOrganizationSlug\n          updatedAt\n        }\n        supabaseProjectName\n        supabaseProjectRef\n        supabaseProjectUrl\n        supabaseRegion\n        updatedAt\n      }\n      updated\n      username\n      vexoApp {\n        domain\n        iconUrl\n        id\n        name\n        owner\n        slug\n        vexoIdentifier\n      }\n      workerCustomDomain {\n        alias {\n          aliasName\n          createdAt\n          deploymentDomain\n          devDomainName\n          id\n          subdomain\n          updatedAt\n          url\n        }\n        createdAt\n        dcvDelegationRecord {\n          dnsContent\n          dnsName\n          dnsType\n          isConfigured\n        }\n        devDomainName\n        dnsRecord {\n          dnsContent\n          dnsName\n          dnsType\n          isConfigured\n        }\n        hostname\n        id\n        setup {\n          sslErrors\n          sslStatus\n          status\n          verificationErrors\n          verificationStatus\n        }\n        updatedAt\n        verificationRecord {\n          dnsContent\n          dnsName\n          dnsType\n          isConfigured\n        }\n      }\n      workflowCachingConfig {\n        ccacheEnabled\n        gradleCacheEnabled\n      }\n    }\n  }\n}",
+        operationName: "appCreateApp",
+        type: "mutation",
+      }),
+    ),
+).annotate({
+  identifier: "CreateAppRequest",
+}) as any as S.Schema<CreateAppRequest>;
+
+export type CreateAppResponseAppStoreConnectAppAppStoreConnectApiKeyRolesList =
+  Array<AppStoreConnectUserRole>;
+export const CreateAppResponseAppStoreConnectAppAppStoreConnectApiKeyRolesList =
+  /*@__PURE__*/ S.Array(
+    AppStoreConnectUserRole,
+  ) as any as S.Schema<CreateAppResponseAppStoreConnectAppAppStoreConnectApiKeyRolesList>;
+
+export interface CreateAppResponseAppStoreConnectAppAppStoreConnectApiKey {
+  createdAt: string;
+  id: string;
+  issuerIdentifier: string;
+  keyIdentifier: string;
+  keyP8: string;
+  name: string | null;
+  roles: CreateAppResponseAppStoreConnectAppAppStoreConnectApiKeyRolesList | null;
+  updatedAt: string;
+}
+export const CreateAppResponseAppStoreConnectAppAppStoreConnectApiKey =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdAt: S.String,
+      id: S.String,
+      issuerIdentifier: S.String,
+      keyIdentifier: S.String,
+      keyP8: S.String,
+      name: S.NullOr(S.String),
+      roles: S.NullOr(
+        CreateAppResponseAppStoreConnectAppAppStoreConnectApiKeyRolesList,
+      ),
+      updatedAt: S.String,
+    }),
+  ).annotate({
+    identifier: "CreateAppResponseAppStoreConnectAppAppStoreConnectApiKey",
+  }) as any as S.Schema<CreateAppResponseAppStoreConnectAppAppStoreConnectApiKey>;
+
+export type CreateAppResponseAppStoreConnectAppRemoteAppStoreConnectApp =
+  AppByDevDomainNameResponseAppStoreConnectAppRemoteAppStoreConnectApp;
+export const CreateAppResponseAppStoreConnectAppRemoteAppStoreConnectApp =
+  AppByDevDomainNameResponseAppStoreConnectAppRemoteAppStoreConnectApp;
+
+export type CreateAppResponseAppStoreConnectAppWebhookEventTypesList =
+  Array<string>;
+export const CreateAppResponseAppStoreConnectAppWebhookEventTypesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateAppResponseAppStoreConnectAppWebhookEventTypesList>;
+
+export interface CreateAppResponseAppStoreConnectApp {
+  appStoreConnectApiKey: CreateAppResponseAppStoreConnectAppAppStoreConnectApiKey;
+  ascAppIdentifier: string;
+  createdAt: string;
+  id: string;
+  remoteAppStoreConnectApp: AppByDevDomainNameResponseAppStoreConnectAppRemoteAppStoreConnectApp | null;
+  updatedAt: string;
+  webhookEventTypes: CreateAppResponseAppStoreConnectAppWebhookEventTypesList;
+  webhookIdentifier: string;
+}
+export const CreateAppResponseAppStoreConnectApp = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appStoreConnectApiKey:
+      CreateAppResponseAppStoreConnectAppAppStoreConnectApiKey,
+    ascAppIdentifier: S.String,
+    createdAt: S.String,
+    id: S.String,
+    remoteAppStoreConnectApp: S.NullOr(
+      AppByDevDomainNameResponseAppStoreConnectAppRemoteAppStoreConnectApp,
+    ),
+    updatedAt: S.String,
+    webhookEventTypes: CreateAppResponseAppStoreConnectAppWebhookEventTypesList,
+    webhookIdentifier: S.String,
+  }),
+).annotate({
+  identifier: "CreateAppResponseAppStoreConnectApp",
+}) as any as S.Schema<CreateAppResponseAppStoreConnectApp>;
+
+export type CreateAppResponseBuildProfilesList = Array<string>;
+export const CreateAppResponseBuildProfilesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateAppResponseBuildProfilesList>;
+
+export type CreateAppResponseConvexProjectConvexTeamConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
+export const CreateAppResponseConvexProjectConvexTeamConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
+
+export type CreateAppResponseConvexProject =
+  AppByDevDomainNameResponseConvexProject;
+export const CreateAppResponseConvexProject =
+  AppByDevDomainNameResponseConvexProject;
+
+export type CreateAppResponseDevDomainName =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName;
+export const CreateAppResponseDevDomainName =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName;
+
+export type CreateAppResponseDeviceRunSessionTagsList = Array<string>;
+export const CreateAppResponseDeviceRunSessionTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateAppResponseDeviceRunSessionTagsList>;
+
+export type CreateAppResponseEnvironmentVariableEnvironmentsList =
+  Array<unknown>;
+export const CreateAppResponseEnvironmentVariableEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CreateAppResponseEnvironmentVariableEnvironmentsList>;
+
+export type CreateAppResponseGithubBuildTriggersItemLastRunBuildLogFileUrlsList =
+  Array<string>;
+export const CreateAppResponseGithubBuildTriggersItemLastRunBuildLogFileUrlsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateAppResponseGithubBuildTriggersItemLastRunBuildLogFileUrlsList>;
+
+export type CreateAppResponseGithubBuildTriggersItemLastRunBuildLogFilesList =
+  Array<string>;
+export const CreateAppResponseGithubBuildTriggersItemLastRunBuildLogFilesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateAppResponseGithubBuildTriggersItemLastRunBuildLogFilesList>;
+
+export interface CreateAppResponseGithubBuildTriggersItemLastRunBuild {
+  activityTimestamp: string;
+  appBuildVersion: string | null;
+  appIdentifier: string | null;
+  appVersion: string | null;
+  buildMode: BuildMode | null;
+  buildProfile: string | null;
+  channel: string | null;
+  cliVersion: string | null;
+  completedAt: string | null;
+  createdAt: string;
+  customNodeVersion: string | null;
+  customWorkflowName: string | null;
+  developmentClient: boolean | null;
+  distribution: DistributionType | null;
+  enqueuedAt: string | null;
+  estimatedWaitTimeLeftSeconds: number | null;
+  expirationDate: string | null;
+  gitCommitHash: string | null;
+  gitCommitMessage: string | null;
+  gitRef: string | null;
+  id: string;
+  initialQueuePosition: number | null;
+  iosEnterpriseProvisioning: BuildIosEnterpriseProvisioning | null;
+  isForIosSimulator: boolean;
+  isGitWorkingTreeDirty: boolean | null;
+  isWaived: boolean;
+  logFileUrls: CreateAppResponseGithubBuildTriggersItemLastRunBuildLogFileUrlsList;
+  logFiles: CreateAppResponseGithubBuildTriggersItemLastRunBuildLogFilesList;
+  maxBuildTimeSeconds: number;
+  maxRetryTimeMinutes: number | null;
+  message: string | null;
+  platform: AppPlatform;
+  priority: BuildPriority;
+  projectMetadataFileUrl: string | null;
+  projectRootDirectory: string | null;
+  provisioningStartedAt: string | null;
+  queuePosition: number | null;
+  reactNativeVersion: string | null;
+  releaseChannel: string | null;
+  requiredPackageManager: string | null;
+  resolvedEnvironment: unknown | null;
+  resolvedImage: string | null;
+  resourceClass: BuildResourceClass;
+  resourceClassDisplayName: string;
+  runFromCI: boolean | null;
+  runtimeVersion: string | null;
+  sdkVersion: string | null;
+  selectedImage: string | null;
+  status: BuildStatus;
+  updatedAt: string;
+  waiverType: EASBuildWaiverType | null;
+  workerStartedAt: string | null;
+}
+export const CreateAppResponseGithubBuildTriggersItemLastRunBuild =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      activityTimestamp: S.String,
+      appBuildVersion: S.NullOr(S.String),
+      appIdentifier: S.NullOr(S.String),
+      appVersion: S.NullOr(S.String),
+      buildMode: S.NullOr(BuildMode),
+      buildProfile: S.NullOr(S.String),
+      channel: S.NullOr(S.String),
+      cliVersion: S.NullOr(S.String),
+      completedAt: S.NullOr(S.String),
+      createdAt: S.String,
+      customNodeVersion: S.NullOr(S.String),
+      customWorkflowName: S.NullOr(S.String),
+      developmentClient: S.NullOr(S.Boolean),
+      distribution: S.NullOr(DistributionType),
+      enqueuedAt: S.NullOr(S.String),
+      estimatedWaitTimeLeftSeconds: S.NullOr(S.Number),
+      expirationDate: S.NullOr(S.String),
+      gitCommitHash: S.NullOr(S.String),
+      gitCommitMessage: S.NullOr(S.String),
+      gitRef: S.NullOr(S.String),
+      id: S.String,
+      initialQueuePosition: S.NullOr(S.Number),
+      iosEnterpriseProvisioning: S.NullOr(BuildIosEnterpriseProvisioning),
+      isForIosSimulator: S.Boolean,
+      isGitWorkingTreeDirty: S.NullOr(S.Boolean),
+      isWaived: S.Boolean,
+      logFileUrls:
+        CreateAppResponseGithubBuildTriggersItemLastRunBuildLogFileUrlsList,
+      logFiles:
+        CreateAppResponseGithubBuildTriggersItemLastRunBuildLogFilesList,
+      maxBuildTimeSeconds: S.Number,
+      maxRetryTimeMinutes: S.NullOr(S.Number),
+      message: S.NullOr(S.String),
+      platform: AppPlatform,
+      priority: BuildPriority,
+      projectMetadataFileUrl: S.NullOr(S.String),
+      projectRootDirectory: S.NullOr(S.String),
+      provisioningStartedAt: S.NullOr(S.String),
+      queuePosition: S.NullOr(S.Number),
+      reactNativeVersion: S.NullOr(S.String),
+      releaseChannel: S.NullOr(S.String),
+      requiredPackageManager: S.NullOr(S.String),
+      resolvedEnvironment: S.NullOr(S.Unknown),
+      resolvedImage: S.NullOr(S.String),
+      resourceClass: BuildResourceClass,
+      resourceClassDisplayName: S.String,
+      runFromCI: S.NullOr(S.Boolean),
+      runtimeVersion: S.NullOr(S.String),
+      sdkVersion: S.NullOr(S.String),
+      selectedImage: S.NullOr(S.String),
+      status: BuildStatus,
+      updatedAt: S.String,
+      waiverType: S.NullOr(EASBuildWaiverType),
+      workerStartedAt: S.NullOr(S.String),
+    }),
+  ).annotate({
+    identifier: "CreateAppResponseGithubBuildTriggersItemLastRunBuild",
+  }) as any as S.Schema<CreateAppResponseGithubBuildTriggersItemLastRunBuild>;
+
+export interface CreateAppResponseGithubBuildTriggersItem {
+  autoSubmit: boolean;
+  buildProfile: string;
+  createdAt: string;
+  environment: unknown | null;
+  executionBehavior: GitHubBuildTriggerExecutionBehavior;
+  id: string;
+  isActive: boolean;
+  lastRunAt: string | null;
+  lastRunBuild: CreateAppResponseGithubBuildTriggersItemLastRunBuild | null;
+  lastRunErrorCode: string | null;
+  lastRunErrorMessage: string | null;
+  lastRunStatus: GitHubBuildTriggerRunStatus | null;
+  platform: AppPlatform;
+  sourcePattern: string;
+  submitProfile: string | null;
+  targetPattern: string | null;
+  type: GitHubBuildTriggerType;
+  updatedAt: string;
+}
+export const CreateAppResponseGithubBuildTriggersItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      autoSubmit: S.Boolean,
+      buildProfile: S.String,
+      createdAt: S.String,
+      environment: S.NullOr(S.Unknown),
+      executionBehavior: GitHubBuildTriggerExecutionBehavior,
+      id: S.String,
+      isActive: S.Boolean,
+      lastRunAt: S.NullOr(S.String),
+      lastRunBuild: S.NullOr(
+        CreateAppResponseGithubBuildTriggersItemLastRunBuild,
+      ),
+      lastRunErrorCode: S.NullOr(S.String),
+      lastRunErrorMessage: S.NullOr(S.String),
+      lastRunStatus: S.NullOr(GitHubBuildTriggerRunStatus),
+      platform: AppPlatform,
+      sourcePattern: S.String,
+      submitProfile: S.NullOr(S.String),
+      targetPattern: S.NullOr(S.String),
+      type: GitHubBuildTriggerType,
+      updatedAt: S.String,
+    }),
+).annotate({
+  identifier: "CreateAppResponseGithubBuildTriggersItem",
+}) as any as S.Schema<CreateAppResponseGithubBuildTriggersItem>;
+
+export type CreateAppResponseGithubBuildTriggersList =
+  Array<CreateAppResponseGithubBuildTriggersItem>;
+export const CreateAppResponseGithubBuildTriggersList = /*@__PURE__*/ S.Array(
+  CreateAppResponseGithubBuildTriggersItem,
+) as any as S.Schema<CreateAppResponseGithubBuildTriggersList>;
+
+export type CreateAppResponseGithubJobRunTriggersItem =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem;
+export const CreateAppResponseGithubJobRunTriggersItem =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem;
+
+export type CreateAppResponseGithubJobRunTriggersList =
+  Array<AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem>;
+export const CreateAppResponseGithubJobRunTriggersList = /*@__PURE__*/ S.Array(
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem,
+) as any as S.Schema<CreateAppResponseGithubJobRunTriggersList>;
+
+export type CreateAppResponseGithubRepositoryGithubAppInstallation =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
+export const CreateAppResponseGithubRepositoryGithubAppInstallation =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
+
+export type CreateAppResponseGithubRepositoryMetadata =
+  AppByDevDomainNameResponseGithubRepositoryMetadata;
+export const CreateAppResponseGithubRepositoryMetadata =
+  AppByDevDomainNameResponseGithubRepositoryMetadata;
+
+export type CreateAppResponseGithubRepository =
+  AppByDevDomainNameResponseGithubRepository;
+export const CreateAppResponseGithubRepository =
+  AppByDevDomainNameResponseGithubRepository;
+
+export type CreateAppResponseGithubRepositorySettings =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings;
+export const CreateAppResponseGithubRepositorySettings =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings;
+
+export type CreateAppResponseIcon =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon;
+export const CreateAppResponseIcon =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon;
+
+export type CreateAppResponseInsights =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights;
+export const CreateAppResponseInsights =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights;
+
+export type CreateAppResponseLogRocketProject =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject;
+export const CreateAppResponseLogRocketProject =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject;
+
+export type CreateAppResponseObserve =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve;
+export const CreateAppResponseObserve =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve;
+
+export type CreateAppResponseOwnerAccountAgentProviderConnectionsItem =
+  AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem;
+export const CreateAppResponseOwnerAccountAgentProviderConnectionsItem =
+  AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem;
+
+export type CreateAppResponseOwnerAccountAgentProviderConnectionsList =
+  Array<AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem>;
+export const CreateAppResponseOwnerAccountAgentProviderConnectionsList =
+  /*@__PURE__*/ S.Array(
+    AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem,
+  ) as any as S.Schema<CreateAppResponseOwnerAccountAgentProviderConnectionsList>;
+
+export type CreateAppResponseOwnerAccountAppStoreConnectApiKeysItemRolesList =
+  Array<AppStoreConnectUserRole>;
+export const CreateAppResponseOwnerAccountAppStoreConnectApiKeysItemRolesList =
+  /*@__PURE__*/ S.Array(
+    AppStoreConnectUserRole,
+  ) as any as S.Schema<CreateAppResponseOwnerAccountAppStoreConnectApiKeysItemRolesList>;
+
+export interface CreateAppResponseOwnerAccountAppStoreConnectApiKeysItem {
+  createdAt: string;
+  id: string;
+  issuerIdentifier: string;
+  keyIdentifier: string;
+  keyP8: string;
+  name: string | null;
+  roles: CreateAppResponseOwnerAccountAppStoreConnectApiKeysItemRolesList | null;
+  updatedAt: string;
+}
+export const CreateAppResponseOwnerAccountAppStoreConnectApiKeysItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdAt: S.String,
+      id: S.String,
+      issuerIdentifier: S.String,
+      keyIdentifier: S.String,
+      keyP8: S.String,
+      name: S.NullOr(S.String),
+      roles: S.NullOr(
+        CreateAppResponseOwnerAccountAppStoreConnectApiKeysItemRolesList,
+      ),
+      updatedAt: S.String,
+    }),
+  ).annotate({
+    identifier: "CreateAppResponseOwnerAccountAppStoreConnectApiKeysItem",
+  }) as any as S.Schema<CreateAppResponseOwnerAccountAppStoreConnectApiKeysItem>;
+
+export type CreateAppResponseOwnerAccountAppStoreConnectApiKeysList =
+  Array<CreateAppResponseOwnerAccountAppStoreConnectApiKeysItem>;
+export const CreateAppResponseOwnerAccountAppStoreConnectApiKeysList =
+  /*@__PURE__*/ S.Array(
+    CreateAppResponseOwnerAccountAppStoreConnectApiKeysItem,
+  ) as any as S.Schema<CreateAppResponseOwnerAccountAppStoreConnectApiKeysList>;
+
+export type CreateAppResponseOwnerAccountAppleDistributionCertificatesItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem;
+export const CreateAppResponseOwnerAccountAppleDistributionCertificatesItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem;
+
+export type CreateAppResponseOwnerAccountAppleDistributionCertificatesList =
+  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem>;
+export const CreateAppResponseOwnerAccountAppleDistributionCertificatesList =
+  /*@__PURE__*/ S.Array(
+    AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem,
+  ) as any as S.Schema<CreateAppResponseOwnerAccountAppleDistributionCertificatesList>;
+
+export type CreateAppResponseOwnerAccountApplePushKeysItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem;
+export const CreateAppResponseOwnerAccountApplePushKeysItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem;
+
+export type CreateAppResponseOwnerAccountApplePushKeysList =
+  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem>;
+export const CreateAppResponseOwnerAccountApplePushKeysList =
+  /*@__PURE__*/ S.Array(
+    AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem,
+  ) as any as S.Schema<CreateAppResponseOwnerAccountApplePushKeysList>;
+
+export type CreateAppResponseOwnerAccountBilling =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+export const CreateAppResponseOwnerAccountBilling =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+
+export type CreateAppResponseOwnerAccountConvexTeamConnectionsItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
+export const CreateAppResponseOwnerAccountConvexTeamConnectionsItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
+
+export type CreateAppResponseOwnerAccountConvexTeamConnectionsList =
+  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem>;
+export const CreateAppResponseOwnerAccountConvexTeamConnectionsList =
+  /*@__PURE__*/ S.Array(
+    AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem,
+  ) as any as S.Schema<CreateAppResponseOwnerAccountConvexTeamConnectionsList>;
+
+export type CreateAppResponseOwnerAccountEnvironmentVariableEnvironmentsList =
+  Array<unknown>;
+export const CreateAppResponseOwnerAccountEnvironmentVariableEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CreateAppResponseOwnerAccountEnvironmentVariableEnvironmentsList>;
+
+export type CreateAppResponseOwnerAccountGithubAppInstallationsItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
+export const CreateAppResponseOwnerAccountGithubAppInstallationsItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
+
+export type CreateAppResponseOwnerAccountGithubAppInstallationsList =
+  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem>;
+export const CreateAppResponseOwnerAccountGithubAppInstallationsList =
+  /*@__PURE__*/ S.Array(
+    AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem,
+  ) as any as S.Schema<CreateAppResponseOwnerAccountGithubAppInstallationsList>;
+
+export type CreateAppResponseOwnerAccountGoogleServiceAccountKeysItem =
+  AccountByIdResponseGoogleServiceAccountKeysItem;
+export const CreateAppResponseOwnerAccountGoogleServiceAccountKeysItem =
+  AccountByIdResponseGoogleServiceAccountKeysItem;
+
+export type CreateAppResponseOwnerAccountGoogleServiceAccountKeysList =
+  Array<AccountByIdResponseGoogleServiceAccountKeysItem>;
+export const CreateAppResponseOwnerAccountGoogleServiceAccountKeysList =
+  /*@__PURE__*/ S.Array(
+    AccountByIdResponseGoogleServiceAccountKeysItem,
+  ) as any as S.Schema<CreateAppResponseOwnerAccountGoogleServiceAccountKeysList>;
+
+export type CreateAppResponseOwnerAccountLogRocketOrganization =
+  AccountByIdResponseLogRocketOrganization;
+export const CreateAppResponseOwnerAccountLogRocketOrganization =
+  AccountByIdResponseLogRocketOrganization;
+
+export type CreateAppResponseOwnerAccountMemberStats =
+  AccountByIdResponseMemberStats;
+export const CreateAppResponseOwnerAccountMemberStats =
+  AccountByIdResponseMemberStats;
+
+export type CreateAppResponseOwnerAccountOffersItemFeaturesList =
+  (Feature | null)[];
+export const CreateAppResponseOwnerAccountOffersItemFeaturesList =
+  /*@__PURE__*/ S.Array(
+    S.NullOr(Feature),
+  ) as any as S.Schema<CreateAppResponseOwnerAccountOffersItemFeaturesList>;
+
+export interface CreateAppResponseOwnerAccountOffersItem {
+  features: CreateAppResponseOwnerAccountOffersItemFeaturesList | null;
+  id: string;
+  price: number;
+  quantity: number | null;
+  stripeId: string;
+  trialLength: number | null;
+  type: OfferType;
+}
+export const CreateAppResponseOwnerAccountOffersItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      features: S.NullOr(CreateAppResponseOwnerAccountOffersItemFeaturesList),
+      id: S.String,
+      price: S.Number,
+      quantity: S.NullOr(S.Number),
+      stripeId: S.String,
+      trialLength: S.NullOr(S.Number),
+      type: OfferType,
+    }),
+).annotate({
+  identifier: "CreateAppResponseOwnerAccountOffersItem",
+}) as any as S.Schema<CreateAppResponseOwnerAccountOffersItem>;
+
+export type CreateAppResponseOwnerAccountOffersList =
+  Array<CreateAppResponseOwnerAccountOffersItem>;
+export const CreateAppResponseOwnerAccountOffersList = /*@__PURE__*/ S.Array(
+  CreateAppResponseOwnerAccountOffersItem,
+) as any as S.Schema<CreateAppResponseOwnerAccountOffersList>;
+
+export type CreateAppResponseOwnerAccountOnboardingStats =
+  AccountByIdResponseOnboardingStats;
+export const CreateAppResponseOwnerAccountOnboardingStats =
+  AccountByIdResponseOnboardingStats;
+
+export type CreateAppResponseOwnerAccountOwner =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner;
+export const CreateAppResponseOwnerAccountOwner =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner;
+
+export type CreateAppResponseOwnerAccountOwnerUserActor =
+  AccountByIdResponseUsersItemUserActor;
+export const CreateAppResponseOwnerAccountOwnerUserActor =
+  AccountByIdResponseUsersItemUserActor;
+
+export type CreateAppResponseOwnerAccountPendingSentryInstallation =
+  AccountByIdResponsePendingSentryInstallation;
+export const CreateAppResponseOwnerAccountPendingSentryInstallation =
+  AccountByIdResponsePendingSentryInstallation;
+
+export type CreateAppResponseOwnerAccountPosthogOrganizationConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
+export const CreateAppResponseOwnerAccountPosthogOrganizationConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
+
+export type CreateAppResponseOwnerAccountSentryInstallation =
+  AccountByIdResponsePendingSentryInstallation;
+export const CreateAppResponseOwnerAccountSentryInstallation =
+  AccountByIdResponsePendingSentryInstallation;
+
+export type CreateAppResponseOwnerAccountSsoAllowedAuthProvidersList =
+  Array<AuthProviderIdentifier>;
+export const CreateAppResponseOwnerAccountSsoAllowedAuthProvidersList =
+  /*@__PURE__*/ S.Array(
+    AuthProviderIdentifier,
+  ) as any as S.Schema<CreateAppResponseOwnerAccountSsoAllowedAuthProvidersList>;
+
+export type CreateAppResponseOwnerAccountSsoConfiguration =
+  AccountByIdResponseSsoConfiguration;
+export const CreateAppResponseOwnerAccountSsoConfiguration =
+  AccountByIdResponseSsoConfiguration;
+
+export type CreateAppResponseOwnerAccountSubscription =
+  AccountByIdResponseBillingSubscription;
+export const CreateAppResponseOwnerAccountSubscription =
+  AccountByIdResponseBillingSubscription;
+
+export type CreateAppResponseOwnerAccountSupabaseConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
+export const CreateAppResponseOwnerAccountSupabaseConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
+
+export type CreateAppResponseOwnerAccountUserInvitationsItemPermissionsList =
+  Array<Permission>;
+export const CreateAppResponseOwnerAccountUserInvitationsItemPermissionsList =
+  /*@__PURE__*/ S.Array(
+    Permission,
+  ) as any as S.Schema<CreateAppResponseOwnerAccountUserInvitationsItemPermissionsList>;
+
+export interface CreateAppResponseOwnerAccountUserInvitationsItem {
+  accountName: string;
+  accountProfileImageUrl: string;
+  accountRequiresTwoFactor: boolean;
+  created: string;
+  email: string;
+  expires: string;
+  id: string;
+  isForOrganization: boolean;
+  permissions: CreateAppResponseOwnerAccountUserInvitationsItemPermissionsList;
+  role: Role;
+}
+export const CreateAppResponseOwnerAccountUserInvitationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountName: S.String,
+      accountProfileImageUrl: S.String,
+      accountRequiresTwoFactor: S.Boolean,
+      created: S.String,
+      email: S.String,
+      expires: S.String,
+      id: S.String,
+      isForOrganization: S.Boolean,
+      permissions:
+        CreateAppResponseOwnerAccountUserInvitationsItemPermissionsList,
+      role: Role,
+    }),
+  ).annotate({
+    identifier: "CreateAppResponseOwnerAccountUserInvitationsItem",
+  }) as any as S.Schema<CreateAppResponseOwnerAccountUserInvitationsItem>;
+
+export type CreateAppResponseOwnerAccountUserInvitationsList =
+  Array<CreateAppResponseOwnerAccountUserInvitationsItem>;
+export const CreateAppResponseOwnerAccountUserInvitationsList =
+  /*@__PURE__*/ S.Array(
+    CreateAppResponseOwnerAccountUserInvitationsItem,
+  ) as any as S.Schema<CreateAppResponseOwnerAccountUserInvitationsList>;
+
+export type CreateAppResponseOwnerAccountUsersItemPermissionsList =
+  Array<Permission>;
+export const CreateAppResponseOwnerAccountUsersItemPermissionsList =
+  /*@__PURE__*/ S.Array(
+    Permission,
+  ) as any as S.Schema<CreateAppResponseOwnerAccountUsersItemPermissionsList>;
+
+export interface CreateAppResponseOwnerAccountUsersItem {
+  id: string;
+  permissions: CreateAppResponseOwnerAccountUsersItemPermissionsList;
+  role: Role;
+}
+export const CreateAppResponseOwnerAccountUsersItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      permissions: CreateAppResponseOwnerAccountUsersItemPermissionsList,
+      role: Role,
+    }),
+).annotate({
+  identifier: "CreateAppResponseOwnerAccountUsersItem",
+}) as any as S.Schema<CreateAppResponseOwnerAccountUsersItem>;
+
+export type CreateAppResponseOwnerAccountUsersList =
+  Array<CreateAppResponseOwnerAccountUsersItem>;
+export const CreateAppResponseOwnerAccountUsersList = /*@__PURE__*/ S.Array(
+  CreateAppResponseOwnerAccountUsersItem,
+) as any as S.Schema<CreateAppResponseOwnerAccountUsersList>;
+
+export type CreateAppResponseOwnerAccountVexoAccountConnection =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+export const CreateAppResponseOwnerAccountVexoAccountConnection =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+
+export type CreateAppResponseOwnerAccountViewerUserPermissionPermissionsList =
+  Array<Permission>;
+export const CreateAppResponseOwnerAccountViewerUserPermissionPermissionsList =
+  /*@__PURE__*/ S.Array(
+    Permission,
+  ) as any as S.Schema<CreateAppResponseOwnerAccountViewerUserPermissionPermissionsList>;
+
+export interface CreateAppResponseOwnerAccountViewerUserPermission {
+  id: string;
+  permissions: CreateAppResponseOwnerAccountViewerUserPermissionPermissionsList;
+  role: Role;
+}
+export const CreateAppResponseOwnerAccountViewerUserPermission =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      permissions:
+        CreateAppResponseOwnerAccountViewerUserPermissionPermissionsList,
+      role: Role,
+    }),
+  ).annotate({
+    identifier: "CreateAppResponseOwnerAccountViewerUserPermission",
+  }) as any as S.Schema<CreateAppResponseOwnerAccountViewerUserPermission>;
+
+export interface CreateAppResponseOwnerAccount {
+  agentProviderConnections: CreateAppResponseOwnerAccountAgentProviderConnectionsList;
+  aiChatEnabled: boolean;
+  appCount: number;
+  appStoreConnectApiKeys: CreateAppResponseOwnerAccountAppStoreConnectApiKeysList;
+  appleDistributionCertificates: CreateAppResponseOwnerAccountAppleDistributionCertificatesList;
+  applePushKeys: CreateAppResponseOwnerAccountApplePushKeysList;
+  billing: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem | null;
+  convexTeamConnections: CreateAppResponseOwnerAccountConvexTeamConnectionsList;
+  createdAt: string;
+  displayName: string | null;
+  environmentVariableEnvironments: CreateAppResponseOwnerAccountEnvironmentVariableEnvironmentsList;
+  githubAppInstallations: CreateAppResponseOwnerAccountGithubAppInstallationsList;
+  googleServiceAccountKeys: CreateAppResponseOwnerAccountGoogleServiceAccountKeysList;
+  id: string;
+  isCurrent: boolean;
+  isDisabled: boolean;
+  isFreeAppDevDomainTier: boolean;
+  isSSOEnabled: boolean;
+  lastDeletionAttemptTime: string | null;
+  logRocketOrganization: AccountByIdResponseLogRocketOrganization | null;
+  memberStats: AccountByIdResponseMemberStats;
+  name: string;
+  observeIngestionPaused: boolean;
+  offers: CreateAppResponseOwnerAccountOffersList | null;
+  onboardingStats: AccountByIdResponseOnboardingStats;
+  owner: AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner | null;
+  ownerUserActor: AccountByIdResponseUsersItemUserActor | null;
+  pendingSentryInstallation: AccountByIdResponsePendingSentryInstallation | null;
+  posthogOrganizationConnection: AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection | null;
+  profileImageUrl: string;
+  pushSecurityEnabled: boolean;
+  requireTwoFactor: boolean;
+  sentryInstallation: AccountByIdResponsePendingSentryInstallation | null;
+  ssoAllowedAuthProviders: CreateAppResponseOwnerAccountSsoAllowedAuthProvidersList;
+  ssoConfiguration: AccountByIdResponseSsoConfiguration | null;
+  subscription: AccountByIdResponseBillingSubscription | null;
+  supabaseConnection: AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection | null;
+  updatedAt: string;
+  userInvitations: CreateAppResponseOwnerAccountUserInvitationsList;
+  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
+  users: CreateAppResponseOwnerAccountUsersList;
+  vexoAccountConnection: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem | null;
+  viewerUserPermission: CreateAppResponseOwnerAccountViewerUserPermission;
+}
+export const CreateAppResponseOwnerAccount = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    agentProviderConnections:
+      CreateAppResponseOwnerAccountAgentProviderConnectionsList,
+    aiChatEnabled: S.Boolean,
+    appCount: S.Number,
+    appStoreConnectApiKeys:
+      CreateAppResponseOwnerAccountAppStoreConnectApiKeysList,
+    appleDistributionCertificates:
+      CreateAppResponseOwnerAccountAppleDistributionCertificatesList,
+    applePushKeys: CreateAppResponseOwnerAccountApplePushKeysList,
+    billing: S.NullOr(
+      AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
+    ),
+    convexTeamConnections:
+      CreateAppResponseOwnerAccountConvexTeamConnectionsList,
+    createdAt: S.String,
+    displayName: S.NullOr(S.String),
+    environmentVariableEnvironments:
+      CreateAppResponseOwnerAccountEnvironmentVariableEnvironmentsList,
+    githubAppInstallations:
+      CreateAppResponseOwnerAccountGithubAppInstallationsList,
+    googleServiceAccountKeys:
+      CreateAppResponseOwnerAccountGoogleServiceAccountKeysList,
+    id: S.String,
+    isCurrent: S.Boolean,
+    isDisabled: S.Boolean,
+    isFreeAppDevDomainTier: S.Boolean,
+    isSSOEnabled: S.Boolean,
+    lastDeletionAttemptTime: S.NullOr(S.String),
+    logRocketOrganization: S.NullOr(AccountByIdResponseLogRocketOrganization),
+    memberStats: AccountByIdResponseMemberStats,
+    name: S.String,
+    observeIngestionPaused: S.Boolean,
+    offers: S.NullOr(CreateAppResponseOwnerAccountOffersList),
+    onboardingStats: AccountByIdResponseOnboardingStats,
+    owner: S.NullOr(
+      AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner,
+    ),
+    ownerUserActor: S.NullOr(AccountByIdResponseUsersItemUserActor),
+    pendingSentryInstallation: S.NullOr(
+      AccountByIdResponsePendingSentryInstallation,
+    ),
+    posthogOrganizationConnection: S.NullOr(
+      AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection,
+    ),
+    profileImageUrl: S.String,
+    pushSecurityEnabled: S.Boolean,
+    requireTwoFactor: S.Boolean,
+    sentryInstallation: S.NullOr(AccountByIdResponsePendingSentryInstallation),
+    ssoAllowedAuthProviders:
+      CreateAppResponseOwnerAccountSsoAllowedAuthProvidersList,
+    ssoConfiguration: S.NullOr(AccountByIdResponseSsoConfiguration),
+    subscription: S.NullOr(AccountByIdResponseBillingSubscription),
+    supabaseConnection: S.NullOr(
+      AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection,
+    ),
+    updatedAt: S.String,
+    userInvitations: CreateAppResponseOwnerAccountUserInvitationsList,
+    userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
+    users: CreateAppResponseOwnerAccountUsersList,
+    vexoAccountConnection: S.NullOr(
+      AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
+    ),
+    viewerUserPermission: CreateAppResponseOwnerAccountViewerUserPermission,
+  }),
+).annotate({
+  identifier: "CreateAppResponseOwnerAccount",
+}) as any as S.Schema<CreateAppResponseOwnerAccount>;
+
+export type CreateAppResponsePosthogProjectPosthogOrganizationConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
+export const CreateAppResponsePosthogProjectPosthogOrganizationConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
+
+export type CreateAppResponsePosthogProject =
+  AppByDevDomainNameResponsePosthogProject;
+export const CreateAppResponsePosthogProject =
+  AppByDevDomainNameResponsePosthogProject;
+
+export type CreateAppResponsePushNotificationsInsights =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+export const CreateAppResponsePushNotificationsInsights =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+
+export type CreateAppResponsePushNotifications =
+  AppByDevDomainNameResponsePushNotifications;
+export const CreateAppResponsePushNotifications =
+  AppByDevDomainNameResponsePushNotifications;
+
+export type CreateAppResponseSentryProject =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject;
+export const CreateAppResponseSentryProject =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject;
+
+export type CreateAppResponseSupabaseProjectSupabaseConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
+export const CreateAppResponseSupabaseProjectSupabaseConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
+
+export type CreateAppResponseSupabaseProject =
+  AppByDevDomainNameResponseSupabaseProject;
+export const CreateAppResponseSupabaseProject =
+  AppByDevDomainNameResponseSupabaseProject;
+
+export type CreateAppResponseVexoApp =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp;
+export const CreateAppResponseVexoApp =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp;
+
+export type CreateAppResponseWorkerCustomDomainAlias =
+  AppByDevDomainNameResponseWorkerCustomDomainAlias;
+export const CreateAppResponseWorkerCustomDomainAlias =
+  AppByDevDomainNameResponseWorkerCustomDomainAlias;
+
+export type CreateAppResponseWorkerCustomDomainDcvDelegationRecord =
+  AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord;
+export const CreateAppResponseWorkerCustomDomainDcvDelegationRecord =
+  AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord;
+
+export type CreateAppResponseWorkerCustomDomainDnsRecord =
+  AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord;
+export const CreateAppResponseWorkerCustomDomainDnsRecord =
+  AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord;
+
+export type CreateAppResponseWorkerCustomDomainSetupSslErrorsList =
+  Array<string>;
+export const CreateAppResponseWorkerCustomDomainSetupSslErrorsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateAppResponseWorkerCustomDomainSetupSslErrorsList>;
+
+export type CreateAppResponseWorkerCustomDomainSetupVerificationErrorsList =
+  Array<string>;
+export const CreateAppResponseWorkerCustomDomainSetupVerificationErrorsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateAppResponseWorkerCustomDomainSetupVerificationErrorsList>;
+
+export interface CreateAppResponseWorkerCustomDomainSetup {
+  sslErrors: CreateAppResponseWorkerCustomDomainSetupSslErrorsList | null;
+  sslStatus: CustomDomainStatus | null;
+  status: CustomDomainStatus;
+  verificationErrors: CreateAppResponseWorkerCustomDomainSetupVerificationErrorsList | null;
+  verificationStatus: CustomDomainStatus | null;
+}
+export const CreateAppResponseWorkerCustomDomainSetup = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      sslErrors: S.NullOr(
+        CreateAppResponseWorkerCustomDomainSetupSslErrorsList,
+      ),
+      sslStatus: S.NullOr(CustomDomainStatus),
+      status: CustomDomainStatus,
+      verificationErrors: S.NullOr(
+        CreateAppResponseWorkerCustomDomainSetupVerificationErrorsList,
+      ),
+      verificationStatus: S.NullOr(CustomDomainStatus),
+    }),
+).annotate({
+  identifier: "CreateAppResponseWorkerCustomDomainSetup",
+}) as any as S.Schema<CreateAppResponseWorkerCustomDomainSetup>;
+
+export type CreateAppResponseWorkerCustomDomainVerificationRecord =
+  AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord;
+export const CreateAppResponseWorkerCustomDomainVerificationRecord =
+  AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord;
+
+export interface CreateAppResponseWorkerCustomDomain {
+  alias: AppByDevDomainNameResponseWorkerCustomDomainAlias;
+  createdAt: string;
+  dcvDelegationRecord: AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord | null;
+  devDomainName: unknown;
+  dnsRecord: AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord;
+  hostname: string;
+  id: string;
+  setup: CreateAppResponseWorkerCustomDomainSetup | null;
+  updatedAt: string;
+  verificationRecord: AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord | null;
+}
+export const CreateAppResponseWorkerCustomDomain = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    alias: AppByDevDomainNameResponseWorkerCustomDomainAlias,
+    createdAt: S.String,
+    dcvDelegationRecord: S.NullOr(
+      AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord,
+    ),
+    devDomainName: S.Unknown,
+    dnsRecord: AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord,
+    hostname: S.String,
+    id: S.String,
+    setup: S.NullOr(CreateAppResponseWorkerCustomDomainSetup),
+    updatedAt: S.String,
+    verificationRecord: S.NullOr(
+      AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord,
+    ),
+  }),
+).annotate({
+  identifier: "CreateAppResponseWorkerCustomDomain",
+}) as any as S.Schema<CreateAppResponseWorkerCustomDomain>;
+
+export type CreateAppResponseWorkflowCachingConfig =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig;
+export const CreateAppResponseWorkflowCachingConfig =
+  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig;
+
+/** Selection set for `app.createApp` (unwrapped from the GraphQL `data` envelope). */
+export interface CreateAppResponse {
+  appStoreConnectApp: CreateAppResponseAppStoreConnectApp | null;
+  appStoreConnectWorkflowConnectionStatus: AppStoreConnectWorkflowConnectionStatus;
+  assetLimitPerUpdateGroup: number;
+  buildProfiles: CreateAppResponseBuildProfilesList;
+  convexProject: AppByDevDomainNameResponseConvexProject | null;
+  description: string;
+  devDomainName: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName | null;
+  deviceRunSessionTags: CreateAppResponseDeviceRunSessionTagsList;
+  environmentVariableEnvironments: CreateAppResponseEnvironmentVariableEnvironmentsList;
+  fullName: string;
+  githubBuildTriggers: CreateAppResponseGithubBuildTriggersList;
+  githubJobRunTriggers: CreateAppResponseGithubJobRunTriggersList;
+  githubRepository: AppByDevDomainNameResponseGithubRepository | null;
+  githubRepositorySettings: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings | null;
+  icon: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon | null;
+  iconUrl: string | null;
+  id: string;
+  insights: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights;
+  internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy;
+  isEligibleForObserveLapsedPaidNotification: boolean;
+  isEligibleForObserveNotice: boolean;
+  lastDeletionAttemptTime: string | null;
+  latestActivity: string;
+  logRocketProject: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject | null;
+  name: string;
+  observe: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve;
+  observeIngestionPaused: boolean;
+  ownerAccount: CreateAppResponseOwnerAccount;
+  packageName: string;
+  posthogProject: AppByDevDomainNameResponsePosthogProject | null;
+  privacy: string;
+  published: boolean;
+  pushNotifications: AppByDevDomainNameResponsePushNotifications;
+  pushSecurityEnabled: boolean;
+  resourceClassExperiment: ResourceClassExperiment | null;
+  scopeKey: string;
+  sdkVersion: string;
+  sentryProject: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject | null;
+  slug: string;
+  suggestedDevDomainName: string;
+  supabaseProject: AppByDevDomainNameResponseSupabaseProject | null;
+  updated: string;
+  username: string;
+  vexoApp: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp | null;
+  workerCustomDomain: CreateAppResponseWorkerCustomDomain | null;
+  workflowCachingConfig: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig;
+}
+export const CreateAppResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appStoreConnectApp: S.NullOr(CreateAppResponseAppStoreConnectApp),
+    appStoreConnectWorkflowConnectionStatus:
+      AppStoreConnectWorkflowConnectionStatus,
+    assetLimitPerUpdateGroup: S.Number,
+    buildProfiles: CreateAppResponseBuildProfilesList,
+    convexProject: S.NullOr(AppByDevDomainNameResponseConvexProject),
+    description: S.String,
+    devDomainName: S.NullOr(
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName,
+    ),
+    deviceRunSessionTags: CreateAppResponseDeviceRunSessionTagsList,
+    environmentVariableEnvironments:
+      CreateAppResponseEnvironmentVariableEnvironmentsList,
+    fullName: S.String,
+    githubBuildTriggers: CreateAppResponseGithubBuildTriggersList,
+    githubJobRunTriggers: CreateAppResponseGithubJobRunTriggersList,
+    githubRepository: S.NullOr(AppByDevDomainNameResponseGithubRepository),
+    githubRepositorySettings: S.NullOr(
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings,
+    ),
+    icon: S.NullOr(
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon,
+    ),
+    iconUrl: S.NullOr(S.String),
+    id: S.String,
+    insights:
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights,
+    internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy,
+    isEligibleForObserveLapsedPaidNotification: S.Boolean,
+    isEligibleForObserveNotice: S.Boolean,
+    lastDeletionAttemptTime: S.NullOr(S.String),
+    latestActivity: S.String,
+    logRocketProject: S.NullOr(
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject,
+    ),
+    name: S.String,
+    observe: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve,
+    observeIngestionPaused: S.Boolean,
+    ownerAccount: CreateAppResponseOwnerAccount,
+    packageName: S.String,
+    posthogProject: S.NullOr(AppByDevDomainNameResponsePosthogProject),
+    privacy: S.String,
+    published: S.Boolean,
+    pushNotifications: AppByDevDomainNameResponsePushNotifications,
+    pushSecurityEnabled: S.Boolean,
+    resourceClassExperiment: S.NullOr(ResourceClassExperiment),
+    scopeKey: S.String,
+    sdkVersion: S.String,
+    sentryProject: S.NullOr(
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject,
+    ),
+    slug: S.String,
+    suggestedDevDomainName: S.String,
+    supabaseProject: S.NullOr(AppByDevDomainNameResponseSupabaseProject),
+    updated: S.String,
+    username: S.String,
+    vexoApp: S.NullOr(
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp,
+    ),
+    workerCustomDomain: S.NullOr(CreateAppResponseWorkerCustomDomain),
+    workflowCachingConfig:
+      AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig,
+  }).pipe(T.ResponsePath("app.createApp")),
+).annotate({
+  identifier: "CreateAppResponse",
+}) as any as S.Schema<CreateAppResponse>;
+
+export type RobotDataInput = UpdateAgentProviderConnectionInput;
+export const RobotDataInput = UpdateAgentProviderConnectionInput;
+
+export interface CreateRobotForAccountRequest {
+  accountID: string;
+  permissions: PermissionList;
+  robotData?: UpdateAgentProviderConnectionInput | null;
+}
+export const CreateRobotForAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountID: S.String,
+    permissions: PermissionList,
+    robotData: S.optional(S.NullOr(UpdateAgentProviderConnectionInput)),
+  })
+    .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
+    .pipe(
+      T.GraphQLOp({
+        query:
+          "mutation robotCreateRobotForAccount($accountID: String!, $permissions: [Permission]!, $robotData: RobotDataInput) {\n  robot {\n    createRobotForAccount(accountID: $accountID, permissions: $permissions, robotData: $robotData) {\n      accessTokens {\n        createdAt\n        id\n        lastUsedAt\n        note\n        owner {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        revokedAt\n        updatedAt\n        visibleTokenPrefix\n      }\n      accounts {\n        agentProviderConnections {\n          createdAt\n          expiresAt\n          id\n          name\n          provider\n          providerAccountEmail\n          providerAccountId\n          providerPlan\n          status\n          updatedAt\n        }\n        aiChatEnabled\n        appCount\n        appStoreConnectApiKeys {\n          createdAt\n          id\n          issuerIdentifier\n          keyIdentifier\n          keyP8\n          name\n          roles\n          updatedAt\n        }\n        appleDistributionCertificates {\n          certificateP12\n          certificatePassword\n          certificatePrivateSigningKey\n          createdAt\n          developerPortalIdentifier\n          id\n          serialNumber\n          updatedAt\n          validityNotAfter\n          validityNotBefore\n        }\n        applePushKeys {\n          createdAt\n          id\n          keyIdentifier\n          keyP8\n          updatedAt\n        }\n        billing {\n          id\n        }\n        convexTeamConnections {\n          convexTeamIdentifier\n          convexTeamName\n          convexTeamSlug\n          createdAt\n          hasBeenClaimed\n          id\n          invitedAt\n          invitedEmail\n          updatedAt\n        }\n        createdAt\n        displayName\n        environmentVariableEnvironments\n        githubAppInstallations {\n          id\n          installationIdentifier\n        }\n        googleServiceAccountKeys {\n          clientEmail\n          clientIdentifier\n          createdAt\n          id\n          keyJson\n          privateKeyIdentifier\n          projectIdentifier\n          updatedAt\n        }\n        id\n        isCurrent\n        isDisabled\n        isFreeAppDevDomainTier\n        isSSOEnabled\n        lastDeletionAttemptTime\n        logRocketOrganization {\n          createdAt\n          id\n          orgName\n          orgSlug\n        }\n        memberStats {\n          allHave2FAEnabled\n          humanCount\n          ownerCount\n          robotCount\n          ssoUserCount\n          totalCount\n        }\n        name\n        observeIngestionPaused\n        offers {\n          features\n          id\n          price\n          quantity\n          stripeId\n          trialLength\n          type\n        }\n        onboardingStats {\n          firstBuildCompletedAt\n          firstProjectCreatedAt\n          firstSubmissionCompletedAt\n          firstUpdateCreatedAt\n          hasConfiguredUpdate\n          hasConfiguredWorkflow\n          hasTeamMembers\n        }\n        owner {\n          appCount\n          bestContactEmail\n          created\n          displayName\n          email\n          emailVerified\n          firstName\n          fullName\n          hasPassword\n          hasPendingUserInvitations\n          id\n          isExpoAdmin\n          isSecondFactorAuthenticationEnabled\n          isStaffModeEnabled\n          lastDeletionAttemptTime\n          lastName\n          newEmailPendingVerification\n          primaryAccountProfileImageUrl\n          profilePhoto\n          username\n        }\n        ownerUserActor {\n          appCount\n          bestContactEmail\n          created\n          displayName\n          firstName\n          fullName\n          id\n          isExpoAdmin\n          isStaffModeEnabled\n          lastDeletionAttemptTime\n          lastName\n          primaryAccountProfileImageUrl\n          profilePhoto\n          username\n        }\n        pendingSentryInstallation {\n          createdAt\n          id\n          installationId\n          orgSlug\n        }\n        posthogOrganizationConnection {\n          createdAt\n          id\n          posthogOrganizationIdentifier\n          posthogOrganizationName\n          posthogRegion\n          updatedAt\n        }\n        profileImageUrl\n        pushSecurityEnabled\n        requireTwoFactor\n        sentryInstallation {\n          createdAt\n          id\n          installationId\n          orgSlug\n        }\n        ssoAllowedAuthProviders\n        ssoConfiguration {\n          authProtocol\n          authProviderIdentifier\n          clientIdentifier\n          clientSecret\n          createdAt\n          id\n          issuer\n          updatedAt\n        }\n        subscription {\n          cancelAt\n          endedAt\n          id\n          includedAgentCreditsInCents\n          isDowngrading\n          name\n          nextInvoice\n          nextInvoiceAmountDueCents\n          paymentFailedAt\n          planId\n          price\n          recurringCents\n          status\n          trialEnd\n          willCancel\n        }\n        supabaseConnection {\n          createdAt\n          id\n          supabaseOrganizationName\n          supabaseOrganizationSlug\n          updatedAt\n        }\n        updatedAt\n        userInvitations {\n          accountName\n          accountProfileImageUrl\n          accountRequiresTwoFactor\n          created\n          email\n          expires\n          id\n          isForOrganization\n          permissions\n          role\n        }\n        userSpecifiedAccountUsage\n        users {\n          id\n          permissions\n          role\n        }\n        vexoAccountConnection {\n          id\n        }\n        viewerUserPermission {\n          id\n          permissions\n          role\n        }\n      }\n      created\n      displayName\n      experiments {\n        createdAt\n        enabled\n        experiment\n        id\n        updatedAt\n      }\n      firstName\n      githubAppInstallations {\n        account {\n          aiChatEnabled\n          appCount\n          createdAt\n          displayName\n          environmentVariableEnvironments\n          id\n          isCurrent\n          isDisabled\n          isFreeAppDevDomainTier\n          isSSOEnabled\n          lastDeletionAttemptTime\n          name\n          observeIngestionPaused\n          profileImageUrl\n          pushSecurityEnabled\n          requireTwoFactor\n          ssoAllowedAuthProviders\n          updatedAt\n          userSpecifiedAccountUsage\n        }\n        actor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        id\n        installationIdentifier\n        metadata {\n          githubAccountAvatarUrl\n          githubAccountName\n          githubAccountType\n          installationStatus\n        }\n      }\n      id\n      isExpoAdmin\n      isManagedByGitHubApp\n      lastDeletionAttemptTime\n    }\n  }\n}",
+        operationName: "robotCreateRobotForAccount",
+        type: "mutation",
+      }),
+    ),
+).annotate({
+  identifier: "CreateRobotForAccountRequest",
+}) as any as S.Schema<CreateRobotForAccountRequest>;
+
+export type CreateRobotForAccountResponseAccessTokensItemOwner =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+export const CreateRobotForAccountResponseAccessTokensItemOwner =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+
+export type CreateRobotForAccountResponseAccessTokensItem =
+  AccessTokenCreateAccessTokenResponseAccessToken;
+export const CreateRobotForAccountResponseAccessTokensItem =
+  AccessTokenCreateAccessTokenResponseAccessToken;
+
+export type CreateRobotForAccountResponseAccessTokensList =
+  Array<AccessTokenCreateAccessTokenResponseAccessToken>;
+export const CreateRobotForAccountResponseAccessTokensList =
+  /*@__PURE__*/ S.Array(
+    AccessTokenCreateAccessTokenResponseAccessToken,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccessTokensList>;
+
+export type CreateRobotForAccountResponseAccountsItemAgentProviderConnectionsItem =
+  AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem;
+export const CreateRobotForAccountResponseAccountsItemAgentProviderConnectionsItem =
+  AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem;
+
+export type CreateRobotForAccountResponseAccountsItemAgentProviderConnectionsList =
+  Array<AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem>;
+export const CreateRobotForAccountResponseAccountsItemAgentProviderConnectionsList =
+  /*@__PURE__*/ S.Array(
+    AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemAgentProviderConnectionsList>;
+
+export type CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItemRolesList =
+  Array<AppStoreConnectUserRole>;
+export const CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItemRolesList =
+  /*@__PURE__*/ S.Array(
+    AppStoreConnectUserRole,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItemRolesList>;
+
+export interface CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItem {
+  createdAt: string;
+  id: string;
+  issuerIdentifier: string;
+  keyIdentifier: string;
+  keyP8: string;
+  name: string | null;
+  roles: CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItemRolesList | null;
+  updatedAt: string;
+}
+export const CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdAt: S.String,
+      id: S.String,
+      issuerIdentifier: S.String,
+      keyIdentifier: S.String,
+      keyP8: S.String,
+      name: S.NullOr(S.String),
+      roles: S.NullOr(
+        CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItemRolesList,
+      ),
+      updatedAt: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItem",
+  }) as any as S.Schema<CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItem>;
+
+export type CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysList =
+  Array<CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItem>;
+export const CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysList =
+  /*@__PURE__*/ S.Array(
+    CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItem,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysList>;
+
+export type CreateRobotForAccountResponseAccountsItemAppleDistributionCertificatesItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem;
+export const CreateRobotForAccountResponseAccountsItemAppleDistributionCertificatesItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem;
+
+export type CreateRobotForAccountResponseAccountsItemAppleDistributionCertificatesList =
+  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem>;
+export const CreateRobotForAccountResponseAccountsItemAppleDistributionCertificatesList =
+  /*@__PURE__*/ S.Array(
+    AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemAppleDistributionCertificatesList>;
+
+export type CreateRobotForAccountResponseAccountsItemApplePushKeysItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem;
+export const CreateRobotForAccountResponseAccountsItemApplePushKeysItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem;
+
+export type CreateRobotForAccountResponseAccountsItemApplePushKeysList =
+  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem>;
+export const CreateRobotForAccountResponseAccountsItemApplePushKeysList =
+  /*@__PURE__*/ S.Array(
+    AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemApplePushKeysList>;
+
+export type CreateRobotForAccountResponseAccountsItemBilling =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+export const CreateRobotForAccountResponseAccountsItemBilling =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+
+export type CreateRobotForAccountResponseAccountsItemConvexTeamConnectionsItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
+export const CreateRobotForAccountResponseAccountsItemConvexTeamConnectionsItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
+
+export type CreateRobotForAccountResponseAccountsItemConvexTeamConnectionsList =
+  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem>;
+export const CreateRobotForAccountResponseAccountsItemConvexTeamConnectionsList =
+  /*@__PURE__*/ S.Array(
+    AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemConvexTeamConnectionsList>;
+
+export type CreateRobotForAccountResponseAccountsItemEnvironmentVariableEnvironmentsList =
+  Array<unknown>;
+export const CreateRobotForAccountResponseAccountsItemEnvironmentVariableEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemEnvironmentVariableEnvironmentsList>;
+
+export type CreateRobotForAccountResponseAccountsItemGithubAppInstallationsItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
+export const CreateRobotForAccountResponseAccountsItemGithubAppInstallationsItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
+
+export type CreateRobotForAccountResponseAccountsItemGithubAppInstallationsList =
+  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem>;
+export const CreateRobotForAccountResponseAccountsItemGithubAppInstallationsList =
+  /*@__PURE__*/ S.Array(
+    AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemGithubAppInstallationsList>;
+
+export type CreateRobotForAccountResponseAccountsItemGoogleServiceAccountKeysItem =
+  AccountByIdResponseGoogleServiceAccountKeysItem;
+export const CreateRobotForAccountResponseAccountsItemGoogleServiceAccountKeysItem =
+  AccountByIdResponseGoogleServiceAccountKeysItem;
+
+export type CreateRobotForAccountResponseAccountsItemGoogleServiceAccountKeysList =
+  Array<AccountByIdResponseGoogleServiceAccountKeysItem>;
+export const CreateRobotForAccountResponseAccountsItemGoogleServiceAccountKeysList =
+  /*@__PURE__*/ S.Array(
+    AccountByIdResponseGoogleServiceAccountKeysItem,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemGoogleServiceAccountKeysList>;
+
+export type CreateRobotForAccountResponseAccountsItemLogRocketOrganization =
+  AccountByIdResponseLogRocketOrganization;
+export const CreateRobotForAccountResponseAccountsItemLogRocketOrganization =
+  AccountByIdResponseLogRocketOrganization;
+
+export type CreateRobotForAccountResponseAccountsItemMemberStats =
+  AccountByIdResponseMemberStats;
+export const CreateRobotForAccountResponseAccountsItemMemberStats =
+  AccountByIdResponseMemberStats;
+
+export type CreateRobotForAccountResponseAccountsItemOffersItemFeaturesList =
+  (Feature | null)[];
+export const CreateRobotForAccountResponseAccountsItemOffersItemFeaturesList =
+  /*@__PURE__*/ S.Array(
+    S.NullOr(Feature),
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemOffersItemFeaturesList>;
+
+export interface CreateRobotForAccountResponseAccountsItemOffersItem {
+  features: CreateRobotForAccountResponseAccountsItemOffersItemFeaturesList | null;
+  id: string;
+  price: number;
+  quantity: number | null;
+  stripeId: string;
+  trialLength: number | null;
+  type: OfferType;
+}
+export const CreateRobotForAccountResponseAccountsItemOffersItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      features: S.NullOr(
+        CreateRobotForAccountResponseAccountsItemOffersItemFeaturesList,
+      ),
+      id: S.String,
+      price: S.Number,
+      quantity: S.NullOr(S.Number),
+      stripeId: S.String,
+      trialLength: S.NullOr(S.Number),
+      type: OfferType,
+    }),
+  ).annotate({
+    identifier: "CreateRobotForAccountResponseAccountsItemOffersItem",
+  }) as any as S.Schema<CreateRobotForAccountResponseAccountsItemOffersItem>;
+
+export type CreateRobotForAccountResponseAccountsItemOffersList =
+  Array<CreateRobotForAccountResponseAccountsItemOffersItem>;
+export const CreateRobotForAccountResponseAccountsItemOffersList =
+  /*@__PURE__*/ S.Array(
+    CreateRobotForAccountResponseAccountsItemOffersItem,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemOffersList>;
+
+export type CreateRobotForAccountResponseAccountsItemOnboardingStats =
+  AccountByIdResponseOnboardingStats;
+export const CreateRobotForAccountResponseAccountsItemOnboardingStats =
+  AccountByIdResponseOnboardingStats;
+
+export type CreateRobotForAccountResponseAccountsItemOwner =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner;
+export const CreateRobotForAccountResponseAccountsItemOwner =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner;
+
+export type CreateRobotForAccountResponseAccountsItemOwnerUserActor =
+  AccountByIdResponseUsersItemUserActor;
+export const CreateRobotForAccountResponseAccountsItemOwnerUserActor =
+  AccountByIdResponseUsersItemUserActor;
+
+export type CreateRobotForAccountResponseAccountsItemPendingSentryInstallation =
+  AccountByIdResponsePendingSentryInstallation;
+export const CreateRobotForAccountResponseAccountsItemPendingSentryInstallation =
+  AccountByIdResponsePendingSentryInstallation;
+
+export type CreateRobotForAccountResponseAccountsItemPosthogOrganizationConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
+export const CreateRobotForAccountResponseAccountsItemPosthogOrganizationConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
+
+export type CreateRobotForAccountResponseAccountsItemSentryInstallation =
+  AccountByIdResponsePendingSentryInstallation;
+export const CreateRobotForAccountResponseAccountsItemSentryInstallation =
+  AccountByIdResponsePendingSentryInstallation;
+
+export type CreateRobotForAccountResponseAccountsItemSsoAllowedAuthProvidersList =
+  Array<AuthProviderIdentifier>;
+export const CreateRobotForAccountResponseAccountsItemSsoAllowedAuthProvidersList =
+  /*@__PURE__*/ S.Array(
+    AuthProviderIdentifier,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemSsoAllowedAuthProvidersList>;
+
+export type CreateRobotForAccountResponseAccountsItemSsoConfiguration =
+  AccountByIdResponseSsoConfiguration;
+export const CreateRobotForAccountResponseAccountsItemSsoConfiguration =
+  AccountByIdResponseSsoConfiguration;
+
+export type CreateRobotForAccountResponseAccountsItemSubscription =
+  AccountByIdResponseBillingSubscription;
+export const CreateRobotForAccountResponseAccountsItemSubscription =
+  AccountByIdResponseBillingSubscription;
+
+export type CreateRobotForAccountResponseAccountsItemSupabaseConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
+export const CreateRobotForAccountResponseAccountsItemSupabaseConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
+
+export type CreateRobotForAccountResponseAccountsItemUserInvitationsItemPermissionsList =
+  Array<Permission>;
+export const CreateRobotForAccountResponseAccountsItemUserInvitationsItemPermissionsList =
+  /*@__PURE__*/ S.Array(
+    Permission,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemUserInvitationsItemPermissionsList>;
+
+export interface CreateRobotForAccountResponseAccountsItemUserInvitationsItem {
+  accountName: string;
+  accountProfileImageUrl: string;
+  accountRequiresTwoFactor: boolean;
+  created: string;
+  email: string;
+  expires: string;
+  id: string;
+  isForOrganization: boolean;
+  permissions: CreateRobotForAccountResponseAccountsItemUserInvitationsItemPermissionsList;
+  role: Role;
+}
+export const CreateRobotForAccountResponseAccountsItemUserInvitationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountName: S.String,
+      accountProfileImageUrl: S.String,
+      accountRequiresTwoFactor: S.Boolean,
+      created: S.String,
+      email: S.String,
+      expires: S.String,
+      id: S.String,
+      isForOrganization: S.Boolean,
+      permissions:
+        CreateRobotForAccountResponseAccountsItemUserInvitationsItemPermissionsList,
+      role: Role,
+    }),
+  ).annotate({
+    identifier: "CreateRobotForAccountResponseAccountsItemUserInvitationsItem",
+  }) as any as S.Schema<CreateRobotForAccountResponseAccountsItemUserInvitationsItem>;
+
+export type CreateRobotForAccountResponseAccountsItemUserInvitationsList =
+  Array<CreateRobotForAccountResponseAccountsItemUserInvitationsItem>;
+export const CreateRobotForAccountResponseAccountsItemUserInvitationsList =
+  /*@__PURE__*/ S.Array(
+    CreateRobotForAccountResponseAccountsItemUserInvitationsItem,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemUserInvitationsList>;
+
+export type CreateRobotForAccountResponseAccountsItemUsersItemPermissionsList =
+  Array<Permission>;
+export const CreateRobotForAccountResponseAccountsItemUsersItemPermissionsList =
+  /*@__PURE__*/ S.Array(
+    Permission,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemUsersItemPermissionsList>;
+
+export interface CreateRobotForAccountResponseAccountsItemUsersItem {
+  id: string;
+  permissions: CreateRobotForAccountResponseAccountsItemUsersItemPermissionsList;
+  role: Role;
+}
+export const CreateRobotForAccountResponseAccountsItemUsersItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      permissions:
+        CreateRobotForAccountResponseAccountsItemUsersItemPermissionsList,
+      role: Role,
+    }),
+  ).annotate({
+    identifier: "CreateRobotForAccountResponseAccountsItemUsersItem",
+  }) as any as S.Schema<CreateRobotForAccountResponseAccountsItemUsersItem>;
+
+export type CreateRobotForAccountResponseAccountsItemUsersList =
+  Array<CreateRobotForAccountResponseAccountsItemUsersItem>;
+export const CreateRobotForAccountResponseAccountsItemUsersList =
+  /*@__PURE__*/ S.Array(
+    CreateRobotForAccountResponseAccountsItemUsersItem,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemUsersList>;
+
+export type CreateRobotForAccountResponseAccountsItemVexoAccountConnection =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+export const CreateRobotForAccountResponseAccountsItemVexoAccountConnection =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+
+export type CreateRobotForAccountResponseAccountsItemViewerUserPermissionPermissionsList =
+  Array<Permission>;
+export const CreateRobotForAccountResponseAccountsItemViewerUserPermissionPermissionsList =
+  /*@__PURE__*/ S.Array(
+    Permission,
+  ) as any as S.Schema<CreateRobotForAccountResponseAccountsItemViewerUserPermissionPermissionsList>;
+
+export interface CreateRobotForAccountResponseAccountsItemViewerUserPermission {
+  id: string;
+  permissions: CreateRobotForAccountResponseAccountsItemViewerUserPermissionPermissionsList;
+  role: Role;
+}
+export const CreateRobotForAccountResponseAccountsItemViewerUserPermission =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      permissions:
+        CreateRobotForAccountResponseAccountsItemViewerUserPermissionPermissionsList,
+      role: Role,
+    }),
+  ).annotate({
+    identifier: "CreateRobotForAccountResponseAccountsItemViewerUserPermission",
+  }) as any as S.Schema<CreateRobotForAccountResponseAccountsItemViewerUserPermission>;
+
+export interface CreateRobotForAccountResponseAccountsItem {
+  agentProviderConnections: CreateRobotForAccountResponseAccountsItemAgentProviderConnectionsList;
+  aiChatEnabled: boolean;
+  appCount: number;
+  appStoreConnectApiKeys: CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysList;
+  appleDistributionCertificates: CreateRobotForAccountResponseAccountsItemAppleDistributionCertificatesList;
+  applePushKeys: CreateRobotForAccountResponseAccountsItemApplePushKeysList;
+  billing: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem | null;
+  convexTeamConnections: CreateRobotForAccountResponseAccountsItemConvexTeamConnectionsList;
+  createdAt: string;
+  displayName: string | null;
+  environmentVariableEnvironments: CreateRobotForAccountResponseAccountsItemEnvironmentVariableEnvironmentsList;
+  githubAppInstallations: CreateRobotForAccountResponseAccountsItemGithubAppInstallationsList;
+  googleServiceAccountKeys: CreateRobotForAccountResponseAccountsItemGoogleServiceAccountKeysList;
+  id: string;
+  isCurrent: boolean;
+  isDisabled: boolean;
+  isFreeAppDevDomainTier: boolean;
+  isSSOEnabled: boolean;
+  lastDeletionAttemptTime: string | null;
+  logRocketOrganization: AccountByIdResponseLogRocketOrganization | null;
+  memberStats: AccountByIdResponseMemberStats;
+  name: string;
+  observeIngestionPaused: boolean;
+  offers: CreateRobotForAccountResponseAccountsItemOffersList | null;
+  onboardingStats: AccountByIdResponseOnboardingStats;
+  owner: AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner | null;
+  ownerUserActor: AccountByIdResponseUsersItemUserActor | null;
+  pendingSentryInstallation: AccountByIdResponsePendingSentryInstallation | null;
+  posthogOrganizationConnection: AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection | null;
+  profileImageUrl: string;
+  pushSecurityEnabled: boolean;
+  requireTwoFactor: boolean;
+  sentryInstallation: AccountByIdResponsePendingSentryInstallation | null;
+  ssoAllowedAuthProviders: CreateRobotForAccountResponseAccountsItemSsoAllowedAuthProvidersList;
+  ssoConfiguration: AccountByIdResponseSsoConfiguration | null;
+  subscription: AccountByIdResponseBillingSubscription | null;
+  supabaseConnection: AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection | null;
+  updatedAt: string;
+  userInvitations: CreateRobotForAccountResponseAccountsItemUserInvitationsList;
+  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
+  users: CreateRobotForAccountResponseAccountsItemUsersList;
+  vexoAccountConnection: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem | null;
+  viewerUserPermission: CreateRobotForAccountResponseAccountsItemViewerUserPermission;
+}
+export const CreateRobotForAccountResponseAccountsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      agentProviderConnections:
+        CreateRobotForAccountResponseAccountsItemAgentProviderConnectionsList,
+      aiChatEnabled: S.Boolean,
+      appCount: S.Number,
+      appStoreConnectApiKeys:
+        CreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysList,
+      appleDistributionCertificates:
+        CreateRobotForAccountResponseAccountsItemAppleDistributionCertificatesList,
+      applePushKeys: CreateRobotForAccountResponseAccountsItemApplePushKeysList,
+      billing: S.NullOr(
+        AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
+      ),
+      convexTeamConnections:
+        CreateRobotForAccountResponseAccountsItemConvexTeamConnectionsList,
+      createdAt: S.String,
+      displayName: S.NullOr(S.String),
+      environmentVariableEnvironments:
+        CreateRobotForAccountResponseAccountsItemEnvironmentVariableEnvironmentsList,
+      githubAppInstallations:
+        CreateRobotForAccountResponseAccountsItemGithubAppInstallationsList,
+      googleServiceAccountKeys:
+        CreateRobotForAccountResponseAccountsItemGoogleServiceAccountKeysList,
+      id: S.String,
+      isCurrent: S.Boolean,
+      isDisabled: S.Boolean,
+      isFreeAppDevDomainTier: S.Boolean,
+      isSSOEnabled: S.Boolean,
+      lastDeletionAttemptTime: S.NullOr(S.String),
+      logRocketOrganization: S.NullOr(AccountByIdResponseLogRocketOrganization),
+      memberStats: AccountByIdResponseMemberStats,
+      name: S.String,
+      observeIngestionPaused: S.Boolean,
+      offers: S.NullOr(CreateRobotForAccountResponseAccountsItemOffersList),
+      onboardingStats: AccountByIdResponseOnboardingStats,
+      owner: S.NullOr(
+        AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner,
+      ),
+      ownerUserActor: S.NullOr(AccountByIdResponseUsersItemUserActor),
+      pendingSentryInstallation: S.NullOr(
+        AccountByIdResponsePendingSentryInstallation,
+      ),
+      posthogOrganizationConnection: S.NullOr(
+        AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection,
+      ),
+      profileImageUrl: S.String,
+      pushSecurityEnabled: S.Boolean,
+      requireTwoFactor: S.Boolean,
+      sentryInstallation: S.NullOr(
+        AccountByIdResponsePendingSentryInstallation,
+      ),
+      ssoAllowedAuthProviders:
+        CreateRobotForAccountResponseAccountsItemSsoAllowedAuthProvidersList,
+      ssoConfiguration: S.NullOr(AccountByIdResponseSsoConfiguration),
+      subscription: S.NullOr(AccountByIdResponseBillingSubscription),
+      supabaseConnection: S.NullOr(
+        AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection,
+      ),
+      updatedAt: S.String,
+      userInvitations:
+        CreateRobotForAccountResponseAccountsItemUserInvitationsList,
+      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
+      users: CreateRobotForAccountResponseAccountsItemUsersList,
+      vexoAccountConnection: S.NullOr(
+        AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
+      ),
+      viewerUserPermission:
+        CreateRobotForAccountResponseAccountsItemViewerUserPermission,
+    }),
+  ).annotate({
+    identifier: "CreateRobotForAccountResponseAccountsItem",
+  }) as any as S.Schema<CreateRobotForAccountResponseAccountsItem>;
+
+export type CreateRobotForAccountResponseAccountsList =
+  Array<CreateRobotForAccountResponseAccountsItem>;
+export const CreateRobotForAccountResponseAccountsList = /*@__PURE__*/ S.Array(
+  CreateRobotForAccountResponseAccountsItem,
+) as any as S.Schema<CreateRobotForAccountResponseAccountsList>;
+
+export type CreateRobotForAccountResponseExperimentsItem =
+  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
+export const CreateRobotForAccountResponseExperimentsItem =
+  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
+
+export type CreateRobotForAccountResponseExperimentsList =
+  Array<AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem>;
+export const CreateRobotForAccountResponseExperimentsList =
+  /*@__PURE__*/ S.Array(
+    AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem,
+  ) as any as S.Schema<CreateRobotForAccountResponseExperimentsList>;
+
+export type CreateRobotForAccountResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList =
+  Array<unknown>;
+export const CreateRobotForAccountResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CreateRobotForAccountResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList>;
+
+export type CreateRobotForAccountResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList =
+  Array<AuthProviderIdentifier>;
+export const CreateRobotForAccountResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList =
+  /*@__PURE__*/ S.Array(
+    AuthProviderIdentifier,
+  ) as any as S.Schema<CreateRobotForAccountResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList>;
+
+export interface CreateRobotForAccountResponseGithubAppInstallationsItemAccount {
+  aiChatEnabled: boolean;
+  appCount: number;
+  createdAt: string;
+  displayName: string | null;
+  environmentVariableEnvironments: CreateRobotForAccountResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList;
+  id: string;
+  isCurrent: boolean;
+  isDisabled: boolean;
+  isFreeAppDevDomainTier: boolean;
+  isSSOEnabled: boolean;
+  lastDeletionAttemptTime: string | null;
+  name: string;
+  observeIngestionPaused: boolean;
+  profileImageUrl: string;
+  pushSecurityEnabled: boolean;
+  requireTwoFactor: boolean;
+  ssoAllowedAuthProviders: CreateRobotForAccountResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList;
+  updatedAt: string;
+  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
+}
+export const CreateRobotForAccountResponseGithubAppInstallationsItemAccount =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      aiChatEnabled: S.Boolean,
+      appCount: S.Number,
+      createdAt: S.String,
+      displayName: S.NullOr(S.String),
+      environmentVariableEnvironments:
+        CreateRobotForAccountResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList,
+      id: S.String,
+      isCurrent: S.Boolean,
+      isDisabled: S.Boolean,
+      isFreeAppDevDomainTier: S.Boolean,
+      isSSOEnabled: S.Boolean,
+      lastDeletionAttemptTime: S.NullOr(S.String),
+      name: S.String,
+      observeIngestionPaused: S.Boolean,
+      profileImageUrl: S.String,
+      pushSecurityEnabled: S.Boolean,
+      requireTwoFactor: S.Boolean,
+      ssoAllowedAuthProviders:
+        CreateRobotForAccountResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList,
+      updatedAt: S.String,
+      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
+    }),
+  ).annotate({
+    identifier:
+      "CreateRobotForAccountResponseGithubAppInstallationsItemAccount",
+  }) as any as S.Schema<CreateRobotForAccountResponseGithubAppInstallationsItemAccount>;
+
+export type CreateRobotForAccountResponseGithubAppInstallationsItemActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+export const CreateRobotForAccountResponseGithubAppInstallationsItemActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+
+export type CreateRobotForAccountResponseGithubAppInstallationsItemMetadata =
+  AccountByIdResponseGithubAppInstallationsItemMetadata;
+export const CreateRobotForAccountResponseGithubAppInstallationsItemMetadata =
+  AccountByIdResponseGithubAppInstallationsItemMetadata;
+
+export interface CreateRobotForAccountResponseGithubAppInstallationsItem {
+  account: CreateRobotForAccountResponseGithubAppInstallationsItemAccount;
+  actor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
+  id: string;
+  installationIdentifier: number;
+  metadata: AccountByIdResponseGithubAppInstallationsItemMetadata;
+}
+export const CreateRobotForAccountResponseGithubAppInstallationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      account: CreateRobotForAccountResponseGithubAppInstallationsItemAccount,
+      actor: S.NullOr(AccessTokenCreateAccessTokenResponseAccessTokenOwner),
+      id: S.String,
+      installationIdentifier: S.Number,
+      metadata: AccountByIdResponseGithubAppInstallationsItemMetadata,
+    }),
+  ).annotate({
+    identifier: "CreateRobotForAccountResponseGithubAppInstallationsItem",
+  }) as any as S.Schema<CreateRobotForAccountResponseGithubAppInstallationsItem>;
+
+export type CreateRobotForAccountResponseGithubAppInstallationsList =
+  Array<CreateRobotForAccountResponseGithubAppInstallationsItem>;
+export const CreateRobotForAccountResponseGithubAppInstallationsList =
+  /*@__PURE__*/ S.Array(
+    CreateRobotForAccountResponseGithubAppInstallationsItem,
+  ) as any as S.Schema<CreateRobotForAccountResponseGithubAppInstallationsList>;
+
+/** Selection set for `robot.createRobotForAccount` (unwrapped from the GraphQL `data` envelope). */
+export interface CreateRobotForAccountResponse {
+  accessTokens: CreateRobotForAccountResponseAccessTokensList;
+  accounts: CreateRobotForAccountResponseAccountsList;
+  created: string;
+  displayName: string;
+  experiments: CreateRobotForAccountResponseExperimentsList;
+  firstName: string | null;
+  githubAppInstallations: CreateRobotForAccountResponseGithubAppInstallationsList;
+  id: string;
+  isExpoAdmin: boolean;
+  isManagedByGitHubApp: boolean;
+  lastDeletionAttemptTime: string | null;
+}
+export const CreateRobotForAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accessTokens: CreateRobotForAccountResponseAccessTokensList,
+    accounts: CreateRobotForAccountResponseAccountsList,
+    created: S.String,
+    displayName: S.String,
+    experiments: CreateRobotForAccountResponseExperimentsList,
+    firstName: S.NullOr(S.String),
+    githubAppInstallations:
+      CreateRobotForAccountResponseGithubAppInstallationsList,
+    id: S.String,
+    isExpoAdmin: S.Boolean,
+    isManagedByGitHubApp: S.Boolean,
+    lastDeletionAttemptTime: S.NullOr(S.String),
+  }).pipe(T.ResponsePath("robot.createRobotForAccount")),
+).annotate({
+  identifier: "CreateRobotForAccountResponse",
+}) as any as S.Schema<CreateRobotForAccountResponse>;
+
+export type WebhookType = "BUILD" | "SUBMIT";
+export const WebhookType = /*@__PURE__*/ S.String;
+
+export interface WebhookInput {
+  event: WebhookType | (string & {});
+  secret: string;
+  url: string;
+}
+export const WebhookInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    event: WebhookType,
+    secret: S.String,
+    url: S.String,
+  }),
+).annotate({ identifier: "WebhookInput" }) as any as S.Schema<WebhookInput>;
+
+export interface CreateWebhookRequest {
+  appId: string;
+  webhookInput: WebhookInput;
+}
+export const CreateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.String,
+    webhookInput: WebhookInput,
+  })
+    .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
+    .pipe(
+      T.GraphQLOp({
+        query:
+          "mutation webhookCreateWebhook($appId: String!, $webhookInput: WebhookInput!) {\n  webhook {\n    createWebhook(appId: $appId, webhookInput: $webhookInput) {\n      appId\n      createdAt\n      event\n      id\n      updatedAt\n      url\n    }\n  }\n}",
+        operationName: "webhookCreateWebhook",
+        type: "mutation",
+      }),
+    ),
+).annotate({
+  identifier: "CreateWebhookRequest",
+}) as any as S.Schema<CreateWebhookRequest>;
+
+/** Selection set for `webhook.createWebhook` (unwrapped from the GraphQL `data` envelope). */
+export interface CreateWebhookResponse {
+  appId: string;
+  createdAt: string;
+  event: WebhookType;
+  id: string;
+  updatedAt: string;
+  url: string;
+}
+export const CreateWebhookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.String,
+    createdAt: S.String,
+    event: WebhookType,
+    id: S.String,
+    updatedAt: S.String,
+    url: S.String,
+  }).pipe(T.ResponsePath("webhook.createWebhook")),
+).annotate({
+  identifier: "CreateWebhookResponse",
+}) as any as S.Schema<CreateWebhookResponse>;
 
 export interface CustomDomainDeleteCustomDomainRequest {
   customDomainId: string;
@@ -65710,6 +68307,38 @@ export const DeleteUserPreferenceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteUserPreferenceResponse",
 }) as any as S.Schema<DeleteUserPreferenceResponse>;
+
+export interface DeleteWebhookRequest {
+  webhookId: string;
+}
+export const DeleteWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webhookId: S.String,
+  })
+    .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
+    .pipe(
+      T.GraphQLOp({
+        query:
+          "mutation webhookDeleteWebhook($webhookId: ID!) {\n  webhook {\n    deleteWebhook(webhookId: $webhookId) {\n      id\n    }\n  }\n}",
+        operationName: "webhookDeleteWebhook",
+        type: "mutation",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteWebhookRequest",
+}) as any as S.Schema<DeleteWebhookRequest>;
+
+/** Selection set for `webhook.deleteWebhook` (unwrapped from the GraphQL `data` envelope). */
+export interface DeleteWebhookResponse {
+  id: string;
+}
+export const DeleteWebhookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+  }).pipe(T.ResponsePath("webhook.deleteWebhook")),
+).annotate({
+  identifier: "DeleteWebhookResponse",
+}) as any as S.Schema<DeleteWebhookResponse>;
 
 export interface DeploymentsAssignAliasRequest {
   aliasName?: unknown | null;
@@ -68717,71 +71346,28 @@ export const DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunApp =
     identifier: "DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunApp",
   }) as any as S.Schema<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunApp>;
 
-export type WorkflowArtifactStorageType = "GCS" | "R2";
-export const WorkflowArtifactStorageType = /*@__PURE__*/ S.String;
-
-export interface DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem {
-  contentType: string | null;
-  createdAt: string;
-  downloadUrl: string | null;
-  fileSizeBytes: number | null;
-  filename: string;
-  id: string;
-  metadata: unknown | null;
-  name: string;
-  storageType: WorkflowArtifactStorageType;
-  updatedAt: string;
-}
+export type DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem =
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      contentType: S.NullOr(S.String),
-      createdAt: S.String,
-      downloadUrl: S.NullOr(S.String),
-      fileSizeBytes: S.NullOr(S.Number),
-      filename: S.String,
-      id: S.String,
-      metadata: S.NullOr(S.Unknown),
-      name: S.String,
-      storageType: WorkflowArtifactStorageType,
-      updatedAt: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem",
-  }) as any as S.Schema<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+    CancelSubmissionResponseJobRunArtifactsItem,
   ) as any as S.Schema<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsList>;
 
-export interface DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem {
-  buildPhase: string | null;
-  docsUrl: string | null;
-  errorCode: string;
-  message: string;
-}
+export type DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem =
+  CancelSubmissionResponseJobRunErrorsItem;
 export const DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      buildPhase: S.NullOr(S.String),
-      docsUrl: S.NullOr(S.String),
-      errorCode: S.String,
-      message: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem",
-  }) as any as S.Schema<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+    CancelSubmissionResponseJobRunErrorsItem,
   ) as any as S.Schema<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsList>;
 
 export type DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunInitiatingActor =
@@ -70039,27 +72625,27 @@ export const DeviceRunSessionEnsureDeviceRunSessionStoppedResponseTurtleJobRunAp
   }) as any as S.Schema<DeviceRunSessionEnsureDeviceRunSessionStoppedResponseTurtleJobRunApp>;
 
 export type DeviceRunSessionEnsureDeviceRunSessionStoppedResponseTurtleJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const DeviceRunSessionEnsureDeviceRunSessionStoppedResponseTurtleJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type DeviceRunSessionEnsureDeviceRunSessionStoppedResponseTurtleJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const DeviceRunSessionEnsureDeviceRunSessionStoppedResponseTurtleJobRunArtifactsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+    CancelSubmissionResponseJobRunArtifactsItem,
   ) as any as S.Schema<DeviceRunSessionEnsureDeviceRunSessionStoppedResponseTurtleJobRunArtifactsList>;
 
 export type DeviceRunSessionEnsureDeviceRunSessionStoppedResponseTurtleJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const DeviceRunSessionEnsureDeviceRunSessionStoppedResponseTurtleJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type DeviceRunSessionEnsureDeviceRunSessionStoppedResponseTurtleJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const DeviceRunSessionEnsureDeviceRunSessionStoppedResponseTurtleJobRunErrorsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+    CancelSubmissionResponseJobRunErrorsItem,
   ) as any as S.Schema<DeviceRunSessionEnsureDeviceRunSessionStoppedResponseTurtleJobRunErrorsList>;
 
 export type DeviceRunSessionEnsureDeviceRunSessionStoppedResponseTurtleJobRunInitiatingActor =
@@ -71251,27 +73837,27 @@ export const DeviceRunSessionsByIdResponseTurtleJobRunApp =
   }) as any as S.Schema<DeviceRunSessionsByIdResponseTurtleJobRunApp>;
 
 export type DeviceRunSessionsByIdResponseTurtleJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const DeviceRunSessionsByIdResponseTurtleJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type DeviceRunSessionsByIdResponseTurtleJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const DeviceRunSessionsByIdResponseTurtleJobRunArtifactsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+    CancelSubmissionResponseJobRunArtifactsItem,
   ) as any as S.Schema<DeviceRunSessionsByIdResponseTurtleJobRunArtifactsList>;
 
 export type DeviceRunSessionsByIdResponseTurtleJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const DeviceRunSessionsByIdResponseTurtleJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type DeviceRunSessionsByIdResponseTurtleJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const DeviceRunSessionsByIdResponseTurtleJobRunErrorsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+    CancelSubmissionResponseJobRunErrorsItem,
   ) as any as S.Schema<DeviceRunSessionsByIdResponseTurtleJobRunErrorsList>;
 
 export type DeviceRunSessionsByIdResponseTurtleJobRunInitiatingActor =
@@ -72476,27 +75062,27 @@ export const DeviceRunSessionStartDeviceRunSessionResponseTurtleJobRunApp =
   }) as any as S.Schema<DeviceRunSessionStartDeviceRunSessionResponseTurtleJobRunApp>;
 
 export type DeviceRunSessionStartDeviceRunSessionResponseTurtleJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const DeviceRunSessionStartDeviceRunSessionResponseTurtleJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type DeviceRunSessionStartDeviceRunSessionResponseTurtleJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const DeviceRunSessionStartDeviceRunSessionResponseTurtleJobRunArtifactsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+    CancelSubmissionResponseJobRunArtifactsItem,
   ) as any as S.Schema<DeviceRunSessionStartDeviceRunSessionResponseTurtleJobRunArtifactsList>;
 
 export type DeviceRunSessionStartDeviceRunSessionResponseTurtleJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const DeviceRunSessionStartDeviceRunSessionResponseTurtleJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type DeviceRunSessionStartDeviceRunSessionResponseTurtleJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const DeviceRunSessionStartDeviceRunSessionResponseTurtleJobRunErrorsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+    CancelSubmissionResponseJobRunErrorsItem,
   ) as any as S.Schema<DeviceRunSessionStartDeviceRunSessionResponseTurtleJobRunErrorsList>;
 
 export type DeviceRunSessionStartDeviceRunSessionResponseTurtleJobRunInitiatingActor =
@@ -100280,25 +102866,25 @@ export const JobRunByIdResponseApp = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<JobRunByIdResponseApp>;
 
 export type JobRunByIdResponseArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const JobRunByIdResponseArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type JobRunByIdResponseArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const JobRunByIdResponseArtifactsList = /*@__PURE__*/ S.Array(
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+  CancelSubmissionResponseJobRunArtifactsItem,
 ) as any as S.Schema<JobRunByIdResponseArtifactsList>;
 
 export type JobRunByIdResponseErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const JobRunByIdResponseErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type JobRunByIdResponseErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const JobRunByIdResponseErrorsList = /*@__PURE__*/ S.Array(
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+  CancelSubmissionResponseJobRunErrorsItem,
 ) as any as S.Schema<JobRunByIdResponseErrorsList>;
 
 export type JobRunByIdResponseInitiatingActorAccessTokensItem =
@@ -101395,25 +103981,25 @@ export const JobRunCancelJobRunResponseApp = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<JobRunCancelJobRunResponseApp>;
 
 export type JobRunCancelJobRunResponseArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const JobRunCancelJobRunResponseArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type JobRunCancelJobRunResponseArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const JobRunCancelJobRunResponseArtifactsList = /*@__PURE__*/ S.Array(
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+  CancelSubmissionResponseJobRunArtifactsItem,
 ) as any as S.Schema<JobRunCancelJobRunResponseArtifactsList>;
 
 export type JobRunCancelJobRunResponseErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const JobRunCancelJobRunResponseErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type JobRunCancelJobRunResponseErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const JobRunCancelJobRunResponseErrorsList = /*@__PURE__*/ S.Array(
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+  CancelSubmissionResponseJobRunErrorsItem,
 ) as any as S.Schema<JobRunCancelJobRunResponseErrorsList>;
 
 export type JobRunCancelJobRunResponseInitiatingActorAccessTokensItem =
@@ -110645,663 +113231,463 @@ export const RenameAccountResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RenameAccountResponse",
 }) as any as S.Schema<RenameAccountResponse>;
 
-export type RobotDataInput = UpdateAgentProviderConnectionInput;
-export const RobotDataInput = UpdateAgentProviderConnectionInput;
-
-export interface RobotCreateRobotForAccountRequest {
-  accountID: string;
-  permissions: PermissionList;
-  robotData?: UpdateAgentProviderConnectionInput | null;
+export interface RetrySubmissionRequest {
+  parentSubmissionId: string;
 }
-export const RobotCreateRobotForAccountRequest = /*@__PURE__*/ S.suspend(() =>
+export const RetrySubmissionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    accountID: S.String,
-    permissions: PermissionList,
-    robotData: S.optional(S.NullOr(UpdateAgentProviderConnectionInput)),
+    parentSubmissionId: S.String,
   })
     .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
     .pipe(
       T.GraphQLOp({
         query:
-          "mutation robotCreateRobotForAccount($accountID: String!, $permissions: [Permission]!, $robotData: RobotDataInput) {\n  robot {\n    createRobotForAccount(accountID: $accountID, permissions: $permissions, robotData: $robotData) {\n      accessTokens {\n        createdAt\n        id\n        lastUsedAt\n        note\n        owner {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        revokedAt\n        updatedAt\n        visibleTokenPrefix\n      }\n      accounts {\n        agentProviderConnections {\n          createdAt\n          expiresAt\n          id\n          name\n          provider\n          providerAccountEmail\n          providerAccountId\n          providerPlan\n          status\n          updatedAt\n        }\n        aiChatEnabled\n        appCount\n        appStoreConnectApiKeys {\n          createdAt\n          id\n          issuerIdentifier\n          keyIdentifier\n          keyP8\n          name\n          roles\n          updatedAt\n        }\n        appleDistributionCertificates {\n          certificateP12\n          certificatePassword\n          certificatePrivateSigningKey\n          createdAt\n          developerPortalIdentifier\n          id\n          serialNumber\n          updatedAt\n          validityNotAfter\n          validityNotBefore\n        }\n        applePushKeys {\n          createdAt\n          id\n          keyIdentifier\n          keyP8\n          updatedAt\n        }\n        billing {\n          id\n        }\n        convexTeamConnections {\n          convexTeamIdentifier\n          convexTeamName\n          convexTeamSlug\n          createdAt\n          hasBeenClaimed\n          id\n          invitedAt\n          invitedEmail\n          updatedAt\n        }\n        createdAt\n        displayName\n        environmentVariableEnvironments\n        githubAppInstallations {\n          id\n          installationIdentifier\n        }\n        googleServiceAccountKeys {\n          clientEmail\n          clientIdentifier\n          createdAt\n          id\n          keyJson\n          privateKeyIdentifier\n          projectIdentifier\n          updatedAt\n        }\n        id\n        isCurrent\n        isDisabled\n        isFreeAppDevDomainTier\n        isSSOEnabled\n        lastDeletionAttemptTime\n        logRocketOrganization {\n          createdAt\n          id\n          orgName\n          orgSlug\n        }\n        memberStats {\n          allHave2FAEnabled\n          humanCount\n          ownerCount\n          robotCount\n          ssoUserCount\n          totalCount\n        }\n        name\n        observeIngestionPaused\n        offers {\n          features\n          id\n          price\n          quantity\n          stripeId\n          trialLength\n          type\n        }\n        onboardingStats {\n          firstBuildCompletedAt\n          firstProjectCreatedAt\n          firstSubmissionCompletedAt\n          firstUpdateCreatedAt\n          hasConfiguredUpdate\n          hasConfiguredWorkflow\n          hasTeamMembers\n        }\n        owner {\n          appCount\n          bestContactEmail\n          created\n          displayName\n          email\n          emailVerified\n          firstName\n          fullName\n          hasPassword\n          hasPendingUserInvitations\n          id\n          isExpoAdmin\n          isSecondFactorAuthenticationEnabled\n          isStaffModeEnabled\n          lastDeletionAttemptTime\n          lastName\n          newEmailPendingVerification\n          primaryAccountProfileImageUrl\n          profilePhoto\n          username\n        }\n        ownerUserActor {\n          appCount\n          bestContactEmail\n          created\n          displayName\n          firstName\n          fullName\n          id\n          isExpoAdmin\n          isStaffModeEnabled\n          lastDeletionAttemptTime\n          lastName\n          primaryAccountProfileImageUrl\n          profilePhoto\n          username\n        }\n        pendingSentryInstallation {\n          createdAt\n          id\n          installationId\n          orgSlug\n        }\n        posthogOrganizationConnection {\n          createdAt\n          id\n          posthogOrganizationIdentifier\n          posthogOrganizationName\n          posthogRegion\n          updatedAt\n        }\n        profileImageUrl\n        pushSecurityEnabled\n        requireTwoFactor\n        sentryInstallation {\n          createdAt\n          id\n          installationId\n          orgSlug\n        }\n        ssoAllowedAuthProviders\n        ssoConfiguration {\n          authProtocol\n          authProviderIdentifier\n          clientIdentifier\n          clientSecret\n          createdAt\n          id\n          issuer\n          updatedAt\n        }\n        subscription {\n          cancelAt\n          endedAt\n          id\n          includedAgentCreditsInCents\n          isDowngrading\n          name\n          nextInvoice\n          nextInvoiceAmountDueCents\n          paymentFailedAt\n          planId\n          price\n          recurringCents\n          status\n          trialEnd\n          willCancel\n        }\n        supabaseConnection {\n          createdAt\n          id\n          supabaseOrganizationName\n          supabaseOrganizationSlug\n          updatedAt\n        }\n        updatedAt\n        userInvitations {\n          accountName\n          accountProfileImageUrl\n          accountRequiresTwoFactor\n          created\n          email\n          expires\n          id\n          isForOrganization\n          permissions\n          role\n        }\n        userSpecifiedAccountUsage\n        users {\n          id\n          permissions\n          role\n        }\n        vexoAccountConnection {\n          id\n        }\n        viewerUserPermission {\n          id\n          permissions\n          role\n        }\n      }\n      created\n      displayName\n      experiments {\n        createdAt\n        enabled\n        experiment\n        id\n        updatedAt\n      }\n      firstName\n      githubAppInstallations {\n        account {\n          aiChatEnabled\n          appCount\n          createdAt\n          displayName\n          environmentVariableEnvironments\n          id\n          isCurrent\n          isDisabled\n          isFreeAppDevDomainTier\n          isSSOEnabled\n          lastDeletionAttemptTime\n          name\n          observeIngestionPaused\n          profileImageUrl\n          pushSecurityEnabled\n          requireTwoFactor\n          ssoAllowedAuthProviders\n          updatedAt\n          userSpecifiedAccountUsage\n        }\n        actor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        id\n        installationIdentifier\n        metadata {\n          githubAccountAvatarUrl\n          githubAccountName\n          githubAccountType\n          installationStatus\n        }\n      }\n      id\n      isExpoAdmin\n      isManagedByGitHubApp\n      lastDeletionAttemptTime\n    }\n  }\n}",
-        operationName: "robotCreateRobotForAccount",
+          "mutation submissionRetrySubmission($parentSubmissionId: ID!) {\n  submission {\n    retrySubmission(parentSubmissionId: $parentSubmissionId) {\n      submission {\n        activityTimestamp\n        actor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        androidConfig {\n          applicationIdentifier\n          releaseStatus\n          rollout\n          track\n        }\n        app {\n          appStoreConnectWorkflowConnectionStatus\n          assetLimitPerUpdateGroup\n          buildProfiles\n          description\n          deviceRunSessionTags\n          environmentVariableEnvironments\n          fullName\n          iconUrl\n          id\n          internalDistributionBuildPrivacy\n          isEligibleForObserveLapsedPaidNotification\n          isEligibleForObserveNotice\n          lastDeletionAttemptTime\n          latestActivity\n          name\n          observeIngestionPaused\n          packageName\n          privacy\n          published\n          pushSecurityEnabled\n          resourceClassExperiment\n          scopeKey\n          sdkVersion\n          slug\n          suggestedDevDomainName\n          updated\n          username\n        }\n        appStoreConnectBuildUpload {\n          ascBuildUploadIdentifier\n          buildNumber\n          createdDate\n          uploadState\n          uploadedDate\n          version\n        }\n        archiveUrl\n        canRetry\n        cancelingActor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        completedAt\n        createdAt\n        error {\n          errorCode\n          message\n        }\n        id\n        initiatingActor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        iosConfig {\n          appleIdUsername\n          ascApiKeyId\n          ascAppIdentifier\n        }\n        jobRun {\n          createdAt\n          displayName\n          endedAt\n          enqueuedAt\n          expiresAt\n          gitCommitHash\n          gitCommitMessage\n          gitRef\n          id\n          isWaived\n          logFileUrls\n          maxRunTimeSeconds\n          name\n          priority\n          resourceClassDisplayName\n          startedAt\n          status\n          updateGroups\n        }\n        logFiles\n        logsUrl\n        maxRetryTimeMinutes\n        platform\n        priority\n        status\n        submittedBuild {\n          activityTimestamp\n          appBuildVersion\n          appIdentifier\n          appVersion\n          buildMode\n          buildProfile\n          channel\n          cliVersion\n          completedAt\n          createdAt\n          customNodeVersion\n          customWorkflowName\n          developmentClient\n          distribution\n          enqueuedAt\n          estimatedWaitTimeLeftSeconds\n          expirationDate\n          gitCommitHash\n          gitCommitMessage\n          gitRef\n          id\n          initialQueuePosition\n          iosEnterpriseProvisioning\n          isForIosSimulator\n          isGitWorkingTreeDirty\n          isWaived\n          logFileUrls\n          logFiles\n          maxBuildTimeSeconds\n          maxRetryTimeMinutes\n          message\n          platform\n          priority\n          projectMetadataFileUrl\n          projectRootDirectory\n          provisioningStartedAt\n          queuePosition\n          reactNativeVersion\n          releaseChannel\n          requiredPackageManager\n          resolvedEnvironment\n          resolvedImage\n          resourceClass\n          resourceClassDisplayName\n          runFromCI\n          runtimeVersion\n          sdkVersion\n          selectedImage\n          status\n          updatedAt\n          waiverType\n          workerStartedAt\n        }\n        updatedAt\n        workflowJob {\n          createdAt\n          environment\n          id\n          key\n          name\n          outputs\n          requiredJobKeys\n          status\n          type\n          updatedAt\n        }\n      }\n    }\n  }\n}",
+        operationName: "submissionRetrySubmission",
         type: "mutation",
       }),
     ),
 ).annotate({
-  identifier: "RobotCreateRobotForAccountRequest",
-}) as any as S.Schema<RobotCreateRobotForAccountRequest>;
+  identifier: "RetrySubmissionRequest",
+}) as any as S.Schema<RetrySubmissionRequest>;
 
-export type RobotCreateRobotForAccountResponseAccessTokensItemOwner =
+export type RetrySubmissionResponseSubmissionActor =
   AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-export const RobotCreateRobotForAccountResponseAccessTokensItemOwner =
+export const RetrySubmissionResponseSubmissionActor =
   AccessTokenCreateAccessTokenResponseAccessTokenOwner;
 
-export type RobotCreateRobotForAccountResponseAccessTokensItem =
-  AccessTokenCreateAccessTokenResponseAccessToken;
-export const RobotCreateRobotForAccountResponseAccessTokensItem =
-  AccessTokenCreateAccessTokenResponseAccessToken;
+export type RetrySubmissionResponseSubmissionAndroidConfig =
+  BuildsByIdResponseSubmissionsItemAndroidConfig;
+export const RetrySubmissionResponseSubmissionAndroidConfig =
+  BuildsByIdResponseSubmissionsItemAndroidConfig;
 
-export type RobotCreateRobotForAccountResponseAccessTokensList =
-  Array<AccessTokenCreateAccessTokenResponseAccessToken>;
-export const RobotCreateRobotForAccountResponseAccessTokensList =
+export type RetrySubmissionResponseSubmissionAppBuildProfilesList =
+  Array<string>;
+export const RetrySubmissionResponseSubmissionAppBuildProfilesList =
   /*@__PURE__*/ S.Array(
-    AccessTokenCreateAccessTokenResponseAccessToken,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccessTokensList>;
+    S.String,
+  ) as any as S.Schema<RetrySubmissionResponseSubmissionAppBuildProfilesList>;
 
-export type RobotCreateRobotForAccountResponseAccountsItemAgentProviderConnectionsItem =
-  AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem;
-export const RobotCreateRobotForAccountResponseAccountsItemAgentProviderConnectionsItem =
-  AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem;
-
-export type RobotCreateRobotForAccountResponseAccountsItemAgentProviderConnectionsList =
-  Array<AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem>;
-export const RobotCreateRobotForAccountResponseAccountsItemAgentProviderConnectionsList =
+export type RetrySubmissionResponseSubmissionAppDeviceRunSessionTagsList =
+  Array<string>;
+export const RetrySubmissionResponseSubmissionAppDeviceRunSessionTagsList =
   /*@__PURE__*/ S.Array(
-    AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemAgentProviderConnectionsList>;
+    S.String,
+  ) as any as S.Schema<RetrySubmissionResponseSubmissionAppDeviceRunSessionTagsList>;
 
-export type RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItemRolesList =
-  Array<AppStoreConnectUserRole>;
-export const RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItemRolesList =
-  /*@__PURE__*/ S.Array(
-    AppStoreConnectUserRole,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItemRolesList>;
-
-export interface RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItem {
-  createdAt: string;
-  id: string;
-  issuerIdentifier: string;
-  keyIdentifier: string;
-  keyP8: string;
-  name: string | null;
-  roles: RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItemRolesList | null;
-  updatedAt: string;
-}
-export const RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdAt: S.String,
-      id: S.String,
-      issuerIdentifier: S.String,
-      keyIdentifier: S.String,
-      keyP8: S.String,
-      name: S.NullOr(S.String),
-      roles: S.NullOr(
-        RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItemRolesList,
-      ),
-      updatedAt: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItem",
-  }) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItem>;
-
-export type RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysList =
-  Array<RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItem>;
-export const RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysList =
-  /*@__PURE__*/ S.Array(
-    RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysItem,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysList>;
-
-export type RobotCreateRobotForAccountResponseAccountsItemAppleDistributionCertificatesItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem;
-export const RobotCreateRobotForAccountResponseAccountsItemAppleDistributionCertificatesItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem;
-
-export type RobotCreateRobotForAccountResponseAccountsItemAppleDistributionCertificatesList =
-  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem>;
-export const RobotCreateRobotForAccountResponseAccountsItemAppleDistributionCertificatesList =
-  /*@__PURE__*/ S.Array(
-    AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemAppleDistributionCertificatesList>;
-
-export type RobotCreateRobotForAccountResponseAccountsItemApplePushKeysItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem;
-export const RobotCreateRobotForAccountResponseAccountsItemApplePushKeysItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem;
-
-export type RobotCreateRobotForAccountResponseAccountsItemApplePushKeysList =
-  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem>;
-export const RobotCreateRobotForAccountResponseAccountsItemApplePushKeysList =
-  /*@__PURE__*/ S.Array(
-    AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemApplePushKeysList>;
-
-export type RobotCreateRobotForAccountResponseAccountsItemBilling =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-export const RobotCreateRobotForAccountResponseAccountsItemBilling =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-
-export type RobotCreateRobotForAccountResponseAccountsItemConvexTeamConnectionsItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
-export const RobotCreateRobotForAccountResponseAccountsItemConvexTeamConnectionsItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
-
-export type RobotCreateRobotForAccountResponseAccountsItemConvexTeamConnectionsList =
-  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem>;
-export const RobotCreateRobotForAccountResponseAccountsItemConvexTeamConnectionsList =
-  /*@__PURE__*/ S.Array(
-    AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemConvexTeamConnectionsList>;
-
-export type RobotCreateRobotForAccountResponseAccountsItemEnvironmentVariableEnvironmentsList =
+export type RetrySubmissionResponseSubmissionAppEnvironmentVariableEnvironmentsList =
   Array<unknown>;
-export const RobotCreateRobotForAccountResponseAccountsItemEnvironmentVariableEnvironmentsList =
+export const RetrySubmissionResponseSubmissionAppEnvironmentVariableEnvironmentsList =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemEnvironmentVariableEnvironmentsList>;
+  ) as any as S.Schema<RetrySubmissionResponseSubmissionAppEnvironmentVariableEnvironmentsList>;
 
-export type RobotCreateRobotForAccountResponseAccountsItemGithubAppInstallationsItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
-export const RobotCreateRobotForAccountResponseAccountsItemGithubAppInstallationsItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
-
-export type RobotCreateRobotForAccountResponseAccountsItemGithubAppInstallationsList =
-  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem>;
-export const RobotCreateRobotForAccountResponseAccountsItemGithubAppInstallationsList =
-  /*@__PURE__*/ S.Array(
-    AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemGithubAppInstallationsList>;
-
-export type RobotCreateRobotForAccountResponseAccountsItemGoogleServiceAccountKeysItem =
-  AccountByIdResponseGoogleServiceAccountKeysItem;
-export const RobotCreateRobotForAccountResponseAccountsItemGoogleServiceAccountKeysItem =
-  AccountByIdResponseGoogleServiceAccountKeysItem;
-
-export type RobotCreateRobotForAccountResponseAccountsItemGoogleServiceAccountKeysList =
-  Array<AccountByIdResponseGoogleServiceAccountKeysItem>;
-export const RobotCreateRobotForAccountResponseAccountsItemGoogleServiceAccountKeysList =
-  /*@__PURE__*/ S.Array(
-    AccountByIdResponseGoogleServiceAccountKeysItem,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemGoogleServiceAccountKeysList>;
-
-export type RobotCreateRobotForAccountResponseAccountsItemLogRocketOrganization =
-  AccountByIdResponseLogRocketOrganization;
-export const RobotCreateRobotForAccountResponseAccountsItemLogRocketOrganization =
-  AccountByIdResponseLogRocketOrganization;
-
-export type RobotCreateRobotForAccountResponseAccountsItemMemberStats =
-  AccountByIdResponseMemberStats;
-export const RobotCreateRobotForAccountResponseAccountsItemMemberStats =
-  AccountByIdResponseMemberStats;
-
-export type RobotCreateRobotForAccountResponseAccountsItemOffersItemFeaturesList =
-  (Feature | null)[];
-export const RobotCreateRobotForAccountResponseAccountsItemOffersItemFeaturesList =
-  /*@__PURE__*/ S.Array(
-    S.NullOr(Feature),
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemOffersItemFeaturesList>;
-
-export interface RobotCreateRobotForAccountResponseAccountsItemOffersItem {
-  features: RobotCreateRobotForAccountResponseAccountsItemOffersItemFeaturesList | null;
+export interface RetrySubmissionResponseSubmissionApp {
+  appStoreConnectWorkflowConnectionStatus: AppStoreConnectWorkflowConnectionStatus;
+  assetLimitPerUpdateGroup: number;
+  buildProfiles: RetrySubmissionResponseSubmissionAppBuildProfilesList;
+  description: string;
+  deviceRunSessionTags: RetrySubmissionResponseSubmissionAppDeviceRunSessionTagsList;
+  environmentVariableEnvironments: RetrySubmissionResponseSubmissionAppEnvironmentVariableEnvironmentsList;
+  fullName: string;
+  iconUrl: string | null;
   id: string;
-  price: number;
-  quantity: number | null;
-  stripeId: string;
-  trialLength: number | null;
-  type: OfferType;
-}
-export const RobotCreateRobotForAccountResponseAccountsItemOffersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      features: S.NullOr(
-        RobotCreateRobotForAccountResponseAccountsItemOffersItemFeaturesList,
-      ),
-      id: S.String,
-      price: S.Number,
-      quantity: S.NullOr(S.Number),
-      stripeId: S.String,
-      trialLength: S.NullOr(S.Number),
-      type: OfferType,
-    }),
-  ).annotate({
-    identifier: "RobotCreateRobotForAccountResponseAccountsItemOffersItem",
-  }) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemOffersItem>;
-
-export type RobotCreateRobotForAccountResponseAccountsItemOffersList =
-  Array<RobotCreateRobotForAccountResponseAccountsItemOffersItem>;
-export const RobotCreateRobotForAccountResponseAccountsItemOffersList =
-  /*@__PURE__*/ S.Array(
-    RobotCreateRobotForAccountResponseAccountsItemOffersItem,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemOffersList>;
-
-export type RobotCreateRobotForAccountResponseAccountsItemOnboardingStats =
-  AccountByIdResponseOnboardingStats;
-export const RobotCreateRobotForAccountResponseAccountsItemOnboardingStats =
-  AccountByIdResponseOnboardingStats;
-
-export type RobotCreateRobotForAccountResponseAccountsItemOwner =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner;
-export const RobotCreateRobotForAccountResponseAccountsItemOwner =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner;
-
-export type RobotCreateRobotForAccountResponseAccountsItemOwnerUserActor =
-  AccountByIdResponseUsersItemUserActor;
-export const RobotCreateRobotForAccountResponseAccountsItemOwnerUserActor =
-  AccountByIdResponseUsersItemUserActor;
-
-export type RobotCreateRobotForAccountResponseAccountsItemPendingSentryInstallation =
-  AccountByIdResponsePendingSentryInstallation;
-export const RobotCreateRobotForAccountResponseAccountsItemPendingSentryInstallation =
-  AccountByIdResponsePendingSentryInstallation;
-
-export type RobotCreateRobotForAccountResponseAccountsItemPosthogOrganizationConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
-export const RobotCreateRobotForAccountResponseAccountsItemPosthogOrganizationConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
-
-export type RobotCreateRobotForAccountResponseAccountsItemSentryInstallation =
-  AccountByIdResponsePendingSentryInstallation;
-export const RobotCreateRobotForAccountResponseAccountsItemSentryInstallation =
-  AccountByIdResponsePendingSentryInstallation;
-
-export type RobotCreateRobotForAccountResponseAccountsItemSsoAllowedAuthProvidersList =
-  Array<AuthProviderIdentifier>;
-export const RobotCreateRobotForAccountResponseAccountsItemSsoAllowedAuthProvidersList =
-  /*@__PURE__*/ S.Array(
-    AuthProviderIdentifier,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemSsoAllowedAuthProvidersList>;
-
-export type RobotCreateRobotForAccountResponseAccountsItemSsoConfiguration =
-  AccountByIdResponseSsoConfiguration;
-export const RobotCreateRobotForAccountResponseAccountsItemSsoConfiguration =
-  AccountByIdResponseSsoConfiguration;
-
-export type RobotCreateRobotForAccountResponseAccountsItemSubscription =
-  AccountByIdResponseBillingSubscription;
-export const RobotCreateRobotForAccountResponseAccountsItemSubscription =
-  AccountByIdResponseBillingSubscription;
-
-export type RobotCreateRobotForAccountResponseAccountsItemSupabaseConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
-export const RobotCreateRobotForAccountResponseAccountsItemSupabaseConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
-
-export type RobotCreateRobotForAccountResponseAccountsItemUserInvitationsItemPermissionsList =
-  Array<Permission>;
-export const RobotCreateRobotForAccountResponseAccountsItemUserInvitationsItemPermissionsList =
-  /*@__PURE__*/ S.Array(
-    Permission,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemUserInvitationsItemPermissionsList>;
-
-export interface RobotCreateRobotForAccountResponseAccountsItemUserInvitationsItem {
-  accountName: string;
-  accountProfileImageUrl: string;
-  accountRequiresTwoFactor: boolean;
-  created: string;
-  email: string;
-  expires: string;
-  id: string;
-  isForOrganization: boolean;
-  permissions: RobotCreateRobotForAccountResponseAccountsItemUserInvitationsItemPermissionsList;
-  role: Role;
-}
-export const RobotCreateRobotForAccountResponseAccountsItemUserInvitationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountName: S.String,
-      accountProfileImageUrl: S.String,
-      accountRequiresTwoFactor: S.Boolean,
-      created: S.String,
-      email: S.String,
-      expires: S.String,
-      id: S.String,
-      isForOrganization: S.Boolean,
-      permissions:
-        RobotCreateRobotForAccountResponseAccountsItemUserInvitationsItemPermissionsList,
-      role: Role,
-    }),
-  ).annotate({
-    identifier:
-      "RobotCreateRobotForAccountResponseAccountsItemUserInvitationsItem",
-  }) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemUserInvitationsItem>;
-
-export type RobotCreateRobotForAccountResponseAccountsItemUserInvitationsList =
-  Array<RobotCreateRobotForAccountResponseAccountsItemUserInvitationsItem>;
-export const RobotCreateRobotForAccountResponseAccountsItemUserInvitationsList =
-  /*@__PURE__*/ S.Array(
-    RobotCreateRobotForAccountResponseAccountsItemUserInvitationsItem,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemUserInvitationsList>;
-
-export type RobotCreateRobotForAccountResponseAccountsItemUsersItemPermissionsList =
-  Array<Permission>;
-export const RobotCreateRobotForAccountResponseAccountsItemUsersItemPermissionsList =
-  /*@__PURE__*/ S.Array(
-    Permission,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemUsersItemPermissionsList>;
-
-export interface RobotCreateRobotForAccountResponseAccountsItemUsersItem {
-  id: string;
-  permissions: RobotCreateRobotForAccountResponseAccountsItemUsersItemPermissionsList;
-  role: Role;
-}
-export const RobotCreateRobotForAccountResponseAccountsItemUsersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      permissions:
-        RobotCreateRobotForAccountResponseAccountsItemUsersItemPermissionsList,
-      role: Role,
-    }),
-  ).annotate({
-    identifier: "RobotCreateRobotForAccountResponseAccountsItemUsersItem",
-  }) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemUsersItem>;
-
-export type RobotCreateRobotForAccountResponseAccountsItemUsersList =
-  Array<RobotCreateRobotForAccountResponseAccountsItemUsersItem>;
-export const RobotCreateRobotForAccountResponseAccountsItemUsersList =
-  /*@__PURE__*/ S.Array(
-    RobotCreateRobotForAccountResponseAccountsItemUsersItem,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemUsersList>;
-
-export type RobotCreateRobotForAccountResponseAccountsItemVexoAccountConnection =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-export const RobotCreateRobotForAccountResponseAccountsItemVexoAccountConnection =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-
-export type RobotCreateRobotForAccountResponseAccountsItemViewerUserPermissionPermissionsList =
-  Array<Permission>;
-export const RobotCreateRobotForAccountResponseAccountsItemViewerUserPermissionPermissionsList =
-  /*@__PURE__*/ S.Array(
-    Permission,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemViewerUserPermissionPermissionsList>;
-
-export interface RobotCreateRobotForAccountResponseAccountsItemViewerUserPermission {
-  id: string;
-  permissions: RobotCreateRobotForAccountResponseAccountsItemViewerUserPermissionPermissionsList;
-  role: Role;
-}
-export const RobotCreateRobotForAccountResponseAccountsItemViewerUserPermission =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      permissions:
-        RobotCreateRobotForAccountResponseAccountsItemViewerUserPermissionPermissionsList,
-      role: Role,
-    }),
-  ).annotate({
-    identifier:
-      "RobotCreateRobotForAccountResponseAccountsItemViewerUserPermission",
-  }) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItemViewerUserPermission>;
-
-export interface RobotCreateRobotForAccountResponseAccountsItem {
-  agentProviderConnections: RobotCreateRobotForAccountResponseAccountsItemAgentProviderConnectionsList;
-  aiChatEnabled: boolean;
-  appCount: number;
-  appStoreConnectApiKeys: RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysList;
-  appleDistributionCertificates: RobotCreateRobotForAccountResponseAccountsItemAppleDistributionCertificatesList;
-  applePushKeys: RobotCreateRobotForAccountResponseAccountsItemApplePushKeysList;
-  billing: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem | null;
-  convexTeamConnections: RobotCreateRobotForAccountResponseAccountsItemConvexTeamConnectionsList;
-  createdAt: string;
-  displayName: string | null;
-  environmentVariableEnvironments: RobotCreateRobotForAccountResponseAccountsItemEnvironmentVariableEnvironmentsList;
-  githubAppInstallations: RobotCreateRobotForAccountResponseAccountsItemGithubAppInstallationsList;
-  googleServiceAccountKeys: RobotCreateRobotForAccountResponseAccountsItemGoogleServiceAccountKeysList;
-  id: string;
-  isCurrent: boolean;
-  isDisabled: boolean;
-  isFreeAppDevDomainTier: boolean;
-  isSSOEnabled: boolean;
+  internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy;
+  isEligibleForObserveLapsedPaidNotification: boolean;
+  isEligibleForObserveNotice: boolean;
   lastDeletionAttemptTime: string | null;
-  logRocketOrganization: AccountByIdResponseLogRocketOrganization | null;
-  memberStats: AccountByIdResponseMemberStats;
+  latestActivity: string;
   name: string;
   observeIngestionPaused: boolean;
-  offers: RobotCreateRobotForAccountResponseAccountsItemOffersList | null;
-  onboardingStats: AccountByIdResponseOnboardingStats;
-  owner: AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner | null;
-  ownerUserActor: AccountByIdResponseUsersItemUserActor | null;
-  pendingSentryInstallation: AccountByIdResponsePendingSentryInstallation | null;
-  posthogOrganizationConnection: AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection | null;
-  profileImageUrl: string;
+  packageName: string;
+  privacy: string;
+  published: boolean;
   pushSecurityEnabled: boolean;
-  requireTwoFactor: boolean;
-  sentryInstallation: AccountByIdResponsePendingSentryInstallation | null;
-  ssoAllowedAuthProviders: RobotCreateRobotForAccountResponseAccountsItemSsoAllowedAuthProvidersList;
-  ssoConfiguration: AccountByIdResponseSsoConfiguration | null;
-  subscription: AccountByIdResponseBillingSubscription | null;
-  supabaseConnection: AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection | null;
-  updatedAt: string;
-  userInvitations: RobotCreateRobotForAccountResponseAccountsItemUserInvitationsList;
-  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
-  users: RobotCreateRobotForAccountResponseAccountsItemUsersList;
-  vexoAccountConnection: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem | null;
-  viewerUserPermission: RobotCreateRobotForAccountResponseAccountsItemViewerUserPermission;
+  resourceClassExperiment: ResourceClassExperiment | null;
+  scopeKey: string;
+  sdkVersion: string;
+  slug: string;
+  suggestedDevDomainName: string;
+  updated: string;
+  username: string;
 }
-export const RobotCreateRobotForAccountResponseAccountsItem =
-  /*@__PURE__*/ S.suspend(() =>
+export const RetrySubmissionResponseSubmissionApp = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
-      agentProviderConnections:
-        RobotCreateRobotForAccountResponseAccountsItemAgentProviderConnectionsList,
-      aiChatEnabled: S.Boolean,
-      appCount: S.Number,
-      appStoreConnectApiKeys:
-        RobotCreateRobotForAccountResponseAccountsItemAppStoreConnectApiKeysList,
-      appleDistributionCertificates:
-        RobotCreateRobotForAccountResponseAccountsItemAppleDistributionCertificatesList,
-      applePushKeys:
-        RobotCreateRobotForAccountResponseAccountsItemApplePushKeysList,
-      billing: S.NullOr(
-        AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
-      ),
-      convexTeamConnections:
-        RobotCreateRobotForAccountResponseAccountsItemConvexTeamConnectionsList,
-      createdAt: S.String,
-      displayName: S.NullOr(S.String),
+      appStoreConnectWorkflowConnectionStatus:
+        AppStoreConnectWorkflowConnectionStatus,
+      assetLimitPerUpdateGroup: S.Number,
+      buildProfiles: RetrySubmissionResponseSubmissionAppBuildProfilesList,
+      description: S.String,
+      deviceRunSessionTags:
+        RetrySubmissionResponseSubmissionAppDeviceRunSessionTagsList,
       environmentVariableEnvironments:
-        RobotCreateRobotForAccountResponseAccountsItemEnvironmentVariableEnvironmentsList,
-      githubAppInstallations:
-        RobotCreateRobotForAccountResponseAccountsItemGithubAppInstallationsList,
-      googleServiceAccountKeys:
-        RobotCreateRobotForAccountResponseAccountsItemGoogleServiceAccountKeysList,
+        RetrySubmissionResponseSubmissionAppEnvironmentVariableEnvironmentsList,
+      fullName: S.String,
+      iconUrl: S.NullOr(S.String),
       id: S.String,
-      isCurrent: S.Boolean,
-      isDisabled: S.Boolean,
-      isFreeAppDevDomainTier: S.Boolean,
-      isSSOEnabled: S.Boolean,
+      internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy,
+      isEligibleForObserveLapsedPaidNotification: S.Boolean,
+      isEligibleForObserveNotice: S.Boolean,
       lastDeletionAttemptTime: S.NullOr(S.String),
-      logRocketOrganization: S.NullOr(AccountByIdResponseLogRocketOrganization),
-      memberStats: AccountByIdResponseMemberStats,
+      latestActivity: S.String,
       name: S.String,
       observeIngestionPaused: S.Boolean,
-      offers: S.NullOr(
-        RobotCreateRobotForAccountResponseAccountsItemOffersList,
-      ),
-      onboardingStats: AccountByIdResponseOnboardingStats,
-      owner: S.NullOr(
-        AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner,
-      ),
-      ownerUserActor: S.NullOr(AccountByIdResponseUsersItemUserActor),
-      pendingSentryInstallation: S.NullOr(
-        AccountByIdResponsePendingSentryInstallation,
-      ),
-      posthogOrganizationConnection: S.NullOr(
-        AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection,
-      ),
-      profileImageUrl: S.String,
+      packageName: S.String,
+      privacy: S.String,
+      published: S.Boolean,
       pushSecurityEnabled: S.Boolean,
-      requireTwoFactor: S.Boolean,
-      sentryInstallation: S.NullOr(
-        AccountByIdResponsePendingSentryInstallation,
-      ),
-      ssoAllowedAuthProviders:
-        RobotCreateRobotForAccountResponseAccountsItemSsoAllowedAuthProvidersList,
-      ssoConfiguration: S.NullOr(AccountByIdResponseSsoConfiguration),
-      subscription: S.NullOr(AccountByIdResponseBillingSubscription),
-      supabaseConnection: S.NullOr(
-        AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection,
-      ),
-      updatedAt: S.String,
-      userInvitations:
-        RobotCreateRobotForAccountResponseAccountsItemUserInvitationsList,
-      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
-      users: RobotCreateRobotForAccountResponseAccountsItemUsersList,
-      vexoAccountConnection: S.NullOr(
-        AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
-      ),
-      viewerUserPermission:
-        RobotCreateRobotForAccountResponseAccountsItemViewerUserPermission,
+      resourceClassExperiment: S.NullOr(ResourceClassExperiment),
+      scopeKey: S.String,
+      sdkVersion: S.String,
+      slug: S.String,
+      suggestedDevDomainName: S.String,
+      updated: S.String,
+      username: S.String,
     }),
-  ).annotate({
-    identifier: "RobotCreateRobotForAccountResponseAccountsItem",
-  }) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsItem>;
-
-export type RobotCreateRobotForAccountResponseAccountsList =
-  Array<RobotCreateRobotForAccountResponseAccountsItem>;
-export const RobotCreateRobotForAccountResponseAccountsList =
-  /*@__PURE__*/ S.Array(
-    RobotCreateRobotForAccountResponseAccountsItem,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseAccountsList>;
-
-export type RobotCreateRobotForAccountResponseExperimentsItem =
-  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
-export const RobotCreateRobotForAccountResponseExperimentsItem =
-  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
-
-export type RobotCreateRobotForAccountResponseExperimentsList =
-  Array<AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem>;
-export const RobotCreateRobotForAccountResponseExperimentsList =
-  /*@__PURE__*/ S.Array(
-    AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseExperimentsList>;
-
-export type RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList =
-  Array<unknown>;
-export const RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList>;
-
-export type RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList =
-  Array<AuthProviderIdentifier>;
-export const RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList =
-  /*@__PURE__*/ S.Array(
-    AuthProviderIdentifier,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList>;
-
-export interface RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccount {
-  aiChatEnabled: boolean;
-  appCount: number;
-  createdAt: string;
-  displayName: string | null;
-  environmentVariableEnvironments: RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList;
-  id: string;
-  isCurrent: boolean;
-  isDisabled: boolean;
-  isFreeAppDevDomainTier: boolean;
-  isSSOEnabled: boolean;
-  lastDeletionAttemptTime: string | null;
-  name: string;
-  observeIngestionPaused: boolean;
-  profileImageUrl: string;
-  pushSecurityEnabled: boolean;
-  requireTwoFactor: boolean;
-  ssoAllowedAuthProviders: RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList;
-  updatedAt: string;
-  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
-}
-export const RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccount =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      aiChatEnabled: S.Boolean,
-      appCount: S.Number,
-      createdAt: S.String,
-      displayName: S.NullOr(S.String),
-      environmentVariableEnvironments:
-        RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList,
-      id: S.String,
-      isCurrent: S.Boolean,
-      isDisabled: S.Boolean,
-      isFreeAppDevDomainTier: S.Boolean,
-      isSSOEnabled: S.Boolean,
-      lastDeletionAttemptTime: S.NullOr(S.String),
-      name: S.String,
-      observeIngestionPaused: S.Boolean,
-      profileImageUrl: S.String,
-      pushSecurityEnabled: S.Boolean,
-      requireTwoFactor: S.Boolean,
-      ssoAllowedAuthProviders:
-        RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList,
-      updatedAt: S.String,
-      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
-    }),
-  ).annotate({
-    identifier:
-      "RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccount",
-  }) as any as S.Schema<RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccount>;
-
-export type RobotCreateRobotForAccountResponseGithubAppInstallationsItemActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-export const RobotCreateRobotForAccountResponseGithubAppInstallationsItemActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-
-export type RobotCreateRobotForAccountResponseGithubAppInstallationsItemMetadata =
-  AccountByIdResponseGithubAppInstallationsItemMetadata;
-export const RobotCreateRobotForAccountResponseGithubAppInstallationsItemMetadata =
-  AccountByIdResponseGithubAppInstallationsItemMetadata;
-
-export interface RobotCreateRobotForAccountResponseGithubAppInstallationsItem {
-  account: RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccount;
-  actor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
-  id: string;
-  installationIdentifier: number;
-  metadata: AccountByIdResponseGithubAppInstallationsItemMetadata;
-}
-export const RobotCreateRobotForAccountResponseGithubAppInstallationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      account:
-        RobotCreateRobotForAccountResponseGithubAppInstallationsItemAccount,
-      actor: S.NullOr(AccessTokenCreateAccessTokenResponseAccessTokenOwner),
-      id: S.String,
-      installationIdentifier: S.Number,
-      metadata: AccountByIdResponseGithubAppInstallationsItemMetadata,
-    }),
-  ).annotate({
-    identifier: "RobotCreateRobotForAccountResponseGithubAppInstallationsItem",
-  }) as any as S.Schema<RobotCreateRobotForAccountResponseGithubAppInstallationsItem>;
-
-export type RobotCreateRobotForAccountResponseGithubAppInstallationsList =
-  Array<RobotCreateRobotForAccountResponseGithubAppInstallationsItem>;
-export const RobotCreateRobotForAccountResponseGithubAppInstallationsList =
-  /*@__PURE__*/ S.Array(
-    RobotCreateRobotForAccountResponseGithubAppInstallationsItem,
-  ) as any as S.Schema<RobotCreateRobotForAccountResponseGithubAppInstallationsList>;
-
-/** Selection set for `robot.createRobotForAccount` (unwrapped from the GraphQL `data` envelope). */
-export interface RobotCreateRobotForAccountResponse {
-  accessTokens: RobotCreateRobotForAccountResponseAccessTokensList;
-  accounts: RobotCreateRobotForAccountResponseAccountsList;
-  created: string;
-  displayName: string;
-  experiments: RobotCreateRobotForAccountResponseExperimentsList;
-  firstName: string | null;
-  githubAppInstallations: RobotCreateRobotForAccountResponseGithubAppInstallationsList;
-  id: string;
-  isExpoAdmin: boolean;
-  isManagedByGitHubApp: boolean;
-  lastDeletionAttemptTime: string | null;
-}
-export const RobotCreateRobotForAccountResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accessTokens: RobotCreateRobotForAccountResponseAccessTokensList,
-    accounts: RobotCreateRobotForAccountResponseAccountsList,
-    created: S.String,
-    displayName: S.String,
-    experiments: RobotCreateRobotForAccountResponseExperimentsList,
-    firstName: S.NullOr(S.String),
-    githubAppInstallations:
-      RobotCreateRobotForAccountResponseGithubAppInstallationsList,
-    id: S.String,
-    isExpoAdmin: S.Boolean,
-    isManagedByGitHubApp: S.Boolean,
-    lastDeletionAttemptTime: S.NullOr(S.String),
-  }).pipe(T.ResponsePath("robot.createRobotForAccount")),
 ).annotate({
-  identifier: "RobotCreateRobotForAccountResponse",
-}) as any as S.Schema<RobotCreateRobotForAccountResponse>;
+  identifier: "RetrySubmissionResponseSubmissionApp",
+}) as any as S.Schema<RetrySubmissionResponseSubmissionApp>;
+
+export type RetrySubmissionResponseSubmissionAppStoreConnectBuildUpload =
+  BuildsByIdResponseSubmissionsItemAppStoreConnectBuildUpload;
+export const RetrySubmissionResponseSubmissionAppStoreConnectBuildUpload =
+  BuildsByIdResponseSubmissionsItemAppStoreConnectBuildUpload;
+
+export type RetrySubmissionResponseSubmissionCancelingActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+export const RetrySubmissionResponseSubmissionCancelingActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+
+export type RetrySubmissionResponseSubmissionError =
+  BuildsByIdResponseSubmissionsItemError;
+export const RetrySubmissionResponseSubmissionError =
+  BuildsByIdResponseSubmissionsItemError;
+
+export type RetrySubmissionResponseSubmissionInitiatingActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+export const RetrySubmissionResponseSubmissionInitiatingActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+
+export type RetrySubmissionResponseSubmissionIosConfig =
+  BuildsByIdResponseSubmissionsItemIosConfig;
+export const RetrySubmissionResponseSubmissionIosConfig =
+  BuildsByIdResponseSubmissionsItemIosConfig;
+
+export type RetrySubmissionResponseSubmissionJobRunLogFileUrlsList =
+  Array<string>;
+export const RetrySubmissionResponseSubmissionJobRunLogFileUrlsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RetrySubmissionResponseSubmissionJobRunLogFileUrlsList>;
+
+export type RetrySubmissionResponseSubmissionJobRunUpdateGroupsItemList =
+  Array<unknown>;
+export const RetrySubmissionResponseSubmissionJobRunUpdateGroupsItemList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<RetrySubmissionResponseSubmissionJobRunUpdateGroupsItemList>;
+
+export type RetrySubmissionResponseSubmissionJobRunUpdateGroupsList =
+  Array<RetrySubmissionResponseSubmissionJobRunUpdateGroupsItemList>;
+export const RetrySubmissionResponseSubmissionJobRunUpdateGroupsList =
+  /*@__PURE__*/ S.Array(
+    RetrySubmissionResponseSubmissionJobRunUpdateGroupsItemList,
+  ) as any as S.Schema<RetrySubmissionResponseSubmissionJobRunUpdateGroupsList>;
+
+export interface RetrySubmissionResponseSubmissionJobRun {
+  createdAt: string;
+  displayName: string | null;
+  endedAt: string | null;
+  enqueuedAt: string | null;
+  expiresAt: string;
+  gitCommitHash: string | null;
+  gitCommitMessage: string | null;
+  gitRef: string | null;
+  id: string;
+  isWaived: boolean;
+  logFileUrls: RetrySubmissionResponseSubmissionJobRunLogFileUrlsList;
+  maxRunTimeSeconds: number;
+  name: string;
+  priority: JobRunPriority;
+  resourceClassDisplayName: string;
+  startedAt: string | null;
+  status: JobRunStatus;
+  updateGroups: RetrySubmissionResponseSubmissionJobRunUpdateGroupsList;
+}
+export const RetrySubmissionResponseSubmissionJobRun = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      createdAt: S.String,
+      displayName: S.NullOr(S.String),
+      endedAt: S.NullOr(S.String),
+      enqueuedAt: S.NullOr(S.String),
+      expiresAt: S.String,
+      gitCommitHash: S.NullOr(S.String),
+      gitCommitMessage: S.NullOr(S.String),
+      gitRef: S.NullOr(S.String),
+      id: S.String,
+      isWaived: S.Boolean,
+      logFileUrls: RetrySubmissionResponseSubmissionJobRunLogFileUrlsList,
+      maxRunTimeSeconds: S.Number,
+      name: S.String,
+      priority: JobRunPriority,
+      resourceClassDisplayName: S.String,
+      startedAt: S.NullOr(S.String),
+      status: JobRunStatus,
+      updateGroups: RetrySubmissionResponseSubmissionJobRunUpdateGroupsList,
+    }),
+).annotate({
+  identifier: "RetrySubmissionResponseSubmissionJobRun",
+}) as any as S.Schema<RetrySubmissionResponseSubmissionJobRun>;
+
+export type RetrySubmissionResponseSubmissionLogFilesList = Array<string>;
+export const RetrySubmissionResponseSubmissionLogFilesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RetrySubmissionResponseSubmissionLogFilesList>;
+
+export type RetrySubmissionResponseSubmissionSubmittedBuildLogFileUrlsList =
+  Array<string>;
+export const RetrySubmissionResponseSubmissionSubmittedBuildLogFileUrlsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RetrySubmissionResponseSubmissionSubmittedBuildLogFileUrlsList>;
+
+export type RetrySubmissionResponseSubmissionSubmittedBuildLogFilesList =
+  Array<string>;
+export const RetrySubmissionResponseSubmissionSubmittedBuildLogFilesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RetrySubmissionResponseSubmissionSubmittedBuildLogFilesList>;
+
+export interface RetrySubmissionResponseSubmissionSubmittedBuild {
+  activityTimestamp: string;
+  appBuildVersion: string | null;
+  appIdentifier: string | null;
+  appVersion: string | null;
+  buildMode: BuildMode | null;
+  buildProfile: string | null;
+  channel: string | null;
+  cliVersion: string | null;
+  completedAt: string | null;
+  createdAt: string;
+  customNodeVersion: string | null;
+  customWorkflowName: string | null;
+  developmentClient: boolean | null;
+  distribution: DistributionType | null;
+  enqueuedAt: string | null;
+  estimatedWaitTimeLeftSeconds: number | null;
+  expirationDate: string | null;
+  gitCommitHash: string | null;
+  gitCommitMessage: string | null;
+  gitRef: string | null;
+  id: string;
+  initialQueuePosition: number | null;
+  iosEnterpriseProvisioning: BuildIosEnterpriseProvisioning | null;
+  isForIosSimulator: boolean;
+  isGitWorkingTreeDirty: boolean | null;
+  isWaived: boolean;
+  logFileUrls: RetrySubmissionResponseSubmissionSubmittedBuildLogFileUrlsList;
+  logFiles: RetrySubmissionResponseSubmissionSubmittedBuildLogFilesList;
+  maxBuildTimeSeconds: number;
+  maxRetryTimeMinutes: number | null;
+  message: string | null;
+  platform: AppPlatform;
+  priority: BuildPriority;
+  projectMetadataFileUrl: string | null;
+  projectRootDirectory: string | null;
+  provisioningStartedAt: string | null;
+  queuePosition: number | null;
+  reactNativeVersion: string | null;
+  releaseChannel: string | null;
+  requiredPackageManager: string | null;
+  resolvedEnvironment: unknown | null;
+  resolvedImage: string | null;
+  resourceClass: BuildResourceClass;
+  resourceClassDisplayName: string;
+  runFromCI: boolean | null;
+  runtimeVersion: string | null;
+  sdkVersion: string | null;
+  selectedImage: string | null;
+  status: BuildStatus;
+  updatedAt: string;
+  waiverType: EASBuildWaiverType | null;
+  workerStartedAt: string | null;
+}
+export const RetrySubmissionResponseSubmissionSubmittedBuild =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      activityTimestamp: S.String,
+      appBuildVersion: S.NullOr(S.String),
+      appIdentifier: S.NullOr(S.String),
+      appVersion: S.NullOr(S.String),
+      buildMode: S.NullOr(BuildMode),
+      buildProfile: S.NullOr(S.String),
+      channel: S.NullOr(S.String),
+      cliVersion: S.NullOr(S.String),
+      completedAt: S.NullOr(S.String),
+      createdAt: S.String,
+      customNodeVersion: S.NullOr(S.String),
+      customWorkflowName: S.NullOr(S.String),
+      developmentClient: S.NullOr(S.Boolean),
+      distribution: S.NullOr(DistributionType),
+      enqueuedAt: S.NullOr(S.String),
+      estimatedWaitTimeLeftSeconds: S.NullOr(S.Number),
+      expirationDate: S.NullOr(S.String),
+      gitCommitHash: S.NullOr(S.String),
+      gitCommitMessage: S.NullOr(S.String),
+      gitRef: S.NullOr(S.String),
+      id: S.String,
+      initialQueuePosition: S.NullOr(S.Number),
+      iosEnterpriseProvisioning: S.NullOr(BuildIosEnterpriseProvisioning),
+      isForIosSimulator: S.Boolean,
+      isGitWorkingTreeDirty: S.NullOr(S.Boolean),
+      isWaived: S.Boolean,
+      logFileUrls:
+        RetrySubmissionResponseSubmissionSubmittedBuildLogFileUrlsList,
+      logFiles: RetrySubmissionResponseSubmissionSubmittedBuildLogFilesList,
+      maxBuildTimeSeconds: S.Number,
+      maxRetryTimeMinutes: S.NullOr(S.Number),
+      message: S.NullOr(S.String),
+      platform: AppPlatform,
+      priority: BuildPriority,
+      projectMetadataFileUrl: S.NullOr(S.String),
+      projectRootDirectory: S.NullOr(S.String),
+      provisioningStartedAt: S.NullOr(S.String),
+      queuePosition: S.NullOr(S.Number),
+      reactNativeVersion: S.NullOr(S.String),
+      releaseChannel: S.NullOr(S.String),
+      requiredPackageManager: S.NullOr(S.String),
+      resolvedEnvironment: S.NullOr(S.Unknown),
+      resolvedImage: S.NullOr(S.String),
+      resourceClass: BuildResourceClass,
+      resourceClassDisplayName: S.String,
+      runFromCI: S.NullOr(S.Boolean),
+      runtimeVersion: S.NullOr(S.String),
+      sdkVersion: S.NullOr(S.String),
+      selectedImage: S.NullOr(S.String),
+      status: BuildStatus,
+      updatedAt: S.String,
+      waiverType: S.NullOr(EASBuildWaiverType),
+      workerStartedAt: S.NullOr(S.String),
+    }),
+  ).annotate({
+    identifier: "RetrySubmissionResponseSubmissionSubmittedBuild",
+  }) as any as S.Schema<RetrySubmissionResponseSubmissionSubmittedBuild>;
+
+export type RetrySubmissionResponseSubmissionWorkflowJobRequiredJobKeysList =
+  Array<string>;
+export const RetrySubmissionResponseSubmissionWorkflowJobRequiredJobKeysList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RetrySubmissionResponseSubmissionWorkflowJobRequiredJobKeysList>;
+
+export interface RetrySubmissionResponseSubmissionWorkflowJob {
+  createdAt: string;
+  environment: string | null;
+  id: string;
+  key: string;
+  name: string;
+  outputs: unknown;
+  requiredJobKeys: RetrySubmissionResponseSubmissionWorkflowJobRequiredJobKeysList;
+  status: WorkflowJobStatus;
+  type: WorkflowJobType;
+  updatedAt: string;
+}
+export const RetrySubmissionResponseSubmissionWorkflowJob =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdAt: S.String,
+      environment: S.NullOr(S.String),
+      id: S.String,
+      key: S.String,
+      name: S.String,
+      outputs: S.Unknown,
+      requiredJobKeys:
+        RetrySubmissionResponseSubmissionWorkflowJobRequiredJobKeysList,
+      status: WorkflowJobStatus,
+      type: WorkflowJobType,
+      updatedAt: S.String,
+    }),
+  ).annotate({
+    identifier: "RetrySubmissionResponseSubmissionWorkflowJob",
+  }) as any as S.Schema<RetrySubmissionResponseSubmissionWorkflowJob>;
+
+export interface RetrySubmissionResponseSubmission {
+  activityTimestamp: string;
+  actor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
+  androidConfig: BuildsByIdResponseSubmissionsItemAndroidConfig | null;
+  app: RetrySubmissionResponseSubmissionApp;
+  appStoreConnectBuildUpload: BuildsByIdResponseSubmissionsItemAppStoreConnectBuildUpload | null;
+  archiveUrl: string | null;
+  canRetry: boolean;
+  cancelingActor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
+  completedAt: string | null;
+  createdAt: string;
+  error: BuildsByIdResponseSubmissionsItemError | null;
+  id: string;
+  initiatingActor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
+  iosConfig: BuildsByIdResponseSubmissionsItemIosConfig | null;
+  jobRun: RetrySubmissionResponseSubmissionJobRun | null;
+  logFiles: RetrySubmissionResponseSubmissionLogFilesList;
+  logsUrl: string | null;
+  maxRetryTimeMinutes: number;
+  platform: AppPlatform;
+  priority: SubmissionPriority | null;
+  status: SubmissionStatus;
+  submittedBuild: RetrySubmissionResponseSubmissionSubmittedBuild | null;
+  updatedAt: string;
+  workflowJob: RetrySubmissionResponseSubmissionWorkflowJob | null;
+}
+export const RetrySubmissionResponseSubmission = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    activityTimestamp: S.String,
+    actor: S.NullOr(AccessTokenCreateAccessTokenResponseAccessTokenOwner),
+    androidConfig: S.NullOr(BuildsByIdResponseSubmissionsItemAndroidConfig),
+    app: RetrySubmissionResponseSubmissionApp,
+    appStoreConnectBuildUpload: S.NullOr(
+      BuildsByIdResponseSubmissionsItemAppStoreConnectBuildUpload,
+    ),
+    archiveUrl: S.NullOr(S.String),
+    canRetry: S.Boolean,
+    cancelingActor: S.NullOr(
+      AccessTokenCreateAccessTokenResponseAccessTokenOwner,
+    ),
+    completedAt: S.NullOr(S.String),
+    createdAt: S.String,
+    error: S.NullOr(BuildsByIdResponseSubmissionsItemError),
+    id: S.String,
+    initiatingActor: S.NullOr(
+      AccessTokenCreateAccessTokenResponseAccessTokenOwner,
+    ),
+    iosConfig: S.NullOr(BuildsByIdResponseSubmissionsItemIosConfig),
+    jobRun: S.NullOr(RetrySubmissionResponseSubmissionJobRun),
+    logFiles: RetrySubmissionResponseSubmissionLogFilesList,
+    logsUrl: S.NullOr(S.String),
+    maxRetryTimeMinutes: S.Number,
+    platform: AppPlatform,
+    priority: S.NullOr(SubmissionPriority),
+    status: SubmissionStatus,
+    submittedBuild: S.NullOr(RetrySubmissionResponseSubmissionSubmittedBuild),
+    updatedAt: S.String,
+    workflowJob: S.NullOr(RetrySubmissionResponseSubmissionWorkflowJob),
+  }),
+).annotate({
+  identifier: "RetrySubmissionResponseSubmission",
+}) as any as S.Schema<RetrySubmissionResponseSubmission>;
+
+/** Selection set for `submission.retrySubmission` (unwrapped from the GraphQL `data` envelope). */
+export interface RetrySubmissionResponse {
+  submission: RetrySubmissionResponseSubmission;
+}
+export const RetrySubmissionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    submission: RetrySubmissionResponseSubmission,
+  }).pipe(T.ResponsePath("submission.retrySubmission")),
+).annotate({
+  identifier: "RetrySubmissionResponse",
+}) as any as S.Schema<RetrySubmissionResponse>;
 
 export interface RobotScheduleRobotDeletionRequest {
   id: string;
@@ -111810,646 +114196,6 @@ export const RobotScheduleRobotDeletionResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RobotScheduleRobotDeletionResponse",
 }) as any as S.Schema<RobotScheduleRobotDeletionResponse>;
-
-export interface RobotUpdateRobotRequest {
-  id: string;
-  robotData: UpdateAgentProviderConnectionInput;
-}
-export const RobotUpdateRobotRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    robotData: UpdateAgentProviderConnectionInput,
-  })
-    .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
-    .pipe(
-      T.GraphQLOp({
-        query:
-          "mutation robotUpdateRobot($id: String!, $robotData: RobotDataInput!) {\n  robot {\n    updateRobot(id: $id, robotData: $robotData) {\n      accessTokens {\n        createdAt\n        id\n        lastUsedAt\n        note\n        owner {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        revokedAt\n        updatedAt\n        visibleTokenPrefix\n      }\n      accounts {\n        agentProviderConnections {\n          createdAt\n          expiresAt\n          id\n          name\n          provider\n          providerAccountEmail\n          providerAccountId\n          providerPlan\n          status\n          updatedAt\n        }\n        aiChatEnabled\n        appCount\n        appStoreConnectApiKeys {\n          createdAt\n          id\n          issuerIdentifier\n          keyIdentifier\n          keyP8\n          name\n          roles\n          updatedAt\n        }\n        appleDistributionCertificates {\n          certificateP12\n          certificatePassword\n          certificatePrivateSigningKey\n          createdAt\n          developerPortalIdentifier\n          id\n          serialNumber\n          updatedAt\n          validityNotAfter\n          validityNotBefore\n        }\n        applePushKeys {\n          createdAt\n          id\n          keyIdentifier\n          keyP8\n          updatedAt\n        }\n        billing {\n          id\n        }\n        convexTeamConnections {\n          convexTeamIdentifier\n          convexTeamName\n          convexTeamSlug\n          createdAt\n          hasBeenClaimed\n          id\n          invitedAt\n          invitedEmail\n          updatedAt\n        }\n        createdAt\n        displayName\n        environmentVariableEnvironments\n        githubAppInstallations {\n          id\n          installationIdentifier\n        }\n        googleServiceAccountKeys {\n          clientEmail\n          clientIdentifier\n          createdAt\n          id\n          keyJson\n          privateKeyIdentifier\n          projectIdentifier\n          updatedAt\n        }\n        id\n        isCurrent\n        isDisabled\n        isFreeAppDevDomainTier\n        isSSOEnabled\n        lastDeletionAttemptTime\n        logRocketOrganization {\n          createdAt\n          id\n          orgName\n          orgSlug\n        }\n        memberStats {\n          allHave2FAEnabled\n          humanCount\n          ownerCount\n          robotCount\n          ssoUserCount\n          totalCount\n        }\n        name\n        observeIngestionPaused\n        offers {\n          features\n          id\n          price\n          quantity\n          stripeId\n          trialLength\n          type\n        }\n        onboardingStats {\n          firstBuildCompletedAt\n          firstProjectCreatedAt\n          firstSubmissionCompletedAt\n          firstUpdateCreatedAt\n          hasConfiguredUpdate\n          hasConfiguredWorkflow\n          hasTeamMembers\n        }\n        owner {\n          appCount\n          bestContactEmail\n          created\n          displayName\n          email\n          emailVerified\n          firstName\n          fullName\n          hasPassword\n          hasPendingUserInvitations\n          id\n          isExpoAdmin\n          isSecondFactorAuthenticationEnabled\n          isStaffModeEnabled\n          lastDeletionAttemptTime\n          lastName\n          newEmailPendingVerification\n          primaryAccountProfileImageUrl\n          profilePhoto\n          username\n        }\n        ownerUserActor {\n          appCount\n          bestContactEmail\n          created\n          displayName\n          firstName\n          fullName\n          id\n          isExpoAdmin\n          isStaffModeEnabled\n          lastDeletionAttemptTime\n          lastName\n          primaryAccountProfileImageUrl\n          profilePhoto\n          username\n        }\n        pendingSentryInstallation {\n          createdAt\n          id\n          installationId\n          orgSlug\n        }\n        posthogOrganizationConnection {\n          createdAt\n          id\n          posthogOrganizationIdentifier\n          posthogOrganizationName\n          posthogRegion\n          updatedAt\n        }\n        profileImageUrl\n        pushSecurityEnabled\n        requireTwoFactor\n        sentryInstallation {\n          createdAt\n          id\n          installationId\n          orgSlug\n        }\n        ssoAllowedAuthProviders\n        ssoConfiguration {\n          authProtocol\n          authProviderIdentifier\n          clientIdentifier\n          clientSecret\n          createdAt\n          id\n          issuer\n          updatedAt\n        }\n        subscription {\n          cancelAt\n          endedAt\n          id\n          includedAgentCreditsInCents\n          isDowngrading\n          name\n          nextInvoice\n          nextInvoiceAmountDueCents\n          paymentFailedAt\n          planId\n          price\n          recurringCents\n          status\n          trialEnd\n          willCancel\n        }\n        supabaseConnection {\n          createdAt\n          id\n          supabaseOrganizationName\n          supabaseOrganizationSlug\n          updatedAt\n        }\n        updatedAt\n        userInvitations {\n          accountName\n          accountProfileImageUrl\n          accountRequiresTwoFactor\n          created\n          email\n          expires\n          id\n          isForOrganization\n          permissions\n          role\n        }\n        userSpecifiedAccountUsage\n        users {\n          id\n          permissions\n          role\n        }\n        vexoAccountConnection {\n          id\n        }\n        viewerUserPermission {\n          id\n          permissions\n          role\n        }\n      }\n      created\n      displayName\n      experiments {\n        createdAt\n        enabled\n        experiment\n        id\n        updatedAt\n      }\n      firstName\n      githubAppInstallations {\n        account {\n          aiChatEnabled\n          appCount\n          createdAt\n          displayName\n          environmentVariableEnvironments\n          id\n          isCurrent\n          isDisabled\n          isFreeAppDevDomainTier\n          isSSOEnabled\n          lastDeletionAttemptTime\n          name\n          observeIngestionPaused\n          profileImageUrl\n          pushSecurityEnabled\n          requireTwoFactor\n          ssoAllowedAuthProviders\n          updatedAt\n          userSpecifiedAccountUsage\n        }\n        actor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        id\n        installationIdentifier\n        metadata {\n          githubAccountAvatarUrl\n          githubAccountName\n          githubAccountType\n          installationStatus\n        }\n      }\n      id\n      isExpoAdmin\n      isManagedByGitHubApp\n      lastDeletionAttemptTime\n    }\n  }\n}",
-        operationName: "robotUpdateRobot",
-        type: "mutation",
-      }),
-    ),
-).annotate({
-  identifier: "RobotUpdateRobotRequest",
-}) as any as S.Schema<RobotUpdateRobotRequest>;
-
-export type RobotUpdateRobotResponseAccessTokensItemOwner =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-export const RobotUpdateRobotResponseAccessTokensItemOwner =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-
-export type RobotUpdateRobotResponseAccessTokensItem =
-  AccessTokenCreateAccessTokenResponseAccessToken;
-export const RobotUpdateRobotResponseAccessTokensItem =
-  AccessTokenCreateAccessTokenResponseAccessToken;
-
-export type RobotUpdateRobotResponseAccessTokensList =
-  Array<AccessTokenCreateAccessTokenResponseAccessToken>;
-export const RobotUpdateRobotResponseAccessTokensList = /*@__PURE__*/ S.Array(
-  AccessTokenCreateAccessTokenResponseAccessToken,
-) as any as S.Schema<RobotUpdateRobotResponseAccessTokensList>;
-
-export type RobotUpdateRobotResponseAccountsItemAgentProviderConnectionsItem =
-  AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem;
-export const RobotUpdateRobotResponseAccountsItemAgentProviderConnectionsItem =
-  AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem;
-
-export type RobotUpdateRobotResponseAccountsItemAgentProviderConnectionsList =
-  Array<AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem>;
-export const RobotUpdateRobotResponseAccountsItemAgentProviderConnectionsList =
-  /*@__PURE__*/ S.Array(
-    AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemAgentProviderConnectionsList>;
-
-export type RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysItemRolesList =
-  Array<AppStoreConnectUserRole>;
-export const RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysItemRolesList =
-  /*@__PURE__*/ S.Array(
-    AppStoreConnectUserRole,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysItemRolesList>;
-
-export interface RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysItem {
-  createdAt: string;
-  id: string;
-  issuerIdentifier: string;
-  keyIdentifier: string;
-  keyP8: string;
-  name: string | null;
-  roles: RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysItemRolesList | null;
-  updatedAt: string;
-}
-export const RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdAt: S.String,
-      id: S.String,
-      issuerIdentifier: S.String,
-      keyIdentifier: S.String,
-      keyP8: S.String,
-      name: S.NullOr(S.String),
-      roles: S.NullOr(
-        RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysItemRolesList,
-      ),
-      updatedAt: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysItem",
-  }) as any as S.Schema<RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysItem>;
-
-export type RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysList =
-  Array<RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysItem>;
-export const RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysList =
-  /*@__PURE__*/ S.Array(
-    RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysItem,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysList>;
-
-export type RobotUpdateRobotResponseAccountsItemAppleDistributionCertificatesItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem;
-export const RobotUpdateRobotResponseAccountsItemAppleDistributionCertificatesItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem;
-
-export type RobotUpdateRobotResponseAccountsItemAppleDistributionCertificatesList =
-  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem>;
-export const RobotUpdateRobotResponseAccountsItemAppleDistributionCertificatesList =
-  /*@__PURE__*/ S.Array(
-    AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemAppleDistributionCertificatesList>;
-
-export type RobotUpdateRobotResponseAccountsItemApplePushKeysItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem;
-export const RobotUpdateRobotResponseAccountsItemApplePushKeysItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem;
-
-export type RobotUpdateRobotResponseAccountsItemApplePushKeysList =
-  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem>;
-export const RobotUpdateRobotResponseAccountsItemApplePushKeysList =
-  /*@__PURE__*/ S.Array(
-    AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemApplePushKeysList>;
-
-export type RobotUpdateRobotResponseAccountsItemBilling =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-export const RobotUpdateRobotResponseAccountsItemBilling =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-
-export type RobotUpdateRobotResponseAccountsItemConvexTeamConnectionsItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
-export const RobotUpdateRobotResponseAccountsItemConvexTeamConnectionsItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
-
-export type RobotUpdateRobotResponseAccountsItemConvexTeamConnectionsList =
-  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem>;
-export const RobotUpdateRobotResponseAccountsItemConvexTeamConnectionsList =
-  /*@__PURE__*/ S.Array(
-    AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemConvexTeamConnectionsList>;
-
-export type RobotUpdateRobotResponseAccountsItemEnvironmentVariableEnvironmentsList =
-  Array<unknown>;
-export const RobotUpdateRobotResponseAccountsItemEnvironmentVariableEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemEnvironmentVariableEnvironmentsList>;
-
-export type RobotUpdateRobotResponseAccountsItemGithubAppInstallationsItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
-export const RobotUpdateRobotResponseAccountsItemGithubAppInstallationsItem =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
-
-export type RobotUpdateRobotResponseAccountsItemGithubAppInstallationsList =
-  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem>;
-export const RobotUpdateRobotResponseAccountsItemGithubAppInstallationsList =
-  /*@__PURE__*/ S.Array(
-    AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemGithubAppInstallationsList>;
-
-export type RobotUpdateRobotResponseAccountsItemGoogleServiceAccountKeysItem =
-  AccountByIdResponseGoogleServiceAccountKeysItem;
-export const RobotUpdateRobotResponseAccountsItemGoogleServiceAccountKeysItem =
-  AccountByIdResponseGoogleServiceAccountKeysItem;
-
-export type RobotUpdateRobotResponseAccountsItemGoogleServiceAccountKeysList =
-  Array<AccountByIdResponseGoogleServiceAccountKeysItem>;
-export const RobotUpdateRobotResponseAccountsItemGoogleServiceAccountKeysList =
-  /*@__PURE__*/ S.Array(
-    AccountByIdResponseGoogleServiceAccountKeysItem,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemGoogleServiceAccountKeysList>;
-
-export type RobotUpdateRobotResponseAccountsItemLogRocketOrganization =
-  AccountByIdResponseLogRocketOrganization;
-export const RobotUpdateRobotResponseAccountsItemLogRocketOrganization =
-  AccountByIdResponseLogRocketOrganization;
-
-export type RobotUpdateRobotResponseAccountsItemMemberStats =
-  AccountByIdResponseMemberStats;
-export const RobotUpdateRobotResponseAccountsItemMemberStats =
-  AccountByIdResponseMemberStats;
-
-export type RobotUpdateRobotResponseAccountsItemOffersItemFeaturesList =
-  (Feature | null)[];
-export const RobotUpdateRobotResponseAccountsItemOffersItemFeaturesList =
-  /*@__PURE__*/ S.Array(
-    S.NullOr(Feature),
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemOffersItemFeaturesList>;
-
-export interface RobotUpdateRobotResponseAccountsItemOffersItem {
-  features: RobotUpdateRobotResponseAccountsItemOffersItemFeaturesList | null;
-  id: string;
-  price: number;
-  quantity: number | null;
-  stripeId: string;
-  trialLength: number | null;
-  type: OfferType;
-}
-export const RobotUpdateRobotResponseAccountsItemOffersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      features: S.NullOr(
-        RobotUpdateRobotResponseAccountsItemOffersItemFeaturesList,
-      ),
-      id: S.String,
-      price: S.Number,
-      quantity: S.NullOr(S.Number),
-      stripeId: S.String,
-      trialLength: S.NullOr(S.Number),
-      type: OfferType,
-    }),
-  ).annotate({
-    identifier: "RobotUpdateRobotResponseAccountsItemOffersItem",
-  }) as any as S.Schema<RobotUpdateRobotResponseAccountsItemOffersItem>;
-
-export type RobotUpdateRobotResponseAccountsItemOffersList =
-  Array<RobotUpdateRobotResponseAccountsItemOffersItem>;
-export const RobotUpdateRobotResponseAccountsItemOffersList =
-  /*@__PURE__*/ S.Array(
-    RobotUpdateRobotResponseAccountsItemOffersItem,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemOffersList>;
-
-export type RobotUpdateRobotResponseAccountsItemOnboardingStats =
-  AccountByIdResponseOnboardingStats;
-export const RobotUpdateRobotResponseAccountsItemOnboardingStats =
-  AccountByIdResponseOnboardingStats;
-
-export type RobotUpdateRobotResponseAccountsItemOwner =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner;
-export const RobotUpdateRobotResponseAccountsItemOwner =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner;
-
-export type RobotUpdateRobotResponseAccountsItemOwnerUserActor =
-  AccountByIdResponseUsersItemUserActor;
-export const RobotUpdateRobotResponseAccountsItemOwnerUserActor =
-  AccountByIdResponseUsersItemUserActor;
-
-export type RobotUpdateRobotResponseAccountsItemPendingSentryInstallation =
-  AccountByIdResponsePendingSentryInstallation;
-export const RobotUpdateRobotResponseAccountsItemPendingSentryInstallation =
-  AccountByIdResponsePendingSentryInstallation;
-
-export type RobotUpdateRobotResponseAccountsItemPosthogOrganizationConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
-export const RobotUpdateRobotResponseAccountsItemPosthogOrganizationConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
-
-export type RobotUpdateRobotResponseAccountsItemSentryInstallation =
-  AccountByIdResponsePendingSentryInstallation;
-export const RobotUpdateRobotResponseAccountsItemSentryInstallation =
-  AccountByIdResponsePendingSentryInstallation;
-
-export type RobotUpdateRobotResponseAccountsItemSsoAllowedAuthProvidersList =
-  Array<AuthProviderIdentifier>;
-export const RobotUpdateRobotResponseAccountsItemSsoAllowedAuthProvidersList =
-  /*@__PURE__*/ S.Array(
-    AuthProviderIdentifier,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemSsoAllowedAuthProvidersList>;
-
-export type RobotUpdateRobotResponseAccountsItemSsoConfiguration =
-  AccountByIdResponseSsoConfiguration;
-export const RobotUpdateRobotResponseAccountsItemSsoConfiguration =
-  AccountByIdResponseSsoConfiguration;
-
-export type RobotUpdateRobotResponseAccountsItemSubscription =
-  AccountByIdResponseBillingSubscription;
-export const RobotUpdateRobotResponseAccountsItemSubscription =
-  AccountByIdResponseBillingSubscription;
-
-export type RobotUpdateRobotResponseAccountsItemSupabaseConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
-export const RobotUpdateRobotResponseAccountsItemSupabaseConnection =
-  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
-
-export type RobotUpdateRobotResponseAccountsItemUserInvitationsItemPermissionsList =
-  Array<Permission>;
-export const RobotUpdateRobotResponseAccountsItemUserInvitationsItemPermissionsList =
-  /*@__PURE__*/ S.Array(
-    Permission,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemUserInvitationsItemPermissionsList>;
-
-export interface RobotUpdateRobotResponseAccountsItemUserInvitationsItem {
-  accountName: string;
-  accountProfileImageUrl: string;
-  accountRequiresTwoFactor: boolean;
-  created: string;
-  email: string;
-  expires: string;
-  id: string;
-  isForOrganization: boolean;
-  permissions: RobotUpdateRobotResponseAccountsItemUserInvitationsItemPermissionsList;
-  role: Role;
-}
-export const RobotUpdateRobotResponseAccountsItemUserInvitationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountName: S.String,
-      accountProfileImageUrl: S.String,
-      accountRequiresTwoFactor: S.Boolean,
-      created: S.String,
-      email: S.String,
-      expires: S.String,
-      id: S.String,
-      isForOrganization: S.Boolean,
-      permissions:
-        RobotUpdateRobotResponseAccountsItemUserInvitationsItemPermissionsList,
-      role: Role,
-    }),
-  ).annotate({
-    identifier: "RobotUpdateRobotResponseAccountsItemUserInvitationsItem",
-  }) as any as S.Schema<RobotUpdateRobotResponseAccountsItemUserInvitationsItem>;
-
-export type RobotUpdateRobotResponseAccountsItemUserInvitationsList =
-  Array<RobotUpdateRobotResponseAccountsItemUserInvitationsItem>;
-export const RobotUpdateRobotResponseAccountsItemUserInvitationsList =
-  /*@__PURE__*/ S.Array(
-    RobotUpdateRobotResponseAccountsItemUserInvitationsItem,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemUserInvitationsList>;
-
-export type RobotUpdateRobotResponseAccountsItemUsersItemPermissionsList =
-  Array<Permission>;
-export const RobotUpdateRobotResponseAccountsItemUsersItemPermissionsList =
-  /*@__PURE__*/ S.Array(
-    Permission,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemUsersItemPermissionsList>;
-
-export interface RobotUpdateRobotResponseAccountsItemUsersItem {
-  id: string;
-  permissions: RobotUpdateRobotResponseAccountsItemUsersItemPermissionsList;
-  role: Role;
-}
-export const RobotUpdateRobotResponseAccountsItemUsersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      permissions: RobotUpdateRobotResponseAccountsItemUsersItemPermissionsList,
-      role: Role,
-    }),
-  ).annotate({
-    identifier: "RobotUpdateRobotResponseAccountsItemUsersItem",
-  }) as any as S.Schema<RobotUpdateRobotResponseAccountsItemUsersItem>;
-
-export type RobotUpdateRobotResponseAccountsItemUsersList =
-  Array<RobotUpdateRobotResponseAccountsItemUsersItem>;
-export const RobotUpdateRobotResponseAccountsItemUsersList =
-  /*@__PURE__*/ S.Array(
-    RobotUpdateRobotResponseAccountsItemUsersItem,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemUsersList>;
-
-export type RobotUpdateRobotResponseAccountsItemVexoAccountConnection =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-export const RobotUpdateRobotResponseAccountsItemVexoAccountConnection =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-
-export type RobotUpdateRobotResponseAccountsItemViewerUserPermissionPermissionsList =
-  Array<Permission>;
-export const RobotUpdateRobotResponseAccountsItemViewerUserPermissionPermissionsList =
-  /*@__PURE__*/ S.Array(
-    Permission,
-  ) as any as S.Schema<RobotUpdateRobotResponseAccountsItemViewerUserPermissionPermissionsList>;
-
-export interface RobotUpdateRobotResponseAccountsItemViewerUserPermission {
-  id: string;
-  permissions: RobotUpdateRobotResponseAccountsItemViewerUserPermissionPermissionsList;
-  role: Role;
-}
-export const RobotUpdateRobotResponseAccountsItemViewerUserPermission =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      permissions:
-        RobotUpdateRobotResponseAccountsItemViewerUserPermissionPermissionsList,
-      role: Role,
-    }),
-  ).annotate({
-    identifier: "RobotUpdateRobotResponseAccountsItemViewerUserPermission",
-  }) as any as S.Schema<RobotUpdateRobotResponseAccountsItemViewerUserPermission>;
-
-export interface RobotUpdateRobotResponseAccountsItem {
-  agentProviderConnections: RobotUpdateRobotResponseAccountsItemAgentProviderConnectionsList;
-  aiChatEnabled: boolean;
-  appCount: number;
-  appStoreConnectApiKeys: RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysList;
-  appleDistributionCertificates: RobotUpdateRobotResponseAccountsItemAppleDistributionCertificatesList;
-  applePushKeys: RobotUpdateRobotResponseAccountsItemApplePushKeysList;
-  billing: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem | null;
-  convexTeamConnections: RobotUpdateRobotResponseAccountsItemConvexTeamConnectionsList;
-  createdAt: string;
-  displayName: string | null;
-  environmentVariableEnvironments: RobotUpdateRobotResponseAccountsItemEnvironmentVariableEnvironmentsList;
-  githubAppInstallations: RobotUpdateRobotResponseAccountsItemGithubAppInstallationsList;
-  googleServiceAccountKeys: RobotUpdateRobotResponseAccountsItemGoogleServiceAccountKeysList;
-  id: string;
-  isCurrent: boolean;
-  isDisabled: boolean;
-  isFreeAppDevDomainTier: boolean;
-  isSSOEnabled: boolean;
-  lastDeletionAttemptTime: string | null;
-  logRocketOrganization: AccountByIdResponseLogRocketOrganization | null;
-  memberStats: AccountByIdResponseMemberStats;
-  name: string;
-  observeIngestionPaused: boolean;
-  offers: RobotUpdateRobotResponseAccountsItemOffersList | null;
-  onboardingStats: AccountByIdResponseOnboardingStats;
-  owner: AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner | null;
-  ownerUserActor: AccountByIdResponseUsersItemUserActor | null;
-  pendingSentryInstallation: AccountByIdResponsePendingSentryInstallation | null;
-  posthogOrganizationConnection: AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection | null;
-  profileImageUrl: string;
-  pushSecurityEnabled: boolean;
-  requireTwoFactor: boolean;
-  sentryInstallation: AccountByIdResponsePendingSentryInstallation | null;
-  ssoAllowedAuthProviders: RobotUpdateRobotResponseAccountsItemSsoAllowedAuthProvidersList;
-  ssoConfiguration: AccountByIdResponseSsoConfiguration | null;
-  subscription: AccountByIdResponseBillingSubscription | null;
-  supabaseConnection: AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection | null;
-  updatedAt: string;
-  userInvitations: RobotUpdateRobotResponseAccountsItemUserInvitationsList;
-  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
-  users: RobotUpdateRobotResponseAccountsItemUsersList;
-  vexoAccountConnection: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem | null;
-  viewerUserPermission: RobotUpdateRobotResponseAccountsItemViewerUserPermission;
-}
-export const RobotUpdateRobotResponseAccountsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      agentProviderConnections:
-        RobotUpdateRobotResponseAccountsItemAgentProviderConnectionsList,
-      aiChatEnabled: S.Boolean,
-      appCount: S.Number,
-      appStoreConnectApiKeys:
-        RobotUpdateRobotResponseAccountsItemAppStoreConnectApiKeysList,
-      appleDistributionCertificates:
-        RobotUpdateRobotResponseAccountsItemAppleDistributionCertificatesList,
-      applePushKeys: RobotUpdateRobotResponseAccountsItemApplePushKeysList,
-      billing: S.NullOr(
-        AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
-      ),
-      convexTeamConnections:
-        RobotUpdateRobotResponseAccountsItemConvexTeamConnectionsList,
-      createdAt: S.String,
-      displayName: S.NullOr(S.String),
-      environmentVariableEnvironments:
-        RobotUpdateRobotResponseAccountsItemEnvironmentVariableEnvironmentsList,
-      githubAppInstallations:
-        RobotUpdateRobotResponseAccountsItemGithubAppInstallationsList,
-      googleServiceAccountKeys:
-        RobotUpdateRobotResponseAccountsItemGoogleServiceAccountKeysList,
-      id: S.String,
-      isCurrent: S.Boolean,
-      isDisabled: S.Boolean,
-      isFreeAppDevDomainTier: S.Boolean,
-      isSSOEnabled: S.Boolean,
-      lastDeletionAttemptTime: S.NullOr(S.String),
-      logRocketOrganization: S.NullOr(AccountByIdResponseLogRocketOrganization),
-      memberStats: AccountByIdResponseMemberStats,
-      name: S.String,
-      observeIngestionPaused: S.Boolean,
-      offers: S.NullOr(RobotUpdateRobotResponseAccountsItemOffersList),
-      onboardingStats: AccountByIdResponseOnboardingStats,
-      owner: S.NullOr(
-        AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner,
-      ),
-      ownerUserActor: S.NullOr(AccountByIdResponseUsersItemUserActor),
-      pendingSentryInstallation: S.NullOr(
-        AccountByIdResponsePendingSentryInstallation,
-      ),
-      posthogOrganizationConnection: S.NullOr(
-        AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection,
-      ),
-      profileImageUrl: S.String,
-      pushSecurityEnabled: S.Boolean,
-      requireTwoFactor: S.Boolean,
-      sentryInstallation: S.NullOr(
-        AccountByIdResponsePendingSentryInstallation,
-      ),
-      ssoAllowedAuthProviders:
-        RobotUpdateRobotResponseAccountsItemSsoAllowedAuthProvidersList,
-      ssoConfiguration: S.NullOr(AccountByIdResponseSsoConfiguration),
-      subscription: S.NullOr(AccountByIdResponseBillingSubscription),
-      supabaseConnection: S.NullOr(
-        AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection,
-      ),
-      updatedAt: S.String,
-      userInvitations: RobotUpdateRobotResponseAccountsItemUserInvitationsList,
-      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
-      users: RobotUpdateRobotResponseAccountsItemUsersList,
-      vexoAccountConnection: S.NullOr(
-        AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
-      ),
-      viewerUserPermission:
-        RobotUpdateRobotResponseAccountsItemViewerUserPermission,
-    }),
-).annotate({
-  identifier: "RobotUpdateRobotResponseAccountsItem",
-}) as any as S.Schema<RobotUpdateRobotResponseAccountsItem>;
-
-export type RobotUpdateRobotResponseAccountsList =
-  Array<RobotUpdateRobotResponseAccountsItem>;
-export const RobotUpdateRobotResponseAccountsList = /*@__PURE__*/ S.Array(
-  RobotUpdateRobotResponseAccountsItem,
-) as any as S.Schema<RobotUpdateRobotResponseAccountsList>;
-
-export type RobotUpdateRobotResponseExperimentsItem =
-  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
-export const RobotUpdateRobotResponseExperimentsItem =
-  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
-
-export type RobotUpdateRobotResponseExperimentsList =
-  Array<AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem>;
-export const RobotUpdateRobotResponseExperimentsList = /*@__PURE__*/ S.Array(
-  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem,
-) as any as S.Schema<RobotUpdateRobotResponseExperimentsList>;
-
-export type RobotUpdateRobotResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList =
-  Array<unknown>;
-export const RobotUpdateRobotResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<RobotUpdateRobotResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList>;
-
-export type RobotUpdateRobotResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList =
-  Array<AuthProviderIdentifier>;
-export const RobotUpdateRobotResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList =
-  /*@__PURE__*/ S.Array(
-    AuthProviderIdentifier,
-  ) as any as S.Schema<RobotUpdateRobotResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList>;
-
-export interface RobotUpdateRobotResponseGithubAppInstallationsItemAccount {
-  aiChatEnabled: boolean;
-  appCount: number;
-  createdAt: string;
-  displayName: string | null;
-  environmentVariableEnvironments: RobotUpdateRobotResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList;
-  id: string;
-  isCurrent: boolean;
-  isDisabled: boolean;
-  isFreeAppDevDomainTier: boolean;
-  isSSOEnabled: boolean;
-  lastDeletionAttemptTime: string | null;
-  name: string;
-  observeIngestionPaused: boolean;
-  profileImageUrl: string;
-  pushSecurityEnabled: boolean;
-  requireTwoFactor: boolean;
-  ssoAllowedAuthProviders: RobotUpdateRobotResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList;
-  updatedAt: string;
-  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
-}
-export const RobotUpdateRobotResponseGithubAppInstallationsItemAccount =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      aiChatEnabled: S.Boolean,
-      appCount: S.Number,
-      createdAt: S.String,
-      displayName: S.NullOr(S.String),
-      environmentVariableEnvironments:
-        RobotUpdateRobotResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList,
-      id: S.String,
-      isCurrent: S.Boolean,
-      isDisabled: S.Boolean,
-      isFreeAppDevDomainTier: S.Boolean,
-      isSSOEnabled: S.Boolean,
-      lastDeletionAttemptTime: S.NullOr(S.String),
-      name: S.String,
-      observeIngestionPaused: S.Boolean,
-      profileImageUrl: S.String,
-      pushSecurityEnabled: S.Boolean,
-      requireTwoFactor: S.Boolean,
-      ssoAllowedAuthProviders:
-        RobotUpdateRobotResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList,
-      updatedAt: S.String,
-      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
-    }),
-  ).annotate({
-    identifier: "RobotUpdateRobotResponseGithubAppInstallationsItemAccount",
-  }) as any as S.Schema<RobotUpdateRobotResponseGithubAppInstallationsItemAccount>;
-
-export type RobotUpdateRobotResponseGithubAppInstallationsItemActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-export const RobotUpdateRobotResponseGithubAppInstallationsItemActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-
-export type RobotUpdateRobotResponseGithubAppInstallationsItemMetadata =
-  AccountByIdResponseGithubAppInstallationsItemMetadata;
-export const RobotUpdateRobotResponseGithubAppInstallationsItemMetadata =
-  AccountByIdResponseGithubAppInstallationsItemMetadata;
-
-export interface RobotUpdateRobotResponseGithubAppInstallationsItem {
-  account: RobotUpdateRobotResponseGithubAppInstallationsItemAccount;
-  actor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
-  id: string;
-  installationIdentifier: number;
-  metadata: AccountByIdResponseGithubAppInstallationsItemMetadata;
-}
-export const RobotUpdateRobotResponseGithubAppInstallationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      account: RobotUpdateRobotResponseGithubAppInstallationsItemAccount,
-      actor: S.NullOr(AccessTokenCreateAccessTokenResponseAccessTokenOwner),
-      id: S.String,
-      installationIdentifier: S.Number,
-      metadata: AccountByIdResponseGithubAppInstallationsItemMetadata,
-    }),
-  ).annotate({
-    identifier: "RobotUpdateRobotResponseGithubAppInstallationsItem",
-  }) as any as S.Schema<RobotUpdateRobotResponseGithubAppInstallationsItem>;
-
-export type RobotUpdateRobotResponseGithubAppInstallationsList =
-  Array<RobotUpdateRobotResponseGithubAppInstallationsItem>;
-export const RobotUpdateRobotResponseGithubAppInstallationsList =
-  /*@__PURE__*/ S.Array(
-    RobotUpdateRobotResponseGithubAppInstallationsItem,
-  ) as any as S.Schema<RobotUpdateRobotResponseGithubAppInstallationsList>;
-
-/** Selection set for `robot.updateRobot` (unwrapped from the GraphQL `data` envelope). */
-export interface RobotUpdateRobotResponse {
-  accessTokens: RobotUpdateRobotResponseAccessTokensList;
-  accounts: RobotUpdateRobotResponseAccountsList;
-  created: string;
-  displayName: string;
-  experiments: RobotUpdateRobotResponseExperimentsList;
-  firstName: string | null;
-  githubAppInstallations: RobotUpdateRobotResponseGithubAppInstallationsList;
-  id: string;
-  isExpoAdmin: boolean;
-  isManagedByGitHubApp: boolean;
-  lastDeletionAttemptTime: string | null;
-}
-export const RobotUpdateRobotResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accessTokens: RobotUpdateRobotResponseAccessTokensList,
-    accounts: RobotUpdateRobotResponseAccountsList,
-    created: S.String,
-    displayName: S.String,
-    experiments: RobotUpdateRobotResponseExperimentsList,
-    firstName: S.NullOr(S.String),
-    githubAppInstallations: RobotUpdateRobotResponseGithubAppInstallationsList,
-    id: S.String,
-    isExpoAdmin: S.Boolean,
-    isManagedByGitHubApp: S.Boolean,
-    lastDeletionAttemptTime: S.NullOr(S.String),
-  }).pipe(T.ResponsePath("robot.updateRobot")),
-).annotate({
-  identifier: "RobotUpdateRobotResponse",
-}) as any as S.Schema<RobotUpdateRobotResponse>;
 
 export interface RuntimesByIdRequest {
   /** Runtime ID to use to look up runtime */
@@ -114744,1899 +116490,6 @@ export const StatuspageServiceByServiceNamesResponse = /*@__PURE__*/ S.suspend(
   identifier: "StatuspageServiceByServiceNamesResponse",
 }) as any as S.Schema<StatuspageServiceByServiceNamesResponse>;
 
-export interface SubmissionCancelSubmissionRequest {
-  submissionId: string;
-}
-export const SubmissionCancelSubmissionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    submissionId: S.String,
-  })
-    .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
-    .pipe(
-      T.GraphQLOp({
-        query:
-          "mutation submissionCancelSubmission($submissionId: ID!) {\n  submission {\n    cancelSubmission(submissionId: $submissionId) {\n      activityTimestamp\n      actor {\n        accessTokens {\n          createdAt\n          id\n          lastUsedAt\n          note\n          revokedAt\n          updatedAt\n          visibleTokenPrefix\n        }\n        accounts {\n          aiChatEnabled\n          appCount\n          createdAt\n          displayName\n          environmentVariableEnvironments\n          id\n          isCurrent\n          isDisabled\n          isFreeAppDevDomainTier\n          isSSOEnabled\n          lastDeletionAttemptTime\n          name\n          observeIngestionPaused\n          profileImageUrl\n          pushSecurityEnabled\n          requireTwoFactor\n          ssoAllowedAuthProviders\n          updatedAt\n          userSpecifiedAccountUsage\n        }\n        created\n        displayName\n        experiments {\n          createdAt\n          enabled\n          experiment\n          id\n          updatedAt\n        }\n        firstName\n        id\n        isExpoAdmin\n        lastDeletionAttemptTime\n      }\n      androidConfig {\n        applicationIdentifier\n        releaseStatus\n        rollout\n        track\n      }\n      app {\n        appStoreConnectApp {\n          ascAppIdentifier\n          createdAt\n          id\n          updatedAt\n          webhookEventTypes\n          webhookIdentifier\n        }\n        appStoreConnectWorkflowConnectionStatus\n        assetLimitPerUpdateGroup\n        buildProfiles\n        convexProject {\n          convexProjectIdentifier\n          convexProjectName\n          convexProjectSlug\n          createdAt\n          id\n          updatedAt\n        }\n        description\n        devDomainName {\n          id\n          name\n        }\n        deviceRunSessionTags\n        environmentVariableEnvironments\n        fullName\n        githubBuildTriggers {\n          autoSubmit\n          buildProfile\n          createdAt\n          environment\n          executionBehavior\n          id\n          isActive\n          lastRunAt\n          lastRunErrorCode\n          lastRunErrorMessage\n          lastRunStatus\n          platform\n          sourcePattern\n          submitProfile\n          targetPattern\n          type\n          updatedAt\n        }\n        githubJobRunTriggers {\n          createdAt\n          id\n          isActive\n          jobType\n          lastRunAt\n          lastRunErrorCode\n          lastRunErrorMessage\n          lastRunStatus\n          sourcePattern\n          targetPattern\n          triggerType\n        }\n        githubRepository {\n          createdAt\n          githubRepositoryIdentifier\n          githubRepositoryUrl\n          id\n          lastDeletionAttemptTime\n          nodeIdentifier\n        }\n        githubRepositorySettings {\n          baseDirectory\n          id\n        }\n        icon {\n          originalUrl\n          primaryColor\n          url\n        }\n        iconUrl\n        id\n        insights {\n          hasEventsFromExpoInsightsClientModule\n        }\n        internalDistributionBuildPrivacy\n        isEligibleForObserveLapsedPaidNotification\n        isEligibleForObserveNotice\n        lastDeletionAttemptTime\n        latestActivity\n        logRocketProject {\n          createdAt\n          id\n          logRocketOrgId\n          logRocketProjectSlug\n          updatedAt\n        }\n        name\n        observe {\n          latestExpoSdkVersion\n          totalEventCount\n        }\n        observeIngestionPaused\n        ownerAccount {\n          aiChatEnabled\n          appCount\n          createdAt\n          displayName\n          environmentVariableEnvironments\n          id\n          isCurrent\n          isDisabled\n          isFreeAppDevDomainTier\n          isSSOEnabled\n          lastDeletionAttemptTime\n          name\n          observeIngestionPaused\n          profileImageUrl\n          pushSecurityEnabled\n          requireTwoFactor\n          ssoAllowedAuthProviders\n          updatedAt\n          userSpecifiedAccountUsage\n        }\n        packageName\n        posthogProject {\n          createdAt\n          id\n          posthogHost\n          posthogProjectIdentifier\n          posthogProjectName\n          posthogProjectToken\n          updatedAt\n        }\n        privacy\n        published\n        pushNotifications {\n          id\n        }\n        pushSecurityEnabled\n        resourceClassExperiment\n        scopeKey\n        sdkVersion\n        sentryProject {\n          createdAt\n          id\n          sentryInstallationId\n          sentryProjectId\n          sentryProjectSlug\n          updatedAt\n        }\n        slug\n        suggestedDevDomainName\n        supabaseProject {\n          createdAt\n          id\n          supabaseProjectName\n          supabaseProjectRef\n          supabaseProjectUrl\n          supabaseRegion\n          updatedAt\n        }\n        updated\n        username\n        vexoApp {\n          domain\n          iconUrl\n          id\n          name\n          owner\n          slug\n          vexoIdentifier\n        }\n        workerCustomDomain {\n          createdAt\n          devDomainName\n          hostname\n          id\n          updatedAt\n        }\n        workflowCachingConfig {\n          ccacheEnabled\n          gradleCacheEnabled\n        }\n      }\n      appStoreConnectBuildUpload {\n        appStoreConnectBuild {\n          ascBuildIdentifier\n          buildNumber\n          expirationDate\n          minOsVersion\n          processingState\n          uploadedDate\n        }\n        ascBuildUploadIdentifier\n        buildNumber\n        createdDate\n        uploadState\n        uploadedDate\n        version\n      }\n      archiveUrl\n      canRetry\n      cancelingActor {\n        accessTokens {\n          createdAt\n          id\n          lastUsedAt\n          note\n          revokedAt\n          updatedAt\n          visibleTokenPrefix\n        }\n        accounts {\n          aiChatEnabled\n          appCount\n          createdAt\n          displayName\n          environmentVariableEnvironments\n          id\n          isCurrent\n          isDisabled\n          isFreeAppDevDomainTier\n          isSSOEnabled\n          lastDeletionAttemptTime\n          name\n          observeIngestionPaused\n          profileImageUrl\n          pushSecurityEnabled\n          requireTwoFactor\n          ssoAllowedAuthProviders\n          updatedAt\n          userSpecifiedAccountUsage\n        }\n        created\n        displayName\n        experiments {\n          createdAt\n          enabled\n          experiment\n          id\n          updatedAt\n        }\n        firstName\n        id\n        isExpoAdmin\n        lastDeletionAttemptTime\n      }\n      completedAt\n      createdAt\n      error {\n        errorCode\n        message\n      }\n      id\n      initiatingActor {\n        accessTokens {\n          createdAt\n          id\n          lastUsedAt\n          note\n          revokedAt\n          updatedAt\n          visibleTokenPrefix\n        }\n        accounts {\n          aiChatEnabled\n          appCount\n          createdAt\n          displayName\n          environmentVariableEnvironments\n          id\n          isCurrent\n          isDisabled\n          isFreeAppDevDomainTier\n          isSSOEnabled\n          lastDeletionAttemptTime\n          name\n          observeIngestionPaused\n          profileImageUrl\n          pushSecurityEnabled\n          requireTwoFactor\n          ssoAllowedAuthProviders\n          updatedAt\n          userSpecifiedAccountUsage\n        }\n        created\n        displayName\n        experiments {\n          createdAt\n          enabled\n          experiment\n          id\n          updatedAt\n        }\n        firstName\n        id\n        isExpoAdmin\n        lastDeletionAttemptTime\n      }\n      iosConfig {\n        appleIdUsername\n        ascApiKeyId\n        ascAppIdentifier\n      }\n      jobRun {\n        app {\n          appStoreConnectWorkflowConnectionStatus\n          assetLimitPerUpdateGroup\n          buildProfiles\n          description\n          deviceRunSessionTags\n          environmentVariableEnvironments\n          fullName\n          iconUrl\n          id\n          internalDistributionBuildPrivacy\n          isEligibleForObserveLapsedPaidNotification\n          isEligibleForObserveNotice\n          lastDeletionAttemptTime\n          latestActivity\n          name\n          observeIngestionPaused\n          packageName\n          privacy\n          published\n          pushSecurityEnabled\n          resourceClassExperiment\n          scopeKey\n          sdkVersion\n          slug\n          suggestedDevDomainName\n          updated\n          username\n        }\n        artifacts {\n          contentType\n          createdAt\n          downloadUrl\n          fileSizeBytes\n          filename\n          id\n          metadata\n          name\n          storageType\n          updatedAt\n        }\n        createdAt\n        displayName\n        endedAt\n        enqueuedAt\n        errors {\n          buildPhase\n          docsUrl\n          errorCode\n          message\n        }\n        expiresAt\n        gitCommitHash\n        gitCommitMessage\n        gitRef\n        id\n        initiatingActor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        isWaived\n        logFileUrls\n        maxRunTimeSeconds\n        name\n        priority\n        resourceClassDisplayName\n        sshSession {\n          createdAt\n          id\n          updatedAt\n        }\n        startedAt\n        status\n        updateGroups\n        workflowJob {\n          createdAt\n          environment\n          id\n          key\n          name\n          outputs\n          requiredJobKeys\n          status\n          type\n          updatedAt\n        }\n      }\n      logFiles\n      logsUrl\n      maxRetryTimeMinutes\n      platform\n      priority\n      status\n      submittedBuild {\n        activityTimestamp\n        actor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        app {\n          appStoreConnectWorkflowConnectionStatus\n          assetLimitPerUpdateGroup\n          buildProfiles\n          description\n          deviceRunSessionTags\n          environmentVariableEnvironments\n          fullName\n          iconUrl\n          id\n          internalDistributionBuildPrivacy\n          isEligibleForObserveLapsedPaidNotification\n          isEligibleForObserveNotice\n          lastDeletionAttemptTime\n          latestActivity\n          name\n          observeIngestionPaused\n          packageName\n          privacy\n          published\n          pushSecurityEnabled\n          resourceClassExperiment\n          scopeKey\n          sdkVersion\n          slug\n          suggestedDevDomainName\n          updated\n          username\n        }\n        appBuildVersion\n        appIdentifier\n        appVersion\n        artifacts {\n          applicationArchiveUrl\n          buildArtifactsUrl\n          buildUrl\n          xcodeBuildLogsUrl\n        }\n        buildMode\n        buildProfile\n        cancelingActor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        channel\n        cliVersion\n        completedAt\n        createdAt\n        customNodeVersion\n        customWorkflowName\n        deployment {\n          id\n        }\n        developmentClient\n        distribution\n        embeddedUpdate {\n          channel\n          createdAt\n          id\n          platform\n          runtimeVersion\n          signedAssetUrl\n        }\n        enqueuedAt\n        error {\n          buildPhase\n          docsUrl\n          errorCode\n          message\n        }\n        estimatedWaitTimeLeftSeconds\n        expirationDate\n        fingerprint {\n          buildCount\n          createdAt\n          debugInfoUrl\n          hash\n          id\n          updateCount\n          updatedAt\n        }\n        gitCommitHash\n        gitCommitMessage\n        gitRef\n        id\n        initialQueuePosition\n        initiatingActor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        iosEnterpriseProvisioning\n        isForIosSimulator\n        isGitWorkingTreeDirty\n        isWaived\n        logFileUrls\n        logFiles\n        maxBuildTimeSeconds\n        maxRetryTimeMinutes\n        message\n        metrics {\n          buildDuration\n          buildQueueTime\n          buildWaitTime\n        }\n        platform\n        priority\n        project {\n          description\n          fullName\n          iconUrl\n          id\n          name\n          published\n          slug\n          updated\n          username\n        }\n        projectMetadataFileUrl\n        projectRootDirectory\n        provisioningStartedAt\n        queuePosition\n        reactNativeVersion\n        releaseChannel\n        requiredPackageManager\n        resolvedEnvironment\n        resolvedImage\n        resourceClass\n        resourceClassDisplayName\n        runFromCI\n        runtime {\n          createdAt\n          firstBuildCreatedAt\n          id\n          isFingerprint\n          updatedAt\n          version\n        }\n        runtimeVersion\n        sdkVersion\n        selectedImage\n        sshSession {\n          createdAt\n          id\n          updatedAt\n        }\n        status\n        updateChannel {\n          appId\n          branchMapping\n          buildCount\n          createdAt\n          embeddedUpdateCount\n          id\n          isPaused\n          isProtected\n          lastDeletionAttemptTime\n          name\n          updatedAt\n        }\n        updatedAt\n        waiverType\n        workerStartedAt\n        workflowJob {\n          createdAt\n          environment\n          id\n          key\n          name\n          outputs\n          requiredJobKeys\n          status\n          type\n          updatedAt\n        }\n      }\n      updatedAt\n      workflowJob {\n        allDeviceTestCaseResults {\n          createdAt\n          duration\n          errorMessage\n          id\n          name\n          path\n          properties\n          retryCount\n          status\n          tags\n          updatedAt\n        }\n        approvals {\n          createdAt\n          decision\n          id\n          updatedAt\n        }\n        createdAt\n        credentialsAppleDeviceRegistrationRequest {\n          closedAt\n          id\n        }\n        deviceTestCaseResultAttempts {\n          createdAt\n          duration\n          errorMessage\n          id\n          name\n          path\n          properties\n          retryCount\n          status\n          tags\n          updatedAt\n        }\n        environment\n        errors {\n          message\n          title\n        }\n        id\n        key\n        name\n        outputs\n        requiredJobKeys\n        rolloutUpdateGroup {\n          activityTimestamp\n          assetHostOverride\n          assetMapUrl\n          awaitingCodeSigningInfo\n          branchId\n          createdAt\n          environment\n          expoGoSDKVersion\n          gitCommitHash\n          group\n          id\n          isGitWorkingTreeDirty\n          isRollBackToEmbedded\n          manifestFragment\n          manifestHostOverride\n          manifestPermalink\n          message\n          platform\n          rolloutPercentage\n          runtimeVersion\n          updatedAt\n        }\n        status\n        turtleBuild {\n          activityTimestamp\n          appBuildVersion\n          appIdentifier\n          appVersion\n          buildMode\n          buildProfile\n          channel\n          cliVersion\n          completedAt\n          createdAt\n          customNodeVersion\n          customWorkflowName\n          developmentClient\n          distribution\n          enqueuedAt\n          estimatedWaitTimeLeftSeconds\n          expirationDate\n          gitCommitHash\n          gitCommitMessage\n          gitRef\n          id\n          initialQueuePosition\n          iosEnterpriseProvisioning\n          isForIosSimulator\n          isGitWorkingTreeDirty\n          isWaived\n          logFileUrls\n          logFiles\n          maxBuildTimeSeconds\n          maxRetryTimeMinutes\n          message\n          platform\n          priority\n          projectMetadataFileUrl\n          projectRootDirectory\n          provisioningStartedAt\n          queuePosition\n          reactNativeVersion\n          releaseChannel\n          requiredPackageManager\n          resolvedEnvironment\n          resolvedImage\n          resourceClass\n          resourceClassDisplayName\n          runFromCI\n          runtimeVersion\n          sdkVersion\n          selectedImage\n          status\n          updatedAt\n          waiverType\n          workerStartedAt\n        }\n        turtleJobRun {\n          createdAt\n          displayName\n          endedAt\n          enqueuedAt\n          expiresAt\n          gitCommitHash\n          gitCommitMessage\n          gitRef\n          id\n          isWaived\n          logFileUrls\n          maxRunTimeSeconds\n          name\n          priority\n          resourceClassDisplayName\n          startedAt\n          status\n          updateGroups\n        }\n        type\n        updatedAt\n        workflowRun {\n          activityTimestamp\n          createdAt\n          durationSeconds\n          finalizedAt\n          gitCommitHash\n          gitCommitMessage\n          id\n          inputs\n          name\n          pullRequestNumber\n          requestedGitRef\n          sourceExpiresAt\n          status\n          triggerEventType\n          triggeringLabelName\n          triggeringSchedule\n          updatedAt\n        }\n      }\n    }\n  }\n}",
-        operationName: "submissionCancelSubmission",
-        type: "mutation",
-      }),
-    ),
-).annotate({
-  identifier: "SubmissionCancelSubmissionRequest",
-}) as any as S.Schema<SubmissionCancelSubmissionRequest>;
-
-export type SubmissionCancelSubmissionResponseActorAccessTokensItem =
-  AccountByIdResponseOwnerAccessTokensItem;
-export const SubmissionCancelSubmissionResponseActorAccessTokensItem =
-  AccountByIdResponseOwnerAccessTokensItem;
-
-export type SubmissionCancelSubmissionResponseActorAccessTokensList =
-  Array<AccountByIdResponseOwnerAccessTokensItem>;
-export const SubmissionCancelSubmissionResponseActorAccessTokensList =
-  /*@__PURE__*/ S.Array(
-    AccountByIdResponseOwnerAccessTokensItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseActorAccessTokensList>;
-
-export type SubmissionCancelSubmissionResponseActorAccountsItemEnvironmentVariableEnvironmentsList =
-  Array<unknown>;
-export const SubmissionCancelSubmissionResponseActorAccountsItemEnvironmentVariableEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseActorAccountsItemEnvironmentVariableEnvironmentsList>;
-
-export type SubmissionCancelSubmissionResponseActorAccountsItemSsoAllowedAuthProvidersList =
-  Array<AuthProviderIdentifier>;
-export const SubmissionCancelSubmissionResponseActorAccountsItemSsoAllowedAuthProvidersList =
-  /*@__PURE__*/ S.Array(
-    AuthProviderIdentifier,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseActorAccountsItemSsoAllowedAuthProvidersList>;
-
-export interface SubmissionCancelSubmissionResponseActorAccountsItem {
-  aiChatEnabled: boolean;
-  appCount: number;
-  createdAt: string;
-  displayName: string | null;
-  environmentVariableEnvironments: SubmissionCancelSubmissionResponseActorAccountsItemEnvironmentVariableEnvironmentsList;
-  id: string;
-  isCurrent: boolean;
-  isDisabled: boolean;
-  isFreeAppDevDomainTier: boolean;
-  isSSOEnabled: boolean;
-  lastDeletionAttemptTime: string | null;
-  name: string;
-  observeIngestionPaused: boolean;
-  profileImageUrl: string;
-  pushSecurityEnabled: boolean;
-  requireTwoFactor: boolean;
-  ssoAllowedAuthProviders: SubmissionCancelSubmissionResponseActorAccountsItemSsoAllowedAuthProvidersList;
-  updatedAt: string;
-  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
-}
-export const SubmissionCancelSubmissionResponseActorAccountsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      aiChatEnabled: S.Boolean,
-      appCount: S.Number,
-      createdAt: S.String,
-      displayName: S.NullOr(S.String),
-      environmentVariableEnvironments:
-        SubmissionCancelSubmissionResponseActorAccountsItemEnvironmentVariableEnvironmentsList,
-      id: S.String,
-      isCurrent: S.Boolean,
-      isDisabled: S.Boolean,
-      isFreeAppDevDomainTier: S.Boolean,
-      isSSOEnabled: S.Boolean,
-      lastDeletionAttemptTime: S.NullOr(S.String),
-      name: S.String,
-      observeIngestionPaused: S.Boolean,
-      profileImageUrl: S.String,
-      pushSecurityEnabled: S.Boolean,
-      requireTwoFactor: S.Boolean,
-      ssoAllowedAuthProviders:
-        SubmissionCancelSubmissionResponseActorAccountsItemSsoAllowedAuthProvidersList,
-      updatedAt: S.String,
-      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseActorAccountsItem",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseActorAccountsItem>;
-
-export type SubmissionCancelSubmissionResponseActorAccountsList =
-  Array<SubmissionCancelSubmissionResponseActorAccountsItem>;
-export const SubmissionCancelSubmissionResponseActorAccountsList =
-  /*@__PURE__*/ S.Array(
-    SubmissionCancelSubmissionResponseActorAccountsItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseActorAccountsList>;
-
-export type SubmissionCancelSubmissionResponseActorExperimentsItem =
-  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
-export const SubmissionCancelSubmissionResponseActorExperimentsItem =
-  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
-
-export type SubmissionCancelSubmissionResponseActorExperimentsList =
-  Array<AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem>;
-export const SubmissionCancelSubmissionResponseActorExperimentsList =
-  /*@__PURE__*/ S.Array(
-    AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseActorExperimentsList>;
-
-export interface SubmissionCancelSubmissionResponseActor {
-  accessTokens: SubmissionCancelSubmissionResponseActorAccessTokensList;
-  accounts: SubmissionCancelSubmissionResponseActorAccountsList;
-  created: string;
-  displayName: string;
-  experiments: SubmissionCancelSubmissionResponseActorExperimentsList;
-  firstName: string | null;
-  id: string;
-  isExpoAdmin: boolean;
-  lastDeletionAttemptTime: string | null;
-}
-export const SubmissionCancelSubmissionResponseActor = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      accessTokens: SubmissionCancelSubmissionResponseActorAccessTokensList,
-      accounts: SubmissionCancelSubmissionResponseActorAccountsList,
-      created: S.String,
-      displayName: S.String,
-      experiments: SubmissionCancelSubmissionResponseActorExperimentsList,
-      firstName: S.NullOr(S.String),
-      id: S.String,
-      isExpoAdmin: S.Boolean,
-      lastDeletionAttemptTime: S.NullOr(S.String),
-    }),
-).annotate({
-  identifier: "SubmissionCancelSubmissionResponseActor",
-}) as any as S.Schema<SubmissionCancelSubmissionResponseActor>;
-
-export type SubmissionCancelSubmissionResponseAndroidConfig =
-  BuildsByIdResponseSubmissionsItemAndroidConfig;
-export const SubmissionCancelSubmissionResponseAndroidConfig =
-  BuildsByIdResponseSubmissionsItemAndroidConfig;
-
-export type SubmissionCancelSubmissionResponseAppAppStoreConnectAppWebhookEventTypesList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseAppAppStoreConnectAppWebhookEventTypesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseAppAppStoreConnectAppWebhookEventTypesList>;
-
-export interface SubmissionCancelSubmissionResponseAppAppStoreConnectApp {
-  ascAppIdentifier: string;
-  createdAt: string;
-  id: string;
-  updatedAt: string;
-  webhookEventTypes: SubmissionCancelSubmissionResponseAppAppStoreConnectAppWebhookEventTypesList;
-  webhookIdentifier: string;
-}
-export const SubmissionCancelSubmissionResponseAppAppStoreConnectApp =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      ascAppIdentifier: S.String,
-      createdAt: S.String,
-      id: S.String,
-      updatedAt: S.String,
-      webhookEventTypes:
-        SubmissionCancelSubmissionResponseAppAppStoreConnectAppWebhookEventTypesList,
-      webhookIdentifier: S.String,
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseAppAppStoreConnectApp",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseAppAppStoreConnectApp>;
-
-export type SubmissionCancelSubmissionResponseAppBuildProfilesList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseAppBuildProfilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseAppBuildProfilesList>;
-
-export type SubmissionCancelSubmissionResponseAppConvexProject =
-  AccountByIdResponseConvexTeamConnectionsItemConvexProjectsItem;
-export const SubmissionCancelSubmissionResponseAppConvexProject =
-  AccountByIdResponseConvexTeamConnectionsItemConvexProjectsItem;
-
-export type SubmissionCancelSubmissionResponseAppDevDomainName =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName;
-export const SubmissionCancelSubmissionResponseAppDevDomainName =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName;
-
-export type SubmissionCancelSubmissionResponseAppDeviceRunSessionTagsList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseAppDeviceRunSessionTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseAppDeviceRunSessionTagsList>;
-
-export type SubmissionCancelSubmissionResponseAppEnvironmentVariableEnvironmentsList =
-  Array<unknown>;
-export const SubmissionCancelSubmissionResponseAppEnvironmentVariableEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseAppEnvironmentVariableEnvironmentsList>;
-
-export type SubmissionCancelSubmissionResponseAppGithubBuildTriggersItem =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubBuildTriggersItem;
-export const SubmissionCancelSubmissionResponseAppGithubBuildTriggersItem =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubBuildTriggersItem;
-
-export type SubmissionCancelSubmissionResponseAppGithubBuildTriggersList =
-  Array<AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubBuildTriggersItem>;
-export const SubmissionCancelSubmissionResponseAppGithubBuildTriggersList =
-  /*@__PURE__*/ S.Array(
-    AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubBuildTriggersItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseAppGithubBuildTriggersList>;
-
-export type SubmissionCancelSubmissionResponseAppGithubJobRunTriggersItem =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem;
-export const SubmissionCancelSubmissionResponseAppGithubJobRunTriggersItem =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem;
-
-export type SubmissionCancelSubmissionResponseAppGithubJobRunTriggersList =
-  Array<AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem>;
-export const SubmissionCancelSubmissionResponseAppGithubJobRunTriggersList =
-  /*@__PURE__*/ S.Array(
-    AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseAppGithubJobRunTriggersList>;
-
-export type SubmissionCancelSubmissionResponseAppGithubRepository =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepository;
-export const SubmissionCancelSubmissionResponseAppGithubRepository =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepository;
-
-export type SubmissionCancelSubmissionResponseAppGithubRepositorySettings =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings;
-export const SubmissionCancelSubmissionResponseAppGithubRepositorySettings =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings;
-
-export type SubmissionCancelSubmissionResponseAppIcon =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon;
-export const SubmissionCancelSubmissionResponseAppIcon =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon;
-
-export type SubmissionCancelSubmissionResponseAppInsights =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights;
-export const SubmissionCancelSubmissionResponseAppInsights =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights;
-
-export type SubmissionCancelSubmissionResponseAppLogRocketProject =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject;
-export const SubmissionCancelSubmissionResponseAppLogRocketProject =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject;
-
-export type SubmissionCancelSubmissionResponseAppObserve =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve;
-export const SubmissionCancelSubmissionResponseAppObserve =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve;
-
-export type SubmissionCancelSubmissionResponseAppOwnerAccountEnvironmentVariableEnvironmentsList =
-  Array<unknown>;
-export const SubmissionCancelSubmissionResponseAppOwnerAccountEnvironmentVariableEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseAppOwnerAccountEnvironmentVariableEnvironmentsList>;
-
-export type SubmissionCancelSubmissionResponseAppOwnerAccountSsoAllowedAuthProvidersList =
-  Array<AuthProviderIdentifier>;
-export const SubmissionCancelSubmissionResponseAppOwnerAccountSsoAllowedAuthProvidersList =
-  /*@__PURE__*/ S.Array(
-    AuthProviderIdentifier,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseAppOwnerAccountSsoAllowedAuthProvidersList>;
-
-export interface SubmissionCancelSubmissionResponseAppOwnerAccount {
-  aiChatEnabled: boolean;
-  appCount: number;
-  createdAt: string;
-  displayName: string | null;
-  environmentVariableEnvironments: SubmissionCancelSubmissionResponseAppOwnerAccountEnvironmentVariableEnvironmentsList;
-  id: string;
-  isCurrent: boolean;
-  isDisabled: boolean;
-  isFreeAppDevDomainTier: boolean;
-  isSSOEnabled: boolean;
-  lastDeletionAttemptTime: string | null;
-  name: string;
-  observeIngestionPaused: boolean;
-  profileImageUrl: string;
-  pushSecurityEnabled: boolean;
-  requireTwoFactor: boolean;
-  ssoAllowedAuthProviders: SubmissionCancelSubmissionResponseAppOwnerAccountSsoAllowedAuthProvidersList;
-  updatedAt: string;
-  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
-}
-export const SubmissionCancelSubmissionResponseAppOwnerAccount =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      aiChatEnabled: S.Boolean,
-      appCount: S.Number,
-      createdAt: S.String,
-      displayName: S.NullOr(S.String),
-      environmentVariableEnvironments:
-        SubmissionCancelSubmissionResponseAppOwnerAccountEnvironmentVariableEnvironmentsList,
-      id: S.String,
-      isCurrent: S.Boolean,
-      isDisabled: S.Boolean,
-      isFreeAppDevDomainTier: S.Boolean,
-      isSSOEnabled: S.Boolean,
-      lastDeletionAttemptTime: S.NullOr(S.String),
-      name: S.String,
-      observeIngestionPaused: S.Boolean,
-      profileImageUrl: S.String,
-      pushSecurityEnabled: S.Boolean,
-      requireTwoFactor: S.Boolean,
-      ssoAllowedAuthProviders:
-        SubmissionCancelSubmissionResponseAppOwnerAccountSsoAllowedAuthProvidersList,
-      updatedAt: S.String,
-      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseAppOwnerAccount",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseAppOwnerAccount>;
-
-export type SubmissionCancelSubmissionResponseAppPosthogProject =
-  AccountByIdResponsePosthogOrganizationConnectionPosthogProjectsItem;
-export const SubmissionCancelSubmissionResponseAppPosthogProject =
-  AccountByIdResponsePosthogOrganizationConnectionPosthogProjectsItem;
-
-export type SubmissionCancelSubmissionResponseAppPushNotifications =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-export const SubmissionCancelSubmissionResponseAppPushNotifications =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-
-export type SubmissionCancelSubmissionResponseAppSentryProject =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject;
-export const SubmissionCancelSubmissionResponseAppSentryProject =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject;
-
-export type SubmissionCancelSubmissionResponseAppSupabaseProject =
-  AccountByIdResponseSupabaseConnectionSupabaseProjectsItem;
-export const SubmissionCancelSubmissionResponseAppSupabaseProject =
-  AccountByIdResponseSupabaseConnectionSupabaseProjectsItem;
-
-export type SubmissionCancelSubmissionResponseAppVexoApp =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp;
-export const SubmissionCancelSubmissionResponseAppVexoApp =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp;
-
-export type SubmissionCancelSubmissionResponseAppWorkerCustomDomain =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkerCustomDomain;
-export const SubmissionCancelSubmissionResponseAppWorkerCustomDomain =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkerCustomDomain;
-
-export type SubmissionCancelSubmissionResponseAppWorkflowCachingConfig =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig;
-export const SubmissionCancelSubmissionResponseAppWorkflowCachingConfig =
-  AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig;
-
-export interface SubmissionCancelSubmissionResponseApp {
-  appStoreConnectApp: SubmissionCancelSubmissionResponseAppAppStoreConnectApp | null;
-  appStoreConnectWorkflowConnectionStatus: AppStoreConnectWorkflowConnectionStatus;
-  assetLimitPerUpdateGroup: number;
-  buildProfiles: SubmissionCancelSubmissionResponseAppBuildProfilesList;
-  convexProject: AccountByIdResponseConvexTeamConnectionsItemConvexProjectsItem | null;
-  description: string;
-  devDomainName: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName | null;
-  deviceRunSessionTags: SubmissionCancelSubmissionResponseAppDeviceRunSessionTagsList;
-  environmentVariableEnvironments: SubmissionCancelSubmissionResponseAppEnvironmentVariableEnvironmentsList;
-  fullName: string;
-  githubBuildTriggers: SubmissionCancelSubmissionResponseAppGithubBuildTriggersList;
-  githubJobRunTriggers: SubmissionCancelSubmissionResponseAppGithubJobRunTriggersList;
-  githubRepository: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepository | null;
-  githubRepositorySettings: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings | null;
-  icon: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon | null;
-  iconUrl: string | null;
-  id: string;
-  insights: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights;
-  internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy;
-  isEligibleForObserveLapsedPaidNotification: boolean;
-  isEligibleForObserveNotice: boolean;
-  lastDeletionAttemptTime: string | null;
-  latestActivity: string;
-  logRocketProject: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject | null;
-  name: string;
-  observe: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve;
-  observeIngestionPaused: boolean;
-  ownerAccount: SubmissionCancelSubmissionResponseAppOwnerAccount;
-  packageName: string;
-  posthogProject: AccountByIdResponsePosthogOrganizationConnectionPosthogProjectsItem | null;
-  privacy: string;
-  published: boolean;
-  pushNotifications: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-  pushSecurityEnabled: boolean;
-  resourceClassExperiment: ResourceClassExperiment | null;
-  scopeKey: string;
-  sdkVersion: string;
-  sentryProject: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject | null;
-  slug: string;
-  suggestedDevDomainName: string;
-  supabaseProject: AccountByIdResponseSupabaseConnectionSupabaseProjectsItem | null;
-  updated: string;
-  username: string;
-  vexoApp: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp | null;
-  workerCustomDomain: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkerCustomDomain | null;
-  workflowCachingConfig: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig;
-}
-export const SubmissionCancelSubmissionResponseApp = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      appStoreConnectApp: S.NullOr(
-        SubmissionCancelSubmissionResponseAppAppStoreConnectApp,
-      ),
-      appStoreConnectWorkflowConnectionStatus:
-        AppStoreConnectWorkflowConnectionStatus,
-      assetLimitPerUpdateGroup: S.Number,
-      buildProfiles: SubmissionCancelSubmissionResponseAppBuildProfilesList,
-      convexProject: S.NullOr(
-        AccountByIdResponseConvexTeamConnectionsItemConvexProjectsItem,
-      ),
-      description: S.String,
-      devDomainName: S.NullOr(
-        AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppDevDomainName,
-      ),
-      deviceRunSessionTags:
-        SubmissionCancelSubmissionResponseAppDeviceRunSessionTagsList,
-      environmentVariableEnvironments:
-        SubmissionCancelSubmissionResponseAppEnvironmentVariableEnvironmentsList,
-      fullName: S.String,
-      githubBuildTriggers:
-        SubmissionCancelSubmissionResponseAppGithubBuildTriggersList,
-      githubJobRunTriggers:
-        SubmissionCancelSubmissionResponseAppGithubJobRunTriggersList,
-      githubRepository: S.NullOr(
-        AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepository,
-      ),
-      githubRepositorySettings: S.NullOr(
-        AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubRepositorySettings,
-      ),
-      icon: S.NullOr(
-        AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppIcon,
-      ),
-      iconUrl: S.NullOr(S.String),
-      id: S.String,
-      insights:
-        AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppInsights,
-      internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy,
-      isEligibleForObserveLapsedPaidNotification: S.Boolean,
-      isEligibleForObserveNotice: S.Boolean,
-      lastDeletionAttemptTime: S.NullOr(S.String),
-      latestActivity: S.String,
-      logRocketProject: S.NullOr(
-        AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppLogRocketProject,
-      ),
-      name: S.String,
-      observe:
-        AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppObserve,
-      observeIngestionPaused: S.Boolean,
-      ownerAccount: SubmissionCancelSubmissionResponseAppOwnerAccount,
-      packageName: S.String,
-      posthogProject: S.NullOr(
-        AccountByIdResponsePosthogOrganizationConnectionPosthogProjectsItem,
-      ),
-      privacy: S.String,
-      published: S.Boolean,
-      pushNotifications:
-        AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
-      pushSecurityEnabled: S.Boolean,
-      resourceClassExperiment: S.NullOr(ResourceClassExperiment),
-      scopeKey: S.String,
-      sdkVersion: S.String,
-      sentryProject: S.NullOr(
-        AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppSentryProject,
-      ),
-      slug: S.String,
-      suggestedDevDomainName: S.String,
-      supabaseProject: S.NullOr(
-        AccountByIdResponseSupabaseConnectionSupabaseProjectsItem,
-      ),
-      updated: S.String,
-      username: S.String,
-      vexoApp: S.NullOr(
-        AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppVexoApp,
-      ),
-      workerCustomDomain: S.NullOr(
-        AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkerCustomDomain,
-      ),
-      workflowCachingConfig:
-        AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppWorkflowCachingConfig,
-    }),
-).annotate({
-  identifier: "SubmissionCancelSubmissionResponseApp",
-}) as any as S.Schema<SubmissionCancelSubmissionResponseApp>;
-
-export type AppStoreConnectBuildProcessingState =
-  | "FAILED"
-  | "INVALID"
-  | "PROCESSING"
-  | "VALID";
-export const AppStoreConnectBuildProcessingState = /*@__PURE__*/ S.String;
-
-export interface SubmissionCancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild {
-  ascBuildIdentifier: string;
-  buildNumber: string | null;
-  expirationDate: string | null;
-  minOsVersion: string | null;
-  processingState: AppStoreConnectBuildProcessingState;
-  uploadedDate: string | null;
-}
-export const SubmissionCancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      ascBuildIdentifier: S.String,
-      buildNumber: S.NullOr(S.String),
-      expirationDate: S.NullOr(S.String),
-      minOsVersion: S.NullOr(S.String),
-      processingState: AppStoreConnectBuildProcessingState,
-      uploadedDate: S.NullOr(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "SubmissionCancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild>;
-
-export interface SubmissionCancelSubmissionResponseAppStoreConnectBuildUpload {
-  appStoreConnectBuild: SubmissionCancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild | null;
-  ascBuildUploadIdentifier: string;
-  buildNumber: string | null;
-  createdDate: string | null;
-  uploadState: AppStoreConnectBuildUploadState;
-  uploadedDate: string | null;
-  version: string | null;
-}
-export const SubmissionCancelSubmissionResponseAppStoreConnectBuildUpload =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      appStoreConnectBuild: S.NullOr(
-        SubmissionCancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild,
-      ),
-      ascBuildUploadIdentifier: S.String,
-      buildNumber: S.NullOr(S.String),
-      createdDate: S.NullOr(S.String),
-      uploadState: AppStoreConnectBuildUploadState,
-      uploadedDate: S.NullOr(S.String),
-      version: S.NullOr(S.String),
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseAppStoreConnectBuildUpload",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseAppStoreConnectBuildUpload>;
-
-export type SubmissionCancelSubmissionResponseCancelingActorAccessTokensItem =
-  AccountByIdResponseOwnerAccessTokensItem;
-export const SubmissionCancelSubmissionResponseCancelingActorAccessTokensItem =
-  AccountByIdResponseOwnerAccessTokensItem;
-
-export type SubmissionCancelSubmissionResponseCancelingActorAccessTokensList =
-  Array<AccountByIdResponseOwnerAccessTokensItem>;
-export const SubmissionCancelSubmissionResponseCancelingActorAccessTokensList =
-  /*@__PURE__*/ S.Array(
-    AccountByIdResponseOwnerAccessTokensItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseCancelingActorAccessTokensList>;
-
-export type SubmissionCancelSubmissionResponseCancelingActorAccountsItemEnvironmentVariableEnvironmentsList =
-  Array<unknown>;
-export const SubmissionCancelSubmissionResponseCancelingActorAccountsItemEnvironmentVariableEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseCancelingActorAccountsItemEnvironmentVariableEnvironmentsList>;
-
-export type SubmissionCancelSubmissionResponseCancelingActorAccountsItemSsoAllowedAuthProvidersList =
-  Array<AuthProviderIdentifier>;
-export const SubmissionCancelSubmissionResponseCancelingActorAccountsItemSsoAllowedAuthProvidersList =
-  /*@__PURE__*/ S.Array(
-    AuthProviderIdentifier,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseCancelingActorAccountsItemSsoAllowedAuthProvidersList>;
-
-export interface SubmissionCancelSubmissionResponseCancelingActorAccountsItem {
-  aiChatEnabled: boolean;
-  appCount: number;
-  createdAt: string;
-  displayName: string | null;
-  environmentVariableEnvironments: SubmissionCancelSubmissionResponseCancelingActorAccountsItemEnvironmentVariableEnvironmentsList;
-  id: string;
-  isCurrent: boolean;
-  isDisabled: boolean;
-  isFreeAppDevDomainTier: boolean;
-  isSSOEnabled: boolean;
-  lastDeletionAttemptTime: string | null;
-  name: string;
-  observeIngestionPaused: boolean;
-  profileImageUrl: string;
-  pushSecurityEnabled: boolean;
-  requireTwoFactor: boolean;
-  ssoAllowedAuthProviders: SubmissionCancelSubmissionResponseCancelingActorAccountsItemSsoAllowedAuthProvidersList;
-  updatedAt: string;
-  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
-}
-export const SubmissionCancelSubmissionResponseCancelingActorAccountsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      aiChatEnabled: S.Boolean,
-      appCount: S.Number,
-      createdAt: S.String,
-      displayName: S.NullOr(S.String),
-      environmentVariableEnvironments:
-        SubmissionCancelSubmissionResponseCancelingActorAccountsItemEnvironmentVariableEnvironmentsList,
-      id: S.String,
-      isCurrent: S.Boolean,
-      isDisabled: S.Boolean,
-      isFreeAppDevDomainTier: S.Boolean,
-      isSSOEnabled: S.Boolean,
-      lastDeletionAttemptTime: S.NullOr(S.String),
-      name: S.String,
-      observeIngestionPaused: S.Boolean,
-      profileImageUrl: S.String,
-      pushSecurityEnabled: S.Boolean,
-      requireTwoFactor: S.Boolean,
-      ssoAllowedAuthProviders:
-        SubmissionCancelSubmissionResponseCancelingActorAccountsItemSsoAllowedAuthProvidersList,
-      updatedAt: S.String,
-      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseCancelingActorAccountsItem",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseCancelingActorAccountsItem>;
-
-export type SubmissionCancelSubmissionResponseCancelingActorAccountsList =
-  Array<SubmissionCancelSubmissionResponseCancelingActorAccountsItem>;
-export const SubmissionCancelSubmissionResponseCancelingActorAccountsList =
-  /*@__PURE__*/ S.Array(
-    SubmissionCancelSubmissionResponseCancelingActorAccountsItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseCancelingActorAccountsList>;
-
-export type SubmissionCancelSubmissionResponseCancelingActorExperimentsItem =
-  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
-export const SubmissionCancelSubmissionResponseCancelingActorExperimentsItem =
-  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
-
-export type SubmissionCancelSubmissionResponseCancelingActorExperimentsList =
-  Array<AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem>;
-export const SubmissionCancelSubmissionResponseCancelingActorExperimentsList =
-  /*@__PURE__*/ S.Array(
-    AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseCancelingActorExperimentsList>;
-
-export interface SubmissionCancelSubmissionResponseCancelingActor {
-  accessTokens: SubmissionCancelSubmissionResponseCancelingActorAccessTokensList;
-  accounts: SubmissionCancelSubmissionResponseCancelingActorAccountsList;
-  created: string;
-  displayName: string;
-  experiments: SubmissionCancelSubmissionResponseCancelingActorExperimentsList;
-  firstName: string | null;
-  id: string;
-  isExpoAdmin: boolean;
-  lastDeletionAttemptTime: string | null;
-}
-export const SubmissionCancelSubmissionResponseCancelingActor =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accessTokens:
-        SubmissionCancelSubmissionResponseCancelingActorAccessTokensList,
-      accounts: SubmissionCancelSubmissionResponseCancelingActorAccountsList,
-      created: S.String,
-      displayName: S.String,
-      experiments:
-        SubmissionCancelSubmissionResponseCancelingActorExperimentsList,
-      firstName: S.NullOr(S.String),
-      id: S.String,
-      isExpoAdmin: S.Boolean,
-      lastDeletionAttemptTime: S.NullOr(S.String),
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseCancelingActor",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseCancelingActor>;
-
-export type SubmissionCancelSubmissionResponseError =
-  BuildsByIdResponseSubmissionsItemError;
-export const SubmissionCancelSubmissionResponseError =
-  BuildsByIdResponseSubmissionsItemError;
-
-export type SubmissionCancelSubmissionResponseInitiatingActorAccessTokensItem =
-  AccountByIdResponseOwnerAccessTokensItem;
-export const SubmissionCancelSubmissionResponseInitiatingActorAccessTokensItem =
-  AccountByIdResponseOwnerAccessTokensItem;
-
-export type SubmissionCancelSubmissionResponseInitiatingActorAccessTokensList =
-  Array<AccountByIdResponseOwnerAccessTokensItem>;
-export const SubmissionCancelSubmissionResponseInitiatingActorAccessTokensList =
-  /*@__PURE__*/ S.Array(
-    AccountByIdResponseOwnerAccessTokensItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseInitiatingActorAccessTokensList>;
-
-export type SubmissionCancelSubmissionResponseInitiatingActorAccountsItemEnvironmentVariableEnvironmentsList =
-  Array<unknown>;
-export const SubmissionCancelSubmissionResponseInitiatingActorAccountsItemEnvironmentVariableEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseInitiatingActorAccountsItemEnvironmentVariableEnvironmentsList>;
-
-export type SubmissionCancelSubmissionResponseInitiatingActorAccountsItemSsoAllowedAuthProvidersList =
-  Array<AuthProviderIdentifier>;
-export const SubmissionCancelSubmissionResponseInitiatingActorAccountsItemSsoAllowedAuthProvidersList =
-  /*@__PURE__*/ S.Array(
-    AuthProviderIdentifier,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseInitiatingActorAccountsItemSsoAllowedAuthProvidersList>;
-
-export interface SubmissionCancelSubmissionResponseInitiatingActorAccountsItem {
-  aiChatEnabled: boolean;
-  appCount: number;
-  createdAt: string;
-  displayName: string | null;
-  environmentVariableEnvironments: SubmissionCancelSubmissionResponseInitiatingActorAccountsItemEnvironmentVariableEnvironmentsList;
-  id: string;
-  isCurrent: boolean;
-  isDisabled: boolean;
-  isFreeAppDevDomainTier: boolean;
-  isSSOEnabled: boolean;
-  lastDeletionAttemptTime: string | null;
-  name: string;
-  observeIngestionPaused: boolean;
-  profileImageUrl: string;
-  pushSecurityEnabled: boolean;
-  requireTwoFactor: boolean;
-  ssoAllowedAuthProviders: SubmissionCancelSubmissionResponseInitiatingActorAccountsItemSsoAllowedAuthProvidersList;
-  updatedAt: string;
-  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
-}
-export const SubmissionCancelSubmissionResponseInitiatingActorAccountsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      aiChatEnabled: S.Boolean,
-      appCount: S.Number,
-      createdAt: S.String,
-      displayName: S.NullOr(S.String),
-      environmentVariableEnvironments:
-        SubmissionCancelSubmissionResponseInitiatingActorAccountsItemEnvironmentVariableEnvironmentsList,
-      id: S.String,
-      isCurrent: S.Boolean,
-      isDisabled: S.Boolean,
-      isFreeAppDevDomainTier: S.Boolean,
-      isSSOEnabled: S.Boolean,
-      lastDeletionAttemptTime: S.NullOr(S.String),
-      name: S.String,
-      observeIngestionPaused: S.Boolean,
-      profileImageUrl: S.String,
-      pushSecurityEnabled: S.Boolean,
-      requireTwoFactor: S.Boolean,
-      ssoAllowedAuthProviders:
-        SubmissionCancelSubmissionResponseInitiatingActorAccountsItemSsoAllowedAuthProvidersList,
-      updatedAt: S.String,
-      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseInitiatingActorAccountsItem",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseInitiatingActorAccountsItem>;
-
-export type SubmissionCancelSubmissionResponseInitiatingActorAccountsList =
-  Array<SubmissionCancelSubmissionResponseInitiatingActorAccountsItem>;
-export const SubmissionCancelSubmissionResponseInitiatingActorAccountsList =
-  /*@__PURE__*/ S.Array(
-    SubmissionCancelSubmissionResponseInitiatingActorAccountsItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseInitiatingActorAccountsList>;
-
-export type SubmissionCancelSubmissionResponseInitiatingActorExperimentsItem =
-  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
-export const SubmissionCancelSubmissionResponseInitiatingActorExperimentsItem =
-  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
-
-export type SubmissionCancelSubmissionResponseInitiatingActorExperimentsList =
-  Array<AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem>;
-export const SubmissionCancelSubmissionResponseInitiatingActorExperimentsList =
-  /*@__PURE__*/ S.Array(
-    AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseInitiatingActorExperimentsList>;
-
-export interface SubmissionCancelSubmissionResponseInitiatingActor {
-  accessTokens: SubmissionCancelSubmissionResponseInitiatingActorAccessTokensList;
-  accounts: SubmissionCancelSubmissionResponseInitiatingActorAccountsList;
-  created: string;
-  displayName: string;
-  experiments: SubmissionCancelSubmissionResponseInitiatingActorExperimentsList;
-  firstName: string | null;
-  id: string;
-  isExpoAdmin: boolean;
-  lastDeletionAttemptTime: string | null;
-}
-export const SubmissionCancelSubmissionResponseInitiatingActor =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accessTokens:
-        SubmissionCancelSubmissionResponseInitiatingActorAccessTokensList,
-      accounts: SubmissionCancelSubmissionResponseInitiatingActorAccountsList,
-      created: S.String,
-      displayName: S.String,
-      experiments:
-        SubmissionCancelSubmissionResponseInitiatingActorExperimentsList,
-      firstName: S.NullOr(S.String),
-      id: S.String,
-      isExpoAdmin: S.Boolean,
-      lastDeletionAttemptTime: S.NullOr(S.String),
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseInitiatingActor",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseInitiatingActor>;
-
-export type SubmissionCancelSubmissionResponseIosConfig =
-  BuildsByIdResponseSubmissionsItemIosConfig;
-export const SubmissionCancelSubmissionResponseIosConfig =
-  BuildsByIdResponseSubmissionsItemIosConfig;
-
-export type SubmissionCancelSubmissionResponseJobRunAppBuildProfilesList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseJobRunAppBuildProfilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseJobRunAppBuildProfilesList>;
-
-export type SubmissionCancelSubmissionResponseJobRunAppDeviceRunSessionTagsList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseJobRunAppDeviceRunSessionTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseJobRunAppDeviceRunSessionTagsList>;
-
-export type SubmissionCancelSubmissionResponseJobRunAppEnvironmentVariableEnvironmentsList =
-  Array<unknown>;
-export const SubmissionCancelSubmissionResponseJobRunAppEnvironmentVariableEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseJobRunAppEnvironmentVariableEnvironmentsList>;
-
-export interface SubmissionCancelSubmissionResponseJobRunApp {
-  appStoreConnectWorkflowConnectionStatus: AppStoreConnectWorkflowConnectionStatus;
-  assetLimitPerUpdateGroup: number;
-  buildProfiles: SubmissionCancelSubmissionResponseJobRunAppBuildProfilesList;
-  description: string;
-  deviceRunSessionTags: SubmissionCancelSubmissionResponseJobRunAppDeviceRunSessionTagsList;
-  environmentVariableEnvironments: SubmissionCancelSubmissionResponseJobRunAppEnvironmentVariableEnvironmentsList;
-  fullName: string;
-  iconUrl: string | null;
-  id: string;
-  internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy;
-  isEligibleForObserveLapsedPaidNotification: boolean;
-  isEligibleForObserveNotice: boolean;
-  lastDeletionAttemptTime: string | null;
-  latestActivity: string;
-  name: string;
-  observeIngestionPaused: boolean;
-  packageName: string;
-  privacy: string;
-  published: boolean;
-  pushSecurityEnabled: boolean;
-  resourceClassExperiment: ResourceClassExperiment | null;
-  scopeKey: string;
-  sdkVersion: string;
-  slug: string;
-  suggestedDevDomainName: string;
-  updated: string;
-  username: string;
-}
-export const SubmissionCancelSubmissionResponseJobRunApp =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      appStoreConnectWorkflowConnectionStatus:
-        AppStoreConnectWorkflowConnectionStatus,
-      assetLimitPerUpdateGroup: S.Number,
-      buildProfiles:
-        SubmissionCancelSubmissionResponseJobRunAppBuildProfilesList,
-      description: S.String,
-      deviceRunSessionTags:
-        SubmissionCancelSubmissionResponseJobRunAppDeviceRunSessionTagsList,
-      environmentVariableEnvironments:
-        SubmissionCancelSubmissionResponseJobRunAppEnvironmentVariableEnvironmentsList,
-      fullName: S.String,
-      iconUrl: S.NullOr(S.String),
-      id: S.String,
-      internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy,
-      isEligibleForObserveLapsedPaidNotification: S.Boolean,
-      isEligibleForObserveNotice: S.Boolean,
-      lastDeletionAttemptTime: S.NullOr(S.String),
-      latestActivity: S.String,
-      name: S.String,
-      observeIngestionPaused: S.Boolean,
-      packageName: S.String,
-      privacy: S.String,
-      published: S.Boolean,
-      pushSecurityEnabled: S.Boolean,
-      resourceClassExperiment: S.NullOr(ResourceClassExperiment),
-      scopeKey: S.String,
-      sdkVersion: S.String,
-      slug: S.String,
-      suggestedDevDomainName: S.String,
-      updated: S.String,
-      username: S.String,
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseJobRunApp",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseJobRunApp>;
-
-export type SubmissionCancelSubmissionResponseJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
-export const SubmissionCancelSubmissionResponseJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
-
-export type SubmissionCancelSubmissionResponseJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
-export const SubmissionCancelSubmissionResponseJobRunArtifactsList =
-  /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseJobRunArtifactsList>;
-
-export type SubmissionCancelSubmissionResponseJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
-export const SubmissionCancelSubmissionResponseJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
-
-export type SubmissionCancelSubmissionResponseJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
-export const SubmissionCancelSubmissionResponseJobRunErrorsList =
-  /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseJobRunErrorsList>;
-
-export type SubmissionCancelSubmissionResponseJobRunInitiatingActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-export const SubmissionCancelSubmissionResponseJobRunInitiatingActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-
-export type SubmissionCancelSubmissionResponseJobRunLogFileUrlsList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseJobRunLogFileUrlsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseJobRunLogFileUrlsList>;
-
-export type SubmissionCancelSubmissionResponseJobRunSshSession =
-  BuildResponseCancelSshSession;
-export const SubmissionCancelSubmissionResponseJobRunSshSession =
-  BuildResponseCancelSshSession;
-
-export type SubmissionCancelSubmissionResponseJobRunUpdateGroupsItemList =
-  Array<unknown>;
-export const SubmissionCancelSubmissionResponseJobRunUpdateGroupsItemList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseJobRunUpdateGroupsItemList>;
-
-export type SubmissionCancelSubmissionResponseJobRunUpdateGroupsList =
-  Array<SubmissionCancelSubmissionResponseJobRunUpdateGroupsItemList>;
-export const SubmissionCancelSubmissionResponseJobRunUpdateGroupsList =
-  /*@__PURE__*/ S.Array(
-    SubmissionCancelSubmissionResponseJobRunUpdateGroupsItemList,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseJobRunUpdateGroupsList>;
-
-export type SubmissionCancelSubmissionResponseJobRunWorkflowJobRequiredJobKeysList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseJobRunWorkflowJobRequiredJobKeysList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseJobRunWorkflowJobRequiredJobKeysList>;
-
-export interface SubmissionCancelSubmissionResponseJobRunWorkflowJob {
-  createdAt: string;
-  environment: string | null;
-  id: string;
-  key: string;
-  name: string;
-  outputs: unknown;
-  requiredJobKeys: SubmissionCancelSubmissionResponseJobRunWorkflowJobRequiredJobKeysList;
-  status: WorkflowJobStatus;
-  type: WorkflowJobType;
-  updatedAt: string;
-}
-export const SubmissionCancelSubmissionResponseJobRunWorkflowJob =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdAt: S.String,
-      environment: S.NullOr(S.String),
-      id: S.String,
-      key: S.String,
-      name: S.String,
-      outputs: S.Unknown,
-      requiredJobKeys:
-        SubmissionCancelSubmissionResponseJobRunWorkflowJobRequiredJobKeysList,
-      status: WorkflowJobStatus,
-      type: WorkflowJobType,
-      updatedAt: S.String,
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseJobRunWorkflowJob",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseJobRunWorkflowJob>;
-
-export interface SubmissionCancelSubmissionResponseJobRun {
-  app: SubmissionCancelSubmissionResponseJobRunApp;
-  artifacts: SubmissionCancelSubmissionResponseJobRunArtifactsList;
-  createdAt: string;
-  displayName: string | null;
-  endedAt: string | null;
-  enqueuedAt: string | null;
-  errors: SubmissionCancelSubmissionResponseJobRunErrorsList;
-  expiresAt: string;
-  gitCommitHash: string | null;
-  gitCommitMessage: string | null;
-  gitRef: string | null;
-  id: string;
-  initiatingActor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
-  isWaived: boolean;
-  logFileUrls: SubmissionCancelSubmissionResponseJobRunLogFileUrlsList;
-  maxRunTimeSeconds: number;
-  name: string;
-  priority: JobRunPriority;
-  resourceClassDisplayName: string;
-  sshSession: BuildResponseCancelSshSession | null;
-  startedAt: string | null;
-  status: JobRunStatus;
-  updateGroups: SubmissionCancelSubmissionResponseJobRunUpdateGroupsList;
-  workflowJob: SubmissionCancelSubmissionResponseJobRunWorkflowJob | null;
-}
-export const SubmissionCancelSubmissionResponseJobRun = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      app: SubmissionCancelSubmissionResponseJobRunApp,
-      artifacts: SubmissionCancelSubmissionResponseJobRunArtifactsList,
-      createdAt: S.String,
-      displayName: S.NullOr(S.String),
-      endedAt: S.NullOr(S.String),
-      enqueuedAt: S.NullOr(S.String),
-      errors: SubmissionCancelSubmissionResponseJobRunErrorsList,
-      expiresAt: S.String,
-      gitCommitHash: S.NullOr(S.String),
-      gitCommitMessage: S.NullOr(S.String),
-      gitRef: S.NullOr(S.String),
-      id: S.String,
-      initiatingActor: S.NullOr(
-        AccessTokenCreateAccessTokenResponseAccessTokenOwner,
-      ),
-      isWaived: S.Boolean,
-      logFileUrls: SubmissionCancelSubmissionResponseJobRunLogFileUrlsList,
-      maxRunTimeSeconds: S.Number,
-      name: S.String,
-      priority: JobRunPriority,
-      resourceClassDisplayName: S.String,
-      sshSession: S.NullOr(BuildResponseCancelSshSession),
-      startedAt: S.NullOr(S.String),
-      status: JobRunStatus,
-      updateGroups: SubmissionCancelSubmissionResponseJobRunUpdateGroupsList,
-      workflowJob: S.NullOr(
-        SubmissionCancelSubmissionResponseJobRunWorkflowJob,
-      ),
-    }),
-).annotate({
-  identifier: "SubmissionCancelSubmissionResponseJobRun",
-}) as any as S.Schema<SubmissionCancelSubmissionResponseJobRun>;
-
-export type SubmissionCancelSubmissionResponseLogFilesList = Array<string>;
-export const SubmissionCancelSubmissionResponseLogFilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseLogFilesList>;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-export const SubmissionCancelSubmissionResponseSubmittedBuildActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildAppBuildProfilesList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseSubmittedBuildAppBuildProfilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseSubmittedBuildAppBuildProfilesList>;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildAppDeviceRunSessionTagsList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseSubmittedBuildAppDeviceRunSessionTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseSubmittedBuildAppDeviceRunSessionTagsList>;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildAppEnvironmentVariableEnvironmentsList =
-  Array<unknown>;
-export const SubmissionCancelSubmissionResponseSubmittedBuildAppEnvironmentVariableEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseSubmittedBuildAppEnvironmentVariableEnvironmentsList>;
-
-export interface SubmissionCancelSubmissionResponseSubmittedBuildApp {
-  appStoreConnectWorkflowConnectionStatus: AppStoreConnectWorkflowConnectionStatus;
-  assetLimitPerUpdateGroup: number;
-  buildProfiles: SubmissionCancelSubmissionResponseSubmittedBuildAppBuildProfilesList;
-  description: string;
-  deviceRunSessionTags: SubmissionCancelSubmissionResponseSubmittedBuildAppDeviceRunSessionTagsList;
-  environmentVariableEnvironments: SubmissionCancelSubmissionResponseSubmittedBuildAppEnvironmentVariableEnvironmentsList;
-  fullName: string;
-  iconUrl: string | null;
-  id: string;
-  internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy;
-  isEligibleForObserveLapsedPaidNotification: boolean;
-  isEligibleForObserveNotice: boolean;
-  lastDeletionAttemptTime: string | null;
-  latestActivity: string;
-  name: string;
-  observeIngestionPaused: boolean;
-  packageName: string;
-  privacy: string;
-  published: boolean;
-  pushSecurityEnabled: boolean;
-  resourceClassExperiment: ResourceClassExperiment | null;
-  scopeKey: string;
-  sdkVersion: string;
-  slug: string;
-  suggestedDevDomainName: string;
-  updated: string;
-  username: string;
-}
-export const SubmissionCancelSubmissionResponseSubmittedBuildApp =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      appStoreConnectWorkflowConnectionStatus:
-        AppStoreConnectWorkflowConnectionStatus,
-      assetLimitPerUpdateGroup: S.Number,
-      buildProfiles:
-        SubmissionCancelSubmissionResponseSubmittedBuildAppBuildProfilesList,
-      description: S.String,
-      deviceRunSessionTags:
-        SubmissionCancelSubmissionResponseSubmittedBuildAppDeviceRunSessionTagsList,
-      environmentVariableEnvironments:
-        SubmissionCancelSubmissionResponseSubmittedBuildAppEnvironmentVariableEnvironmentsList,
-      fullName: S.String,
-      iconUrl: S.NullOr(S.String),
-      id: S.String,
-      internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy,
-      isEligibleForObserveLapsedPaidNotification: S.Boolean,
-      isEligibleForObserveNotice: S.Boolean,
-      lastDeletionAttemptTime: S.NullOr(S.String),
-      latestActivity: S.String,
-      name: S.String,
-      observeIngestionPaused: S.Boolean,
-      packageName: S.String,
-      privacy: S.String,
-      published: S.Boolean,
-      pushSecurityEnabled: S.Boolean,
-      resourceClassExperiment: S.NullOr(ResourceClassExperiment),
-      scopeKey: S.String,
-      sdkVersion: S.String,
-      slug: S.String,
-      suggestedDevDomainName: S.String,
-      updated: S.String,
-      username: S.String,
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseSubmittedBuildApp",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseSubmittedBuildApp>;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildArtifacts =
-  BuildResponseCancelArtifacts;
-export const SubmissionCancelSubmissionResponseSubmittedBuildArtifacts =
-  BuildResponseCancelArtifacts;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildCancelingActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-export const SubmissionCancelSubmissionResponseSubmittedBuildCancelingActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildDeployment =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-export const SubmissionCancelSubmissionResponseSubmittedBuildDeployment =
-  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildEmbeddedUpdate =
-  BuildResponseCancelEmbeddedUpdate;
-export const SubmissionCancelSubmissionResponseSubmittedBuildEmbeddedUpdate =
-  BuildResponseCancelEmbeddedUpdate;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildError =
-  BuildResponseCancelError;
-export const SubmissionCancelSubmissionResponseSubmittedBuildError =
-  BuildResponseCancelError;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildFingerprint =
-  BuildResponseCancelFingerprint;
-export const SubmissionCancelSubmissionResponseSubmittedBuildFingerprint =
-  BuildResponseCancelFingerprint;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildInitiatingActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-export const SubmissionCancelSubmissionResponseSubmittedBuildInitiatingActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildLogFileUrlsList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseSubmittedBuildLogFileUrlsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseSubmittedBuildLogFileUrlsList>;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildLogFilesList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseSubmittedBuildLogFilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseSubmittedBuildLogFilesList>;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildMetrics =
-  BuildResponseCancelMetrics;
-export const SubmissionCancelSubmissionResponseSubmittedBuildMetrics =
-  BuildResponseCancelMetrics;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildProject =
-  BuildResponseCancelProject;
-export const SubmissionCancelSubmissionResponseSubmittedBuildProject =
-  BuildResponseCancelProject;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildRuntime =
-  BuildResponseCancelRuntime;
-export const SubmissionCancelSubmissionResponseSubmittedBuildRuntime =
-  BuildResponseCancelRuntime;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildSshSession =
-  BuildResponseCancelSshSession;
-export const SubmissionCancelSubmissionResponseSubmittedBuildSshSession =
-  BuildResponseCancelSshSession;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildUpdateChannel =
-  BuildResponseCancelUpdateChannel;
-export const SubmissionCancelSubmissionResponseSubmittedBuildUpdateChannel =
-  BuildResponseCancelUpdateChannel;
-
-export type SubmissionCancelSubmissionResponseSubmittedBuildWorkflowJobRequiredJobKeysList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseSubmittedBuildWorkflowJobRequiredJobKeysList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseSubmittedBuildWorkflowJobRequiredJobKeysList>;
-
-export interface SubmissionCancelSubmissionResponseSubmittedBuildWorkflowJob {
-  createdAt: string;
-  environment: string | null;
-  id: string;
-  key: string;
-  name: string;
-  outputs: unknown;
-  requiredJobKeys: SubmissionCancelSubmissionResponseSubmittedBuildWorkflowJobRequiredJobKeysList;
-  status: WorkflowJobStatus;
-  type: WorkflowJobType;
-  updatedAt: string;
-}
-export const SubmissionCancelSubmissionResponseSubmittedBuildWorkflowJob =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdAt: S.String,
-      environment: S.NullOr(S.String),
-      id: S.String,
-      key: S.String,
-      name: S.String,
-      outputs: S.Unknown,
-      requiredJobKeys:
-        SubmissionCancelSubmissionResponseSubmittedBuildWorkflowJobRequiredJobKeysList,
-      status: WorkflowJobStatus,
-      type: WorkflowJobType,
-      updatedAt: S.String,
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseSubmittedBuildWorkflowJob",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseSubmittedBuildWorkflowJob>;
-
-export interface SubmissionCancelSubmissionResponseSubmittedBuild {
-  activityTimestamp: string;
-  actor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
-  app: SubmissionCancelSubmissionResponseSubmittedBuildApp;
-  appBuildVersion: string | null;
-  appIdentifier: string | null;
-  appVersion: string | null;
-  artifacts: BuildResponseCancelArtifacts | null;
-  buildMode: BuildMode | null;
-  buildProfile: string | null;
-  cancelingActor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
-  channel: string | null;
-  cliVersion: string | null;
-  completedAt: string | null;
-  createdAt: string;
-  customNodeVersion: string | null;
-  customWorkflowName: string | null;
-  deployment: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem | null;
-  developmentClient: boolean | null;
-  distribution: DistributionType | null;
-  embeddedUpdate: BuildResponseCancelEmbeddedUpdate | null;
-  enqueuedAt: string | null;
-  error: BuildResponseCancelError | null;
-  estimatedWaitTimeLeftSeconds: number | null;
-  expirationDate: string | null;
-  fingerprint: BuildResponseCancelFingerprint | null;
-  gitCommitHash: string | null;
-  gitCommitMessage: string | null;
-  gitRef: string | null;
-  id: string;
-  initialQueuePosition: number | null;
-  initiatingActor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
-  iosEnterpriseProvisioning: BuildIosEnterpriseProvisioning | null;
-  isForIosSimulator: boolean;
-  isGitWorkingTreeDirty: boolean | null;
-  isWaived: boolean;
-  logFileUrls: SubmissionCancelSubmissionResponseSubmittedBuildLogFileUrlsList;
-  logFiles: SubmissionCancelSubmissionResponseSubmittedBuildLogFilesList;
-  maxBuildTimeSeconds: number;
-  maxRetryTimeMinutes: number | null;
-  message: string | null;
-  metrics: BuildResponseCancelMetrics | null;
-  platform: AppPlatform;
-  priority: BuildPriority;
-  project: BuildResponseCancelProject;
-  projectMetadataFileUrl: string | null;
-  projectRootDirectory: string | null;
-  provisioningStartedAt: string | null;
-  queuePosition: number | null;
-  reactNativeVersion: string | null;
-  releaseChannel: string | null;
-  requiredPackageManager: string | null;
-  resolvedEnvironment: unknown | null;
-  resolvedImage: string | null;
-  resourceClass: BuildResourceClass;
-  resourceClassDisplayName: string;
-  runFromCI: boolean | null;
-  runtime: BuildResponseCancelRuntime | null;
-  runtimeVersion: string | null;
-  sdkVersion: string | null;
-  selectedImage: string | null;
-  sshSession: BuildResponseCancelSshSession | null;
-  status: BuildStatus;
-  updateChannel: BuildResponseCancelUpdateChannel | null;
-  updatedAt: string;
-  waiverType: EASBuildWaiverType | null;
-  workerStartedAt: string | null;
-  workflowJob: SubmissionCancelSubmissionResponseSubmittedBuildWorkflowJob | null;
-}
-export const SubmissionCancelSubmissionResponseSubmittedBuild =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      activityTimestamp: S.String,
-      actor: S.NullOr(AccessTokenCreateAccessTokenResponseAccessTokenOwner),
-      app: SubmissionCancelSubmissionResponseSubmittedBuildApp,
-      appBuildVersion: S.NullOr(S.String),
-      appIdentifier: S.NullOr(S.String),
-      appVersion: S.NullOr(S.String),
-      artifacts: S.NullOr(BuildResponseCancelArtifacts),
-      buildMode: S.NullOr(BuildMode),
-      buildProfile: S.NullOr(S.String),
-      cancelingActor: S.NullOr(
-        AccessTokenCreateAccessTokenResponseAccessTokenOwner,
-      ),
-      channel: S.NullOr(S.String),
-      cliVersion: S.NullOr(S.String),
-      completedAt: S.NullOr(S.String),
-      createdAt: S.String,
-      customNodeVersion: S.NullOr(S.String),
-      customWorkflowName: S.NullOr(S.String),
-      deployment: S.NullOr(
-        AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
-      ),
-      developmentClient: S.NullOr(S.Boolean),
-      distribution: S.NullOr(DistributionType),
-      embeddedUpdate: S.NullOr(BuildResponseCancelEmbeddedUpdate),
-      enqueuedAt: S.NullOr(S.String),
-      error: S.NullOr(BuildResponseCancelError),
-      estimatedWaitTimeLeftSeconds: S.NullOr(S.Number),
-      expirationDate: S.NullOr(S.String),
-      fingerprint: S.NullOr(BuildResponseCancelFingerprint),
-      gitCommitHash: S.NullOr(S.String),
-      gitCommitMessage: S.NullOr(S.String),
-      gitRef: S.NullOr(S.String),
-      id: S.String,
-      initialQueuePosition: S.NullOr(S.Number),
-      initiatingActor: S.NullOr(
-        AccessTokenCreateAccessTokenResponseAccessTokenOwner,
-      ),
-      iosEnterpriseProvisioning: S.NullOr(BuildIosEnterpriseProvisioning),
-      isForIosSimulator: S.Boolean,
-      isGitWorkingTreeDirty: S.NullOr(S.Boolean),
-      isWaived: S.Boolean,
-      logFileUrls:
-        SubmissionCancelSubmissionResponseSubmittedBuildLogFileUrlsList,
-      logFiles: SubmissionCancelSubmissionResponseSubmittedBuildLogFilesList,
-      maxBuildTimeSeconds: S.Number,
-      maxRetryTimeMinutes: S.NullOr(S.Number),
-      message: S.NullOr(S.String),
-      metrics: S.NullOr(BuildResponseCancelMetrics),
-      platform: AppPlatform,
-      priority: BuildPriority,
-      project: BuildResponseCancelProject,
-      projectMetadataFileUrl: S.NullOr(S.String),
-      projectRootDirectory: S.NullOr(S.String),
-      provisioningStartedAt: S.NullOr(S.String),
-      queuePosition: S.NullOr(S.Number),
-      reactNativeVersion: S.NullOr(S.String),
-      releaseChannel: S.NullOr(S.String),
-      requiredPackageManager: S.NullOr(S.String),
-      resolvedEnvironment: S.NullOr(S.Unknown),
-      resolvedImage: S.NullOr(S.String),
-      resourceClass: BuildResourceClass,
-      resourceClassDisplayName: S.String,
-      runFromCI: S.NullOr(S.Boolean),
-      runtime: S.NullOr(BuildResponseCancelRuntime),
-      runtimeVersion: S.NullOr(S.String),
-      sdkVersion: S.NullOr(S.String),
-      selectedImage: S.NullOr(S.String),
-      sshSession: S.NullOr(BuildResponseCancelSshSession),
-      status: BuildStatus,
-      updateChannel: S.NullOr(BuildResponseCancelUpdateChannel),
-      updatedAt: S.String,
-      waiverType: S.NullOr(EASBuildWaiverType),
-      workerStartedAt: S.NullOr(S.String),
-      workflowJob: S.NullOr(
-        SubmissionCancelSubmissionResponseSubmittedBuildWorkflowJob,
-      ),
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseSubmittedBuild",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseSubmittedBuild>;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItemTagsList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItemTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItemTagsList>;
-
-export interface SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItem {
-  createdAt: string;
-  duration: number | null;
-  errorMessage: string | null;
-  id: string;
-  name: string;
-  path: string;
-  properties: unknown | null;
-  retryCount: number | null;
-  status: WorkflowDeviceTestCaseStatus;
-  tags: SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItemTagsList | null;
-  updatedAt: string;
-}
-export const SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdAt: S.String,
-      duration: S.NullOr(S.Number),
-      errorMessage: S.NullOr(S.String),
-      id: S.String,
-      name: S.String,
-      path: S.String,
-      properties: S.NullOr(S.Unknown),
-      retryCount: S.NullOr(S.Number),
-      status: WorkflowDeviceTestCaseStatus,
-      tags: S.NullOr(
-        SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItemTagsList,
-      ),
-      updatedAt: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItem",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItem>;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsList =
-  Array<SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItem>;
-export const SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsList =
-  /*@__PURE__*/ S.Array(
-    SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsList>;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobApprovalsItem =
-  AppleDeviceRegistrationRequestByIdResponseWorkflowJobApprovalsItem;
-export const SubmissionCancelSubmissionResponseWorkflowJobApprovalsItem =
-  AppleDeviceRegistrationRequestByIdResponseWorkflowJobApprovalsItem;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobApprovalsList =
-  Array<AppleDeviceRegistrationRequestByIdResponseWorkflowJobApprovalsItem>;
-export const SubmissionCancelSubmissionResponseWorkflowJobApprovalsList =
-  /*@__PURE__*/ S.Array(
-    AppleDeviceRegistrationRequestByIdResponseWorkflowJobApprovalsItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobApprovalsList>;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobCredentialsAppleDeviceRegistrationRequest =
-  BuildsByIdResponseWorkflowJobCredentialsAppleDeviceRegistrationRequest;
-export const SubmissionCancelSubmissionResponseWorkflowJobCredentialsAppleDeviceRegistrationRequest =
-  BuildsByIdResponseWorkflowJobCredentialsAppleDeviceRegistrationRequest;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItemTagsList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItemTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItemTagsList>;
-
-export interface SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItem {
-  createdAt: string;
-  duration: number | null;
-  errorMessage: string | null;
-  id: string;
-  name: string;
-  path: string;
-  properties: unknown | null;
-  retryCount: number | null;
-  status: WorkflowDeviceTestCaseStatus;
-  tags: SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItemTagsList | null;
-  updatedAt: string;
-}
-export const SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdAt: S.String,
-      duration: S.NullOr(S.Number),
-      errorMessage: S.NullOr(S.String),
-      id: S.String,
-      name: S.String,
-      path: S.String,
-      properties: S.NullOr(S.Unknown),
-      retryCount: S.NullOr(S.Number),
-      status: WorkflowDeviceTestCaseStatus,
-      tags: S.NullOr(
-        SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItemTagsList,
-      ),
-      updatedAt: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItem",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItem>;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsList =
-  Array<SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItem>;
-export const SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsList =
-  /*@__PURE__*/ S.Array(
-    SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsList>;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobErrorsItem =
-  AppleDeviceRegistrationRequestByIdResponseWorkflowJobErrorsItem;
-export const SubmissionCancelSubmissionResponseWorkflowJobErrorsItem =
-  AppleDeviceRegistrationRequestByIdResponseWorkflowJobErrorsItem;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobErrorsList =
-  Array<AppleDeviceRegistrationRequestByIdResponseWorkflowJobErrorsItem>;
-export const SubmissionCancelSubmissionResponseWorkflowJobErrorsList =
-  /*@__PURE__*/ S.Array(
-    AppleDeviceRegistrationRequestByIdResponseWorkflowJobErrorsItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobErrorsList>;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobRequiredJobKeysList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseWorkflowJobRequiredJobKeysList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobRequiredJobKeysList>;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobRolloutUpdateGroupItem =
-  AppleDeviceRegistrationRequestByIdResponseWorkflowJobRolloutUpdateGroupItem;
-export const SubmissionCancelSubmissionResponseWorkflowJobRolloutUpdateGroupItem =
-  AppleDeviceRegistrationRequestByIdResponseWorkflowJobRolloutUpdateGroupItem;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobRolloutUpdateGroupList =
-  Array<AppleDeviceRegistrationRequestByIdResponseWorkflowJobRolloutUpdateGroupItem>;
-export const SubmissionCancelSubmissionResponseWorkflowJobRolloutUpdateGroupList =
-  /*@__PURE__*/ S.Array(
-    AppleDeviceRegistrationRequestByIdResponseWorkflowJobRolloutUpdateGroupItem,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobRolloutUpdateGroupList>;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobTurtleBuildLogFileUrlsList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseWorkflowJobTurtleBuildLogFileUrlsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobTurtleBuildLogFileUrlsList>;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobTurtleBuildLogFilesList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseWorkflowJobTurtleBuildLogFilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobTurtleBuildLogFilesList>;
-
-export interface SubmissionCancelSubmissionResponseWorkflowJobTurtleBuild {
-  activityTimestamp: string;
-  appBuildVersion: string | null;
-  appIdentifier: string | null;
-  appVersion: string | null;
-  buildMode: BuildMode | null;
-  buildProfile: string | null;
-  channel: string | null;
-  cliVersion: string | null;
-  completedAt: string | null;
-  createdAt: string;
-  customNodeVersion: string | null;
-  customWorkflowName: string | null;
-  developmentClient: boolean | null;
-  distribution: DistributionType | null;
-  enqueuedAt: string | null;
-  estimatedWaitTimeLeftSeconds: number | null;
-  expirationDate: string | null;
-  gitCommitHash: string | null;
-  gitCommitMessage: string | null;
-  gitRef: string | null;
-  id: string;
-  initialQueuePosition: number | null;
-  iosEnterpriseProvisioning: BuildIosEnterpriseProvisioning | null;
-  isForIosSimulator: boolean;
-  isGitWorkingTreeDirty: boolean | null;
-  isWaived: boolean;
-  logFileUrls: SubmissionCancelSubmissionResponseWorkflowJobTurtleBuildLogFileUrlsList;
-  logFiles: SubmissionCancelSubmissionResponseWorkflowJobTurtleBuildLogFilesList;
-  maxBuildTimeSeconds: number;
-  maxRetryTimeMinutes: number | null;
-  message: string | null;
-  platform: AppPlatform;
-  priority: BuildPriority;
-  projectMetadataFileUrl: string | null;
-  projectRootDirectory: string | null;
-  provisioningStartedAt: string | null;
-  queuePosition: number | null;
-  reactNativeVersion: string | null;
-  releaseChannel: string | null;
-  requiredPackageManager: string | null;
-  resolvedEnvironment: unknown | null;
-  resolvedImage: string | null;
-  resourceClass: BuildResourceClass;
-  resourceClassDisplayName: string;
-  runFromCI: boolean | null;
-  runtimeVersion: string | null;
-  sdkVersion: string | null;
-  selectedImage: string | null;
-  status: BuildStatus;
-  updatedAt: string;
-  waiverType: EASBuildWaiverType | null;
-  workerStartedAt: string | null;
-}
-export const SubmissionCancelSubmissionResponseWorkflowJobTurtleBuild =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      activityTimestamp: S.String,
-      appBuildVersion: S.NullOr(S.String),
-      appIdentifier: S.NullOr(S.String),
-      appVersion: S.NullOr(S.String),
-      buildMode: S.NullOr(BuildMode),
-      buildProfile: S.NullOr(S.String),
-      channel: S.NullOr(S.String),
-      cliVersion: S.NullOr(S.String),
-      completedAt: S.NullOr(S.String),
-      createdAt: S.String,
-      customNodeVersion: S.NullOr(S.String),
-      customWorkflowName: S.NullOr(S.String),
-      developmentClient: S.NullOr(S.Boolean),
-      distribution: S.NullOr(DistributionType),
-      enqueuedAt: S.NullOr(S.String),
-      estimatedWaitTimeLeftSeconds: S.NullOr(S.Number),
-      expirationDate: S.NullOr(S.String),
-      gitCommitHash: S.NullOr(S.String),
-      gitCommitMessage: S.NullOr(S.String),
-      gitRef: S.NullOr(S.String),
-      id: S.String,
-      initialQueuePosition: S.NullOr(S.Number),
-      iosEnterpriseProvisioning: S.NullOr(BuildIosEnterpriseProvisioning),
-      isForIosSimulator: S.Boolean,
-      isGitWorkingTreeDirty: S.NullOr(S.Boolean),
-      isWaived: S.Boolean,
-      logFileUrls:
-        SubmissionCancelSubmissionResponseWorkflowJobTurtleBuildLogFileUrlsList,
-      logFiles:
-        SubmissionCancelSubmissionResponseWorkflowJobTurtleBuildLogFilesList,
-      maxBuildTimeSeconds: S.Number,
-      maxRetryTimeMinutes: S.NullOr(S.Number),
-      message: S.NullOr(S.String),
-      platform: AppPlatform,
-      priority: BuildPriority,
-      projectMetadataFileUrl: S.NullOr(S.String),
-      projectRootDirectory: S.NullOr(S.String),
-      provisioningStartedAt: S.NullOr(S.String),
-      queuePosition: S.NullOr(S.Number),
-      reactNativeVersion: S.NullOr(S.String),
-      releaseChannel: S.NullOr(S.String),
-      requiredPackageManager: S.NullOr(S.String),
-      resolvedEnvironment: S.NullOr(S.Unknown),
-      resolvedImage: S.NullOr(S.String),
-      resourceClass: BuildResourceClass,
-      resourceClassDisplayName: S.String,
-      runFromCI: S.NullOr(S.Boolean),
-      runtimeVersion: S.NullOr(S.String),
-      sdkVersion: S.NullOr(S.String),
-      selectedImage: S.NullOr(S.String),
-      status: BuildStatus,
-      updatedAt: S.String,
-      waiverType: S.NullOr(EASBuildWaiverType),
-      workerStartedAt: S.NullOr(S.String),
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseWorkflowJobTurtleBuild",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobTurtleBuild>;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunLogFileUrlsList =
-  Array<string>;
-export const SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunLogFileUrlsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunLogFileUrlsList>;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsItemList =
-  Array<unknown>;
-export const SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsItemList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsItemList>;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsList =
-  Array<SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsItemList>;
-export const SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsList =
-  /*@__PURE__*/ S.Array(
-    SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsItemList,
-  ) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsList>;
-
-export interface SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRun {
-  createdAt: string;
-  displayName: string | null;
-  endedAt: string | null;
-  enqueuedAt: string | null;
-  expiresAt: string;
-  gitCommitHash: string | null;
-  gitCommitMessage: string | null;
-  gitRef: string | null;
-  id: string;
-  isWaived: boolean;
-  logFileUrls: SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunLogFileUrlsList;
-  maxRunTimeSeconds: number;
-  name: string;
-  priority: JobRunPriority;
-  resourceClassDisplayName: string;
-  startedAt: string | null;
-  status: JobRunStatus;
-  updateGroups: SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsList;
-}
-export const SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRun =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdAt: S.String,
-      displayName: S.NullOr(S.String),
-      endedAt: S.NullOr(S.String),
-      enqueuedAt: S.NullOr(S.String),
-      expiresAt: S.String,
-      gitCommitHash: S.NullOr(S.String),
-      gitCommitMessage: S.NullOr(S.String),
-      gitRef: S.NullOr(S.String),
-      id: S.String,
-      isWaived: S.Boolean,
-      logFileUrls:
-        SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunLogFileUrlsList,
-      maxRunTimeSeconds: S.Number,
-      name: S.String,
-      priority: JobRunPriority,
-      resourceClassDisplayName: S.String,
-      startedAt: S.NullOr(S.String),
-      status: JobRunStatus,
-      updateGroups:
-        SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRunUpdateGroupsList,
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRun",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRun>;
-
-export type SubmissionCancelSubmissionResponseWorkflowJobWorkflowRun =
-  AppleDeviceRegistrationRequestByIdResponseWorkflowJobWorkflowRun;
-export const SubmissionCancelSubmissionResponseWorkflowJobWorkflowRun =
-  AppleDeviceRegistrationRequestByIdResponseWorkflowJobWorkflowRun;
-
-export interface SubmissionCancelSubmissionResponseWorkflowJob {
-  allDeviceTestCaseResults: SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsList;
-  approvals: SubmissionCancelSubmissionResponseWorkflowJobApprovalsList;
-  createdAt: string;
-  credentialsAppleDeviceRegistrationRequest: BuildsByIdResponseWorkflowJobCredentialsAppleDeviceRegistrationRequest | null;
-  deviceTestCaseResultAttempts: SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsList;
-  environment: string | null;
-  errors: SubmissionCancelSubmissionResponseWorkflowJobErrorsList;
-  id: string;
-  key: string;
-  name: string;
-  outputs: unknown;
-  requiredJobKeys: SubmissionCancelSubmissionResponseWorkflowJobRequiredJobKeysList;
-  rolloutUpdateGroup: SubmissionCancelSubmissionResponseWorkflowJobRolloutUpdateGroupList;
-  status: WorkflowJobStatus;
-  turtleBuild: SubmissionCancelSubmissionResponseWorkflowJobTurtleBuild | null;
-  turtleJobRun: SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRun | null;
-  type: WorkflowJobType;
-  updatedAt: string;
-  workflowRun: AppleDeviceRegistrationRequestByIdResponseWorkflowJobWorkflowRun;
-}
-export const SubmissionCancelSubmissionResponseWorkflowJob =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      allDeviceTestCaseResults:
-        SubmissionCancelSubmissionResponseWorkflowJobAllDeviceTestCaseResultsList,
-      approvals: SubmissionCancelSubmissionResponseWorkflowJobApprovalsList,
-      createdAt: S.String,
-      credentialsAppleDeviceRegistrationRequest: S.NullOr(
-        BuildsByIdResponseWorkflowJobCredentialsAppleDeviceRegistrationRequest,
-      ),
-      deviceTestCaseResultAttempts:
-        SubmissionCancelSubmissionResponseWorkflowJobDeviceTestCaseResultAttemptsList,
-      environment: S.NullOr(S.String),
-      errors: SubmissionCancelSubmissionResponseWorkflowJobErrorsList,
-      id: S.String,
-      key: S.String,
-      name: S.String,
-      outputs: S.Unknown,
-      requiredJobKeys:
-        SubmissionCancelSubmissionResponseWorkflowJobRequiredJobKeysList,
-      rolloutUpdateGroup:
-        SubmissionCancelSubmissionResponseWorkflowJobRolloutUpdateGroupList,
-      status: WorkflowJobStatus,
-      turtleBuild: S.NullOr(
-        SubmissionCancelSubmissionResponseWorkflowJobTurtleBuild,
-      ),
-      turtleJobRun: S.NullOr(
-        SubmissionCancelSubmissionResponseWorkflowJobTurtleJobRun,
-      ),
-      type: WorkflowJobType,
-      updatedAt: S.String,
-      workflowRun:
-        AppleDeviceRegistrationRequestByIdResponseWorkflowJobWorkflowRun,
-    }),
-  ).annotate({
-    identifier: "SubmissionCancelSubmissionResponseWorkflowJob",
-  }) as any as S.Schema<SubmissionCancelSubmissionResponseWorkflowJob>;
-
-/** Selection set for `submission.cancelSubmission` (unwrapped from the GraphQL `data` envelope). */
-export interface SubmissionCancelSubmissionResponse {
-  activityTimestamp: string;
-  actor: SubmissionCancelSubmissionResponseActor | null;
-  androidConfig: BuildsByIdResponseSubmissionsItemAndroidConfig | null;
-  app: SubmissionCancelSubmissionResponseApp;
-  appStoreConnectBuildUpload: SubmissionCancelSubmissionResponseAppStoreConnectBuildUpload | null;
-  archiveUrl: string | null;
-  canRetry: boolean;
-  cancelingActor: SubmissionCancelSubmissionResponseCancelingActor | null;
-  completedAt: string | null;
-  createdAt: string;
-  error: BuildsByIdResponseSubmissionsItemError | null;
-  id: string;
-  initiatingActor: SubmissionCancelSubmissionResponseInitiatingActor | null;
-  iosConfig: BuildsByIdResponseSubmissionsItemIosConfig | null;
-  jobRun: SubmissionCancelSubmissionResponseJobRun | null;
-  logFiles: SubmissionCancelSubmissionResponseLogFilesList;
-  logsUrl: string | null;
-  maxRetryTimeMinutes: number;
-  platform: AppPlatform;
-  priority: SubmissionPriority | null;
-  status: SubmissionStatus;
-  submittedBuild: SubmissionCancelSubmissionResponseSubmittedBuild | null;
-  updatedAt: string;
-  workflowJob: SubmissionCancelSubmissionResponseWorkflowJob | null;
-}
-export const SubmissionCancelSubmissionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    activityTimestamp: S.String,
-    actor: S.NullOr(SubmissionCancelSubmissionResponseActor),
-    androidConfig: S.NullOr(BuildsByIdResponseSubmissionsItemAndroidConfig),
-    app: SubmissionCancelSubmissionResponseApp,
-    appStoreConnectBuildUpload: S.NullOr(
-      SubmissionCancelSubmissionResponseAppStoreConnectBuildUpload,
-    ),
-    archiveUrl: S.NullOr(S.String),
-    canRetry: S.Boolean,
-    cancelingActor: S.NullOr(SubmissionCancelSubmissionResponseCancelingActor),
-    completedAt: S.NullOr(S.String),
-    createdAt: S.String,
-    error: S.NullOr(BuildsByIdResponseSubmissionsItemError),
-    id: S.String,
-    initiatingActor: S.NullOr(
-      SubmissionCancelSubmissionResponseInitiatingActor,
-    ),
-    iosConfig: S.NullOr(BuildsByIdResponseSubmissionsItemIosConfig),
-    jobRun: S.NullOr(SubmissionCancelSubmissionResponseJobRun),
-    logFiles: SubmissionCancelSubmissionResponseLogFilesList,
-    logsUrl: S.NullOr(S.String),
-    maxRetryTimeMinutes: S.Number,
-    platform: AppPlatform,
-    priority: S.NullOr(SubmissionPriority),
-    status: SubmissionStatus,
-    submittedBuild: S.NullOr(SubmissionCancelSubmissionResponseSubmittedBuild),
-    updatedAt: S.String,
-    workflowJob: S.NullOr(SubmissionCancelSubmissionResponseWorkflowJob),
-  }).pipe(T.ResponsePath("submission.cancelSubmission")),
-).annotate({
-  identifier: "SubmissionCancelSubmissionResponse",
-}) as any as S.Schema<SubmissionCancelSubmissionResponse>;
-
 export type SubmissionArchiveSourceType =
   | "GCS_BUILD_APPLICATION_ARCHIVE"
   | "GCS_BUILD_APPLICATION_ARCHIVE_ORCHESTRATOR"
@@ -117704,474 +117557,6 @@ export const SubmissionCreateIosSubmissionResponse = /*@__PURE__*/ S.suspend(
   identifier: "SubmissionCreateIosSubmissionResponse",
 }) as any as S.Schema<SubmissionCreateIosSubmissionResponse>;
 
-export interface SubmissionRetrySubmissionRequest {
-  parentSubmissionId: string;
-}
-export const SubmissionRetrySubmissionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    parentSubmissionId: S.String,
-  })
-    .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
-    .pipe(
-      T.GraphQLOp({
-        query:
-          "mutation submissionRetrySubmission($parentSubmissionId: ID!) {\n  submission {\n    retrySubmission(parentSubmissionId: $parentSubmissionId) {\n      submission {\n        activityTimestamp\n        actor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        androidConfig {\n          applicationIdentifier\n          releaseStatus\n          rollout\n          track\n        }\n        app {\n          appStoreConnectWorkflowConnectionStatus\n          assetLimitPerUpdateGroup\n          buildProfiles\n          description\n          deviceRunSessionTags\n          environmentVariableEnvironments\n          fullName\n          iconUrl\n          id\n          internalDistributionBuildPrivacy\n          isEligibleForObserveLapsedPaidNotification\n          isEligibleForObserveNotice\n          lastDeletionAttemptTime\n          latestActivity\n          name\n          observeIngestionPaused\n          packageName\n          privacy\n          published\n          pushSecurityEnabled\n          resourceClassExperiment\n          scopeKey\n          sdkVersion\n          slug\n          suggestedDevDomainName\n          updated\n          username\n        }\n        appStoreConnectBuildUpload {\n          ascBuildUploadIdentifier\n          buildNumber\n          createdDate\n          uploadState\n          uploadedDate\n          version\n        }\n        archiveUrl\n        canRetry\n        cancelingActor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        completedAt\n        createdAt\n        error {\n          errorCode\n          message\n        }\n        id\n        initiatingActor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        iosConfig {\n          appleIdUsername\n          ascApiKeyId\n          ascAppIdentifier\n        }\n        jobRun {\n          createdAt\n          displayName\n          endedAt\n          enqueuedAt\n          expiresAt\n          gitCommitHash\n          gitCommitMessage\n          gitRef\n          id\n          isWaived\n          logFileUrls\n          maxRunTimeSeconds\n          name\n          priority\n          resourceClassDisplayName\n          startedAt\n          status\n          updateGroups\n        }\n        logFiles\n        logsUrl\n        maxRetryTimeMinutes\n        platform\n        priority\n        status\n        submittedBuild {\n          activityTimestamp\n          appBuildVersion\n          appIdentifier\n          appVersion\n          buildMode\n          buildProfile\n          channel\n          cliVersion\n          completedAt\n          createdAt\n          customNodeVersion\n          customWorkflowName\n          developmentClient\n          distribution\n          enqueuedAt\n          estimatedWaitTimeLeftSeconds\n          expirationDate\n          gitCommitHash\n          gitCommitMessage\n          gitRef\n          id\n          initialQueuePosition\n          iosEnterpriseProvisioning\n          isForIosSimulator\n          isGitWorkingTreeDirty\n          isWaived\n          logFileUrls\n          logFiles\n          maxBuildTimeSeconds\n          maxRetryTimeMinutes\n          message\n          platform\n          priority\n          projectMetadataFileUrl\n          projectRootDirectory\n          provisioningStartedAt\n          queuePosition\n          reactNativeVersion\n          releaseChannel\n          requiredPackageManager\n          resolvedEnvironment\n          resolvedImage\n          resourceClass\n          resourceClassDisplayName\n          runFromCI\n          runtimeVersion\n          sdkVersion\n          selectedImage\n          status\n          updatedAt\n          waiverType\n          workerStartedAt\n        }\n        updatedAt\n        workflowJob {\n          createdAt\n          environment\n          id\n          key\n          name\n          outputs\n          requiredJobKeys\n          status\n          type\n          updatedAt\n        }\n      }\n    }\n  }\n}",
-        operationName: "submissionRetrySubmission",
-        type: "mutation",
-      }),
-    ),
-).annotate({
-  identifier: "SubmissionRetrySubmissionRequest",
-}) as any as S.Schema<SubmissionRetrySubmissionRequest>;
-
-export type SubmissionRetrySubmissionResponseSubmissionActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-export const SubmissionRetrySubmissionResponseSubmissionActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-
-export type SubmissionRetrySubmissionResponseSubmissionAndroidConfig =
-  BuildsByIdResponseSubmissionsItemAndroidConfig;
-export const SubmissionRetrySubmissionResponseSubmissionAndroidConfig =
-  BuildsByIdResponseSubmissionsItemAndroidConfig;
-
-export type SubmissionRetrySubmissionResponseSubmissionAppBuildProfilesList =
-  Array<string>;
-export const SubmissionRetrySubmissionResponseSubmissionAppBuildProfilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionRetrySubmissionResponseSubmissionAppBuildProfilesList>;
-
-export type SubmissionRetrySubmissionResponseSubmissionAppDeviceRunSessionTagsList =
-  Array<string>;
-export const SubmissionRetrySubmissionResponseSubmissionAppDeviceRunSessionTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionRetrySubmissionResponseSubmissionAppDeviceRunSessionTagsList>;
-
-export type SubmissionRetrySubmissionResponseSubmissionAppEnvironmentVariableEnvironmentsList =
-  Array<unknown>;
-export const SubmissionRetrySubmissionResponseSubmissionAppEnvironmentVariableEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<SubmissionRetrySubmissionResponseSubmissionAppEnvironmentVariableEnvironmentsList>;
-
-export interface SubmissionRetrySubmissionResponseSubmissionApp {
-  appStoreConnectWorkflowConnectionStatus: AppStoreConnectWorkflowConnectionStatus;
-  assetLimitPerUpdateGroup: number;
-  buildProfiles: SubmissionRetrySubmissionResponseSubmissionAppBuildProfilesList;
-  description: string;
-  deviceRunSessionTags: SubmissionRetrySubmissionResponseSubmissionAppDeviceRunSessionTagsList;
-  environmentVariableEnvironments: SubmissionRetrySubmissionResponseSubmissionAppEnvironmentVariableEnvironmentsList;
-  fullName: string;
-  iconUrl: string | null;
-  id: string;
-  internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy;
-  isEligibleForObserveLapsedPaidNotification: boolean;
-  isEligibleForObserveNotice: boolean;
-  lastDeletionAttemptTime: string | null;
-  latestActivity: string;
-  name: string;
-  observeIngestionPaused: boolean;
-  packageName: string;
-  privacy: string;
-  published: boolean;
-  pushSecurityEnabled: boolean;
-  resourceClassExperiment: ResourceClassExperiment | null;
-  scopeKey: string;
-  sdkVersion: string;
-  slug: string;
-  suggestedDevDomainName: string;
-  updated: string;
-  username: string;
-}
-export const SubmissionRetrySubmissionResponseSubmissionApp =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      appStoreConnectWorkflowConnectionStatus:
-        AppStoreConnectWorkflowConnectionStatus,
-      assetLimitPerUpdateGroup: S.Number,
-      buildProfiles:
-        SubmissionRetrySubmissionResponseSubmissionAppBuildProfilesList,
-      description: S.String,
-      deviceRunSessionTags:
-        SubmissionRetrySubmissionResponseSubmissionAppDeviceRunSessionTagsList,
-      environmentVariableEnvironments:
-        SubmissionRetrySubmissionResponseSubmissionAppEnvironmentVariableEnvironmentsList,
-      fullName: S.String,
-      iconUrl: S.NullOr(S.String),
-      id: S.String,
-      internalDistributionBuildPrivacy: AppInternalDistributionBuildPrivacy,
-      isEligibleForObserveLapsedPaidNotification: S.Boolean,
-      isEligibleForObserveNotice: S.Boolean,
-      lastDeletionAttemptTime: S.NullOr(S.String),
-      latestActivity: S.String,
-      name: S.String,
-      observeIngestionPaused: S.Boolean,
-      packageName: S.String,
-      privacy: S.String,
-      published: S.Boolean,
-      pushSecurityEnabled: S.Boolean,
-      resourceClassExperiment: S.NullOr(ResourceClassExperiment),
-      scopeKey: S.String,
-      sdkVersion: S.String,
-      slug: S.String,
-      suggestedDevDomainName: S.String,
-      updated: S.String,
-      username: S.String,
-    }),
-  ).annotate({
-    identifier: "SubmissionRetrySubmissionResponseSubmissionApp",
-  }) as any as S.Schema<SubmissionRetrySubmissionResponseSubmissionApp>;
-
-export type SubmissionRetrySubmissionResponseSubmissionAppStoreConnectBuildUpload =
-  BuildsByIdResponseSubmissionsItemAppStoreConnectBuildUpload;
-export const SubmissionRetrySubmissionResponseSubmissionAppStoreConnectBuildUpload =
-  BuildsByIdResponseSubmissionsItemAppStoreConnectBuildUpload;
-
-export type SubmissionRetrySubmissionResponseSubmissionCancelingActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-export const SubmissionRetrySubmissionResponseSubmissionCancelingActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-
-export type SubmissionRetrySubmissionResponseSubmissionError =
-  BuildsByIdResponseSubmissionsItemError;
-export const SubmissionRetrySubmissionResponseSubmissionError =
-  BuildsByIdResponseSubmissionsItemError;
-
-export type SubmissionRetrySubmissionResponseSubmissionInitiatingActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-export const SubmissionRetrySubmissionResponseSubmissionInitiatingActor =
-  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
-
-export type SubmissionRetrySubmissionResponseSubmissionIosConfig =
-  BuildsByIdResponseSubmissionsItemIosConfig;
-export const SubmissionRetrySubmissionResponseSubmissionIosConfig =
-  BuildsByIdResponseSubmissionsItemIosConfig;
-
-export type SubmissionRetrySubmissionResponseSubmissionJobRunLogFileUrlsList =
-  Array<string>;
-export const SubmissionRetrySubmissionResponseSubmissionJobRunLogFileUrlsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionRetrySubmissionResponseSubmissionJobRunLogFileUrlsList>;
-
-export type SubmissionRetrySubmissionResponseSubmissionJobRunUpdateGroupsItemList =
-  Array<unknown>;
-export const SubmissionRetrySubmissionResponseSubmissionJobRunUpdateGroupsItemList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<SubmissionRetrySubmissionResponseSubmissionJobRunUpdateGroupsItemList>;
-
-export type SubmissionRetrySubmissionResponseSubmissionJobRunUpdateGroupsList =
-  Array<SubmissionRetrySubmissionResponseSubmissionJobRunUpdateGroupsItemList>;
-export const SubmissionRetrySubmissionResponseSubmissionJobRunUpdateGroupsList =
-  /*@__PURE__*/ S.Array(
-    SubmissionRetrySubmissionResponseSubmissionJobRunUpdateGroupsItemList,
-  ) as any as S.Schema<SubmissionRetrySubmissionResponseSubmissionJobRunUpdateGroupsList>;
-
-export interface SubmissionRetrySubmissionResponseSubmissionJobRun {
-  createdAt: string;
-  displayName: string | null;
-  endedAt: string | null;
-  enqueuedAt: string | null;
-  expiresAt: string;
-  gitCommitHash: string | null;
-  gitCommitMessage: string | null;
-  gitRef: string | null;
-  id: string;
-  isWaived: boolean;
-  logFileUrls: SubmissionRetrySubmissionResponseSubmissionJobRunLogFileUrlsList;
-  maxRunTimeSeconds: number;
-  name: string;
-  priority: JobRunPriority;
-  resourceClassDisplayName: string;
-  startedAt: string | null;
-  status: JobRunStatus;
-  updateGroups: SubmissionRetrySubmissionResponseSubmissionJobRunUpdateGroupsList;
-}
-export const SubmissionRetrySubmissionResponseSubmissionJobRun =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdAt: S.String,
-      displayName: S.NullOr(S.String),
-      endedAt: S.NullOr(S.String),
-      enqueuedAt: S.NullOr(S.String),
-      expiresAt: S.String,
-      gitCommitHash: S.NullOr(S.String),
-      gitCommitMessage: S.NullOr(S.String),
-      gitRef: S.NullOr(S.String),
-      id: S.String,
-      isWaived: S.Boolean,
-      logFileUrls:
-        SubmissionRetrySubmissionResponseSubmissionJobRunLogFileUrlsList,
-      maxRunTimeSeconds: S.Number,
-      name: S.String,
-      priority: JobRunPriority,
-      resourceClassDisplayName: S.String,
-      startedAt: S.NullOr(S.String),
-      status: JobRunStatus,
-      updateGroups:
-        SubmissionRetrySubmissionResponseSubmissionJobRunUpdateGroupsList,
-    }),
-  ).annotate({
-    identifier: "SubmissionRetrySubmissionResponseSubmissionJobRun",
-  }) as any as S.Schema<SubmissionRetrySubmissionResponseSubmissionJobRun>;
-
-export type SubmissionRetrySubmissionResponseSubmissionLogFilesList =
-  Array<string>;
-export const SubmissionRetrySubmissionResponseSubmissionLogFilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionRetrySubmissionResponseSubmissionLogFilesList>;
-
-export type SubmissionRetrySubmissionResponseSubmissionSubmittedBuildLogFileUrlsList =
-  Array<string>;
-export const SubmissionRetrySubmissionResponseSubmissionSubmittedBuildLogFileUrlsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionRetrySubmissionResponseSubmissionSubmittedBuildLogFileUrlsList>;
-
-export type SubmissionRetrySubmissionResponseSubmissionSubmittedBuildLogFilesList =
-  Array<string>;
-export const SubmissionRetrySubmissionResponseSubmissionSubmittedBuildLogFilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionRetrySubmissionResponseSubmissionSubmittedBuildLogFilesList>;
-
-export interface SubmissionRetrySubmissionResponseSubmissionSubmittedBuild {
-  activityTimestamp: string;
-  appBuildVersion: string | null;
-  appIdentifier: string | null;
-  appVersion: string | null;
-  buildMode: BuildMode | null;
-  buildProfile: string | null;
-  channel: string | null;
-  cliVersion: string | null;
-  completedAt: string | null;
-  createdAt: string;
-  customNodeVersion: string | null;
-  customWorkflowName: string | null;
-  developmentClient: boolean | null;
-  distribution: DistributionType | null;
-  enqueuedAt: string | null;
-  estimatedWaitTimeLeftSeconds: number | null;
-  expirationDate: string | null;
-  gitCommitHash: string | null;
-  gitCommitMessage: string | null;
-  gitRef: string | null;
-  id: string;
-  initialQueuePosition: number | null;
-  iosEnterpriseProvisioning: BuildIosEnterpriseProvisioning | null;
-  isForIosSimulator: boolean;
-  isGitWorkingTreeDirty: boolean | null;
-  isWaived: boolean;
-  logFileUrls: SubmissionRetrySubmissionResponseSubmissionSubmittedBuildLogFileUrlsList;
-  logFiles: SubmissionRetrySubmissionResponseSubmissionSubmittedBuildLogFilesList;
-  maxBuildTimeSeconds: number;
-  maxRetryTimeMinutes: number | null;
-  message: string | null;
-  platform: AppPlatform;
-  priority: BuildPriority;
-  projectMetadataFileUrl: string | null;
-  projectRootDirectory: string | null;
-  provisioningStartedAt: string | null;
-  queuePosition: number | null;
-  reactNativeVersion: string | null;
-  releaseChannel: string | null;
-  requiredPackageManager: string | null;
-  resolvedEnvironment: unknown | null;
-  resolvedImage: string | null;
-  resourceClass: BuildResourceClass;
-  resourceClassDisplayName: string;
-  runFromCI: boolean | null;
-  runtimeVersion: string | null;
-  sdkVersion: string | null;
-  selectedImage: string | null;
-  status: BuildStatus;
-  updatedAt: string;
-  waiverType: EASBuildWaiverType | null;
-  workerStartedAt: string | null;
-}
-export const SubmissionRetrySubmissionResponseSubmissionSubmittedBuild =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      activityTimestamp: S.String,
-      appBuildVersion: S.NullOr(S.String),
-      appIdentifier: S.NullOr(S.String),
-      appVersion: S.NullOr(S.String),
-      buildMode: S.NullOr(BuildMode),
-      buildProfile: S.NullOr(S.String),
-      channel: S.NullOr(S.String),
-      cliVersion: S.NullOr(S.String),
-      completedAt: S.NullOr(S.String),
-      createdAt: S.String,
-      customNodeVersion: S.NullOr(S.String),
-      customWorkflowName: S.NullOr(S.String),
-      developmentClient: S.NullOr(S.Boolean),
-      distribution: S.NullOr(DistributionType),
-      enqueuedAt: S.NullOr(S.String),
-      estimatedWaitTimeLeftSeconds: S.NullOr(S.Number),
-      expirationDate: S.NullOr(S.String),
-      gitCommitHash: S.NullOr(S.String),
-      gitCommitMessage: S.NullOr(S.String),
-      gitRef: S.NullOr(S.String),
-      id: S.String,
-      initialQueuePosition: S.NullOr(S.Number),
-      iosEnterpriseProvisioning: S.NullOr(BuildIosEnterpriseProvisioning),
-      isForIosSimulator: S.Boolean,
-      isGitWorkingTreeDirty: S.NullOr(S.Boolean),
-      isWaived: S.Boolean,
-      logFileUrls:
-        SubmissionRetrySubmissionResponseSubmissionSubmittedBuildLogFileUrlsList,
-      logFiles:
-        SubmissionRetrySubmissionResponseSubmissionSubmittedBuildLogFilesList,
-      maxBuildTimeSeconds: S.Number,
-      maxRetryTimeMinutes: S.NullOr(S.Number),
-      message: S.NullOr(S.String),
-      platform: AppPlatform,
-      priority: BuildPriority,
-      projectMetadataFileUrl: S.NullOr(S.String),
-      projectRootDirectory: S.NullOr(S.String),
-      provisioningStartedAt: S.NullOr(S.String),
-      queuePosition: S.NullOr(S.Number),
-      reactNativeVersion: S.NullOr(S.String),
-      releaseChannel: S.NullOr(S.String),
-      requiredPackageManager: S.NullOr(S.String),
-      resolvedEnvironment: S.NullOr(S.Unknown),
-      resolvedImage: S.NullOr(S.String),
-      resourceClass: BuildResourceClass,
-      resourceClassDisplayName: S.String,
-      runFromCI: S.NullOr(S.Boolean),
-      runtimeVersion: S.NullOr(S.String),
-      sdkVersion: S.NullOr(S.String),
-      selectedImage: S.NullOr(S.String),
-      status: BuildStatus,
-      updatedAt: S.String,
-      waiverType: S.NullOr(EASBuildWaiverType),
-      workerStartedAt: S.NullOr(S.String),
-    }),
-  ).annotate({
-    identifier: "SubmissionRetrySubmissionResponseSubmissionSubmittedBuild",
-  }) as any as S.Schema<SubmissionRetrySubmissionResponseSubmissionSubmittedBuild>;
-
-export type SubmissionRetrySubmissionResponseSubmissionWorkflowJobRequiredJobKeysList =
-  Array<string>;
-export const SubmissionRetrySubmissionResponseSubmissionWorkflowJobRequiredJobKeysList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SubmissionRetrySubmissionResponseSubmissionWorkflowJobRequiredJobKeysList>;
-
-export interface SubmissionRetrySubmissionResponseSubmissionWorkflowJob {
-  createdAt: string;
-  environment: string | null;
-  id: string;
-  key: string;
-  name: string;
-  outputs: unknown;
-  requiredJobKeys: SubmissionRetrySubmissionResponseSubmissionWorkflowJobRequiredJobKeysList;
-  status: WorkflowJobStatus;
-  type: WorkflowJobType;
-  updatedAt: string;
-}
-export const SubmissionRetrySubmissionResponseSubmissionWorkflowJob =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdAt: S.String,
-      environment: S.NullOr(S.String),
-      id: S.String,
-      key: S.String,
-      name: S.String,
-      outputs: S.Unknown,
-      requiredJobKeys:
-        SubmissionRetrySubmissionResponseSubmissionWorkflowJobRequiredJobKeysList,
-      status: WorkflowJobStatus,
-      type: WorkflowJobType,
-      updatedAt: S.String,
-    }),
-  ).annotate({
-    identifier: "SubmissionRetrySubmissionResponseSubmissionWorkflowJob",
-  }) as any as S.Schema<SubmissionRetrySubmissionResponseSubmissionWorkflowJob>;
-
-export interface SubmissionRetrySubmissionResponseSubmission {
-  activityTimestamp: string;
-  actor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
-  androidConfig: BuildsByIdResponseSubmissionsItemAndroidConfig | null;
-  app: SubmissionRetrySubmissionResponseSubmissionApp;
-  appStoreConnectBuildUpload: BuildsByIdResponseSubmissionsItemAppStoreConnectBuildUpload | null;
-  archiveUrl: string | null;
-  canRetry: boolean;
-  cancelingActor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
-  completedAt: string | null;
-  createdAt: string;
-  error: BuildsByIdResponseSubmissionsItemError | null;
-  id: string;
-  initiatingActor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
-  iosConfig: BuildsByIdResponseSubmissionsItemIosConfig | null;
-  jobRun: SubmissionRetrySubmissionResponseSubmissionJobRun | null;
-  logFiles: SubmissionRetrySubmissionResponseSubmissionLogFilesList;
-  logsUrl: string | null;
-  maxRetryTimeMinutes: number;
-  platform: AppPlatform;
-  priority: SubmissionPriority | null;
-  status: SubmissionStatus;
-  submittedBuild: SubmissionRetrySubmissionResponseSubmissionSubmittedBuild | null;
-  updatedAt: string;
-  workflowJob: SubmissionRetrySubmissionResponseSubmissionWorkflowJob | null;
-}
-export const SubmissionRetrySubmissionResponseSubmission =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      activityTimestamp: S.String,
-      actor: S.NullOr(AccessTokenCreateAccessTokenResponseAccessTokenOwner),
-      androidConfig: S.NullOr(BuildsByIdResponseSubmissionsItemAndroidConfig),
-      app: SubmissionRetrySubmissionResponseSubmissionApp,
-      appStoreConnectBuildUpload: S.NullOr(
-        BuildsByIdResponseSubmissionsItemAppStoreConnectBuildUpload,
-      ),
-      archiveUrl: S.NullOr(S.String),
-      canRetry: S.Boolean,
-      cancelingActor: S.NullOr(
-        AccessTokenCreateAccessTokenResponseAccessTokenOwner,
-      ),
-      completedAt: S.NullOr(S.String),
-      createdAt: S.String,
-      error: S.NullOr(BuildsByIdResponseSubmissionsItemError),
-      id: S.String,
-      initiatingActor: S.NullOr(
-        AccessTokenCreateAccessTokenResponseAccessTokenOwner,
-      ),
-      iosConfig: S.NullOr(BuildsByIdResponseSubmissionsItemIosConfig),
-      jobRun: S.NullOr(SubmissionRetrySubmissionResponseSubmissionJobRun),
-      logFiles: SubmissionRetrySubmissionResponseSubmissionLogFilesList,
-      logsUrl: S.NullOr(S.String),
-      maxRetryTimeMinutes: S.Number,
-      platform: AppPlatform,
-      priority: S.NullOr(SubmissionPriority),
-      status: SubmissionStatus,
-      submittedBuild: S.NullOr(
-        SubmissionRetrySubmissionResponseSubmissionSubmittedBuild,
-      ),
-      updatedAt: S.String,
-      workflowJob: S.NullOr(
-        SubmissionRetrySubmissionResponseSubmissionWorkflowJob,
-      ),
-    }),
-  ).annotate({
-    identifier: "SubmissionRetrySubmissionResponseSubmission",
-  }) as any as S.Schema<SubmissionRetrySubmissionResponseSubmission>;
-
-/** Selection set for `submission.retrySubmission` (unwrapped from the GraphQL `data` envelope). */
-export interface SubmissionRetrySubmissionResponse {
-  submission: SubmissionRetrySubmissionResponseSubmission;
-}
-export const SubmissionRetrySubmissionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    submission: SubmissionRetrySubmissionResponseSubmission,
-  }).pipe(T.ResponsePath("submission.retrySubmission")),
-).annotate({
-  identifier: "SubmissionRetrySubmissionResponse",
-}) as any as S.Schema<SubmissionRetrySubmissionResponse>;
-
 export interface SubmissionsByIdRequest {
   submissionId: string;
 }
@@ -118659,14 +118044,14 @@ export const SubmissionsByIdResponseApp = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SubmissionsByIdResponseApp>;
 
 export type SubmissionsByIdResponseAppStoreConnectBuildUploadAppStoreConnectBuild =
-  SubmissionCancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild;
+  CancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild;
 export const SubmissionsByIdResponseAppStoreConnectBuildUploadAppStoreConnectBuild =
-  SubmissionCancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild;
+  CancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild;
 
 export type SubmissionsByIdResponseAppStoreConnectBuildUpload =
-  SubmissionCancelSubmissionResponseAppStoreConnectBuildUpload;
+  CancelSubmissionResponseAppStoreConnectBuildUpload;
 export const SubmissionsByIdResponseAppStoreConnectBuildUpload =
-  SubmissionCancelSubmissionResponseAppStoreConnectBuildUpload;
+  CancelSubmissionResponseAppStoreConnectBuildUpload;
 
 export type SubmissionsByIdResponseCancelingActorAccessTokensItem =
   AccountByIdResponseOwnerAccessTokensItem;
@@ -119011,25 +118396,25 @@ export const SubmissionsByIdResponseJobRunApp = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SubmissionsByIdResponseJobRunApp>;
 
 export type SubmissionsByIdResponseJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const SubmissionsByIdResponseJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type SubmissionsByIdResponseJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const SubmissionsByIdResponseJobRunArtifactsList = /*@__PURE__*/ S.Array(
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+  CancelSubmissionResponseJobRunArtifactsItem,
 ) as any as S.Schema<SubmissionsByIdResponseJobRunArtifactsList>;
 
 export type SubmissionsByIdResponseJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const SubmissionsByIdResponseJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type SubmissionsByIdResponseJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const SubmissionsByIdResponseJobRunErrorsList = /*@__PURE__*/ S.Array(
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+  CancelSubmissionResponseJobRunErrorsItem,
 ) as any as S.Schema<SubmissionsByIdResponseJobRunErrorsList>;
 
 export type SubmissionsByIdResponseJobRunInitiatingActor =
@@ -119924,7 +119309,7 @@ export interface SubmissionsByIdResponse {
   actor: SubmissionsByIdResponseActor | null;
   androidConfig: BuildsByIdResponseSubmissionsItemAndroidConfig | null;
   app: SubmissionsByIdResponseApp;
-  appStoreConnectBuildUpload: SubmissionCancelSubmissionResponseAppStoreConnectBuildUpload | null;
+  appStoreConnectBuildUpload: CancelSubmissionResponseAppStoreConnectBuildUpload | null;
   archiveUrl: string | null;
   canRetry: boolean;
   cancelingActor: SubmissionsByIdResponseCancelingActor | null;
@@ -119952,7 +119337,7 @@ export const SubmissionsByIdResponse = /*@__PURE__*/ S.suspend(() =>
     androidConfig: S.NullOr(BuildsByIdResponseSubmissionsItemAndroidConfig),
     app: SubmissionsByIdResponseApp,
     appStoreConnectBuildUpload: S.NullOr(
-      SubmissionCancelSubmissionResponseAppStoreConnectBuildUpload,
+      CancelSubmissionResponseAppStoreConnectBuildUpload,
     ),
     archiveUrl: S.NullOr(S.String),
     canRetry: S.Boolean,
@@ -123933,27 +123318,27 @@ export const TurtleSshSessionCreateOrUpdateTurtleSshSessionResponseJobRunApp =
   }) as any as S.Schema<TurtleSshSessionCreateOrUpdateTurtleSshSessionResponseJobRunApp>;
 
 export type TurtleSshSessionCreateOrUpdateTurtleSshSessionResponseJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const TurtleSshSessionCreateOrUpdateTurtleSshSessionResponseJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type TurtleSshSessionCreateOrUpdateTurtleSshSessionResponseJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const TurtleSshSessionCreateOrUpdateTurtleSshSessionResponseJobRunArtifactsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+    CancelSubmissionResponseJobRunArtifactsItem,
   ) as any as S.Schema<TurtleSshSessionCreateOrUpdateTurtleSshSessionResponseJobRunArtifactsList>;
 
 export type TurtleSshSessionCreateOrUpdateTurtleSshSessionResponseJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const TurtleSshSessionCreateOrUpdateTurtleSshSessionResponseJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type TurtleSshSessionCreateOrUpdateTurtleSshSessionResponseJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const TurtleSshSessionCreateOrUpdateTurtleSshSessionResponseJobRunErrorsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+    CancelSubmissionResponseJobRunErrorsItem,
   ) as any as S.Schema<TurtleSshSessionCreateOrUpdateTurtleSshSessionResponseJobRunErrorsList>;
 
 export type TurtleSshSessionCreateOrUpdateTurtleSshSessionResponseJobRunInitiatingActor =
@@ -126072,27 +125457,27 @@ export const UpdateBranchPublishUpdateGroupsResultItemJobRunApp =
   }) as any as S.Schema<UpdateBranchPublishUpdateGroupsResultItemJobRunApp>;
 
 export type UpdateBranchPublishUpdateGroupsResultItemJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const UpdateBranchPublishUpdateGroupsResultItemJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type UpdateBranchPublishUpdateGroupsResultItemJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const UpdateBranchPublishUpdateGroupsResultItemJobRunArtifactsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+    CancelSubmissionResponseJobRunArtifactsItem,
   ) as any as S.Schema<UpdateBranchPublishUpdateGroupsResultItemJobRunArtifactsList>;
 
 export type UpdateBranchPublishUpdateGroupsResultItemJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const UpdateBranchPublishUpdateGroupsResultItemJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type UpdateBranchPublishUpdateGroupsResultItemJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const UpdateBranchPublishUpdateGroupsResultItemJobRunErrorsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+    CancelSubmissionResponseJobRunErrorsItem,
   ) as any as S.Schema<UpdateBranchPublishUpdateGroupsResultItemJobRunErrorsList>;
 
 export type UpdateBranchPublishUpdateGroupsResultItemJobRunInitiatingActor =
@@ -130792,6 +130177,637 @@ export const UpdateInvoicePreviewInvoiceForSubscriptionResponse =
     identifier: "UpdateInvoicePreviewInvoiceForSubscriptionResponse",
   }) as any as S.Schema<UpdateInvoicePreviewInvoiceForSubscriptionResponse>;
 
+export interface UpdateRobotRequest {
+  id: string;
+  robotData: UpdateAgentProviderConnectionInput;
+}
+export const UpdateRobotRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    robotData: UpdateAgentProviderConnectionInput,
+  })
+    .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
+    .pipe(
+      T.GraphQLOp({
+        query:
+          "mutation robotUpdateRobot($id: String!, $robotData: RobotDataInput!) {\n  robot {\n    updateRobot(id: $id, robotData: $robotData) {\n      accessTokens {\n        createdAt\n        id\n        lastUsedAt\n        note\n        owner {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        revokedAt\n        updatedAt\n        visibleTokenPrefix\n      }\n      accounts {\n        agentProviderConnections {\n          createdAt\n          expiresAt\n          id\n          name\n          provider\n          providerAccountEmail\n          providerAccountId\n          providerPlan\n          status\n          updatedAt\n        }\n        aiChatEnabled\n        appCount\n        appStoreConnectApiKeys {\n          createdAt\n          id\n          issuerIdentifier\n          keyIdentifier\n          keyP8\n          name\n          roles\n          updatedAt\n        }\n        appleDistributionCertificates {\n          certificateP12\n          certificatePassword\n          certificatePrivateSigningKey\n          createdAt\n          developerPortalIdentifier\n          id\n          serialNumber\n          updatedAt\n          validityNotAfter\n          validityNotBefore\n        }\n        applePushKeys {\n          createdAt\n          id\n          keyIdentifier\n          keyP8\n          updatedAt\n        }\n        billing {\n          id\n        }\n        convexTeamConnections {\n          convexTeamIdentifier\n          convexTeamName\n          convexTeamSlug\n          createdAt\n          hasBeenClaimed\n          id\n          invitedAt\n          invitedEmail\n          updatedAt\n        }\n        createdAt\n        displayName\n        environmentVariableEnvironments\n        githubAppInstallations {\n          id\n          installationIdentifier\n        }\n        googleServiceAccountKeys {\n          clientEmail\n          clientIdentifier\n          createdAt\n          id\n          keyJson\n          privateKeyIdentifier\n          projectIdentifier\n          updatedAt\n        }\n        id\n        isCurrent\n        isDisabled\n        isFreeAppDevDomainTier\n        isSSOEnabled\n        lastDeletionAttemptTime\n        logRocketOrganization {\n          createdAt\n          id\n          orgName\n          orgSlug\n        }\n        memberStats {\n          allHave2FAEnabled\n          humanCount\n          ownerCount\n          robotCount\n          ssoUserCount\n          totalCount\n        }\n        name\n        observeIngestionPaused\n        offers {\n          features\n          id\n          price\n          quantity\n          stripeId\n          trialLength\n          type\n        }\n        onboardingStats {\n          firstBuildCompletedAt\n          firstProjectCreatedAt\n          firstSubmissionCompletedAt\n          firstUpdateCreatedAt\n          hasConfiguredUpdate\n          hasConfiguredWorkflow\n          hasTeamMembers\n        }\n        owner {\n          appCount\n          bestContactEmail\n          created\n          displayName\n          email\n          emailVerified\n          firstName\n          fullName\n          hasPassword\n          hasPendingUserInvitations\n          id\n          isExpoAdmin\n          isSecondFactorAuthenticationEnabled\n          isStaffModeEnabled\n          lastDeletionAttemptTime\n          lastName\n          newEmailPendingVerification\n          primaryAccountProfileImageUrl\n          profilePhoto\n          username\n        }\n        ownerUserActor {\n          appCount\n          bestContactEmail\n          created\n          displayName\n          firstName\n          fullName\n          id\n          isExpoAdmin\n          isStaffModeEnabled\n          lastDeletionAttemptTime\n          lastName\n          primaryAccountProfileImageUrl\n          profilePhoto\n          username\n        }\n        pendingSentryInstallation {\n          createdAt\n          id\n          installationId\n          orgSlug\n        }\n        posthogOrganizationConnection {\n          createdAt\n          id\n          posthogOrganizationIdentifier\n          posthogOrganizationName\n          posthogRegion\n          updatedAt\n        }\n        profileImageUrl\n        pushSecurityEnabled\n        requireTwoFactor\n        sentryInstallation {\n          createdAt\n          id\n          installationId\n          orgSlug\n        }\n        ssoAllowedAuthProviders\n        ssoConfiguration {\n          authProtocol\n          authProviderIdentifier\n          clientIdentifier\n          clientSecret\n          createdAt\n          id\n          issuer\n          updatedAt\n        }\n        subscription {\n          cancelAt\n          endedAt\n          id\n          includedAgentCreditsInCents\n          isDowngrading\n          name\n          nextInvoice\n          nextInvoiceAmountDueCents\n          paymentFailedAt\n          planId\n          price\n          recurringCents\n          status\n          trialEnd\n          willCancel\n        }\n        supabaseConnection {\n          createdAt\n          id\n          supabaseOrganizationName\n          supabaseOrganizationSlug\n          updatedAt\n        }\n        updatedAt\n        userInvitations {\n          accountName\n          accountProfileImageUrl\n          accountRequiresTwoFactor\n          created\n          email\n          expires\n          id\n          isForOrganization\n          permissions\n          role\n        }\n        userSpecifiedAccountUsage\n        users {\n          id\n          permissions\n          role\n        }\n        vexoAccountConnection {\n          id\n        }\n        viewerUserPermission {\n          id\n          permissions\n          role\n        }\n      }\n      created\n      displayName\n      experiments {\n        createdAt\n        enabled\n        experiment\n        id\n        updatedAt\n      }\n      firstName\n      githubAppInstallations {\n        account {\n          aiChatEnabled\n          appCount\n          createdAt\n          displayName\n          environmentVariableEnvironments\n          id\n          isCurrent\n          isDisabled\n          isFreeAppDevDomainTier\n          isSSOEnabled\n          lastDeletionAttemptTime\n          name\n          observeIngestionPaused\n          profileImageUrl\n          pushSecurityEnabled\n          requireTwoFactor\n          ssoAllowedAuthProviders\n          updatedAt\n          userSpecifiedAccountUsage\n        }\n        actor {\n          created\n          displayName\n          firstName\n          id\n          isExpoAdmin\n          lastDeletionAttemptTime\n        }\n        id\n        installationIdentifier\n        metadata {\n          githubAccountAvatarUrl\n          githubAccountName\n          githubAccountType\n          installationStatus\n        }\n      }\n      id\n      isExpoAdmin\n      isManagedByGitHubApp\n      lastDeletionAttemptTime\n    }\n  }\n}",
+        operationName: "robotUpdateRobot",
+        type: "mutation",
+      }),
+    ),
+).annotate({
+  identifier: "UpdateRobotRequest",
+}) as any as S.Schema<UpdateRobotRequest>;
+
+export type UpdateRobotResponseAccessTokensItemOwner =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+export const UpdateRobotResponseAccessTokensItemOwner =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+
+export type UpdateRobotResponseAccessTokensItem =
+  AccessTokenCreateAccessTokenResponseAccessToken;
+export const UpdateRobotResponseAccessTokensItem =
+  AccessTokenCreateAccessTokenResponseAccessToken;
+
+export type UpdateRobotResponseAccessTokensList =
+  Array<AccessTokenCreateAccessTokenResponseAccessToken>;
+export const UpdateRobotResponseAccessTokensList = /*@__PURE__*/ S.Array(
+  AccessTokenCreateAccessTokenResponseAccessToken,
+) as any as S.Schema<UpdateRobotResponseAccessTokensList>;
+
+export type UpdateRobotResponseAccountsItemAgentProviderConnectionsItem =
+  AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem;
+export const UpdateRobotResponseAccountsItemAgentProviderConnectionsItem =
+  AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem;
+
+export type UpdateRobotResponseAccountsItemAgentProviderConnectionsList =
+  Array<AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem>;
+export const UpdateRobotResponseAccountsItemAgentProviderConnectionsList =
+  /*@__PURE__*/ S.Array(
+    AndroidKeystoreCreateAndroidKeystoreResponseAccountAgentProviderConnectionsItem,
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemAgentProviderConnectionsList>;
+
+export type UpdateRobotResponseAccountsItemAppStoreConnectApiKeysItemRolesList =
+  Array<AppStoreConnectUserRole>;
+export const UpdateRobotResponseAccountsItemAppStoreConnectApiKeysItemRolesList =
+  /*@__PURE__*/ S.Array(
+    AppStoreConnectUserRole,
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemAppStoreConnectApiKeysItemRolesList>;
+
+export interface UpdateRobotResponseAccountsItemAppStoreConnectApiKeysItem {
+  createdAt: string;
+  id: string;
+  issuerIdentifier: string;
+  keyIdentifier: string;
+  keyP8: string;
+  name: string | null;
+  roles: UpdateRobotResponseAccountsItemAppStoreConnectApiKeysItemRolesList | null;
+  updatedAt: string;
+}
+export const UpdateRobotResponseAccountsItemAppStoreConnectApiKeysItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdAt: S.String,
+      id: S.String,
+      issuerIdentifier: S.String,
+      keyIdentifier: S.String,
+      keyP8: S.String,
+      name: S.NullOr(S.String),
+      roles: S.NullOr(
+        UpdateRobotResponseAccountsItemAppStoreConnectApiKeysItemRolesList,
+      ),
+      updatedAt: S.String,
+    }),
+  ).annotate({
+    identifier: "UpdateRobotResponseAccountsItemAppStoreConnectApiKeysItem",
+  }) as any as S.Schema<UpdateRobotResponseAccountsItemAppStoreConnectApiKeysItem>;
+
+export type UpdateRobotResponseAccountsItemAppStoreConnectApiKeysList =
+  Array<UpdateRobotResponseAccountsItemAppStoreConnectApiKeysItem>;
+export const UpdateRobotResponseAccountsItemAppStoreConnectApiKeysList =
+  /*@__PURE__*/ S.Array(
+    UpdateRobotResponseAccountsItemAppStoreConnectApiKeysItem,
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemAppStoreConnectApiKeysList>;
+
+export type UpdateRobotResponseAccountsItemAppleDistributionCertificatesItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem;
+export const UpdateRobotResponseAccountsItemAppleDistributionCertificatesItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem;
+
+export type UpdateRobotResponseAccountsItemAppleDistributionCertificatesList =
+  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem>;
+export const UpdateRobotResponseAccountsItemAppleDistributionCertificatesList =
+  /*@__PURE__*/ S.Array(
+    AgentProviderConnectionCompleteClaudeConnectionResponseAccountAppleDistributionCertificatesItem,
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemAppleDistributionCertificatesList>;
+
+export type UpdateRobotResponseAccountsItemApplePushKeysItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem;
+export const UpdateRobotResponseAccountsItemApplePushKeysItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem;
+
+export type UpdateRobotResponseAccountsItemApplePushKeysList =
+  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem>;
+export const UpdateRobotResponseAccountsItemApplePushKeysList =
+  /*@__PURE__*/ S.Array(
+    AgentProviderConnectionCompleteClaudeConnectionResponseAccountApplePushKeysItem,
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemApplePushKeysList>;
+
+export type UpdateRobotResponseAccountsItemBilling =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+export const UpdateRobotResponseAccountsItemBilling =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+
+export type UpdateRobotResponseAccountsItemConvexTeamConnectionsItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
+export const UpdateRobotResponseAccountsItemConvexTeamConnectionsItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem;
+
+export type UpdateRobotResponseAccountsItemConvexTeamConnectionsList =
+  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem>;
+export const UpdateRobotResponseAccountsItemConvexTeamConnectionsList =
+  /*@__PURE__*/ S.Array(
+    AgentProviderConnectionCompleteClaudeConnectionResponseAccountConvexTeamConnectionsItem,
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemConvexTeamConnectionsList>;
+
+export type UpdateRobotResponseAccountsItemEnvironmentVariableEnvironmentsList =
+  Array<unknown>;
+export const UpdateRobotResponseAccountsItemEnvironmentVariableEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemEnvironmentVariableEnvironmentsList>;
+
+export type UpdateRobotResponseAccountsItemGithubAppInstallationsItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
+export const UpdateRobotResponseAccountsItemGithubAppInstallationsItem =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem;
+
+export type UpdateRobotResponseAccountsItemGithubAppInstallationsList =
+  Array<AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem>;
+export const UpdateRobotResponseAccountsItemGithubAppInstallationsList =
+  /*@__PURE__*/ S.Array(
+    AgentProviderConnectionCompleteClaudeConnectionResponseAccountGithubAppInstallationsItem,
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemGithubAppInstallationsList>;
+
+export type UpdateRobotResponseAccountsItemGoogleServiceAccountKeysItem =
+  AccountByIdResponseGoogleServiceAccountKeysItem;
+export const UpdateRobotResponseAccountsItemGoogleServiceAccountKeysItem =
+  AccountByIdResponseGoogleServiceAccountKeysItem;
+
+export type UpdateRobotResponseAccountsItemGoogleServiceAccountKeysList =
+  Array<AccountByIdResponseGoogleServiceAccountKeysItem>;
+export const UpdateRobotResponseAccountsItemGoogleServiceAccountKeysList =
+  /*@__PURE__*/ S.Array(
+    AccountByIdResponseGoogleServiceAccountKeysItem,
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemGoogleServiceAccountKeysList>;
+
+export type UpdateRobotResponseAccountsItemLogRocketOrganization =
+  AccountByIdResponseLogRocketOrganization;
+export const UpdateRobotResponseAccountsItemLogRocketOrganization =
+  AccountByIdResponseLogRocketOrganization;
+
+export type UpdateRobotResponseAccountsItemMemberStats =
+  AccountByIdResponseMemberStats;
+export const UpdateRobotResponseAccountsItemMemberStats =
+  AccountByIdResponseMemberStats;
+
+export type UpdateRobotResponseAccountsItemOffersItemFeaturesList =
+  (Feature | null)[];
+export const UpdateRobotResponseAccountsItemOffersItemFeaturesList =
+  /*@__PURE__*/ S.Array(
+    S.NullOr(Feature),
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemOffersItemFeaturesList>;
+
+export interface UpdateRobotResponseAccountsItemOffersItem {
+  features: UpdateRobotResponseAccountsItemOffersItemFeaturesList | null;
+  id: string;
+  price: number;
+  quantity: number | null;
+  stripeId: string;
+  trialLength: number | null;
+  type: OfferType;
+}
+export const UpdateRobotResponseAccountsItemOffersItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      features: S.NullOr(UpdateRobotResponseAccountsItemOffersItemFeaturesList),
+      id: S.String,
+      price: S.Number,
+      quantity: S.NullOr(S.Number),
+      stripeId: S.String,
+      trialLength: S.NullOr(S.Number),
+      type: OfferType,
+    }),
+  ).annotate({
+    identifier: "UpdateRobotResponseAccountsItemOffersItem",
+  }) as any as S.Schema<UpdateRobotResponseAccountsItemOffersItem>;
+
+export type UpdateRobotResponseAccountsItemOffersList =
+  Array<UpdateRobotResponseAccountsItemOffersItem>;
+export const UpdateRobotResponseAccountsItemOffersList = /*@__PURE__*/ S.Array(
+  UpdateRobotResponseAccountsItemOffersItem,
+) as any as S.Schema<UpdateRobotResponseAccountsItemOffersList>;
+
+export type UpdateRobotResponseAccountsItemOnboardingStats =
+  AccountByIdResponseOnboardingStats;
+export const UpdateRobotResponseAccountsItemOnboardingStats =
+  AccountByIdResponseOnboardingStats;
+
+export type UpdateRobotResponseAccountsItemOwner =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner;
+export const UpdateRobotResponseAccountsItemOwner =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner;
+
+export type UpdateRobotResponseAccountsItemOwnerUserActor =
+  AccountByIdResponseUsersItemUserActor;
+export const UpdateRobotResponseAccountsItemOwnerUserActor =
+  AccountByIdResponseUsersItemUserActor;
+
+export type UpdateRobotResponseAccountsItemPendingSentryInstallation =
+  AccountByIdResponsePendingSentryInstallation;
+export const UpdateRobotResponseAccountsItemPendingSentryInstallation =
+  AccountByIdResponsePendingSentryInstallation;
+
+export type UpdateRobotResponseAccountsItemPosthogOrganizationConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
+export const UpdateRobotResponseAccountsItemPosthogOrganizationConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection;
+
+export type UpdateRobotResponseAccountsItemSentryInstallation =
+  AccountByIdResponsePendingSentryInstallation;
+export const UpdateRobotResponseAccountsItemSentryInstallation =
+  AccountByIdResponsePendingSentryInstallation;
+
+export type UpdateRobotResponseAccountsItemSsoAllowedAuthProvidersList =
+  Array<AuthProviderIdentifier>;
+export const UpdateRobotResponseAccountsItemSsoAllowedAuthProvidersList =
+  /*@__PURE__*/ S.Array(
+    AuthProviderIdentifier,
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemSsoAllowedAuthProvidersList>;
+
+export type UpdateRobotResponseAccountsItemSsoConfiguration =
+  AccountByIdResponseSsoConfiguration;
+export const UpdateRobotResponseAccountsItemSsoConfiguration =
+  AccountByIdResponseSsoConfiguration;
+
+export type UpdateRobotResponseAccountsItemSubscription =
+  AccountByIdResponseBillingSubscription;
+export const UpdateRobotResponseAccountsItemSubscription =
+  AccountByIdResponseBillingSubscription;
+
+export type UpdateRobotResponseAccountsItemSupabaseConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
+export const UpdateRobotResponseAccountsItemSupabaseConnection =
+  AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection;
+
+export type UpdateRobotResponseAccountsItemUserInvitationsItemPermissionsList =
+  Array<Permission>;
+export const UpdateRobotResponseAccountsItemUserInvitationsItemPermissionsList =
+  /*@__PURE__*/ S.Array(
+    Permission,
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemUserInvitationsItemPermissionsList>;
+
+export interface UpdateRobotResponseAccountsItemUserInvitationsItem {
+  accountName: string;
+  accountProfileImageUrl: string;
+  accountRequiresTwoFactor: boolean;
+  created: string;
+  email: string;
+  expires: string;
+  id: string;
+  isForOrganization: boolean;
+  permissions: UpdateRobotResponseAccountsItemUserInvitationsItemPermissionsList;
+  role: Role;
+}
+export const UpdateRobotResponseAccountsItemUserInvitationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountName: S.String,
+      accountProfileImageUrl: S.String,
+      accountRequiresTwoFactor: S.Boolean,
+      created: S.String,
+      email: S.String,
+      expires: S.String,
+      id: S.String,
+      isForOrganization: S.Boolean,
+      permissions:
+        UpdateRobotResponseAccountsItemUserInvitationsItemPermissionsList,
+      role: Role,
+    }),
+  ).annotate({
+    identifier: "UpdateRobotResponseAccountsItemUserInvitationsItem",
+  }) as any as S.Schema<UpdateRobotResponseAccountsItemUserInvitationsItem>;
+
+export type UpdateRobotResponseAccountsItemUserInvitationsList =
+  Array<UpdateRobotResponseAccountsItemUserInvitationsItem>;
+export const UpdateRobotResponseAccountsItemUserInvitationsList =
+  /*@__PURE__*/ S.Array(
+    UpdateRobotResponseAccountsItemUserInvitationsItem,
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemUserInvitationsList>;
+
+export type UpdateRobotResponseAccountsItemUsersItemPermissionsList =
+  Array<Permission>;
+export const UpdateRobotResponseAccountsItemUsersItemPermissionsList =
+  /*@__PURE__*/ S.Array(
+    Permission,
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemUsersItemPermissionsList>;
+
+export interface UpdateRobotResponseAccountsItemUsersItem {
+  id: string;
+  permissions: UpdateRobotResponseAccountsItemUsersItemPermissionsList;
+  role: Role;
+}
+export const UpdateRobotResponseAccountsItemUsersItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      permissions: UpdateRobotResponseAccountsItemUsersItemPermissionsList,
+      role: Role,
+    }),
+).annotate({
+  identifier: "UpdateRobotResponseAccountsItemUsersItem",
+}) as any as S.Schema<UpdateRobotResponseAccountsItemUsersItem>;
+
+export type UpdateRobotResponseAccountsItemUsersList =
+  Array<UpdateRobotResponseAccountsItemUsersItem>;
+export const UpdateRobotResponseAccountsItemUsersList = /*@__PURE__*/ S.Array(
+  UpdateRobotResponseAccountsItemUsersItem,
+) as any as S.Schema<UpdateRobotResponseAccountsItemUsersList>;
+
+export type UpdateRobotResponseAccountsItemVexoAccountConnection =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+export const UpdateRobotResponseAccountsItemVexoAccountConnection =
+  AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem;
+
+export type UpdateRobotResponseAccountsItemViewerUserPermissionPermissionsList =
+  Array<Permission>;
+export const UpdateRobotResponseAccountsItemViewerUserPermissionPermissionsList =
+  /*@__PURE__*/ S.Array(
+    Permission,
+  ) as any as S.Schema<UpdateRobotResponseAccountsItemViewerUserPermissionPermissionsList>;
+
+export interface UpdateRobotResponseAccountsItemViewerUserPermission {
+  id: string;
+  permissions: UpdateRobotResponseAccountsItemViewerUserPermissionPermissionsList;
+  role: Role;
+}
+export const UpdateRobotResponseAccountsItemViewerUserPermission =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      permissions:
+        UpdateRobotResponseAccountsItemViewerUserPermissionPermissionsList,
+      role: Role,
+    }),
+  ).annotate({
+    identifier: "UpdateRobotResponseAccountsItemViewerUserPermission",
+  }) as any as S.Schema<UpdateRobotResponseAccountsItemViewerUserPermission>;
+
+export interface UpdateRobotResponseAccountsItem {
+  agentProviderConnections: UpdateRobotResponseAccountsItemAgentProviderConnectionsList;
+  aiChatEnabled: boolean;
+  appCount: number;
+  appStoreConnectApiKeys: UpdateRobotResponseAccountsItemAppStoreConnectApiKeysList;
+  appleDistributionCertificates: UpdateRobotResponseAccountsItemAppleDistributionCertificatesList;
+  applePushKeys: UpdateRobotResponseAccountsItemApplePushKeysList;
+  billing: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem | null;
+  convexTeamConnections: UpdateRobotResponseAccountsItemConvexTeamConnectionsList;
+  createdAt: string;
+  displayName: string | null;
+  environmentVariableEnvironments: UpdateRobotResponseAccountsItemEnvironmentVariableEnvironmentsList;
+  githubAppInstallations: UpdateRobotResponseAccountsItemGithubAppInstallationsList;
+  googleServiceAccountKeys: UpdateRobotResponseAccountsItemGoogleServiceAccountKeysList;
+  id: string;
+  isCurrent: boolean;
+  isDisabled: boolean;
+  isFreeAppDevDomainTier: boolean;
+  isSSOEnabled: boolean;
+  lastDeletionAttemptTime: string | null;
+  logRocketOrganization: AccountByIdResponseLogRocketOrganization | null;
+  memberStats: AccountByIdResponseMemberStats;
+  name: string;
+  observeIngestionPaused: boolean;
+  offers: UpdateRobotResponseAccountsItemOffersList | null;
+  onboardingStats: AccountByIdResponseOnboardingStats;
+  owner: AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner | null;
+  ownerUserActor: AccountByIdResponseUsersItemUserActor | null;
+  pendingSentryInstallation: AccountByIdResponsePendingSentryInstallation | null;
+  posthogOrganizationConnection: AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection | null;
+  profileImageUrl: string;
+  pushSecurityEnabled: boolean;
+  requireTwoFactor: boolean;
+  sentryInstallation: AccountByIdResponsePendingSentryInstallation | null;
+  ssoAllowedAuthProviders: UpdateRobotResponseAccountsItemSsoAllowedAuthProvidersList;
+  ssoConfiguration: AccountByIdResponseSsoConfiguration | null;
+  subscription: AccountByIdResponseBillingSubscription | null;
+  supabaseConnection: AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection | null;
+  updatedAt: string;
+  userInvitations: UpdateRobotResponseAccountsItemUserInvitationsList;
+  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
+  users: UpdateRobotResponseAccountsItemUsersList;
+  vexoAccountConnection: AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem | null;
+  viewerUserPermission: UpdateRobotResponseAccountsItemViewerUserPermission;
+}
+export const UpdateRobotResponseAccountsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    agentProviderConnections:
+      UpdateRobotResponseAccountsItemAgentProviderConnectionsList,
+    aiChatEnabled: S.Boolean,
+    appCount: S.Number,
+    appStoreConnectApiKeys:
+      UpdateRobotResponseAccountsItemAppStoreConnectApiKeysList,
+    appleDistributionCertificates:
+      UpdateRobotResponseAccountsItemAppleDistributionCertificatesList,
+    applePushKeys: UpdateRobotResponseAccountsItemApplePushKeysList,
+    billing: S.NullOr(
+      AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
+    ),
+    convexTeamConnections:
+      UpdateRobotResponseAccountsItemConvexTeamConnectionsList,
+    createdAt: S.String,
+    displayName: S.NullOr(S.String),
+    environmentVariableEnvironments:
+      UpdateRobotResponseAccountsItemEnvironmentVariableEnvironmentsList,
+    githubAppInstallations:
+      UpdateRobotResponseAccountsItemGithubAppInstallationsList,
+    googleServiceAccountKeys:
+      UpdateRobotResponseAccountsItemGoogleServiceAccountKeysList,
+    id: S.String,
+    isCurrent: S.Boolean,
+    isDisabled: S.Boolean,
+    isFreeAppDevDomainTier: S.Boolean,
+    isSSOEnabled: S.Boolean,
+    lastDeletionAttemptTime: S.NullOr(S.String),
+    logRocketOrganization: S.NullOr(AccountByIdResponseLogRocketOrganization),
+    memberStats: AccountByIdResponseMemberStats,
+    name: S.String,
+    observeIngestionPaused: S.Boolean,
+    offers: S.NullOr(UpdateRobotResponseAccountsItemOffersList),
+    onboardingStats: AccountByIdResponseOnboardingStats,
+    owner: S.NullOr(
+      AgentProviderConnectionCompleteClaudeConnectionResponseAccountOwner,
+    ),
+    ownerUserActor: S.NullOr(AccountByIdResponseUsersItemUserActor),
+    pendingSentryInstallation: S.NullOr(
+      AccountByIdResponsePendingSentryInstallation,
+    ),
+    posthogOrganizationConnection: S.NullOr(
+      AgentProviderConnectionCompleteClaudeConnectionResponseAccountPosthogOrganizationConnection,
+    ),
+    profileImageUrl: S.String,
+    pushSecurityEnabled: S.Boolean,
+    requireTwoFactor: S.Boolean,
+    sentryInstallation: S.NullOr(AccountByIdResponsePendingSentryInstallation),
+    ssoAllowedAuthProviders:
+      UpdateRobotResponseAccountsItemSsoAllowedAuthProvidersList,
+    ssoConfiguration: S.NullOr(AccountByIdResponseSsoConfiguration),
+    subscription: S.NullOr(AccountByIdResponseBillingSubscription),
+    supabaseConnection: S.NullOr(
+      AgentProviderConnectionCompleteClaudeConnectionResponseAccountSupabaseConnection,
+    ),
+    updatedAt: S.String,
+    userInvitations: UpdateRobotResponseAccountsItemUserInvitationsList,
+    userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
+    users: UpdateRobotResponseAccountsItemUsersList,
+    vexoAccountConnection: S.NullOr(
+      AccountByIdResponseApplePushKeysItemIosAppCredentialsListItem,
+    ),
+    viewerUserPermission: UpdateRobotResponseAccountsItemViewerUserPermission,
+  }),
+).annotate({
+  identifier: "UpdateRobotResponseAccountsItem",
+}) as any as S.Schema<UpdateRobotResponseAccountsItem>;
+
+export type UpdateRobotResponseAccountsList =
+  Array<UpdateRobotResponseAccountsItem>;
+export const UpdateRobotResponseAccountsList = /*@__PURE__*/ S.Array(
+  UpdateRobotResponseAccountsItem,
+) as any as S.Schema<UpdateRobotResponseAccountsList>;
+
+export type UpdateRobotResponseExperimentsItem =
+  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
+export const UpdateRobotResponseExperimentsItem =
+  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem;
+
+export type UpdateRobotResponseExperimentsList =
+  Array<AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem>;
+export const UpdateRobotResponseExperimentsList = /*@__PURE__*/ S.Array(
+  AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem,
+) as any as S.Schema<UpdateRobotResponseExperimentsList>;
+
+export type UpdateRobotResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList =
+  Array<unknown>;
+export const UpdateRobotResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<UpdateRobotResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList>;
+
+export type UpdateRobotResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList =
+  Array<AuthProviderIdentifier>;
+export const UpdateRobotResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList =
+  /*@__PURE__*/ S.Array(
+    AuthProviderIdentifier,
+  ) as any as S.Schema<UpdateRobotResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList>;
+
+export interface UpdateRobotResponseGithubAppInstallationsItemAccount {
+  aiChatEnabled: boolean;
+  appCount: number;
+  createdAt: string;
+  displayName: string | null;
+  environmentVariableEnvironments: UpdateRobotResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList;
+  id: string;
+  isCurrent: boolean;
+  isDisabled: boolean;
+  isFreeAppDevDomainTier: boolean;
+  isSSOEnabled: boolean;
+  lastDeletionAttemptTime: string | null;
+  name: string;
+  observeIngestionPaused: boolean;
+  profileImageUrl: string;
+  pushSecurityEnabled: boolean;
+  requireTwoFactor: boolean;
+  ssoAllowedAuthProviders: UpdateRobotResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList;
+  updatedAt: string;
+  userSpecifiedAccountUsage: UserSpecifiedAccountUsage | null;
+}
+export const UpdateRobotResponseGithubAppInstallationsItemAccount =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      aiChatEnabled: S.Boolean,
+      appCount: S.Number,
+      createdAt: S.String,
+      displayName: S.NullOr(S.String),
+      environmentVariableEnvironments:
+        UpdateRobotResponseGithubAppInstallationsItemAccountEnvironmentVariableEnvironmentsList,
+      id: S.String,
+      isCurrent: S.Boolean,
+      isDisabled: S.Boolean,
+      isFreeAppDevDomainTier: S.Boolean,
+      isSSOEnabled: S.Boolean,
+      lastDeletionAttemptTime: S.NullOr(S.String),
+      name: S.String,
+      observeIngestionPaused: S.Boolean,
+      profileImageUrl: S.String,
+      pushSecurityEnabled: S.Boolean,
+      requireTwoFactor: S.Boolean,
+      ssoAllowedAuthProviders:
+        UpdateRobotResponseGithubAppInstallationsItemAccountSsoAllowedAuthProvidersList,
+      updatedAt: S.String,
+      userSpecifiedAccountUsage: S.NullOr(UserSpecifiedAccountUsage),
+    }),
+  ).annotate({
+    identifier: "UpdateRobotResponseGithubAppInstallationsItemAccount",
+  }) as any as S.Schema<UpdateRobotResponseGithubAppInstallationsItemAccount>;
+
+export type UpdateRobotResponseGithubAppInstallationsItemActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+export const UpdateRobotResponseGithubAppInstallationsItemActor =
+  AccessTokenCreateAccessTokenResponseAccessTokenOwner;
+
+export type UpdateRobotResponseGithubAppInstallationsItemMetadata =
+  AccountByIdResponseGithubAppInstallationsItemMetadata;
+export const UpdateRobotResponseGithubAppInstallationsItemMetadata =
+  AccountByIdResponseGithubAppInstallationsItemMetadata;
+
+export interface UpdateRobotResponseGithubAppInstallationsItem {
+  account: UpdateRobotResponseGithubAppInstallationsItemAccount;
+  actor: AccessTokenCreateAccessTokenResponseAccessTokenOwner | null;
+  id: string;
+  installationIdentifier: number;
+  metadata: AccountByIdResponseGithubAppInstallationsItemMetadata;
+}
+export const UpdateRobotResponseGithubAppInstallationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      account: UpdateRobotResponseGithubAppInstallationsItemAccount,
+      actor: S.NullOr(AccessTokenCreateAccessTokenResponseAccessTokenOwner),
+      id: S.String,
+      installationIdentifier: S.Number,
+      metadata: AccountByIdResponseGithubAppInstallationsItemMetadata,
+    }),
+  ).annotate({
+    identifier: "UpdateRobotResponseGithubAppInstallationsItem",
+  }) as any as S.Schema<UpdateRobotResponseGithubAppInstallationsItem>;
+
+export type UpdateRobotResponseGithubAppInstallationsList =
+  Array<UpdateRobotResponseGithubAppInstallationsItem>;
+export const UpdateRobotResponseGithubAppInstallationsList =
+  /*@__PURE__*/ S.Array(
+    UpdateRobotResponseGithubAppInstallationsItem,
+  ) as any as S.Schema<UpdateRobotResponseGithubAppInstallationsList>;
+
+/** Selection set for `robot.updateRobot` (unwrapped from the GraphQL `data` envelope). */
+export interface UpdateRobotResponse {
+  accessTokens: UpdateRobotResponseAccessTokensList;
+  accounts: UpdateRobotResponseAccountsList;
+  created: string;
+  displayName: string;
+  experiments: UpdateRobotResponseExperimentsList;
+  firstName: string | null;
+  githubAppInstallations: UpdateRobotResponseGithubAppInstallationsList;
+  id: string;
+  isExpoAdmin: boolean;
+  isManagedByGitHubApp: boolean;
+  lastDeletionAttemptTime: string | null;
+}
+export const UpdateRobotResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accessTokens: UpdateRobotResponseAccessTokensList,
+    accounts: UpdateRobotResponseAccountsList,
+    created: S.String,
+    displayName: S.String,
+    experiments: UpdateRobotResponseExperimentsList,
+    firstName: S.NullOr(S.String),
+    githubAppInstallations: UpdateRobotResponseGithubAppInstallationsList,
+    id: S.String,
+    isExpoAdmin: S.Boolean,
+    isManagedByGitHubApp: S.Boolean,
+    lastDeletionAttemptTime: S.NullOr(S.String),
+  }).pipe(T.ResponsePath("robot.updateRobot")),
+).annotate({
+  identifier: "UpdateRobotResponse",
+}) as any as S.Schema<UpdateRobotResponse>;
+
 export interface UpdatesByGroupRequest {
   group: string;
   platform?: string | null;
@@ -131647,26 +131663,26 @@ export const UpdatesByGroupResultItemJobRunApp = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatesByGroupResultItemJobRunApp>;
 
 export type UpdatesByGroupResultItemJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const UpdatesByGroupResultItemJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type UpdatesByGroupResultItemJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const UpdatesByGroupResultItemJobRunArtifactsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+    CancelSubmissionResponseJobRunArtifactsItem,
   ) as any as S.Schema<UpdatesByGroupResultItemJobRunArtifactsList>;
 
 export type UpdatesByGroupResultItemJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const UpdatesByGroupResultItemJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type UpdatesByGroupResultItemJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const UpdatesByGroupResultItemJobRunErrorsList = /*@__PURE__*/ S.Array(
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+  CancelSubmissionResponseJobRunErrorsItem,
 ) as any as S.Schema<UpdatesByGroupResultItemJobRunErrorsList>;
 
 export type UpdatesByGroupResultItemJobRunInitiatingActor =
@@ -133276,25 +133292,25 @@ export const UpdatesByIdResponseJobRunApp = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatesByIdResponseJobRunApp>;
 
 export type UpdatesByIdResponseJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const UpdatesByIdResponseJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type UpdatesByIdResponseJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const UpdatesByIdResponseJobRunArtifactsList = /*@__PURE__*/ S.Array(
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+  CancelSubmissionResponseJobRunArtifactsItem,
 ) as any as S.Schema<UpdatesByIdResponseJobRunArtifactsList>;
 
 export type UpdatesByIdResponseJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const UpdatesByIdResponseJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type UpdatesByIdResponseJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const UpdatesByIdResponseJobRunErrorsList = /*@__PURE__*/ S.Array(
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+  CancelSubmissionResponseJobRunErrorsItem,
 ) as any as S.Schema<UpdatesByIdResponseJobRunErrorsList>;
 
 export type UpdatesByIdResponseJobRunInitiatingActor =
@@ -135424,27 +135440,27 @@ export const UpdateSetCodeSigningInfoResponseJobRunApp =
   }) as any as S.Schema<UpdateSetCodeSigningInfoResponseJobRunApp>;
 
 export type UpdateSetCodeSigningInfoResponseJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const UpdateSetCodeSigningInfoResponseJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type UpdateSetCodeSigningInfoResponseJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const UpdateSetCodeSigningInfoResponseJobRunArtifactsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+    CancelSubmissionResponseJobRunArtifactsItem,
   ) as any as S.Schema<UpdateSetCodeSigningInfoResponseJobRunArtifactsList>;
 
 export type UpdateSetCodeSigningInfoResponseJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const UpdateSetCodeSigningInfoResponseJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type UpdateSetCodeSigningInfoResponseJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const UpdateSetCodeSigningInfoResponseJobRunErrorsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+    CancelSubmissionResponseJobRunErrorsItem,
   ) as any as S.Schema<UpdateSetCodeSigningInfoResponseJobRunErrorsList>;
 
 export type UpdateSetCodeSigningInfoResponseJobRunInitiatingActor =
@@ -137086,27 +137102,27 @@ export const UpdateSetRolloutPercentageResponseJobRunApp =
   }) as any as S.Schema<UpdateSetRolloutPercentageResponseJobRunApp>;
 
 export type UpdateSetRolloutPercentageResponseJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const UpdateSetRolloutPercentageResponseJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type UpdateSetRolloutPercentageResponseJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const UpdateSetRolloutPercentageResponseJobRunArtifactsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+    CancelSubmissionResponseJobRunArtifactsItem,
   ) as any as S.Schema<UpdateSetRolloutPercentageResponseJobRunArtifactsList>;
 
 export type UpdateSetRolloutPercentageResponseJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const UpdateSetRolloutPercentageResponseJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type UpdateSetRolloutPercentageResponseJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const UpdateSetRolloutPercentageResponseJobRunErrorsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+    CancelSubmissionResponseJobRunErrorsItem,
   ) as any as S.Schema<UpdateSetRolloutPercentageResponseJobRunErrorsList>;
 
 export type UpdateSetRolloutPercentageResponseJobRunInitiatingActor =
@@ -137873,6 +137889,50 @@ export const UpdateSetRolloutPercentageResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateSetRolloutPercentageResponse",
 }) as any as S.Schema<UpdateSetRolloutPercentageResponse>;
+
+export interface UpdateWebhookRequest {
+  webhookId: string;
+  webhookInput: WebhookInput;
+}
+export const UpdateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webhookId: S.String,
+    webhookInput: WebhookInput,
+  })
+    .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
+    .pipe(
+      T.GraphQLOp({
+        query:
+          "mutation webhookUpdateWebhook($webhookId: ID!, $webhookInput: WebhookInput!) {\n  webhook {\n    updateWebhook(webhookId: $webhookId, webhookInput: $webhookInput) {\n      appId\n      createdAt\n      event\n      id\n      updatedAt\n      url\n    }\n  }\n}",
+        operationName: "webhookUpdateWebhook",
+        type: "mutation",
+      }),
+    ),
+).annotate({
+  identifier: "UpdateWebhookRequest",
+}) as any as S.Schema<UpdateWebhookRequest>;
+
+/** Selection set for `webhook.updateWebhook` (unwrapped from the GraphQL `data` envelope). */
+export interface UpdateWebhookResponse {
+  appId: string;
+  createdAt: string;
+  event: WebhookType;
+  id: string;
+  updatedAt: string;
+  url: string;
+}
+export const UpdateWebhookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appId: S.String,
+    createdAt: S.String,
+    event: WebhookType,
+    id: S.String,
+    updatedAt: S.String,
+    url: S.String,
+  }).pipe(T.ResponsePath("webhook.updateWebhook")),
+).annotate({
+  identifier: "UpdateWebhookResponse",
+}) as any as S.Schema<UpdateWebhookResponse>;
 
 export type AccountUploadSessionType =
   | "PROFILE_IMAGE_UPLOAD"
@@ -144360,9 +144420,6 @@ export const WebhookByIdRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebhookByIdRequest",
 }) as any as S.Schema<WebhookByIdRequest>;
 
-export type WebhookType = "BUILD" | "SUBMIT";
-export const WebhookType = /*@__PURE__*/ S.String;
-
 /** Selection set for `webhook.byId` (unwrapped from the GraphQL `data` envelope). */
 export interface WebhookByIdResponse {
   appId: string;
@@ -144384,139 +144441,6 @@ export const WebhookByIdResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "WebhookByIdResponse",
 }) as any as S.Schema<WebhookByIdResponse>;
-
-export interface WebhookInput {
-  event: WebhookType | (string & {});
-  secret: string;
-  url: string;
-}
-export const WebhookInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    event: WebhookType,
-    secret: S.String,
-    url: S.String,
-  }),
-).annotate({ identifier: "WebhookInput" }) as any as S.Schema<WebhookInput>;
-
-export interface WebhookCreateWebhookRequest {
-  appId: string;
-  webhookInput: WebhookInput;
-}
-export const WebhookCreateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.String,
-    webhookInput: WebhookInput,
-  })
-    .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
-    .pipe(
-      T.GraphQLOp({
-        query:
-          "mutation webhookCreateWebhook($appId: String!, $webhookInput: WebhookInput!) {\n  webhook {\n    createWebhook(appId: $appId, webhookInput: $webhookInput) {\n      appId\n      createdAt\n      event\n      id\n      updatedAt\n      url\n    }\n  }\n}",
-        operationName: "webhookCreateWebhook",
-        type: "mutation",
-      }),
-    ),
-).annotate({
-  identifier: "WebhookCreateWebhookRequest",
-}) as any as S.Schema<WebhookCreateWebhookRequest>;
-
-/** Selection set for `webhook.createWebhook` (unwrapped from the GraphQL `data` envelope). */
-export interface WebhookCreateWebhookResponse {
-  appId: string;
-  createdAt: string;
-  event: WebhookType;
-  id: string;
-  updatedAt: string;
-  url: string;
-}
-export const WebhookCreateWebhookResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.String,
-    createdAt: S.String,
-    event: WebhookType,
-    id: S.String,
-    updatedAt: S.String,
-    url: S.String,
-  }).pipe(T.ResponsePath("webhook.createWebhook")),
-).annotate({
-  identifier: "WebhookCreateWebhookResponse",
-}) as any as S.Schema<WebhookCreateWebhookResponse>;
-
-export interface WebhookDeleteWebhookRequest {
-  webhookId: string;
-}
-export const WebhookDeleteWebhookRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webhookId: S.String,
-  })
-    .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
-    .pipe(
-      T.GraphQLOp({
-        query:
-          "mutation webhookDeleteWebhook($webhookId: ID!) {\n  webhook {\n    deleteWebhook(webhookId: $webhookId) {\n      id\n    }\n  }\n}",
-        operationName: "webhookDeleteWebhook",
-        type: "mutation",
-      }),
-    ),
-).annotate({
-  identifier: "WebhookDeleteWebhookRequest",
-}) as any as S.Schema<WebhookDeleteWebhookRequest>;
-
-/** Selection set for `webhook.deleteWebhook` (unwrapped from the GraphQL `data` envelope). */
-export interface WebhookDeleteWebhookResponse {
-  id: string;
-}
-export const WebhookDeleteWebhookResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-  }).pipe(T.ResponsePath("webhook.deleteWebhook")),
-).annotate({
-  identifier: "WebhookDeleteWebhookResponse",
-}) as any as S.Schema<WebhookDeleteWebhookResponse>;
-
-export interface WebhookUpdateWebhookRequest {
-  webhookId: string;
-  webhookInput: WebhookInput;
-}
-export const WebhookUpdateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webhookId: S.String,
-    webhookInput: WebhookInput,
-  })
-    .pipe(T.Http({ method: "POST", uri: "/graphql", code: 200 }))
-    .pipe(
-      T.GraphQLOp({
-        query:
-          "mutation webhookUpdateWebhook($webhookId: ID!, $webhookInput: WebhookInput!) {\n  webhook {\n    updateWebhook(webhookId: $webhookId, webhookInput: $webhookInput) {\n      appId\n      createdAt\n      event\n      id\n      updatedAt\n      url\n    }\n  }\n}",
-        operationName: "webhookUpdateWebhook",
-        type: "mutation",
-      }),
-    ),
-).annotate({
-  identifier: "WebhookUpdateWebhookRequest",
-}) as any as S.Schema<WebhookUpdateWebhookRequest>;
-
-/** Selection set for `webhook.updateWebhook` (unwrapped from the GraphQL `data` envelope). */
-export interface WebhookUpdateWebhookResponse {
-  appId: string;
-  createdAt: string;
-  event: WebhookType;
-  id: string;
-  updatedAt: string;
-  url: string;
-}
-export const WebhookUpdateWebhookResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appId: S.String,
-    createdAt: S.String,
-    event: WebhookType,
-    id: S.String,
-    updatedAt: S.String,
-    url: S.String,
-  }).pipe(T.ResponsePath("webhook.updateWebhook")),
-).annotate({
-  identifier: "WebhookUpdateWebhookResponse",
-}) as any as S.Schema<WebhookUpdateWebhookResponse>;
 
 export interface WebsiteNotificationsRequest {}
 export const WebsiteNotificationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -145859,27 +145783,27 @@ export const WorkflowCacheDeleteWorkflowCacheResponseHydratingJobRunApp =
   }) as any as S.Schema<WorkflowCacheDeleteWorkflowCacheResponseHydratingJobRunApp>;
 
 export type WorkflowCacheDeleteWorkflowCacheResponseHydratingJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const WorkflowCacheDeleteWorkflowCacheResponseHydratingJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type WorkflowCacheDeleteWorkflowCacheResponseHydratingJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const WorkflowCacheDeleteWorkflowCacheResponseHydratingJobRunArtifactsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+    CancelSubmissionResponseJobRunArtifactsItem,
   ) as any as S.Schema<WorkflowCacheDeleteWorkflowCacheResponseHydratingJobRunArtifactsList>;
 
 export type WorkflowCacheDeleteWorkflowCacheResponseHydratingJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const WorkflowCacheDeleteWorkflowCacheResponseHydratingJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type WorkflowCacheDeleteWorkflowCacheResponseHydratingJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const WorkflowCacheDeleteWorkflowCacheResponseHydratingJobRunErrorsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+    CancelSubmissionResponseJobRunErrorsItem,
   ) as any as S.Schema<WorkflowCacheDeleteWorkflowCacheResponseHydratingJobRunErrorsList>;
 
 export type WorkflowCacheDeleteWorkflowCacheResponseHydratingJobRunInitiatingActor =
@@ -147227,27 +147151,27 @@ export const WorkflowJobAppleDeviceRegistrationRequestApproveAppleDeviceRegistra
   }) as any as S.Schema<WorkflowJobAppleDeviceRegistrationRequestApproveAppleDeviceRegistrationResponseTurtleJobRunApp>;
 
 export type WorkflowJobAppleDeviceRegistrationRequestApproveAppleDeviceRegistrationResponseTurtleJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const WorkflowJobAppleDeviceRegistrationRequestApproveAppleDeviceRegistrationResponseTurtleJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type WorkflowJobAppleDeviceRegistrationRequestApproveAppleDeviceRegistrationResponseTurtleJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const WorkflowJobAppleDeviceRegistrationRequestApproveAppleDeviceRegistrationResponseTurtleJobRunArtifactsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+    CancelSubmissionResponseJobRunArtifactsItem,
   ) as any as S.Schema<WorkflowJobAppleDeviceRegistrationRequestApproveAppleDeviceRegistrationResponseTurtleJobRunArtifactsList>;
 
 export type WorkflowJobAppleDeviceRegistrationRequestApproveAppleDeviceRegistrationResponseTurtleJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const WorkflowJobAppleDeviceRegistrationRequestApproveAppleDeviceRegistrationResponseTurtleJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type WorkflowJobAppleDeviceRegistrationRequestApproveAppleDeviceRegistrationResponseTurtleJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const WorkflowJobAppleDeviceRegistrationRequestApproveAppleDeviceRegistrationResponseTurtleJobRunErrorsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+    CancelSubmissionResponseJobRunErrorsItem,
   ) as any as S.Schema<WorkflowJobAppleDeviceRegistrationRequestApproveAppleDeviceRegistrationResponseTurtleJobRunErrorsList>;
 
 export type WorkflowJobAppleDeviceRegistrationRequestApproveAppleDeviceRegistrationResponseTurtleJobRunInitiatingActor =
@@ -148953,27 +148877,27 @@ export const WorkflowJobAppleDeviceRegistrationRequestRejectAppleDeviceRegistrat
   }) as any as S.Schema<WorkflowJobAppleDeviceRegistrationRequestRejectAppleDeviceRegistrationResponseTurtleJobRunApp>;
 
 export type WorkflowJobAppleDeviceRegistrationRequestRejectAppleDeviceRegistrationResponseTurtleJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const WorkflowJobAppleDeviceRegistrationRequestRejectAppleDeviceRegistrationResponseTurtleJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type WorkflowJobAppleDeviceRegistrationRequestRejectAppleDeviceRegistrationResponseTurtleJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const WorkflowJobAppleDeviceRegistrationRequestRejectAppleDeviceRegistrationResponseTurtleJobRunArtifactsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+    CancelSubmissionResponseJobRunArtifactsItem,
   ) as any as S.Schema<WorkflowJobAppleDeviceRegistrationRequestRejectAppleDeviceRegistrationResponseTurtleJobRunArtifactsList>;
 
 export type WorkflowJobAppleDeviceRegistrationRequestRejectAppleDeviceRegistrationResponseTurtleJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const WorkflowJobAppleDeviceRegistrationRequestRejectAppleDeviceRegistrationResponseTurtleJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type WorkflowJobAppleDeviceRegistrationRequestRejectAppleDeviceRegistrationResponseTurtleJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const WorkflowJobAppleDeviceRegistrationRequestRejectAppleDeviceRegistrationResponseTurtleJobRunErrorsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+    CancelSubmissionResponseJobRunErrorsItem,
   ) as any as S.Schema<WorkflowJobAppleDeviceRegistrationRequestRejectAppleDeviceRegistrationResponseTurtleJobRunErrorsList>;
 
 export type WorkflowJobAppleDeviceRegistrationRequestRejectAppleDeviceRegistrationResponseTurtleJobRunInitiatingActor =
@@ -151235,27 +151159,27 @@ export const WorkflowJobsByIdResponseTurtleJobRunApp = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<WorkflowJobsByIdResponseTurtleJobRunApp>;
 
 export type WorkflowJobsByIdResponseTurtleJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 export const WorkflowJobsByIdResponseTurtleJobRunArtifactsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem;
+  CancelSubmissionResponseJobRunArtifactsItem;
 
 export type WorkflowJobsByIdResponseTurtleJobRunArtifactsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem>;
+  Array<CancelSubmissionResponseJobRunArtifactsItem>;
 export const WorkflowJobsByIdResponseTurtleJobRunArtifactsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunArtifactsItem,
+    CancelSubmissionResponseJobRunArtifactsItem,
   ) as any as S.Schema<WorkflowJobsByIdResponseTurtleJobRunArtifactsList>;
 
 export type WorkflowJobsByIdResponseTurtleJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 export const WorkflowJobsByIdResponseTurtleJobRunErrorsItem =
-  DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem;
+  CancelSubmissionResponseJobRunErrorsItem;
 
 export type WorkflowJobsByIdResponseTurtleJobRunErrorsList =
-  Array<DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem>;
+  Array<CancelSubmissionResponseJobRunErrorsItem>;
 export const WorkflowJobsByIdResponseTurtleJobRunErrorsList =
   /*@__PURE__*/ S.Array(
-    DeviceRunSessionCreateDeviceRunSessionResponseTurtleJobRunErrorsItem,
+    CancelSubmissionResponseJobRunErrorsItem,
   ) as any as S.Schema<WorkflowJobsByIdResponseTurtleJobRunErrorsList>;
 
 export type WorkflowJobsByIdResponseTurtleJobRunInitiatingActor =
@@ -160579,20 +160503,6 @@ export const appById: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AppCreateAppError = ExpoEasOpError;
-export const appCreateApp: API.OperationMethod<
-  AppCreateAppRequest,
-  AppCreateAppResponse,
-  AppCreateAppError,
-  ExpoEasOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppCreateAppRequest,
-  output: AppCreateAppResponse,
-  errors: [UnknownEasError, EasParseError],
-  protocol: ExpoGraphqlProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AppleAppIdentifierCreateAppleAppIdentifierError = ExpoEasOpError;
 export const appleAppIdentifierCreateAppleAppIdentifier: API.OperationMethod<
   AppleAppIdentifierCreateAppleAppIdentifierRequest,
@@ -161323,6 +161233,20 @@ export const buildsById: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CancelSubmissionError = ExpoEasOpError;
+export const cancelSubmission: API.OperationMethod<
+  CancelSubmissionRequest,
+  CancelSubmissionResponse,
+  CancelSubmissionError,
+  ExpoEasOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelSubmissionRequest,
+  output: CancelSubmissionResponse,
+  errors: [UnknownEasError, EasParseError],
+  protocol: ExpoGraphqlProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ChannelsByIdError = ExpoEasOpError;
 export const channelsById: API.OperationMethod<
   ChannelsByIdRequest,
@@ -161434,6 +161358,48 @@ export const convexTeamConnectionSendConvexTeamInviteToVerifiedEmail: API.Operat
 > = /*@__PURE__*/ API.make(() => ({
   input: ConvexTeamConnectionSendConvexTeamInviteToVerifiedEmailRequest,
   output: ConvexTeamConnectionSendConvexTeamInviteToVerifiedEmailResponse,
+  errors: [UnknownEasError, EasParseError],
+  protocol: ExpoGraphqlProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateAppError = ExpoEasOpError;
+export const createApp: API.OperationMethod<
+  CreateAppRequest,
+  CreateAppResponse,
+  CreateAppError,
+  ExpoEasOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateAppRequest,
+  output: CreateAppResponse,
+  errors: [UnknownEasError, EasParseError],
+  protocol: ExpoGraphqlProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateRobotForAccountError = ExpoEasOpError;
+export const createRobotForAccount: API.OperationMethod<
+  CreateRobotForAccountRequest,
+  CreateRobotForAccountResponse,
+  CreateRobotForAccountError,
+  ExpoEasOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateRobotForAccountRequest,
+  output: CreateRobotForAccountResponse,
+  errors: [UnknownEasError, EasParseError],
+  protocol: ExpoGraphqlProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateWebhookError = ExpoEasOpError;
+export const createWebhook: API.OperationMethod<
+  CreateWebhookRequest,
+  CreateWebhookResponse,
+  CreateWebhookError,
+  ExpoEasOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateWebhookRequest,
+  output: CreateWebhookResponse,
   errors: [UnknownEasError, EasParseError],
   protocol: ExpoGraphqlProtocol,
   retry: Retry.Retry,
@@ -161574,6 +161540,20 @@ export const deleteUserPreference: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteUserPreferenceRequest,
   output: DeleteUserPreferenceResponse,
+  errors: [UnknownEasError, EasParseError],
+  protocol: ExpoGraphqlProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWebhookError = ExpoEasOpError;
+export const deleteWebhook: API.OperationMethod<
+  DeleteWebhookRequest,
+  DeleteWebhookResponse,
+  DeleteWebhookError,
+  ExpoEasOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWebhookRequest,
+  output: DeleteWebhookResponse,
   errors: [UnknownEasError, EasParseError],
   protocol: ExpoGraphqlProtocol,
   retry: Retry.Retry,
@@ -163320,15 +163300,15 @@ export const renameAccount: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RobotCreateRobotForAccountError = ExpoEasOpError;
-export const robotCreateRobotForAccount: API.OperationMethod<
-  RobotCreateRobotForAccountRequest,
-  RobotCreateRobotForAccountResponse,
-  RobotCreateRobotForAccountError,
+export type RetrySubmissionError = ExpoEasOpError;
+export const retrySubmission: API.OperationMethod<
+  RetrySubmissionRequest,
+  RetrySubmissionResponse,
+  RetrySubmissionError,
   ExpoEasOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RobotCreateRobotForAccountRequest,
-  output: RobotCreateRobotForAccountResponse,
+  input: RetrySubmissionRequest,
+  output: RetrySubmissionResponse,
   errors: [UnknownEasError, EasParseError],
   protocol: ExpoGraphqlProtocol,
   retry: Retry.Retry,
@@ -163343,20 +163323,6 @@ export const robotScheduleRobotDeletion: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RobotScheduleRobotDeletionRequest,
   output: RobotScheduleRobotDeletionResponse,
-  errors: [UnknownEasError, EasParseError],
-  protocol: ExpoGraphqlProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RobotUpdateRobotError = ExpoEasOpError;
-export const robotUpdateRobot: API.OperationMethod<
-  RobotUpdateRobotRequest,
-  RobotUpdateRobotResponse,
-  RobotUpdateRobotError,
-  ExpoEasOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RobotUpdateRobotRequest,
-  output: RobotUpdateRobotResponse,
   errors: [UnknownEasError, EasParseError],
   protocol: ExpoGraphqlProtocol,
   retry: Retry.Retry,
@@ -163504,20 +163470,6 @@ export const statuspageServiceByServiceNames: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SubmissionCancelSubmissionError = ExpoEasOpError;
-export const submissionCancelSubmission: API.OperationMethod<
-  SubmissionCancelSubmissionRequest,
-  SubmissionCancelSubmissionResponse,
-  SubmissionCancelSubmissionError,
-  ExpoEasOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubmissionCancelSubmissionRequest,
-  output: SubmissionCancelSubmissionResponse,
-  errors: [UnknownEasError, EasParseError],
-  protocol: ExpoGraphqlProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SubmissionCreateAndroidSubmissionError = ExpoEasOpError;
 export const submissionCreateAndroidSubmission: API.OperationMethod<
   SubmissionCreateAndroidSubmissionRequest,
@@ -163541,20 +163493,6 @@ export const submissionCreateIosSubmission: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SubmissionCreateIosSubmissionRequest,
   output: SubmissionCreateIosSubmissionResponse,
-  errors: [UnknownEasError, EasParseError],
-  protocol: ExpoGraphqlProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubmissionRetrySubmissionError = ExpoEasOpError;
-export const submissionRetrySubmission: API.OperationMethod<
-  SubmissionRetrySubmissionRequest,
-  SubmissionRetrySubmissionResponse,
-  SubmissionRetrySubmissionError,
-  ExpoEasOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubmissionRetrySubmissionRequest,
-  output: SubmissionRetrySubmissionResponse,
   errors: [UnknownEasError, EasParseError],
   protocol: ExpoGraphqlProtocol,
   retry: Retry.Retry,
@@ -163986,6 +163924,20 @@ export const updateInvoicePreviewInvoiceForSubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type UpdateRobotError = ExpoEasOpError;
+export const updateRobot: API.OperationMethod<
+  UpdateRobotRequest,
+  UpdateRobotResponse,
+  UpdateRobotError,
+  ExpoEasOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateRobotRequest,
+  output: UpdateRobotResponse,
+  errors: [UnknownEasError, EasParseError],
+  protocol: ExpoGraphqlProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdatesByGroupError = ExpoEasOpError;
 /** fetch all updates in a group */
 export const updatesByGroup: API.OperationMethod<
@@ -164052,6 +164004,20 @@ export const updateSetRolloutPercentage: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateSetRolloutPercentageRequest,
   output: UpdateSetRolloutPercentageResponse,
+  errors: [UnknownEasError, EasParseError],
+  protocol: ExpoGraphqlProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWebhookError = ExpoEasOpError;
+export const updateWebhook: API.OperationMethod<
+  UpdateWebhookRequest,
+  UpdateWebhookResponse,
+  UpdateWebhookError,
+  ExpoEasOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWebhookRequest,
+  output: UpdateWebhookResponse,
   errors: [UnknownEasError, EasParseError],
   protocol: ExpoGraphqlProtocol,
   retry: Retry.Retry,
@@ -164452,48 +164418,6 @@ export const webhookById: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WebhookByIdRequest,
   output: WebhookByIdResponse,
-  errors: [UnknownEasError, EasParseError],
-  protocol: ExpoGraphqlProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhookCreateWebhookError = ExpoEasOpError;
-export const webhookCreateWebhook: API.OperationMethod<
-  WebhookCreateWebhookRequest,
-  WebhookCreateWebhookResponse,
-  WebhookCreateWebhookError,
-  ExpoEasOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhookCreateWebhookRequest,
-  output: WebhookCreateWebhookResponse,
-  errors: [UnknownEasError, EasParseError],
-  protocol: ExpoGraphqlProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhookDeleteWebhookError = ExpoEasOpError;
-export const webhookDeleteWebhook: API.OperationMethod<
-  WebhookDeleteWebhookRequest,
-  WebhookDeleteWebhookResponse,
-  WebhookDeleteWebhookError,
-  ExpoEasOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhookDeleteWebhookRequest,
-  output: WebhookDeleteWebhookResponse,
-  errors: [UnknownEasError, EasParseError],
-  protocol: ExpoGraphqlProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhookUpdateWebhookError = ExpoEasOpError;
-export const webhookUpdateWebhook: API.OperationMethod<
-  WebhookUpdateWebhookRequest,
-  WebhookUpdateWebhookResponse,
-  WebhookUpdateWebhookError,
-  ExpoEasOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhookUpdateWebhookRequest,
-  output: WebhookUpdateWebhookResponse,
   errors: [UnknownEasError, EasParseError],
   protocol: ExpoGraphqlProtocol,
   retry: Retry.Retry,
