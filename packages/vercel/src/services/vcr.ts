@@ -247,7 +247,7 @@ export const CreateRepositoryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateRepositoryResponse",
 }) as any as S.Schema<CreateRepositoryResponse>;
 
-export interface DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest {
+export interface DeleteBlobRequest {
   /** Single Docker repository team slug component. */
   teamSlug: string;
   /** Single Docker repository project slug component. */
@@ -257,33 +257,31 @@ export interface DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestReque
   /** Content-addressable digest (algorithm:hex). */
   digest: string;
 }
-export const DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      teamSlug: S.String.pipe(T.Label()),
-      projectSlug: S.String.pipe(T.Label()),
-      repositoryName: S.String.pipe(T.Label()),
-      digest: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest",
-  }) as any as S.Schema<DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest>;
+export const DeleteBlobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teamSlug: S.String.pipe(T.Label()),
+    projectSlug: S.String.pipe(T.Label()),
+    repositoryName: S.String.pipe(T.Label()),
+    digest: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBlobRequest",
+}) as any as S.Schema<DeleteBlobRequest>;
 
-export interface DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse {}
-export const DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse",
-  }) as any as S.Schema<DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse>;
+export interface DeleteBlobResponse {}
+export const DeleteBlobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBlobResponse",
+}) as any as S.Schema<DeleteBlobResponse>;
 
-export interface DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest {
+export interface DeleteBlobsUploadRequest {
   /** Single Docker repository team slug component. */
   teamSlug: string;
   /** Single Docker repository project slug component. */
@@ -293,34 +291,31 @@ export interface DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid
   /** Blob upload session identifier. */
   uuid: string;
 }
-export const DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      teamSlug: S.String.pipe(T.Label()),
-      projectSlug: S.String.pipe(T.Label()),
-      repositoryName: S.String.pipe(T.Label()),
-      uuid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest",
-  }) as any as S.Schema<DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest>;
+export const DeleteBlobsUploadRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teamSlug: S.String.pipe(T.Label()),
+    projectSlug: S.String.pipe(T.Label()),
+    repositoryName: S.String.pipe(T.Label()),
+    uuid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBlobsUploadRequest",
+}) as any as S.Schema<DeleteBlobsUploadRequest>;
 
-export type DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse =
-  unknown;
-export const DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier:
-      "DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse",
-  }) as any as S.Schema<DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse>;
+export type DeleteBlobsUploadResponse = unknown;
+export const DeleteBlobsUploadResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteBlobsUploadResponse",
+}) as any as S.Schema<DeleteBlobsUploadResponse>;
 
-export interface DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest {
+export interface DeleteManifestRequest {
   /** Single Docker repository team slug component. */
   teamSlug: string;
   /** Single Docker repository project slug component. */
@@ -330,32 +325,29 @@ export interface DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferen
   /** Content-addressable digest (algorithm:hex). */
   reference: string;
 }
-export const DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      teamSlug: S.String.pipe(T.Label()),
-      projectSlug: S.String.pipe(T.Label()),
-      repositoryName: S.String.pipe(T.Label()),
-      reference: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest",
-  }) as any as S.Schema<DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest>;
+export const DeleteManifestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teamSlug: S.String.pipe(T.Label()),
+    projectSlug: S.String.pipe(T.Label()),
+    repositoryName: S.String.pipe(T.Label()),
+    reference: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteManifestRequest",
+}) as any as S.Schema<DeleteManifestRequest>;
 
-export type DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse =
-  unknown;
-export const DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier:
-      "DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse",
-  }) as any as S.Schema<DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse>;
+export type DeleteManifestResponse = unknown;
+export const DeleteManifestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteManifestResponse",
+}) as any as S.Schema<DeleteManifestResponse>;
 
 export interface DeleteRepositoryRequest {
   idOrName: string;
@@ -423,7 +415,7 @@ export const DeleteRepositoryImageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteRepositoryImageResponse",
 }) as any as S.Schema<DeleteRepositoryImageResponse>;
 
-export interface GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest {
+export interface GetBlobRequest {
   /** Single Docker repository team slug component. */
   teamSlug: string;
   /** Single Docker repository project slug component. */
@@ -433,33 +425,29 @@ export interface GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest 
   /** Content-addressable digest (algorithm:hex). */
   digest: string;
 }
-export const GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      teamSlug: S.String.pipe(T.Label()),
-      projectSlug: S.String.pipe(T.Label()),
-      repositoryName: S.String.pipe(T.Label()),
-      digest: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest",
-  }) as any as S.Schema<GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest>;
+export const GetBlobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teamSlug: S.String.pipe(T.Label()),
+    projectSlug: S.String.pipe(T.Label()),
+    repositoryName: S.String.pipe(T.Label()),
+    digest: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}",
+      code: 200,
+    }),
+  ),
+).annotate({ identifier: "GetBlobRequest" }) as any as S.Schema<GetBlobRequest>;
 
-export interface GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse {}
-export const GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse",
-  }) as any as S.Schema<GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse>;
+export interface GetBlobResponse {}
+export const GetBlobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetBlobResponse",
+}) as any as S.Schema<GetBlobResponse>;
 
-export interface GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest {
+export interface GetBlobsUploadRequest {
   /** Single Docker repository team slug component. */
   teamSlug: string;
   /** Single Docker repository project slug component. */
@@ -469,34 +457,31 @@ export interface GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidReq
   /** Blob upload session identifier. */
   uuid: string;
 }
-export const GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      teamSlug: S.String.pipe(T.Label()),
-      projectSlug: S.String.pipe(T.Label()),
-      repositoryName: S.String.pipe(T.Label()),
-      uuid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest",
-  }) as any as S.Schema<GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest>;
+export const GetBlobsUploadRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teamSlug: S.String.pipe(T.Label()),
+    projectSlug: S.String.pipe(T.Label()),
+    repositoryName: S.String.pipe(T.Label()),
+    uuid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetBlobsUploadRequest",
+}) as any as S.Schema<GetBlobsUploadRequest>;
 
-export type GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse =
-  unknown;
-export const GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier:
-      "GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse",
-  }) as any as S.Schema<GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse>;
+export type GetBlobsUploadResponse = unknown;
+export const GetBlobsUploadResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetBlobsUploadResponse",
+}) as any as S.Schema<GetBlobsUploadResponse>;
 
-export interface GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest {
+export interface GetManifestRequest {
   /** Single Docker repository team slug component. */
   teamSlug: string;
   /** Single Docker repository project slug component. */
@@ -506,82 +491,29 @@ export interface GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceR
   /** Manifest reference: a tag or digest. */
   reference: string;
 }
-export const GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      teamSlug: S.String.pipe(T.Label()),
-      projectSlug: S.String.pipe(T.Label()),
-      repositoryName: S.String.pipe(T.Label()),
-      reference: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest",
-  }) as any as S.Schema<GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest>;
-
-export interface GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse {}
-export const GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse",
-  }) as any as S.Schema<GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse>;
-
-export interface GetByTeamSlugByProjectSlugByRepositoryNameTagsListRequest {
-  /** Single Docker repository team slug component. */
-  teamSlug: string;
-  /** Single Docker repository project slug component. */
-  projectSlug: string;
-  /** Single Docker repository name component. */
-  repositoryName: string;
-  n?: number;
-  /** Opaque pagination cursor returned by a previous list response. */
-  last?: string;
-}
-export const GetByTeamSlugByProjectSlugByRepositoryNameTagsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      teamSlug: S.String.pipe(T.Label()),
-      projectSlug: S.String.pipe(T.Label()),
-      repositoryName: S.String.pipe(T.Label()),
-      n: S.optional(S.Number.pipe(T.Query())),
-      last: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/tags/list",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetByTeamSlugByProjectSlugByRepositoryNameTagsListRequest",
-  }) as any as S.Schema<GetByTeamSlugByProjectSlugByRepositoryNameTagsListRequest>;
-
-export type GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponseTagsList =
-  Array<string>;
-export const GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponseTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponseTagsList>;
-
-export interface GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponse {
-  name: string;
-  tags: GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponseTagsList;
-}
-export const GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      tags: GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponseTagsList,
+export const GetManifestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teamSlug: S.String.pipe(T.Label()),
+    projectSlug: S.String.pipe(T.Label()),
+    repositoryName: S.String.pipe(T.Label()),
+    reference: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}",
+      code: 200,
     }),
-  ).annotate({
-    identifier: "GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponse",
-  }) as any as S.Schema<GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponse>;
+  ),
+).annotate({
+  identifier: "GetManifestRequest",
+}) as any as S.Schema<GetManifestRequest>;
+
+export interface GetManifestResponse {}
+export const GetManifestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetManifestResponse",
+}) as any as S.Schema<GetManifestResponse>;
 
 export interface GetRepositoryRequest {
   idOrName: string;
@@ -1035,7 +967,54 @@ export const GetRootResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRootResponse",
 }) as any as S.Schema<GetRootResponse>;
 
-export interface HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest {
+export interface GetTagsListRequest {
+  /** Single Docker repository team slug component. */
+  teamSlug: string;
+  /** Single Docker repository project slug component. */
+  projectSlug: string;
+  /** Single Docker repository name component. */
+  repositoryName: string;
+  n?: number;
+  /** Opaque pagination cursor returned by a previous list response. */
+  last?: string;
+}
+export const GetTagsListRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teamSlug: S.String.pipe(T.Label()),
+    projectSlug: S.String.pipe(T.Label()),
+    repositoryName: S.String.pipe(T.Label()),
+    n: S.optional(S.Number.pipe(T.Query())),
+    last: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/tags/list",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTagsListRequest",
+}) as any as S.Schema<GetTagsListRequest>;
+
+export type GetTagsListResponseTagsList = Array<string>;
+export const GetTagsListResponseTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetTagsListResponseTagsList>;
+
+export interface GetTagsListResponse {
+  name: string;
+  tags: GetTagsListResponseTagsList;
+}
+export const GetTagsListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    tags: GetTagsListResponseTagsList,
+  }),
+).annotate({
+  identifier: "GetTagsListResponse",
+}) as any as S.Schema<GetTagsListResponse>;
+
+export interface HeadBlobRequest {
   /** Single Docker repository team slug component. */
   teamSlug: string;
   /** Single Docker repository project slug component. */
@@ -1045,33 +1024,31 @@ export interface HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest
   /** Content-addressable digest (algorithm:hex). */
   digest: string;
 }
-export const HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      teamSlug: S.String.pipe(T.Label()),
-      projectSlug: S.String.pipe(T.Label()),
-      repositoryName: S.String.pipe(T.Label()),
-      digest: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "HEAD",
-        uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest",
-  }) as any as S.Schema<HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest>;
+export const HeadBlobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teamSlug: S.String.pipe(T.Label()),
+    projectSlug: S.String.pipe(T.Label()),
+    repositoryName: S.String.pipe(T.Label()),
+    digest: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "HEAD",
+      uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "HeadBlobRequest",
+}) as any as S.Schema<HeadBlobRequest>;
 
-export interface HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse {}
-export const HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse",
-  }) as any as S.Schema<HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse>;
+export interface HeadBlobResponse {}
+export const HeadBlobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "HeadBlobResponse",
+}) as any as S.Schema<HeadBlobResponse>;
 
-export interface HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest {
+export interface HeadManifestRequest {
   /** Single Docker repository team slug component. */
   teamSlug: string;
   /** Single Docker repository project slug component. */
@@ -1081,31 +1058,29 @@ export interface HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReference
   /** Manifest reference: a tag or digest. */
   reference: string;
 }
-export const HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      teamSlug: S.String.pipe(T.Label()),
-      projectSlug: S.String.pipe(T.Label()),
-      repositoryName: S.String.pipe(T.Label()),
-      reference: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "HEAD",
-        uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest",
-  }) as any as S.Schema<HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest>;
+export const HeadManifestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teamSlug: S.String.pipe(T.Label()),
+    projectSlug: S.String.pipe(T.Label()),
+    repositoryName: S.String.pipe(T.Label()),
+    reference: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "HEAD",
+      uri: "/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "HeadManifestRequest",
+}) as any as S.Schema<HeadManifestRequest>;
 
-export interface HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse {}
-export const HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse",
-  }) as any as S.Schema<HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse>;
+export interface HeadManifestResponse {}
+export const HeadManifestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "HeadManifestResponse",
+}) as any as S.Schema<HeadManifestResponse>;
 
 export interface ListRepositoriesRequest {
   projectId: string;
@@ -1640,64 +1615,61 @@ export const createRepository: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestError =
+export type DeleteBlobError =
   | BadRequest
   | PaymentRequired
   | Forbidden
   | NotFound
   | VercelOpError;
 /** Delete a blob DELETE /v2/:teamSlug/:projectSlug/:repositoryName/blobs/:digest Blob deletion is intentionally not supported. Matches the behaviour of most public registries. */
-export const deleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest: API.OperationMethod<
-  DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest,
-  DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse,
-  DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestError,
+export const deleteBlob: API.OperationMethod<
+  DeleteBlobRequest,
+  DeleteBlobResponse,
+  DeleteBlobError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest,
-  output: DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse,
+  input: DeleteBlobRequest,
+  output: DeleteBlobResponse,
   errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidError =
+export type DeleteBlobsUploadError =
   | BadRequest
   | PaymentRequired
   | Forbidden
   | NotFound
   | VercelOpError;
 /** Cancel a blob upload DELETE /v2/:teamSlug/:projectSlug/:repositoryName/blobs/uploads/:uuid Cancel an in-flight blob upload. Aborts the underlying S3 multipart upload (if one was started) and discards the session. */
-export const deleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid: API.OperationMethod<
-  DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest,
-  DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse,
-  DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidError,
+export const deleteBlobsUpload: API.OperationMethod<
+  DeleteBlobsUploadRequest,
+  DeleteBlobsUploadResponse,
+  DeleteBlobsUploadError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest,
-  output:
-    DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse,
+  input: DeleteBlobsUploadRequest,
+  output: DeleteBlobsUploadResponse,
   errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceError =
+export type DeleteManifestError =
   | BadRequest
   | PaymentRequired
   | Forbidden
   | NotFound
   | VercelOpError;
 /** Delete an image manifest DELETE /v2/:teamSlug/:projectSlug/:repositoryName/manifests/:reference Reference must be a digest. */
-export const deleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReference: API.OperationMethod<
-  DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest,
-  DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse,
-  DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceError,
+export const deleteManifest: API.OperationMethod<
+  DeleteManifestRequest,
+  DeleteManifestResponse,
+  DeleteManifestError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest,
-  output:
-    DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse,
+  input: DeleteManifestRequest,
+  output: DeleteManifestResponse,
   errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
@@ -1741,82 +1713,61 @@ export const deleteRepositoryImage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestError =
+export type GetBlobError =
   | BadRequest
   | PaymentRequired
   | Forbidden
   | NotFound
   | VercelOpError;
 /** Download a blob GET /v2/:teamSlug/:projectSlug/:repositoryName/blobs/:digest Fetch a blob by digest. */
-export const getByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest: API.OperationMethod<
-  GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest,
-  GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse,
-  GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestError,
+export const getBlob: API.OperationMethod<
+  GetBlobRequest,
+  GetBlobResponse,
+  GetBlobError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest,
-  output: GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse,
+  input: GetBlobRequest,
+  output: GetBlobResponse,
   errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidError =
+export type GetBlobsUploadError =
   | BadRequest
   | PaymentRequired
   | Forbidden
   | NotFound
   | VercelOpError;
 /** Get blob upload status GET /v2/:teamSlug/:projectSlug/:repositoryName/blobs/uploads/:uuid Query the status of an in-progress blob upload. Used by clients to resume a partial upload after an interruption. */
-export const getByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid: API.OperationMethod<
-  GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest,
-  GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse,
-  GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidError,
+export const getBlobsUpload: API.OperationMethod<
+  GetBlobsUploadRequest,
+  GetBlobsUploadResponse,
+  GetBlobsUploadError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest,
-  output: GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse,
+  input: GetBlobsUploadRequest,
+  output: GetBlobsUploadResponse,
   errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceError =
+export type GetManifestError =
   | BadRequest
   | PaymentRequired
   | Forbidden
   | NotFound
   | VercelOpError;
 /** Pull an image manifest GET /v2/:teamSlug/:projectSlug/:repositoryName/manifests/:reference Fetch a manifest by tag or digest. */
-export const getByTeamSlugByProjectSlugByRepositoryNameManifestsByReference: API.OperationMethod<
-  GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest,
-  GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse,
-  GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceError,
+export const getManifest: API.OperationMethod<
+  GetManifestRequest,
+  GetManifestResponse,
+  GetManifestError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest,
-  output:
-    GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse,
-  errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
-  protocol: VercelProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetByTeamSlugByProjectSlugByRepositoryNameTagsListError =
-  | BadRequest
-  | PaymentRequired
-  | Forbidden
-  | NotFound
-  | VercelOpError;
-/** List image tags GET /v2/:teamSlug/:projectSlug/:repositoryName/tags/list List the tags in a repository. */
-export const getByTeamSlugByProjectSlugByRepositoryNameTagsList: API.OperationMethod<
-  GetByTeamSlugByProjectSlugByRepositoryNameTagsListRequest,
-  GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponse,
-  GetByTeamSlugByProjectSlugByRepositoryNameTagsListError,
-  VercelOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetByTeamSlugByProjectSlugByRepositoryNameTagsListRequest,
-  output: GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponse,
+  input: GetManifestRequest,
+  output: GetManifestResponse,
   errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
@@ -1899,42 +1850,61 @@ export const getRoot: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestError =
+export type GetTagsListError =
+  | BadRequest
+  | PaymentRequired
+  | Forbidden
+  | NotFound
+  | VercelOpError;
+/** List image tags GET /v2/:teamSlug/:projectSlug/:repositoryName/tags/list List the tags in a repository. */
+export const getTagsList: API.OperationMethod<
+  GetTagsListRequest,
+  GetTagsListResponse,
+  GetTagsListError,
+  VercelOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTagsListRequest,
+  output: GetTagsListResponse,
+  errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
+  protocol: VercelProtocol,
+  retry: Retry.Retry,
+}));
+
+export type HeadBlobError =
   | BadRequest
   | PaymentRequired
   | Forbidden
   | NotFound
   | VercelOpError;
 /** Check if a blob exists HEAD /v2/:teamSlug/:projectSlug/:repositoryName/blobs/:digest Check whether a blob exists. Used by the Docker client before pushing a layer to avoid re-uploading content that already exists. */
-export const headByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest: API.OperationMethod<
-  HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest,
-  HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse,
-  HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestError,
+export const headBlob: API.OperationMethod<
+  HeadBlobRequest,
+  HeadBlobResponse,
+  HeadBlobError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest,
-  output: HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestResponse,
+  input: HeadBlobRequest,
+  output: HeadBlobResponse,
   errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));
 
-export type HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceError =
+export type HeadManifestError =
   | BadRequest
   | PaymentRequired
   | Forbidden
   | NotFound
   | VercelOpError;
 /** Check if a manifest exists HEAD /v2/:teamSlug/:projectSlug/:repositoryName/manifests/:reference Check whether a manifest exists. Used by Docker client during push to determine if a manifest (or config blob referenced by digest) is already present. */
-export const headByTeamSlugByProjectSlugByRepositoryNameManifestsByReference: API.OperationMethod<
-  HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest,
-  HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse,
-  HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceError,
+export const headManifest: API.OperationMethod<
+  HeadManifestRequest,
+  HeadManifestResponse,
+  HeadManifestError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest,
-  output:
-    HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse,
+  input: HeadManifestRequest,
+  output: HeadManifestResponse,
   errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,

@@ -552,7 +552,8 @@ export const singularize = (raw: string): string => {
   if (raw !== lower && raw.toUpperCase() === raw) return raw;
   if (lower.length <= 3) return raw;
   if (!lower.endsWith("s")) return raw;
-  if (/(?:ss|us|is|os|as|ys)$/.test(lower)) return raw;
+  // Vowel + `ys` is a regular plural (`keys`, `days`); consonant + `ys` is not.
+  if (/(?:ss|us|is|os|as|[^aeiou]ys)$/.test(lower)) return raw;
   if (lower.endsWith("ies") && lower.length > 4) return `${raw.slice(0, -3)}y`;
   if (/(?:ches|shes|xes|zes|sses)$/.test(lower)) return raw.slice(0, -2);
   if (lower.endsWith("oes") && lower.length > 4) return raw.slice(0, -2);
@@ -736,6 +737,358 @@ const remapTargets = (
     }
   }
   return out;
+};
+
+/** Version prefixes and API roots that carry no meaning in a name. */
+const NOISE_SEGMENTS = new Set(["api", "rest", "v", "public"]);
+const isNoiseSegment = (seg: string): boolean => {
+  const lower = seg.toLowerCase();
+  return NOISE_SEGMENTS.has(lower) || /^v\d+(\.\d+)*$/.test(lower);
+};
+
+const HTTP_METHOD_ID =
+  /^(get|post|put|patch|delete|head|options)(?=$|[-_./]|[A-Z0-9])/i;
+
+/**
+ * Whether an OpenAPI `operationId` carries no information beyond the
+ * method and path: absent, or a mechanical restatement of the route such
+ * as `get-api-card`, `post_v1_users_id`, `getApiV1AnnotationLayer`. A
+ * hand-chosen id that merely starts with the method (`delete-artifact` for
+ * `/repos/{owner}/{repo}/actions/artifacts/{id}`) is NOT mechanical — it
+ * names a subset of the route on purpose — so the id must cover every
+ * literal path segment, and every id token must come from the route.
+ */
+/**
+ * A stricter subclass of mechanical ids: nothing in the id was chosen by
+ * a person. Either there is no id, or the id is the route spelled out —
+ * `postV1AppsByAppIdPromote`, `get_v1_users_id`, `get-api-card`,
+ * `getCustomerById`. Such names are derived from the route alone.
+ *
+ * A `By…` clause counts as verbatim only when it names a whole parameter
+ * (`ByAppId` for `{appId}`) or is a bare `ById`. `get_webhook_by_token`
+ * for `/webhooks/{webhook_id}/{webhook_token}` is a chosen
+ * disambiguation, so its nouns are kept; likewise `deleteScheduledJob`.
+ */
+export const isVerbatimRouteId = (
+  operationId: string | undefined,
+  ctx: OperationIdContext,
+): boolean => {
+  if (!operationId) return true;
+  if (!isMechanicalOperationId(operationId, ctx)) return false;
+  const id = stripTag(operationId);
+  const m = HTTP_METHOD_ID.exec(id);
+  const norm = (t: string) => singularize(t.toLowerCase()).toLowerCase();
+  const idTokens = splitIdent(id.slice(m ? m[0].length : 0)).map(norm);
+  const literal = new Set<string>();
+  const params: string[][] = [];
+  for (const seg of ctx.path.split(/[?#]/)[0]!.split("/")) {
+    for (const mm of seg.matchAll(/\{([^}]+)\}/g)) {
+      params.push(splitIdent(mm[1]!).map(norm));
+    }
+    for (const t of splitIdent(seg.replace(/\{[^}]*\}/g, " ")).map(norm)) {
+      literal.add(t);
+    }
+  }
+  const paramTokens = new Set(params.flat());
+  const clauses: string[][] = [[]];
+  for (const t of idTokens) {
+    if (t === "by") clauses.push([]);
+    else clauses.at(-1)!.push(t);
+  }
+  const [head, ...byClauses] = clauses;
+  if (!head!.every((t) => literal.has(t) || paramTokens.has(t))) return false;
+  // `ByAppIdPromote`: a whole parameter, then route literals.
+  return byClauses.every((c) => {
+    const lengths = [
+      ...params
+        .filter((p) => p.every((t, i) => t === c[i]))
+        .map((p) => p.length),
+      ...(c[0] === "id" ? [1] : []),
+    ];
+    return lengths.some(
+      (n) => n <= c.length && c.slice(n).every((t) => literal.has(t)),
+    );
+  });
+};
+
+/** `activity/get-feeds` → `get-feeds`: a tag prefix is not part of the name. */
+const stripTag = (operationId: string): string =>
+  operationId.includes("/")
+    ? operationId.slice(operationId.lastIndexOf("/") + 1)
+    : operationId;
+
+export const isMechanicalOperationId = (
+  operationId: string | undefined,
+  ctx: OperationIdContext,
+): boolean => {
+  if (!operationId) return true;
+  const id = stripTag(operationId);
+  const m = HTTP_METHOD_ID.exec(id);
+  if (!m || m[1]!.toLowerCase() !== ctx.method.toLowerCase()) return false;
+  const norm = (t: string) => singularize(t.toLowerCase()).toLowerCase();
+  const joiners = new Set(["by", "for", "of", "in", "with", "and", "to"]);
+  const idTokens = splitIdent(id.slice(m[0].length))
+    .map(norm)
+    .filter((t) => !joiners.has(t));
+  const segments = ctx.path.split(/[?#]/)[0]!.split("/").filter(Boolean);
+  // Route tokens in order; literals are required, params and `/api`,
+  // `/v2` roots are optional (`getApiV1Foo` and `getFoo` both count).
+  const route: Array<{ token: string; required: boolean }> = [];
+  for (const seg of segments) {
+    const param = /^\{(.*)\}$/.exec(seg);
+    const required = param === null && !isNoiseSegment(seg);
+    for (const t of splitIdent(param ? param[1]! : seg).map(norm)) {
+      route.push({ token: t, required });
+    }
+  }
+  if (idTokens.length === 0) return !route.some((r) => r.required);
+  // The id must read the route left to right, skipping only optional
+  // tokens. `delete-package-for-org` on /orgs/{org}/packages/… reads
+  // `package, org` — out of order — and stays a hand-written name.
+  let i = 0;
+  for (const r of route) {
+    if (i < idTokens.length && idTokens[i] === r.token) {
+      i++;
+    } else if (r.required) {
+      return false;
+    }
+  }
+  return i === idTokens.length;
+};
+
+/**
+ * Derive `verbNoun` from `METHOD /path` for operations whose operationId
+ * is missing or mechanical:
+ *
+ *   GET    /users            → listUsers       (when the 200 body is a
+ *                                               collection; else getUsers)
+ *   GET    /users/{id}       → getUser
+ *   POST   /users            → createUser
+ *   POST   /users/{id}       → updateUser      (Stripe-style POST-to-update)
+ *   PUT    /users/{id}       → putUser         (replace semantics kept)
+ *   PATCH  /users/{id}       → updateUser
+ *   DELETE /users/{id}       → deleteUser
+ *   POST   /users/{id}/reset → resetUser       (trailing action segment)
+ *   GET    /orgs/{o}/repos   → listOrgRepos    (parents, singular, keep order)
+ *
+ * `/api`, `/v1`-style roots are dropped. Path parameters contribute nothing
+ * to the name; only literal segments do.
+ */
+export interface PathNamingHints {
+  /**
+   * Whether the success response is a collection (array body, or an
+   * object whose only/primary member is an array). Decides `list` vs
+   * `get` for a GET on a route with no trailing parameter.
+   */
+  readonly returnsCollection?: boolean;
+  /**
+   * A mechanical operationId (`get-feeds`, `delete_v1_users_id`) whose
+   * noun tokens, after the method, should be used verbatim instead of
+   * being re-derived (and re-singularised) from the route.
+   */
+  readonly nouns?: string;
+  /**
+   * `nouns` is the route spelled out (`postV1AppsByAppIdPromote`), so
+   * parameter tokens embedded without a `By` (`get_v1_users_id`) and
+   * every `By…` clause are dropped, and the resource is singularised
+   * when a parameter follows it.
+   */
+  readonly verbatim?: boolean;
+}
+
+export const pathToVerbNoun = (
+  ctx: OperationIdContext,
+  hints: PathNamingHints = {},
+): string => {
+  const method = ctx.method.toLowerCase();
+  const segments = ctx.path.split(/[?#]/)[0]!.split("/").filter(Boolean);
+  const literal: string[] = [];
+  // `{id}`, `:id`, and composite segments such as `{slug}-{id}`.
+  const isParam = (seg: string) => /\{[^}]*\}/.test(seg) || seg.startsWith(":");
+  let endsWithParam = false;
+  for (let i = 0; i < segments.length; i++) {
+    const seg = segments[i]!;
+    if (isParam(seg)) {
+      endsWithParam = i === segments.length - 1;
+      continue;
+    }
+    endsWithParam = false;
+    if (isNoiseSegment(seg)) continue;
+    literal.push(seg);
+  }
+  if (literal.length === 0) return lowerFirst(method + "Root");
+
+  if (hints.nouns !== undefined) {
+    // `activity/get-feeds`: a tag prefix before the method is not a noun.
+    const id = hints.nouns.includes("/")
+      ? hints.nouns.slice(hints.nouns.lastIndexOf("/") + 1)
+      : hints.nouns;
+    const m = HTTP_METHOD_ID.exec(id);
+    const rest = m ? id.slice(m[0].length) : id;
+    // Route literals, both as written and singularised, so a parameter
+    // that echoes a literal (`{team}` under `/teams/`) is not mistaken
+    // for a parameter token.
+    const literal = new Set(
+      segments
+        .filter((seg) => !isParam(seg))
+        .flatMap((seg) => splitIdent(seg))
+        .flatMap((t) => [t.toLowerCase(), singularize(t).toLowerCase()]),
+    );
+    const routeNoise = new Set(
+      segments
+        .filter((seg) => !isParam(seg) && isNoiseSegment(seg))
+        .flatMap((seg) => splitIdent(seg).map((t) => t.toLowerCase())),
+    );
+    /** Whole parameter names as token lists (`{appId}` → ["app","id"]). */
+    const params = segments
+      .flatMap((seg) => [...seg.matchAll(/\{([^}]+)\}/g)])
+      .map((mm) => splitIdent(mm[1]!).map((t) => t.toLowerCase()));
+    const raw = splitIdent(rest);
+    /** Longest whole parameter name starting at raw[at], else 0. */
+    const matchParam = (at: number): number => {
+      let best = 0;
+      for (const prm of params) {
+        if (
+          prm.length > best &&
+          prm.every((t, k) => raw[at + k]?.toLowerCase() === t)
+        ) {
+          best = prm.length;
+        }
+      }
+      if (best === 0 && raw[at]?.toLowerCase() === "id") best = 1;
+      return best;
+    };
+    const tokens: string[] = [];
+    /** Index in `tokens` of a noun that a parameter immediately follows. */
+    const followedByParam = new Set<number>();
+    for (let i = 0; i < raw.length; i++) {
+      const t = raw[i]!;
+      const lower = t.toLowerCase();
+      // `getApiV1Foo` → drop the api/version root the id copied from the
+      // route; a token the route does not have (`…DataAPI`) is kept.
+      if (isNoiseSegment(t) && routeNoise.has(lower)) continue;
+      let n = 0;
+      let skip = 0;
+      if (/^(by|for|of|in|with|and|to)$/.test(lower)) {
+        n = matchParam(i + 1);
+        skip = n + 1;
+        // Non-verbatim ids only drop a TRAILING `ById`; a `By` in the
+        // middle (`getBalanceByAsset`) is part of the chosen name.
+        if (n > 0 && !hints.verbatim && i + skip !== raw.length) n = 0;
+      } else if (hints.verbatim && i > 0) {
+        // `get_v1_users_id`, `GetAccountsAccount`: a whole parameter name
+        // with no `By`. When the parameter echoes the resource it follows
+        // (`/accounts/{account}`, `/teams/{team}`) the previous token has
+        // to be that resource; otherwise (`deleteProjectBranchCustomDomain`
+        // on `/custom-domains/{domain}`) it is the literal.
+        n = matchParam(i);
+        skip = n;
+        const echoes = raw
+          .slice(i, i + n)
+          .some((x) => literal.has(x.toLowerCase()));
+        const prev = tokens.at(-1)?.toLowerCase();
+        const prevIsResource =
+          prev !== undefined &&
+          raw
+            .slice(i, i + n)
+            .some(
+              (x) =>
+                singularize(prev) === singularize(x.toLowerCase()) ||
+                prev === x.toLowerCase(),
+            );
+        if (echoes && !prevIsResource) n = 0;
+      }
+      if (n > 0) {
+        if (tokens.length) followedByParam.add(tokens.length - 1);
+        i += skip - 1;
+        continue;
+      }
+      tokens.push(t);
+    }
+    if (hints.verbatim) {
+      for (const i of followedByParam) tokens[i] = singularize(tokens[i]!);
+      // `PostAccounts` → createAccount: a create makes one member.
+      if (method === "post" && !endsWithParam && tokens.length > 0) {
+        tokens[tokens.length - 1] = singularize(tokens.at(-1)!);
+      }
+    }
+    if (tokens.length > 0) {
+      // A POST that addresses one member (`POST /accounts/{account}`,
+      // Stripe-style) updates it; a POST on a collection creates.
+      const verb =
+        method === "get"
+          ? !endsWithParam && hints.returnsCollection === true
+            ? "list"
+            : "get"
+          : method === "post"
+            ? endsWithParam
+              ? "update"
+              : "create"
+            : method === "patch"
+              ? "update"
+              : method;
+      return verb + tokens.map(pascalToken).join("");
+    }
+  }
+
+  const tokens = literal.map((seg) => splitIdent(seg));
+  const lastTokens = tokens.at(-1)!;
+  const lastIsVerb =
+    lastTokens.length > 0 &&
+    (isTrailingVerb(lastTokens[0]!) || isStrongVerb(lastTokens[0]!)) &&
+    !endsWithParam &&
+    method === "post";
+
+  // POST /things/{id}/publish → publishThing; POST /login → login.
+  if (lastIsVerb) {
+    const [verb, ...rest] = lastTokens;
+    const parents = tokens.slice(0, -1);
+    const nouns = parents.map((t, i) =>
+      i === parents.length - 1
+        ? t.map((x, j) => (j === t.length - 1 ? singularize(x) : x))
+        : t,
+    );
+    return (
+      alias(verb!) +
+      nouns.flat().map(pascalToken).join("") +
+      rest.map(pascalToken).join("")
+    );
+  }
+
+  // GET is `list` only when the body is known to be a collection; an
+  // unknown or non-JSON body (`/zen`, `/octocat`) is a plain `get`.
+  const verb =
+    method === "get"
+      ? !endsWithParam && hints.returnsCollection === true
+        ? "list"
+        : "get"
+      : method === "post"
+        ? endsWithParam
+          ? "update"
+          : "create"
+        : method === "patch"
+          ? "update"
+          : method === "put"
+            ? "put"
+            : method === "delete"
+              ? "delete"
+              : method;
+  // A GET/DELETE/PATCH/PUT on a collection route (no trailing parameter)
+  // addresses the collection itself — keep its plural. With a trailing
+  // parameter the route addresses one member, and `create` always makes
+  // one — singular.
+  const plural = !endsWithParam && verb !== "create";
+  const shaped = tokens.map((t, i) => {
+    const isResource = i === tokens.length - 1;
+    return t.map((x, j) => {
+      const last = j === t.length - 1;
+      if (!last) return pascalToken(x);
+      // Parents are singular (`Org` in listOrgRepos).
+      if (!isResource || !plural) return pascalToken(singularize(x));
+      return pascalToken(x);
+    });
+  });
+  return verb + shaped.flat().join("");
 };
 
 /**

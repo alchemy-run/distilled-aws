@@ -3115,10 +3115,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ValidateGatewaysDomain": {
+    "com.azure.appplatform#ValidateGatewayDomain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ValidateGatewaysDomainRequest"
+        "target": "com.azure.appplatform#ValidateGatewayDomainRequest"
       },
       "output": {
         "target": "com.azure.appplatform#CustomDomainValidateResult"
@@ -3134,7 +3134,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ValidateGatewaysDomainRequest": {
+    "com.azure.appplatform#ValidateGatewayDomainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4890,10 +4890,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#RestartGateways": {
+    "com.azure.appplatform#RestartGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#RestartGatewaysRequest"
+        "target": "com.azure.appplatform#RestartGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4909,7 +4909,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#RestartGatewaysRequest": {
+    "com.azure.appplatform#RestartGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4949,13 +4949,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ListGatewaysEnvSecrets": {
+    "com.azure.appplatform#ListGatewayEnvSecrets": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ListGatewaysEnvSecretsRequest"
+        "target": "com.azure.appplatform#ListGatewayEnvSecretsRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#ListGatewaysEnvSecretsResponse"
+        "target": "com.azure.appplatform#ListGatewayEnvSecretsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4968,7 +4968,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ListGatewaysEnvSecretsResponse": {
+    "com.azure.appplatform#ListGatewayEnvSecretsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4995,7 +4995,7 @@
         "smithy.api#documentation": "Sensitive properties for Spring Cloud Gateway"
       }
     },
-    "com.azure.appplatform#ListGatewaysEnvSecretsRequest": {
+    "com.azure.appplatform#ListGatewayEnvSecretsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5035,10 +5035,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeleteGateways": {
+    "com.azure.appplatform#DeleteGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeleteGatewaysRequest"
+        "target": "com.azure.appplatform#DeleteGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5054,7 +5054,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DeleteGatewaysRequest": {
+    "com.azure.appplatform#DeleteGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5346,13 +5346,13 @@
         "smithy.api#documentation": "Collection of certificate resource Ids in Azure Spring Apps."
       }
     },
-    "com.azure.appplatform#GetGateways": {
+    "com.azure.appplatform#GetGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#GetGatewaysRequest"
+        "target": "com.azure.appplatform#GetGatewayRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#GetGatewaysResponse"
+        "target": "com.azure.appplatform#GetGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5365,7 +5365,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#GetGatewaysResponse": {
+    "com.azure.appplatform#GetGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5403,7 +5403,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#GetGatewaysRequest": {
+    "com.azure.appplatform#GetGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22588,7 +22588,7 @@
           "target": "com.azure.appplatform#GetApiPortal"
         },
         {
-          "target": "com.azure.appplatform#ValidateGatewaysDomain"
+          "target": "com.azure.appplatform#ValidateGatewayDomain"
         },
         {
           "target": "com.azure.appplatform#ListGatewayCustomDomains"
@@ -22618,19 +22618,19 @@
           "target": "com.azure.appplatform#ListGateways"
         },
         {
-          "target": "com.azure.appplatform#RestartGateways"
+          "target": "com.azure.appplatform#RestartGateway"
         },
         {
-          "target": "com.azure.appplatform#ListGatewaysEnvSecrets"
+          "target": "com.azure.appplatform#ListGatewayEnvSecrets"
         },
         {
-          "target": "com.azure.appplatform#DeleteGateways"
+          "target": "com.azure.appplatform#DeleteGateway"
         },
         {
           "target": "com.azure.appplatform#GatewaysCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#GetGateways"
+          "target": "com.azure.appplatform#GetGateway"
         },
         {
           "target": "com.azure.appplatform#ListServiceSupportedServerVersions"

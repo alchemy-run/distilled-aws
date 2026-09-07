@@ -644,7 +644,7 @@ export const ParserRecipe = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ParserRecipe" }) as any as S.Schema<ParserRecipe>;
 
-export interface CreateLlmAnalyticsProviderKeysRequest {
+export interface CreateLlmAnalyticsProviderKeyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   provider?: LLMProviderEnum | (string & {});
@@ -656,7 +656,7 @@ export interface CreateLlmAnalyticsProviderKeysRequest {
   api_version?: string;
   set_as_active?: boolean;
 }
-export const CreateLlmAnalyticsProviderKeysRequest = /*@__PURE__*/ S.suspend(
+export const CreateLlmAnalyticsProviderKeyRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -674,8 +674,8 @@ export const CreateLlmAnalyticsProviderKeysRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateLlmAnalyticsProviderKeysRequest",
-}) as any as S.Schema<CreateLlmAnalyticsProviderKeysRequest>;
+  identifier: "CreateLlmAnalyticsProviderKeyRequest",
+}) as any as S.Schema<CreateLlmAnalyticsProviderKeyRequest>;
 
 export interface CreateLlmAnalyticsProviderKeyValidationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1386,13 +1386,13 @@ export const GetLlmAnalyticsParserRecipeRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetLlmAnalyticsParserRecipeRequest",
 }) as any as S.Schema<GetLlmAnalyticsParserRecipeRequest>;
 
-export interface GetLlmAnalyticsProviderKeysRequest {
+export interface GetLlmAnalyticsProviderKeyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this llm provider key. */
   id: string;
 }
-export const GetLlmAnalyticsProviderKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetLlmAnalyticsProviderKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -1404,8 +1404,8 @@ export const GetLlmAnalyticsProviderKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetLlmAnalyticsProviderKeysRequest",
-}) as any as S.Schema<GetLlmAnalyticsProviderKeysRequest>;
+  identifier: "GetLlmAnalyticsProviderKeyRequest",
+}) as any as S.Schema<GetLlmAnalyticsProviderKeyRequest>;
 
 export interface GetLlmAnalyticsProviderKeysDependentConfigRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2794,7 +2794,7 @@ export const UpdateLlmAnalyticsParserRecipesPartialRequest =
     identifier: "UpdateLlmAnalyticsParserRecipesPartialRequest",
   }) as any as S.Schema<UpdateLlmAnalyticsParserRecipesPartialRequest>;
 
-export interface UpdateLlmAnalyticsProviderKeysRequest {
+export interface UpdateLlmAnalyticsProviderKeyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this llm provider key. */
@@ -2808,7 +2808,7 @@ export interface UpdateLlmAnalyticsProviderKeysRequest {
   api_version?: string;
   set_as_active?: boolean;
 }
-export const UpdateLlmAnalyticsProviderKeysRequest = /*@__PURE__*/ S.suspend(
+export const UpdateLlmAnalyticsProviderKeyRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -2827,8 +2827,8 @@ export const UpdateLlmAnalyticsProviderKeysRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateLlmAnalyticsProviderKeysRequest",
-}) as any as S.Schema<UpdateLlmAnalyticsProviderKeysRequest>;
+  identifier: "UpdateLlmAnalyticsProviderKeyRequest",
+}) as any as S.Schema<UpdateLlmAnalyticsProviderKeyRequest>;
 
 export interface UpdateLlmAnalyticsProviderKeysPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -3082,14 +3082,14 @@ export const createLlmAnalyticsParserRecipe: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateLlmAnalyticsProviderKeysError = PosthogOpError;
-export const createLlmAnalyticsProviderKeys: API.OperationMethod<
-  CreateLlmAnalyticsProviderKeysRequest,
+export type CreateLlmAnalyticsProviderKeyError = PosthogOpError;
+export const createLlmAnalyticsProviderKey: API.OperationMethod<
+  CreateLlmAnalyticsProviderKeyRequest,
   LLMProviderKeyOutput,
-  CreateLlmAnalyticsProviderKeysError,
+  CreateLlmAnalyticsProviderKeyError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateLlmAnalyticsProviderKeysRequest,
+  input: CreateLlmAnalyticsProviderKeyRequest,
   output: LLMProviderKeyOutput,
   errors: [],
   protocol: PosthogProtocol,
@@ -3270,14 +3270,14 @@ export const getLlmAnalyticsParserRecipe: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetLlmAnalyticsProviderKeysError = PosthogOpError;
-export const getLlmAnalyticsProviderKeys: API.OperationMethod<
-  GetLlmAnalyticsProviderKeysRequest,
+export type GetLlmAnalyticsProviderKeyError = PosthogOpError;
+export const getLlmAnalyticsProviderKey: API.OperationMethod<
+  GetLlmAnalyticsProviderKeyRequest,
   LLMProviderKeyOutput,
-  GetLlmAnalyticsProviderKeysError,
+  GetLlmAnalyticsProviderKeyError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetLlmAnalyticsProviderKeysRequest,
+  input: GetLlmAnalyticsProviderKeyRequest,
   output: LLMProviderKeyOutput,
   errors: [],
   protocol: PosthogProtocol,
@@ -3702,14 +3702,14 @@ export const updateLlmAnalyticsParserRecipesPartial: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateLlmAnalyticsProviderKeysError = PosthogOpError;
-export const updateLlmAnalyticsProviderKeys: API.OperationMethod<
-  UpdateLlmAnalyticsProviderKeysRequest,
+export type UpdateLlmAnalyticsProviderKeyError = PosthogOpError;
+export const updateLlmAnalyticsProviderKey: API.OperationMethod<
+  UpdateLlmAnalyticsProviderKeyRequest,
   LLMProviderKeyOutput,
-  UpdateLlmAnalyticsProviderKeysError,
+  UpdateLlmAnalyticsProviderKeyError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateLlmAnalyticsProviderKeysRequest,
+  input: UpdateLlmAnalyticsProviderKeyRequest,
   output: LLMProviderKeyOutput,
   errors: [],
   protocol: PosthogProtocol,

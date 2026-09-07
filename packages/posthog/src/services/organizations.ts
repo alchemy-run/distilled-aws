@@ -4687,12 +4687,12 @@ export const OrganizationMemberGithubLogin = /*@__PURE__*/ S.suspend(() =>
   identifier: "OrganizationMemberGithubLogin",
 }) as any as S.Schema<OrganizationMemberGithubLogin>;
 
-export interface GetMembersScopedApiKeysRequest {
+export interface GetMembersScopedApiKeyRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
   organization_id: string;
   user__uuid: string;
 }
-export const GetMembersScopedApiKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetMembersScopedApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     organization_id: S.String.pipe(T.Label()),
     user__uuid: S.String.pipe(T.Label()),
@@ -4704,8 +4704,8 @@ export const GetMembersScopedApiKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetMembersScopedApiKeysRequest",
-}) as any as S.Schema<GetMembersScopedApiKeysRequest>;
+  identifier: "GetMembersScopedApiKeyRequest",
+}) as any as S.Schema<GetMembersScopedApiKeyRequest>;
 
 export interface GetOrganizationsProjectRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -10711,17 +10711,14 @@ export const getMembersGithubLogin: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetMembersScopedApiKeysError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const getMembersScopedApiKeys: API.OperationMethod<
-  GetMembersScopedApiKeysRequest,
+export type GetMembersScopedApiKeyError = Forbidden | NotFound | PosthogOpError;
+export const getMembersScopedApiKey: API.OperationMethod<
+  GetMembersScopedApiKeyRequest,
   OrganizationMember,
-  GetMembersScopedApiKeysError,
+  GetMembersScopedApiKeyError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMembersScopedApiKeysRequest,
+  input: GetMembersScopedApiKeyRequest,
   output: OrganizationMember,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,

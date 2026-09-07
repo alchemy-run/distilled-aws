@@ -13,7 +13,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface DeleteGatewaysRequest {
+export interface DeleteGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -21,7 +21,7 @@ export interface DeleteGatewaysRequest {
   /** The name of the Gateway. */
   gatewayName: string;
 }
-export const DeleteGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -35,15 +35,15 @@ export const DeleteGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteGatewaysRequest",
-}) as any as S.Schema<DeleteGatewaysRequest>;
+  identifier: "DeleteGatewayRequest",
+}) as any as S.Schema<DeleteGatewayRequest>;
 
-export interface DeleteGatewaysResponse {}
-export const DeleteGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteGatewayResponse {}
+export const DeleteGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteGatewaysResponse",
-}) as any as S.Schema<DeleteGatewaysResponse>;
+  identifier: "DeleteGatewayResponse",
+}) as any as S.Schema<DeleteGatewayResponse>;
 
 export interface DeleteLicenseRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -671,7 +671,7 @@ export const GetExtensionMetadataV2Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetExtensionMetadataV2Response",
 }) as any as S.Schema<GetExtensionMetadataV2Response>;
 
-export interface GetGatewaysRequest {
+export interface GetGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -679,7 +679,7 @@ export interface GetGatewaysRequest {
   /** The name of the Gateway. */
   gatewayName: string;
 }
-export const GetGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -693,17 +693,17 @@ export const GetGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetGatewaysRequest",
-}) as any as S.Schema<GetGatewaysRequest>;
+  identifier: "GetGatewayRequest",
+}) as any as S.Schema<GetGatewayRequest>;
 
 /** Resource tags. */
-export type GetGatewaysResponseTagsMap = { [key: string]: string | undefined };
-export const GetGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetGatewayResponseTagsMap = { [key: string]: string | undefined };
+export const GetGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GetGatewaysResponseTagsMap>;
+) as any as S.Schema<GetGatewayResponseTagsMap>;
 
-export interface GetGatewaysResponse {
+export interface GetGatewayResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -713,25 +713,25 @@ export interface GetGatewaysResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: GetGatewaysResponseTagsMap;
+  tags?: GetGatewayResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Hybrid Compute Gateway properties */
   properties?: GatewayProperties;
 }
-export const GetGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(GetGatewaysResponseTagsMap),
+    tags: S.optional(GetGatewayResponseTagsMap),
     location: S.String,
     properties: S.optional(GatewayProperties),
   }),
 ).annotate({
-  identifier: "GetGatewaysResponse",
-}) as any as S.Schema<GetGatewaysResponse>;
+  identifier: "GetGatewayResponse",
+}) as any as S.Schema<GetGatewayResponse>;
 
 export interface GetLicenseRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4519,13 +4519,13 @@ export const ExtensionTypeListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExtensionTypeListResult",
 }) as any as S.Schema<ExtensionTypeListResult>;
 
-export interface ListGatewaysByResourceGroupRequest {
+export interface ListGatewayByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListGatewaysByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListGatewayByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4538,8 +4538,8 @@ export const ListGatewaysByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListGatewaysByResourceGroupRequest",
-}) as any as S.Schema<ListGatewaysByResourceGroupRequest>;
+  identifier: "ListGatewayByResourceGroupRequest",
+}) as any as S.Schema<ListGatewayByResourceGroupRequest>;
 
 /** Resource tags. */
 export type GatewayTagsMap = { [key: string]: string | undefined };
@@ -4599,11 +4599,11 @@ export const GatewaysListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "GatewaysListResult",
 }) as any as S.Schema<GatewaysListResult>;
 
-export interface ListGatewaysBySubscriptionRequest {
+export interface ListGatewayBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ListGatewaysBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListGatewayBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -4615,8 +4615,8 @@ export const ListGatewaysBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListGatewaysBySubscriptionRequest",
-}) as any as S.Schema<ListGatewaysBySubscriptionRequest>;
+  identifier: "ListGatewayBySubscriptionRequest",
+}) as any as S.Schema<ListGatewayBySubscriptionRequest>;
 
 export interface ListLicenseByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6681,13 +6681,11 @@ export const SetupExtensionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SetupExtensionRequest>;
 
 /** Resource tags */
-export type UpdateGatewaysRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const UpdateGatewaysRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateGatewayRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateGatewayRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UpdateGatewaysRequestTagsMap>;
+) as any as S.Schema<UpdateGatewayRequestTagsMap>;
 
 /** Specifies the list of features that are enabled for this Gateway. */
 export type GatewayUpdatePropertiesAllowedFeaturesList = Array<string>;
@@ -6717,7 +6715,7 @@ export const GatewayUpdateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "GatewayUpdateProperties",
 }) as any as S.Schema<GatewayUpdateProperties>;
 
-export interface UpdateGatewaysRequest {
+export interface UpdateGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6725,16 +6723,16 @@ export interface UpdateGatewaysRequest {
   /** The name of the Gateway. */
   gatewayName: string;
   /** Resource tags */
-  tags?: UpdateGatewaysRequestTagsMap;
+  tags?: UpdateGatewayRequestTagsMap;
   /** Gateway Update properties */
   properties?: GatewayUpdateProperties;
 }
-export const UpdateGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     gatewayName: S.String.pipe(T.Label()),
-    tags: S.optional(UpdateGatewaysRequestTagsMap),
+    tags: S.optional(UpdateGatewayRequestTagsMap),
     properties: S.optional(GatewayUpdateProperties),
   }).pipe(
     T.Http({
@@ -6745,19 +6743,19 @@ export const UpdateGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateGatewaysRequest",
-}) as any as S.Schema<UpdateGatewaysRequest>;
+  identifier: "UpdateGatewayRequest",
+}) as any as S.Schema<UpdateGatewayRequest>;
 
 /** Resource tags. */
-export type UpdateGatewaysResponseTagsMap = {
+export type UpdateGatewayResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UpdateGatewaysResponseTagsMap>;
+) as any as S.Schema<UpdateGatewayResponseTagsMap>;
 
-export interface UpdateGatewaysResponse {
+export interface UpdateGatewayResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6767,25 +6765,25 @@ export interface UpdateGatewaysResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: UpdateGatewaysResponseTagsMap;
+  tags?: UpdateGatewayResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Hybrid Compute Gateway properties */
   properties?: GatewayProperties;
 }
-export const UpdateGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(UpdateGatewaysResponseTagsMap),
+    tags: S.optional(UpdateGatewayResponseTagsMap),
     location: S.String,
     properties: S.optional(GatewayProperties),
   }),
 ).annotate({
-  identifier: "UpdateGatewaysResponse",
-}) as any as S.Schema<UpdateGatewaysResponse>;
+  identifier: "UpdateGatewayResponse",
+}) as any as S.Schema<UpdateGatewayResponse>;
 
 /** Resource tags */
 export type UpdateLicenseRequestTagsMap = { [key: string]: string | undefined };
@@ -7681,16 +7679,16 @@ export const ValidateLicenseLicenseResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ValidateLicenseLicenseResponse",
 }) as any as S.Schema<ValidateLicenseLicenseResponse>;
 
-export type DeleteGatewaysError = AzureOpError;
+export type DeleteGatewayError = AzureOpError;
 /** The operation to delete a gateway. */
-export const DeleteGateways: API.OperationMethod<
-  DeleteGatewaysRequest,
-  DeleteGatewaysResponse,
-  DeleteGatewaysError,
+export const DeleteGateway: API.OperationMethod<
+  DeleteGatewayRequest,
+  DeleteGatewayResponse,
+  DeleteGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteGatewaysRequest,
-  output: DeleteGatewaysResponse,
+  input: DeleteGatewayRequest,
+  output: DeleteGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7846,16 +7844,16 @@ export const GetExtensionMetadataV2: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetGatewaysError = AzureOpError;
+export type GetGatewayError = AzureOpError;
 /** Retrieves information about the view of a gateway. */
-export const GetGateways: API.OperationMethod<
-  GetGatewaysRequest,
-  GetGatewaysResponse,
-  GetGatewaysError,
+export const GetGateway: API.OperationMethod<
+  GetGatewayRequest,
+  GetGatewayResponse,
+  GetGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetGatewaysRequest,
-  output: GetGatewaysResponse,
+  input: GetGatewayRequest,
+  output: GetGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8162,30 +8160,30 @@ export const ListExtensionType: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListGatewaysByResourceGroupError = AzureOpError;
+export type ListGatewayByResourceGroupError = AzureOpError;
 /** The operation to get all gateways of a non-Azure machine */
-export const ListGatewaysByResourceGroup: API.OperationMethod<
-  ListGatewaysByResourceGroupRequest,
+export const ListGatewayByResourceGroup: API.OperationMethod<
+  ListGatewayByResourceGroupRequest,
   GatewaysListResult,
-  ListGatewaysByResourceGroupError,
+  ListGatewayByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListGatewaysByResourceGroupRequest,
+  input: ListGatewayByResourceGroupRequest,
   output: GatewaysListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListGatewaysBySubscriptionError = AzureOpError;
+export type ListGatewayBySubscriptionError = AzureOpError;
 /** The operation to get all gateways of a non-Azure machine */
-export const ListGatewaysBySubscription: API.OperationMethod<
-  ListGatewaysBySubscriptionRequest,
+export const ListGatewayBySubscription: API.OperationMethod<
+  ListGatewayBySubscriptionRequest,
   GatewaysListResult,
-  ListGatewaysBySubscriptionError,
+  ListGatewayBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListGatewaysBySubscriptionRequest,
+  input: ListGatewayBySubscriptionRequest,
   output: GatewaysListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -8525,16 +8523,16 @@ export const SetupExtensions: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateGatewaysError = AzureOpError;
+export type UpdateGatewayError = AzureOpError;
 /** The operation to update a gateway. */
-export const UpdateGateways: API.OperationMethod<
-  UpdateGatewaysRequest,
-  UpdateGatewaysResponse,
-  UpdateGatewaysError,
+export const UpdateGateway: API.OperationMethod<
+  UpdateGatewayRequest,
+  UpdateGatewayResponse,
+  UpdateGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateGatewaysRequest,
-  output: UpdateGatewaysResponse,
+  input: UpdateGatewayRequest,
+  output: UpdateGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

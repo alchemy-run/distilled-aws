@@ -2292,7 +2292,7 @@
         "smithy.api#documentation": "Disconnects a shared environment variable for a given project\n\nDisconnects a shared environment variable for a given project"
       }
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsRequest": {
+    "com.vercel.environment#GetProjectCustomEnvironmentsRequest": {
       "type": "structure",
       "members": {
         "idOrName": {
@@ -2329,7 +2329,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseAccountLimit": {
+    "com.vercel.environment#GetProjectCustomEnvironmentsResponseAccountLimit": {
       "type": "structure",
       "members": {
         "total": {
@@ -2343,7 +2343,7 @@
         "smithy.api#documentation": "The maximum number of custom environments allowed either by the team's plan type or a custom override."
       }
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemType": {
+    "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemType": {
       "type": "enum",
       "members": {
         "DEVELOPMENT": {
@@ -2369,7 +2369,7 @@
         "smithy.api#documentation": "The type of environment (production, preview, or development)"
       }
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedirectStatusCode": {
+    "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedirectStatusCode": {
       "type": "intEnum",
       "members": {
         "_301": {
@@ -2399,7 +2399,7 @@
       },
       "traits": {}
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationItem": {
+    "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationItem": {
       "type": "structure",
       "members": {
         "type": {
@@ -2431,16 +2431,16 @@
         "smithy.api#documentation": "A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`."
       }
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationList": {
+    "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationList": {
       "type": "list",
       "member": {
-        "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationItem"
+        "target": "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationItem"
       },
       "traits": {
         "smithy.api#documentation": "A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`."
       }
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItem": {
+    "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItem": {
       "type": "structure",
       "members": {
         "name": {
@@ -2468,7 +2468,7 @@
           }
         },
         "redirectStatusCode": {
-          "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedirectStatusCode",
+          "target": "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedirectStatusCode",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -2499,7 +2499,7 @@
           }
         },
         "verification": {
-          "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationList",
+          "target": "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationList",
           "traits": {
             "smithy.api#documentation": "A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`."
           }
@@ -2509,16 +2509,16 @@
         "smithy.api#documentation": "List of domains associated with this environment"
       }
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsList": {
+    "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsList": {
       "type": "list",
       "member": {
-        "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItem"
+        "target": "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItem"
       },
       "traits": {
         "smithy.api#documentation": "List of domains associated with this environment"
       }
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemBranchMatcherType": {
+    "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcherType": {
       "type": "enum",
       "members": {
         "ENDSWITH": {
@@ -2544,11 +2544,11 @@
         "smithy.api#documentation": "The type of matching to perform"
       }
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemBranchMatcher": {
+    "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcher": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemBranchMatcherType",
+          "target": "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcherType",
           "traits": {
             "smithy.api#documentation": "The type of matching to perform",
             "smithy.api#required": {}
@@ -2566,7 +2566,7 @@
         "smithy.api#documentation": "Configuration for matching git branches to this environment"
       }
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemCurrentDeploymentAliasesList": {
+    "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemCurrentDeploymentAliasesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2575,11 +2575,11 @@
         "smithy.api#documentation": "List of aliases for the current deployment"
       }
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItem": {
+    "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItem": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemType",
+          "target": "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemType",
           "traits": {
             "smithy.api#documentation": "The type of environment (production, preview, or development)",
             "smithy.api#required": {}
@@ -2620,19 +2620,19 @@
           }
         },
         "domains": {
-          "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsList",
+          "target": "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsList",
           "traits": {
             "smithy.api#documentation": "List of domains associated with this environment"
           }
         },
         "branchMatcher": {
-          "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemBranchMatcher",
+          "target": "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcher",
           "traits": {
             "smithy.api#documentation": "Configuration for matching git branches to this environment"
           }
         },
         "currentDeploymentAliases": {
-          "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemCurrentDeploymentAliasesList",
+          "target": "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItemCurrentDeploymentAliasesList",
           "traits": {
             "smithy.api#documentation": "List of aliases for the current deployment"
           }
@@ -2640,25 +2640,25 @@
       },
       "traits": {}
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsList": {
+    "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsList": {
       "type": "list",
       "member": {
-        "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItem"
+        "target": "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsItem"
       },
       "traits": {}
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponse": {
+    "com.vercel.environment#GetProjectCustomEnvironmentsResponse": {
       "type": "structure",
       "members": {
         "accountLimit": {
-          "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseAccountLimit",
+          "target": "com.vercel.environment#GetProjectCustomEnvironmentsResponseAccountLimit",
           "traits": {
             "smithy.api#documentation": "The maximum number of custom environments allowed either by the team's plan type or a custom override.",
             "smithy.api#required": {}
           }
         },
         "environments": {
-          "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsList",
+          "target": "com.vercel.environment#GetProjectCustomEnvironmentsResponseEnvironmentsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -2668,13 +2668,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironments": {
+    "com.vercel.environment#GetProjectCustomEnvironments": {
       "type": "operation",
       "input": {
-        "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsRequest"
+        "target": "com.vercel.environment#GetProjectCustomEnvironmentsRequest"
       },
       "output": {
-        "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironmentsResponse"
+        "target": "com.vercel.environment#GetProjectCustomEnvironmentsResponse"
       },
       "errors": [
         {
@@ -4350,7 +4350,7 @@
           "target": "com.vercel.environment#UnlinkSharedEnvVariable"
         },
         {
-          "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironments"
+          "target": "com.vercel.environment#GetProjectCustomEnvironments"
         },
         {
           "target": "com.vercel.environment#CreateCustomEnvironment"

@@ -9605,10 +9605,10 @@
         "smithy.api#documentation": "The response of get private dns zone suffix."
       }
     },
-    "com.azure.mysql#DeleteServerKeys": {
+    "com.azure.mysql#DeleteServerKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#DeleteServerKeysRequest"
+        "target": "com.azure.mysql#DeleteServerKeyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9624,7 +9624,7 @@
         "com.distilled.openapi#apiVersion": "2020-01-01"
       }
     },
-    "com.azure.mysql#DeleteServerKeysRequest": {
+    "com.azure.mysql#DeleteServerKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9843,13 +9843,13 @@
         "smithy.api#documentation": "The key type like 'AzureKeyVault'."
       }
     },
-    "com.azure.mysql#GetServerKeys": {
+    "com.azure.mysql#GetServerKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.mysql#GetServerKeysRequest"
+        "target": "com.azure.mysql#GetServerKeyRequest"
       },
       "output": {
-        "target": "com.azure.mysql#GetServerKeysResponse"
+        "target": "com.azure.mysql#GetServerKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9862,7 +9862,7 @@
         "com.distilled.openapi#apiVersion": "2020-01-01"
       }
     },
-    "com.azure.mysql#GetServerKeysResponse": {
+    "com.azure.mysql#GetServerKeyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9900,7 +9900,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.mysql#GetServerKeysRequest": {
+    "com.azure.mysql#GetServerKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10326,13 +10326,13 @@
           "target": "com.azure.mysql#ExecuteGetPrivateDnsZoneSuffix"
         },
         {
-          "target": "com.azure.mysql#DeleteServerKeys"
+          "target": "com.azure.mysql#DeleteServerKey"
         },
         {
           "target": "com.azure.mysql#ServerKeysCreateOrUpdate"
         },
         {
-          "target": "com.azure.mysql#GetServerKeys"
+          "target": "com.azure.mysql#GetServerKey"
         },
         {
           "target": "com.azure.mysql#ListServerKeys"

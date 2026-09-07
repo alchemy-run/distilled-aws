@@ -25101,10 +25101,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.compute#GenerateSshPublicKeysKeyPair": {
+    "com.azure.compute#GenerateSshPublicKeyKeyPair": {
       "type": "operation",
       "input": {
-        "target": "com.azure.compute#GenerateSshPublicKeysKeyPairRequest"
+        "target": "com.azure.compute#GenerateSshPublicKeyKeyPairRequest"
       },
       "output": {
         "target": "com.azure.compute#SshPublicKeyGenerateKeyPairResult"
@@ -25150,7 +25150,7 @@
         "smithy.api#documentation": "Response from generation of an SSH key pair."
       }
     },
-    "com.azure.compute#GenerateSshPublicKeysKeyPairRequest": {
+    "com.azure.compute#GenerateSshPublicKeyKeyPairRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -25208,10 +25208,10 @@
         "smithy.api#documentation": "The encryption type of the SSH keys to be generated. See SshEncryptionTypes for possible set of values. If not provided, will default to RSA"
       }
     },
-    "com.azure.compute#DeleteSshPublicKeys": {
+    "com.azure.compute#DeleteSshPublicKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.compute#DeleteSshPublicKeysRequest"
+        "target": "com.azure.compute#DeleteSshPublicKeyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -25227,7 +25227,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.compute#DeleteSshPublicKeysRequest": {
+    "com.azure.compute#DeleteSshPublicKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -25259,13 +25259,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.compute#UpdateSshPublicKeys": {
+    "com.azure.compute#UpdateSshPublicKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.compute#UpdateSshPublicKeysRequest"
+        "target": "com.azure.compute#UpdateSshPublicKeyRequest"
       },
       "output": {
-        "target": "com.azure.compute#UpdateSshPublicKeysResponse"
+        "target": "com.azure.compute#UpdateSshPublicKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -25278,7 +25278,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.compute#UpdateSshPublicKeysResponse": {
+    "com.azure.compute#UpdateSshPublicKeyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -25306,7 +25306,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.compute#UpdateSshPublicKeysResponseTagsMap",
+          "target": "com.azure.compute#UpdateSshPublicKeyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -25343,7 +25343,7 @@
         "smithy.api#documentation": "Properties of the SSH public key."
       }
     },
-    "com.azure.compute#UpdateSshPublicKeysResponseTagsMap": {
+    "com.azure.compute#UpdateSshPublicKeyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -25355,7 +25355,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.compute#UpdateSshPublicKeysRequest": {
+    "com.azure.compute#UpdateSshPublicKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -25383,7 +25383,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.compute#UpdateSshPublicKeysRequestTagsMap",
+          "target": "com.azure.compute#UpdateSshPublicKeyRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -25399,7 +25399,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.compute#UpdateSshPublicKeysRequestTagsMap": {
+    "com.azure.compute#UpdateSshPublicKeyRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -25411,13 +25411,13 @@
         "smithy.api#documentation": "Resource tags"
       }
     },
-    "com.azure.compute#CreateSshPublicKeys": {
+    "com.azure.compute#CreateSshPublicKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.compute#CreateSshPublicKeysRequest"
+        "target": "com.azure.compute#CreateSshPublicKeyRequest"
       },
       "output": {
-        "target": "com.azure.compute#CreateSshPublicKeysResponse"
+        "target": "com.azure.compute#CreateSshPublicKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -25430,7 +25430,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.compute#CreateSshPublicKeysResponse": {
+    "com.azure.compute#CreateSshPublicKeyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -25458,7 +25458,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.compute#CreateSshPublicKeysResponseTagsMap",
+          "target": "com.azure.compute#CreateSshPublicKeyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -25481,7 +25481,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.compute#CreateSshPublicKeysResponseTagsMap": {
+    "com.azure.compute#CreateSshPublicKeyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -25493,7 +25493,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.compute#CreateSshPublicKeysRequest": {
+    "com.azure.compute#CreateSshPublicKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -25521,7 +25521,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.compute#CreateSshPublicKeysRequestTagsMap",
+          "target": "com.azure.compute#CreateSshPublicKeyRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -25544,7 +25544,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.compute#CreateSshPublicKeysRequestTagsMap": {
+    "com.azure.compute#CreateSshPublicKeyRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -25556,13 +25556,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.compute#GetSshPublicKeys": {
+    "com.azure.compute#GetSshPublicKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.compute#GetSshPublicKeysRequest"
+        "target": "com.azure.compute#GetSshPublicKeyRequest"
       },
       "output": {
-        "target": "com.azure.compute#GetSshPublicKeysResponse"
+        "target": "com.azure.compute#GetSshPublicKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -25575,7 +25575,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.compute#GetSshPublicKeysResponse": {
+    "com.azure.compute#GetSshPublicKeyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -25603,7 +25603,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.compute#GetSshPublicKeysResponseTagsMap",
+          "target": "com.azure.compute#GetSshPublicKeyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -25626,7 +25626,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.compute#GetSshPublicKeysResponseTagsMap": {
+    "com.azure.compute#GetSshPublicKeyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -25638,7 +25638,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.compute#GetSshPublicKeysRequest": {
+    "com.azure.compute#GetSshPublicKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -25670,10 +25670,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.compute#ListSshPublicKeysByResourceGroup": {
+    "com.azure.compute#ListSshPublicKeyByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.compute#ListSshPublicKeysByResourceGroupRequest"
+        "target": "com.azure.compute#ListSshPublicKeyByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.compute#SshPublicKeysGroupListResult"
@@ -25782,7 +25782,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.compute#ListSshPublicKeysByResourceGroupRequest": {
+    "com.azure.compute#ListSshPublicKeyByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -35492,10 +35492,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.compute#ListSshPublicKeysBySubscription": {
+    "com.azure.compute#ListSshPublicKeyBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.compute#ListSshPublicKeysBySubscriptionRequest"
+        "target": "com.azure.compute#ListSshPublicKeyBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.compute#SshPublicKeysGroupListResult"
@@ -35511,7 +35511,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.compute#ListSshPublicKeysBySubscriptionRequest": {
+    "com.azure.compute#ListSshPublicKeyBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -40946,22 +40946,22 @@
           "target": "com.azure.compute#ListVirtualMachineScaleSets"
         },
         {
-          "target": "com.azure.compute#GenerateSshPublicKeysKeyPair"
+          "target": "com.azure.compute#GenerateSshPublicKeyKeyPair"
         },
         {
-          "target": "com.azure.compute#DeleteSshPublicKeys"
+          "target": "com.azure.compute#DeleteSshPublicKey"
         },
         {
-          "target": "com.azure.compute#UpdateSshPublicKeys"
+          "target": "com.azure.compute#UpdateSshPublicKey"
         },
         {
-          "target": "com.azure.compute#CreateSshPublicKeys"
+          "target": "com.azure.compute#CreateSshPublicKey"
         },
         {
-          "target": "com.azure.compute#GetSshPublicKeys"
+          "target": "com.azure.compute#GetSshPublicKey"
         },
         {
-          "target": "com.azure.compute#ListSshPublicKeysByResourceGroup"
+          "target": "com.azure.compute#ListSshPublicKeyByResourceGroup"
         },
         {
           "target": "com.azure.compute#DeleteRestorePoint"
@@ -41138,7 +41138,7 @@
           "target": "com.azure.compute#ListVirtualMachineScaleSetAll"
         },
         {
-          "target": "com.azure.compute#ListSshPublicKeysBySubscription"
+          "target": "com.azure.compute#ListSshPublicKeyBySubscription"
         },
         {
           "target": "com.azure.compute#ListRestorePointCollectionAll"

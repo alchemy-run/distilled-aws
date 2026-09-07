@@ -1498,10 +1498,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.fist#ListCryptoKeysByFirmware": {
+    "com.azure.fist#ListCryptoKeyByFirmware": {
       "type": "operation",
       "input": {
-        "target": "com.azure.fist#ListCryptoKeysByFirmwareRequest"
+        "target": "com.azure.fist#ListCryptoKeyByFirmwareRequest"
       },
       "output": {
         "target": "com.azure.fist#CryptoKeyResourceListResult"
@@ -1705,7 +1705,7 @@
         "smithy.api#documentation": "Different types of cryptographic keys."
       }
     },
-    "com.azure.fist#ListCryptoKeysByFirmwareRequest": {
+    "com.azure.fist#ListCryptoKeyByFirmwareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4221,7 +4221,7 @@
           "target": "com.azure.fist#ListCveByFirmware"
         },
         {
-          "target": "com.azure.fist#ListCryptoKeysByFirmware"
+          "target": "com.azure.fist#ListCryptoKeyByFirmware"
         },
         {
           "target": "com.azure.fist#ListCryptoCertificateByFirmware"

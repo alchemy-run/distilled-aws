@@ -161,11 +161,11 @@ export const DeleteProfileRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteProfileRequest",
 }) as any as S.Schema<DeleteProfileRequest>;
 
-export interface DeleteTrafficManagerUserMetricsKeysRequest {
+export interface DeleteTrafficManagerUserMetricsKeyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const DeleteTrafficManagerUserMetricsKeysRequest =
+export const DeleteTrafficManagerUserMetricsKeyRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -178,8 +178,8 @@ export const DeleteTrafficManagerUserMetricsKeysRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteTrafficManagerUserMetricsKeysRequest",
-  }) as any as S.Schema<DeleteTrafficManagerUserMetricsKeysRequest>;
+    identifier: "DeleteTrafficManagerUserMetricsKeyRequest",
+  }) as any as S.Schema<DeleteTrafficManagerUserMetricsKeyRequest>;
 
 export type EndpointsCreateOrUpdateRequestEndpointType =
   | "AzureEndpoints"
@@ -931,11 +931,11 @@ export const GetProfileResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetProfileResponse",
 }) as any as S.Schema<GetProfileResponse>;
 
-export interface GetTrafficManagerUserMetricsKeysRequest {
+export interface GetTrafficManagerUserMetricsKeyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const GetTrafficManagerUserMetricsKeysRequest = /*@__PURE__*/ S.suspend(
+export const GetTrafficManagerUserMetricsKeyRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -948,8 +948,8 @@ export const GetTrafficManagerUserMetricsKeysRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetTrafficManagerUserMetricsKeysRequest",
-}) as any as S.Schema<GetTrafficManagerUserMetricsKeysRequest>;
+  identifier: "GetTrafficManagerUserMetricsKeyRequest",
+}) as any as S.Schema<GetTrafficManagerUserMetricsKeyRequest>;
 
 /** Class representing a Traffic Manager Real User Metrics key response. */
 export interface UserMetricsProperties {
@@ -964,7 +964,7 @@ export const UserMetricsProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "UserMetricsProperties",
 }) as any as S.Schema<UserMetricsProperties>;
 
-export interface GetTrafficManagerUserMetricsKeysResponse {
+export interface GetTrafficManagerUserMetricsKeyResponse {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -974,7 +974,7 @@ export interface GetTrafficManagerUserMetricsKeysResponse {
   /** The properties of the Traffic Manager User Metrics. */
   properties?: UserMetricsProperties;
 }
-export const GetTrafficManagerUserMetricsKeysResponse = /*@__PURE__*/ S.suspend(
+export const GetTrafficManagerUserMetricsKeyResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -983,8 +983,8 @@ export const GetTrafficManagerUserMetricsKeysResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(UserMetricsProperties),
     }),
 ).annotate({
-  identifier: "GetTrafficManagerUserMetricsKeysResponse",
-}) as any as S.Schema<GetTrafficManagerUserMetricsKeysResponse>;
+  identifier: "GetTrafficManagerUserMetricsKeyResponse",
+}) as any as S.Schema<GetTrafficManagerUserMetricsKeyResponse>;
 
 export interface ListProfileByResourceGroupRequest {
   /** The ID of the target subscription. */
@@ -1494,15 +1494,15 @@ export const DeleteProfile: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteTrafficManagerUserMetricsKeysError = AzureOpError;
+export type DeleteTrafficManagerUserMetricsKeyError = AzureOpError;
 /** Delete a subscription-level key used for Real User Metrics collection. */
-export const DeleteTrafficManagerUserMetricsKeys: API.OperationMethod<
-  DeleteTrafficManagerUserMetricsKeysRequest,
+export const DeleteTrafficManagerUserMetricsKey: API.OperationMethod<
+  DeleteTrafficManagerUserMetricsKeyRequest,
   DeleteOperationResult,
-  DeleteTrafficManagerUserMetricsKeysError,
+  DeleteTrafficManagerUserMetricsKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteTrafficManagerUserMetricsKeysRequest,
+  input: DeleteTrafficManagerUserMetricsKeyRequest,
   output: DeleteOperationResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -1584,16 +1584,16 @@ export const GetProfile: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetTrafficManagerUserMetricsKeysError = AzureOpError;
+export type GetTrafficManagerUserMetricsKeyError = AzureOpError;
 /** Get the subscription-level key used for Real User Metrics collection. */
-export const GetTrafficManagerUserMetricsKeys: API.OperationMethod<
-  GetTrafficManagerUserMetricsKeysRequest,
-  GetTrafficManagerUserMetricsKeysResponse,
-  GetTrafficManagerUserMetricsKeysError,
+export const GetTrafficManagerUserMetricsKey: API.OperationMethod<
+  GetTrafficManagerUserMetricsKeyRequest,
+  GetTrafficManagerUserMetricsKeyResponse,
+  GetTrafficManagerUserMetricsKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetTrafficManagerUserMetricsKeysRequest,
-  output: GetTrafficManagerUserMetricsKeysResponse,
+  input: GetTrafficManagerUserMetricsKeyRequest,
+  output: GetTrafficManagerUserMetricsKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

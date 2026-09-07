@@ -54243,10 +54243,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sql#DeleteManagedInstanceKeys": {
+    "com.azure.sql#DeleteManagedInstanceKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sql#DeleteManagedInstanceKeysRequest"
+        "target": "com.azure.sql#DeleteManagedInstanceKeyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -54262,7 +54262,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.sql#DeleteManagedInstanceKeysRequest": {
+    "com.azure.sql#DeleteManagedInstanceKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -54511,13 +54511,13 @@
         "smithy.api#documentation": "The encryption protector type like 'ServiceManaged', 'AzureKeyVault'."
       }
     },
-    "com.azure.sql#GetManagedInstanceKeys": {
+    "com.azure.sql#GetManagedInstanceKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sql#GetManagedInstanceKeysRequest"
+        "target": "com.azure.sql#GetManagedInstanceKeyRequest"
       },
       "output": {
-        "target": "com.azure.sql#GetManagedInstanceKeysResponse"
+        "target": "com.azure.sql#GetManagedInstanceKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -54530,7 +54530,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.sql#GetManagedInstanceKeysResponse": {
+    "com.azure.sql#GetManagedInstanceKeyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -54574,7 +54574,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.sql#GetManagedInstanceKeysRequest": {
+    "com.azure.sql#GetManagedInstanceKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -54614,10 +54614,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sql#ListManagedInstanceKeysByInstance": {
+    "com.azure.sql#ListManagedInstanceKeyByInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sql#ListManagedInstanceKeysByInstanceRequest"
+        "target": "com.azure.sql#ListManagedInstanceKeyByInstanceRequest"
       },
       "output": {
         "target": "com.azure.sql#ManagedInstanceKeyListResult"
@@ -54707,7 +54707,7 @@
         "smithy.api#documentation": "A managed instance key."
       }
     },
-    "com.azure.sql#ListManagedInstanceKeysByInstanceRequest": {
+    "com.azure.sql#ListManagedInstanceKeyByInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -72647,10 +72647,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sql#DeleteServerKeys": {
+    "com.azure.sql#DeleteServerKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sql#DeleteServerKeysRequest"
+        "target": "com.azure.sql#DeleteServerKeyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -72666,7 +72666,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.sql#DeleteServerKeysRequest": {
+    "com.azure.sql#DeleteServerKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -72933,13 +72933,13 @@
         "smithy.api#documentation": "The encryption protector type like 'ServiceManaged', 'AzureKeyVault'."
       }
     },
-    "com.azure.sql#GetServerKeys": {
+    "com.azure.sql#GetServerKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sql#GetServerKeysRequest"
+        "target": "com.azure.sql#GetServerKeyRequest"
       },
       "output": {
-        "target": "com.azure.sql#GetServerKeysResponse"
+        "target": "com.azure.sql#GetServerKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -72952,7 +72952,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.sql#GetServerKeysResponse": {
+    "com.azure.sql#GetServerKeyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -73002,7 +73002,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.sql#GetServerKeysRequest": {
+    "com.azure.sql#GetServerKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -73042,10 +73042,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sql#ListServerKeysByServer": {
+    "com.azure.sql#ListServerKeyByServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sql#ListServerKeysByServerRequest"
+        "target": "com.azure.sql#ListServerKeyByServerRequest"
       },
       "output": {
         "target": "com.azure.sql#ServerKeyListResult"
@@ -73141,7 +73141,7 @@
         "smithy.api#documentation": "A server key."
       }
     },
-    "com.azure.sql#ListServerKeysByServerRequest": {
+    "com.azure.sql#ListServerKeyByServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -88965,16 +88965,16 @@
           "target": "com.azure.sql#ListManagedInstanceEncryptionProtectorByInstance"
         },
         {
-          "target": "com.azure.sql#DeleteManagedInstanceKeys"
+          "target": "com.azure.sql#DeleteManagedInstanceKey"
         },
         {
           "target": "com.azure.sql#ManagedInstanceKeysCreateOrUpdate"
         },
         {
-          "target": "com.azure.sql#GetManagedInstanceKeys"
+          "target": "com.azure.sql#GetManagedInstanceKey"
         },
         {
-          "target": "com.azure.sql#ListManagedInstanceKeysByInstance"
+          "target": "com.azure.sql#ListManagedInstanceKeyByInstance"
         },
         {
           "target": "com.azure.sql#DeleteManagedInstanceLongTermRetentionPolicy"
@@ -89331,16 +89331,16 @@
           "target": "com.azure.sql#ListServerDnsAliasByServer"
         },
         {
-          "target": "com.azure.sql#DeleteServerKeys"
+          "target": "com.azure.sql#DeleteServerKey"
         },
         {
           "target": "com.azure.sql#ServerKeysCreateOrUpdate"
         },
         {
-          "target": "com.azure.sql#GetServerKeys"
+          "target": "com.azure.sql#GetServerKey"
         },
         {
-          "target": "com.azure.sql#ListServerKeysByServer"
+          "target": "com.azure.sql#ListServerKeyByServer"
         },
         {
           "target": "com.azure.sql#ListServerOperationByServer"

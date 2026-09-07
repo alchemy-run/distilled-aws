@@ -3199,10 +3199,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.operationalinsights#GetSharedKeysSharedKeys": {
+    "com.azure.operationalinsights#GetSharedKeySharedKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.operationalinsights#GetSharedKeysSharedKeysRequest"
+        "target": "com.azure.operationalinsights#GetSharedKeySharedKeysRequest"
       },
       "output": {
         "target": "com.azure.operationalinsights#SharedKeys"
@@ -3238,7 +3238,7 @@
         "smithy.api#documentation": "The shared keys for a workspace."
       }
     },
-    "com.azure.operationalinsights#GetSharedKeysSharedKeysRequest": {
+    "com.azure.operationalinsights#GetSharedKeySharedKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4104,10 +4104,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.operationalinsights#RegenerateSharedKeys": {
+    "com.azure.operationalinsights#RegenerateSharedKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.operationalinsights#RegenerateSharedKeysRequest"
+        "target": "com.azure.operationalinsights#RegenerateSharedKeyRequest"
       },
       "output": {
         "target": "com.azure.operationalinsights#SharedKeys"
@@ -4123,7 +4123,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.operationalinsights#RegenerateSharedKeysRequest": {
+    "com.azure.operationalinsights#RegenerateSharedKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6688,10 +6688,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.operationalinsights#DeleteGateways": {
+    "com.azure.operationalinsights#DeleteGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.operationalinsights#DeleteGatewaysRequest"
+        "target": "com.azure.operationalinsights#DeleteGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6707,7 +6707,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.operationalinsights#DeleteGatewaysRequest": {
+    "com.azure.operationalinsights#DeleteGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13427,7 +13427,7 @@
           "target": "com.azure.operationalinsights#ListStorageInsightConfigByWorkspace"
         },
         {
-          "target": "com.azure.operationalinsights#GetSharedKeysSharedKeys"
+          "target": "com.azure.operationalinsights#GetSharedKeySharedKeys"
         },
         {
           "target": "com.azure.operationalinsights#GetSchema"
@@ -13445,7 +13445,7 @@
           "target": "com.azure.operationalinsights#ListSavedSearchByWorkspace"
         },
         {
-          "target": "com.azure.operationalinsights#RegenerateSharedKeys"
+          "target": "com.azure.operationalinsights#RegenerateSharedKey"
         },
         {
           "target": "com.azure.operationalinsights#PurgeWorkspacePurgeLakeData"
@@ -13502,7 +13502,7 @@
           "target": "com.azure.operationalinsights#ListIntelligencePacks"
         },
         {
-          "target": "com.azure.operationalinsights#DeleteGateways"
+          "target": "com.azure.operationalinsights#DeleteGateway"
         },
         {
           "target": "com.azure.operationalinsights#WorkspacesFailback"

@@ -1725,7 +1725,7 @@ export const DeleteServerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteServerResponse",
 }) as any as S.Schema<DeleteServerResponse>;
 
-export interface DeleteServerKeysRequest {
+export interface DeleteServerKeyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1735,7 +1735,7 @@ export interface DeleteServerKeysRequest {
   /** The name of the MySQL Server key to be deleted. */
   keyName: string;
 }
-export const DeleteServerKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteServerKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1750,15 +1750,15 @@ export const DeleteServerKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteServerKeysRequest",
-}) as any as S.Schema<DeleteServerKeysRequest>;
+  identifier: "DeleteServerKeyRequest",
+}) as any as S.Schema<DeleteServerKeyRequest>;
 
-export interface DeleteServerKeysResponse {}
-export const DeleteServerKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteServerKeyResponse {}
+export const DeleteServerKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteServerKeysResponse",
-}) as any as S.Schema<DeleteServerKeysResponse>;
+  identifier: "DeleteServerKeyResponse",
+}) as any as S.Schema<DeleteServerKeyResponse>;
 
 export interface DetachServerVNetRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3153,7 +3153,7 @@ export const GetServerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetServerResponse",
 }) as any as S.Schema<GetServerResponse>;
 
-export interface GetServerKeysRequest {
+export interface GetServerKeyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3163,7 +3163,7 @@ export interface GetServerKeysRequest {
   /** The name of the MySQL Server key to be retrieved. */
   keyName: string;
 }
-export const GetServerKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetServerKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3178,8 +3178,8 @@ export const GetServerKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetServerKeysRequest",
-}) as any as S.Schema<GetServerKeysRequest>;
+  identifier: "GetServerKeyRequest",
+}) as any as S.Schema<GetServerKeyRequest>;
 
 /** The key type like 'AzureKeyVault'. */
 export type ServerKeyPropertiesServerKeyType = "AzureKeyVault";
@@ -3204,7 +3204,7 @@ export const ServerKeyProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServerKeyProperties",
 }) as any as S.Schema<ServerKeyProperties>;
 
-export interface GetServerKeysResponse {
+export interface GetServerKeyResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3216,7 +3216,7 @@ export interface GetServerKeysResponse {
   /** Properties of the ServerKey Resource. */
   properties?: ServerKeyProperties;
 }
-export const GetServerKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetServerKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3225,8 +3225,8 @@ export const GetServerKeysResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ServerKeyProperties),
   }),
 ).annotate({
-  identifier: "GetServerKeysResponse",
-}) as any as S.Schema<GetServerKeysResponse>;
+  identifier: "GetServerKeyResponse",
+}) as any as S.Schema<GetServerKeyResponse>;
 
 export interface ListAdvancedThreatProtectionSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5864,16 +5864,16 @@ export const DeleteServer: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteServerKeysError = AzureOpError;
+export type DeleteServerKeyError = AzureOpError;
 /** Deletes the MySQL Server key with the given name. */
-export const DeleteServerKeys: API.OperationMethod<
-  DeleteServerKeysRequest,
-  DeleteServerKeysResponse,
-  DeleteServerKeysError,
+export const DeleteServerKey: API.OperationMethod<
+  DeleteServerKeyRequest,
+  DeleteServerKeyResponse,
+  DeleteServerKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteServerKeysRequest,
-  output: DeleteServerKeysResponse,
+  input: DeleteServerKeyRequest,
+  output: DeleteServerKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6164,16 +6164,16 @@ export const GetServer: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetServerKeysError = AzureOpError;
+export type GetServerKeyError = AzureOpError;
 /** Gets a MySQL Server key. */
-export const GetServerKeys: API.OperationMethod<
-  GetServerKeysRequest,
-  GetServerKeysResponse,
-  GetServerKeysError,
+export const GetServerKey: API.OperationMethod<
+  GetServerKeyRequest,
+  GetServerKeyResponse,
+  GetServerKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetServerKeysRequest,
-  output: GetServerKeysResponse,
+  input: GetServerKeyRequest,
+  output: GetServerKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -4101,6 +4101,41 @@ export const DeleteDevToolPortalResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteDevToolPortalResponse",
 }) as any as S.Schema<DeleteDevToolPortalResponse>;
 
+export interface DeleteGatewayRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of Spring Cloud Gateway. */
+  gatewayName: string;
+}
+export const DeleteGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    gatewayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/gateways/{gatewayName}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteGatewayRequest",
+}) as any as S.Schema<DeleteGatewayRequest>;
+
+export interface DeleteGatewayResponse {}
+export const DeleteGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteGatewayResponse",
+}) as any as S.Schema<DeleteGatewayResponse>;
+
 export interface DeleteGatewayCustomDomainRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
@@ -4176,41 +4211,6 @@ export const DeleteGatewayRouteConfigResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteGatewayRouteConfigResponse",
 }) as any as S.Schema<DeleteGatewayRouteConfigResponse>;
-
-export interface DeleteGatewaysRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of Spring Cloud Gateway. */
-  gatewayName: string;
-}
-export const DeleteGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    gatewayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/gateways/{gatewayName}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteGatewaysRequest",
-}) as any as S.Schema<DeleteGatewaysRequest>;
-
-export interface DeleteGatewaysResponse {}
-export const DeleteGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteGatewaysResponse",
-}) as any as S.Schema<DeleteGatewaysResponse>;
 
 export interface DeleteServiceRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -7539,6 +7539,59 @@ export const GetDevToolPortalResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDevToolPortalResponse",
 }) as any as S.Schema<GetDevToolPortalResponse>;
 
+export interface GetGatewayRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of Spring Cloud Gateway. */
+  gatewayName: string;
+}
+export const GetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    gatewayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/gateways/{gatewayName}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetGatewayRequest",
+}) as any as S.Schema<GetGatewayRequest>;
+
+export interface GetGatewayResponse {
+  /** Fully qualified resource Id for the resource. */
+  id?: string;
+  /** The name of the resource. */
+  name?: string;
+  /** The type of the resource. */
+  type?: string;
+  systemData?: SystemData;
+  properties?: GatewayProperties;
+  /** Sku of the Spring Cloud Gateway resource */
+  sku?: Sku;
+}
+export const GetGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(GatewayProperties),
+    sku: S.optional(Sku),
+  }),
+).annotate({
+  identifier: "GetGatewayResponse",
+}) as any as S.Schema<GetGatewayResponse>;
+
 export interface GetGatewayCustomDomainRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
@@ -7644,59 +7697,6 @@ export const GetGatewayRouteConfigResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetGatewayRouteConfigResponse",
 }) as any as S.Schema<GetGatewayRouteConfigResponse>;
-
-export interface GetGatewaysRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of Spring Cloud Gateway. */
-  gatewayName: string;
-}
-export const GetGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    gatewayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/gateways/{gatewayName}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetGatewaysRequest",
-}) as any as S.Schema<GetGatewaysRequest>;
-
-export interface GetGatewaysResponse {
-  /** Fully qualified resource Id for the resource. */
-  id?: string;
-  /** The name of the resource. */
-  name?: string;
-  /** The type of the resource. */
-  type?: string;
-  systemData?: SystemData;
-  properties?: GatewayProperties;
-  /** Sku of the Spring Cloud Gateway resource */
-  sku?: Sku;
-}
-export const GetGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(GatewayProperties),
-    sku: S.optional(Sku),
-  }),
-).annotate({
-  identifier: "GetGatewaysResponse",
-}) as any as S.Schema<GetGatewaysResponse>;
 
 export interface GetMonitoringSettingsRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -10206,6 +10206,48 @@ export const GatewayCustomDomainResourceCollection = /*@__PURE__*/ S.suspend(
   identifier: "GatewayCustomDomainResourceCollection",
 }) as any as S.Schema<GatewayCustomDomainResourceCollection>;
 
+export interface ListGatewayEnvSecretsRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of Spring Cloud Gateway. */
+  gatewayName: string;
+}
+export const ListGatewayEnvSecretsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    gatewayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/gateways/{gatewayName}/listEnvSecrets",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListGatewayEnvSecretsRequest",
+}) as any as S.Schema<ListGatewayEnvSecretsRequest>;
+
+/** Sensitive properties for Spring Cloud Gateway */
+export type GatewayEnvSecrets = { [key: string]: string | undefined };
+export const GatewayEnvSecrets = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GatewayEnvSecrets>;
+
+export type ListGatewayEnvSecretsResponse = GatewayEnvSecrets;
+export const ListGatewayEnvSecretsResponse = /*@__PURE__*/ S.suspend(() =>
+  GatewayEnvSecrets.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListGatewayEnvSecretsResponse",
+}) as any as S.Schema<ListGatewayEnvSecretsResponse>;
+
 export interface ListGatewayRouteConfigsRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
@@ -10354,48 +10396,6 @@ export const GatewayResourceCollection = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GatewayResourceCollection",
 }) as any as S.Schema<GatewayResourceCollection>;
-
-export interface ListGatewaysEnvSecretsRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of Spring Cloud Gateway. */
-  gatewayName: string;
-}
-export const ListGatewaysEnvSecretsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    gatewayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/gateways/{gatewayName}/listEnvSecrets",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "ListGatewaysEnvSecretsRequest",
-}) as any as S.Schema<ListGatewaysEnvSecretsRequest>;
-
-/** Sensitive properties for Spring Cloud Gateway */
-export type GatewayEnvSecrets = { [key: string]: string | undefined };
-export const GatewayEnvSecrets = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<GatewayEnvSecrets>;
-
-export type ListGatewaysEnvSecretsResponse = GatewayEnvSecrets;
-export const ListGatewaysEnvSecretsResponse = /*@__PURE__*/ S.suspend(() =>
-  GatewayEnvSecrets.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListGatewaysEnvSecretsResponse",
-}) as any as S.Schema<ListGatewaysEnvSecretsResponse>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -11677,7 +11677,7 @@ export const RestartDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RestartDeploymentResponse",
 }) as any as S.Schema<RestartDeploymentResponse>;
 
-export interface RestartGatewaysRequest {
+export interface RestartGatewayRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
@@ -11687,7 +11687,7 @@ export interface RestartGatewaysRequest {
   /** The name of Spring Cloud Gateway. */
   gatewayName: string;
 }
-export const RestartGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const RestartGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -11702,15 +11702,15 @@ export const RestartGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RestartGatewaysRequest",
-}) as any as S.Schema<RestartGatewaysRequest>;
+  identifier: "RestartGatewayRequest",
+}) as any as S.Schema<RestartGatewayRequest>;
 
-export interface RestartGatewaysResponse {}
-export const RestartGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface RestartGatewayResponse {}
+export const RestartGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "RestartGatewaysResponse",
-}) as any as S.Schema<RestartGatewaysResponse>;
+  identifier: "RestartGatewayResponse",
+}) as any as S.Schema<RestartGatewayResponse>;
 
 export interface ServiceRegistriesCreateOrUpdateRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -12955,7 +12955,7 @@ export const CustomizedAcceleratorValidateResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CustomizedAcceleratorValidateResult",
 }) as any as S.Schema<CustomizedAcceleratorValidateResult>;
 
-export interface ValidateGatewaysDomainRequest {
+export interface ValidateGatewayDomainRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
@@ -12967,7 +12967,7 @@ export interface ValidateGatewaysDomainRequest {
   /** Name to be validated */
   name: string;
 }
-export const ValidateGatewaysDomainRequest = /*@__PURE__*/ S.suspend(() =>
+export const ValidateGatewayDomainRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -12983,8 +12983,8 @@ export const ValidateGatewaysDomainRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ValidateGatewaysDomainRequest",
-}) as any as S.Schema<ValidateGatewaysDomainRequest>;
+  identifier: "ValidateGatewayDomainRequest",
+}) as any as S.Schema<ValidateGatewayDomainRequest>;
 
 export type ApiPortalCustomDomainsCreateOrUpdateError = AzureOpError;
 /** Create or update the API portal custom domain. */
@@ -13571,6 +13571,21 @@ export const DeleteDevToolPortal: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteGatewayError = AzureOpError;
+/** Disable the default Spring Cloud Gateway. */
+export const DeleteGateway: API.OperationMethod<
+  DeleteGatewayRequest,
+  DeleteGatewayResponse,
+  DeleteGatewayError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteGatewayRequest,
+  output: DeleteGatewayResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteGatewayCustomDomainError = AzureOpError;
 /** Delete the Spring Cloud Gateway custom domain. */
 export const DeleteGatewayCustomDomain: API.OperationMethod<
@@ -13596,21 +13611,6 @@ export const DeleteGatewayRouteConfig: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteGatewayRouteConfigRequest,
   output: DeleteGatewayRouteConfigResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteGatewaysError = AzureOpError;
-/** Disable the default Spring Cloud Gateway. */
-export const DeleteGateways: API.OperationMethod<
-  DeleteGatewaysRequest,
-  DeleteGatewaysResponse,
-  DeleteGatewaysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteGatewaysRequest,
-  output: DeleteGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14291,6 +14291,21 @@ export const GetDevToolPortal: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetGatewayError = AzureOpError;
+/** Get the Spring Cloud Gateway and its properties. */
+export const GetGateway: API.OperationMethod<
+  GetGatewayRequest,
+  GetGatewayResponse,
+  GetGatewayError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGatewayRequest,
+  output: GetGatewayResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetGatewayCustomDomainError = AzureOpError;
 /** Get the Spring Cloud Gateway custom domain. */
 export const GetGatewayCustomDomain: API.OperationMethod<
@@ -14316,21 +14331,6 @@ export const GetGatewayRouteConfig: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetGatewayRouteConfigRequest,
   output: GetGatewayRouteConfigResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetGatewaysError = AzureOpError;
-/** Get the Spring Cloud Gateway and its properties. */
-export const GetGateways: API.OperationMethod<
-  GetGatewaysRequest,
-  GetGatewaysResponse,
-  GetGatewaysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetGatewaysRequest,
-  output: GetGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14816,6 +14816,21 @@ export const ListGatewayCustomDomains: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListGatewayEnvSecretsError = AzureOpError;
+/** List sensitive environment variables of Spring Cloud Gateway. */
+export const ListGatewayEnvSecrets: API.OperationMethod<
+  ListGatewayEnvSecretsRequest,
+  ListGatewayEnvSecretsResponse,
+  ListGatewayEnvSecretsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListGatewayEnvSecretsRequest,
+  output: ListGatewayEnvSecretsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListGatewayRouteConfigsError = AzureOpError;
 /** Handle requests to list all Spring Cloud Gateway route configs. */
 export const ListGatewayRouteConfigs: API.OperationMethod<
@@ -14841,21 +14856,6 @@ export const ListGateways: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListGatewaysRequest,
   output: GatewayResourceCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListGatewaysEnvSecretsError = AzureOpError;
-/** List sensitive environment variables of Spring Cloud Gateway. */
-export const ListGatewaysEnvSecrets: API.OperationMethod<
-  ListGatewaysEnvSecretsRequest,
-  ListGatewaysEnvSecretsResponse,
-  ListGatewaysEnvSecretsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListGatewaysEnvSecretsRequest,
-  output: ListGatewaysEnvSecretsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15101,16 +15101,16 @@ export const RestartDeployment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RestartGatewaysError = AzureOpError;
+export type RestartGatewayError = AzureOpError;
 /** Restart the Spring Cloud Gateway. */
-export const RestartGateways: API.OperationMethod<
-  RestartGatewaysRequest,
-  RestartGatewaysResponse,
-  RestartGatewaysError,
+export const RestartGateway: API.OperationMethod<
+  RestartGatewayRequest,
+  RestartGatewayResponse,
+  RestartGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RestartGatewaysRequest,
-  output: RestartGatewaysResponse,
+  input: RestartGatewayRequest,
+  output: RestartGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15431,15 +15431,15 @@ export const ValidateCustomizedAccelerator: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ValidateGatewaysDomainError = AzureOpError;
+export type ValidateGatewayDomainError = AzureOpError;
 /** Check the domains are valid as well as not in use. */
-export const ValidateGatewaysDomain: API.OperationMethod<
-  ValidateGatewaysDomainRequest,
+export const ValidateGatewayDomain: API.OperationMethod<
+  ValidateGatewayDomainRequest,
   CustomDomainValidateResult,
-  ValidateGatewaysDomainError,
+  ValidateGatewayDomainError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ValidateGatewaysDomainRequest,
+  input: ValidateGatewayDomainRequest,
   output: CustomDomainValidateResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

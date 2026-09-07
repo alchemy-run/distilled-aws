@@ -16671,6 +16671,38 @@ export const DeleteAdminRuleCollectionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteAdminRuleCollectionResponse",
 }) as any as S.Schema<DeleteAdminRuleCollectionResponse>;
 
+export interface DeleteApplicationGatewayRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the application gateway. */
+  applicationGatewayName: string;
+}
+export const DeleteApplicationGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    applicationGatewayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteApplicationGatewayRequest",
+}) as any as S.Schema<DeleteApplicationGatewayRequest>;
+
+export interface DeleteApplicationGatewayResponse {}
+export const DeleteApplicationGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteApplicationGatewayResponse",
+}) as any as S.Schema<DeleteApplicationGatewayResponse>;
+
 export interface DeleteApplicationGatewayPrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -16705,38 +16737,6 @@ export const DeleteApplicationGatewayPrivateEndpointConnectionResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier: "DeleteApplicationGatewayPrivateEndpointConnectionResponse",
   }) as any as S.Schema<DeleteApplicationGatewayPrivateEndpointConnectionResponse>;
-
-export interface DeleteApplicationGatewaysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the application gateway. */
-  applicationGatewayName: string;
-}
-export const DeleteApplicationGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    applicationGatewayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteApplicationGatewaysRequest",
-}) as any as S.Schema<DeleteApplicationGatewaysRequest>;
-
-export interface DeleteApplicationGatewaysResponse {}
-export const DeleteApplicationGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteApplicationGatewaysResponse",
-}) as any as S.Schema<DeleteApplicationGatewaysResponse>;
 
 export interface DeleteApplicationSecurityGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -17475,7 +17475,7 @@ export const DeleteExpressRouteCrossConnectionPeeringResponse =
     identifier: "DeleteExpressRouteCrossConnectionPeeringResponse",
   }) as any as S.Schema<DeleteExpressRouteCrossConnectionPeeringResponse>;
 
-export interface DeleteExpressRouteGatewaysRequest {
+export interface DeleteExpressRouteGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -17483,7 +17483,7 @@ export interface DeleteExpressRouteGatewaysRequest {
   /** The name of the ExpressRoute gateway. */
   expressRouteGatewayName: string;
 }
-export const DeleteExpressRouteGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteExpressRouteGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -17497,15 +17497,15 @@ export const DeleteExpressRouteGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteExpressRouteGatewaysRequest",
-}) as any as S.Schema<DeleteExpressRouteGatewaysRequest>;
+  identifier: "DeleteExpressRouteGatewayRequest",
+}) as any as S.Schema<DeleteExpressRouteGatewayRequest>;
 
-export interface DeleteExpressRouteGatewaysResponse {}
-export const DeleteExpressRouteGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteExpressRouteGatewayResponse {}
+export const DeleteExpressRouteGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteExpressRouteGatewaysResponse",
-}) as any as S.Schema<DeleteExpressRouteGatewaysResponse>;
+  identifier: "DeleteExpressRouteGatewayResponse",
+}) as any as S.Schema<DeleteExpressRouteGatewayResponse>;
 
 export interface DeleteExpressRouteLagRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -18144,7 +18144,7 @@ export const DeleteLoadBalancerBackendAddressPoolResponse =
     identifier: "DeleteLoadBalancerBackendAddressPoolResponse",
   }) as any as S.Schema<DeleteLoadBalancerBackendAddressPoolResponse>;
 
-export interface DeleteLocalNetworkGatewaysRequest {
+export interface DeleteLocalNetworkGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -18152,7 +18152,7 @@ export interface DeleteLocalNetworkGatewaysRequest {
   /** The name of the local network gateway. */
   localNetworkGatewayName: string;
 }
-export const DeleteLocalNetworkGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteLocalNetworkGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -18166,15 +18166,15 @@ export const DeleteLocalNetworkGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteLocalNetworkGatewaysRequest",
-}) as any as S.Schema<DeleteLocalNetworkGatewaysRequest>;
+  identifier: "DeleteLocalNetworkGatewayRequest",
+}) as any as S.Schema<DeleteLocalNetworkGatewayRequest>;
 
-export interface DeleteLocalNetworkGatewaysResponse {}
-export const DeleteLocalNetworkGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteLocalNetworkGatewayResponse {}
+export const DeleteLocalNetworkGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteLocalNetworkGatewaysResponse",
-}) as any as S.Schema<DeleteLocalNetworkGatewaysResponse>;
+  identifier: "DeleteLocalNetworkGatewayResponse",
+}) as any as S.Schema<DeleteLocalNetworkGatewayResponse>;
 
 export interface DeleteManagementGroupNetworkManagerConnectionRequest {
   /** The management group ID. */
@@ -18205,7 +18205,7 @@ export const DeleteManagementGroupNetworkManagerConnectionResponse =
     identifier: "DeleteManagementGroupNetworkManagerConnectionResponse",
   }) as any as S.Schema<DeleteManagementGroupNetworkManagerConnectionResponse>;
 
-export interface DeleteNatGatewaysRequest {
+export interface DeleteNatGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -18213,7 +18213,7 @@ export interface DeleteNatGatewaysRequest {
   /** The name of the nat gateway. */
   natGatewayName: string;
 }
-export const DeleteNatGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteNatGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -18227,15 +18227,15 @@ export const DeleteNatGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteNatGatewaysRequest",
-}) as any as S.Schema<DeleteNatGatewaysRequest>;
+  identifier: "DeleteNatGatewayRequest",
+}) as any as S.Schema<DeleteNatGatewayRequest>;
 
-export interface DeleteNatGatewaysResponse {}
-export const DeleteNatGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteNatGatewayResponse {}
+export const DeleteNatGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteNatGatewaysResponse",
-}) as any as S.Schema<DeleteNatGatewaysResponse>;
+  identifier: "DeleteNatGatewayResponse",
+}) as any as S.Schema<DeleteNatGatewayResponse>;
 
 export interface DeleteNatRuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -18897,7 +18897,7 @@ export const DeleteNetworkWatchersConnectionAnalyzerResponse =
     identifier: "DeleteNetworkWatchersConnectionAnalyzerResponse",
   }) as any as S.Schema<DeleteNetworkWatchersConnectionAnalyzerResponse>;
 
-export interface DeleteP2sVpnGatewaysRequest {
+export interface DeleteP2sVpnGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -18905,7 +18905,7 @@ export interface DeleteP2sVpnGatewaysRequest {
   /** The name of the gateway. */
   gatewayName: string;
 }
-export const DeleteP2sVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteP2sVpnGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -18919,15 +18919,15 @@ export const DeleteP2sVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteP2sVpnGatewaysRequest",
-}) as any as S.Schema<DeleteP2sVpnGatewaysRequest>;
+  identifier: "DeleteP2sVpnGatewayRequest",
+}) as any as S.Schema<DeleteP2sVpnGatewayRequest>;
 
-export interface DeleteP2sVpnGatewaysResponse {}
-export const DeleteP2sVpnGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteP2sVpnGatewayResponse {}
+export const DeleteP2sVpnGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteP2sVpnGatewaysResponse",
-}) as any as S.Schema<DeleteP2sVpnGatewaysResponse>;
+  identifier: "DeleteP2sVpnGatewayResponse",
+}) as any as S.Schema<DeleteP2sVpnGatewayResponse>;
 
 export interface DeletePacketCaptureRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -19863,7 +19863,7 @@ export const DeleteServiceEndpointPolicyDefinitionResponse =
     identifier: "DeleteServiceEndpointPolicyDefinitionResponse",
   }) as any as S.Schema<DeleteServiceEndpointPolicyDefinitionResponse>;
 
-export interface DeleteServiceGatewaysRequest {
+export interface DeleteServiceGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -19871,7 +19871,7 @@ export interface DeleteServiceGatewaysRequest {
   /** The name of the service gateway. */
   serviceGatewayName: string;
 }
-export const DeleteServiceGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteServiceGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -19885,15 +19885,15 @@ export const DeleteServiceGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteServiceGatewaysRequest",
-}) as any as S.Schema<DeleteServiceGatewaysRequest>;
+  identifier: "DeleteServiceGatewayRequest",
+}) as any as S.Schema<DeleteServiceGatewayRequest>;
 
-export interface DeleteServiceGatewaysResponse {}
-export const DeleteServiceGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteServiceGatewayResponse {}
+export const DeleteServiceGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteServiceGatewaysResponse",
-}) as any as S.Schema<DeleteServiceGatewaysResponse>;
+  identifier: "DeleteServiceGatewayResponse",
+}) as any as S.Schema<DeleteServiceGatewayResponse>;
 
 export interface DeleteStaticCidrRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -20310,6 +20310,38 @@ export const DeleteVirtualNetworkApplianceResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteVirtualNetworkApplianceResponse",
 }) as any as S.Schema<DeleteVirtualNetworkApplianceResponse>;
 
+export interface DeleteVirtualNetworkGatewayRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual network gateway. */
+  virtualNetworkGatewayName: string;
+}
+export const DeleteVirtualNetworkGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualNetworkGatewayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVirtualNetworkGatewayRequest",
+}) as any as S.Schema<DeleteVirtualNetworkGatewayRequest>;
+
+export interface DeleteVirtualNetworkGatewayResponse {}
+export const DeleteVirtualNetworkGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVirtualNetworkGatewayResponse",
+}) as any as S.Schema<DeleteVirtualNetworkGatewayResponse>;
+
 export interface DeleteVirtualNetworkGatewayConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -20376,38 +20408,6 @@ export const DeleteVirtualNetworkGatewayNatRuleResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier: "DeleteVirtualNetworkGatewayNatRuleResponse",
   }) as any as S.Schema<DeleteVirtualNetworkGatewayNatRuleResponse>;
-
-export interface DeleteVirtualNetworkGatewaysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual network gateway. */
-  virtualNetworkGatewayName: string;
-}
-export const DeleteVirtualNetworkGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualNetworkGatewayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteVirtualNetworkGatewaysRequest",
-}) as any as S.Schema<DeleteVirtualNetworkGatewaysRequest>;
-
-export interface DeleteVirtualNetworkGatewaysResponse {}
-export const DeleteVirtualNetworkGatewaysResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DeleteVirtualNetworkGatewaysResponse",
-}) as any as S.Schema<DeleteVirtualNetworkGatewaysResponse>;
 
 export interface DeleteVirtualNetworkPeeringRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -20610,7 +20610,7 @@ export const DeleteVpnConnectionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteVpnConnectionResponse",
 }) as any as S.Schema<DeleteVpnConnectionResponse>;
 
-export interface DeleteVpnGatewaysRequest {
+export interface DeleteVpnGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -20618,7 +20618,7 @@ export interface DeleteVpnGatewaysRequest {
   /** The name of the gateway. */
   gatewayName: string;
 }
-export const DeleteVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteVpnGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -20632,15 +20632,15 @@ export const DeleteVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteVpnGatewaysRequest",
-}) as any as S.Schema<DeleteVpnGatewaysRequest>;
+  identifier: "DeleteVpnGatewayRequest",
+}) as any as S.Schema<DeleteVpnGatewayRequest>;
 
-export interface DeleteVpnGatewaysResponse {}
-export const DeleteVpnGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteVpnGatewayResponse {}
+export const DeleteVpnGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteVpnGatewaysResponse",
-}) as any as S.Schema<DeleteVpnGatewaysResponse>;
+  identifier: "DeleteVpnGatewayResponse",
+}) as any as S.Schema<DeleteVpnGatewayResponse>;
 
 export interface DeleteVpnServerConfigurationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -20848,14 +20848,14 @@ export const BastionSessionDeleteResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BastionSessionDeleteResult>;
 
 /** List of p2s vpn connection Ids. */
-export type DisconnectP2sVpnGatewaysP2sVpnConnectionsRequestVpnConnectionIdsList =
+export type DisconnectP2sVpnGatewayP2sVpnConnectionsRequestVpnConnectionIdsList =
   Array<string>;
-export const DisconnectP2sVpnGatewaysP2sVpnConnectionsRequestVpnConnectionIdsList =
+export const DisconnectP2sVpnGatewayP2sVpnConnectionsRequestVpnConnectionIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<DisconnectP2sVpnGatewaysP2sVpnConnectionsRequestVpnConnectionIdsList>;
+  ) as any as S.Schema<DisconnectP2sVpnGatewayP2sVpnConnectionsRequestVpnConnectionIdsList>;
 
-export interface DisconnectP2sVpnGatewaysP2sVpnConnectionsRequest {
+export interface DisconnectP2sVpnGatewayP2sVpnConnectionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -20863,16 +20863,16 @@ export interface DisconnectP2sVpnGatewaysP2sVpnConnectionsRequest {
   /** The name of the P2S Vpn Gateway. */
   p2sVpnGatewayName: string;
   /** List of p2s vpn connection Ids. */
-  vpnConnectionIds?: DisconnectP2sVpnGatewaysP2sVpnConnectionsRequestVpnConnectionIdsList;
+  vpnConnectionIds?: DisconnectP2sVpnGatewayP2sVpnConnectionsRequestVpnConnectionIdsList;
 }
-export const DisconnectP2sVpnGatewaysP2sVpnConnectionsRequest =
+export const DisconnectP2sVpnGatewayP2sVpnConnectionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       p2sVpnGatewayName: S.String.pipe(T.Label()),
       vpnConnectionIds: S.optional(
-        DisconnectP2sVpnGatewaysP2sVpnConnectionsRequestVpnConnectionIdsList,
+        DisconnectP2sVpnGatewayP2sVpnConnectionsRequestVpnConnectionIdsList,
       ),
     }).pipe(
       T.Http({
@@ -20883,24 +20883,24 @@ export const DisconnectP2sVpnGatewaysP2sVpnConnectionsRequest =
       }),
     ),
   ).annotate({
-    identifier: "DisconnectP2sVpnGatewaysP2sVpnConnectionsRequest",
-  }) as any as S.Schema<DisconnectP2sVpnGatewaysP2sVpnConnectionsRequest>;
+    identifier: "DisconnectP2sVpnGatewayP2sVpnConnectionsRequest",
+  }) as any as S.Schema<DisconnectP2sVpnGatewayP2sVpnConnectionsRequest>;
 
-export interface DisconnectP2sVpnGatewaysP2sVpnConnectionsResponse {}
-export const DisconnectP2sVpnGatewaysP2sVpnConnectionsResponse =
+export interface DisconnectP2sVpnGatewayP2sVpnConnectionsResponse {}
+export const DisconnectP2sVpnGatewayP2sVpnConnectionsResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DisconnectP2sVpnGatewaysP2sVpnConnectionsResponse",
-  }) as any as S.Schema<DisconnectP2sVpnGatewaysP2sVpnConnectionsResponse>;
+    identifier: "DisconnectP2sVpnGatewayP2sVpnConnectionsResponse",
+  }) as any as S.Schema<DisconnectP2sVpnGatewayP2sVpnConnectionsResponse>;
 
 /** List of p2s vpn connection Ids. */
-export type DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequestVpnConnectionIdsList =
+export type DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequestVpnConnectionIdsList =
   Array<string>;
-export const DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequestVpnConnectionIdsList =
+export const DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequestVpnConnectionIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequestVpnConnectionIdsList>;
+  ) as any as S.Schema<DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequestVpnConnectionIdsList>;
 
-export interface DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequest {
+export interface DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -20908,16 +20908,16 @@ export interface DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnect
   /** The name of the virtual network gateway. */
   virtualNetworkGatewayName: string;
   /** List of p2s vpn connection Ids. */
-  vpnConnectionIds?: DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequestVpnConnectionIdsList;
+  vpnConnectionIds?: DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequestVpnConnectionIdsList;
 }
-export const DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequest =
+export const DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       virtualNetworkGatewayName: S.String.pipe(T.Label()),
       vpnConnectionIds: S.optional(
-        DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequestVpnConnectionIdsList,
+        DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequestVpnConnectionIdsList,
       ),
     }).pipe(
       T.Http({
@@ -20929,15 +20929,15 @@ export const DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnections
     ),
   ).annotate({
     identifier:
-      "DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequest",
-  }) as any as S.Schema<DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequest>;
+      "DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequest",
+  }) as any as S.Schema<DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequest>;
 
-export interface DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsResponse {}
-export const DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsResponse =
+export interface DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsResponse {}
+export const DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier:
-      "DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsResponse",
-  }) as any as S.Schema<DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsResponse>;
+      "DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsResponse",
+  }) as any as S.Schema<DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsResponse>;
 
 /** List of resource-ids of the vpn-sites for which config is to be downloaded. */
 export type DownloadVpnSitesConfigurationRequestVpnSitesList = Array<string>;
@@ -30186,13 +30186,13 @@ export const GenerateExpressRoutePortsLOAResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GenerateExpressRoutePortsLOAResult>;
 
 /** VPN client authentication method. */
-export type GenerateP2sVpnGatewaysVpnProfileRequestAuthenticationMethod =
+export type GenerateP2sVpnGatewayVpnProfileRequestAuthenticationMethod =
   | "EAPTLS"
   | "EAPMSCHAPv2";
-export const GenerateP2sVpnGatewaysVpnProfileRequestAuthenticationMethod =
+export const GenerateP2sVpnGatewayVpnProfileRequestAuthenticationMethod =
   /*@__PURE__*/ S.String;
 
-export interface GenerateP2sVpnGatewaysVpnProfileRequest {
+export interface GenerateP2sVpnGatewayVpnProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -30201,17 +30201,17 @@ export interface GenerateP2sVpnGatewaysVpnProfileRequest {
   gatewayName: string;
   /** VPN client authentication method. */
   authenticationMethod?:
-    | GenerateP2sVpnGatewaysVpnProfileRequestAuthenticationMethod
+    | GenerateP2sVpnGatewayVpnProfileRequestAuthenticationMethod
     | (string & {});
 }
-export const GenerateP2sVpnGatewaysVpnProfileRequest = /*@__PURE__*/ S.suspend(
+export const GenerateP2sVpnGatewayVpnProfileRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       gatewayName: S.String.pipe(T.Label()),
       authenticationMethod: S.optional(
-        GenerateP2sVpnGatewaysVpnProfileRequestAuthenticationMethod,
+        GenerateP2sVpnGatewayVpnProfileRequestAuthenticationMethod,
       ),
     }).pipe(
       T.Http({
@@ -30222,8 +30222,8 @@ export const GenerateP2sVpnGatewaysVpnProfileRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GenerateP2sVpnGatewaysVpnProfileRequest",
-}) as any as S.Schema<GenerateP2sVpnGatewaysVpnProfileRequest>;
+  identifier: "GenerateP2sVpnGatewayVpnProfileRequest",
+}) as any as S.Schema<GenerateP2sVpnGatewayVpnProfileRequest>;
 
 /** Vpn Profile Response for package generation. */
 export interface VpnProfileResponse {
@@ -30239,28 +30239,28 @@ export const VpnProfileResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VpnProfileResponse>;
 
 /** VPN client Processor Architecture. */
-export type GenerateVirtualNetworkGatewaysVpnProfileRequestProcessorArchitecture =
+export type GenerateVirtualNetworkGatewayVpnProfileRequestProcessorArchitecture =
   | "Amd64"
   | "X86";
-export const GenerateVirtualNetworkGatewaysVpnProfileRequestProcessorArchitecture =
+export const GenerateVirtualNetworkGatewayVpnProfileRequestProcessorArchitecture =
   /*@__PURE__*/ S.String;
 
 /** VPN client authentication method. */
-export type GenerateVirtualNetworkGatewaysVpnProfileRequestAuthenticationMethod =
+export type GenerateVirtualNetworkGatewayVpnProfileRequestAuthenticationMethod =
   | "EAPTLS"
   | "EAPMSCHAPv2";
-export const GenerateVirtualNetworkGatewaysVpnProfileRequestAuthenticationMethod =
+export const GenerateVirtualNetworkGatewayVpnProfileRequestAuthenticationMethod =
   /*@__PURE__*/ S.String;
 
 /** A list of client root certificates public certificate data encoded as Base-64 strings. Optional parameter for external radius based authentication with EAPTLS. */
-export type GenerateVirtualNetworkGatewaysVpnProfileRequestClientRootCertificatesList =
+export type GenerateVirtualNetworkGatewayVpnProfileRequestClientRootCertificatesList =
   Array<string>;
-export const GenerateVirtualNetworkGatewaysVpnProfileRequestClientRootCertificatesList =
+export const GenerateVirtualNetworkGatewayVpnProfileRequestClientRootCertificatesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<GenerateVirtualNetworkGatewaysVpnProfileRequestClientRootCertificatesList>;
+  ) as any as S.Schema<GenerateVirtualNetworkGatewayVpnProfileRequestClientRootCertificatesList>;
 
-export interface GenerateVirtualNetworkGatewaysVpnProfileRequest {
+export interface GenerateVirtualNetworkGatewayVpnProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -30269,32 +30269,32 @@ export interface GenerateVirtualNetworkGatewaysVpnProfileRequest {
   virtualNetworkGatewayName: string;
   /** VPN client Processor Architecture. */
   processorArchitecture?:
-    | GenerateVirtualNetworkGatewaysVpnProfileRequestProcessorArchitecture
+    | GenerateVirtualNetworkGatewayVpnProfileRequestProcessorArchitecture
     | (string & {});
   /** VPN client authentication method. */
   authenticationMethod?:
-    | GenerateVirtualNetworkGatewaysVpnProfileRequestAuthenticationMethod
+    | GenerateVirtualNetworkGatewayVpnProfileRequestAuthenticationMethod
     | (string & {});
   /** The public certificate data for the radius server authentication certificate as a Base-64 encoded string. Required only if external radius authentication has been configured with EAPTLS authentication. */
   radiusServerAuthCertificate?: string;
   /** A list of client root certificates public certificate data encoded as Base-64 strings. Optional parameter for external radius based authentication with EAPTLS. */
-  clientRootCertificates?: GenerateVirtualNetworkGatewaysVpnProfileRequestClientRootCertificatesList;
+  clientRootCertificates?: GenerateVirtualNetworkGatewayVpnProfileRequestClientRootCertificatesList;
 }
-export const GenerateVirtualNetworkGatewaysVpnProfileRequest =
+export const GenerateVirtualNetworkGatewayVpnProfileRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       virtualNetworkGatewayName: S.String.pipe(T.Label()),
       processorArchitecture: S.optional(
-        GenerateVirtualNetworkGatewaysVpnProfileRequestProcessorArchitecture,
+        GenerateVirtualNetworkGatewayVpnProfileRequestProcessorArchitecture,
       ),
       authenticationMethod: S.optional(
-        GenerateVirtualNetworkGatewaysVpnProfileRequestAuthenticationMethod,
+        GenerateVirtualNetworkGatewayVpnProfileRequestAuthenticationMethod,
       ),
       radiusServerAuthCertificate: S.optional(S.String),
       clientRootCertificates: S.optional(
-        GenerateVirtualNetworkGatewaysVpnProfileRequestClientRootCertificatesList,
+        GenerateVirtualNetworkGatewayVpnProfileRequestClientRootCertificatesList,
       ),
     }).pipe(
       T.Http({
@@ -30305,14 +30305,14 @@ export const GenerateVirtualNetworkGatewaysVpnProfileRequest =
       }),
     ),
   ).annotate({
-    identifier: "GenerateVirtualNetworkGatewaysVpnProfileRequest",
-  }) as any as S.Schema<GenerateVirtualNetworkGatewaysVpnProfileRequest>;
+    identifier: "GenerateVirtualNetworkGatewayVpnProfileRequest",
+  }) as any as S.Schema<GenerateVirtualNetworkGatewayVpnProfileRequest>;
 
-export type GenerateVirtualNetworkGatewaysVpnProfileResponse = string;
-export const GenerateVirtualNetworkGatewaysVpnProfileResponse =
+export type GenerateVirtualNetworkGatewayVpnProfileResponse = string;
+export const GenerateVirtualNetworkGatewayVpnProfileResponse =
   /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "GenerateVirtualNetworkGatewaysVpnProfileResponse",
-  }) as any as S.Schema<GenerateVirtualNetworkGatewaysVpnProfileResponse>;
+    identifier: "GenerateVirtualNetworkGatewayVpnProfileResponse",
+  }) as any as S.Schema<GenerateVirtualNetworkGatewayVpnProfileResponse>;
 
 /** VPN client authentication method. */
 export type GeneratevirtualwanvpnserverconfigurationvpnprofileRequestAuthenticationMethod =
@@ -30726,6 +30726,117 @@ export const GetAdminRuleCollectionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetAdminRuleCollectionResponse",
 }) as any as S.Schema<GetAdminRuleCollectionResponse>;
 
+export interface GetApplicationGatewayRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the application gateway. */
+  applicationGatewayName: string;
+}
+export const GetApplicationGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    applicationGatewayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetApplicationGatewayRequest",
+}) as any as S.Schema<GetApplicationGatewayRequest>;
+
+/** Resource tags. */
+export type GetApplicationGatewayResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetApplicationGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetApplicationGatewayResponseTagsMap>;
+
+/** A list of availability zones denoting where the resource needs to come from. */
+export type GetApplicationGatewayResponseZonesList = Array<string>;
+export const GetApplicationGatewayResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetApplicationGatewayResponseZonesList>;
+
+/** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
+export type GetApplicationGatewayResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: ManagedServiceIdentityUserAssignedIdentities | undefined;
+};
+export const GetApplicationGatewayResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    ManagedServiceIdentityUserAssignedIdentities,
+  ) as any as S.Schema<GetApplicationGatewayResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Identity for the resource. */
+export interface GetApplicationGatewayResponseIdentity {
+  /** The principal id of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant id of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  /** The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the virtual machine. */
+  type?: ResourceIdentityType;
+  /** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
+  userAssignedIdentities?: GetApplicationGatewayResponseIdentityUserAssignedIdentitiesMap;
+}
+export const GetApplicationGatewayResponseIdentity = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      principalId: S.optional(S.String),
+      tenantId: S.optional(S.String),
+      type: S.optional(ResourceIdentityType),
+      userAssignedIdentities: S.optional(
+        GetApplicationGatewayResponseIdentityUserAssignedIdentitiesMap,
+      ),
+    }),
+).annotate({
+  identifier: "GetApplicationGatewayResponseIdentity",
+}) as any as S.Schema<GetApplicationGatewayResponseIdentity>;
+
+export interface GetApplicationGatewayResponse {
+  /** Resource ID. */
+  id?: string;
+  /** Resource name. */
+  name?: string;
+  /** Resource type. */
+  type?: string;
+  /** Resource location. */
+  location?: string;
+  /** Resource tags. */
+  tags?: GetApplicationGatewayResponseTagsMap;
+  /** Properties of the application gateway. */
+  properties?: ApplicationGatewayPropertiesFormat;
+  /** A unique read-only string that changes whenever the resource is updated. */
+  etag?: string;
+  /** A list of availability zones denoting where the resource needs to come from. */
+  zones?: GetApplicationGatewayResponseZonesList;
+  /** Identity for the resource. */
+  identity?: GetApplicationGatewayResponseIdentity;
+}
+export const GetApplicationGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(GetApplicationGatewayResponseTagsMap),
+    properties: S.optional(ApplicationGatewayPropertiesFormat),
+    etag: S.optional(S.String),
+    zones: S.optional(GetApplicationGatewayResponseZonesList),
+    identity: S.optional(GetApplicationGatewayResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetApplicationGatewayResponse",
+}) as any as S.Schema<GetApplicationGatewayResponse>;
+
 export interface GetApplicationGatewayPrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -30782,124 +30893,13 @@ export const GetApplicationGatewayPrivateEndpointConnectionResponse =
     identifier: "GetApplicationGatewayPrivateEndpointConnectionResponse",
   }) as any as S.Schema<GetApplicationGatewayPrivateEndpointConnectionResponse>;
 
-export interface GetApplicationGatewaysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the application gateway. */
-  applicationGatewayName: string;
-}
-export const GetApplicationGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    applicationGatewayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetApplicationGatewaysRequest",
-}) as any as S.Schema<GetApplicationGatewaysRequest>;
-
-/** Resource tags. */
-export type GetApplicationGatewaysResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const GetApplicationGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<GetApplicationGatewaysResponseTagsMap>;
-
-/** A list of availability zones denoting where the resource needs to come from. */
-export type GetApplicationGatewaysResponseZonesList = Array<string>;
-export const GetApplicationGatewaysResponseZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetApplicationGatewaysResponseZonesList>;
-
-/** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-export type GetApplicationGatewaysResponseIdentityUserAssignedIdentitiesMap = {
-  [key: string]: ManagedServiceIdentityUserAssignedIdentities | undefined;
-};
-export const GetApplicationGatewaysResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    ManagedServiceIdentityUserAssignedIdentities,
-  ) as any as S.Schema<GetApplicationGatewaysResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Identity for the resource. */
-export interface GetApplicationGatewaysResponseIdentity {
-  /** The principal id of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant id of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  /** The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the virtual machine. */
-  type?: ResourceIdentityType;
-  /** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-  userAssignedIdentities?: GetApplicationGatewaysResponseIdentityUserAssignedIdentitiesMap;
-}
-export const GetApplicationGatewaysResponseIdentity = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: S.optional(ResourceIdentityType),
-      userAssignedIdentities: S.optional(
-        GetApplicationGatewaysResponseIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
-).annotate({
-  identifier: "GetApplicationGatewaysResponseIdentity",
-}) as any as S.Schema<GetApplicationGatewaysResponseIdentity>;
-
-export interface GetApplicationGatewaysResponse {
-  /** Resource ID. */
-  id?: string;
-  /** Resource name. */
-  name?: string;
-  /** Resource type. */
-  type?: string;
-  /** Resource location. */
-  location?: string;
-  /** Resource tags. */
-  tags?: GetApplicationGatewaysResponseTagsMap;
-  /** Properties of the application gateway. */
-  properties?: ApplicationGatewayPropertiesFormat;
-  /** A unique read-only string that changes whenever the resource is updated. */
-  etag?: string;
-  /** A list of availability zones denoting where the resource needs to come from. */
-  zones?: GetApplicationGatewaysResponseZonesList;
-  /** Identity for the resource. */
-  identity?: GetApplicationGatewaysResponseIdentity;
-}
-export const GetApplicationGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(GetApplicationGatewaysResponseTagsMap),
-    properties: S.optional(ApplicationGatewayPropertiesFormat),
-    etag: S.optional(S.String),
-    zones: S.optional(GetApplicationGatewaysResponseZonesList),
-    identity: S.optional(GetApplicationGatewaysResponseIdentity),
-  }),
-).annotate({
-  identifier: "GetApplicationGatewaysResponse",
-}) as any as S.Schema<GetApplicationGatewaysResponse>;
-
-export interface GetApplicationGatewaysSslPredefinedPolicyRequest {
+export interface GetApplicationGatewaySslPredefinedPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the ssl predefined policy. */
   predefinedPolicyName: string;
 }
-export const GetApplicationGatewaysSslPredefinedPolicyRequest =
+export const GetApplicationGatewaySslPredefinedPolicyRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -30913,8 +30913,8 @@ export const GetApplicationGatewaysSslPredefinedPolicyRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetApplicationGatewaysSslPredefinedPolicyRequest",
-  }) as any as S.Schema<GetApplicationGatewaysSslPredefinedPolicyRequest>;
+    identifier: "GetApplicationGatewaySslPredefinedPolicyRequest",
+  }) as any as S.Schema<GetApplicationGatewaySslPredefinedPolicyRequest>;
 
 /** Ssl cipher suites enums. */
 export type ApplicationGatewaySslPredefinedPolicyPropertiesFormatCipherSuitesItem =
@@ -30987,7 +30987,7 @@ export const ApplicationGatewaySslPredefinedPolicyPropertiesFormat =
     identifier: "ApplicationGatewaySslPredefinedPolicyPropertiesFormat",
   }) as any as S.Schema<ApplicationGatewaySslPredefinedPolicyPropertiesFormat>;
 
-export interface GetApplicationGatewaysSslPredefinedPolicyResponse {
+export interface GetApplicationGatewaySslPredefinedPolicyResponse {
   /** Resource ID. */
   id?: string;
   /** Name of the Ssl predefined policy. */
@@ -30995,7 +30995,7 @@ export interface GetApplicationGatewaysSslPredefinedPolicyResponse {
   /** Properties of the application gateway SSL predefined policy. */
   properties?: ApplicationGatewaySslPredefinedPolicyPropertiesFormat;
 }
-export const GetApplicationGatewaysSslPredefinedPolicyResponse =
+export const GetApplicationGatewaySslPredefinedPolicyResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -31005,8 +31005,8 @@ export const GetApplicationGatewaysSslPredefinedPolicyResponse =
       ),
     }),
   ).annotate({
-    identifier: "GetApplicationGatewaysSslPredefinedPolicyResponse",
-  }) as any as S.Schema<GetApplicationGatewaysSslPredefinedPolicyResponse>;
+    identifier: "GetApplicationGatewaySslPredefinedPolicyResponse",
+  }) as any as S.Schema<GetApplicationGatewaySslPredefinedPolicyResponse>;
 
 export interface GetApplicationGatewayWafDynamicManifestRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -33178,7 +33178,7 @@ export const GetExpressRouteCrossConnectionPeeringResponse =
     identifier: "GetExpressRouteCrossConnectionPeeringResponse",
   }) as any as S.Schema<GetExpressRouteCrossConnectionPeeringResponse>;
 
-export interface GetExpressRouteGatewaysRequest {
+export interface GetExpressRouteGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -33186,7 +33186,7 @@ export interface GetExpressRouteGatewaysRequest {
   /** The name of the ExpressRoute gateway. */
   expressRouteGatewayName: string;
 }
-export const GetExpressRouteGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetExpressRouteGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -33200,19 +33200,19 @@ export const GetExpressRouteGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetExpressRouteGatewaysRequest",
-}) as any as S.Schema<GetExpressRouteGatewaysRequest>;
+  identifier: "GetExpressRouteGatewayRequest",
+}) as any as S.Schema<GetExpressRouteGatewayRequest>;
 
 /** Resource tags. */
-export type GetExpressRouteGatewaysResponseTagsMap = {
+export type GetExpressRouteGatewayResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GetExpressRouteGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetExpressRouteGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GetExpressRouteGatewaysResponseTagsMap>;
+) as any as S.Schema<GetExpressRouteGatewayResponseTagsMap>;
 
-export interface GetExpressRouteGatewaysResponse {
+export interface GetExpressRouteGatewayResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -33222,27 +33222,27 @@ export interface GetExpressRouteGatewaysResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: GetExpressRouteGatewaysResponseTagsMap;
+  tags?: GetExpressRouteGatewayResponseTagsMap;
   /** Properties of the express route gateway. */
   properties?: ExpressRouteGatewayProperties;
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
 }
-export const GetExpressRouteGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetExpressRouteGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(GetExpressRouteGatewaysResponseTagsMap),
+    tags: S.optional(GetExpressRouteGatewayResponseTagsMap),
     properties: S.optional(ExpressRouteGatewayProperties),
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetExpressRouteGatewaysResponse",
-}) as any as S.Schema<GetExpressRouteGatewaysResponse>;
+  identifier: "GetExpressRouteGatewayResponse",
+}) as any as S.Schema<GetExpressRouteGatewayResponse>;
 
-export interface GetExpressRouteGatewaysFailoverAllTestsDetailsRequest {
+export interface GetExpressRouteGatewayFailoverAllTestsDetailsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -33254,7 +33254,7 @@ export interface GetExpressRouteGatewaysFailoverAllTestsDetailsRequest {
   /** Fetch only the latest tests for each peering location. */
   fetchLatest?: boolean;
 }
-export const GetExpressRouteGatewaysFailoverAllTestsDetailsRequest =
+export const GetExpressRouteGatewayFailoverAllTestsDetailsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -33271,8 +33271,8 @@ export const GetExpressRouteGatewaysFailoverAllTestsDetailsRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetExpressRouteGatewaysFailoverAllTestsDetailsRequest",
-  }) as any as S.Schema<GetExpressRouteGatewaysFailoverAllTestsDetailsRequest>;
+    identifier: "GetExpressRouteGatewayFailoverAllTestsDetailsRequest",
+  }) as any as S.Schema<GetExpressRouteGatewayFailoverAllTestsDetailsRequest>;
 
 export interface ExpressRouteFailoverCircuitResourceDetails {
   /** NRP Resource URI of the circuit */
@@ -33294,15 +33294,15 @@ export const ExpressRouteFailoverCircuitResourceDetails =
   }) as any as S.Schema<ExpressRouteFailoverCircuitResourceDetails>;
 
 /** All circuits in the peering location */
-export type GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemCircuitsList =
+export type GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemCircuitsList =
   Array<ExpressRouteFailoverCircuitResourceDetails>;
-export const GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemCircuitsList =
+export const GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemCircuitsList =
   /*@__PURE__*/ S.Array(
     ExpressRouteFailoverCircuitResourceDetails,
-  ) as any as S.Schema<GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemCircuitsList>;
+  ) as any as S.Schema<GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemCircuitsList>;
 
 /** The current status of the test */
-export type GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemStatus =
+export type GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemStatus =
   | "NotStarted"
   | "Starting"
   | "Running"
@@ -33312,7 +33312,7 @@ export type GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemStatus
   | "StopFailed"
   | "Invalid"
   | "Expired";
-export const GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemStatus =
+export const GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemStatus =
   /*@__PURE__*/ S.String;
 
 /** The current status of the connection */
@@ -33345,97 +33345,96 @@ export const ExpressRouteFailoverConnectionResourceDetails =
   }) as any as S.Schema<ExpressRouteFailoverConnectionResourceDetails>;
 
 /** All connections to the circuits in the peering location */
-export type GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemConnectionsList =
+export type GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemConnectionsList =
   Array<ExpressRouteFailoverConnectionResourceDetails>;
-export const GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemConnectionsList =
+export const GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemConnectionsList =
   /*@__PURE__*/ S.Array(
     ExpressRouteFailoverConnectionResourceDetails,
-  ) as any as S.Schema<GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemConnectionsList>;
+  ) as any as S.Schema<GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemConnectionsList>;
 
 /** The type of failover test */
-export type GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemTestType =
+export type GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemTestType =
   | "SingleSiteFailover"
   | "MultiSiteFailover"
   | "All";
-export const GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemTestType =
+export const GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemTestType =
   /*@__PURE__*/ S.String;
 
 /** A list of all issues with the test */
-export type GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemIssuesList =
+export type GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemIssuesList =
   Array<string>;
-export const GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemIssuesList =
+export const GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemIssuesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemIssuesList>;
+  ) as any as S.Schema<GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemIssuesList>;
 
 /** ExpressRoute failover test details */
-export interface GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItem {
+export interface GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItem {
   /** Peering location of the test */
   peeringLocation?: string;
   /** All circuits in the peering location */
-  circuits?: GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemCircuitsList;
+  circuits?: GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemCircuitsList;
   /** The current status of the test */
-  status?: GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemStatus;
+  status?: GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemStatus;
   /** Time when the test was started */
   startTime?: string;
   /** Time when the test was completed */
   endTime?: string;
   /** All connections to the circuits in the peering location */
-  connections?: GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemConnectionsList;
+  connections?: GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemConnectionsList;
   /** The unique GUID associated with the test */
   testGuid?: string;
   /** The type of failover test */
-  testType?: GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemTestType;
+  testType?: GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemTestType;
   /** A list of all issues with the test */
-  issues?: GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemIssuesList;
+  issues?: GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemIssuesList;
 }
-export const GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItem =
+export const GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       peeringLocation: S.optional(S.String),
       circuits: S.optional(
-        GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemCircuitsList,
+        GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemCircuitsList,
       ),
       status: S.optional(
-        GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemStatus,
+        GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemStatus,
       ),
       startTime: S.optional(S.String),
       endTime: S.optional(S.String),
       connections: S.optional(
-        GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemConnectionsList,
+        GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemConnectionsList,
       ),
       testGuid: S.optional(S.String),
       testType: S.optional(
-        GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemTestType,
+        GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemTestType,
       ),
       issues: S.optional(
-        GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemIssuesList,
+        GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemIssuesList,
       ),
     }),
   ).annotate({
-    identifier:
-      "GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItem",
-  }) as any as S.Schema<GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItem>;
+    identifier: "GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItem",
+  }) as any as S.Schema<GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItem>;
 
-export type GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyList =
-  Array<GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItem>;
-export const GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyList =
+export type GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyList =
+  Array<GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItem>;
+export const GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyList =
   /*@__PURE__*/ S.Array(
-    GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItem,
-  ) as any as S.Schema<GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyList>;
+    GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItem,
+  ) as any as S.Schema<GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyList>;
 
-export type GetExpressRouteGatewaysFailoverAllTestsDetailsResponse =
-  GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyList;
-export const GetExpressRouteGatewaysFailoverAllTestsDetailsResponse =
+export type GetExpressRouteGatewayFailoverAllTestsDetailsResponse =
+  GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyList;
+export const GetExpressRouteGatewayFailoverAllTestsDetailsResponse =
   /*@__PURE__*/ S.suspend(() =>
-    GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyList.pipe(
+    GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "GetExpressRouteGatewaysFailoverAllTestsDetailsResponse",
-  }) as any as S.Schema<GetExpressRouteGatewaysFailoverAllTestsDetailsResponse>;
+    identifier: "GetExpressRouteGatewayFailoverAllTestsDetailsResponse",
+  }) as any as S.Schema<GetExpressRouteGatewayFailoverAllTestsDetailsResponse>;
 
-export interface GetExpressRouteGatewaysFailoverSingleTestDetailsRequest {
+export interface GetExpressRouteGatewayFailoverSingleTestDetailsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -33447,7 +33446,7 @@ export interface GetExpressRouteGatewaysFailoverSingleTestDetailsRequest {
   /** The unique Guid value which identifies the test. */
   failoverTestId: string;
 }
-export const GetExpressRouteGatewaysFailoverSingleTestDetailsRequest =
+export const GetExpressRouteGatewayFailoverSingleTestDetailsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -33464,11 +33463,11 @@ export const GetExpressRouteGatewaysFailoverSingleTestDetailsRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetExpressRouteGatewaysFailoverSingleTestDetailsRequest",
-  }) as any as S.Schema<GetExpressRouteGatewaysFailoverSingleTestDetailsRequest>;
+    identifier: "GetExpressRouteGatewayFailoverSingleTestDetailsRequest",
+  }) as any as S.Schema<GetExpressRouteGatewayFailoverSingleTestDetailsRequest>;
 
 /** The current status of the test */
-export type GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemStatus =
+export type GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemStatus =
   | "NotStarted"
   | "Starting"
   | "Running"
@@ -33478,7 +33477,7 @@ export type GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemStat
   | "StopFailed"
   | "Invalid"
   | "Expired";
-export const GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemStatus =
+export const GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemStatus =
   /*@__PURE__*/ S.String;
 
 /** A list of all the peering locations for the redundant routes */
@@ -33514,20 +33513,20 @@ export const ExpressRouteFailoverRedundantRoute = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ExpressRouteFailoverRedundantRoute>;
 
 /** List of routes received from this peering as well as some other peering location */
-export type GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemRedundantRoutesList =
+export type GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemRedundantRoutesList =
   Array<ExpressRouteFailoverRedundantRoute>;
-export const GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemRedundantRoutesList =
+export const GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemRedundantRoutesList =
   /*@__PURE__*/ S.Array(
     ExpressRouteFailoverRedundantRoute,
-  ) as any as S.Schema<GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemRedundantRoutesList>;
+  ) as any as S.Schema<GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemRedundantRoutesList>;
 
 /** List of al the routes that were received only from this peering location */
-export type GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemNonRedundantRoutesList =
+export type GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemNonRedundantRoutesList =
   Array<string>;
-export const GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemNonRedundantRoutesList =
+export const GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemNonRedundantRoutesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemNonRedundantRoutesList>;
+  ) as any as S.Schema<GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemNonRedundantRoutesList>;
 
 export interface FailoverConnectionDetails {
   /** Name of the failover connection */
@@ -33548,76 +33547,76 @@ export const FailoverConnectionDetails = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FailoverConnectionDetails>;
 
 /** List of all the failover connections for this peering location */
-export type GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemFailoverConnectionDetailsList =
+export type GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemFailoverConnectionDetailsList =
   Array<FailoverConnectionDetails>;
-export const GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemFailoverConnectionDetailsList =
+export const GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemFailoverConnectionDetailsList =
   /*@__PURE__*/ S.Array(
     FailoverConnectionDetails,
-  ) as any as S.Schema<GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemFailoverConnectionDetailsList>;
+  ) as any as S.Schema<GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemFailoverConnectionDetailsList>;
 
 /** ExpressRoute failover single test details */
-export interface GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItem {
+export interface GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItem {
   /** Peering location of the test */
   peeringLocation?: string;
   /** The current status of the test */
-  status?: GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemStatus;
+  status?: GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemStatus;
   /** Time when the test was started */
   startTimeUtc?: string;
   /** Time when the test was completed */
   endTimeUtc?: string;
   /** List of routes received from this peering as well as some other peering location */
-  redundantRoutes?: GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemRedundantRoutesList;
+  redundantRoutes?: GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemRedundantRoutesList;
   /** List of al the routes that were received only from this peering location */
-  nonRedundantRoutes?: GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemNonRedundantRoutesList;
+  nonRedundantRoutes?: GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemNonRedundantRoutesList;
   /** Whether the failover simulation was successful or not */
   wasSimulationSuccessful?: boolean;
   /** List of all the failover connections for this peering location */
-  failoverConnectionDetails?: GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemFailoverConnectionDetailsList;
+  failoverConnectionDetails?: GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemFailoverConnectionDetailsList;
 }
-export const GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItem =
+export const GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       peeringLocation: S.optional(S.String),
       status: S.optional(
-        GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemStatus,
+        GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemStatus,
       ),
       startTimeUtc: S.optional(S.String),
       endTimeUtc: S.optional(S.String),
       redundantRoutes: S.optional(
-        GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemRedundantRoutesList,
+        GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemRedundantRoutesList,
       ),
       nonRedundantRoutes: S.optional(
-        GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemNonRedundantRoutesList,
+        GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemNonRedundantRoutesList,
       ),
       wasSimulationSuccessful: S.optional(S.Boolean),
       failoverConnectionDetails: S.optional(
-        GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemFailoverConnectionDetailsList,
+        GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemFailoverConnectionDetailsList,
       ),
     }),
   ).annotate({
     identifier:
-      "GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItem",
-  }) as any as S.Schema<GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItem>;
+      "GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItem",
+  }) as any as S.Schema<GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItem>;
 
-export type GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyList =
-  Array<GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItem>;
-export const GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyList =
+export type GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyList =
+  Array<GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItem>;
+export const GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyList =
   /*@__PURE__*/ S.Array(
-    GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItem,
-  ) as any as S.Schema<GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyList>;
+    GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItem,
+  ) as any as S.Schema<GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyList>;
 
-export type GetExpressRouteGatewaysFailoverSingleTestDetailsResponse =
-  GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyList;
-export const GetExpressRouteGatewaysFailoverSingleTestDetailsResponse =
+export type GetExpressRouteGatewayFailoverSingleTestDetailsResponse =
+  GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyList;
+export const GetExpressRouteGatewayFailoverSingleTestDetailsResponse =
   /*@__PURE__*/ S.suspend(() =>
-    GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyList.pipe(
+    GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "GetExpressRouteGatewaysFailoverSingleTestDetailsResponse",
-  }) as any as S.Schema<GetExpressRouteGatewaysFailoverSingleTestDetailsResponse>;
+    identifier: "GetExpressRouteGatewayFailoverSingleTestDetailsResponse",
+  }) as any as S.Schema<GetExpressRouteGatewayFailoverSingleTestDetailsResponse>;
 
-export interface GetExpressRouteGatewaysResiliencyInformationRequest {
+export interface GetExpressRouteGatewayResiliencyInformationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -33627,7 +33626,7 @@ export interface GetExpressRouteGatewaysResiliencyInformationRequest {
   /** Whether to attempt a refresh of the resiliency information. */
   attemptRefresh?: boolean;
 }
-export const GetExpressRouteGatewaysResiliencyInformationRequest =
+export const GetExpressRouteGatewayResiliencyInformationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -33643,8 +33642,8 @@ export const GetExpressRouteGatewaysResiliencyInformationRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetExpressRouteGatewaysResiliencyInformationRequest",
-  }) as any as S.Schema<GetExpressRouteGatewaysResiliencyInformationRequest>;
+    identifier: "GetExpressRouteGatewayResiliencyInformationRequest",
+  }) as any as S.Schema<GetExpressRouteGatewayResiliencyInformationRequest>;
 
 /** Resiliency Recommendation details */
 export interface GatewayResiliencyRecommendation {
@@ -33707,14 +33706,14 @@ export const ResiliencyRecommendationComponents = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ResiliencyRecommendationComponents>;
 
 /** List of Resiliency based Recommendation Components for the gateway */
-export type GetExpressRouteGatewaysResiliencyInformationResponseComponentsList =
+export type GetExpressRouteGatewayResiliencyInformationResponseComponentsList =
   Array<ResiliencyRecommendationComponents>;
-export const GetExpressRouteGatewaysResiliencyInformationResponseComponentsList =
+export const GetExpressRouteGatewayResiliencyInformationResponseComponentsList =
   /*@__PURE__*/ S.Array(
     ResiliencyRecommendationComponents,
-  ) as any as S.Schema<GetExpressRouteGatewaysResiliencyInformationResponseComponentsList>;
+  ) as any as S.Schema<GetExpressRouteGatewayResiliencyInformationResponseComponentsList>;
 
-export interface GetExpressRouteGatewaysResiliencyInformationResponse {
+export interface GetExpressRouteGatewayResiliencyInformationResponse {
   /** Current Resiliency Score for the gateway */
   overallScore?: string;
   /** Update in the Resiliency Score for the gateway from the last computed score */
@@ -33728,9 +33727,9 @@ export interface GetExpressRouteGatewaysResiliencyInformationResponse {
   /** Timestamp denoting the next eligible time to re-compute the resiliency score for the gateway */
   nextEligibleComputeTime?: string;
   /** List of Resiliency based Recommendation Components for the gateway */
-  components?: GetExpressRouteGatewaysResiliencyInformationResponseComponentsList;
+  components?: GetExpressRouteGatewayResiliencyInformationResponseComponentsList;
 }
-export const GetExpressRouteGatewaysResiliencyInformationResponse =
+export const GetExpressRouteGatewayResiliencyInformationResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       overallScore: S.optional(S.String),
@@ -33740,14 +33739,14 @@ export const GetExpressRouteGatewaysResiliencyInformationResponse =
       lastComputedTime: S.optional(S.String),
       nextEligibleComputeTime: S.optional(S.String),
       components: S.optional(
-        GetExpressRouteGatewaysResiliencyInformationResponseComponentsList,
+        GetExpressRouteGatewayResiliencyInformationResponseComponentsList,
       ),
     }),
   ).annotate({
-    identifier: "GetExpressRouteGatewaysResiliencyInformationResponse",
-  }) as any as S.Schema<GetExpressRouteGatewaysResiliencyInformationResponse>;
+    identifier: "GetExpressRouteGatewayResiliencyInformationResponse",
+  }) as any as S.Schema<GetExpressRouteGatewayResiliencyInformationResponse>;
 
-export interface GetExpressRouteGatewaysRoutesInformationRequest {
+export interface GetExpressRouteGatewayRoutesInformationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -33757,7 +33756,7 @@ export interface GetExpressRouteGatewaysRoutesInformationRequest {
   /** Whether to attempt a refresh of the route sets. */
   attemptRefresh?: boolean;
 }
-export const GetExpressRouteGatewaysRoutesInformationRequest =
+export const GetExpressRouteGatewayRoutesInformationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -33773,8 +33772,8 @@ export const GetExpressRouteGatewaysRoutesInformationRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetExpressRouteGatewaysRoutesInformationRequest",
-  }) as any as S.Schema<GetExpressRouteGatewaysRoutesInformationRequest>;
+    identifier: "GetExpressRouteGatewayRoutesInformationRequest",
+  }) as any as S.Schema<GetExpressRouteGatewayRoutesInformationRequest>;
 
 /** List of different locations from where the routes are learned */
 export type GatewayRouteSetLocationsList = Array<string>;
@@ -33833,12 +33832,12 @@ export const GatewayRouteSet = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GatewayRouteSet>;
 
 /** List of Gateway Route Sets */
-export type GetExpressRouteGatewaysRoutesInformationResponseRouteSetsList =
+export type GetExpressRouteGatewayRoutesInformationResponseRouteSetsList =
   Array<GatewayRouteSet>;
-export const GetExpressRouteGatewaysRoutesInformationResponseRouteSetsList =
+export const GetExpressRouteGatewayRoutesInformationResponseRouteSetsList =
   /*@__PURE__*/ S.Array(
     GatewayRouteSet,
-  ) as any as S.Schema<GetExpressRouteGatewaysRoutesInformationResponseRouteSetsList>;
+  ) as any as S.Schema<GetExpressRouteGatewayRoutesInformationResponseRouteSetsList>;
 
 export interface CircuitMetadataMap {
   /** Express Route Circuit Name */
@@ -33859,15 +33858,15 @@ export const CircuitMetadataMap = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CircuitMetadataMap>;
 
 /** Dictionary containing map of the circuit id and circuit details */
-export type GetExpressRouteGatewaysRoutesInformationResponseCircuitsMetadataMapMap =
+export type GetExpressRouteGatewayRoutesInformationResponseCircuitsMetadataMapMap =
   { [key: string]: CircuitMetadataMap | undefined };
-export const GetExpressRouteGatewaysRoutesInformationResponseCircuitsMetadataMapMap =
+export const GetExpressRouteGatewayRoutesInformationResponseCircuitsMetadataMapMap =
   /*@__PURE__*/ S.Record(
     S.String,
     CircuitMetadataMap,
-  ) as any as S.Schema<GetExpressRouteGatewaysRoutesInformationResponseCircuitsMetadataMapMap>;
+  ) as any as S.Schema<GetExpressRouteGatewayRoutesInformationResponseCircuitsMetadataMapMap>;
 
-export interface GetExpressRouteGatewaysRoutesInformationResponse {
+export interface GetExpressRouteGatewayRoutesInformationResponse {
   /** Timestamp denoting the last time when the route sets were computed for the gateway */
   lastComputedTime?: string;
   /** Timestamp denoting the next eligible time to re-compute the route sets for the gateway */
@@ -33875,26 +33874,26 @@ export interface GetExpressRouteGatewaysRoutesInformationResponse {
   /** Version for the route set */
   routeSetVersion?: string;
   /** List of Gateway Route Sets */
-  routeSets?: GetExpressRouteGatewaysRoutesInformationResponseRouteSetsList;
+  routeSets?: GetExpressRouteGatewayRoutesInformationResponseRouteSetsList;
   /** Dictionary containing map of the circuit id and circuit details */
-  circuitsMetadataMap?: GetExpressRouteGatewaysRoutesInformationResponseCircuitsMetadataMapMap;
+  circuitsMetadataMap?: GetExpressRouteGatewayRoutesInformationResponseCircuitsMetadataMapMap;
 }
-export const GetExpressRouteGatewaysRoutesInformationResponse =
+export const GetExpressRouteGatewayRoutesInformationResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       lastComputedTime: S.optional(S.String),
       nextEligibleComputeTime: S.optional(S.String),
       routeSetVersion: S.optional(S.String),
       routeSets: S.optional(
-        GetExpressRouteGatewaysRoutesInformationResponseRouteSetsList,
+        GetExpressRouteGatewayRoutesInformationResponseRouteSetsList,
       ),
       circuitsMetadataMap: S.optional(
-        GetExpressRouteGatewaysRoutesInformationResponseCircuitsMetadataMapMap,
+        GetExpressRouteGatewayRoutesInformationResponseCircuitsMetadataMapMap,
       ),
     }),
   ).annotate({
-    identifier: "GetExpressRouteGatewaysRoutesInformationResponse",
-  }) as any as S.Schema<GetExpressRouteGatewaysRoutesInformationResponse>;
+    identifier: "GetExpressRouteGatewayRoutesInformationResponse",
+  }) as any as S.Schema<GetExpressRouteGatewayRoutesInformationResponse>;
 
 export interface GetExpressRouteLagRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -39754,7 +39753,7 @@ export const GetLoadBalancerProbeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetLoadBalancerProbeResponse",
 }) as any as S.Schema<GetLoadBalancerProbeResponse>;
 
-export interface GetLocalNetworkGatewaysRequest {
+export interface GetLocalNetworkGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -39762,7 +39761,7 @@ export interface GetLocalNetworkGatewaysRequest {
   /** The name of the local network gateway. */
   localNetworkGatewayName: string;
 }
-export const GetLocalNetworkGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetLocalNetworkGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -39776,17 +39775,17 @@ export const GetLocalNetworkGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetLocalNetworkGatewaysRequest",
-}) as any as S.Schema<GetLocalNetworkGatewaysRequest>;
+  identifier: "GetLocalNetworkGatewayRequest",
+}) as any as S.Schema<GetLocalNetworkGatewayRequest>;
 
 /** Resource tags. */
-export type GetLocalNetworkGatewaysResponseTagsMap = {
+export type GetLocalNetworkGatewayResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GetLocalNetworkGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetLocalNetworkGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GetLocalNetworkGatewaysResponseTagsMap>;
+) as any as S.Schema<GetLocalNetworkGatewayResponseTagsMap>;
 
 /** A list of address blocks reserved for this virtual network in CIDR notation. */
 export type LocalNetworkGatewayPropertiesFormatLocalNetworkAddressSpaceAddressPrefixesList =
@@ -39947,7 +39946,7 @@ export const LocalNetworkGatewayPropertiesFormat = /*@__PURE__*/ S.suspend(() =>
   identifier: "LocalNetworkGatewayPropertiesFormat",
 }) as any as S.Schema<LocalNetworkGatewayPropertiesFormat>;
 
-export interface GetLocalNetworkGatewaysResponse {
+export interface GetLocalNetworkGatewayResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -39957,25 +39956,25 @@ export interface GetLocalNetworkGatewaysResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: GetLocalNetworkGatewaysResponseTagsMap;
+  tags?: GetLocalNetworkGatewayResponseTagsMap;
   /** Properties of the local network gateway. */
   properties: LocalNetworkGatewayPropertiesFormat;
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
 }
-export const GetLocalNetworkGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetLocalNetworkGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(GetLocalNetworkGatewaysResponseTagsMap),
+    tags: S.optional(GetLocalNetworkGatewayResponseTagsMap),
     properties: LocalNetworkGatewayPropertiesFormat,
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetLocalNetworkGatewaysResponse",
-}) as any as S.Schema<GetLocalNetworkGatewaysResponse>;
+  identifier: "GetLocalNetworkGatewayResponse",
+}) as any as S.Schema<GetLocalNetworkGatewayResponse>;
 
 export interface GetManagementGroupNetworkManagerConnectionRequest {
   /** The management group ID. */
@@ -40114,7 +40113,7 @@ export const GetManagementGroupNetworkManagerConnectionResponse =
     identifier: "GetManagementGroupNetworkManagerConnectionResponse",
   }) as any as S.Schema<GetManagementGroupNetworkManagerConnectionResponse>;
 
-export interface GetNatGatewaysRequest {
+export interface GetNatGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -40124,7 +40123,7 @@ export interface GetNatGatewaysRequest {
   /** Expands referenced resources. */
   _expand?: string;
 }
-export const GetNatGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetNatGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -40139,25 +40138,25 @@ export const GetNatGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetNatGatewaysRequest",
-}) as any as S.Schema<GetNatGatewaysRequest>;
+  identifier: "GetNatGatewayRequest",
+}) as any as S.Schema<GetNatGatewayRequest>;
 
 /** Resource tags. */
-export type GetNatGatewaysResponseTagsMap = {
+export type GetNatGatewayResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GetNatGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetNatGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GetNatGatewaysResponseTagsMap>;
+) as any as S.Schema<GetNatGatewayResponseTagsMap>;
 
 /** A list of availability zones denoting the zone in which Nat Gateway should be deployed. */
-export type GetNatGatewaysResponseZonesList = Array<string>;
-export const GetNatGatewaysResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetNatGatewayResponseZonesList = Array<string>;
+export const GetNatGatewayResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<GetNatGatewaysResponseZonesList>;
+) as any as S.Schema<GetNatGatewayResponseZonesList>;
 
-export interface GetNatGatewaysResponse {
+export interface GetNatGatewayResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -40167,31 +40166,31 @@ export interface GetNatGatewaysResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: GetNatGatewaysResponseTagsMap;
+  tags?: GetNatGatewayResponseTagsMap;
   /** Nat Gateway properties. */
   properties?: NatGatewayPropertiesFormat_4;
   /** The nat gateway SKU. */
   sku?: NatGatewaySku;
   /** A list of availability zones denoting the zone in which Nat Gateway should be deployed. */
-  zones?: GetNatGatewaysResponseZonesList;
+  zones?: GetNatGatewayResponseZonesList;
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
 }
-export const GetNatGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetNatGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(GetNatGatewaysResponseTagsMap),
+    tags: S.optional(GetNatGatewayResponseTagsMap),
     properties: S.optional(NatGatewayPropertiesFormat_4),
     sku: S.optional(NatGatewaySku),
-    zones: S.optional(GetNatGatewaysResponseZonesList),
+    zones: S.optional(GetNatGatewayResponseZonesList),
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetNatGatewaysResponse",
-}) as any as S.Schema<GetNatGatewaysResponse>;
+  identifier: "GetNatGatewayResponse",
+}) as any as S.Schema<GetNatGatewayResponse>;
 
 export interface GetNatRuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -45305,7 +45304,7 @@ export const SecurityGroupViewResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SecurityGroupViewResult",
 }) as any as S.Schema<SecurityGroupViewResult>;
 
-export interface GetP2sVpnGatewaysRequest {
+export interface GetP2sVpnGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -45313,7 +45312,7 @@ export interface GetP2sVpnGatewaysRequest {
   /** The name of the gateway. */
   gatewayName: string;
 }
-export const GetP2sVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetP2sVpnGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -45327,17 +45326,17 @@ export const GetP2sVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetP2sVpnGatewaysRequest",
-}) as any as S.Schema<GetP2sVpnGatewaysRequest>;
+  identifier: "GetP2sVpnGatewayRequest",
+}) as any as S.Schema<GetP2sVpnGatewayRequest>;
 
 /** Resource tags. */
-export type GetP2sVpnGatewaysResponseTagsMap = {
+export type GetP2sVpnGatewayResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GetP2sVpnGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetP2sVpnGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GetP2sVpnGatewaysResponseTagsMap>;
+) as any as S.Schema<GetP2sVpnGatewayResponseTagsMap>;
 
 /** Reference to another subresource. */
 export type P2SVpnGatewayPropertiesVirtualHub =
@@ -45601,7 +45600,7 @@ export const P2SVpnGatewayProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "P2SVpnGatewayProperties",
 }) as any as S.Schema<P2SVpnGatewayProperties>;
 
-export interface GetP2sVpnGatewaysResponse {
+export interface GetP2sVpnGatewayResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -45611,27 +45610,27 @@ export interface GetP2sVpnGatewaysResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: GetP2sVpnGatewaysResponseTagsMap;
+  tags?: GetP2sVpnGatewayResponseTagsMap;
   /** Properties of the P2SVpnGateway. */
   properties?: P2SVpnGatewayProperties;
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
 }
-export const GetP2sVpnGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetP2sVpnGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(GetP2sVpnGatewaysResponseTagsMap),
+    tags: S.optional(GetP2sVpnGatewayResponseTagsMap),
     properties: S.optional(P2SVpnGatewayProperties),
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetP2sVpnGatewaysResponse",
-}) as any as S.Schema<GetP2sVpnGatewaysResponse>;
+  identifier: "GetP2sVpnGatewayResponse",
+}) as any as S.Schema<GetP2sVpnGatewayResponse>;
 
-export interface GetP2sVpnGatewaysP2sVpnConnectionHealthRequest {
+export interface GetP2sVpnGatewayP2sVpnConnectionHealthRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -45639,7 +45638,7 @@ export interface GetP2sVpnGatewaysP2sVpnConnectionHealthRequest {
   /** The name of the gateway. */
   gatewayName: string;
 }
-export const GetP2sVpnGatewaysP2sVpnConnectionHealthRequest =
+export const GetP2sVpnGatewayP2sVpnConnectionHealthRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -45654,20 +45653,20 @@ export const GetP2sVpnGatewaysP2sVpnConnectionHealthRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetP2sVpnGatewaysP2sVpnConnectionHealthRequest",
-  }) as any as S.Schema<GetP2sVpnGatewaysP2sVpnConnectionHealthRequest>;
+    identifier: "GetP2sVpnGatewayP2sVpnConnectionHealthRequest",
+  }) as any as S.Schema<GetP2sVpnGatewayP2sVpnConnectionHealthRequest>;
 
 /** Resource tags. */
-export type GetP2sVpnGatewaysP2sVpnConnectionHealthResponseTagsMap = {
+export type GetP2sVpnGatewayP2sVpnConnectionHealthResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GetP2sVpnGatewaysP2sVpnConnectionHealthResponseTagsMap =
+export const GetP2sVpnGatewayP2sVpnConnectionHealthResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<GetP2sVpnGatewaysP2sVpnConnectionHealthResponseTagsMap>;
+  ) as any as S.Schema<GetP2sVpnGatewayP2sVpnConnectionHealthResponseTagsMap>;
 
-export interface GetP2sVpnGatewaysP2sVpnConnectionHealthResponse {
+export interface GetP2sVpnGatewayP2sVpnConnectionHealthResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -45677,36 +45676,36 @@ export interface GetP2sVpnGatewaysP2sVpnConnectionHealthResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: GetP2sVpnGatewaysP2sVpnConnectionHealthResponseTagsMap;
+  tags?: GetP2sVpnGatewayP2sVpnConnectionHealthResponseTagsMap;
   /** Properties of the P2SVpnGateway. */
   properties?: P2SVpnGatewayProperties;
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
 }
-export const GetP2sVpnGatewaysP2sVpnConnectionHealthResponse =
+export const GetP2sVpnGatewayP2sVpnConnectionHealthResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(GetP2sVpnGatewaysP2sVpnConnectionHealthResponseTagsMap),
+      tags: S.optional(GetP2sVpnGatewayP2sVpnConnectionHealthResponseTagsMap),
       properties: S.optional(P2SVpnGatewayProperties),
       etag: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "GetP2sVpnGatewaysP2sVpnConnectionHealthResponse",
-  }) as any as S.Schema<GetP2sVpnGatewaysP2sVpnConnectionHealthResponse>;
+    identifier: "GetP2sVpnGatewayP2sVpnConnectionHealthResponse",
+  }) as any as S.Schema<GetP2sVpnGatewayP2sVpnConnectionHealthResponse>;
 
 /** The list of p2s vpn user names whose p2s vpn connection detailed health to retrieve for. */
-export type GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequestVpnUserNamesFilterList =
+export type GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequestVpnUserNamesFilterList =
   Array<string>;
-export const GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequestVpnUserNamesFilterList =
+export const GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequestVpnUserNamesFilterList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequestVpnUserNamesFilterList>;
+  ) as any as S.Schema<GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequestVpnUserNamesFilterList>;
 
-export interface GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequest {
+export interface GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -45714,18 +45713,18 @@ export interface GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequest {
   /** The name of the gateway. */
   gatewayName: string;
   /** The list of p2s vpn user names whose p2s vpn connection detailed health to retrieve for. */
-  vpnUserNamesFilter?: GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequestVpnUserNamesFilterList;
+  vpnUserNamesFilter?: GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequestVpnUserNamesFilterList;
   /** The sas-url to download the P2S Vpn connection health detail. */
   outputBlobSasUrl?: string;
 }
-export const GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequest =
+export const GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       gatewayName: S.String.pipe(T.Label()),
       vpnUserNamesFilter: S.optional(
-        GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequestVpnUserNamesFilterList,
+        GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequestVpnUserNamesFilterList,
       ),
       outputBlobSasUrl: S.optional(S.String),
     }).pipe(
@@ -45737,8 +45736,8 @@ export const GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequest",
-  }) as any as S.Schema<GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequest>;
+    identifier: "GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequest",
+  }) as any as S.Schema<GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequest>;
 
 /** P2S Vpn connection detailed health written to sas url. */
 export interface P2SVpnConnectionHealth {
@@ -51572,7 +51571,7 @@ export const GetServiceEndpointPolicyDefinitionResponse =
     identifier: "GetServiceEndpointPolicyDefinitionResponse",
   }) as any as S.Schema<GetServiceEndpointPolicyDefinitionResponse>;
 
-export interface GetServiceGatewaysRequest {
+export interface GetServiceGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -51580,7 +51579,7 @@ export interface GetServiceGatewaysRequest {
   /** The name of the service gateway. */
   serviceGatewayName: string;
 }
-export const GetServiceGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetServiceGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -51594,68 +51593,65 @@ export const GetServiceGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetServiceGatewaysRequest",
-}) as any as S.Schema<GetServiceGatewaysRequest>;
+  identifier: "GetServiceGatewayRequest",
+}) as any as S.Schema<GetServiceGatewayRequest>;
 
 /** The type of identity that created the resource. */
-export type GetServiceGatewaysResponseSystemDataCreatedByType =
+export type GetServiceGatewayResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetServiceGatewaysResponseSystemDataCreatedByType =
+export const GetServiceGatewayResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type GetServiceGatewaysResponseSystemDataLastModifiedByType =
+export type GetServiceGatewayResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetServiceGatewaysResponseSystemDataLastModifiedByType =
+export const GetServiceGatewayResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface GetServiceGatewaysResponseSystemData {
+export interface GetServiceGatewayResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: GetServiceGatewaysResponseSystemDataCreatedByType;
+  createdByType?: GetServiceGatewayResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: GetServiceGatewaysResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetServiceGatewayResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const GetServiceGatewaysResponseSystemData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        GetServiceGatewaysResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        GetServiceGatewaysResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
+export const GetServiceGatewayResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(GetServiceGatewayResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      GetServiceGatewayResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "GetServiceGatewaysResponseSystemData",
-}) as any as S.Schema<GetServiceGatewaysResponseSystemData>;
+  identifier: "GetServiceGatewayResponseSystemData",
+}) as any as S.Schema<GetServiceGatewayResponseSystemData>;
 
 /** Resource tags. */
-export type GetServiceGatewaysResponseTagsMap = {
+export type GetServiceGatewayResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GetServiceGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetServiceGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GetServiceGatewaysResponseTagsMap>;
+) as any as S.Schema<GetServiceGatewayResponseTagsMap>;
 
 /** Resource tags. */
 export type ServiceGatewayPropertiesFormatVirtualNetworkTagsMap = {
@@ -54574,12 +54570,12 @@ export const ServiceGatewaySku = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ServiceGatewaySku>;
 
 /** A list of availability zones denoting the zone in which service gateway should be deployed. - The zone values must be provided as strings representing numeric identifiers like "1", "2", "3" etc. */
-export type GetServiceGatewaysResponseZonesList = Array<string>;
-export const GetServiceGatewaysResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetServiceGatewayResponseZonesList = Array<string>;
+export const GetServiceGatewayResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<GetServiceGatewaysResponseZonesList>;
+) as any as S.Schema<GetServiceGatewayResponseZonesList>;
 
-export interface GetServiceGatewaysResponse {
+export interface GetServiceGatewayResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -54587,9 +54583,9 @@ export interface GetServiceGatewaysResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: GetServiceGatewaysResponseSystemData;
+  systemData?: GetServiceGatewayResponseSystemData;
   /** Resource tags. */
-  tags?: GetServiceGatewaysResponseTagsMap;
+  tags?: GetServiceGatewayResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of service gateway. */
@@ -54599,26 +54595,26 @@ export interface GetServiceGatewaysResponse {
   /** The service gateway SKU. */
   sku?: ServiceGatewaySku;
   /** A list of availability zones denoting the zone in which service gateway should be deployed. - The zone values must be provided as strings representing numeric identifiers like "1", "2", "3" etc. */
-  zones?: GetServiceGatewaysResponseZonesList;
+  zones?: GetServiceGatewayResponseZonesList;
 }
-export const GetServiceGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetServiceGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    systemData: S.optional(GetServiceGatewaysResponseSystemData),
-    tags: S.optional(GetServiceGatewaysResponseTagsMap),
+    systemData: S.optional(GetServiceGatewayResponseSystemData),
+    tags: S.optional(GetServiceGatewayResponseTagsMap),
     location: S.String,
     properties: S.optional(ServiceGatewayPropertiesFormat),
     etag: S.optional(S.String),
     sku: S.optional(ServiceGatewaySku),
-    zones: S.optional(GetServiceGatewaysResponseZonesList),
+    zones: S.optional(GetServiceGatewayResponseZonesList),
   }),
 ).annotate({
-  identifier: "GetServiceGatewaysResponse",
-}) as any as S.Schema<GetServiceGatewaysResponse>;
+  identifier: "GetServiceGatewayResponse",
+}) as any as S.Schema<GetServiceGatewayResponse>;
 
-export interface GetServiceGatewaysAddressLocationsRequest {
+export interface GetServiceGatewayAddressLocationsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -54626,8 +54622,8 @@ export interface GetServiceGatewaysAddressLocationsRequest {
   /** The name of the service gateway. */
   serviceGatewayName: string;
 }
-export const GetServiceGatewaysAddressLocationsRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetServiceGatewayAddressLocationsRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -54640,9 +54636,9 @@ export const GetServiceGatewaysAddressLocationsRequest =
         apiVersion: "2025-09-01",
       }),
     ),
-  ).annotate({
-    identifier: "GetServiceGatewaysAddressLocationsRequest",
-  }) as any as S.Schema<GetServiceGatewaysAddressLocationsRequest>;
+).annotate({
+  identifier: "GetServiceGatewayAddressLocationsRequest",
+}) as any as S.Schema<GetServiceGatewayAddressLocationsRequest>;
 
 /** Collection of services in address. */
 export type ServiceGatewayAddressServicesList = Array<string>;
@@ -54716,7 +54712,7 @@ export const GetServiceGatewayAddressLocationsResult = /*@__PURE__*/ S.suspend(
   identifier: "GetServiceGatewayAddressLocationsResult",
 }) as any as S.Schema<GetServiceGatewayAddressLocationsResult>;
 
-export interface GetServiceGatewaysServicesRequest {
+export interface GetServiceGatewayServicesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -54724,7 +54720,7 @@ export interface GetServiceGatewaysServicesRequest {
   /** The name of the service gateway. */
   serviceGatewayName: string;
 }
-export const GetServiceGatewaysServicesRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetServiceGatewayServicesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -54738,8 +54734,8 @@ export const GetServiceGatewaysServicesRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetServiceGatewaysServicesRequest",
-}) as any as S.Schema<GetServiceGatewaysServicesRequest>;
+  identifier: "GetServiceGatewayServicesRequest",
+}) as any as S.Schema<GetServiceGatewayServicesRequest>;
 
 /** Name of the service. */
 export type ServiceGatewayServicePropertiesFormatServiceType =
@@ -61884,50 +61880,39 @@ export const GetVirtualNetworkApplianceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetVirtualNetworkApplianceResponse",
 }) as any as S.Schema<GetVirtualNetworkApplianceResponse>;
 
-export interface GetVirtualNetworkGatewayConnectionRequest {
+export interface GetVirtualNetworkGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the virtual network gateway connection. */
-  virtualNetworkGatewayConnectionName: string;
+  /** The name of the virtual network gateway. */
+  virtualNetworkGatewayName: string;
 }
-export const GetVirtualNetworkGatewayConnectionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      virtualNetworkGatewayConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "GetVirtualNetworkGatewayConnectionRequest",
-  }) as any as S.Schema<GetVirtualNetworkGatewayConnectionRequest>;
+export const GetVirtualNetworkGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualNetworkGatewayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVirtualNetworkGatewayRequest",
+}) as any as S.Schema<GetVirtualNetworkGatewayRequest>;
 
 /** Resource tags. */
-export type GetVirtualNetworkGatewayConnectionResponseTagsMap = {
+export type GetVirtualNetworkGatewayResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GetVirtualNetworkGatewayConnectionResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<GetVirtualNetworkGatewayConnectionResponseTagsMap>;
-
-/** Resource tags. */
-export type VirtualNetworkGatewayTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualNetworkGatewayTagsMap = /*@__PURE__*/ S.Record(
+export const GetVirtualNetworkGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualNetworkGatewayTagsMap>;
+) as any as S.Schema<GetVirtualNetworkGatewayResponseTagsMap>;
 
 export interface VirtualNetworkGatewayAutoScaleBounds {
   /** Minimum scale Units for Autoscale configuration */
@@ -63117,15 +63102,302 @@ export const VirtualNetworkGatewayPropertiesFormat = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<VirtualNetworkGatewayPropertiesFormat>;
 
 /** ExtendedLocation complex type. */
-export type VirtualNetworkGatewayExtendedLocation =
+export type GetVirtualNetworkGatewayResponseExtendedLocation =
   NetworkInterfaceExtendedLocation;
-export const VirtualNetworkGatewayExtendedLocation =
+export const GetVirtualNetworkGatewayResponseExtendedLocation =
   NetworkInterfaceExtendedLocation;
 
 export type ManagedServiceIdentityUserAssignedIdentities_5 =
   ManagedServiceIdentityUserAssignedIdentities_8;
 export const ManagedServiceIdentityUserAssignedIdentities_5 =
   ManagedServiceIdentityUserAssignedIdentities_8;
+
+/** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
+export type GetVirtualNetworkGatewayResponseIdentityUserAssignedIdentitiesMap =
+  { [key: string]: ManagedServiceIdentityUserAssignedIdentities_8 | undefined };
+export const GetVirtualNetworkGatewayResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    ManagedServiceIdentityUserAssignedIdentities_8,
+  ) as any as S.Schema<GetVirtualNetworkGatewayResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Identity for the resource. */
+export interface GetVirtualNetworkGatewayResponseIdentity {
+  /** The principal id of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant id of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  /** The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the virtual machine. */
+  type?: ResourceIdentityType;
+  /** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
+  userAssignedIdentities?: GetVirtualNetworkGatewayResponseIdentityUserAssignedIdentitiesMap;
+}
+export const GetVirtualNetworkGatewayResponseIdentity = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      principalId: S.optional(S.String),
+      tenantId: S.optional(S.String),
+      type: S.optional(ResourceIdentityType),
+      userAssignedIdentities: S.optional(
+        GetVirtualNetworkGatewayResponseIdentityUserAssignedIdentitiesMap,
+      ),
+    }),
+).annotate({
+  identifier: "GetVirtualNetworkGatewayResponseIdentity",
+}) as any as S.Schema<GetVirtualNetworkGatewayResponseIdentity>;
+
+export interface GetVirtualNetworkGatewayResponse {
+  /** Resource ID. */
+  id?: string;
+  /** Resource name. */
+  name?: string;
+  /** Resource type. */
+  type?: string;
+  /** Resource location. */
+  location?: string;
+  /** Resource tags. */
+  tags?: GetVirtualNetworkGatewayResponseTagsMap;
+  /** Properties of the virtual network gateway. */
+  properties: VirtualNetworkGatewayPropertiesFormat;
+  /** ExtendedLocation complex type. */
+  extendedLocation?: NetworkInterfaceExtendedLocation;
+  /** A unique read-only string that changes whenever the resource is updated. */
+  etag?: string;
+  /** Identity for the resource. */
+  identity?: GetVirtualNetworkGatewayResponseIdentity;
+}
+export const GetVirtualNetworkGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(GetVirtualNetworkGatewayResponseTagsMap),
+    properties: VirtualNetworkGatewayPropertiesFormat,
+    extendedLocation: S.optional(NetworkInterfaceExtendedLocation),
+    etag: S.optional(S.String),
+    identity: S.optional(GetVirtualNetworkGatewayResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetVirtualNetworkGatewayResponse",
+}) as any as S.Schema<GetVirtualNetworkGatewayResponse>;
+
+export interface GetVirtualNetworkGatewayAdvertisedRoutesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual network gateway. */
+  virtualNetworkGatewayName: string;
+  /** The IP address of the peer. */
+  peer: string;
+}
+export const GetVirtualNetworkGatewayAdvertisedRoutesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      virtualNetworkGatewayName: S.String.pipe(T.Label()),
+      peer: S.String.pipe(T.Query()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getAdvertisedRoutes",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetVirtualNetworkGatewayAdvertisedRoutesRequest",
+  }) as any as S.Schema<GetVirtualNetworkGatewayAdvertisedRoutesRequest>;
+
+/** Gateway routing details. */
+export interface GatewayRoute {
+  /** The gateway's local address. */
+  localAddress?: string;
+  /** The route's network prefix. */
+  network?: string;
+  /** The route's next hop. */
+  nextHop?: string;
+  /** The peer this route was learned from. */
+  sourcePeer?: string;
+  /** The source this route was learned from. */
+  origin?: string;
+  /** The route's AS path sequence. */
+  asPath?: string;
+  /** The route's weight. */
+  weight?: number;
+}
+export const GatewayRoute = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    localAddress: S.optional(S.String),
+    network: S.optional(S.String),
+    nextHop: S.optional(S.String),
+    sourcePeer: S.optional(S.String),
+    origin: S.optional(S.String),
+    asPath: S.optional(S.String),
+    weight: S.optional(S.Number),
+  }),
+).annotate({ identifier: "GatewayRoute" }) as any as S.Schema<GatewayRoute>;
+
+/** List of gateway routes. */
+export type GatewayRouteListResultValueList = Array<GatewayRoute>;
+export const GatewayRouteListResultValueList = /*@__PURE__*/ S.Array(
+  GatewayRoute,
+) as any as S.Schema<GatewayRouteListResultValueList>;
+
+/** List of virtual network gateway routes. */
+export interface GatewayRouteListResult {
+  /** List of gateway routes. */
+  value?: GatewayRouteListResultValueList;
+}
+export const GatewayRouteListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(GatewayRouteListResultValueList),
+  }),
+).annotate({
+  identifier: "GatewayRouteListResult",
+}) as any as S.Schema<GatewayRouteListResult>;
+
+export interface GetVirtualNetworkGatewayBgpPeerStatusRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual network gateway. */
+  virtualNetworkGatewayName: string;
+  /** The IP address of the peer to retrieve the status of. */
+  peer?: string;
+}
+export const GetVirtualNetworkGatewayBgpPeerStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      virtualNetworkGatewayName: S.String.pipe(T.Label()),
+      peer: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getBgpPeerStatus",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetVirtualNetworkGatewayBgpPeerStatusRequest",
+  }) as any as S.Schema<GetVirtualNetworkGatewayBgpPeerStatusRequest>;
+
+/** The BGP peer state. */
+export type BgpPeerStatusState =
+  | "Unknown"
+  | "Stopped"
+  | "Idle"
+  | "Connecting"
+  | "Connected";
+export const BgpPeerStatusState = /*@__PURE__*/ S.String;
+
+/** BGP peer status details. */
+export interface BgpPeerStatus {
+  /** The virtual network gateway's local address. */
+  localAddress?: string;
+  /** The remote BGP peer. */
+  neighbor?: string;
+  /** The autonomous system number of the remote BGP peer. */
+  asn?: number;
+  /** The BGP peer state. */
+  state?: BgpPeerStatusState;
+  /** For how long the peering has been up. */
+  connectedDuration?: string;
+  /** The number of routes learned from this peer. */
+  routesReceived?: number;
+  /** The number of BGP messages sent. */
+  messagesSent?: number;
+  /** The number of BGP messages received. */
+  messagesReceived?: number;
+}
+export const BgpPeerStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    localAddress: S.optional(S.String),
+    neighbor: S.optional(S.String),
+    asn: S.optional(S.Number),
+    state: S.optional(BgpPeerStatusState),
+    connectedDuration: S.optional(S.String),
+    routesReceived: S.optional(S.Number),
+    messagesSent: S.optional(S.Number),
+    messagesReceived: S.optional(S.Number),
+  }),
+).annotate({ identifier: "BgpPeerStatus" }) as any as S.Schema<BgpPeerStatus>;
+
+/** List of BGP peers. */
+export type BgpPeerStatusListResultValueList = Array<BgpPeerStatus>;
+export const BgpPeerStatusListResultValueList = /*@__PURE__*/ S.Array(
+  BgpPeerStatus,
+) as any as S.Schema<BgpPeerStatusListResultValueList>;
+
+/** Response for list BGP peer status API service call. */
+export interface BgpPeerStatusListResult {
+  /** List of BGP peers. */
+  value?: BgpPeerStatusListResultValueList;
+}
+export const BgpPeerStatusListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(BgpPeerStatusListResultValueList),
+  }),
+).annotate({
+  identifier: "BgpPeerStatusListResult",
+}) as any as S.Schema<BgpPeerStatusListResult>;
+
+export interface GetVirtualNetworkGatewayConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual network gateway connection. */
+  virtualNetworkGatewayConnectionName: string;
+}
+export const GetVirtualNetworkGatewayConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      virtualNetworkGatewayConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetVirtualNetworkGatewayConnectionRequest",
+  }) as any as S.Schema<GetVirtualNetworkGatewayConnectionRequest>;
+
+/** Resource tags. */
+export type GetVirtualNetworkGatewayConnectionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetVirtualNetworkGatewayConnectionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetVirtualNetworkGatewayConnectionResponseTagsMap>;
+
+/** Resource tags. */
+export type VirtualNetworkGatewayTagsMap = {
+  [key: string]: string | undefined;
+};
+export const VirtualNetworkGatewayTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<VirtualNetworkGatewayTagsMap>;
+
+/** ExtendedLocation complex type. */
+export type VirtualNetworkGatewayExtendedLocation =
+  NetworkInterfaceExtendedLocation;
+export const VirtualNetworkGatewayExtendedLocation =
+  NetworkInterfaceExtendedLocation;
 
 /** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
 export type VirtualNetworkGatewayIdentityUserAssignedIdentitiesMap = {
@@ -63746,61 +64018,7 @@ export const GetVirtualNetworkGatewayConnectionSharedKeyResponse =
     identifier: "GetVirtualNetworkGatewayConnectionSharedKeyResponse",
   }) as any as S.Schema<GetVirtualNetworkGatewayConnectionSharedKeyResponse>;
 
-export interface GetVirtualNetworkGatewayNatRuleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual network gateway. */
-  virtualNetworkGatewayName: string;
-  /** The name of the resource that is unique within a resource group. This name can be used to access the resource. */
-  natRuleName: string;
-}
-export const GetVirtualNetworkGatewayNatRuleRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      virtualNetworkGatewayName: S.String.pipe(T.Label()),
-      natRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/natRules/{natRuleName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "GetVirtualNetworkGatewayNatRuleRequest",
-}) as any as S.Schema<GetVirtualNetworkGatewayNatRuleRequest>;
-
-export interface GetVirtualNetworkGatewayNatRuleResponse {
-  /** Resource ID. */
-  id?: string;
-  /** Name of the resource. */
-  name?: string;
-  /** Resource type. */
-  type?: string;
-  /** Properties of the Virtual Network Gateway NAT rule. */
-  properties?: VirtualNetworkGatewayNatRuleProperties;
-  /** A unique read-only string that changes whenever the resource is updated. */
-  etag?: string;
-}
-export const GetVirtualNetworkGatewayNatRuleResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      properties: S.optional(VirtualNetworkGatewayNatRuleProperties),
-      etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "GetVirtualNetworkGatewayNatRuleResponse",
-}) as any as S.Schema<GetVirtualNetworkGatewayNatRuleResponse>;
-
-export interface GetVirtualNetworkGatewaysRequest {
+export interface GetVirtualNetworkGatewayEffectiveRoutesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -63808,283 +64026,7 @@ export interface GetVirtualNetworkGatewaysRequest {
   /** The name of the virtual network gateway. */
   virtualNetworkGatewayName: string;
 }
-export const GetVirtualNetworkGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualNetworkGatewayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetVirtualNetworkGatewaysRequest",
-}) as any as S.Schema<GetVirtualNetworkGatewaysRequest>;
-
-/** Resource tags. */
-export type GetVirtualNetworkGatewaysResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const GetVirtualNetworkGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<GetVirtualNetworkGatewaysResponseTagsMap>;
-
-/** ExtendedLocation complex type. */
-export type GetVirtualNetworkGatewaysResponseExtendedLocation =
-  NetworkInterfaceExtendedLocation;
-export const GetVirtualNetworkGatewaysResponseExtendedLocation =
-  NetworkInterfaceExtendedLocation;
-
-/** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-export type GetVirtualNetworkGatewaysResponseIdentityUserAssignedIdentitiesMap =
-  { [key: string]: ManagedServiceIdentityUserAssignedIdentities_8 | undefined };
-export const GetVirtualNetworkGatewaysResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    ManagedServiceIdentityUserAssignedIdentities_8,
-  ) as any as S.Schema<GetVirtualNetworkGatewaysResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Identity for the resource. */
-export interface GetVirtualNetworkGatewaysResponseIdentity {
-  /** The principal id of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant id of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  /** The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the virtual machine. */
-  type?: ResourceIdentityType;
-  /** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-  userAssignedIdentities?: GetVirtualNetworkGatewaysResponseIdentityUserAssignedIdentitiesMap;
-}
-export const GetVirtualNetworkGatewaysResponseIdentity =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: S.optional(ResourceIdentityType),
-      userAssignedIdentities: S.optional(
-        GetVirtualNetworkGatewaysResponseIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
-  ).annotate({
-    identifier: "GetVirtualNetworkGatewaysResponseIdentity",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysResponseIdentity>;
-
-export interface GetVirtualNetworkGatewaysResponse {
-  /** Resource ID. */
-  id?: string;
-  /** Resource name. */
-  name?: string;
-  /** Resource type. */
-  type?: string;
-  /** Resource location. */
-  location?: string;
-  /** Resource tags. */
-  tags?: GetVirtualNetworkGatewaysResponseTagsMap;
-  /** Properties of the virtual network gateway. */
-  properties: VirtualNetworkGatewayPropertiesFormat;
-  /** ExtendedLocation complex type. */
-  extendedLocation?: NetworkInterfaceExtendedLocation;
-  /** A unique read-only string that changes whenever the resource is updated. */
-  etag?: string;
-  /** Identity for the resource. */
-  identity?: GetVirtualNetworkGatewaysResponseIdentity;
-}
-export const GetVirtualNetworkGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(GetVirtualNetworkGatewaysResponseTagsMap),
-    properties: VirtualNetworkGatewayPropertiesFormat,
-    extendedLocation: S.optional(NetworkInterfaceExtendedLocation),
-    etag: S.optional(S.String),
-    identity: S.optional(GetVirtualNetworkGatewaysResponseIdentity),
-  }),
-).annotate({
-  identifier: "GetVirtualNetworkGatewaysResponse",
-}) as any as S.Schema<GetVirtualNetworkGatewaysResponse>;
-
-export interface GetVirtualNetworkGatewaysAdvertisedRoutesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual network gateway. */
-  virtualNetworkGatewayName: string;
-  /** The IP address of the peer. */
-  peer: string;
-}
-export const GetVirtualNetworkGatewaysAdvertisedRoutesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      virtualNetworkGatewayName: S.String.pipe(T.Label()),
-      peer: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getAdvertisedRoutes",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "GetVirtualNetworkGatewaysAdvertisedRoutesRequest",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysAdvertisedRoutesRequest>;
-
-/** Gateway routing details. */
-export interface GatewayRoute {
-  /** The gateway's local address. */
-  localAddress?: string;
-  /** The route's network prefix. */
-  network?: string;
-  /** The route's next hop. */
-  nextHop?: string;
-  /** The peer this route was learned from. */
-  sourcePeer?: string;
-  /** The source this route was learned from. */
-  origin?: string;
-  /** The route's AS path sequence. */
-  asPath?: string;
-  /** The route's weight. */
-  weight?: number;
-}
-export const GatewayRoute = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    localAddress: S.optional(S.String),
-    network: S.optional(S.String),
-    nextHop: S.optional(S.String),
-    sourcePeer: S.optional(S.String),
-    origin: S.optional(S.String),
-    asPath: S.optional(S.String),
-    weight: S.optional(S.Number),
-  }),
-).annotate({ identifier: "GatewayRoute" }) as any as S.Schema<GatewayRoute>;
-
-/** List of gateway routes. */
-export type GatewayRouteListResultValueList = Array<GatewayRoute>;
-export const GatewayRouteListResultValueList = /*@__PURE__*/ S.Array(
-  GatewayRoute,
-) as any as S.Schema<GatewayRouteListResultValueList>;
-
-/** List of virtual network gateway routes. */
-export interface GatewayRouteListResult {
-  /** List of gateway routes. */
-  value?: GatewayRouteListResultValueList;
-}
-export const GatewayRouteListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(GatewayRouteListResultValueList),
-  }),
-).annotate({
-  identifier: "GatewayRouteListResult",
-}) as any as S.Schema<GatewayRouteListResult>;
-
-export interface GetVirtualNetworkGatewaysBgpPeerStatusRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual network gateway. */
-  virtualNetworkGatewayName: string;
-  /** The IP address of the peer to retrieve the status of. */
-  peer?: string;
-}
-export const GetVirtualNetworkGatewaysBgpPeerStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      virtualNetworkGatewayName: S.String.pipe(T.Label()),
-      peer: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getBgpPeerStatus",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "GetVirtualNetworkGatewaysBgpPeerStatusRequest",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysBgpPeerStatusRequest>;
-
-/** The BGP peer state. */
-export type BgpPeerStatusState =
-  | "Unknown"
-  | "Stopped"
-  | "Idle"
-  | "Connecting"
-  | "Connected";
-export const BgpPeerStatusState = /*@__PURE__*/ S.String;
-
-/** BGP peer status details. */
-export interface BgpPeerStatus {
-  /** The virtual network gateway's local address. */
-  localAddress?: string;
-  /** The remote BGP peer. */
-  neighbor?: string;
-  /** The autonomous system number of the remote BGP peer. */
-  asn?: number;
-  /** The BGP peer state. */
-  state?: BgpPeerStatusState;
-  /** For how long the peering has been up. */
-  connectedDuration?: string;
-  /** The number of routes learned from this peer. */
-  routesReceived?: number;
-  /** The number of BGP messages sent. */
-  messagesSent?: number;
-  /** The number of BGP messages received. */
-  messagesReceived?: number;
-}
-export const BgpPeerStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    localAddress: S.optional(S.String),
-    neighbor: S.optional(S.String),
-    asn: S.optional(S.Number),
-    state: S.optional(BgpPeerStatusState),
-    connectedDuration: S.optional(S.String),
-    routesReceived: S.optional(S.Number),
-    messagesSent: S.optional(S.Number),
-    messagesReceived: S.optional(S.Number),
-  }),
-).annotate({ identifier: "BgpPeerStatus" }) as any as S.Schema<BgpPeerStatus>;
-
-/** List of BGP peers. */
-export type BgpPeerStatusListResultValueList = Array<BgpPeerStatus>;
-export const BgpPeerStatusListResultValueList = /*@__PURE__*/ S.Array(
-  BgpPeerStatus,
-) as any as S.Schema<BgpPeerStatusListResultValueList>;
-
-/** Response for list BGP peer status API service call. */
-export interface BgpPeerStatusListResult {
-  /** List of BGP peers. */
-  value?: BgpPeerStatusListResultValueList;
-}
-export const BgpPeerStatusListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(BgpPeerStatusListResultValueList),
-  }),
-).annotate({
-  identifier: "BgpPeerStatusListResult",
-}) as any as S.Schema<BgpPeerStatusListResult>;
-
-export interface GetVirtualNetworkGatewaysEffectiveRoutesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual network gateway. */
-  virtualNetworkGatewayName: string;
-}
-export const GetVirtualNetworkGatewaysEffectiveRoutesRequest =
+export const GetVirtualNetworkGatewayEffectiveRoutesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -64099,8 +64041,8 @@ export const GetVirtualNetworkGatewaysEffectiveRoutesRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetVirtualNetworkGatewaysEffectiveRoutesRequest",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysEffectiveRoutesRequest>;
+    identifier: "GetVirtualNetworkGatewayEffectiveRoutesRequest",
+  }) as any as S.Schema<GetVirtualNetworkGatewayEffectiveRoutesRequest>;
 
 /** The list of address prefixes for the effective route. */
 export type GatewayEffectiveRouteAddressPrefixesList = Array<string>;
@@ -64157,7 +64099,7 @@ export const GatewayEffectiveRouteListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "GatewayEffectiveRouteListResult",
 }) as any as S.Schema<GatewayEffectiveRouteListResult>;
 
-export interface GetVirtualNetworkGatewaysFailoverAllTestDetailsRequest {
+export interface GetVirtualNetworkGatewayFailoverAllTestDetailsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -64169,7 +64111,7 @@ export interface GetVirtualNetworkGatewaysFailoverAllTestDetailsRequest {
   /** Fetch only the latest tests for each peering location */
   fetchLatest: boolean;
 }
-export const GetVirtualNetworkGatewaysFailoverAllTestDetailsRequest =
+export const GetVirtualNetworkGatewayFailoverAllTestDetailsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -64186,8 +64128,8 @@ export const GetVirtualNetworkGatewaysFailoverAllTestDetailsRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetVirtualNetworkGatewaysFailoverAllTestDetailsRequest",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysFailoverAllTestDetailsRequest>;
+    identifier: "GetVirtualNetworkGatewayFailoverAllTestDetailsRequest",
+  }) as any as S.Schema<GetVirtualNetworkGatewayFailoverAllTestDetailsRequest>;
 
 /** All circuits in the peering location */
 export type ExpressRouteFailoverTestDetailsCircuitsList =
@@ -64268,25 +64210,25 @@ export const ExpressRouteFailoverTestDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExpressRouteFailoverTestDetails",
 }) as any as S.Schema<ExpressRouteFailoverTestDetails>;
 
-export type GetVirtualNetworkGatewaysFailoverAllTestDetailsResponseBodyList =
+export type GetVirtualNetworkGatewayFailoverAllTestDetailsResponseBodyList =
   Array<ExpressRouteFailoverTestDetails>;
-export const GetVirtualNetworkGatewaysFailoverAllTestDetailsResponseBodyList =
+export const GetVirtualNetworkGatewayFailoverAllTestDetailsResponseBodyList =
   /*@__PURE__*/ S.Array(
     ExpressRouteFailoverTestDetails,
-  ) as any as S.Schema<GetVirtualNetworkGatewaysFailoverAllTestDetailsResponseBodyList>;
+  ) as any as S.Schema<GetVirtualNetworkGatewayFailoverAllTestDetailsResponseBodyList>;
 
-export type GetVirtualNetworkGatewaysFailoverAllTestDetailsResponse =
-  GetVirtualNetworkGatewaysFailoverAllTestDetailsResponseBodyList;
-export const GetVirtualNetworkGatewaysFailoverAllTestDetailsResponse =
+export type GetVirtualNetworkGatewayFailoverAllTestDetailsResponse =
+  GetVirtualNetworkGatewayFailoverAllTestDetailsResponseBodyList;
+export const GetVirtualNetworkGatewayFailoverAllTestDetailsResponse =
   /*@__PURE__*/ S.suspend(() =>
-    GetVirtualNetworkGatewaysFailoverAllTestDetailsResponseBodyList.pipe(
+    GetVirtualNetworkGatewayFailoverAllTestDetailsResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "GetVirtualNetworkGatewaysFailoverAllTestDetailsResponse",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysFailoverAllTestDetailsResponse>;
+    identifier: "GetVirtualNetworkGatewayFailoverAllTestDetailsResponse",
+  }) as any as S.Schema<GetVirtualNetworkGatewayFailoverAllTestDetailsResponse>;
 
-export interface GetVirtualNetworkGatewaysFailoverSingleTestDetailsRequest {
+export interface GetVirtualNetworkGatewayFailoverSingleTestDetailsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -64298,7 +64240,7 @@ export interface GetVirtualNetworkGatewaysFailoverSingleTestDetailsRequest {
   /** The unique Guid value which identifies the test */
   failoverTestId: string;
 }
-export const GetVirtualNetworkGatewaysFailoverSingleTestDetailsRequest =
+export const GetVirtualNetworkGatewayFailoverSingleTestDetailsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -64315,8 +64257,8 @@ export const GetVirtualNetworkGatewaysFailoverSingleTestDetailsRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetVirtualNetworkGatewaysFailoverSingleTestDetailsRequest",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysFailoverSingleTestDetailsRequest>;
+    identifier: "GetVirtualNetworkGatewayFailoverSingleTestDetailsRequest",
+  }) as any as S.Schema<GetVirtualNetworkGatewayFailoverSingleTestDetailsRequest>;
 
 /** The current status of the test */
 export type ExpressRouteFailoverSingleTestDetailsStatus =
@@ -64397,25 +64339,25 @@ export const ExpressRouteFailoverSingleTestDetails = /*@__PURE__*/ S.suspend(
   identifier: "ExpressRouteFailoverSingleTestDetails",
 }) as any as S.Schema<ExpressRouteFailoverSingleTestDetails>;
 
-export type GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponseBodyList =
+export type GetVirtualNetworkGatewayFailoverSingleTestDetailsResponseBodyList =
   Array<ExpressRouteFailoverSingleTestDetails>;
-export const GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponseBodyList =
+export const GetVirtualNetworkGatewayFailoverSingleTestDetailsResponseBodyList =
   /*@__PURE__*/ S.Array(
     ExpressRouteFailoverSingleTestDetails,
-  ) as any as S.Schema<GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponseBodyList>;
+  ) as any as S.Schema<GetVirtualNetworkGatewayFailoverSingleTestDetailsResponseBodyList>;
 
-export type GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponse =
-  GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponseBodyList;
-export const GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponse =
+export type GetVirtualNetworkGatewayFailoverSingleTestDetailsResponse =
+  GetVirtualNetworkGatewayFailoverSingleTestDetailsResponseBodyList;
+export const GetVirtualNetworkGatewayFailoverSingleTestDetailsResponse =
   /*@__PURE__*/ S.suspend(() =>
-    GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponseBodyList.pipe(
+    GetVirtualNetworkGatewayFailoverSingleTestDetailsResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponse",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponse>;
+    identifier: "GetVirtualNetworkGatewayFailoverSingleTestDetailsResponse",
+  }) as any as S.Schema<GetVirtualNetworkGatewayFailoverSingleTestDetailsResponse>;
 
-export interface GetVirtualNetworkGatewaysLearnedRoutesRequest {
+export interface GetVirtualNetworkGatewayLearnedRoutesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -64423,7 +64365,7 @@ export interface GetVirtualNetworkGatewaysLearnedRoutesRequest {
   /** The name of the virtual network gateway. */
   virtualNetworkGatewayName: string;
 }
-export const GetVirtualNetworkGatewaysLearnedRoutesRequest =
+export const GetVirtualNetworkGatewayLearnedRoutesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -64438,10 +64380,64 @@ export const GetVirtualNetworkGatewaysLearnedRoutesRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetVirtualNetworkGatewaysLearnedRoutesRequest",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysLearnedRoutesRequest>;
+    identifier: "GetVirtualNetworkGatewayLearnedRoutesRequest",
+  }) as any as S.Schema<GetVirtualNetworkGatewayLearnedRoutesRequest>;
 
-export interface GetVirtualNetworkGatewaysResiliencyInformationRequest {
+export interface GetVirtualNetworkGatewayNatRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual network gateway. */
+  virtualNetworkGatewayName: string;
+  /** The name of the resource that is unique within a resource group. This name can be used to access the resource. */
+  natRuleName: string;
+}
+export const GetVirtualNetworkGatewayNatRuleRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      virtualNetworkGatewayName: S.String.pipe(T.Label()),
+      natRuleName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/natRules/{natRuleName}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetVirtualNetworkGatewayNatRuleRequest",
+}) as any as S.Schema<GetVirtualNetworkGatewayNatRuleRequest>;
+
+export interface GetVirtualNetworkGatewayNatRuleResponse {
+  /** Resource ID. */
+  id?: string;
+  /** Name of the resource. */
+  name?: string;
+  /** Resource type. */
+  type?: string;
+  /** Properties of the Virtual Network Gateway NAT rule. */
+  properties?: VirtualNetworkGatewayNatRuleProperties;
+  /** A unique read-only string that changes whenever the resource is updated. */
+  etag?: string;
+}
+export const GetVirtualNetworkGatewayNatRuleResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: S.optional(VirtualNetworkGatewayNatRuleProperties),
+      etag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetVirtualNetworkGatewayNatRuleResponse",
+}) as any as S.Schema<GetVirtualNetworkGatewayNatRuleResponse>;
+
+export interface GetVirtualNetworkGatewayResiliencyInformationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -64451,7 +64447,7 @@ export interface GetVirtualNetworkGatewaysResiliencyInformationRequest {
   /** Attempt to recalculate the Resiliency Information for the gateway */
   attemptRefresh?: boolean;
 }
-export const GetVirtualNetworkGatewaysResiliencyInformationRequest =
+export const GetVirtualNetworkGatewayResiliencyInformationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -64467,8 +64463,8 @@ export const GetVirtualNetworkGatewaysResiliencyInformationRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetVirtualNetworkGatewaysResiliencyInformationRequest",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysResiliencyInformationRequest>;
+    identifier: "GetVirtualNetworkGatewayResiliencyInformationRequest",
+  }) as any as S.Schema<GetVirtualNetworkGatewayResiliencyInformationRequest>;
 
 /** List of Resiliency based Recommendation Components for the gateway */
 export type GatewayResiliencyInformationComponentsList =
@@ -64508,7 +64504,7 @@ export const GatewayResiliencyInformation = /*@__PURE__*/ S.suspend(() =>
   identifier: "GatewayResiliencyInformation",
 }) as any as S.Schema<GatewayResiliencyInformation>;
 
-export interface GetVirtualNetworkGatewaysRoutesInformationRequest {
+export interface GetVirtualNetworkGatewayRoutesInformationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -64518,7 +64514,7 @@ export interface GetVirtualNetworkGatewaysRoutesInformationRequest {
   /** Attempt to recalculate the Route Sets Information for the gateway */
   attemptRefresh?: boolean;
 }
-export const GetVirtualNetworkGatewaysRoutesInformationRequest =
+export const GetVirtualNetworkGatewayRoutesInformationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -64534,8 +64530,8 @@ export const GetVirtualNetworkGatewaysRoutesInformationRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetVirtualNetworkGatewaysRoutesInformationRequest",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysRoutesInformationRequest>;
+    identifier: "GetVirtualNetworkGatewayRoutesInformationRequest",
+  }) as any as S.Schema<GetVirtualNetworkGatewayRoutesInformationRequest>;
 
 /** List of Gateway Route Sets */
 export type GatewayRouteSetsInformationRouteSetsList = Array<GatewayRouteSet>;
@@ -64580,7 +64576,7 @@ export const GatewayRouteSetsInformation = /*@__PURE__*/ S.suspend(() =>
   identifier: "GatewayRouteSetsInformation",
 }) as any as S.Schema<GatewayRouteSetsInformation>;
 
-export interface GetVirtualNetworkGatewaysVpnclientConnectionHealthRequest {
+export interface GetVirtualNetworkGatewayVpnclientConnectionHealthRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -64588,7 +64584,7 @@ export interface GetVirtualNetworkGatewaysVpnclientConnectionHealthRequest {
   /** The name of the virtual network gateway. */
   virtualNetworkGatewayName: string;
 }
-export const GetVirtualNetworkGatewaysVpnclientConnectionHealthRequest =
+export const GetVirtualNetworkGatewayVpnclientConnectionHealthRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -64603,8 +64599,8 @@ export const GetVirtualNetworkGatewaysVpnclientConnectionHealthRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetVirtualNetworkGatewaysVpnclientConnectionHealthRequest",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysVpnclientConnectionHealthRequest>;
+    identifier: "GetVirtualNetworkGatewayVpnclientConnectionHealthRequest",
+  }) as any as S.Schema<GetVirtualNetworkGatewayVpnclientConnectionHealthRequest>;
 
 /** VPN client connection health detail. */
 export interface VpnClientConnectionHealthDetail {
@@ -64674,7 +64670,7 @@ export const VpnClientConnectionHealthDetailListResult =
     identifier: "VpnClientConnectionHealthDetailListResult",
   }) as any as S.Schema<VpnClientConnectionHealthDetailListResult>;
 
-export interface GetVirtualNetworkGatewaysVpnclientIpsecParametersRequest {
+export interface GetVirtualNetworkGatewayVpnclientIpsecParametersRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -64682,7 +64678,7 @@ export interface GetVirtualNetworkGatewaysVpnclientIpsecParametersRequest {
   /** The name of the virtual network gateway. */
   virtualNetworkGatewayName: string;
 }
-export const GetVirtualNetworkGatewaysVpnclientIpsecParametersRequest =
+export const GetVirtualNetworkGatewayVpnclientIpsecParametersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -64697,8 +64693,8 @@ export const GetVirtualNetworkGatewaysVpnclientIpsecParametersRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetVirtualNetworkGatewaysVpnclientIpsecParametersRequest",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysVpnclientIpsecParametersRequest>;
+    identifier: "GetVirtualNetworkGatewayVpnclientIpsecParametersRequest",
+  }) as any as S.Schema<GetVirtualNetworkGatewayVpnclientIpsecParametersRequest>;
 
 /** The IPSec encryption algorithm (IKE phase 1). */
 export type VpnClientIPsecParametersIpsecEncryption =
@@ -64803,7 +64799,7 @@ export const VpnClientIPsecParameters = /*@__PURE__*/ S.suspend(() =>
   identifier: "VpnClientIPsecParameters",
 }) as any as S.Schema<VpnClientIPsecParameters>;
 
-export interface GetVirtualNetworkGatewaysVpnProfilePackageUrlRequest {
+export interface GetVirtualNetworkGatewayVpnProfilePackageUrlRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -64811,7 +64807,7 @@ export interface GetVirtualNetworkGatewaysVpnProfilePackageUrlRequest {
   /** The name of the virtual network gateway. */
   virtualNetworkGatewayName: string;
 }
-export const GetVirtualNetworkGatewaysVpnProfilePackageUrlRequest =
+export const GetVirtualNetworkGatewayVpnProfilePackageUrlRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -64826,14 +64822,14 @@ export const GetVirtualNetworkGatewaysVpnProfilePackageUrlRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetVirtualNetworkGatewaysVpnProfilePackageUrlRequest",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysVpnProfilePackageUrlRequest>;
+    identifier: "GetVirtualNetworkGatewayVpnProfilePackageUrlRequest",
+  }) as any as S.Schema<GetVirtualNetworkGatewayVpnProfilePackageUrlRequest>;
 
-export type GetVirtualNetworkGatewaysVpnProfilePackageUrlResponse = string;
-export const GetVirtualNetworkGatewaysVpnProfilePackageUrlResponse =
+export type GetVirtualNetworkGatewayVpnProfilePackageUrlResponse = string;
+export const GetVirtualNetworkGatewayVpnProfilePackageUrlResponse =
   /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "GetVirtualNetworkGatewaysVpnProfilePackageUrlResponse",
-  }) as any as S.Schema<GetVirtualNetworkGatewaysVpnProfilePackageUrlResponse>;
+    identifier: "GetVirtualNetworkGatewayVpnProfilePackageUrlResponse",
+  }) as any as S.Schema<GetVirtualNetworkGatewayVpnProfilePackageUrlResponse>;
 
 export interface GetVirtualNetworkPeeringRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -68391,7 +68387,7 @@ export const GetVpnConnectionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetVpnConnectionResponse",
 }) as any as S.Schema<GetVpnConnectionResponse>;
 
-export interface GetVpnGatewaysRequest {
+export interface GetVpnGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -68399,7 +68395,7 @@ export interface GetVpnGatewaysRequest {
   /** The name of the gateway. */
   gatewayName: string;
 }
-export const GetVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetVpnGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -68413,17 +68409,17 @@ export const GetVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetVpnGatewaysRequest",
-}) as any as S.Schema<GetVpnGatewaysRequest>;
+  identifier: "GetVpnGatewayRequest",
+}) as any as S.Schema<GetVpnGatewayRequest>;
 
 /** Resource tags. */
-export type GetVpnGatewaysResponseTagsMap = {
+export type GetVpnGatewayResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GetVpnGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetVpnGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GetVpnGatewaysResponseTagsMap>;
+) as any as S.Schema<GetVpnGatewayResponseTagsMap>;
 
 /** Reference to another subresource. */
 export type VpnGatewayPropertiesVirtualHub =
@@ -68595,7 +68591,7 @@ export const VpnGatewayProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "VpnGatewayProperties",
 }) as any as S.Schema<VpnGatewayProperties>;
 
-export interface GetVpnGatewaysResponse {
+export interface GetVpnGatewayResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -68605,25 +68601,25 @@ export interface GetVpnGatewaysResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: GetVpnGatewaysResponseTagsMap;
+  tags?: GetVpnGatewayResponseTagsMap;
   /** Properties of the VPN gateway. */
   properties?: VpnGatewayProperties;
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
 }
-export const GetVpnGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetVpnGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(GetVpnGatewaysResponseTagsMap),
+    tags: S.optional(GetVpnGatewayResponseTagsMap),
     properties: S.optional(VpnGatewayProperties),
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetVpnGatewaysResponse",
-}) as any as S.Schema<GetVpnGatewaysResponse>;
+  identifier: "GetVpnGatewayResponse",
+}) as any as S.Schema<GetVpnGatewayResponse>;
 
 export interface GetVpnLinkConnectionAllSharedKeysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -73256,7 +73252,7 @@ export const InterconnectGroupsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "InterconnectGroupsCreateOrUpdateResponse",
 }) as any as S.Schema<InterconnectGroupsCreateOrUpdateResponse>;
 
-export interface InvokeVirtualNetworkGatewaysAbortMigrationRequest {
+export interface InvokeVirtualNetworkGatewayAbortMigrationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -73264,7 +73260,7 @@ export interface InvokeVirtualNetworkGatewaysAbortMigrationRequest {
   /** The name of the virtual network gateway. */
   virtualNetworkGatewayName: string;
 }
-export const InvokeVirtualNetworkGatewaysAbortMigrationRequest =
+export const InvokeVirtualNetworkGatewayAbortMigrationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -73279,16 +73275,16 @@ export const InvokeVirtualNetworkGatewaysAbortMigrationRequest =
       }),
     ),
   ).annotate({
-    identifier: "InvokeVirtualNetworkGatewaysAbortMigrationRequest",
-  }) as any as S.Schema<InvokeVirtualNetworkGatewaysAbortMigrationRequest>;
+    identifier: "InvokeVirtualNetworkGatewayAbortMigrationRequest",
+  }) as any as S.Schema<InvokeVirtualNetworkGatewayAbortMigrationRequest>;
 
-export interface InvokeVirtualNetworkGatewaysAbortMigrationResponse {}
-export const InvokeVirtualNetworkGatewaysAbortMigrationResponse =
+export interface InvokeVirtualNetworkGatewayAbortMigrationResponse {}
+export const InvokeVirtualNetworkGatewayAbortMigrationResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "InvokeVirtualNetworkGatewaysAbortMigrationResponse",
-  }) as any as S.Schema<InvokeVirtualNetworkGatewaysAbortMigrationResponse>;
+    identifier: "InvokeVirtualNetworkGatewayAbortMigrationResponse",
+  }) as any as S.Schema<InvokeVirtualNetworkGatewayAbortMigrationResponse>;
 
-export interface InvokeVirtualNetworkGatewaysCommitMigrationRequest {
+export interface InvokeVirtualNetworkGatewayCommitMigrationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -73296,7 +73292,7 @@ export interface InvokeVirtualNetworkGatewaysCommitMigrationRequest {
   /** The name of the virtual network gateway. */
   virtualNetworkGatewayName: string;
 }
-export const InvokeVirtualNetworkGatewaysCommitMigrationRequest =
+export const InvokeVirtualNetworkGatewayCommitMigrationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -73311,22 +73307,22 @@ export const InvokeVirtualNetworkGatewaysCommitMigrationRequest =
       }),
     ),
   ).annotate({
-    identifier: "InvokeVirtualNetworkGatewaysCommitMigrationRequest",
-  }) as any as S.Schema<InvokeVirtualNetworkGatewaysCommitMigrationRequest>;
+    identifier: "InvokeVirtualNetworkGatewayCommitMigrationRequest",
+  }) as any as S.Schema<InvokeVirtualNetworkGatewayCommitMigrationRequest>;
 
-export interface InvokeVirtualNetworkGatewaysCommitMigrationResponse {}
-export const InvokeVirtualNetworkGatewaysCommitMigrationResponse =
+export interface InvokeVirtualNetworkGatewayCommitMigrationResponse {}
+export const InvokeVirtualNetworkGatewayCommitMigrationResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "InvokeVirtualNetworkGatewaysCommitMigrationResponse",
-  }) as any as S.Schema<InvokeVirtualNetworkGatewaysCommitMigrationResponse>;
+    identifier: "InvokeVirtualNetworkGatewayCommitMigrationResponse",
+  }) as any as S.Schema<InvokeVirtualNetworkGatewayCommitMigrationResponse>;
 
 /** MigrationType for the virtual network gateway. */
-export type InvokeVirtualNetworkGatewaysPrepareMigrationRequestMigrationType =
+export type InvokeVirtualNetworkGatewayPrepareMigrationRequestMigrationType =
   "UpgradeDeploymentToStandardIP";
-export const InvokeVirtualNetworkGatewaysPrepareMigrationRequestMigrationType =
+export const InvokeVirtualNetworkGatewayPrepareMigrationRequestMigrationType =
   /*@__PURE__*/ S.String;
 
-export interface InvokeVirtualNetworkGatewaysPrepareMigrationRequest {
+export interface InvokeVirtualNetworkGatewayPrepareMigrationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -73335,19 +73331,19 @@ export interface InvokeVirtualNetworkGatewaysPrepareMigrationRequest {
   virtualNetworkGatewayName: string;
   /** MigrationType for the virtual network gateway. */
   migrationType:
-    | InvokeVirtualNetworkGatewaysPrepareMigrationRequestMigrationType
+    | InvokeVirtualNetworkGatewayPrepareMigrationRequestMigrationType
     | (string & {});
   /** Resource url that needs to be passed in to migration. */
   resourceUrl?: string;
 }
-export const InvokeVirtualNetworkGatewaysPrepareMigrationRequest =
+export const InvokeVirtualNetworkGatewayPrepareMigrationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       virtualNetworkGatewayName: S.String.pipe(T.Label()),
       migrationType:
-        InvokeVirtualNetworkGatewaysPrepareMigrationRequestMigrationType,
+        InvokeVirtualNetworkGatewayPrepareMigrationRequestMigrationType,
       resourceUrl: S.optional(S.String),
     }).pipe(
       T.Http({
@@ -73358,14 +73354,14 @@ export const InvokeVirtualNetworkGatewaysPrepareMigrationRequest =
       }),
     ),
   ).annotate({
-    identifier: "InvokeVirtualNetworkGatewaysPrepareMigrationRequest",
-  }) as any as S.Schema<InvokeVirtualNetworkGatewaysPrepareMigrationRequest>;
+    identifier: "InvokeVirtualNetworkGatewayPrepareMigrationRequest",
+  }) as any as S.Schema<InvokeVirtualNetworkGatewayPrepareMigrationRequest>;
 
-export interface InvokeVirtualNetworkGatewaysPrepareMigrationResponse {}
-export const InvokeVirtualNetworkGatewaysPrepareMigrationResponse =
+export interface InvokeVirtualNetworkGatewayPrepareMigrationResponse {}
+export const InvokeVirtualNetworkGatewayPrepareMigrationResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "InvokeVirtualNetworkGatewaysPrepareMigrationResponse",
-  }) as any as S.Schema<InvokeVirtualNetworkGatewaysPrepareMigrationResponse>;
+    identifier: "InvokeVirtualNetworkGatewayPrepareMigrationResponse",
+  }) as any as S.Schema<InvokeVirtualNetworkGatewayPrepareMigrationResponse>;
 
 /** Resource tags. */
 export type IpAllocationsCreateOrUpdateRequestTagsMap = {
@@ -74154,6 +74150,548 @@ export const AdminRuleListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AdminRuleListResult",
 }) as any as S.Schema<AdminRuleListResult>;
 
+export interface ListApplicationGatewayAllRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListApplicationGatewayAllRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGateways",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListApplicationGatewayAllRequest",
+}) as any as S.Schema<ListApplicationGatewayAllRequest>;
+
+/** The ApplicationGateway items on this page */
+export type ApplicationGatewayListResultValueList = Array<ApplicationGateway>;
+export const ApplicationGatewayListResultValueList = /*@__PURE__*/ S.Array(
+  ApplicationGateway,
+) as any as S.Schema<ApplicationGatewayListResultValueList>;
+
+/** The response of a ApplicationGateway list operation. */
+export interface ApplicationGatewayListResult {
+  /** The ApplicationGateway items on this page */
+  value: ApplicationGatewayListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ApplicationGatewayListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ApplicationGatewayListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApplicationGatewayListResult",
+}) as any as S.Schema<ApplicationGatewayListResult>;
+
+export interface ListApplicationGatewayAvailableRequestHeadersRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListApplicationGatewayAvailableRequestHeadersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableRequestHeaders",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListApplicationGatewayAvailableRequestHeadersRequest",
+  }) as any as S.Schema<ListApplicationGatewayAvailableRequestHeadersRequest>;
+
+export type ListApplicationGatewayAvailableRequestHeadersResponseBodyList =
+  Array<string>;
+export const ListApplicationGatewayAvailableRequestHeadersResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListApplicationGatewayAvailableRequestHeadersResponseBodyList>;
+
+export type ListApplicationGatewayAvailableRequestHeadersResponse =
+  ListApplicationGatewayAvailableRequestHeadersResponseBodyList;
+export const ListApplicationGatewayAvailableRequestHeadersResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListApplicationGatewayAvailableRequestHeadersResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListApplicationGatewayAvailableRequestHeadersResponse",
+  }) as any as S.Schema<ListApplicationGatewayAvailableRequestHeadersResponse>;
+
+export interface ListApplicationGatewayAvailableResponseHeadersRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListApplicationGatewayAvailableResponseHeadersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableResponseHeaders",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListApplicationGatewayAvailableResponseHeadersRequest",
+  }) as any as S.Schema<ListApplicationGatewayAvailableResponseHeadersRequest>;
+
+export type ListApplicationGatewayAvailableResponseHeadersResponseBodyList =
+  Array<string>;
+export const ListApplicationGatewayAvailableResponseHeadersResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListApplicationGatewayAvailableResponseHeadersResponseBodyList>;
+
+export type ListApplicationGatewayAvailableResponseHeadersResponse =
+  ListApplicationGatewayAvailableResponseHeadersResponseBodyList;
+export const ListApplicationGatewayAvailableResponseHeadersResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListApplicationGatewayAvailableResponseHeadersResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListApplicationGatewayAvailableResponseHeadersResponse",
+  }) as any as S.Schema<ListApplicationGatewayAvailableResponseHeadersResponse>;
+
+export interface ListApplicationGatewayAvailableServerVariablesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListApplicationGatewayAvailableServerVariablesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableServerVariables",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListApplicationGatewayAvailableServerVariablesRequest",
+  }) as any as S.Schema<ListApplicationGatewayAvailableServerVariablesRequest>;
+
+export type ListApplicationGatewayAvailableServerVariablesResponseBodyList =
+  Array<string>;
+export const ListApplicationGatewayAvailableServerVariablesResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListApplicationGatewayAvailableServerVariablesResponseBodyList>;
+
+export type ListApplicationGatewayAvailableServerVariablesResponse =
+  ListApplicationGatewayAvailableServerVariablesResponseBodyList;
+export const ListApplicationGatewayAvailableServerVariablesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListApplicationGatewayAvailableServerVariablesResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListApplicationGatewayAvailableServerVariablesResponse",
+  }) as any as S.Schema<ListApplicationGatewayAvailableServerVariablesResponse>;
+
+export interface ListApplicationGatewayAvailableSslOptionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListApplicationGatewayAvailableSslOptionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListApplicationGatewayAvailableSslOptionsRequest",
+  }) as any as S.Schema<ListApplicationGatewayAvailableSslOptionsRequest>;
+
+/** Resource tags. */
+export type ListApplicationGatewayAvailableSslOptionsResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ListApplicationGatewayAvailableSslOptionsResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ListApplicationGatewayAvailableSslOptionsResponseTagsMap>;
+
+/** Reference to another subresource. */
+export type ApplicationGatewayAvailableSslOptionsPropertiesFormatPredefinedPoliciesItem =
+  NetworkInterfaceIPConfigurationPropertiesFormatGatewayLoadBalancer;
+export const ApplicationGatewayAvailableSslOptionsPropertiesFormatPredefinedPoliciesItem =
+  NetworkInterfaceIPConfigurationPropertiesFormatGatewayLoadBalancer;
+
+/** List of available Ssl predefined policy. */
+export type ApplicationGatewayAvailableSslOptionsPropertiesFormatPredefinedPoliciesList =
+  Array<NetworkInterfaceIPConfigurationPropertiesFormatGatewayLoadBalancer>;
+export const ApplicationGatewayAvailableSslOptionsPropertiesFormatPredefinedPoliciesList =
+  /*@__PURE__*/ S.Array(
+    NetworkInterfaceIPConfigurationPropertiesFormatGatewayLoadBalancer,
+  ) as any as S.Schema<ApplicationGatewayAvailableSslOptionsPropertiesFormatPredefinedPoliciesList>;
+
+/** Ssl predefined policy name enums. */
+export type ApplicationGatewayAvailableSslOptionsPropertiesFormatDefaultPolicy =
+  | "AppGwSslPolicy20150501"
+  | "AppGwSslPolicy20170401"
+  | "AppGwSslPolicy20170401S"
+  | "AppGwSslPolicy20220101"
+  | "AppGwSslPolicy20220101S";
+export const ApplicationGatewayAvailableSslOptionsPropertiesFormatDefaultPolicy =
+  /*@__PURE__*/ S.String;
+
+/** Ssl cipher suites enums. */
+export type ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesItem =
+  | "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384"
+  | "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256"
+  | "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA"
+  | "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA"
+  | "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384"
+  | "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256"
+  | "TLS_DHE_RSA_WITH_AES_256_CBC_SHA"
+  | "TLS_DHE_RSA_WITH_AES_128_CBC_SHA"
+  | "TLS_RSA_WITH_AES_256_GCM_SHA384"
+  | "TLS_RSA_WITH_AES_128_GCM_SHA256"
+  | "TLS_RSA_WITH_AES_256_CBC_SHA256"
+  | "TLS_RSA_WITH_AES_128_CBC_SHA256"
+  | "TLS_RSA_WITH_AES_256_CBC_SHA"
+  | "TLS_RSA_WITH_AES_128_CBC_SHA"
+  | "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384"
+  | "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256"
+  | "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384"
+  | "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256"
+  | "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA"
+  | "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA"
+  | "TLS_DHE_DSS_WITH_AES_256_CBC_SHA256"
+  | "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256"
+  | "TLS_DHE_DSS_WITH_AES_256_CBC_SHA"
+  | "TLS_DHE_DSS_WITH_AES_128_CBC_SHA"
+  | "TLS_RSA_WITH_3DES_EDE_CBC_SHA"
+  | "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA"
+  | "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
+  | "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384";
+export const ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesItem =
+  /*@__PURE__*/ S.String;
+
+/** List of available Ssl cipher suites. */
+export type ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesList =
+  Array<ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesItem>;
+export const ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesList =
+  /*@__PURE__*/ S.Array(
+    ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesItem,
+  ) as any as S.Schema<ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesList>;
+
+/** Ssl protocol enums. */
+export type ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsItem =
+  | "TLSv1_0"
+  | "TLSv1_1"
+  | "TLSv1_2"
+  | "TLSv1_3";
+export const ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsItem =
+  /*@__PURE__*/ S.String;
+
+/** List of available Ssl protocols. */
+export type ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsList =
+  Array<ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsItem>;
+export const ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsList =
+  /*@__PURE__*/ S.Array(
+    ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsItem,
+  ) as any as S.Schema<ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsList>;
+
+/** Properties of ApplicationGatewayAvailableSslOptions. */
+export interface ApplicationGatewayAvailableSslOptionsPropertiesFormat {
+  /** List of available Ssl predefined policy. */
+  predefinedPolicies?: ApplicationGatewayAvailableSslOptionsPropertiesFormatPredefinedPoliciesList;
+  /** Ssl predefined policy name enums. */
+  defaultPolicy?: ApplicationGatewayAvailableSslOptionsPropertiesFormatDefaultPolicy;
+  /** List of available Ssl cipher suites. */
+  availableCipherSuites?: ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesList;
+  /** List of available Ssl protocols. */
+  availableProtocols?: ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsList;
+}
+export const ApplicationGatewayAvailableSslOptionsPropertiesFormat =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      predefinedPolicies: S.optional(
+        ApplicationGatewayAvailableSslOptionsPropertiesFormatPredefinedPoliciesList,
+      ),
+      defaultPolicy: S.optional(
+        ApplicationGatewayAvailableSslOptionsPropertiesFormatDefaultPolicy,
+      ),
+      availableCipherSuites: S.optional(
+        ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesList,
+      ),
+      availableProtocols: S.optional(
+        ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ApplicationGatewayAvailableSslOptionsPropertiesFormat",
+  }) as any as S.Schema<ApplicationGatewayAvailableSslOptionsPropertiesFormat>;
+
+export interface ListApplicationGatewayAvailableSslOptionsResponse {
+  /** Resource ID. */
+  id?: string;
+  /** Resource name. */
+  name?: string;
+  /** Resource type. */
+  type?: string;
+  /** Resource location. */
+  location?: string;
+  /** Resource tags. */
+  tags?: ListApplicationGatewayAvailableSslOptionsResponseTagsMap;
+  /** Properties of the application gateway available SSL options. */
+  properties?: ApplicationGatewayAvailableSslOptionsPropertiesFormat;
+}
+export const ListApplicationGatewayAvailableSslOptionsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      location: S.optional(S.String),
+      tags: S.optional(
+        ListApplicationGatewayAvailableSslOptionsResponseTagsMap,
+      ),
+      properties: S.optional(
+        ApplicationGatewayAvailableSslOptionsPropertiesFormat,
+      ),
+    }),
+  ).annotate({
+    identifier: "ListApplicationGatewayAvailableSslOptionsResponse",
+  }) as any as S.Schema<ListApplicationGatewayAvailableSslOptionsResponse>;
+
+export interface ListApplicationGatewayAvailableSslPredefinedPoliciesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListApplicationGatewayAvailableSslPredefinedPoliciesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListApplicationGatewayAvailableSslPredefinedPoliciesRequest",
+  }) as any as S.Schema<ListApplicationGatewayAvailableSslPredefinedPoliciesRequest>;
+
+/** An Ssl predefined policy. */
+export interface ApplicationGatewaySslPredefinedPolicy {
+  /** Resource ID. */
+  id?: string;
+  /** Name of the Ssl predefined policy. */
+  name?: string;
+  /** Properties of the application gateway SSL predefined policy. */
+  properties?: ApplicationGatewaySslPredefinedPolicyPropertiesFormat;
+}
+export const ApplicationGatewaySslPredefinedPolicy = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      properties: S.optional(
+        ApplicationGatewaySslPredefinedPolicyPropertiesFormat,
+      ),
+    }),
+).annotate({
+  identifier: "ApplicationGatewaySslPredefinedPolicy",
+}) as any as S.Schema<ApplicationGatewaySslPredefinedPolicy>;
+
+/** The ApplicationGatewaySslPredefinedPolicy items on this page */
+export type ApplicationGatewayAvailableSslPredefinedPoliciesValueList =
+  Array<ApplicationGatewaySslPredefinedPolicy>;
+export const ApplicationGatewayAvailableSslPredefinedPoliciesValueList =
+  /*@__PURE__*/ S.Array(
+    ApplicationGatewaySslPredefinedPolicy,
+  ) as any as S.Schema<ApplicationGatewayAvailableSslPredefinedPoliciesValueList>;
+
+/** Response for ApplicationGatewayAvailableSslOptions API service call. */
+export interface ApplicationGatewayAvailableSslPredefinedPolicies {
+  /** The ApplicationGatewaySslPredefinedPolicy items on this page */
+  value: ApplicationGatewayAvailableSslPredefinedPoliciesValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ApplicationGatewayAvailableSslPredefinedPolicies =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: ApplicationGatewayAvailableSslPredefinedPoliciesValueList,
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ApplicationGatewayAvailableSslPredefinedPolicies",
+  }) as any as S.Schema<ApplicationGatewayAvailableSslPredefinedPolicies>;
+
+export interface ListApplicationGatewayAvailableWafRuleSetsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListApplicationGatewayAvailableWafRuleSetsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableWafRuleSets",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListApplicationGatewayAvailableWafRuleSetsRequest",
+  }) as any as S.Schema<ListApplicationGatewayAvailableWafRuleSetsRequest>;
+
+/** Resource tags. */
+export type ApplicationGatewayFirewallRuleSetTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ApplicationGatewayFirewallRuleSetTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ApplicationGatewayFirewallRuleSetTagsMap>;
+
+/** Provisioning states of a resource. */
+export type ApplicationGatewayFirewallRuleSetPropertiesFormatProvisioningState =
+  | "Failed"
+  | "Succeeded"
+  | "Canceled"
+  | "Creating"
+  | "Updating"
+  | "Deleting";
+export const ApplicationGatewayFirewallRuleSetPropertiesFormatProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** The rule groups of the web application firewall rule set. */
+export type ApplicationGatewayFirewallRuleSetPropertiesFormatRuleGroupsList =
+  Array<ApplicationGatewayFirewallRuleGroup>;
+export const ApplicationGatewayFirewallRuleSetPropertiesFormatRuleGroupsList =
+  /*@__PURE__*/ S.Array(
+    ApplicationGatewayFirewallRuleGroup,
+  ) as any as S.Schema<ApplicationGatewayFirewallRuleSetPropertiesFormatRuleGroupsList>;
+
+export type ApplicationGatewayFirewallRuleSetPropertiesFormatTiersItem =
+  | "Standard"
+  | "WAF"
+  | "Standard_v2"
+  | "WAF_v2";
+export const ApplicationGatewayFirewallRuleSetPropertiesFormatTiersItem =
+  /*@__PURE__*/ S.String;
+
+/** Tier of an application gateway that support the rule set. */
+export type ApplicationGatewayFirewallRuleSetPropertiesFormatTiersList =
+  Array<ApplicationGatewayFirewallRuleSetPropertiesFormatTiersItem>;
+export const ApplicationGatewayFirewallRuleSetPropertiesFormatTiersList =
+  /*@__PURE__*/ S.Array(
+    ApplicationGatewayFirewallRuleSetPropertiesFormatTiersItem,
+  ) as any as S.Schema<ApplicationGatewayFirewallRuleSetPropertiesFormatTiersList>;
+
+/** Properties of the web application firewall rule set. */
+export interface ApplicationGatewayFirewallRuleSetPropertiesFormat {
+  /** Provisioning states of a resource. */
+  provisioningState?: ApplicationGatewayFirewallRuleSetPropertiesFormatProvisioningState;
+  /** The type of the web application firewall rule set. */
+  ruleSetType: string;
+  /** The version of the web application firewall rule set type. */
+  ruleSetVersion: string;
+  /** The rule groups of the web application firewall rule set. */
+  ruleGroups: ApplicationGatewayFirewallRuleSetPropertiesFormatRuleGroupsList;
+  /** Tier of an application gateway that support the rule set. */
+  tiers?: ApplicationGatewayFirewallRuleSetPropertiesFormatTiersList;
+}
+export const ApplicationGatewayFirewallRuleSetPropertiesFormat =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      provisioningState: S.optional(
+        ApplicationGatewayFirewallRuleSetPropertiesFormatProvisioningState,
+      ),
+      ruleSetType: S.String,
+      ruleSetVersion: S.String,
+      ruleGroups:
+        ApplicationGatewayFirewallRuleSetPropertiesFormatRuleGroupsList,
+      tiers: S.optional(
+        ApplicationGatewayFirewallRuleSetPropertiesFormatTiersList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ApplicationGatewayFirewallRuleSetPropertiesFormat",
+  }) as any as S.Schema<ApplicationGatewayFirewallRuleSetPropertiesFormat>;
+
+/** A web application firewall rule set. */
+export interface ApplicationGatewayFirewallRuleSet {
+  /** Resource ID. */
+  id?: string;
+  /** Resource name. */
+  name?: string;
+  /** Resource type. */
+  type?: string;
+  /** Resource location. */
+  location?: string;
+  /** Resource tags. */
+  tags?: ApplicationGatewayFirewallRuleSetTagsMap;
+  /** Properties of the application gateway firewall rule set. */
+  properties?: ApplicationGatewayFirewallRuleSetPropertiesFormat;
+}
+export const ApplicationGatewayFirewallRuleSet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(ApplicationGatewayFirewallRuleSetTagsMap),
+    properties: S.optional(ApplicationGatewayFirewallRuleSetPropertiesFormat),
+  }),
+).annotate({
+  identifier: "ApplicationGatewayFirewallRuleSet",
+}) as any as S.Schema<ApplicationGatewayFirewallRuleSet>;
+
+/** The list of application gateway rule sets. */
+export type ApplicationGatewayAvailableWafRuleSetsResultValueList =
+  Array<ApplicationGatewayFirewallRuleSet>;
+export const ApplicationGatewayAvailableWafRuleSetsResultValueList =
+  /*@__PURE__*/ S.Array(
+    ApplicationGatewayFirewallRuleSet,
+  ) as any as S.Schema<ApplicationGatewayAvailableWafRuleSetsResultValueList>;
+
+/** Response for ApplicationGatewayAvailableWafRuleSets API service call. */
+export interface ApplicationGatewayAvailableWafRuleSetsResult {
+  /** The list of application gateway rule sets. */
+  value?: ApplicationGatewayAvailableWafRuleSetsResultValueList;
+}
+export const ApplicationGatewayAvailableWafRuleSetsResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.optional(ApplicationGatewayAvailableWafRuleSetsResultValueList),
+    }),
+  ).annotate({
+    identifier: "ApplicationGatewayAvailableWafRuleSetsResult",
+  }) as any as S.Schema<ApplicationGatewayAvailableWafRuleSetsResult>;
+
 export interface ListApplicationGatewayPrivateEndpointConnectionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -74343,548 +74881,6 @@ export const ListApplicationGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListApplicationGatewaysRequest",
 }) as any as S.Schema<ListApplicationGatewaysRequest>;
-
-/** The ApplicationGateway items on this page */
-export type ApplicationGatewayListResultValueList = Array<ApplicationGateway>;
-export const ApplicationGatewayListResultValueList = /*@__PURE__*/ S.Array(
-  ApplicationGateway,
-) as any as S.Schema<ApplicationGatewayListResultValueList>;
-
-/** The response of a ApplicationGateway list operation. */
-export interface ApplicationGatewayListResult {
-  /** The ApplicationGateway items on this page */
-  value: ApplicationGatewayListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ApplicationGatewayListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ApplicationGatewayListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApplicationGatewayListResult",
-}) as any as S.Schema<ApplicationGatewayListResult>;
-
-export interface ListApplicationGatewaysAllRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const ListApplicationGatewaysAllRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGateways",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ListApplicationGatewaysAllRequest",
-}) as any as S.Schema<ListApplicationGatewaysAllRequest>;
-
-export interface ListApplicationGatewaysAvailableRequestHeadersRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const ListApplicationGatewaysAvailableRequestHeadersRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableRequestHeaders",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListApplicationGatewaysAvailableRequestHeadersRequest",
-  }) as any as S.Schema<ListApplicationGatewaysAvailableRequestHeadersRequest>;
-
-export type ListApplicationGatewaysAvailableRequestHeadersResponseBodyList =
-  Array<string>;
-export const ListApplicationGatewaysAvailableRequestHeadersResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ListApplicationGatewaysAvailableRequestHeadersResponseBodyList>;
-
-export type ListApplicationGatewaysAvailableRequestHeadersResponse =
-  ListApplicationGatewaysAvailableRequestHeadersResponseBodyList;
-export const ListApplicationGatewaysAvailableRequestHeadersResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    ListApplicationGatewaysAvailableRequestHeadersResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "ListApplicationGatewaysAvailableRequestHeadersResponse",
-  }) as any as S.Schema<ListApplicationGatewaysAvailableRequestHeadersResponse>;
-
-export interface ListApplicationGatewaysAvailableResponseHeadersRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const ListApplicationGatewaysAvailableResponseHeadersRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableResponseHeaders",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListApplicationGatewaysAvailableResponseHeadersRequest",
-  }) as any as S.Schema<ListApplicationGatewaysAvailableResponseHeadersRequest>;
-
-export type ListApplicationGatewaysAvailableResponseHeadersResponseBodyList =
-  Array<string>;
-export const ListApplicationGatewaysAvailableResponseHeadersResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ListApplicationGatewaysAvailableResponseHeadersResponseBodyList>;
-
-export type ListApplicationGatewaysAvailableResponseHeadersResponse =
-  ListApplicationGatewaysAvailableResponseHeadersResponseBodyList;
-export const ListApplicationGatewaysAvailableResponseHeadersResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    ListApplicationGatewaysAvailableResponseHeadersResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "ListApplicationGatewaysAvailableResponseHeadersResponse",
-  }) as any as S.Schema<ListApplicationGatewaysAvailableResponseHeadersResponse>;
-
-export interface ListApplicationGatewaysAvailableServerVariablesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const ListApplicationGatewaysAvailableServerVariablesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableServerVariables",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListApplicationGatewaysAvailableServerVariablesRequest",
-  }) as any as S.Schema<ListApplicationGatewaysAvailableServerVariablesRequest>;
-
-export type ListApplicationGatewaysAvailableServerVariablesResponseBodyList =
-  Array<string>;
-export const ListApplicationGatewaysAvailableServerVariablesResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ListApplicationGatewaysAvailableServerVariablesResponseBodyList>;
-
-export type ListApplicationGatewaysAvailableServerVariablesResponse =
-  ListApplicationGatewaysAvailableServerVariablesResponseBodyList;
-export const ListApplicationGatewaysAvailableServerVariablesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    ListApplicationGatewaysAvailableServerVariablesResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "ListApplicationGatewaysAvailableServerVariablesResponse",
-  }) as any as S.Schema<ListApplicationGatewaysAvailableServerVariablesResponse>;
-
-export interface ListApplicationGatewaysAvailableSslOptionsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const ListApplicationGatewaysAvailableSslOptionsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListApplicationGatewaysAvailableSslOptionsRequest",
-  }) as any as S.Schema<ListApplicationGatewaysAvailableSslOptionsRequest>;
-
-/** Resource tags. */
-export type ListApplicationGatewaysAvailableSslOptionsResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ListApplicationGatewaysAvailableSslOptionsResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ListApplicationGatewaysAvailableSslOptionsResponseTagsMap>;
-
-/** Reference to another subresource. */
-export type ApplicationGatewayAvailableSslOptionsPropertiesFormatPredefinedPoliciesItem =
-  NetworkInterfaceIPConfigurationPropertiesFormatGatewayLoadBalancer;
-export const ApplicationGatewayAvailableSslOptionsPropertiesFormatPredefinedPoliciesItem =
-  NetworkInterfaceIPConfigurationPropertiesFormatGatewayLoadBalancer;
-
-/** List of available Ssl predefined policy. */
-export type ApplicationGatewayAvailableSslOptionsPropertiesFormatPredefinedPoliciesList =
-  Array<NetworkInterfaceIPConfigurationPropertiesFormatGatewayLoadBalancer>;
-export const ApplicationGatewayAvailableSslOptionsPropertiesFormatPredefinedPoliciesList =
-  /*@__PURE__*/ S.Array(
-    NetworkInterfaceIPConfigurationPropertiesFormatGatewayLoadBalancer,
-  ) as any as S.Schema<ApplicationGatewayAvailableSslOptionsPropertiesFormatPredefinedPoliciesList>;
-
-/** Ssl predefined policy name enums. */
-export type ApplicationGatewayAvailableSslOptionsPropertiesFormatDefaultPolicy =
-  | "AppGwSslPolicy20150501"
-  | "AppGwSslPolicy20170401"
-  | "AppGwSslPolicy20170401S"
-  | "AppGwSslPolicy20220101"
-  | "AppGwSslPolicy20220101S";
-export const ApplicationGatewayAvailableSslOptionsPropertiesFormatDefaultPolicy =
-  /*@__PURE__*/ S.String;
-
-/** Ssl cipher suites enums. */
-export type ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesItem =
-  | "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384"
-  | "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256"
-  | "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA"
-  | "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA"
-  | "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384"
-  | "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256"
-  | "TLS_DHE_RSA_WITH_AES_256_CBC_SHA"
-  | "TLS_DHE_RSA_WITH_AES_128_CBC_SHA"
-  | "TLS_RSA_WITH_AES_256_GCM_SHA384"
-  | "TLS_RSA_WITH_AES_128_GCM_SHA256"
-  | "TLS_RSA_WITH_AES_256_CBC_SHA256"
-  | "TLS_RSA_WITH_AES_128_CBC_SHA256"
-  | "TLS_RSA_WITH_AES_256_CBC_SHA"
-  | "TLS_RSA_WITH_AES_128_CBC_SHA"
-  | "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384"
-  | "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256"
-  | "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384"
-  | "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256"
-  | "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA"
-  | "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA"
-  | "TLS_DHE_DSS_WITH_AES_256_CBC_SHA256"
-  | "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256"
-  | "TLS_DHE_DSS_WITH_AES_256_CBC_SHA"
-  | "TLS_DHE_DSS_WITH_AES_128_CBC_SHA"
-  | "TLS_RSA_WITH_3DES_EDE_CBC_SHA"
-  | "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA"
-  | "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
-  | "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384";
-export const ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesItem =
-  /*@__PURE__*/ S.String;
-
-/** List of available Ssl cipher suites. */
-export type ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesList =
-  Array<ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesItem>;
-export const ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesList =
-  /*@__PURE__*/ S.Array(
-    ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesItem,
-  ) as any as S.Schema<ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesList>;
-
-/** Ssl protocol enums. */
-export type ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsItem =
-  | "TLSv1_0"
-  | "TLSv1_1"
-  | "TLSv1_2"
-  | "TLSv1_3";
-export const ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsItem =
-  /*@__PURE__*/ S.String;
-
-/** List of available Ssl protocols. */
-export type ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsList =
-  Array<ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsItem>;
-export const ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsList =
-  /*@__PURE__*/ S.Array(
-    ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsItem,
-  ) as any as S.Schema<ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsList>;
-
-/** Properties of ApplicationGatewayAvailableSslOptions. */
-export interface ApplicationGatewayAvailableSslOptionsPropertiesFormat {
-  /** List of available Ssl predefined policy. */
-  predefinedPolicies?: ApplicationGatewayAvailableSslOptionsPropertiesFormatPredefinedPoliciesList;
-  /** Ssl predefined policy name enums. */
-  defaultPolicy?: ApplicationGatewayAvailableSslOptionsPropertiesFormatDefaultPolicy;
-  /** List of available Ssl cipher suites. */
-  availableCipherSuites?: ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesList;
-  /** List of available Ssl protocols. */
-  availableProtocols?: ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsList;
-}
-export const ApplicationGatewayAvailableSslOptionsPropertiesFormat =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      predefinedPolicies: S.optional(
-        ApplicationGatewayAvailableSslOptionsPropertiesFormatPredefinedPoliciesList,
-      ),
-      defaultPolicy: S.optional(
-        ApplicationGatewayAvailableSslOptionsPropertiesFormatDefaultPolicy,
-      ),
-      availableCipherSuites: S.optional(
-        ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesList,
-      ),
-      availableProtocols: S.optional(
-        ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ApplicationGatewayAvailableSslOptionsPropertiesFormat",
-  }) as any as S.Schema<ApplicationGatewayAvailableSslOptionsPropertiesFormat>;
-
-export interface ListApplicationGatewaysAvailableSslOptionsResponse {
-  /** Resource ID. */
-  id?: string;
-  /** Resource name. */
-  name?: string;
-  /** Resource type. */
-  type?: string;
-  /** Resource location. */
-  location?: string;
-  /** Resource tags. */
-  tags?: ListApplicationGatewaysAvailableSslOptionsResponseTagsMap;
-  /** Properties of the application gateway available SSL options. */
-  properties?: ApplicationGatewayAvailableSslOptionsPropertiesFormat;
-}
-export const ListApplicationGatewaysAvailableSslOptionsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      location: S.optional(S.String),
-      tags: S.optional(
-        ListApplicationGatewaysAvailableSslOptionsResponseTagsMap,
-      ),
-      properties: S.optional(
-        ApplicationGatewayAvailableSslOptionsPropertiesFormat,
-      ),
-    }),
-  ).annotate({
-    identifier: "ListApplicationGatewaysAvailableSslOptionsResponse",
-  }) as any as S.Schema<ListApplicationGatewaysAvailableSslOptionsResponse>;
-
-export interface ListApplicationGatewaysAvailableSslPredefinedPoliciesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const ListApplicationGatewaysAvailableSslPredefinedPoliciesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListApplicationGatewaysAvailableSslPredefinedPoliciesRequest",
-  }) as any as S.Schema<ListApplicationGatewaysAvailableSslPredefinedPoliciesRequest>;
-
-/** An Ssl predefined policy. */
-export interface ApplicationGatewaySslPredefinedPolicy {
-  /** Resource ID. */
-  id?: string;
-  /** Name of the Ssl predefined policy. */
-  name?: string;
-  /** Properties of the application gateway SSL predefined policy. */
-  properties?: ApplicationGatewaySslPredefinedPolicyPropertiesFormat;
-}
-export const ApplicationGatewaySslPredefinedPolicy = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      properties: S.optional(
-        ApplicationGatewaySslPredefinedPolicyPropertiesFormat,
-      ),
-    }),
-).annotate({
-  identifier: "ApplicationGatewaySslPredefinedPolicy",
-}) as any as S.Schema<ApplicationGatewaySslPredefinedPolicy>;
-
-/** The ApplicationGatewaySslPredefinedPolicy items on this page */
-export type ApplicationGatewayAvailableSslPredefinedPoliciesValueList =
-  Array<ApplicationGatewaySslPredefinedPolicy>;
-export const ApplicationGatewayAvailableSslPredefinedPoliciesValueList =
-  /*@__PURE__*/ S.Array(
-    ApplicationGatewaySslPredefinedPolicy,
-  ) as any as S.Schema<ApplicationGatewayAvailableSslPredefinedPoliciesValueList>;
-
-/** Response for ApplicationGatewayAvailableSslOptions API service call. */
-export interface ApplicationGatewayAvailableSslPredefinedPolicies {
-  /** The ApplicationGatewaySslPredefinedPolicy items on this page */
-  value: ApplicationGatewayAvailableSslPredefinedPoliciesValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ApplicationGatewayAvailableSslPredefinedPolicies =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: ApplicationGatewayAvailableSslPredefinedPoliciesValueList,
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ApplicationGatewayAvailableSslPredefinedPolicies",
-  }) as any as S.Schema<ApplicationGatewayAvailableSslPredefinedPolicies>;
-
-export interface ListApplicationGatewaysAvailableWafRuleSetsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const ListApplicationGatewaysAvailableWafRuleSetsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableWafRuleSets",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListApplicationGatewaysAvailableWafRuleSetsRequest",
-  }) as any as S.Schema<ListApplicationGatewaysAvailableWafRuleSetsRequest>;
-
-/** Resource tags. */
-export type ApplicationGatewayFirewallRuleSetTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationGatewayFirewallRuleSetTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationGatewayFirewallRuleSetTagsMap>;
-
-/** Provisioning states of a resource. */
-export type ApplicationGatewayFirewallRuleSetPropertiesFormatProvisioningState =
-  | "Failed"
-  | "Succeeded"
-  | "Canceled"
-  | "Creating"
-  | "Updating"
-  | "Deleting";
-export const ApplicationGatewayFirewallRuleSetPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** The rule groups of the web application firewall rule set. */
-export type ApplicationGatewayFirewallRuleSetPropertiesFormatRuleGroupsList =
-  Array<ApplicationGatewayFirewallRuleGroup>;
-export const ApplicationGatewayFirewallRuleSetPropertiesFormatRuleGroupsList =
-  /*@__PURE__*/ S.Array(
-    ApplicationGatewayFirewallRuleGroup,
-  ) as any as S.Schema<ApplicationGatewayFirewallRuleSetPropertiesFormatRuleGroupsList>;
-
-export type ApplicationGatewayFirewallRuleSetPropertiesFormatTiersItem =
-  | "Standard"
-  | "WAF"
-  | "Standard_v2"
-  | "WAF_v2";
-export const ApplicationGatewayFirewallRuleSetPropertiesFormatTiersItem =
-  /*@__PURE__*/ S.String;
-
-/** Tier of an application gateway that support the rule set. */
-export type ApplicationGatewayFirewallRuleSetPropertiesFormatTiersList =
-  Array<ApplicationGatewayFirewallRuleSetPropertiesFormatTiersItem>;
-export const ApplicationGatewayFirewallRuleSetPropertiesFormatTiersList =
-  /*@__PURE__*/ S.Array(
-    ApplicationGatewayFirewallRuleSetPropertiesFormatTiersItem,
-  ) as any as S.Schema<ApplicationGatewayFirewallRuleSetPropertiesFormatTiersList>;
-
-/** Properties of the web application firewall rule set. */
-export interface ApplicationGatewayFirewallRuleSetPropertiesFormat {
-  /** Provisioning states of a resource. */
-  provisioningState?: ApplicationGatewayFirewallRuleSetPropertiesFormatProvisioningState;
-  /** The type of the web application firewall rule set. */
-  ruleSetType: string;
-  /** The version of the web application firewall rule set type. */
-  ruleSetVersion: string;
-  /** The rule groups of the web application firewall rule set. */
-  ruleGroups: ApplicationGatewayFirewallRuleSetPropertiesFormatRuleGroupsList;
-  /** Tier of an application gateway that support the rule set. */
-  tiers?: ApplicationGatewayFirewallRuleSetPropertiesFormatTiersList;
-}
-export const ApplicationGatewayFirewallRuleSetPropertiesFormat =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      provisioningState: S.optional(
-        ApplicationGatewayFirewallRuleSetPropertiesFormatProvisioningState,
-      ),
-      ruleSetType: S.String,
-      ruleSetVersion: S.String,
-      ruleGroups:
-        ApplicationGatewayFirewallRuleSetPropertiesFormatRuleGroupsList,
-      tiers: S.optional(
-        ApplicationGatewayFirewallRuleSetPropertiesFormatTiersList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ApplicationGatewayFirewallRuleSetPropertiesFormat",
-  }) as any as S.Schema<ApplicationGatewayFirewallRuleSetPropertiesFormat>;
-
-/** A web application firewall rule set. */
-export interface ApplicationGatewayFirewallRuleSet {
-  /** Resource ID. */
-  id?: string;
-  /** Resource name. */
-  name?: string;
-  /** Resource type. */
-  type?: string;
-  /** Resource location. */
-  location?: string;
-  /** Resource tags. */
-  tags?: ApplicationGatewayFirewallRuleSetTagsMap;
-  /** Properties of the application gateway firewall rule set. */
-  properties?: ApplicationGatewayFirewallRuleSetPropertiesFormat;
-}
-export const ApplicationGatewayFirewallRuleSet = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(ApplicationGatewayFirewallRuleSetTagsMap),
-    properties: S.optional(ApplicationGatewayFirewallRuleSetPropertiesFormat),
-  }),
-).annotate({
-  identifier: "ApplicationGatewayFirewallRuleSet",
-}) as any as S.Schema<ApplicationGatewayFirewallRuleSet>;
-
-/** The list of application gateway rule sets. */
-export type ApplicationGatewayAvailableWafRuleSetsResultValueList =
-  Array<ApplicationGatewayFirewallRuleSet>;
-export const ApplicationGatewayAvailableWafRuleSetsResultValueList =
-  /*@__PURE__*/ S.Array(
-    ApplicationGatewayFirewallRuleSet,
-  ) as any as S.Schema<ApplicationGatewayAvailableWafRuleSetsResultValueList>;
-
-/** Response for ApplicationGatewayAvailableWafRuleSets API service call. */
-export interface ApplicationGatewayAvailableWafRuleSetsResult {
-  /** The list of application gateway rule sets. */
-  value?: ApplicationGatewayAvailableWafRuleSetsResultValueList;
-}
-export const ApplicationGatewayAvailableWafRuleSetsResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.optional(ApplicationGatewayAvailableWafRuleSetsResultValueList),
-    }),
-  ).annotate({
-    identifier: "ApplicationGatewayAvailableWafRuleSetsResult",
-  }) as any as S.Schema<ApplicationGatewayAvailableWafRuleSetsResult>;
 
 export interface ListApplicationSecurityGroupAllRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -77607,13 +77603,13 @@ export const ListExpressRouteCrossConnectionsRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListExpressRouteCrossConnectionsRequest",
 }) as any as S.Schema<ListExpressRouteCrossConnectionsRequest>;
 
-export interface ListExpressRouteGatewaysByResourceGroupRequest {
+export interface ListExpressRouteGatewayByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListExpressRouteGatewaysByResourceGroupRequest =
+export const ListExpressRouteGatewayByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -77627,8 +77623,8 @@ export const ListExpressRouteGatewaysByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListExpressRouteGatewaysByResourceGroupRequest",
-  }) as any as S.Schema<ListExpressRouteGatewaysByResourceGroupRequest>;
+    identifier: "ListExpressRouteGatewayByResourceGroupRequest",
+  }) as any as S.Schema<ListExpressRouteGatewayByResourceGroupRequest>;
 
 /** Resource tags. */
 export type ExpressRouteGatewayTagsMap = { [key: string]: string | undefined };
@@ -77687,11 +77683,11 @@ export const ExpressRouteGatewayList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExpressRouteGatewayList",
 }) as any as S.Schema<ExpressRouteGatewayList>;
 
-export interface ListExpressRouteGatewaysBySubscriptionRequest {
+export interface ListExpressRouteGatewayBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ListExpressRouteGatewaysBySubscriptionRequest =
+export const ListExpressRouteGatewayBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -77704,8 +77700,8 @@ export const ListExpressRouteGatewaysBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListExpressRouteGatewaysBySubscriptionRequest",
-  }) as any as S.Schema<ListExpressRouteGatewaysBySubscriptionRequest>;
+    identifier: "ListExpressRouteGatewayBySubscriptionRequest",
+  }) as any as S.Schema<ListExpressRouteGatewayBySubscriptionRequest>;
 
 export interface ListExpressRouteLagByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -80730,27 +80726,24 @@ export const NetworkManagerConnectionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "NetworkManagerConnectionListResult",
 }) as any as S.Schema<NetworkManagerConnectionListResult>;
 
-export interface ListNatGatewaysRequest {
+export interface ListNatGatewayAllRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
 }
-export const ListNatGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListNatGatewayAllRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/natGateways",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/natGateways",
       code: 200,
       apiVersion: "2025-09-01",
     }),
   ),
 ).annotate({
-  identifier: "ListNatGatewaysRequest",
-}) as any as S.Schema<ListNatGatewaysRequest>;
+  identifier: "ListNatGatewayAllRequest",
+}) as any as S.Schema<ListNatGatewayAllRequest>;
 
 /** The NatGateway items on this page */
 export type NatGatewayListResultValueList = Array<NatGateway_5>;
@@ -80774,24 +80767,27 @@ export const NatGatewayListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "NatGatewayListResult",
 }) as any as S.Schema<NatGatewayListResult>;
 
-export interface ListNatGatewaysAllRequest {
+export interface ListNatGatewaysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
 }
-export const ListNatGatewaysAllRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListNatGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/natGateways",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/natGateways",
       code: 200,
       apiVersion: "2025-09-01",
     }),
   ),
 ).annotate({
-  identifier: "ListNatGatewaysAllRequest",
-}) as any as S.Schema<ListNatGatewaysAllRequest>;
+  identifier: "ListNatGatewaysRequest",
+}) as any as S.Schema<ListNatGatewaysRequest>;
 
 export interface ListNatRuleByVpnGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -84349,24 +84345,28 @@ export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationListResult",
 }) as any as S.Schema<OperationListResult>;
 
-export interface ListP2sVpnGatewaysRequest {
+export interface ListP2sVpnGatewayByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
 }
-export const ListP2sVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/p2svpnGateways",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
+export const ListP2sVpnGatewayByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/p2svpnGateways",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
 ).annotate({
-  identifier: "ListP2sVpnGatewaysRequest",
-}) as any as S.Schema<ListP2sVpnGatewaysRequest>;
+  identifier: "ListP2sVpnGatewayByResourceGroupRequest",
+}) as any as S.Schema<ListP2sVpnGatewayByResourceGroupRequest>;
 
 /** The P2SVpnGateway items on this page */
 export type ListP2SVpnGatewaysResultValueList = Array<P2SVpnGateway>;
@@ -84390,28 +84390,24 @@ export const ListP2SVpnGatewaysResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListP2SVpnGatewaysResult",
 }) as any as S.Schema<ListP2SVpnGatewaysResult>;
 
-export interface ListP2sVpnGatewaysByResourceGroupRequest {
+export interface ListP2sVpnGatewaysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
 }
-export const ListP2sVpnGatewaysByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/p2svpnGateways",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
+export const ListP2sVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/p2svpnGateways",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
 ).annotate({
-  identifier: "ListP2sVpnGatewaysByResourceGroupRequest",
-}) as any as S.Schema<ListP2sVpnGatewaysByResourceGroupRequest>;
+  identifier: "ListP2sVpnGatewaysRequest",
+}) as any as S.Schema<ListP2sVpnGatewaysRequest>;
 
 export interface ListPacketCapturesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -87094,27 +87090,24 @@ export const ServiceEndpointPolicyDefinitionListResult =
     identifier: "ServiceEndpointPolicyDefinitionListResult",
   }) as any as S.Schema<ServiceEndpointPolicyDefinitionListResult>;
 
-export interface ListServiceGatewaysRequest {
+export interface ListServiceGatewayAllRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
 }
-export const ListServiceGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListServiceGatewayAllRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/serviceGateways",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/serviceGateways",
       code: 200,
       apiVersion: "2025-09-01",
     }),
   ),
 ).annotate({
-  identifier: "ListServiceGatewaysRequest",
-}) as any as S.Schema<ListServiceGatewaysRequest>;
+  identifier: "ListServiceGatewayAllRequest",
+}) as any as S.Schema<ListServiceGatewayAllRequest>;
 
 /** The type of identity that created the resource. */
 export type ServiceGatewaySystemDataCreatedByType =
@@ -87234,24 +87227,27 @@ export const ServiceGatewayListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServiceGatewayListResult",
 }) as any as S.Schema<ServiceGatewayListResult>;
 
-export interface ListServiceGatewaysAllRequest {
+export interface ListServiceGatewaysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
 }
-export const ListServiceGatewaysAllRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListServiceGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/serviceGateways",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/serviceGateways",
       code: 200,
       apiVersion: "2025-09-01",
     }),
   ),
 ).annotate({
-  identifier: "ListServiceGatewaysAllRequest",
-}) as any as S.Schema<ListServiceGatewaysAllRequest>;
+  identifier: "ListServiceGatewaysRequest",
+}) as any as S.Schema<ListServiceGatewaysRequest>;
 
 export interface ListServiceTagInformationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -89060,7 +89056,7 @@ export const VirtualNetworkGatewayConnectionListResult =
     identifier: "VirtualNetworkGatewayConnectionListResult",
   }) as any as S.Schema<VirtualNetworkGatewayConnectionListResult>;
 
-export interface ListVirtualNetworkGatewayNatRuleByVirtualNetworkGatewayRequest {
+export interface ListVirtualNetworkGatewayConnectionsRequest2 {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -89068,104 +89064,7 @@ export interface ListVirtualNetworkGatewayNatRuleByVirtualNetworkGatewayRequest 
   /** The name of the virtual network gateway. */
   virtualNetworkGatewayName: string;
 }
-export const ListVirtualNetworkGatewayNatRuleByVirtualNetworkGatewayRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      virtualNetworkGatewayName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/natRules",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "ListVirtualNetworkGatewayNatRuleByVirtualNetworkGatewayRequest",
-  }) as any as S.Schema<ListVirtualNetworkGatewayNatRuleByVirtualNetworkGatewayRequest>;
-
-/** The VirtualNetworkGatewayNatRule items on this page */
-export type ListVirtualNetworkGatewayNatRulesResultValueList =
-  Array<VirtualNetworkGatewayNatRule>;
-export const ListVirtualNetworkGatewayNatRulesResultValueList =
-  /*@__PURE__*/ S.Array(
-    VirtualNetworkGatewayNatRule,
-  ) as any as S.Schema<ListVirtualNetworkGatewayNatRulesResultValueList>;
-
-/** Result of the request to list all nat rules to a virtual network gateway. It contains a list of Nat rules and a URL nextLink to get the next set of results. */
-export interface ListVirtualNetworkGatewayNatRulesResult {
-  /** The VirtualNetworkGatewayNatRule items on this page */
-  value: ListVirtualNetworkGatewayNatRulesResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ListVirtualNetworkGatewayNatRulesResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: ListVirtualNetworkGatewayNatRulesResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ListVirtualNetworkGatewayNatRulesResult",
-}) as any as S.Schema<ListVirtualNetworkGatewayNatRulesResult>;
-
-export interface ListVirtualNetworkGatewaysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const ListVirtualNetworkGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ListVirtualNetworkGatewaysRequest",
-}) as any as S.Schema<ListVirtualNetworkGatewaysRequest>;
-
-/** The VirtualNetworkGateway items on this page */
-export type VirtualNetworkGatewayListResultValueList =
-  Array<VirtualNetworkGateway>;
-export const VirtualNetworkGatewayListResultValueList = /*@__PURE__*/ S.Array(
-  VirtualNetworkGateway,
-) as any as S.Schema<VirtualNetworkGatewayListResultValueList>;
-
-/** The response of a VirtualNetworkGateway list operation. */
-export interface VirtualNetworkGatewayListResult {
-  /** The VirtualNetworkGateway items on this page */
-  value: VirtualNetworkGatewayListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const VirtualNetworkGatewayListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: VirtualNetworkGatewayListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualNetworkGatewayListResult",
-}) as any as S.Schema<VirtualNetworkGatewayListResult>;
-
-export interface ListVirtualNetworkGatewaysConnectionsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual network gateway. */
-  virtualNetworkGatewayName: string;
-}
-export const ListVirtualNetworkGatewaysConnectionsRequest =
+export const ListVirtualNetworkGatewayConnectionsRequest2 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -89180,8 +89079,8 @@ export const ListVirtualNetworkGatewaysConnectionsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListVirtualNetworkGatewaysConnectionsRequest",
-  }) as any as S.Schema<ListVirtualNetworkGatewaysConnectionsRequest>;
+    identifier: "ListVirtualNetworkGatewayConnectionsRequest2",
+  }) as any as S.Schema<ListVirtualNetworkGatewayConnectionsRequest2>;
 
 /** Resource tags. */
 export type VirtualNetworkGatewayConnectionListEntityTagsMap = {
@@ -89476,7 +89375,7 @@ export const VirtualNetworkGatewayListConnectionsResult =
     identifier: "VirtualNetworkGatewayListConnectionsResult",
   }) as any as S.Schema<VirtualNetworkGatewayListConnectionsResult>;
 
-export interface ListVirtualNetworkGatewaysRadiusSecretsRequest {
+export interface ListVirtualNetworkGatewayNatRuleByVirtualNetworkGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -89484,7 +89383,59 @@ export interface ListVirtualNetworkGatewaysRadiusSecretsRequest {
   /** The name of the virtual network gateway. */
   virtualNetworkGatewayName: string;
 }
-export const ListVirtualNetworkGatewaysRadiusSecretsRequest =
+export const ListVirtualNetworkGatewayNatRuleByVirtualNetworkGatewayRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      virtualNetworkGatewayName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/natRules",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "ListVirtualNetworkGatewayNatRuleByVirtualNetworkGatewayRequest",
+  }) as any as S.Schema<ListVirtualNetworkGatewayNatRuleByVirtualNetworkGatewayRequest>;
+
+/** The VirtualNetworkGatewayNatRule items on this page */
+export type ListVirtualNetworkGatewayNatRulesResultValueList =
+  Array<VirtualNetworkGatewayNatRule>;
+export const ListVirtualNetworkGatewayNatRulesResultValueList =
+  /*@__PURE__*/ S.Array(
+    VirtualNetworkGatewayNatRule,
+  ) as any as S.Schema<ListVirtualNetworkGatewayNatRulesResultValueList>;
+
+/** Result of the request to list all nat rules to a virtual network gateway. It contains a list of Nat rules and a URL nextLink to get the next set of results. */
+export interface ListVirtualNetworkGatewayNatRulesResult {
+  /** The VirtualNetworkGatewayNatRule items on this page */
+  value: ListVirtualNetworkGatewayNatRulesResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ListVirtualNetworkGatewayNatRulesResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: ListVirtualNetworkGatewayNatRulesResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ListVirtualNetworkGatewayNatRulesResult",
+}) as any as S.Schema<ListVirtualNetworkGatewayNatRulesResult>;
+
+export interface ListVirtualNetworkGatewayRadiusSecretsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual network gateway. */
+  virtualNetworkGatewayName: string;
+}
+export const ListVirtualNetworkGatewayRadiusSecretsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -89499,8 +89450,8 @@ export const ListVirtualNetworkGatewaysRadiusSecretsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListVirtualNetworkGatewaysRadiusSecretsRequest",
-  }) as any as S.Schema<ListVirtualNetworkGatewaysRadiusSecretsRequest>;
+    identifier: "ListVirtualNetworkGatewayRadiusSecretsRequest",
+  }) as any as S.Schema<ListVirtualNetworkGatewayRadiusSecretsRequest>;
 
 /** Gateway or VpnServerConfiguration Radius server with radius secret details */
 export interface RadiusAuthServer {
@@ -89539,6 +89490,51 @@ export const RadiusAuthServerListResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RadiusAuthServerListResult",
 }) as any as S.Schema<RadiusAuthServerListResult>;
+
+export interface ListVirtualNetworkGatewaysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListVirtualNetworkGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVirtualNetworkGatewaysRequest",
+}) as any as S.Schema<ListVirtualNetworkGatewaysRequest>;
+
+/** The VirtualNetworkGateway items on this page */
+export type VirtualNetworkGatewayListResultValueList =
+  Array<VirtualNetworkGateway>;
+export const VirtualNetworkGatewayListResultValueList = /*@__PURE__*/ S.Array(
+  VirtualNetworkGateway,
+) as any as S.Schema<VirtualNetworkGatewayListResultValueList>;
+
+/** The response of a VirtualNetworkGateway list operation. */
+export interface VirtualNetworkGatewayListResult {
+  /** The VirtualNetworkGateway items on this page */
+  value: VirtualNetworkGatewayListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const VirtualNetworkGatewayListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: VirtualNetworkGatewayListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualNetworkGatewayListResult",
+}) as any as S.Schema<VirtualNetworkGatewayListResult>;
 
 export interface ListVirtualNetworkPeeringsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -90121,24 +90117,28 @@ export const ListVpnConnectionsResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListVpnConnectionsResult",
 }) as any as S.Schema<ListVpnConnectionsResult>;
 
-export interface ListVpnGatewaysRequest {
+export interface ListVpnGatewayByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
 }
-export const ListVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/vpnGateways",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
+export const ListVpnGatewayByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
 ).annotate({
-  identifier: "ListVpnGatewaysRequest",
-}) as any as S.Schema<ListVpnGatewaysRequest>;
+  identifier: "ListVpnGatewayByResourceGroupRequest",
+}) as any as S.Schema<ListVpnGatewayByResourceGroupRequest>;
 
 /** Resource tags. */
 export type VpnGatewayTagsMap = { [key: string]: string | undefined };
@@ -90198,28 +90198,24 @@ export const ListVpnGatewaysResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListVpnGatewaysResult",
 }) as any as S.Schema<ListVpnGatewaysResult>;
 
-export interface ListVpnGatewaysByResourceGroupRequest {
+export interface ListVpnGatewaysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
 }
-export const ListVpnGatewaysByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
+export const ListVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/vpnGateways",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
 ).annotate({
-  identifier: "ListVpnGatewaysByResourceGroupRequest",
-}) as any as S.Schema<ListVpnGatewaysByResourceGroupRequest>;
+  identifier: "ListVpnGatewaysRequest",
+}) as any as S.Schema<ListVpnGatewaysRequest>;
 
 export interface ListVpnLinkConnectionByVpnConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -97662,7 +97658,7 @@ export const PutFirewallPolicyIdpsSignaturesOverrideResponse =
     identifier: "PutFirewallPolicyIdpsSignaturesOverrideResponse",
   }) as any as S.Schema<PutFirewallPolicyIdpsSignaturesOverrideResponse>;
 
-export interface ResetP2SVpnGatewaysRequest {
+export interface ResetP2SVpnGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -97670,7 +97666,7 @@ export interface ResetP2SVpnGatewaysRequest {
   /** The name of the gateway. */
   gatewayName: string;
 }
-export const ResetP2SVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const ResetP2SVpnGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -97684,19 +97680,19 @@ export const ResetP2SVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ResetP2SVpnGatewaysRequest",
-}) as any as S.Schema<ResetP2SVpnGatewaysRequest>;
+  identifier: "ResetP2SVpnGatewayRequest",
+}) as any as S.Schema<ResetP2SVpnGatewayRequest>;
 
 /** Resource tags. */
-export type ResetP2SVpnGatewaysResponseTagsMap = {
+export type ResetP2SVpnGatewayResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResetP2SVpnGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const ResetP2SVpnGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResetP2SVpnGatewaysResponseTagsMap>;
+) as any as S.Schema<ResetP2SVpnGatewayResponseTagsMap>;
 
-export interface ResetP2SVpnGatewaysResponse {
+export interface ResetP2SVpnGatewayResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -97706,25 +97702,138 @@ export interface ResetP2SVpnGatewaysResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: ResetP2SVpnGatewaysResponseTagsMap;
+  tags?: ResetP2SVpnGatewayResponseTagsMap;
   /** Properties of the P2SVpnGateway. */
   properties?: P2SVpnGatewayProperties;
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
 }
-export const ResetP2SVpnGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export const ResetP2SVpnGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ResetP2SVpnGatewaysResponseTagsMap),
+    tags: S.optional(ResetP2SVpnGatewayResponseTagsMap),
     properties: S.optional(P2SVpnGatewayProperties),
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ResetP2SVpnGatewaysResponse",
-}) as any as S.Schema<ResetP2SVpnGatewaysResponse>;
+  identifier: "ResetP2SVpnGatewayResponse",
+}) as any as S.Schema<ResetP2SVpnGatewayResponse>;
+
+export interface ResetVirtualNetworkGatewayRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual network gateway. */
+  virtualNetworkGatewayName: string;
+  /** Virtual network gateway vip address supplied to the begin reset of the active-active feature enabled gateway. */
+  gatewayVip?: string;
+}
+export const ResetVirtualNetworkGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualNetworkGatewayName: S.String.pipe(T.Label()),
+    gatewayVip: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/reset",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ResetVirtualNetworkGatewayRequest",
+}) as any as S.Schema<ResetVirtualNetworkGatewayRequest>;
+
+/** Resource tags. */
+export type ResetVirtualNetworkGatewayResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ResetVirtualNetworkGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ResetVirtualNetworkGatewayResponseTagsMap>;
+
+/** ExtendedLocation complex type. */
+export type ResetVirtualNetworkGatewayResponseExtendedLocation =
+  NetworkInterfaceExtendedLocation;
+export const ResetVirtualNetworkGatewayResponseExtendedLocation =
+  NetworkInterfaceExtendedLocation;
+
+/** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
+export type ResetVirtualNetworkGatewayResponseIdentityUserAssignedIdentitiesMap =
+  { [key: string]: ManagedServiceIdentityUserAssignedIdentities_8 | undefined };
+export const ResetVirtualNetworkGatewayResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    ManagedServiceIdentityUserAssignedIdentities_8,
+  ) as any as S.Schema<ResetVirtualNetworkGatewayResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Identity for the resource. */
+export interface ResetVirtualNetworkGatewayResponseIdentity {
+  /** The principal id of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant id of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  /** The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the virtual machine. */
+  type?: ResourceIdentityType;
+  /** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
+  userAssignedIdentities?: ResetVirtualNetworkGatewayResponseIdentityUserAssignedIdentitiesMap;
+}
+export const ResetVirtualNetworkGatewayResponseIdentity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      principalId: S.optional(S.String),
+      tenantId: S.optional(S.String),
+      type: S.optional(ResourceIdentityType),
+      userAssignedIdentities: S.optional(
+        ResetVirtualNetworkGatewayResponseIdentityUserAssignedIdentitiesMap,
+      ),
+    }),
+  ).annotate({
+    identifier: "ResetVirtualNetworkGatewayResponseIdentity",
+  }) as any as S.Schema<ResetVirtualNetworkGatewayResponseIdentity>;
+
+export interface ResetVirtualNetworkGatewayResponse {
+  /** Resource ID. */
+  id?: string;
+  /** Resource name. */
+  name?: string;
+  /** Resource type. */
+  type?: string;
+  /** Resource location. */
+  location?: string;
+  /** Resource tags. */
+  tags?: ResetVirtualNetworkGatewayResponseTagsMap;
+  /** Properties of the virtual network gateway. */
+  properties: VirtualNetworkGatewayPropertiesFormat;
+  /** ExtendedLocation complex type. */
+  extendedLocation?: NetworkInterfaceExtendedLocation;
+  /** A unique read-only string that changes whenever the resource is updated. */
+  etag?: string;
+  /** Identity for the resource. */
+  identity?: ResetVirtualNetworkGatewayResponseIdentity;
+}
+export const ResetVirtualNetworkGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(ResetVirtualNetworkGatewayResponseTagsMap),
+    properties: VirtualNetworkGatewayPropertiesFormat,
+    extendedLocation: S.optional(NetworkInterfaceExtendedLocation),
+    etag: S.optional(S.String),
+    identity: S.optional(ResetVirtualNetworkGatewayResponseIdentity),
+  }),
+).annotate({
+  identifier: "ResetVirtualNetworkGatewayResponse",
+}) as any as S.Schema<ResetVirtualNetworkGatewayResponse>;
 
 export interface ResetVirtualNetworkGatewayConnectionConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -97800,121 +97909,7 @@ export const ConnectionResetSharedKey = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConnectionResetSharedKey",
 }) as any as S.Schema<ConnectionResetSharedKey>;
 
-export interface ResetVirtualNetworkGatewaysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual network gateway. */
-  virtualNetworkGatewayName: string;
-  /** Virtual network gateway vip address supplied to the begin reset of the active-active feature enabled gateway. */
-  gatewayVip?: string;
-}
-export const ResetVirtualNetworkGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualNetworkGatewayName: S.String.pipe(T.Label()),
-    gatewayVip: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/reset",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ResetVirtualNetworkGatewaysRequest",
-}) as any as S.Schema<ResetVirtualNetworkGatewaysRequest>;
-
-/** Resource tags. */
-export type ResetVirtualNetworkGatewaysResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ResetVirtualNetworkGatewaysResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ResetVirtualNetworkGatewaysResponseTagsMap>;
-
-/** ExtendedLocation complex type. */
-export type ResetVirtualNetworkGatewaysResponseExtendedLocation =
-  NetworkInterfaceExtendedLocation;
-export const ResetVirtualNetworkGatewaysResponseExtendedLocation =
-  NetworkInterfaceExtendedLocation;
-
-/** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-export type ResetVirtualNetworkGatewaysResponseIdentityUserAssignedIdentitiesMap =
-  { [key: string]: ManagedServiceIdentityUserAssignedIdentities_8 | undefined };
-export const ResetVirtualNetworkGatewaysResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    ManagedServiceIdentityUserAssignedIdentities_8,
-  ) as any as S.Schema<ResetVirtualNetworkGatewaysResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Identity for the resource. */
-export interface ResetVirtualNetworkGatewaysResponseIdentity {
-  /** The principal id of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant id of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  /** The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the virtual machine. */
-  type?: ResourceIdentityType;
-  /** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-  userAssignedIdentities?: ResetVirtualNetworkGatewaysResponseIdentityUserAssignedIdentitiesMap;
-}
-export const ResetVirtualNetworkGatewaysResponseIdentity =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: S.optional(ResourceIdentityType),
-      userAssignedIdentities: S.optional(
-        ResetVirtualNetworkGatewaysResponseIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
-  ).annotate({
-    identifier: "ResetVirtualNetworkGatewaysResponseIdentity",
-  }) as any as S.Schema<ResetVirtualNetworkGatewaysResponseIdentity>;
-
-export interface ResetVirtualNetworkGatewaysResponse {
-  /** Resource ID. */
-  id?: string;
-  /** Resource name. */
-  name?: string;
-  /** Resource type. */
-  type?: string;
-  /** Resource location. */
-  location?: string;
-  /** Resource tags. */
-  tags?: ResetVirtualNetworkGatewaysResponseTagsMap;
-  /** Properties of the virtual network gateway. */
-  properties: VirtualNetworkGatewayPropertiesFormat;
-  /** ExtendedLocation complex type. */
-  extendedLocation?: NetworkInterfaceExtendedLocation;
-  /** A unique read-only string that changes whenever the resource is updated. */
-  etag?: string;
-  /** Identity for the resource. */
-  identity?: ResetVirtualNetworkGatewaysResponseIdentity;
-}
-export const ResetVirtualNetworkGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(ResetVirtualNetworkGatewaysResponseTagsMap),
-    properties: VirtualNetworkGatewayPropertiesFormat,
-    extendedLocation: S.optional(NetworkInterfaceExtendedLocation),
-    etag: S.optional(S.String),
-    identity: S.optional(ResetVirtualNetworkGatewaysResponseIdentity),
-  }),
-).annotate({
-  identifier: "ResetVirtualNetworkGatewaysResponse",
-}) as any as S.Schema<ResetVirtualNetworkGatewaysResponse>;
-
-export interface ResetVirtualNetworkGatewaysVpnClientSharedKeyRequest {
+export interface ResetVirtualNetworkGatewayVpnClientSharedKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -97922,7 +97917,7 @@ export interface ResetVirtualNetworkGatewaysVpnClientSharedKeyRequest {
   /** The name of the virtual network gateway. */
   virtualNetworkGatewayName: string;
 }
-export const ResetVirtualNetworkGatewaysVpnClientSharedKeyRequest =
+export const ResetVirtualNetworkGatewayVpnClientSharedKeyRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -97937,16 +97932,16 @@ export const ResetVirtualNetworkGatewaysVpnClientSharedKeyRequest =
       }),
     ),
   ).annotate({
-    identifier: "ResetVirtualNetworkGatewaysVpnClientSharedKeyRequest",
-  }) as any as S.Schema<ResetVirtualNetworkGatewaysVpnClientSharedKeyRequest>;
+    identifier: "ResetVirtualNetworkGatewayVpnClientSharedKeyRequest",
+  }) as any as S.Schema<ResetVirtualNetworkGatewayVpnClientSharedKeyRequest>;
 
-export interface ResetVirtualNetworkGatewaysVpnClientSharedKeyResponse {}
-export const ResetVirtualNetworkGatewaysVpnClientSharedKeyResponse =
+export interface ResetVirtualNetworkGatewayVpnClientSharedKeyResponse {}
+export const ResetVirtualNetworkGatewayVpnClientSharedKeyResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ResetVirtualNetworkGatewaysVpnClientSharedKeyResponse",
-  }) as any as S.Schema<ResetVirtualNetworkGatewaysVpnClientSharedKeyResponse>;
+    identifier: "ResetVirtualNetworkGatewayVpnClientSharedKeyResponse",
+  }) as any as S.Schema<ResetVirtualNetworkGatewayVpnClientSharedKeyResponse>;
 
-export interface ResetVpnGatewaysRequest {
+export interface ResetVpnGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -97956,7 +97951,7 @@ export interface ResetVpnGatewaysRequest {
   /** VpnGateway ipConfigurationId to specify the gateway instance. */
   ipConfigurationId?: string;
 }
-export const ResetVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const ResetVpnGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -97971,19 +97966,19 @@ export const ResetVpnGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ResetVpnGatewaysRequest",
-}) as any as S.Schema<ResetVpnGatewaysRequest>;
+  identifier: "ResetVpnGatewayRequest",
+}) as any as S.Schema<ResetVpnGatewayRequest>;
 
 /** Resource tags. */
-export type ResetVpnGatewaysResponseTagsMap = {
+export type ResetVpnGatewayResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResetVpnGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const ResetVpnGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResetVpnGatewaysResponseTagsMap>;
+) as any as S.Schema<ResetVpnGatewayResponseTagsMap>;
 
-export interface ResetVpnGatewaysResponse {
+export interface ResetVpnGatewayResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -97993,25 +97988,25 @@ export interface ResetVpnGatewaysResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: ResetVpnGatewaysResponseTagsMap;
+  tags?: ResetVpnGatewayResponseTagsMap;
   /** Properties of the VPN gateway. */
   properties?: VpnGatewayProperties;
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
 }
-export const ResetVpnGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export const ResetVpnGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ResetVpnGatewaysResponseTagsMap),
+    tags: S.optional(ResetVpnGatewayResponseTagsMap),
     properties: S.optional(VpnGatewayProperties),
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ResetVpnGatewaysResponse",
-}) as any as S.Schema<ResetVpnGatewaysResponse>;
+  identifier: "ResetVpnGatewayResponse",
+}) as any as S.Schema<ResetVpnGatewayResponse>;
 
 export interface ResetVpnLinkConnectionConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -101069,7 +101064,7 @@ export const SetVirtualNetworkGatewayConnectionSharedKeyResponse =
   }) as any as S.Schema<SetVirtualNetworkGatewayConnectionSharedKeyResponse>;
 
 /** The IPSec encryption algorithm (IKE phase 1). */
-export type SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIpsecEncryption =
+export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecEncryption =
   | "None"
   | "DES"
   | "DES3"
@@ -101079,22 +101074,22 @@ export type SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIpsecEncrypt
   | "GCMAES128"
   | "GCMAES192"
   | "GCMAES256";
-export const SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIpsecEncryption =
+export const SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecEncryption =
   /*@__PURE__*/ S.String;
 
 /** The IPSec integrity algorithm (IKE phase 1). */
-export type SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIpsecIntegrity =
+export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecIntegrity =
   | "MD5"
   | "SHA1"
   | "SHA256"
   | "GCMAES128"
   | "GCMAES192"
   | "GCMAES256";
-export const SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIpsecIntegrity =
+export const SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecIntegrity =
   /*@__PURE__*/ S.String;
 
 /** The IKE encryption algorithm (IKE phase 2). */
-export type SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIkeEncryption =
+export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeEncryption =
   | "DES"
   | "DES3"
   | "AES128"
@@ -101102,22 +101097,22 @@ export type SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIkeEncryptio
   | "AES256"
   | "GCMAES256"
   | "GCMAES128";
-export const SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIkeEncryption =
+export const SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeEncryption =
   /*@__PURE__*/ S.String;
 
 /** The IKE integrity algorithm (IKE phase 2). */
-export type SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIkeIntegrity =
+export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeIntegrity =
   | "MD5"
   | "SHA1"
   | "SHA256"
   | "SHA384"
   | "GCMAES256"
   | "GCMAES128";
-export const SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIkeIntegrity =
+export const SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeIntegrity =
   /*@__PURE__*/ S.String;
 
 /** The DH Groups used in IKE Phase 1 for initial SA. */
-export type SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestDhGroup =
+export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestDhGroup =
   | "None"
   | "DHGroup1"
   | "DHGroup2"
@@ -101126,11 +101121,11 @@ export type SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestDhGroup =
   | "ECP256"
   | "ECP384"
   | "DHGroup24";
-export const SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestDhGroup =
+export const SetVirtualNetworkGatewayVpnclientIpsecParametersRequestDhGroup =
   /*@__PURE__*/ S.String;
 
 /** The Pfs Groups used in IKE Phase 2 for new child SA. */
-export type SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestPfsGroup =
+export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestPfsGroup =
   | "None"
   | "PFS1"
   | "PFS2"
@@ -101140,10 +101135,10 @@ export type SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestPfsGroup =
   | "PFS24"
   | "PFS14"
   | "PFSMM";
-export const SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestPfsGroup =
+export const SetVirtualNetworkGatewayVpnclientIpsecParametersRequestPfsGroup =
   /*@__PURE__*/ S.String;
 
-export interface SetVirtualNetworkGatewaysVpnclientIpsecParametersRequest {
+export interface SetVirtualNetworkGatewayVpnclientIpsecParametersRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -101156,30 +101151,30 @@ export interface SetVirtualNetworkGatewaysVpnclientIpsecParametersRequest {
   saDataSizeKilobytes: number;
   /** The IPSec encryption algorithm (IKE phase 1). */
   ipsecEncryption:
-    | SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIpsecEncryption
+    | SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecEncryption
     | (string & {});
   /** The IPSec integrity algorithm (IKE phase 1). */
   ipsecIntegrity:
-    | SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIpsecIntegrity
+    | SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecIntegrity
     | (string & {});
   /** The IKE encryption algorithm (IKE phase 2). */
   ikeEncryption:
-    | SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIkeEncryption
+    | SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeEncryption
     | (string & {});
   /** The IKE integrity algorithm (IKE phase 2). */
   ikeIntegrity:
-    | SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIkeIntegrity
+    | SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeIntegrity
     | (string & {});
   /** The DH Groups used in IKE Phase 1 for initial SA. */
   dhGroup:
-    | SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestDhGroup
+    | SetVirtualNetworkGatewayVpnclientIpsecParametersRequestDhGroup
     | (string & {});
   /** The Pfs Groups used in IKE Phase 2 for new child SA. */
   pfsGroup:
-    | SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestPfsGroup
+    | SetVirtualNetworkGatewayVpnclientIpsecParametersRequestPfsGroup
     | (string & {});
 }
-export const SetVirtualNetworkGatewaysVpnclientIpsecParametersRequest =
+export const SetVirtualNetworkGatewayVpnclientIpsecParametersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -101188,16 +101183,15 @@ export const SetVirtualNetworkGatewaysVpnclientIpsecParametersRequest =
       saLifeTimeSeconds: S.Number,
       saDataSizeKilobytes: S.Number,
       ipsecEncryption:
-        SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIpsecEncryption,
+        SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecEncryption,
       ipsecIntegrity:
-        SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIpsecIntegrity,
+        SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecIntegrity,
       ikeEncryption:
-        SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIkeEncryption,
+        SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeEncryption,
       ikeIntegrity:
-        SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIkeIntegrity,
-      dhGroup: SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestDhGroup,
-      pfsGroup:
-        SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestPfsGroup,
+        SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeIntegrity,
+      dhGroup: SetVirtualNetworkGatewayVpnclientIpsecParametersRequestDhGroup,
+      pfsGroup: SetVirtualNetworkGatewayVpnclientIpsecParametersRequestPfsGroup,
     }).pipe(
       T.Http({
         method: "POST",
@@ -101207,10 +101201,10 @@ export const SetVirtualNetworkGatewaysVpnclientIpsecParametersRequest =
       }),
     ),
   ).annotate({
-    identifier: "SetVirtualNetworkGatewaysVpnclientIpsecParametersRequest",
-  }) as any as S.Schema<SetVirtualNetworkGatewaysVpnclientIpsecParametersRequest>;
+    identifier: "SetVirtualNetworkGatewayVpnclientIpsecParametersRequest",
+  }) as any as S.Schema<SetVirtualNetworkGatewayVpnclientIpsecParametersRequest>;
 
-export interface StartApplicationGatewaysRequest {
+export interface StartApplicationGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -101218,7 +101212,7 @@ export interface StartApplicationGatewaysRequest {
   /** The name of the application gateway. */
   applicationGatewayName: string;
 }
-export const StartApplicationGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const StartApplicationGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -101232,15 +101226,15 @@ export const StartApplicationGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "StartApplicationGatewaysRequest",
-}) as any as S.Schema<StartApplicationGatewaysRequest>;
+  identifier: "StartApplicationGatewayRequest",
+}) as any as S.Schema<StartApplicationGatewayRequest>;
 
-export interface StartApplicationGatewaysResponse {}
-export const StartApplicationGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface StartApplicationGatewayResponse {}
+export const StartApplicationGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "StartApplicationGatewaysResponse",
-}) as any as S.Schema<StartApplicationGatewaysResponse>;
+  identifier: "StartApplicationGatewayResponse",
+}) as any as S.Schema<StartApplicationGatewayResponse>;
 
 export interface StartExpressRouteCircuitCircuitLinkFailoverTestRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -101280,7 +101274,7 @@ export const StartExpressRouteCircuitCircuitLinkFailoverTestResponse =
     identifier: "StartExpressRouteCircuitCircuitLinkFailoverTestResponse",
   }) as any as S.Schema<StartExpressRouteCircuitCircuitLinkFailoverTestResponse>;
 
-export interface StartExpressRouteGatewaysSiteFailoverTestRequest {
+export interface StartExpressRouteGatewaySiteFailoverTestRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -101290,7 +101284,7 @@ export interface StartExpressRouteGatewaysSiteFailoverTestRequest {
   /** Peering location of the test. */
   peeringLocation: string;
 }
-export const StartExpressRouteGatewaysSiteFailoverTestRequest =
+export const StartExpressRouteGatewaySiteFailoverTestRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -101306,14 +101300,14 @@ export const StartExpressRouteGatewaysSiteFailoverTestRequest =
       }),
     ),
   ).annotate({
-    identifier: "StartExpressRouteGatewaysSiteFailoverTestRequest",
-  }) as any as S.Schema<StartExpressRouteGatewaysSiteFailoverTestRequest>;
+    identifier: "StartExpressRouteGatewaySiteFailoverTestRequest",
+  }) as any as S.Schema<StartExpressRouteGatewaySiteFailoverTestRequest>;
 
-export type StartExpressRouteGatewaysSiteFailoverTestResponse = string;
-export const StartExpressRouteGatewaysSiteFailoverTestResponse =
+export type StartExpressRouteGatewaySiteFailoverTestResponse = string;
+export const StartExpressRouteGatewaySiteFailoverTestResponse =
   /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "StartExpressRouteGatewaysSiteFailoverTestResponse",
-  }) as any as S.Schema<StartExpressRouteGatewaysSiteFailoverTestResponse>;
+    identifier: "StartExpressRouteGatewaySiteFailoverTestResponse",
+  }) as any as S.Schema<StartExpressRouteGatewaySiteFailoverTestResponse>;
 
 export interface StartVirtualNetworkGatewayConnectionPacketCaptureRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -101350,7 +101344,7 @@ export const StartVirtualNetworkGatewayConnectionPacketCaptureResponse =
     identifier: "StartVirtualNetworkGatewayConnectionPacketCaptureResponse",
   }) as any as S.Schema<StartVirtualNetworkGatewayConnectionPacketCaptureResponse>;
 
-export interface StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest {
+export interface StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -101360,7 +101354,7 @@ export interface StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRe
   /** Peering location of the test */
   peeringLocation: string;
 }
-export const StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest =
+export const StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -101377,18 +101371,18 @@ export const StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationReques
     ),
   ).annotate({
     identifier:
-      "StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest",
-  }) as any as S.Schema<StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest>;
+      "StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest",
+  }) as any as S.Schema<StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest>;
 
-export type StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse =
+export type StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse =
   string;
-export const StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse =
+export const StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse =
   /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
     identifier:
-      "StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse",
-  }) as any as S.Schema<StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse>;
+      "StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse",
+  }) as any as S.Schema<StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse>;
 
-export interface StartVirtualNetworkGatewaysPacketCaptureRequest {
+export interface StartVirtualNetworkGatewayPacketCaptureRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -101398,7 +101392,7 @@ export interface StartVirtualNetworkGatewaysPacketCaptureRequest {
   /** Start Packet capture parameters. */
   filterData?: string;
 }
-export const StartVirtualNetworkGatewaysPacketCaptureRequest =
+export const StartVirtualNetworkGatewayPacketCaptureRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -101414,14 +101408,14 @@ export const StartVirtualNetworkGatewaysPacketCaptureRequest =
       }),
     ),
   ).annotate({
-    identifier: "StartVirtualNetworkGatewaysPacketCaptureRequest",
-  }) as any as S.Schema<StartVirtualNetworkGatewaysPacketCaptureRequest>;
+    identifier: "StartVirtualNetworkGatewayPacketCaptureRequest",
+  }) as any as S.Schema<StartVirtualNetworkGatewayPacketCaptureRequest>;
 
-export type StartVirtualNetworkGatewaysPacketCaptureResponse = string;
-export const StartVirtualNetworkGatewaysPacketCaptureResponse =
+export type StartVirtualNetworkGatewayPacketCaptureResponse = string;
+export const StartVirtualNetworkGatewayPacketCaptureResponse =
   /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "StartVirtualNetworkGatewaysPacketCaptureResponse",
-  }) as any as S.Schema<StartVirtualNetworkGatewaysPacketCaptureResponse>;
+    identifier: "StartVirtualNetworkGatewayPacketCaptureResponse",
+  }) as any as S.Schema<StartVirtualNetworkGatewayPacketCaptureResponse>;
 
 /** List of site link connection names. */
 export type StartVpnConnectionPacketCaptureRequestLinkConnectionNamesList =
@@ -101475,7 +101469,7 @@ export const StartVpnConnectionPacketCaptureResponse = /*@__PURE__*/ S.suspend(
   identifier: "StartVpnConnectionPacketCaptureResponse",
 }) as any as S.Schema<StartVpnConnectionPacketCaptureResponse>;
 
-export interface StartVpnGatewaysPacketCaptureRequest {
+export interface StartVpnGatewayPacketCaptureRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -101485,31 +101479,30 @@ export interface StartVpnGatewaysPacketCaptureRequest {
   /** Start Packet capture parameters on vpn gateway. */
   filterData?: string;
 }
-export const StartVpnGatewaysPacketCaptureRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      gatewayName: S.String.pipe(T.Label()),
-      filterData: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/startpacketcapture",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
+export const StartVpnGatewayPacketCaptureRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    gatewayName: S.String.pipe(T.Label()),
+    filterData: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/startpacketcapture",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
 ).annotate({
-  identifier: "StartVpnGatewaysPacketCaptureRequest",
-}) as any as S.Schema<StartVpnGatewaysPacketCaptureRequest>;
+  identifier: "StartVpnGatewayPacketCaptureRequest",
+}) as any as S.Schema<StartVpnGatewayPacketCaptureRequest>;
 
-export type StartVpnGatewaysPacketCaptureResponse = string;
-export const StartVpnGatewaysPacketCaptureResponse = /*@__PURE__*/ S.suspend(
+export type StartVpnGatewayPacketCaptureResponse = string;
+export const StartVpnGatewayPacketCaptureResponse = /*@__PURE__*/ S.suspend(
   () => S.String.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "StartVpnGatewaysPacketCaptureResponse",
-}) as any as S.Schema<StartVpnGatewaysPacketCaptureResponse>;
+  identifier: "StartVpnGatewayPacketCaptureResponse",
+}) as any as S.Schema<StartVpnGatewayPacketCaptureResponse>;
 
 /** Provisioning states of a resource. */
 export type StaticMemberPropertiesInputProvisioningState =
@@ -101652,7 +101645,7 @@ export const StaticMembersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "StaticMembersCreateOrUpdateResponse",
 }) as any as S.Schema<StaticMembersCreateOrUpdateResponse>;
 
-export interface StopApplicationGatewaysRequest {
+export interface StopApplicationGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -101660,7 +101653,7 @@ export interface StopApplicationGatewaysRequest {
   /** The name of the application gateway. */
   applicationGatewayName: string;
 }
-export const StopApplicationGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const StopApplicationGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -101674,15 +101667,15 @@ export const StopApplicationGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "StopApplicationGatewaysRequest",
-}) as any as S.Schema<StopApplicationGatewaysRequest>;
+  identifier: "StopApplicationGatewayRequest",
+}) as any as S.Schema<StopApplicationGatewayRequest>;
 
-export interface StopApplicationGatewaysResponse {}
-export const StopApplicationGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface StopApplicationGatewayResponse {}
+export const StopApplicationGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "StopApplicationGatewaysResponse",
-}) as any as S.Schema<StopApplicationGatewaysResponse>;
+  identifier: "StopApplicationGatewayResponse",
+}) as any as S.Schema<StopApplicationGatewayResponse>;
 
 export interface StopConnectionMonitorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -101764,14 +101757,14 @@ export const StopExpressRouteCircuitCircuitLinkFailoverTestResponse =
   }) as any as S.Schema<StopExpressRouteCircuitCircuitLinkFailoverTestResponse>;
 
 /** List of all the failover connections for this peering location */
-export type StopExpressRouteGatewaysSiteFailoverTestRequestDetailsList =
+export type StopExpressRouteGatewaySiteFailoverTestRequestDetailsList =
   Array<FailoverConnectionDetails>;
-export const StopExpressRouteGatewaysSiteFailoverTestRequestDetailsList =
+export const StopExpressRouteGatewaySiteFailoverTestRequestDetailsList =
   /*@__PURE__*/ S.Array(
     FailoverConnectionDetails,
-  ) as any as S.Schema<StopExpressRouteGatewaysSiteFailoverTestRequestDetailsList>;
+  ) as any as S.Schema<StopExpressRouteGatewaySiteFailoverTestRequestDetailsList>;
 
-export interface StopExpressRouteGatewaysSiteFailoverTestRequest {
+export interface StopExpressRouteGatewaySiteFailoverTestRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -101783,9 +101776,9 @@ export interface StopExpressRouteGatewaysSiteFailoverTestRequest {
   /** Whether the failover simulation was successful or not */
   wasSimulationSuccessful?: boolean;
   /** List of all the failover connections for this peering location */
-  details?: StopExpressRouteGatewaysSiteFailoverTestRequestDetailsList;
+  details?: StopExpressRouteGatewaySiteFailoverTestRequestDetailsList;
 }
-export const StopExpressRouteGatewaysSiteFailoverTestRequest =
+export const StopExpressRouteGatewaySiteFailoverTestRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -101794,7 +101787,7 @@ export const StopExpressRouteGatewaysSiteFailoverTestRequest =
       peeringLocation: S.optional(S.String),
       wasSimulationSuccessful: S.optional(S.Boolean),
       details: S.optional(
-        StopExpressRouteGatewaysSiteFailoverTestRequestDetailsList,
+        StopExpressRouteGatewaySiteFailoverTestRequestDetailsList,
       ),
     }).pipe(
       T.Http({
@@ -101805,14 +101798,14 @@ export const StopExpressRouteGatewaysSiteFailoverTestRequest =
       }),
     ),
   ).annotate({
-    identifier: "StopExpressRouteGatewaysSiteFailoverTestRequest",
-  }) as any as S.Schema<StopExpressRouteGatewaysSiteFailoverTestRequest>;
+    identifier: "StopExpressRouteGatewaySiteFailoverTestRequest",
+  }) as any as S.Schema<StopExpressRouteGatewaySiteFailoverTestRequest>;
 
-export type StopExpressRouteGatewaysSiteFailoverTestResponse = string;
-export const StopExpressRouteGatewaysSiteFailoverTestResponse =
+export type StopExpressRouteGatewaySiteFailoverTestResponse = string;
+export const StopExpressRouteGatewaySiteFailoverTestResponse =
   /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "StopExpressRouteGatewaysSiteFailoverTestResponse",
-  }) as any as S.Schema<StopExpressRouteGatewaysSiteFailoverTestResponse>;
+    identifier: "StopExpressRouteGatewaySiteFailoverTestResponse",
+  }) as any as S.Schema<StopExpressRouteGatewaySiteFailoverTestResponse>;
 
 export interface StopPacketCaptureRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -101885,14 +101878,14 @@ export const StopVirtualNetworkGatewayConnectionPacketCaptureResponse =
   }) as any as S.Schema<StopVirtualNetworkGatewayConnectionPacketCaptureResponse>;
 
 /** List of all the failover connections for this peering location */
-export type StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequestDetailsList =
+export type StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequestDetailsList =
   Array<FailoverConnectionDetails>;
-export const StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequestDetailsList =
+export const StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequestDetailsList =
   /*@__PURE__*/ S.Array(
     FailoverConnectionDetails,
-  ) as any as S.Schema<StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequestDetailsList>;
+  ) as any as S.Schema<StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequestDetailsList>;
 
-export interface StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest {
+export interface StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -101904,9 +101897,9 @@ export interface StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationReq
   /** Whether the failover simulation was successful or not */
   wasSimulationSuccessful?: boolean;
   /** List of all the failover connections for this peering location */
-  details?: StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequestDetailsList;
+  details?: StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequestDetailsList;
 }
-export const StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest =
+export const StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -101915,7 +101908,7 @@ export const StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest
       peeringLocation: S.optional(S.String),
       wasSimulationSuccessful: S.optional(S.Boolean),
       details: S.optional(
-        StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequestDetailsList,
+        StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequestDetailsList,
       ),
     }).pipe(
       T.Http({
@@ -101927,18 +101920,18 @@ export const StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest
     ),
   ).annotate({
     identifier:
-      "StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest",
-  }) as any as S.Schema<StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest>;
+      "StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest",
+  }) as any as S.Schema<StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest>;
 
-export type StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse =
+export type StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse =
   string;
-export const StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse =
+export const StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse =
   /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
     identifier:
-      "StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse",
-  }) as any as S.Schema<StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse>;
+      "StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse",
+  }) as any as S.Schema<StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse>;
 
-export interface StopVirtualNetworkGatewaysPacketCaptureRequest {
+export interface StopVirtualNetworkGatewayPacketCaptureRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -101948,7 +101941,7 @@ export interface StopVirtualNetworkGatewaysPacketCaptureRequest {
   /** SAS url for packet capture on virtual network gateway. */
   sasUrl?: string;
 }
-export const StopVirtualNetworkGatewaysPacketCaptureRequest =
+export const StopVirtualNetworkGatewayPacketCaptureRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -101964,14 +101957,14 @@ export const StopVirtualNetworkGatewaysPacketCaptureRequest =
       }),
     ),
   ).annotate({
-    identifier: "StopVirtualNetworkGatewaysPacketCaptureRequest",
-  }) as any as S.Schema<StopVirtualNetworkGatewaysPacketCaptureRequest>;
+    identifier: "StopVirtualNetworkGatewayPacketCaptureRequest",
+  }) as any as S.Schema<StopVirtualNetworkGatewayPacketCaptureRequest>;
 
-export type StopVirtualNetworkGatewaysPacketCaptureResponse = string;
-export const StopVirtualNetworkGatewaysPacketCaptureResponse =
+export type StopVirtualNetworkGatewayPacketCaptureResponse = string;
+export const StopVirtualNetworkGatewayPacketCaptureResponse =
   /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "StopVirtualNetworkGatewaysPacketCaptureResponse",
-  }) as any as S.Schema<StopVirtualNetworkGatewaysPacketCaptureResponse>;
+    identifier: "StopVirtualNetworkGatewayPacketCaptureResponse",
+  }) as any as S.Schema<StopVirtualNetworkGatewayPacketCaptureResponse>;
 
 /** List of site link connection names. */
 export type StopVpnConnectionPacketCaptureRequestLinkConnectionNamesList =
@@ -102025,7 +102018,7 @@ export const StopVpnConnectionPacketCaptureResponse = /*@__PURE__*/ S.suspend(
   identifier: "StopVpnConnectionPacketCaptureResponse",
 }) as any as S.Schema<StopVpnConnectionPacketCaptureResponse>;
 
-export interface StopVpnGatewaysPacketCaptureRequest {
+export interface StopVpnGatewayPacketCaptureRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -102035,7 +102028,7 @@ export interface StopVpnGatewaysPacketCaptureRequest {
   /** SAS url for packet capture on vpn gateway. */
   sasUrl?: string;
 }
-export const StopVpnGatewaysPacketCaptureRequest = /*@__PURE__*/ S.suspend(() =>
+export const StopVpnGatewayPacketCaptureRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -102050,15 +102043,15 @@ export const StopVpnGatewaysPacketCaptureRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "StopVpnGatewaysPacketCaptureRequest",
-}) as any as S.Schema<StopVpnGatewaysPacketCaptureRequest>;
+  identifier: "StopVpnGatewayPacketCaptureRequest",
+}) as any as S.Schema<StopVpnGatewayPacketCaptureRequest>;
 
-export type StopVpnGatewaysPacketCaptureResponse = string;
-export const StopVpnGatewaysPacketCaptureResponse = /*@__PURE__*/ S.suspend(
-  () => S.String.pipe(T.RawResponseRoot()),
+export type StopVpnGatewayPacketCaptureResponse = string;
+export const StopVpnGatewayPacketCaptureResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "StopVpnGatewaysPacketCaptureResponse",
-}) as any as S.Schema<StopVpnGatewaysPacketCaptureResponse>;
+  identifier: "StopVpnGatewayPacketCaptureResponse",
+}) as any as S.Schema<StopVpnGatewayPacketCaptureResponse>;
 
 export interface SubnetsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -103026,16 +103019,16 @@ export const UpdateApplicationGatewayPrivateEndpointConnectionResponse =
   }) as any as S.Schema<UpdateApplicationGatewayPrivateEndpointConnectionResponse>;
 
 /** Resource tags. */
-export type UpdateApplicationGatewaysTagsRequestTagsMap = {
+export type UpdateApplicationGatewayTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateApplicationGatewaysTagsRequestTagsMap =
+export const UpdateApplicationGatewayTagsRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<UpdateApplicationGatewaysTagsRequestTagsMap>;
+  ) as any as S.Schema<UpdateApplicationGatewayTagsRequestTagsMap>;
 
-export interface UpdateApplicationGatewaysTagsRequest {
+export interface UpdateApplicationGatewayTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -103043,55 +103036,54 @@ export interface UpdateApplicationGatewaysTagsRequest {
   /** The name of the application gateway. */
   applicationGatewayName: string;
   /** Resource tags. */
-  tags?: UpdateApplicationGatewaysTagsRequestTagsMap;
+  tags?: UpdateApplicationGatewayTagsRequestTagsMap;
 }
-export const UpdateApplicationGatewaysTagsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      applicationGatewayName: S.String.pipe(T.Label()),
-      tags: S.optional(UpdateApplicationGatewaysTagsRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
+export const UpdateApplicationGatewayTagsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    applicationGatewayName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateApplicationGatewayTagsRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
 ).annotate({
-  identifier: "UpdateApplicationGatewaysTagsRequest",
-}) as any as S.Schema<UpdateApplicationGatewaysTagsRequest>;
+  identifier: "UpdateApplicationGatewayTagsRequest",
+}) as any as S.Schema<UpdateApplicationGatewayTagsRequest>;
 
 /** Resource tags. */
-export type UpdateApplicationGatewaysTagsResponseTagsMap = {
+export type UpdateApplicationGatewayTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateApplicationGatewaysTagsResponseTagsMap =
+export const UpdateApplicationGatewayTagsResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<UpdateApplicationGatewaysTagsResponseTagsMap>;
+  ) as any as S.Schema<UpdateApplicationGatewayTagsResponseTagsMap>;
 
 /** A list of availability zones denoting where the resource needs to come from. */
-export type UpdateApplicationGatewaysTagsResponseZonesList = Array<string>;
-export const UpdateApplicationGatewaysTagsResponseZonesList =
+export type UpdateApplicationGatewayTagsResponseZonesList = Array<string>;
+export const UpdateApplicationGatewayTagsResponseZonesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UpdateApplicationGatewaysTagsResponseZonesList>;
+  ) as any as S.Schema<UpdateApplicationGatewayTagsResponseZonesList>;
 
 /** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-export type UpdateApplicationGatewaysTagsResponseIdentityUserAssignedIdentitiesMap =
+export type UpdateApplicationGatewayTagsResponseIdentityUserAssignedIdentitiesMap =
   { [key: string]: ManagedServiceIdentityUserAssignedIdentities | undefined };
-export const UpdateApplicationGatewaysTagsResponseIdentityUserAssignedIdentitiesMap =
+export const UpdateApplicationGatewayTagsResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     ManagedServiceIdentityUserAssignedIdentities,
-  ) as any as S.Schema<UpdateApplicationGatewaysTagsResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateApplicationGatewayTagsResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Identity for the resource. */
-export interface UpdateApplicationGatewaysTagsResponseIdentity {
+export interface UpdateApplicationGatewayTagsResponseIdentity {
   /** The principal id of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant id of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -103099,23 +103091,23 @@ export interface UpdateApplicationGatewaysTagsResponseIdentity {
   /** The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the virtual machine. */
   type?: ResourceIdentityType;
   /** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-  userAssignedIdentities?: UpdateApplicationGatewaysTagsResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateApplicationGatewayTagsResponseIdentityUserAssignedIdentitiesMap;
 }
-export const UpdateApplicationGatewaysTagsResponseIdentity =
+export const UpdateApplicationGatewayTagsResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: S.optional(ResourceIdentityType),
       userAssignedIdentities: S.optional(
-        UpdateApplicationGatewaysTagsResponseIdentityUserAssignedIdentitiesMap,
+        UpdateApplicationGatewayTagsResponseIdentityUserAssignedIdentitiesMap,
       ),
     }),
   ).annotate({
-    identifier: "UpdateApplicationGatewaysTagsResponseIdentity",
-  }) as any as S.Schema<UpdateApplicationGatewaysTagsResponseIdentity>;
+    identifier: "UpdateApplicationGatewayTagsResponseIdentity",
+  }) as any as S.Schema<UpdateApplicationGatewayTagsResponseIdentity>;
 
-export interface UpdateApplicationGatewaysTagsResponse {
+export interface UpdateApplicationGatewayTagsResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -103125,32 +103117,32 @@ export interface UpdateApplicationGatewaysTagsResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: UpdateApplicationGatewaysTagsResponseTagsMap;
+  tags?: UpdateApplicationGatewayTagsResponseTagsMap;
   /** Properties of the application gateway. */
   properties?: ApplicationGatewayPropertiesFormat;
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
   /** A list of availability zones denoting where the resource needs to come from. */
-  zones?: UpdateApplicationGatewaysTagsResponseZonesList;
+  zones?: UpdateApplicationGatewayTagsResponseZonesList;
   /** Identity for the resource. */
-  identity?: UpdateApplicationGatewaysTagsResponseIdentity;
+  identity?: UpdateApplicationGatewayTagsResponseIdentity;
 }
-export const UpdateApplicationGatewaysTagsResponse = /*@__PURE__*/ S.suspend(
+export const UpdateApplicationGatewayTagsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(UpdateApplicationGatewaysTagsResponseTagsMap),
+      tags: S.optional(UpdateApplicationGatewayTagsResponseTagsMap),
       properties: S.optional(ApplicationGatewayPropertiesFormat),
       etag: S.optional(S.String),
-      zones: S.optional(UpdateApplicationGatewaysTagsResponseZonesList),
-      identity: S.optional(UpdateApplicationGatewaysTagsResponseIdentity),
+      zones: S.optional(UpdateApplicationGatewayTagsResponseZonesList),
+      identity: S.optional(UpdateApplicationGatewayTagsResponseIdentity),
     }),
 ).annotate({
-  identifier: "UpdateApplicationGatewaysTagsResponse",
-}) as any as S.Schema<UpdateApplicationGatewaysTagsResponse>;
+  identifier: "UpdateApplicationGatewayTagsResponse",
+}) as any as S.Schema<UpdateApplicationGatewayTagsResponse>;
 
 /** Resource tags. */
 export type UpdateApplicationSecurityGroupTagsRequestTagsMap = {
@@ -103907,16 +103899,16 @@ export const UpdateExpressRouteCrossConnectionTagsResponse =
   }) as any as S.Schema<UpdateExpressRouteCrossConnectionTagsResponse>;
 
 /** Resource tags. */
-export type UpdateExpressRouteGatewaysTagsRequestTagsMap = {
+export type UpdateExpressRouteGatewayTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateExpressRouteGatewaysTagsRequestTagsMap =
+export const UpdateExpressRouteGatewayTagsRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<UpdateExpressRouteGatewaysTagsRequestTagsMap>;
+  ) as any as S.Schema<UpdateExpressRouteGatewayTagsRequestTagsMap>;
 
-export interface UpdateExpressRouteGatewaysTagsRequest {
+export interface UpdateExpressRouteGatewayTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -103924,15 +103916,15 @@ export interface UpdateExpressRouteGatewaysTagsRequest {
   /** The name of the ExpressRoute gateway. */
   expressRouteGatewayName: string;
   /** Resource tags. */
-  tags?: UpdateExpressRouteGatewaysTagsRequestTagsMap;
+  tags?: UpdateExpressRouteGatewayTagsRequestTagsMap;
 }
-export const UpdateExpressRouteGatewaysTagsRequest = /*@__PURE__*/ S.suspend(
+export const UpdateExpressRouteGatewayTagsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       expressRouteGatewayName: S.String.pipe(T.Label()),
-      tags: S.optional(UpdateExpressRouteGatewaysTagsRequestTagsMap),
+      tags: S.optional(UpdateExpressRouteGatewayTagsRequestTagsMap),
     }).pipe(
       T.Http({
         method: "PATCH",
@@ -103942,20 +103934,20 @@ export const UpdateExpressRouteGatewaysTagsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateExpressRouteGatewaysTagsRequest",
-}) as any as S.Schema<UpdateExpressRouteGatewaysTagsRequest>;
+  identifier: "UpdateExpressRouteGatewayTagsRequest",
+}) as any as S.Schema<UpdateExpressRouteGatewayTagsRequest>;
 
 /** Resource tags. */
-export type UpdateExpressRouteGatewaysTagsResponseTagsMap = {
+export type UpdateExpressRouteGatewayTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateExpressRouteGatewaysTagsResponseTagsMap =
+export const UpdateExpressRouteGatewayTagsResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<UpdateExpressRouteGatewaysTagsResponseTagsMap>;
+  ) as any as S.Schema<UpdateExpressRouteGatewayTagsResponseTagsMap>;
 
-export interface UpdateExpressRouteGatewaysTagsResponse {
+export interface UpdateExpressRouteGatewayTagsResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -103965,26 +103957,26 @@ export interface UpdateExpressRouteGatewaysTagsResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: UpdateExpressRouteGatewaysTagsResponseTagsMap;
+  tags?: UpdateExpressRouteGatewayTagsResponseTagsMap;
   /** Properties of the express route gateway. */
   properties?: ExpressRouteGatewayProperties;
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
 }
-export const UpdateExpressRouteGatewaysTagsResponse = /*@__PURE__*/ S.suspend(
+export const UpdateExpressRouteGatewayTagsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(UpdateExpressRouteGatewaysTagsResponseTagsMap),
+      tags: S.optional(UpdateExpressRouteGatewayTagsResponseTagsMap),
       properties: S.optional(ExpressRouteGatewayProperties),
       etag: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "UpdateExpressRouteGatewaysTagsResponse",
-}) as any as S.Schema<UpdateExpressRouteGatewaysTagsResponse>;
+  identifier: "UpdateExpressRouteGatewayTagsResponse",
+}) as any as S.Schema<UpdateExpressRouteGatewayTagsResponse>;
 
 /** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
 export type UpdateExpressRouteLagRequestIdentityUserAssignedIdentitiesMap = {
@@ -105020,16 +105012,16 @@ export const UpdateLoadBalancerTagsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateLoadBalancerTagsResponse>;
 
 /** Resource tags. */
-export type UpdateLocalNetworkGatewaysTagsRequestTagsMap = {
+export type UpdateLocalNetworkGatewayTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateLocalNetworkGatewaysTagsRequestTagsMap =
+export const UpdateLocalNetworkGatewayTagsRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<UpdateLocalNetworkGatewaysTagsRequestTagsMap>;
+  ) as any as S.Schema<UpdateLocalNetworkGatewayTagsRequestTagsMap>;
 
-export interface UpdateLocalNetworkGatewaysTagsRequest {
+export interface UpdateLocalNetworkGatewayTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -105037,15 +105029,15 @@ export interface UpdateLocalNetworkGatewaysTagsRequest {
   /** The name of the local network gateway. */
   localNetworkGatewayName: string;
   /** Resource tags. */
-  tags?: UpdateLocalNetworkGatewaysTagsRequestTagsMap;
+  tags?: UpdateLocalNetworkGatewayTagsRequestTagsMap;
 }
-export const UpdateLocalNetworkGatewaysTagsRequest = /*@__PURE__*/ S.suspend(
+export const UpdateLocalNetworkGatewayTagsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       localNetworkGatewayName: S.String.pipe(T.Label()),
-      tags: S.optional(UpdateLocalNetworkGatewaysTagsRequestTagsMap),
+      tags: S.optional(UpdateLocalNetworkGatewayTagsRequestTagsMap),
     }).pipe(
       T.Http({
         method: "PATCH",
@@ -105055,20 +105047,20 @@ export const UpdateLocalNetworkGatewaysTagsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateLocalNetworkGatewaysTagsRequest",
-}) as any as S.Schema<UpdateLocalNetworkGatewaysTagsRequest>;
+  identifier: "UpdateLocalNetworkGatewayTagsRequest",
+}) as any as S.Schema<UpdateLocalNetworkGatewayTagsRequest>;
 
 /** Resource tags. */
-export type UpdateLocalNetworkGatewaysTagsResponseTagsMap = {
+export type UpdateLocalNetworkGatewayTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateLocalNetworkGatewaysTagsResponseTagsMap =
+export const UpdateLocalNetworkGatewayTagsResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<UpdateLocalNetworkGatewaysTagsResponseTagsMap>;
+  ) as any as S.Schema<UpdateLocalNetworkGatewayTagsResponseTagsMap>;
 
-export interface UpdateLocalNetworkGatewaysTagsResponse {
+export interface UpdateLocalNetworkGatewayTagsResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -105078,37 +105070,37 @@ export interface UpdateLocalNetworkGatewaysTagsResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: UpdateLocalNetworkGatewaysTagsResponseTagsMap;
+  tags?: UpdateLocalNetworkGatewayTagsResponseTagsMap;
   /** Properties of the local network gateway. */
   properties: LocalNetworkGatewayPropertiesFormat;
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
 }
-export const UpdateLocalNetworkGatewaysTagsResponse = /*@__PURE__*/ S.suspend(
+export const UpdateLocalNetworkGatewayTagsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(UpdateLocalNetworkGatewaysTagsResponseTagsMap),
+      tags: S.optional(UpdateLocalNetworkGatewayTagsResponseTagsMap),
       properties: LocalNetworkGatewayPropertiesFormat,
       etag: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "UpdateLocalNetworkGatewaysTagsResponse",
-}) as any as S.Schema<UpdateLocalNetworkGatewaysTagsResponse>;
+  identifier: "UpdateLocalNetworkGatewayTagsResponse",
+}) as any as S.Schema<UpdateLocalNetworkGatewayTagsResponse>;
 
 /** Resource tags. */
-export type UpdateNatGatewaysTagsRequestTagsMap = {
+export type UpdateNatGatewayTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateNatGatewaysTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNatGatewayTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UpdateNatGatewaysTagsRequestTagsMap>;
+) as any as S.Schema<UpdateNatGatewayTagsRequestTagsMap>;
 
-export interface UpdateNatGatewaysTagsRequest {
+export interface UpdateNatGatewayTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -105116,14 +105108,14 @@ export interface UpdateNatGatewaysTagsRequest {
   /** The name of the nat gateway. */
   natGatewayName: string;
   /** Resource tags. */
-  tags?: UpdateNatGatewaysTagsRequestTagsMap;
+  tags?: UpdateNatGatewayTagsRequestTagsMap;
 }
-export const UpdateNatGatewaysTagsRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateNatGatewayTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     natGatewayName: S.String.pipe(T.Label()),
-    tags: S.optional(UpdateNatGatewaysTagsRequestTagsMap),
+    tags: S.optional(UpdateNatGatewayTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -105133,25 +105125,25 @@ export const UpdateNatGatewaysTagsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateNatGatewaysTagsRequest",
-}) as any as S.Schema<UpdateNatGatewaysTagsRequest>;
+  identifier: "UpdateNatGatewayTagsRequest",
+}) as any as S.Schema<UpdateNatGatewayTagsRequest>;
 
 /** Resource tags. */
-export type UpdateNatGatewaysTagsResponseTagsMap = {
+export type UpdateNatGatewayTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateNatGatewaysTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNatGatewayTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UpdateNatGatewaysTagsResponseTagsMap>;
+) as any as S.Schema<UpdateNatGatewayTagsResponseTagsMap>;
 
 /** A list of availability zones denoting the zone in which Nat Gateway should be deployed. */
-export type UpdateNatGatewaysTagsResponseZonesList = Array<string>;
-export const UpdateNatGatewaysTagsResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateNatGatewayTagsResponseZonesList = Array<string>;
+export const UpdateNatGatewayTagsResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<UpdateNatGatewaysTagsResponseZonesList>;
+) as any as S.Schema<UpdateNatGatewayTagsResponseZonesList>;
 
-export interface UpdateNatGatewaysTagsResponse {
+export interface UpdateNatGatewayTagsResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -105161,31 +105153,31 @@ export interface UpdateNatGatewaysTagsResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: UpdateNatGatewaysTagsResponseTagsMap;
+  tags?: UpdateNatGatewayTagsResponseTagsMap;
   /** Nat Gateway properties. */
   properties?: NatGatewayPropertiesFormat_4;
   /** The nat gateway SKU. */
   sku?: NatGatewaySku;
   /** A list of availability zones denoting the zone in which Nat Gateway should be deployed. */
-  zones?: UpdateNatGatewaysTagsResponseZonesList;
+  zones?: UpdateNatGatewayTagsResponseZonesList;
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
 }
-export const UpdateNatGatewaysTagsResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateNatGatewayTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(UpdateNatGatewaysTagsResponseTagsMap),
+    tags: S.optional(UpdateNatGatewayTagsResponseTagsMap),
     properties: S.optional(NatGatewayPropertiesFormat_4),
     sku: S.optional(NatGatewaySku),
-    zones: S.optional(UpdateNatGatewaysTagsResponseZonesList),
+    zones: S.optional(UpdateNatGatewayTagsResponseZonesList),
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "UpdateNatGatewaysTagsResponse",
-}) as any as S.Schema<UpdateNatGatewaysTagsResponse>;
+  identifier: "UpdateNatGatewayTagsResponse",
+}) as any as S.Schema<UpdateNatGatewayTagsResponse>;
 
 /** Resource tags. */
 export type UpdateNetworkInterfaceTagsRequestTagsMap = {
@@ -105622,15 +105614,15 @@ export const UpdateNetworkWatcherTagsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNetworkWatcherTagsResponse>;
 
 /** Resource tags. */
-export type UpdateP2sVpnGatewaysTagsRequestTagsMap = {
+export type UpdateP2sVpnGatewayTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateP2sVpnGatewaysTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateP2sVpnGatewayTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UpdateP2sVpnGatewaysTagsRequestTagsMap>;
+) as any as S.Schema<UpdateP2sVpnGatewayTagsRequestTagsMap>;
 
-export interface UpdateP2sVpnGatewaysTagsRequest {
+export interface UpdateP2sVpnGatewayTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -105638,14 +105630,14 @@ export interface UpdateP2sVpnGatewaysTagsRequest {
   /** The name of the gateway. */
   gatewayName: string;
   /** Resource tags. */
-  tags?: UpdateP2sVpnGatewaysTagsRequestTagsMap;
+  tags?: UpdateP2sVpnGatewayTagsRequestTagsMap;
 }
-export const UpdateP2sVpnGatewaysTagsRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateP2sVpnGatewayTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     gatewayName: S.String.pipe(T.Label()),
-    tags: S.optional(UpdateP2sVpnGatewaysTagsRequestTagsMap),
+    tags: S.optional(UpdateP2sVpnGatewayTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -105655,19 +105647,19 @@ export const UpdateP2sVpnGatewaysTagsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateP2sVpnGatewaysTagsRequest",
-}) as any as S.Schema<UpdateP2sVpnGatewaysTagsRequest>;
+  identifier: "UpdateP2sVpnGatewayTagsRequest",
+}) as any as S.Schema<UpdateP2sVpnGatewayTagsRequest>;
 
 /** Resource tags. */
-export type UpdateP2sVpnGatewaysTagsResponseTagsMap = {
+export type UpdateP2sVpnGatewayTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateP2sVpnGatewaysTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateP2sVpnGatewayTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UpdateP2sVpnGatewaysTagsResponseTagsMap>;
+) as any as S.Schema<UpdateP2sVpnGatewayTagsResponseTagsMap>;
 
-export interface UpdateP2sVpnGatewaysTagsResponse {
+export interface UpdateP2sVpnGatewayTagsResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -105677,25 +105669,25 @@ export interface UpdateP2sVpnGatewaysTagsResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: UpdateP2sVpnGatewaysTagsResponseTagsMap;
+  tags?: UpdateP2sVpnGatewayTagsResponseTagsMap;
   /** Properties of the P2SVpnGateway. */
   properties?: P2SVpnGatewayProperties;
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
 }
-export const UpdateP2sVpnGatewaysTagsResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateP2sVpnGatewayTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(UpdateP2sVpnGatewaysTagsResponseTagsMap),
+    tags: S.optional(UpdateP2sVpnGatewayTagsResponseTagsMap),
     properties: S.optional(P2SVpnGatewayProperties),
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "UpdateP2sVpnGatewaysTagsResponse",
-}) as any as S.Schema<UpdateP2sVpnGatewaysTagsResponse>;
+  identifier: "UpdateP2sVpnGatewayTagsResponse",
+}) as any as S.Schema<UpdateP2sVpnGatewayTagsResponse>;
 
 /** Provisioning states of a resource. */
 export type PrivateEndpointConnectionPropertiesInputProvisioningState =
@@ -106304,10 +106296,10 @@ export const UpdateServiceEndpointPolicyTagsResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateServiceEndpointPolicyTagsResponse>;
 
 /** Specifies the type of update operation to perform on address locations within the service gateway. - FullUpdate: Replaces all existing address location data with the new list provided in the request. Any previously defined locations not included will be removed. - PartialUpdate: Updates only the specified address locations. */
-export type UpdateServiceGatewaysAddressLocationsRequestAction =
+export type UpdateServiceGatewayAddressLocationsRequestAction =
   | "FullUpdate"
   | "PartialUpdate";
-export const UpdateServiceGatewaysAddressLocationsRequestAction =
+export const UpdateServiceGatewayAddressLocationsRequestAction =
   /*@__PURE__*/ S.String;
 
 /** Specifies the type of update operation to perform on addresses within the address location of service gateway. - FullUpdate: Replaces all existing address data with the new list provided in the request. Any previously defined addresses not included will be removed. - PartialUpdate: Updates only the specified addresses. */
@@ -106348,14 +106340,14 @@ export const ServiceGatewayAddressLocation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ServiceGatewayAddressLocation>;
 
 /** An array of address locations to create or update. */
-export type UpdateServiceGatewaysAddressLocationsRequestAddressLocationsList =
+export type UpdateServiceGatewayAddressLocationsRequestAddressLocationsList =
   Array<ServiceGatewayAddressLocation>;
-export const UpdateServiceGatewaysAddressLocationsRequestAddressLocationsList =
+export const UpdateServiceGatewayAddressLocationsRequestAddressLocationsList =
   /*@__PURE__*/ S.Array(
     ServiceGatewayAddressLocation,
-  ) as any as S.Schema<UpdateServiceGatewaysAddressLocationsRequestAddressLocationsList>;
+  ) as any as S.Schema<UpdateServiceGatewayAddressLocationsRequestAddressLocationsList>;
 
-export interface UpdateServiceGatewaysAddressLocationsRequest {
+export interface UpdateServiceGatewayAddressLocationsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -106363,19 +106355,19 @@ export interface UpdateServiceGatewaysAddressLocationsRequest {
   /** The name of the service gateway. */
   serviceGatewayName: string;
   /** Specifies the type of update operation to perform on address locations within the service gateway. - FullUpdate: Replaces all existing address location data with the new list provided in the request. Any previously defined locations not included will be removed. - PartialUpdate: Updates only the specified address locations. */
-  action?: UpdateServiceGatewaysAddressLocationsRequestAction | (string & {});
+  action?: UpdateServiceGatewayAddressLocationsRequestAction | (string & {});
   /** An array of address locations to create or update. */
-  addressLocations?: UpdateServiceGatewaysAddressLocationsRequestAddressLocationsList;
+  addressLocations?: UpdateServiceGatewayAddressLocationsRequestAddressLocationsList;
 }
-export const UpdateServiceGatewaysAddressLocationsRequest =
+export const UpdateServiceGatewayAddressLocationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       serviceGatewayName: S.String.pipe(T.Label()),
-      action: S.optional(UpdateServiceGatewaysAddressLocationsRequestAction),
+      action: S.optional(UpdateServiceGatewayAddressLocationsRequestAction),
       addressLocations: S.optional(
-        UpdateServiceGatewaysAddressLocationsRequestAddressLocationsList,
+        UpdateServiceGatewayAddressLocationsRequestAddressLocationsList,
       ),
     }).pipe(
       T.Http({
@@ -106386,28 +106378,27 @@ export const UpdateServiceGatewaysAddressLocationsRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateServiceGatewaysAddressLocationsRequest",
-  }) as any as S.Schema<UpdateServiceGatewaysAddressLocationsRequest>;
+    identifier: "UpdateServiceGatewayAddressLocationsRequest",
+  }) as any as S.Schema<UpdateServiceGatewayAddressLocationsRequest>;
 
-export interface UpdateServiceGatewaysAddressLocationsResponse {
+export interface UpdateServiceGatewayAddressLocationsResponse {
   /** The status of the operation. */
   status?: string;
 }
-export const UpdateServiceGatewaysAddressLocationsResponse =
+export const UpdateServiceGatewayAddressLocationsResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       status: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "UpdateServiceGatewaysAddressLocationsResponse",
-  }) as any as S.Schema<UpdateServiceGatewaysAddressLocationsResponse>;
+    identifier: "UpdateServiceGatewayAddressLocationsResponse",
+  }) as any as S.Schema<UpdateServiceGatewayAddressLocationsResponse>;
 
 /** Specifies the type of update operation to perform on services within the service gateway. - FullUpdate: Replaces all existing services with the new list provided in the request. Any previously defined services not included will be removed. - PartialUpdate: Updates only the specified services. */
-export type UpdateServiceGatewaysServicesRequestAction =
+export type UpdateServiceGatewayServicesRequestAction =
   | "FullUpdate"
   | "PartialUpdate";
-export const UpdateServiceGatewaysServicesRequestAction =
-  /*@__PURE__*/ S.String;
+export const UpdateServiceGatewayServicesRequestAction = /*@__PURE__*/ S.String;
 
 /** Name of the service. */
 export type ServiceGatewayServicePropertiesFormatInputServiceType =
@@ -106493,14 +106484,14 @@ export const ServiceGatewayServiceRequestInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ServiceGatewayServiceRequestInput>;
 
 /** Collection of service updates. */
-export type UpdateServiceGatewaysServicesRequestServiceRequestsList =
+export type UpdateServiceGatewayServicesRequestServiceRequestsList =
   Array<ServiceGatewayServiceRequestInput>;
-export const UpdateServiceGatewaysServicesRequestServiceRequestsList =
+export const UpdateServiceGatewayServicesRequestServiceRequestsList =
   /*@__PURE__*/ S.Array(
     ServiceGatewayServiceRequestInput,
-  ) as any as S.Schema<UpdateServiceGatewaysServicesRequestServiceRequestsList>;
+  ) as any as S.Schema<UpdateServiceGatewayServicesRequestServiceRequestsList>;
 
-export interface UpdateServiceGatewaysServicesRequest {
+export interface UpdateServiceGatewayServicesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -106508,55 +106499,54 @@ export interface UpdateServiceGatewaysServicesRequest {
   /** The name of the service gateway. */
   serviceGatewayName: string;
   /** Specifies the type of update operation to perform on services within the service gateway. - FullUpdate: Replaces all existing services with the new list provided in the request. Any previously defined services not included will be removed. - PartialUpdate: Updates only the specified services. */
-  action?: UpdateServiceGatewaysServicesRequestAction | (string & {});
+  action?: UpdateServiceGatewayServicesRequestAction | (string & {});
   /** Collection of service updates. */
-  serviceRequests?: UpdateServiceGatewaysServicesRequestServiceRequestsList;
+  serviceRequests?: UpdateServiceGatewayServicesRequestServiceRequestsList;
 }
-export const UpdateServiceGatewaysServicesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceGatewayName: S.String.pipe(T.Label()),
-      action: S.optional(UpdateServiceGatewaysServicesRequestAction),
-      serviceRequests: S.optional(
-        UpdateServiceGatewaysServicesRequestServiceRequestsList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/serviceGateways/{serviceGatewayName}/updateServices",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
+export const UpdateServiceGatewayServicesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceGatewayName: S.String.pipe(T.Label()),
+    action: S.optional(UpdateServiceGatewayServicesRequestAction),
+    serviceRequests: S.optional(
+      UpdateServiceGatewayServicesRequestServiceRequestsList,
     ),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/serviceGateways/{serviceGatewayName}/updateServices",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
 ).annotate({
-  identifier: "UpdateServiceGatewaysServicesRequest",
-}) as any as S.Schema<UpdateServiceGatewaysServicesRequest>;
+  identifier: "UpdateServiceGatewayServicesRequest",
+}) as any as S.Schema<UpdateServiceGatewayServicesRequest>;
 
-export interface UpdateServiceGatewaysServicesResponse {
+export interface UpdateServiceGatewayServicesResponse {
   /** The status of the operation. */
   status?: string;
 }
-export const UpdateServiceGatewaysServicesResponse = /*@__PURE__*/ S.suspend(
+export const UpdateServiceGatewayServicesResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       status: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "UpdateServiceGatewaysServicesResponse",
-}) as any as S.Schema<UpdateServiceGatewaysServicesResponse>;
+  identifier: "UpdateServiceGatewayServicesResponse",
+}) as any as S.Schema<UpdateServiceGatewayServicesResponse>;
 
 /** Resource tags. */
-export type UpdateServiceGatewaysTagsRequestTagsMap = {
+export type UpdateServiceGatewayTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateServiceGatewaysTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateServiceGatewayTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UpdateServiceGatewaysTagsRequestTagsMap>;
+) as any as S.Schema<UpdateServiceGatewayTagsRequestTagsMap>;
 
-export interface UpdateServiceGatewaysTagsRequest {
+export interface UpdateServiceGatewayTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -106564,14 +106554,14 @@ export interface UpdateServiceGatewaysTagsRequest {
   /** The name of the service gateway. */
   serviceGatewayName: string;
   /** Resource tags. */
-  tags?: UpdateServiceGatewaysTagsRequestTagsMap;
+  tags?: UpdateServiceGatewayTagsRequestTagsMap;
 }
-export const UpdateServiceGatewaysTagsRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateServiceGatewayTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceGatewayName: S.String.pipe(T.Label()),
-    tags: S.optional(UpdateServiceGatewaysTagsRequestTagsMap),
+    tags: S.optional(UpdateServiceGatewayTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -106581,76 +106571,76 @@ export const UpdateServiceGatewaysTagsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateServiceGatewaysTagsRequest",
-}) as any as S.Schema<UpdateServiceGatewaysTagsRequest>;
+  identifier: "UpdateServiceGatewayTagsRequest",
+}) as any as S.Schema<UpdateServiceGatewayTagsRequest>;
 
 /** The type of identity that created the resource. */
-export type UpdateServiceGatewaysTagsResponseSystemDataCreatedByType =
+export type UpdateServiceGatewayTagsResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateServiceGatewaysTagsResponseSystemDataCreatedByType =
+export const UpdateServiceGatewayTagsResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type UpdateServiceGatewaysTagsResponseSystemDataLastModifiedByType =
+export type UpdateServiceGatewayTagsResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateServiceGatewaysTagsResponseSystemDataLastModifiedByType =
+export const UpdateServiceGatewayTagsResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface UpdateServiceGatewaysTagsResponseSystemData {
+export interface UpdateServiceGatewayTagsResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: UpdateServiceGatewaysTagsResponseSystemDataCreatedByType;
+  createdByType?: UpdateServiceGatewayTagsResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: UpdateServiceGatewaysTagsResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateServiceGatewayTagsResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const UpdateServiceGatewaysTagsResponseSystemData =
+export const UpdateServiceGatewayTagsResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        UpdateServiceGatewaysTagsResponseSystemDataCreatedByType,
+        UpdateServiceGatewayTagsResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        UpdateServiceGatewaysTagsResponseSystemDataLastModifiedByType,
+        UpdateServiceGatewayTagsResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "UpdateServiceGatewaysTagsResponseSystemData",
-  }) as any as S.Schema<UpdateServiceGatewaysTagsResponseSystemData>;
+    identifier: "UpdateServiceGatewayTagsResponseSystemData",
+  }) as any as S.Schema<UpdateServiceGatewayTagsResponseSystemData>;
 
 /** Resource tags. */
-export type UpdateServiceGatewaysTagsResponseTagsMap = {
+export type UpdateServiceGatewayTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateServiceGatewaysTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateServiceGatewayTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UpdateServiceGatewaysTagsResponseTagsMap>;
+) as any as S.Schema<UpdateServiceGatewayTagsResponseTagsMap>;
 
 /** A list of availability zones denoting the zone in which service gateway should be deployed. - The zone values must be provided as strings representing numeric identifiers like "1", "2", "3" etc. */
-export type UpdateServiceGatewaysTagsResponseZonesList = Array<string>;
-export const UpdateServiceGatewaysTagsResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateServiceGatewayTagsResponseZonesList = Array<string>;
+export const UpdateServiceGatewayTagsResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<UpdateServiceGatewaysTagsResponseZonesList>;
+) as any as S.Schema<UpdateServiceGatewayTagsResponseZonesList>;
 
-export interface UpdateServiceGatewaysTagsResponse {
+export interface UpdateServiceGatewayTagsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -106658,9 +106648,9 @@ export interface UpdateServiceGatewaysTagsResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: UpdateServiceGatewaysTagsResponseSystemData;
+  systemData?: UpdateServiceGatewayTagsResponseSystemData;
   /** Resource tags. */
-  tags?: UpdateServiceGatewaysTagsResponseTagsMap;
+  tags?: UpdateServiceGatewayTagsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of service gateway. */
@@ -106670,24 +106660,24 @@ export interface UpdateServiceGatewaysTagsResponse {
   /** The service gateway SKU. */
   sku?: ServiceGatewaySku;
   /** A list of availability zones denoting the zone in which service gateway should be deployed. - The zone values must be provided as strings representing numeric identifiers like "1", "2", "3" etc. */
-  zones?: UpdateServiceGatewaysTagsResponseZonesList;
+  zones?: UpdateServiceGatewayTagsResponseZonesList;
 }
-export const UpdateServiceGatewaysTagsResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateServiceGatewayTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    systemData: S.optional(UpdateServiceGatewaysTagsResponseSystemData),
-    tags: S.optional(UpdateServiceGatewaysTagsResponseTagsMap),
+    systemData: S.optional(UpdateServiceGatewayTagsResponseSystemData),
+    tags: S.optional(UpdateServiceGatewayTagsResponseTagsMap),
     location: S.String,
     properties: S.optional(ServiceGatewayPropertiesFormat),
     etag: S.optional(S.String),
     sku: S.optional(ServiceGatewaySku),
-    zones: S.optional(UpdateServiceGatewaysTagsResponseZonesList),
+    zones: S.optional(UpdateServiceGatewayTagsResponseZonesList),
   }),
 ).annotate({
-  identifier: "UpdateServiceGatewaysTagsResponse",
-}) as any as S.Schema<UpdateServiceGatewaysTagsResponse>;
+  identifier: "UpdateServiceGatewayTagsResponse",
+}) as any as S.Schema<UpdateServiceGatewayTagsResponse>;
 
 /** Dictionary of <string> */
 export type UpdateVerifierWorkspaceRequestTagsMap = {
@@ -107079,16 +107069,16 @@ export const UpdateVirtualNetworkGatewayConnectionTagsResponse =
   }) as any as S.Schema<UpdateVirtualNetworkGatewayConnectionTagsResponse>;
 
 /** Resource tags. */
-export type UpdateVirtualNetworkGatewaysTagsRequestTagsMap = {
+export type UpdateVirtualNetworkGatewayTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateVirtualNetworkGatewaysTagsRequestTagsMap =
+export const UpdateVirtualNetworkGatewayTagsRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<UpdateVirtualNetworkGatewaysTagsRequestTagsMap>;
+  ) as any as S.Schema<UpdateVirtualNetworkGatewayTagsRequestTagsMap>;
 
-export interface UpdateVirtualNetworkGatewaysTagsRequest {
+export interface UpdateVirtualNetworkGatewayTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -107096,15 +107086,15 @@ export interface UpdateVirtualNetworkGatewaysTagsRequest {
   /** The name of the virtual network gateway. */
   virtualNetworkGatewayName: string;
   /** Resource tags. */
-  tags?: UpdateVirtualNetworkGatewaysTagsRequestTagsMap;
+  tags?: UpdateVirtualNetworkGatewayTagsRequestTagsMap;
 }
-export const UpdateVirtualNetworkGatewaysTagsRequest = /*@__PURE__*/ S.suspend(
+export const UpdateVirtualNetworkGatewayTagsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       virtualNetworkGatewayName: S.String.pipe(T.Label()),
-      tags: S.optional(UpdateVirtualNetworkGatewaysTagsRequestTagsMap),
+      tags: S.optional(UpdateVirtualNetworkGatewayTagsRequestTagsMap),
     }).pipe(
       T.Http({
         method: "PATCH",
@@ -107114,36 +107104,36 @@ export const UpdateVirtualNetworkGatewaysTagsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateVirtualNetworkGatewaysTagsRequest",
-}) as any as S.Schema<UpdateVirtualNetworkGatewaysTagsRequest>;
+  identifier: "UpdateVirtualNetworkGatewayTagsRequest",
+}) as any as S.Schema<UpdateVirtualNetworkGatewayTagsRequest>;
 
 /** Resource tags. */
-export type UpdateVirtualNetworkGatewaysTagsResponseTagsMap = {
+export type UpdateVirtualNetworkGatewayTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateVirtualNetworkGatewaysTagsResponseTagsMap =
+export const UpdateVirtualNetworkGatewayTagsResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<UpdateVirtualNetworkGatewaysTagsResponseTagsMap>;
+  ) as any as S.Schema<UpdateVirtualNetworkGatewayTagsResponseTagsMap>;
 
 /** ExtendedLocation complex type. */
-export type UpdateVirtualNetworkGatewaysTagsResponseExtendedLocation =
+export type UpdateVirtualNetworkGatewayTagsResponseExtendedLocation =
   NetworkInterfaceExtendedLocation;
-export const UpdateVirtualNetworkGatewaysTagsResponseExtendedLocation =
+export const UpdateVirtualNetworkGatewayTagsResponseExtendedLocation =
   NetworkInterfaceExtendedLocation;
 
 /** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-export type UpdateVirtualNetworkGatewaysTagsResponseIdentityUserAssignedIdentitiesMap =
+export type UpdateVirtualNetworkGatewayTagsResponseIdentityUserAssignedIdentitiesMap =
   { [key: string]: ManagedServiceIdentityUserAssignedIdentities_8 | undefined };
-export const UpdateVirtualNetworkGatewaysTagsResponseIdentityUserAssignedIdentitiesMap =
+export const UpdateVirtualNetworkGatewayTagsResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     ManagedServiceIdentityUserAssignedIdentities_8,
-  ) as any as S.Schema<UpdateVirtualNetworkGatewaysTagsResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateVirtualNetworkGatewayTagsResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Identity for the resource. */
-export interface UpdateVirtualNetworkGatewaysTagsResponseIdentity {
+export interface UpdateVirtualNetworkGatewayTagsResponseIdentity {
   /** The principal id of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant id of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -107151,23 +107141,23 @@ export interface UpdateVirtualNetworkGatewaysTagsResponseIdentity {
   /** The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the virtual machine. */
   type?: ResourceIdentityType;
   /** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-  userAssignedIdentities?: UpdateVirtualNetworkGatewaysTagsResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateVirtualNetworkGatewayTagsResponseIdentityUserAssignedIdentitiesMap;
 }
-export const UpdateVirtualNetworkGatewaysTagsResponseIdentity =
+export const UpdateVirtualNetworkGatewayTagsResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: S.optional(ResourceIdentityType),
       userAssignedIdentities: S.optional(
-        UpdateVirtualNetworkGatewaysTagsResponseIdentityUserAssignedIdentitiesMap,
+        UpdateVirtualNetworkGatewayTagsResponseIdentityUserAssignedIdentitiesMap,
       ),
     }),
   ).annotate({
-    identifier: "UpdateVirtualNetworkGatewaysTagsResponseIdentity",
-  }) as any as S.Schema<UpdateVirtualNetworkGatewaysTagsResponseIdentity>;
+    identifier: "UpdateVirtualNetworkGatewayTagsResponseIdentity",
+  }) as any as S.Schema<UpdateVirtualNetworkGatewayTagsResponseIdentity>;
 
-export interface UpdateVirtualNetworkGatewaysTagsResponse {
+export interface UpdateVirtualNetworkGatewayTagsResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -107177,7 +107167,7 @@ export interface UpdateVirtualNetworkGatewaysTagsResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: UpdateVirtualNetworkGatewaysTagsResponseTagsMap;
+  tags?: UpdateVirtualNetworkGatewayTagsResponseTagsMap;
   /** Properties of the virtual network gateway. */
   properties: VirtualNetworkGatewayPropertiesFormat;
   /** ExtendedLocation complex type. */
@@ -107185,24 +107175,24 @@ export interface UpdateVirtualNetworkGatewaysTagsResponse {
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
   /** Identity for the resource. */
-  identity?: UpdateVirtualNetworkGatewaysTagsResponseIdentity;
+  identity?: UpdateVirtualNetworkGatewayTagsResponseIdentity;
 }
-export const UpdateVirtualNetworkGatewaysTagsResponse = /*@__PURE__*/ S.suspend(
+export const UpdateVirtualNetworkGatewayTagsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(UpdateVirtualNetworkGatewaysTagsResponseTagsMap),
+      tags: S.optional(UpdateVirtualNetworkGatewayTagsResponseTagsMap),
       properties: VirtualNetworkGatewayPropertiesFormat,
       extendedLocation: S.optional(NetworkInterfaceExtendedLocation),
       etag: S.optional(S.String),
-      identity: S.optional(UpdateVirtualNetworkGatewaysTagsResponseIdentity),
+      identity: S.optional(UpdateVirtualNetworkGatewayTagsResponseIdentity),
     }),
 ).annotate({
-  identifier: "UpdateVirtualNetworkGatewaysTagsResponse",
-}) as any as S.Schema<UpdateVirtualNetworkGatewaysTagsResponse>;
+  identifier: "UpdateVirtualNetworkGatewayTagsResponse",
+}) as any as S.Schema<UpdateVirtualNetworkGatewayTagsResponse>;
 
 /** Resource tags. */
 export type UpdateVirtualNetworkTagsRequestTagsMap = {
@@ -107443,15 +107433,15 @@ export const UpdateVirtualWanTagsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVirtualWanTagsResponse>;
 
 /** Resource tags. */
-export type UpdateVpnGatewaysTagsRequestTagsMap = {
+export type UpdateVpnGatewayTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateVpnGatewaysTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVpnGatewayTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UpdateVpnGatewaysTagsRequestTagsMap>;
+) as any as S.Schema<UpdateVpnGatewayTagsRequestTagsMap>;
 
-export interface UpdateVpnGatewaysTagsRequest {
+export interface UpdateVpnGatewayTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -107459,14 +107449,14 @@ export interface UpdateVpnGatewaysTagsRequest {
   /** The name of the gateway. */
   gatewayName: string;
   /** Resource tags. */
-  tags?: UpdateVpnGatewaysTagsRequestTagsMap;
+  tags?: UpdateVpnGatewayTagsRequestTagsMap;
 }
-export const UpdateVpnGatewaysTagsRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateVpnGatewayTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     gatewayName: S.String.pipe(T.Label()),
-    tags: S.optional(UpdateVpnGatewaysTagsRequestTagsMap),
+    tags: S.optional(UpdateVpnGatewayTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -107476,19 +107466,19 @@ export const UpdateVpnGatewaysTagsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateVpnGatewaysTagsRequest",
-}) as any as S.Schema<UpdateVpnGatewaysTagsRequest>;
+  identifier: "UpdateVpnGatewayTagsRequest",
+}) as any as S.Schema<UpdateVpnGatewayTagsRequest>;
 
 /** Resource tags. */
-export type UpdateVpnGatewaysTagsResponseTagsMap = {
+export type UpdateVpnGatewayTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateVpnGatewaysTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVpnGatewayTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UpdateVpnGatewaysTagsResponseTagsMap>;
+) as any as S.Schema<UpdateVpnGatewayTagsResponseTagsMap>;
 
-export interface UpdateVpnGatewaysTagsResponse {
+export interface UpdateVpnGatewayTagsResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -107498,25 +107488,25 @@ export interface UpdateVpnGatewaysTagsResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: UpdateVpnGatewaysTagsResponseTagsMap;
+  tags?: UpdateVpnGatewayTagsResponseTagsMap;
   /** Properties of the VPN gateway. */
   properties?: VpnGatewayProperties;
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
 }
-export const UpdateVpnGatewaysTagsResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateVpnGatewayTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(UpdateVpnGatewaysTagsResponseTagsMap),
+    tags: S.optional(UpdateVpnGatewayTagsResponseTagsMap),
     properties: S.optional(VpnGatewayProperties),
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "UpdateVpnGatewaysTagsResponse",
-}) as any as S.Schema<UpdateVpnGatewaysTagsResponse>;
+  identifier: "UpdateVpnGatewayTagsResponse",
+}) as any as S.Schema<UpdateVpnGatewayTagsResponse>;
 
 /** Resource tags. */
 export type UpdateVpnServerConfigurationTagsRequestTagsMap = {
@@ -114814,6 +114804,21 @@ export const DeleteAdminRuleCollection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteApplicationGatewayError = AzureOpError;
+/** Deletes the specified application gateway. */
+export const DeleteApplicationGateway: API.OperationMethod<
+  DeleteApplicationGatewayRequest,
+  DeleteApplicationGatewayResponse,
+  DeleteApplicationGatewayError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteApplicationGatewayRequest,
+  output: DeleteApplicationGatewayResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteApplicationGatewayPrivateEndpointConnectionError =
   AzureOpError;
 /** Deletes the specified private endpoint connection on application gateway. */
@@ -114825,21 +114830,6 @@ export const DeleteApplicationGatewayPrivateEndpointConnection: API.OperationMet
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteApplicationGatewayPrivateEndpointConnectionRequest,
   output: DeleteApplicationGatewayPrivateEndpointConnectionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteApplicationGatewaysError = AzureOpError;
-/** Deletes the specified application gateway. */
-export const DeleteApplicationGateways: API.OperationMethod<
-  DeleteApplicationGatewaysRequest,
-  DeleteApplicationGatewaysResponse,
-  DeleteApplicationGatewaysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteApplicationGatewaysRequest,
-  output: DeleteApplicationGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -115145,16 +115135,16 @@ export const DeleteExpressRouteCrossConnectionPeering: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteExpressRouteGatewaysError = AzureOpError;
+export type DeleteExpressRouteGatewayError = AzureOpError;
 /** Deletes the specified ExpressRoute gateway in a resource group. An ExpressRoute gateway resource can only be deleted when there are no connection subresources. */
-export const DeleteExpressRouteGateways: API.OperationMethod<
-  DeleteExpressRouteGatewaysRequest,
-  DeleteExpressRouteGatewaysResponse,
-  DeleteExpressRouteGatewaysError,
+export const DeleteExpressRouteGateway: API.OperationMethod<
+  DeleteExpressRouteGatewayRequest,
+  DeleteExpressRouteGatewayResponse,
+  DeleteExpressRouteGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteExpressRouteGatewaysRequest,
-  output: DeleteExpressRouteGatewaysResponse,
+  input: DeleteExpressRouteGatewayRequest,
+  output: DeleteExpressRouteGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -115445,16 +115435,16 @@ export const DeleteLoadBalancerBackendAddressPool: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteLocalNetworkGatewaysError = AzureOpError;
+export type DeleteLocalNetworkGatewayError = AzureOpError;
 /** Deletes the specified local network gateway. */
-export const DeleteLocalNetworkGateways: API.OperationMethod<
-  DeleteLocalNetworkGatewaysRequest,
-  DeleteLocalNetworkGatewaysResponse,
-  DeleteLocalNetworkGatewaysError,
+export const DeleteLocalNetworkGateway: API.OperationMethod<
+  DeleteLocalNetworkGatewayRequest,
+  DeleteLocalNetworkGatewayResponse,
+  DeleteLocalNetworkGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteLocalNetworkGatewaysRequest,
-  output: DeleteLocalNetworkGatewaysResponse,
+  input: DeleteLocalNetworkGatewayRequest,
+  output: DeleteLocalNetworkGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -115475,16 +115465,16 @@ export const DeleteManagementGroupNetworkManagerConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteNatGatewaysError = AzureOpError;
+export type DeleteNatGatewayError = AzureOpError;
 /** Deletes the specified nat gateway. */
-export const DeleteNatGateways: API.OperationMethod<
-  DeleteNatGatewaysRequest,
-  DeleteNatGatewaysResponse,
-  DeleteNatGatewaysError,
+export const DeleteNatGateway: API.OperationMethod<
+  DeleteNatGatewayRequest,
+  DeleteNatGatewayResponse,
+  DeleteNatGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteNatGatewaysRequest,
-  output: DeleteNatGatewaysResponse,
+  input: DeleteNatGatewayRequest,
+  output: DeleteNatGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -115776,16 +115766,16 @@ export const DeleteNetworkWatchersConnectionAnalyzer: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteP2sVpnGatewaysError = AzureOpError;
+export type DeleteP2sVpnGatewayError = AzureOpError;
 /** Deletes a virtual wan p2s vpn gateway. */
-export const DeleteP2sVpnGateways: API.OperationMethod<
-  DeleteP2sVpnGatewaysRequest,
-  DeleteP2sVpnGatewaysResponse,
-  DeleteP2sVpnGatewaysError,
+export const DeleteP2sVpnGateway: API.OperationMethod<
+  DeleteP2sVpnGatewayRequest,
+  DeleteP2sVpnGatewayResponse,
+  DeleteP2sVpnGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteP2sVpnGatewaysRequest,
-  output: DeleteP2sVpnGatewaysResponse,
+  input: DeleteP2sVpnGatewayRequest,
+  output: DeleteP2sVpnGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -116182,16 +116172,16 @@ export const DeleteServiceEndpointPolicyDefinition: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteServiceGatewaysError = AzureOpError;
+export type DeleteServiceGatewayError = AzureOpError;
 /** Deletes the specified service gateway. */
-export const DeleteServiceGateways: API.OperationMethod<
-  DeleteServiceGatewaysRequest,
-  DeleteServiceGatewaysResponse,
-  DeleteServiceGatewaysError,
+export const DeleteServiceGateway: API.OperationMethod<
+  DeleteServiceGatewayRequest,
+  DeleteServiceGatewayResponse,
+  DeleteServiceGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteServiceGatewaysRequest,
-  output: DeleteServiceGatewaysResponse,
+  input: DeleteServiceGatewayRequest,
+  output: DeleteServiceGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -116377,6 +116367,21 @@ export const DeleteVirtualNetworkAppliance: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteVirtualNetworkGatewayError = AzureOpError;
+/** Deletes the specified virtual network gateway. */
+export const DeleteVirtualNetworkGateway: API.OperationMethod<
+  DeleteVirtualNetworkGatewayRequest,
+  DeleteVirtualNetworkGatewayResponse,
+  DeleteVirtualNetworkGatewayError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVirtualNetworkGatewayRequest,
+  output: DeleteVirtualNetworkGatewayResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteVirtualNetworkGatewayConnectionError = AzureOpError;
 /** Deletes the specified virtual network Gateway connection. */
 export const DeleteVirtualNetworkGatewayConnection: API.OperationMethod<
@@ -116402,21 +116407,6 @@ export const DeleteVirtualNetworkGatewayNatRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteVirtualNetworkGatewayNatRuleRequest,
   output: DeleteVirtualNetworkGatewayNatRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteVirtualNetworkGatewaysError = AzureOpError;
-/** Deletes the specified virtual network gateway. */
-export const DeleteVirtualNetworkGateways: API.OperationMethod<
-  DeleteVirtualNetworkGatewaysRequest,
-  DeleteVirtualNetworkGatewaysResponse,
-  DeleteVirtualNetworkGatewaysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteVirtualNetworkGatewaysRequest,
-  output: DeleteVirtualNetworkGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -116512,16 +116502,16 @@ export const DeleteVpnConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteVpnGatewaysError = AzureOpError;
+export type DeleteVpnGatewayError = AzureOpError;
 /** Deletes a virtual wan vpn gateway. */
-export const DeleteVpnGateways: API.OperationMethod<
-  DeleteVpnGatewaysRequest,
-  DeleteVpnGatewaysResponse,
-  DeleteVpnGatewaysError,
+export const DeleteVpnGateway: API.OperationMethod<
+  DeleteVpnGatewayRequest,
+  DeleteVpnGatewayResponse,
+  DeleteVpnGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteVpnGatewaysRequest,
-  output: DeleteVpnGatewaysResponse,
+  input: DeleteVpnGatewayRequest,
+  output: DeleteVpnGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -116602,34 +116592,34 @@ export const DisconnectActiveSessions: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DisconnectP2sVpnGatewaysP2sVpnConnectionsError = AzureOpError;
+export type DisconnectP2sVpnGatewayP2sVpnConnectionsError = AzureOpError;
 /** Disconnect P2S vpn connections of the virtual wan P2SVpnGateway in the specified resource group. */
-export const DisconnectP2sVpnGatewaysP2sVpnConnections: API.OperationMethod<
-  DisconnectP2sVpnGatewaysP2sVpnConnectionsRequest,
-  DisconnectP2sVpnGatewaysP2sVpnConnectionsResponse,
-  DisconnectP2sVpnGatewaysP2sVpnConnectionsError,
+export const DisconnectP2sVpnGatewayP2sVpnConnections: API.OperationMethod<
+  DisconnectP2sVpnGatewayP2sVpnConnectionsRequest,
+  DisconnectP2sVpnGatewayP2sVpnConnectionsResponse,
+  DisconnectP2sVpnGatewayP2sVpnConnectionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DisconnectP2sVpnGatewaysP2sVpnConnectionsRequest,
-  output: DisconnectP2sVpnGatewaysP2sVpnConnectionsResponse,
+  input: DisconnectP2sVpnGatewayP2sVpnConnectionsRequest,
+  output: DisconnectP2sVpnGatewayP2sVpnConnectionsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsError =
+export type DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsError =
   AzureOpError;
 /** Disconnect vpn connections of virtual network gateway in the specified resource group. */
-export const DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnections: API.OperationMethod<
-  DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequest,
-  DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsResponse,
-  DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsError,
+export const DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnections: API.OperationMethod<
+  DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequest,
+  DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsResponse,
+  DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input:
-    DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequest,
+    DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequest,
   output:
-    DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsResponse,
+    DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -116998,31 +116988,31 @@ export const GenerateExpressRoutePortLOA: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GenerateP2sVpnGatewaysVpnProfileError = AzureOpError;
+export type GenerateP2sVpnGatewayVpnProfileError = AzureOpError;
 /** Generates VPN profile for P2S client of the P2SVpnGateway in the specified resource group. */
-export const GenerateP2sVpnGatewaysVpnProfile: API.OperationMethod<
-  GenerateP2sVpnGatewaysVpnProfileRequest,
+export const GenerateP2sVpnGatewayVpnProfile: API.OperationMethod<
+  GenerateP2sVpnGatewayVpnProfileRequest,
   VpnProfileResponse,
-  GenerateP2sVpnGatewaysVpnProfileError,
+  GenerateP2sVpnGatewayVpnProfileError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GenerateP2sVpnGatewaysVpnProfileRequest,
+  input: GenerateP2sVpnGatewayVpnProfileRequest,
   output: VpnProfileResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GenerateVirtualNetworkGatewaysVpnProfileError = AzureOpError;
+export type GenerateVirtualNetworkGatewayVpnProfileError = AzureOpError;
 /** Generates VPN profile for P2S client of the virtual network gateway in the specified resource group. Used for IKEV2 and radius based authentication. */
-export const GenerateVirtualNetworkGatewaysVpnProfile: API.OperationMethod<
-  GenerateVirtualNetworkGatewaysVpnProfileRequest,
-  GenerateVirtualNetworkGatewaysVpnProfileResponse,
-  GenerateVirtualNetworkGatewaysVpnProfileError,
+export const GenerateVirtualNetworkGatewayVpnProfile: API.OperationMethod<
+  GenerateVirtualNetworkGatewayVpnProfileRequest,
+  GenerateVirtualNetworkGatewayVpnProfileResponse,
+  GenerateVirtualNetworkGatewayVpnProfileError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GenerateVirtualNetworkGatewaysVpnProfileRequest,
-  output: GenerateVirtualNetworkGatewaysVpnProfileResponse,
+  input: GenerateVirtualNetworkGatewayVpnProfileRequest,
+  output: GenerateVirtualNetworkGatewayVpnProfileResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -117104,6 +117094,21 @@ export const GetAdminRuleCollection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetApplicationGatewayError = AzureOpError;
+/** Gets the specified application gateway. */
+export const GetApplicationGateway: API.OperationMethod<
+  GetApplicationGatewayRequest,
+  GetApplicationGatewayResponse,
+  GetApplicationGatewayError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationGatewayRequest,
+  output: GetApplicationGatewayResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetApplicationGatewayPrivateEndpointConnectionError = AzureOpError;
 /** Gets the specified private endpoint connection on application gateway. */
 export const GetApplicationGatewayPrivateEndpointConnection: API.OperationMethod<
@@ -117119,31 +117124,16 @@ export const GetApplicationGatewayPrivateEndpointConnection: API.OperationMethod
   retry: Retry.Retry,
 }));
 
-export type GetApplicationGatewaysError = AzureOpError;
-/** Gets the specified application gateway. */
-export const GetApplicationGateways: API.OperationMethod<
-  GetApplicationGatewaysRequest,
-  GetApplicationGatewaysResponse,
-  GetApplicationGatewaysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetApplicationGatewaysRequest,
-  output: GetApplicationGatewaysResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetApplicationGatewaysSslPredefinedPolicyError = AzureOpError;
+export type GetApplicationGatewaySslPredefinedPolicyError = AzureOpError;
 /** Gets Ssl predefined policy with the specified policy name. */
-export const GetApplicationGatewaysSslPredefinedPolicy: API.OperationMethod<
-  GetApplicationGatewaysSslPredefinedPolicyRequest,
-  GetApplicationGatewaysSslPredefinedPolicyResponse,
-  GetApplicationGatewaysSslPredefinedPolicyError,
+export const GetApplicationGatewaySslPredefinedPolicy: API.OperationMethod<
+  GetApplicationGatewaySslPredefinedPolicyRequest,
+  GetApplicationGatewaySslPredefinedPolicyResponse,
+  GetApplicationGatewaySslPredefinedPolicyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetApplicationGatewaysSslPredefinedPolicyRequest,
-  output: GetApplicationGatewaysSslPredefinedPolicyResponse,
+  input: GetApplicationGatewaySslPredefinedPolicyRequest,
+  output: GetApplicationGatewaySslPredefinedPolicyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -117556,77 +117546,76 @@ export const GetExpressRouteCrossConnectionPeering: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetExpressRouteGatewaysError = AzureOpError;
+export type GetExpressRouteGatewayError = AzureOpError;
 /** Fetches the details of a ExpressRoute gateway in a resource group. */
-export const GetExpressRouteGateways: API.OperationMethod<
-  GetExpressRouteGatewaysRequest,
-  GetExpressRouteGatewaysResponse,
-  GetExpressRouteGatewaysError,
+export const GetExpressRouteGateway: API.OperationMethod<
+  GetExpressRouteGatewayRequest,
+  GetExpressRouteGatewayResponse,
+  GetExpressRouteGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetExpressRouteGatewaysRequest,
-  output: GetExpressRouteGatewaysResponse,
+  input: GetExpressRouteGatewayRequest,
+  output: GetExpressRouteGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetExpressRouteGatewaysFailoverAllTestsDetailsError = AzureOpError;
+export type GetExpressRouteGatewayFailoverAllTestsDetailsError = AzureOpError;
 /** Retrieves the details of all the failover tests performed on the ExpressRoute gateway for different peering locations. */
-export const GetExpressRouteGatewaysFailoverAllTestsDetails: API.OperationMethod<
-  GetExpressRouteGatewaysFailoverAllTestsDetailsRequest,
-  GetExpressRouteGatewaysFailoverAllTestsDetailsResponse,
-  GetExpressRouteGatewaysFailoverAllTestsDetailsError,
+export const GetExpressRouteGatewayFailoverAllTestsDetails: API.OperationMethod<
+  GetExpressRouteGatewayFailoverAllTestsDetailsRequest,
+  GetExpressRouteGatewayFailoverAllTestsDetailsResponse,
+  GetExpressRouteGatewayFailoverAllTestsDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetExpressRouteGatewaysFailoverAllTestsDetailsRequest,
-  output: GetExpressRouteGatewaysFailoverAllTestsDetailsResponse,
+  input: GetExpressRouteGatewayFailoverAllTestsDetailsRequest,
+  output: GetExpressRouteGatewayFailoverAllTestsDetailsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetExpressRouteGatewaysFailoverSingleTestDetailsError =
-  AzureOpError;
+export type GetExpressRouteGatewayFailoverSingleTestDetailsError = AzureOpError;
 /** Retrieves the details of a particular failover test performed on the ExpressRoute gateway based on the test Guid. */
-export const GetExpressRouteGatewaysFailoverSingleTestDetails: API.OperationMethod<
-  GetExpressRouteGatewaysFailoverSingleTestDetailsRequest,
-  GetExpressRouteGatewaysFailoverSingleTestDetailsResponse,
-  GetExpressRouteGatewaysFailoverSingleTestDetailsError,
+export const GetExpressRouteGatewayFailoverSingleTestDetails: API.OperationMethod<
+  GetExpressRouteGatewayFailoverSingleTestDetailsRequest,
+  GetExpressRouteGatewayFailoverSingleTestDetailsResponse,
+  GetExpressRouteGatewayFailoverSingleTestDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetExpressRouteGatewaysFailoverSingleTestDetailsRequest,
-  output: GetExpressRouteGatewaysFailoverSingleTestDetailsResponse,
+  input: GetExpressRouteGatewayFailoverSingleTestDetailsRequest,
+  output: GetExpressRouteGatewayFailoverSingleTestDetailsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetExpressRouteGatewaysResiliencyInformationError = AzureOpError;
+export type GetExpressRouteGatewayResiliencyInformationError = AzureOpError;
 /** Retrieves the resiliency information for the ExpressRoute gateway. */
-export const GetExpressRouteGatewaysResiliencyInformation: API.OperationMethod<
-  GetExpressRouteGatewaysResiliencyInformationRequest,
-  GetExpressRouteGatewaysResiliencyInformationResponse,
-  GetExpressRouteGatewaysResiliencyInformationError,
+export const GetExpressRouteGatewayResiliencyInformation: API.OperationMethod<
+  GetExpressRouteGatewayResiliencyInformationRequest,
+  GetExpressRouteGatewayResiliencyInformationResponse,
+  GetExpressRouteGatewayResiliencyInformationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetExpressRouteGatewaysResiliencyInformationRequest,
-  output: GetExpressRouteGatewaysResiliencyInformationResponse,
+  input: GetExpressRouteGatewayResiliencyInformationRequest,
+  output: GetExpressRouteGatewayResiliencyInformationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetExpressRouteGatewaysRoutesInformationError = AzureOpError;
+export type GetExpressRouteGatewayRoutesInformationError = AzureOpError;
 /** Retrieves the route sets information for the ExpressRoute gateway. */
-export const GetExpressRouteGatewaysRoutesInformation: API.OperationMethod<
-  GetExpressRouteGatewaysRoutesInformationRequest,
-  GetExpressRouteGatewaysRoutesInformationResponse,
-  GetExpressRouteGatewaysRoutesInformationError,
+export const GetExpressRouteGatewayRoutesInformation: API.OperationMethod<
+  GetExpressRouteGatewayRoutesInformationRequest,
+  GetExpressRouteGatewayRoutesInformationResponse,
+  GetExpressRouteGatewayRoutesInformationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetExpressRouteGatewaysRoutesInformationRequest,
-  output: GetExpressRouteGatewaysRoutesInformationResponse,
+  input: GetExpressRouteGatewayRoutesInformationRequest,
+  output: GetExpressRouteGatewayRoutesInformationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -118097,16 +118086,16 @@ export const GetLoadBalancerProbe: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetLocalNetworkGatewaysError = AzureOpError;
+export type GetLocalNetworkGatewayError = AzureOpError;
 /** Gets the specified local network gateway in a resource group. */
-export const GetLocalNetworkGateways: API.OperationMethod<
-  GetLocalNetworkGatewaysRequest,
-  GetLocalNetworkGatewaysResponse,
-  GetLocalNetworkGatewaysError,
+export const GetLocalNetworkGateway: API.OperationMethod<
+  GetLocalNetworkGatewayRequest,
+  GetLocalNetworkGatewayResponse,
+  GetLocalNetworkGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetLocalNetworkGatewaysRequest,
-  output: GetLocalNetworkGatewaysResponse,
+  input: GetLocalNetworkGatewayRequest,
+  output: GetLocalNetworkGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -118127,16 +118116,16 @@ export const GetManagementGroupNetworkManagerConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetNatGatewaysError = AzureOpError;
+export type GetNatGatewayError = AzureOpError;
 /** Gets the specified nat gateway in a specified resource group. */
-export const GetNatGateways: API.OperationMethod<
-  GetNatGatewaysRequest,
-  GetNatGatewaysResponse,
-  GetNatGatewaysError,
+export const GetNatGateway: API.OperationMethod<
+  GetNatGatewayRequest,
+  GetNatGatewayResponse,
+  GetNatGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetNatGatewaysRequest,
-  output: GetNatGatewaysResponse,
+  input: GetNatGatewayRequest,
+  output: GetNatGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -118622,45 +118611,45 @@ export const GetNetworkWatcherVMSecurityRules: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetP2sVpnGatewaysError = AzureOpError;
+export type GetP2sVpnGatewayError = AzureOpError;
 /** Retrieves the details of a virtual wan p2s vpn gateway. */
-export const GetP2sVpnGateways: API.OperationMethod<
-  GetP2sVpnGatewaysRequest,
-  GetP2sVpnGatewaysResponse,
-  GetP2sVpnGatewaysError,
+export const GetP2sVpnGateway: API.OperationMethod<
+  GetP2sVpnGatewayRequest,
+  GetP2sVpnGatewayResponse,
+  GetP2sVpnGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetP2sVpnGatewaysRequest,
-  output: GetP2sVpnGatewaysResponse,
+  input: GetP2sVpnGatewayRequest,
+  output: GetP2sVpnGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetP2sVpnGatewaysP2sVpnConnectionHealthError = AzureOpError;
+export type GetP2sVpnGatewayP2sVpnConnectionHealthError = AzureOpError;
 /** Gets the connection health of P2S clients of the virtual wan P2SVpnGateway in the specified resource group. */
-export const GetP2sVpnGatewaysP2sVpnConnectionHealth: API.OperationMethod<
-  GetP2sVpnGatewaysP2sVpnConnectionHealthRequest,
-  GetP2sVpnGatewaysP2sVpnConnectionHealthResponse,
-  GetP2sVpnGatewaysP2sVpnConnectionHealthError,
+export const GetP2sVpnGatewayP2sVpnConnectionHealth: API.OperationMethod<
+  GetP2sVpnGatewayP2sVpnConnectionHealthRequest,
+  GetP2sVpnGatewayP2sVpnConnectionHealthResponse,
+  GetP2sVpnGatewayP2sVpnConnectionHealthError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetP2sVpnGatewaysP2sVpnConnectionHealthRequest,
-  output: GetP2sVpnGatewaysP2sVpnConnectionHealthResponse,
+  input: GetP2sVpnGatewayP2sVpnConnectionHealthRequest,
+  output: GetP2sVpnGatewayP2sVpnConnectionHealthResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedError = AzureOpError;
+export type GetP2sVpnGatewayP2sVpnConnectionHealthDetailedError = AzureOpError;
 /** Gets the sas url to get the connection health detail of P2S clients of the virtual wan P2SVpnGateway in the specified resource group. */
-export const GetP2sVpnGatewaysP2sVpnConnectionHealthDetailed: API.OperationMethod<
-  GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequest,
+export const GetP2sVpnGatewayP2sVpnConnectionHealthDetailed: API.OperationMethod<
+  GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequest,
   P2SVpnConnectionHealth,
-  GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedError,
+  GetP2sVpnGatewayP2sVpnConnectionHealthDetailedError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequest,
+  input: GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequest,
   output: P2SVpnConnectionHealth,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -119102,45 +119091,45 @@ export const GetServiceEndpointPolicyDefinition: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetServiceGatewaysError = AzureOpError;
+export type GetServiceGatewayError = AzureOpError;
 /** Gets the specified service gateway. */
-export const GetServiceGateways: API.OperationMethod<
-  GetServiceGatewaysRequest,
-  GetServiceGatewaysResponse,
-  GetServiceGatewaysError,
+export const GetServiceGateway: API.OperationMethod<
+  GetServiceGatewayRequest,
+  GetServiceGatewayResponse,
+  GetServiceGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetServiceGatewaysRequest,
-  output: GetServiceGatewaysResponse,
+  input: GetServiceGatewayRequest,
+  output: GetServiceGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetServiceGatewaysAddressLocationsError = AzureOpError;
+export type GetServiceGatewayAddressLocationsError = AzureOpError;
 /** Get address locations in service gateway. */
-export const GetServiceGatewaysAddressLocations: API.OperationMethod<
-  GetServiceGatewaysAddressLocationsRequest,
+export const GetServiceGatewayAddressLocations: API.OperationMethod<
+  GetServiceGatewayAddressLocationsRequest,
   GetServiceGatewayAddressLocationsResult,
-  GetServiceGatewaysAddressLocationsError,
+  GetServiceGatewayAddressLocationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetServiceGatewaysAddressLocationsRequest,
+  input: GetServiceGatewayAddressLocationsRequest,
   output: GetServiceGatewayAddressLocationsResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetServiceGatewaysServicesError = AzureOpError;
+export type GetServiceGatewayServicesError = AzureOpError;
 /** Get Services in service gateway. */
-export const GetServiceGatewaysServices: API.OperationMethod<
-  GetServiceGatewaysServicesRequest,
+export const GetServiceGatewayServices: API.OperationMethod<
+  GetServiceGatewayServicesRequest,
   GetServiceGatewayServicesResult,
-  GetServiceGatewaysServicesError,
+  GetServiceGatewayServicesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetServiceGatewaysServicesRequest,
+  input: GetServiceGatewayServicesRequest,
   output: GetServiceGatewayServicesResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -119417,6 +119406,51 @@ export const GetVirtualNetworkAppliance: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetVirtualNetworkGatewayError = AzureOpError;
+/** Gets the specified virtual network gateway by resource group. */
+export const GetVirtualNetworkGateway: API.OperationMethod<
+  GetVirtualNetworkGatewayRequest,
+  GetVirtualNetworkGatewayResponse,
+  GetVirtualNetworkGatewayError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualNetworkGatewayRequest,
+  output: GetVirtualNetworkGatewayResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualNetworkGatewayAdvertisedRoutesError = AzureOpError;
+/** This operation retrieves a list of routes the virtual network gateway is advertising to the specified peer. */
+export const GetVirtualNetworkGatewayAdvertisedRoutes: API.OperationMethod<
+  GetVirtualNetworkGatewayAdvertisedRoutesRequest,
+  GatewayRouteListResult,
+  GetVirtualNetworkGatewayAdvertisedRoutesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualNetworkGatewayAdvertisedRoutesRequest,
+  output: GatewayRouteListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualNetworkGatewayBgpPeerStatusError = AzureOpError;
+/** The GetBgpPeerStatus operation retrieves the status of all BGP peers. */
+export const GetVirtualNetworkGatewayBgpPeerStatus: API.OperationMethod<
+  GetVirtualNetworkGatewayBgpPeerStatusRequest,
+  BgpPeerStatusListResult,
+  GetVirtualNetworkGatewayBgpPeerStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualNetworkGatewayBgpPeerStatusRequest,
+  output: BgpPeerStatusListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetVirtualNetworkGatewayConnectionError = AzureOpError;
 /** Gets the specified virtual network gateway connection by resource group. */
 export const GetVirtualNetworkGatewayConnection: API.OperationMethod<
@@ -119462,6 +119496,67 @@ export const GetVirtualNetworkGatewayConnectionSharedKey: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetVirtualNetworkGatewayEffectiveRoutesError = AzureOpError;
+/** This operation retrieves a list of effective routes for the virtual network gateway. */
+export const GetVirtualNetworkGatewayEffectiveRoutes: API.OperationMethod<
+  GetVirtualNetworkGatewayEffectiveRoutesRequest,
+  GatewayEffectiveRouteListResult,
+  GetVirtualNetworkGatewayEffectiveRoutesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualNetworkGatewayEffectiveRoutesRequest,
+  output: GatewayEffectiveRouteListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualNetworkGatewayFailoverAllTestDetailsError = AzureOpError;
+/** This operation retrieves the details of all the failover tests performed on the gateway for different peering locations */
+export const GetVirtualNetworkGatewayFailoverAllTestDetails: API.OperationMethod<
+  GetVirtualNetworkGatewayFailoverAllTestDetailsRequest,
+  GetVirtualNetworkGatewayFailoverAllTestDetailsResponse,
+  GetVirtualNetworkGatewayFailoverAllTestDetailsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualNetworkGatewayFailoverAllTestDetailsRequest,
+  output: GetVirtualNetworkGatewayFailoverAllTestDetailsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualNetworkGatewayFailoverSingleTestDetailsError =
+  AzureOpError;
+/** This operation retrieves the details of a particular failover test performed on the gateway based on the test Guid */
+export const GetVirtualNetworkGatewayFailoverSingleTestDetails: API.OperationMethod<
+  GetVirtualNetworkGatewayFailoverSingleTestDetailsRequest,
+  GetVirtualNetworkGatewayFailoverSingleTestDetailsResponse,
+  GetVirtualNetworkGatewayFailoverSingleTestDetailsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualNetworkGatewayFailoverSingleTestDetailsRequest,
+  output: GetVirtualNetworkGatewayFailoverSingleTestDetailsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualNetworkGatewayLearnedRoutesError = AzureOpError;
+/** This operation retrieves a list of routes the virtual network gateway has learned, including routes learned from BGP peers. */
+export const GetVirtualNetworkGatewayLearnedRoutes: API.OperationMethod<
+  GetVirtualNetworkGatewayLearnedRoutesRequest,
+  GatewayRouteListResult,
+  GetVirtualNetworkGatewayLearnedRoutesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualNetworkGatewayLearnedRoutesRequest,
+  output: GatewayRouteListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetVirtualNetworkGatewayNatRuleError = AzureOpError;
 /** Retrieves the details of a nat rule. */
 export const GetVirtualNetworkGatewayNatRule: API.OperationMethod<
@@ -119477,184 +119572,78 @@ export const GetVirtualNetworkGatewayNatRule: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetVirtualNetworkGatewaysError = AzureOpError;
-/** Gets the specified virtual network gateway by resource group. */
-export const GetVirtualNetworkGateways: API.OperationMethod<
-  GetVirtualNetworkGatewaysRequest,
-  GetVirtualNetworkGatewaysResponse,
-  GetVirtualNetworkGatewaysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualNetworkGatewaysRequest,
-  output: GetVirtualNetworkGatewaysResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVirtualNetworkGatewaysAdvertisedRoutesError = AzureOpError;
-/** This operation retrieves a list of routes the virtual network gateway is advertising to the specified peer. */
-export const GetVirtualNetworkGatewaysAdvertisedRoutes: API.OperationMethod<
-  GetVirtualNetworkGatewaysAdvertisedRoutesRequest,
-  GatewayRouteListResult,
-  GetVirtualNetworkGatewaysAdvertisedRoutesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualNetworkGatewaysAdvertisedRoutesRequest,
-  output: GatewayRouteListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVirtualNetworkGatewaysBgpPeerStatusError = AzureOpError;
-/** The GetBgpPeerStatus operation retrieves the status of all BGP peers. */
-export const GetVirtualNetworkGatewaysBgpPeerStatus: API.OperationMethod<
-  GetVirtualNetworkGatewaysBgpPeerStatusRequest,
-  BgpPeerStatusListResult,
-  GetVirtualNetworkGatewaysBgpPeerStatusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualNetworkGatewaysBgpPeerStatusRequest,
-  output: BgpPeerStatusListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVirtualNetworkGatewaysEffectiveRoutesError = AzureOpError;
-/** This operation retrieves a list of effective routes for the virtual network gateway. */
-export const GetVirtualNetworkGatewaysEffectiveRoutes: API.OperationMethod<
-  GetVirtualNetworkGatewaysEffectiveRoutesRequest,
-  GatewayEffectiveRouteListResult,
-  GetVirtualNetworkGatewaysEffectiveRoutesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualNetworkGatewaysEffectiveRoutesRequest,
-  output: GatewayEffectiveRouteListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVirtualNetworkGatewaysFailoverAllTestDetailsError = AzureOpError;
-/** This operation retrieves the details of all the failover tests performed on the gateway for different peering locations */
-export const GetVirtualNetworkGatewaysFailoverAllTestDetails: API.OperationMethod<
-  GetVirtualNetworkGatewaysFailoverAllTestDetailsRequest,
-  GetVirtualNetworkGatewaysFailoverAllTestDetailsResponse,
-  GetVirtualNetworkGatewaysFailoverAllTestDetailsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualNetworkGatewaysFailoverAllTestDetailsRequest,
-  output: GetVirtualNetworkGatewaysFailoverAllTestDetailsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVirtualNetworkGatewaysFailoverSingleTestDetailsError =
-  AzureOpError;
-/** This operation retrieves the details of a particular failover test performed on the gateway based on the test Guid */
-export const GetVirtualNetworkGatewaysFailoverSingleTestDetails: API.OperationMethod<
-  GetVirtualNetworkGatewaysFailoverSingleTestDetailsRequest,
-  GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponse,
-  GetVirtualNetworkGatewaysFailoverSingleTestDetailsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualNetworkGatewaysFailoverSingleTestDetailsRequest,
-  output: GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVirtualNetworkGatewaysLearnedRoutesError = AzureOpError;
-/** This operation retrieves a list of routes the virtual network gateway has learned, including routes learned from BGP peers. */
-export const GetVirtualNetworkGatewaysLearnedRoutes: API.OperationMethod<
-  GetVirtualNetworkGatewaysLearnedRoutesRequest,
-  GatewayRouteListResult,
-  GetVirtualNetworkGatewaysLearnedRoutesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualNetworkGatewaysLearnedRoutesRequest,
-  output: GatewayRouteListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVirtualNetworkGatewaysResiliencyInformationError = AzureOpError;
+export type GetVirtualNetworkGatewayResiliencyInformationError = AzureOpError;
 /** This operation retrieves the resiliency information for an Express Route Gateway, including the gateway's current resiliency score and recommendations to further improve the score */
-export const GetVirtualNetworkGatewaysResiliencyInformation: API.OperationMethod<
-  GetVirtualNetworkGatewaysResiliencyInformationRequest,
+export const GetVirtualNetworkGatewayResiliencyInformation: API.OperationMethod<
+  GetVirtualNetworkGatewayResiliencyInformationRequest,
   GatewayResiliencyInformation,
-  GetVirtualNetworkGatewaysResiliencyInformationError,
+  GetVirtualNetworkGatewayResiliencyInformationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualNetworkGatewaysResiliencyInformationRequest,
+  input: GetVirtualNetworkGatewayResiliencyInformationRequest,
   output: GatewayResiliencyInformation,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetVirtualNetworkGatewaysRoutesInformationError = AzureOpError;
+export type GetVirtualNetworkGatewayRoutesInformationError = AzureOpError;
 /** This operation retrieves the route set information for an Express Route Gateway based on their resiliency */
-export const GetVirtualNetworkGatewaysRoutesInformation: API.OperationMethod<
-  GetVirtualNetworkGatewaysRoutesInformationRequest,
+export const GetVirtualNetworkGatewayRoutesInformation: API.OperationMethod<
+  GetVirtualNetworkGatewayRoutesInformationRequest,
   GatewayRouteSetsInformation,
-  GetVirtualNetworkGatewaysRoutesInformationError,
+  GetVirtualNetworkGatewayRoutesInformationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualNetworkGatewaysRoutesInformationRequest,
+  input: GetVirtualNetworkGatewayRoutesInformationRequest,
   output: GatewayRouteSetsInformation,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetVirtualNetworkGatewaysVpnclientConnectionHealthError =
+export type GetVirtualNetworkGatewayVpnclientConnectionHealthError =
   AzureOpError;
 /** Get VPN client connection health detail per P2S client connection of the virtual network gateway in the specified resource group. */
-export const GetVirtualNetworkGatewaysVpnclientConnectionHealth: API.OperationMethod<
-  GetVirtualNetworkGatewaysVpnclientConnectionHealthRequest,
+export const GetVirtualNetworkGatewayVpnclientConnectionHealth: API.OperationMethod<
+  GetVirtualNetworkGatewayVpnclientConnectionHealthRequest,
   VpnClientConnectionHealthDetailListResult,
-  GetVirtualNetworkGatewaysVpnclientConnectionHealthError,
+  GetVirtualNetworkGatewayVpnclientConnectionHealthError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualNetworkGatewaysVpnclientConnectionHealthRequest,
+  input: GetVirtualNetworkGatewayVpnclientConnectionHealthRequest,
   output: VpnClientConnectionHealthDetailListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetVirtualNetworkGatewaysVpnclientIpsecParametersError =
+export type GetVirtualNetworkGatewayVpnclientIpsecParametersError =
   AzureOpError;
 /** The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider. */
-export const GetVirtualNetworkGatewaysVpnclientIpsecParameters: API.OperationMethod<
-  GetVirtualNetworkGatewaysVpnclientIpsecParametersRequest,
+export const GetVirtualNetworkGatewayVpnclientIpsecParameters: API.OperationMethod<
+  GetVirtualNetworkGatewayVpnclientIpsecParametersRequest,
   VpnClientIPsecParameters,
-  GetVirtualNetworkGatewaysVpnclientIpsecParametersError,
+  GetVirtualNetworkGatewayVpnclientIpsecParametersError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualNetworkGatewaysVpnclientIpsecParametersRequest,
+  input: GetVirtualNetworkGatewayVpnclientIpsecParametersRequest,
   output: VpnClientIPsecParameters,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetVirtualNetworkGatewaysVpnProfilePackageUrlError = AzureOpError;
+export type GetVirtualNetworkGatewayVpnProfilePackageUrlError = AzureOpError;
 /** Gets pre-generated VPN profile for P2S client of the virtual network gateway in the specified resource group. The profile needs to be generated first using generateVpnProfile. */
-export const GetVirtualNetworkGatewaysVpnProfilePackageUrl: API.OperationMethod<
-  GetVirtualNetworkGatewaysVpnProfilePackageUrlRequest,
-  GetVirtualNetworkGatewaysVpnProfilePackageUrlResponse,
-  GetVirtualNetworkGatewaysVpnProfilePackageUrlError,
+export const GetVirtualNetworkGatewayVpnProfilePackageUrl: API.OperationMethod<
+  GetVirtualNetworkGatewayVpnProfilePackageUrlRequest,
+  GetVirtualNetworkGatewayVpnProfilePackageUrlResponse,
+  GetVirtualNetworkGatewayVpnProfilePackageUrlError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualNetworkGatewaysVpnProfilePackageUrlRequest,
-  output: GetVirtualNetworkGatewaysVpnProfilePackageUrlResponse,
+  input: GetVirtualNetworkGatewayVpnProfilePackageUrlRequest,
+  output: GetVirtualNetworkGatewayVpnProfilePackageUrlResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -119750,16 +119739,16 @@ export const GetVpnConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetVpnGatewaysError = AzureOpError;
+export type GetVpnGatewayError = AzureOpError;
 /** Retrieves the details of a virtual wan vpn gateway. */
-export const GetVpnGateways: API.OperationMethod<
-  GetVpnGatewaysRequest,
-  GetVpnGatewaysResponse,
-  GetVpnGatewaysError,
+export const GetVpnGateway: API.OperationMethod<
+  GetVpnGatewayRequest,
+  GetVpnGatewayResponse,
+  GetVpnGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVpnGatewaysRequest,
-  output: GetVpnGatewaysResponse,
+  input: GetVpnGatewayRequest,
+  output: GetVpnGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -119975,46 +119964,46 @@ export const InterconnectGroupsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type InvokeVirtualNetworkGatewaysAbortMigrationError = AzureOpError;
+export type InvokeVirtualNetworkGatewayAbortMigrationError = AzureOpError;
 /** Trigger abort migration for the virtual network gateway. */
-export const InvokeVirtualNetworkGatewaysAbortMigration: API.OperationMethod<
-  InvokeVirtualNetworkGatewaysAbortMigrationRequest,
-  InvokeVirtualNetworkGatewaysAbortMigrationResponse,
-  InvokeVirtualNetworkGatewaysAbortMigrationError,
+export const InvokeVirtualNetworkGatewayAbortMigration: API.OperationMethod<
+  InvokeVirtualNetworkGatewayAbortMigrationRequest,
+  InvokeVirtualNetworkGatewayAbortMigrationResponse,
+  InvokeVirtualNetworkGatewayAbortMigrationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InvokeVirtualNetworkGatewaysAbortMigrationRequest,
-  output: InvokeVirtualNetworkGatewaysAbortMigrationResponse,
+  input: InvokeVirtualNetworkGatewayAbortMigrationRequest,
+  output: InvokeVirtualNetworkGatewayAbortMigrationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type InvokeVirtualNetworkGatewaysCommitMigrationError = AzureOpError;
+export type InvokeVirtualNetworkGatewayCommitMigrationError = AzureOpError;
 /** Trigger commit migration for the virtual network gateway. */
-export const InvokeVirtualNetworkGatewaysCommitMigration: API.OperationMethod<
-  InvokeVirtualNetworkGatewaysCommitMigrationRequest,
-  InvokeVirtualNetworkGatewaysCommitMigrationResponse,
-  InvokeVirtualNetworkGatewaysCommitMigrationError,
+export const InvokeVirtualNetworkGatewayCommitMigration: API.OperationMethod<
+  InvokeVirtualNetworkGatewayCommitMigrationRequest,
+  InvokeVirtualNetworkGatewayCommitMigrationResponse,
+  InvokeVirtualNetworkGatewayCommitMigrationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InvokeVirtualNetworkGatewaysCommitMigrationRequest,
-  output: InvokeVirtualNetworkGatewaysCommitMigrationResponse,
+  input: InvokeVirtualNetworkGatewayCommitMigrationRequest,
+  output: InvokeVirtualNetworkGatewayCommitMigrationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type InvokeVirtualNetworkGatewaysPrepareMigrationError = AzureOpError;
+export type InvokeVirtualNetworkGatewayPrepareMigrationError = AzureOpError;
 /** Trigger prepare migration for the virtual network gateway. */
-export const InvokeVirtualNetworkGatewaysPrepareMigration: API.OperationMethod<
-  InvokeVirtualNetworkGatewaysPrepareMigrationRequest,
-  InvokeVirtualNetworkGatewaysPrepareMigrationResponse,
-  InvokeVirtualNetworkGatewaysPrepareMigrationError,
+export const InvokeVirtualNetworkGatewayPrepareMigration: API.OperationMethod<
+  InvokeVirtualNetworkGatewayPrepareMigrationRequest,
+  InvokeVirtualNetworkGatewayPrepareMigrationResponse,
+  InvokeVirtualNetworkGatewayPrepareMigrationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InvokeVirtualNetworkGatewaysPrepareMigrationRequest,
-  output: InvokeVirtualNetworkGatewaysPrepareMigrationResponse,
+  input: InvokeVirtualNetworkGatewayPrepareMigrationRequest,
+  output: InvokeVirtualNetworkGatewayPrepareMigrationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -120125,6 +120114,112 @@ export const ListAdminRules: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListApplicationGatewayAllError = AzureOpError;
+/** Gets all the application gateways in a subscription. */
+export const ListApplicationGatewayAll: API.OperationMethod<
+  ListApplicationGatewayAllRequest,
+  ApplicationGatewayListResult,
+  ListApplicationGatewayAllError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationGatewayAllRequest,
+  output: ApplicationGatewayListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationGatewayAvailableRequestHeadersError = AzureOpError;
+/** Lists all available request headers. */
+export const ListApplicationGatewayAvailableRequestHeaders: API.OperationMethod<
+  ListApplicationGatewayAvailableRequestHeadersRequest,
+  ListApplicationGatewayAvailableRequestHeadersResponse,
+  ListApplicationGatewayAvailableRequestHeadersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationGatewayAvailableRequestHeadersRequest,
+  output: ListApplicationGatewayAvailableRequestHeadersResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationGatewayAvailableResponseHeadersError = AzureOpError;
+/** Lists all available response headers. */
+export const ListApplicationGatewayAvailableResponseHeaders: API.OperationMethod<
+  ListApplicationGatewayAvailableResponseHeadersRequest,
+  ListApplicationGatewayAvailableResponseHeadersResponse,
+  ListApplicationGatewayAvailableResponseHeadersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationGatewayAvailableResponseHeadersRequest,
+  output: ListApplicationGatewayAvailableResponseHeadersResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationGatewayAvailableServerVariablesError = AzureOpError;
+/** Lists all available server variables. */
+export const ListApplicationGatewayAvailableServerVariables: API.OperationMethod<
+  ListApplicationGatewayAvailableServerVariablesRequest,
+  ListApplicationGatewayAvailableServerVariablesResponse,
+  ListApplicationGatewayAvailableServerVariablesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationGatewayAvailableServerVariablesRequest,
+  output: ListApplicationGatewayAvailableServerVariablesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationGatewayAvailableSslOptionsError = AzureOpError;
+/** Lists available Ssl options for configuring Ssl policy. */
+export const ListApplicationGatewayAvailableSslOptions: API.OperationMethod<
+  ListApplicationGatewayAvailableSslOptionsRequest,
+  ListApplicationGatewayAvailableSslOptionsResponse,
+  ListApplicationGatewayAvailableSslOptionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationGatewayAvailableSslOptionsRequest,
+  output: ListApplicationGatewayAvailableSslOptionsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationGatewayAvailableSslPredefinedPoliciesError =
+  AzureOpError;
+/** Lists all SSL predefined policies for configuring Ssl policy. */
+export const ListApplicationGatewayAvailableSslPredefinedPolicies: API.OperationMethod<
+  ListApplicationGatewayAvailableSslPredefinedPoliciesRequest,
+  ApplicationGatewayAvailableSslPredefinedPolicies,
+  ListApplicationGatewayAvailableSslPredefinedPoliciesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationGatewayAvailableSslPredefinedPoliciesRequest,
+  output: ApplicationGatewayAvailableSslPredefinedPolicies,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationGatewayAvailableWafRuleSetsError = AzureOpError;
+/** Lists all available web application firewall rule sets. */
+export const ListApplicationGatewayAvailableWafRuleSets: API.OperationMethod<
+  ListApplicationGatewayAvailableWafRuleSetsRequest,
+  ApplicationGatewayAvailableWafRuleSetsResult,
+  ListApplicationGatewayAvailableWafRuleSetsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationGatewayAvailableWafRuleSetsRequest,
+  output: ApplicationGatewayAvailableWafRuleSetsResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListApplicationGatewayPrivateEndpointConnectionsError =
   AzureOpError;
 /** Lists all private endpoint connections on an application gateway. */
@@ -120166,112 +120261,6 @@ export const ListApplicationGateways: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListApplicationGatewaysRequest,
   output: ApplicationGatewayListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListApplicationGatewaysAllError = AzureOpError;
-/** Gets all the application gateways in a subscription. */
-export const ListApplicationGatewaysAll: API.OperationMethod<
-  ListApplicationGatewaysAllRequest,
-  ApplicationGatewayListResult,
-  ListApplicationGatewaysAllError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListApplicationGatewaysAllRequest,
-  output: ApplicationGatewayListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListApplicationGatewaysAvailableRequestHeadersError = AzureOpError;
-/** Lists all available request headers. */
-export const ListApplicationGatewaysAvailableRequestHeaders: API.OperationMethod<
-  ListApplicationGatewaysAvailableRequestHeadersRequest,
-  ListApplicationGatewaysAvailableRequestHeadersResponse,
-  ListApplicationGatewaysAvailableRequestHeadersError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListApplicationGatewaysAvailableRequestHeadersRequest,
-  output: ListApplicationGatewaysAvailableRequestHeadersResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListApplicationGatewaysAvailableResponseHeadersError = AzureOpError;
-/** Lists all available response headers. */
-export const ListApplicationGatewaysAvailableResponseHeaders: API.OperationMethod<
-  ListApplicationGatewaysAvailableResponseHeadersRequest,
-  ListApplicationGatewaysAvailableResponseHeadersResponse,
-  ListApplicationGatewaysAvailableResponseHeadersError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListApplicationGatewaysAvailableResponseHeadersRequest,
-  output: ListApplicationGatewaysAvailableResponseHeadersResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListApplicationGatewaysAvailableServerVariablesError = AzureOpError;
-/** Lists all available server variables. */
-export const ListApplicationGatewaysAvailableServerVariables: API.OperationMethod<
-  ListApplicationGatewaysAvailableServerVariablesRequest,
-  ListApplicationGatewaysAvailableServerVariablesResponse,
-  ListApplicationGatewaysAvailableServerVariablesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListApplicationGatewaysAvailableServerVariablesRequest,
-  output: ListApplicationGatewaysAvailableServerVariablesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListApplicationGatewaysAvailableSslOptionsError = AzureOpError;
-/** Lists available Ssl options for configuring Ssl policy. */
-export const ListApplicationGatewaysAvailableSslOptions: API.OperationMethod<
-  ListApplicationGatewaysAvailableSslOptionsRequest,
-  ListApplicationGatewaysAvailableSslOptionsResponse,
-  ListApplicationGatewaysAvailableSslOptionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListApplicationGatewaysAvailableSslOptionsRequest,
-  output: ListApplicationGatewaysAvailableSslOptionsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListApplicationGatewaysAvailableSslPredefinedPoliciesError =
-  AzureOpError;
-/** Lists all SSL predefined policies for configuring Ssl policy. */
-export const ListApplicationGatewaysAvailableSslPredefinedPolicies: API.OperationMethod<
-  ListApplicationGatewaysAvailableSslPredefinedPoliciesRequest,
-  ApplicationGatewayAvailableSslPredefinedPolicies,
-  ListApplicationGatewaysAvailableSslPredefinedPoliciesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListApplicationGatewaysAvailableSslPredefinedPoliciesRequest,
-  output: ApplicationGatewayAvailableSslPredefinedPolicies,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListApplicationGatewaysAvailableWafRuleSetsError = AzureOpError;
-/** Lists all available web application firewall rule sets. */
-export const ListApplicationGatewaysAvailableWafRuleSets: API.OperationMethod<
-  ListApplicationGatewaysAvailableWafRuleSetsRequest,
-  ApplicationGatewayAvailableWafRuleSetsResult,
-  ListApplicationGatewaysAvailableWafRuleSetsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListApplicationGatewaysAvailableWafRuleSetsRequest,
-  output: ApplicationGatewayAvailableWafRuleSetsResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -120954,30 +120943,30 @@ export const ListExpressRouteCrossConnections: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListExpressRouteGatewaysByResourceGroupError = AzureOpError;
+export type ListExpressRouteGatewayByResourceGroupError = AzureOpError;
 /** Lists ExpressRoute gateways in a given resource group. */
-export const ListExpressRouteGatewaysByResourceGroup: API.OperationMethod<
-  ListExpressRouteGatewaysByResourceGroupRequest,
+export const ListExpressRouteGatewayByResourceGroup: API.OperationMethod<
+  ListExpressRouteGatewayByResourceGroupRequest,
   ExpressRouteGatewayList,
-  ListExpressRouteGatewaysByResourceGroupError,
+  ListExpressRouteGatewayByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListExpressRouteGatewaysByResourceGroupRequest,
+  input: ListExpressRouteGatewayByResourceGroupRequest,
   output: ExpressRouteGatewayList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListExpressRouteGatewaysBySubscriptionError = AzureOpError;
+export type ListExpressRouteGatewayBySubscriptionError = AzureOpError;
 /** Lists ExpressRoute gateways under a given subscription. */
-export const ListExpressRouteGatewaysBySubscription: API.OperationMethod<
-  ListExpressRouteGatewaysBySubscriptionRequest,
+export const ListExpressRouteGatewayBySubscription: API.OperationMethod<
+  ListExpressRouteGatewayBySubscriptionRequest,
   ExpressRouteGatewayList,
-  ListExpressRouteGatewaysBySubscriptionError,
+  ListExpressRouteGatewayBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListExpressRouteGatewaysBySubscriptionRequest,
+  input: ListExpressRouteGatewayBySubscriptionRequest,
   output: ExpressRouteGatewayList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -121629,6 +121618,21 @@ export const ListManagementGroupNetworkManagerConnections: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListNatGatewayAllError = AzureOpError;
+/** Gets all the Nat Gateways in a subscription. */
+export const ListNatGatewayAll: API.OperationMethod<
+  ListNatGatewayAllRequest,
+  NatGatewayListResult,
+  ListNatGatewayAllError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNatGatewayAllRequest,
+  output: NatGatewayListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListNatGatewaysError = AzureOpError;
 /** Gets all nat gateways in a resource group. */
 export const ListNatGateways: API.OperationMethod<
@@ -121638,21 +121642,6 @@ export const ListNatGateways: API.OperationMethod<
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListNatGatewaysRequest,
-  output: NatGatewayListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListNatGatewaysAllError = AzureOpError;
-/** Gets all the Nat Gateways in a subscription. */
-export const ListNatGatewaysAll: API.OperationMethod<
-  ListNatGatewaysAllRequest,
-  NatGatewayListResult,
-  ListNatGatewaysAllError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListNatGatewaysAllRequest,
   output: NatGatewayListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -122235,6 +122224,21 @@ export const ListOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListP2sVpnGatewayByResourceGroupError = AzureOpError;
+/** Lists all the P2SVpnGateways in a resource group. */
+export const ListP2sVpnGatewayByResourceGroup: API.OperationMethod<
+  ListP2sVpnGatewayByResourceGroupRequest,
+  ListP2SVpnGatewaysResult,
+  ListP2sVpnGatewayByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListP2sVpnGatewayByResourceGroupRequest,
+  output: ListP2SVpnGatewaysResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListP2sVpnGatewaysError = AzureOpError;
 /** Lists all the P2SVpnGateways in a subscription. */
 export const ListP2sVpnGateways: API.OperationMethod<
@@ -122244,21 +122248,6 @@ export const ListP2sVpnGateways: API.OperationMethod<
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListP2sVpnGatewaysRequest,
-  output: ListP2SVpnGatewaysResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListP2sVpnGatewaysByResourceGroupError = AzureOpError;
-/** Lists all the P2SVpnGateways in a resource group. */
-export const ListP2sVpnGatewaysByResourceGroup: API.OperationMethod<
-  ListP2sVpnGatewaysByResourceGroupRequest,
-  ListP2SVpnGatewaysResult,
-  ListP2sVpnGatewaysByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListP2sVpnGatewaysByResourceGroupRequest,
   output: ListP2SVpnGatewaysResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -122887,6 +122876,21 @@ export const ListServiceEndpointPolicyDefinitionByResourceGroup: API.OperationMe
   retry: Retry.Retry,
 }));
 
+export type ListServiceGatewayAllError = AzureOpError;
+/** Gets all the service gateways in a subscription. */
+export const ListServiceGatewayAll: API.OperationMethod<
+  ListServiceGatewayAllRequest,
+  ServiceGatewayListResult,
+  ListServiceGatewayAllError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListServiceGatewayAllRequest,
+  output: ServiceGatewayListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListServiceGatewaysError = AzureOpError;
 /** Gets all the service gateways in a resource group. */
 export const ListServiceGateways: API.OperationMethod<
@@ -122896,21 +122900,6 @@ export const ListServiceGateways: API.OperationMethod<
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListServiceGatewaysRequest,
-  output: ServiceGatewayListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListServiceGatewaysAllError = AzureOpError;
-/** Gets all the service gateways in a subscription. */
-export const ListServiceGatewaysAll: API.OperationMethod<
-  ListServiceGatewaysAllRequest,
-  ServiceGatewayListResult,
-  ListServiceGatewaysAllError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListServiceGatewaysAllRequest,
   output: ServiceGatewayListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -123277,6 +123266,21 @@ export const ListVirtualNetworkGatewayConnections: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListVirtualNetworkGatewayConnections2Error = AzureOpError;
+/** Gets all the connections in a virtual network gateway. */
+export const ListVirtualNetworkGatewayConnections2: API.OperationMethod<
+  ListVirtualNetworkGatewayConnectionsRequest2,
+  VirtualNetworkGatewayListConnectionsResult,
+  ListVirtualNetworkGatewayConnections2Error,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualNetworkGatewayConnectionsRequest2,
+  output: VirtualNetworkGatewayListConnectionsResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListVirtualNetworkGatewayNatRuleByVirtualNetworkGatewayError =
   AzureOpError;
 /** Retrieves all nat rules for a particular virtual network gateway. */
@@ -123293,6 +123297,21 @@ export const ListVirtualNetworkGatewayNatRuleByVirtualNetworkGateway: API.Operat
   retry: Retry.Retry,
 }));
 
+export type ListVirtualNetworkGatewayRadiusSecretsError = AzureOpError;
+/** List all Radius servers with respective radius secrets from virtual network gateway VpnClientConfiguration. */
+export const ListVirtualNetworkGatewayRadiusSecrets: API.OperationMethod<
+  ListVirtualNetworkGatewayRadiusSecretsRequest,
+  RadiusAuthServerListResult,
+  ListVirtualNetworkGatewayRadiusSecretsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualNetworkGatewayRadiusSecretsRequest,
+  output: RadiusAuthServerListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListVirtualNetworkGatewaysError = AzureOpError;
 /** Gets all virtual network gateways by resource group. */
 export const ListVirtualNetworkGateways: API.OperationMethod<
@@ -123303,36 +123322,6 @@ export const ListVirtualNetworkGateways: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListVirtualNetworkGatewaysRequest,
   output: VirtualNetworkGatewayListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListVirtualNetworkGatewaysConnectionsError = AzureOpError;
-/** Gets all the connections in a virtual network gateway. */
-export const ListVirtualNetworkGatewaysConnections: API.OperationMethod<
-  ListVirtualNetworkGatewaysConnectionsRequest,
-  VirtualNetworkGatewayListConnectionsResult,
-  ListVirtualNetworkGatewaysConnectionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListVirtualNetworkGatewaysConnectionsRequest,
-  output: VirtualNetworkGatewayListConnectionsResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListVirtualNetworkGatewaysRadiusSecretsError = AzureOpError;
-/** List all Radius servers with respective radius secrets from virtual network gateway VpnClientConfiguration. */
-export const ListVirtualNetworkGatewaysRadiusSecrets: API.OperationMethod<
-  ListVirtualNetworkGatewaysRadiusSecretsRequest,
-  RadiusAuthServerListResult,
-  ListVirtualNetworkGatewaysRadiusSecretsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListVirtualNetworkGatewaysRadiusSecretsRequest,
-  output: RadiusAuthServerListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -123503,6 +123492,21 @@ export const ListVpnConnectionByVpnGateway: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListVpnGatewayByResourceGroupError = AzureOpError;
+/** Lists all the VpnGateways in a resource group. */
+export const ListVpnGatewayByResourceGroup: API.OperationMethod<
+  ListVpnGatewayByResourceGroupRequest,
+  ListVpnGatewaysResult,
+  ListVpnGatewayByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVpnGatewayByResourceGroupRequest,
+  output: ListVpnGatewaysResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListVpnGatewaysError = AzureOpError;
 /** Lists all the VpnGateways in a subscription. */
 export const ListVpnGateways: API.OperationMethod<
@@ -123512,21 +123516,6 @@ export const ListVpnGateways: API.OperationMethod<
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListVpnGatewaysRequest,
-  output: ListVpnGatewaysResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListVpnGatewaysByResourceGroupError = AzureOpError;
-/** Lists all the VpnGateways in a resource group. */
-export const ListVpnGatewaysByResourceGroup: API.OperationMethod<
-  ListVpnGatewaysByResourceGroupRequest,
-  ListVpnGatewaysResult,
-  ListVpnGatewaysByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListVpnGatewaysByResourceGroupRequest,
   output: ListVpnGatewaysResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -124412,16 +124401,31 @@ export const PutFirewallPolicyIdpsSignaturesOverride: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ResetP2SVpnGatewaysError = AzureOpError;
+export type ResetP2SVpnGatewayError = AzureOpError;
 /** Resets the primary of the p2s vpn gateway in the specified resource group. */
-export const ResetP2SVpnGateways: API.OperationMethod<
-  ResetP2SVpnGatewaysRequest,
-  ResetP2SVpnGatewaysResponse,
-  ResetP2SVpnGatewaysError,
+export const ResetP2SVpnGateway: API.OperationMethod<
+  ResetP2SVpnGatewayRequest,
+  ResetP2SVpnGatewayResponse,
+  ResetP2SVpnGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResetP2SVpnGatewaysRequest,
-  output: ResetP2SVpnGatewaysResponse,
+  input: ResetP2SVpnGatewayRequest,
+  output: ResetP2SVpnGatewayResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResetVirtualNetworkGatewayError = AzureOpError;
+/** Resets the primary of the virtual network gateway in the specified resource group. */
+export const ResetVirtualNetworkGateway: API.OperationMethod<
+  ResetVirtualNetworkGatewayRequest,
+  ResetVirtualNetworkGatewayResponse,
+  ResetVirtualNetworkGatewayError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResetVirtualNetworkGatewayRequest,
+  output: ResetVirtualNetworkGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -124457,46 +124461,31 @@ export const ResetVirtualNetworkGatewayConnectionSharedKey: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ResetVirtualNetworkGatewaysError = AzureOpError;
-/** Resets the primary of the virtual network gateway in the specified resource group. */
-export const ResetVirtualNetworkGateways: API.OperationMethod<
-  ResetVirtualNetworkGatewaysRequest,
-  ResetVirtualNetworkGatewaysResponse,
-  ResetVirtualNetworkGatewaysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ResetVirtualNetworkGatewaysRequest,
-  output: ResetVirtualNetworkGatewaysResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ResetVirtualNetworkGatewaysVpnClientSharedKeyError = AzureOpError;
+export type ResetVirtualNetworkGatewayVpnClientSharedKeyError = AzureOpError;
 /** Resets the VPN client shared key of the virtual network gateway in the specified resource group. */
-export const ResetVirtualNetworkGatewaysVpnClientSharedKey: API.OperationMethod<
-  ResetVirtualNetworkGatewaysVpnClientSharedKeyRequest,
-  ResetVirtualNetworkGatewaysVpnClientSharedKeyResponse,
-  ResetVirtualNetworkGatewaysVpnClientSharedKeyError,
+export const ResetVirtualNetworkGatewayVpnClientSharedKey: API.OperationMethod<
+  ResetVirtualNetworkGatewayVpnClientSharedKeyRequest,
+  ResetVirtualNetworkGatewayVpnClientSharedKeyResponse,
+  ResetVirtualNetworkGatewayVpnClientSharedKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResetVirtualNetworkGatewaysVpnClientSharedKeyRequest,
-  output: ResetVirtualNetworkGatewaysVpnClientSharedKeyResponse,
+  input: ResetVirtualNetworkGatewayVpnClientSharedKeyRequest,
+  output: ResetVirtualNetworkGatewayVpnClientSharedKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ResetVpnGatewaysError = AzureOpError;
+export type ResetVpnGatewayError = AzureOpError;
 /** Resets the primary of the vpn gateway in the specified resource group. */
-export const ResetVpnGateways: API.OperationMethod<
-  ResetVpnGatewaysRequest,
-  ResetVpnGatewaysResponse,
-  ResetVpnGatewaysError,
+export const ResetVpnGateway: API.OperationMethod<
+  ResetVpnGatewayRequest,
+  ResetVpnGatewayResponse,
+  ResetVpnGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResetVpnGatewaysRequest,
-  output: ResetVpnGatewaysResponse,
+  input: ResetVpnGatewayRequest,
+  output: ResetVpnGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -124832,32 +124821,32 @@ export const SetVirtualNetworkGatewayConnectionSharedKey: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SetVirtualNetworkGatewaysVpnclientIpsecParametersError =
+export type SetVirtualNetworkGatewayVpnclientIpsecParametersError =
   AzureOpError;
 /** The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider. */
-export const SetVirtualNetworkGatewaysVpnclientIpsecParameters: API.OperationMethod<
-  SetVirtualNetworkGatewaysVpnclientIpsecParametersRequest,
+export const SetVirtualNetworkGatewayVpnclientIpsecParameters: API.OperationMethod<
+  SetVirtualNetworkGatewayVpnclientIpsecParametersRequest,
   VpnClientIPsecParameters,
-  SetVirtualNetworkGatewaysVpnclientIpsecParametersError,
+  SetVirtualNetworkGatewayVpnclientIpsecParametersError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetVirtualNetworkGatewaysVpnclientIpsecParametersRequest,
+  input: SetVirtualNetworkGatewayVpnclientIpsecParametersRequest,
   output: VpnClientIPsecParameters,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type StartApplicationGatewaysError = AzureOpError;
+export type StartApplicationGatewayError = AzureOpError;
 /** Starts the specified application gateway. */
-export const StartApplicationGateways: API.OperationMethod<
-  StartApplicationGatewaysRequest,
-  StartApplicationGatewaysResponse,
-  StartApplicationGatewaysError,
+export const StartApplicationGateway: API.OperationMethod<
+  StartApplicationGatewayRequest,
+  StartApplicationGatewayResponse,
+  StartApplicationGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StartApplicationGatewaysRequest,
-  output: StartApplicationGatewaysResponse,
+  input: StartApplicationGatewayRequest,
+  output: StartApplicationGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -124878,16 +124867,16 @@ export const StartExpressRouteCircuitCircuitLinkFailoverTest: API.OperationMetho
   retry: Retry.Retry,
 }));
 
-export type StartExpressRouteGatewaysSiteFailoverTestError = AzureOpError;
+export type StartExpressRouteGatewaySiteFailoverTestError = AzureOpError;
 /** Starts failover simulation on the ExpressRoute gateway for the specified peering location. */
-export const StartExpressRouteGatewaysSiteFailoverTest: API.OperationMethod<
-  StartExpressRouteGatewaysSiteFailoverTestRequest,
-  StartExpressRouteGatewaysSiteFailoverTestResponse,
-  StartExpressRouteGatewaysSiteFailoverTestError,
+export const StartExpressRouteGatewaySiteFailoverTest: API.OperationMethod<
+  StartExpressRouteGatewaySiteFailoverTestRequest,
+  StartExpressRouteGatewaySiteFailoverTestResponse,
+  StartExpressRouteGatewaySiteFailoverTestError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StartExpressRouteGatewaysSiteFailoverTestRequest,
-  output: StartExpressRouteGatewaysSiteFailoverTestResponse,
+  input: StartExpressRouteGatewaySiteFailoverTestRequest,
+  output: StartExpressRouteGatewaySiteFailoverTestResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -124909,32 +124898,32 @@ export const StartVirtualNetworkGatewayConnectionPacketCapture: API.OperationMet
   retry: Retry.Retry,
 }));
 
-export type StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationError =
+export type StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationError =
   AzureOpError;
 /** This operation starts failover simulation on the gateway for the specified peering location */
-export const StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulation: API.OperationMethod<
-  StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest,
-  StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse,
-  StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationError,
+export const StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulation: API.OperationMethod<
+  StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest,
+  StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse,
+  StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest,
-  output: StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse,
+  input: StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest,
+  output: StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type StartVirtualNetworkGatewaysPacketCaptureError = AzureOpError;
+export type StartVirtualNetworkGatewayPacketCaptureError = AzureOpError;
 /** Starts packet capture on virtual network gateway in the specified resource group. */
-export const StartVirtualNetworkGatewaysPacketCapture: API.OperationMethod<
-  StartVirtualNetworkGatewaysPacketCaptureRequest,
-  StartVirtualNetworkGatewaysPacketCaptureResponse,
-  StartVirtualNetworkGatewaysPacketCaptureError,
+export const StartVirtualNetworkGatewayPacketCapture: API.OperationMethod<
+  StartVirtualNetworkGatewayPacketCaptureRequest,
+  StartVirtualNetworkGatewayPacketCaptureResponse,
+  StartVirtualNetworkGatewayPacketCaptureError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StartVirtualNetworkGatewaysPacketCaptureRequest,
-  output: StartVirtualNetworkGatewaysPacketCaptureResponse,
+  input: StartVirtualNetworkGatewayPacketCaptureRequest,
+  output: StartVirtualNetworkGatewayPacketCaptureResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -124955,16 +124944,16 @@ export const StartVpnConnectionPacketCapture: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StartVpnGatewaysPacketCaptureError = AzureOpError;
+export type StartVpnGatewayPacketCaptureError = AzureOpError;
 /** Starts packet capture on vpn gateway in the specified resource group. */
-export const StartVpnGatewaysPacketCapture: API.OperationMethod<
-  StartVpnGatewaysPacketCaptureRequest,
-  StartVpnGatewaysPacketCaptureResponse,
-  StartVpnGatewaysPacketCaptureError,
+export const StartVpnGatewayPacketCapture: API.OperationMethod<
+  StartVpnGatewayPacketCaptureRequest,
+  StartVpnGatewayPacketCaptureResponse,
+  StartVpnGatewayPacketCaptureError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StartVpnGatewaysPacketCaptureRequest,
-  output: StartVpnGatewaysPacketCaptureResponse,
+  input: StartVpnGatewayPacketCaptureRequest,
+  output: StartVpnGatewayPacketCaptureResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -124985,16 +124974,16 @@ export const StaticMembersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StopApplicationGatewaysError = AzureOpError;
+export type StopApplicationGatewayError = AzureOpError;
 /** Stops the specified application gateway in a resource group. */
-export const StopApplicationGateways: API.OperationMethod<
-  StopApplicationGatewaysRequest,
-  StopApplicationGatewaysResponse,
-  StopApplicationGatewaysError,
+export const StopApplicationGateway: API.OperationMethod<
+  StopApplicationGatewayRequest,
+  StopApplicationGatewayResponse,
+  StopApplicationGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StopApplicationGatewaysRequest,
-  output: StopApplicationGatewaysResponse,
+  input: StopApplicationGatewayRequest,
+  output: StopApplicationGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -125030,16 +125019,16 @@ export const StopExpressRouteCircuitCircuitLinkFailoverTest: API.OperationMethod
   retry: Retry.Retry,
 }));
 
-export type StopExpressRouteGatewaysSiteFailoverTestError = AzureOpError;
+export type StopExpressRouteGatewaySiteFailoverTestError = AzureOpError;
 /** Stops failover simulation on the ExpressRoute gateway for the specified peering location. */
-export const StopExpressRouteGatewaysSiteFailoverTest: API.OperationMethod<
-  StopExpressRouteGatewaysSiteFailoverTestRequest,
-  StopExpressRouteGatewaysSiteFailoverTestResponse,
-  StopExpressRouteGatewaysSiteFailoverTestError,
+export const StopExpressRouteGatewaySiteFailoverTest: API.OperationMethod<
+  StopExpressRouteGatewaySiteFailoverTestRequest,
+  StopExpressRouteGatewaySiteFailoverTestResponse,
+  StopExpressRouteGatewaySiteFailoverTestError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StopExpressRouteGatewaysSiteFailoverTestRequest,
-  output: StopExpressRouteGatewaysSiteFailoverTestResponse,
+  input: StopExpressRouteGatewaySiteFailoverTestRequest,
+  output: StopExpressRouteGatewaySiteFailoverTestResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -125076,32 +125065,32 @@ export const StopVirtualNetworkGatewayConnectionPacketCapture: API.OperationMeth
   retry: Retry.Retry,
 }));
 
-export type StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationError =
+export type StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationError =
   AzureOpError;
 /** This operation stops failover simulation on the gateway for the specified peering location */
-export const StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulation: API.OperationMethod<
-  StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest,
-  StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse,
-  StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationError,
+export const StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulation: API.OperationMethod<
+  StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest,
+  StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse,
+  StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest,
-  output: StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse,
+  input: StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest,
+  output: StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type StopVirtualNetworkGatewaysPacketCaptureError = AzureOpError;
+export type StopVirtualNetworkGatewayPacketCaptureError = AzureOpError;
 /** Stops packet capture on virtual network gateway in the specified resource group. */
-export const StopVirtualNetworkGatewaysPacketCapture: API.OperationMethod<
-  StopVirtualNetworkGatewaysPacketCaptureRequest,
-  StopVirtualNetworkGatewaysPacketCaptureResponse,
-  StopVirtualNetworkGatewaysPacketCaptureError,
+export const StopVirtualNetworkGatewayPacketCapture: API.OperationMethod<
+  StopVirtualNetworkGatewayPacketCaptureRequest,
+  StopVirtualNetworkGatewayPacketCaptureResponse,
+  StopVirtualNetworkGatewayPacketCaptureError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StopVirtualNetworkGatewaysPacketCaptureRequest,
-  output: StopVirtualNetworkGatewaysPacketCaptureResponse,
+  input: StopVirtualNetworkGatewayPacketCaptureRequest,
+  output: StopVirtualNetworkGatewayPacketCaptureResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -125122,16 +125111,16 @@ export const StopVpnConnectionPacketCapture: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StopVpnGatewaysPacketCaptureError = AzureOpError;
+export type StopVpnGatewayPacketCaptureError = AzureOpError;
 /** Stops packet capture on vpn gateway in the specified resource group. */
-export const StopVpnGatewaysPacketCapture: API.OperationMethod<
-  StopVpnGatewaysPacketCaptureRequest,
-  StopVpnGatewaysPacketCaptureResponse,
-  StopVpnGatewaysPacketCaptureError,
+export const StopVpnGatewayPacketCapture: API.OperationMethod<
+  StopVpnGatewayPacketCaptureRequest,
+  StopVpnGatewayPacketCaptureResponse,
+  StopVpnGatewayPacketCaptureError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StopVpnGatewaysPacketCaptureRequest,
-  output: StopVpnGatewaysPacketCaptureResponse,
+  input: StopVpnGatewayPacketCaptureRequest,
+  output: StopVpnGatewayPacketCaptureResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -125244,16 +125233,16 @@ export const UpdateApplicationGatewayPrivateEndpointConnection: API.OperationMet
   retry: Retry.Retry,
 }));
 
-export type UpdateApplicationGatewaysTagsError = AzureOpError;
+export type UpdateApplicationGatewayTagsError = AzureOpError;
 /** Updates the specified application gateway tags. */
-export const UpdateApplicationGatewaysTags: API.OperationMethod<
-  UpdateApplicationGatewaysTagsRequest,
-  UpdateApplicationGatewaysTagsResponse,
-  UpdateApplicationGatewaysTagsError,
+export const UpdateApplicationGatewayTags: API.OperationMethod<
+  UpdateApplicationGatewayTagsRequest,
+  UpdateApplicationGatewayTagsResponse,
+  UpdateApplicationGatewayTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateApplicationGatewaysTagsRequest,
-  output: UpdateApplicationGatewaysTagsResponse,
+  input: UpdateApplicationGatewayTagsRequest,
+  output: UpdateApplicationGatewayTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -125394,16 +125383,16 @@ export const UpdateExpressRouteCrossConnectionTags: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateExpressRouteGatewaysTagsError = AzureOpError;
+export type UpdateExpressRouteGatewayTagsError = AzureOpError;
 /** Updates express route gateway tags. */
-export const UpdateExpressRouteGatewaysTags: API.OperationMethod<
-  UpdateExpressRouteGatewaysTagsRequest,
-  UpdateExpressRouteGatewaysTagsResponse,
-  UpdateExpressRouteGatewaysTagsError,
+export const UpdateExpressRouteGatewayTags: API.OperationMethod<
+  UpdateExpressRouteGatewayTagsRequest,
+  UpdateExpressRouteGatewayTagsResponse,
+  UpdateExpressRouteGatewayTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateExpressRouteGatewaysTagsRequest,
-  output: UpdateExpressRouteGatewaysTagsResponse,
+  input: UpdateExpressRouteGatewayTagsRequest,
+  output: UpdateExpressRouteGatewayTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -125559,31 +125548,31 @@ export const UpdateLoadBalancerTags: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateLocalNetworkGatewaysTagsError = AzureOpError;
+export type UpdateLocalNetworkGatewayTagsError = AzureOpError;
 /** Updates a local network gateway tags. */
-export const UpdateLocalNetworkGatewaysTags: API.OperationMethod<
-  UpdateLocalNetworkGatewaysTagsRequest,
-  UpdateLocalNetworkGatewaysTagsResponse,
-  UpdateLocalNetworkGatewaysTagsError,
+export const UpdateLocalNetworkGatewayTags: API.OperationMethod<
+  UpdateLocalNetworkGatewayTagsRequest,
+  UpdateLocalNetworkGatewayTagsResponse,
+  UpdateLocalNetworkGatewayTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateLocalNetworkGatewaysTagsRequest,
-  output: UpdateLocalNetworkGatewaysTagsResponse,
+  input: UpdateLocalNetworkGatewayTagsRequest,
+  output: UpdateLocalNetworkGatewayTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateNatGatewaysTagsError = AzureOpError;
+export type UpdateNatGatewayTagsError = AzureOpError;
 /** Updates nat gateway tags. */
-export const UpdateNatGatewaysTags: API.OperationMethod<
-  UpdateNatGatewaysTagsRequest,
-  UpdateNatGatewaysTagsResponse,
-  UpdateNatGatewaysTagsError,
+export const UpdateNatGatewayTags: API.OperationMethod<
+  UpdateNatGatewayTagsRequest,
+  UpdateNatGatewayTagsResponse,
+  UpdateNatGatewayTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateNatGatewaysTagsRequest,
-  output: UpdateNatGatewaysTagsResponse,
+  input: UpdateNatGatewayTagsRequest,
+  output: UpdateNatGatewayTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -125664,16 +125653,16 @@ export const UpdateNetworkWatcherTags: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateP2sVpnGatewaysTagsError = AzureOpError;
+export type UpdateP2sVpnGatewayTagsError = AzureOpError;
 /** Updates virtual wan p2s vpn gateway tags. */
-export const UpdateP2sVpnGatewaysTags: API.OperationMethod<
-  UpdateP2sVpnGatewaysTagsRequest,
-  UpdateP2sVpnGatewaysTagsResponse,
-  UpdateP2sVpnGatewaysTagsError,
+export const UpdateP2sVpnGatewayTags: API.OperationMethod<
+  UpdateP2sVpnGatewayTagsRequest,
+  UpdateP2sVpnGatewayTagsResponse,
+  UpdateP2sVpnGatewayTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateP2sVpnGatewaysTagsRequest,
-  output: UpdateP2sVpnGatewaysTagsResponse,
+  input: UpdateP2sVpnGatewayTagsRequest,
+  output: UpdateP2sVpnGatewayTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -125785,46 +125774,46 @@ export const UpdateServiceEndpointPolicyTags: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateServiceGatewaysAddressLocationsError = AzureOpError;
+export type UpdateServiceGatewayAddressLocationsError = AzureOpError;
 /** Creates or updates address locations within the service gateway. The request supports both full and partial update modes at two levels: location and address. Full update replaces all existing data. Partial update modifies only the specified entries: For location-level partial updates, if no address is provided, the existing address will be deleted. For address-level partial updates, if no services are provided, the existing services will be considered for deletion. */
-export const UpdateServiceGatewaysAddressLocations: API.OperationMethod<
-  UpdateServiceGatewaysAddressLocationsRequest,
-  UpdateServiceGatewaysAddressLocationsResponse,
-  UpdateServiceGatewaysAddressLocationsError,
+export const UpdateServiceGatewayAddressLocations: API.OperationMethod<
+  UpdateServiceGatewayAddressLocationsRequest,
+  UpdateServiceGatewayAddressLocationsResponse,
+  UpdateServiceGatewayAddressLocationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateServiceGatewaysAddressLocationsRequest,
-  output: UpdateServiceGatewaysAddressLocationsResponse,
+  input: UpdateServiceGatewayAddressLocationsRequest,
+  output: UpdateServiceGatewayAddressLocationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateServiceGatewaysServicesError = AzureOpError;
+export type UpdateServiceGatewayServicesError = AzureOpError;
 /** Creates, updates, or deletes services within the service gateway. The request supports both full and partial update modes at the service level. Full update replaces all existing services with the new list provided in the request. Partial update modifies only the specified services. */
-export const UpdateServiceGatewaysServices: API.OperationMethod<
-  UpdateServiceGatewaysServicesRequest,
-  UpdateServiceGatewaysServicesResponse,
-  UpdateServiceGatewaysServicesError,
+export const UpdateServiceGatewayServices: API.OperationMethod<
+  UpdateServiceGatewayServicesRequest,
+  UpdateServiceGatewayServicesResponse,
+  UpdateServiceGatewayServicesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateServiceGatewaysServicesRequest,
-  output: UpdateServiceGatewaysServicesResponse,
+  input: UpdateServiceGatewayServicesRequest,
+  output: UpdateServiceGatewayServicesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateServiceGatewaysTagsError = AzureOpError;
+export type UpdateServiceGatewayTagsError = AzureOpError;
 /** Updates a service gateway tags. */
-export const UpdateServiceGatewaysTags: API.OperationMethod<
-  UpdateServiceGatewaysTagsRequest,
-  UpdateServiceGatewaysTagsResponse,
-  UpdateServiceGatewaysTagsError,
+export const UpdateServiceGatewayTags: API.OperationMethod<
+  UpdateServiceGatewayTagsRequest,
+  UpdateServiceGatewayTagsResponse,
+  UpdateServiceGatewayTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateServiceGatewaysTagsRequest,
-  output: UpdateServiceGatewaysTagsResponse,
+  input: UpdateServiceGatewayTagsRequest,
+  output: UpdateServiceGatewayTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -125890,16 +125879,16 @@ export const UpdateVirtualNetworkGatewayConnectionTags: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateVirtualNetworkGatewaysTagsError = AzureOpError;
+export type UpdateVirtualNetworkGatewayTagsError = AzureOpError;
 /** Updates a virtual network gateway tags. */
-export const UpdateVirtualNetworkGatewaysTags: API.OperationMethod<
-  UpdateVirtualNetworkGatewaysTagsRequest,
-  UpdateVirtualNetworkGatewaysTagsResponse,
-  UpdateVirtualNetworkGatewaysTagsError,
+export const UpdateVirtualNetworkGatewayTags: API.OperationMethod<
+  UpdateVirtualNetworkGatewayTagsRequest,
+  UpdateVirtualNetworkGatewayTagsResponse,
+  UpdateVirtualNetworkGatewayTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateVirtualNetworkGatewaysTagsRequest,
-  output: UpdateVirtualNetworkGatewaysTagsResponse,
+  input: UpdateVirtualNetworkGatewayTagsRequest,
+  output: UpdateVirtualNetworkGatewayTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -125950,16 +125939,16 @@ export const UpdateVirtualWanTags: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateVpnGatewaysTagsError = AzureOpError;
+export type UpdateVpnGatewayTagsError = AzureOpError;
 /** Updates virtual wan vpn gateway tags. */
-export const UpdateVpnGatewaysTags: API.OperationMethod<
-  UpdateVpnGatewaysTagsRequest,
-  UpdateVpnGatewaysTagsResponse,
-  UpdateVpnGatewaysTagsError,
+export const UpdateVpnGatewayTags: API.OperationMethod<
+  UpdateVpnGatewayTagsRequest,
+  UpdateVpnGatewayTagsResponse,
+  UpdateVpnGatewayTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateVpnGatewaysTagsRequest,
-  output: UpdateVpnGatewaysTagsResponse,
+  input: UpdateVpnGatewayTagsRequest,
+  output: UpdateVpnGatewayTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

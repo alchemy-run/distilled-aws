@@ -792,11 +792,10 @@ export const SurveyQuestionInputSchema =
   /*@__PURE__*/ S.Unknown as any as S.Schema<SurveyQuestionInputSchema>;
 
 /** The `array` of questions included in the survey. Each question must conform to one of the defined question types: Basic, Link, Rating, or Multiple Choice. Basic (open-ended question) - `id`: The question ID - `type`: `open` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `branching`: Branching logic for the question. See branching types below for details. Link (a question with a link) - `id`: The question ID - `type`: `link` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `link`: The URL associated with the question. - `branching`: Branching logic for the question. See branching types below for details. Rating (a question with a rating scale) - `id`: The question ID - `type`: `rating` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `display`: Display style of the rating (`number` or `emoji`). - `scale`: The scale of the rating (`number`). - `lowerBoundLabel`: Label for the lower bound of the scale. - `upperBoundLabel`: Label for the upper bound of the scale. - `isNpsQuestion`: Whether the question is an NPS rating. - `branching`: Branching logic for the question. See branching types below for details. Multiple choice - `id`: The question ID - `type`: `single_choice` or `multiple_choice` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `choices`: An array of choices for the question. - `shuffleOptions`: Whether to shuffle the order of the choices (`boolean`). - `hasOpenChoice`: Whether the question allows an open-ended response (`boolean`). - `branching`: Branching logic for the question. See branching types below for details. Branching logic can be one of the following types: Next question: Proceeds to the next question ```json { "type": "next_question" } ``` End: Ends the survey, optionally displaying a confirmation message. ```json { "type": "end" } ``` Response-based: Branches based on the response values. Available for the `rating` and `single_choice` question types. ```json { "type": "response_based", "responseValues": { "responseKey": "value" } } ``` Specific question: Proceeds to a specific question by index. ```json { "type": "specific_question", "index": 2 } ``` Translations: Each question can include inline translations. - `translations`: Object mapping language codes to translated fields. - Language codes: Canonical BCP-47-ish strings (e.g., "es", "es-MX", "zh-CN"). Aliases like "english" or "default" are rejected. The survey's `base_language` (default "en") declares the language of the untranslated text and cannot also appear as a translation key. - Translatable fields: `question`, `description`, `buttonText`, `choices`, `lowerBoundLabel`, `upperBoundLabel`, `link` Example with translations: ```json { "id": "uuid", "type": "rating", "question": "How satisfied are you?", "lowerBoundLabel": "Not satisfied", "upperBoundLabel": "Very satisfied", "translations": { "es": { "question": "¿Qué tan satisfecho estás?", "lowerBoundLabel": "No satisfecho", "upperBoundLabel": "Muy satisfecho" }, "fr": { "question": "Dans quelle mesure êtes-vous satisfait?" } } } ``` */
-export type CreateSurveysRequestQuestionsList =
-  Array<SurveyQuestionInputSchema>;
-export const CreateSurveysRequestQuestionsList = /*@__PURE__*/ S.Array(
+export type CreateSurveyRequestQuestionsList = Array<SurveyQuestionInputSchema>;
+export const CreateSurveyRequestQuestionsList = /*@__PURE__*/ S.Array(
   SurveyQuestionInputSchema,
-) as any as S.Schema<CreateSurveysRequestQuestionsList>;
+) as any as S.Schema<CreateSurveyRequestQuestionsList>;
 
 /** * `regex` - regex * `not_regex` - not_regex * `exact` - exact * `is_not` - is_not * `icontains` - icontains * `not_icontains` - not_icontains */
 export type SurveyMatchTypeEnum =
@@ -965,11 +964,10 @@ export const SurveyAppearanceSchema = /*@__PURE__*/ S.suspend(() =>
   identifier: "SurveyAppearanceSchema",
 }) as any as S.Schema<SurveyAppearanceSchema>;
 
-export type CreateSurveysRequestIterationStartDatesList = Array<string>;
-export const CreateSurveysRequestIterationStartDatesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CreateSurveysRequestIterationStartDatesList>;
+export type CreateSurveyRequestIterationStartDatesList = Array<string>;
+export const CreateSurveyRequestIterationStartDatesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateSurveyRequestIterationStartDatesList>;
 
 /** * `day` - day * `week` - week * `month` - month */
 export type SurveySamplingIntervalTypeEnum = "day" | "week" | "month";
@@ -978,13 +976,13 @@ export const SurveySamplingIntervalTypeEnum = /*@__PURE__*/ S.String;
 export type BlankEnum = "";
 export const BlankEnum = /*@__PURE__*/ S.String;
 
-export type CreateSurveysRequestResponseSamplingIntervalType =
+export type CreateSurveyRequestResponseSamplingIntervalType =
   | SurveySamplingIntervalTypeEnum
   | BlankEnum;
-export const CreateSurveysRequestResponseSamplingIntervalType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSurveysRequestResponseSamplingIntervalType>;
+export const CreateSurveyRequestResponseSamplingIntervalType =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSurveyRequestResponseSamplingIntervalType>;
 
-export interface CreateSurveysRequest {
+export interface CreateSurveyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Survey name. Anyone can read it. In-app surveys send it to every visitor's browser alongside the questions and appearance text, and a hosted survey shows it on its public page. Keep customer names and other private details out of it. */
@@ -1005,7 +1003,7 @@ export interface CreateSurveysRequest {
   /** Set to true to completely remove all targeting filters from the survey, making it visible to all users (subject to other display conditions like URL matching). */
   remove_targeting_flag?: boolean | null;
   /** The `array` of questions included in the survey. Each question must conform to one of the defined question types: Basic, Link, Rating, or Multiple Choice. Basic (open-ended question) - `id`: The question ID - `type`: `open` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `branching`: Branching logic for the question. See branching types below for details. Link (a question with a link) - `id`: The question ID - `type`: `link` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `link`: The URL associated with the question. - `branching`: Branching logic for the question. See branching types below for details. Rating (a question with a rating scale) - `id`: The question ID - `type`: `rating` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `display`: Display style of the rating (`number` or `emoji`). - `scale`: The scale of the rating (`number`). - `lowerBoundLabel`: Label for the lower bound of the scale. - `upperBoundLabel`: Label for the upper bound of the scale. - `isNpsQuestion`: Whether the question is an NPS rating. - `branching`: Branching logic for the question. See branching types below for details. Multiple choice - `id`: The question ID - `type`: `single_choice` or `multiple_choice` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `choices`: An array of choices for the question. - `shuffleOptions`: Whether to shuffle the order of the choices (`boolean`). - `hasOpenChoice`: Whether the question allows an open-ended response (`boolean`). - `branching`: Branching logic for the question. See branching types below for details. Branching logic can be one of the following types: Next question: Proceeds to the next question ```json { "type": "next_question" } ``` End: Ends the survey, optionally displaying a confirmation message. ```json { "type": "end" } ``` Response-based: Branches based on the response values. Available for the `rating` and `single_choice` question types. ```json { "type": "response_based", "responseValues": { "responseKey": "value" } } ``` Specific question: Proceeds to a specific question by index. ```json { "type": "specific_question", "index": 2 } ``` Translations: Each question can include inline translations. - `translations`: Object mapping language codes to translated fields. - Language codes: Canonical BCP-47-ish strings (e.g., "es", "es-MX", "zh-CN"). Aliases like "english" or "default" are rejected. The survey's `base_language` (default "en") declares the language of the untranslated text and cannot also appear as a translation key. - Translatable fields: `question`, `description`, `buttonText`, `choices`, `lowerBoundLabel`, `upperBoundLabel`, `link` Example with translations: ```json { "id": "uuid", "type": "rating", "question": "How satisfied are you?", "lowerBoundLabel": "Not satisfied", "upperBoundLabel": "Very satisfied", "translations": { "es": { "question": "¿Qué tan satisfecho estás?", "lowerBoundLabel": "No satisfecho", "upperBoundLabel": "Muy satisfecho" }, "fr": { "question": "Dans quelle mesure êtes-vous satisfait?" } } } ``` */
-  questions?: CreateSurveysRequestQuestionsList | null;
+  questions?: CreateSurveyRequestQuestionsList | null;
   /** Display and targeting conditions for the survey. */
   conditions?: SurveyConditionsSchema | null;
   /** Survey appearance customization. */
@@ -1022,11 +1020,11 @@ export interface CreateSurveysRequest {
   iteration_count?: number | null;
   /** For a recurring schedule, this field specifies the interval in days between each survey instance shown to the user, used alongside iteration_count for precise scheduling. */
   iteration_frequency_days?: number | null;
-  iteration_start_dates?: CreateSurveysRequestIterationStartDatesList | null;
+  iteration_start_dates?: CreateSurveyRequestIterationStartDatesList | null;
   current_iteration?: number | null;
   current_iteration_start_date?: string | null;
   response_sampling_start_date?: string | null;
-  response_sampling_interval_type?: CreateSurveysRequestResponseSamplingIntervalType | null;
+  response_sampling_interval_type?: CreateSurveyRequestResponseSamplingIntervalType | null;
   response_sampling_interval?: number | null;
   response_sampling_limit?: number | null;
   response_sampling_daily_limits?: unknown;
@@ -1039,7 +1037,7 @@ export interface CreateSurveysRequest {
   _create_in_folder?: string;
   form_content?: unknown;
 }
-export const CreateSurveysRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSurveyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     name: S.optional(S.String),
@@ -1051,7 +1049,7 @@ export const CreateSurveysRequest = /*@__PURE__*/ S.suspend(() =>
     targeting_flag_id: S.optional(S.Number),
     targeting_flag_filters: S.optional(S.NullOr(FeatureFlagFiltersSchema)),
     remove_targeting_flag: S.optional(S.NullOr(S.Boolean)),
-    questions: S.optional(S.NullOr(CreateSurveysRequestQuestionsList)),
+    questions: S.optional(S.NullOr(CreateSurveyRequestQuestionsList)),
     conditions: S.optional(S.NullOr(SurveyConditionsSchema)),
     appearance: S.optional(S.NullOr(SurveyAppearanceSchema)),
     start_date: S.optional(S.NullOr(S.String)),
@@ -1061,13 +1059,13 @@ export const CreateSurveysRequest = /*@__PURE__*/ S.suspend(() =>
     iteration_count: S.optional(S.NullOr(S.Number)),
     iteration_frequency_days: S.optional(S.NullOr(S.Number)),
     iteration_start_dates: S.optional(
-      S.NullOr(CreateSurveysRequestIterationStartDatesList),
+      S.NullOr(CreateSurveyRequestIterationStartDatesList),
     ),
     current_iteration: S.optional(S.NullOr(S.Number)),
     current_iteration_start_date: S.optional(S.NullOr(S.String)),
     response_sampling_start_date: S.optional(S.NullOr(S.String)),
     response_sampling_interval_type: S.optional(
-      S.NullOr(CreateSurveysRequestResponseSamplingIntervalType),
+      S.NullOr(CreateSurveyRequestResponseSamplingIntervalType),
     ),
     response_sampling_interval: S.optional(S.NullOr(S.Number)),
     response_sampling_limit: S.optional(S.NullOr(S.Number)),
@@ -1086,8 +1084,8 @@ export const CreateSurveysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSurveysRequest",
-}) as any as S.Schema<CreateSurveysRequest>;
+  identifier: "CreateSurveyRequest",
+}) as any as S.Schema<CreateSurveyRequest>;
 
 export type MinimalFeatureFlagFiltersMap = {
   [key: string]: unknown | undefined;
@@ -1455,13 +1453,13 @@ export const CreateSurveysSummaryHeadlineResponse = /*@__PURE__*/ S.suspend(
   identifier: "CreateSurveysSummaryHeadlineResponse",
 }) as any as S.Schema<CreateSurveysSummaryHeadlineResponse>;
 
-export interface GetSurveysRequest {
+export interface GetSurveyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this survey. */
   id: string;
 }
-export const GetSurveysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSurveyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -1473,8 +1471,8 @@ export const GetSurveysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSurveysRequest",
-}) as any as S.Schema<GetSurveysRequest>;
+  identifier: "GetSurveyRequest",
+}) as any as S.Schema<GetSurveyRequest>;
 
 export type SurveyConditionsMap = { [key: string]: unknown | undefined };
 export const SurveyConditionsMap = /*@__PURE__*/ S.Record(
@@ -2082,13 +2080,13 @@ export const SurveyResponsesList = /*@__PURE__*/ S.suspend(() =>
   identifier: "SurveyResponsesList",
 }) as any as S.Schema<SurveyResponsesList>;
 
-export interface StopSurveysRequest {
+export interface StopSurveyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this survey. */
   id: string;
 }
-export const StopSurveysRequest = /*@__PURE__*/ S.suspend(() =>
+export const StopSurveyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -2100,8 +2098,8 @@ export const StopSurveysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "StopSurveysRequest",
-}) as any as S.Schema<StopSurveysRequest>;
+  identifier: "StopSurveyRequest",
+}) as any as S.Schema<StopSurveyRequest>;
 
 export interface SurveysDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2737,25 +2735,23 @@ export const SurveysResponsesUnarchiveCreateResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<SurveysResponsesUnarchiveCreateResponse>;
 
 /** The `array` of questions included in the survey. Each question must conform to one of the defined question types: Basic, Link, Rating, or Multiple Choice. Basic (open-ended question) - `id`: The question ID - `type`: `open` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `branching`: Branching logic for the question. See branching types below for details. Link (a question with a link) - `id`: The question ID - `type`: `link` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `link`: The URL associated with the question. - `branching`: Branching logic for the question. See branching types below for details. Rating (a question with a rating scale) - `id`: The question ID - `type`: `rating` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `display`: Display style of the rating (`number` or `emoji`). - `scale`: The scale of the rating (`number`). - `lowerBoundLabel`: Label for the lower bound of the scale. - `upperBoundLabel`: Label for the upper bound of the scale. - `isNpsQuestion`: Whether the question is an NPS rating. - `branching`: Branching logic for the question. See branching types below for details. Multiple choice - `id`: The question ID - `type`: `single_choice` or `multiple_choice` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `choices`: An array of choices for the question. - `shuffleOptions`: Whether to shuffle the order of the choices (`boolean`). - `hasOpenChoice`: Whether the question allows an open-ended response (`boolean`). - `branching`: Branching logic for the question. See branching types below for details. Branching logic can be one of the following types: Next question: Proceeds to the next question ```json { "type": "next_question" } ``` End: Ends the survey, optionally displaying a confirmation message. ```json { "type": "end" } ``` Response-based: Branches based on the response values. Available for the `rating` and `single_choice` question types. ```json { "type": "response_based", "responseValues": { "responseKey": "value" } } ``` Specific question: Proceeds to a specific question by index. ```json { "type": "specific_question", "index": 2 } ``` Translations: Each question can include inline translations. - `translations`: Object mapping language codes to translated fields. - Language codes: Canonical BCP-47-ish strings (e.g., "es", "es-MX", "zh-CN"). Aliases like "english" or "default" are rejected. The survey's `base_language` (default "en") declares the language of the untranslated text and cannot also appear as a translation key. - Translatable fields: `question`, `description`, `buttonText`, `choices`, `lowerBoundLabel`, `upperBoundLabel`, `link` Example with translations: ```json { "id": "uuid", "type": "rating", "question": "How satisfied are you?", "lowerBoundLabel": "Not satisfied", "upperBoundLabel": "Very satisfied", "translations": { "es": { "question": "¿Qué tan satisfecho estás?", "lowerBoundLabel": "No satisfecho", "upperBoundLabel": "Muy satisfecho" }, "fr": { "question": "Dans quelle mesure êtes-vous satisfait?" } } } ``` */
-export type UpdateSurveysRequestQuestionsList =
-  Array<SurveyQuestionInputSchema>;
-export const UpdateSurveysRequestQuestionsList = /*@__PURE__*/ S.Array(
+export type UpdateSurveyRequestQuestionsList = Array<SurveyQuestionInputSchema>;
+export const UpdateSurveyRequestQuestionsList = /*@__PURE__*/ S.Array(
   SurveyQuestionInputSchema,
-) as any as S.Schema<UpdateSurveysRequestQuestionsList>;
+) as any as S.Schema<UpdateSurveyRequestQuestionsList>;
 
-export type UpdateSurveysRequestIterationStartDatesList = Array<string>;
-export const UpdateSurveysRequestIterationStartDatesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<UpdateSurveysRequestIterationStartDatesList>;
+export type UpdateSurveyRequestIterationStartDatesList = Array<string>;
+export const UpdateSurveyRequestIterationStartDatesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateSurveyRequestIterationStartDatesList>;
 
-export type UpdateSurveysRequestResponseSamplingIntervalType =
+export type UpdateSurveyRequestResponseSamplingIntervalType =
   | SurveySamplingIntervalTypeEnum
   | BlankEnum;
-export const UpdateSurveysRequestResponseSamplingIntervalType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSurveysRequestResponseSamplingIntervalType>;
+export const UpdateSurveyRequestResponseSamplingIntervalType =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSurveyRequestResponseSamplingIntervalType>;
 
-export interface UpdateSurveysRequest {
+export interface UpdateSurveyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this survey. */
@@ -2778,7 +2774,7 @@ export interface UpdateSurveysRequest {
   /** Set to true to completely remove all targeting filters from the survey, making it visible to all users (subject to other display conditions like URL matching). */
   remove_targeting_flag?: boolean | null;
   /** The `array` of questions included in the survey. Each question must conform to one of the defined question types: Basic, Link, Rating, or Multiple Choice. Basic (open-ended question) - `id`: The question ID - `type`: `open` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `branching`: Branching logic for the question. See branching types below for details. Link (a question with a link) - `id`: The question ID - `type`: `link` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `link`: The URL associated with the question. - `branching`: Branching logic for the question. See branching types below for details. Rating (a question with a rating scale) - `id`: The question ID - `type`: `rating` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `display`: Display style of the rating (`number` or `emoji`). - `scale`: The scale of the rating (`number`). - `lowerBoundLabel`: Label for the lower bound of the scale. - `upperBoundLabel`: Label for the upper bound of the scale. - `isNpsQuestion`: Whether the question is an NPS rating. - `branching`: Branching logic for the question. See branching types below for details. Multiple choice - `id`: The question ID - `type`: `single_choice` or `multiple_choice` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `choices`: An array of choices for the question. - `shuffleOptions`: Whether to shuffle the order of the choices (`boolean`). - `hasOpenChoice`: Whether the question allows an open-ended response (`boolean`). - `branching`: Branching logic for the question. See branching types below for details. Branching logic can be one of the following types: Next question: Proceeds to the next question ```json { "type": "next_question" } ``` End: Ends the survey, optionally displaying a confirmation message. ```json { "type": "end" } ``` Response-based: Branches based on the response values. Available for the `rating` and `single_choice` question types. ```json { "type": "response_based", "responseValues": { "responseKey": "value" } } ``` Specific question: Proceeds to a specific question by index. ```json { "type": "specific_question", "index": 2 } ``` Translations: Each question can include inline translations. - `translations`: Object mapping language codes to translated fields. - Language codes: Canonical BCP-47-ish strings (e.g., "es", "es-MX", "zh-CN"). Aliases like "english" or "default" are rejected. The survey's `base_language` (default "en") declares the language of the untranslated text and cannot also appear as a translation key. - Translatable fields: `question`, `description`, `buttonText`, `choices`, `lowerBoundLabel`, `upperBoundLabel`, `link` Example with translations: ```json { "id": "uuid", "type": "rating", "question": "How satisfied are you?", "lowerBoundLabel": "Not satisfied", "upperBoundLabel": "Very satisfied", "translations": { "es": { "question": "¿Qué tan satisfecho estás?", "lowerBoundLabel": "No satisfecho", "upperBoundLabel": "Muy satisfecho" }, "fr": { "question": "Dans quelle mesure êtes-vous satisfait?" } } } ``` */
-  questions?: UpdateSurveysRequestQuestionsList | null;
+  questions?: UpdateSurveyRequestQuestionsList | null;
   /** Display and targeting conditions for the survey. */
   conditions?: SurveyConditionsSchema | null;
   /** Survey appearance customization. */
@@ -2795,11 +2791,11 @@ export interface UpdateSurveysRequest {
   iteration_count?: number | null;
   /** For a recurring schedule, this field specifies the interval in days between each survey instance shown to the user, used alongside iteration_count for precise scheduling. */
   iteration_frequency_days?: number | null;
-  iteration_start_dates?: UpdateSurveysRequestIterationStartDatesList | null;
+  iteration_start_dates?: UpdateSurveyRequestIterationStartDatesList | null;
   current_iteration?: number | null;
   current_iteration_start_date?: string | null;
   response_sampling_start_date?: string | null;
-  response_sampling_interval_type?: UpdateSurveysRequestResponseSamplingIntervalType | null;
+  response_sampling_interval_type?: UpdateSurveyRequestResponseSamplingIntervalType | null;
   response_sampling_interval?: number | null;
   response_sampling_limit?: number | null;
   response_sampling_daily_limits?: unknown;
@@ -2812,7 +2808,7 @@ export interface UpdateSurveysRequest {
   _create_in_folder?: string;
   form_content?: unknown;
 }
-export const UpdateSurveysRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSurveyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -2825,7 +2821,7 @@ export const UpdateSurveysRequest = /*@__PURE__*/ S.suspend(() =>
     targeting_flag_id: S.optional(S.Number),
     targeting_flag_filters: S.optional(S.NullOr(FeatureFlagFiltersSchema)),
     remove_targeting_flag: S.optional(S.NullOr(S.Boolean)),
-    questions: S.optional(S.NullOr(UpdateSurveysRequestQuestionsList)),
+    questions: S.optional(S.NullOr(UpdateSurveyRequestQuestionsList)),
     conditions: S.optional(S.NullOr(SurveyConditionsSchema)),
     appearance: S.optional(S.NullOr(SurveyAppearanceSchema)),
     start_date: S.optional(S.NullOr(S.String)),
@@ -2835,13 +2831,13 @@ export const UpdateSurveysRequest = /*@__PURE__*/ S.suspend(() =>
     iteration_count: S.optional(S.NullOr(S.Number)),
     iteration_frequency_days: S.optional(S.NullOr(S.Number)),
     iteration_start_dates: S.optional(
-      S.NullOr(UpdateSurveysRequestIterationStartDatesList),
+      S.NullOr(UpdateSurveyRequestIterationStartDatesList),
     ),
     current_iteration: S.optional(S.NullOr(S.Number)),
     current_iteration_start_date: S.optional(S.NullOr(S.String)),
     response_sampling_start_date: S.optional(S.NullOr(S.String)),
     response_sampling_interval_type: S.optional(
-      S.NullOr(UpdateSurveysRequestResponseSamplingIntervalType),
+      S.NullOr(UpdateSurveyRequestResponseSamplingIntervalType),
     ),
     response_sampling_interval: S.optional(S.NullOr(S.Number)),
     response_sampling_limit: S.optional(S.NullOr(S.Number)),
@@ -2860,8 +2856,8 @@ export const UpdateSurveysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateSurveysRequest",
-}) as any as S.Schema<UpdateSurveysRequest>;
+  identifier: "UpdateSurveyRequest",
+}) as any as S.Schema<UpdateSurveyRequest>;
 
 /** The `array` of questions included in the survey. Each question must conform to one of the defined question types: Basic, Link, Rating, or Multiple Choice. Basic (open-ended question) - `id`: The question ID - `type`: `open` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `branching`: Branching logic for the question. See branching types below for details. Link (a question with a link) - `id`: The question ID - `type`: `link` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `link`: The URL associated with the question. - `branching`: Branching logic for the question. See branching types below for details. Rating (a question with a rating scale) - `id`: The question ID - `type`: `rating` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `display`: Display style of the rating (`number` or `emoji`). - `scale`: The scale of the rating (`number`). - `lowerBoundLabel`: Label for the lower bound of the scale. - `upperBoundLabel`: Label for the upper bound of the scale. - `isNpsQuestion`: Whether the question is an NPS rating. - `branching`: Branching logic for the question. See branching types below for details. Multiple choice - `id`: The question ID - `type`: `single_choice` or `multiple_choice` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `choices`: An array of choices for the question. - `shuffleOptions`: Whether to shuffle the order of the choices (`boolean`). - `hasOpenChoice`: Whether the question allows an open-ended response (`boolean`). - `branching`: Branching logic for the question. See branching types below for details. Branching logic can be one of the following types: Next question: Proceeds to the next question ```json { "type": "next_question" } ``` End: Ends the survey, optionally displaying a confirmation message. ```json { "type": "end" } ``` Response-based: Branches based on the response values. Available for the `rating` and `single_choice` question types. ```json { "type": "response_based", "responseValues": { "responseKey": "value" } } ``` Specific question: Proceeds to a specific question by index. ```json { "type": "specific_question", "index": 2 } ``` Translations: Each question can include inline translations. - `translations`: Object mapping language codes to translated fields. - Language codes: Canonical BCP-47-ish strings (e.g., "es", "es-MX", "zh-CN"). Aliases like "english" or "default" are rejected. The survey's `base_language` (default "en") declares the language of the untranslated text and cannot also appear as a translation key. - Translatable fields: `question`, `description`, `buttonText`, `choices`, `lowerBoundLabel`, `upperBoundLabel`, `link` Example with translations: ```json { "id": "uuid", "type": "rating", "question": "How satisfied are you?", "lowerBoundLabel": "Not satisfied", "upperBoundLabel": "Very satisfied", "translations": { "es": { "question": "¿Qué tan satisfecho estás?", "lowerBoundLabel": "No satisfecho", "upperBoundLabel": "Muy satisfecho" }, "fr": { "question": "Dans quelle mesure êtes-vous satisfait?" } } } ``` */
 export type UpdateSurveysPartialRequestQuestionsList =
@@ -2990,18 +2986,18 @@ export const UpdateSurveysPartialRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateSurveysPartialRequest",
 }) as any as S.Schema<UpdateSurveysPartialRequest>;
 
-export type CreateSurveysError =
+export type CreateSurveyError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const createSurveys: API.OperationMethod<
-  CreateSurveysRequest,
+export const createSurvey: API.OperationMethod<
+  CreateSurveyRequest,
   SurveySerializerCreateUpdateOnlyOutput,
-  CreateSurveysError,
+  CreateSurveyError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSurveysRequest,
+  input: CreateSurveyRequest,
   output: SurveySerializerCreateUpdateOnlyOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
@@ -3045,14 +3041,14 @@ export const createSurveysSummaryHeadline: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSurveysError = Forbidden | NotFound | PosthogOpError;
-export const getSurveys: API.OperationMethod<
-  GetSurveysRequest,
+export type GetSurveyError = Forbidden | NotFound | PosthogOpError;
+export const getSurvey: API.OperationMethod<
+  GetSurveyRequest,
   Survey,
-  GetSurveysError,
+  GetSurveyError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSurveysRequest,
+  input: GetSurveyRequest,
   output: Survey,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
@@ -3194,15 +3190,15 @@ export const listSurveysResponses: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StopSurveysError = PosthogOpError;
+export type StopSurveyError = PosthogOpError;
 /** Stop a survey by setting `end_date` to the current time. No new responses are accepted after this; existing responses remain available. No-op if the survey already has an end_date in the past. */
-export const stopSurveys: API.OperationMethod<
-  StopSurveysRequest,
+export const stopSurvey: API.OperationMethod<
+  StopSurveyRequest,
   Survey,
-  StopSurveysError,
+  StopSurveyError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StopSurveysRequest,
+  input: StopSurveyRequest,
   output: Survey,
   errors: [],
   protocol: PosthogProtocol,
@@ -3324,18 +3320,18 @@ export const surveysResponsesUnarchiveCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateSurveysError =
+export type UpdateSurveyError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updateSurveys: API.OperationMethod<
-  UpdateSurveysRequest,
+export const updateSurvey: API.OperationMethod<
+  UpdateSurveyRequest,
   SurveySerializerCreateUpdateOnlyOutput,
-  UpdateSurveysError,
+  UpdateSurveyError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSurveysRequest,
+  input: UpdateSurveyRequest,
   output: SurveySerializerCreateUpdateOnlyOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

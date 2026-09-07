@@ -241,7 +241,7 @@ export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeletePrivateEndpointConnectionResponse",
 }) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
 
-export interface DeleteWCFRelaysRequest {
+export interface DeleteWCFRelayRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -251,7 +251,7 @@ export interface DeleteWCFRelaysRequest {
   /** The relay name. */
   relayName: string;
 }
-export const DeleteWCFRelaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteWCFRelayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -266,17 +266,17 @@ export const DeleteWCFRelaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteWCFRelaysRequest",
-}) as any as S.Schema<DeleteWCFRelaysRequest>;
+  identifier: "DeleteWCFRelayRequest",
+}) as any as S.Schema<DeleteWCFRelayRequest>;
 
-export interface DeleteWCFRelaysResponse {}
-export const DeleteWCFRelaysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteWCFRelayResponse {}
+export const DeleteWCFRelayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteWCFRelaysResponse",
-}) as any as S.Schema<DeleteWCFRelaysResponse>;
+  identifier: "DeleteWCFRelayResponse",
+}) as any as S.Schema<DeleteWCFRelayResponse>;
 
-export interface DeleteWCFRelaysAuthorizationRuleRequest {
+export interface DeleteWCFRelayAuthorizationRuleRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -288,7 +288,7 @@ export interface DeleteWCFRelaysAuthorizationRuleRequest {
   /** The authorization rule name. */
   authorizationRuleName: string;
 }
-export const DeleteWCFRelaysAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
+export const DeleteWCFRelayAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -305,15 +305,15 @@ export const DeleteWCFRelaysAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteWCFRelaysAuthorizationRuleRequest",
-}) as any as S.Schema<DeleteWCFRelaysAuthorizationRuleRequest>;
+  identifier: "DeleteWCFRelayAuthorizationRuleRequest",
+}) as any as S.Schema<DeleteWCFRelayAuthorizationRuleRequest>;
 
-export interface DeleteWCFRelaysAuthorizationRuleResponse {}
-export const DeleteWCFRelaysAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteWCFRelayAuthorizationRuleResponse {}
+export const DeleteWCFRelayAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteWCFRelaysAuthorizationRuleResponse",
-}) as any as S.Schema<DeleteWCFRelaysAuthorizationRuleResponse>;
+  identifier: "DeleteWCFRelayAuthorizationRuleResponse",
+}) as any as S.Schema<DeleteWCFRelayAuthorizationRuleResponse>;
 
 export interface GetHybridConnectionRequest {
   /** The ID of the target subscription. */
@@ -1070,7 +1070,7 @@ export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPrivateLinkResourceResponse",
 }) as any as S.Schema<GetPrivateLinkResourceResponse>;
 
-export interface GetWCFRelaysRequest {
+export interface GetWCFRelayRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1080,7 +1080,7 @@ export interface GetWCFRelaysRequest {
   /** The relay name. */
   relayName: string;
 }
-export const GetWCFRelaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWCFRelayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1095,8 +1095,8 @@ export const GetWCFRelaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetWCFRelaysRequest",
-}) as any as S.Schema<GetWCFRelaysRequest>;
+  identifier: "GetWCFRelayRequest",
+}) as any as S.Schema<GetWCFRelayRequest>;
 
 /** WCF relay type. */
 export type Relaytype = "NetTcp" | "Http";
@@ -1136,7 +1136,7 @@ export const WcfRelayProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "WcfRelayProperties",
 }) as any as S.Schema<WcfRelayProperties>;
 
-export interface GetWCFRelaysResponse {
+export interface GetWCFRelayResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1150,7 +1150,7 @@ export interface GetWCFRelaysResponse {
   /** The geo-location where the resource lives */
   location?: string;
 }
-export const GetWCFRelaysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetWCFRelayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1160,10 +1160,10 @@ export const GetWCFRelaysResponse = /*@__PURE__*/ S.suspend(() =>
     location: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetWCFRelaysResponse",
-}) as any as S.Schema<GetWCFRelaysResponse>;
+  identifier: "GetWCFRelayResponse",
+}) as any as S.Schema<GetWCFRelayResponse>;
 
-export interface GetWCFRelaysAuthorizationRuleRequest {
+export interface GetWCFRelayAuthorizationRuleRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1175,27 +1175,26 @@ export interface GetWCFRelaysAuthorizationRuleRequest {
   /** The authorization rule name. */
   authorizationRuleName: string;
 }
-export const GetWCFRelaysAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      relayName: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}/authorizationRules/{authorizationRuleName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
+export const GetWCFRelayAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    relayName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}/authorizationRules/{authorizationRuleName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
 ).annotate({
-  identifier: "GetWCFRelaysAuthorizationRuleRequest",
-}) as any as S.Schema<GetWCFRelaysAuthorizationRuleRequest>;
+  identifier: "GetWCFRelayAuthorizationRuleRequest",
+}) as any as S.Schema<GetWCFRelayAuthorizationRuleRequest>;
 
-export interface GetWCFRelaysAuthorizationRuleResponse {
+export interface GetWCFRelayAuthorizationRuleResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1209,7 +1208,7 @@ export interface GetWCFRelaysAuthorizationRuleResponse {
   /** The geo-location where the resource lives */
   location?: string;
 }
-export const GetWCFRelaysAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
+export const GetWCFRelayAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -1220,8 +1219,8 @@ export const GetWCFRelaysAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
       location: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "GetWCFRelaysAuthorizationRuleResponse",
-}) as any as S.Schema<GetWCFRelaysAuthorizationRuleResponse>;
+  identifier: "GetWCFRelayAuthorizationRuleResponse",
+}) as any as S.Schema<GetWCFRelayAuthorizationRuleResponse>;
 
 /** Properties of the HybridConnection. */
 export interface HybridConnectionPropertiesInput {
@@ -1938,7 +1937,7 @@ export const PrivateLinkResourcesListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkResourcesListResult",
 }) as any as S.Schema<PrivateLinkResourcesListResult>;
 
-export interface ListWCFRelaysAuthorizationRulesRequest {
+export interface ListWCFRelayAuthorizationRulesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1948,7 +1947,7 @@ export interface ListWCFRelaysAuthorizationRulesRequest {
   /** The relay name. */
   relayName: string;
 }
-export const ListWCFRelaysAuthorizationRulesRequest = /*@__PURE__*/ S.suspend(
+export const ListWCFRelayAuthorizationRulesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1964,10 +1963,10 @@ export const ListWCFRelaysAuthorizationRulesRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListWCFRelaysAuthorizationRulesRequest",
-}) as any as S.Schema<ListWCFRelaysAuthorizationRulesRequest>;
+  identifier: "ListWCFRelayAuthorizationRulesRequest",
+}) as any as S.Schema<ListWCFRelayAuthorizationRulesRequest>;
 
-export interface ListWCFRelaysByNamespaceRequest {
+export interface ListWCFRelayByNamespaceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1975,7 +1974,7 @@ export interface ListWCFRelaysByNamespaceRequest {
   /** The namespace name */
   namespaceName: string;
 }
-export const ListWCFRelaysByNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWCFRelayByNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1989,8 +1988,8 @@ export const ListWCFRelaysByNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListWCFRelaysByNamespaceRequest",
-}) as any as S.Schema<ListWCFRelaysByNamespaceRequest>;
+  identifier: "ListWCFRelayByNamespaceRequest",
+}) as any as S.Schema<ListWCFRelayByNamespaceRequest>;
 
 /** Description of the WCF relay resource. */
 export interface WcfRelay {
@@ -2040,7 +2039,7 @@ export const WcfRelaysListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "WcfRelaysListResult",
 }) as any as S.Schema<WcfRelaysListResult>;
 
-export interface ListWCFRelaysKeysRequest {
+export interface ListWCFRelayKeysRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2052,7 +2051,7 @@ export interface ListWCFRelaysKeysRequest {
   /** The authorization rule name. */
   authorizationRuleName: string;
 }
-export const ListWCFRelaysKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWCFRelayKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2068,8 +2067,8 @@ export const ListWCFRelaysKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListWCFRelaysKeysRequest",
-}) as any as S.Schema<ListWCFRelaysKeysRequest>;
+  identifier: "ListWCFRelayKeysRequest",
+}) as any as S.Schema<ListWCFRelayKeysRequest>;
 
 /** Resource tags. */
 export type NamespacesCreateOrUpdateRequestTagsMap = {
@@ -2463,7 +2462,7 @@ export const RegenerateNamespaceKeysRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "RegenerateNamespaceKeysRequest",
 }) as any as S.Schema<RegenerateNamespaceKeysRequest>;
 
-export interface RegenerateWCFRelaysKeysRequest {
+export interface RegenerateWCFRelayKeysRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2479,7 +2478,7 @@ export interface RegenerateWCFRelaysKeysRequest {
   /** Optional. If the key value is provided, this is set to key type, or autogenerated key value set for key type. */
   key?: string;
 }
-export const RegenerateWCFRelaysKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const RegenerateWCFRelayKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2497,8 +2496,8 @@ export const RegenerateWCFRelaysKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RegenerateWCFRelaysKeysRequest",
-}) as any as S.Schema<RegenerateWCFRelaysKeysRequest>;
+  identifier: "RegenerateWCFRelayKeysRequest",
+}) as any as S.Schema<RegenerateWCFRelayKeysRequest>;
 
 /** Resource tags. */
 export type UpdateNamespaceRequestTagsMap = {
@@ -2818,31 +2817,31 @@ export const DeletePrivateEndpointConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteWCFRelaysError = AzureOpError;
+export type DeleteWCFRelayError = AzureOpError;
 /** Deletes a WCF relay. */
-export const DeleteWCFRelays: API.OperationMethod<
-  DeleteWCFRelaysRequest,
-  DeleteWCFRelaysResponse,
-  DeleteWCFRelaysError,
+export const DeleteWCFRelay: API.OperationMethod<
+  DeleteWCFRelayRequest,
+  DeleteWCFRelayResponse,
+  DeleteWCFRelayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteWCFRelaysRequest,
-  output: DeleteWCFRelaysResponse,
+  input: DeleteWCFRelayRequest,
+  output: DeleteWCFRelayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteWCFRelaysAuthorizationRuleError = AzureOpError;
+export type DeleteWCFRelayAuthorizationRuleError = AzureOpError;
 /** Deletes a WCF relay authorization rule. */
-export const DeleteWCFRelaysAuthorizationRule: API.OperationMethod<
-  DeleteWCFRelaysAuthorizationRuleRequest,
-  DeleteWCFRelaysAuthorizationRuleResponse,
-  DeleteWCFRelaysAuthorizationRuleError,
+export const DeleteWCFRelayAuthorizationRule: API.OperationMethod<
+  DeleteWCFRelayAuthorizationRuleRequest,
+  DeleteWCFRelayAuthorizationRuleResponse,
+  DeleteWCFRelayAuthorizationRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteWCFRelaysAuthorizationRuleRequest,
-  output: DeleteWCFRelaysAuthorizationRuleResponse,
+  input: DeleteWCFRelayAuthorizationRuleRequest,
+  output: DeleteWCFRelayAuthorizationRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2953,31 +2952,31 @@ export const GetPrivateLinkResource: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetWCFRelaysError = AzureOpError;
+export type GetWCFRelayError = AzureOpError;
 /** Returns the description for the specified WCF relay. */
-export const GetWCFRelays: API.OperationMethod<
-  GetWCFRelaysRequest,
-  GetWCFRelaysResponse,
-  GetWCFRelaysError,
+export const GetWCFRelay: API.OperationMethod<
+  GetWCFRelayRequest,
+  GetWCFRelayResponse,
+  GetWCFRelayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetWCFRelaysRequest,
-  output: GetWCFRelaysResponse,
+  input: GetWCFRelayRequest,
+  output: GetWCFRelayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetWCFRelaysAuthorizationRuleError = AzureOpError;
+export type GetWCFRelayAuthorizationRuleError = AzureOpError;
 /** Get authorizationRule for a WCF relay by name. */
-export const GetWCFRelaysAuthorizationRule: API.OperationMethod<
-  GetWCFRelaysAuthorizationRuleRequest,
-  GetWCFRelaysAuthorizationRuleResponse,
-  GetWCFRelaysAuthorizationRuleError,
+export const GetWCFRelayAuthorizationRule: API.OperationMethod<
+  GetWCFRelayAuthorizationRuleRequest,
+  GetWCFRelayAuthorizationRuleResponse,
+  GetWCFRelayAuthorizationRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetWCFRelaysAuthorizationRuleRequest,
-  output: GetWCFRelaysAuthorizationRuleResponse,
+  input: GetWCFRelayAuthorizationRuleRequest,
+  output: GetWCFRelayAuthorizationRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3164,45 +3163,45 @@ export const ListPrivateLinkResources: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListWCFRelaysAuthorizationRulesError = AzureOpError;
+export type ListWCFRelayAuthorizationRulesError = AzureOpError;
 /** Authorization rules for a WCF relay. */
-export const ListWCFRelaysAuthorizationRules: API.OperationMethod<
-  ListWCFRelaysAuthorizationRulesRequest,
+export const ListWCFRelayAuthorizationRules: API.OperationMethod<
+  ListWCFRelayAuthorizationRulesRequest,
   AuthorizationRuleListResult,
-  ListWCFRelaysAuthorizationRulesError,
+  ListWCFRelayAuthorizationRulesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWCFRelaysAuthorizationRulesRequest,
+  input: ListWCFRelayAuthorizationRulesRequest,
   output: AuthorizationRuleListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListWCFRelaysByNamespaceError = AzureOpError;
+export type ListWCFRelayByNamespaceError = AzureOpError;
 /** Lists the WCF relays within the namespace. */
-export const ListWCFRelaysByNamespace: API.OperationMethod<
-  ListWCFRelaysByNamespaceRequest,
+export const ListWCFRelayByNamespace: API.OperationMethod<
+  ListWCFRelayByNamespaceRequest,
   WcfRelaysListResult,
-  ListWCFRelaysByNamespaceError,
+  ListWCFRelayByNamespaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWCFRelaysByNamespaceRequest,
+  input: ListWCFRelayByNamespaceRequest,
   output: WcfRelaysListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListWCFRelaysKeysError = AzureOpError;
+export type ListWCFRelayKeysError = AzureOpError;
 /** Primary and secondary connection strings to the WCF relay. */
-export const ListWCFRelaysKeys: API.OperationMethod<
-  ListWCFRelaysKeysRequest,
+export const ListWCFRelayKeys: API.OperationMethod<
+  ListWCFRelayKeysRequest,
   AccessKeys,
-  ListWCFRelaysKeysError,
+  ListWCFRelayKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWCFRelaysKeysRequest,
+  input: ListWCFRelayKeysRequest,
   output: AccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -3299,15 +3298,15 @@ export const RegenerateNamespaceKeys: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RegenerateWCFRelaysKeysError = AzureOpError;
+export type RegenerateWCFRelayKeysError = AzureOpError;
 /** Regenerates the primary or secondary connection strings to the WCF relay. */
-export const RegenerateWCFRelaysKeys: API.OperationMethod<
-  RegenerateWCFRelaysKeysRequest,
+export const RegenerateWCFRelayKeys: API.OperationMethod<
+  RegenerateWCFRelayKeysRequest,
   AccessKeys,
-  RegenerateWCFRelaysKeysError,
+  RegenerateWCFRelayKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RegenerateWCFRelaysKeysRequest,
+  input: RegenerateWCFRelayKeysRequest,
   output: AccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

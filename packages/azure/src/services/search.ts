@@ -64,7 +64,7 @@ export const CheckNameAvailabilityOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "CheckNameAvailabilityOutput",
 }) as any as S.Schema<CheckNameAvailabilityOutput>;
 
-export interface CreateQueryKeysRequest {
+export interface CreateQueryKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -74,7 +74,7 @@ export interface CreateQueryKeysRequest {
   /** The name of the new query API key. */
   name: string;
 }
-export const CreateQueryKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateQueryKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -89,8 +89,8 @@ export const CreateQueryKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateQueryKeysRequest",
-}) as any as S.Schema<CreateQueryKeysRequest>;
+  identifier: "CreateQueryKeyRequest",
+}) as any as S.Schema<CreateQueryKeyRequest>;
 
 /** Describes an API key for a given Azure AI Search service that conveys read-only permissions on the docs collection of an index. */
 export interface QueryKey {
@@ -286,7 +286,7 @@ export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeletePrivateEndpointConnectionResponse",
 }) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
 
-export interface DeleteQueryKeysRequest {
+export interface DeleteQueryKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -296,7 +296,7 @@ export interface DeleteQueryKeysRequest {
   /** The query key to be deleted. Query keys are identified by value, not by name. */
   key: string;
 }
-export const DeleteQueryKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteQueryKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -311,15 +311,15 @@ export const DeleteQueryKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteQueryKeysRequest",
-}) as any as S.Schema<DeleteQueryKeysRequest>;
+  identifier: "DeleteQueryKeyRequest",
+}) as any as S.Schema<DeleteQueryKeyRequest>;
 
-export interface DeleteQueryKeysResponse {}
-export const DeleteQueryKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteQueryKeyResponse {}
+export const DeleteQueryKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteQueryKeysResponse",
-}) as any as S.Schema<DeleteQueryKeysResponse>;
+  identifier: "DeleteQueryKeyResponse",
+}) as any as S.Schema<DeleteQueryKeyResponse>;
 
 export interface DeleteServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -389,7 +389,7 @@ export const DeleteSharedPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteSharedPrivateLinkResourceResponse",
 }) as any as S.Schema<DeleteSharedPrivateLinkResourceResponse>;
 
-export interface GetAdminKeysRequest {
+export interface GetAdminKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -397,7 +397,7 @@ export interface GetAdminKeysRequest {
   /** The name of the Azure AI Search service associated with the specified resource group. */
   searchServiceName: string;
 }
-export const GetAdminKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAdminKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -411,8 +411,8 @@ export const GetAdminKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetAdminKeysRequest",
-}) as any as S.Schema<GetAdminKeysRequest>;
+  identifier: "GetAdminKeyRequest",
+}) as any as S.Schema<GetAdminKeyRequest>;
 
 /** Response containing the primary and secondary admin API keys for a given Azure AI Search service. */
 export interface AdminKeyResult {
@@ -2064,10 +2064,10 @@ export const ListQueryKeysResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListQueryKeysResult",
 }) as any as S.Schema<ListQueryKeysResult>;
 
-export type RegenerateAdminKeysRequestKeyKind = "primary" | "secondary";
-export const RegenerateAdminKeysRequestKeyKind = /*@__PURE__*/ S.String;
+export type RegenerateAdminKeyRequestKeyKind = "primary" | "secondary";
+export const RegenerateAdminKeyRequestKeyKind = /*@__PURE__*/ S.String;
 
-export interface RegenerateAdminKeysRequest {
+export interface RegenerateAdminKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2075,14 +2075,14 @@ export interface RegenerateAdminKeysRequest {
   /** The name of the Azure AI Search service associated with the specified resource group. */
   searchServiceName: string;
   /** Specifies which key to regenerate. Valid values include 'primary' and 'secondary'. */
-  keyKind: RegenerateAdminKeysRequestKeyKind | (string & {});
+  keyKind: RegenerateAdminKeyRequestKeyKind | (string & {});
 }
-export const RegenerateAdminKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const RegenerateAdminKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     searchServiceName: S.String.pipe(T.Label()),
-    keyKind: RegenerateAdminKeysRequestKeyKind.pipe(T.Label()),
+    keyKind: RegenerateAdminKeyRequestKeyKind.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -2092,8 +2092,8 @@ export const RegenerateAdminKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RegenerateAdminKeysRequest",
-}) as any as S.Schema<RegenerateAdminKeysRequest>;
+  identifier: "RegenerateAdminKeyRequest",
+}) as any as S.Schema<RegenerateAdminKeyRequest>;
 
 /** Resource tags. */
 export type ServicesCreateOrUpdateRequestTagsMap = {
@@ -2612,15 +2612,15 @@ export const CheckServiceNameAvailability: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateQueryKeysError = AzureOpError;
+export type CreateQueryKeyError = AzureOpError;
 /** Generates a new query key for the specified search service. You can create up to 50 query keys per service. */
-export const CreateQueryKeys: API.OperationMethod<
-  CreateQueryKeysRequest,
+export const CreateQueryKey: API.OperationMethod<
+  CreateQueryKeyRequest,
   QueryKey,
-  CreateQueryKeysError,
+  CreateQueryKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateQueryKeysRequest,
+  input: CreateQueryKeyRequest,
   output: QueryKey,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -2642,16 +2642,16 @@ export const DeletePrivateEndpointConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteQueryKeysError = AzureOpError;
+export type DeleteQueryKeyError = AzureOpError;
 /** Deletes the specified query key. Unlike admin keys, query keys are not regenerated. The process for regenerating a query key is to delete and then recreate it. Returns 200 (OK) on successful deletion, 204 (No Content) if the service exists but the query keys not found, or 404 (Not Found) if the service is not found. NOTE: The behavior of returning 404 is inconsistent with ARM guidelines. Clients should expect a 204 response in future versions and avoid new dependencies on the 404 response. */
-export const DeleteQueryKeys: API.OperationMethod<
-  DeleteQueryKeysRequest,
-  DeleteQueryKeysResponse,
-  DeleteQueryKeysError,
+export const DeleteQueryKey: API.OperationMethod<
+  DeleteQueryKeyRequest,
+  DeleteQueryKeyResponse,
+  DeleteQueryKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteQueryKeysRequest,
-  output: DeleteQueryKeysResponse,
+  input: DeleteQueryKeyRequest,
+  output: DeleteQueryKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2687,15 +2687,15 @@ export const DeleteSharedPrivateLinkResource: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAdminKeysError = AzureOpError;
+export type GetAdminKeyError = AzureOpError;
 /** Gets the primary and secondary admin API keys for the specified Azure AI Search service. */
-export const GetAdminKeys: API.OperationMethod<
-  GetAdminKeysRequest,
+export const GetAdminKey: API.OperationMethod<
+  GetAdminKeyRequest,
   AdminKeyResult,
-  GetAdminKeysError,
+  GetAdminKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAdminKeysRequest,
+  input: GetAdminKeyRequest,
   output: AdminKeyResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -2913,15 +2913,15 @@ export const QueryKeysListBySearchService: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RegenerateAdminKeysError = AzureOpError;
+export type RegenerateAdminKeyError = AzureOpError;
 /** Regenerates either the primary or secondary admin API key. You can only regenerate one key at a time. */
-export const RegenerateAdminKeys: API.OperationMethod<
-  RegenerateAdminKeysRequest,
+export const RegenerateAdminKey: API.OperationMethod<
+  RegenerateAdminKeyRequest,
   AdminKeyResult,
-  RegenerateAdminKeysError,
+  RegenerateAdminKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RegenerateAdminKeysRequest,
+  input: RegenerateAdminKeyRequest,
   output: AdminKeyResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

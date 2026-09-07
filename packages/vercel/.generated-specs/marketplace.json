@@ -4190,7 +4190,7 @@
         "smithy.api#documentation": "Patch an existing experimentation item\n\nPatch an existing experimentation item"
       }
     },
-    "com.vercel.marketplace#DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequest": {
+    "com.vercel.marketplace#DeleteInstallationResourceExperimentationItemRequest": {
       "type": "structure",
       "members": {
         "integrationConfigurationId": {
@@ -4219,10 +4219,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.vercel.marketplace#DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemId": {
+    "com.vercel.marketplace#DeleteInstallationResourceExperimentationItem": {
       "type": "operation",
       "input": {
-        "target": "com.vercel.marketplace#DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequest"
+        "target": "com.vercel.marketplace#DeleteInstallationResourceExperimentationItemRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4247,7 +4247,7 @@
         "smithy.api#documentation": "Delete an existing experimentation item\n\nDelete an existing experimentation item"
       }
     },
-    "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest": {
+    "com.vercel.marketplace#GetInstallationResourceExperimentationGlobalConfigRequest": {
       "type": "structure",
       "members": {
         "integrationConfigurationId": {
@@ -4307,7 +4307,7 @@
       },
       "traits": {}
     },
-    "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponseItemsMap": {
+    "com.vercel.marketplace#GetInstallationResourceExperimentationGlobalConfigResponseItemsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4317,7 +4317,7 @@
       },
       "traits": {}
     },
-    "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponsePurpose": {
+    "com.vercel.marketplace#GetInstallationResourceExperimentationGlobalConfigResponsePurpose": {
       "type": "enum",
       "members": {
         "EXPERIMENTATION": {
@@ -4335,11 +4335,11 @@
       },
       "traits": {}
     },
-    "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse": {
+    "com.vercel.marketplace#GetInstallationResourceExperimentationGlobalConfigResponse": {
       "type": "structure",
       "members": {
         "items": {
-          "target": "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponseItemsMap",
+          "target": "com.vercel.marketplace#GetInstallationResourceExperimentationGlobalConfigResponseItemsMap",
           "traits": {
             "smithy.api#required": {}
           }
@@ -4357,20 +4357,20 @@
           }
         },
         "purpose": {
-          "target": "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponsePurpose"
+          "target": "com.vercel.marketplace#GetInstallationResourceExperimentationGlobalConfigResponsePurpose"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig": {
+    "com.vercel.marketplace#GetInstallationResourceExperimentationGlobalConfig": {
       "type": "operation",
       "input": {
-        "target": "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest"
+        "target": "com.vercel.marketplace#GetInstallationResourceExperimentationGlobalConfigRequest"
       },
       "output": {
-        "target": "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse"
+        "target": "com.vercel.marketplace#GetInstallationResourceExperimentationGlobalConfigResponse"
       },
       "errors": [
         {
@@ -4518,7 +4518,7 @@
         "smithy.api#documentation": "Push data into a user-provided Global Config\n\nWhen the user enabled Global Config syncing, then this endpoint can be used by the partner to push their configuration data into the relevant Global Config."
       }
     },
-    "com.vercel.marketplace#HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest": {
+    "com.vercel.marketplace#HeadInstallationResourceExperimentationGlobalConfigRequest": {
       "type": "structure",
       "members": {
         "integrationConfigurationId": {
@@ -4540,10 +4540,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.vercel.marketplace#HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig": {
+    "com.vercel.marketplace#HeadInstallationResourceExperimentationGlobalConfig": {
       "type": "operation",
       "input": {
-        "target": "com.vercel.marketplace#HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest"
+        "target": "com.vercel.marketplace#HeadInstallationResourceExperimentationGlobalConfigRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4698,16 +4698,16 @@
           "target": "com.vercel.marketplace#UpdateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemId"
         },
         {
-          "target": "com.vercel.marketplace#DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemId"
+          "target": "com.vercel.marketplace#DeleteInstallationResourceExperimentationItem"
         },
         {
-          "target": "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig"
+          "target": "com.vercel.marketplace#GetInstallationResourceExperimentationGlobalConfig"
         },
         {
           "target": "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig"
         },
         {
-          "target": "com.vercel.marketplace#HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig"
+          "target": "com.vercel.marketplace#HeadInstallationResourceExperimentationGlobalConfig"
         }
       ],
       "traits": {

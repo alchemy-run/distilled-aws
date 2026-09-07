@@ -1943,39 +1943,34 @@ export const CreateSecurityFirewallConfigByConfigVersionActivateResponse =
     identifier: "CreateSecurityFirewallConfigByConfigVersionActivateResponse",
   }) as any as S.Schema<CreateSecurityFirewallConfigByConfigVersionActivateResponse>;
 
-export interface DeleteSecurityFirewallConfigByConfigVersionRequest {
+export interface DeleteSecurityFirewallConfigRequest {
   /** The deployed configVersion for the firewall configuration */
   configVersion: string;
 }
-export const DeleteSecurityFirewallConfigByConfigVersionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      configVersion: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/security/firewall/config/{configVersion}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteSecurityFirewallConfigByConfigVersionRequest",
-  }) as any as S.Schema<DeleteSecurityFirewallConfigByConfigVersionRequest>;
+export const DeleteSecurityFirewallConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    configVersion: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/security/firewall/config/{configVersion}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSecurityFirewallConfigRequest",
+}) as any as S.Schema<DeleteSecurityFirewallConfigRequest>;
 
-export type DeleteSecurityFirewallConfigByConfigVersionResponseBody = "";
-export const DeleteSecurityFirewallConfigByConfigVersionResponseBody =
-  /*@__PURE__*/ S.String;
+export type DeleteSecurityFirewallConfigResponseBody = "";
+export const DeleteSecurityFirewallConfigResponseBody = /*@__PURE__*/ S.String;
 
-export type DeleteSecurityFirewallConfigByConfigVersionResponse =
-  DeleteSecurityFirewallConfigByConfigVersionResponseBody;
-export const DeleteSecurityFirewallConfigByConfigVersionResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    DeleteSecurityFirewallConfigByConfigVersionResponseBody.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "DeleteSecurityFirewallConfigByConfigVersionResponse",
-  }) as any as S.Schema<DeleteSecurityFirewallConfigByConfigVersionResponse>;
+export type DeleteSecurityFirewallConfigResponse =
+  DeleteSecurityFirewallConfigResponseBody;
+export const DeleteSecurityFirewallConfigResponse = /*@__PURE__*/ S.suspend(
+  () => DeleteSecurityFirewallConfigResponseBody.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteSecurityFirewallConfigResponse",
+}) as any as S.Schema<DeleteSecurityFirewallConfigResponse>;
 
 export interface GenerateFirewallRuleRequest {
   projectId?: string;
@@ -13787,20 +13782,20 @@ export const createSecurityFirewallConfigByConfigVersionActivate: API.OperationM
   retry: Retry.Retry,
 }));
 
-export type DeleteSecurityFirewallConfigByConfigVersionError =
+export type DeleteSecurityFirewallConfigError =
   | BadRequest
   | Forbidden
   | NotFound
   | VercelOpError;
 /** Returns activated WAF config Promotes a draft WAF config to an active config */
-export const deleteSecurityFirewallConfigByConfigVersion: API.OperationMethod<
-  DeleteSecurityFirewallConfigByConfigVersionRequest,
-  DeleteSecurityFirewallConfigByConfigVersionResponse,
-  DeleteSecurityFirewallConfigByConfigVersionError,
+export const deleteSecurityFirewallConfig: API.OperationMethod<
+  DeleteSecurityFirewallConfigRequest,
+  DeleteSecurityFirewallConfigResponse,
+  DeleteSecurityFirewallConfigError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSecurityFirewallConfigByConfigVersionRequest,
-  output: DeleteSecurityFirewallConfigByConfigVersionResponse,
+  input: DeleteSecurityFirewallConfigRequest,
+  output: DeleteSecurityFirewallConfigResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,

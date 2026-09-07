@@ -1,5 +1,8 @@
 import { describe, expect, test } from "bun:test";
 import {
+  isMechanicalOperationId,
+  isVerbatimRouteId,
+  pathToVerbNoun,
   singularize,
   toVerbNoun,
   verbNounSmithyModel,
@@ -164,6 +167,9 @@ describe("singularize", () => {
     ["IPs", "IP"],
     ["Data", "Data"],
     ["Ips", "Ips"],
+    ["Keys", "Key"],
+    ["Days", "Day"],
+    ["Toys", "Toy"],
   ])("%s → %s", (input, expected) => {
     expect(singularize(input)).toBe(expected);
   });
@@ -256,5 +262,281 @@ describe("verbNounSmithyModel", () => {
       "ns#AppsList",
       "ns#ListApps",
     ]);
+  });
+});
+
+describe("isMechanicalOperationId", () => {
+  test.each([
+    [undefined, "get", "/users", true],
+    ["get-api-card", "get", "/api/card", true],
+    ["post_v1_users_id", "post", "/v1/users/{id}", true],
+    ["getApiV1AnnotationLayer", "get", "/api/v1/annotation_layer", true],
+    ["get-database-by-uuid", "get", "/databases/{uuid}", true],
+    ["getEvents", "get", "/events", true],
+    ["getMauUsage", "get", "/api/v2/usage/mau", false],
+    ["getExperimentSnapshot", "get", "/v1/snapshots/{id}", false],
+    [
+      "deleteBranches",
+      "post",
+      "/api/v2/code-refs/repositories/{repo}/branch-delete-tasks",
+      false,
+    ],
+    ["post-applePay-sessions", "post", "/applePay/sessions", true],
+    ["Apps_list", "get", "/apps", false],
+    ["listUsers", "get", "/users", false],
+    [
+      "delete-artifact",
+      "delete",
+      "/repos/{owner}/{repo}/actions/artifacts/{artifact_id}",
+      false,
+    ],
+    ["get_pricing", "get", "/pricing", true],
+    ["get_actions", "get", "/actions", true],
+    ["deletePolicy", "delete", "/v2/policies/{policyId}", true],
+    ["getCustomerById", "get", "/v2/customers/{customerId}", true],
+    [
+      "getBalanceByAsset",
+      "get",
+      "/accounts/{account_id}/balances/{asset}",
+      false,
+    ],
+  ])("%s %s %s → %s", (id, method, path, expected) => {
+    expect(isMechanicalOperationId(id, { method, path })).toBe(expected);
+  });
+});
+
+describe("pathToVerbNoun with a mechanical id", () => {
+  test.each([
+    ["get", "/feeds", "activity/get-feeds", false, "getFeeds"],
+    ["get", "/actions", "get_actions", undefined, "getActions"],
+    ["get", "/pricing", "get_pricing", false, "getPricing"],
+    [
+      "get",
+      "/load_balancers/{id}/metrics",
+      "get_load_balancer_metrics",
+      false,
+      "getLoadBalancerMetrics",
+    ],
+    [
+      "delete",
+      "/v2/policies/{policyId}",
+      "deletePolicy",
+      undefined,
+      "deletePolicy",
+    ],
+    [
+      "get",
+      "/v2/customers/{customerId}",
+      "getCustomerById",
+      undefined,
+      "getCustomer",
+    ],
+    ["post", "/api/action", "post-api-action", undefined, "createAction"],
+    [
+      "get",
+      "/orgs/{org}/rulesets/{ruleset_id}",
+      "repos/get-org-ruleset",
+      undefined,
+      "getOrgRuleset",
+    ],
+    [
+      "get",
+      "/orgs/{org}/rulesets",
+      "repos/get-org-rulesets",
+      true,
+      "listOrgRulesets",
+    ],
+    [
+      "delete",
+      "/api/jobs/{namespace}/scheduled/{id}",
+      "deleteScheduledJob",
+      undefined,
+      "deleteScheduledJob",
+    ],
+    [
+      "get",
+      "/v2/payments/{session_id}/authorizations/{authorization_id}",
+      "getPaymentSessionAuthorization",
+      undefined,
+      "getPaymentSessionAuthorization",
+    ],
+  ])("%s %s (%s) → %s", (method, path, id, coll, expected) => {
+    expect(
+      pathToVerbNoun({ method, path }, { returnsCollection: coll, nouns: id }),
+    ).toBe(expected);
+  });
+});
+
+describe("pathToVerbNoun with a verbatim id", () => {
+  test.each([
+    [
+      "post",
+      "/v1/apps/{appId}/promote",
+      "postV1AppsByAppIdPromote",
+      "createAppPromote",
+    ],
+    ["get", "/v1/apps", "getV1Apps", "getApps"],
+    ["get", "/v1/apps/{appId}", "getV1AppsByAppId", "getApp"],
+    ["post", "/v1/accounts/{account}", "PostAccountsAccount", "updateAccount"],
+    ["post", "/v1/accounts", "PostAccounts", "createAccount"],
+    ["get", "/v1/accounts/{account}", "GetAccountsAccount", "getAccount"],
+    [
+      "delete",
+      "/v1/accounts/{account}",
+      "DeleteAccountsAccount",
+      "deleteAccount",
+    ],
+    [
+      "delete",
+      "/v1/customers/{customer}/discount",
+      "DeleteCustomersCustomerDiscount",
+      "deleteCustomerDiscount",
+    ],
+    [
+      "get",
+      "/v1/customers/{customer}/balance_transactions/{transaction}",
+      "GetCustomersCustomerBalanceTransactionsTransaction",
+      "getCustomerBalanceTransaction",
+    ],
+    [
+      "delete",
+      "/organizations/{organization}/teams/{team}",
+      "delete_organization_team",
+      "deleteOrganizationTeam",
+    ],
+    [
+      "get",
+      "/organizations/{organization}/teams/{team}/members/{id}",
+      "get_organization_team_member",
+      "getOrganizationTeamMember",
+    ],
+    [
+      "delete",
+      "/projects/{project_id}/branches/{branch_id}/custom-domains/{domain}",
+      "deleteProjectBranchCustomDomain",
+      "deleteProjectBranchCustomDomain",
+    ],
+    [
+      "delete",
+      "/v1/buckets/{bucketId}/keys/{keyId}",
+      "deleteV1BucketsByBucketIdKeysByKeyId",
+      "deleteBucketKey",
+    ],
+    ["get", "/v1/users/{id}", "get_v1_users_id", "getUser"],
+    [
+      "delete",
+      "/projects/{project_id}/jwks/{jwks_id}",
+      "deleteProjectJWKS",
+      "deleteProjectJWKS",
+    ],
+    [
+      "get",
+      "/projects/{project_id}/branches/{branch_id}/data-api/{database_name}",
+      "getProjectBranchDataAPI",
+      "getProjectBranchDataAPI",
+    ],
+    ["get", "/v2/customers/{customerId}", "getCustomerById", "getCustomer"],
+    [
+      "get",
+      "/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}",
+      "getByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest",
+      "getBlob",
+    ],
+    [
+      "delete",
+      "/v1/security/firewall/config/{configVersion}",
+      "deleteSecurityFirewallConfigByConfigVersion",
+      "deleteSecurityFirewallConfig",
+    ],
+  ])("%s %s (%s) → %s", (method, path, id, expected) => {
+    expect(
+      pathToVerbNoun({ method, path }, { nouns: id, verbatim: true }),
+    ).toBe(expected);
+  });
+});
+
+describe("pathToVerbNoun", () => {
+  test.each([
+    ["get", "/users", "listUsers"],
+    ["get", "/users/{id}", "getUser"],
+    ["post", "/users", "createUser"],
+    ["put", "/users/{id}", "putUser"],
+    ["post", "/users/{id}", "updateUser"],
+    ["patch", "/users/{id}", "updateUser"],
+    ["delete", "/users/{id}", "deleteUser"],
+    ["post", "/users/{id}/reset", "resetUser"],
+    ["post", "/emails/{email_id}/cancel", "cancelEmail"],
+    ["get", "/orgs/{org}/repos", "listOrgRepos"],
+    ["get", "/api/v1/annotation_layer", "listAnnotationLayer"],
+    ["get", "/api/card", "listCard"],
+    [
+      "get",
+      "/api/public/dashboard/{uuid}/dashcard/{dashcard-id}/card/{card-id}",
+      "getDashboardDashcardCard",
+    ],
+    ["post", "/applePay/sessions", "createApplePaySession"],
+    ["post", "/cancels", "createCancel"],
+    [
+      "get",
+      "/v1/benefit-offers/country-summaries",
+      "listBenefitOfferCountrySummaries",
+    ],
+    ["get", "/v1/contractor-invoices/{id}", "getContractorInvoice"],
+    ["post", "/auth/oauth2/token", "createAuthOauth2Token"],
+    ["post", "/login", "login"],
+    ["get", "/", "getRoot"],
+    ["get", "/api/v2/usage/mau", "listUsageMau"],
+    ["post", "/api/ee/action-v2/execute-bulk", "executeEeActionV2Bulk"],
+    ["get", "/api/collections/{namespace}/{slug}-{id}", "getCollection"],
+    ["get", "/zen", "getZen"],
+    ["get", "/feeds", "getFeeds"],
+    ["get", "/guilds/{guild_id}/webhooks", "getGuildWebhooks"],
+    ["delete", "/api/notifications", "deleteNotifications"],
+  ])("%s %s → %s", (method, path, expected) => {
+    expect(
+      pathToVerbNoun(
+        { method, path },
+        { returnsCollection: expected.startsWith("list") },
+      ),
+    ).toBe(expected);
+  });
+});
+
+describe("isVerbatimRouteId", () => {
+  test.each([
+    [undefined, "get", "/apps", true],
+    ["postV1AppsByAppIdPromote", "post", "/v1/apps/{appId}/promote", true],
+    ["getV1Apps", "get", "/v1/apps", true],
+    ["get_v1_users_id", "get", "/v1/users/{id}", true],
+    ["get-api-card", "get", "/api/card", true],
+    [
+      "getByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest",
+      "get",
+      "/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}",
+      true,
+    ],
+    ["activity/get-feeds", "get", "/feeds", true],
+    ["get_actions", "get", "/actions", true],
+    [
+      "deleteScheduledJob",
+      "delete",
+      "/api/jobs/{namespace}/scheduled/{id}",
+      false,
+    ],
+    ["getCustomerById", "get", "/v2/customers/{customerId}", true],
+    [
+      "get_webhook_by_token",
+      "get",
+      "/webhooks/{webhook_id}/{webhook_token}",
+      false,
+    ],
+    [
+      "getFirewallConfig",
+      "get",
+      "/v1/security/firewall/config/{configVersion}",
+      false,
+    ],
+  ])("%s %s %s → %s", (id, method, path, expected) => {
+    expect(isVerbatimRouteId(id, { method, path })).toBe(expected);
   });
 });

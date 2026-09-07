@@ -4637,7 +4637,7 @@ export const DeleteManagedInstanceAzureADOnlyAuthenticationResponse =
     identifier: "DeleteManagedInstanceAzureADOnlyAuthenticationResponse",
   }) as any as S.Schema<DeleteManagedInstanceAzureADOnlyAuthenticationResponse>;
 
-export interface DeleteManagedInstanceKeysRequest {
+export interface DeleteManagedInstanceKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4647,7 +4647,7 @@ export interface DeleteManagedInstanceKeysRequest {
   /** The name of the managed instance key to be retrieved. */
   keyName: string;
 }
-export const DeleteManagedInstanceKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteManagedInstanceKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4662,15 +4662,15 @@ export const DeleteManagedInstanceKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteManagedInstanceKeysRequest",
-}) as any as S.Schema<DeleteManagedInstanceKeysRequest>;
+  identifier: "DeleteManagedInstanceKeyRequest",
+}) as any as S.Schema<DeleteManagedInstanceKeyRequest>;
 
-export interface DeleteManagedInstanceKeysResponse {}
-export const DeleteManagedInstanceKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteManagedInstanceKeyResponse {}
+export const DeleteManagedInstanceKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteManagedInstanceKeysResponse",
-}) as any as S.Schema<DeleteManagedInstanceKeysResponse>;
+  identifier: "DeleteManagedInstanceKeyResponse",
+}) as any as S.Schema<DeleteManagedInstanceKeyResponse>;
 
 export type DeleteManagedInstanceLongTermRetentionPolicyRequestPolicyName =
   "default";
@@ -5248,7 +5248,7 @@ export const DeleteServerDnsAliasResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteServerDnsAliasResponse",
 }) as any as S.Schema<DeleteServerDnsAliasResponse>;
 
-export interface DeleteServerKeysRequest {
+export interface DeleteServerKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5258,7 +5258,7 @@ export interface DeleteServerKeysRequest {
   /** The name of the server key to be retrieved. */
   keyName: string;
 }
-export const DeleteServerKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteServerKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5273,15 +5273,15 @@ export const DeleteServerKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteServerKeysRequest",
-}) as any as S.Schema<DeleteServerKeysRequest>;
+  identifier: "DeleteServerKeyRequest",
+}) as any as S.Schema<DeleteServerKeyRequest>;
 
-export interface DeleteServerKeysResponse {}
-export const DeleteServerKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteServerKeyResponse {}
+export const DeleteServerKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteServerKeysResponse",
-}) as any as S.Schema<DeleteServerKeysResponse>;
+  identifier: "DeleteServerKeyResponse",
+}) as any as S.Schema<DeleteServerKeyResponse>;
 
 export interface DeleteServerTrustCertificateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -16487,7 +16487,7 @@ export const GetManagedInstanceEncryptionProtectorResponse =
     identifier: "GetManagedInstanceEncryptionProtectorResponse",
   }) as any as S.Schema<GetManagedInstanceEncryptionProtectorResponse>;
 
-export interface GetManagedInstanceKeysRequest {
+export interface GetManagedInstanceKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -16497,7 +16497,7 @@ export interface GetManagedInstanceKeysRequest {
   /** The name of the managed instance key to be retrieved. */
   keyName: string;
 }
-export const GetManagedInstanceKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedInstanceKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -16512,8 +16512,8 @@ export const GetManagedInstanceKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetManagedInstanceKeysRequest",
-}) as any as S.Schema<GetManagedInstanceKeysRequest>;
+  identifier: "GetManagedInstanceKeyRequest",
+}) as any as S.Schema<GetManagedInstanceKeyRequest>;
 
 /** The encryption protector type like 'ServiceManaged', 'AzureKeyVault'. */
 export type ManagedInstanceKeyPropertiesServerKeyType =
@@ -16546,7 +16546,7 @@ export const ManagedInstanceKeyProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedInstanceKeyProperties",
 }) as any as S.Schema<ManagedInstanceKeyProperties>;
 
-export interface GetManagedInstanceKeysResponse {
+export interface GetManagedInstanceKeyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -16560,7 +16560,7 @@ export interface GetManagedInstanceKeysResponse {
   /** Kind of encryption protector. This is metadata used for the Azure portal experience. */
   kind?: string;
 }
-export const GetManagedInstanceKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedInstanceKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -16570,8 +16570,8 @@ export const GetManagedInstanceKeysResponse = /*@__PURE__*/ S.suspend(() =>
     kind: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetManagedInstanceKeysResponse",
-}) as any as S.Schema<GetManagedInstanceKeysResponse>;
+  identifier: "GetManagedInstanceKeyResponse",
+}) as any as S.Schema<GetManagedInstanceKeyResponse>;
 
 export type GetManagedInstanceLongTermRetentionPolicyRequestPolicyName =
   "default";
@@ -19821,7 +19821,7 @@ export const GetServerDnsAliasResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetServerDnsAliasResponse",
 }) as any as S.Schema<GetServerDnsAliasResponse>;
 
-export interface GetServerKeysRequest {
+export interface GetServerKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -19831,7 +19831,7 @@ export interface GetServerKeysRequest {
   /** The name of the server key to be retrieved. */
   keyName: string;
 }
-export const GetServerKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetServerKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -19846,8 +19846,8 @@ export const GetServerKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetServerKeysRequest",
-}) as any as S.Schema<GetServerKeysRequest>;
+  identifier: "GetServerKeyRequest",
+}) as any as S.Schema<GetServerKeyRequest>;
 
 /** The encryption protector type like 'ServiceManaged', 'AzureKeyVault'. */
 export type ServerKeyPropertiesServerKeyType =
@@ -19886,7 +19886,7 @@ export const ServerKeyProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServerKeyProperties",
 }) as any as S.Schema<ServerKeyProperties>;
 
-export interface GetServerKeysResponse {
+export interface GetServerKeyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -19902,7 +19902,7 @@ export interface GetServerKeysResponse {
   /** Resource location. */
   location?: string;
 }
-export const GetServerKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetServerKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -19913,8 +19913,8 @@ export const GetServerKeysResponse = /*@__PURE__*/ S.suspend(() =>
     location: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetServerKeysResponse",
-}) as any as S.Schema<GetServerKeysResponse>;
+  identifier: "GetServerKeyResponse",
+}) as any as S.Schema<GetServerKeyResponse>;
 
 export type GetServerSecurityAlertPolicyRequestSecurityAlertPolicyName =
   "Default";
@@ -32307,7 +32307,7 @@ export const ManagedInstanceEncryptionProtectorListResult =
     identifier: "ManagedInstanceEncryptionProtectorListResult",
   }) as any as S.Schema<ManagedInstanceEncryptionProtectorListResult>;
 
-export interface ListManagedInstanceKeysByInstanceRequest {
+export interface ListManagedInstanceKeyByInstanceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -32317,7 +32317,7 @@ export interface ListManagedInstanceKeysByInstanceRequest {
   /** An OData filter expression that filters elements in the collection. */
   _filter?: string;
 }
-export const ListManagedInstanceKeysByInstanceRequest = /*@__PURE__*/ S.suspend(
+export const ListManagedInstanceKeyByInstanceRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -32333,8 +32333,8 @@ export const ListManagedInstanceKeysByInstanceRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListManagedInstanceKeysByInstanceRequest",
-}) as any as S.Schema<ListManagedInstanceKeysByInstanceRequest>;
+  identifier: "ListManagedInstanceKeyByInstanceRequest",
+}) as any as S.Schema<ListManagedInstanceKeyByInstanceRequest>;
 
 /** A managed instance key. */
 export interface ManagedInstanceKey {
@@ -35085,7 +35085,7 @@ export const ServerDnsAliasListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServerDnsAliasListResult",
 }) as any as S.Schema<ServerDnsAliasListResult>;
 
-export interface ListServerKeysByServerRequest {
+export interface ListServerKeyByServerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -35093,7 +35093,7 @@ export interface ListServerKeysByServerRequest {
   /** The name of the server. */
   serverName: string;
 }
-export const ListServerKeysByServerRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListServerKeyByServerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -35107,8 +35107,8 @@ export const ListServerKeysByServerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListServerKeysByServerRequest",
-}) as any as S.Schema<ListServerKeysByServerRequest>;
+  identifier: "ListServerKeyByServerRequest",
+}) as any as S.Schema<ListServerKeyByServerRequest>;
 
 /** A server key. */
 export interface ServerKey {
@@ -48954,16 +48954,16 @@ export const DeleteManagedInstanceAzureADOnlyAuthentication: API.OperationMethod
   retry: Retry.Retry,
 }));
 
-export type DeleteManagedInstanceKeysError = AzureOpError;
+export type DeleteManagedInstanceKeyError = AzureOpError;
 /** Deletes the managed instance key with the given name. */
-export const DeleteManagedInstanceKeys: API.OperationMethod<
-  DeleteManagedInstanceKeysRequest,
-  DeleteManagedInstanceKeysResponse,
-  DeleteManagedInstanceKeysError,
+export const DeleteManagedInstanceKey: API.OperationMethod<
+  DeleteManagedInstanceKeyRequest,
+  DeleteManagedInstanceKeyResponse,
+  DeleteManagedInstanceKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteManagedInstanceKeysRequest,
-  output: DeleteManagedInstanceKeysResponse,
+  input: DeleteManagedInstanceKeyRequest,
+  output: DeleteManagedInstanceKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -49164,16 +49164,16 @@ export const DeleteServerDnsAlias: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteServerKeysError = AzureOpError;
+export type DeleteServerKeyError = AzureOpError;
 /** Deletes the server key with the given name. */
-export const DeleteServerKeys: API.OperationMethod<
-  DeleteServerKeysRequest,
-  DeleteServerKeysResponse,
-  DeleteServerKeysError,
+export const DeleteServerKey: API.OperationMethod<
+  DeleteServerKeyRequest,
+  DeleteServerKeyResponse,
+  DeleteServerKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteServerKeysRequest,
-  output: DeleteServerKeysResponse,
+  input: DeleteServerKeyRequest,
+  output: DeleteServerKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -50915,16 +50915,16 @@ export const GetManagedInstanceEncryptionProtector: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetManagedInstanceKeysError = AzureOpError;
+export type GetManagedInstanceKeyError = AzureOpError;
 /** Gets a managed instance key. */
-export const GetManagedInstanceKeys: API.OperationMethod<
-  GetManagedInstanceKeysRequest,
-  GetManagedInstanceKeysResponse,
-  GetManagedInstanceKeysError,
+export const GetManagedInstanceKey: API.OperationMethod<
+  GetManagedInstanceKeyRequest,
+  GetManagedInstanceKeyResponse,
+  GetManagedInstanceKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetManagedInstanceKeysRequest,
-  output: GetManagedInstanceKeysResponse,
+  input: GetManagedInstanceKeyRequest,
+  output: GetManagedInstanceKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -51398,16 +51398,16 @@ export const GetServerDnsAlias: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetServerKeysError = AzureOpError;
+export type GetServerKeyError = AzureOpError;
 /** Gets a server key. */
-export const GetServerKeys: API.OperationMethod<
-  GetServerKeysRequest,
-  GetServerKeysResponse,
-  GetServerKeysError,
+export const GetServerKey: API.OperationMethod<
+  GetServerKeyRequest,
+  GetServerKeyResponse,
+  GetServerKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetServerKeysRequest,
-  output: GetServerKeysResponse,
+  input: GetServerKeyRequest,
+  output: GetServerKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -53459,15 +53459,15 @@ export const ListManagedInstanceEncryptionProtectorByInstance: API.OperationMeth
   retry: Retry.Retry,
 }));
 
-export type ListManagedInstanceKeysByInstanceError = AzureOpError;
+export type ListManagedInstanceKeyByInstanceError = AzureOpError;
 /** Gets a list of managed instance keys. */
-export const ListManagedInstanceKeysByInstance: API.OperationMethod<
-  ListManagedInstanceKeysByInstanceRequest,
+export const ListManagedInstanceKeyByInstance: API.OperationMethod<
+  ListManagedInstanceKeyByInstanceRequest,
   ManagedInstanceKeyListResult,
-  ListManagedInstanceKeysByInstanceError,
+  ListManagedInstanceKeyByInstanceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListManagedInstanceKeysByInstanceRequest,
+  input: ListManagedInstanceKeyByInstanceRequest,
   output: ManagedInstanceKeyListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -54024,15 +54024,15 @@ export const ListServerDnsAliasByServer: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListServerKeysByServerError = AzureOpError;
+export type ListServerKeyByServerError = AzureOpError;
 /** Gets a list of server keys. */
-export const ListServerKeysByServer: API.OperationMethod<
-  ListServerKeysByServerRequest,
+export const ListServerKeyByServer: API.OperationMethod<
+  ListServerKeyByServerRequest,
   ServerKeyListResult,
-  ListServerKeysByServerError,
+  ListServerKeyByServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListServerKeysByServerRequest,
+  input: ListServerKeyByServerRequest,
   output: ServerKeyListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
