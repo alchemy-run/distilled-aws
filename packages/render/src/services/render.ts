@@ -3414,6 +3414,27 @@ export const DeleteWorkflowResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteWorkflowResponse",
 }) as any as S.Schema<DeleteWorkflowResponse>;
 
+export interface DeployRollbackRequest {
+  /** The ID of the service */
+  serviceId: string;
+  /** The ID of the deploy to roll back to */
+  deployId: string;
+}
+export const DeployRollbackRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+    deployId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/services/{serviceId}/rollback",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeployRollbackRequest",
+}) as any as S.Schema<DeployRollbackRequest>;
+
 export interface DisconnectBlueprintRequest {
   /** The ID of the Blueprint */
   blueprintId: string;
@@ -3738,6 +3759,91 @@ export const GetBandwidthSourcesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetBandwidthSourcesResponse",
 }) as any as S.Schema<GetBandwidthSourcesResponse>;
 
+export interface GetBlueprintRequest {
+  /** The ID of the Blueprint */
+  blueprintId: string;
+}
+export const GetBlueprintRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    blueprintId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/blueprints/{blueprintId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetBlueprintRequest",
+}) as any as S.Schema<GetBlueprintRequest>;
+
+export type GetBlueprintResponseStatus =
+  | "created"
+  | "paused"
+  | "in_sync"
+  | "syncing"
+  | "error";
+export const GetBlueprintResponseStatus = /*@__PURE__*/ S.String;
+
+/** type of the resource (ex. web_service or postgres) */
+export type GetBlueprintResponseResourcesItemType =
+  | "static_site"
+  | "web_service"
+  | "private_service"
+  | "background_worker"
+  | "cron_job"
+  | "redis"
+  | "key_value"
+  | "postgres"
+  | "environment_group"
+  | "artifact_source";
+export const GetBlueprintResponseResourcesItemType = /*@__PURE__*/ S.String;
+
+export interface GetBlueprintResponseResourcesItem {
+  id: string;
+  name: string;
+  /** type of the resource (ex. web_service or postgres) */
+  type: GetBlueprintResponseResourcesItemType;
+}
+export const GetBlueprintResponseResourcesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    type: GetBlueprintResponseResourcesItemType,
+  }),
+).annotate({
+  identifier: "GetBlueprintResponseResourcesItem",
+}) as any as S.Schema<GetBlueprintResponseResourcesItem>;
+
+export type GetBlueprintResponseResourcesList =
+  Array<GetBlueprintResponseResourcesItem>;
+export const GetBlueprintResponseResourcesList = /*@__PURE__*/ S.Array(
+  GetBlueprintResponseResourcesItem,
+) as any as S.Schema<GetBlueprintResponseResourcesList>;
+
+export interface GetBlueprintResponse {
+  id: string;
+  name: string;
+  status: GetBlueprintResponseStatus;
+  autoSync: boolean;
+  repo: string;
+  branch: string;
+  path: string;
+  lastSync?: string;
+  resources: GetBlueprintResponseResourcesList;
+}
+export const GetBlueprintResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    status: GetBlueprintResponseStatus,
+    autoSync: S.Boolean,
+    repo: S.String,
+    branch: S.String,
+    path: S.String,
+    lastSync: S.optional(S.String),
+    resources: GetBlueprintResponseResourcesList,
+  }),
+).annotate({
+  identifier: "GetBlueprintResponse",
+}) as any as S.Schema<GetBlueprintResponse>;
+
 export type GetCpuRequestAggregationMethod = "AVG" | "MAX" | "MIN";
 export const GetCpuRequestAggregationMethod = /*@__PURE__*/ S.String;
 
@@ -3994,6 +4100,93 @@ export const GetCpuTargetResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetCpuTargetResponse",
 }) as any as S.Schema<GetCpuTargetResponse>;
 
+export interface GetCustomDomainRequest {
+  /** The ID of the service */
+  serviceId: string;
+  /** The ID or name of the custom domain */
+  customDomainNameOrID: string;
+}
+export const GetCustomDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+    customDomainNameOrID: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/services/{serviceId}/custom-domains/{customDomainNameOrID}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCustomDomainRequest",
+}) as any as S.Schema<GetCustomDomainRequest>;
+
+export interface GetDedicatedIpRequest {
+  /** The ID of the dedicated IP set */
+  dedicatedIpId: string;
+}
+export const GetDedicatedIpRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dedicatedIpId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/dedicated-ips/{dedicatedIpId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetDedicatedIpRequest",
+}) as any as S.Schema<GetDedicatedIpRequest>;
+
+export interface GetDeployRequest {
+  /** The ID of the service */
+  serviceId: string;
+  /** The ID of the deploy */
+  deployId: string;
+}
+export const GetDeployRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+    deployId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/services/{serviceId}/deploys/{deployId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDeployRequest",
+}) as any as S.Schema<GetDeployRequest>;
+
+export interface GetDiskRequest {
+  /** The ID of the disk */
+  diskId: string;
+}
+export const GetDiskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diskId: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/disks/{diskId}", code: 200 })),
+).annotate({ identifier: "GetDiskRequest" }) as any as S.Schema<GetDiskRequest>;
+
+export interface Schema2 {
+  id: string;
+  name: string;
+  sizeGB: number;
+  mountPath: string;
+  serviceId?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+export const Schema2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    sizeGB: S.Number,
+    mountPath: S.String,
+    serviceId: S.optional(S.String),
+    createdAt: S.String,
+    updatedAt: S.String,
+  }),
+).annotate({ identifier: "Schema2" }) as any as S.Schema<Schema2>;
+
 export interface GetDiskCapacityRequest {
   /** Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`. */
   startTime?: string;
@@ -4157,6 +4350,140 @@ export const GetDiskUsageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDiskUsageResponse",
 }) as any as S.Schema<GetDiskUsageResponse>;
 
+export interface GetEnvGroupRequest {
+  /** Filter for resources that belong to an environment group */
+  envGroupId: string;
+}
+export const GetEnvGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    envGroupId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/env-groups/{envGroupId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetEnvGroupRequest",
+}) as any as S.Schema<GetEnvGroupRequest>;
+
+/** List of serviceIds linked to the envGroup */
+export type GetEnvGroupResponseServiceLinksList = Array<EnvGroupLink>;
+export const GetEnvGroupResponseServiceLinksList = /*@__PURE__*/ S.Array(
+  EnvGroupLink,
+) as any as S.Schema<GetEnvGroupResponseServiceLinksList>;
+
+export type GetEnvGroupResponseEnvVarsList = Array<EnvVar>;
+export const GetEnvGroupResponseEnvVarsList = /*@__PURE__*/ S.Array(
+  EnvVar,
+) as any as S.Schema<GetEnvGroupResponseEnvVarsList>;
+
+export type GetEnvGroupResponseSecretFilesList = Array<SecretFile>;
+export const GetEnvGroupResponseSecretFilesList = /*@__PURE__*/ S.Array(
+  SecretFile,
+) as any as S.Schema<GetEnvGroupResponseSecretFilesList>;
+
+export interface GetEnvGroupResponse {
+  id: string;
+  name: string;
+  ownerId: string;
+  createdAt: string;
+  updatedAt: string;
+  /** List of serviceIds linked to the envGroup */
+  serviceLinks: GetEnvGroupResponseServiceLinksList;
+  environmentId?: string;
+  envVars: GetEnvGroupResponseEnvVarsList;
+  secretFiles: GetEnvGroupResponseSecretFilesList;
+}
+export const GetEnvGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    ownerId: S.String,
+    createdAt: S.String,
+    updatedAt: S.String,
+    serviceLinks: GetEnvGroupResponseServiceLinksList,
+    environmentId: S.optional(S.String),
+    envVars: GetEnvGroupResponseEnvVarsList,
+    secretFiles: GetEnvGroupResponseSecretFilesList,
+  }),
+).annotate({
+  identifier: "GetEnvGroupResponse",
+}) as any as S.Schema<GetEnvGroupResponse>;
+
+export interface GetEnvGroupEnvVarRequest {
+  /** Filter for resources that belong to an environment group */
+  envGroupId: string;
+  /** The name of the environment variable */
+  envVarKey: string;
+}
+export const GetEnvGroupEnvVarRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    envGroupId: S.String.pipe(T.Label()),
+    envVarKey: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/env-groups/{envGroupId}/env-vars/{envVarKey}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEnvGroupEnvVarRequest",
+}) as any as S.Schema<GetEnvGroupEnvVarRequest>;
+
+export interface GetEnvGroupSecretFileRequest {
+  /** Filter for resources that belong to an environment group */
+  envGroupId: string;
+  /** The name of the secret file */
+  envVarKey: string;
+}
+export const GetEnvGroupSecretFileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    envGroupId: S.String.pipe(T.Label()),
+    envVarKey: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/env-groups/{envGroupId}/secret-files/{envVarKey}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEnvGroupSecretFileRequest",
+}) as any as S.Schema<GetEnvGroupSecretFileRequest>;
+
+export interface GetEnvironmentRequest {
+  environmentId: string;
+}
+export const GetEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    environmentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/environments/{environmentId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetEnvironmentRequest",
+}) as any as S.Schema<GetEnvironmentRequest>;
+
+export interface GetEnvVarRequest {
+  /** The ID of the service */
+  serviceId: string;
+  /** The name of the environment variable */
+  envVarKey: string;
+}
+export const GetEnvVarRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+    envVarKey: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/services/{serviceId}/env-vars/{envVarKey}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEnvVarRequest",
+}) as any as S.Schema<GetEnvVarRequest>;
+
 export interface GetEnvVarsForServiceRequest {
   /** The ID of the service */
   serviceId: string;
@@ -4201,6 +4528,1032 @@ export const GetEnvVarsForServiceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetEnvVarsForServiceResponse",
 }) as any as S.Schema<GetEnvVarsForServiceResponse>;
+
+export interface GetEventRequest {
+  /** The ID of the event */
+  eventId: string;
+}
+export const GetEventRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    eventId: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/events/{eventId}", code: 200 })),
+).annotate({
+  identifier: "GetEventRequest",
+}) as any as S.Schema<GetEventRequest>;
+
+export type GetEventResponseType =
+  | "artifact_fetch_failed"
+  | "artifact_source_changed"
+  | "autoscaling_config_changed"
+  | "autoscaling_ended"
+  | "autoscaling_started"
+  | "branch_deleted"
+  | "build_ended"
+  | "build_started"
+  | "commit_ignored"
+  | "cron_job_run_ended"
+  | "cron_job_run_started"
+  | "deploy_ended"
+  | "deploy_started"
+  | "disk_created"
+  | "disk_updated"
+  | "disk_deleted"
+  | "image_pull_failed"
+  | "instance_count_changed"
+  | "job_run_ended"
+  | "maintenance_mode_enabled"
+  | "maintenance_mode_uri_updated"
+  | "maintenance_ended"
+  | "maintenance_started"
+  | "pipeline_minutes_exhausted"
+  | "plan_changed"
+  | "pre_deploy_ended"
+  | "pre_deploy_started"
+  | "server_available"
+  | "server_failed"
+  | "server_hardware_failure"
+  | "server_restarted"
+  | "service_resumed"
+  | "service_suspended"
+  | "zero_downtime_redeploy_ended"
+  | "zero_downtime_redeploy_started"
+  | "edge_cache_enabled"
+  | "edge_cache_disabled"
+  | "edge_cache_purged"
+  | "auto_deploy_disabled"
+  | "auto_deploy_enabled"
+  | "postgres_available"
+  | "postgres_backup_completed"
+  | "postgres_backup_failed"
+  | "postgres_backup_started"
+  | "postgres_cluster_leader_changed"
+  | "postgres_connection_pool_changed"
+  | "postgres_connection_pool_enabled_changed"
+  | "postgres_created"
+  | "postgres_disk_size_changed"
+  | "postgres_disk_autoscaling_enabled_changed"
+  | "postgres_ha_status_changed"
+  | "postgres_restarted"
+  | "postgres_unavailable"
+  | "postgres_upgrade_failed"
+  | "postgres_upgrade_started"
+  | "postgres_upgrade_succeeded"
+  | "postgres_restore_failed"
+  | "postgres_restore_succeeded"
+  | "postgres_read_replicas_changed"
+  | "postgres_pitr_checkpoint_started"
+  | "postgres_pitr_checkpoint_failed"
+  | "postgres_pitr_checkpoint_completed"
+  | "postgres_read_replica_stale"
+  | "postgres_wal_archive_failed"
+  | "key_value_available"
+  | "key_value_config_restart"
+  | "key_value_unhealthy";
+export const GetEventResponseType = /*@__PURE__*/ S.String;
+
+export interface GetEventResponseDetailsCase0Case0 {
+  artifactId: string;
+  message: string;
+}
+export const GetEventResponseDetailsCase0Case0 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    artifactId: S.String,
+    message: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case0",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case0>;
+
+export interface GetEventResponseDetailsCase0Case1 {
+  /** The previously linked artifact source. Absent when the service was newly attached. */
+  fromArtifactSourceId?: string;
+  /** The newly linked artifact source. Absent when the service was detached. */
+  toArtifactSourceId?: string;
+}
+export const GetEventResponseDetailsCase0Case1 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fromArtifactSourceId: S.optional(S.String),
+    toArtifactSourceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case1",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case1>;
+
+export interface GetEventResponseDetailsCase0Case2 {
+  fromConfig?: Schema5;
+  toConfig: Schema5;
+}
+export const GetEventResponseDetailsCase0Case2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fromConfig: S.optional(Schema5),
+    toConfig: Schema5,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case2",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case2>;
+
+export interface GetEventResponseDetailsCase0Case3 {
+  fromInstances: number;
+  toInstances: number;
+}
+export const GetEventResponseDetailsCase0Case3 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fromInstances: S.Number,
+    toInstances: S.Number,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case3",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case3>;
+
+export interface GetEventResponseDetailsCase0Case4 {
+  fromInstances: number;
+  toInstances: number;
+  currentCPU?: number;
+  targetCPU?: number;
+  currentMemory?: number;
+  targetMemory?: number;
+}
+export const GetEventResponseDetailsCase0Case4 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fromInstances: S.Number,
+    toInstances: S.Number,
+    currentCPU: S.optional(S.Number),
+    targetCPU: S.optional(S.Number),
+    currentMemory: S.optional(S.Number),
+    targetMemory: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case4",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case4>;
+
+export interface GetEventResponseDetailsCase0Case5 {
+  deletedBranch: string;
+  newBranch: string;
+}
+export const GetEventResponseDetailsCase0Case5 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deletedBranch: S.String,
+    newBranch: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case5",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case5>;
+
+export type GetEventResponseDetailsCase0Case6BuildStatus =
+  | "succeeded"
+  | "failed"
+  | "canceled";
+export const GetEventResponseDetailsCase0Case6BuildStatus =
+  /*@__PURE__*/ S.String;
+
+export interface NewBuild {
+  id: string;
+}
+export const NewBuild = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+  }),
+).annotate({ identifier: "NewBuild" }) as any as S.Schema<NewBuild>;
+
+export type GetEventResponseDetailsCase0Case6ReasonNewBuild = NewBuild;
+export const GetEventResponseDetailsCase0Case6ReasonNewBuild = NewBuild;
+
+export interface ReasonOomKilled {
+  memoryLimit: string;
+}
+export const ReasonOomKilled = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    memoryLimit: S.String,
+  }),
+).annotate({
+  identifier: "ReasonOomKilled",
+}) as any as S.Schema<ReasonOomKilled>;
+
+export interface Reason {
+  evicted: boolean;
+  /** Details about why the application was evicted. */
+  evictionReason?: string;
+  /** If present, the application exited with the specified non-zero status. */
+  nonZeroExit?: number;
+  /** If true, the application exited early. Services besides cron jobs should not exit unless receiving a `SIGTERM` signal from Render. */
+  earlyExit?: boolean;
+  oomKilled?: ReasonOomKilled;
+  timedOutSeconds?: number;
+  unhealthy?: string;
+  timedOutReason?: string;
+}
+export const Reason = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    evicted: S.Boolean,
+    evictionReason: S.optional(S.String),
+    nonZeroExit: S.optional(S.Number),
+    earlyExit: S.optional(S.Boolean),
+    oomKilled: S.optional(ReasonOomKilled),
+    timedOutSeconds: S.optional(S.Number),
+    unhealthy: S.optional(S.String),
+    timedOutReason: S.optional(S.String),
+  }),
+).annotate({ identifier: "Reason" }) as any as S.Schema<Reason>;
+
+export interface GetEventResponseDetailsCase0Case6Reason {
+  buildFailed?: NewBuild;
+  newBuild?: NewBuild;
+  newDeploy?: NewBuild;
+  failure?: Reason;
+}
+export const GetEventResponseDetailsCase0Case6Reason = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      buildFailed: S.optional(NewBuild),
+      newBuild: S.optional(NewBuild),
+      newDeploy: S.optional(NewBuild),
+      failure: S.optional(Reason),
+    }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case6Reason",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case6Reason>;
+
+export interface GetEventResponseDetailsCase0Case6 {
+  buildId: string;
+  buildStatus: GetEventResponseDetailsCase0Case6BuildStatus;
+  reason: GetEventResponseDetailsCase0Case6Reason;
+  status: number;
+}
+export const GetEventResponseDetailsCase0Case6 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    buildId: S.String,
+    buildStatus: GetEventResponseDetailsCase0Case6BuildStatus,
+    reason: GetEventResponseDetailsCase0Case6Reason,
+    status: S.Number,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case6",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case6>;
+
+/** User who triggered the action */
+export interface User2 {
+  id: string;
+  email: string;
+}
+export const User2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    email: S.String,
+  }),
+).annotate({ identifier: "User2" }) as any as S.Schema<User2>;
+
+export interface GetEventResponseDetailsCase0Case7Trigger {
+  /** Deploy was triggered by service creation */
+  firstBuild: boolean;
+  /** Deploy was triggered by an environment update */
+  envUpdated: boolean;
+  /** Deploy was triggered manually from the dashboard */
+  manual: boolean;
+  user?: User2;
+  /** Updated property that triggered the deploy */
+  updatedProperty?: string;
+  /** Commit that triggered the deploy */
+  newCommit?: string;
+  /** Deploy was triggered by Render */
+  deployedByRender: boolean;
+  /** Whether the cache was cleared for the deploy */
+  clearCache: boolean;
+  /** Whether the deploy was triggered by a rollback */
+  rollback: boolean;
+  /** Deploy ID that was rolled back to */
+  rollbackTargetDeployId?: string;
+}
+export const GetEventResponseDetailsCase0Case7Trigger = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      firstBuild: S.Boolean,
+      envUpdated: S.Boolean,
+      manual: S.Boolean,
+      user: S.optional(User2),
+      updatedProperty: S.optional(S.String),
+      newCommit: S.optional(S.String),
+      deployedByRender: S.Boolean,
+      clearCache: S.Boolean,
+      rollback: S.Boolean,
+      rollbackTargetDeployId: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case7Trigger",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case7Trigger>;
+
+export interface GetEventResponseDetailsCase0Case7 {
+  buildId: string;
+  trigger: GetEventResponseDetailsCase0Case7Trigger;
+}
+export const GetEventResponseDetailsCase0Case7 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    buildId: S.String,
+    trigger: GetEventResponseDetailsCase0Case7Trigger,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case7",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case7>;
+
+export interface GetEventResponseDetailsCase0Case8 {
+  /** the commit id */
+  id: string;
+  /** the commit url */
+  url: string;
+}
+export const GetEventResponseDetailsCase0Case8 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    url: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case8",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case8>;
+
+export type GetEventResponseDetailsCase0Case9Status =
+  | "canceled"
+  | "pending"
+  | "successful"
+  | "unsuccessful";
+export const GetEventResponseDetailsCase0Case9Status = /*@__PURE__*/ S.String;
+
+export type GetEventResponseDetailsCase0Case9ReasonOomKilled = ReasonOomKilled;
+export const GetEventResponseDetailsCase0Case9ReasonOomKilled = ReasonOomKilled;
+
+export type GetEventResponseDetailsCase0Case9Reason = Reason;
+export const GetEventResponseDetailsCase0Case9Reason = Reason;
+
+/** User who triggered the action */
+export type GetEventResponseDetailsCase0Case9User = User2;
+export const GetEventResponseDetailsCase0Case9User = User2;
+
+export interface GetEventResponseDetailsCase0Case9 {
+  cronJobRunId: string;
+  status: GetEventResponseDetailsCase0Case9Status;
+  reason?: Reason;
+  /** User who triggered the action */
+  user?: User2;
+}
+export const GetEventResponseDetailsCase0Case9 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cronJobRunId: S.String,
+    status: GetEventResponseDetailsCase0Case9Status,
+    reason: S.optional(Reason),
+    user: S.optional(User2),
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case9",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case9>;
+
+export interface GetEventResponseDetailsCase0Case10 {
+  cronJobRunId: string;
+}
+export const GetEventResponseDetailsCase0Case10 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cronJobRunId: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case10",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case10>;
+
+export type ReasonNewBuild = NewBuild;
+export const ReasonNewBuild = NewBuild;
+
+export type Reason2 = GetEventResponseDetailsCase0Case6Reason;
+export const Reason2 = GetEventResponseDetailsCase0Case6Reason;
+
+export type BuildStatus = "succeeded" | "failed" | "canceled";
+export const BuildStatus = /*@__PURE__*/ S.String;
+
+export interface GetEventResponseDetailsCase0Case11 {
+  deployId: string;
+  reason: GetEventResponseDetailsCase0Case6Reason;
+  deployStatus: BuildStatus;
+  status: number;
+  /** Set when the deploy shipped an artifact published by the service's linked artifact source. */
+  artifactId?: string;
+}
+export const GetEventResponseDetailsCase0Case11 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deployId: S.String,
+    reason: GetEventResponseDetailsCase0Case6Reason,
+    deployStatus: BuildStatus,
+    status: S.Number,
+    artifactId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case11",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case11>;
+
+export type Trigger = GetEventResponseDetailsCase0Case7Trigger;
+export const Trigger = GetEventResponseDetailsCase0Case7Trigger;
+
+export interface GetEventResponseDetailsCase0Case12 {
+  deployId: string;
+  trigger: GetEventResponseDetailsCase0Case7Trigger;
+  /** Set when the deploy ships an artifact published by the service's linked artifact source. */
+  artifactId?: string;
+}
+export const GetEventResponseDetailsCase0Case12 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deployId: S.String,
+    trigger: GetEventResponseDetailsCase0Case7Trigger,
+    artifactId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case12",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case12>;
+
+export interface GetEventResponseDetailsCase0Case13 {
+  diskId: string;
+  sizeGB: number;
+}
+export const GetEventResponseDetailsCase0Case13 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diskId: S.String,
+    sizeGB: S.Number,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case13",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case13>;
+
+export interface GetEventResponseDetailsCase0Case14 {
+  diskId: string;
+  fromSizeGB: number;
+  toSizeGB: number;
+}
+export const GetEventResponseDetailsCase0Case14 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diskId: S.String,
+    fromSizeGB: S.Number,
+    toSizeGB: S.Number,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case14",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case14>;
+
+export interface GetEventResponseDetailsCase0Case15 {
+  diskId: string;
+}
+export const GetEventResponseDetailsCase0Case15 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diskId: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case15",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case15>;
+
+export interface GetEventResponseDetailsCase0Case16 {
+  diskId: string;
+  diskName: string;
+  mountPath: string;
+  usagePercent: number;
+  thresholdPercent: number;
+}
+export const GetEventResponseDetailsCase0Case16 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diskId: S.String,
+    diskName: S.String,
+    mountPath: S.String,
+    usagePercent: S.Number,
+    thresholdPercent: S.Number,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case16",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case16>;
+
+export type GetEventResponseDetailsCase0Case17 =
+  GetEventResponseDetailsCase0Case16;
+export const GetEventResponseDetailsCase0Case17 =
+  GetEventResponseDetailsCase0Case16;
+
+export interface GetEventResponseDetailsCase0Case18 {
+  message: string;
+  imageURL: string;
+}
+export const GetEventResponseDetailsCase0Case18 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.String,
+    imageURL: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case18",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case18>;
+
+export interface GetEventResponseDetailsCase0Case19 {
+  deployId: string;
+}
+export const GetEventResponseDetailsCase0Case19 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deployId: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case19",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case19>;
+
+export type GetEventResponseDetailsCase0Case20 =
+  GetEventResponseDetailsCase0Case19;
+export const GetEventResponseDetailsCase0Case20 =
+  GetEventResponseDetailsCase0Case19;
+
+export type GetEventResponseDetailsCase0Case21 =
+  GetEventResponseDetailsCase0Case3;
+export const GetEventResponseDetailsCase0Case21 =
+  GetEventResponseDetailsCase0Case3;
+
+export interface GetEventResponseDetailsCase0Case22 {
+  jobId: string;
+  status: Items2;
+  reason?: Reason;
+}
+export const GetEventResponseDetailsCase0Case22 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    jobId: S.String,
+    status: Items2,
+    reason: S.optional(Reason),
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case22",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case22>;
+
+export interface GetEventResponseDetailsCase0Case23 {
+  enabled: boolean;
+}
+export const GetEventResponseDetailsCase0Case23 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.Boolean,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case23",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case23>;
+
+export interface GetEventResponseDetailsCase0Case24 {
+  fromURI: string;
+  toURI: string;
+}
+export const GetEventResponseDetailsCase0Case24 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fromURI: S.String,
+    toURI: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case24",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case24>;
+
+export interface GetEventResponseDetailsCase0Case26Trigger {
+  user?: User2;
+  /** Maintenance was triggered manually */
+  manual: boolean;
+  /** Maintenance was triggered by Render */
+  startedByRender: boolean;
+}
+export const GetEventResponseDetailsCase0Case26Trigger =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      user: S.optional(User2),
+      manual: S.Boolean,
+      startedByRender: S.Boolean,
+    }),
+  ).annotate({
+    identifier: "GetEventResponseDetailsCase0Case26Trigger",
+  }) as any as S.Schema<GetEventResponseDetailsCase0Case26Trigger>;
+
+export interface GetEventResponseDetailsCase0Case26 {
+  trigger: GetEventResponseDetailsCase0Case26Trigger;
+}
+export const GetEventResponseDetailsCase0Case26 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    trigger: GetEventResponseDetailsCase0Case26Trigger,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case26",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case26>;
+
+export type GetEventResponseDetailsCase0Case27 =
+  GetEventResponseDetailsCase0Case7;
+export const GetEventResponseDetailsCase0Case27 =
+  GetEventResponseDetailsCase0Case7;
+
+export interface GetEventResponseDetailsCase0Case28 {
+  from: string;
+  to: string;
+}
+export const GetEventResponseDetailsCase0Case28 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    from: S.String,
+    to: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case28",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case28>;
+
+export interface GetEventResponseDetailsCase0Case29 {
+  deployCommandExecutionId: string;
+  deployId: string;
+  preDeployStatus: BuildStatus;
+  reason: GetEventResponseDetailsCase0Case6Reason;
+  status: number;
+}
+export const GetEventResponseDetailsCase0Case29 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deployCommandExecutionId: S.String,
+    deployId: S.String,
+    preDeployStatus: BuildStatus,
+    reason: GetEventResponseDetailsCase0Case6Reason,
+    status: S.Number,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case29",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case29>;
+
+export interface GetEventResponseDetailsCase0Case30 {
+  deployCommandExecutionId: string;
+  deployId: string;
+}
+export const GetEventResponseDetailsCase0Case30 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deployCommandExecutionId: S.String,
+    deployId: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case30",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case30>;
+
+export interface GetEventResponseDetailsCase0Case32 {
+  instanceID?: string;
+  reason?: Reason;
+}
+export const GetEventResponseDetailsCase0Case32 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    instanceID: S.optional(S.String),
+    reason: S.optional(Reason),
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case32",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case32>;
+
+export interface GetEventResponseDetailsCase0Case34 {
+  triggeredByUser: string | null;
+}
+export const GetEventResponseDetailsCase0Case34 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    triggeredByUser: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case34",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case34>;
+
+export interface GetEventResponseDetailsCase0Case37 {
+  actor: string;
+  suspendedByUser?: User2;
+}
+export const GetEventResponseDetailsCase0Case37 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actor: S.String,
+    suspendedByUser: S.optional(User2),
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case37",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case37>;
+
+export interface GetEventResponseDetailsCase0Case38 {
+  actor: string;
+  resumedByUser?: User2;
+}
+export const GetEventResponseDetailsCase0Case38 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actor: S.String,
+    resumedByUser: S.optional(User2),
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case38",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case38>;
+
+export interface GetEventResponseDetailsCase0Case40 {
+  trigger: string;
+}
+export const GetEventResponseDetailsCase0Case40 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    trigger: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case40",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case40>;
+
+export interface GetEventResponseDetailsCase0Case41Trigger {
+  /** Edge Cache change was triggered manually from the dashboard */
+  manual: boolean;
+  user?: User2;
+  /** Edge Cache Change was triggered by Render */
+  system: boolean;
+}
+export const GetEventResponseDetailsCase0Case41Trigger =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      manual: S.Boolean,
+      user: S.optional(User2),
+      system: S.Boolean,
+    }),
+  ).annotate({
+    identifier: "GetEventResponseDetailsCase0Case41Trigger",
+  }) as any as S.Schema<GetEventResponseDetailsCase0Case41Trigger>;
+
+export interface GetEventResponseDetailsCase0Case41 {
+  trigger: GetEventResponseDetailsCase0Case41Trigger;
+}
+export const GetEventResponseDetailsCase0Case41 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    trigger: GetEventResponseDetailsCase0Case41Trigger,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case41",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case41>;
+
+export type Trigger2 = GetEventResponseDetailsCase0Case41Trigger;
+export const Trigger2 = GetEventResponseDetailsCase0Case41Trigger;
+
+export type GetEventResponseDetailsCase0Case42 =
+  GetEventResponseDetailsCase0Case41;
+export const GetEventResponseDetailsCase0Case42 =
+  GetEventResponseDetailsCase0Case41;
+
+export type GetEventResponseDetailsCase0Case43 =
+  GetEventResponseDetailsCase0Case41;
+export const GetEventResponseDetailsCase0Case43 =
+  GetEventResponseDetailsCase0Case41;
+
+/** The auto-deploy trigger value after it was re-enabled */
+export type NewTrigger = "commit" | "off" | "checksPass";
+export const NewTrigger = /*@__PURE__*/ S.String;
+
+export interface GetEventResponseDetailsCase0Case44 {
+  /** Why auto-deploy was disabled (manual_deploy, rollback, or setting_change) */
+  reason: string;
+  /** The auto-deploy trigger value immediately before it was disabled */
+  fromTrigger?: NewTrigger;
+}
+export const GetEventResponseDetailsCase0Case44 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reason: S.String,
+    fromTrigger: S.optional(NewTrigger),
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case44",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case44>;
+
+/** The auto-deploy trigger value after it was re-enabled */
+export type GetEventResponseDetailsCase0Case45NewTrigger =
+  | "commit"
+  | "off"
+  | "checksPass";
+export const GetEventResponseDetailsCase0Case45NewTrigger =
+  /*@__PURE__*/ S.String;
+
+export interface GetEventResponseDetailsCase0Case45 {
+  /** The auto-deploy trigger value after it was re-enabled */
+  newTrigger?: GetEventResponseDetailsCase0Case45NewTrigger;
+}
+export const GetEventResponseDetailsCase0Case45 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    newTrigger: S.optional(GetEventResponseDetailsCase0Case45NewTrigger),
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase0Case45",
+}) as any as S.Schema<GetEventResponseDetailsCase0Case45>;
+
+export type GetEventResponseDetailsCase0 =
+  | GetEventResponseDetailsCase0Case0
+  | GetEventResponseDetailsCase0Case1
+  | GetEventResponseDetailsCase0Case2
+  | GetEventResponseDetailsCase0Case3
+  | GetEventResponseDetailsCase0Case4
+  | GetEventResponseDetailsCase0Case5
+  | GetEventResponseDetailsCase0Case6
+  | GetEventResponseDetailsCase0Case7
+  | GetEventResponseDetailsCase0Case8
+  | GetEventResponseDetailsCase0Case9
+  | GetEventResponseDetailsCase0Case10
+  | GetEventResponseDetailsCase0Case11
+  | GetEventResponseDetailsCase0Case12
+  | GetEventResponseDetailsCase0Case13
+  | GetEventResponseDetailsCase0Case14
+  | GetEventResponseDetailsCase0Case15
+  | GetEventResponseDetailsCase0Case16
+  | GetEventResponseDetailsCase0Case16
+  | GetEventResponseDetailsCase0Case18
+  | GetEventResponseDetailsCase0Case19
+  | GetEventResponseDetailsCase0Case19
+  | GetEventResponseDetailsCase0Case3
+  | GetEventResponseDetailsCase0Case22
+  | GetEventResponseDetailsCase0Case23
+  | GetEventResponseDetailsCase0Case24
+  | unknown
+  | GetEventResponseDetailsCase0Case26
+  | GetEventResponseDetailsCase0Case7
+  | GetEventResponseDetailsCase0Case28
+  | GetEventResponseDetailsCase0Case29
+  | GetEventResponseDetailsCase0Case30
+  | GetEventResponseDetailsCase0Case32
+  | GetEventResponseDetailsCase0Case34
+  | GetEventResponseDetailsCase0Case37
+  | GetEventResponseDetailsCase0Case38
+  | GetEventResponseDetailsCase0Case40
+  | GetEventResponseDetailsCase0Case41
+  | GetEventResponseDetailsCase0Case41
+  | GetEventResponseDetailsCase0Case41
+  | GetEventResponseDetailsCase0Case44
+  | GetEventResponseDetailsCase0Case45;
+export const GetEventResponseDetailsCase0 =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEventResponseDetailsCase0>;
+
+export interface GetEventResponseDetailsCase1Case4 {
+  leaderId?: string;
+}
+export const GetEventResponseDetailsCase1Case4 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    leaderId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase1Case4",
+}) as any as S.Schema<GetEventResponseDetailsCase1Case4>;
+
+export interface GetEventResponseDetailsCase1Case5 {
+  user?: User2;
+  from: string;
+  to: string;
+}
+export const GetEventResponseDetailsCase1Case5 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user: S.optional(User2),
+    from: S.String,
+    to: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase1Case5",
+}) as any as S.Schema<GetEventResponseDetailsCase1Case5>;
+
+export interface GetEventResponseDetailsCase1Case6 {
+  user?: User2;
+  enabled: boolean;
+}
+export const GetEventResponseDetailsCase1Case6 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user: S.optional(User2),
+    enabled: S.Boolean,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase1Case6",
+}) as any as S.Schema<GetEventResponseDetailsCase1Case6>;
+
+export interface GetEventResponseDetailsCase1Case7 {
+  user?: User2;
+}
+export const GetEventResponseDetailsCase1Case7 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user: S.optional(User2),
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase1Case7",
+}) as any as S.Schema<GetEventResponseDetailsCase1Case7>;
+
+export interface GetEventResponseDetailsCase1Case8 {
+  user?: User2;
+  fromDiskSize: number;
+  toDiskSize: number;
+}
+export const GetEventResponseDetailsCase1Case8 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user: S.optional(User2),
+    fromDiskSize: S.Number,
+    toDiskSize: S.Number,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase1Case8",
+}) as any as S.Schema<GetEventResponseDetailsCase1Case8>;
+
+export interface GetEventResponseDetailsCase1Case9 {
+  fromStatus: string;
+  toStatus: string;
+}
+export const GetEventResponseDetailsCase1Case9 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fromStatus: S.String,
+    toStatus: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase1Case9",
+}) as any as S.Schema<GetEventResponseDetailsCase1Case9>;
+
+export interface GetEventResponseDetailsCase1Case10 {
+  fromReplicas: number;
+  toReplicas: number;
+}
+export const GetEventResponseDetailsCase1Case10 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fromReplicas: S.Number,
+    toReplicas: S.Number,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase1Case10",
+}) as any as S.Schema<GetEventResponseDetailsCase1Case10>;
+
+export type GetEventResponseDetailsCase1Case11 =
+  GetEventResponseDetailsCase1Case7;
+export const GetEventResponseDetailsCase1Case11 =
+  GetEventResponseDetailsCase1Case7;
+
+export interface GetEventResponseDetailsCase1Case13 {
+  fromVersion: string;
+  toVersion: string;
+}
+export const GetEventResponseDetailsCase1Case13 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fromVersion: S.String,
+    toVersion: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase1Case13",
+}) as any as S.Schema<GetEventResponseDetailsCase1Case13>;
+
+export interface GetEventResponseDetailsCase1Case14 {
+  user?: User2;
+  fromVersion: string;
+  toVersion: string;
+}
+export const GetEventResponseDetailsCase1Case14 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user: S.optional(User2),
+    fromVersion: S.String,
+    toVersion: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase1Case14",
+}) as any as S.Schema<GetEventResponseDetailsCase1Case14>;
+
+export type GetEventResponseDetailsCase1Case15 =
+  GetEventResponseDetailsCase1Case13;
+export const GetEventResponseDetailsCase1Case15 =
+  GetEventResponseDetailsCase1Case13;
+
+export type GetEventResponseDetailsCase1 =
+  | unknown
+  | GetEventResponseDetailsCase1Case4
+  | GetEventResponseDetailsCase1Case5
+  | GetEventResponseDetailsCase1Case6
+  | GetEventResponseDetailsCase1Case7
+  | GetEventResponseDetailsCase1Case8
+  | GetEventResponseDetailsCase1Case9
+  | GetEventResponseDetailsCase1Case10
+  | GetEventResponseDetailsCase1Case7
+  | GetEventResponseDetailsCase1Case13
+  | GetEventResponseDetailsCase1Case14
+  | GetEventResponseDetailsCase1Case13;
+export const GetEventResponseDetailsCase1 =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEventResponseDetailsCase1>;
+
+export interface GetEventResponseDetailsCase2Case1 {
+  reason: string;
+  message: string;
+}
+export const GetEventResponseDetailsCase2Case1 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reason: S.String,
+    message: S.String,
+  }),
+).annotate({
+  identifier: "GetEventResponseDetailsCase2Case1",
+}) as any as S.Schema<GetEventResponseDetailsCase2Case1>;
+
+export type GetEventResponseDetailsCase2 =
+  | unknown
+  | GetEventResponseDetailsCase2Case1;
+export const GetEventResponseDetailsCase2 =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEventResponseDetailsCase2>;
+
+export type GetEventResponseDetails =
+  | GetEventResponseDetailsCase0
+  | GetEventResponseDetailsCase1
+  | GetEventResponseDetailsCase2;
+export const GetEventResponseDetails =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEventResponseDetails>;
+
+export interface GetEventResponse {
+  id: string;
+  timestamp: string;
+  serviceId: string;
+  type: GetEventResponseType;
+  details: GetEventResponseDetails;
+}
+export const GetEventResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    timestamp: S.String,
+    serviceId: S.String,
+    type: GetEventResponseType,
+    details: GetEventResponseDetails,
+  }),
+).annotate({
+  identifier: "GetEventResponse",
+}) as any as S.Schema<GetEventResponse>;
 
 export interface GetHttpLatencyRequest {
   /** Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`. */
@@ -4469,6 +5822,111 @@ export const GetInstanceCountResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetInstanceCountResponse",
 }) as any as S.Schema<GetInstanceCountResponse>;
 
+export interface GetJobRequest {
+  /** The ID of the service */
+  serviceId: string;
+  /** The ID of the job */
+  jobId: string;
+}
+export const GetJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+    jobId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/services/{serviceId}/jobs/{jobId}",
+      code: 200,
+    }),
+  ),
+).annotate({ identifier: "GetJobRequest" }) as any as S.Schema<GetJobRequest>;
+
+export interface GetKeyValueRequest {
+  redisId: string;
+}
+export const GetKeyValueRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    redisId: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/key-value/{redisId}", code: 200 })),
+).annotate({
+  identifier: "GetKeyValueRequest",
+}) as any as S.Schema<GetKeyValueRequest>;
+
+export interface GetKeyValueConnectionInfoRequest {
+  redisId: string;
+}
+export const GetKeyValueConnectionInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    redisId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/key-value/{redisId}/connection-info",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetKeyValueConnectionInfoRequest",
+}) as any as S.Schema<GetKeyValueConnectionInfoRequest>;
+
+/** A Key Value instance */
+export interface KeyValueConnectionInfo {
+  /** The connection string to use from within Render */
+  internalConnectionString: string;
+  /** The connection string to use from outside Render */
+  externalConnectionString: string;
+  /** The CLI (redis-cli or valkey-cli) command to connect to the Key Value instance */
+  cliCommand: string;
+}
+export const KeyValueConnectionInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    internalConnectionString: S.String,
+    externalConnectionString: S.String,
+    cliCommand: S.String,
+  }),
+).annotate({
+  identifier: "KeyValueConnectionInfo",
+}) as any as S.Schema<KeyValueConnectionInfo>;
+
+export interface GetMaintenanceRequest {
+  maintenanceRunID: string;
+}
+export const GetMaintenanceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maintenanceRunID: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/maintenance/{maintenanceRunID}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetMaintenanceRequest",
+}) as any as S.Schema<GetMaintenanceRequest>;
+
+export interface GetMaintenanceResponse {
+  id: string;
+  type: string;
+  scheduledAt: string;
+  /** If present, the maintenance run cannot be scheduled for later than this date-time. */
+  pendingMaintenanceBy?: string;
+  state: Items4;
+  resourceId: string;
+}
+export const GetMaintenanceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    scheduledAt: S.String,
+    pendingMaintenanceBy: S.optional(S.String),
+    state: Items4,
+    resourceId: S.String,
+  }),
+).annotate({
+  identifier: "GetMaintenanceResponse",
+}) as any as S.Schema<GetMaintenanceResponse>;
+
 export interface GetMemoryRequest {
   /** Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`. */
   startTime?: string;
@@ -4723,6 +6181,18 @@ export const GetMemoryTargetResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetMemoryTargetResponse",
 }) as any as S.Schema<GetMemoryTargetResponse>;
 
+export interface GetOwnerRequest {
+  /** The ID of the user or team */
+  ownerId: string;
+}
+export const GetOwnerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ownerId: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/owners/{ownerId}", code: 200 })),
+).annotate({
+  identifier: "GetOwnerRequest",
+}) as any as S.Schema<GetOwnerRequest>;
+
 export interface GetOwnerLogStreamRequest {
   /** The ID of the workspace to return log stream information for */
   ownerId: string;
@@ -4757,6 +6227,63 @@ export const GetOwnerLogStreamResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetOwnerLogStreamResponse",
 }) as any as S.Schema<GetOwnerLogStreamResponse>;
+
+export interface GetOwnerMembersRequest {
+  /** The ID of the team */
+  ownerId: string;
+}
+export const GetOwnerMembersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ownerId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/owners/{ownerId}/members", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetOwnerMembersRequest",
+}) as any as S.Schema<GetOwnerMembersRequest>;
+
+export type TeamMemberStatus = "active" | "inactive";
+export const TeamMemberStatus = /*@__PURE__*/ S.String;
+
+/** The member's workspace role. Values are always returned in uppercase. */
+export type TeamMemberRole =
+  | "ADMIN"
+  | "DEVELOPER"
+  | "WORKSPACE_CONTRIBUTOR"
+  | "WORKSPACE_BILLING"
+  | "WORKSPACE_VIEWER";
+export const TeamMemberRole = /*@__PURE__*/ S.String;
+
+export interface TeamMember {
+  userId: string;
+  name: string;
+  email: string;
+  status: TeamMemberStatus;
+  role: TeamMemberRole;
+  mfaEnabled: boolean;
+}
+export const TeamMember = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    userId: S.String,
+    name: S.String,
+    email: S.String,
+    status: TeamMemberStatus,
+    role: TeamMemberRole,
+    mfaEnabled: S.Boolean,
+  }),
+).annotate({ identifier: "TeamMember" }) as any as S.Schema<TeamMember>;
+
+export type TeamMembers = Array<TeamMember>;
+export const TeamMembers = /*@__PURE__*/ S.Array(
+  TeamMember,
+) as any as S.Schema<TeamMembers>;
+
+export type GetOwnerMembersResponse = TeamMembers;
+export const GetOwnerMembersResponse = /*@__PURE__*/ S.suspend(() =>
+  TeamMembers.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetOwnerMembersResponse",
+}) as any as S.Schema<GetOwnerMembersResponse>;
 
 export interface GetOwnerMetricsStreamRequest {
   /** The ID of the workspace to return metrics stream information for */
@@ -4799,6 +6326,164 @@ export const Schema10 = /*@__PURE__*/ S.suspend(() =>
     url: S.String,
   }),
 ).annotate({ identifier: "Schema10" }) as any as S.Schema<Schema10>;
+
+export interface GetOwnerNotificationSettingsRequest {
+  /** The ID of the workspace to return resources for */
+  ownerId: string;
+}
+export const GetOwnerNotificationSettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ownerId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/notification-settings/owners/{ownerId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetOwnerNotificationSettingsRequest",
+}) as any as S.Schema<GetOwnerNotificationSettingsRequest>;
+
+export type NotificationsToSend = "none" | "failure" | "all";
+export const NotificationsToSend = /*@__PURE__*/ S.String;
+
+export interface GetOwnerNotificationSettingsResponse {
+  ownerId: string;
+  slackEnabled: boolean;
+  emailEnabled: boolean;
+  previewNotificationsEnabled: boolean;
+  notificationsToSend: NotificationsToSend;
+}
+export const GetOwnerNotificationSettingsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      ownerId: S.String,
+      slackEnabled: S.Boolean,
+      emailEnabled: S.Boolean,
+      previewNotificationsEnabled: S.Boolean,
+      notificationsToSend: NotificationsToSend,
+    }),
+).annotate({
+  identifier: "GetOwnerNotificationSettingsResponse",
+}) as any as S.Schema<GetOwnerNotificationSettingsResponse>;
+
+export interface GetPostgresRequest {
+  postgresId: string;
+}
+export const GetPostgresRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    postgresId: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/postgres/{postgresId}", code: 200 })),
+).annotate({
+  identifier: "GetPostgresRequest",
+}) as any as S.Schema<GetPostgresRequest>;
+
+export interface GetPostgresConnectionInfoRequest {
+  postgresId: string;
+}
+export const GetPostgresConnectionInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    postgresId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/postgres/{postgresId}/connection-info",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetPostgresConnectionInfoRequest",
+}) as any as S.Schema<GetPostgresConnectionInfoRequest>;
+
+export interface PostgresConnectionInfo {
+  password: string | Redacted.Redacted<string>;
+  internalConnectionString: string;
+  externalConnectionString: string;
+  internalConnectionPoolString?: string;
+  externalConnectionPoolString?: string;
+  psqlCommand: string;
+}
+export const PostgresConnectionInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    password: S.String.pipe(T.SensitiveValue({})),
+    internalConnectionString: S.String,
+    externalConnectionString: S.String,
+    internalConnectionPoolString: S.optional(S.String),
+    externalConnectionPoolString: S.optional(S.String),
+    psqlCommand: S.String,
+  }),
+).annotate({
+  identifier: "PostgresConnectionInfo",
+}) as any as S.Schema<PostgresConnectionInfo>;
+
+export interface GetPostgresRecoveryInfoRequest {
+  postgresId: string;
+}
+export const GetPostgresRecoveryInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    postgresId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/postgres/{postgresId}/recovery",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetPostgresRecoveryInfoRequest",
+}) as any as S.Schema<GetPostgresRecoveryInfoRequest>;
+
+/** Availability of point-in-time recovery. */
+export type GetPostgresRecoveryInfoResponseRecoveryStatus =
+  | "AVAILABLE"
+  | "BACKUP_NOT_READY"
+  | "NOT_AVAILABLE";
+export const GetPostgresRecoveryInfoResponseRecoveryStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetPostgresRecoveryInfoResponse {
+  /** Availability of point-in-time recovery. */
+  recoveryStatus: GetPostgresRecoveryInfoResponseRecoveryStatus;
+  startsAt?: string;
+}
+export const GetPostgresRecoveryInfoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    recoveryStatus: GetPostgresRecoveryInfoResponseRecoveryStatus,
+    startsAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetPostgresRecoveryInfoResponse",
+}) as any as S.Schema<GetPostgresRecoveryInfoResponse>;
+
+export interface GetProjectRequest {
+  projectId: string;
+}
+export const GetProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    projectId: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/projects/{projectId}", code: 200 })),
+).annotate({
+  identifier: "GetProjectRequest",
+}) as any as S.Schema<GetProjectRequest>;
+
+export interface GetRegistryCredentialRequest {
+  /** The ID of the registry credential */
+  registryCredentialId: string;
+}
+export const GetRegistryCredentialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    registryCredentialId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/registrycredentials/{registryCredentialId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetRegistryCredentialRequest",
+}) as any as S.Schema<GetRegistryCredentialRequest>;
 
 export interface GetReplicationLagRequest {
   /** Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`. */
@@ -4921,6 +6606,124 @@ export const GetResourceLogStreamResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetResourceLogStreamResponse",
 }) as any as S.Schema<GetResourceLogStreamResponse>;
+
+export interface GetSecretFileRequest {
+  /** The ID of the service */
+  serviceId: string;
+  /** The file name of the secret file */
+  envVarKey: string;
+}
+export const GetSecretFileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+    envVarKey: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/services/{serviceId}/secret-files/{envVarKey}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSecretFileRequest",
+}) as any as S.Schema<GetSecretFileRequest>;
+
+export interface GetServiceRequest {
+  /** The ID of the service */
+  serviceId: string;
+}
+export const GetServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/services/{serviceId}", code: 200 })),
+).annotate({
+  identifier: "GetServiceRequest",
+}) as any as S.Schema<GetServiceRequest>;
+
+export interface GetServiceNotificationOverridesRequest {
+  /** The ID of the service */
+  serviceId: string;
+}
+export const GetServiceNotificationOverridesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/notification-settings/overrides/services/{serviceId}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetServiceNotificationOverridesRequest",
+}) as any as S.Schema<GetServiceNotificationOverridesRequest>;
+
+export type PreviewNotificationsEnabled = "default" | "false" | "true";
+export const PreviewNotificationsEnabled = /*@__PURE__*/ S.String;
+
+export type NotificationsToSend2 = "default" | "none" | "failure" | "all";
+export const NotificationsToSend2 = /*@__PURE__*/ S.String;
+
+export interface GetServiceNotificationOverridesResponse {
+  serviceId: string;
+  previewNotificationsEnabled: PreviewNotificationsEnabled;
+  notificationsToSend: NotificationsToSend2;
+}
+export const GetServiceNotificationOverridesResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceId: S.String,
+      previewNotificationsEnabled: PreviewNotificationsEnabled,
+      notificationsToSend: NotificationsToSend2,
+    }),
+).annotate({
+  identifier: "GetServiceNotificationOverridesResponse",
+}) as any as S.Schema<GetServiceNotificationOverridesResponse>;
+
+export interface GetServiceOutboundIpsRequest {
+  /** The ID of the service */
+  serviceId: string;
+}
+export const GetServiceOutboundIpsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/services/{serviceId}/outbound-ips",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetServiceOutboundIpsRequest",
+}) as any as S.Schema<GetServiceOutboundIpsRequest>;
+
+/** `dedicated` if a dedicated IP set applies to the resource, `shared` if its traffic originates from the shared Render IPs for its region. */
+export type OutboundIpsType = "shared" | "dedicated";
+export const OutboundIpsType = /*@__PURE__*/ S.String;
+
+/** The IP addresses the resource's outbound traffic originates from. */
+export type OutboundIpsIpsList = Array<string>;
+export const OutboundIpsIpsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<OutboundIpsIpsList>;
+
+export interface OutboundIps {
+  /** `dedicated` if a dedicated IP set applies to the resource, `shared` if its traffic originates from the shared Render IPs for its region. */
+  type: OutboundIpsType;
+  /** The dedicated IP set the traffic originates from. Only present when `type` is `dedicated`. */
+  dedicatedIpId?: string;
+  /** The IP addresses the resource's outbound traffic originates from. */
+  ips: OutboundIpsIpsList;
+}
+export const OutboundIps = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: OutboundIpsType,
+    dedicatedIpId: S.optional(S.String),
+    ips: OutboundIpsIpsList,
+  }),
+).annotate({ identifier: "OutboundIps" }) as any as S.Schema<OutboundIps>;
 
 export interface GetTaskRequest {
   /** The ID of the task */
@@ -5268,6 +7071,37 @@ export const User = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "User" }) as any as S.Schema<User>;
 
+export interface GetWebhookRequest {
+  /** Unique identifier for the webhook */
+  webhookId: string;
+}
+export const GetWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webhookId: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/webhooks/{webhookId}", code: 200 })),
+).annotate({
+  identifier: "GetWebhookRequest",
+}) as any as S.Schema<GetWebhookRequest>;
+
+export interface Schema12 {
+  id: string;
+  url: string;
+  name: string;
+  secret: string | Redacted.Redacted<string>;
+  enabled: boolean;
+  eventFilter: EventFilter;
+}
+export const Schema12 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    url: S.String,
+    name: S.String,
+    secret: S.String.pipe(T.SensitiveValue({})),
+    enabled: S.Boolean,
+    eventFilter: EventFilter,
+  }),
+).annotate({ identifier: "Schema12" }) as any as S.Schema<Schema12>;
+
 export interface GetWorkflowRequest {
   /** The ID of the workflow */
   workflowId: string;
@@ -5589,16 +7423,8 @@ export const ListBlueprintSyncsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListBlueprintSyncsRequest",
 }) as any as S.Schema<ListBlueprintSyncsRequest>;
 
-export interface SyncWithCursorSyncCommit {
-  id: string;
-}
-export const SyncWithCursorSyncCommit = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-  }),
-).annotate({
-  identifier: "SyncWithCursorSyncCommit",
-}) as any as S.Schema<SyncWithCursorSyncCommit>;
+export type SyncWithCursorSyncCommit = NewBuild;
+export const SyncWithCursorSyncCommit = NewBuild;
 
 export type SyncWithCursorSyncState =
   | "created"
@@ -5610,7 +7436,7 @@ export const SyncWithCursorSyncState = /*@__PURE__*/ S.String;
 
 export interface SyncWithCursorSync {
   id: string;
-  commit: SyncWithCursorSyncCommit;
+  commit: NewBuild;
   startedAt?: string;
   completedAt?: string;
   state: SyncWithCursorSyncState;
@@ -5618,7 +7444,7 @@ export interface SyncWithCursorSync {
 export const SyncWithCursorSync = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    commit: SyncWithCursorSyncCommit,
+    commit: NewBuild,
     startedAt: S.optional(S.String),
     completedAt: S.optional(S.String),
     state: SyncWithCursorSyncState,
@@ -5889,27 +7715,6 @@ export const ListDisksRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListDisksRequest",
 }) as any as S.Schema<ListDisksRequest>;
-
-export interface Schema2 {
-  id: string;
-  name: string;
-  sizeGB: number;
-  mountPath: string;
-  serviceId?: string;
-  createdAt: string;
-  updatedAt: string;
-}
-export const Schema2 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    sizeGB: S.Number,
-    mountPath: S.String,
-    serviceId: S.optional(S.String),
-    createdAt: S.String,
-    updatedAt: S.String,
-  }),
-).annotate({ identifier: "Schema2" }) as any as S.Schema<Schema2>;
 
 export interface DiskWithCursor {
   disk: Schema2;
@@ -6235,229 +8040,56 @@ export type _0 =
   | "auto_deploy_enabled";
 export const _0 = /*@__PURE__*/ S.String;
 
-export interface _0Case0 {
-  artifactId: string;
-  message: string;
-}
-export const _0Case0 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    artifactId: S.String,
-    message: S.String,
-  }),
-).annotate({ identifier: "_0Case0" }) as any as S.Schema<_0Case0>;
+export type _0Case0 = GetEventResponseDetailsCase0Case0;
+export const _0Case0 = GetEventResponseDetailsCase0Case0;
 
-export interface _0Case1 {
-  /** The previously linked artifact source. Absent when the service was newly attached. */
-  fromArtifactSourceId?: string;
-  /** The newly linked artifact source. Absent when the service was detached. */
-  toArtifactSourceId?: string;
-}
-export const _0Case1 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fromArtifactSourceId: S.optional(S.String),
-    toArtifactSourceId: S.optional(S.String),
-  }),
-).annotate({ identifier: "_0Case1" }) as any as S.Schema<_0Case1>;
+export type _0Case1 = GetEventResponseDetailsCase0Case1;
+export const _0Case1 = GetEventResponseDetailsCase0Case1;
 
-export interface _0Case2 {
-  fromConfig?: Schema5;
-  toConfig: Schema5;
-}
-export const _0Case2 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fromConfig: S.optional(Schema5),
-    toConfig: Schema5,
-  }),
-).annotate({ identifier: "_0Case2" }) as any as S.Schema<_0Case2>;
+export type _0Case2 = GetEventResponseDetailsCase0Case2;
+export const _0Case2 = GetEventResponseDetailsCase0Case2;
 
-export interface _0Case3 {
-  fromInstances: number;
-  toInstances: number;
-}
-export const _0Case3 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fromInstances: S.Number,
-    toInstances: S.Number,
-  }),
-).annotate({ identifier: "_0Case3" }) as any as S.Schema<_0Case3>;
+export type _0Case3 = GetEventResponseDetailsCase0Case3;
+export const _0Case3 = GetEventResponseDetailsCase0Case3;
 
-export interface _0Case4 {
-  fromInstances: number;
-  toInstances: number;
-  currentCPU?: number;
-  targetCPU?: number;
-  currentMemory?: number;
-  targetMemory?: number;
-}
-export const _0Case4 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fromInstances: S.Number,
-    toInstances: S.Number,
-    currentCPU: S.optional(S.Number),
-    targetCPU: S.optional(S.Number),
-    currentMemory: S.optional(S.Number),
-    targetMemory: S.optional(S.Number),
-  }),
-).annotate({ identifier: "_0Case4" }) as any as S.Schema<_0Case4>;
+export type _0Case4 = GetEventResponseDetailsCase0Case4;
+export const _0Case4 = GetEventResponseDetailsCase0Case4;
 
-export interface _0Case5 {
-  deletedBranch: string;
-  newBranch: string;
-}
-export const _0Case5 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deletedBranch: S.String,
-    newBranch: S.String,
-  }),
-).annotate({ identifier: "_0Case5" }) as any as S.Schema<_0Case5>;
+export type _0Case5 = GetEventResponseDetailsCase0Case5;
+export const _0Case5 = GetEventResponseDetailsCase0Case5;
 
 export type _0Case6BuildStatus = "succeeded" | "failed" | "canceled";
 export const _0Case6BuildStatus = /*@__PURE__*/ S.String;
 
-export type NewBuild = SyncWithCursorSyncCommit;
-export const NewBuild = SyncWithCursorSyncCommit;
+export type _0Case6ReasonNewBuild = NewBuild;
+export const _0Case6ReasonNewBuild = NewBuild;
 
-export type _0Case6ReasonNewBuild = SyncWithCursorSyncCommit;
-export const _0Case6ReasonNewBuild = SyncWithCursorSyncCommit;
-
-export interface ReasonOomKilled {
-  memoryLimit: string;
-}
-export const ReasonOomKilled = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    memoryLimit: S.String,
-  }),
-).annotate({
-  identifier: "ReasonOomKilled",
-}) as any as S.Schema<ReasonOomKilled>;
-
-export interface Reason {
-  evicted: boolean;
-  /** Details about why the application was evicted. */
-  evictionReason?: string;
-  /** If present, the application exited with the specified non-zero status. */
-  nonZeroExit?: number;
-  /** If true, the application exited early. Services besides cron jobs should not exit unless receiving a `SIGTERM` signal from Render. */
-  earlyExit?: boolean;
-  oomKilled?: ReasonOomKilled;
-  timedOutSeconds?: number;
-  unhealthy?: string;
-  timedOutReason?: string;
-}
-export const Reason = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    evicted: S.Boolean,
-    evictionReason: S.optional(S.String),
-    nonZeroExit: S.optional(S.Number),
-    earlyExit: S.optional(S.Boolean),
-    oomKilled: S.optional(ReasonOomKilled),
-    timedOutSeconds: S.optional(S.Number),
-    unhealthy: S.optional(S.String),
-    timedOutReason: S.optional(S.String),
-  }),
-).annotate({ identifier: "Reason" }) as any as S.Schema<Reason>;
-
-export interface _0Case6Reason {
-  buildFailed?: SyncWithCursorSyncCommit;
-  newBuild?: SyncWithCursorSyncCommit;
-  newDeploy?: SyncWithCursorSyncCommit;
-  failure?: Reason;
-}
-export const _0Case6Reason = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    buildFailed: S.optional(SyncWithCursorSyncCommit),
-    newBuild: S.optional(SyncWithCursorSyncCommit),
-    newDeploy: S.optional(SyncWithCursorSyncCommit),
-    failure: S.optional(Reason),
-  }),
-).annotate({ identifier: "_0Case6Reason" }) as any as S.Schema<_0Case6Reason>;
+export type _0Case6Reason = GetEventResponseDetailsCase0Case6Reason;
+export const _0Case6Reason = GetEventResponseDetailsCase0Case6Reason;
 
 export interface _0Case6 {
   buildId: string;
   buildStatus: _0Case6BuildStatus;
-  reason: _0Case6Reason;
+  reason: GetEventResponseDetailsCase0Case6Reason;
   status: number;
 }
 export const _0Case6 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     buildId: S.String,
     buildStatus: _0Case6BuildStatus,
-    reason: _0Case6Reason,
+    reason: GetEventResponseDetailsCase0Case6Reason,
     status: S.Number,
   }),
 ).annotate({ identifier: "_0Case6" }) as any as S.Schema<_0Case6>;
 
-/** User who triggered the action */
-export interface User2 {
-  id: string;
-  email: string;
-}
-export const User2 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    email: S.String,
-  }),
-).annotate({ identifier: "User2" }) as any as S.Schema<User2>;
+export type _0Case7Trigger = GetEventResponseDetailsCase0Case7Trigger;
+export const _0Case7Trigger = GetEventResponseDetailsCase0Case7Trigger;
 
-export interface _0Case7Trigger {
-  /** Deploy was triggered by service creation */
-  firstBuild: boolean;
-  /** Deploy was triggered by an environment update */
-  envUpdated: boolean;
-  /** Deploy was triggered manually from the dashboard */
-  manual: boolean;
-  user?: User2;
-  /** Updated property that triggered the deploy */
-  updatedProperty?: string;
-  /** Commit that triggered the deploy */
-  newCommit?: string;
-  /** Deploy was triggered by Render */
-  deployedByRender: boolean;
-  /** Whether the cache was cleared for the deploy */
-  clearCache: boolean;
-  /** Whether the deploy was triggered by a rollback */
-  rollback: boolean;
-  /** Deploy ID that was rolled back to */
-  rollbackTargetDeployId?: string;
-}
-export const _0Case7Trigger = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    firstBuild: S.Boolean,
-    envUpdated: S.Boolean,
-    manual: S.Boolean,
-    user: S.optional(User2),
-    updatedProperty: S.optional(S.String),
-    newCommit: S.optional(S.String),
-    deployedByRender: S.Boolean,
-    clearCache: S.Boolean,
-    rollback: S.Boolean,
-    rollbackTargetDeployId: S.optional(S.String),
-  }),
-).annotate({ identifier: "_0Case7Trigger" }) as any as S.Schema<_0Case7Trigger>;
+export type _0Case7 = GetEventResponseDetailsCase0Case7;
+export const _0Case7 = GetEventResponseDetailsCase0Case7;
 
-export interface _0Case7 {
-  buildId: string;
-  trigger: _0Case7Trigger;
-}
-export const _0Case7 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    buildId: S.String,
-    trigger: _0Case7Trigger,
-  }),
-).annotate({ identifier: "_0Case7" }) as any as S.Schema<_0Case7>;
-
-export interface _0Case8 {
-  /** the commit id */
-  id: string;
-  /** the commit url */
-  url: string;
-}
-export const _0Case8 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    url: S.String,
-  }),
-).annotate({ identifier: "_0Case8" }) as any as S.Schema<_0Case8>;
+export type _0Case8 = GetEventResponseDetailsCase0Case8;
+export const _0Case8 = GetEventResponseDetailsCase0Case8;
 
 export type _0Case9Status =
   | "canceled"
@@ -6492,341 +8124,98 @@ export const _0Case9 = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "_0Case9" }) as any as S.Schema<_0Case9>;
 
-export interface _0Case10 {
-  cronJobRunId: string;
-}
-export const _0Case10 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cronJobRunId: S.String,
-  }),
-).annotate({ identifier: "_0Case10" }) as any as S.Schema<_0Case10>;
+export type _0Case10 = GetEventResponseDetailsCase0Case10;
+export const _0Case10 = GetEventResponseDetailsCase0Case10;
 
-export type ReasonNewBuild = SyncWithCursorSyncCommit;
-export const ReasonNewBuild = SyncWithCursorSyncCommit;
+export type _0Case11 = GetEventResponseDetailsCase0Case11;
+export const _0Case11 = GetEventResponseDetailsCase0Case11;
 
-export type Reason2 = _0Case6Reason;
-export const Reason2 = _0Case6Reason;
+export type _0Case12 = GetEventResponseDetailsCase0Case12;
+export const _0Case12 = GetEventResponseDetailsCase0Case12;
 
-export type BuildStatus = "succeeded" | "failed" | "canceled";
-export const BuildStatus = /*@__PURE__*/ S.String;
+export type _0Case13 = GetEventResponseDetailsCase0Case13;
+export const _0Case13 = GetEventResponseDetailsCase0Case13;
 
-export interface _0Case11 {
-  deployId: string;
-  reason: _0Case6Reason;
-  deployStatus: BuildStatus;
-  status: number;
-  /** Set when the deploy shipped an artifact published by the service's linked artifact source. */
-  artifactId?: string;
-}
-export const _0Case11 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deployId: S.String,
-    reason: _0Case6Reason,
-    deployStatus: BuildStatus,
-    status: S.Number,
-    artifactId: S.optional(S.String),
-  }),
-).annotate({ identifier: "_0Case11" }) as any as S.Schema<_0Case11>;
+export type _0Case14 = GetEventResponseDetailsCase0Case14;
+export const _0Case14 = GetEventResponseDetailsCase0Case14;
 
-export type Trigger = _0Case7Trigger;
-export const Trigger = _0Case7Trigger;
+export type _0Case15 = GetEventResponseDetailsCase0Case15;
+export const _0Case15 = GetEventResponseDetailsCase0Case15;
 
-export interface _0Case12 {
-  deployId: string;
-  trigger: _0Case7Trigger;
-  /** Set when the deploy ships an artifact published by the service's linked artifact source. */
-  artifactId?: string;
-}
-export const _0Case12 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deployId: S.String,
-    trigger: _0Case7Trigger,
-    artifactId: S.optional(S.String),
-  }),
-).annotate({ identifier: "_0Case12" }) as any as S.Schema<_0Case12>;
+export type _0Case16 = GetEventResponseDetailsCase0Case16;
+export const _0Case16 = GetEventResponseDetailsCase0Case16;
 
-export interface _0Case13 {
-  diskId: string;
-  sizeGB: number;
-}
-export const _0Case13 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    diskId: S.String,
-    sizeGB: S.Number,
-  }),
-).annotate({ identifier: "_0Case13" }) as any as S.Schema<_0Case13>;
+export type _0Case17 = GetEventResponseDetailsCase0Case16;
+export const _0Case17 = GetEventResponseDetailsCase0Case16;
 
-export interface _0Case14 {
-  diskId: string;
-  fromSizeGB: number;
-  toSizeGB: number;
-}
-export const _0Case14 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    diskId: S.String,
-    fromSizeGB: S.Number,
-    toSizeGB: S.Number,
-  }),
-).annotate({ identifier: "_0Case14" }) as any as S.Schema<_0Case14>;
+export type _0Case18 = GetEventResponseDetailsCase0Case18;
+export const _0Case18 = GetEventResponseDetailsCase0Case18;
 
-export interface _0Case15 {
-  diskId: string;
-}
-export const _0Case15 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    diskId: S.String,
-  }),
-).annotate({ identifier: "_0Case15" }) as any as S.Schema<_0Case15>;
+export type _0Case19 = GetEventResponseDetailsCase0Case19;
+export const _0Case19 = GetEventResponseDetailsCase0Case19;
 
-export interface _0Case16 {
-  diskId: string;
-  diskName: string;
-  mountPath: string;
-  usagePercent: number;
-  thresholdPercent: number;
-}
-export const _0Case16 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    diskId: S.String,
-    diskName: S.String,
-    mountPath: S.String,
-    usagePercent: S.Number,
-    thresholdPercent: S.Number,
-  }),
-).annotate({ identifier: "_0Case16" }) as any as S.Schema<_0Case16>;
+export type _0Case20 = GetEventResponseDetailsCase0Case19;
+export const _0Case20 = GetEventResponseDetailsCase0Case19;
 
-export type _0Case17 = _0Case16;
-export const _0Case17 = _0Case16;
+export type _0Case21 = GetEventResponseDetailsCase0Case3;
+export const _0Case21 = GetEventResponseDetailsCase0Case3;
 
-export interface _0Case18 {
-  message: string;
-  imageURL: string;
-}
-export const _0Case18 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.String,
-    imageURL: S.String,
-  }),
-).annotate({ identifier: "_0Case18" }) as any as S.Schema<_0Case18>;
+export type _0Case22 = GetEventResponseDetailsCase0Case22;
+export const _0Case22 = GetEventResponseDetailsCase0Case22;
 
-export interface _0Case19 {
-  deployId: string;
-}
-export const _0Case19 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deployId: S.String,
-  }),
-).annotate({ identifier: "_0Case19" }) as any as S.Schema<_0Case19>;
+export type _0Case23 = GetEventResponseDetailsCase0Case23;
+export const _0Case23 = GetEventResponseDetailsCase0Case23;
 
-export type _0Case20 = _0Case19;
-export const _0Case20 = _0Case19;
+export type _0Case24 = GetEventResponseDetailsCase0Case24;
+export const _0Case24 = GetEventResponseDetailsCase0Case24;
 
-export type _0Case21 = _0Case3;
-export const _0Case21 = _0Case3;
+export type _0Case26Trigger = GetEventResponseDetailsCase0Case26Trigger;
+export const _0Case26Trigger = GetEventResponseDetailsCase0Case26Trigger;
 
-export interface _0Case22 {
-  jobId: string;
-  status: Items2;
-  reason?: Reason;
-}
-export const _0Case22 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    jobId: S.String,
-    status: Items2,
-    reason: S.optional(Reason),
-  }),
-).annotate({ identifier: "_0Case22" }) as any as S.Schema<_0Case22>;
+export type _0Case26 = GetEventResponseDetailsCase0Case26;
+export const _0Case26 = GetEventResponseDetailsCase0Case26;
 
-export interface _0Case23 {
-  enabled: boolean;
-}
-export const _0Case23 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.Boolean,
-  }),
-).annotate({ identifier: "_0Case23" }) as any as S.Schema<_0Case23>;
+export type _0Case27 = GetEventResponseDetailsCase0Case7;
+export const _0Case27 = GetEventResponseDetailsCase0Case7;
 
-export interface _0Case24 {
-  fromURI: string;
-  toURI: string;
-}
-export const _0Case24 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fromURI: S.String,
-    toURI: S.String,
-  }),
-).annotate({ identifier: "_0Case24" }) as any as S.Schema<_0Case24>;
+export type _0Case28 = GetEventResponseDetailsCase0Case28;
+export const _0Case28 = GetEventResponseDetailsCase0Case28;
 
-export interface _0Case26Trigger {
-  user?: User2;
-  /** Maintenance was triggered manually */
-  manual: boolean;
-  /** Maintenance was triggered by Render */
-  startedByRender: boolean;
-}
-export const _0Case26Trigger = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user: S.optional(User2),
-    manual: S.Boolean,
-    startedByRender: S.Boolean,
-  }),
-).annotate({
-  identifier: "_0Case26Trigger",
-}) as any as S.Schema<_0Case26Trigger>;
+export type _0Case29 = GetEventResponseDetailsCase0Case29;
+export const _0Case29 = GetEventResponseDetailsCase0Case29;
 
-export interface _0Case26 {
-  trigger: _0Case26Trigger;
-}
-export const _0Case26 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    trigger: _0Case26Trigger,
-  }),
-).annotate({ identifier: "_0Case26" }) as any as S.Schema<_0Case26>;
+export type _0Case30 = GetEventResponseDetailsCase0Case30;
+export const _0Case30 = GetEventResponseDetailsCase0Case30;
 
-export type _0Case27 = _0Case7;
-export const _0Case27 = _0Case7;
+export type _0Case32 = GetEventResponseDetailsCase0Case32;
+export const _0Case32 = GetEventResponseDetailsCase0Case32;
 
-export interface _0Case28 {
-  from: string;
-  to: string;
-}
-export const _0Case28 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    from: S.String,
-    to: S.String,
-  }),
-).annotate({ identifier: "_0Case28" }) as any as S.Schema<_0Case28>;
+export type _0Case34 = GetEventResponseDetailsCase0Case34;
+export const _0Case34 = GetEventResponseDetailsCase0Case34;
 
-export interface _0Case29 {
-  deployCommandExecutionId: string;
-  deployId: string;
-  preDeployStatus: BuildStatus;
-  reason: _0Case6Reason;
-  status: number;
-}
-export const _0Case29 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deployCommandExecutionId: S.String,
-    deployId: S.String,
-    preDeployStatus: BuildStatus,
-    reason: _0Case6Reason,
-    status: S.Number,
-  }),
-).annotate({ identifier: "_0Case29" }) as any as S.Schema<_0Case29>;
+export type _0Case37 = GetEventResponseDetailsCase0Case37;
+export const _0Case37 = GetEventResponseDetailsCase0Case37;
 
-export interface _0Case30 {
-  deployCommandExecutionId: string;
-  deployId: string;
-}
-export const _0Case30 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deployCommandExecutionId: S.String,
-    deployId: S.String,
-  }),
-).annotate({ identifier: "_0Case30" }) as any as S.Schema<_0Case30>;
+export type _0Case38 = GetEventResponseDetailsCase0Case38;
+export const _0Case38 = GetEventResponseDetailsCase0Case38;
 
-export interface _0Case32 {
-  instanceID?: string;
-  reason?: Reason;
-}
-export const _0Case32 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    instanceID: S.optional(S.String),
-    reason: S.optional(Reason),
-  }),
-).annotate({ identifier: "_0Case32" }) as any as S.Schema<_0Case32>;
+export type _0Case40 = GetEventResponseDetailsCase0Case40;
+export const _0Case40 = GetEventResponseDetailsCase0Case40;
 
-export interface _0Case34 {
-  triggeredByUser: string | null;
-}
-export const _0Case34 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    triggeredByUser: S.NullOr(S.String),
-  }),
-).annotate({ identifier: "_0Case34" }) as any as S.Schema<_0Case34>;
+export type _0Case41Trigger = GetEventResponseDetailsCase0Case41Trigger;
+export const _0Case41Trigger = GetEventResponseDetailsCase0Case41Trigger;
 
-export interface _0Case37 {
-  actor: string;
-  suspendedByUser?: User2;
-}
-export const _0Case37 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actor: S.String,
-    suspendedByUser: S.optional(User2),
-  }),
-).annotate({ identifier: "_0Case37" }) as any as S.Schema<_0Case37>;
+export type _0Case41 = GetEventResponseDetailsCase0Case41;
+export const _0Case41 = GetEventResponseDetailsCase0Case41;
 
-export interface _0Case38 {
-  actor: string;
-  resumedByUser?: User2;
-}
-export const _0Case38 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actor: S.String,
-    resumedByUser: S.optional(User2),
-  }),
-).annotate({ identifier: "_0Case38" }) as any as S.Schema<_0Case38>;
+export type _0Case42 = GetEventResponseDetailsCase0Case41;
+export const _0Case42 = GetEventResponseDetailsCase0Case41;
 
-export interface _0Case40 {
-  trigger: string;
-}
-export const _0Case40 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    trigger: S.String,
-  }),
-).annotate({ identifier: "_0Case40" }) as any as S.Schema<_0Case40>;
+export type _0Case43 = GetEventResponseDetailsCase0Case41;
+export const _0Case43 = GetEventResponseDetailsCase0Case41;
 
-export interface _0Case41Trigger {
-  /** Edge Cache change was triggered manually from the dashboard */
-  manual: boolean;
-  user?: User2;
-  /** Edge Cache Change was triggered by Render */
-  system: boolean;
-}
-export const _0Case41Trigger = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    manual: S.Boolean,
-    user: S.optional(User2),
-    system: S.Boolean,
-  }),
-).annotate({
-  identifier: "_0Case41Trigger",
-}) as any as S.Schema<_0Case41Trigger>;
-
-export interface _0Case41 {
-  trigger: _0Case41Trigger;
-}
-export const _0Case41 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    trigger: _0Case41Trigger,
-  }),
-).annotate({ identifier: "_0Case41" }) as any as S.Schema<_0Case41>;
-
-export type Trigger2 = _0Case41Trigger;
-export const Trigger2 = _0Case41Trigger;
-
-export type _0Case42 = _0Case41;
-export const _0Case42 = _0Case41;
-
-export type _0Case43 = _0Case41;
-export const _0Case43 = _0Case41;
-
-/** The auto-deploy trigger value after it was re-enabled */
-export type NewTrigger = "commit" | "off" | "checksPass";
-export const NewTrigger = /*@__PURE__*/ S.String;
-
-export interface _0Case44 {
-  /** Why auto-deploy was disabled (manual_deploy, rollback, or setting_change) */
-  reason: string;
-  /** The auto-deploy trigger value immediately before it was disabled */
-  fromTrigger?: NewTrigger;
-}
-export const _0Case44 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reason: S.String,
-    fromTrigger: S.optional(NewTrigger),
-  }),
-).annotate({ identifier: "_0Case44" }) as any as S.Schema<_0Case44>;
+export type _0Case44 = GetEventResponseDetailsCase0Case44;
+export const _0Case44 = GetEventResponseDetailsCase0Case44;
 
 /** The auto-deploy trigger value after it was re-enabled */
 export type _0Case45NewTrigger = "commit" | "off" | "checksPass";
@@ -6843,46 +8232,46 @@ export const _0Case45 = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "_0Case45" }) as any as S.Schema<_0Case45>;
 
 export type _02 =
-  | _0Case0
-  | _0Case1
-  | _0Case2
-  | _0Case3
-  | _0Case4
-  | _0Case5
+  | GetEventResponseDetailsCase0Case0
+  | GetEventResponseDetailsCase0Case1
+  | GetEventResponseDetailsCase0Case2
+  | GetEventResponseDetailsCase0Case3
+  | GetEventResponseDetailsCase0Case4
+  | GetEventResponseDetailsCase0Case5
   | _0Case6
-  | _0Case7
-  | _0Case8
+  | GetEventResponseDetailsCase0Case7
+  | GetEventResponseDetailsCase0Case8
   | _0Case9
-  | _0Case10
-  | _0Case11
-  | _0Case12
-  | _0Case13
-  | _0Case14
-  | _0Case15
-  | _0Case16
-  | _0Case16
-  | _0Case18
-  | _0Case19
-  | _0Case19
-  | _0Case3
-  | _0Case22
-  | _0Case23
-  | _0Case24
+  | GetEventResponseDetailsCase0Case10
+  | GetEventResponseDetailsCase0Case11
+  | GetEventResponseDetailsCase0Case12
+  | GetEventResponseDetailsCase0Case13
+  | GetEventResponseDetailsCase0Case14
+  | GetEventResponseDetailsCase0Case15
+  | GetEventResponseDetailsCase0Case16
+  | GetEventResponseDetailsCase0Case16
+  | GetEventResponseDetailsCase0Case18
+  | GetEventResponseDetailsCase0Case19
+  | GetEventResponseDetailsCase0Case19
+  | GetEventResponseDetailsCase0Case3
+  | GetEventResponseDetailsCase0Case22
+  | GetEventResponseDetailsCase0Case23
+  | GetEventResponseDetailsCase0Case24
   | unknown
-  | _0Case26
-  | _0Case7
-  | _0Case28
-  | _0Case29
-  | _0Case30
-  | _0Case32
-  | _0Case34
-  | _0Case37
-  | _0Case38
-  | _0Case40
-  | _0Case41
-  | _0Case41
-  | _0Case41
-  | _0Case44
+  | GetEventResponseDetailsCase0Case26
+  | GetEventResponseDetailsCase0Case7
+  | GetEventResponseDetailsCase0Case28
+  | GetEventResponseDetailsCase0Case29
+  | GetEventResponseDetailsCase0Case30
+  | GetEventResponseDetailsCase0Case32
+  | GetEventResponseDetailsCase0Case34
+  | GetEventResponseDetailsCase0Case37
+  | GetEventResponseDetailsCase0Case38
+  | GetEventResponseDetailsCase0Case40
+  | GetEventResponseDetailsCase0Case41
+  | GetEventResponseDetailsCase0Case41
+  | GetEventResponseDetailsCase0Case41
+  | GetEventResponseDetailsCase0Case44
   | _0Case45;
 export const _02 = /*@__PURE__*/ S.Unknown as any as S.Schema<_02>;
 
@@ -7792,12 +9181,6 @@ export const ListNotificationOverridesRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListNotificationOverridesRequest",
 }) as any as S.Schema<ListNotificationOverridesRequest>;
-
-export type PreviewNotificationsEnabled = "default" | "false" | "true";
-export const PreviewNotificationsEnabled = /*@__PURE__*/ S.String;
-
-export type NotificationsToSend2 = "default" | "none" | "failure" | "all";
-export const NotificationsToSend2 = /*@__PURE__*/ S.String;
 
 export interface NotificationOverrideWithCursorOverride {
   serviceId: string;
@@ -9548,25 +10931,6 @@ export const ListWebhooksRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListWebhooksRequest",
 }) as any as S.Schema<ListWebhooksRequest>;
 
-export interface Schema12 {
-  id: string;
-  url: string;
-  name: string;
-  secret: string | Redacted.Redacted<string>;
-  enabled: boolean;
-  eventFilter: EventFilter;
-}
-export const Schema12 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    url: S.String,
-    name: S.String,
-    secret: S.String.pipe(T.SensitiveValue({})),
-    enabled: S.Boolean,
-    eventFilter: EventFilter,
-  }),
-).annotate({ identifier: "Schema12" }) as any as S.Schema<Schema12>;
-
 export interface WebhookWithCursor {
   webhook: Schema12;
   cursor: string;
@@ -9797,9 +11161,6 @@ export const PatchOwnerNotificationSettingsRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "PatchOwnerNotificationSettingsRequest",
 }) as any as S.Schema<PatchOwnerNotificationSettingsRequest>;
-
-export type NotificationsToSend = "none" | "failure" | "all";
-export const NotificationsToSend = /*@__PURE__*/ S.String;
 
 export interface Schema3 {
   ownerId: string;
@@ -10300,1315 +11661,6 @@ export const ResumeServiceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ResumeServiceResponse",
 }) as any as S.Schema<ResumeServiceResponse>;
-
-export interface RetrieveBlueprintRequest {
-  /** The ID of the Blueprint */
-  blueprintId: string;
-}
-export const RetrieveBlueprintRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    blueprintId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/blueprints/{blueprintId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveBlueprintRequest",
-}) as any as S.Schema<RetrieveBlueprintRequest>;
-
-export type RetrieveBlueprintResponseStatus =
-  | "created"
-  | "paused"
-  | "in_sync"
-  | "syncing"
-  | "error";
-export const RetrieveBlueprintResponseStatus = /*@__PURE__*/ S.String;
-
-/** type of the resource (ex. web_service or postgres) */
-export type RetrieveBlueprintResponseResourcesItemType =
-  | "static_site"
-  | "web_service"
-  | "private_service"
-  | "background_worker"
-  | "cron_job"
-  | "redis"
-  | "key_value"
-  | "postgres"
-  | "environment_group"
-  | "artifact_source";
-export const RetrieveBlueprintResponseResourcesItemType =
-  /*@__PURE__*/ S.String;
-
-export interface RetrieveBlueprintResponseResourcesItem {
-  id: string;
-  name: string;
-  /** type of the resource (ex. web_service or postgres) */
-  type: RetrieveBlueprintResponseResourcesItemType;
-}
-export const RetrieveBlueprintResponseResourcesItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      name: S.String,
-      type: RetrieveBlueprintResponseResourcesItemType,
-    }),
-).annotate({
-  identifier: "RetrieveBlueprintResponseResourcesItem",
-}) as any as S.Schema<RetrieveBlueprintResponseResourcesItem>;
-
-export type RetrieveBlueprintResponseResourcesList =
-  Array<RetrieveBlueprintResponseResourcesItem>;
-export const RetrieveBlueprintResponseResourcesList = /*@__PURE__*/ S.Array(
-  RetrieveBlueprintResponseResourcesItem,
-) as any as S.Schema<RetrieveBlueprintResponseResourcesList>;
-
-export interface RetrieveBlueprintResponse {
-  id: string;
-  name: string;
-  status: RetrieveBlueprintResponseStatus;
-  autoSync: boolean;
-  repo: string;
-  branch: string;
-  path: string;
-  lastSync?: string;
-  resources: RetrieveBlueprintResponseResourcesList;
-}
-export const RetrieveBlueprintResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    status: RetrieveBlueprintResponseStatus,
-    autoSync: S.Boolean,
-    repo: S.String,
-    branch: S.String,
-    path: S.String,
-    lastSync: S.optional(S.String),
-    resources: RetrieveBlueprintResponseResourcesList,
-  }),
-).annotate({
-  identifier: "RetrieveBlueprintResponse",
-}) as any as S.Schema<RetrieveBlueprintResponse>;
-
-export interface RetrieveCustomDomainRequest {
-  /** The ID of the service */
-  serviceId: string;
-  /** The ID or name of the custom domain */
-  customDomainNameOrID: string;
-}
-export const RetrieveCustomDomainRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceId: S.String.pipe(T.Label()),
-    customDomainNameOrID: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/services/{serviceId}/custom-domains/{customDomainNameOrID}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveCustomDomainRequest",
-}) as any as S.Schema<RetrieveCustomDomainRequest>;
-
-export interface RetrieveDedicatedIpRequest {
-  /** The ID of the dedicated IP set */
-  dedicatedIpId: string;
-}
-export const RetrieveDedicatedIpRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dedicatedIpId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/dedicated-ips/{dedicatedIpId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveDedicatedIpRequest",
-}) as any as S.Schema<RetrieveDedicatedIpRequest>;
-
-export interface RetrieveDeployRequest {
-  /** The ID of the service */
-  serviceId: string;
-  /** The ID of the deploy */
-  deployId: string;
-}
-export const RetrieveDeployRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceId: S.String.pipe(T.Label()),
-    deployId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/services/{serviceId}/deploys/{deployId}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveDeployRequest",
-}) as any as S.Schema<RetrieveDeployRequest>;
-
-export interface RetrieveDiskRequest {
-  /** The ID of the disk */
-  diskId: string;
-}
-export const RetrieveDiskRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    diskId: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/disks/{diskId}", code: 200 })),
-).annotate({
-  identifier: "RetrieveDiskRequest",
-}) as any as S.Schema<RetrieveDiskRequest>;
-
-export interface RetrieveEnvGroupRequest {
-  /** Filter for resources that belong to an environment group */
-  envGroupId: string;
-}
-export const RetrieveEnvGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    envGroupId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/env-groups/{envGroupId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveEnvGroupRequest",
-}) as any as S.Schema<RetrieveEnvGroupRequest>;
-
-/** List of serviceIds linked to the envGroup */
-export type RetrieveEnvGroupResponseServiceLinksList = Array<EnvGroupLink>;
-export const RetrieveEnvGroupResponseServiceLinksList = /*@__PURE__*/ S.Array(
-  EnvGroupLink,
-) as any as S.Schema<RetrieveEnvGroupResponseServiceLinksList>;
-
-export type RetrieveEnvGroupResponseEnvVarsList = Array<EnvVar>;
-export const RetrieveEnvGroupResponseEnvVarsList = /*@__PURE__*/ S.Array(
-  EnvVar,
-) as any as S.Schema<RetrieveEnvGroupResponseEnvVarsList>;
-
-export type RetrieveEnvGroupResponseSecretFilesList = Array<SecretFile>;
-export const RetrieveEnvGroupResponseSecretFilesList = /*@__PURE__*/ S.Array(
-  SecretFile,
-) as any as S.Schema<RetrieveEnvGroupResponseSecretFilesList>;
-
-export interface RetrieveEnvGroupResponse {
-  id: string;
-  name: string;
-  ownerId: string;
-  createdAt: string;
-  updatedAt: string;
-  /** List of serviceIds linked to the envGroup */
-  serviceLinks: RetrieveEnvGroupResponseServiceLinksList;
-  environmentId?: string;
-  envVars: RetrieveEnvGroupResponseEnvVarsList;
-  secretFiles: RetrieveEnvGroupResponseSecretFilesList;
-}
-export const RetrieveEnvGroupResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    ownerId: S.String,
-    createdAt: S.String,
-    updatedAt: S.String,
-    serviceLinks: RetrieveEnvGroupResponseServiceLinksList,
-    environmentId: S.optional(S.String),
-    envVars: RetrieveEnvGroupResponseEnvVarsList,
-    secretFiles: RetrieveEnvGroupResponseSecretFilesList,
-  }),
-).annotate({
-  identifier: "RetrieveEnvGroupResponse",
-}) as any as S.Schema<RetrieveEnvGroupResponse>;
-
-export interface RetrieveEnvGroupEnvVarRequest {
-  /** Filter for resources that belong to an environment group */
-  envGroupId: string;
-  /** The name of the environment variable */
-  envVarKey: string;
-}
-export const RetrieveEnvGroupEnvVarRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    envGroupId: S.String.pipe(T.Label()),
-    envVarKey: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/env-groups/{envGroupId}/env-vars/{envVarKey}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveEnvGroupEnvVarRequest",
-}) as any as S.Schema<RetrieveEnvGroupEnvVarRequest>;
-
-export interface RetrieveEnvGroupSecretFileRequest {
-  /** Filter for resources that belong to an environment group */
-  envGroupId: string;
-  /** The name of the secret file */
-  envVarKey: string;
-}
-export const RetrieveEnvGroupSecretFileRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    envGroupId: S.String.pipe(T.Label()),
-    envVarKey: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/env-groups/{envGroupId}/secret-files/{envVarKey}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveEnvGroupSecretFileRequest",
-}) as any as S.Schema<RetrieveEnvGroupSecretFileRequest>;
-
-export interface RetrieveEnvironmentRequest {
-  environmentId: string;
-}
-export const RetrieveEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    environmentId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/environments/{environmentId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveEnvironmentRequest",
-}) as any as S.Schema<RetrieveEnvironmentRequest>;
-
-export interface RetrieveEnvVarRequest {
-  /** The ID of the service */
-  serviceId: string;
-  /** The name of the environment variable */
-  envVarKey: string;
-}
-export const RetrieveEnvVarRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceId: S.String.pipe(T.Label()),
-    envVarKey: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/services/{serviceId}/env-vars/{envVarKey}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveEnvVarRequest",
-}) as any as S.Schema<RetrieveEnvVarRequest>;
-
-export interface RetrieveEventRequest {
-  /** The ID of the event */
-  eventId: string;
-}
-export const RetrieveEventRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    eventId: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/events/{eventId}", code: 200 })),
-).annotate({
-  identifier: "RetrieveEventRequest",
-}) as any as S.Schema<RetrieveEventRequest>;
-
-export type RetrieveEventResponseType =
-  | "artifact_fetch_failed"
-  | "artifact_source_changed"
-  | "autoscaling_config_changed"
-  | "autoscaling_ended"
-  | "autoscaling_started"
-  | "branch_deleted"
-  | "build_ended"
-  | "build_started"
-  | "commit_ignored"
-  | "cron_job_run_ended"
-  | "cron_job_run_started"
-  | "deploy_ended"
-  | "deploy_started"
-  | "disk_created"
-  | "disk_updated"
-  | "disk_deleted"
-  | "image_pull_failed"
-  | "instance_count_changed"
-  | "job_run_ended"
-  | "maintenance_mode_enabled"
-  | "maintenance_mode_uri_updated"
-  | "maintenance_ended"
-  | "maintenance_started"
-  | "pipeline_minutes_exhausted"
-  | "plan_changed"
-  | "pre_deploy_ended"
-  | "pre_deploy_started"
-  | "server_available"
-  | "server_failed"
-  | "server_hardware_failure"
-  | "server_restarted"
-  | "service_resumed"
-  | "service_suspended"
-  | "zero_downtime_redeploy_ended"
-  | "zero_downtime_redeploy_started"
-  | "edge_cache_enabled"
-  | "edge_cache_disabled"
-  | "edge_cache_purged"
-  | "auto_deploy_disabled"
-  | "auto_deploy_enabled"
-  | "postgres_available"
-  | "postgres_backup_completed"
-  | "postgres_backup_failed"
-  | "postgres_backup_started"
-  | "postgres_cluster_leader_changed"
-  | "postgres_connection_pool_changed"
-  | "postgres_connection_pool_enabled_changed"
-  | "postgres_created"
-  | "postgres_disk_size_changed"
-  | "postgres_disk_autoscaling_enabled_changed"
-  | "postgres_ha_status_changed"
-  | "postgres_restarted"
-  | "postgres_unavailable"
-  | "postgres_upgrade_failed"
-  | "postgres_upgrade_started"
-  | "postgres_upgrade_succeeded"
-  | "postgres_restore_failed"
-  | "postgres_restore_succeeded"
-  | "postgres_read_replicas_changed"
-  | "postgres_pitr_checkpoint_started"
-  | "postgres_pitr_checkpoint_failed"
-  | "postgres_pitr_checkpoint_completed"
-  | "postgres_read_replica_stale"
-  | "postgres_wal_archive_failed"
-  | "key_value_available"
-  | "key_value_config_restart"
-  | "key_value_unhealthy";
-export const RetrieveEventResponseType = /*@__PURE__*/ S.String;
-
-export type RetrieveEventResponseDetailsCase0Case0 = _0Case0;
-export const RetrieveEventResponseDetailsCase0Case0 = _0Case0;
-
-export type RetrieveEventResponseDetailsCase0Case1 = _0Case1;
-export const RetrieveEventResponseDetailsCase0Case1 = _0Case1;
-
-export type RetrieveEventResponseDetailsCase0Case2 = _0Case2;
-export const RetrieveEventResponseDetailsCase0Case2 = _0Case2;
-
-export type RetrieveEventResponseDetailsCase0Case3 = _0Case3;
-export const RetrieveEventResponseDetailsCase0Case3 = _0Case3;
-
-export type RetrieveEventResponseDetailsCase0Case4 = _0Case4;
-export const RetrieveEventResponseDetailsCase0Case4 = _0Case4;
-
-export type RetrieveEventResponseDetailsCase0Case5 = _0Case5;
-export const RetrieveEventResponseDetailsCase0Case5 = _0Case5;
-
-export type RetrieveEventResponseDetailsCase0Case6BuildStatus =
-  | "succeeded"
-  | "failed"
-  | "canceled";
-export const RetrieveEventResponseDetailsCase0Case6BuildStatus =
-  /*@__PURE__*/ S.String;
-
-export type RetrieveEventResponseDetailsCase0Case6ReasonNewBuild =
-  SyncWithCursorSyncCommit;
-export const RetrieveEventResponseDetailsCase0Case6ReasonNewBuild =
-  SyncWithCursorSyncCommit;
-
-export type RetrieveEventResponseDetailsCase0Case6Reason = _0Case6Reason;
-export const RetrieveEventResponseDetailsCase0Case6Reason = _0Case6Reason;
-
-export interface RetrieveEventResponseDetailsCase0Case6 {
-  buildId: string;
-  buildStatus: RetrieveEventResponseDetailsCase0Case6BuildStatus;
-  reason: _0Case6Reason;
-  status: number;
-}
-export const RetrieveEventResponseDetailsCase0Case6 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      buildId: S.String,
-      buildStatus: RetrieveEventResponseDetailsCase0Case6BuildStatus,
-      reason: _0Case6Reason,
-      status: S.Number,
-    }),
-).annotate({
-  identifier: "RetrieveEventResponseDetailsCase0Case6",
-}) as any as S.Schema<RetrieveEventResponseDetailsCase0Case6>;
-
-export type RetrieveEventResponseDetailsCase0Case7Trigger = _0Case7Trigger;
-export const RetrieveEventResponseDetailsCase0Case7Trigger = _0Case7Trigger;
-
-export type RetrieveEventResponseDetailsCase0Case7 = _0Case7;
-export const RetrieveEventResponseDetailsCase0Case7 = _0Case7;
-
-export type RetrieveEventResponseDetailsCase0Case8 = _0Case8;
-export const RetrieveEventResponseDetailsCase0Case8 = _0Case8;
-
-export type RetrieveEventResponseDetailsCase0Case9Status =
-  | "canceled"
-  | "pending"
-  | "successful"
-  | "unsuccessful";
-export const RetrieveEventResponseDetailsCase0Case9Status =
-  /*@__PURE__*/ S.String;
-
-export type RetrieveEventResponseDetailsCase0Case9ReasonOomKilled =
-  ReasonOomKilled;
-export const RetrieveEventResponseDetailsCase0Case9ReasonOomKilled =
-  ReasonOomKilled;
-
-export type RetrieveEventResponseDetailsCase0Case9Reason = Reason;
-export const RetrieveEventResponseDetailsCase0Case9Reason = Reason;
-
-/** User who triggered the action */
-export type RetrieveEventResponseDetailsCase0Case9User = User2;
-export const RetrieveEventResponseDetailsCase0Case9User = User2;
-
-export interface RetrieveEventResponseDetailsCase0Case9 {
-  cronJobRunId: string;
-  status: RetrieveEventResponseDetailsCase0Case9Status;
-  reason?: Reason;
-  /** User who triggered the action */
-  user?: User2;
-}
-export const RetrieveEventResponseDetailsCase0Case9 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      cronJobRunId: S.String,
-      status: RetrieveEventResponseDetailsCase0Case9Status,
-      reason: S.optional(Reason),
-      user: S.optional(User2),
-    }),
-).annotate({
-  identifier: "RetrieveEventResponseDetailsCase0Case9",
-}) as any as S.Schema<RetrieveEventResponseDetailsCase0Case9>;
-
-export type RetrieveEventResponseDetailsCase0Case10 = _0Case10;
-export const RetrieveEventResponseDetailsCase0Case10 = _0Case10;
-
-export type RetrieveEventResponseDetailsCase0Case11 = _0Case11;
-export const RetrieveEventResponseDetailsCase0Case11 = _0Case11;
-
-export type RetrieveEventResponseDetailsCase0Case12 = _0Case12;
-export const RetrieveEventResponseDetailsCase0Case12 = _0Case12;
-
-export type RetrieveEventResponseDetailsCase0Case13 = _0Case13;
-export const RetrieveEventResponseDetailsCase0Case13 = _0Case13;
-
-export type RetrieveEventResponseDetailsCase0Case14 = _0Case14;
-export const RetrieveEventResponseDetailsCase0Case14 = _0Case14;
-
-export type RetrieveEventResponseDetailsCase0Case15 = _0Case15;
-export const RetrieveEventResponseDetailsCase0Case15 = _0Case15;
-
-export type RetrieveEventResponseDetailsCase0Case16 = _0Case16;
-export const RetrieveEventResponseDetailsCase0Case16 = _0Case16;
-
-export type RetrieveEventResponseDetailsCase0Case17 = _0Case16;
-export const RetrieveEventResponseDetailsCase0Case17 = _0Case16;
-
-export type RetrieveEventResponseDetailsCase0Case18 = _0Case18;
-export const RetrieveEventResponseDetailsCase0Case18 = _0Case18;
-
-export type RetrieveEventResponseDetailsCase0Case19 = _0Case19;
-export const RetrieveEventResponseDetailsCase0Case19 = _0Case19;
-
-export type RetrieveEventResponseDetailsCase0Case20 = _0Case19;
-export const RetrieveEventResponseDetailsCase0Case20 = _0Case19;
-
-export type RetrieveEventResponseDetailsCase0Case21 = _0Case3;
-export const RetrieveEventResponseDetailsCase0Case21 = _0Case3;
-
-export type RetrieveEventResponseDetailsCase0Case22 = _0Case22;
-export const RetrieveEventResponseDetailsCase0Case22 = _0Case22;
-
-export type RetrieveEventResponseDetailsCase0Case23 = _0Case23;
-export const RetrieveEventResponseDetailsCase0Case23 = _0Case23;
-
-export type RetrieveEventResponseDetailsCase0Case24 = _0Case24;
-export const RetrieveEventResponseDetailsCase0Case24 = _0Case24;
-
-export type RetrieveEventResponseDetailsCase0Case26Trigger = _0Case26Trigger;
-export const RetrieveEventResponseDetailsCase0Case26Trigger = _0Case26Trigger;
-
-export type RetrieveEventResponseDetailsCase0Case26 = _0Case26;
-export const RetrieveEventResponseDetailsCase0Case26 = _0Case26;
-
-export type RetrieveEventResponseDetailsCase0Case27 = _0Case7;
-export const RetrieveEventResponseDetailsCase0Case27 = _0Case7;
-
-export type RetrieveEventResponseDetailsCase0Case28 = _0Case28;
-export const RetrieveEventResponseDetailsCase0Case28 = _0Case28;
-
-export type RetrieveEventResponseDetailsCase0Case29 = _0Case29;
-export const RetrieveEventResponseDetailsCase0Case29 = _0Case29;
-
-export type RetrieveEventResponseDetailsCase0Case30 = _0Case30;
-export const RetrieveEventResponseDetailsCase0Case30 = _0Case30;
-
-export type RetrieveEventResponseDetailsCase0Case32 = _0Case32;
-export const RetrieveEventResponseDetailsCase0Case32 = _0Case32;
-
-export type RetrieveEventResponseDetailsCase0Case34 = _0Case34;
-export const RetrieveEventResponseDetailsCase0Case34 = _0Case34;
-
-export type RetrieveEventResponseDetailsCase0Case37 = _0Case37;
-export const RetrieveEventResponseDetailsCase0Case37 = _0Case37;
-
-export type RetrieveEventResponseDetailsCase0Case38 = _0Case38;
-export const RetrieveEventResponseDetailsCase0Case38 = _0Case38;
-
-export type RetrieveEventResponseDetailsCase0Case40 = _0Case40;
-export const RetrieveEventResponseDetailsCase0Case40 = _0Case40;
-
-export type RetrieveEventResponseDetailsCase0Case41Trigger = _0Case41Trigger;
-export const RetrieveEventResponseDetailsCase0Case41Trigger = _0Case41Trigger;
-
-export type RetrieveEventResponseDetailsCase0Case41 = _0Case41;
-export const RetrieveEventResponseDetailsCase0Case41 = _0Case41;
-
-export type RetrieveEventResponseDetailsCase0Case42 = _0Case41;
-export const RetrieveEventResponseDetailsCase0Case42 = _0Case41;
-
-export type RetrieveEventResponseDetailsCase0Case43 = _0Case41;
-export const RetrieveEventResponseDetailsCase0Case43 = _0Case41;
-
-export type RetrieveEventResponseDetailsCase0Case44 = _0Case44;
-export const RetrieveEventResponseDetailsCase0Case44 = _0Case44;
-
-/** The auto-deploy trigger value after it was re-enabled */
-export type RetrieveEventResponseDetailsCase0Case45NewTrigger =
-  | "commit"
-  | "off"
-  | "checksPass";
-export const RetrieveEventResponseDetailsCase0Case45NewTrigger =
-  /*@__PURE__*/ S.String;
-
-export interface RetrieveEventResponseDetailsCase0Case45 {
-  /** The auto-deploy trigger value after it was re-enabled */
-  newTrigger?: RetrieveEventResponseDetailsCase0Case45NewTrigger;
-}
-export const RetrieveEventResponseDetailsCase0Case45 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      newTrigger: S.optional(RetrieveEventResponseDetailsCase0Case45NewTrigger),
-    }),
-).annotate({
-  identifier: "RetrieveEventResponseDetailsCase0Case45",
-}) as any as S.Schema<RetrieveEventResponseDetailsCase0Case45>;
-
-export type RetrieveEventResponseDetailsCase0 =
-  | _0Case0
-  | _0Case1
-  | _0Case2
-  | _0Case3
-  | _0Case4
-  | _0Case5
-  | RetrieveEventResponseDetailsCase0Case6
-  | _0Case7
-  | _0Case8
-  | RetrieveEventResponseDetailsCase0Case9
-  | _0Case10
-  | _0Case11
-  | _0Case12
-  | _0Case13
-  | _0Case14
-  | _0Case15
-  | _0Case16
-  | _0Case16
-  | _0Case18
-  | _0Case19
-  | _0Case19
-  | _0Case3
-  | _0Case22
-  | _0Case23
-  | _0Case24
-  | unknown
-  | _0Case26
-  | _0Case7
-  | _0Case28
-  | _0Case29
-  | _0Case30
-  | _0Case32
-  | _0Case34
-  | _0Case37
-  | _0Case38
-  | _0Case40
-  | _0Case41
-  | _0Case41
-  | _0Case41
-  | _0Case44
-  | RetrieveEventResponseDetailsCase0Case45;
-export const RetrieveEventResponseDetailsCase0 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RetrieveEventResponseDetailsCase0>;
-
-export interface RetrieveEventResponseDetailsCase1Case4 {
-  leaderId?: string;
-}
-export const RetrieveEventResponseDetailsCase1Case4 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      leaderId: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "RetrieveEventResponseDetailsCase1Case4",
-}) as any as S.Schema<RetrieveEventResponseDetailsCase1Case4>;
-
-export interface RetrieveEventResponseDetailsCase1Case5 {
-  user?: User2;
-  from: string;
-  to: string;
-}
-export const RetrieveEventResponseDetailsCase1Case5 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      user: S.optional(User2),
-      from: S.String,
-      to: S.String,
-    }),
-).annotate({
-  identifier: "RetrieveEventResponseDetailsCase1Case5",
-}) as any as S.Schema<RetrieveEventResponseDetailsCase1Case5>;
-
-export interface RetrieveEventResponseDetailsCase1Case6 {
-  user?: User2;
-  enabled: boolean;
-}
-export const RetrieveEventResponseDetailsCase1Case6 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      user: S.optional(User2),
-      enabled: S.Boolean,
-    }),
-).annotate({
-  identifier: "RetrieveEventResponseDetailsCase1Case6",
-}) as any as S.Schema<RetrieveEventResponseDetailsCase1Case6>;
-
-export interface RetrieveEventResponseDetailsCase1Case7 {
-  user?: User2;
-}
-export const RetrieveEventResponseDetailsCase1Case7 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      user: S.optional(User2),
-    }),
-).annotate({
-  identifier: "RetrieveEventResponseDetailsCase1Case7",
-}) as any as S.Schema<RetrieveEventResponseDetailsCase1Case7>;
-
-export interface RetrieveEventResponseDetailsCase1Case8 {
-  user?: User2;
-  fromDiskSize: number;
-  toDiskSize: number;
-}
-export const RetrieveEventResponseDetailsCase1Case8 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      user: S.optional(User2),
-      fromDiskSize: S.Number,
-      toDiskSize: S.Number,
-    }),
-).annotate({
-  identifier: "RetrieveEventResponseDetailsCase1Case8",
-}) as any as S.Schema<RetrieveEventResponseDetailsCase1Case8>;
-
-export interface RetrieveEventResponseDetailsCase1Case9 {
-  fromStatus: string;
-  toStatus: string;
-}
-export const RetrieveEventResponseDetailsCase1Case9 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      fromStatus: S.String,
-      toStatus: S.String,
-    }),
-).annotate({
-  identifier: "RetrieveEventResponseDetailsCase1Case9",
-}) as any as S.Schema<RetrieveEventResponseDetailsCase1Case9>;
-
-export interface RetrieveEventResponseDetailsCase1Case10 {
-  fromReplicas: number;
-  toReplicas: number;
-}
-export const RetrieveEventResponseDetailsCase1Case10 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      fromReplicas: S.Number,
-      toReplicas: S.Number,
-    }),
-).annotate({
-  identifier: "RetrieveEventResponseDetailsCase1Case10",
-}) as any as S.Schema<RetrieveEventResponseDetailsCase1Case10>;
-
-export type RetrieveEventResponseDetailsCase1Case11 =
-  RetrieveEventResponseDetailsCase1Case7;
-export const RetrieveEventResponseDetailsCase1Case11 =
-  RetrieveEventResponseDetailsCase1Case7;
-
-export interface RetrieveEventResponseDetailsCase1Case13 {
-  fromVersion: string;
-  toVersion: string;
-}
-export const RetrieveEventResponseDetailsCase1Case13 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      fromVersion: S.String,
-      toVersion: S.String,
-    }),
-).annotate({
-  identifier: "RetrieveEventResponseDetailsCase1Case13",
-}) as any as S.Schema<RetrieveEventResponseDetailsCase1Case13>;
-
-export interface RetrieveEventResponseDetailsCase1Case14 {
-  user?: User2;
-  fromVersion: string;
-  toVersion: string;
-}
-export const RetrieveEventResponseDetailsCase1Case14 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      user: S.optional(User2),
-      fromVersion: S.String,
-      toVersion: S.String,
-    }),
-).annotate({
-  identifier: "RetrieveEventResponseDetailsCase1Case14",
-}) as any as S.Schema<RetrieveEventResponseDetailsCase1Case14>;
-
-export type RetrieveEventResponseDetailsCase1Case15 =
-  RetrieveEventResponseDetailsCase1Case13;
-export const RetrieveEventResponseDetailsCase1Case15 =
-  RetrieveEventResponseDetailsCase1Case13;
-
-export type RetrieveEventResponseDetailsCase1 =
-  | unknown
-  | RetrieveEventResponseDetailsCase1Case4
-  | RetrieveEventResponseDetailsCase1Case5
-  | RetrieveEventResponseDetailsCase1Case6
-  | RetrieveEventResponseDetailsCase1Case7
-  | RetrieveEventResponseDetailsCase1Case8
-  | RetrieveEventResponseDetailsCase1Case9
-  | RetrieveEventResponseDetailsCase1Case10
-  | RetrieveEventResponseDetailsCase1Case7
-  | RetrieveEventResponseDetailsCase1Case13
-  | RetrieveEventResponseDetailsCase1Case14
-  | RetrieveEventResponseDetailsCase1Case13;
-export const RetrieveEventResponseDetailsCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RetrieveEventResponseDetailsCase1>;
-
-export interface RetrieveEventResponseDetailsCase2Case1 {
-  reason: string;
-  message: string;
-}
-export const RetrieveEventResponseDetailsCase2Case1 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      reason: S.String,
-      message: S.String,
-    }),
-).annotate({
-  identifier: "RetrieveEventResponseDetailsCase2Case1",
-}) as any as S.Schema<RetrieveEventResponseDetailsCase2Case1>;
-
-export type RetrieveEventResponseDetailsCase2 =
-  | unknown
-  | RetrieveEventResponseDetailsCase2Case1;
-export const RetrieveEventResponseDetailsCase2 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RetrieveEventResponseDetailsCase2>;
-
-export type RetrieveEventResponseDetails =
-  | RetrieveEventResponseDetailsCase0
-  | RetrieveEventResponseDetailsCase1
-  | RetrieveEventResponseDetailsCase2;
-export const RetrieveEventResponseDetails =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RetrieveEventResponseDetails>;
-
-export interface RetrieveEventResponse {
-  id: string;
-  timestamp: string;
-  serviceId: string;
-  type: RetrieveEventResponseType;
-  details: RetrieveEventResponseDetails;
-}
-export const RetrieveEventResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    timestamp: S.String,
-    serviceId: S.String,
-    type: RetrieveEventResponseType,
-    details: RetrieveEventResponseDetails,
-  }),
-).annotate({
-  identifier: "RetrieveEventResponse",
-}) as any as S.Schema<RetrieveEventResponse>;
-
-export interface RetrieveJobRequest {
-  /** The ID of the service */
-  serviceId: string;
-  /** The ID of the job */
-  jobId: string;
-}
-export const RetrieveJobRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceId: S.String.pipe(T.Label()),
-    jobId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/services/{serviceId}/jobs/{jobId}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveJobRequest",
-}) as any as S.Schema<RetrieveJobRequest>;
-
-export interface RetrieveKeyValueRequest {
-  redisId: string;
-}
-export const RetrieveKeyValueRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    redisId: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/key-value/{redisId}", code: 200 })),
-).annotate({
-  identifier: "RetrieveKeyValueRequest",
-}) as any as S.Schema<RetrieveKeyValueRequest>;
-
-export interface RetrieveKeyValueConnectionInfoRequest {
-  redisId: string;
-}
-export const RetrieveKeyValueConnectionInfoRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      redisId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/key-value/{redisId}/connection-info",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "RetrieveKeyValueConnectionInfoRequest",
-}) as any as S.Schema<RetrieveKeyValueConnectionInfoRequest>;
-
-/** A Key Value instance */
-export interface KeyValueConnectionInfo {
-  /** The connection string to use from within Render */
-  internalConnectionString: string;
-  /** The connection string to use from outside Render */
-  externalConnectionString: string;
-  /** The CLI (redis-cli or valkey-cli) command to connect to the Key Value instance */
-  cliCommand: string;
-}
-export const KeyValueConnectionInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    internalConnectionString: S.String,
-    externalConnectionString: S.String,
-    cliCommand: S.String,
-  }),
-).annotate({
-  identifier: "KeyValueConnectionInfo",
-}) as any as S.Schema<KeyValueConnectionInfo>;
-
-export interface RetrieveMaintenanceRequest {
-  maintenanceRunID: string;
-}
-export const RetrieveMaintenanceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maintenanceRunID: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/maintenance/{maintenanceRunID}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveMaintenanceRequest",
-}) as any as S.Schema<RetrieveMaintenanceRequest>;
-
-export interface RetrieveMaintenanceResponse {
-  id: string;
-  type: string;
-  scheduledAt: string;
-  /** If present, the maintenance run cannot be scheduled for later than this date-time. */
-  pendingMaintenanceBy?: string;
-  state: Items4;
-  resourceId: string;
-}
-export const RetrieveMaintenanceResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    type: S.String,
-    scheduledAt: S.String,
-    pendingMaintenanceBy: S.optional(S.String),
-    state: Items4,
-    resourceId: S.String,
-  }),
-).annotate({
-  identifier: "RetrieveMaintenanceResponse",
-}) as any as S.Schema<RetrieveMaintenanceResponse>;
-
-export interface RetrieveOwnerRequest {
-  /** The ID of the user or team */
-  ownerId: string;
-}
-export const RetrieveOwnerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ownerId: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/owners/{ownerId}", code: 200 })),
-).annotate({
-  identifier: "RetrieveOwnerRequest",
-}) as any as S.Schema<RetrieveOwnerRequest>;
-
-export interface RetrieveOwnerMembersRequest {
-  /** The ID of the team */
-  ownerId: string;
-}
-export const RetrieveOwnerMembersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ownerId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/owners/{ownerId}/members", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveOwnerMembersRequest",
-}) as any as S.Schema<RetrieveOwnerMembersRequest>;
-
-export type TeamMemberStatus = "active" | "inactive";
-export const TeamMemberStatus = /*@__PURE__*/ S.String;
-
-/** The member's workspace role. Values are always returned in uppercase. */
-export type TeamMemberRole =
-  | "ADMIN"
-  | "DEVELOPER"
-  | "WORKSPACE_CONTRIBUTOR"
-  | "WORKSPACE_BILLING"
-  | "WORKSPACE_VIEWER";
-export const TeamMemberRole = /*@__PURE__*/ S.String;
-
-export interface TeamMember {
-  userId: string;
-  name: string;
-  email: string;
-  status: TeamMemberStatus;
-  role: TeamMemberRole;
-  mfaEnabled: boolean;
-}
-export const TeamMember = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    userId: S.String,
-    name: S.String,
-    email: S.String,
-    status: TeamMemberStatus,
-    role: TeamMemberRole,
-    mfaEnabled: S.Boolean,
-  }),
-).annotate({ identifier: "TeamMember" }) as any as S.Schema<TeamMember>;
-
-export type TeamMembers = Array<TeamMember>;
-export const TeamMembers = /*@__PURE__*/ S.Array(
-  TeamMember,
-) as any as S.Schema<TeamMembers>;
-
-export type RetrieveOwnerMembersResponse = TeamMembers;
-export const RetrieveOwnerMembersResponse = /*@__PURE__*/ S.suspend(() =>
-  TeamMembers.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "RetrieveOwnerMembersResponse",
-}) as any as S.Schema<RetrieveOwnerMembersResponse>;
-
-export interface RetrieveOwnerNotificationSettingsRequest {
-  /** The ID of the workspace to return resources for */
-  ownerId: string;
-}
-export const RetrieveOwnerNotificationSettingsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      ownerId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/notification-settings/owners/{ownerId}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "RetrieveOwnerNotificationSettingsRequest",
-}) as any as S.Schema<RetrieveOwnerNotificationSettingsRequest>;
-
-export interface RetrieveOwnerNotificationSettingsResponse {
-  ownerId: string;
-  slackEnabled: boolean;
-  emailEnabled: boolean;
-  previewNotificationsEnabled: boolean;
-  notificationsToSend: NotificationsToSend;
-}
-export const RetrieveOwnerNotificationSettingsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      ownerId: S.String,
-      slackEnabled: S.Boolean,
-      emailEnabled: S.Boolean,
-      previewNotificationsEnabled: S.Boolean,
-      notificationsToSend: NotificationsToSend,
-    }),
-  ).annotate({
-    identifier: "RetrieveOwnerNotificationSettingsResponse",
-  }) as any as S.Schema<RetrieveOwnerNotificationSettingsResponse>;
-
-export interface RetrievePostgresRequest {
-  postgresId: string;
-}
-export const RetrievePostgresRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    postgresId: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/postgres/{postgresId}", code: 200 })),
-).annotate({
-  identifier: "RetrievePostgresRequest",
-}) as any as S.Schema<RetrievePostgresRequest>;
-
-export interface RetrievePostgresConnectionInfoRequest {
-  postgresId: string;
-}
-export const RetrievePostgresConnectionInfoRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      postgresId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/postgres/{postgresId}/connection-info",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "RetrievePostgresConnectionInfoRequest",
-}) as any as S.Schema<RetrievePostgresConnectionInfoRequest>;
-
-export interface PostgresConnectionInfo {
-  password: string | Redacted.Redacted<string>;
-  internalConnectionString: string;
-  externalConnectionString: string;
-  internalConnectionPoolString?: string;
-  externalConnectionPoolString?: string;
-  psqlCommand: string;
-}
-export const PostgresConnectionInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    password: S.String.pipe(T.SensitiveValue({})),
-    internalConnectionString: S.String,
-    externalConnectionString: S.String,
-    internalConnectionPoolString: S.optional(S.String),
-    externalConnectionPoolString: S.optional(S.String),
-    psqlCommand: S.String,
-  }),
-).annotate({
-  identifier: "PostgresConnectionInfo",
-}) as any as S.Schema<PostgresConnectionInfo>;
-
-export interface RetrievePostgresRecoveryInfoRequest {
-  postgresId: string;
-}
-export const RetrievePostgresRecoveryInfoRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    postgresId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/postgres/{postgresId}/recovery",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrievePostgresRecoveryInfoRequest",
-}) as any as S.Schema<RetrievePostgresRecoveryInfoRequest>;
-
-/** Availability of point-in-time recovery. */
-export type RetrievePostgresRecoveryInfoResponseRecoveryStatus =
-  | "AVAILABLE"
-  | "BACKUP_NOT_READY"
-  | "NOT_AVAILABLE";
-export const RetrievePostgresRecoveryInfoResponseRecoveryStatus =
-  /*@__PURE__*/ S.String;
-
-export interface RetrievePostgresRecoveryInfoResponse {
-  /** Availability of point-in-time recovery. */
-  recoveryStatus: RetrievePostgresRecoveryInfoResponseRecoveryStatus;
-  startsAt?: string;
-}
-export const RetrievePostgresRecoveryInfoResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      recoveryStatus: RetrievePostgresRecoveryInfoResponseRecoveryStatus,
-      startsAt: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "RetrievePostgresRecoveryInfoResponse",
-}) as any as S.Schema<RetrievePostgresRecoveryInfoResponse>;
-
-export interface RetrieveProjectRequest {
-  projectId: string;
-}
-export const RetrieveProjectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    projectId: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/projects/{projectId}", code: 200 })),
-).annotate({
-  identifier: "RetrieveProjectRequest",
-}) as any as S.Schema<RetrieveProjectRequest>;
-
-export interface RetrieveRegistryCredentialRequest {
-  /** The ID of the registry credential */
-  registryCredentialId: string;
-}
-export const RetrieveRegistryCredentialRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    registryCredentialId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/registrycredentials/{registryCredentialId}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveRegistryCredentialRequest",
-}) as any as S.Schema<RetrieveRegistryCredentialRequest>;
-
-export interface RetrieveSecretFileRequest {
-  /** The ID of the service */
-  serviceId: string;
-  /** The file name of the secret file */
-  envVarKey: string;
-}
-export const RetrieveSecretFileRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceId: S.String.pipe(T.Label()),
-    envVarKey: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/services/{serviceId}/secret-files/{envVarKey}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveSecretFileRequest",
-}) as any as S.Schema<RetrieveSecretFileRequest>;
-
-export interface RetrieveServiceRequest {
-  /** The ID of the service */
-  serviceId: string;
-}
-export const RetrieveServiceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceId: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/services/{serviceId}", code: 200 })),
-).annotate({
-  identifier: "RetrieveServiceRequest",
-}) as any as S.Schema<RetrieveServiceRequest>;
-
-export interface RetrieveServiceNotificationOverridesRequest {
-  /** The ID of the service */
-  serviceId: string;
-}
-export const RetrieveServiceNotificationOverridesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/notification-settings/overrides/services/{serviceId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "RetrieveServiceNotificationOverridesRequest",
-  }) as any as S.Schema<RetrieveServiceNotificationOverridesRequest>;
-
-export interface RetrieveServiceNotificationOverridesResponse {
-  serviceId: string;
-  previewNotificationsEnabled: PreviewNotificationsEnabled;
-  notificationsToSend: NotificationsToSend2;
-}
-export const RetrieveServiceNotificationOverridesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceId: S.String,
-      previewNotificationsEnabled: PreviewNotificationsEnabled,
-      notificationsToSend: NotificationsToSend2,
-    }),
-  ).annotate({
-    identifier: "RetrieveServiceNotificationOverridesResponse",
-  }) as any as S.Schema<RetrieveServiceNotificationOverridesResponse>;
-
-export interface RetrieveServiceOutboundIpsRequest {
-  /** The ID of the service */
-  serviceId: string;
-}
-export const RetrieveServiceOutboundIpsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/services/{serviceId}/outbound-ips",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveServiceOutboundIpsRequest",
-}) as any as S.Schema<RetrieveServiceOutboundIpsRequest>;
-
-/** `dedicated` if a dedicated IP set applies to the resource, `shared` if its traffic originates from the shared Render IPs for its region. */
-export type OutboundIpsType = "shared" | "dedicated";
-export const OutboundIpsType = /*@__PURE__*/ S.String;
-
-/** The IP addresses the resource's outbound traffic originates from. */
-export type OutboundIpsIpsList = Array<string>;
-export const OutboundIpsIpsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<OutboundIpsIpsList>;
-
-export interface OutboundIps {
-  /** `dedicated` if a dedicated IP set applies to the resource, `shared` if its traffic originates from the shared Render IPs for its region. */
-  type: OutboundIpsType;
-  /** The dedicated IP set the traffic originates from. Only present when `type` is `dedicated`. */
-  dedicatedIpId?: string;
-  /** The IP addresses the resource's outbound traffic originates from. */
-  ips: OutboundIpsIpsList;
-}
-export const OutboundIps = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: OutboundIpsType,
-    dedicatedIpId: S.optional(S.String),
-    ips: OutboundIpsIpsList,
-  }),
-).annotate({ identifier: "OutboundIps" }) as any as S.Schema<OutboundIps>;
-
-export interface RetrieveWebhookRequest {
-  /** Unique identifier for the webhook */
-  webhookId: string;
-}
-export const RetrieveWebhookRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webhookId: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/webhooks/{webhookId}", code: 200 })),
-).annotate({
-  identifier: "RetrieveWebhookRequest",
-}) as any as S.Schema<RetrieveWebhookRequest>;
-
-export interface RollbackDeployRequest {
-  /** The ID of the service */
-  serviceId: string;
-  /** The ID of the deploy to roll back to */
-  deployId: string;
-}
-export const RollbackDeployRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceId: S.String.pipe(T.Label()),
-    deployId: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/services/{serviceId}/rollback",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RollbackDeployRequest",
-}) as any as S.Schema<RollbackDeployRequest>;
 
 export interface RunCronJobRequest {
   /** The ID of the cron job */
@@ -13918,6 +13970,25 @@ export const deleteWorkflow: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeployRollbackError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | RenderOpError;
+/** Roll back deploy Trigger a rollback to a previous deploy of the specified service. Triggering a rollback with this endpoint does not disable autodeploys for the service. This means an autodeploy might restore changes you had intentionally rolled back. You can toggle autodeploys for your service with the [Update service](https://api-docs.render.com/reference/update-service) endpoint or in the Render Dashboard. */
+export const deployRollback: API.OperationMethod<
+  DeployRollbackRequest,
+  Deploy,
+  DeployRollbackError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeployRollbackRequest,
+  output: Deploy,
+  errors: [BadRequest, Forbidden, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DisconnectBlueprintError = Forbidden | NotFound | RenderOpError;
 /** Disconnect Blueprint Disconnect the Blueprint with the provided ID. Disconnecting a Blueprint stops automatic resource syncing via the associated `render.yaml` file. It does not _delete_ any services or other resources that were managed by the blueprint. */
 export const disconnectBlueprint: API.OperationMethod<
@@ -13997,6 +14068,21 @@ export const getBandwidthSources: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetBlueprintError = Forbidden | NotFound | RenderOpError;
+/** Retrieve Blueprint Retrieve the Blueprint with the provided ID. */
+export const getBlueprint: API.OperationMethod<
+  GetBlueprintRequest,
+  GetBlueprintResponse,
+  GetBlueprintError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBlueprintRequest,
+  output: GetBlueprintResponse,
+  errors: [Forbidden, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetCpuError = BadRequest | RenderOpError;
 /** Get CPU usage Get CPU usage for one or more resources. */
 export const getCpu: API.OperationMethod<
@@ -14042,6 +14128,70 @@ export const getCpuTarget: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetCustomDomainError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | RenderOpError;
+/** Retrieve custom domain Retrieve a particular custom domain for a particular service. */
+export const getCustomDomain: API.OperationMethod<
+  GetCustomDomainRequest,
+  CustomDomain,
+  GetCustomDomainError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCustomDomainRequest,
+  output: CustomDomain,
+  errors: [BadRequest, Forbidden, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDedicatedIpError = Forbidden | NotFound | RenderOpError;
+/** Retrieve dedicated IP set Retrieve the dedicated IP set with the provided ID. */
+export const getDedicatedIp: API.OperationMethod<
+  GetDedicatedIpRequest,
+  DedicatedIP,
+  GetDedicatedIpError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDedicatedIpRequest,
+  output: DedicatedIP,
+  errors: [Forbidden, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeployError = Forbidden | NotFound | RenderOpError;
+/** Retrieve deploy Retrieve the details of a particular deploy for a particular service. */
+export const getDeploy: API.OperationMethod<
+  GetDeployRequest,
+  Deploy,
+  GetDeployError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeployRequest,
+  output: Deploy,
+  errors: [Forbidden, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDiskError = Forbidden | NotFound | RenderOpError;
+/** Retrieve disk Retrieve the persistent disk with the provided ID. */
+export const getDisk: API.OperationMethod<
+  GetDiskRequest,
+  Schema2,
+  GetDiskError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDiskRequest,
+  output: Schema2,
+  errors: [Forbidden, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetDiskCapacityError = BadRequest | RenderOpError;
 /** Get disk capacity Get persistent disk capacity for one or more resources. */
 export const getDiskCapacity: API.OperationMethod<
@@ -14072,6 +14222,81 @@ export const getDiskUsage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetEnvGroupError = BadRequest | NotFound | RenderOpError;
+/** Retrieve environment group Retrieve an environment group by ID. */
+export const getEnvGroup: API.OperationMethod<
+  GetEnvGroupRequest,
+  GetEnvGroupResponse,
+  GetEnvGroupError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEnvGroupRequest,
+  output: GetEnvGroupResponse,
+  errors: [BadRequest, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEnvGroupEnvVarError = BadRequest | NotFound | RenderOpError;
+/** Retrieve environment variable Retrieve a particular environment variable in a particular environment group. */
+export const getEnvGroupEnvVar: API.OperationMethod<
+  GetEnvGroupEnvVarRequest,
+  EnvVar,
+  GetEnvGroupEnvVarError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEnvGroupEnvVarRequest,
+  output: EnvVar,
+  errors: [BadRequest, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEnvGroupSecretFileError = BadRequest | NotFound | RenderOpError;
+/** Retrieve secret file Retrieve a particular secret file in a particular environment group. */
+export const getEnvGroupSecretFile: API.OperationMethod<
+  GetEnvGroupSecretFileRequest,
+  SecretFile,
+  GetEnvGroupSecretFileError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEnvGroupSecretFileRequest,
+  output: SecretFile,
+  errors: [BadRequest, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEnvironmentError = BadRequest | NotFound | RenderOpError;
+/** Retrieve environment Retrieve the environment with the provided ID. */
+export const getEnvironment: API.OperationMethod<
+  GetEnvironmentRequest,
+  Environment,
+  GetEnvironmentError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEnvironmentRequest,
+  output: Environment,
+  errors: [BadRequest, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEnvVarError = Forbidden | NotFound | RenderOpError;
+/** Retrieve environment variable Retrieve a particular environment variable for a particular service. This only applies to environment variables set directly on the service, not to environment variables in a linked environment group. */
+export const getEnvVar: API.OperationMethod<
+  GetEnvVarRequest,
+  EnvVar,
+  GetEnvVarError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEnvVarRequest,
+  output: EnvVar,
+  errors: [Forbidden, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetEnvVarsForServiceError = Forbidden | NotFound | RenderOpError;
 /** List environment variables List all environment variables for the service with the provided ID. */
 export const getEnvVarsForService: API.OperationMethod<
@@ -14083,6 +14308,21 @@ export const getEnvVarsForService: API.OperationMethod<
   input: GetEnvVarsForServiceRequest,
   output: GetEnvVarsForServiceResponse,
   errors: [Forbidden, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEventError = BadRequest | Forbidden | NotFound | RenderOpError;
+/** Retrieve event Retrieve the details of a particular event */
+export const getEvent: API.OperationMethod<
+  GetEventRequest,
+  GetEventResponse,
+  GetEventError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEventRequest,
+  output: GetEventResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnknownRenderError],
   protocol: RenderProtocol,
   retry: Retry.Retry,
 }));
@@ -14132,6 +14372,69 @@ export const getInstanceCount: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetJobError = BadRequest | NotFound | RenderOpError;
+/** Retrieve job Retrieve the details of a particular one-off job for a particular service. */
+export const getJob: API.OperationMethod<
+  GetJobRequest,
+  Schema7,
+  GetJobError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetJobRequest,
+  output: Schema7,
+  errors: [BadRequest, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetKeyValueError = BadRequest | NotFound | RenderOpError;
+/** Retrieve Key Value instance Retrieve a Key Value instance by ID. */
+export const getKeyValue: API.OperationMethod<
+  GetKeyValueRequest,
+  KeyValueDetail,
+  GetKeyValueError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetKeyValueRequest,
+  output: KeyValueDetail,
+  errors: [BadRequest, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetKeyValueConnectionInfoError =
+  | BadRequest
+  | NotFound
+  | RenderOpError;
+/** Retrieve Key Value connection info Retrieve connection info for a Key Value instance by ID. Connection info includes sensitive information. */
+export const getKeyValueConnectionInfo: API.OperationMethod<
+  GetKeyValueConnectionInfoRequest,
+  KeyValueConnectionInfo,
+  GetKeyValueConnectionInfoError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetKeyValueConnectionInfoRequest,
+  output: KeyValueConnectionInfo,
+  errors: [BadRequest, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMaintenanceError = BadRequest | NotFound | RenderOpError;
+/** Retrieve maintenance run Retrieve the maintenance run with the provided ID. */
+export const getMaintenance: API.OperationMethod<
+  GetMaintenanceRequest,
+  GetMaintenanceResponse,
+  GetMaintenanceError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMaintenanceRequest,
+  output: GetMaintenanceResponse,
+  errors: [BadRequest, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetMemoryError = BadRequest | RenderOpError;
 /** Get memory usage Get memory usage for one or more resources. */
 export const getMemory: API.OperationMethod<
@@ -14177,6 +14480,21 @@ export const getMemoryTarget: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetOwnerError = NotFound | RenderOpError;
+/** Retrieve workspace Retrieve the workspace with the provided ID. Workspace IDs start with `tea-`. If you provide a user ID (starts with `own-`), this endpoint returns the user's default workspace. */
+export const getOwner: API.OperationMethod<
+  GetOwnerRequest,
+  Owner,
+  GetOwnerError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOwnerRequest,
+  output: Owner,
+  errors: [NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetOwnerLogStreamError =
   | BadRequest
   | Forbidden
@@ -14196,6 +14514,21 @@ export const getOwnerLogStream: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetOwnerMembersError = NotFound | RenderOpError;
+/** List workspace members Retrieves the list of users belonging to the workspace with the provided ID. */
+export const getOwnerMembers: API.OperationMethod<
+  GetOwnerMembersRequest,
+  GetOwnerMembersResponse,
+  GetOwnerMembersError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOwnerMembersRequest,
+  output: GetOwnerMembersResponse,
+  errors: [NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetOwnerMetricsStreamError = BadRequest | NotFound | RenderOpError;
 /** Retrieve metrics stream Returns metrics stream information for the specified workspace. */
 export const getOwnerMetricsStream: API.OperationMethod<
@@ -14207,6 +14540,102 @@ export const getOwnerMetricsStream: API.OperationMethod<
   input: GetOwnerMetricsStreamRequest,
   output: Schema10,
   errors: [BadRequest, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOwnerNotificationSettingsError = RenderOpError;
+/** Retrieve notification settings Retrieve notification settings for the owner with the provided ID. Note that you provide an owner ID to this endpoint, not the ID for a particular resource. */
+export const getOwnerNotificationSettings: API.OperationMethod<
+  GetOwnerNotificationSettingsRequest,
+  GetOwnerNotificationSettingsResponse,
+  GetOwnerNotificationSettingsError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOwnerNotificationSettingsRequest,
+  output: GetOwnerNotificationSettingsResponse,
+  errors: [UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPostgresError = BadRequest | NotFound | RenderOpError;
+/** Retrieve Postgres instance Retrieve a Postgres instance by ID. */
+export const getPostgres: API.OperationMethod<
+  GetPostgresRequest,
+  PostgresDetail,
+  GetPostgresError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPostgresRequest,
+  output: PostgresDetail,
+  errors: [BadRequest, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPostgresConnectionInfoError =
+  | BadRequest
+  | NotFound
+  | RenderOpError;
+/** Retrieve Postgres connection info Retrieve connection info for a Postgres instance by ID. Connection info includes sensitive information. */
+export const getPostgresConnectionInfo: API.OperationMethod<
+  GetPostgresConnectionInfoRequest,
+  PostgresConnectionInfo,
+  GetPostgresConnectionInfoError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPostgresConnectionInfoRequest,
+  output: PostgresConnectionInfo,
+  errors: [BadRequest, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPostgresRecoveryInfoError =
+  | BadRequest
+  | NotFound
+  | RenderOpError;
+/** Retrieve point-in-time recovery status Retrieve information on the availability of Postgres point-in-time recovery for a Postgres instance by ID. */
+export const getPostgresRecoveryInfo: API.OperationMethod<
+  GetPostgresRecoveryInfoRequest,
+  GetPostgresRecoveryInfoResponse,
+  GetPostgresRecoveryInfoError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPostgresRecoveryInfoRequest,
+  output: GetPostgresRecoveryInfoResponse,
+  errors: [BadRequest, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectError = BadRequest | NotFound | RenderOpError;
+/** Retrieve Project Retrieve the project with the provided ID. */
+export const getProject: API.OperationMethod<
+  GetProjectRequest,
+  Project,
+  GetProjectError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectRequest,
+  output: Project,
+  errors: [BadRequest, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRegistryCredentialError = Forbidden | NotFound | RenderOpError;
+/** Retrieve registry credential Retrieve the registry credential with the provided ID. */
+export const getRegistryCredential: API.OperationMethod<
+  GetRegistryCredentialRequest,
+  RegistryCredential,
+  GetRegistryCredentialError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRegistryCredentialRequest,
+  output: RegistryCredential,
+  errors: [Forbidden, NotFound, UnknownRenderError],
   protocol: RenderProtocol,
   retry: Retry.Retry,
 }));
@@ -14241,6 +14670,66 @@ export const getResourceLogStream: API.OperationMethod<
   input: GetResourceLogStreamRequest,
   output: GetResourceLogStreamResponse,
   errors: [BadRequest, Forbidden, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSecretFileError = Forbidden | NotFound | RenderOpError;
+/** Retrieve secret file Retrieve a particular secret file for a particular service. This only applies to secret files set directly on the service, not to secret files in a linked environment group. */
+export const getSecretFile: API.OperationMethod<
+  GetSecretFileRequest,
+  SecretFile,
+  GetSecretFileError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSecretFileRequest,
+  output: SecretFile,
+  errors: [Forbidden, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetServiceError = Forbidden | NotFound | RenderOpError;
+/** Retrieve service Retrieve the service with the provided ID. */
+export const getService: API.OperationMethod<
+  GetServiceRequest,
+  Service,
+  GetServiceError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServiceRequest,
+  output: Service,
+  errors: [Forbidden, NotFound, UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetServiceNotificationOverridesError = RenderOpError;
+/** Retrieve notification override Retrieve the notification override for the service with the provided ID. Note that you provide a service ID to this endpoint, not the ID for a particular override. */
+export const getServiceNotificationOverrides: API.OperationMethod<
+  GetServiceNotificationOverridesRequest,
+  GetServiceNotificationOverridesResponse,
+  GetServiceNotificationOverridesError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServiceNotificationOverridesRequest,
+  output: GetServiceNotificationOverridesResponse,
+  errors: [UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetServiceOutboundIpsError = Forbidden | NotFound | RenderOpError;
+/** Retrieve service outbound IPs Retrieve the IP addresses the service's outbound traffic originates from. A service uses either a dedicated IP set that applies to it, or the shared Render IPs for its region. */
+export const getServiceOutboundIps: API.OperationMethod<
+  GetServiceOutboundIpsRequest,
+  OutboundIps,
+  GetServiceOutboundIpsError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServiceOutboundIpsRequest,
+  output: OutboundIps,
+  errors: [Forbidden, NotFound, UnknownRenderError],
   protocol: RenderProtocol,
   retry: Retry.Retry,
 }));
@@ -14316,6 +14805,21 @@ export const getUser: API.OperationMethod<
   input: GetUserRequest,
   output: User,
   errors: [UnknownRenderError],
+  protocol: RenderProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebhookError = NotFound | RenderOpError;
+/** Retrieve a webhook Retrieve the webhook with the provided ID */
+export const getWebhook: API.OperationMethod<
+  GetWebhookRequest,
+  Schema12,
+  GetWebhookError,
+  RenderOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebhookRequest,
+  output: Schema12,
+  errors: [NotFound, UnknownRenderError],
   protocol: RenderProtocol,
   retry: Retry.Retry,
 }));
@@ -15338,471 +15842,6 @@ export const resumeService: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ResumeServiceRequest,
   output: ResumeServiceResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveBlueprintError = Forbidden | NotFound | RenderOpError;
-/** Retrieve Blueprint Retrieve the Blueprint with the provided ID. */
-export const retrieveBlueprint: API.OperationMethod<
-  RetrieveBlueprintRequest,
-  RetrieveBlueprintResponse,
-  RetrieveBlueprintError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveBlueprintRequest,
-  output: RetrieveBlueprintResponse,
-  errors: [Forbidden, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveCustomDomainError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | RenderOpError;
-/** Retrieve custom domain Retrieve a particular custom domain for a particular service. */
-export const retrieveCustomDomain: API.OperationMethod<
-  RetrieveCustomDomainRequest,
-  CustomDomain,
-  RetrieveCustomDomainError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCustomDomainRequest,
-  output: CustomDomain,
-  errors: [BadRequest, Forbidden, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveDedicatedIpError = Forbidden | NotFound | RenderOpError;
-/** Retrieve dedicated IP set Retrieve the dedicated IP set with the provided ID. */
-export const retrieveDedicatedIp: API.OperationMethod<
-  RetrieveDedicatedIpRequest,
-  DedicatedIP,
-  RetrieveDedicatedIpError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveDedicatedIpRequest,
-  output: DedicatedIP,
-  errors: [Forbidden, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveDeployError = Forbidden | NotFound | RenderOpError;
-/** Retrieve deploy Retrieve the details of a particular deploy for a particular service. */
-export const retrieveDeploy: API.OperationMethod<
-  RetrieveDeployRequest,
-  Deploy,
-  RetrieveDeployError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveDeployRequest,
-  output: Deploy,
-  errors: [Forbidden, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveDiskError = Forbidden | NotFound | RenderOpError;
-/** Retrieve disk Retrieve the persistent disk with the provided ID. */
-export const retrieveDisk: API.OperationMethod<
-  RetrieveDiskRequest,
-  Schema2,
-  RetrieveDiskError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveDiskRequest,
-  output: Schema2,
-  errors: [Forbidden, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveEnvGroupError = BadRequest | NotFound | RenderOpError;
-/** Retrieve environment group Retrieve an environment group by ID. */
-export const retrieveEnvGroup: API.OperationMethod<
-  RetrieveEnvGroupRequest,
-  RetrieveEnvGroupResponse,
-  RetrieveEnvGroupError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveEnvGroupRequest,
-  output: RetrieveEnvGroupResponse,
-  errors: [BadRequest, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveEnvGroupEnvVarError = BadRequest | NotFound | RenderOpError;
-/** Retrieve environment variable Retrieve a particular environment variable in a particular environment group. */
-export const retrieveEnvGroupEnvVar: API.OperationMethod<
-  RetrieveEnvGroupEnvVarRequest,
-  EnvVar,
-  RetrieveEnvGroupEnvVarError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveEnvGroupEnvVarRequest,
-  output: EnvVar,
-  errors: [BadRequest, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveEnvGroupSecretFileError =
-  | BadRequest
-  | NotFound
-  | RenderOpError;
-/** Retrieve secret file Retrieve a particular secret file in a particular environment group. */
-export const retrieveEnvGroupSecretFile: API.OperationMethod<
-  RetrieveEnvGroupSecretFileRequest,
-  SecretFile,
-  RetrieveEnvGroupSecretFileError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveEnvGroupSecretFileRequest,
-  output: SecretFile,
-  errors: [BadRequest, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveEnvironmentError = BadRequest | NotFound | RenderOpError;
-/** Retrieve environment Retrieve the environment with the provided ID. */
-export const retrieveEnvironment: API.OperationMethod<
-  RetrieveEnvironmentRequest,
-  Environment,
-  RetrieveEnvironmentError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveEnvironmentRequest,
-  output: Environment,
-  errors: [BadRequest, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveEnvVarError = Forbidden | NotFound | RenderOpError;
-/** Retrieve environment variable Retrieve a particular environment variable for a particular service. This only applies to environment variables set directly on the service, not to environment variables in a linked environment group. */
-export const retrieveEnvVar: API.OperationMethod<
-  RetrieveEnvVarRequest,
-  EnvVar,
-  RetrieveEnvVarError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveEnvVarRequest,
-  output: EnvVar,
-  errors: [Forbidden, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveEventError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | RenderOpError;
-/** Retrieve event Retrieve the details of a particular event */
-export const retrieveEvent: API.OperationMethod<
-  RetrieveEventRequest,
-  RetrieveEventResponse,
-  RetrieveEventError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveEventRequest,
-  output: RetrieveEventResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveJobError = BadRequest | NotFound | RenderOpError;
-/** Retrieve job Retrieve the details of a particular one-off job for a particular service. */
-export const retrieveJob: API.OperationMethod<
-  RetrieveJobRequest,
-  Schema7,
-  RetrieveJobError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveJobRequest,
-  output: Schema7,
-  errors: [BadRequest, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveKeyValueError = BadRequest | NotFound | RenderOpError;
-/** Retrieve Key Value instance Retrieve a Key Value instance by ID. */
-export const retrieveKeyValue: API.OperationMethod<
-  RetrieveKeyValueRequest,
-  KeyValueDetail,
-  RetrieveKeyValueError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveKeyValueRequest,
-  output: KeyValueDetail,
-  errors: [BadRequest, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveKeyValueConnectionInfoError =
-  | BadRequest
-  | NotFound
-  | RenderOpError;
-/** Retrieve Key Value connection info Retrieve connection info for a Key Value instance by ID. Connection info includes sensitive information. */
-export const retrieveKeyValueConnectionInfo: API.OperationMethod<
-  RetrieveKeyValueConnectionInfoRequest,
-  KeyValueConnectionInfo,
-  RetrieveKeyValueConnectionInfoError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveKeyValueConnectionInfoRequest,
-  output: KeyValueConnectionInfo,
-  errors: [BadRequest, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveMaintenanceError = BadRequest | NotFound | RenderOpError;
-/** Retrieve maintenance run Retrieve the maintenance run with the provided ID. */
-export const retrieveMaintenance: API.OperationMethod<
-  RetrieveMaintenanceRequest,
-  RetrieveMaintenanceResponse,
-  RetrieveMaintenanceError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveMaintenanceRequest,
-  output: RetrieveMaintenanceResponse,
-  errors: [BadRequest, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveOwnerError = NotFound | RenderOpError;
-/** Retrieve workspace Retrieve the workspace with the provided ID. Workspace IDs start with `tea-`. If you provide a user ID (starts with `own-`), this endpoint returns the user's default workspace. */
-export const retrieveOwner: API.OperationMethod<
-  RetrieveOwnerRequest,
-  Owner,
-  RetrieveOwnerError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveOwnerRequest,
-  output: Owner,
-  errors: [NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveOwnerMembersError = NotFound | RenderOpError;
-/** List workspace members Retrieves the list of users belonging to the workspace with the provided ID. */
-export const retrieveOwnerMembers: API.OperationMethod<
-  RetrieveOwnerMembersRequest,
-  RetrieveOwnerMembersResponse,
-  RetrieveOwnerMembersError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveOwnerMembersRequest,
-  output: RetrieveOwnerMembersResponse,
-  errors: [NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveOwnerNotificationSettingsError = RenderOpError;
-/** Retrieve notification settings Retrieve notification settings for the owner with the provided ID. Note that you provide an owner ID to this endpoint, not the ID for a particular resource. */
-export const retrieveOwnerNotificationSettings: API.OperationMethod<
-  RetrieveOwnerNotificationSettingsRequest,
-  RetrieveOwnerNotificationSettingsResponse,
-  RetrieveOwnerNotificationSettingsError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveOwnerNotificationSettingsRequest,
-  output: RetrieveOwnerNotificationSettingsResponse,
-  errors: [UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrievePostgresError = BadRequest | NotFound | RenderOpError;
-/** Retrieve Postgres instance Retrieve a Postgres instance by ID. */
-export const retrievePostgres: API.OperationMethod<
-  RetrievePostgresRequest,
-  PostgresDetail,
-  RetrievePostgresError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePostgresRequest,
-  output: PostgresDetail,
-  errors: [BadRequest, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrievePostgresConnectionInfoError =
-  | BadRequest
-  | NotFound
-  | RenderOpError;
-/** Retrieve Postgres connection info Retrieve connection info for a Postgres instance by ID. Connection info includes sensitive information. */
-export const retrievePostgresConnectionInfo: API.OperationMethod<
-  RetrievePostgresConnectionInfoRequest,
-  PostgresConnectionInfo,
-  RetrievePostgresConnectionInfoError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePostgresConnectionInfoRequest,
-  output: PostgresConnectionInfo,
-  errors: [BadRequest, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrievePostgresRecoveryInfoError =
-  | BadRequest
-  | NotFound
-  | RenderOpError;
-/** Retrieve point-in-time recovery status Retrieve information on the availability of Postgres point-in-time recovery for a Postgres instance by ID. */
-export const retrievePostgresRecoveryInfo: API.OperationMethod<
-  RetrievePostgresRecoveryInfoRequest,
-  RetrievePostgresRecoveryInfoResponse,
-  RetrievePostgresRecoveryInfoError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePostgresRecoveryInfoRequest,
-  output: RetrievePostgresRecoveryInfoResponse,
-  errors: [BadRequest, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveProjectError = BadRequest | NotFound | RenderOpError;
-/** Retrieve Project Retrieve the project with the provided ID. */
-export const retrieveProject: API.OperationMethod<
-  RetrieveProjectRequest,
-  Project,
-  RetrieveProjectError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveProjectRequest,
-  output: Project,
-  errors: [BadRequest, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveRegistryCredentialError =
-  | Forbidden
-  | NotFound
-  | RenderOpError;
-/** Retrieve registry credential Retrieve the registry credential with the provided ID. */
-export const retrieveRegistryCredential: API.OperationMethod<
-  RetrieveRegistryCredentialRequest,
-  RegistryCredential,
-  RetrieveRegistryCredentialError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveRegistryCredentialRequest,
-  output: RegistryCredential,
-  errors: [Forbidden, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveSecretFileError = Forbidden | NotFound | RenderOpError;
-/** Retrieve secret file Retrieve a particular secret file for a particular service. This only applies to secret files set directly on the service, not to secret files in a linked environment group. */
-export const retrieveSecretFile: API.OperationMethod<
-  RetrieveSecretFileRequest,
-  SecretFile,
-  RetrieveSecretFileError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveSecretFileRequest,
-  output: SecretFile,
-  errors: [Forbidden, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveServiceError = Forbidden | NotFound | RenderOpError;
-/** Retrieve service Retrieve the service with the provided ID. */
-export const retrieveService: API.OperationMethod<
-  RetrieveServiceRequest,
-  Service,
-  RetrieveServiceError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveServiceRequest,
-  output: Service,
-  errors: [Forbidden, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveServiceNotificationOverridesError = RenderOpError;
-/** Retrieve notification override Retrieve the notification override for the service with the provided ID. Note that you provide a service ID to this endpoint, not the ID for a particular override. */
-export const retrieveServiceNotificationOverrides: API.OperationMethod<
-  RetrieveServiceNotificationOverridesRequest,
-  RetrieveServiceNotificationOverridesResponse,
-  RetrieveServiceNotificationOverridesError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveServiceNotificationOverridesRequest,
-  output: RetrieveServiceNotificationOverridesResponse,
-  errors: [UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveServiceOutboundIpsError =
-  | Forbidden
-  | NotFound
-  | RenderOpError;
-/** Retrieve service outbound IPs Retrieve the IP addresses the service's outbound traffic originates from. A service uses either a dedicated IP set that applies to it, or the shared Render IPs for its region. */
-export const retrieveServiceOutboundIps: API.OperationMethod<
-  RetrieveServiceOutboundIpsRequest,
-  OutboundIps,
-  RetrieveServiceOutboundIpsError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveServiceOutboundIpsRequest,
-  output: OutboundIps,
-  errors: [Forbidden, NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveWebhookError = NotFound | RenderOpError;
-/** Retrieve a webhook Retrieve the webhook with the provided ID */
-export const retrieveWebhook: API.OperationMethod<
-  RetrieveWebhookRequest,
-  Schema12,
-  RetrieveWebhookError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveWebhookRequest,
-  output: Schema12,
-  errors: [NotFound, UnknownRenderError],
-  protocol: RenderProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RollbackDeployError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | RenderOpError;
-/** Roll back deploy Trigger a rollback to a previous deploy of the specified service. Triggering a rollback with this endpoint does not disable autodeploys for the service. This means an autodeploy might restore changes you had intentionally rolled back. You can toggle autodeploys for your service with the [Update service](https://api-docs.render.com/reference/update-service) endpoint or in the Render Dashboard. */
-export const rollbackDeploy: API.OperationMethod<
-  RollbackDeployRequest,
-  Deploy,
-  RollbackDeployError,
-  RenderOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RollbackDeployRequest,
-  output: Deploy,
   errors: [BadRequest, Forbidden, NotFound, UnknownRenderError],
   protocol: RenderProtocol,
   retry: Retry.Retry,

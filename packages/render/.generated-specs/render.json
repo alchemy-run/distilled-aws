@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.render.api#ListBlueprintsRequestOwnerIdList": {
@@ -623,7 +624,7 @@
         "smithy.api#documentation": "Remove workspace member\n\nRemove a user from the specified workspace."
       }
     },
-    "com.render.api#RetrieveBlueprintRequest": {
+    "com.render.api#GetBlueprintRequest": {
       "type": "structure",
       "members": {
         "blueprintId": {
@@ -639,7 +640,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveBlueprintResponseStatus": {
+    "com.render.api#GetBlueprintResponseStatus": {
       "type": "enum",
       "members": {
         "CREATED": {
@@ -675,7 +676,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveBlueprintResponseResourcesItemType": {
+    "com.render.api#GetBlueprintResponseResourcesItemType": {
       "type": "enum",
       "members": {
         "STATIC_SITE": {
@@ -743,7 +744,7 @@
         "smithy.api#documentation": "type of the resource (ex. web_service or postgres)"
       }
     },
-    "com.render.api#RetrieveBlueprintResponseResourcesItem": {
+    "com.render.api#GetBlueprintResponseResourcesItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -759,7 +760,7 @@
           }
         },
         "type": {
-          "target": "com.render.api#RetrieveBlueprintResponseResourcesItemType",
+          "target": "com.render.api#GetBlueprintResponseResourcesItemType",
           "traits": {
             "smithy.api#documentation": "type of the resource (ex. web_service or postgres)",
             "smithy.api#required": {}
@@ -768,14 +769,14 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveBlueprintResponseResourcesList": {
+    "com.render.api#GetBlueprintResponseResourcesList": {
       "type": "list",
       "member": {
-        "target": "com.render.api#RetrieveBlueprintResponseResourcesItem"
+        "target": "com.render.api#GetBlueprintResponseResourcesItem"
       },
       "traits": {}
     },
-    "com.render.api#RetrieveBlueprintResponse": {
+    "com.render.api#GetBlueprintResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -791,7 +792,7 @@
           }
         },
         "status": {
-          "target": "com.render.api#RetrieveBlueprintResponseStatus",
+          "target": "com.render.api#GetBlueprintResponseStatus",
           "traits": {
             "smithy.api#required": {}
           }
@@ -824,7 +825,7 @@
           "target": "smithy.api#String"
         },
         "resources": {
-          "target": "com.render.api#RetrieveBlueprintResponseResourcesList",
+          "target": "com.render.api#GetBlueprintResponseResourcesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -834,13 +835,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.render.api#RetrieveBlueprint": {
+    "com.render.api#GetBlueprint": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveBlueprintRequest"
+        "target": "com.render.api#GetBlueprintRequest"
       },
       "output": {
-        "target": "com.render.api#RetrieveBlueprintResponse"
+        "target": "com.render.api#GetBlueprintResponse"
       },
       "errors": [
         {
@@ -1510,7 +1511,7 @@
         "smithy.api#documentation": "Create dedicated IP set\n\nCreate a dedicated IP set. Provisioning an IP set is asynchronous. The response returns immediately with `status: CREATING` and `ips: []`. When provisioning completes, status changes to `RUNNING` and `ips` contains your assigned addresses.\n\nIf `environmentIds` is omitted or empty, this IP set applies to all services in the workspace in the selected region. Otherwise, it applies only to services in the listed environments in that region."
       }
     },
-    "com.render.api#RetrieveDedicatedIpRequest": {
+    "com.render.api#GetDedicatedIpRequest": {
       "type": "structure",
       "members": {
         "dedicatedIpId": {
@@ -1526,10 +1527,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveDedicatedIp": {
+    "com.render.api#GetDedicatedIp": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveDedicatedIpRequest"
+        "target": "com.render.api#GetDedicatedIpRequest"
       },
       "output": {
         "target": "com.render.api#DedicatedIP"
@@ -1978,7 +1979,7 @@
         "smithy.api#documentation": "Add disk\n\nAttach a persistent disk to a web service, private service, or background worker.\n\nThe service must be redeployed for the disk to be attached."
       }
     },
-    "com.render.api#RetrieveDiskRequest": {
+    "com.render.api#GetDiskRequest": {
       "type": "structure",
       "members": {
         "diskId": {
@@ -1994,10 +1995,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveDisk": {
+    "com.render.api#GetDisk": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveDiskRequest"
+        "target": "com.render.api#GetDiskRequest"
       },
       "output": {
         "target": "com.render.api#Schema2"
@@ -2466,7 +2467,7 @@
         "smithy.api#documentation": "List workspaces\n\nList the workspaces that your API key has access to, optionally filtered by name or owner email address."
       }
     },
-    "com.render.api#RetrieveOwnerRequest": {
+    "com.render.api#GetOwnerRequest": {
       "type": "structure",
       "members": {
         "ownerId": {
@@ -2482,10 +2483,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveOwner": {
+    "com.render.api#GetOwner": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveOwnerRequest"
+        "target": "com.render.api#GetOwnerRequest"
       },
       "output": {
         "target": "com.render.api#Owner"
@@ -2504,7 +2505,7 @@
         "smithy.api#documentation": "Retrieve workspace\n\nRetrieve the workspace with the provided ID.\n\nWorkspace IDs start with `tea-`. If you provide a user ID (starts with `own-`), this endpoint returns the user's default workspace."
       }
     },
-    "com.render.api#RetrieveOwnerMembersRequest": {
+    "com.render.api#GetOwnerMembersRequest": {
       "type": "structure",
       "members": {
         "ownerId": {
@@ -2527,7 +2528,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveOwnerMembersResponse": {
+    "com.render.api#GetOwnerMembersResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -2542,13 +2543,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.render.api#RetrieveOwnerMembers": {
+    "com.render.api#GetOwnerMembers": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveOwnerMembersRequest"
+        "target": "com.render.api#GetOwnerMembersRequest"
       },
       "output": {
-        "target": "com.render.api#RetrieveOwnerMembersResponse"
+        "target": "com.render.api#GetOwnerMembersResponse"
       },
       "errors": [
         {
@@ -3438,7 +3439,7 @@
         "smithy.api#documentation": "List organization audit logs\n\nRetrieve audit logs for a specific organization with optional filtering and pagination."
       }
     },
-    "com.render.api#RetrieveOwnerNotificationSettingsRequest": {
+    "com.render.api#GetOwnerNotificationSettingsRequest": {
       "type": "structure",
       "members": {
         "ownerId": {
@@ -3478,7 +3479,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveOwnerNotificationSettingsResponse": {
+    "com.render.api#GetOwnerNotificationSettingsResponse": {
       "type": "structure",
       "members": {
         "ownerId": {
@@ -3516,13 +3517,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.render.api#RetrieveOwnerNotificationSettings": {
+    "com.render.api#GetOwnerNotificationSettings": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveOwnerNotificationSettingsRequest"
+        "target": "com.render.api#GetOwnerNotificationSettingsRequest"
       },
       "output": {
-        "target": "com.render.api#RetrieveOwnerNotificationSettingsResponse"
+        "target": "com.render.api#GetOwnerNotificationSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3820,7 +3821,7 @@
         "smithy.api#documentation": "List notification overrides\n\nList notification overrides matching the provided filters. If no filters are provided, returns all notification overrides for all workspaces the user belongs to."
       }
     },
-    "com.render.api#RetrieveServiceNotificationOverridesRequest": {
+    "com.render.api#GetServiceNotificationOverridesRequest": {
       "type": "structure",
       "members": {
         "serviceId": {
@@ -3836,7 +3837,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveServiceNotificationOverridesResponse": {
+    "com.render.api#GetServiceNotificationOverridesResponse": {
       "type": "structure",
       "members": {
         "serviceId": {
@@ -3862,13 +3863,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.render.api#RetrieveServiceNotificationOverrides": {
+    "com.render.api#GetServiceNotificationOverrides": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveServiceNotificationOverridesRequest"
+        "target": "com.render.api#GetServiceNotificationOverridesRequest"
       },
       "output": {
-        "target": "com.render.api#RetrieveServiceNotificationOverridesResponse"
+        "target": "com.render.api#GetServiceNotificationOverridesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4282,7 +4283,7 @@
         "smithy.api#documentation": "Create registry credential\n\nCreate a new registry credential."
       }
     },
-    "com.render.api#RetrieveRegistryCredentialRequest": {
+    "com.render.api#GetRegistryCredentialRequest": {
       "type": "structure",
       "members": {
         "registryCredentialId": {
@@ -4298,10 +4299,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveRegistryCredential": {
+    "com.render.api#GetRegistryCredential": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveRegistryCredentialRequest"
+        "target": "com.render.api#GetRegistryCredentialRequest"
       },
       "output": {
         "target": "com.render.api#RegistryCredential"
@@ -6847,7 +6848,7 @@
         "smithy.api#documentation": "Create service\n\nCreates a new Render service in the specified workspace with the specified configuration."
       }
     },
-    "com.render.api#RetrieveServiceRequest": {
+    "com.render.api#GetServiceRequest": {
       "type": "structure",
       "members": {
         "serviceId": {
@@ -6863,10 +6864,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveService": {
+    "com.render.api#GetService": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveServiceRequest"
+        "target": "com.render.api#GetServiceRequest"
       },
       "output": {
         "target": "com.render.api#Service"
@@ -7730,7 +7731,7 @@
         "smithy.api#documentation": "Trigger deploy\n\nTrigger a deploy for the service with the provided ID."
       }
     },
-    "com.render.api#RetrieveDeployRequest": {
+    "com.render.api#GetDeployRequest": {
       "type": "structure",
       "members": {
         "serviceId": {
@@ -7754,10 +7755,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveDeploy": {
+    "com.render.api#GetDeploy": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveDeployRequest"
+        "target": "com.render.api#GetDeployRequest"
       },
       "output": {
         "target": "com.render.api#Deploy"
@@ -7831,7 +7832,7 @@
         "smithy.api#documentation": "Cancel deploy\n\nCancel an in-progress deploy for a service.\n\nNot supported for cron jobs."
       }
     },
-    "com.render.api#RollbackDeployRequest": {
+    "com.render.api#DeployRollbackRequest": {
       "type": "structure",
       "members": {
         "serviceId": {
@@ -7854,10 +7855,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RollbackDeploy": {
+    "com.render.api#DeployRollback": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RollbackDeployRequest"
+        "target": "com.render.api#DeployRollbackRequest"
       },
       "output": {
         "target": "com.render.api#Deploy"
@@ -8124,7 +8125,7 @@
         "smithy.api#documentation": "Update environment variables\n\nReplace all environment variables for a service with the provided list of environment variables."
       }
     },
-    "com.render.api#RetrieveEnvVarRequest": {
+    "com.render.api#GetEnvVarRequest": {
       "type": "structure",
       "members": {
         "serviceId": {
@@ -8148,10 +8149,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveEnvVar": {
+    "com.render.api#GetEnvVar": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveEnvVarRequest"
+        "target": "com.render.api#GetEnvVarRequest"
       },
       "output": {
         "target": "com.render.api#EnvVar"
@@ -8528,7 +8529,7 @@
         "smithy.api#documentation": "Update secret files\n\nReplace all secret files for a service with the provided list of secret files.\n\n**Any of the service's existing secret files not included in this request will be deleted.**\n\nThis only applies to secret files set directly on the service, not to secret files in a linked environment group."
       }
     },
-    "com.render.api#RetrieveSecretFileRequest": {
+    "com.render.api#GetSecretFileRequest": {
       "type": "structure",
       "members": {
         "serviceId": {
@@ -8552,10 +8553,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveSecretFile": {
+    "com.render.api#GetSecretFile": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveSecretFileRequest"
+        "target": "com.render.api#GetSecretFileRequest"
       },
       "output": {
         "target": "com.render.api#SecretFile"
@@ -12035,7 +12036,7 @@
         "smithy.api#documentation": "Add custom domain\n\nAdd a custom domain to the service with the provided ID."
       }
     },
-    "com.render.api#RetrieveCustomDomainRequest": {
+    "com.render.api#GetCustomDomainRequest": {
       "type": "structure",
       "members": {
         "serviceId": {
@@ -12059,10 +12060,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveCustomDomain": {
+    "com.render.api#GetCustomDomain": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveCustomDomainRequest"
+        "target": "com.render.api#GetCustomDomainRequest"
       },
       "output": {
         "target": "com.render.api#CustomDomain"
@@ -12910,7 +12911,7 @@
         "smithy.api#documentation": "Create job\n\nCreate a one-off job using the provided service. For details, see [One-Off Jobs](https://render.com/docs/one-off-jobs)."
       }
     },
-    "com.render.api#RetrieveJobRequest": {
+    "com.render.api#GetJobRequest": {
       "type": "structure",
       "members": {
         "serviceId": {
@@ -12934,10 +12935,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveJob": {
+    "com.render.api#GetJob": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveJobRequest"
+        "target": "com.render.api#GetJobRequest"
       },
       "output": {
         "target": "com.render.api#Schema7"
@@ -13086,7 +13087,7 @@
         "smithy.api#documentation": "List instances\n\nList instances for the provided service."
       }
     },
-    "com.render.api#RetrieveServiceOutboundIpsRequest": {
+    "com.render.api#GetServiceOutboundIpsRequest": {
       "type": "structure",
       "members": {
         "serviceId": {
@@ -13157,10 +13158,10 @@
         "smithy.api#documentation": "The IP addresses the resource's outbound traffic originates from."
       }
     },
-    "com.render.api#RetrieveServiceOutboundIps": {
+    "com.render.api#GetServiceOutboundIps": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveServiceOutboundIpsRequest"
+        "target": "com.render.api#GetServiceOutboundIpsRequest"
       },
       "output": {
         "target": "com.render.api#OutboundIps"
@@ -13317,7 +13318,7 @@
         "smithy.api#documentation": "Cancel running cron job\n\nCancel a currently running cron job."
       }
     },
-    "com.render.api#RetrieveEventRequest": {
+    "com.render.api#GetEventRequest": {
       "type": "structure",
       "members": {
         "eventId": {
@@ -13333,7 +13334,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveEventResponseType": {
+    "com.render.api#GetEventResponseType": {
       "type": "enum",
       "members": {
         "ARTIFACT_FETCH_FAILED": {
@@ -13741,7 +13742,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case0": {
+    "com.render.api#GetEventResponseDetailsCase0Case0": {
       "type": "structure",
       "members": {
         "artifactId": {
@@ -13759,7 +13760,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case1": {
+    "com.render.api#GetEventResponseDetailsCase0Case1": {
       "type": "structure",
       "members": {
         "fromArtifactSourceId": {
@@ -13777,7 +13778,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case2": {
+    "com.render.api#GetEventResponseDetailsCase0Case2": {
       "type": "structure",
       "members": {
         "fromConfig": {
@@ -13792,7 +13793,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case3": {
+    "com.render.api#GetEventResponseDetailsCase0Case3": {
       "type": "structure",
       "members": {
         "fromInstances": {
@@ -13810,7 +13811,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case4": {
+    "com.render.api#GetEventResponseDetailsCase0Case4": {
       "type": "structure",
       "members": {
         "fromInstances": {
@@ -13840,7 +13841,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case5": {
+    "com.render.api#GetEventResponseDetailsCase0Case5": {
       "type": "structure",
       "members": {
         "deletedBranch": {
@@ -13858,7 +13859,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case6BuildStatus": {
+    "com.render.api#GetEventResponseDetailsCase0Case6BuildStatus": {
       "type": "enum",
       "members": {
         "SUCCEEDED": {
@@ -13882,7 +13883,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case6ReasonNewBuild": {
+    "com.render.api#GetEventResponseDetailsCase0Case6ReasonNewBuild": {
       "type": "structure",
       "members": {
         "id": {
@@ -13894,14 +13895,14 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case6Reason": {
+    "com.render.api#GetEventResponseDetailsCase0Case6Reason": {
       "type": "structure",
       "members": {
         "buildFailed": {
           "target": "com.render.api#NewBuild"
         },
         "newBuild": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case6ReasonNewBuild"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case6ReasonNewBuild"
         },
         "newDeploy": {
           "target": "com.render.api#NewBuild"
@@ -13912,7 +13913,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case6": {
+    "com.render.api#GetEventResponseDetailsCase0Case6": {
       "type": "structure",
       "members": {
         "buildId": {
@@ -13922,13 +13923,13 @@
           }
         },
         "buildStatus": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case6BuildStatus",
+          "target": "com.render.api#GetEventResponseDetailsCase0Case6BuildStatus",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "reason": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case6Reason",
+          "target": "com.render.api#GetEventResponseDetailsCase0Case6Reason",
           "traits": {
             "smithy.api#required": {}
           }
@@ -13942,7 +13943,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case7Trigger": {
+    "com.render.api#GetEventResponseDetailsCase0Case7Trigger": {
       "type": "structure",
       "members": {
         "firstBuild": {
@@ -14011,7 +14012,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case7": {
+    "com.render.api#GetEventResponseDetailsCase0Case7": {
       "type": "structure",
       "members": {
         "buildId": {
@@ -14021,7 +14022,7 @@
           }
         },
         "trigger": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case7Trigger",
+          "target": "com.render.api#GetEventResponseDetailsCase0Case7Trigger",
           "traits": {
             "smithy.api#required": {}
           }
@@ -14029,7 +14030,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case8": {
+    "com.render.api#GetEventResponseDetailsCase0Case8": {
       "type": "structure",
       "members": {
         "id": {
@@ -14049,7 +14050,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case9Status": {
+    "com.render.api#GetEventResponseDetailsCase0Case9Status": {
       "type": "enum",
       "members": {
         "CANCELED": {
@@ -14079,7 +14080,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case9ReasonOomKilled": {
+    "com.render.api#GetEventResponseDetailsCase0Case9ReasonOomKilled": {
       "type": "structure",
       "members": {
         "memoryLimit": {
@@ -14091,7 +14092,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case9Reason": {
+    "com.render.api#GetEventResponseDetailsCase0Case9Reason": {
       "type": "structure",
       "members": {
         "evicted": {
@@ -14119,7 +14120,7 @@
           }
         },
         "oomKilled": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case9ReasonOomKilled"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case9ReasonOomKilled"
         },
         "timedOutSeconds": {
           "target": "smithy.api#Integer"
@@ -14133,7 +14134,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case9User": {
+    "com.render.api#GetEventResponseDetailsCase0Case9User": {
       "type": "structure",
       "members": {
         "id": {
@@ -14153,7 +14154,7 @@
         "smithy.api#documentation": "User who triggered the action"
       }
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case9": {
+    "com.render.api#GetEventResponseDetailsCase0Case9": {
       "type": "structure",
       "members": {
         "cronJobRunId": {
@@ -14163,16 +14164,16 @@
           }
         },
         "status": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case9Status",
+          "target": "com.render.api#GetEventResponseDetailsCase0Case9Status",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "reason": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case9Reason"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case9Reason"
         },
         "user": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case9User",
+          "target": "com.render.api#GetEventResponseDetailsCase0Case9User",
           "traits": {
             "smithy.api#documentation": "User who triggered the action"
           }
@@ -14180,7 +14181,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case10": {
+    "com.render.api#GetEventResponseDetailsCase0Case10": {
       "type": "structure",
       "members": {
         "cronJobRunId": {
@@ -14192,7 +14193,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case11": {
+    "com.render.api#GetEventResponseDetailsCase0Case11": {
       "type": "structure",
       "members": {
         "deployId": {
@@ -14228,7 +14229,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case12": {
+    "com.render.api#GetEventResponseDetailsCase0Case12": {
       "type": "structure",
       "members": {
         "deployId": {
@@ -14252,7 +14253,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case13": {
+    "com.render.api#GetEventResponseDetailsCase0Case13": {
       "type": "structure",
       "members": {
         "diskId": {
@@ -14270,7 +14271,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case14": {
+    "com.render.api#GetEventResponseDetailsCase0Case14": {
       "type": "structure",
       "members": {
         "diskId": {
@@ -14294,7 +14295,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case15": {
+    "com.render.api#GetEventResponseDetailsCase0Case15": {
       "type": "structure",
       "members": {
         "diskId": {
@@ -14306,43 +14307,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case16": {
-      "type": "structure",
-      "members": {
-        "diskId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "diskName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "mountPath": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "usagePercent": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "thresholdPercent": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {}
-    },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case17": {
+    "com.render.api#GetEventResponseDetailsCase0Case16": {
       "type": "structure",
       "members": {
         "diskId": {
@@ -14378,7 +14343,43 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case18": {
+    "com.render.api#GetEventResponseDetailsCase0Case17": {
+      "type": "structure",
+      "members": {
+        "diskId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "diskName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mountPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "usagePercent": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "thresholdPercent": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.render.api#GetEventResponseDetailsCase0Case18": {
       "type": "structure",
       "members": {
         "message": {
@@ -14396,7 +14397,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case19": {
+    "com.render.api#GetEventResponseDetailsCase0Case19": {
       "type": "structure",
       "members": {
         "deployId": {
@@ -14408,7 +14409,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case20": {
+    "com.render.api#GetEventResponseDetailsCase0Case20": {
       "type": "structure",
       "members": {
         "deployId": {
@@ -14420,7 +14421,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case21": {
+    "com.render.api#GetEventResponseDetailsCase0Case21": {
       "type": "structure",
       "members": {
         "fromInstances": {
@@ -14438,7 +14439,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case22": {
+    "com.render.api#GetEventResponseDetailsCase0Case22": {
       "type": "structure",
       "members": {
         "jobId": {
@@ -14459,7 +14460,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case23": {
+    "com.render.api#GetEventResponseDetailsCase0Case23": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -14471,7 +14472,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case24": {
+    "com.render.api#GetEventResponseDetailsCase0Case24": {
       "type": "structure",
       "members": {
         "fromURI": {
@@ -14489,7 +14490,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case26Trigger": {
+    "com.render.api#GetEventResponseDetailsCase0Case26Trigger": {
       "type": "structure",
       "members": {
         "user": {
@@ -14512,11 +14513,11 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case26": {
+    "com.render.api#GetEventResponseDetailsCase0Case26": {
       "type": "structure",
       "members": {
         "trigger": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case26Trigger",
+          "target": "com.render.api#GetEventResponseDetailsCase0Case26Trigger",
           "traits": {
             "smithy.api#required": {}
           }
@@ -14524,7 +14525,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case27": {
+    "com.render.api#GetEventResponseDetailsCase0Case27": {
       "type": "structure",
       "members": {
         "buildId": {
@@ -14542,7 +14543,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case28": {
+    "com.render.api#GetEventResponseDetailsCase0Case28": {
       "type": "structure",
       "members": {
         "from": {
@@ -14560,7 +14561,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case29": {
+    "com.render.api#GetEventResponseDetailsCase0Case29": {
       "type": "structure",
       "members": {
         "deployCommandExecutionId": {
@@ -14596,7 +14597,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case30": {
+    "com.render.api#GetEventResponseDetailsCase0Case30": {
       "type": "structure",
       "members": {
         "deployCommandExecutionId": {
@@ -14614,7 +14615,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case32": {
+    "com.render.api#GetEventResponseDetailsCase0Case32": {
       "type": "structure",
       "members": {
         "instanceID": {
@@ -14626,7 +14627,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case34": {
+    "com.render.api#GetEventResponseDetailsCase0Case34": {
       "type": "structure",
       "members": {
         "triggeredByUser": {
@@ -14639,7 +14640,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case37": {
+    "com.render.api#GetEventResponseDetailsCase0Case37": {
       "type": "structure",
       "members": {
         "actor": {
@@ -14654,7 +14655,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case38": {
+    "com.render.api#GetEventResponseDetailsCase0Case38": {
       "type": "structure",
       "members": {
         "actor": {
@@ -14669,7 +14670,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case40": {
+    "com.render.api#GetEventResponseDetailsCase0Case40": {
       "type": "structure",
       "members": {
         "trigger": {
@@ -14681,7 +14682,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case41Trigger": {
+    "com.render.api#GetEventResponseDetailsCase0Case41Trigger": {
       "type": "structure",
       "members": {
         "manual": {
@@ -14704,11 +14705,11 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case41": {
+    "com.render.api#GetEventResponseDetailsCase0Case41": {
       "type": "structure",
       "members": {
         "trigger": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case41Trigger",
+          "target": "com.render.api#GetEventResponseDetailsCase0Case41Trigger",
           "traits": {
             "smithy.api#required": {}
           }
@@ -14716,19 +14717,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case42": {
-      "type": "structure",
-      "members": {
-        "trigger": {
-          "target": "com.render.api#Trigger2",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {}
-    },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case43": {
+    "com.render.api#GetEventResponseDetailsCase0Case42": {
       "type": "structure",
       "members": {
         "trigger": {
@@ -14740,7 +14729,19 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case44": {
+    "com.render.api#GetEventResponseDetailsCase0Case43": {
+      "type": "structure",
+      "members": {
+        "trigger": {
+          "target": "com.render.api#Trigger2",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.render.api#GetEventResponseDetailsCase0Case44": {
       "type": "structure",
       "members": {
         "reason": {
@@ -14759,7 +14760,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case45NewTrigger": {
+    "com.render.api#GetEventResponseDetailsCase0Case45NewTrigger": {
       "type": "enum",
       "members": {
         "COMMIT": {
@@ -14785,11 +14786,11 @@
         "smithy.api#documentation": "The auto-deploy trigger value after it was re-enabled"
       }
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0Case45": {
+    "com.render.api#GetEventResponseDetailsCase0Case45": {
       "type": "structure",
       "members": {
         "newTrigger": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case45NewTrigger",
+          "target": "com.render.api#GetEventResponseDetailsCase0Case45NewTrigger",
           "traits": {
             "smithy.api#documentation": "The auto-deploy trigger value after it was re-enabled"
           }
@@ -14797,136 +14798,136 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase0": {
+    "com.render.api#GetEventResponseDetailsCase0": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case0"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case0"
         },
         "Case1": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case1"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case1"
         },
         "Case2": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case2"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case2"
         },
         "Case3": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case3"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case3"
         },
         "Case4": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case4"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case4"
         },
         "Case5": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case5"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case5"
         },
         "Case6": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case6"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case6"
         },
         "Case7": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case7"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case7"
         },
         "Case8": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case8"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case8"
         },
         "Case9": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case9"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case9"
         },
         "Case10": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case10"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case10"
         },
         "Case11": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case11"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case11"
         },
         "Case12": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case12"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case12"
         },
         "Case13": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case13"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case13"
         },
         "Case14": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case14"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case14"
         },
         "Case15": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case15"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case15"
         },
         "Case16": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case16"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case16"
         },
         "Case17": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case17"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case17"
         },
         "Case18": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case18"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case18"
         },
         "Case19": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case19"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case19"
         },
         "Case20": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case20"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case20"
         },
         "Case21": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case21"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case21"
         },
         "Case22": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case22"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case22"
         },
         "Case23": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case23"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case23"
         },
         "Case24": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case24"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case24"
         },
         "Case25": {
           "target": "smithy.api#Document"
         },
         "Case26": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case26"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case26"
         },
         "Case27": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case27"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case27"
         },
         "Case28": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case28"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case28"
         },
         "Case29": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case29"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case29"
         },
         "Case30": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case30"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case30"
         },
         "Case32": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case32"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case32"
         },
         "Case34": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case34"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case34"
         },
         "Case37": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case37"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case37"
         },
         "Case38": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case38"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case38"
         },
         "Case40": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case40"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case40"
         },
         "Case41": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case41"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case41"
         },
         "Case42": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case42"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case42"
         },
         "Case43": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case43"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case43"
         },
         "Case44": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case44"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case44"
         },
         "Case45": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0Case45"
+          "target": "com.render.api#GetEventResponseDetailsCase0Case45"
         }
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase1Case4": {
+    "com.render.api#GetEventResponseDetailsCase1Case4": {
       "type": "structure",
       "members": {
         "leaderId": {
@@ -14935,7 +14936,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase1Case5": {
+    "com.render.api#GetEventResponseDetailsCase1Case5": {
       "type": "structure",
       "members": {
         "user": {
@@ -14956,7 +14957,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase1Case6": {
+    "com.render.api#GetEventResponseDetailsCase1Case6": {
       "type": "structure",
       "members": {
         "user": {
@@ -14971,7 +14972,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase1Case7": {
+    "com.render.api#GetEventResponseDetailsCase1Case7": {
       "type": "structure",
       "members": {
         "user": {
@@ -14980,7 +14981,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase1Case8": {
+    "com.render.api#GetEventResponseDetailsCase1Case8": {
       "type": "structure",
       "members": {
         "user": {
@@ -15001,7 +15002,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase1Case9": {
+    "com.render.api#GetEventResponseDetailsCase1Case9": {
       "type": "structure",
       "members": {
         "fromStatus": {
@@ -15019,7 +15020,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase1Case10": {
+    "com.render.api#GetEventResponseDetailsCase1Case10": {
       "type": "structure",
       "members": {
         "fromReplicas": {
@@ -15037,7 +15038,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase1Case11": {
+    "com.render.api#GetEventResponseDetailsCase1Case11": {
       "type": "structure",
       "members": {
         "user": {
@@ -15046,7 +15047,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase1Case13": {
+    "com.render.api#GetEventResponseDetailsCase1Case13": {
       "type": "structure",
       "members": {
         "fromVersion": {
@@ -15064,7 +15065,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase1Case14": {
+    "com.render.api#GetEventResponseDetailsCase1Case14": {
       "type": "structure",
       "members": {
         "user": {
@@ -15085,7 +15086,7 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase1Case15": {
+    "com.render.api#GetEventResponseDetailsCase1Case15": {
       "type": "structure",
       "members": {
         "fromVersion": {
@@ -15103,49 +15104,49 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase1": {
+    "com.render.api#GetEventResponseDetailsCase1": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#Document"
         },
         "Case4": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase1Case4"
+          "target": "com.render.api#GetEventResponseDetailsCase1Case4"
         },
         "Case5": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase1Case5"
+          "target": "com.render.api#GetEventResponseDetailsCase1Case5"
         },
         "Case6": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase1Case6"
+          "target": "com.render.api#GetEventResponseDetailsCase1Case6"
         },
         "Case7": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase1Case7"
+          "target": "com.render.api#GetEventResponseDetailsCase1Case7"
         },
         "Case8": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase1Case8"
+          "target": "com.render.api#GetEventResponseDetailsCase1Case8"
         },
         "Case9": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase1Case9"
+          "target": "com.render.api#GetEventResponseDetailsCase1Case9"
         },
         "Case10": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase1Case10"
+          "target": "com.render.api#GetEventResponseDetailsCase1Case10"
         },
         "Case11": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase1Case11"
+          "target": "com.render.api#GetEventResponseDetailsCase1Case11"
         },
         "Case13": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase1Case13"
+          "target": "com.render.api#GetEventResponseDetailsCase1Case13"
         },
         "Case14": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase1Case14"
+          "target": "com.render.api#GetEventResponseDetailsCase1Case14"
         },
         "Case15": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase1Case15"
+          "target": "com.render.api#GetEventResponseDetailsCase1Case15"
         }
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase2Case1": {
+    "com.render.api#GetEventResponseDetailsCase2Case1": {
       "type": "structure",
       "members": {
         "reason": {
@@ -15163,34 +15164,34 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetailsCase2": {
+    "com.render.api#GetEventResponseDetailsCase2": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#Document"
         },
         "Case1": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase2Case1"
+          "target": "com.render.api#GetEventResponseDetailsCase2Case1"
         }
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponseDetails": {
+    "com.render.api#GetEventResponseDetails": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase0"
+          "target": "com.render.api#GetEventResponseDetailsCase0"
         },
         "Case1": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase1"
+          "target": "com.render.api#GetEventResponseDetailsCase1"
         },
         "Case2": {
-          "target": "com.render.api#RetrieveEventResponseDetailsCase2"
+          "target": "com.render.api#GetEventResponseDetailsCase2"
         }
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEventResponse": {
+    "com.render.api#GetEventResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15212,13 +15213,13 @@
           }
         },
         "type": {
-          "target": "com.render.api#RetrieveEventResponseType",
+          "target": "com.render.api#GetEventResponseType",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "details": {
-          "target": "com.render.api#RetrieveEventResponseDetails",
+          "target": "com.render.api#GetEventResponseDetails",
           "traits": {
             "smithy.api#required": {}
           }
@@ -15228,13 +15229,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.render.api#RetrieveEvent": {
+    "com.render.api#GetEvent": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveEventRequest"
+        "target": "com.render.api#GetEventRequest"
       },
       "output": {
-        "target": "com.render.api#RetrieveEventResponse"
+        "target": "com.render.api#GetEventResponse"
       },
       "errors": [
         {
@@ -21477,7 +21478,7 @@
         "smithy.api#documentation": "Create Key Value instance\n\nCreate a new Key Value instance."
       }
     },
-    "com.render.api#RetrieveKeyValueRequest": {
+    "com.render.api#GetKeyValueRequest": {
       "type": "structure",
       "members": {
         "redisId": {
@@ -21492,10 +21493,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveKeyValue": {
+    "com.render.api#GetKeyValue": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveKeyValueRequest"
+        "target": "com.render.api#GetKeyValueRequest"
       },
       "output": {
         "target": "com.render.api#KeyValueDetail"
@@ -21625,7 +21626,7 @@
         "smithy.api#documentation": "Delete Key Value instance\n\nDelete a Key Value instance by ID."
       }
     },
-    "com.render.api#RetrieveKeyValueConnectionInfoRequest": {
+    "com.render.api#GetKeyValueConnectionInfoRequest": {
       "type": "structure",
       "members": {
         "redisId": {
@@ -21669,10 +21670,10 @@
         "smithy.api#documentation": "A Key Value instance"
       }
     },
-    "com.render.api#RetrieveKeyValueConnectionInfo": {
+    "com.render.api#GetKeyValueConnectionInfo": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveKeyValueConnectionInfoRequest"
+        "target": "com.render.api#GetKeyValueConnectionInfoRequest"
       },
       "output": {
         "target": "com.render.api#KeyValueConnectionInfo"
@@ -23227,7 +23228,7 @@
         "smithy.api#documentation": "Create Postgres instance\n\nCreate a new Postgres instance."
       }
     },
-    "com.render.api#RetrievePostgresRequest": {
+    "com.render.api#GetPostgresRequest": {
       "type": "structure",
       "members": {
         "postgresId": {
@@ -23242,10 +23243,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrievePostgres": {
+    "com.render.api#GetPostgres": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrievePostgresRequest"
+        "target": "com.render.api#GetPostgresRequest"
       },
       "output": {
         "target": "com.render.api#PostgresDetail"
@@ -23402,7 +23403,7 @@
         "smithy.api#documentation": "Delete Postgres instance\n\nDelete a Postgres instance by ID. This operation is irreversible, and\nall data will be lost."
       }
     },
-    "com.render.api#RetrievePostgresConnectionInfoRequest": {
+    "com.render.api#GetPostgresConnectionInfoRequest": {
       "type": "structure",
       "members": {
         "postgresId": {
@@ -23454,10 +23455,10 @@
       },
       "traits": {}
     },
-    "com.render.api#RetrievePostgresConnectionInfo": {
+    "com.render.api#GetPostgresConnectionInfo": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrievePostgresConnectionInfoRequest"
+        "target": "com.render.api#GetPostgresConnectionInfoRequest"
       },
       "output": {
         "target": "com.render.api#PostgresConnectionInfo"
@@ -23479,7 +23480,7 @@
         "smithy.api#documentation": "Retrieve Postgres connection info\n\nRetrieve connection info for a Postgres instance by ID. Connection info includes sensitive information."
       }
     },
-    "com.render.api#RetrievePostgresRecoveryInfoRequest": {
+    "com.render.api#GetPostgresRecoveryInfoRequest": {
       "type": "structure",
       "members": {
         "postgresId": {
@@ -23494,7 +23495,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrievePostgresRecoveryInfoResponseRecoveryStatus": {
+    "com.render.api#GetPostgresRecoveryInfoResponseRecoveryStatus": {
       "type": "enum",
       "members": {
         "AVAILABLE": {
@@ -23520,11 +23521,11 @@
         "smithy.api#documentation": "Availability of point-in-time recovery."
       }
     },
-    "com.render.api#RetrievePostgresRecoveryInfoResponse": {
+    "com.render.api#GetPostgresRecoveryInfoResponse": {
       "type": "structure",
       "members": {
         "recoveryStatus": {
-          "target": "com.render.api#RetrievePostgresRecoveryInfoResponseRecoveryStatus",
+          "target": "com.render.api#GetPostgresRecoveryInfoResponseRecoveryStatus",
           "traits": {
             "smithy.api#documentation": "Availability of point-in-time recovery.",
             "smithy.api#required": {}
@@ -23538,13 +23539,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.render.api#RetrievePostgresRecoveryInfo": {
+    "com.render.api#GetPostgresRecoveryInfo": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrievePostgresRecoveryInfoRequest"
+        "target": "com.render.api#GetPostgresRecoveryInfoRequest"
       },
       "output": {
-        "target": "com.render.api#RetrievePostgresRecoveryInfoResponse"
+        "target": "com.render.api#GetPostgresRecoveryInfoResponse"
       },
       "errors": [
         {
@@ -24836,7 +24837,7 @@
         "smithy.api#documentation": "Create project\n\nCreate a new project."
       }
     },
-    "com.render.api#RetrieveProjectRequest": {
+    "com.render.api#GetProjectRequest": {
       "type": "structure",
       "members": {
         "projectId": {
@@ -24851,10 +24852,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveProject": {
+    "com.render.api#GetProject": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveProjectRequest"
+        "target": "com.render.api#GetProjectRequest"
       },
       "output": {
         "target": "com.render.api#Project"
@@ -25292,7 +25293,7 @@
         "smithy.api#documentation": "Create environment\n\nCreate a new environment belonging to the project with the provided ID."
       }
     },
-    "com.render.api#RetrieveEnvironmentRequest": {
+    "com.render.api#GetEnvironmentRequest": {
       "type": "structure",
       "members": {
         "environmentId": {
@@ -25307,10 +25308,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveEnvironment": {
+    "com.render.api#GetEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveEnvironmentRequest"
+        "target": "com.render.api#GetEnvironmentRequest"
       },
       "output": {
         "target": "com.render.api#Environment"
@@ -25949,7 +25950,7 @@
         "smithy.api#documentation": "Create environment group\n\nCreate a new environment group."
       }
     },
-    "com.render.api#RetrieveEnvGroupRequest": {
+    "com.render.api#GetEnvGroupRequest": {
       "type": "structure",
       "members": {
         "envGroupId": {
@@ -25965,7 +25966,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveEnvGroupResponseServiceLinksList": {
+    "com.render.api#GetEnvGroupResponseServiceLinksList": {
       "type": "list",
       "member": {
         "target": "com.render.api#EnvGroupLink"
@@ -25974,21 +25975,21 @@
         "smithy.api#documentation": "List of serviceIds linked to the envGroup"
       }
     },
-    "com.render.api#RetrieveEnvGroupResponseEnvVarsList": {
+    "com.render.api#GetEnvGroupResponseEnvVarsList": {
       "type": "list",
       "member": {
         "target": "com.render.api#EnvVar"
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEnvGroupResponseSecretFilesList": {
+    "com.render.api#GetEnvGroupResponseSecretFilesList": {
       "type": "list",
       "member": {
         "target": "com.render.api#SecretFile"
       },
       "traits": {}
     },
-    "com.render.api#RetrieveEnvGroupResponse": {
+    "com.render.api#GetEnvGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -26022,7 +26023,7 @@
           }
         },
         "serviceLinks": {
-          "target": "com.render.api#RetrieveEnvGroupResponseServiceLinksList",
+          "target": "com.render.api#GetEnvGroupResponseServiceLinksList",
           "traits": {
             "smithy.api#documentation": "List of serviceIds linked to the envGroup",
             "smithy.api#required": {}
@@ -26032,13 +26033,13 @@
           "target": "smithy.api#String"
         },
         "envVars": {
-          "target": "com.render.api#RetrieveEnvGroupResponseEnvVarsList",
+          "target": "com.render.api#GetEnvGroupResponseEnvVarsList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "secretFiles": {
-          "target": "com.render.api#RetrieveEnvGroupResponseSecretFilesList",
+          "target": "com.render.api#GetEnvGroupResponseSecretFilesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -26048,13 +26049,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.render.api#RetrieveEnvGroup": {
+    "com.render.api#GetEnvGroup": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveEnvGroupRequest"
+        "target": "com.render.api#GetEnvGroupRequest"
       },
       "output": {
-        "target": "com.render.api#RetrieveEnvGroupResponse"
+        "target": "com.render.api#GetEnvGroupResponse"
       },
       "errors": [
         {
@@ -26421,7 +26422,7 @@
         "smithy.api#documentation": "Unlink service\n\nUnlink a particular service from a particular environment group.\n\nThe service will lose access to the environment variables and secret files in the group."
       }
     },
-    "com.render.api#RetrieveEnvGroupEnvVarRequest": {
+    "com.render.api#GetEnvGroupEnvVarRequest": {
       "type": "structure",
       "members": {
         "envGroupId": {
@@ -26445,10 +26446,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveEnvGroupEnvVar": {
+    "com.render.api#GetEnvGroupEnvVar": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveEnvGroupEnvVarRequest"
+        "target": "com.render.api#GetEnvGroupEnvVarRequest"
       },
       "output": {
         "target": "com.render.api#EnvVar"
@@ -26657,7 +26658,7 @@
         "smithy.api#documentation": "Remove environment variable\n\nRemove a particular environment variable from a particular environment group."
       }
     },
-    "com.render.api#RetrieveEnvGroupSecretFileRequest": {
+    "com.render.api#GetEnvGroupSecretFileRequest": {
       "type": "structure",
       "members": {
         "envGroupId": {
@@ -26681,10 +26682,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveEnvGroupSecretFile": {
+    "com.render.api#GetEnvGroupSecretFile": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveEnvGroupSecretFileRequest"
+        "target": "com.render.api#GetEnvGroupSecretFileRequest"
       },
       "output": {
         "target": "com.render.api#SecretFile"
@@ -27067,7 +27068,7 @@
         "smithy.api#documentation": "List maintenance runs\n\nList scheduled and/or recent maintenance runs for specified resources."
       }
     },
-    "com.render.api#RetrieveMaintenanceRequest": {
+    "com.render.api#GetMaintenanceRequest": {
       "type": "structure",
       "members": {
         "maintenanceRunID": {
@@ -27082,7 +27083,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveMaintenanceResponse": {
+    "com.render.api#GetMaintenanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -27126,13 +27127,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.render.api#RetrieveMaintenance": {
+    "com.render.api#GetMaintenance": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveMaintenanceRequest"
+        "target": "com.render.api#GetMaintenanceRequest"
       },
       "output": {
-        "target": "com.render.api#RetrieveMaintenanceResponse"
+        "target": "com.render.api#GetMaintenanceResponse"
       },
       "errors": [
         {
@@ -27917,7 +27918,7 @@
         "smithy.api#documentation": "Create a webhook\n\nCreate a new webhook."
       }
     },
-    "com.render.api#RetrieveWebhookRequest": {
+    "com.render.api#GetWebhookRequest": {
       "type": "structure",
       "members": {
         "webhookId": {
@@ -27933,10 +27934,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.render.api#RetrieveWebhook": {
+    "com.render.api#GetWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.render.api#RetrieveWebhookRequest"
+        "target": "com.render.api#GetWebhookRequest"
       },
       "output": {
         "target": "com.render.api#Schema12"
@@ -30553,7 +30554,7 @@
           "target": "com.render.api#RemoveWorkspaceMember"
         },
         {
-          "target": "com.render.api#RetrieveBlueprint"
+          "target": "com.render.api#GetBlueprint"
         },
         {
           "target": "com.render.api#UpdateBlueprint"
@@ -30571,7 +30572,7 @@
           "target": "com.render.api#CreateDedicatedIp"
         },
         {
-          "target": "com.render.api#RetrieveDedicatedIp"
+          "target": "com.render.api#GetDedicatedIp"
         },
         {
           "target": "com.render.api#UpdateDedicatedIp"
@@ -30586,7 +30587,7 @@
           "target": "com.render.api#AddDisk"
         },
         {
-          "target": "com.render.api#RetrieveDisk"
+          "target": "com.render.api#GetDisk"
         },
         {
           "target": "com.render.api#UpdateDisk"
@@ -30607,10 +30608,10 @@
           "target": "com.render.api#ListOwners"
         },
         {
-          "target": "com.render.api#RetrieveOwner"
+          "target": "com.render.api#GetOwner"
         },
         {
-          "target": "com.render.api#RetrieveOwnerMembers"
+          "target": "com.render.api#GetOwnerMembers"
         },
         {
           "target": "com.render.api#ListOwnerAuditLogs"
@@ -30619,7 +30620,7 @@
           "target": "com.render.api#ListOrganizationAuditLogs"
         },
         {
-          "target": "com.render.api#RetrieveOwnerNotificationSettings"
+          "target": "com.render.api#GetOwnerNotificationSettings"
         },
         {
           "target": "com.render.api#PatchOwnerNotificationSettings"
@@ -30628,7 +30629,7 @@
           "target": "com.render.api#ListNotificationOverrides"
         },
         {
-          "target": "com.render.api#RetrieveServiceNotificationOverrides"
+          "target": "com.render.api#GetServiceNotificationOverrides"
         },
         {
           "target": "com.render.api#PatchServiceNotificationOverrides"
@@ -30640,7 +30641,7 @@
           "target": "com.render.api#CreateRegistryCredential"
         },
         {
-          "target": "com.render.api#RetrieveRegistryCredential"
+          "target": "com.render.api#GetRegistryCredential"
         },
         {
           "target": "com.render.api#UpdateRegistryCredential"
@@ -30655,7 +30656,7 @@
           "target": "com.render.api#CreateService"
         },
         {
-          "target": "com.render.api#RetrieveService"
+          "target": "com.render.api#GetService"
         },
         {
           "target": "com.render.api#UpdateService"
@@ -30673,13 +30674,13 @@
           "target": "com.render.api#CreateDeploy"
         },
         {
-          "target": "com.render.api#RetrieveDeploy"
+          "target": "com.render.api#GetDeploy"
         },
         {
           "target": "com.render.api#CancelDeploy"
         },
         {
-          "target": "com.render.api#RollbackDeploy"
+          "target": "com.render.api#DeployRollback"
         },
         {
           "target": "com.render.api#GetEnvVarsForService"
@@ -30688,7 +30689,7 @@
           "target": "com.render.api#UpdateEnvVarsForService"
         },
         {
-          "target": "com.render.api#RetrieveEnvVar"
+          "target": "com.render.api#GetEnvVar"
         },
         {
           "target": "com.render.api#UpdateEnvVar"
@@ -30703,7 +30704,7 @@
           "target": "com.render.api#UpdateSecretFilesForService"
         },
         {
-          "target": "com.render.api#RetrieveSecretFile"
+          "target": "com.render.api#GetSecretFile"
         },
         {
           "target": "com.render.api#AddOrUpdateSecretFile"
@@ -30748,7 +30749,7 @@
           "target": "com.render.api#CreateCustomDomain"
         },
         {
-          "target": "com.render.api#RetrieveCustomDomain"
+          "target": "com.render.api#GetCustomDomain"
         },
         {
           "target": "com.render.api#DeleteCustomDomain"
@@ -30784,7 +30785,7 @@
           "target": "com.render.api#PostJob"
         },
         {
-          "target": "com.render.api#RetrieveJob"
+          "target": "com.render.api#GetJob"
         },
         {
           "target": "com.render.api#CancelJob"
@@ -30793,7 +30794,7 @@
           "target": "com.render.api#ListInstances"
         },
         {
-          "target": "com.render.api#RetrieveServiceOutboundIps"
+          "target": "com.render.api#GetServiceOutboundIps"
         },
         {
           "target": "com.render.api#RunCronJob"
@@ -30802,7 +30803,7 @@
           "target": "com.render.api#CancelCronJobRun"
         },
         {
-          "target": "com.render.api#RetrieveEvent"
+          "target": "com.render.api#GetEvent"
         },
         {
           "target": "com.render.api#ListLogs"
@@ -30910,7 +30911,7 @@
           "target": "com.render.api#CreateKeyValue"
         },
         {
-          "target": "com.render.api#RetrieveKeyValue"
+          "target": "com.render.api#GetKeyValue"
         },
         {
           "target": "com.render.api#UpdateKeyValue"
@@ -30919,7 +30920,7 @@
           "target": "com.render.api#DeleteKeyValue"
         },
         {
-          "target": "com.render.api#RetrieveKeyValueConnectionInfo"
+          "target": "com.render.api#GetKeyValueConnectionInfo"
         },
         {
           "target": "com.render.api#SuspendKeyValue"
@@ -30934,7 +30935,7 @@
           "target": "com.render.api#CreatePostgres"
         },
         {
-          "target": "com.render.api#RetrievePostgres"
+          "target": "com.render.api#GetPostgres"
         },
         {
           "target": "com.render.api#UpdatePostgres"
@@ -30943,10 +30944,10 @@
           "target": "com.render.api#DeletePostgres"
         },
         {
-          "target": "com.render.api#RetrievePostgresConnectionInfo"
+          "target": "com.render.api#GetPostgresConnectionInfo"
         },
         {
-          "target": "com.render.api#RetrievePostgresRecoveryInfo"
+          "target": "com.render.api#GetPostgresRecoveryInfo"
         },
         {
           "target": "com.render.api#RecoverPostgres"
@@ -30997,7 +30998,7 @@
           "target": "com.render.api#CreateProject"
         },
         {
-          "target": "com.render.api#RetrieveProject"
+          "target": "com.render.api#GetProject"
         },
         {
           "target": "com.render.api#UpdateProject"
@@ -31012,7 +31013,7 @@
           "target": "com.render.api#CreateEnvironment"
         },
         {
-          "target": "com.render.api#RetrieveEnvironment"
+          "target": "com.render.api#GetEnvironment"
         },
         {
           "target": "com.render.api#UpdateEnvironment"
@@ -31033,7 +31034,7 @@
           "target": "com.render.api#CreateEnvGroup"
         },
         {
-          "target": "com.render.api#RetrieveEnvGroup"
+          "target": "com.render.api#GetEnvGroup"
         },
         {
           "target": "com.render.api#UpdateEnvGroup"
@@ -31048,7 +31049,7 @@
           "target": "com.render.api#UnlinkServiceFromEnvGroup"
         },
         {
-          "target": "com.render.api#RetrieveEnvGroupEnvVar"
+          "target": "com.render.api#GetEnvGroupEnvVar"
         },
         {
           "target": "com.render.api#UpdateEnvGroupEnvVar"
@@ -31057,7 +31058,7 @@
           "target": "com.render.api#DeleteEnvGroupEnvVar"
         },
         {
-          "target": "com.render.api#RetrieveEnvGroupSecretFile"
+          "target": "com.render.api#GetEnvGroupSecretFile"
         },
         {
           "target": "com.render.api#UpdateEnvGroupSecretFile"
@@ -31069,7 +31070,7 @@
           "target": "com.render.api#ListMaintenance"
         },
         {
-          "target": "com.render.api#RetrieveMaintenance"
+          "target": "com.render.api#GetMaintenance"
         },
         {
           "target": "com.render.api#UpdateMaintenance"
@@ -31084,7 +31085,7 @@
           "target": "com.render.api#CreateWebhook"
         },
         {
-          "target": "com.render.api#RetrieveWebhook"
+          "target": "com.render.api#GetWebhook"
         },
         {
           "target": "com.render.api#UpdateWebhook"
