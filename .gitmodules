@@ -323,3 +323,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-temporal.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/trigger-dev/specs/spec-mirror-trigger-dev"]
+	path = packages/trigger-dev/specs/spec-mirror-trigger-dev
+	url = https://github.com/distilled-mirror/spec-mirror-trigger-dev.git
+	ignore = dirty
+	shallow = true
