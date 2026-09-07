@@ -101,6 +101,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "railway" },
   { package: "redis-cloud" },
   { package: "remote" },
+  { package: "render" },
   { package: "resend" },
   { package: "stripe" },
   { package: "supabase" },
