@@ -99,46 +99,6 @@ export const ApikeyRequestResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApikeyRequestResponse",
 }) as any as S.Schema<ApikeyRequestResponse>;
 
-export interface ApikeyRetrieveRequest {
-  /** The token returned by /apikey/request. Must be a 64-character lowercase hex string. */
-  requestToken: string;
-  /** PKCE verifier (RFC 7636). Required only when the request was created with a codeChallenge. The high-entropy secret whose base64url(SHA-256(codeVerifier)) equals that challenge. When it matches, this response includes the secret key (secretapikey) once. */
-  codeVerifier?: string;
-}
-export const ApikeyRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requestToken: S.String,
-    codeVerifier: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/apikey/retrieve", code: 200 })),
-).annotate({
-  identifier: "ApikeyRetrieveRequest",
-}) as any as S.Schema<ApikeyRetrieveRequest>;
-
-export type ApikeyRetrieveResponseStatus = "SUCCESS" | "PENDING" | "ERROR";
-export const ApikeyRetrieveResponseStatus = /*@__PURE__*/ S.String;
-
-export interface ApikeyRetrieveResponse {
-  status?: ApikeyRetrieveResponseStatus;
-  /** The approved public API key. Present only when status is SUCCESS. */
-  apikey?: string | Redacted.Redacted<string>;
-  /** The secret API key. Returned ONLY for a PKCE request, exactly once, on the retrieve that presents a valid codeVerifier. Never returned for legacy requests, and never again after the first successful claim (later calls return apikey only, with code SECRET_ALREADY_CLAIMED). Store it immediately. */
-  secretapikey?: string;
-  message?: string;
-  /** Machine-readable error code. Present when status is ERROR. */
-  code?: string;
-}
-export const ApikeyRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(ApikeyRetrieveResponseStatus),
-    apikey: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    secretapikey: S.optional(S.String),
-    message: S.optional(S.String),
-    code: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApikeyRetrieveResponse",
-}) as any as S.Schema<ApikeyRetrieveResponse>;
-
 export interface CreateAccountInviteRequest {
   /** Email address to pre-fill on the registration form (optional) */
   email?: string;
@@ -175,7 +135,7 @@ export const CreateAccountInviteResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateAccountInviteResponse>;
 
 /** DNS record type */
-export type DnsCreateRequestType =
+export type CreateDnsRequestType =
   | "A"
   | "AAAA"
   | "MX"
@@ -189,14 +149,14 @@ export type DnsCreateRequestType =
   | "SSHFP"
   | "HTTPS"
   | "SVCB";
-export const DnsCreateRequestType = /*@__PURE__*/ S.String;
+export const CreateDnsRequestType = /*@__PURE__*/ S.String;
 
-export interface DnsCreateRequest {
+export interface CreateDnsRequest {
   domain: string;
   /** Subdomain for the record (e.g. 'www', '*' for wildcard, blank for root). Do not include the domain name itself. */
   name?: string;
   /** DNS record type */
-  type: DnsCreateRequestType | (string & {});
+  type: CreateDnsRequestType | (string & {});
   /** The record value */
   content: string;
   /** Time to live in seconds. Minimum is determined by account settings (typically 600). Defaults to the account minimum if omitted or 0. */
@@ -208,11 +168,11 @@ export interface DnsCreateRequest {
   /** If true, validate only — checks ownership/type/permissions and returns wouldSucceed without creating the record. */
   dryRun?: boolean;
 }
-export const DnsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateDnsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     domain: S.String.pipe(T.Label()),
     name: S.optional(S.String),
-    type: DnsCreateRequestType,
+    type: CreateDnsRequestType,
     content: S.String,
     ttl: S.optional(S.Number),
     prio: S.optional(S.Number),
@@ -220,22 +180,552 @@ export const DnsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     dryRun: S.optional(S.Boolean),
   }).pipe(T.Http({ method: "POST", uri: "/dns/create/{domain}", code: 200 })),
 ).annotate({
-  identifier: "DnsCreateRequest",
-}) as any as S.Schema<DnsCreateRequest>;
+  identifier: "CreateDnsRequest",
+}) as any as S.Schema<CreateDnsRequest>;
 
-export interface DnsCreateResponse {
+export interface CreateDnsResponse {
   status?: string;
   /** The numeric ID of the newly created record */
   id?: string;
 }
-export const DnsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateDnsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     status: S.optional(S.String),
     id: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DnsCreateResponse",
-}) as any as S.Schema<DnsCreateResponse>;
+  identifier: "CreateDnsResponse",
+}) as any as S.Schema<CreateDnsResponse>;
+
+/** Must be 'yes' or '1' to confirm agreement to the Domain Name Registration Agreement, Product Terms of Service, Privacy Policy, and automatic renewal terms. */
+export type CreateDomainRequestAgreeToTerms = "yes" | "1";
+export const CreateDomainRequestAgreeToTerms = /*@__PURE__*/ S.String;
+
+export interface CreateDomainRequest {
+  domain: string;
+  /** The registration cost in pennies (USD cents). Must exactly equal the total price for the domain at its minimum registration duration. Obtain this from /domain/checkDomain first. */
+  cost: number;
+  /** Must be 'yes' or '1' to confirm agreement to the Domain Name Registration Agreement, Product Terms of Service, Privacy Policy, and automatic renewal terms. */
+  agreeToTerms: CreateDomainRequestAgreeToTerms | (string & {});
+  /** Optional. Override WHOIS privacy for this registration. When omitted, the account-level default is used (set under Account Security Settings on porkbun.com/account — defaults to enabled). Pass `true` to force-enable privacy or `false` to register with public contact info. Strings `"on"`/`"off"`, `"true"`/`"false"`, `"yes"`/`"no"`, `"1"`/`"0"` are also accepted. Has no effect on TLDs that don't support WHOIS privacy (privacy stays off regardless). */
+  whoisPrivacy?: boolean;
+  /** Optional. When true, runs all pre-flight validation (availability, pricing, cost match, eligibility, funds, spend limit) and returns a preview with `dryRun: true` and `wouldSucceed` WITHOUT creating an order or charging. Nothing is registered and the rate-limit budget is not consumed. Use it to safely confirm an operation before committing. */
+  dryRun?: boolean;
+}
+export const CreateDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domain: S.String.pipe(T.Label()),
+    cost: S.Number,
+    agreeToTerms: CreateDomainRequestAgreeToTerms,
+    whoisPrivacy: S.optional(S.Boolean),
+    dryRun: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/domain/create/{domain}", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateDomainRequest",
+}) as any as S.Schema<CreateDomainRequest>;
+
+/** Create-attempt rate limit state */
+export interface CreateDomainResponseLimitsAttempts {
+  /** Window in seconds */
+  TTL?: number;
+  /** Max attempts allowed */
+  limit?: number;
+  /** Attempts used */
+  used?: number;
+  naturalLanguage?: string;
+}
+export const CreateDomainResponseLimitsAttempts = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    TTL: S.optional(S.Number),
+    limit: S.optional(S.Number),
+    used: S.optional(S.Number),
+    naturalLanguage: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateDomainResponseLimitsAttempts",
+}) as any as S.Schema<CreateDomainResponseLimitsAttempts>;
+
+/** Successful-registration rate limit state */
+export interface CreateDomainResponseLimitsSuccess {
+  /** Window in seconds */
+  TTL?: number;
+  /** Max successes allowed */
+  limit?: number;
+  /** Successes used */
+  used?: number;
+  naturalLanguage?: string;
+}
+export const CreateDomainResponseLimitsSuccess = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    TTL: S.optional(S.Number),
+    limit: S.optional(S.Number),
+    used: S.optional(S.Number),
+    naturalLanguage: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateDomainResponseLimitsSuccess",
+}) as any as S.Schema<CreateDomainResponseLimitsSuccess>;
+
+/** Current rate limit state for both attempt and success limits */
+export interface CreateDomainResponseLimits {
+  /** Create-attempt rate limit state */
+  attempts?: CreateDomainResponseLimitsAttempts;
+  /** Successful-registration rate limit state */
+  success?: CreateDomainResponseLimitsSuccess;
+}
+export const CreateDomainResponseLimits = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attempts: S.optional(CreateDomainResponseLimitsAttempts),
+    success: S.optional(CreateDomainResponseLimitsSuccess),
+  }),
+).annotate({
+  identifier: "CreateDomainResponseLimits",
+}) as any as S.Schema<CreateDomainResponseLimits>;
+
+export interface CreateDomainResponse {
+  status: string;
+  /** The registered domain name */
+  domain: string;
+  /** The total amount charged in pennies */
+  cost?: number;
+  /** Internal Porkbun order ID */
+  orderId: number;
+  /** Current rate limit state for both attempt and success limits */
+  limits?: CreateDomainResponseLimits;
+  /** Remaining account credit balance in pennies after the charge */
+  balance?: number;
+  /** Seconds until the success rate limit window resets */
+  ttlRemaining?: number;
+  /** Per-request UUID (also in the X-Request-Id header). Present on every API response. */
+  requestId?: string;
+}
+export const CreateDomainResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.String,
+    domain: S.String,
+    cost: S.optional(S.Number),
+    orderId: S.Number,
+    limits: S.optional(CreateDomainResponseLimits),
+    balance: S.optional(S.Number),
+    ttlRemaining: S.optional(S.Number),
+    requestId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateDomainResponse",
+}) as any as S.Schema<CreateDomainResponse>;
+
+export type DryRunPreviewResponseOperation =
+  | "registration"
+  | "renewal"
+  | "transfer";
+export const DryRunPreviewResponseOperation = /*@__PURE__*/ S.String;
+
+/** Returned (HTTP 200) by /domain/create, /domain/renew, and /domain/transfer when the request includes `dryRun: true`. All validation has run but nothing was created or charged. All money amounts are in pennies (USD cents). */
+export interface DryRunPreviewResponse {
+  status: string;
+  /** Always true on a dry-run preview — distinguishes it from a real success response. */
+  dryRun: boolean;
+  /** True if the operation would complete given current funds and spend-limit state. (Hard validation failures — unavailable, bad price, ineligible — return a normal error response instead of a preview.) */
+  wouldSucceed: boolean;
+  operation: DryRunPreviewResponseOperation;
+  domain: string;
+  tld?: string;
+  /** Availability as reported by the registry check (e.g. `available` / `unavailable`). */
+  available?: string;
+  /** Whether the domain is a premium/aftermarket name. */
+  premium?: boolean;
+  /** Term in years that would be purchased. */
+  duration?: number;
+  /** Total cost in pennies that would be charged. */
+  cost: number;
+  /** Human-readable cost. */
+  costDisplay?: string;
+  /** Current account credit balance in pennies. */
+  balance?: number;
+  /** Whether the balance covers the cost. */
+  sufficientFunds?: boolean;
+  /** The account's monthly API spend cap in pennies. Present only if a cap is configured. */
+  monthlySpendLimit?: number;
+  /** API spend so far this calendar month in pennies. Present only if a cap is configured. */
+  monthlySpendSoFar?: number;
+  /** Whether this cost stays within the monthly cap. Present only if a cap is configured. */
+  withinMonthlySpendLimit?: boolean;
+  /** Human-readable summary of the preview outcome. */
+  message?: string;
+  /** Per-request UUID (also in the X-Request-Id header). Present on every API response. */
+  requestId?: string;
+}
+export const DryRunPreviewResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.String,
+    dryRun: S.Boolean,
+    wouldSucceed: S.Boolean,
+    operation: DryRunPreviewResponseOperation,
+    domain: S.String,
+    tld: S.optional(S.String),
+    available: S.optional(S.String),
+    premium: S.optional(S.Boolean),
+    duration: S.optional(S.Number),
+    cost: S.Number,
+    costDisplay: S.optional(S.String),
+    balance: S.optional(S.Number),
+    sufficientFunds: S.optional(S.Boolean),
+    monthlySpendLimit: S.optional(S.Number),
+    monthlySpendSoFar: S.optional(S.Number),
+    withinMonthlySpendLimit: S.optional(S.Boolean),
+    message: S.optional(S.String),
+    requestId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DryRunPreviewResponse",
+}) as any as S.Schema<DryRunPreviewResponse>;
+
+export type CreateDomainResponseBody =
+  | CreateDomainResponse
+  | DryRunPreviewResponse;
+export const CreateDomainResponseBody =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDomainResponseBody>;
+
+export type CreateDomainResponse2 = CreateDomainResponseBody;
+export const CreateDomainResponse2 = /*@__PURE__*/ S.suspend(() =>
+  CreateDomainResponseBody.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "CreateDomainResponse2",
+}) as any as S.Schema<CreateDomainResponse2>;
+
+/** The hosting plan SKU to provision. Discover the provisionable SKUs (and each one’s price/interval/trial) via GET /hosting/plans, then pass the row’s `sku`. Currently Secure Static Hosting: PIXIESECURESTATICM2 ($3.00/mo) or PIXIESECURESTATICY2 ($30.00/yr). */
+export type CreateHostingRequestSku =
+  | "PIXIESECURESTATICM2"
+  | "PIXIESECURESTATICY2";
+export const CreateHostingRequestSku = /*@__PURE__*/ S.String;
+
+export type CreateHostingRequestAgreeToTerms = "yes";
+export const CreateHostingRequestAgreeToTerms = /*@__PURE__*/ S.String;
+
+export interface CreateHostingRequest {
+  domain: string;
+  /** The hosting plan SKU to provision. Discover the provisionable SKUs (and each one’s price/interval/trial) via GET /hosting/plans, then pass the row’s `sku`. Currently Secure Static Hosting: PIXIESECURESTATICM2 ($3.00/mo) or PIXIESECURESTATICY2 ($30.00/yr). */
+  sku: CreateHostingRequestSku | (string & {});
+  /** Echo the plan price in cents (300 monthly / 3000 yearly) to confirm the account holder understands the auto-renew / charge. Mismatch returns COST_ACKNOWLEDGMENT_REQUIRED. */
+  acknowledgedCost: number;
+  agreeToTerms: CreateHostingRequestAgreeToTerms | (string & {});
+  /** Required (true) when the domain is not already on Porkbun nameservers — provisioning will switch them. */
+  agreeToNameserverChange?: boolean;
+  /** Validate + preview without provisioning or charging. */
+  dryRun?: boolean;
+}
+export const CreateHostingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domain: S.String.pipe(T.Label()),
+    sku: CreateHostingRequestSku,
+    acknowledgedCost: S.Number,
+    agreeToTerms: CreateHostingRequestAgreeToTerms,
+    agreeToNameserverChange: S.optional(S.Boolean),
+    dryRun: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/hosting/create/{domain}", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateHostingRequest",
+}) as any as S.Schema<CreateHostingRequest>;
+
+export type CreateHostingResponseHostingStatus = "ACTIVE" | "PENDING";
+export const CreateHostingResponseHostingStatus = /*@__PURE__*/ S.String;
+
+export interface CreateHostingResponseHosting {
+  domain?: string;
+  product?: string;
+  plan?: string;
+  server?: string;
+  status?: CreateHostingResponseHostingStatus;
+  trial?: boolean;
+  trialEndsAt?: string | null;
+  autoRenew?: boolean;
+  sku?: string;
+}
+export const CreateHostingResponseHosting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domain: S.optional(S.String),
+    product: S.optional(S.String),
+    plan: S.optional(S.String),
+    server: S.optional(S.String),
+    status: S.optional(CreateHostingResponseHostingStatus),
+    trial: S.optional(S.Boolean),
+    trialEndsAt: S.optional(S.NullOr(S.String)),
+    autoRenew: S.optional(S.Boolean),
+    sku: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateHostingResponseHosting",
+}) as any as S.Schema<CreateHostingResponseHosting>;
+
+export interface CreateHostingResponseCost {
+  amount?: number;
+  formatted?: string;
+  interval?: string;
+}
+export const CreateHostingResponseCost = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    amount: S.optional(S.Number),
+    formatted: S.optional(S.String),
+    interval: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateHostingResponseCost",
+}) as any as S.Schema<CreateHostingResponseCost>;
+
+export interface CreateHostingResponse {
+  status?: string;
+  orderId?: number;
+  hosting?: CreateHostingResponseHosting;
+  /** Cents captured now (0 on the free trial). */
+  charged?: number;
+  cost?: CreateHostingResponseCost;
+  message?: string;
+}
+export const CreateHostingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    orderId: S.optional(S.Number),
+    hosting: S.optional(CreateHostingResponseHosting),
+    charged: S.optional(S.Number),
+    cost: S.optional(CreateHostingResponseCost),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateHostingResponse",
+}) as any as S.Schema<CreateHostingResponse>;
+
+/** Event types to subscribe to. Omit, or pass ["*"], for all events. Prefix wildcards like "dns.*" are allowed. */
+export type CreateWebhookRequestEventsList = Array<string>;
+export const CreateWebhookRequestEventsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateWebhookRequestEventsList>;
+
+export interface CreateWebhookRequest {
+  /** HTTPS URL to deliver events to. */
+  url: string;
+  /** Event types to subscribe to. Omit, or pass ["*"], for all events. Prefix wildcards like "dns.*" are allowed. */
+  events?: CreateWebhookRequestEventsList;
+}
+export const CreateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.String,
+    events: S.optional(CreateWebhookRequestEventsList),
+  }).pipe(T.Http({ method: "POST", uri: "/webhook/create", code: 200 })),
+).annotate({
+  identifier: "CreateWebhookRequest",
+}) as any as S.Schema<CreateWebhookRequest>;
+
+/** Subscribed event types, or ["*"] for all. */
+export type WebhookEndpointEventsList = Array<string>;
+export const WebhookEndpointEventsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WebhookEndpointEventsList>;
+
+/** ACTIVE or DISABLED. */
+export type WebhookEndpointStatus = "ACTIVE" | "DISABLED";
+export const WebhookEndpointStatus = /*@__PURE__*/ S.String;
+
+export interface WebhookEndpoint {
+  /** Numeric endpoint id. */
+  id?: number;
+  /** Destination HTTPS URL. */
+  url?: string;
+  /** Signing secret used to verify the X-Porkbun-Signature header (HMAC-SHA256 key). Returned only to the authenticated owner. */
+  secret?: string | Redacted.Redacted<string>;
+  /** Subscribed event types, or ["*"] for all. */
+  events?: WebhookEndpointEventsList;
+  /** ACTIVE or DISABLED. */
+  status?: WebhookEndpointStatus;
+  /** Consecutive failed deliveries; reset to 0 on the next success or on re-enable. The endpoint auto-disables at 20. */
+  consecutiveFailures?: number;
+  /** Timestamp of the last successful delivery, or null. */
+  lastSuccessDate?: string | null;
+  /** Timestamp of the last failed delivery, or null. */
+  lastFailureDate?: string | null;
+  /** Last delivery error, or null. */
+  lastError?: string | null;
+  /** When the endpoint was created. */
+  createDate?: string;
+}
+export const WebhookEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.Number),
+    url: S.optional(S.String),
+    secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    events: S.optional(WebhookEndpointEventsList),
+    status: S.optional(WebhookEndpointStatus),
+    consecutiveFailures: S.optional(S.Number),
+    lastSuccessDate: S.optional(S.NullOr(S.String)),
+    lastFailureDate: S.optional(S.NullOr(S.String)),
+    lastError: S.optional(S.NullOr(S.String)),
+    createDate: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WebhookEndpoint",
+}) as any as S.Schema<WebhookEndpoint>;
+
+export interface WebhookEndpointResponse {
+  status?: string;
+  endpoint?: WebhookEndpoint;
+}
+export const WebhookEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    endpoint: S.optional(WebhookEndpoint),
+  }),
+).annotate({
+  identifier: "WebhookEndpointResponse",
+}) as any as S.Schema<WebhookEndpointResponse>;
+
+export interface DeleteDnsRequest {
+  domain: string;
+  /** Numeric DNS record ID */
+  id: string;
+}
+export const DeleteDnsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domain: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/dns/delete/{domain}/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteDnsRequest",
+}) as any as S.Schema<DeleteDnsRequest>;
+
+export type BasicResponseStatus = "SUCCESS" | "ERROR";
+export const BasicResponseStatus = /*@__PURE__*/ S.String;
+
+export interface BasicResponse {
+  status: BasicResponseStatus;
+  /** Human-readable message. Present on ERROR, sometimes on SUCCESS. */
+  message?: string;
+  /** Machine-readable error code. Present when status is ERROR. */
+  code?: string;
+}
+export const BasicResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: BasicResponseStatus,
+    message: S.optional(S.String),
+    code: S.optional(S.String),
+  }),
+).annotate({ identifier: "BasicResponse" }) as any as S.Schema<BasicResponse>;
+
+export interface DeleteHostingRequest {
+  domain: string;
+}
+export const DeleteHostingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domain: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/hosting/delete/{domain}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteHostingRequest",
+}) as any as S.Schema<DeleteHostingRequest>;
+
+export interface DeleteWebhookRequest {
+  /** Endpoint id. */
+  id: number;
+}
+export const DeleteWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.Number,
+  }).pipe(T.Http({ method: "POST", uri: "/webhook/delete", code: 200 })),
+).annotate({
+  identifier: "DeleteWebhookRequest",
+}) as any as S.Schema<DeleteWebhookRequest>;
+
+export interface DeleteWebhookResponse {
+  status?: string;
+  message?: string;
+}
+export const DeleteWebhookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeleteWebhookResponse",
+}) as any as S.Schema<DeleteWebhookResponse>;
+
+export interface DeployHostingRequestFilesItem {
+  path?: string;
+  /** base64-encoded file contents */
+  content?: string;
+}
+export const DeployHostingRequestFilesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    path: S.optional(S.String),
+    content: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeployHostingRequestFilesItem",
+}) as any as S.Schema<DeployHostingRequestFilesItem>;
+
+export type DeployHostingRequestFilesList =
+  Array<DeployHostingRequestFilesItem>;
+export const DeployHostingRequestFilesList = /*@__PURE__*/ S.Array(
+  DeployHostingRequestFilesItem,
+) as any as S.Schema<DeployHostingRequestFilesList>;
+
+export interface DeployHostingRequest {
+  domain: string;
+  files: DeployHostingRequestFilesList;
+}
+export const DeployHostingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domain: S.String.pipe(T.Label()),
+    files: DeployHostingRequestFilesList,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/hosting/deploy/{domain}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeployHostingRequest",
+}) as any as S.Schema<DeployHostingRequest>;
+
+export type DeployHostingResponseDeployedList = Array<string>;
+export const DeployHostingResponseDeployedList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DeployHostingResponseDeployedList>;
+
+export interface DeployHostingResponseSkippedItem {
+  path?: string;
+  reason?: string;
+}
+export const DeployHostingResponseSkippedItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    path: S.optional(S.String),
+    reason: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeployHostingResponseSkippedItem",
+}) as any as S.Schema<DeployHostingResponseSkippedItem>;
+
+export type DeployHostingResponseSkippedList =
+  Array<DeployHostingResponseSkippedItem>;
+export const DeployHostingResponseSkippedList = /*@__PURE__*/ S.Array(
+  DeployHostingResponseSkippedItem,
+) as any as S.Schema<DeployHostingResponseSkippedList>;
+
+export interface DeployHostingResponse {
+  status?: string;
+  deployed?: DeployHostingResponseDeployedList;
+  skipped?: DeployHostingResponseSkippedList;
+}
+export const DeployHostingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    deployed: S.optional(DeployHostingResponseDeployedList),
+    skipped: S.optional(DeployHostingResponseSkippedList),
+  }),
+).annotate({
+  identifier: "DeployHostingResponse",
+}) as any as S.Schema<DeployHostingResponse>;
 
 export interface DnsCreateDnssecRecordRequest {
   domain: string;
@@ -281,40 +771,6 @@ export const DnsCreateDnssecRecordRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DnsCreateDnssecRecordRequest",
 }) as any as S.Schema<DnsCreateDnssecRecordRequest>;
 
-export type BasicResponseStatus = "SUCCESS" | "ERROR";
-export const BasicResponseStatus = /*@__PURE__*/ S.String;
-
-export interface BasicResponse {
-  status: BasicResponseStatus;
-  /** Human-readable message. Present on ERROR, sometimes on SUCCESS. */
-  message?: string;
-  /** Machine-readable error code. Present when status is ERROR. */
-  code?: string;
-}
-export const BasicResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: BasicResponseStatus,
-    message: S.optional(S.String),
-    code: S.optional(S.String),
-  }),
-).annotate({ identifier: "BasicResponse" }) as any as S.Schema<BasicResponse>;
-
-export interface DnsDeleteRequest {
-  domain: string;
-  /** Numeric DNS record ID */
-  id: string;
-}
-export const DnsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domain: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/dns/delete/{domain}/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "DnsDeleteRequest",
-}) as any as S.Schema<DnsDeleteRequest>;
-
 export interface DnsDeleteByNameTypeRequest {
   domain: string;
   type: string;
@@ -356,55 +812,6 @@ export const DnsDeleteDnssecRecordRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DnsDeleteDnssecRecordRequest",
 }) as any as S.Schema<DnsDeleteDnssecRecordRequest>;
-
-/** DNS record type */
-export type DnsEditRequestType =
-  | "A"
-  | "AAAA"
-  | "MX"
-  | "CNAME"
-  | "ALIAS"
-  | "TXT"
-  | "NS"
-  | "SRV"
-  | "TLSA"
-  | "CAA"
-  | "SSHFP"
-  | "HTTPS"
-  | "SVCB";
-export const DnsEditRequestType = /*@__PURE__*/ S.String;
-
-export interface DnsEditRequest {
-  domain: string;
-  /** Numeric DNS record ID */
-  id: string;
-  /** Subdomain for the record. Do not include the domain name itself. */
-  name?: string;
-  /** DNS record type */
-  type: DnsEditRequestType | (string & {});
-  /** The record value */
-  content: string;
-  /** Time to live in seconds (optional) */
-  ttl?: number;
-  /** Priority for MX/SRV records (optional) */
-  prio?: number;
-  /** Notes (optional). Pass empty string to clear notes; omit or pass null to leave unchanged. */
-  notes?: string;
-}
-export const DnsEditRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domain: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    type: DnsEditRequestType,
-    content: S.String,
-    ttl: S.optional(S.Number),
-    prio: S.optional(S.Number),
-    notes: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/dns/edit/{domain}/{id}", code: 200 }),
-  ),
-).annotate({ identifier: "DnsEditRequest" }) as any as S.Schema<DnsEditRequest>;
 
 export interface DnsEditByNameTypeRequest {
   domain: string;
@@ -501,16 +908,21 @@ export const DnsGetDnssecRecordsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DnsGetDnssecRecordsResponse",
 }) as any as S.Schema<DnsGetDnssecRecordsResponse>;
 
-export interface DnsRetrieveRequest {
+export interface DnsRetrieveByIdRequest {
   domain: string;
+  /** Numeric DNS record ID */
+  id: string;
 }
-export const DnsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const DnsRetrieveByIdRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     domain: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "POST", uri: "/dns/retrieve/{domain}", code: 200 })),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/dns/retrieve/{domain}/{id}", code: 200 }),
+  ),
 ).annotate({
-  identifier: "DnsRetrieveRequest",
-}) as any as S.Schema<DnsRetrieveRequest>;
+  identifier: "DnsRetrieveByIdRequest",
+}) as any as S.Schema<DnsRetrieveByIdRequest>;
 
 /** Whether Cloudflare proxy is enabled for this domain */
 export type DnsRecordsResponseCloudflare = "enabled" | "disabled";
@@ -567,22 +979,6 @@ export const DnsRecordsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DnsRecordsResponse",
 }) as any as S.Schema<DnsRecordsResponse>;
-
-export interface DnsRetrieveByIdRequest {
-  domain: string;
-  /** Numeric DNS record ID */
-  id: string;
-}
-export const DnsRetrieveByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domain: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/dns/retrieve/{domain}/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "DnsRetrieveByIdRequest",
-}) as any as S.Schema<DnsRetrieveByIdRequest>;
 
 export interface DnsRetrieveByNameTypeRequest {
   domain: string;
@@ -799,204 +1195,6 @@ export const CheckDomainResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CheckDomainResponse",
 }) as any as S.Schema<CheckDomainResponse>;
-
-/** Must be 'yes' or '1' to confirm agreement to the Domain Name Registration Agreement, Product Terms of Service, Privacy Policy, and automatic renewal terms. */
-export type DomainCreateRequestAgreeToTerms = "yes" | "1";
-export const DomainCreateRequestAgreeToTerms = /*@__PURE__*/ S.String;
-
-export interface DomainCreateRequest {
-  domain: string;
-  /** The registration cost in pennies (USD cents). Must exactly equal the total price for the domain at its minimum registration duration. Obtain this from /domain/checkDomain first. */
-  cost: number;
-  /** Must be 'yes' or '1' to confirm agreement to the Domain Name Registration Agreement, Product Terms of Service, Privacy Policy, and automatic renewal terms. */
-  agreeToTerms: DomainCreateRequestAgreeToTerms | (string & {});
-  /** Optional. Override WHOIS privacy for this registration. When omitted, the account-level default is used (set under Account Security Settings on porkbun.com/account — defaults to enabled). Pass `true` to force-enable privacy or `false` to register with public contact info. Strings `"on"`/`"off"`, `"true"`/`"false"`, `"yes"`/`"no"`, `"1"`/`"0"` are also accepted. Has no effect on TLDs that don't support WHOIS privacy (privacy stays off regardless). */
-  whoisPrivacy?: boolean;
-  /** Optional. When true, runs all pre-flight validation (availability, pricing, cost match, eligibility, funds, spend limit) and returns a preview with `dryRun: true` and `wouldSucceed` WITHOUT creating an order or charging. Nothing is registered and the rate-limit budget is not consumed. Use it to safely confirm an operation before committing. */
-  dryRun?: boolean;
-}
-export const DomainCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domain: S.String.pipe(T.Label()),
-    cost: S.Number,
-    agreeToTerms: DomainCreateRequestAgreeToTerms,
-    whoisPrivacy: S.optional(S.Boolean),
-    dryRun: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/domain/create/{domain}", code: 200 }),
-  ),
-).annotate({
-  identifier: "DomainCreateRequest",
-}) as any as S.Schema<DomainCreateRequest>;
-
-/** Create-attempt rate limit state */
-export interface CreateDomainResponseLimitsAttempts {
-  /** Window in seconds */
-  TTL?: number;
-  /** Max attempts allowed */
-  limit?: number;
-  /** Attempts used */
-  used?: number;
-  naturalLanguage?: string;
-}
-export const CreateDomainResponseLimitsAttempts = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    TTL: S.optional(S.Number),
-    limit: S.optional(S.Number),
-    used: S.optional(S.Number),
-    naturalLanguage: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CreateDomainResponseLimitsAttempts",
-}) as any as S.Schema<CreateDomainResponseLimitsAttempts>;
-
-/** Successful-registration rate limit state */
-export interface CreateDomainResponseLimitsSuccess {
-  /** Window in seconds */
-  TTL?: number;
-  /** Max successes allowed */
-  limit?: number;
-  /** Successes used */
-  used?: number;
-  naturalLanguage?: string;
-}
-export const CreateDomainResponseLimitsSuccess = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    TTL: S.optional(S.Number),
-    limit: S.optional(S.Number),
-    used: S.optional(S.Number),
-    naturalLanguage: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CreateDomainResponseLimitsSuccess",
-}) as any as S.Schema<CreateDomainResponseLimitsSuccess>;
-
-/** Current rate limit state for both attempt and success limits */
-export interface CreateDomainResponseLimits {
-  /** Create-attempt rate limit state */
-  attempts?: CreateDomainResponseLimitsAttempts;
-  /** Successful-registration rate limit state */
-  success?: CreateDomainResponseLimitsSuccess;
-}
-export const CreateDomainResponseLimits = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attempts: S.optional(CreateDomainResponseLimitsAttempts),
-    success: S.optional(CreateDomainResponseLimitsSuccess),
-  }),
-).annotate({
-  identifier: "CreateDomainResponseLimits",
-}) as any as S.Schema<CreateDomainResponseLimits>;
-
-export interface CreateDomainResponse {
-  status: string;
-  /** The registered domain name */
-  domain: string;
-  /** The total amount charged in pennies */
-  cost?: number;
-  /** Internal Porkbun order ID */
-  orderId: number;
-  /** Current rate limit state for both attempt and success limits */
-  limits?: CreateDomainResponseLimits;
-  /** Remaining account credit balance in pennies after the charge */
-  balance?: number;
-  /** Seconds until the success rate limit window resets */
-  ttlRemaining?: number;
-  /** Per-request UUID (also in the X-Request-Id header). Present on every API response. */
-  requestId?: string;
-}
-export const CreateDomainResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.String,
-    domain: S.String,
-    cost: S.optional(S.Number),
-    orderId: S.Number,
-    limits: S.optional(CreateDomainResponseLimits),
-    balance: S.optional(S.Number),
-    ttlRemaining: S.optional(S.Number),
-    requestId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CreateDomainResponse",
-}) as any as S.Schema<CreateDomainResponse>;
-
-export type DryRunPreviewResponseOperation =
-  | "registration"
-  | "renewal"
-  | "transfer";
-export const DryRunPreviewResponseOperation = /*@__PURE__*/ S.String;
-
-/** Returned (HTTP 200) by /domain/create, /domain/renew, and /domain/transfer when the request includes `dryRun: true`. All validation has run but nothing was created or charged. All money amounts are in pennies (USD cents). */
-export interface DryRunPreviewResponse {
-  status: string;
-  /** Always true on a dry-run preview — distinguishes it from a real success response. */
-  dryRun: boolean;
-  /** True if the operation would complete given current funds and spend-limit state. (Hard validation failures — unavailable, bad price, ineligible — return a normal error response instead of a preview.) */
-  wouldSucceed: boolean;
-  operation: DryRunPreviewResponseOperation;
-  domain: string;
-  tld?: string;
-  /** Availability as reported by the registry check (e.g. `available` / `unavailable`). */
-  available?: string;
-  /** Whether the domain is a premium/aftermarket name. */
-  premium?: boolean;
-  /** Term in years that would be purchased. */
-  duration?: number;
-  /** Total cost in pennies that would be charged. */
-  cost: number;
-  /** Human-readable cost. */
-  costDisplay?: string;
-  /** Current account credit balance in pennies. */
-  balance?: number;
-  /** Whether the balance covers the cost. */
-  sufficientFunds?: boolean;
-  /** The account's monthly API spend cap in pennies. Present only if a cap is configured. */
-  monthlySpendLimit?: number;
-  /** API spend so far this calendar month in pennies. Present only if a cap is configured. */
-  monthlySpendSoFar?: number;
-  /** Whether this cost stays within the monthly cap. Present only if a cap is configured. */
-  withinMonthlySpendLimit?: boolean;
-  /** Human-readable summary of the preview outcome. */
-  message?: string;
-  /** Per-request UUID (also in the X-Request-Id header). Present on every API response. */
-  requestId?: string;
-}
-export const DryRunPreviewResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.String,
-    dryRun: S.Boolean,
-    wouldSucceed: S.Boolean,
-    operation: DryRunPreviewResponseOperation,
-    domain: S.String,
-    tld: S.optional(S.String),
-    available: S.optional(S.String),
-    premium: S.optional(S.Boolean),
-    duration: S.optional(S.Number),
-    cost: S.Number,
-    costDisplay: S.optional(S.String),
-    balance: S.optional(S.Number),
-    sufficientFunds: S.optional(S.Boolean),
-    monthlySpendLimit: S.optional(S.Number),
-    monthlySpendSoFar: S.optional(S.Number),
-    withinMonthlySpendLimit: S.optional(S.Boolean),
-    message: S.optional(S.String),
-    requestId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DryRunPreviewResponse",
-}) as any as S.Schema<DryRunPreviewResponse>;
-
-export type DomainCreateResponseBody =
-  | CreateDomainResponse
-  | DryRunPreviewResponse;
-export const DomainCreateResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DomainCreateResponseBody>;
-
-export type DomainCreateResponse = DomainCreateResponseBody;
-export const DomainCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  DomainCreateResponseBody.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "DomainCreateResponse",
-}) as any as S.Schema<DomainCreateResponse>;
 
 /** Array of IP addresses (IPv4 and/or IPv6) to associate with the host record */
 export type DomainCreateGlueRequestIpsList = Array<string>;
@@ -1366,95 +1564,6 @@ export const GetUrlForwardingResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetUrlForwardingResponse",
 }) as any as S.Schema<GetUrlForwardingResponse>;
 
-export interface DomainRenewRequest {
-  domain: string;
-  /** The renewal cost in pennies (USD cents). Must exactly equal the total price for the domain at its minimum renewal duration. Obtain this from /domain/checkDomain first. */
-  cost: number;
-  /** Optional. When true, runs all pre-flight validation and returns a preview with `dryRun: true` and `wouldSucceed` WITHOUT renewing or charging. Nothing changes and the rate-limit budget is not consumed. */
-  dryRun?: boolean;
-}
-export const DomainRenewRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domain: S.String.pipe(T.Label()),
-    cost: S.Number,
-    dryRun: S.optional(S.Boolean),
-  }).pipe(T.Http({ method: "POST", uri: "/domain/renew/{domain}", code: 200 })),
-).annotate({
-  identifier: "DomainRenewRequest",
-}) as any as S.Schema<DomainRenewRequest>;
-
-export type RenewDomainResponseLimitsAttempts =
-  CreateDomainResponseLimitsAttempts;
-export const RenewDomainResponseLimitsAttempts =
-  CreateDomainResponseLimitsAttempts;
-
-export type RenewDomainResponseLimitsSuccess =
-  CreateDomainResponseLimitsSuccess;
-export const RenewDomainResponseLimitsSuccess =
-  CreateDomainResponseLimitsSuccess;
-
-/** Current rate limit state for both attempt and success limits */
-export interface RenewDomainResponseLimits {
-  attempts?: CreateDomainResponseLimitsAttempts;
-  success?: CreateDomainResponseLimitsSuccess;
-}
-export const RenewDomainResponseLimits = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attempts: S.optional(CreateDomainResponseLimitsAttempts),
-    success: S.optional(CreateDomainResponseLimitsSuccess),
-  }),
-).annotate({
-  identifier: "RenewDomainResponseLimits",
-}) as any as S.Schema<RenewDomainResponseLimits>;
-
-export interface RenewDomainResponse {
-  status: string;
-  /** The renewed domain name */
-  domain: string;
-  /** The new expiration date returned by the registry */
-  expirationDate?: string;
-  /** The total amount charged in pennies */
-  cost?: number;
-  /** Internal Porkbun order ID */
-  orderId: number;
-  /** Current rate limit state for both attempt and success limits */
-  limits?: RenewDomainResponseLimits;
-  /** Remaining account credit balance in pennies after the charge */
-  balance?: number;
-  /** Seconds until the success rate limit window resets */
-  ttlRemaining?: number;
-  /** Per-request UUID (also in the X-Request-Id header). Present on every API response. */
-  requestId?: string;
-}
-export const RenewDomainResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.String,
-    domain: S.String,
-    expirationDate: S.optional(S.String),
-    cost: S.optional(S.Number),
-    orderId: S.Number,
-    limits: S.optional(RenewDomainResponseLimits),
-    balance: S.optional(S.Number),
-    ttlRemaining: S.optional(S.Number),
-    requestId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RenewDomainResponse",
-}) as any as S.Schema<RenewDomainResponse>;
-
-export type DomainRenewResponseBody =
-  | RenewDomainResponse
-  | DryRunPreviewResponse;
-export const DomainRenewResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DomainRenewResponseBody>;
-
-export type DomainRenewResponse = DomainRenewResponseBody;
-export const DomainRenewResponse = /*@__PURE__*/ S.suspend(() =>
-  DomainRenewResponseBody.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "DomainRenewResponse",
-}) as any as S.Schema<DomainRenewResponse>;
-
 /** Auto-renew status to set */
 export type DomainUpdateAutoRenewRequestStatus = "on" | "off";
 export const DomainUpdateAutoRenewRequestStatus = /*@__PURE__*/ S.String;
@@ -1637,6 +1746,55 @@ export const DomainUpdateNsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DomainUpdateNsRequest",
 }) as any as S.Schema<DomainUpdateNsRequest>;
 
+/** DNS record type */
+export type EditDnsRequestType =
+  | "A"
+  | "AAAA"
+  | "MX"
+  | "CNAME"
+  | "ALIAS"
+  | "TXT"
+  | "NS"
+  | "SRV"
+  | "TLSA"
+  | "CAA"
+  | "SSHFP"
+  | "HTTPS"
+  | "SVCB";
+export const EditDnsRequestType = /*@__PURE__*/ S.String;
+
+export interface EditDnsRequest {
+  domain: string;
+  /** Numeric DNS record ID */
+  id: string;
+  /** Subdomain for the record. Do not include the domain name itself. */
+  name?: string;
+  /** DNS record type */
+  type: EditDnsRequestType | (string & {});
+  /** The record value */
+  content: string;
+  /** Time to live in seconds (optional) */
+  ttl?: number;
+  /** Priority for MX/SRV records (optional) */
+  prio?: number;
+  /** Notes (optional). Pass empty string to clear notes; omit or pass null to leave unchanged. */
+  notes?: string;
+}
+export const EditDnsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domain: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    type: EditDnsRequestType,
+    content: S.String,
+    ttl: S.optional(S.Number),
+    prio: S.optional(S.Number),
+    notes: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/dns/edit/{domain}/{id}", code: 200 }),
+  ),
+).annotate({ identifier: "EditDnsRequest" }) as any as S.Schema<EditDnsRequest>;
+
 export interface EmailSetPasswordRequest {
   /** The full email address (e.g. user@example.com) */
   emailAddress: string;
@@ -1688,6 +1846,46 @@ export const GetAccountInviteStatusResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetAccountInviteStatusResponse",
 }) as any as S.Schema<GetAccountInviteStatusResponse>;
+
+export interface GetApikeyRequest {
+  /** The token returned by /apikey/request. Must be a 64-character lowercase hex string. */
+  requestToken: string;
+  /** PKCE verifier (RFC 7636). Required only when the request was created with a codeChallenge. The high-entropy secret whose base64url(SHA-256(codeVerifier)) equals that challenge. When it matches, this response includes the secret key (secretapikey) once. */
+  codeVerifier?: string;
+}
+export const GetApikeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requestToken: S.String,
+    codeVerifier: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/apikey/retrieve", code: 200 })),
+).annotate({
+  identifier: "GetApikeyRequest",
+}) as any as S.Schema<GetApikeyRequest>;
+
+export type GetApikeyResponseStatus = "SUCCESS" | "PENDING" | "ERROR";
+export const GetApikeyResponseStatus = /*@__PURE__*/ S.String;
+
+export interface GetApikeyResponse {
+  status?: GetApikeyResponseStatus;
+  /** The approved public API key. Present only when status is SUCCESS. */
+  apikey?: string | Redacted.Redacted<string>;
+  /** The secret API key. Returned ONLY for a PKCE request, exactly once, on the retrieve that presents a valid codeVerifier. Never returned for legacy requests, and never again after the first successful claim (later calls return apikey only, with code SECRET_ALREADY_CLAIMED). Store it immediately. */
+  secretapikey?: string;
+  message?: string;
+  /** Machine-readable error code. Present when status is ERROR. */
+  code?: string;
+}
+export const GetApikeyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(GetApikeyResponseStatus),
+    apikey: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    secretapikey: S.optional(S.String),
+    message: S.optional(S.String),
+    code: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetApikeyResponse",
+}) as any as S.Schema<GetApikeyResponse>;
 
 export interface GetApiSettingsRequest {}
 export const GetApiSettingsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -1769,6 +1967,15 @@ export const BalanceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BalanceResponse",
 }) as any as S.Schema<BalanceResponse>;
+
+export interface GetDnsRequest {
+  domain: string;
+}
+export const GetDnsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domain: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "POST", uri: "/dns/retrieve/{domain}", code: 200 })),
+).annotate({ identifier: "GetDnsRequest" }) as any as S.Schema<GetDnsRequest>;
 
 export interface GetDnsRecordByIdRequest {
   domain: string;
@@ -2153,6 +2360,60 @@ export const GetDomainUrlForwardingRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDomainUrlForwardingRequest",
 }) as any as S.Schema<GetDomainUrlForwardingRequest>;
 
+export interface GetHostingRequest {
+  domain: string;
+}
+export const GetHostingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domain: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/hosting/get/{domain}", code: 200 })),
+).annotate({
+  identifier: "GetHostingRequest",
+}) as any as S.Schema<GetHostingRequest>;
+
+export interface GetHostingResponseHosting {
+  domain?: string;
+  product?: string;
+  status?: string;
+  plan?: string;
+  server?: string;
+  isTrial?: boolean;
+  autoRenew?: boolean;
+  expireDate?: string;
+  /** True when a deprovision (retire) is queued/underway. Poll this endpoint until hosting is null for teardown completion. */
+  pendingRetire?: boolean;
+  cost?: unknown;
+}
+export const GetHostingResponseHosting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domain: S.optional(S.String),
+    product: S.optional(S.String),
+    status: S.optional(S.String),
+    plan: S.optional(S.String),
+    server: S.optional(S.String),
+    isTrial: S.optional(S.Boolean),
+    autoRenew: S.optional(S.Boolean),
+    expireDate: S.optional(S.String),
+    pendingRetire: S.optional(S.Boolean),
+    cost: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "GetHostingResponseHosting",
+}) as any as S.Schema<GetHostingResponseHosting>;
+
+export interface GetHostingResponse {
+  status?: string;
+  hosting?: GetHostingResponseHosting | null;
+}
+export const GetHostingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    hosting: S.optional(S.NullOr(GetHostingResponseHosting)),
+  }),
+).annotate({
+  identifier: "GetHostingResponse",
+}) as any as S.Schema<GetHostingResponse>;
+
 export interface GetIpRequest {}
 export const GetIpRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/ip", code: 200 })),
@@ -2172,6 +2433,31 @@ export const IpResponse = /*@__PURE__*/ S.suspend(() =>
     xForwardedFor: S.optional(S.String),
   }),
 ).annotate({ identifier: "IpResponse" }) as any as S.Schema<IpResponse>;
+
+export interface GetPingRequest {}
+export const GetPingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/ping", code: 200 })),
+).annotate({ identifier: "GetPingRequest" }) as any as S.Schema<GetPingRequest>;
+
+export interface GetPingResponse {
+  status: string;
+  /** The caller's public IP address */
+  yourIp: string;
+  /** Raw value of the X-Forwarded-For header */
+  xForwardedFor?: string;
+  /** Present and true when valid credentials were supplied */
+  credentialsValid?: boolean;
+}
+export const GetPingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.String,
+    yourIp: S.String,
+    xForwardedFor: S.optional(S.String),
+    credentialsValid: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "GetPingResponse",
+}) as any as S.Schema<GetPingResponse>;
 
 /** Optional array of TLDs to filter results. If omitted, all supported TLDs are returned. */
 export type GetPricingRequestTldsList = Array<string>;
@@ -2361,6 +2647,33 @@ export const GetPricingGetResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPricingGetResponse",
 }) as any as S.Schema<GetPricingGetResponse>;
 
+export interface GetSslRequest {
+  domain: string;
+}
+export const GetSslRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domain: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "POST", uri: "/ssl/retrieve/{domain}", code: 200 })),
+).annotate({ identifier: "GetSslRequest" }) as any as S.Schema<GetSslRequest>;
+
+export interface GetSslResponse {
+  status?: string;
+  /** The full PEM-encoded certificate chain (certificate + intermediates) */
+  certificatechain?: string;
+  /** The PEM-encoded private key */
+  privatekey?: string | Redacted.Redacted<string>;
+  /** The PEM-encoded public key */
+  publickey?: string;
+}
+export const GetSslResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    certificatechain: S.optional(S.String),
+    privatekey: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    publickey: S.optional(S.String),
+  }),
+).annotate({ identifier: "GetSslResponse" }) as any as S.Schema<GetSslResponse>;
+
 export interface GetSslRetrieveRequest {
   domain: string;
 }
@@ -2451,108 +2764,16 @@ export const GetTransferResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTransferResponse",
 }) as any as S.Schema<GetTransferResponse>;
 
-/** The hosting plan SKU to provision. Discover the provisionable SKUs (and each one’s price/interval/trial) via GET /hosting/plans, then pass the row’s `sku`. Currently Secure Static Hosting: PIXIESECURESTATICM2 ($3.00/mo) or PIXIESECURESTATICY2 ($30.00/yr). */
-export type HostingCreateRequestSku =
-  | "PIXIESECURESTATICM2"
-  | "PIXIESECURESTATICY2";
-export const HostingCreateRequestSku = /*@__PURE__*/ S.String;
-
-export type HostingCreateRequestAgreeToTerms = "yes";
-export const HostingCreateRequestAgreeToTerms = /*@__PURE__*/ S.String;
-
-export interface HostingCreateRequest {
-  domain: string;
-  /** The hosting plan SKU to provision. Discover the provisionable SKUs (and each one’s price/interval/trial) via GET /hosting/plans, then pass the row’s `sku`. Currently Secure Static Hosting: PIXIESECURESTATICM2 ($3.00/mo) or PIXIESECURESTATICY2 ($30.00/yr). */
-  sku: HostingCreateRequestSku | (string & {});
-  /** Echo the plan price in cents (300 monthly / 3000 yearly) to confirm the account holder understands the auto-renew / charge. Mismatch returns COST_ACKNOWLEDGMENT_REQUIRED. */
-  acknowledgedCost: number;
-  agreeToTerms: HostingCreateRequestAgreeToTerms | (string & {});
-  /** Required (true) when the domain is not already on Porkbun nameservers — provisioning will switch them. */
-  agreeToNameserverChange?: boolean;
-  /** Validate + preview without provisioning or charging. */
-  dryRun?: boolean;
+export interface GetWebhookRequest {
+  id: number;
 }
-export const HostingCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWebhookRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    domain: S.String.pipe(T.Label()),
-    sku: HostingCreateRequestSku,
-    acknowledgedCost: S.Number,
-    agreeToTerms: HostingCreateRequestAgreeToTerms,
-    agreeToNameserverChange: S.optional(S.Boolean),
-    dryRun: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/hosting/create/{domain}", code: 200 }),
-  ),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/webhook/get/{id}", code: 200 })),
 ).annotate({
-  identifier: "HostingCreateRequest",
-}) as any as S.Schema<HostingCreateRequest>;
-
-export type HostingCreateResponseHostingStatus = "ACTIVE" | "PENDING";
-export const HostingCreateResponseHostingStatus = /*@__PURE__*/ S.String;
-
-export interface HostingCreateResponseHosting {
-  domain?: string;
-  product?: string;
-  plan?: string;
-  server?: string;
-  status?: HostingCreateResponseHostingStatus;
-  trial?: boolean;
-  trialEndsAt?: string | null;
-  autoRenew?: boolean;
-  sku?: string;
-}
-export const HostingCreateResponseHosting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domain: S.optional(S.String),
-    product: S.optional(S.String),
-    plan: S.optional(S.String),
-    server: S.optional(S.String),
-    status: S.optional(HostingCreateResponseHostingStatus),
-    trial: S.optional(S.Boolean),
-    trialEndsAt: S.optional(S.NullOr(S.String)),
-    autoRenew: S.optional(S.Boolean),
-    sku: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "HostingCreateResponseHosting",
-}) as any as S.Schema<HostingCreateResponseHosting>;
-
-export interface HostingCreateResponseCost {
-  amount?: number;
-  formatted?: string;
-  interval?: string;
-}
-export const HostingCreateResponseCost = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    amount: S.optional(S.Number),
-    formatted: S.optional(S.String),
-    interval: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "HostingCreateResponseCost",
-}) as any as S.Schema<HostingCreateResponseCost>;
-
-export interface HostingCreateResponse {
-  status?: string;
-  orderId?: number;
-  hosting?: HostingCreateResponseHosting;
-  /** Cents captured now (0 on the free trial). */
-  charged?: number;
-  cost?: HostingCreateResponseCost;
-  message?: string;
-}
-export const HostingCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    orderId: S.optional(S.Number),
-    hosting: S.optional(HostingCreateResponseHosting),
-    charged: S.optional(S.Number),
-    cost: S.optional(HostingCreateResponseCost),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "HostingCreateResponse",
-}) as any as S.Schema<HostingCreateResponse>;
+  identifier: "GetWebhookRequest",
+}) as any as S.Schema<GetWebhookRequest>;
 
 /** Least privilege by default. `editor` = content only (recommended for agents). `administrator` = full control incl. plugin install; requires acknowledgeFullAccess. */
 export type HostingCreateWpCredentialsRequestRole = "editor" | "administrator";
@@ -2625,19 +2846,6 @@ export const HostingCreateWpCredentialsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "HostingCreateWpCredentialsResponse",
 }) as any as S.Schema<HostingCreateWpCredentialsResponse>;
 
-export interface HostingDeleteRequest {
-  domain: string;
-}
-export const HostingDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domain: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/hosting/delete/{domain}", code: 200 }),
-  ),
-).annotate({
-  identifier: "HostingDeleteRequest",
-}) as any as S.Schema<HostingDeleteRequest>;
-
 export interface HostingDeleteFileRequest {
   domain: string;
   path: string;
@@ -2708,80 +2916,6 @@ export const HostingDeleteWpCredentialsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "HostingDeleteWpCredentialsResponse",
 }) as any as S.Schema<HostingDeleteWpCredentialsResponse>;
 
-export interface HostingDeployRequestFilesItem {
-  path?: string;
-  /** base64-encoded file contents */
-  content?: string;
-}
-export const HostingDeployRequestFilesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    path: S.optional(S.String),
-    content: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "HostingDeployRequestFilesItem",
-}) as any as S.Schema<HostingDeployRequestFilesItem>;
-
-export type HostingDeployRequestFilesList =
-  Array<HostingDeployRequestFilesItem>;
-export const HostingDeployRequestFilesList = /*@__PURE__*/ S.Array(
-  HostingDeployRequestFilesItem,
-) as any as S.Schema<HostingDeployRequestFilesList>;
-
-export interface HostingDeployRequest {
-  domain: string;
-  files: HostingDeployRequestFilesList;
-}
-export const HostingDeployRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domain: S.String.pipe(T.Label()),
-    files: HostingDeployRequestFilesList,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/hosting/deploy/{domain}", code: 200 }),
-  ),
-).annotate({
-  identifier: "HostingDeployRequest",
-}) as any as S.Schema<HostingDeployRequest>;
-
-export type HostingDeployResponseDeployedList = Array<string>;
-export const HostingDeployResponseDeployedList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<HostingDeployResponseDeployedList>;
-
-export interface HostingDeployResponseSkippedItem {
-  path?: string;
-  reason?: string;
-}
-export const HostingDeployResponseSkippedItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    path: S.optional(S.String),
-    reason: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "HostingDeployResponseSkippedItem",
-}) as any as S.Schema<HostingDeployResponseSkippedItem>;
-
-export type HostingDeployResponseSkippedList =
-  Array<HostingDeployResponseSkippedItem>;
-export const HostingDeployResponseSkippedList = /*@__PURE__*/ S.Array(
-  HostingDeployResponseSkippedItem,
-) as any as S.Schema<HostingDeployResponseSkippedList>;
-
-export interface HostingDeployResponse {
-  status?: string;
-  deployed?: HostingDeployResponseDeployedList;
-  skipped?: HostingDeployResponseSkippedList;
-}
-export const HostingDeployResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    deployed: S.optional(HostingDeployResponseDeployedList),
-    skipped: S.optional(HostingDeployResponseSkippedList),
-  }),
-).annotate({
-  identifier: "HostingDeployResponse",
-}) as any as S.Schema<HostingDeployResponse>;
-
 export interface HostingFilesRequest {
   domain: string;
 }
@@ -2812,60 +2946,6 @@ export const HostingFilesResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "HostingFilesResponse",
 }) as any as S.Schema<HostingFilesResponse>;
-
-export interface HostingGetRequest {
-  domain: string;
-}
-export const HostingGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domain: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/hosting/get/{domain}", code: 200 })),
-).annotate({
-  identifier: "HostingGetRequest",
-}) as any as S.Schema<HostingGetRequest>;
-
-export interface HostingGetResponseHosting {
-  domain?: string;
-  product?: string;
-  status?: string;
-  plan?: string;
-  server?: string;
-  isTrial?: boolean;
-  autoRenew?: boolean;
-  expireDate?: string;
-  /** True when a deprovision (retire) is queued/underway. Poll this endpoint until hosting is null for teardown completion. */
-  pendingRetire?: boolean;
-  cost?: unknown;
-}
-export const HostingGetResponseHosting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domain: S.optional(S.String),
-    product: S.optional(S.String),
-    status: S.optional(S.String),
-    plan: S.optional(S.String),
-    server: S.optional(S.String),
-    isTrial: S.optional(S.Boolean),
-    autoRenew: S.optional(S.Boolean),
-    expireDate: S.optional(S.String),
-    pendingRetire: S.optional(S.Boolean),
-    cost: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "HostingGetResponseHosting",
-}) as any as S.Schema<HostingGetResponseHosting>;
-
-export interface HostingGetResponse {
-  status?: string;
-  hosting?: HostingGetResponseHosting | null;
-}
-export const HostingGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    hosting: S.optional(S.NullOr(HostingGetResponseHosting)),
-  }),
-).annotate({
-  identifier: "HostingGetResponse",
-}) as any as S.Schema<HostingGetResponse>;
 
 export interface HostingGetWpCredentialsRequest {
   domain: string;
@@ -2990,11 +3070,6 @@ export const HostingPlansResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "HostingPlansResponse",
 }) as any as S.Schema<HostingPlansResponse>;
-
-export interface IpPostRequest {}
-export const IpPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.Http({ method: "POST", uri: "/ip", code: 200 })),
-).annotate({ identifier: "IpPostRequest" }) as any as S.Schema<IpPostRequest>;
 
 /** Return label metadata for each domain. Defaults to no. */
 export type ListDomainsRequestIncludeLabels = "yes" | "no";
@@ -3324,6 +3399,31 @@ export const ListTransfersResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTransfersResponse",
 }) as any as S.Schema<ListTransfersResponse>;
 
+export interface ListWebhookRequest {}
+export const ListWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/webhook/list", code: 200 })),
+).annotate({
+  identifier: "ListWebhookRequest",
+}) as any as S.Schema<ListWebhookRequest>;
+
+export type WebhookListResponseEndpointsList = Array<WebhookEndpoint>;
+export const WebhookListResponseEndpointsList = /*@__PURE__*/ S.Array(
+  WebhookEndpoint,
+) as any as S.Schema<WebhookListResponseEndpointsList>;
+
+export interface WebhookListResponse {
+  status?: string;
+  endpoints?: WebhookListResponseEndpointsList;
+}
+export const WebhookListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    endpoints: S.optional(WebhookListResponseEndpointsList),
+  }),
+).annotate({
+  identifier: "WebhookListResponse",
+}) as any as S.Schema<WebhookListResponse>;
+
 export interface MockDirectoryRequest {}
 export const MockDirectoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/mock", code: 200 })),
@@ -3419,48 +3519,199 @@ export const PingResponse = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PingResponse" }) as any as S.Schema<PingResponse>;
 
-export interface PingGetRequest {}
-export const PingGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/ping", code: 200 })),
-).annotate({ identifier: "PingGetRequest" }) as any as S.Schema<PingGetRequest>;
+export interface PostIpRequest {}
+export const PostIpRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.Http({ method: "POST", uri: "/ip", code: 200 })),
+).annotate({ identifier: "PostIpRequest" }) as any as S.Schema<PostIpRequest>;
 
-export interface PingGetResponse {
-  status: string;
-  /** The caller's public IP address */
-  yourIp: string;
-  /** Raw value of the X-Forwarded-For header */
-  xForwardedFor?: string;
-  /** Present and true when valid credentials were supplied */
-  credentialsValid?: boolean;
+export interface RenewDomainRequest {
+  domain: string;
+  /** The renewal cost in pennies (USD cents). Must exactly equal the total price for the domain at its minimum renewal duration. Obtain this from /domain/checkDomain first. */
+  cost: number;
+  /** Optional. When true, runs all pre-flight validation and returns a preview with `dryRun: true` and `wouldSucceed` WITHOUT renewing or charging. Nothing changes and the rate-limit budget is not consumed. */
+  dryRun?: boolean;
 }
-export const PingGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const RenewDomainRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: S.String,
-    yourIp: S.String,
-    xForwardedFor: S.optional(S.String),
-    credentialsValid: S.optional(S.Boolean),
+    domain: S.String.pipe(T.Label()),
+    cost: S.Number,
+    dryRun: S.optional(S.Boolean),
+  }).pipe(T.Http({ method: "POST", uri: "/domain/renew/{domain}", code: 200 })),
+).annotate({
+  identifier: "RenewDomainRequest",
+}) as any as S.Schema<RenewDomainRequest>;
+
+export type RenewDomainResponseLimitsAttempts =
+  CreateDomainResponseLimitsAttempts;
+export const RenewDomainResponseLimitsAttempts =
+  CreateDomainResponseLimitsAttempts;
+
+export type RenewDomainResponseLimitsSuccess =
+  CreateDomainResponseLimitsSuccess;
+export const RenewDomainResponseLimitsSuccess =
+  CreateDomainResponseLimitsSuccess;
+
+/** Current rate limit state for both attempt and success limits */
+export interface RenewDomainResponseLimits {
+  attempts?: CreateDomainResponseLimitsAttempts;
+  success?: CreateDomainResponseLimitsSuccess;
+}
+export const RenewDomainResponseLimits = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attempts: S.optional(CreateDomainResponseLimitsAttempts),
+    success: S.optional(CreateDomainResponseLimitsSuccess),
   }),
 ).annotate({
-  identifier: "PingGetResponse",
-}) as any as S.Schema<PingGetResponse>;
+  identifier: "RenewDomainResponseLimits",
+}) as any as S.Schema<RenewDomainResponseLimits>;
 
-export interface SandboxResetRequest {}
-export const SandboxResetRequest = /*@__PURE__*/ S.suspend(() =>
+export interface RenewDomainResponse {
+  status: string;
+  /** The renewed domain name */
+  domain: string;
+  /** The new expiration date returned by the registry */
+  expirationDate?: string;
+  /** The total amount charged in pennies */
+  cost?: number;
+  /** Internal Porkbun order ID */
+  orderId: number;
+  /** Current rate limit state for both attempt and success limits */
+  limits?: RenewDomainResponseLimits;
+  /** Remaining account credit balance in pennies after the charge */
+  balance?: number;
+  /** Seconds until the success rate limit window resets */
+  ttlRemaining?: number;
+  /** Per-request UUID (also in the X-Request-Id header). Present on every API response. */
+  requestId?: string;
+}
+export const RenewDomainResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.String,
+    domain: S.String,
+    expirationDate: S.optional(S.String),
+    cost: S.optional(S.Number),
+    orderId: S.Number,
+    limits: S.optional(RenewDomainResponseLimits),
+    balance: S.optional(S.Number),
+    ttlRemaining: S.optional(S.Number),
+    requestId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RenewDomainResponse",
+}) as any as S.Schema<RenewDomainResponse>;
+
+export type RenewDomainResponseBody =
+  | RenewDomainResponse
+  | DryRunPreviewResponse;
+export const RenewDomainResponseBody =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<RenewDomainResponseBody>;
+
+export type RenewDomainResponse2 = RenewDomainResponseBody;
+export const RenewDomainResponse2 = /*@__PURE__*/ S.suspend(() =>
+  RenewDomainResponseBody.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "RenewDomainResponse2",
+}) as any as S.Schema<RenewDomainResponse2>;
+
+export interface ResendWebhookRequest {
+  /** Endpoint id. */
+  id: number;
+}
+export const ResendWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.Number,
+  }).pipe(T.Http({ method: "POST", uri: "/webhook/resend", code: 200 })),
+).annotate({
+  identifier: "ResendWebhookRequest",
+}) as any as S.Schema<ResendWebhookRequest>;
+
+/** PENDING (queued/awaiting retry), PROCESSING (in flight), DELIVERED (2xx), or FAILED (gave up after max attempts). */
+export type WebhookDeliveryStatus =
+  | "PENDING"
+  | "PROCESSING"
+  | "DELIVERED"
+  | "FAILED";
+export const WebhookDeliveryStatus = /*@__PURE__*/ S.String;
+
+export interface WebhookDelivery {
+  /** Delivery id. */
+  id?: number;
+  /** Endpoint this delivery targets. */
+  endpointId?: number;
+  eventType?: string;
+  /** UUIDv7 of the event; sent as X-Porkbun-Webhook-Id. Stable across resends. */
+  eventId?: string;
+  /** PENDING (queued/awaiting retry), PROCESSING (in flight), DELIVERED (2xx), or FAILED (gave up after max attempts). */
+  status?: WebhookDeliveryStatus;
+  /** Delivery attempts made so far. */
+  attempts?: number;
+  /** Attempt cap before the delivery is marked FAILED. */
+  maxAttempts?: number;
+  /** HTTP status from the last attempt, or null if not yet attempted / connection error. */
+  httpStatus?: number | null;
+  /** Last delivery error, or null. */
+  lastError?: string | null;
+  /** When the next attempt is scheduled (for PENDING rows). */
+  nextAttemptAt?: string;
+  /** When the delivery was queued. */
+  createDate?: string;
+  /** When it was successfully delivered, or null. */
+  deliveredDate?: string | null;
+  /** The full event envelope that was sent. Present only on GET /webhook/delivery/{id}. */
+  payload?: unknown;
+}
+export const WebhookDelivery = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.Number),
+    endpointId: S.optional(S.Number),
+    eventType: S.optional(S.String),
+    eventId: S.optional(S.String),
+    status: S.optional(WebhookDeliveryStatus),
+    attempts: S.optional(S.Number),
+    maxAttempts: S.optional(S.Number),
+    httpStatus: S.optional(S.NullOr(S.Number)),
+    lastError: S.optional(S.NullOr(S.String)),
+    nextAttemptAt: S.optional(S.String),
+    createDate: S.optional(S.String),
+    deliveredDate: S.optional(S.NullOr(S.String)),
+    payload: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "WebhookDelivery",
+}) as any as S.Schema<WebhookDelivery>;
+
+export interface WebhookResendResponse {
+  status?: string;
+  delivery?: WebhookDelivery;
+  message?: string;
+}
+export const WebhookResendResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    delivery: S.optional(WebhookDelivery),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WebhookResendResponse",
+}) as any as S.Schema<WebhookResendResponse>;
+
+export interface ResetSandboxRequest {}
+export const ResetSandboxRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "POST", uri: "/sandbox/reset", code: 200 }),
   ),
 ).annotate({
-  identifier: "SandboxResetRequest",
-}) as any as S.Schema<SandboxResetRequest>;
+  identifier: "ResetSandboxRequest",
+}) as any as S.Schema<ResetSandboxRequest>;
 
-export interface SandboxResetResponse {
+export interface ResetSandboxResponse {
   status?: string;
   message?: string;
   domainsCleared?: number;
   balance?: number;
   sandbox?: boolean;
 }
-export const SandboxResetResponse = /*@__PURE__*/ S.suspend(() =>
+export const ResetSandboxResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     status: S.optional(S.String),
     message: S.optional(S.String),
@@ -3469,8 +3720,8 @@ export const SandboxResetResponse = /*@__PURE__*/ S.suspend(() =>
     sandbox: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "SandboxResetResponse",
-}) as any as S.Schema<SandboxResetResponse>;
+  identifier: "ResetSandboxResponse",
+}) as any as S.Schema<ResetSandboxResponse>;
 
 export interface SandboxTopupRequest {
   /** Fake credit to add in US cents (default 100000; max 1000000). */
@@ -3552,36 +3803,33 @@ export const SandboxTriggerWebhookResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SandboxTriggerWebhookResponse",
 }) as any as S.Schema<SandboxTriggerWebhookResponse>;
 
-export interface SslRetrieveRequest {
-  domain: string;
+export interface TestWebhookRequest {
+  /** Endpoint id. */
+  id: number;
 }
-export const SslRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const TestWebhookRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    domain: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "POST", uri: "/ssl/retrieve/{domain}", code: 200 })),
+    id: S.Number,
+  }).pipe(T.Http({ method: "POST", uri: "/webhook/test", code: 200 })),
 ).annotate({
-  identifier: "SslRetrieveRequest",
-}) as any as S.Schema<SslRetrieveRequest>;
+  identifier: "TestWebhookRequest",
+}) as any as S.Schema<TestWebhookRequest>;
 
-export interface SslRetrieveResponse {
+export interface WebhookTestResponse {
   status?: string;
-  /** The full PEM-encoded certificate chain (certificate + intermediates) */
-  certificatechain?: string;
-  /** The PEM-encoded private key */
-  privatekey?: string | Redacted.Redacted<string>;
-  /** The PEM-encoded public key */
-  publickey?: string;
+  /** UUID of the queued webhook.test event. */
+  eventId?: string;
+  message?: string;
 }
-export const SslRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
+export const WebhookTestResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     status: S.optional(S.String),
-    certificatechain: S.optional(S.String),
-    privatekey: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    publickey: S.optional(S.String),
+    eventId: S.optional(S.String),
+    message: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "SslRetrieveResponse",
-}) as any as S.Schema<SslRetrieveResponse>;
+  identifier: "WebhookTestResponse",
+}) as any as S.Schema<WebhookTestResponse>;
 
 export interface TransferDomainRequest {
   /** The domain name to transfer (e.g. `example.com`). */
@@ -3664,113 +3912,36 @@ export const TransferDomainResponse2 = /*@__PURE__*/ S.suspend(() =>
   identifier: "TransferDomainResponse2",
 }) as any as S.Schema<TransferDomainResponse2>;
 
-/** Event types to subscribe to. Omit, or pass ["*"], for all events. Prefix wildcards like "dns.*" are allowed. */
-export type WebhookCreateRequestEventsList = Array<string>;
-export const WebhookCreateRequestEventsList = /*@__PURE__*/ S.Array(
+/** Replacement event subscription list (optional). */
+export type UpdateWebhookRequestEventsList = Array<string>;
+export const UpdateWebhookRequestEventsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<WebhookCreateRequestEventsList>;
+) as any as S.Schema<UpdateWebhookRequestEventsList>;
 
-export interface WebhookCreateRequest {
-  /** HTTPS URL to deliver events to. */
-  url: string;
-  /** Event types to subscribe to. Omit, or pass ["*"], for all events. Prefix wildcards like "dns.*" are allowed. */
-  events?: WebhookCreateRequestEventsList;
-}
-export const WebhookCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.String,
-    events: S.optional(WebhookCreateRequestEventsList),
-  }).pipe(T.Http({ method: "POST", uri: "/webhook/create", code: 200 })),
-).annotate({
-  identifier: "WebhookCreateRequest",
-}) as any as S.Schema<WebhookCreateRequest>;
+/** Set ACTIVE to resume (also clears the failure counter) or DISABLED to pause (optional). */
+export type UpdateWebhookRequestStatus = "ACTIVE" | "DISABLED";
+export const UpdateWebhookRequestStatus = /*@__PURE__*/ S.String;
 
-/** Subscribed event types, or ["*"] for all. */
-export type WebhookEndpointEventsList = Array<string>;
-export const WebhookEndpointEventsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WebhookEndpointEventsList>;
-
-/** ACTIVE or DISABLED. */
-export type WebhookEndpointStatus = "ACTIVE" | "DISABLED";
-export const WebhookEndpointStatus = /*@__PURE__*/ S.String;
-
-export interface WebhookEndpoint {
-  /** Numeric endpoint id. */
-  id?: number;
-  /** Destination HTTPS URL. */
-  url?: string;
-  /** Signing secret used to verify the X-Porkbun-Signature header (HMAC-SHA256 key). Returned only to the authenticated owner. */
-  secret?: string | Redacted.Redacted<string>;
-  /** Subscribed event types, or ["*"] for all. */
-  events?: WebhookEndpointEventsList;
-  /** ACTIVE or DISABLED. */
-  status?: WebhookEndpointStatus;
-  /** Consecutive failed deliveries; reset to 0 on the next success or on re-enable. The endpoint auto-disables at 20. */
-  consecutiveFailures?: number;
-  /** Timestamp of the last successful delivery, or null. */
-  lastSuccessDate?: string | null;
-  /** Timestamp of the last failed delivery, or null. */
-  lastFailureDate?: string | null;
-  /** Last delivery error, or null. */
-  lastError?: string | null;
-  /** When the endpoint was created. */
-  createDate?: string;
-}
-export const WebhookEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.Number),
-    url: S.optional(S.String),
-    secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    events: S.optional(WebhookEndpointEventsList),
-    status: S.optional(WebhookEndpointStatus),
-    consecutiveFailures: S.optional(S.Number),
-    lastSuccessDate: S.optional(S.NullOr(S.String)),
-    lastFailureDate: S.optional(S.NullOr(S.String)),
-    lastError: S.optional(S.NullOr(S.String)),
-    createDate: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WebhookEndpoint",
-}) as any as S.Schema<WebhookEndpoint>;
-
-export interface WebhookEndpointResponse {
-  status?: string;
-  endpoint?: WebhookEndpoint;
-}
-export const WebhookEndpointResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    endpoint: S.optional(WebhookEndpoint),
-  }),
-).annotate({
-  identifier: "WebhookEndpointResponse",
-}) as any as S.Schema<WebhookEndpointResponse>;
-
-export interface WebhookDeleteRequest {
-  /** Endpoint id. */
+export interface UpdateWebhookRequest {
+  /** Endpoint id to update. */
   id: number;
+  /** New HTTPS URL (optional). */
+  url?: string;
+  /** Replacement event subscription list (optional). */
+  events?: UpdateWebhookRequestEventsList;
+  /** Set ACTIVE to resume (also clears the failure counter) or DISABLED to pause (optional). */
+  status?: UpdateWebhookRequestStatus | (string & {});
 }
-export const WebhookDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.Number,
-  }).pipe(T.Http({ method: "POST", uri: "/webhook/delete", code: 200 })),
+    url: S.optional(S.String),
+    events: S.optional(UpdateWebhookRequestEventsList),
+    status: S.optional(UpdateWebhookRequestStatus),
+  }).pipe(T.Http({ method: "POST", uri: "/webhook/update", code: 200 })),
 ).annotate({
-  identifier: "WebhookDeleteRequest",
-}) as any as S.Schema<WebhookDeleteRequest>;
-
-export interface WebhookDeleteResponse {
-  status?: string;
-  message?: string;
-}
-export const WebhookDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WebhookDeleteResponse",
-}) as any as S.Schema<WebhookDeleteResponse>;
+  identifier: "UpdateWebhookRequest",
+}) as any as S.Schema<UpdateWebhookRequest>;
 
 export type WebhookDeliveriesRequestStatus =
   | "PENDING"
@@ -3799,61 +3970,6 @@ export const WebhookDeliveriesRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "WebhookDeliveriesRequest",
 }) as any as S.Schema<WebhookDeliveriesRequest>;
-
-/** PENDING (queued/awaiting retry), PROCESSING (in flight), DELIVERED (2xx), or FAILED (gave up after max attempts). */
-export type WebhookDeliveryStatus =
-  | "PENDING"
-  | "PROCESSING"
-  | "DELIVERED"
-  | "FAILED";
-export const WebhookDeliveryStatus = /*@__PURE__*/ S.String;
-
-export interface WebhookDelivery {
-  /** Delivery id. */
-  id?: number;
-  /** Endpoint this delivery targets. */
-  endpointId?: number;
-  eventType?: string;
-  /** UUIDv7 of the event; sent as X-Porkbun-Webhook-Id. Stable across resends. */
-  eventId?: string;
-  /** PENDING (queued/awaiting retry), PROCESSING (in flight), DELIVERED (2xx), or FAILED (gave up after max attempts). */
-  status?: WebhookDeliveryStatus;
-  /** Delivery attempts made so far. */
-  attempts?: number;
-  /** Attempt cap before the delivery is marked FAILED. */
-  maxAttempts?: number;
-  /** HTTP status from the last attempt, or null if not yet attempted / connection error. */
-  httpStatus?: number | null;
-  /** Last delivery error, or null. */
-  lastError?: string | null;
-  /** When the next attempt is scheduled (for PENDING rows). */
-  nextAttemptAt?: string;
-  /** When the delivery was queued. */
-  createDate?: string;
-  /** When it was successfully delivered, or null. */
-  deliveredDate?: string | null;
-  /** The full event envelope that was sent. Present only on GET /webhook/delivery/{id}. */
-  payload?: unknown;
-}
-export const WebhookDelivery = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.Number),
-    endpointId: S.optional(S.Number),
-    eventType: S.optional(S.String),
-    eventId: S.optional(S.String),
-    status: S.optional(WebhookDeliveryStatus),
-    attempts: S.optional(S.Number),
-    maxAttempts: S.optional(S.Number),
-    httpStatus: S.optional(S.NullOr(S.Number)),
-    lastError: S.optional(S.NullOr(S.String)),
-    nextAttemptAt: S.optional(S.String),
-    createDate: S.optional(S.String),
-    deliveredDate: S.optional(S.NullOr(S.String)),
-    payload: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "WebhookDelivery",
-}) as any as S.Schema<WebhookDelivery>;
 
 /** Newest first. The bulky `payload` field is omitted here. */
 export type WebhookDeliveryListResponseDeliveriesList = Array<WebhookDelivery>;
@@ -3937,69 +4053,6 @@ export const WebhookEventTypesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebhookEventTypesResponse",
 }) as any as S.Schema<WebhookEventTypesResponse>;
 
-export interface WebhookGetRequest {
-  id: number;
-}
-export const WebhookGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/webhook/get/{id}", code: 200 })),
-).annotate({
-  identifier: "WebhookGetRequest",
-}) as any as S.Schema<WebhookGetRequest>;
-
-export interface WebhookListRequest {}
-export const WebhookListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/webhook/list", code: 200 })),
-).annotate({
-  identifier: "WebhookListRequest",
-}) as any as S.Schema<WebhookListRequest>;
-
-export type WebhookListResponseEndpointsList = Array<WebhookEndpoint>;
-export const WebhookListResponseEndpointsList = /*@__PURE__*/ S.Array(
-  WebhookEndpoint,
-) as any as S.Schema<WebhookListResponseEndpointsList>;
-
-export interface WebhookListResponse {
-  status?: string;
-  endpoints?: WebhookListResponseEndpointsList;
-}
-export const WebhookListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    endpoints: S.optional(WebhookListResponseEndpointsList),
-  }),
-).annotate({
-  identifier: "WebhookListResponse",
-}) as any as S.Schema<WebhookListResponse>;
-
-export interface WebhookResendRequest {
-  /** Endpoint id. */
-  id: number;
-}
-export const WebhookResendRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number,
-  }).pipe(T.Http({ method: "POST", uri: "/webhook/resend", code: 200 })),
-).annotate({
-  identifier: "WebhookResendRequest",
-}) as any as S.Schema<WebhookResendRequest>;
-
-export interface WebhookResendResponse {
-  status?: string;
-  delivery?: WebhookDelivery;
-  message?: string;
-}
-export const WebhookResendResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    delivery: S.optional(WebhookDelivery),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WebhookResendResponse",
-}) as any as S.Schema<WebhookResendResponse>;
-
 export interface WebhookRotateSecretRequest {
   /** Endpoint id. */
   id: number;
@@ -4012,65 +4065,6 @@ export const WebhookRotateSecretRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebhookRotateSecretRequest",
 }) as any as S.Schema<WebhookRotateSecretRequest>;
 
-export interface WebhookTestRequest {
-  /** Endpoint id. */
-  id: number;
-}
-export const WebhookTestRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number,
-  }).pipe(T.Http({ method: "POST", uri: "/webhook/test", code: 200 })),
-).annotate({
-  identifier: "WebhookTestRequest",
-}) as any as S.Schema<WebhookTestRequest>;
-
-export interface WebhookTestResponse {
-  status?: string;
-  /** UUID of the queued webhook.test event. */
-  eventId?: string;
-  message?: string;
-}
-export const WebhookTestResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    eventId: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WebhookTestResponse",
-}) as any as S.Schema<WebhookTestResponse>;
-
-/** Replacement event subscription list (optional). */
-export type WebhookUpdateRequestEventsList = Array<string>;
-export const WebhookUpdateRequestEventsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WebhookUpdateRequestEventsList>;
-
-/** Set ACTIVE to resume (also clears the failure counter) or DISABLED to pause (optional). */
-export type WebhookUpdateRequestStatus = "ACTIVE" | "DISABLED";
-export const WebhookUpdateRequestStatus = /*@__PURE__*/ S.String;
-
-export interface WebhookUpdateRequest {
-  /** Endpoint id to update. */
-  id: number;
-  /** New HTTPS URL (optional). */
-  url?: string;
-  /** Replacement event subscription list (optional). */
-  events?: WebhookUpdateRequestEventsList;
-  /** Set ACTIVE to resume (also clears the failure counter) or DISABLED to pause (optional). */
-  status?: WebhookUpdateRequestStatus | (string & {});
-}
-export const WebhookUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number,
-    url: S.optional(S.String),
-    events: S.optional(WebhookUpdateRequestEventsList),
-    status: S.optional(WebhookUpdateRequestStatus),
-  }).pipe(T.Http({ method: "POST", uri: "/webhook/update", code: 200 })),
-).annotate({
-  identifier: "WebhookUpdateRequest",
-}) as any as S.Schema<WebhookUpdateRequest>;
-
 export type ApikeyRequestError = BadRequest | PorkbunOpError;
 /** Initiate an API key authorization request Initiate an API key authorization flow. No credentials are required. Returns a `requestToken` and `authUrl` that the account holder must visit (while logged in to Porkbun in that browser) to approve the request. The `authUrl` is valid for **30 minutes** (long enough for a brand-new user to create an account and verify their email); if it lapses, call this endpoint again for a fresh token. After approval, call `/apikey/retrieve` to get the public API key. By default (legacy flow) the secret API key is shown only once, in the user's browser, and must be pasted into the application manually. To let an agent receive the secret without a browser copy, supply a PKCE `codeChallenge` (see the parameter below): the key is then minted lazily and BOTH keys are returned once from `/apikey/retrieve` to the caller presenting the matching `codeVerifier`. **Rate limit:** 20 requests per IP per 3600 seconds. SANDBOX: pass `sandbox: true` to skip approval and get a sandbox key pair back immediately (both `apikey` and `secretapikey` in the response, plus `sandbox: true`). */
 export const apikeyRequest: API.OperationMethod<
@@ -4082,21 +4076,6 @@ export const apikeyRequest: API.OperationMethod<
   input: ApikeyRequestRequest,
   output: ApikeyRequestResponse,
   errors: [BadRequest, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApikeyRetrieveError = BadRequest | Forbidden | PorkbunOpError;
-/** Poll for API key approval Poll to check whether the account holder has approved an API key authorization request. Returns `status: PENDING` while awaiting approval. On approval, returns the public API key. For a **PKCE** request (one created with a codeChallenge), pass the matching codeVerifier here to receive BOTH keys once (secretapikey is included in that single response and never again); the secret must be claimed within 10 minutes of approval or the request expires (`REQUEST_EXPIRED`) and a new one is needed. For a **legacy** request the secret API key is never transmitted via this endpoint — it is displayed in the user's browser and must be pasted into the application. **Rate limit:** 120 requests per IP per 3600 seconds. */
-export const apikeyRetrieve: API.OperationMethod<
-  ApikeyRetrieveRequest,
-  ApikeyRetrieveResponse,
-  ApikeyRetrieveError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApikeyRetrieveRequest,
-  output: ApikeyRetrieveResponse,
-  errors: [BadRequest, Forbidden, UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
 }));
@@ -4116,16 +4095,121 @@ export const createAccountInvite: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DnsCreateError = BadRequest | PorkbunOpError;
+export type CreateDnsError = BadRequest | PorkbunOpError;
 /** Create DNS record Create a new DNS record for a domain. The record ID is returned in the response. */
-export const dnsCreate: API.OperationMethod<
-  DnsCreateRequest,
-  DnsCreateResponse,
-  DnsCreateError,
+export const createDns: API.OperationMethod<
+  CreateDnsRequest,
+  CreateDnsResponse,
+  CreateDnsError,
   PorkbunOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DnsCreateRequest,
-  output: DnsCreateResponse,
+  input: CreateDnsRequest,
+  output: CreateDnsResponse,
+  errors: [BadRequest, UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDomainError = BadRequest | PorkbunOpError;
+/** Register a domain Register a domain using account credit. Requirements: - Account email and phone must be verified - Account must have sufficient credit - `agreeToTerms` must be `'yes'` or `'1'` - `cost` must equal the current price for the domain's minimum registration duration (in pennies) - Account must have placed at least one previous domain registration - Premium domains cannot be registered via API Registrations are always for the registry-minimum duration (usually 1 year). **WHOIS privacy.** WHOIS privacy is automatically enabled on new registrations (when the TLD supports it). Pass the optional `whoisPrivacy` field to override this on a per-registration basis, or change the account-level default under Account Security Settings on porkbun.com/account. **Rate limits (both apply):** - Attempt limit (default: 1 attempt per 10 seconds per account) - Success limit (default: 50 successful registrations per 86400 seconds per account) Both limits are configurable per API key and their current values are returned in the `limits` field of the response. ## Dry run Add `dryRun: true` to validate everything and preview the cost WITHOUT registering or charging — nothing is created. Example response: ```json { "status": "SUCCESS", "dryRun": true, "wouldSucceed": true, "operation": "registration", "domain": "example.com", "tld": "com", "available": "available", "premium": false, "duration": 1, "cost": 973, "costDisplay": "$9.73", "balance": 5000, "sufficientFunds": true, "message": "Dry run: this registration would succeed and cost $9.73. No order was created and no charge was made.", "requestId": "019e04fa-258d-7d11-aa86-4d5795c3fe8f" } ``` */
+export const createDomain: API.OperationMethod<
+  CreateDomainRequest,
+  CreateDomainResponse2,
+  CreateDomainError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDomainRequest,
+  output: CreateDomainResponse2,
+  errors: [BadRequest, UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateHostingError = BadRequest | PorkbunOpError;
+/** Provision hosting — a static site or a WordPress site **Applies to:** Both products — the `sku` decides which. Provision hosting (Secure Static Hosting or Cloud for WordPress) for a domain in the account. The FIRST provision for a domain starts a **15-day free trial** ($0 now) that **auto-renews** at the plan price when the trial ends; a re-provision after deprovision is charged immediately to account credit (one free trial per domain). Provisioning **switches the domain to Porkbun nameservers** if it isn't already — pass `agreeToNameserverChange: true` to allow that. Supports `dryRun`. Remote setup can be async: `status` may be `PENDING` — poll `/hosting/get` until `ACTIVE` before deploying. **Cloud for WordPress:** pass a `CLOUDWORDPRESS…` sku to provision a managed WordPress site instead of static hosting. The file endpoints (deploy/files/deleteFile/makeDir) do not apply — manage the site through WordPress, using `/hosting/createWpCredentials/{domain}` for REST API credentials. **Rate limit:** 10 provisions per account per hour (`dryRun` calls are free). */
+export const createHosting: API.OperationMethod<
+  CreateHostingRequest,
+  CreateHostingResponse,
+  CreateHostingError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateHostingRequest,
+  output: CreateHostingResponse,
+  errors: [BadRequest, UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateWebhookError = BadRequest | PorkbunOpError;
+/** Create a webhook endpoint Register an HTTPS endpoint to receive signed event payloads. The response includes the generated `secret` — store it securely; it is the HMAC key used to verify the `X-Porkbun-Signature` header. Omit `events` (or pass `["*"]`) to subscribe to all event types. Maximum 20 endpoints per account. */
+export const createWebhook: API.OperationMethod<
+  CreateWebhookRequest,
+  WebhookEndpointResponse,
+  CreateWebhookError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateWebhookRequest,
+  output: WebhookEndpointResponse,
+  errors: [BadRequest, UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDnsError = BadRequest | PorkbunOpError;
+/** Delete DNS record by ID Delete a specific DNS record. SOA and default Porkbun NS records cannot be deleted. */
+export const deleteDns: API.OperationMethod<
+  DeleteDnsRequest,
+  BasicResponse,
+  DeleteDnsError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDnsRequest,
+  output: BasicResponse,
+  errors: [BadRequest, UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteHostingError = BadRequest | PorkbunOpError;
+/** Deprovision hosting (either product) **Applies to:** Both products. Deprovision (cancel) Secure Static Hosting for a domain; teardown is scheduled and completed by Porkbun. Note: the domain has already used its one free trial, so provisioning it again later will be charged (no second free trial). */
+export const deleteHosting: API.OperationMethod<
+  DeleteHostingRequest,
+  BasicResponse,
+  DeleteHostingError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteHostingRequest,
+  output: BasicResponse,
+  errors: [BadRequest, UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWebhookError = NotFound | PorkbunOpError;
+/** Delete a webhook endpoint Delete a webhook endpoint by id. Deliveries stop immediately. */
+export const deleteWebhook: API.OperationMethod<
+  DeleteWebhookRequest,
+  DeleteWebhookResponse,
+  DeleteWebhookError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWebhookRequest,
+  output: DeleteWebhookResponse,
+  errors: [NotFound, UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeployHostingError = BadRequest | PorkbunOpError;
+/** Upload site files (static hosting only) **Applies to:** Secure Static Hosting only — a WordPress site returns `NOT_SUPPORTED_FOR_PRODUCT`; manage its content through WordPress instead. Upload static files to the domain's Secure Static Hosting space. Send `files` as an array of `{ path, content }` where `content` is base64. Total payload ≤ 10 MB per request (split larger sites across calls). Only static-web file types are accepted (html/css/js/images/fonts/…); server-executable types are rejected. Hosting must be ACTIVE. A file’s `path` may include directories (e.g. `assets/css/style.css`); any missing parent directories are created automatically. Paths are sanitized (no traversal/control chars) and the filename extension must be an allowed static-web type. */
+export const deployHosting: API.OperationMethod<
+  DeployHostingRequest,
+  DeployHostingResponse,
+  DeployHostingError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeployHostingRequest,
+  output: DeployHostingResponse,
   errors: [BadRequest, UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
@@ -4140,21 +4224,6 @@ export const dnsCreateDnssecRecord: API.OperationMethod<
   PorkbunOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: DnsCreateDnssecRecordRequest,
-  output: BasicResponse,
-  errors: [BadRequest, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsDeleteError = BadRequest | PorkbunOpError;
-/** Delete DNS record by ID Delete a specific DNS record. SOA and default Porkbun NS records cannot be deleted. */
-export const dnsDelete: API.OperationMethod<
-  DnsDeleteRequest,
-  BasicResponse,
-  DnsDeleteError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsDeleteRequest,
   output: BasicResponse,
   errors: [BadRequest, UnknownPorkbunError],
   protocol: PorkbunProtocol,
@@ -4191,21 +4260,6 @@ export const dnsDeleteDnssecRecord: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DnsEditError = BadRequest | PorkbunOpError;
-/** Edit DNS record by ID Edit a specific DNS record by its numeric ID. SOA and default Porkbun NS records cannot be edited. */
-export const dnsEdit: API.OperationMethod<
-  DnsEditRequest,
-  BasicResponse,
-  DnsEditError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsEditRequest,
-  output: BasicResponse,
-  errors: [BadRequest, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DnsEditByNameTypeError = BadRequest | PorkbunOpError;
 /** Edit DNS records by name and type Replace the content of all records matching the given subdomain and type. SOA and NS records cannot be edited with this method (use edit by ID instead). */
 export const dnsEditByNameType: API.OperationMethod<
@@ -4231,21 +4285,6 @@ export const dnsGetDnssecRecords: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DnsGetDnssecRecordsRequest,
   output: DnsGetDnssecRecordsResponse,
-  errors: [BadRequest, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsRetrieveError = BadRequest | PorkbunOpError;
-/** Retrieve all DNS records Retrieve all editable DNS records for a domain. SOA records and Porkbun default NS records are excluded. Supports both GET (with header auth) and POST (with body or header auth). */
-export const dnsRetrieve: API.OperationMethod<
-  DnsRetrieveRequest,
-  DnsRecordsResponse,
-  DnsRetrieveError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsRetrieveRequest,
-  output: DnsRecordsResponse,
   errors: [BadRequest, UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
@@ -4306,21 +4345,6 @@ export const domainCheckDomain: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DomainCheckDomainRequest,
   output: CheckDomainResponse,
-  errors: [BadRequest, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DomainCreateError = BadRequest | PorkbunOpError;
-/** Register a domain Register a domain using account credit. Requirements: - Account email and phone must be verified - Account must have sufficient credit - `agreeToTerms` must be `'yes'` or `'1'` - `cost` must equal the current price for the domain's minimum registration duration (in pennies) - Account must have placed at least one previous domain registration - Premium domains cannot be registered via API Registrations are always for the registry-minimum duration (usually 1 year). **WHOIS privacy.** WHOIS privacy is automatically enabled on new registrations (when the TLD supports it). Pass the optional `whoisPrivacy` field to override this on a per-registration basis, or change the account-level default under Account Security Settings on porkbun.com/account. **Rate limits (both apply):** - Attempt limit (default: 1 attempt per 10 seconds per account) - Success limit (default: 50 successful registrations per 86400 seconds per account) Both limits are configurable per API key and their current values are returned in the `limits` field of the response. ## Dry run Add `dryRun: true` to validate everything and preview the cost WITHOUT registering or charging — nothing is created. Example response: ```json { "status": "SUCCESS", "dryRun": true, "wouldSucceed": true, "operation": "registration", "domain": "example.com", "tld": "com", "available": "available", "premium": false, "duration": 1, "cost": 973, "costDisplay": "$9.73", "balance": 5000, "sufficientFunds": true, "message": "Dry run: this registration would succeed and cost $9.73. No order was created and no charge was made.", "requestId": "019e04fa-258d-7d11-aa86-4d5795c3fe8f" } ``` */
-export const domainCreate: API.OperationMethod<
-  DomainCreateRequest,
-  DomainCreateResponse,
-  DomainCreateError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainCreateRequest,
-  output: DomainCreateResponse,
   errors: [BadRequest, UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
@@ -4448,21 +4472,6 @@ export const domainGetUrlForwarding: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DomainRenewError = BadRequest | PorkbunOpError;
-/** Renew a domain Renew a domain using account credit. Requirements: - Domain must be in your account and active - Domain must be opted in to API access - Account email and phone must be verified - Account must have sufficient credit - `cost` must equal the current renewal price for the domain's minimum renewal duration (in pennies) - Domain must have been registered more than 30 days ago (checked against the domain's creation date) - Domain must not have been successfully renewed within the last 30 days - Premium renewals are not currently supported via API Renewals are always for the registry-minimum duration (usually 1 year). Use `/domain/checkDomain/{domain}` with `priceType=renewal` to get the current price before renewing. **Rate limits (both apply):** - Attempt limit (default: 1 attempt per 10 seconds per account) - Success limit (default: 50 successful renewals per 86400 seconds per account) Both limits are configurable per API key and their current values are returned in the `limits` field of the response. ## Dry run Add `dryRun: true` to validate everything and preview the cost WITHOUT renewing or charging — nothing is created. Example response: ```json { "status": "SUCCESS", "dryRun": true, "wouldSucceed": true, "operation": "renewal", "domain": "example.com", "tld": "com", "available": "unavailable", "premium": false, "duration": 1, "cost": 1099, "costDisplay": "$10.99", "balance": 5000, "sufficientFunds": true, "message": "Dry run: this renewal would succeed and cost $10.99. No order was created and no charge was made.", "requestId": "019e04fa-3c11-7a02-9bd2-1f7c0e4a8b55" } ``` */
-export const domainRenew: API.OperationMethod<
-  DomainRenewRequest,
-  DomainRenewResponse,
-  DomainRenewError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainRenewRequest,
-  output: DomainRenewResponse,
-  errors: [BadRequest, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DomainUpdateAutoRenewError = BadRequest | PorkbunOpError;
 /** Update auto-renew setting Update the auto-renew setting for one or more domains. The domain can be passed in the URL path or in the `domains` array in the request body (or both). Both are combined and deduplicated. */
 export const domainUpdateAutoRenew: API.OperationMethod<
@@ -4523,6 +4532,21 @@ export const domainUpdateNs: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type EditDnsError = BadRequest | PorkbunOpError;
+/** Edit DNS record by ID Edit a specific DNS record by its numeric ID. SOA and default Porkbun NS records cannot be edited. */
+export const editDns: API.OperationMethod<
+  EditDnsRequest,
+  BasicResponse,
+  EditDnsError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EditDnsRequest,
+  output: BasicResponse,
+  errors: [BadRequest, UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
 export type EmailSetPasswordError = BadRequest | PorkbunOpError;
 /** Set email hosting password Set the password for an email hosting account associated with a domain managed by your API key. */
 export const emailSetPassword: API.OperationMethod<
@@ -4553,6 +4577,21 @@ export const getAccountInviteStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetApikeyError = BadRequest | Forbidden | PorkbunOpError;
+/** Poll for API key approval Poll to check whether the account holder has approved an API key authorization request. Returns `status: PENDING` while awaiting approval. On approval, returns the public API key. For a **PKCE** request (one created with a codeChallenge), pass the matching codeVerifier here to receive BOTH keys once (secretapikey is included in that single response and never again); the secret must be claimed within 10 minutes of approval or the request expires (`REQUEST_EXPIRED`) and a new one is needed. For a **legacy** request the secret API key is never transmitted via this endpoint — it is displayed in the user's browser and must be pasted into the application. **Rate limit:** 120 requests per IP per 3600 seconds. */
+export const getApikey: API.OperationMethod<
+  GetApikeyRequest,
+  GetApikeyResponse,
+  GetApikeyError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApikeyRequest,
+  output: GetApikeyResponse,
+  errors: [BadRequest, Forbidden, UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetApiSettingsError = PorkbunOpError;
 /** Get API spend settings Returns the account's API spend control settings and current month's spend total. All amounts are in cents. Authenticate using `X-API-Key` and `X-Secret-API-Key` headers, or `Authorization: Bearer <token>`. */
 export const getApiSettings: API.OperationMethod<
@@ -4579,6 +4618,21 @@ export const getBalance: API.OperationMethod<
   input: GetBalanceRequest,
   output: BalanceResponse,
   errors: [UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDnsError = BadRequest | PorkbunOpError;
+/** Retrieve all DNS records Retrieve all editable DNS records for a domain. SOA records and Porkbun default NS records are excluded. Supports both GET (with header auth) and POST (with body or header auth). */
+export const getDns: API.OperationMethod<
+  GetDnsRequest,
+  DnsRecordsResponse,
+  GetDnsError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDnsRequest,
+  output: DnsRecordsResponse,
+  errors: [BadRequest, UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
 }));
@@ -4718,6 +4772,21 @@ export const getDomainUrlForwarding: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetHostingError = BadRequest | PorkbunOpError;
+/** Get hosting status (either product) **Applies to:** Both products. Return the Secure Static Hosting status for a domain (plan, server, trial, expiry, auto-renew), or `hosting: null` if none. Also available via POST. */
+export const getHosting: API.OperationMethod<
+  GetHostingRequest,
+  GetHostingResponse,
+  GetHostingError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingRequest,
+  output: GetHostingResponse,
+  errors: [BadRequest, UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetIpError = PorkbunOpError;
 /** Get caller IP address Returns the caller's public IP address. No credentials required. Use the `api-ipv4.porkbun.com` hostname if you need to force an IPv4 address. */
 export const getIp: API.OperationMethod<
@@ -4729,6 +4798,21 @@ export const getIp: API.OperationMethod<
   input: GetIpRequest,
   output: IpResponse,
   errors: [UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPingError = BadRequest | PorkbunOpError;
+/** Test credentials and get caller IP Returns the caller's public IP address. Optionally validates API credentials. - **No credentials supplied** — returns IP only. - **Valid credentials supplied** — returns IP with `credentialsValid: true`. - **Invalid credentials supplied** — returns an error. Useful for agents and clients to verify their API key is working before making other calls. */
+export const getPing: API.OperationMethod<
+  GetPingRequest,
+  GetPingResponse,
+  GetPingError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPingRequest,
+  output: GetPingResponse,
+  errors: [BadRequest, UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
 }));
@@ -4763,6 +4847,21 @@ export const getPricingGet: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetSslError = BadRequest | PorkbunOpError;
+/** Retrieve SSL bundle Retrieve the Let's Encrypt SSL certificate bundle for a domain. The certificate must already be issued (status HAVECERT). Token-based access is not supported for this endpoint. Supports both GET (with header auth) and POST (with body or header auth). */
+export const getSsl: API.OperationMethod<
+  GetSslRequest,
+  GetSslResponse,
+  GetSslError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSslRequest,
+  output: GetSslResponse,
+  errors: [BadRequest, UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetSslRetrieveError = BadRequest | PorkbunOpError;
 /** Retrieve SSL bundle Retrieve the Let's Encrypt SSL certificate bundle for a domain. The certificate must already be issued (status HAVECERT). Token-based access is not supported for this endpoint. Supports both GET (with header auth) and POST (with body or header auth). */
 export const getSslRetrieve: API.OperationMethod<
@@ -4793,17 +4892,17 @@ export const getTransferGet: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type HostingCreateError = BadRequest | PorkbunOpError;
-/** Provision hosting — a static site or a WordPress site **Applies to:** Both products — the `sku` decides which. Provision hosting (Secure Static Hosting or Cloud for WordPress) for a domain in the account. The FIRST provision for a domain starts a **15-day free trial** ($0 now) that **auto-renews** at the plan price when the trial ends; a re-provision after deprovision is charged immediately to account credit (one free trial per domain). Provisioning **switches the domain to Porkbun nameservers** if it isn't already — pass `agreeToNameserverChange: true` to allow that. Supports `dryRun`. Remote setup can be async: `status` may be `PENDING` — poll `/hosting/get` until `ACTIVE` before deploying. **Cloud for WordPress:** pass a `CLOUDWORDPRESS…` sku to provision a managed WordPress site instead of static hosting. The file endpoints (deploy/files/deleteFile/makeDir) do not apply — manage the site through WordPress, using `/hosting/createWpCredentials/{domain}` for REST API credentials. **Rate limit:** 10 provisions per account per hour (`dryRun` calls are free). */
-export const hostingCreate: API.OperationMethod<
-  HostingCreateRequest,
-  HostingCreateResponse,
-  HostingCreateError,
+export type GetWebhookError = NotFound | PorkbunOpError;
+/** Get a webhook endpoint Fetch a single webhook endpoint by id, including its signing secret and delivery health. Read-only; supports GET (header auth) or POST (body or header auth). */
+export const getWebhook: API.OperationMethod<
+  GetWebhookRequest,
+  WebhookEndpointResponse,
+  GetWebhookError,
   PorkbunOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: HostingCreateRequest,
-  output: HostingCreateResponse,
-  errors: [BadRequest, UnknownPorkbunError],
+  input: GetWebhookRequest,
+  output: WebhookEndpointResponse,
+  errors: [NotFound, UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
 }));
@@ -4818,21 +4917,6 @@ export const hostingCreateWpCredentials: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: HostingCreateWpCredentialsRequest,
   output: HostingCreateWpCredentialsResponse,
-  errors: [BadRequest, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
-export type HostingDeleteError = BadRequest | PorkbunOpError;
-/** Deprovision hosting (either product) **Applies to:** Both products. Deprovision (cancel) Secure Static Hosting for a domain; teardown is scheduled and completed by Porkbun. Note: the domain has already used its one free trial, so provisioning it again later will be charged (no second free trial). */
-export const hostingDelete: API.OperationMethod<
-  HostingDeleteRequest,
-  BasicResponse,
-  HostingDeleteError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HostingDeleteRequest,
-  output: BasicResponse,
   errors: [BadRequest, UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
@@ -4868,21 +4952,6 @@ export const hostingDeleteWpCredentials: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type HostingDeployError = BadRequest | PorkbunOpError;
-/** Upload site files (static hosting only) **Applies to:** Secure Static Hosting only — a WordPress site returns `NOT_SUPPORTED_FOR_PRODUCT`; manage its content through WordPress instead. Upload static files to the domain's Secure Static Hosting space. Send `files` as an array of `{ path, content }` where `content` is base64. Total payload ≤ 10 MB per request (split larger sites across calls). Only static-web file types are accepted (html/css/js/images/fonts/…); server-executable types are rejected. Hosting must be ACTIVE. A file’s `path` may include directories (e.g. `assets/css/style.css`); any missing parent directories are created automatically. Paths are sanitized (no traversal/control chars) and the filename extension must be an allowed static-web type. */
-export const hostingDeploy: API.OperationMethod<
-  HostingDeployRequest,
-  HostingDeployResponse,
-  HostingDeployError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HostingDeployRequest,
-  output: HostingDeployResponse,
-  errors: [BadRequest, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
 export type HostingFilesError = BadRequest | PorkbunOpError;
 /** List site files (static hosting only) **Applies to:** Secure Static Hosting only — a WordPress site returns `NOT_SUPPORTED_FOR_PRODUCT`. List file/directory names under an optional `path` in the domain's hosting space. Also available via POST (send `path` in the body). */
 export const hostingFiles: API.OperationMethod<
@@ -4893,21 +4962,6 @@ export const hostingFiles: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: HostingFilesRequest,
   output: HostingFilesResponse,
-  errors: [BadRequest, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
-export type HostingGetError = BadRequest | PorkbunOpError;
-/** Get hosting status (either product) **Applies to:** Both products. Return the Secure Static Hosting status for a domain (plan, server, trial, expiry, auto-renew), or `hosting: null` if none. Also available via POST. */
-export const hostingGet: API.OperationMethod<
-  HostingGetRequest,
-  HostingGetResponse,
-  HostingGetError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HostingGetRequest,
-  output: HostingGetResponse,
   errors: [BadRequest, UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
@@ -4954,21 +5008,6 @@ export const hostingPlans: API.OperationMethod<
   input: HostingPlansRequest,
   output: HostingPlansResponse,
   errors: [BadRequest, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IpPostError = PorkbunOpError;
-/** Get caller IP address Returns the caller's public IP address. No credentials required. Use the `api-ipv4.porkbun.com` hostname if you need to force an IPv4 address. */
-export const ipPost: API.OperationMethod<
-  IpPostRequest,
-  IpResponse,
-  IpPostError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IpPostRequest,
-  output: IpResponse,
-  errors: [UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
 }));
@@ -5033,6 +5072,21 @@ export const listTransfersGet: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListWebhookError = BadRequest | PorkbunOpError;
+/** List webhook endpoints List all webhook endpoints registered on the authenticated account, including each endpoint's signing secret and delivery health. Read-only; supports GET (header auth) or POST (body or header auth). */
+export const listWebhook: API.OperationMethod<
+  ListWebhookRequest,
+  WebhookListResponse,
+  ListWebhookError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebhookRequest,
+  output: WebhookListResponse,
+  errors: [BadRequest, UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
 export type MockDirectoryError = PorkbunOpError;
 /** Mock server: list mockable endpoints Credential-free. Returns a directory of every endpoint that can be mocked, each with a ready-to-call mock URL. */
 export const mockDirectory: API.OperationMethod<
@@ -5078,31 +5132,61 @@ export const ping: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PingGetError = BadRequest | PorkbunOpError;
-/** Test credentials and get caller IP Returns the caller's public IP address. Optionally validates API credentials. - **No credentials supplied** — returns IP only. - **Valid credentials supplied** — returns IP with `credentialsValid: true`. - **Invalid credentials supplied** — returns an error. Useful for agents and clients to verify their API key is working before making other calls. */
-export const pingGet: API.OperationMethod<
-  PingGetRequest,
-  PingGetResponse,
-  PingGetError,
+export type PostIpError = PorkbunOpError;
+/** Get caller IP address Returns the caller's public IP address. No credentials required. Use the `api-ipv4.porkbun.com` hostname if you need to force an IPv4 address. */
+export const postIp: API.OperationMethod<
+  PostIpRequest,
+  IpResponse,
+  PostIpError,
   PorkbunOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PingGetRequest,
-  output: PingGetResponse,
+  input: PostIpRequest,
+  output: IpResponse,
+  errors: [UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RenewDomainError = BadRequest | PorkbunOpError;
+/** Renew a domain Renew a domain using account credit. Requirements: - Domain must be in your account and active - Domain must be opted in to API access - Account email and phone must be verified - Account must have sufficient credit - `cost` must equal the current renewal price for the domain's minimum renewal duration (in pennies) - Domain must have been registered more than 30 days ago (checked against the domain's creation date) - Domain must not have been successfully renewed within the last 30 days - Premium renewals are not currently supported via API Renewals are always for the registry-minimum duration (usually 1 year). Use `/domain/checkDomain/{domain}` with `priceType=renewal` to get the current price before renewing. **Rate limits (both apply):** - Attempt limit (default: 1 attempt per 10 seconds per account) - Success limit (default: 50 successful renewals per 86400 seconds per account) Both limits are configurable per API key and their current values are returned in the `limits` field of the response. ## Dry run Add `dryRun: true` to validate everything and preview the cost WITHOUT renewing or charging — nothing is created. Example response: ```json { "status": "SUCCESS", "dryRun": true, "wouldSucceed": true, "operation": "renewal", "domain": "example.com", "tld": "com", "available": "unavailable", "premium": false, "duration": 1, "cost": 1099, "costDisplay": "$10.99", "balance": 5000, "sufficientFunds": true, "message": "Dry run: this renewal would succeed and cost $10.99. No order was created and no charge was made.", "requestId": "019e04fa-3c11-7a02-9bd2-1f7c0e4a8b55" } ``` */
+export const renewDomain: API.OperationMethod<
+  RenewDomainRequest,
+  RenewDomainResponse2,
+  RenewDomainError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RenewDomainRequest,
+  output: RenewDomainResponse2,
   errors: [BadRequest, UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
 }));
 
-export type SandboxResetError = PorkbunOpError;
-/** Sandbox: reset to a clean slate Sandbox only (requires a `pk1_sb_` key). Wipes the sandbox account's simulated state (domains, DNS, orders, credit) and re-grants $1000 fake credit. */
-export const sandboxReset: API.OperationMethod<
-  SandboxResetRequest,
-  SandboxResetResponse,
-  SandboxResetError,
+export type ResendWebhookError = BadRequest | NotFound | PorkbunOpError;
+/** Resend a delivery Re-queue a past delivery to its endpoint. Clones it into a fresh attempt reusing the ORIGINAL event id (so consumers that dedupe on X-Porkbun-Webhook-Id treat it as the same event). The endpoint must still exist and be ACTIVE. The original delivery row is left intact as history. */
+export const resendWebhook: API.OperationMethod<
+  ResendWebhookRequest,
+  WebhookResendResponse,
+  ResendWebhookError,
   PorkbunOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SandboxResetRequest,
-  output: SandboxResetResponse,
+  input: ResendWebhookRequest,
+  output: WebhookResendResponse,
+  errors: [BadRequest, NotFound, UnknownPorkbunError],
+  protocol: PorkbunProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResetSandboxError = PorkbunOpError;
+/** Sandbox: reset to a clean slate Sandbox only (requires a `pk1_sb_` key). Wipes the sandbox account's simulated state (domains, DNS, orders, credit) and re-grants $1000 fake credit. */
+export const resetSandbox: API.OperationMethod<
+  ResetSandboxRequest,
+  ResetSandboxResponse,
+  ResetSandboxError,
+  PorkbunOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResetSandboxRequest,
+  output: ResetSandboxResponse,
   errors: [UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
@@ -5138,17 +5222,17 @@ export const sandboxTriggerWebhook: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SslRetrieveError = BadRequest | PorkbunOpError;
-/** Retrieve SSL bundle Retrieve the Let's Encrypt SSL certificate bundle for a domain. The certificate must already be issued (status HAVECERT). Token-based access is not supported for this endpoint. Supports both GET (with header auth) and POST (with body or header auth). */
-export const sslRetrieve: API.OperationMethod<
-  SslRetrieveRequest,
-  SslRetrieveResponse,
-  SslRetrieveError,
+export type TestWebhookError = BadRequest | NotFound | PorkbunOpError;
+/** Send a test event Enqueue a `webhook.test` event to the endpoint so you can confirm reachability and that your signature verification works. The endpoint must be ACTIVE. Delivery is asynchronous (usually within a minute). */
+export const testWebhook: API.OperationMethod<
+  TestWebhookRequest,
+  WebhookTestResponse,
+  TestWebhookError,
   PorkbunOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SslRetrieveRequest,
-  output: SslRetrieveResponse,
-  errors: [BadRequest, UnknownPorkbunError],
+  input: TestWebhookRequest,
+  output: WebhookTestResponse,
+  errors: [BadRequest, NotFound, UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
 }));
@@ -5168,32 +5252,17 @@ export const transferDomain: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WebhookCreateError = BadRequest | PorkbunOpError;
-/** Create a webhook endpoint Register an HTTPS endpoint to receive signed event payloads. The response includes the generated `secret` — store it securely; it is the HMAC key used to verify the `X-Porkbun-Signature` header. Omit `events` (or pass `["*"]`) to subscribe to all event types. Maximum 20 endpoints per account. */
-export const webhookCreate: API.OperationMethod<
-  WebhookCreateRequest,
+export type UpdateWebhookError = BadRequest | NotFound | PorkbunOpError;
+/** Update a webhook endpoint Update an endpoint's URL, event subscriptions, and/or status. Only the supplied fields change. Set `status` to `DISABLED` to pause deliveries or `ACTIVE` to resume (resuming also resets the consecutive-failure counter). */
+export const updateWebhook: API.OperationMethod<
+  UpdateWebhookRequest,
   WebhookEndpointResponse,
-  WebhookCreateError,
+  UpdateWebhookError,
   PorkbunOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WebhookCreateRequest,
+  input: UpdateWebhookRequest,
   output: WebhookEndpointResponse,
-  errors: [BadRequest, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhookDeleteError = NotFound | PorkbunOpError;
-/** Delete a webhook endpoint Delete a webhook endpoint by id. Deliveries stop immediately. */
-export const webhookDelete: API.OperationMethod<
-  WebhookDeleteRequest,
-  WebhookDeleteResponse,
-  WebhookDeleteError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhookDeleteRequest,
-  output: WebhookDeleteResponse,
-  errors: [NotFound, UnknownPorkbunError],
+  errors: [BadRequest, NotFound, UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
 }));
@@ -5243,51 +5312,6 @@ export const webhookEventTypes: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WebhookGetError = NotFound | PorkbunOpError;
-/** Get a webhook endpoint Fetch a single webhook endpoint by id, including its signing secret and delivery health. Read-only; supports GET (header auth) or POST (body or header auth). */
-export const webhookGet: API.OperationMethod<
-  WebhookGetRequest,
-  WebhookEndpointResponse,
-  WebhookGetError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhookGetRequest,
-  output: WebhookEndpointResponse,
-  errors: [NotFound, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhookListError = BadRequest | PorkbunOpError;
-/** List webhook endpoints List all webhook endpoints registered on the authenticated account, including each endpoint's signing secret and delivery health. Read-only; supports GET (header auth) or POST (body or header auth). */
-export const webhookList: API.OperationMethod<
-  WebhookListRequest,
-  WebhookListResponse,
-  WebhookListError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhookListRequest,
-  output: WebhookListResponse,
-  errors: [BadRequest, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhookResendError = BadRequest | NotFound | PorkbunOpError;
-/** Resend a delivery Re-queue a past delivery to its endpoint. Clones it into a fresh attempt reusing the ORIGINAL event id (so consumers that dedupe on X-Porkbun-Webhook-Id treat it as the same event). The endpoint must still exist and be ACTIVE. The original delivery row is left intact as history. */
-export const webhookResend: API.OperationMethod<
-  WebhookResendRequest,
-  WebhookResendResponse,
-  WebhookResendError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhookResendRequest,
-  output: WebhookResendResponse,
-  errors: [BadRequest, NotFound, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
 export type WebhookRotateSecretError = NotFound | PorkbunOpError;
 /** Rotate the signing secret Generate a new signing secret for an endpoint and return the endpoint with the new secret. Deliveries are signed with the new secret immediately, so update your verifier as part of the same operation. */
 export const webhookRotateSecret: API.OperationMethod<
@@ -5299,36 +5323,6 @@ export const webhookRotateSecret: API.OperationMethod<
   input: WebhookRotateSecretRequest,
   output: WebhookEndpointResponse,
   errors: [NotFound, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhookTestError = BadRequest | NotFound | PorkbunOpError;
-/** Send a test event Enqueue a `webhook.test` event to the endpoint so you can confirm reachability and that your signature verification works. The endpoint must be ACTIVE. Delivery is asynchronous (usually within a minute). */
-export const webhookTest: API.OperationMethod<
-  WebhookTestRequest,
-  WebhookTestResponse,
-  WebhookTestError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhookTestRequest,
-  output: WebhookTestResponse,
-  errors: [BadRequest, NotFound, UnknownPorkbunError],
-  protocol: PorkbunProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhookUpdateError = BadRequest | NotFound | PorkbunOpError;
-/** Update a webhook endpoint Update an endpoint's URL, event subscriptions, and/or status. Only the supplied fields change. Set `status` to `DISABLED` to pause deliveries or `ACTIVE` to resume (resuming also resets the consecutive-failure counter). */
-export const webhookUpdate: API.OperationMethod<
-  WebhookUpdateRequest,
-  WebhookEndpointResponse,
-  WebhookUpdateError,
-  PorkbunOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhookUpdateRequest,
-  output: WebhookEndpointResponse,
-  errors: [BadRequest, NotFound, UnknownPorkbunError],
   protocol: PorkbunProtocol,
   retry: Retry.Retry,
 }));
