@@ -59,37 +59,6 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
-export interface AbortTestFileMultipartUploadRequest {
-  /** The public ID of the Synthetic test. */
-  public_id: string;
-  /** The full storage path of the file whose upload should be aborted. */
-  key: string;
-  /** The upload ID of the multipart upload to abort. */
-  uploadId: string;
-}
-export const AbortTestFileMultipartUploadRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    public_id: S.String.pipe(T.Label()),
-    key: S.String,
-    uploadId: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/v2/synthetics/tests/{public_id}/files/multipart-upload-abort",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AbortTestFileMultipartUploadRequest",
-}) as any as S.Schema<AbortTestFileMultipartUploadRequest>;
-
-export interface AbortTestFileMultipartUploadResponse {}
-export const AbortTestFileMultipartUploadResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "AbortTestFileMultipartUploadResponse",
-}) as any as S.Schema<AbortTestFileMultipartUploadResponse>;
-
 export interface AcknowledgeOnCallPageRequest {
   /** The page ID. */
   page_id: string;
@@ -8047,66 +8016,6 @@ export const TimelineResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TimelineResponse",
 }) as any as S.Schema<TimelineResponse>;
-
-/** A completed part of a multipart upload. */
-export interface SyntheticsTestFileCompleteMultipartUploadPart {
-  /** The ETag returned by the storage provider after uploading the part. */
-  ETag: string;
-  /** The 1-indexed part number for the multipart upload. */
-  PartNumber: number;
-}
-export const SyntheticsTestFileCompleteMultipartUploadPart =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      ETag: S.String,
-      PartNumber: S.Number,
-    }),
-  ).annotate({
-    identifier: "SyntheticsTestFileCompleteMultipartUploadPart",
-  }) as any as S.Schema<SyntheticsTestFileCompleteMultipartUploadPart>;
-
-/** Array of completed parts with their ETags. */
-export type CompleteTestFileMultipartUploadRequestPartsList =
-  Array<SyntheticsTestFileCompleteMultipartUploadPart>;
-export const CompleteTestFileMultipartUploadRequestPartsList =
-  /*@__PURE__*/ S.Array(
-    SyntheticsTestFileCompleteMultipartUploadPart,
-  ) as any as S.Schema<CompleteTestFileMultipartUploadRequestPartsList>;
-
-export interface CompleteTestFileMultipartUploadRequest {
-  /** The public ID of the Synthetic test. */
-  public_id: string;
-  /** The full storage path for the uploaded file. */
-  key: string;
-  /** Array of completed parts with their ETags. */
-  parts: CompleteTestFileMultipartUploadRequestPartsList;
-  /** The upload ID returned when the multipart upload was initiated. */
-  uploadId: string;
-}
-export const CompleteTestFileMultipartUploadRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      public_id: S.String.pipe(T.Label()),
-      key: S.String,
-      parts: CompleteTestFileMultipartUploadRequestPartsList,
-      uploadId: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/v2/synthetics/tests/{public_id}/files/multipart-upload-complete",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "CompleteTestFileMultipartUploadRequest",
-}) as any as S.Schema<CompleteTestFileMultipartUploadRequest>;
-
-export interface CompleteTestFileMultipartUploadResponse {}
-export const CompleteTestFileMultipartUploadResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "CompleteTestFileMultipartUploadResponse",
-}) as any as S.Schema<CompleteTestFileMultipartUploadResponse>;
 
 export interface ConvertExistingSecurityMonitoringRuleRequest {
   /** The ID of the rule. */
@@ -89636,22 +89545,22 @@ export const ProjectsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProjectsResponse",
 }) as any as S.Schema<ProjectsResponse>;
 
-export type GetPrunedTraceByIDRequestIncludePathList = Array<string>;
-export const GetPrunedTraceByIDRequestIncludePathList = /*@__PURE__*/ S.Array(
+export type GetPrunedTraceRequestIncludePathList = Array<string>;
+export const GetPrunedTraceRequestIncludePathList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<GetPrunedTraceByIDRequestIncludePathList>;
+) as any as S.Schema<GetPrunedTraceRequestIncludePathList>;
 
-export type GetPrunedTraceByIDRequestTagIncludeList = Array<string>;
-export const GetPrunedTraceByIDRequestTagIncludeList = /*@__PURE__*/ S.Array(
+export type GetPrunedTraceRequestTagIncludeList = Array<string>;
+export const GetPrunedTraceRequestTagIncludeList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<GetPrunedTraceByIDRequestTagIncludeList>;
+) as any as S.Schema<GetPrunedTraceRequestTagIncludeList>;
 
-export type GetPrunedTraceByIDRequestTagExcludeList = Array<string>;
-export const GetPrunedTraceByIDRequestTagExcludeList = /*@__PURE__*/ S.Array(
+export type GetPrunedTraceRequestTagExcludeList = Array<string>;
+export const GetPrunedTraceRequestTagExcludeList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<GetPrunedTraceByIDRequestTagExcludeList>;
+) as any as S.Schema<GetPrunedTraceRequestTagExcludeList>;
 
-export interface GetPrunedTraceByIDRequest {
+export interface GetPrunedTraceRequest {
   /** The trace ID. Accepts either a 32-character hexadecimal string (128-bit trace ID) or a decimal string of up to 39 digits. */
   trace_id: string;
   /** Span ID to expand and preserve in the pruned tree even when its branch would normally be summarized. */
@@ -89661,28 +89570,28 @@ export interface GetPrunedTraceByIDRequest {
   /** Force the trace to be loaded from a specific source. When unset, the API picks the source automatically. */
   force_source?: string;
   /** Restrict the pruned tree to spans matching the given `key:value` pairs. Values may be passed as repeated query parameters. */
-  include_path?: GetPrunedTraceByIDRequestIncludePathList;
+  include_path?: GetPrunedTraceRequestIncludePathList;
   /** Regex patterns of tag keys whose values must be included in the pruned spans. Values may be passed as repeated query parameters. */
-  tag_include?: GetPrunedTraceByIDRequestTagIncludeList;
+  tag_include?: GetPrunedTraceRequestTagIncludeList;
   /** Regex patterns of tag keys whose values must be excluded from the pruned spans. Values may be passed as repeated query parameters. */
-  tag_exclude?: GetPrunedTraceByIDRequestTagExcludeList;
+  tag_exclude?: GetPrunedTraceRequestTagExcludeList;
   /** When set to `true`, only service entry spans are included in the pruned tree. */
   only_service_entry_spans?: boolean;
 }
-export const GetPrunedTraceByIDRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPrunedTraceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     trace_id: S.String.pipe(T.Label()),
     expand_span_id: S.optional(S.Number.pipe(T.Query())),
     time_hint: S.optional(S.Number.pipe(T.Query())),
     force_source: S.optional(S.String.pipe(T.Query())),
     include_path: S.optional(
-      GetPrunedTraceByIDRequestIncludePathList.pipe(T.Query()),
+      GetPrunedTraceRequestIncludePathList.pipe(T.Query()),
     ),
     tag_include: S.optional(
-      GetPrunedTraceByIDRequestTagIncludeList.pipe(T.Query()),
+      GetPrunedTraceRequestTagIncludeList.pipe(T.Query()),
     ),
     tag_exclude: S.optional(
-      GetPrunedTraceByIDRequestTagExcludeList.pipe(T.Query()),
+      GetPrunedTraceRequestTagExcludeList.pipe(T.Query()),
     ),
     only_service_entry_spans: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
@@ -89693,8 +89602,8 @@ export const GetPrunedTraceByIDRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetPrunedTraceByIDRequest",
-}) as any as S.Schema<GetPrunedTraceByIDRequest>;
+  identifier: "GetPrunedTraceRequest",
+}) as any as S.Schema<GetPrunedTraceRequest>;
 
 /** The child spans of this node in the pruned tree. */
 export type SummarizedSpanChildrenList = Array<SummarizedSpan>;
@@ -94248,7 +94157,7 @@ export const RecommendationDocument = /*@__PURE__*/ S.suspend(() =>
   identifier: "RecommendationDocument",
 }) as any as S.Schema<RecommendationDocument>;
 
-export interface GetSPARecommendationsWithShardRequest {
+export interface GetSPARecommendationsByShardRequest {
   /** The service name for a spark job */
   service: string;
   /** The shard tag for a spark job, which differentiates jobs within the same service that have different resource needs */
@@ -94256,22 +94165,21 @@ export interface GetSPARecommendationsWithShardRequest {
   /** The recommendation service should not use its metrics cache. */
   bypass_cache?: string;
 }
-export const GetSPARecommendationsWithShardRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      shard: S.String.pipe(T.Label()),
-      bypass_cache: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v2/spa/recommendations/{service}/{shard}",
-        code: 200,
-      }),
-    ),
+export const GetSPARecommendationsByShardRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+    shard: S.String.pipe(T.Label()),
+    bypass_cache: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/spa/recommendations/{service}/{shard}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetSPARecommendationsWithShardRequest",
-}) as any as S.Schema<GetSPARecommendationsWithShardRequest>;
+  identifier: "GetSPARecommendationsByShardRequest",
+}) as any as S.Schema<GetSPARecommendationsByShardRequest>;
 
 export interface GetStaticAnalysisDefaultRulesetsRequest {
   /** The programming language for which to retrieve the default rulesets. */
@@ -99008,29 +98916,29 @@ export const SyntheticsTestParentSuitesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SyntheticsTestParentSuitesResponse",
 }) as any as S.Schema<SyntheticsTestParentSuitesResponse>;
 
-export type GetTraceByIDRequestIncludeFieldsList = Array<string>;
-export const GetTraceByIDRequestIncludeFieldsList = /*@__PURE__*/ S.Array(
+export type GetTraceRequestIncludeFieldsList = Array<string>;
+export const GetTraceRequestIncludeFieldsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<GetTraceByIDRequestIncludeFieldsList>;
+) as any as S.Schema<GetTraceRequestIncludeFieldsList>;
 
-export interface GetTraceByIDRequest {
+export interface GetTraceRequest {
   /** The trace ID. Accepts either a 32-character hexadecimal string (128-bit trace ID) or a decimal string of up to 39 digits. */
   trace_id: string;
   /** List of span fields to include in the response. When omitted, every available field is returned. Values may be passed as repeated query parameters or as a single comma-separated value. */
-  include_fields?: GetTraceByIDRequestIncludeFieldsList;
+  include_fields?: GetTraceRequestIncludeFieldsList;
 }
-export const GetTraceByIDRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetTraceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     trace_id: S.String.pipe(T.Label()),
     include_fields: S.optional(
-      GetTraceByIDRequestIncludeFieldsList.pipe(T.Query()),
+      GetTraceRequestIncludeFieldsList.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({ method: "GET", uri: "/api/v2/trace/{trace_id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetTraceByIDRequest",
-}) as any as S.Schema<GetTraceByIDRequest>;
+  identifier: "GetTraceRequest",
+}) as any as S.Schema<GetTraceRequest>;
 
 /** String-valued tags attached to the span. Tag keys starting with `_` are filtered out of the response. */
 export type APMTraceSpanMetaMap = { [key: string]: string | undefined };
@@ -118732,6 +118640,1366 @@ export const ProcessSummariesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProcessSummariesResponse",
 }) as any as S.Schema<ProcessSummariesResponse>;
 
+/** An account-based audience query. */
+export interface ProductAnalyticsAudienceAccountSubquery {
+  /** Name of this query, referenced in the formula. */
+  name: string;
+  /** Search query for filtering accounts. */
+  query?: string;
+}
+export const ProductAnalyticsAudienceAccountSubquery = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String,
+      query: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ProductAnalyticsAudienceAccountSubquery",
+}) as any as S.Schema<ProductAnalyticsAudienceAccountSubquery>;
+
+/** Account audience queries. */
+export type ProductAnalyticsAudienceFiltersAccountsList =
+  Array<ProductAnalyticsAudienceAccountSubquery>;
+export const ProductAnalyticsAudienceFiltersAccountsList =
+  /*@__PURE__*/ S.Array(
+    ProductAnalyticsAudienceAccountSubquery,
+  ) as any as S.Schema<ProductAnalyticsAudienceFiltersAccountsList>;
+
+/** A segment-based audience query. */
+export interface ProductAnalyticsAudienceSegmentSubquery {
+  /** Name of this query, referenced in the formula. */
+  name: string;
+  /** UUID of the segment to filter by. */
+  segment_id: string;
+}
+export const ProductAnalyticsAudienceSegmentSubquery = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String,
+      segment_id: S.String,
+    }),
+).annotate({
+  identifier: "ProductAnalyticsAudienceSegmentSubquery",
+}) as any as S.Schema<ProductAnalyticsAudienceSegmentSubquery>;
+
+/** Segment audience queries. */
+export type ProductAnalyticsAudienceFiltersSegmentsList =
+  Array<ProductAnalyticsAudienceSegmentSubquery>;
+export const ProductAnalyticsAudienceFiltersSegmentsList =
+  /*@__PURE__*/ S.Array(
+    ProductAnalyticsAudienceSegmentSubquery,
+  ) as any as S.Schema<ProductAnalyticsAudienceFiltersSegmentsList>;
+
+/** A user-based audience query. */
+export interface ProductAnalyticsAudienceUserSubquery {
+  /** Name of this query, referenced in the formula. */
+  name: string;
+  /** Search query for filtering users. */
+  query?: string;
+}
+export const ProductAnalyticsAudienceUserSubquery = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String,
+      query: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ProductAnalyticsAudienceUserSubquery",
+}) as any as S.Schema<ProductAnalyticsAudienceUserSubquery>;
+
+/** User audience queries. */
+export type ProductAnalyticsAudienceFiltersUsersList =
+  Array<ProductAnalyticsAudienceUserSubquery>;
+export const ProductAnalyticsAudienceFiltersUsersList = /*@__PURE__*/ S.Array(
+  ProductAnalyticsAudienceUserSubquery,
+) as any as S.Schema<ProductAnalyticsAudienceFiltersUsersList>;
+
+/** Audience filter definitions for targeting specific user segments. */
+export interface ProductAnalyticsAudienceFilters {
+  /** Account audience queries. */
+  accounts?: ProductAnalyticsAudienceFiltersAccountsList;
+  /** Boolean formula combining audience queries by name. */
+  formula?: string;
+  /** Segment audience queries. */
+  segments?: ProductAnalyticsAudienceFiltersSegmentsList;
+  /** User audience queries. */
+  users?: ProductAnalyticsAudienceFiltersUsersList;
+}
+export const ProductAnalyticsAudienceFilters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accounts: S.optional(ProductAnalyticsAudienceFiltersAccountsList),
+    formula: S.optional(S.String),
+    segments: S.optional(ProductAnalyticsAudienceFiltersSegmentsList),
+    users: S.optional(ProductAnalyticsAudienceFiltersUsersList),
+  }),
+).annotate({
+  identifier: "ProductAnalyticsAudienceFilters",
+}) as any as S.Schema<ProductAnalyticsAudienceFilters>;
+
+/** Attribute columns to include in each event row. */
+export type ProductAnalyticsAnalyticsListQueryColumnsList = Array<string>;
+export const ProductAnalyticsAnalyticsListQueryColumnsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ProductAnalyticsAnalyticsListQueryColumnsList>;
+
+/** The data source identifier. */
+export type ProductAnalyticsEventQueryDataSource = "product_analytics";
+export const ProductAnalyticsEventQueryDataSource = /*@__PURE__*/ S.String;
+
+/** Search parameters for an event query. */
+export interface ProductAnalyticsEventSearch {
+  /** The search query using Datadog search syntax. */
+  query?: string;
+}
+export const ProductAnalyticsEventSearch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    query: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProductAnalyticsEventSearch",
+}) as any as S.Schema<ProductAnalyticsEventSearch>;
+
+/** A standard Product Analytics event query. */
+export interface ProductAnalyticsEventQuery {
+  data_source: ProductAnalyticsEventQueryDataSource;
+  search: ProductAnalyticsEventSearch;
+}
+export const ProductAnalyticsEventQuery = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data_source: ProductAnalyticsEventQueryDataSource,
+    search: ProductAnalyticsEventSearch,
+  }),
+).annotate({
+  identifier: "ProductAnalyticsEventQuery",
+}) as any as S.Schema<ProductAnalyticsEventQuery>;
+
+/** The data source identifier for occurrence queries. */
+export type ProductAnalyticsOccurrenceQueryDataSource =
+  "product_analytics_occurrence";
+export const ProductAnalyticsOccurrenceQueryDataSource = /*@__PURE__*/ S.String;
+
+/** Additional metadata. */
+export type ProductAnalyticsOccurrenceFilterMetaMap = {
+  [key: string]: string | undefined;
+};
+export const ProductAnalyticsOccurrenceFilterMetaMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ProductAnalyticsOccurrenceFilterMetaMap>;
+
+/** Filter for occurrence-based queries. */
+export interface ProductAnalyticsOccurrenceFilter {
+  /** Additional metadata. */
+  meta?: ProductAnalyticsOccurrenceFilterMetaMap;
+  /** Comparison operator (=, >=, <=, >, <). */
+  operator: string;
+  /** The occurrence count threshold as a string. */
+  value: string;
+}
+export const ProductAnalyticsOccurrenceFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    meta: S.optional(ProductAnalyticsOccurrenceFilterMetaMap),
+    operator: S.String,
+    value: S.String,
+  }),
+).annotate({
+  identifier: "ProductAnalyticsOccurrenceFilter",
+}) as any as S.Schema<ProductAnalyticsOccurrenceFilter>;
+
+/** Search parameters for an occurrence query. */
+export interface ProductAnalyticsOccurrenceSearch {
+  occurrences?: ProductAnalyticsOccurrenceFilter;
+  /** The search query using Datadog search syntax. */
+  query?: string;
+}
+export const ProductAnalyticsOccurrenceSearch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    occurrences: S.optional(ProductAnalyticsOccurrenceFilter),
+    query: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProductAnalyticsOccurrenceSearch",
+}) as any as S.Schema<ProductAnalyticsOccurrenceSearch>;
+
+/** A Product Analytics occurrence-filtered query. */
+export interface ProductAnalyticsOccurrenceQuery {
+  data_source: ProductAnalyticsOccurrenceQueryDataSource;
+  search: ProductAnalyticsOccurrenceSearch;
+}
+export const ProductAnalyticsOccurrenceQuery = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data_source: ProductAnalyticsOccurrenceQueryDataSource,
+    search: ProductAnalyticsOccurrenceSearch,
+  }),
+).annotate({
+  identifier: "ProductAnalyticsOccurrenceQuery",
+}) as any as S.Schema<ProductAnalyticsOccurrenceQuery>;
+
+/** A query definition discriminated by the `data_source` field. Use `product_analytics` for standard event queries, or `product_analytics_occurrence` for occurrence-filtered queries. */
+export type ProductAnalyticsBaseQuery =
+  | ProductAnalyticsEventQuery
+  | ProductAnalyticsOccurrenceQuery;
+export const ProductAnalyticsBaseQuery =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductAnalyticsBaseQuery>;
+
+/** The direction rows are sorted in. */
+export type ProductAnalyticsAnalyticsListSortOrder = "asc" | "desc";
+export const ProductAnalyticsAnalyticsListSortOrder = /*@__PURE__*/ S.String;
+
+/** The sort applied to the returned event rows. */
+export interface ProductAnalyticsAnalyticsListSort {
+  /** Name of the facet to sort the rows by. */
+  facet?: string;
+  order?: ProductAnalyticsAnalyticsListSortOrder | (string & {});
+}
+export const ProductAnalyticsAnalyticsListSort = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    facet: S.optional(S.String),
+    order: S.optional(ProductAnalyticsAnalyticsListSortOrder),
+  }),
+).annotate({
+  identifier: "ProductAnalyticsAnalyticsListSort",
+}) as any as S.Schema<ProductAnalyticsAnalyticsListSort>;
+
+/** The analytics list query definition. It selects the events to return with `query`, then chooses the columns on each event row, the sort applied to those rows, and a row limit. Unlike the scalar and timeseries queries, a list query returns raw event rows rather than aggregates, so it takes no compute or group-by rule. */
+export interface ProductAnalyticsAnalyticsListQuery {
+  audience_filters?: ProductAnalyticsAudienceFilters;
+  /** Attribute columns to include in each event row. */
+  columns?: ProductAnalyticsAnalyticsListQueryColumnsList;
+  /** Maximum number of event rows to return. */
+  limit?: number;
+  query: ProductAnalyticsBaseQuery;
+  sort?: ProductAnalyticsAnalyticsListSort;
+}
+export const ProductAnalyticsAnalyticsListQuery = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    audience_filters: S.optional(ProductAnalyticsAudienceFilters),
+    columns: S.optional(ProductAnalyticsAnalyticsListQueryColumnsList),
+    limit: S.optional(S.Number),
+    query: ProductAnalyticsBaseQuery,
+    sort: S.optional(ProductAnalyticsAnalyticsListSort),
+  }),
+).annotate({
+  identifier: "ProductAnalyticsAnalyticsListQuery",
+}) as any as S.Schema<ProductAnalyticsAnalyticsListQuery>;
+
+/** Attributes for an analytics list request. */
+export interface ProductAnalyticsAnalyticsListRequestAttributes {
+  /** Start time in epoch milliseconds. Must be less than `to`. */
+  from: number;
+  query: ProductAnalyticsAnalyticsListQuery;
+  /** End time in epoch milliseconds. */
+  to: number;
+}
+export const ProductAnalyticsAnalyticsListRequestAttributes =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      from: S.Number,
+      query: ProductAnalyticsAnalyticsListQuery,
+      to: S.Number,
+    }),
+  ).annotate({
+    identifier: "ProductAnalyticsAnalyticsListRequestAttributes",
+  }) as any as S.Schema<ProductAnalyticsAnalyticsListRequestAttributes>;
+
+/** The resource type for analytics list requests. */
+export type ProductAnalyticsAnalyticsListRequestType =
+  "formula_analytics_extended_list_request";
+export const ProductAnalyticsAnalyticsListRequestType = /*@__PURE__*/ S.String;
+
+/** Data object for an analytics list request. */
+export interface ProductAnalyticsAnalyticsListRequestData {
+  attributes: ProductAnalyticsAnalyticsListRequestAttributes;
+  type: ProductAnalyticsAnalyticsListRequestType | (string & {});
+}
+export const ProductAnalyticsAnalyticsListRequestData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      attributes: ProductAnalyticsAnalyticsListRequestAttributes,
+      type: ProductAnalyticsAnalyticsListRequestType,
+    }),
+).annotate({
+  identifier: "ProductAnalyticsAnalyticsListRequestData",
+}) as any as S.Schema<ProductAnalyticsAnalyticsListRequestData>;
+
+export interface ListQueryProductAnalyticsRequest {
+  data: ProductAnalyticsAnalyticsListRequestData;
+}
+export const ListQueryProductAnalyticsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: ProductAnalyticsAnalyticsListRequestData,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/v2/product-analytics/analytics/list",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListQueryProductAnalyticsRequest",
+}) as any as S.Schema<ListQueryProductAnalyticsRequest>;
+
+/** A single event row, keyed by column name. */
+export type ProductAnalyticsAnalyticsListRecord = {
+  [key: string]: unknown | undefined;
+};
+export const ProductAnalyticsAnalyticsListRecord = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ProductAnalyticsAnalyticsListRecord>;
+
+/** The event rows, each holding the values of the requested columns. */
+export type ProductAnalyticsAnalyticsListResponseAttributesRecordsList =
+  Array<ProductAnalyticsAnalyticsListRecord>;
+export const ProductAnalyticsAnalyticsListResponseAttributesRecordsList =
+  /*@__PURE__*/ S.Array(
+    ProductAnalyticsAnalyticsListRecord,
+  ) as any as S.Schema<ProductAnalyticsAnalyticsListResponseAttributesRecordsList>;
+
+/** Attributes of an analytics list response, containing the matching event rows. */
+export interface ProductAnalyticsAnalyticsListResponseAttributes {
+  /** The event rows, each holding the values of the requested columns. */
+  records?: ProductAnalyticsAnalyticsListResponseAttributesRecordsList;
+  /** Total number of records matching the query, before the row limit is applied. */
+  total_count?: number;
+}
+export const ProductAnalyticsAnalyticsListResponseAttributes =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      records: S.optional(
+        ProductAnalyticsAnalyticsListResponseAttributesRecordsList,
+      ),
+      total_count: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "ProductAnalyticsAnalyticsListResponseAttributes",
+  }) as any as S.Schema<ProductAnalyticsAnalyticsListResponseAttributes>;
+
+/** The resource type identifier for an analytics list response. */
+export type ProductAnalyticsAnalyticsListResponseType = "list_response";
+export const ProductAnalyticsAnalyticsListResponseType = /*@__PURE__*/ S.String;
+
+/** Data object for an analytics list response. */
+export interface ProductAnalyticsAnalyticsListResponseData {
+  attributes: ProductAnalyticsAnalyticsListResponseAttributes;
+  /** Unique identifier for this response data object. */
+  id: string;
+  type: ProductAnalyticsAnalyticsListResponseType;
+}
+export const ProductAnalyticsAnalyticsListResponseData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      attributes: ProductAnalyticsAnalyticsListResponseAttributes,
+      id: S.String,
+      type: ProductAnalyticsAnalyticsListResponseType,
+    }),
+  ).annotate({
+    identifier: "ProductAnalyticsAnalyticsListResponseData",
+  }) as any as S.Schema<ProductAnalyticsAnalyticsListResponseData>;
+
+/** The execution status of a Product Analytics query. */
+export type ProductAnalyticsResponseMetaStatus = "done" | "running" | "timeout";
+export const ProductAnalyticsResponseMetaStatus = /*@__PURE__*/ S.String;
+
+/** Metadata for a Product Analytics query response. */
+export interface ProductAnalyticsResponseMeta {
+  /** Unique identifier of the query. */
+  request_id?: string;
+  status?: ProductAnalyticsResponseMetaStatus;
+}
+export const ProductAnalyticsResponseMeta = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    request_id: S.optional(S.String),
+    status: S.optional(ProductAnalyticsResponseMetaStatus),
+  }),
+).annotate({
+  identifier: "ProductAnalyticsResponseMeta",
+}) as any as S.Schema<ProductAnalyticsResponseMeta>;
+
+/** Response for an analytics list query, containing individual event records. */
+export interface ProductAnalyticsAnalyticsListResponse {
+  data: ProductAnalyticsAnalyticsListResponseData;
+  meta?: ProductAnalyticsResponseMeta;
+}
+export const ProductAnalyticsAnalyticsListResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      data: ProductAnalyticsAnalyticsListResponseData,
+      meta: S.optional(ProductAnalyticsResponseMeta),
+    }),
+).annotate({
+  identifier: "ProductAnalyticsAnalyticsListResponse",
+}) as any as S.Schema<ProductAnalyticsAnalyticsListResponse>;
+
+/** Name of a computed column to add to each row. */
+export type ProductAnalyticsJourneyComputedColumnName =
+  "first_conversion_timestamps";
+export const ProductAnalyticsJourneyComputedColumnName = /*@__PURE__*/ S.String;
+
+/** A computed column added to each row. Requesting `first_conversion_timestamps` adds one `<node alias>_timestamp` key per step. */
+export interface ProductAnalyticsJourneyComputedColumn {
+  name: ProductAnalyticsJourneyComputedColumnName | (string & {});
+}
+export const ProductAnalyticsJourneyComputedColumn = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: ProductAnalyticsJourneyComputedColumnName,
+    }),
+).annotate({
+  identifier: "ProductAnalyticsJourneyComputedColumn",
+}) as any as S.Schema<ProductAnalyticsJourneyComputedColumn>;
+
+/** Computed columns to add to each row. */
+export type ProductAnalyticsJourneyListQueryComputedColumnsList =
+  Array<ProductAnalyticsJourneyComputedColumn>;
+export const ProductAnalyticsJourneyListQueryComputedColumnsList =
+  /*@__PURE__*/ S.Array(
+    ProductAnalyticsJourneyComputedColumn,
+  ) as any as S.Schema<ProductAnalyticsJourneyListQueryComputedColumnsList>;
+
+/** Whether to return the entities that converted at the target step, or those that dropped off. */
+export type ProductAnalyticsJourneyConversionType = "conversion" | "drop-off";
+export const ProductAnalyticsJourneyConversionType = /*@__PURE__*/ S.String;
+
+/** Attribute columns to return for each row, in addition to the identity join key and `timestamp`. */
+export type ProductAnalyticsJourneyListQueryEntityColumnsList = Array<string>;
+export const ProductAnalyticsJourneyListQueryEntityColumnsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ProductAnalyticsJourneyListQueryEntityColumnsList>;
+
+/** Sort configuration for group-by results. */
+export interface ProductAnalyticsGroupBySort {
+  /** The aggregation function to sort by. */
+  aggregation?: string;
+  /** The metric to sort by. */
+  metric?: string;
+  order?: QuerySortOrder | (string & {});
+}
+export const ProductAnalyticsGroupBySort = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    aggregation: S.optional(S.String),
+    metric: S.optional(S.String),
+    order: S.optional(QuerySortOrder),
+  }),
+).annotate({
+  identifier: "ProductAnalyticsGroupBySort",
+}) as any as S.Schema<ProductAnalyticsGroupBySort>;
+
+/** Audience dimension to group by, instead of an event facet. */
+export type ProductAnalyticsGraphQueryGroupBySource =
+  | "product_analytics_audience_filters.users"
+  | "product_analytics_audience_filters.accounts";
+export const ProductAnalyticsGraphQueryGroupBySource = /*@__PURE__*/ S.String;
+
+/** The discriminator identifying a target that references a single step. */
+export type ProductAnalyticsJourneyNodeTargetType = "node";
+export const ProductAnalyticsJourneyNodeTargetType = /*@__PURE__*/ S.String;
+
+/** A reference to a single step of the journey. */
+export interface ProductAnalyticsJourneyNodeTarget {
+  type: ProductAnalyticsJourneyNodeTargetType;
+  /** Alias of the targeted node. */
+  value: string;
+}
+export const ProductAnalyticsJourneyNodeTarget = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ProductAnalyticsJourneyNodeTargetType,
+    value: S.String,
+  }),
+).annotate({
+  identifier: "ProductAnalyticsJourneyNodeTarget",
+}) as any as S.Schema<ProductAnalyticsJourneyNodeTarget>;
+
+/** The discriminator identifying a target that references a range of steps. */
+export type ProductAnalyticsJourneyPathTargetType = "path";
+export const ProductAnalyticsJourneyPathTargetType = /*@__PURE__*/ S.String;
+
+/** A reference to the range of steps between two nodes of the journey. */
+export interface ProductAnalyticsJourneyPathTarget {
+  /** Alias of the node the path ends at. */
+  end: string;
+  /** Alias of the node the path starts at. */
+  start: string;
+  type: ProductAnalyticsJourneyPathTargetType;
+}
+export const ProductAnalyticsJourneyPathTarget = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    end: S.String,
+    start: S.String,
+    type: ProductAnalyticsJourneyPathTargetType,
+  }),
+).annotate({
+  identifier: "ProductAnalyticsJourneyPathTarget",
+}) as any as S.Schema<ProductAnalyticsJourneyPathTarget>;
+
+/** A reference to a step, or a range of steps, in the journey. Use a `node` target to name a single step, or a `path` target to name the range between two steps. */
+export type ProductAnalyticsJourneyTarget =
+  | ProductAnalyticsJourneyNodeTarget
+  | ProductAnalyticsJourneyPathTarget;
+export const ProductAnalyticsJourneyTarget =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductAnalyticsJourneyTarget>;
+
+/** Restricts the results to these facet values. */
+export type ProductAnalyticsGraphQueryGroupByValueFiltersList = Array<string>;
+export const ProductAnalyticsGraphQueryGroupByValueFiltersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ProductAnalyticsGraphQueryGroupByValueFiltersList>;
+
+/** Segments journey results by the values of a facet. */
+export interface ProductAnalyticsGraphQueryGroupBy {
+  /** Attribute path to group by. */
+  facet: string;
+  /** Maximum number of groups to return. Omit it to let the service choose. */
+  limit?: number;
+  /** Whether to exclude entities that have no value for this facet. */
+  should_exclude_missing?: boolean;
+  sort?: ProductAnalyticsGroupBySort;
+  source?: ProductAnalyticsGraphQueryGroupBySource | (string & {});
+  target?: ProductAnalyticsJourneyTarget;
+  /** Restricts the results to these facet values. */
+  value_filters?: ProductAnalyticsGraphQueryGroupByValueFiltersList;
+}
+export const ProductAnalyticsGraphQueryGroupBy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    facet: S.String,
+    limit: S.optional(S.Number),
+    should_exclude_missing: S.optional(S.Boolean),
+    sort: S.optional(ProductAnalyticsGroupBySort),
+    source: S.optional(ProductAnalyticsGraphQueryGroupBySource),
+    target: S.optional(ProductAnalyticsJourneyTarget),
+    value_filters: S.optional(
+      ProductAnalyticsGraphQueryGroupByValueFiltersList,
+    ),
+  }),
+).annotate({
+  identifier: "ProductAnalyticsGraphQueryGroupBy",
+}) as any as S.Schema<ProductAnalyticsGraphQueryGroupBy>;
+
+/** Segments the results by the values of one or more facets. */
+export type ProductAnalyticsJourneyListQueryGroupByList =
+  Array<ProductAnalyticsGraphQueryGroupBy>;
+export const ProductAnalyticsJourneyListQueryGroupByList =
+  /*@__PURE__*/ S.Array(
+    ProductAnalyticsGraphQueryGroupBy,
+  ) as any as S.Schema<ProductAnalyticsJourneyListQueryGroupByList>;
+
+/** A named sub-query selecting a set of accounts. */
+export interface ProductAnalyticsJourneyAudienceAccountQuery {
+  /** Unique name for this sub-query, referenced from `formula`. */
+  name: string;
+  /** Search query selecting the accounts. */
+  query?: string;
+}
+export const ProductAnalyticsJourneyAudienceAccountQuery =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      query: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ProductAnalyticsJourneyAudienceAccountQuery",
+  }) as any as S.Schema<ProductAnalyticsJourneyAudienceAccountQuery>;
+
+/** Named account sub-queries. */
+export type ProductAnalyticsJourneyAudienceFiltersAccountsList =
+  Array<ProductAnalyticsJourneyAudienceAccountQuery>;
+export const ProductAnalyticsJourneyAudienceFiltersAccountsList =
+  /*@__PURE__*/ S.Array(
+    ProductAnalyticsJourneyAudienceAccountQuery,
+  ) as any as S.Schema<ProductAnalyticsJourneyAudienceFiltersAccountsList>;
+
+/** A named sub-query selecting a saved segment. */
+export interface ProductAnalyticsJourneyAudienceSegmentQuery {
+  /** Unique name for this sub-query, referenced from `formula`. */
+  name: string;
+  /** Identifier of the saved segment. */
+  segment_id: string;
+}
+export const ProductAnalyticsJourneyAudienceSegmentQuery =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      segment_id: S.String,
+    }),
+  ).annotate({
+    identifier: "ProductAnalyticsJourneyAudienceSegmentQuery",
+  }) as any as S.Schema<ProductAnalyticsJourneyAudienceSegmentQuery>;
+
+/** Named segment sub-queries. */
+export type ProductAnalyticsJourneyAudienceFiltersSegmentsList =
+  Array<ProductAnalyticsJourneyAudienceSegmentQuery>;
+export const ProductAnalyticsJourneyAudienceFiltersSegmentsList =
+  /*@__PURE__*/ S.Array(
+    ProductAnalyticsJourneyAudienceSegmentQuery,
+  ) as any as S.Schema<ProductAnalyticsJourneyAudienceFiltersSegmentsList>;
+
+/** A named sub-query selecting a set of users. */
+export interface ProductAnalyticsJourneyAudienceUserQuery {
+  /** Unique name for this sub-query, referenced from `formula`. */
+  name: string;
+  /** Search query selecting the users. */
+  query?: string;
+}
+export const ProductAnalyticsJourneyAudienceUserQuery = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String,
+      query: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ProductAnalyticsJourneyAudienceUserQuery",
+}) as any as S.Schema<ProductAnalyticsJourneyAudienceUserQuery>;
+
+/** Named user sub-queries. */
+export type ProductAnalyticsJourneyAudienceFiltersUsersList =
+  Array<ProductAnalyticsJourneyAudienceUserQuery>;
+export const ProductAnalyticsJourneyAudienceFiltersUsersList =
+  /*@__PURE__*/ S.Array(
+    ProductAnalyticsJourneyAudienceUserQuery,
+  ) as any as S.Schema<ProductAnalyticsJourneyAudienceFiltersUsersList>;
+
+/** Restricts the journey to an audience built from named sub-queries. Sub-query names must be unique across `users`, `segments`, and `accounts`. */
+export interface ProductAnalyticsJourneyAudienceFilters {
+  /** Named account sub-queries. */
+  accounts?: ProductAnalyticsJourneyAudienceFiltersAccountsList;
+  /** Boolean expression combining the sub-query names with `AND`, `OR`, and `NOT`. When empty, all sub-queries are combined with `AND`. */
+  formula?: string;
+  /** Named segment sub-queries. */
+  segments?: ProductAnalyticsJourneyAudienceFiltersSegmentsList;
+  /** Named user sub-queries. */
+  users?: ProductAnalyticsJourneyAudienceFiltersUsersList;
+}
+export const ProductAnalyticsJourneyAudienceFilters = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      accounts: S.optional(ProductAnalyticsJourneyAudienceFiltersAccountsList),
+      formula: S.optional(S.String),
+      segments: S.optional(ProductAnalyticsJourneyAudienceFiltersSegmentsList),
+      users: S.optional(ProductAnalyticsJourneyAudienceFiltersUsersList),
+    }),
+).annotate({
+  identifier: "ProductAnalyticsJourneyAudienceFilters",
+}) as any as S.Schema<ProductAnalyticsJourneyAudienceFilters>;
+
+/** The journey-level metric the graph filter applies to. */
+export type ProductAnalyticsJourneySearchGraphFilterName =
+  | "__dd.time_to_convert"
+  | "__dd.session"
+  | "__dd.dropoff_rate";
+export const ProductAnalyticsJourneySearchGraphFilterName =
+  /*@__PURE__*/ S.String;
+
+/** Comparison operator applied to the graph filter value. */
+export type ProductAnalyticsJourneySearchGraphFilterOperator =
+  | "="
+  | "<"
+  | ">"
+  | "<="
+  | ">=";
+export const ProductAnalyticsJourneySearchGraphFilterOperator =
+  /*@__PURE__*/ S.String;
+
+/** A filter applied to a step, or a range of steps, of the journey graph. */
+export interface ProductAnalyticsJourneySearchGraphFilter {
+  name: ProductAnalyticsJourneySearchGraphFilterName | (string & {});
+  operator: ProductAnalyticsJourneySearchGraphFilterOperator | (string & {});
+  target?: ProductAnalyticsJourneyTarget;
+  /** Value compared against the metric. Durations are expressed in milliseconds. */
+  value: number;
+}
+export const ProductAnalyticsJourneySearchGraphFilter = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: ProductAnalyticsJourneySearchGraphFilterName,
+      operator: ProductAnalyticsJourneySearchGraphFilterOperator,
+      target: S.optional(ProductAnalyticsJourneyTarget),
+      value: S.Number,
+    }),
+).annotate({
+  identifier: "ProductAnalyticsJourneySearchGraphFilter",
+}) as any as S.Schema<ProductAnalyticsJourneySearchGraphFilter>;
+
+/** Filters on journey-level metrics such as time to convert. */
+export type ProductAnalyticsJourneySearchFiltersGraphFiltersList =
+  Array<ProductAnalyticsJourneySearchGraphFilter>;
+export const ProductAnalyticsJourneySearchFiltersGraphFiltersList =
+  /*@__PURE__*/ S.Array(
+    ProductAnalyticsJourneySearchGraphFilter,
+  ) as any as S.Schema<ProductAnalyticsJourneySearchFiltersGraphFiltersList>;
+
+/** Filters applied on top of the journey step expression. */
+export interface ProductAnalyticsJourneySearchFilters {
+  audience_filters?: ProductAnalyticsJourneyAudienceFilters;
+  /** Filters on journey-level metrics such as time to convert. */
+  graph_filters?: ProductAnalyticsJourneySearchFiltersGraphFiltersList;
+  /** Free-text search query applied to the whole journey. */
+  string_filter?: string;
+}
+export const ProductAnalyticsJourneySearchFilters = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      audience_filters: S.optional(ProductAnalyticsJourneyAudienceFilters),
+      graph_filters: S.optional(
+        ProductAnalyticsJourneySearchFiltersGraphFiltersList,
+      ),
+      string_filter: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ProductAnalyticsJourneySearchFilters",
+}) as any as S.Schema<ProductAnalyticsJourneySearchFilters>;
+
+/** Additional identity join keys. */
+export type ProductAnalyticsJoinKeysSecondaryList = Array<string>;
+export const ProductAnalyticsJoinKeysSecondaryList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ProductAnalyticsJoinKeysSecondaryList>;
+
+/** Identity join keys used to stitch events belonging to the same user or session. */
+export interface ProductAnalyticsJoinKeys {
+  /** Primary identity join key. Defaults to `@session.id`. */
+  primary?: string;
+  /** Additional identity join keys. */
+  secondary?: ProductAnalyticsJoinKeysSecondaryList;
+}
+export const ProductAnalyticsJoinKeys = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    primary: S.optional(S.String),
+    secondary: S.optional(ProductAnalyticsJoinKeysSecondaryList),
+  }),
+).annotate({
+  identifier: "ProductAnalyticsJoinKeys",
+}) as any as S.Schema<ProductAnalyticsJoinKeys>;
+
+/** Map of node alias to the query matching that step of the journey. Every alias used in `expression` must have an entry here. */
+export type ProductAnalyticsJourneySearchNodeObjectsMap = {
+  [key: string]: ProductAnalyticsBaseQuery | undefined;
+};
+export const ProductAnalyticsJourneySearchNodeObjectsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    ProductAnalyticsBaseQuery,
+  ) as any as S.Schema<ProductAnalyticsJourneySearchNodeObjectsMap>;
+
+/** Defines the steps of the journey and the filters applied to it. */
+export interface ProductAnalyticsJourneySearch {
+  /** Expression combining the node aliases in order, for example `A -> B -> C`. */
+  expression: string;
+  filters?: ProductAnalyticsJourneySearchFilters;
+  join_keys?: ProductAnalyticsJoinKeys;
+  /** Map of node alias to the query matching that step of the journey. Every alias used in `expression` must have an entry here. */
+  node_objects: ProductAnalyticsJourneySearchNodeObjectsMap;
+}
+export const ProductAnalyticsJourneySearch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expression: S.String,
+    filters: S.optional(ProductAnalyticsJourneySearchFilters),
+    join_keys: S.optional(ProductAnalyticsJoinKeys),
+    node_objects: ProductAnalyticsJourneySearchNodeObjectsMap,
+  }),
+).annotate({
+  identifier: "ProductAnalyticsJourneySearch",
+}) as any as S.Schema<ProductAnalyticsJourneySearch>;
+
+/** Sort configuration for the returned rows. The sort is applied only when `facet` is one of the returned columns; otherwise it is ignored. */
+export interface ProductAnalyticsJourneyListSort {
+  /** Column to sort on. */
+  facet?: string;
+  order?: QuerySortOrder | (string & {});
+}
+export const ProductAnalyticsJourneyListSort = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    facet: S.optional(S.String),
+    order: S.optional(QuerySortOrder),
+  }),
+).annotate({
+  identifier: "ProductAnalyticsJourneyListSort",
+}) as any as S.Schema<ProductAnalyticsJourneyListSort>;
+
+/** Query definition for a journey list request. */
+export interface ProductAnalyticsJourneyListQuery {
+  /** Computed columns to add to each row. */
+  computed_columns?: ProductAnalyticsJourneyListQueryComputedColumnsList;
+  conversion_type?: ProductAnalyticsJourneyConversionType | (string & {});
+  /** Attribute columns to return for each row, in addition to the identity join key and `timestamp`. */
+  entity_columns?: ProductAnalyticsJourneyListQueryEntityColumnsList;
+  /** Additional search query applied to the returned rows. */
+  entity_filters?: string;
+  /** Segments the results by the values of one or more facets. */
+  group_by?: ProductAnalyticsJourneyListQueryGroupByList;
+  /** Maximum number of rows to return. Omit it to let the service choose. */
+  limit?: number;
+  search: ProductAnalyticsJourneySearch;
+  sort?: ProductAnalyticsJourneyListSort;
+  target?: ProductAnalyticsJourneyTarget;
+}
+export const ProductAnalyticsJourneyListQuery = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    computed_columns: S.optional(
+      ProductAnalyticsJourneyListQueryComputedColumnsList,
+    ),
+    conversion_type: S.optional(ProductAnalyticsJourneyConversionType),
+    entity_columns: S.optional(
+      ProductAnalyticsJourneyListQueryEntityColumnsList,
+    ),
+    entity_filters: S.optional(S.String),
+    group_by: S.optional(ProductAnalyticsJourneyListQueryGroupByList),
+    limit: S.optional(S.Number),
+    search: ProductAnalyticsJourneySearch,
+    sort: S.optional(ProductAnalyticsJourneyListSort),
+    target: S.optional(ProductAnalyticsJourneyTarget),
+  }),
+).annotate({
+  identifier: "ProductAnalyticsJourneyListQuery",
+}) as any as S.Schema<ProductAnalyticsJourneyListQuery>;
+
+/** Attributes of a journey list request. */
+export interface ProductAnalyticsJourneyListRequestAttributes {
+  /** Start of the query window, in epoch milliseconds. */
+  from: number;
+  query: ProductAnalyticsJourneyListQuery;
+  /** End of the query window, in epoch milliseconds. */
+  to: number;
+}
+export const ProductAnalyticsJourneyListRequestAttributes =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      from: S.Number,
+      query: ProductAnalyticsJourneyListQuery,
+      to: S.Number,
+    }),
+  ).annotate({
+    identifier: "ProductAnalyticsJourneyListRequestAttributes",
+  }) as any as S.Schema<ProductAnalyticsJourneyListRequestAttributes>;
+
+/** The resource type identifier for a journey list request. */
+export type ProductAnalyticsJourneyListRequestType = "journey_list_request";
+export const ProductAnalyticsJourneyListRequestType = /*@__PURE__*/ S.String;
+
+/** The single JSON:API resource carrying a journey list query. Its attributes hold the time window and the journey whose matching entities should be listed, one row each. */
+export interface ProductAnalyticsJourneyListRequestData {
+  attributes: ProductAnalyticsJourneyListRequestAttributes;
+  type: ProductAnalyticsJourneyListRequestType | (string & {});
+}
+export const ProductAnalyticsJourneyListRequestData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      attributes: ProductAnalyticsJourneyListRequestAttributes,
+      type: ProductAnalyticsJourneyListRequestType,
+    }),
+).annotate({
+  identifier: "ProductAnalyticsJourneyListRequestData",
+}) as any as S.Schema<ProductAnalyticsJourneyListRequestData>;
+
+export interface ListQueryProductAnalyticsJourneyRequest {
+  data: ProductAnalyticsJourneyListRequestData;
+}
+export const ListQueryProductAnalyticsJourneyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      data: ProductAnalyticsJourneyListRequestData,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/v2/product-analytics/journey/list",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListQueryProductAnalyticsJourneyRequest",
+}) as any as S.Schema<ListQueryProductAnalyticsJourneyRequest>;
+
+/** The kind of entity returned by a journey list query. */
+export type ProductAnalyticsJourneyEntity = "session" | "user" | "account";
+export const ProductAnalyticsJourneyEntity = /*@__PURE__*/ S.String;
+
+/** A single row. Keys are the returned column names: the identity join key, `timestamp`, each entry of `entity_columns`, and any computed columns. A value is null when the column has no value for that row. */
+export type ProductAnalyticsJourneyListRecord = {
+  [key: string]: unknown | undefined;
+};
+export const ProductAnalyticsJourneyListRecord = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ProductAnalyticsJourneyListRecord>;
+
+/** The returned rows. */
+export type ProductAnalyticsJourneyListResponseAttributesRecordsList =
+  Array<ProductAnalyticsJourneyListRecord>;
+export const ProductAnalyticsJourneyListResponseAttributesRecordsList =
+  /*@__PURE__*/ S.Array(
+    ProductAnalyticsJourneyListRecord,
+  ) as any as S.Schema<ProductAnalyticsJourneyListResponseAttributesRecordsList>;
+
+/** Attributes of a journey list response. */
+export interface ProductAnalyticsJourneyListResponseAttributes {
+  entity: ProductAnalyticsJourneyEntity;
+  /** The returned rows. */
+  records: ProductAnalyticsJourneyListResponseAttributesRecordsList;
+  /** Total number of rows matching the query, ignoring `limit`. */
+  total_count: number;
+}
+export const ProductAnalyticsJourneyListResponseAttributes =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      entity: ProductAnalyticsJourneyEntity,
+      records: ProductAnalyticsJourneyListResponseAttributesRecordsList,
+      total_count: S.Number,
+    }),
+  ).annotate({
+    identifier: "ProductAnalyticsJourneyListResponseAttributes",
+  }) as any as S.Schema<ProductAnalyticsJourneyListResponseAttributes>;
+
+/** The resource type identifier for a journey list response. */
+export type ProductAnalyticsJourneyListResponseType = "journey_list_response";
+export const ProductAnalyticsJourneyListResponseType = /*@__PURE__*/ S.String;
+
+/** The single JSON:API resource holding the entities matching a journey. Its attributes contain the returned rows and the total number of rows that matched, ignoring `limit`. */
+export interface ProductAnalyticsJourneyListResponseData {
+  attributes: ProductAnalyticsJourneyListResponseAttributes;
+  /** Identifier of this result. */
+  id: string;
+  type: ProductAnalyticsJourneyListResponseType;
+}
+export const ProductAnalyticsJourneyListResponseData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      attributes: ProductAnalyticsJourneyListResponseAttributes,
+      id: S.String,
+      type: ProductAnalyticsJourneyListResponseType,
+    }),
+).annotate({
+  identifier: "ProductAnalyticsJourneyListResponseData",
+}) as any as S.Schema<ProductAnalyticsJourneyListResponseData>;
+
+/** Response for a journey list query. */
+export interface ProductAnalyticsJourneyListResponse {
+  data: ProductAnalyticsJourneyListResponseData;
+}
+export const ProductAnalyticsJourneyListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: ProductAnalyticsJourneyListResponseData,
+  }),
+).annotate({
+  identifier: "ProductAnalyticsJourneyListResponse",
+}) as any as S.Schema<ProductAnalyticsJourneyListResponse>;
+
+/** The attribute selected for a column. */
+export interface ProductAnalyticsRetentionListColumnField {
+  /** Attribute path of the column. */
+  path?: string;
+}
+export const ProductAnalyticsRetentionListColumnField = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      path: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ProductAnalyticsRetentionListColumnField",
+}) as any as S.Schema<ProductAnalyticsRetentionListColumnField>;
+
+/** A column to include in each returned entity row. */
+export interface ProductAnalyticsRetentionListColumn {
+  field?: ProductAnalyticsRetentionListColumnField;
+}
+export const ProductAnalyticsRetentionListColumn = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    field: S.optional(ProductAnalyticsRetentionListColumnField),
+  }),
+).annotate({
+  identifier: "ProductAnalyticsRetentionListColumn",
+}) as any as S.Schema<ProductAnalyticsRetentionListColumn>;
+
+/** The attribute columns to include in each returned row. */
+export type ProductAnalyticsRetentionListQueryColumnsList =
+  Array<ProductAnalyticsRetentionListColumn>;
+export const ProductAnalyticsRetentionListQueryColumnsList =
+  /*@__PURE__*/ S.Array(
+    ProductAnalyticsRetentionListColumn,
+  ) as any as S.Schema<ProductAnalyticsRetentionListQueryColumnsList>;
+
+/** The discriminator identifying a target selected by index. */
+export type ProductAnalyticsRetentionIndexTargetType = "index";
+export const ProductAnalyticsRetentionIndexTargetType = /*@__PURE__*/ S.String;
+
+/** Selects a cohort or return period by its zero-based position in the grid. */
+export interface ProductAnalyticsRetentionIndexTarget {
+  type: ProductAnalyticsRetentionIndexTargetType;
+  /** Zero-based index of the targeted cohort or return period. */
+  value: number;
+}
+export const ProductAnalyticsRetentionIndexTarget = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      type: ProductAnalyticsRetentionIndexTargetType,
+      value: S.Number,
+    }),
+).annotate({
+  identifier: "ProductAnalyticsRetentionIndexTarget",
+}) as any as S.Schema<ProductAnalyticsRetentionIndexTarget>;
+
+/** The discriminator identifying a target selected by aggregation. */
+export type ProductAnalyticsRetentionAggregationTargetType = "aggregation";
+export const ProductAnalyticsRetentionAggregationTargetType =
+  /*@__PURE__*/ S.String;
+
+/** Selects the rolled-up row that aggregates every cohort, rather than a single cohort. */
+export interface ProductAnalyticsRetentionAggregationTarget {
+  type: ProductAnalyticsRetentionAggregationTargetType;
+  /** The aggregation that produced the rolled-up row. */
+  value: string;
+}
+export const ProductAnalyticsRetentionAggregationTarget =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ProductAnalyticsRetentionAggregationTargetType,
+      value: S.String,
+    }),
+  ).annotate({
+    identifier: "ProductAnalyticsRetentionAggregationTarget",
+  }) as any as S.Schema<ProductAnalyticsRetentionAggregationTarget>;
+
+/** Selects a cohort, either by index or by the aggregation that rolls all cohorts together. */
+export type ProductAnalyticsRetentionCohortTarget =
+  | ProductAnalyticsRetentionIndexTarget
+  | ProductAnalyticsRetentionAggregationTarget;
+export const ProductAnalyticsRetentionCohortTarget =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductAnalyticsRetentionCohortTarget>;
+
+/** The discriminator identifying a scope narrowed to one grid cell. */
+export type ProductAnalyticsRetentionCellScopeType = "cell";
+export const ProductAnalyticsRetentionCellScopeType = /*@__PURE__*/ S.String;
+
+/** Narrows a retention query to a single cell, at the intersection of one cohort and one return period. */
+export interface ProductAnalyticsRetentionCellScope {
+  cohort_target: ProductAnalyticsRetentionCohortTarget;
+  return_period_target: ProductAnalyticsRetentionIndexTarget;
+  type: ProductAnalyticsRetentionCellScopeType;
+}
+export const ProductAnalyticsRetentionCellScope = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cohort_target: ProductAnalyticsRetentionCohortTarget,
+    return_period_target: ProductAnalyticsRetentionIndexTarget,
+    type: ProductAnalyticsRetentionCellScopeType,
+  }),
+).annotate({
+  identifier: "ProductAnalyticsRetentionCellScope",
+}) as any as S.Schema<ProductAnalyticsRetentionCellScope>;
+
+/** The discriminator identifying a calendar-aligned retention interval. */
+export type ProductAnalyticsRetentionCalendarTimeIntervalType = "calendar";
+export const ProductAnalyticsRetentionCalendarTimeIntervalType =
+  /*@__PURE__*/ S.String;
+
+/** Calendar unit used to bucket cohorts. */
+export type ProductAnalyticsCalendarIntervalType =
+  | "minute"
+  | "hour"
+  | "day"
+  | "week"
+  | "month"
+  | "quarter"
+  | "year";
+export const ProductAnalyticsCalendarIntervalType = /*@__PURE__*/ S.String;
+
+/** A calendar-aligned bucket definition, such as "every 1 week starting on Monday". */
+export interface ProductAnalyticsCalendarInterval {
+  /** Where each bucket starts within the calendar unit. Use an hour for `day` (for example `1am` or `14`), a day name for `week` (for example `monday`), or an ordinal for `month` (for example `1st`). */
+  alignment?: string;
+  /** Number of calendar units per bucket. */
+  quantity?: number;
+  /** Timezone used to align the buckets. */
+  timezone?: string;
+  type: ProductAnalyticsCalendarIntervalType | (string & {});
+}
+export const ProductAnalyticsCalendarInterval = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    alignment: S.optional(S.String),
+    quantity: S.optional(S.Number),
+    timezone: S.optional(S.String),
+    type: ProductAnalyticsCalendarIntervalType,
+  }),
+).annotate({
+  identifier: "ProductAnalyticsCalendarInterval",
+}) as any as S.Schema<ProductAnalyticsCalendarInterval>;
+
+/** A retention interval aligned to calendar boundaries. */
+export interface ProductAnalyticsRetentionCalendarTimeInterval {
+  type: ProductAnalyticsRetentionCalendarTimeIntervalType;
+  value: ProductAnalyticsCalendarInterval;
+}
+export const ProductAnalyticsRetentionCalendarTimeInterval =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ProductAnalyticsRetentionCalendarTimeIntervalType,
+      value: ProductAnalyticsCalendarInterval,
+    }),
+  ).annotate({
+    identifier: "ProductAnalyticsRetentionCalendarTimeInterval",
+  }) as any as S.Schema<ProductAnalyticsRetentionCalendarTimeInterval>;
+
+/** The discriminator identifying a fixed-length retention interval. */
+export type ProductAnalyticsRetentionFixedTimeIntervalType = "fixed";
+export const ProductAnalyticsRetentionFixedTimeIntervalType =
+  /*@__PURE__*/ S.String;
+
+/** Time unit for a fixed-length retention interval. */
+export type ProductAnalyticsRetentionFixedTimeIntervalUnit =
+  | "day"
+  | "week"
+  | "month";
+export const ProductAnalyticsRetentionFixedTimeIntervalUnit =
+  /*@__PURE__*/ S.String;
+
+/** A retention interval of fixed length, such as "7 days". */
+export interface ProductAnalyticsRetentionFixedTimeInterval {
+  type: ProductAnalyticsRetentionFixedTimeIntervalType;
+  unit: ProductAnalyticsRetentionFixedTimeIntervalUnit | (string & {});
+  /** Length of the interval, expressed in `unit`. */
+  value: number;
+}
+export const ProductAnalyticsRetentionFixedTimeInterval =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ProductAnalyticsRetentionFixedTimeIntervalType,
+      unit: ProductAnalyticsRetentionFixedTimeIntervalUnit,
+      value: S.Number,
+    }),
+  ).annotate({
+    identifier: "ProductAnalyticsRetentionFixedTimeInterval",
+  }) as any as S.Schema<ProductAnalyticsRetentionFixedTimeInterval>;
+
+/** A retention interval, either aligned to calendar boundaries or of a fixed length. Cohort criteria use calendar intervals; return criteria use fixed intervals. */
+export type ProductAnalyticsRetentionTimeInterval =
+  | ProductAnalyticsRetentionCalendarTimeInterval
+  | ProductAnalyticsRetentionFixedTimeInterval;
+export const ProductAnalyticsRetentionTimeInterval =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductAnalyticsRetentionTimeInterval>;
+
+/** Defines the event that places an entity into a cohort, and how cohorts are bucketed over time. */
+export interface ProductAnalyticsRetentionCohortCriteria {
+  base_query: ProductAnalyticsBaseQuery;
+  time_interval: ProductAnalyticsRetentionTimeInterval;
+}
+export const ProductAnalyticsRetentionCohortCriteria = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      base_query: ProductAnalyticsBaseQuery,
+      time_interval: ProductAnalyticsRetentionTimeInterval,
+    }),
+).annotate({
+  identifier: "ProductAnalyticsRetentionCohortCriteria",
+}) as any as S.Schema<ProductAnalyticsRetentionCohortCriteria>;
+
+/** Filters narrowing the events considered by a retention query. */
+export interface ProductAnalyticsRetentionFilters {
+  audience_filters?: ProductAnalyticsAudienceFilters;
+  /** Free-text search query applied to the events. */
+  string_filter?: string;
+}
+export const ProductAnalyticsRetentionFilters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    audience_filters: S.optional(ProductAnalyticsAudienceFilters),
+    string_filter: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProductAnalyticsRetentionFilters",
+}) as any as S.Schema<ProductAnalyticsRetentionFilters>;
+
+/** The entity whose retention is measured. */
+export type ProductAnalyticsRetentionEntity = "@usr.id" | "@account.id";
+export const ProductAnalyticsRetentionEntity = /*@__PURE__*/ S.String;
+
+/** When an entity counts as having returned. Use `conversion_on` to count only entities that returned during the period itself, or `conversion_on_or_after` to also count later returns. */
+export type ProductAnalyticsRetentionReturnCondition =
+  | "conversion_on"
+  | "conversion_on_or_after";
+export const ProductAnalyticsRetentionReturnCondition = /*@__PURE__*/ S.String;
+
+/** Defines the event that counts as a return, and the window in which it must occur. */
+export interface ProductAnalyticsRetentionReturnCriteria {
+  base_query: ProductAnalyticsBaseQuery;
+  time_interval?: ProductAnalyticsRetentionTimeInterval;
+}
+export const ProductAnalyticsRetentionReturnCriteria = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      base_query: ProductAnalyticsBaseQuery,
+      time_interval: S.optional(ProductAnalyticsRetentionTimeInterval),
+    }),
+).annotate({
+  identifier: "ProductAnalyticsRetentionReturnCriteria",
+}) as any as S.Schema<ProductAnalyticsRetentionReturnCriteria>;
+
+/** Defines the cohort and return criteria that make up a retention query. */
+export interface ProductAnalyticsRetentionSearch {
+  cohort_criteria: ProductAnalyticsRetentionCohortCriteria;
+  filters?: ProductAnalyticsRetentionFilters;
+  retention_entity: ProductAnalyticsRetentionEntity | (string & {});
+  return_condition: ProductAnalyticsRetentionReturnCondition | (string & {});
+  return_criteria?: ProductAnalyticsRetentionReturnCriteria;
+}
+export const ProductAnalyticsRetentionSearch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cohort_criteria: ProductAnalyticsRetentionCohortCriteria,
+    filters: S.optional(ProductAnalyticsRetentionFilters),
+    retention_entity: ProductAnalyticsRetentionEntity,
+    return_condition: ProductAnalyticsRetentionReturnCondition,
+    return_criteria: S.optional(ProductAnalyticsRetentionReturnCriteria),
+  }),
+).annotate({
+  identifier: "ProductAnalyticsRetentionSearch",
+}) as any as S.Schema<ProductAnalyticsRetentionSearch>;
+
+/** Query definition for a retention list request. */
+export interface ProductAnalyticsRetentionListQuery {
+  /** The attribute columns to include in each returned row. */
+  columns?: ProductAnalyticsRetentionListQueryColumnsList;
+  computation_scope: ProductAnalyticsRetentionCellScope;
+  /** Maximum number of rows to return. Use `0` for no limit. */
+  limit?: number;
+  search: ProductAnalyticsRetentionSearch;
+}
+export const ProductAnalyticsRetentionListQuery = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    columns: S.optional(ProductAnalyticsRetentionListQueryColumnsList),
+    computation_scope: ProductAnalyticsRetentionCellScope,
+    limit: S.optional(S.Number),
+    search: ProductAnalyticsRetentionSearch,
+  }),
+).annotate({
+  identifier: "ProductAnalyticsRetentionListQuery",
+}) as any as S.Schema<ProductAnalyticsRetentionListQuery>;
+
+/** Attributes of a retention list request. */
+export interface ProductAnalyticsRetentionListRequestAttributes {
+  /** Start of the query window, in epoch milliseconds. */
+  from: number;
+  query: ProductAnalyticsRetentionListQuery;
+  /** End of the query window, in epoch milliseconds. */
+  to: number;
+}
+export const ProductAnalyticsRetentionListRequestAttributes =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      from: S.Number,
+      query: ProductAnalyticsRetentionListQuery,
+      to: S.Number,
+    }),
+  ).annotate({
+    identifier: "ProductAnalyticsRetentionListRequestAttributes",
+  }) as any as S.Schema<ProductAnalyticsRetentionListRequestAttributes>;
+
+/** The resource type identifier for a retention list request. */
+export type ProductAnalyticsRetentionListRequestType = "retention_list_request";
+export const ProductAnalyticsRetentionListRequestType = /*@__PURE__*/ S.String;
+
+/** The single JSON:API resource carrying a retention list query. Its attributes hold the time window, the cell to list, and the columns to return for each entity. */
+export interface ProductAnalyticsRetentionListRequestData {
+  attributes: ProductAnalyticsRetentionListRequestAttributes;
+  type: ProductAnalyticsRetentionListRequestType | (string & {});
+}
+export const ProductAnalyticsRetentionListRequestData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      attributes: ProductAnalyticsRetentionListRequestAttributes,
+      type: ProductAnalyticsRetentionListRequestType,
+    }),
+).annotate({
+  identifier: "ProductAnalyticsRetentionListRequestData",
+}) as any as S.Schema<ProductAnalyticsRetentionListRequestData>;
+
+export interface ListQueryProductAnalyticsRetentionRequest {
+  data: ProductAnalyticsRetentionListRequestData;
+}
+export const ListQueryProductAnalyticsRetentionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      data: ProductAnalyticsRetentionListRequestData,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/v2/product-analytics/retention/list",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListQueryProductAnalyticsRetentionRequest",
+  }) as any as S.Schema<ListQueryProductAnalyticsRetentionRequest>;
+
+/** A single entity row, keyed by the requested column paths. */
+export type ProductAnalyticsRetentionListRecord = {
+  [key: string]: unknown | undefined;
+};
+export const ProductAnalyticsRetentionListRecord = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ProductAnalyticsRetentionListRecord>;
+
+/** The matching entity rows. */
+export type ProductAnalyticsRetentionListResponseAttributesRecordsList =
+  Array<ProductAnalyticsRetentionListRecord>;
+export const ProductAnalyticsRetentionListResponseAttributesRecordsList =
+  /*@__PURE__*/ S.Array(
+    ProductAnalyticsRetentionListRecord,
+  ) as any as S.Schema<ProductAnalyticsRetentionListResponseAttributesRecordsList>;
+
+/** Attributes of a retention list response, containing the matching entity rows. */
+export interface ProductAnalyticsRetentionListResponseAttributes {
+  /** The matching entity rows. */
+  records?: ProductAnalyticsRetentionListResponseAttributesRecordsList;
+  /** The entity whose retention was measured. */
+  retention_entity?: string;
+}
+export const ProductAnalyticsRetentionListResponseAttributes =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      records: S.optional(
+        ProductAnalyticsRetentionListResponseAttributesRecordsList,
+      ),
+      retention_entity: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ProductAnalyticsRetentionListResponseAttributes",
+  }) as any as S.Schema<ProductAnalyticsRetentionListResponseAttributes>;
+
+/** The resource type identifier for a retention list response. */
+export type ProductAnalyticsRetentionListResponseType =
+  "retention_list_response";
+export const ProductAnalyticsRetentionListResponseType = /*@__PURE__*/ S.String;
+
+/** The single JSON:API resource holding the entities behind one retention cell. Its attributes contain the entity whose retention was measured and one row per matching entity. */
+export interface ProductAnalyticsRetentionListResponseData {
+  attributes: ProductAnalyticsRetentionListResponseAttributes;
+  /** Unique identifier for this response data object. */
+  id: string;
+  type: ProductAnalyticsRetentionListResponseType;
+}
+export const ProductAnalyticsRetentionListResponseData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      attributes: ProductAnalyticsRetentionListResponseAttributes,
+      id: S.String,
+      type: ProductAnalyticsRetentionListResponseType,
+    }),
+  ).annotate({
+    identifier: "ProductAnalyticsRetentionListResponseData",
+  }) as any as S.Schema<ProductAnalyticsRetentionListResponseData>;
+
+/** Response for a retention list query. */
+export interface ProductAnalyticsRetentionListResponse {
+  data: ProductAnalyticsRetentionListResponseData;
+}
+export const ProductAnalyticsRetentionListResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      data: ProductAnalyticsRetentionListResponseData,
+    }),
+).annotate({
+  identifier: "ProductAnalyticsRetentionListResponse",
+}) as any as S.Schema<ProductAnalyticsRetentionListResponse>;
+
 export interface ListReferenceTableRowsRequest {
   /** Unique identifier of the reference table to list rows from. */
   id: string;
@@ -126514,144 +127782,9 @@ export const RumRetentionFiltersOrderResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RumRetentionFiltersOrderResponse",
 }) as any as S.Schema<RumRetentionFiltersOrderResponse>;
 
-/** The list of domains in the email domain allowlist. */
-export type DomainAllowlistAttributesDomainsList = Array<string>;
-export const DomainAllowlistAttributesDomainsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DomainAllowlistAttributesDomainsList>;
-
-/** The details of the email domain allowlist. */
-export interface DomainAllowlistAttributes {
-  /** The list of domains in the email domain allowlist. */
-  domains?: DomainAllowlistAttributesDomainsList;
-  /** Whether the email domain allowlist is enabled for the org. */
-  enabled?: boolean;
-}
-export const DomainAllowlistAttributes = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domains: S.optional(DomainAllowlistAttributesDomainsList),
-    enabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "DomainAllowlistAttributes",
-}) as any as S.Schema<DomainAllowlistAttributes>;
-
-/** The email domain allowlist for an org. */
-export interface DomainAllowlist {
-  attributes?: DomainAllowlistAttributes;
-  /** The unique identifier of the org. */
-  id?: string | null;
-  type: DomainAllowlistType | (string & {});
-}
-export const DomainAllowlist = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attributes: S.optional(DomainAllowlistAttributes),
-    id: S.optional(S.NullOr(S.String)),
-    type: DomainAllowlistType,
-  }),
-).annotate({
-  identifier: "DomainAllowlist",
-}) as any as S.Schema<DomainAllowlist>;
-
-export interface PatchDomainAllowlistRequest {
-  data: DomainAllowlist;
-}
-export const PatchDomainAllowlistRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: DomainAllowlist,
-  }).pipe(
-    T.Http({ method: "PATCH", uri: "/api/v2/domain_allowlist", code: 200 }),
-  ),
-).annotate({
-  identifier: "PatchDomainAllowlistRequest",
-}) as any as S.Schema<PatchDomainAllowlistRequest>;
-
 /** The type of remediation action taken. Required when the failed deployment must be linked to a remediation deployment. */
 export type DORADeploymentPatchRemediationType = "rollback" | "rollforward";
 export const DORADeploymentPatchRemediationType = /*@__PURE__*/ S.String;
-
-/** Remediation details for the deployment. Optional, but required to calculate failed deployment recovery time. Specify either `id` or `version` to identify the remediation deployment, but not both. */
-export interface DORADeploymentPatchRemediation {
-  /** The ID of the remediation deployment. Use this or `version` to identify the remediation deployment, but not both. */
-  id?: string;
-  type?: DORADeploymentPatchRemediationType | (string & {});
-  /** The version of the remediation deployment, matched against the same service and environment as the failed deployment. Use this or `id` to identify the remediation deployment, but not both. */
-  version?: string;
-}
-export const DORADeploymentPatchRemediation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    type: S.optional(DORADeploymentPatchRemediationType),
-    version: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DORADeploymentPatchRemediation",
-}) as any as S.Schema<DORADeploymentPatchRemediation>;
-
-/** Attributes for patching a DORA deployment event. */
-export interface DORADeploymentPatchRequestAttributes {
-  /** Indicates whether the deployment resulted in a change failure. */
-  change_failure?: boolean;
-  remediation?: DORADeploymentPatchRemediation;
-}
-export const DORADeploymentPatchRequestAttributes = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      change_failure: S.optional(S.Boolean),
-      remediation: S.optional(DORADeploymentPatchRemediation),
-    }),
-).annotate({
-  identifier: "DORADeploymentPatchRequestAttributes",
-}) as any as S.Schema<DORADeploymentPatchRequestAttributes>;
-
-/** JSON:API type for DORA deployment patch request. */
-export type DORADeploymentPatchRequestDataType =
-  "dora_deployment_patch_request";
-export const DORADeploymentPatchRequestDataType = /*@__PURE__*/ S.String;
-
-/** The JSON:API data for patching a deployment. */
-export interface DORADeploymentPatchRequestData {
-  attributes: DORADeploymentPatchRequestAttributes;
-  /** The ID of the deployment to patch. */
-  id: string;
-  type: DORADeploymentPatchRequestDataType | (string & {});
-}
-export const DORADeploymentPatchRequestData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attributes: DORADeploymentPatchRequestAttributes,
-    id: S.String,
-    type: DORADeploymentPatchRequestDataType,
-  }),
-).annotate({
-  identifier: "DORADeploymentPatchRequestData",
-}) as any as S.Schema<DORADeploymentPatchRequestData>;
-
-export interface PatchDORADeploymentRequest {
-  /** The ID of the deployment event. */
-  deployment_id: string;
-  data: DORADeploymentPatchRequestData;
-}
-export const PatchDORADeploymentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deployment_id: S.String.pipe(T.Label()),
-    data: DORADeploymentPatchRequestData,
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/v2/dora/deployments/{deployment_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PatchDORADeploymentRequest",
-}) as any as S.Schema<PatchDORADeploymentRequest>;
-
-export interface PatchDORADeploymentResponse {}
-export const PatchDORADeploymentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PatchDORADeploymentResponse",
-}) as any as S.Schema<PatchDORADeploymentResponse>;
 
 /** Remediation details identified by the ID of the remediation deployment. */
 export interface DORADeploymentPatchByVersionRemediationByID {
@@ -126716,6 +127849,11 @@ export const DORADeploymentPatchByVersionRequestAttributes =
   ).annotate({
     identifier: "DORADeploymentPatchByVersionRequestAttributes",
   }) as any as S.Schema<DORADeploymentPatchByVersionRequestAttributes>;
+
+/** JSON:API type for DORA deployment patch request. */
+export type DORADeploymentPatchRequestDataType =
+  "dora_deployment_patch_request";
+export const DORADeploymentPatchRequestDataType = /*@__PURE__*/ S.String;
 
 /** The JSON:API data for patching a deployment identified by service, environment, and version. */
 export interface DORADeploymentPatchByVersionRequestData {
@@ -127029,74 +128167,6 @@ export const GlobalVariableResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GlobalVariableResponse",
 }) as any as S.Schema<GlobalVariableResponse>;
-
-export type PatchIncidentImpactRequestIncludeList = Array<
-  IncidentImpactRelatedObject | (string & {})
->;
-export const PatchIncidentImpactRequestIncludeList = /*@__PURE__*/ S.Array(
-  IncidentImpactRelatedObject,
-) as any as S.Schema<PatchIncidentImpactRequestIncludeList>;
-
-/** The incident impact's attributes for a patch request. All fields are optional. */
-export interface IncidentImpactPatchAttributes {
-  /** Description of the impact. */
-  description?: string;
-  /** Timestamp when the impact ended. */
-  end_at?: string | null;
-  fields?: IncidentImpactFieldsObject;
-  /** Timestamp when the impact started. */
-  start_at?: string;
-}
-export const IncidentImpactPatchAttributes = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    end_at: S.optional(S.NullOr(S.String)),
-    fields: S.optional(IncidentImpactFieldsObject),
-    start_at: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IncidentImpactPatchAttributes",
-}) as any as S.Schema<IncidentImpactPatchAttributes>;
-
-/** Incident impact data for a patch request. */
-export interface IncidentImpactPatchData {
-  attributes?: IncidentImpactPatchAttributes;
-  type: IncidentImpactType | (string & {});
-}
-export const IncidentImpactPatchData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attributes: S.optional(IncidentImpactPatchAttributes),
-    type: IncidentImpactType,
-  }),
-).annotate({
-  identifier: "IncidentImpactPatchData",
-}) as any as S.Schema<IncidentImpactPatchData>;
-
-export interface PatchIncidentImpactRequest {
-  /** The UUID of the incident. */
-  incident_id: string;
-  /** The UUID of the incident impact. */
-  impact_id: string;
-  /** Specifies which related resources should be included in the response. */
-  include?: PatchIncidentImpactRequestIncludeList;
-  data: IncidentImpactPatchData;
-}
-export const PatchIncidentImpactRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    incident_id: S.String.pipe(T.Label()),
-    impact_id: S.String.pipe(T.Label()),
-    include: S.optional(PatchIncidentImpactRequestIncludeList.pipe(T.Query())),
-    data: IncidentImpactPatchData,
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/v2/incidents/{incident_id}/impacts/{impact_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PatchIncidentImpactRequest",
-}) as any as S.Schema<PatchIncidentImpactRequest>;
 
 /** Attributes for editing a maintenance update. */
 export interface PatchMaintenanceUpdateRequestDataAttributes {
@@ -129368,115 +130438,6 @@ export const ProductAnalyticsJourneyFunnelCompute = /*@__PURE__*/ S.suspend(
   identifier: "ProductAnalyticsJourneyFunnelCompute",
 }) as any as S.Schema<ProductAnalyticsJourneyFunnelCompute>;
 
-/** Sort configuration for group-by results. */
-export interface ProductAnalyticsGroupBySort {
-  /** The aggregation function to sort by. */
-  aggregation?: string;
-  /** The metric to sort by. */
-  metric?: string;
-  order?: QuerySortOrder | (string & {});
-}
-export const ProductAnalyticsGroupBySort = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    aggregation: S.optional(S.String),
-    metric: S.optional(S.String),
-    order: S.optional(QuerySortOrder),
-  }),
-).annotate({
-  identifier: "ProductAnalyticsGroupBySort",
-}) as any as S.Schema<ProductAnalyticsGroupBySort>;
-
-/** Audience dimension to group by, instead of an event facet. */
-export type ProductAnalyticsGraphQueryGroupBySource =
-  | "product_analytics_audience_filters.users"
-  | "product_analytics_audience_filters.accounts";
-export const ProductAnalyticsGraphQueryGroupBySource = /*@__PURE__*/ S.String;
-
-/** The discriminator identifying a target that references a single step. */
-export type ProductAnalyticsJourneyNodeTargetType = "node";
-export const ProductAnalyticsJourneyNodeTargetType = /*@__PURE__*/ S.String;
-
-/** A reference to a single step of the journey. */
-export interface ProductAnalyticsJourneyNodeTarget {
-  type: ProductAnalyticsJourneyNodeTargetType;
-  /** Alias of the targeted node. */
-  value: string;
-}
-export const ProductAnalyticsJourneyNodeTarget = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: ProductAnalyticsJourneyNodeTargetType,
-    value: S.String,
-  }),
-).annotate({
-  identifier: "ProductAnalyticsJourneyNodeTarget",
-}) as any as S.Schema<ProductAnalyticsJourneyNodeTarget>;
-
-/** The discriminator identifying a target that references a range of steps. */
-export type ProductAnalyticsJourneyPathTargetType = "path";
-export const ProductAnalyticsJourneyPathTargetType = /*@__PURE__*/ S.String;
-
-/** A reference to the range of steps between two nodes of the journey. */
-export interface ProductAnalyticsJourneyPathTarget {
-  /** Alias of the node the path ends at. */
-  end: string;
-  /** Alias of the node the path starts at. */
-  start: string;
-  type: ProductAnalyticsJourneyPathTargetType;
-}
-export const ProductAnalyticsJourneyPathTarget = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    end: S.String,
-    start: S.String,
-    type: ProductAnalyticsJourneyPathTargetType,
-  }),
-).annotate({
-  identifier: "ProductAnalyticsJourneyPathTarget",
-}) as any as S.Schema<ProductAnalyticsJourneyPathTarget>;
-
-/** A reference to a step, or a range of steps, in the journey. Use a `node` target to name a single step, or a `path` target to name the range between two steps. */
-export type ProductAnalyticsJourneyTarget =
-  | ProductAnalyticsJourneyNodeTarget
-  | ProductAnalyticsJourneyPathTarget;
-export const ProductAnalyticsJourneyTarget =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductAnalyticsJourneyTarget>;
-
-/** Restricts the results to these facet values. */
-export type ProductAnalyticsGraphQueryGroupByValueFiltersList = Array<string>;
-export const ProductAnalyticsGraphQueryGroupByValueFiltersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProductAnalyticsGraphQueryGroupByValueFiltersList>;
-
-/** Segments journey results by the values of a facet. */
-export interface ProductAnalyticsGraphQueryGroupBy {
-  /** Attribute path to group by. */
-  facet: string;
-  /** Maximum number of groups to return. Omit it to let the service choose. */
-  limit?: number;
-  /** Whether to exclude entities that have no value for this facet. */
-  should_exclude_missing?: boolean;
-  sort?: ProductAnalyticsGroupBySort;
-  source?: ProductAnalyticsGraphQueryGroupBySource | (string & {});
-  target?: ProductAnalyticsJourneyTarget;
-  /** Restricts the results to these facet values. */
-  value_filters?: ProductAnalyticsGraphQueryGroupByValueFiltersList;
-}
-export const ProductAnalyticsGraphQueryGroupBy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    facet: S.String,
-    limit: S.optional(S.Number),
-    should_exclude_missing: S.optional(S.Boolean),
-    sort: S.optional(ProductAnalyticsGroupBySort),
-    source: S.optional(ProductAnalyticsGraphQueryGroupBySource),
-    target: S.optional(ProductAnalyticsJourneyTarget),
-    value_filters: S.optional(
-      ProductAnalyticsGraphQueryGroupByValueFiltersList,
-    ),
-  }),
-).annotate({
-  identifier: "ProductAnalyticsGraphQueryGroupBy",
-}) as any as S.Schema<ProductAnalyticsGraphQueryGroupBy>;
-
 /** Segments the funnel by the values of one or more facets. */
 export type ProductAnalyticsJourneyFunnelQueryGroupByList =
   Array<ProductAnalyticsGraphQueryGroupBy>;
@@ -129484,323 +130445,6 @@ export const ProductAnalyticsJourneyFunnelQueryGroupByList =
   /*@__PURE__*/ S.Array(
     ProductAnalyticsGraphQueryGroupBy,
   ) as any as S.Schema<ProductAnalyticsJourneyFunnelQueryGroupByList>;
-
-/** A named sub-query selecting a set of accounts. */
-export interface ProductAnalyticsJourneyAudienceAccountQuery {
-  /** Unique name for this sub-query, referenced from `formula`. */
-  name: string;
-  /** Search query selecting the accounts. */
-  query?: string;
-}
-export const ProductAnalyticsJourneyAudienceAccountQuery =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      query: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ProductAnalyticsJourneyAudienceAccountQuery",
-  }) as any as S.Schema<ProductAnalyticsJourneyAudienceAccountQuery>;
-
-/** Named account sub-queries. */
-export type ProductAnalyticsJourneyAudienceFiltersAccountsList =
-  Array<ProductAnalyticsJourneyAudienceAccountQuery>;
-export const ProductAnalyticsJourneyAudienceFiltersAccountsList =
-  /*@__PURE__*/ S.Array(
-    ProductAnalyticsJourneyAudienceAccountQuery,
-  ) as any as S.Schema<ProductAnalyticsJourneyAudienceFiltersAccountsList>;
-
-/** A named sub-query selecting a saved segment. */
-export interface ProductAnalyticsJourneyAudienceSegmentQuery {
-  /** Unique name for this sub-query, referenced from `formula`. */
-  name: string;
-  /** Identifier of the saved segment. */
-  segment_id: string;
-}
-export const ProductAnalyticsJourneyAudienceSegmentQuery =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      segment_id: S.String,
-    }),
-  ).annotate({
-    identifier: "ProductAnalyticsJourneyAudienceSegmentQuery",
-  }) as any as S.Schema<ProductAnalyticsJourneyAudienceSegmentQuery>;
-
-/** Named segment sub-queries. */
-export type ProductAnalyticsJourneyAudienceFiltersSegmentsList =
-  Array<ProductAnalyticsJourneyAudienceSegmentQuery>;
-export const ProductAnalyticsJourneyAudienceFiltersSegmentsList =
-  /*@__PURE__*/ S.Array(
-    ProductAnalyticsJourneyAudienceSegmentQuery,
-  ) as any as S.Schema<ProductAnalyticsJourneyAudienceFiltersSegmentsList>;
-
-/** A named sub-query selecting a set of users. */
-export interface ProductAnalyticsJourneyAudienceUserQuery {
-  /** Unique name for this sub-query, referenced from `formula`. */
-  name: string;
-  /** Search query selecting the users. */
-  query?: string;
-}
-export const ProductAnalyticsJourneyAudienceUserQuery = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String,
-      query: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ProductAnalyticsJourneyAudienceUserQuery",
-}) as any as S.Schema<ProductAnalyticsJourneyAudienceUserQuery>;
-
-/** Named user sub-queries. */
-export type ProductAnalyticsJourneyAudienceFiltersUsersList =
-  Array<ProductAnalyticsJourneyAudienceUserQuery>;
-export const ProductAnalyticsJourneyAudienceFiltersUsersList =
-  /*@__PURE__*/ S.Array(
-    ProductAnalyticsJourneyAudienceUserQuery,
-  ) as any as S.Schema<ProductAnalyticsJourneyAudienceFiltersUsersList>;
-
-/** Restricts the journey to an audience built from named sub-queries. Sub-query names must be unique across `users`, `segments`, and `accounts`. */
-export interface ProductAnalyticsJourneyAudienceFilters {
-  /** Named account sub-queries. */
-  accounts?: ProductAnalyticsJourneyAudienceFiltersAccountsList;
-  /** Boolean expression combining the sub-query names with `AND`, `OR`, and `NOT`. When empty, all sub-queries are combined with `AND`. */
-  formula?: string;
-  /** Named segment sub-queries. */
-  segments?: ProductAnalyticsJourneyAudienceFiltersSegmentsList;
-  /** Named user sub-queries. */
-  users?: ProductAnalyticsJourneyAudienceFiltersUsersList;
-}
-export const ProductAnalyticsJourneyAudienceFilters = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      accounts: S.optional(ProductAnalyticsJourneyAudienceFiltersAccountsList),
-      formula: S.optional(S.String),
-      segments: S.optional(ProductAnalyticsJourneyAudienceFiltersSegmentsList),
-      users: S.optional(ProductAnalyticsJourneyAudienceFiltersUsersList),
-    }),
-).annotate({
-  identifier: "ProductAnalyticsJourneyAudienceFilters",
-}) as any as S.Schema<ProductAnalyticsJourneyAudienceFilters>;
-
-/** The journey-level metric the graph filter applies to. */
-export type ProductAnalyticsJourneySearchGraphFilterName =
-  | "__dd.time_to_convert"
-  | "__dd.session"
-  | "__dd.dropoff_rate";
-export const ProductAnalyticsJourneySearchGraphFilterName =
-  /*@__PURE__*/ S.String;
-
-/** Comparison operator applied to the graph filter value. */
-export type ProductAnalyticsJourneySearchGraphFilterOperator =
-  | "="
-  | "<"
-  | ">"
-  | "<="
-  | ">=";
-export const ProductAnalyticsJourneySearchGraphFilterOperator =
-  /*@__PURE__*/ S.String;
-
-/** A filter applied to a step, or a range of steps, of the journey graph. */
-export interface ProductAnalyticsJourneySearchGraphFilter {
-  name: ProductAnalyticsJourneySearchGraphFilterName | (string & {});
-  operator: ProductAnalyticsJourneySearchGraphFilterOperator | (string & {});
-  target?: ProductAnalyticsJourneyTarget;
-  /** Value compared against the metric. Durations are expressed in milliseconds. */
-  value: number;
-}
-export const ProductAnalyticsJourneySearchGraphFilter = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: ProductAnalyticsJourneySearchGraphFilterName,
-      operator: ProductAnalyticsJourneySearchGraphFilterOperator,
-      target: S.optional(ProductAnalyticsJourneyTarget),
-      value: S.Number,
-    }),
-).annotate({
-  identifier: "ProductAnalyticsJourneySearchGraphFilter",
-}) as any as S.Schema<ProductAnalyticsJourneySearchGraphFilter>;
-
-/** Filters on journey-level metrics such as time to convert. */
-export type ProductAnalyticsJourneySearchFiltersGraphFiltersList =
-  Array<ProductAnalyticsJourneySearchGraphFilter>;
-export const ProductAnalyticsJourneySearchFiltersGraphFiltersList =
-  /*@__PURE__*/ S.Array(
-    ProductAnalyticsJourneySearchGraphFilter,
-  ) as any as S.Schema<ProductAnalyticsJourneySearchFiltersGraphFiltersList>;
-
-/** Filters applied on top of the journey step expression. */
-export interface ProductAnalyticsJourneySearchFilters {
-  audience_filters?: ProductAnalyticsJourneyAudienceFilters;
-  /** Filters on journey-level metrics such as time to convert. */
-  graph_filters?: ProductAnalyticsJourneySearchFiltersGraphFiltersList;
-  /** Free-text search query applied to the whole journey. */
-  string_filter?: string;
-}
-export const ProductAnalyticsJourneySearchFilters = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      audience_filters: S.optional(ProductAnalyticsJourneyAudienceFilters),
-      graph_filters: S.optional(
-        ProductAnalyticsJourneySearchFiltersGraphFiltersList,
-      ),
-      string_filter: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ProductAnalyticsJourneySearchFilters",
-}) as any as S.Schema<ProductAnalyticsJourneySearchFilters>;
-
-/** Additional identity join keys. */
-export type ProductAnalyticsJoinKeysSecondaryList = Array<string>;
-export const ProductAnalyticsJoinKeysSecondaryList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ProductAnalyticsJoinKeysSecondaryList>;
-
-/** Identity join keys used to stitch events belonging to the same user or session. */
-export interface ProductAnalyticsJoinKeys {
-  /** Primary identity join key. Defaults to `@session.id`. */
-  primary?: string;
-  /** Additional identity join keys. */
-  secondary?: ProductAnalyticsJoinKeysSecondaryList;
-}
-export const ProductAnalyticsJoinKeys = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    primary: S.optional(S.String),
-    secondary: S.optional(ProductAnalyticsJoinKeysSecondaryList),
-  }),
-).annotate({
-  identifier: "ProductAnalyticsJoinKeys",
-}) as any as S.Schema<ProductAnalyticsJoinKeys>;
-
-/** The data source identifier. */
-export type ProductAnalyticsEventQueryDataSource = "product_analytics";
-export const ProductAnalyticsEventQueryDataSource = /*@__PURE__*/ S.String;
-
-/** Search parameters for an event query. */
-export interface ProductAnalyticsEventSearch {
-  /** The search query using Datadog search syntax. */
-  query?: string;
-}
-export const ProductAnalyticsEventSearch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    query: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProductAnalyticsEventSearch",
-}) as any as S.Schema<ProductAnalyticsEventSearch>;
-
-/** A standard Product Analytics event query. */
-export interface ProductAnalyticsEventQuery {
-  data_source: ProductAnalyticsEventQueryDataSource;
-  search: ProductAnalyticsEventSearch;
-}
-export const ProductAnalyticsEventQuery = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data_source: ProductAnalyticsEventQueryDataSource,
-    search: ProductAnalyticsEventSearch,
-  }),
-).annotate({
-  identifier: "ProductAnalyticsEventQuery",
-}) as any as S.Schema<ProductAnalyticsEventQuery>;
-
-/** The data source identifier for occurrence queries. */
-export type ProductAnalyticsOccurrenceQueryDataSource =
-  "product_analytics_occurrence";
-export const ProductAnalyticsOccurrenceQueryDataSource = /*@__PURE__*/ S.String;
-
-/** Additional metadata. */
-export type ProductAnalyticsOccurrenceFilterMetaMap = {
-  [key: string]: string | undefined;
-};
-export const ProductAnalyticsOccurrenceFilterMetaMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ProductAnalyticsOccurrenceFilterMetaMap>;
-
-/** Filter for occurrence-based queries. */
-export interface ProductAnalyticsOccurrenceFilter {
-  /** Additional metadata. */
-  meta?: ProductAnalyticsOccurrenceFilterMetaMap;
-  /** Comparison operator (=, >=, <=, >, <). */
-  operator: string;
-  /** The occurrence count threshold as a string. */
-  value: string;
-}
-export const ProductAnalyticsOccurrenceFilter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    meta: S.optional(ProductAnalyticsOccurrenceFilterMetaMap),
-    operator: S.String,
-    value: S.String,
-  }),
-).annotate({
-  identifier: "ProductAnalyticsOccurrenceFilter",
-}) as any as S.Schema<ProductAnalyticsOccurrenceFilter>;
-
-/** Search parameters for an occurrence query. */
-export interface ProductAnalyticsOccurrenceSearch {
-  occurrences?: ProductAnalyticsOccurrenceFilter;
-  /** The search query using Datadog search syntax. */
-  query?: string;
-}
-export const ProductAnalyticsOccurrenceSearch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    occurrences: S.optional(ProductAnalyticsOccurrenceFilter),
-    query: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProductAnalyticsOccurrenceSearch",
-}) as any as S.Schema<ProductAnalyticsOccurrenceSearch>;
-
-/** A Product Analytics occurrence-filtered query. */
-export interface ProductAnalyticsOccurrenceQuery {
-  data_source: ProductAnalyticsOccurrenceQueryDataSource;
-  search: ProductAnalyticsOccurrenceSearch;
-}
-export const ProductAnalyticsOccurrenceQuery = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data_source: ProductAnalyticsOccurrenceQueryDataSource,
-    search: ProductAnalyticsOccurrenceSearch,
-  }),
-).annotate({
-  identifier: "ProductAnalyticsOccurrenceQuery",
-}) as any as S.Schema<ProductAnalyticsOccurrenceQuery>;
-
-/** A query definition discriminated by the `data_source` field. Use `product_analytics` for standard event queries, or `product_analytics_occurrence` for occurrence-filtered queries. */
-export type ProductAnalyticsBaseQuery =
-  | ProductAnalyticsEventQuery
-  | ProductAnalyticsOccurrenceQuery;
-export const ProductAnalyticsBaseQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductAnalyticsBaseQuery>;
-
-/** Map of node alias to the query matching that step of the journey. Every alias used in `expression` must have an entry here. */
-export type ProductAnalyticsJourneySearchNodeObjectsMap = {
-  [key: string]: ProductAnalyticsBaseQuery | undefined;
-};
-export const ProductAnalyticsJourneySearchNodeObjectsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    ProductAnalyticsBaseQuery,
-  ) as any as S.Schema<ProductAnalyticsJourneySearchNodeObjectsMap>;
-
-/** Defines the steps of the journey and the filters applied to it. */
-export interface ProductAnalyticsJourneySearch {
-  /** Expression combining the node aliases in order, for example `A -> B -> C`. */
-  expression: string;
-  filters?: ProductAnalyticsJourneySearchFilters;
-  join_keys?: ProductAnalyticsJoinKeys;
-  /** Map of node alias to the query matching that step of the journey. Every alias used in `expression` must have an entry here. */
-  node_objects: ProductAnalyticsJourneySearchNodeObjectsMap;
-}
-export const ProductAnalyticsJourneySearch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expression: S.String,
-    filters: S.optional(ProductAnalyticsJourneySearchFilters),
-    join_keys: S.optional(ProductAnalyticsJoinKeys),
-    node_objects: ProductAnalyticsJourneySearchNodeObjectsMap,
-  }),
-).annotate({
-  identifier: "ProductAnalyticsJourneySearch",
-}) as any as S.Schema<ProductAnalyticsJourneySearch>;
 
 /** Query definition for a journey funnel request. */
 export interface ProductAnalyticsJourneyFunnelQuery {
@@ -130023,233 +130667,6 @@ export const ProductAnalyticsJourneyFunnelResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ProductAnalyticsJourneyFunnelResponse",
 }) as any as S.Schema<ProductAnalyticsJourneyFunnelResponse>;
-
-/** Name of a computed column to add to each row. */
-export type ProductAnalyticsJourneyComputedColumnName =
-  "first_conversion_timestamps";
-export const ProductAnalyticsJourneyComputedColumnName = /*@__PURE__*/ S.String;
-
-/** A computed column added to each row. Requesting `first_conversion_timestamps` adds one `<node alias>_timestamp` key per step. */
-export interface ProductAnalyticsJourneyComputedColumn {
-  name: ProductAnalyticsJourneyComputedColumnName | (string & {});
-}
-export const ProductAnalyticsJourneyComputedColumn = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: ProductAnalyticsJourneyComputedColumnName,
-    }),
-).annotate({
-  identifier: "ProductAnalyticsJourneyComputedColumn",
-}) as any as S.Schema<ProductAnalyticsJourneyComputedColumn>;
-
-/** Computed columns to add to each row. */
-export type ProductAnalyticsJourneyListQueryComputedColumnsList =
-  Array<ProductAnalyticsJourneyComputedColumn>;
-export const ProductAnalyticsJourneyListQueryComputedColumnsList =
-  /*@__PURE__*/ S.Array(
-    ProductAnalyticsJourneyComputedColumn,
-  ) as any as S.Schema<ProductAnalyticsJourneyListQueryComputedColumnsList>;
-
-/** Whether to return the entities that converted at the target step, or those that dropped off. */
-export type ProductAnalyticsJourneyConversionType = "conversion" | "drop-off";
-export const ProductAnalyticsJourneyConversionType = /*@__PURE__*/ S.String;
-
-/** Attribute columns to return for each row, in addition to the identity join key and `timestamp`. */
-export type ProductAnalyticsJourneyListQueryEntityColumnsList = Array<string>;
-export const ProductAnalyticsJourneyListQueryEntityColumnsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProductAnalyticsJourneyListQueryEntityColumnsList>;
-
-/** Segments the results by the values of one or more facets. */
-export type ProductAnalyticsJourneyListQueryGroupByList =
-  Array<ProductAnalyticsGraphQueryGroupBy>;
-export const ProductAnalyticsJourneyListQueryGroupByList =
-  /*@__PURE__*/ S.Array(
-    ProductAnalyticsGraphQueryGroupBy,
-  ) as any as S.Schema<ProductAnalyticsJourneyListQueryGroupByList>;
-
-/** Sort configuration for the returned rows. The sort is applied only when `facet` is one of the returned columns; otherwise it is ignored. */
-export interface ProductAnalyticsJourneyListSort {
-  /** Column to sort on. */
-  facet?: string;
-  order?: QuerySortOrder | (string & {});
-}
-export const ProductAnalyticsJourneyListSort = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    facet: S.optional(S.String),
-    order: S.optional(QuerySortOrder),
-  }),
-).annotate({
-  identifier: "ProductAnalyticsJourneyListSort",
-}) as any as S.Schema<ProductAnalyticsJourneyListSort>;
-
-/** Query definition for a journey list request. */
-export interface ProductAnalyticsJourneyListQuery {
-  /** Computed columns to add to each row. */
-  computed_columns?: ProductAnalyticsJourneyListQueryComputedColumnsList;
-  conversion_type?: ProductAnalyticsJourneyConversionType | (string & {});
-  /** Attribute columns to return for each row, in addition to the identity join key and `timestamp`. */
-  entity_columns?: ProductAnalyticsJourneyListQueryEntityColumnsList;
-  /** Additional search query applied to the returned rows. */
-  entity_filters?: string;
-  /** Segments the results by the values of one or more facets. */
-  group_by?: ProductAnalyticsJourneyListQueryGroupByList;
-  /** Maximum number of rows to return. Omit it to let the service choose. */
-  limit?: number;
-  search: ProductAnalyticsJourneySearch;
-  sort?: ProductAnalyticsJourneyListSort;
-  target?: ProductAnalyticsJourneyTarget;
-}
-export const ProductAnalyticsJourneyListQuery = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    computed_columns: S.optional(
-      ProductAnalyticsJourneyListQueryComputedColumnsList,
-    ),
-    conversion_type: S.optional(ProductAnalyticsJourneyConversionType),
-    entity_columns: S.optional(
-      ProductAnalyticsJourneyListQueryEntityColumnsList,
-    ),
-    entity_filters: S.optional(S.String),
-    group_by: S.optional(ProductAnalyticsJourneyListQueryGroupByList),
-    limit: S.optional(S.Number),
-    search: ProductAnalyticsJourneySearch,
-    sort: S.optional(ProductAnalyticsJourneyListSort),
-    target: S.optional(ProductAnalyticsJourneyTarget),
-  }),
-).annotate({
-  identifier: "ProductAnalyticsJourneyListQuery",
-}) as any as S.Schema<ProductAnalyticsJourneyListQuery>;
-
-/** Attributes of a journey list request. */
-export interface ProductAnalyticsJourneyListRequestAttributes {
-  /** Start of the query window, in epoch milliseconds. */
-  from: number;
-  query: ProductAnalyticsJourneyListQuery;
-  /** End of the query window, in epoch milliseconds. */
-  to: number;
-}
-export const ProductAnalyticsJourneyListRequestAttributes =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      from: S.Number,
-      query: ProductAnalyticsJourneyListQuery,
-      to: S.Number,
-    }),
-  ).annotate({
-    identifier: "ProductAnalyticsJourneyListRequestAttributes",
-  }) as any as S.Schema<ProductAnalyticsJourneyListRequestAttributes>;
-
-/** The resource type identifier for a journey list request. */
-export type ProductAnalyticsJourneyListRequestType = "journey_list_request";
-export const ProductAnalyticsJourneyListRequestType = /*@__PURE__*/ S.String;
-
-/** The single JSON:API resource carrying a journey list query. Its attributes hold the time window and the journey whose matching entities should be listed, one row each. */
-export interface ProductAnalyticsJourneyListRequestData {
-  attributes: ProductAnalyticsJourneyListRequestAttributes;
-  type: ProductAnalyticsJourneyListRequestType | (string & {});
-}
-export const ProductAnalyticsJourneyListRequestData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      attributes: ProductAnalyticsJourneyListRequestAttributes,
-      type: ProductAnalyticsJourneyListRequestType,
-    }),
-).annotate({
-  identifier: "ProductAnalyticsJourneyListRequestData",
-}) as any as S.Schema<ProductAnalyticsJourneyListRequestData>;
-
-export interface QueryProductAnalyticsJourneyListRequest {
-  data: ProductAnalyticsJourneyListRequestData;
-}
-export const QueryProductAnalyticsJourneyListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      data: ProductAnalyticsJourneyListRequestData,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/v2/product-analytics/journey/list",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "QueryProductAnalyticsJourneyListRequest",
-}) as any as S.Schema<QueryProductAnalyticsJourneyListRequest>;
-
-/** The kind of entity returned by a journey list query. */
-export type ProductAnalyticsJourneyEntity = "session" | "user" | "account";
-export const ProductAnalyticsJourneyEntity = /*@__PURE__*/ S.String;
-
-/** A single row. Keys are the returned column names: the identity join key, `timestamp`, each entry of `entity_columns`, and any computed columns. A value is null when the column has no value for that row. */
-export type ProductAnalyticsJourneyListRecord = {
-  [key: string]: unknown | undefined;
-};
-export const ProductAnalyticsJourneyListRecord = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ProductAnalyticsJourneyListRecord>;
-
-/** The returned rows. */
-export type ProductAnalyticsJourneyListResponseAttributesRecordsList =
-  Array<ProductAnalyticsJourneyListRecord>;
-export const ProductAnalyticsJourneyListResponseAttributesRecordsList =
-  /*@__PURE__*/ S.Array(
-    ProductAnalyticsJourneyListRecord,
-  ) as any as S.Schema<ProductAnalyticsJourneyListResponseAttributesRecordsList>;
-
-/** Attributes of a journey list response. */
-export interface ProductAnalyticsJourneyListResponseAttributes {
-  entity: ProductAnalyticsJourneyEntity;
-  /** The returned rows. */
-  records: ProductAnalyticsJourneyListResponseAttributesRecordsList;
-  /** Total number of rows matching the query, ignoring `limit`. */
-  total_count: number;
-}
-export const ProductAnalyticsJourneyListResponseAttributes =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      entity: ProductAnalyticsJourneyEntity,
-      records: ProductAnalyticsJourneyListResponseAttributesRecordsList,
-      total_count: S.Number,
-    }),
-  ).annotate({
-    identifier: "ProductAnalyticsJourneyListResponseAttributes",
-  }) as any as S.Schema<ProductAnalyticsJourneyListResponseAttributes>;
-
-/** The resource type identifier for a journey list response. */
-export type ProductAnalyticsJourneyListResponseType = "journey_list_response";
-export const ProductAnalyticsJourneyListResponseType = /*@__PURE__*/ S.String;
-
-/** The single JSON:API resource holding the entities matching a journey. Its attributes contain the returned rows and the total number of rows that matched, ignoring `limit`. */
-export interface ProductAnalyticsJourneyListResponseData {
-  attributes: ProductAnalyticsJourneyListResponseAttributes;
-  /** Identifier of this result. */
-  id: string;
-  type: ProductAnalyticsJourneyListResponseType;
-}
-export const ProductAnalyticsJourneyListResponseData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      attributes: ProductAnalyticsJourneyListResponseAttributes,
-      id: S.String,
-      type: ProductAnalyticsJourneyListResponseType,
-    }),
-).annotate({
-  identifier: "ProductAnalyticsJourneyListResponseData",
-}) as any as S.Schema<ProductAnalyticsJourneyListResponseData>;
-
-/** Response for a journey list query. */
-export interface ProductAnalyticsJourneyListResponse {
-  data: ProductAnalyticsJourneyListResponseData;
-}
-export const ProductAnalyticsJourneyListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: ProductAnalyticsJourneyListResponseData,
-  }),
-).annotate({
-  identifier: "ProductAnalyticsJourneyListResponse",
-}) as any as S.Schema<ProductAnalyticsJourneyListResponse>;
 
 /** Defines the metric computed over the journey for a scalar query. */
 export interface ProductAnalyticsJourneyScalarCompute {
@@ -130760,346 +131177,6 @@ export const ProductAnalyticsJourneyTimeseriesResponse =
     identifier: "ProductAnalyticsJourneyTimeseriesResponse",
   }) as any as S.Schema<ProductAnalyticsJourneyTimeseriesResponse>;
 
-/** An account-based audience query. */
-export interface ProductAnalyticsAudienceAccountSubquery {
-  /** Name of this query, referenced in the formula. */
-  name: string;
-  /** Search query for filtering accounts. */
-  query?: string;
-}
-export const ProductAnalyticsAudienceAccountSubquery = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String,
-      query: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ProductAnalyticsAudienceAccountSubquery",
-}) as any as S.Schema<ProductAnalyticsAudienceAccountSubquery>;
-
-/** Account audience queries. */
-export type ProductAnalyticsAudienceFiltersAccountsList =
-  Array<ProductAnalyticsAudienceAccountSubquery>;
-export const ProductAnalyticsAudienceFiltersAccountsList =
-  /*@__PURE__*/ S.Array(
-    ProductAnalyticsAudienceAccountSubquery,
-  ) as any as S.Schema<ProductAnalyticsAudienceFiltersAccountsList>;
-
-/** A segment-based audience query. */
-export interface ProductAnalyticsAudienceSegmentSubquery {
-  /** Name of this query, referenced in the formula. */
-  name: string;
-  /** UUID of the segment to filter by. */
-  segment_id: string;
-}
-export const ProductAnalyticsAudienceSegmentSubquery = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String,
-      segment_id: S.String,
-    }),
-).annotate({
-  identifier: "ProductAnalyticsAudienceSegmentSubquery",
-}) as any as S.Schema<ProductAnalyticsAudienceSegmentSubquery>;
-
-/** Segment audience queries. */
-export type ProductAnalyticsAudienceFiltersSegmentsList =
-  Array<ProductAnalyticsAudienceSegmentSubquery>;
-export const ProductAnalyticsAudienceFiltersSegmentsList =
-  /*@__PURE__*/ S.Array(
-    ProductAnalyticsAudienceSegmentSubquery,
-  ) as any as S.Schema<ProductAnalyticsAudienceFiltersSegmentsList>;
-
-/** A user-based audience query. */
-export interface ProductAnalyticsAudienceUserSubquery {
-  /** Name of this query, referenced in the formula. */
-  name: string;
-  /** Search query for filtering users. */
-  query?: string;
-}
-export const ProductAnalyticsAudienceUserSubquery = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String,
-      query: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ProductAnalyticsAudienceUserSubquery",
-}) as any as S.Schema<ProductAnalyticsAudienceUserSubquery>;
-
-/** User audience queries. */
-export type ProductAnalyticsAudienceFiltersUsersList =
-  Array<ProductAnalyticsAudienceUserSubquery>;
-export const ProductAnalyticsAudienceFiltersUsersList = /*@__PURE__*/ S.Array(
-  ProductAnalyticsAudienceUserSubquery,
-) as any as S.Schema<ProductAnalyticsAudienceFiltersUsersList>;
-
-/** Audience filter definitions for targeting specific user segments. */
-export interface ProductAnalyticsAudienceFilters {
-  /** Account audience queries. */
-  accounts?: ProductAnalyticsAudienceFiltersAccountsList;
-  /** Boolean formula combining audience queries by name. */
-  formula?: string;
-  /** Segment audience queries. */
-  segments?: ProductAnalyticsAudienceFiltersSegmentsList;
-  /** User audience queries. */
-  users?: ProductAnalyticsAudienceFiltersUsersList;
-}
-export const ProductAnalyticsAudienceFilters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accounts: S.optional(ProductAnalyticsAudienceFiltersAccountsList),
-    formula: S.optional(S.String),
-    segments: S.optional(ProductAnalyticsAudienceFiltersSegmentsList),
-    users: S.optional(ProductAnalyticsAudienceFiltersUsersList),
-  }),
-).annotate({
-  identifier: "ProductAnalyticsAudienceFilters",
-}) as any as S.Schema<ProductAnalyticsAudienceFilters>;
-
-/** Attribute columns to include in each event row. */
-export type ProductAnalyticsAnalyticsListQueryColumnsList = Array<string>;
-export const ProductAnalyticsAnalyticsListQueryColumnsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProductAnalyticsAnalyticsListQueryColumnsList>;
-
-/** The direction rows are sorted in. */
-export type ProductAnalyticsAnalyticsListSortOrder = "asc" | "desc";
-export const ProductAnalyticsAnalyticsListSortOrder = /*@__PURE__*/ S.String;
-
-/** The sort applied to the returned event rows. */
-export interface ProductAnalyticsAnalyticsListSort {
-  /** Name of the facet to sort the rows by. */
-  facet?: string;
-  order?: ProductAnalyticsAnalyticsListSortOrder | (string & {});
-}
-export const ProductAnalyticsAnalyticsListSort = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    facet: S.optional(S.String),
-    order: S.optional(ProductAnalyticsAnalyticsListSortOrder),
-  }),
-).annotate({
-  identifier: "ProductAnalyticsAnalyticsListSort",
-}) as any as S.Schema<ProductAnalyticsAnalyticsListSort>;
-
-/** The analytics list query definition. It selects the events to return with `query`, then chooses the columns on each event row, the sort applied to those rows, and a row limit. Unlike the scalar and timeseries queries, a list query returns raw event rows rather than aggregates, so it takes no compute or group-by rule. */
-export interface ProductAnalyticsAnalyticsListQuery {
-  audience_filters?: ProductAnalyticsAudienceFilters;
-  /** Attribute columns to include in each event row. */
-  columns?: ProductAnalyticsAnalyticsListQueryColumnsList;
-  /** Maximum number of event rows to return. */
-  limit?: number;
-  query: ProductAnalyticsBaseQuery;
-  sort?: ProductAnalyticsAnalyticsListSort;
-}
-export const ProductAnalyticsAnalyticsListQuery = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    audience_filters: S.optional(ProductAnalyticsAudienceFilters),
-    columns: S.optional(ProductAnalyticsAnalyticsListQueryColumnsList),
-    limit: S.optional(S.Number),
-    query: ProductAnalyticsBaseQuery,
-    sort: S.optional(ProductAnalyticsAnalyticsListSort),
-  }),
-).annotate({
-  identifier: "ProductAnalyticsAnalyticsListQuery",
-}) as any as S.Schema<ProductAnalyticsAnalyticsListQuery>;
-
-/** Attributes for an analytics list request. */
-export interface ProductAnalyticsAnalyticsListRequestAttributes {
-  /** Start time in epoch milliseconds. Must be less than `to`. */
-  from: number;
-  query: ProductAnalyticsAnalyticsListQuery;
-  /** End time in epoch milliseconds. */
-  to: number;
-}
-export const ProductAnalyticsAnalyticsListRequestAttributes =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      from: S.Number,
-      query: ProductAnalyticsAnalyticsListQuery,
-      to: S.Number,
-    }),
-  ).annotate({
-    identifier: "ProductAnalyticsAnalyticsListRequestAttributes",
-  }) as any as S.Schema<ProductAnalyticsAnalyticsListRequestAttributes>;
-
-/** The resource type for analytics list requests. */
-export type ProductAnalyticsAnalyticsListRequestType =
-  "formula_analytics_extended_list_request";
-export const ProductAnalyticsAnalyticsListRequestType = /*@__PURE__*/ S.String;
-
-/** Data object for an analytics list request. */
-export interface ProductAnalyticsAnalyticsListRequestData {
-  attributes: ProductAnalyticsAnalyticsListRequestAttributes;
-  type: ProductAnalyticsAnalyticsListRequestType | (string & {});
-}
-export const ProductAnalyticsAnalyticsListRequestData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      attributes: ProductAnalyticsAnalyticsListRequestAttributes,
-      type: ProductAnalyticsAnalyticsListRequestType,
-    }),
-).annotate({
-  identifier: "ProductAnalyticsAnalyticsListRequestData",
-}) as any as S.Schema<ProductAnalyticsAnalyticsListRequestData>;
-
-export interface QueryProductAnalyticsListRequest {
-  data: ProductAnalyticsAnalyticsListRequestData;
-}
-export const QueryProductAnalyticsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: ProductAnalyticsAnalyticsListRequestData,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/v2/product-analytics/analytics/list",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "QueryProductAnalyticsListRequest",
-}) as any as S.Schema<QueryProductAnalyticsListRequest>;
-
-/** A single event row, keyed by column name. */
-export type ProductAnalyticsAnalyticsListRecord = {
-  [key: string]: unknown | undefined;
-};
-export const ProductAnalyticsAnalyticsListRecord = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ProductAnalyticsAnalyticsListRecord>;
-
-/** The event rows, each holding the values of the requested columns. */
-export type ProductAnalyticsAnalyticsListResponseAttributesRecordsList =
-  Array<ProductAnalyticsAnalyticsListRecord>;
-export const ProductAnalyticsAnalyticsListResponseAttributesRecordsList =
-  /*@__PURE__*/ S.Array(
-    ProductAnalyticsAnalyticsListRecord,
-  ) as any as S.Schema<ProductAnalyticsAnalyticsListResponseAttributesRecordsList>;
-
-/** Attributes of an analytics list response, containing the matching event rows. */
-export interface ProductAnalyticsAnalyticsListResponseAttributes {
-  /** The event rows, each holding the values of the requested columns. */
-  records?: ProductAnalyticsAnalyticsListResponseAttributesRecordsList;
-  /** Total number of records matching the query, before the row limit is applied. */
-  total_count?: number;
-}
-export const ProductAnalyticsAnalyticsListResponseAttributes =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      records: S.optional(
-        ProductAnalyticsAnalyticsListResponseAttributesRecordsList,
-      ),
-      total_count: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "ProductAnalyticsAnalyticsListResponseAttributes",
-  }) as any as S.Schema<ProductAnalyticsAnalyticsListResponseAttributes>;
-
-/** The resource type identifier for an analytics list response. */
-export type ProductAnalyticsAnalyticsListResponseType = "list_response";
-export const ProductAnalyticsAnalyticsListResponseType = /*@__PURE__*/ S.String;
-
-/** Data object for an analytics list response. */
-export interface ProductAnalyticsAnalyticsListResponseData {
-  attributes: ProductAnalyticsAnalyticsListResponseAttributes;
-  /** Unique identifier for this response data object. */
-  id: string;
-  type: ProductAnalyticsAnalyticsListResponseType;
-}
-export const ProductAnalyticsAnalyticsListResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      attributes: ProductAnalyticsAnalyticsListResponseAttributes,
-      id: S.String,
-      type: ProductAnalyticsAnalyticsListResponseType,
-    }),
-  ).annotate({
-    identifier: "ProductAnalyticsAnalyticsListResponseData",
-  }) as any as S.Schema<ProductAnalyticsAnalyticsListResponseData>;
-
-/** The execution status of a Product Analytics query. */
-export type ProductAnalyticsResponseMetaStatus = "done" | "running" | "timeout";
-export const ProductAnalyticsResponseMetaStatus = /*@__PURE__*/ S.String;
-
-/** Metadata for a Product Analytics query response. */
-export interface ProductAnalyticsResponseMeta {
-  /** Unique identifier of the query. */
-  request_id?: string;
-  status?: ProductAnalyticsResponseMetaStatus;
-}
-export const ProductAnalyticsResponseMeta = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    request_id: S.optional(S.String),
-    status: S.optional(ProductAnalyticsResponseMetaStatus),
-  }),
-).annotate({
-  identifier: "ProductAnalyticsResponseMeta",
-}) as any as S.Schema<ProductAnalyticsResponseMeta>;
-
-/** Response for an analytics list query, containing individual event records. */
-export interface ProductAnalyticsAnalyticsListResponse {
-  data: ProductAnalyticsAnalyticsListResponseData;
-  meta?: ProductAnalyticsResponseMeta;
-}
-export const ProductAnalyticsAnalyticsListResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      data: ProductAnalyticsAnalyticsListResponseData,
-      meta: S.optional(ProductAnalyticsResponseMeta),
-    }),
-).annotate({
-  identifier: "ProductAnalyticsAnalyticsListResponse",
-}) as any as S.Schema<ProductAnalyticsAnalyticsListResponse>;
-
-/** The discriminator identifying a target selected by index. */
-export type ProductAnalyticsRetentionIndexTargetType = "index";
-export const ProductAnalyticsRetentionIndexTargetType = /*@__PURE__*/ S.String;
-
-/** Selects a cohort or return period by its zero-based position in the grid. */
-export interface ProductAnalyticsRetentionIndexTarget {
-  type: ProductAnalyticsRetentionIndexTargetType;
-  /** Zero-based index of the targeted cohort or return period. */
-  value: number;
-}
-export const ProductAnalyticsRetentionIndexTarget = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      type: ProductAnalyticsRetentionIndexTargetType,
-      value: S.Number,
-    }),
-).annotate({
-  identifier: "ProductAnalyticsRetentionIndexTarget",
-}) as any as S.Schema<ProductAnalyticsRetentionIndexTarget>;
-
-/** The discriminator identifying a target selected by aggregation. */
-export type ProductAnalyticsRetentionAggregationTargetType = "aggregation";
-export const ProductAnalyticsRetentionAggregationTargetType =
-  /*@__PURE__*/ S.String;
-
-/** Selects the rolled-up row that aggregates every cohort, rather than a single cohort. */
-export interface ProductAnalyticsRetentionAggregationTarget {
-  type: ProductAnalyticsRetentionAggregationTargetType;
-  /** The aggregation that produced the rolled-up row. */
-  value: string;
-}
-export const ProductAnalyticsRetentionAggregationTarget =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: ProductAnalyticsRetentionAggregationTargetType,
-      value: S.String,
-    }),
-  ).annotate({
-    identifier: "ProductAnalyticsRetentionAggregationTarget",
-  }) as any as S.Schema<ProductAnalyticsRetentionAggregationTarget>;
-
-/** Selects a cohort, either by index or by the aggregation that rolls all cohorts together. */
-export type ProductAnalyticsRetentionCohortTarget =
-  | ProductAnalyticsRetentionIndexTarget
-  | ProductAnalyticsRetentionAggregationTarget;
-export const ProductAnalyticsRetentionCohortTarget =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductAnalyticsRetentionCohortTarget>;
-
 /** The discriminator identifying a scope narrowed to one cohort. */
 export type ProductAnalyticsRetentionCohortScopeType = "cohort";
 export const ProductAnalyticsRetentionCohortScopeType = /*@__PURE__*/ S.String;
@@ -131138,26 +131215,6 @@ export const ProductAnalyticsRetentionReturnPeriodScope =
   ).annotate({
     identifier: "ProductAnalyticsRetentionReturnPeriodScope",
   }) as any as S.Schema<ProductAnalyticsRetentionReturnPeriodScope>;
-
-/** The discriminator identifying a scope narrowed to one grid cell. */
-export type ProductAnalyticsRetentionCellScopeType = "cell";
-export const ProductAnalyticsRetentionCellScopeType = /*@__PURE__*/ S.String;
-
-/** Narrows a retention query to a single cell, at the intersection of one cohort and one return period. */
-export interface ProductAnalyticsRetentionCellScope {
-  cohort_target: ProductAnalyticsRetentionCohortTarget;
-  return_period_target: ProductAnalyticsRetentionIndexTarget;
-  type: ProductAnalyticsRetentionCellScopeType;
-}
-export const ProductAnalyticsRetentionCellScope = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cohort_target: ProductAnalyticsRetentionCohortTarget,
-    return_period_target: ProductAnalyticsRetentionIndexTarget,
-    type: ProductAnalyticsRetentionCellScopeType,
-  }),
-).annotate({
-  identifier: "ProductAnalyticsRetentionCellScope",
-}) as any as S.Schema<ProductAnalyticsRetentionCellScope>;
 
 /** Restricts a retention query to part of the grid, so that results can be examined in detail. Omit it to compute the whole grid. */
 export type ProductAnalyticsRetentionScope =
@@ -131225,171 +131282,6 @@ export const ProductAnalyticsRetentionGridQueryGroupByList =
   /*@__PURE__*/ S.Array(
     ProductAnalyticsRetentionGroupBy,
   ) as any as S.Schema<ProductAnalyticsRetentionGridQueryGroupByList>;
-
-/** The discriminator identifying a calendar-aligned retention interval. */
-export type ProductAnalyticsRetentionCalendarTimeIntervalType = "calendar";
-export const ProductAnalyticsRetentionCalendarTimeIntervalType =
-  /*@__PURE__*/ S.String;
-
-/** Calendar unit used to bucket cohorts. */
-export type ProductAnalyticsCalendarIntervalType =
-  | "minute"
-  | "hour"
-  | "day"
-  | "week"
-  | "month"
-  | "quarter"
-  | "year";
-export const ProductAnalyticsCalendarIntervalType = /*@__PURE__*/ S.String;
-
-/** A calendar-aligned bucket definition, such as "every 1 week starting on Monday". */
-export interface ProductAnalyticsCalendarInterval {
-  /** Where each bucket starts within the calendar unit. Use an hour for `day` (for example `1am` or `14`), a day name for `week` (for example `monday`), or an ordinal for `month` (for example `1st`). */
-  alignment?: string;
-  /** Number of calendar units per bucket. */
-  quantity?: number;
-  /** Timezone used to align the buckets. */
-  timezone?: string;
-  type: ProductAnalyticsCalendarIntervalType | (string & {});
-}
-export const ProductAnalyticsCalendarInterval = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    alignment: S.optional(S.String),
-    quantity: S.optional(S.Number),
-    timezone: S.optional(S.String),
-    type: ProductAnalyticsCalendarIntervalType,
-  }),
-).annotate({
-  identifier: "ProductAnalyticsCalendarInterval",
-}) as any as S.Schema<ProductAnalyticsCalendarInterval>;
-
-/** A retention interval aligned to calendar boundaries. */
-export interface ProductAnalyticsRetentionCalendarTimeInterval {
-  type: ProductAnalyticsRetentionCalendarTimeIntervalType;
-  value: ProductAnalyticsCalendarInterval;
-}
-export const ProductAnalyticsRetentionCalendarTimeInterval =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: ProductAnalyticsRetentionCalendarTimeIntervalType,
-      value: ProductAnalyticsCalendarInterval,
-    }),
-  ).annotate({
-    identifier: "ProductAnalyticsRetentionCalendarTimeInterval",
-  }) as any as S.Schema<ProductAnalyticsRetentionCalendarTimeInterval>;
-
-/** The discriminator identifying a fixed-length retention interval. */
-export type ProductAnalyticsRetentionFixedTimeIntervalType = "fixed";
-export const ProductAnalyticsRetentionFixedTimeIntervalType =
-  /*@__PURE__*/ S.String;
-
-/** Time unit for a fixed-length retention interval. */
-export type ProductAnalyticsRetentionFixedTimeIntervalUnit =
-  | "day"
-  | "week"
-  | "month";
-export const ProductAnalyticsRetentionFixedTimeIntervalUnit =
-  /*@__PURE__*/ S.String;
-
-/** A retention interval of fixed length, such as "7 days". */
-export interface ProductAnalyticsRetentionFixedTimeInterval {
-  type: ProductAnalyticsRetentionFixedTimeIntervalType;
-  unit: ProductAnalyticsRetentionFixedTimeIntervalUnit | (string & {});
-  /** Length of the interval, expressed in `unit`. */
-  value: number;
-}
-export const ProductAnalyticsRetentionFixedTimeInterval =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: ProductAnalyticsRetentionFixedTimeIntervalType,
-      unit: ProductAnalyticsRetentionFixedTimeIntervalUnit,
-      value: S.Number,
-    }),
-  ).annotate({
-    identifier: "ProductAnalyticsRetentionFixedTimeInterval",
-  }) as any as S.Schema<ProductAnalyticsRetentionFixedTimeInterval>;
-
-/** A retention interval, either aligned to calendar boundaries or of a fixed length. Cohort criteria use calendar intervals; return criteria use fixed intervals. */
-export type ProductAnalyticsRetentionTimeInterval =
-  | ProductAnalyticsRetentionCalendarTimeInterval
-  | ProductAnalyticsRetentionFixedTimeInterval;
-export const ProductAnalyticsRetentionTimeInterval =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductAnalyticsRetentionTimeInterval>;
-
-/** Defines the event that places an entity into a cohort, and how cohorts are bucketed over time. */
-export interface ProductAnalyticsRetentionCohortCriteria {
-  base_query: ProductAnalyticsBaseQuery;
-  time_interval: ProductAnalyticsRetentionTimeInterval;
-}
-export const ProductAnalyticsRetentionCohortCriteria = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      base_query: ProductAnalyticsBaseQuery,
-      time_interval: ProductAnalyticsRetentionTimeInterval,
-    }),
-).annotate({
-  identifier: "ProductAnalyticsRetentionCohortCriteria",
-}) as any as S.Schema<ProductAnalyticsRetentionCohortCriteria>;
-
-/** Filters narrowing the events considered by a retention query. */
-export interface ProductAnalyticsRetentionFilters {
-  audience_filters?: ProductAnalyticsAudienceFilters;
-  /** Free-text search query applied to the events. */
-  string_filter?: string;
-}
-export const ProductAnalyticsRetentionFilters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    audience_filters: S.optional(ProductAnalyticsAudienceFilters),
-    string_filter: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProductAnalyticsRetentionFilters",
-}) as any as S.Schema<ProductAnalyticsRetentionFilters>;
-
-/** The entity whose retention is measured. */
-export type ProductAnalyticsRetentionEntity = "@usr.id" | "@account.id";
-export const ProductAnalyticsRetentionEntity = /*@__PURE__*/ S.String;
-
-/** When an entity counts as having returned. Use `conversion_on` to count only entities that returned during the period itself, or `conversion_on_or_after` to also count later returns. */
-export type ProductAnalyticsRetentionReturnCondition =
-  | "conversion_on"
-  | "conversion_on_or_after";
-export const ProductAnalyticsRetentionReturnCondition = /*@__PURE__*/ S.String;
-
-/** Defines the event that counts as a return, and the window in which it must occur. */
-export interface ProductAnalyticsRetentionReturnCriteria {
-  base_query: ProductAnalyticsBaseQuery;
-  time_interval?: ProductAnalyticsRetentionTimeInterval;
-}
-export const ProductAnalyticsRetentionReturnCriteria = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      base_query: ProductAnalyticsBaseQuery,
-      time_interval: S.optional(ProductAnalyticsRetentionTimeInterval),
-    }),
-).annotate({
-  identifier: "ProductAnalyticsRetentionReturnCriteria",
-}) as any as S.Schema<ProductAnalyticsRetentionReturnCriteria>;
-
-/** Defines the cohort and return criteria that make up a retention query. */
-export interface ProductAnalyticsRetentionSearch {
-  cohort_criteria: ProductAnalyticsRetentionCohortCriteria;
-  filters?: ProductAnalyticsRetentionFilters;
-  retention_entity: ProductAnalyticsRetentionEntity | (string & {});
-  return_condition: ProductAnalyticsRetentionReturnCondition | (string & {});
-  return_criteria?: ProductAnalyticsRetentionReturnCriteria;
-}
-export const ProductAnalyticsRetentionSearch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cohort_criteria: ProductAnalyticsRetentionCohortCriteria,
-    filters: S.optional(ProductAnalyticsRetentionFilters),
-    retention_entity: ProductAnalyticsRetentionEntity,
-    return_condition: ProductAnalyticsRetentionReturnCondition,
-    return_criteria: S.optional(ProductAnalyticsRetentionReturnCriteria),
-  }),
-).annotate({
-  identifier: "ProductAnalyticsRetentionSearch",
-}) as any as S.Schema<ProductAnalyticsRetentionSearch>;
 
 /** Query definition for a retention grid or retention metadata request. */
 export interface ProductAnalyticsRetentionGridQuery {
@@ -131671,188 +131563,6 @@ export const ProductAnalyticsRetentionGridResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ProductAnalyticsRetentionGridResponse",
 }) as any as S.Schema<ProductAnalyticsRetentionGridResponse>;
-
-/** The attribute selected for a column. */
-export interface ProductAnalyticsRetentionListColumnField {
-  /** Attribute path of the column. */
-  path?: string;
-}
-export const ProductAnalyticsRetentionListColumnField = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      path: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ProductAnalyticsRetentionListColumnField",
-}) as any as S.Schema<ProductAnalyticsRetentionListColumnField>;
-
-/** A column to include in each returned entity row. */
-export interface ProductAnalyticsRetentionListColumn {
-  field?: ProductAnalyticsRetentionListColumnField;
-}
-export const ProductAnalyticsRetentionListColumn = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    field: S.optional(ProductAnalyticsRetentionListColumnField),
-  }),
-).annotate({
-  identifier: "ProductAnalyticsRetentionListColumn",
-}) as any as S.Schema<ProductAnalyticsRetentionListColumn>;
-
-/** The attribute columns to include in each returned row. */
-export type ProductAnalyticsRetentionListQueryColumnsList =
-  Array<ProductAnalyticsRetentionListColumn>;
-export const ProductAnalyticsRetentionListQueryColumnsList =
-  /*@__PURE__*/ S.Array(
-    ProductAnalyticsRetentionListColumn,
-  ) as any as S.Schema<ProductAnalyticsRetentionListQueryColumnsList>;
-
-/** Query definition for a retention list request. */
-export interface ProductAnalyticsRetentionListQuery {
-  /** The attribute columns to include in each returned row. */
-  columns?: ProductAnalyticsRetentionListQueryColumnsList;
-  computation_scope: ProductAnalyticsRetentionCellScope;
-  /** Maximum number of rows to return. Use `0` for no limit. */
-  limit?: number;
-  search: ProductAnalyticsRetentionSearch;
-}
-export const ProductAnalyticsRetentionListQuery = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    columns: S.optional(ProductAnalyticsRetentionListQueryColumnsList),
-    computation_scope: ProductAnalyticsRetentionCellScope,
-    limit: S.optional(S.Number),
-    search: ProductAnalyticsRetentionSearch,
-  }),
-).annotate({
-  identifier: "ProductAnalyticsRetentionListQuery",
-}) as any as S.Schema<ProductAnalyticsRetentionListQuery>;
-
-/** Attributes of a retention list request. */
-export interface ProductAnalyticsRetentionListRequestAttributes {
-  /** Start of the query window, in epoch milliseconds. */
-  from: number;
-  query: ProductAnalyticsRetentionListQuery;
-  /** End of the query window, in epoch milliseconds. */
-  to: number;
-}
-export const ProductAnalyticsRetentionListRequestAttributes =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      from: S.Number,
-      query: ProductAnalyticsRetentionListQuery,
-      to: S.Number,
-    }),
-  ).annotate({
-    identifier: "ProductAnalyticsRetentionListRequestAttributes",
-  }) as any as S.Schema<ProductAnalyticsRetentionListRequestAttributes>;
-
-/** The resource type identifier for a retention list request. */
-export type ProductAnalyticsRetentionListRequestType = "retention_list_request";
-export const ProductAnalyticsRetentionListRequestType = /*@__PURE__*/ S.String;
-
-/** The single JSON:API resource carrying a retention list query. Its attributes hold the time window, the cell to list, and the columns to return for each entity. */
-export interface ProductAnalyticsRetentionListRequestData {
-  attributes: ProductAnalyticsRetentionListRequestAttributes;
-  type: ProductAnalyticsRetentionListRequestType | (string & {});
-}
-export const ProductAnalyticsRetentionListRequestData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      attributes: ProductAnalyticsRetentionListRequestAttributes,
-      type: ProductAnalyticsRetentionListRequestType,
-    }),
-).annotate({
-  identifier: "ProductAnalyticsRetentionListRequestData",
-}) as any as S.Schema<ProductAnalyticsRetentionListRequestData>;
-
-export interface QueryProductAnalyticsRetentionListRequest {
-  data: ProductAnalyticsRetentionListRequestData;
-}
-export const QueryProductAnalyticsRetentionListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: ProductAnalyticsRetentionListRequestData,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/v2/product-analytics/retention/list",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "QueryProductAnalyticsRetentionListRequest",
-  }) as any as S.Schema<QueryProductAnalyticsRetentionListRequest>;
-
-/** A single entity row, keyed by the requested column paths. */
-export type ProductAnalyticsRetentionListRecord = {
-  [key: string]: unknown | undefined;
-};
-export const ProductAnalyticsRetentionListRecord = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ProductAnalyticsRetentionListRecord>;
-
-/** The matching entity rows. */
-export type ProductAnalyticsRetentionListResponseAttributesRecordsList =
-  Array<ProductAnalyticsRetentionListRecord>;
-export const ProductAnalyticsRetentionListResponseAttributesRecordsList =
-  /*@__PURE__*/ S.Array(
-    ProductAnalyticsRetentionListRecord,
-  ) as any as S.Schema<ProductAnalyticsRetentionListResponseAttributesRecordsList>;
-
-/** Attributes of a retention list response, containing the matching entity rows. */
-export interface ProductAnalyticsRetentionListResponseAttributes {
-  /** The matching entity rows. */
-  records?: ProductAnalyticsRetentionListResponseAttributesRecordsList;
-  /** The entity whose retention was measured. */
-  retention_entity?: string;
-}
-export const ProductAnalyticsRetentionListResponseAttributes =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      records: S.optional(
-        ProductAnalyticsRetentionListResponseAttributesRecordsList,
-      ),
-      retention_entity: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ProductAnalyticsRetentionListResponseAttributes",
-  }) as any as S.Schema<ProductAnalyticsRetentionListResponseAttributes>;
-
-/** The resource type identifier for a retention list response. */
-export type ProductAnalyticsRetentionListResponseType =
-  "retention_list_response";
-export const ProductAnalyticsRetentionListResponseType = /*@__PURE__*/ S.String;
-
-/** The single JSON:API resource holding the entities behind one retention cell. Its attributes contain the entity whose retention was measured and one row per matching entity. */
-export interface ProductAnalyticsRetentionListResponseData {
-  attributes: ProductAnalyticsRetentionListResponseAttributes;
-  /** Unique identifier for this response data object. */
-  id: string;
-  type: ProductAnalyticsRetentionListResponseType;
-}
-export const ProductAnalyticsRetentionListResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      attributes: ProductAnalyticsRetentionListResponseAttributes,
-      id: S.String,
-      type: ProductAnalyticsRetentionListResponseType,
-    }),
-  ).annotate({
-    identifier: "ProductAnalyticsRetentionListResponseData",
-  }) as any as S.Schema<ProductAnalyticsRetentionListResponseData>;
-
-/** Response for a retention list query. */
-export interface ProductAnalyticsRetentionListResponse {
-  data: ProductAnalyticsRetentionListResponseData;
-}
-export const ProductAnalyticsRetentionListResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      data: ProductAnalyticsRetentionListResponseData,
-    }),
-).annotate({
-  identifier: "ProductAnalyticsRetentionListResponse",
-}) as any as S.Schema<ProductAnalyticsRetentionListResponse>;
 
 /** Splits the results by the values of one or more facets. */
 export type ProductAnalyticsFormulaRetentionQueryGroupByList =
@@ -144087,6 +143797,136 @@ export const UpdateDeviceUserTagsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateDeviceUserTagsRequest",
 }) as any as S.Schema<UpdateDeviceUserTagsRequest>;
 
+/** The list of domains in the email domain allowlist. */
+export type DomainAllowlistAttributesDomainsList = Array<string>;
+export const DomainAllowlistAttributesDomainsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DomainAllowlistAttributesDomainsList>;
+
+/** The details of the email domain allowlist. */
+export interface DomainAllowlistAttributes {
+  /** The list of domains in the email domain allowlist. */
+  domains?: DomainAllowlistAttributesDomainsList;
+  /** Whether the email domain allowlist is enabled for the org. */
+  enabled?: boolean;
+}
+export const DomainAllowlistAttributes = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domains: S.optional(DomainAllowlistAttributesDomainsList),
+    enabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "DomainAllowlistAttributes",
+}) as any as S.Schema<DomainAllowlistAttributes>;
+
+/** The email domain allowlist for an org. */
+export interface DomainAllowlist {
+  attributes?: DomainAllowlistAttributes;
+  /** The unique identifier of the org. */
+  id?: string | null;
+  type: DomainAllowlistType | (string & {});
+}
+export const DomainAllowlist = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attributes: S.optional(DomainAllowlistAttributes),
+    id: S.optional(S.NullOr(S.String)),
+    type: DomainAllowlistType,
+  }),
+).annotate({
+  identifier: "DomainAllowlist",
+}) as any as S.Schema<DomainAllowlist>;
+
+export interface UpdateDomainAllowlistRequest {
+  data: DomainAllowlist;
+}
+export const UpdateDomainAllowlistRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: DomainAllowlist,
+  }).pipe(
+    T.Http({ method: "PATCH", uri: "/api/v2/domain_allowlist", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateDomainAllowlistRequest",
+}) as any as S.Schema<UpdateDomainAllowlistRequest>;
+
+/** Remediation details for the deployment. Optional, but required to calculate failed deployment recovery time. Specify either `id` or `version` to identify the remediation deployment, but not both. */
+export interface DORADeploymentPatchRemediation {
+  /** The ID of the remediation deployment. Use this or `version` to identify the remediation deployment, but not both. */
+  id?: string;
+  type?: DORADeploymentPatchRemediationType | (string & {});
+  /** The version of the remediation deployment, matched against the same service and environment as the failed deployment. Use this or `id` to identify the remediation deployment, but not both. */
+  version?: string;
+}
+export const DORADeploymentPatchRemediation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    type: S.optional(DORADeploymentPatchRemediationType),
+    version: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DORADeploymentPatchRemediation",
+}) as any as S.Schema<DORADeploymentPatchRemediation>;
+
+/** Attributes for patching a DORA deployment event. */
+export interface DORADeploymentPatchRequestAttributes {
+  /** Indicates whether the deployment resulted in a change failure. */
+  change_failure?: boolean;
+  remediation?: DORADeploymentPatchRemediation;
+}
+export const DORADeploymentPatchRequestAttributes = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      change_failure: S.optional(S.Boolean),
+      remediation: S.optional(DORADeploymentPatchRemediation),
+    }),
+).annotate({
+  identifier: "DORADeploymentPatchRequestAttributes",
+}) as any as S.Schema<DORADeploymentPatchRequestAttributes>;
+
+/** The JSON:API data for patching a deployment. */
+export interface DORADeploymentPatchRequestData {
+  attributes: DORADeploymentPatchRequestAttributes;
+  /** The ID of the deployment to patch. */
+  id: string;
+  type: DORADeploymentPatchRequestDataType | (string & {});
+}
+export const DORADeploymentPatchRequestData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attributes: DORADeploymentPatchRequestAttributes,
+    id: S.String,
+    type: DORADeploymentPatchRequestDataType,
+  }),
+).annotate({
+  identifier: "DORADeploymentPatchRequestData",
+}) as any as S.Schema<DORADeploymentPatchRequestData>;
+
+export interface UpdateDORADeploymentRequest {
+  /** The ID of the deployment event. */
+  deployment_id: string;
+  data: DORADeploymentPatchRequestData;
+}
+export const UpdateDORADeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deployment_id: S.String.pipe(T.Label()),
+    data: DORADeploymentPatchRequestData,
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/v2/dora/deployments/{deployment_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDORADeploymentRequest",
+}) as any as S.Schema<UpdateDORADeploymentRequest>;
+
+export interface UpdateDORADeploymentResponse {}
+export const UpdateDORADeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateDORADeploymentResponse",
+}) as any as S.Schema<UpdateDORADeploymentResponse>;
+
 /** A list of downtime recurrences. */
 export type DowntimeScheduleRecurrencesUpdateRequestRecurrencesList =
   Array<DowntimeScheduleRecurrenceCreateUpdateRequest>;
@@ -145903,6 +145743,74 @@ export const UpdateIncidentGoogleMeetConfigurationRequest =
   ).annotate({
     identifier: "UpdateIncidentGoogleMeetConfigurationRequest",
   }) as any as S.Schema<UpdateIncidentGoogleMeetConfigurationRequest>;
+
+export type UpdateIncidentImpactRequestIncludeList = Array<
+  IncidentImpactRelatedObject | (string & {})
+>;
+export const UpdateIncidentImpactRequestIncludeList = /*@__PURE__*/ S.Array(
+  IncidentImpactRelatedObject,
+) as any as S.Schema<UpdateIncidentImpactRequestIncludeList>;
+
+/** The incident impact's attributes for a patch request. All fields are optional. */
+export interface IncidentImpactPatchAttributes {
+  /** Description of the impact. */
+  description?: string;
+  /** Timestamp when the impact ended. */
+  end_at?: string | null;
+  fields?: IncidentImpactFieldsObject;
+  /** Timestamp when the impact started. */
+  start_at?: string;
+}
+export const IncidentImpactPatchAttributes = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    end_at: S.optional(S.NullOr(S.String)),
+    fields: S.optional(IncidentImpactFieldsObject),
+    start_at: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IncidentImpactPatchAttributes",
+}) as any as S.Schema<IncidentImpactPatchAttributes>;
+
+/** Incident impact data for a patch request. */
+export interface IncidentImpactPatchData {
+  attributes?: IncidentImpactPatchAttributes;
+  type: IncidentImpactType | (string & {});
+}
+export const IncidentImpactPatchData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attributes: S.optional(IncidentImpactPatchAttributes),
+    type: IncidentImpactType,
+  }),
+).annotate({
+  identifier: "IncidentImpactPatchData",
+}) as any as S.Schema<IncidentImpactPatchData>;
+
+export interface UpdateIncidentImpactRequest {
+  /** The UUID of the incident. */
+  incident_id: string;
+  /** The UUID of the incident impact. */
+  impact_id: string;
+  /** Specifies which related resources should be included in the response. */
+  include?: UpdateIncidentImpactRequestIncludeList;
+  data: IncidentImpactPatchData;
+}
+export const UpdateIncidentImpactRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    incident_id: S.String.pipe(T.Label()),
+    impact_id: S.String.pipe(T.Label()),
+    include: S.optional(UpdateIncidentImpactRequestIncludeList.pipe(T.Query())),
+    data: IncidentImpactPatchData,
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/v2/incidents/{incident_id}/impacts/{impact_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateIncidentImpactRequest",
+}) as any as S.Schema<UpdateIncidentImpactRequest>;
 
 export interface UpdateIncidentImpactFieldRequest {
   /** The UUID of the impact field. */
@@ -153222,6 +153130,97 @@ export const UpdateWorkflowsWebhookHandleRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateWorkflowsWebhookHandleRequest",
 }) as any as S.Schema<UpdateWorkflowsWebhookHandleRequest>;
 
+export interface UploadAbortTestFileMultipartRequest {
+  /** The public ID of the Synthetic test. */
+  public_id: string;
+  /** The full storage path of the file whose upload should be aborted. */
+  key: string;
+  /** The upload ID of the multipart upload to abort. */
+  uploadId: string;
+}
+export const UploadAbortTestFileMultipartRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    public_id: S.String.pipe(T.Label()),
+    key: S.String,
+    uploadId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/v2/synthetics/tests/{public_id}/files/multipart-upload-abort",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UploadAbortTestFileMultipartRequest",
+}) as any as S.Schema<UploadAbortTestFileMultipartRequest>;
+
+export interface UploadAbortTestFileMultipartResponse {}
+export const UploadAbortTestFileMultipartResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "UploadAbortTestFileMultipartResponse",
+}) as any as S.Schema<UploadAbortTestFileMultipartResponse>;
+
+/** A completed part of a multipart upload. */
+export interface SyntheticsTestFileCompleteMultipartUploadPart {
+  /** The ETag returned by the storage provider after uploading the part. */
+  ETag: string;
+  /** The 1-indexed part number for the multipart upload. */
+  PartNumber: number;
+}
+export const SyntheticsTestFileCompleteMultipartUploadPart =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      ETag: S.String,
+      PartNumber: S.Number,
+    }),
+  ).annotate({
+    identifier: "SyntheticsTestFileCompleteMultipartUploadPart",
+  }) as any as S.Schema<SyntheticsTestFileCompleteMultipartUploadPart>;
+
+/** Array of completed parts with their ETags. */
+export type UploadCompleteTestFileMultipartRequestPartsList =
+  Array<SyntheticsTestFileCompleteMultipartUploadPart>;
+export const UploadCompleteTestFileMultipartRequestPartsList =
+  /*@__PURE__*/ S.Array(
+    SyntheticsTestFileCompleteMultipartUploadPart,
+  ) as any as S.Schema<UploadCompleteTestFileMultipartRequestPartsList>;
+
+export interface UploadCompleteTestFileMultipartRequest {
+  /** The public ID of the Synthetic test. */
+  public_id: string;
+  /** The full storage path for the uploaded file. */
+  key: string;
+  /** Array of completed parts with their ETags. */
+  parts: UploadCompleteTestFileMultipartRequestPartsList;
+  /** The upload ID returned when the multipart upload was initiated. */
+  uploadId: string;
+}
+export const UploadCompleteTestFileMultipartRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      public_id: S.String.pipe(T.Label()),
+      key: S.String,
+      parts: UploadCompleteTestFileMultipartRequestPartsList,
+      uploadId: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/v2/synthetics/tests/{public_id}/files/multipart-upload-complete",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "UploadCompleteTestFileMultipartRequest",
+}) as any as S.Schema<UploadCompleteTestFileMultipartRequest>;
+
+export interface UploadCompleteTestFileMultipartResponse {}
+export const UploadCompleteTestFileMultipartResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "UploadCompleteTestFileMultipartResponse",
+}) as any as S.Schema<UploadCompleteTestFileMultipartResponse>;
+
 /** Request for uploading a Custom Costs file. */
 export type CustomCostsFileUploadRequest = Array<CustomCostsFileLineItem>;
 export const CustomCostsFileUploadRequest = /*@__PURE__*/ S.Array(
@@ -155399,25 +155398,6 @@ export const WatchCaseResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WatchCaseResponse",
 }) as any as S.Schema<WatchCaseResponse>;
 
-export type AbortTestFileMultipartUploadError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | DatadogOpError;
-/** Abort a multipart upload of a test file Abort an in-progress multipart file upload for a Synthetic test. This cancels the upload and releases any storage used by already-uploaded parts. */
-export const abortTestFileMultipartUpload: API.OperationMethod<
-  AbortTestFileMultipartUploadRequest,
-  AbortTestFileMultipartUploadResponse,
-  AbortTestFileMultipartUploadError,
-  DatadogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AbortTestFileMultipartUploadRequest,
-  output: AbortTestFileMultipartUploadResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnknownDatadogError],
-  protocol: DatadogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AcknowledgeOnCallPageError = DatadogOpError;
 /** Acknowledge On-Call Page Acknowledges an On-Call Page. */
 export const acknowledgeOnCallPage: API.OperationMethod<
@@ -156334,25 +156314,6 @@ export const commentCase: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CommentCaseRequest,
   output: TimelineResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnknownDatadogError],
-  protocol: DatadogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CompleteTestFileMultipartUploadError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | DatadogOpError;
-/** Complete a multipart upload of a test file Complete a multipart file upload for a Synthetic test. Call this endpoint after all parts have been uploaded using the presigned URLs obtained from the multipart presigned URLs endpoint. */
-export const completeTestFileMultipartUpload: API.OperationMethod<
-  CompleteTestFileMultipartUploadRequest,
-  CompleteTestFileMultipartUploadResponse,
-  CompleteTestFileMultipartUploadError,
-  DatadogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CompleteTestFileMultipartUploadRequest,
-  output: CompleteTestFileMultipartUploadResponse,
   errors: [BadRequest, Forbidden, NotFound, UnknownDatadogError],
   protocol: DatadogProtocol,
   retry: Retry.Retry,
@@ -168043,15 +168004,15 @@ export const getProjects: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetPrunedTraceByIDError = Forbidden | NotFound | DatadogOpError;
+export type GetPrunedTraceError = Forbidden | NotFound | DatadogOpError;
 /** Get a pruned trace by ID Retrieve a pruned, hierarchical view of an APM trace by its trace ID. The trace is summarized as a tree of spans rooted at the trace root and reduced in size to keep rendering large traces in the UI practical. This endpoint is rate limited to `60` requests per minute per organization. */
-export const getPrunedTraceByID: API.OperationMethod<
-  GetPrunedTraceByIDRequest,
+export const getPrunedTrace: API.OperationMethod<
+  GetPrunedTraceRequest,
   PrunedTraceResponse,
-  GetPrunedTraceByIDError,
+  GetPrunedTraceError,
   DatadogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrunedTraceByIDRequest,
+  input: GetPrunedTraceRequest,
   output: PrunedTraceResponse,
   errors: [Forbidden, NotFound, UnknownDatadogError],
   protocol: DatadogProtocol,
@@ -169064,18 +169025,18 @@ export const getSPARecommendations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSPARecommendationsWithShardError =
+export type GetSPARecommendationsByShardError =
   | BadRequest
   | Forbidden
   | DatadogOpError;
 /** Get SPA Recommendations with a shard parameter This endpoint is currently experimental and restricted to Datadog internal use only. Retrieve resource recommendations for a Spark job. The caller (Spark Gateway or DJM UI) provides a service name and shard identifier, and SPA returns structured recommendations for driver and executor resources. */
-export const getSPARecommendationsWithShard: API.OperationMethod<
-  GetSPARecommendationsWithShardRequest,
+export const getSPARecommendationsByShard: API.OperationMethod<
+  GetSPARecommendationsByShardRequest,
   RecommendationDocument,
-  GetSPARecommendationsWithShardError,
+  GetSPARecommendationsByShardError,
   DatadogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSPARecommendationsWithShardRequest,
+  input: GetSPARecommendationsByShardRequest,
   output: RecommendationDocument,
   errors: [BadRequest, Forbidden, UnknownDatadogError],
   protocol: DatadogProtocol,
@@ -169794,15 +169755,15 @@ export const getTestParentSuites: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetTraceByIDError = Forbidden | NotFound | DatadogOpError;
+export type GetTraceError = Forbidden | NotFound | DatadogOpError;
 /** Get a trace by ID Retrieve a full APM trace by its trace ID, including every span in the trace. Traces are returned from live storage when available and fall back to longer-term storage. This endpoint is rate limited to `60` requests per minute per organization. */
-export const getTraceByID: API.OperationMethod<
-  GetTraceByIDRequest,
+export const getTrace: API.OperationMethod<
+  GetTraceRequest,
   TraceResponse,
-  GetTraceByIDError,
+  GetTraceError,
   DatadogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetTraceByIDRequest,
+  input: GetTraceRequest,
   output: TraceResponse,
   errors: [Forbidden, NotFound, UnknownDatadogError],
   protocol: DatadogProtocol,
@@ -173500,6 +173461,60 @@ export const listProcesses: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListQueryProductAnalyticsError =
+  | BadRequest
+  | Forbidden
+  | DatadogOpError;
+/** List analytics events List the individual event records matching an analytics query. Use `columns` to choose the attributes returned on each row, `sort` to order the rows, and `limit` to cap how many are returned. */
+export const listQueryProductAnalytics: API.OperationMethod<
+  ListQueryProductAnalyticsRequest,
+  ProductAnalyticsAnalyticsListResponse,
+  ListQueryProductAnalyticsError,
+  DatadogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListQueryProductAnalyticsRequest,
+  output: ProductAnalyticsAnalyticsListResponse,
+  errors: [BadRequest, Forbidden, UnknownDatadogError],
+  protocol: DatadogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListQueryProductAnalyticsJourneyError =
+  | BadRequest
+  | Forbidden
+  | DatadogOpError;
+/** List journey entities Return the individual sessions that reached, or dropped off at, a given step of the journey. Each row contains the identity join key, the event timestamp, and the columns requested in `entity_columns`. */
+export const listQueryProductAnalyticsJourney: API.OperationMethod<
+  ListQueryProductAnalyticsJourneyRequest,
+  ProductAnalyticsJourneyListResponse,
+  ListQueryProductAnalyticsJourneyError,
+  DatadogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListQueryProductAnalyticsJourneyRequest,
+  output: ProductAnalyticsJourneyListResponse,
+  errors: [BadRequest, Forbidden, UnknownDatadogError],
+  protocol: DatadogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListQueryProductAnalyticsRetentionError =
+  | BadRequest
+  | Forbidden
+  | DatadogOpError;
+/** List the entities behind a retention cell List the individual users or accounts counted in one cell of the retention grid. Set `computation_scope` to the cohort and return period you want to examine. */
+export const listQueryProductAnalyticsRetention: API.OperationMethod<
+  ListQueryProductAnalyticsRetentionRequest,
+  ProductAnalyticsRetentionListResponse,
+  ListQueryProductAnalyticsRetentionError,
+  DatadogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListQueryProductAnalyticsRetentionRequest,
+  output: ProductAnalyticsRetentionListResponse,
+  errors: [BadRequest, Forbidden, UnknownDatadogError],
+  protocol: DatadogProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListReferenceTableRowsError =
   | BadRequest
   | Forbidden
@@ -175224,36 +175239,6 @@ export const orderRetentionFilters: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PatchDomainAllowlistError = DatadogOpError;
-/** Sets Domain Allowlist Update the domain allowlist for an organization. */
-export const patchDomainAllowlist: API.OperationMethod<
-  PatchDomainAllowlistRequest,
-  DomainAllowlistResponse,
-  PatchDomainAllowlistError,
-  DatadogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchDomainAllowlistRequest,
-  output: DomainAllowlistResponse,
-  errors: [UnknownDatadogError],
-  protocol: DatadogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchDORADeploymentError = BadRequest | Forbidden | DatadogOpError;
-/** Patch a deployment event Update a deployment's change failure status. Use this to mark a deployment as a change failure or back to stable. You can optionally include remediation details to enable failed deployment recovery time calculation. */
-export const patchDORADeployment: API.OperationMethod<
-  PatchDORADeploymentRequest,
-  PatchDORADeploymentResponse,
-  PatchDORADeploymentError,
-  DatadogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchDORADeploymentRequest,
-  output: PatchDORADeploymentResponse,
-  errors: [BadRequest, Forbidden, UnknownDatadogError],
-  protocol: DatadogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PatchDORADeploymentByVersionError =
   | BadRequest
   | Forbidden
@@ -175283,25 +175268,6 @@ export const patchGlobalVariable: API.OperationMethod<
   input: PatchGlobalVariableRequest,
   output: GlobalVariableResponse,
   errors: [BadRequest, NotFound, UnknownDatadogError],
-  protocol: DatadogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchIncidentImpactError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | DatadogOpError;
-/** Update an incident impact Update an incident impact. */
-export const patchIncidentImpact: API.OperationMethod<
-  PatchIncidentImpactRequest,
-  IncidentImpactResponse,
-  PatchIncidentImpactError,
-  DatadogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchIncidentImpactRequest,
-  output: IncidentImpactResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnknownDatadogError],
   protocol: DatadogProtocol,
   retry: Retry.Retry,
 }));
@@ -175681,24 +175647,6 @@ export const queryProductAnalyticsJourneyFunnel: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type QueryProductAnalyticsJourneyListError =
-  | BadRequest
-  | Forbidden
-  | DatadogOpError;
-/** List journey entities Return the individual sessions that reached, or dropped off at, a given step of the journey. Each row contains the identity join key, the event timestamp, and the columns requested in `entity_columns`. */
-export const queryProductAnalyticsJourneyList: API.OperationMethod<
-  QueryProductAnalyticsJourneyListRequest,
-  ProductAnalyticsJourneyListResponse,
-  QueryProductAnalyticsJourneyListError,
-  DatadogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueryProductAnalyticsJourneyListRequest,
-  output: ProductAnalyticsJourneyListResponse,
-  errors: [BadRequest, Forbidden, UnknownDatadogError],
-  protocol: DatadogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type QueryProductAnalyticsJourneyScalarError =
   | BadRequest
   | Forbidden
@@ -175735,24 +175683,6 @@ export const queryProductAnalyticsJourneyTimeseries: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type QueryProductAnalyticsListError =
-  | BadRequest
-  | Forbidden
-  | DatadogOpError;
-/** List analytics events List the individual event records matching an analytics query. Use `columns` to choose the attributes returned on each row, `sort` to order the rows, and `limit` to cap how many are returned. */
-export const queryProductAnalyticsList: API.OperationMethod<
-  QueryProductAnalyticsListRequest,
-  ProductAnalyticsAnalyticsListResponse,
-  QueryProductAnalyticsListError,
-  DatadogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueryProductAnalyticsListRequest,
-  output: ProductAnalyticsAnalyticsListResponse,
-  errors: [BadRequest, Forbidden, UnknownDatadogError],
-  protocol: DatadogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type QueryProductAnalyticsRetentionGridError =
   | BadRequest
   | Forbidden
@@ -175766,24 +175696,6 @@ export const queryProductAnalyticsRetentionGrid: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: QueryProductAnalyticsRetentionGridRequest,
   output: ProductAnalyticsRetentionGridResponse,
-  errors: [BadRequest, Forbidden, UnknownDatadogError],
-  protocol: DatadogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QueryProductAnalyticsRetentionListError =
-  | BadRequest
-  | Forbidden
-  | DatadogOpError;
-/** List the entities behind a retention cell List the individual users or accounts counted in one cell of the retention grid. Set `computation_scope` to the cohort and return period you want to examine. */
-export const queryProductAnalyticsRetentionList: API.OperationMethod<
-  QueryProductAnalyticsRetentionListRequest,
-  ProductAnalyticsRetentionListResponse,
-  QueryProductAnalyticsRetentionListError,
-  DatadogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueryProductAnalyticsRetentionListRequest,
-  output: ProductAnalyticsRetentionListResponse,
   errors: [BadRequest, Forbidden, UnknownDatadogError],
   protocol: DatadogProtocol,
   retry: Retry.Retry,
@@ -178468,6 +178380,36 @@ export const updateDeviceUserTags: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type UpdateDomainAllowlistError = DatadogOpError;
+/** Sets Domain Allowlist Update the domain allowlist for an organization. */
+export const updateDomainAllowlist: API.OperationMethod<
+  UpdateDomainAllowlistRequest,
+  DomainAllowlistResponse,
+  UpdateDomainAllowlistError,
+  DatadogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDomainAllowlistRequest,
+  output: DomainAllowlistResponse,
+  errors: [UnknownDatadogError],
+  protocol: DatadogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDORADeploymentError = BadRequest | Forbidden | DatadogOpError;
+/** Patch a deployment event Update a deployment's change failure status. Use this to mark a deployment as a change failure or back to stable. You can optionally include remediation details to enable failed deployment recovery time calculation. */
+export const updateDORADeployment: API.OperationMethod<
+  UpdateDORADeploymentRequest,
+  UpdateDORADeploymentResponse,
+  UpdateDORADeploymentError,
+  DatadogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDORADeploymentRequest,
+  output: UpdateDORADeploymentResponse,
+  errors: [BadRequest, Forbidden, UnknownDatadogError],
+  protocol: DatadogProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateDowntimeError =
   | BadRequest
   | Forbidden
@@ -179002,6 +178944,25 @@ export const updateIncidentGoogleMeetConfiguration: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateIncidentGoogleMeetConfigurationRequest,
   output: IncidentGoogleMeetConfigurationResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnknownDatadogError],
+  protocol: DatadogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateIncidentImpactError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | DatadogOpError;
+/** Update an incident impact Update an incident impact. */
+export const updateIncidentImpact: API.OperationMethod<
+  UpdateIncidentImpactRequest,
+  IncidentImpactResponse,
+  UpdateIncidentImpactError,
+  DatadogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateIncidentImpactRequest,
+  output: IncidentImpactResponse,
   errors: [BadRequest, Forbidden, NotFound, UnknownDatadogError],
   protocol: DatadogProtocol,
   retry: Retry.Retry,
@@ -181339,6 +181300,44 @@ export const updateWorkflowsWebhookHandle: API.OperationMethod<
   input: UpdateWorkflowsWebhookHandleRequest,
   output: MicrosoftTeamsWorkflowsWebhookHandleResponse,
   errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownDatadogError],
+  protocol: DatadogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UploadAbortTestFileMultipartError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | DatadogOpError;
+/** Abort a multipart upload of a test file Abort an in-progress multipart file upload for a Synthetic test. This cancels the upload and releases any storage used by already-uploaded parts. */
+export const uploadAbortTestFileMultipart: API.OperationMethod<
+  UploadAbortTestFileMultipartRequest,
+  UploadAbortTestFileMultipartResponse,
+  UploadAbortTestFileMultipartError,
+  DatadogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UploadAbortTestFileMultipartRequest,
+  output: UploadAbortTestFileMultipartResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnknownDatadogError],
+  protocol: DatadogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UploadCompleteTestFileMultipartError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | DatadogOpError;
+/** Complete a multipart upload of a test file Complete a multipart file upload for a Synthetic test. Call this endpoint after all parts have been uploaded using the presigned URLs obtained from the multipart presigned URLs endpoint. */
+export const uploadCompleteTestFileMultipart: API.OperationMethod<
+  UploadCompleteTestFileMultipartRequest,
+  UploadCompleteTestFileMultipartResponse,
+  UploadCompleteTestFileMultipartError,
+  DatadogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UploadCompleteTestFileMultipartRequest,
+  output: UploadCompleteTestFileMultipartResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnknownDatadogError],
   protocol: DatadogProtocol,
   retry: Retry.Retry,
 }));

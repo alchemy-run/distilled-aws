@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.datadog.v2#ListFleetAgentTracersRequest": {
@@ -59736,7 +59737,7 @@
         "smithy.api#documentation": "The list of domains in the email domain allowlist."
       }
     },
-    "com.datadog.v2#PatchDomainAllowlistRequest": {
+    "com.datadog.v2#UpdateDomainAllowlistRequest": {
       "type": "structure",
       "members": {
         "data": {
@@ -59750,10 +59751,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.datadog.v2#PatchDomainAllowlist": {
+    "com.datadog.v2#UpdateDomainAllowlist": {
       "type": "operation",
       "input": {
-        "target": "com.datadog.v2#PatchDomainAllowlistRequest"
+        "target": "com.datadog.v2#UpdateDomainAllowlistRequest"
       },
       "output": {
         "target": "com.datadog.v2#DomainAllowlistResponse"
@@ -60531,7 +60532,7 @@
         "smithy.api#documentation": "Remediation details for the deployment. Optional, but required to calculate failed deployment recovery time. Specify either `id` or `version` to identify the remediation deployment, but not both."
       }
     },
-    "com.datadog.v2#PatchDORADeploymentRequest": {
+    "com.datadog.v2#UpdateDORADeploymentRequest": {
       "type": "structure",
       "members": {
         "deployment_id": {
@@ -60553,10 +60554,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.datadog.v2#PatchDORADeployment": {
+    "com.datadog.v2#UpdateDORADeployment": {
       "type": "operation",
       "input": {
-        "target": "com.datadog.v2#PatchDORADeploymentRequest"
+        "target": "com.datadog.v2#UpdateDORADeploymentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -89528,7 +89529,7 @@
         "smithy.api#documentation": "Create an incident impact\n\nCreate an impact for an incident."
       }
     },
-    "com.datadog.v2#PatchIncidentImpactRequestIncludeList": {
+    "com.datadog.v2#UpdateIncidentImpactRequestIncludeList": {
       "type": "list",
       "member": {
         "target": "com.datadog.v2#IncidentImpactRelatedObject"
@@ -89582,7 +89583,7 @@
         "smithy.api#documentation": "The incident impact's attributes for a patch request. All fields are optional."
       }
     },
-    "com.datadog.v2#PatchIncidentImpactRequest": {
+    "com.datadog.v2#UpdateIncidentImpactRequest": {
       "type": "structure",
       "members": {
         "incident_id": {
@@ -89602,7 +89603,7 @@
           }
         },
         "include": {
-          "target": "com.datadog.v2#PatchIncidentImpactRequestIncludeList",
+          "target": "com.datadog.v2#UpdateIncidentImpactRequestIncludeList",
           "traits": {
             "smithy.api#httpQuery": "include",
             "smithy.api#documentation": "Specifies which related resources should be included in the response."
@@ -89619,10 +89620,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.datadog.v2#PatchIncidentImpact": {
+    "com.datadog.v2#UpdateIncidentImpact": {
       "type": "operation",
       "input": {
-        "target": "com.datadog.v2#PatchIncidentImpactRequest"
+        "target": "com.datadog.v2#UpdateIncidentImpactRequest"
       },
       "output": {
         "target": "com.datadog.v2#IncidentImpactResponse"
@@ -162759,7 +162760,7 @@
         "smithy.api#documentation": "The resource type for analytics list requests."
       }
     },
-    "com.datadog.v2#QueryProductAnalyticsListRequest": {
+    "com.datadog.v2#ListQueryProductAnalyticsRequest": {
       "type": "structure",
       "members": {
         "data": {
@@ -162915,10 +162916,10 @@
         "smithy.api#documentation": "The execution status of a Product Analytics query."
       }
     },
-    "com.datadog.v2#QueryProductAnalyticsList": {
+    "com.datadog.v2#ListQueryProductAnalytics": {
       "type": "operation",
       "input": {
-        "target": "com.datadog.v2#QueryProductAnalyticsListRequest"
+        "target": "com.datadog.v2#ListQueryProductAnalyticsRequest"
       },
       "output": {
         "target": "com.datadog.v2#ProductAnalyticsAnalyticsListResponse"
@@ -164736,7 +164737,7 @@
         "smithy.api#documentation": "The resource type identifier for a journey list request."
       }
     },
-    "com.datadog.v2#QueryProductAnalyticsJourneyListRequest": {
+    "com.datadog.v2#ListQueryProductAnalyticsJourneyRequest": {
       "type": "structure",
       "members": {
         "data": {
@@ -164880,10 +164881,10 @@
         "smithy.api#documentation": "The resource type identifier for a journey list response."
       }
     },
-    "com.datadog.v2#QueryProductAnalyticsJourneyList": {
+    "com.datadog.v2#ListQueryProductAnalyticsJourney": {
       "type": "operation",
       "input": {
-        "target": "com.datadog.v2#QueryProductAnalyticsJourneyListRequest"
+        "target": "com.datadog.v2#ListQueryProductAnalyticsJourneyRequest"
       },
       "output": {
         "target": "com.datadog.v2#ProductAnalyticsJourneyListResponse"
@@ -166554,7 +166555,7 @@
         "smithy.api#documentation": "The resource type identifier for a retention list request."
       }
     },
-    "com.datadog.v2#QueryProductAnalyticsRetentionListRequest": {
+    "com.datadog.v2#ListQueryProductAnalyticsRetentionRequest": {
       "type": "structure",
       "members": {
         "data": {
@@ -166664,10 +166665,10 @@
         "smithy.api#documentation": "The resource type identifier for a retention list response."
       }
     },
-    "com.datadog.v2#QueryProductAnalyticsRetentionList": {
+    "com.datadog.v2#ListQueryProductAnalyticsRetention": {
       "type": "operation",
       "input": {
-        "target": "com.datadog.v2#QueryProductAnalyticsRetentionListRequest"
+        "target": "com.datadog.v2#ListQueryProductAnalyticsRetentionRequest"
       },
       "output": {
         "target": "com.datadog.v2#ProductAnalyticsRetentionListResponse"
@@ -168385,28 +168386,28 @@
         "smithy.api#documentation": "List connections\n\nList all data connections for an entity"
       }
     },
-    "com.datadog.v2#GetPrunedTraceByIDRequestIncludePathList": {
+    "com.datadog.v2#GetPrunedTraceRequestIncludePathList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.datadog.v2#GetPrunedTraceByIDRequestTagIncludeList": {
+    "com.datadog.v2#GetPrunedTraceRequestTagIncludeList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.datadog.v2#GetPrunedTraceByIDRequestTagExcludeList": {
+    "com.datadog.v2#GetPrunedTraceRequestTagExcludeList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.datadog.v2#GetPrunedTraceByIDRequest": {
+    "com.datadog.v2#GetPrunedTraceRequest": {
       "type": "structure",
       "members": {
         "trace_id": {
@@ -168439,21 +168440,21 @@
           }
         },
         "include_path": {
-          "target": "com.datadog.v2#GetPrunedTraceByIDRequestIncludePathList",
+          "target": "com.datadog.v2#GetPrunedTraceRequestIncludePathList",
           "traits": {
             "smithy.api#httpQuery": "include_path",
             "smithy.api#documentation": "Restrict the pruned tree to spans matching the given `key:value` pairs.\nValues may be passed as repeated query parameters."
           }
         },
         "tag_include": {
-          "target": "com.datadog.v2#GetPrunedTraceByIDRequestTagIncludeList",
+          "target": "com.datadog.v2#GetPrunedTraceRequestTagIncludeList",
           "traits": {
             "smithy.api#httpQuery": "tag_include",
             "smithy.api#documentation": "Regex patterns of tag keys whose values must be included in the pruned spans.\nValues may be passed as repeated query parameters."
           }
         },
         "tag_exclude": {
-          "target": "com.datadog.v2#GetPrunedTraceByIDRequestTagExcludeList",
+          "target": "com.datadog.v2#GetPrunedTraceRequestTagExcludeList",
           "traits": {
             "smithy.api#httpQuery": "tag_exclude",
             "smithy.api#documentation": "Regex patterns of tag keys whose values must be excluded from the pruned spans.\nValues may be passed as repeated query parameters."
@@ -168733,10 +168734,10 @@
         "smithy.api#documentation": "The type of the pruned trace resource. The value is always `pruned_trace`."
       }
     },
-    "com.datadog.v2#GetPrunedTraceByID": {
+    "com.datadog.v2#GetPrunedTrace": {
       "type": "operation",
       "input": {
-        "target": "com.datadog.v2#GetPrunedTraceByIDRequest"
+        "target": "com.datadog.v2#GetPrunedTraceRequest"
       },
       "output": {
         "target": "com.datadog.v2#PrunedTraceResponse"
@@ -228342,7 +228343,7 @@
         "smithy.api#documentation": "Get SPA Recommendations\n\nThis endpoint is currently experimental and restricted to Datadog internal use only. Retrieve resource recommendations for a Spark job. The caller (Spark Gateway or DJM UI) provides a service name and SPA returns structured recommendations for driver and executor resources. The version with a shard should be preferred, where possible, as it gives more accurate results."
       }
     },
-    "com.datadog.v2#GetSPARecommendationsWithShardRequest": {
+    "com.datadog.v2#GetSPARecommendationsByShardRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -228373,10 +228374,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.datadog.v2#GetSPARecommendationsWithShard": {
+    "com.datadog.v2#GetSPARecommendationsByShard": {
       "type": "operation",
       "input": {
-        "target": "com.datadog.v2#GetSPARecommendationsWithShardRequest"
+        "target": "com.datadog.v2#GetSPARecommendationsByShardRequest"
       },
       "output": {
         "target": "com.datadog.v2#RecommendationDocument"
@@ -251295,7 +251296,7 @@
         "smithy.api#documentation": "Get presigned URLs for uploading a test file\n\nGet presigned URLs for uploading a file to a Synthetic test using multipart upload.\nReturns the presigned URLs for each part along with the bucket key that references the file."
       }
     },
-    "com.datadog.v2#AbortTestFileMultipartUploadRequest": {
+    "com.datadog.v2#UploadAbortTestFileMultipartRequest": {
       "type": "structure",
       "members": {
         "public_id": {
@@ -251325,10 +251326,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.datadog.v2#AbortTestFileMultipartUpload": {
+    "com.datadog.v2#UploadAbortTestFileMultipart": {
       "type": "operation",
       "input": {
-        "target": "com.datadog.v2#AbortTestFileMultipartUploadRequest"
+        "target": "com.datadog.v2#UploadAbortTestFileMultipartRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -251375,7 +251376,7 @@
         "smithy.api#documentation": "A completed part of a multipart upload."
       }
     },
-    "com.datadog.v2#CompleteTestFileMultipartUploadRequestPartsList": {
+    "com.datadog.v2#UploadCompleteTestFileMultipartRequestPartsList": {
       "type": "list",
       "member": {
         "target": "com.datadog.v2#SyntheticsTestFileCompleteMultipartUploadPart"
@@ -251384,7 +251385,7 @@
         "smithy.api#documentation": "Array of completed parts with their ETags."
       }
     },
-    "com.datadog.v2#CompleteTestFileMultipartUploadRequest": {
+    "com.datadog.v2#UploadCompleteTestFileMultipartRequest": {
       "type": "structure",
       "members": {
         "public_id": {
@@ -251403,7 +251404,7 @@
           }
         },
         "parts": {
-          "target": "com.datadog.v2#CompleteTestFileMultipartUploadRequestPartsList",
+          "target": "com.datadog.v2#UploadCompleteTestFileMultipartRequestPartsList",
           "traits": {
             "smithy.api#documentation": "Array of completed parts with their ETags.",
             "smithy.api#required": {}
@@ -251421,10 +251422,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.datadog.v2#CompleteTestFileMultipartUpload": {
+    "com.datadog.v2#UploadCompleteTestFileMultipart": {
       "type": "operation",
       "input": {
-        "target": "com.datadog.v2#CompleteTestFileMultipartUploadRequest"
+        "target": "com.datadog.v2#UploadCompleteTestFileMultipartRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -259453,14 +259454,14 @@
         "smithy.api#documentation": "Update flaky test states\n\nUpdate the state of multiple flaky tests in Flaky Test Management."
       }
     },
-    "com.datadog.v2#GetTraceByIDRequestIncludeFieldsList": {
+    "com.datadog.v2#GetTraceRequestIncludeFieldsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.datadog.v2#GetTraceByIDRequest": {
+    "com.datadog.v2#GetTraceRequest": {
       "type": "structure",
       "members": {
         "trace_id": {
@@ -259472,7 +259473,7 @@
           }
         },
         "include_fields": {
-          "target": "com.datadog.v2#GetTraceByIDRequestIncludeFieldsList",
+          "target": "com.datadog.v2#GetTraceRequestIncludeFieldsList",
           "traits": {
             "smithy.api#httpQuery": "include_fields",
             "smithy.api#documentation": "List of span fields to include in the response. When omitted, every available field is returned.\nValues may be passed as repeated query parameters or as a single comma-separated value."
@@ -259715,10 +259716,10 @@
         "smithy.api#documentation": "The type of the trace resource. The value is always `trace`."
       }
     },
-    "com.datadog.v2#GetTraceByID": {
+    "com.datadog.v2#GetTrace": {
       "type": "operation",
       "input": {
-        "target": "com.datadog.v2#GetTraceByIDRequest"
+        "target": "com.datadog.v2#GetTraceRequest"
       },
       "output": {
         "target": "com.datadog.v2#TraceResponse"
@@ -266666,7 +266667,7 @@
           "target": "com.datadog.v2#GetDomainAllowlist"
         },
         {
-          "target": "com.datadog.v2#PatchDomainAllowlist"
+          "target": "com.datadog.v2#UpdateDomainAllowlist"
         },
         {
           "target": "com.datadog.v2#CreateDORADeployment"
@@ -266684,7 +266685,7 @@
           "target": "com.datadog.v2#GetDORADeployment"
         },
         {
-          "target": "com.datadog.v2#PatchDORADeployment"
+          "target": "com.datadog.v2#UpdateDORADeployment"
         },
         {
           "target": "com.datadog.v2#CreateDORAFailure"
@@ -267158,7 +267159,7 @@
           "target": "com.datadog.v2#CreateIncidentImpact"
         },
         {
-          "target": "com.datadog.v2#PatchIncidentImpact"
+          "target": "com.datadog.v2#UpdateIncidentImpact"
         },
         {
           "target": "com.datadog.v2#DeleteIncidentImpact"
@@ -268469,7 +268470,7 @@
           "target": "com.datadog.v2#QueryAccounts"
         },
         {
-          "target": "com.datadog.v2#QueryProductAnalyticsList"
+          "target": "com.datadog.v2#ListQueryProductAnalytics"
         },
         {
           "target": "com.datadog.v2#QueryProductAnalyticsScalar"
@@ -268481,7 +268482,7 @@
           "target": "com.datadog.v2#QueryProductAnalyticsJourneyFunnel"
         },
         {
-          "target": "com.datadog.v2#QueryProductAnalyticsJourneyList"
+          "target": "com.datadog.v2#ListQueryProductAnalyticsJourney"
         },
         {
           "target": "com.datadog.v2#QueryProductAnalyticsJourneyScalar"
@@ -268493,7 +268494,7 @@
           "target": "com.datadog.v2#QueryProductAnalyticsRetentionGrid"
         },
         {
-          "target": "com.datadog.v2#QueryProductAnalyticsRetentionList"
+          "target": "com.datadog.v2#ListQueryProductAnalyticsRetention"
         },
         {
           "target": "com.datadog.v2#QueryProductAnalyticsRetentionScalar"
@@ -268529,7 +268530,7 @@
           "target": "com.datadog.v2#ListConnections"
         },
         {
-          "target": "com.datadog.v2#GetPrunedTraceByID"
+          "target": "com.datadog.v2#GetPrunedTrace"
         },
         {
           "target": "com.datadog.v2#QueryScalarData"
@@ -269561,7 +269562,7 @@
           "target": "com.datadog.v2#GetSPARecommendations"
         },
         {
-          "target": "com.datadog.v2#GetSPARecommendationsWithShard"
+          "target": "com.datadog.v2#GetSPARecommendationsByShard"
         },
         {
           "target": "com.datadog.v2#AggregateSpans"
@@ -269888,10 +269889,10 @@
           "target": "com.datadog.v2#GetTestFileMultipartPresignedUrls"
         },
         {
-          "target": "com.datadog.v2#AbortTestFileMultipartUpload"
+          "target": "com.datadog.v2#UploadAbortTestFileMultipart"
         },
         {
-          "target": "com.datadog.v2#CompleteTestFileMultipartUpload"
+          "target": "com.datadog.v2#UploadCompleteTestFileMultipart"
         },
         {
           "target": "com.datadog.v2#GetTestParentSuites"
@@ -270032,7 +270033,7 @@
           "target": "com.datadog.v2#UpdateFlakyTests"
         },
         {
-          "target": "com.datadog.v2#GetTraceByID"
+          "target": "com.datadog.v2#GetTrace"
         },
         {
           "target": "com.datadog.v2#GetBillingDimensionMapping"
