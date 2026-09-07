@@ -25,7 +25,7 @@
     },
     {
       "op": "add",
-      "path": "/shapes/com.forgejo.organization#OrgDelete/errors/-",
+      "path": "/shapes/com.forgejo.organization#DeleteOrg/errors/-",
       "value": {
         "target": "com.forgejo.organization#OrganizationOwnsRepositories"
       }

@@ -47,6 +47,7 @@ import {
   type PatchFile,
 } from "@distilled.cloud/core/json-patch";
 import { convertOpenApiToSmithy } from "@distilled.cloud/core/codegen/openapi";
+import { finalizeConvert } from "@distilled.cloud/core/codegen/patches";
 import { resolveSpecPath } from "@distilled.cloud/core/codegen/spec-path";
 
 const rootDir = path.resolve(import.meta.dir, "..");
@@ -124,32 +125,22 @@ const listPatchFiles = (root: string): string[] => {
 };
 
 let patchFiles = 0;
-let staleOps = 0;
 const badPatches: string[] = [];
-/** Smithy `/shapes/` ops, keyed by tag slug (`patches/<slug>/…`). */
-const smithyPatchesBySlug = new Map<
-  string,
-  Array<{ rel: string; op: PatchFile["patches"][number] }>
->();
 for (const rel of listPatchFiles(patchDir)) {
   const parsed = JSON.parse(
     fs.readFileSync(path.join(patchDir, rel), "utf-8"),
   ) as PatchFile;
-  const slug = rel.split("/")[0]!;
   for (const patchOp of parsed.patches ?? []) {
-    if (isSmithyPatchPath(patchOp.path)) {
-      const list = smithyPatchesBySlug.get(slug) ?? [];
-      list.push({ rel, op: patchOp });
-      smithyPatchesBySlug.set(slug, list);
-      continue;
-    }
+    // Smithy pointers apply to the converted model in finalizeConvert.
+    if (isSmithyPatchPath(patchOp.path)) continue;
     try {
       applyOperation(fullSpec, patchOp);
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
-      if (isStaleTargetError(msg)) {
-        staleOps++;
-        console.warn(`   ⚠️  stale: ${rel} [${patchOp.op} ${patchOp.path}]`);
+      if (isStaleTargetError(e)) {
+        badPatches.push(
+          `${rel} [${patchOp.op} ${patchOp.path}]: stale target (${msg})`,
+        );
       } else {
         badPatches.push(`${rel} [${patchOp.op} ${patchOp.path}]: ${msg}`);
       }
@@ -164,10 +155,7 @@ if (badPatches.length) {
   );
 }
 if (patchFiles) {
-  console.log(
-    `🩹 ${patchFiles} patch files applied` +
-      (staleOps ? ` (${staleOps} stale op(s) skipped)` : ""),
-  );
+  console.log(`🩹 ${patchFiles} patch files applied`);
 }
 
 // ---- 3. Bucket paths by primary tag ----------------------------------------
@@ -254,20 +242,6 @@ for (const slug of [...tagBuckets.keys()].sort()) {
     continue; // all-deprecated bucket
   }
 
-  for (const { rel, op: patchOp } of smithyPatchesBySlug.get(slug) ?? []) {
-    try {
-      applyOperation(model, patchOp);
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : String(e);
-      if (isStaleTargetError(msg)) {
-        staleOps++;
-        console.warn(`   ⚠️  stale: ${rel} [${patchOp.op} ${patchOp.path}]`);
-      } else {
-        badPatches.push(`${rel} [${patchOp.op} ${patchOp.path}]: ${msg}`);
-      }
-    }
-  }
-
   fs.writeFileSync(
     path.join(outDir, `${slug}.json`),
     JSON.stringify(model, null, 2) + "\n",
@@ -294,3 +268,5 @@ if (badPatches.length) {
   );
 }
 console.log(`✅ ${written} Smithy models (${totalOps} operations) → ${outDir}`);
+
+await finalizeConvert({ root: rootDir });
